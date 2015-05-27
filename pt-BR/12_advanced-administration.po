@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-26 19:31+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2015-05-27 22:01+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/12_advanced-administration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -2890,11 +2890,23 @@ msgstr ""
 #, no-c-format
 msgid "Note that the <filename>testxen</filename> domU uses real memory taken from the RAM that would otherwise be available to the dom0, not simulated memory. Care should therefore be taken, when building a server meant to host Xen instances, to provision the physical RAM accordingly."
 msgstr ""
+"Note que o <filename>testxen</filename> domU usa memória real, retirada da "
+"RAM, que estaria de outra forma disponível para o dom0, não a memória "
+"simulada. Portanto, cuidados devem ser tomados quando se constrói um "
+"servidor objetivando hospedar instâncias Xen, disponibilizando a RAM física "
+"de acordo."
 
 #. Tag: para
 #, no-c-format
 msgid "Voilà! Our virtual machine is starting up. We can access it in one of two modes. The usual way is to connect to it “remotely” through the network, as we would connect to a real machine; this will usually require setting up either a DHCP server or some DNS configuration. The other way, which may be the only way if the network configuration was incorrect, is to use the <filename>hvc0</filename> console, with the <command>xm console</command> command:"
 msgstr ""
+"Voilà! Nossa máquina virtual está iniciando. Nós podemos acessá-la de uma de "
+"duas maneiras. A maneira usual é se conectar a ela “remotamente” através da "
+"rede, como nós nos conectaríamos a uma máquina real; isso geralmente irá "
+"requerer a configuração de um servidor DHCP ou alguma configuração de DNS. A "
+"outra maneira, que pode ser a única maneira se a configuração de rede "
+"estiver incorreta, é usar o console <filename>hvc0</filename>, com o comando "
+"<command>xm console</command>:"
 
 #. Tag: screen
 #, no-c-format
@@ -2928,6 +2940,10 @@ msgstr ""
 #, no-c-format
 msgid "One can then open a session, just like one would do if sitting at the virtual machine's keyboard. Detaching from this console is achieved through the <keycombo action=\"simul\"><keycap>Control</keycap> <keycap>]</keycap></keycombo> key combination."
 msgstr ""
+"Então pode-se abrir uma sessão, tal como se faria caso se estivesse sentado "
+"em frente ao teclado da máquina virtual. Desconectar-se desse console é "
+"possível através da combinação de teclas <keycombo action=\"simul\""
+"><keycap>Control</keycap> <keycap>]</keycap></keycombo>."
 
 #. Tag: title
 #, no-c-format
@@ -2938,6 +2954,10 @@ msgstr "<emphasis>DICA</emphasis> Obtendo o console imediatamente"
 #, no-c-format
 msgid "Sometimes one wishes to start a domU system and get to its console straight away; this is why the <command>xm create</command> command takes a <literal>-c</literal> switch. Starting a domU with this switch will display all the messages as the system boots."
 msgstr ""
+"Ás vezes existe o desejo de iniciar um sistema domU e ir diretamente para o "
+"seu console; é por isso que o comando <command>xm create</command> tem um "
+"interruptor <literal>-c</literal>. Iniciar um domU com esse interruptor irá "
+"exibir todas as mensagens de inicialização do sistema."
 
 #. Tag: title
 #, no-c-format
@@ -2949,11 +2969,33 @@ msgstr "<emphasis>FERRAMENTA</emphasis> OpenXenManager"
 #, no-c-format
 msgid "OpenXenManager (in the <emphasis role=\"pkg\">openxenmanager</emphasis> package) is a graphical interface allowing remote management of Xen domains via Xen's API. It can thus control Xen domains remotely. It provides most of the features of the <command>xm</command> command."
 msgstr ""
+"O OpenXenManager (do pacote <emphasis role=\"pkg\">openxenmanager</emphasis>)"
+" é uma interface gráfica que permite o gerenciamento remoto de domínios Xen "
+"via a API do Xen. Pode-se assim controlar domínios Xen remotamente. Ele "
+"provê a maiorias dos recursos do comando <command>xm</command>."
 
 #. Tag: para
 #, no-c-format
 msgid "Once the domU is up, it can be used just like any other server (since it is a GNU/Linux system after all). However, its virtual machine status allows some extra features. For instance, a domU can be temporarily paused then resumed, with the <command>xm pause</command> and <command>xm unpause</command> commands. Note that even though a paused domU does not use any processor power, its allocated memory is still in use. It may be interesting to consider the <command>xm save</command> and <command>xm restore</command> commands: saving a domU frees the resources that were previously used by this domU, including RAM. When restored (or unpaused, for that matter), a domU doesn't even notice anything beyond the passage of time. If a domU was running when the dom0 is shut down, the packaged scripts automatically save the domU, and restore it on the next boot. This will of course involve the standard inconvenience incurred when hibernating a laptop computer, for instance; in particular, if the domU is suspended for too long, network connections may expire. Note also that Xen is so far incompatible with a large part of ACPI power management, which precludes suspending the host (dom0) system."
 msgstr ""
+"Uma vez que o domU está ativo, ele pode ser usado como qualquer outro "
+"servidor (a final de contas é um sistema GNU/Linux ). Contudo, seu status de "
+"máquina virtual permite algumas características extras. Por exemplo, um domU "
+"pode, temporariamente, ser pausado e então retomado através dos comandos "
+"<command>xm pause</command> e <command>xm unpause</command>. Note que mesmo "
+"que um domU pausado não use qualquer recurso do processador, sua memória "
+"alocada ainda está em uso. Talvez possa ser interessante considerar os "
+"comandos <command>xm save</command> e <command>xm restore</command>: ao "
+"salvar o domU libera-se os recursos que eram usados previamente por esse "
+"domU, incluindo a RAM. Quando restaurado (ou retirado da pausa, por assim "
+"dizer), um domU não nota nada além da passagem do tempo. Se um domU estava "
+"rodando quando o dom0 é desligado,os scripts empacotados automaticamente "
+"salvam o domU, e o restaurarão na próxima inicialização. Isso irá, é claro, "
+"implicar na inconveniência padrão que ocorre quando se hiberna um computador "
+"laptop, por exemplo; em particular, se o domU é suspenso por muito tempo, as "
+"conexões de rede podem expirar. Note também que o Xen é, até agora, "
+"incompatível com uma grande parte do gerenciamento de energia do ACPI, o que "
+"impede suspensão do sistema hospedeiro (dom0)."
 
 #. Tag: title
 #, no-c-format
@@ -2964,11 +3006,18 @@ msgstr "<emphasis>DOCUMENTAÇÃO</emphasis> <command>xm</command> opções"
 #, no-c-format
 msgid "Most of the <command>xm</command> subcommands expect one or more arguments, often a domU name. These arguments are well described in the <citerefentry><refentrytitle>xm</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page."
 msgstr ""
+"A maioria dos subcomandos <command>xm</command> esperam um ou mais "
+"argumentos, muitas vezes um nome domU. Esses argumentos estão bem descritos "
+"na página de manual <citerefentry><refentrytitle>xm</refentrytitle> "
+"<manvolnum>1</manvolnum></citerefentry>."
 
 #. Tag: para
 #, no-c-format
 msgid "Halting or rebooting a domU can be done either from within the domU (with the <command>shutdown</command> command) or from the dom0, with <command>xm shutdown</command> or <command>xm reboot</command>."
 msgstr ""
+"Interromper ou reinicializar um domU pode ser feito tanto a partir de dentro "
+"do domU (com o comando <command>shutdown</command>) quanto a partir do dom0, "
+"com o <command>xm shutdown</command> ou <command>xm reboot</command>."
 
 #. Tag: title
 #, no-c-format
@@ -2979,11 +3028,35 @@ msgstr "<emphasis>APROFUNDAMENTO</emphasis> Xen avançado"
 #, no-c-format
 msgid "Xen has many more features than we can describe in these few paragraphs. In particular, the system is very dynamic, and many parameters for one domain (such as the amount of allocated memory, the visible hard drives, the behavior of the task scheduler, and so on) can be adjusted even when that domain is running. A domU can even be migrated across servers without being shut down, and without losing its network connections! For all these advanced aspects, the primary source of information is the official Xen documentation. <ulink type=\"block\" url=\"http://www.xen.org/support/documentation.html\" />"
 msgstr ""
+"O Xen tem muito mais recursos do que nós podemos descrever nesses poucos "
+"parágrafos. Em particular, o sistema é muito dinâmico, e muitos parâmetros "
+"para um domínio (como a quantidade de memoria alocada, os discos rígidos "
+"visíveis, o comportamento do agendador de tarefas, e assim por diante) podem "
+"ser ajustados até mesmo quando esse domínio está rodando. Um domU pode até "
+"mesmo ser migrado entre servidores sem ser desligado, e sem perder suas "
+"conexões de rede! Para todos esses aspectos avançados, a principal fonte de "
+"informação é a documentação oficial do Xen. <ulink type=\"block\" url=\""
+"http://www.xen.org/support/documentation.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Even though it is used to build “virtual machines”, LXC <indexterm><primary>LXC</primary></indexterm> is not, strictly speaking, a virtualization system, but a system to isolate groups of processes from each other even though they all run on the same host. It takes advantage of a set of recent evolutions in the Linux kernel, collectively known as <emphasis>control groups</emphasis>, by which different sets of processes called “groups” have different views of certain aspects of the overall system. Most notable among these aspects are the process identifiers, the network configuration, and the mount points. Such a group of isolated processes will not have any access to the other processes in the system, and its accesses to the filesystem can be restricted to a specific subset. It can also have its own network interface and routing table, and it may be configured to only see a subset of the available devices present on the system."
 msgstr ""
+"Mesmo que seja usado para construir “máquinas virtuais”, o LXC "
+"<indexterm><primary>LXC</primary></indexterm> não é, estritamente falando, "
+"um sistema de virtualização, mas um sistema que isola grupos  de processos "
+"uns dos outros mesmo que eles todos rodem no mesmo host. Ele tira proveito "
+"de um conjunto de evoluções recentes do núcleo Linux, coletivamente "
+"conhecidas como <emphasis>control groups</emphasis>, de maneira que "
+"diferentes conjuntos de processos chamados de  “groups” tem diferentes "
+"visões de certos aspectos do sistema global. Os mais notáveis dentre esses "
+"aspectos são os identificadores de processo, a configuração de rede, e os "
+"pontos de montagem. Tais grupos de processos isolados não terão qualquer "
+"acesso a outros processos do sistema, e esses acessos ao sistema de arquivos "
+"podem ser restringidos a um subconjunto específico. eles também podem ter "
+"sua própria interface de rede e tabela de roteamento, e também podem ser "
+"configurados para ver apenas um subconjunto de dispositivos disponíveis "
+"presentes no sistema."
 
 #. Tag: para
 #, no-c-format
@@ -3004,6 +3077,13 @@ msgstr "Contêineres LXC não provêm o mesmo nível de isolamento conseguido po
 #, no-c-format
 msgid "the <emphasis role=\"distribution\">Wheezy</emphasis> standard kernel does not allow limiting the amount of memory available to a container; the feature exists, and is built in the kernel, but it is disabled by default because it has a (slight) cost on overall system performance; however, enabling it is a simple matter of setting the <command>cgroup_enable=memory</command> kernel command-line option at boot time;"
 msgstr ""
+"o núcleo padrão do <emphasis role=\"distribution\">Wheezy</emphasis> não "
+"permite a limitação de quantidade de memória disponível para um container; o "
+"recurso existe, e é parte interna do núcleo, mas é desabilitado por padrão "
+"porque ele tem um (pequeno) custo no desempenho geral do sistema; contudo, "
+"para habilitá-lo é uma simples questão de configurar a opção de linha de "
+"comando do núcleo <command>cgroup_enable=memory</command> no momento da "
+"inicialização;"
 
 #. Tag: para
 #, no-c-format
