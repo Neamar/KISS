@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-27 22:09+0900\n"
+"PO-Revision-Date: 2015-05-28 20:27+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -956,17 +956,17 @@ msgstr "<primary>greylisting</primary>"
 #. Tag: para
 #, no-c-format
 msgid "“Greylisting” is a filtering technique according to which a message is initially rejected with a temporary error code, and only accepted on a further try after some delay. This filtering is particularly efficient against spam sent by the many machines infected by worms and viruses, since these software rarely act as full SMTP agents (by checking the error code and retrying failed messages later), especially since many of the harvested addresses are really invalid and retrying would only mean losing time."
-msgstr ""
+msgstr "「Greylisting」はフィルタリング技術です。この技術を使うことで、最初にメッセージを一時的なエラーコードと共に拒否し、少しの遅延の後に何回か試行すれば許可するというような挙動が可能です。このフィルタリングは特にワームとウィルスに侵された数多くのマシンが送信するスパムに対して効果的です。なぜなら、ワームやウィルスは完全な SMTP エージェントとして振る舞うことは殆ど無い (エラーコードを確認して失敗したメッセージを後から再試行することは殆ど無い) ですし、特に収集されたアドレスのほとんどは実際のところ無効ということを考慮すると、再試行は時間の無駄にしかならないからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Postfix doesn't provide greylisting natively, but there is a feature by which the decision to accept or reject a given message can be delegated to an external program. The <emphasis role=\"pkg\">postgrey</emphasis> package contains just such a program, designed to interface with this access policy delegation service."
-msgstr ""
+msgstr "Postfix それ自身は greylisting 機能を提供しませんが、あるメッセージを受け入れるか拒否するかの決定を外部プログラムに委任する機能を提供します。<emphasis role=\"pkg\">postgrey</emphasis> パッケージには greylisting 機能を提供するプログラムが含まれ、アクセスポリシー委任サービスへのインターフェイスとして設計されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once <emphasis role=\"pkg\">postgrey</emphasis> is installed, it runs as a daemon and listens on port 10023. Postfix can then be configured to use it, by adding the <literal>check_policy_service</literal> parameter as an extra restriction:"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">postgrey</emphasis> がインストールされると、postgrey はデーモンとして実行され、ポート 10023 番をリッスンします。この後 Postfix を設定します。<literal>check_policy_service</literal> パラメータを追加的制限として追加することで、postgrey を使うようになります:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -976,76 +976,80 @@ msgid ""
 "    [...]\n"
 "    check_policy_service inet:127.0.0.1:10023\n"
 msgstr ""
+"\n"
+"smtpd_recipient_restrictions = permit_mynetworks,\n"
+"    [...]\n"
+"    check_policy_service inet:127.0.0.1:10023\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Each time Postfix reaches this rule in the ruleset, it will connect to the <command>postgrey</command> daemon and send it information concerning the relevant message. On its side, Postgrey considers the IP address/sender/recipient triplet and checks in its database whether that same triplet has been seen recently. If so, Postgrey replies that the message should be accepted; if not, the reply indicates that the message should be temporarily rejected, and the triplet gets recorded in the database."
-msgstr ""
+msgstr "Postfix はルールセットの中にあるこのルールに到達したら、<command>postgrey</command> デーモンに接続し、対応するメッセージに関する情報をデーモンに送信します。Postgrey は IP アドレス/送信者/受信者の三つ揃いを考慮し、同じ三つ揃いが最近データベースに登録されたか否かをデータベースで確認します。最近登録されていた場合、Postgrey はメッセージを受け入れるべきであると応答します; 最近登録されていなかった場合、Postgrey はメッセージを一時的に拒否するべきであると応答し、三つ揃いをデータベースに登録します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The main disadvantage of greylisting is that legitimate messages get delayed, which is not always acceptable. It also increases the burden on servers that send many legitimate emails."
-msgstr ""
+msgstr "greylisting の主な不都合は、正当なメッセージの配送が遅れる点です。これは常に受け入れられる欠点とは限りません。また、送信するメールのほとんどが正当な場合、greylisting はサーバの負荷を増加させます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Shortcomings of greylisting"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> greylisting の欠点"
 
 #. Tag: para
 #, no-c-format
 msgid "Theoretically, greylisting should only delay the first mail from a given sender to a given recipient, and the typical delay is in the order of minutes. Reality, however, can differ slightly. Some large ISPs use clusters of SMTP servers, and when a message is initially rejected, the server that retries the transmission may not be the same as the initial one. When that happens, the second server gets a temporary error message due to greylisting too, and so on; it may take several hours until transmission is attempted by a server that has already been involved, since SMTP servers usually increase the delay between retries at each failure."
-msgstr ""
+msgstr "理論上、greylisting による遅延は、ある送信者からある受信者に送信される最初のメールだけを対象にし、典型的な遅延時間はほぼ数分程度です。しかしながら、実際は少し違います。一部の大きな ISP は SMTP サーバの集団を使います。このようなサーバの 1 つから送信要求されたメッセージは 1 回目の送信要求を拒否されますが、次に再度送信要求を出すサーバは 1 回目のサーバと違う可能性があります。これが起きた場合、2 回目のサーバは greylisting のお陰で一時的なエラーメッセージを応答します; 次の送信要求が、既に greylisting データベースに登録されているサーバに対して行われるまでには数時間かかる可能性があります。なぜなら、通常 SMTP サーバは再試行が失敗した場合に遅延時間を増やすからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "As a consequence, the incoming IP address may vary in time even for a single sender. But it goes further: even the sender address can change. For instance, many mailing-list servers encode extra information in the sender address so as to be able to handle error messages (known as <emphasis>bounces</emphasis>). Each new message sent to a mailing-list may then need to go through greylisting, which means it has to be stored (temporarily) on the sender's server. For very large mailing-lists (with tens of thousands of subscribers), this can soon become a problem."
-msgstr ""
+msgstr "その結果、同じ送信者からであっても、送信要求を行う IP アドレスは毎回変わるかもしれません。更に踏み込むと: 送信者アドレスも変わる可能性があります。例えば、多くのメーリングリストサーバは送信者アドレス内の追加的な情報を符号化することで、エラーメッセージ (<emphasis>bounces</emphasis> として知られる) を取り扱う事が可能です。メーリングリスト宛に送信される新しいメッセージは greylisting を通過することが必要かもしれません。これは新しいメッセージが送信者のサーバに (一時的に) 保存されることを意味します。とても巨大な (数万人が登録する) メーリングリストの場合、これは問題になる事があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "To mitigate these drawbacks, Postgrey manages a whitelist of such sites, and messages emanating from them are immediately accepted without going through greylisting. This list can easily be adapted to local needs, since it's stored in the <filename>/etc/postgrey/whitelist_clients</filename> file."
-msgstr ""
+msgstr "これらの欠点を軽減するために、Postgrey はそのようなサイトとメッセージのホワイトリストを管理します。そのような送信者から送信されたメッセージは greylisting を通過することなしにすぐに許可されます。簡単にこのリストをその場の要求に適用可能です。なぜなら、ホワイトリストは <filename>/etc/postgrey/whitelist_clients</filename> ファイルに保存されているからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Selective greylisting with <emphasis role=\"pkg\">milter-greylist</emphasis>"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> <emphasis role=\"pkg\">milter-greylist</emphasis> を使った選択的 greylisting"
 
 #. Tag: para
 #, no-c-format
 msgid "The drawbacks of greylisting can be mitigated by only using greylisting on the subset of clients that are already considered as probable sources of spam (because they are listed in a DNS black-list). This is not possible with <emphasis role=\"pkg\">postgrey</emphasis> but <emphasis role=\"pkg\">milter-greylist</emphasis> can be used in such a way."
-msgstr ""
+msgstr "このような greylisting の欠点を低減するには、既にスパムの発生源と考えられている (DNS ブラックリストに載せられている) サブネットのクライアントだけを対象に greylisting を使います。<emphasis role=\"pkg\">postgrey</emphasis> ではこの機能を使うことができませんが、<emphasis role=\"pkg\">milter-greylist</emphasis> でこの機能を使います。"
 
 #. Tag: para
 #, no-c-format
 msgid "In that scenario, since DNS black-lists never triggers a definitive rejection, it becomes reasonable to use aggressive black-lists, including those listing all dynamic IP addresses from ISP clients (such as <literal>pbl.spamhaus.org</literal> or <literal>dul.dnsbl.sorbs.net</literal>)."
-msgstr ""
+msgstr "この場合、DNS ブラックリストに載っていたからと言って必ず拒否されるわけではないので、より広範囲に及ぶブラックリストを使うことが妥当です。そのようなブラックリストには、ISP クライアントからの全ての動的 IP アドレスも含まれます (<literal>pbl.spamhaus.org</literal> や <literal>dul.dnsbl.sorbs.net</literal> などの)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Since milter-greylist uses Sendmail's milter interface, the postfix side of its configuration is limited to “<literal>smtpd_milters = unix:/var/milter-greylist/milter-greylist.sock</literal>”. The <citerefentry><refentrytitle>greylist.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page documents <filename>/etc/milter-greylist/greylist.conf</filename> and the numerous ways to configure milter-greylist."
-msgstr ""
+msgstr "milter-greylist は Sendmail の milter インターフェイスを使うため、postfix 側からは「<literal>smtpd_milters = unix:/var/milter-greylist/milter-greylist.sock</literal>」と設定する以上のことができません。<citerefentry><refentrytitle>greylist.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページには、<filename>/etc/milter-greylist/greylist.conf</filename> とmilter-greylist を設定する様々な方法が書かれています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Customizing Filters Based On the Recipient"
-msgstr ""
+msgstr "受信アドレスに基づくフィルタのカスタマイズ"
 
 #. Tag: para
 #, no-c-format
 msgid "The last two sections reviewed many of the possible restrictions. They all have their use in limiting the amount of received spam, but they also all have their drawbacks. It is therefore more and more common to customize the set of filters depending on the recipient. At Falcot Corp, greylisting is interesting for most users, but it hinders the work of some users who need low latency in their emails (such as the technical support service). Similarly, the commercial service sometimes has problems receiving emails from some Asian providers who may be listed in black-lists; this service asked for a non-filtered address so as to be able to correspond."
-msgstr ""
+msgstr "上の 2 つの節で、様々な制限方法を見直しました。これらの制限方法はスパムの受信量を減らすためのものですが、欠点もあります。このため、受信者毎にフィルタのセットをカスタマイズすることが普通のやり方になりつつあります。Falcot Corp では、greylisting は多くのユーザにとって興味深いものでしたが、電子メールを素早く受け取りたい一部のユーザ (例えば技術サポートサービスなどの) にとっては仕事の妨げになります。同様に、商業サービスにとっては、ブラックリストに載っているかもしれない一部のアジアプロバイダから送信された電子メールを受信できない点は問題となります; 商業サービスにとっては、これらの送信者と連絡が取れるようにフィルタリングしないほうが都合が良いです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Postfix provides such a customization of filters with a “restriction class” concept. The classes are declared in the <literal>smtpd_restriction_classes</literal> parameter, and defined the same way as <literal>smtpd_recipient_restrictions</literal>. The <literal>check_recipient_access</literal> directive then defines a table mapping a given recipient to the appropriate set of restrictions."
-msgstr ""
+msgstr "Postfix は「制限クラス」の概念を使ってフィルタをカスタマイズします。制限クラスは <literal>smtpd_restriction_classes</literal> パラメータの中で宣言され、<literal>smtpd_recipient_restrictions</literal> と同じやり方で使用されます。<literal>check_recipient_access</literal> 指示文は与えられた受信者と制限の適切なセットを対応付けるテーブルを定義します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Defining restriction classes in <filename>main.cf</filename>"
-msgstr ""
+msgstr "<filename>main.cf</filename> 内の制限クラスの定義"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1061,11 +1065,21 @@ msgid ""
 "        reject_unauth_destination,\n"
 "        check_recipient_access hash:/etc/postfix/recipient_access\n"
 msgstr ""
+"smtpd_restriction_classes = greylisting, aggressive, permissive\n"
+"\n"
+"greylisting = check_policy_service inet:127.0.0.1:10023\n"
+"aggressive = reject_rbl_client sbl-xbl.spamhaus.org,\n"
+"        check_policy_service inet:127.0.0.1:10023\n"
+"permissive = permit\n"
+"\n"
+"smtpd_recipient_restrictions = permit_mynetworks,\n"
+"        reject_unauth_destination,\n"
+"        check_recipient_access hash:/etc/postfix/recipient_access\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/postfix/recipient_access</filename> file"
-msgstr ""
+msgstr "<filename>/etc/postfix/recipient_access</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1085,66 +1099,80 @@ msgid ""
 "# Greylisting by default\n"
 "falcot.com             greylisting\n"
 msgstr ""
+"\n"
+"# Unfiltered addresses\n"
+"postmaster@falcot.com  permissive\n"
+"support@falcot.com     permissive\n"
+"sales-asia@falcot.com  permissive\n"
+"\n"
+"# Aggressive filtering for some privileged users\n"
+"joe@falcot.com         aggressive\n"
+"\n"
+"# Special rule for the mailing-list manager\n"
+"sympa@falcot.com       reject_unverified_sender\n"
+"\n"
+"# Greylisting by default\n"
+"falcot.com             greylisting\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Integrating an Antivirus"
-msgstr ""
+msgstr "アンチウイルスの統合"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>antivirus</primary>"
-msgstr ""
+msgstr "<primary>antivirus</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The many viruses circulating as attachments to emails make it important to set up an antivirus at the entry point of the company network, since despite an awareness campaign, some users will still open attachments from obviously shady messages."
-msgstr ""
+msgstr "数多くのウィルスが電子メールの添付ファイルとして配布されているため、会社のネットワークの入口にアンチウイルスをセットアップすることが重要です。なぜなら、啓蒙活動にも関わらず、一部のユーザは明らかに疑わしいメッセージの添付ファイルを開けるからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot administrators selected <command>clamav</command> for their free antivirus. The main package is <emphasis role=\"pkg\">clamav</emphasis>, but they also installed a few extra packages such as <emphasis role=\"pkg\">arj</emphasis>, <emphasis role=\"pkg\">unzoo</emphasis>, <emphasis role=\"pkg\">unrar</emphasis> and <emphasis role=\"pkg\">lha</emphasis>, since they are required for the antivirus to analyze attachments archived in one of these formats."
-msgstr ""
+msgstr "Falcot 管理者はフリーのアンチウイルスとして <command>clamav</command> を選びました。主要なパッケージは <emphasis role=\"pkg\">clamav</emphasis> ですが、<emphasis role=\"pkg\">arj</emphasis>、<emphasis role=\"pkg\">unzoo</emphasis>、<emphasis role=\"pkg\">unrar</emphasis>、<emphasis role=\"pkg\">lha</emphasis> などの幾つかの追加的パッケージもインストールしました。なぜなら、これらの追加的パッケージは、アンチウイルスがそれらのフォーマットで圧縮された添付ファイルを解析する際に必要だからです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>clamav</command></primary>"
-msgstr ""
+msgstr "<primary><command>clamav</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>clamav-milter</command></primary>"
-msgstr ""
+msgstr "<primary><command>clamav-milter</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The task of interfacing between antivirus and the email server goes to <command>clamav-milter</command>. A <emphasis>milter</emphasis> (short for <emphasis>mail filter</emphasis>) is a filtering program specially designed to interface with email servers. A milter uses a standard application programming interface (API) that provides much better performance than filters external to the email servers. Milters were initially introduced by <emphasis>Sendmail</emphasis>, but <emphasis>Postfix</emphasis> soon followed suit."
-msgstr ""
+msgstr "<command>clamav-milter</command> はアンチウイルスと電子メールサーバの間を接続する作業を担当します。<emphasis>milter</emphasis> (<emphasis>mail filter</emphasis> の略) とは、電子メールサーバに対するインターフェイスとして特別に設計されたフィルタプログラムです。milter は標準的なアプリケーションプログラミングインターフェイス (API) を使います。API を使うことで、電子メールサーバ外のフィルタの性能が向上します。Milter は 最初 <emphasis>Sendmail</emphasis> に導入されましたが、<emphasis>Postfix</emphasis> がすぐに後に続きました。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> A milter for Spamassassin"
-msgstr ""
+msgstr "<emphasis>QUICK LOOK</emphasis> Spamassassin 用の milter"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">spamass-milter</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">spamass-milter</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">spamass-milter</emphasis> package provides a milter based on <emphasis>SpamAssassin</emphasis>, the famous unsolicited email detector. It can be used to flag messages as probable spams (by adding an extra header) and/or to reject the messages altogether if their “spamminess” score goes beyond a given threshold."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">spamass-milter</emphasis> パッケージは <emphasis>SpamAssassin</emphasis>、有名な迷惑メール検知ソフトウェア、に基づく milter を提供します。これは、(ヘッダを追加することで) スパムと思われるメッセージを注意するために使うことが可能です。さらにスパム度のスコアが与えられたしきい値を超えたらメッセージを拒否することも可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the <emphasis role=\"pkg\">clamav-milter</emphasis> package is installed, the milter should be reconfigured to run on a TCP port rather than on the default named socket. This can be achieved with <command>dpkg-reconfigure clamav-milter</command>. When prompted for the “Communication interface with Sendmail”, answer “<literal>inet:10002@127.0.0.1</literal>”."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">clamav-milter</emphasis> パッケージをインストールしたら、milter をデフォルトのポートではない適当な TCP ポートで実行するように再設定するべきです。これを行うには、<command>dpkg-reconfigure clamav-milter</command> を実行します。そして「Communication interface with Sendmail」が表示されたら「<literal>inet:10002@127.0.0.1</literal>」と答えます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Real TCP port vs named socket"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> 真の TCP ポート vs 名前付きソケット"
 
 #. Tag: para
 #, no-c-format
