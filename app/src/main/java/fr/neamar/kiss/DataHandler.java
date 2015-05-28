@@ -152,14 +152,15 @@ public class DataHandler extends BroadcastReceiver {
 	/**
 	 * Return most used items.<br />
 	 * May return null if no items were ever selected (app first use)
-	 *
+	 * @param context
+	 * @param limit max number of items to retrieve. You may end with less items if favorites contains non existing items.
 	 * @return
 	 */
-	protected ArrayList<Holder> getFavorites(Context context) {
+	protected ArrayList<Holder> getFavorites(Context context, int limit) {
 		ArrayList<Holder> favorites = new ArrayList<Holder>();
 
 		// Read history
-		ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, 5);
+		ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, limit);
 
 
 		// Find associated items

@@ -1,12 +1,12 @@
 package fr.neamar.kiss.db;
 
-import java.util.ArrayList;
-
 import android.app.backup.BackupManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
 
 public class DBHelper {
 
@@ -116,7 +116,7 @@ public class DBHelper {
 	 * Retrieve most used records. Warning : filter through applications only
 	 * 
 	 * @param context
-	 * @param int
+	 * @param limit number of item to return
 	 * @return
 	 */
 	public static ArrayList<ValuedHistoryRecord> getFavorites(Context context, int limit) {

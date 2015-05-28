@@ -164,11 +164,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
         });
 
         final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
+        final int tryToRetrieve = favsIds.length + 2;
 
         View.OnClickListener favoriteListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Holder holder = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this)
+                Holder holder = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
                         .get(Integer.parseInt((String) view.getTag()));
                 Record record = Record.fromHolder(MainActivity.this, holder);
                 record.fastLaunch(MainActivity.this);
@@ -203,8 +204,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
                     // No animation before Lollipop
                     kissMenu.setVisibility(View.VISIBLE);
                 }
+
+                // Retrieve favorites. Try to retrieve more, since some favorites may be undisplayable (e.g. search queries)
                 ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
-                        .getFavorites(MainActivity.this);
+                        .getFavorites(MainActivity.this, tryToRetrieve);
 
                 if (favorites_holder.size() == 0) {
                     Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
@@ -213,7 +216,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
                     return;
                 }
 
-                for (int i = 0; i < favorites_holder.size(); i++) {
+                // Don't look for items after favIds length, we won't be able to display them
+                for (int i = 0; i < Math.min(favsIds.length, favorites_holder.size()); i++) {
                     Holder holder = favorites_holder.get(i);
                     ImageView image = (ImageView) findViewById(favsIds[i]);
 
