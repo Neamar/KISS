@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-28 20:27+0900\n"
+"PO-Revision-Date: 2015-05-29 18:34+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1177,17 +1177,17 @@ msgstr "<emphasis>NOTE</emphasis> 真の TCP ポート vs 名前付きソケッ�
 #. Tag: para
 #, no-c-format
 msgid "The reason why we use a real TCP port rather than the named socket is that the postfix daemons often run chrooted and do not have access to the directory hosting the named socket. You could also decide to keep using a named socket and pick a location within the chroot (<filename>/var/spool/postfix/</filename>)."
-msgstr ""
+msgstr "名前付きソケットではなく実在する TCP ポートを使う理由は、postfix デーモンは chroot された状態で実行され、名前付きソケットの存在するディレクトリにアクセスできないからです。名前付きソケットを使い、これを chroot 中 (<filename>/var/spool/postfix/</filename>) に入れておくことも可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The standard ClamAV configuration fits most situations, but some important parameters can still be customized with <command>dpkg-reconfigure clamav-base</command>."
-msgstr ""
+msgstr "ClamAV の標準的な設定はほとんどの状況に適合しますが、<command>dpkg-reconfigure clamav-base</command> を使えば幾つかの重要なパラメータをカスタマイズすることも可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The last step involves telling Postfix to use the recently-configured filter. This is a simple matter of adding the following directive to <filename>/etc/postfix/main.cf</filename>:"
-msgstr ""
+msgstr "最後の段階で、最近設定したフィルタを使うように Postfix を設定します。これは簡単です。<filename>/etc/postfix/main.cf</filename> に以下の指示文を追加します:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1196,46 +1196,49 @@ msgid ""
 "# Virus check with clamav-milter\n"
 "smtpd_milters = inet:[127.0.0.1]:10002\n"
 msgstr ""
+"\n"
+"# Virus check with clamav-milter\n"
+"smtpd_milters = inet:[127.0.0.1]:10002\n"
 
 #. Tag: para
 #, no-c-format
 msgid "If the antivirus causes problems, this line can be commented out, and <command>/etc/init.d/postfix reload</command> should be run so that this change is taken into account."
-msgstr ""
+msgstr "アンチウイルスによって問題が起こる場合、この行をコメントアウトして、<command>/etc/init.d/postfix reload</command> を実行します。これでこの変更が反映されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Testing the antivirus"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> アンチウイルスのテスト"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the antivirus is set up, its correct behavior should be tested. The simplest way to do that is to send a test email with an attachment containing the <filename>eicar.com</filename> (or <filename>eicar.com.zip</filename>) file, which can be downloaded online: <ulink type=\"block\" url=\"http://www.eicar.org/anti_virus_test_file.htm\" />"
-msgstr ""
+msgstr "アンチウイルスをセットアップしたら、正常な挙動をテストするべきです。最も簡単にテストすには、<filename>eicar.com</filename> (または <filename>eicar.com.zip</filename>) を添付したテストメールを送信します。このファイルはオンラインからダウンロード可能です: <ulink type=\"block\" url=\"http://www.eicar.org/anti_virus_test_file.htm\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "This file is not a true virus, but a test file that all antivirus software on the market diagnose as a virus to allow checking installations."
-msgstr ""
+msgstr "このファイルは、本物のウィルスではなくテストファイルです。市場に出ている全てのアンチウイルスソフトウェアはこのファイルをウィルスと判定しますから、これを使うことでインストールの正しさを確認できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "All messages handled by Postfix now go through the antivirus filter."
-msgstr ""
+msgstr "これで Postfix の介して送信される全てのメッセージはアンチウイルスフィルタを通過するようになります。"
 
 #. Tag: title
 #, no-c-format
 msgid "Authenticated SMTP"
-msgstr ""
+msgstr "SMTP 認証"
 
 #. Tag: para
 #, no-c-format
 msgid "Being able to send emails requires an SMTP server to be reachable; it also requires said SMTP server to send emails through it. For roaming users, that may need regularly changing the configuration of the SMTP client, since Falcot's SMTP server rejects messages coming from IP addresses apparently not belonging to the company. Two solutions exist: either the roaming user installs an SMTP server on their computer, or they still use the company server with some means of authenticating as an employee. The former solution is not recommended since the computer won't be permanently connected, and it won't be able to retry sending messages in case of problems; we will focus on the latter solution."
-msgstr ""
+msgstr "電子メールを送信するには、SMTP サーバにアクセスする必要があります; つまり、電子メールを送信するには上で設定した SMTP サーバが必要です。ローミングユーザの場合、SMTP クライアントの設定を定期的に変更する必要があるかもしれません。なぜなら、Falcot の SMTP サーバは明らかに会社に所属しない IP アドレスから受け取ったメッセージを拒否するからです。2 つの解決策が存在します: ローミングユーザが自分のコンピュータに SMTP サーバをインストールするか、雇用者としての認証を済ませた後に会社のサーバを使うかのどちらか一方です。自分の SMTP サーバをインストールするという解決策は推奨されません。なぜなら、コンピュータは永久的に接続されているわけではないからです。さらに、問題の起きた際にメッセージを再送信することができないからです。我々は認証を行うという解決策に注目します。"
 
 #. Tag: para
 #, no-c-format
 msgid "SMTP authentication in Postfix relies on SASL (<emphasis>Simple Authentication and Security Layer</emphasis>). It requires installing the <emphasis role=\"pkg\">libsasl2-modules</emphasis> and <emphasis role=\"pkg\">sasl2-bin</emphasis> packages, then registering a password in the SASL database for each user that needs authenticating on the SMTP server. This is done with the <command>saslpasswd2</command> command, which takes several parameters. The <literal>-u</literal> option defines the authentication domain, which must match the <literal>smtpd_sasl_local_domain</literal> parameter in the Postfix configuration. The <literal>-c</literal> option allows creating a user, and <literal>-f</literal> allows specifying the file to use if the SASL database needs to be stored at a different location than the default (<filename>/etc/sasldb2</filename>)."
-msgstr ""
+msgstr "Postfix の SMTP 認証は SASL (<emphasis>Simple Authentication and Security Layer</emphasis>) を使っています。SASL を使うには、<emphasis role=\"pkg\">libsasl2-modules</emphasis> と <emphasis role=\"pkg\">sasl2-bin</emphasis> パッケージをインストールする事と、SASL データベースに SMTP サーバの認証に必要なパスワードをユーザごとに登録する事、が必要です。これを行うには、<command>saslpasswd2</command> コマンドを使います。このコマンドは幾つかのパラメータを取ります。<literal>-u</literal> オプションは認証するドメインを定義します。これは Postfix 設定の <literal>smtpd_sasl_local_domain</literal> パラメータと一致しなければいけません。<literal>-c</literal> オプションはユーザを作成します。<literal>-f</literal> は SASL データベースをデフォルト(<filename>/etc/sasldb2</filename>)とは異なる場所に保存することが必要な場合、データベースファイルの位置を指定します。"
 
 #. Tag: screen
 #, no-c-format
@@ -1244,21 +1247,24 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>saslpasswd2 -u `postconf -h myhostname` -f /var/spool/postfix/etc/sasldb2 -c jean</userinput>\n"
 "<computeroutput>[... type jean's password twice ...]</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>saslpasswd2 -u `postconf -h myhostname` -f /var/spool/postfix/etc/sasldb2 -c jean</userinput>\n"
+"<computeroutput>[... type jean's password twice ...]</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that the SASL database was created in Postfix's directory. In order to ensure consistency, we also turn <filename>/etc/sasldb2</filename> into a symbolic link pointing at the database used by Postfix, with the <command>ln -sf /var/spool/postfix/etc/sasldb2 /etc/sasldb2</command> command."
-msgstr ""
+msgstr "SASL データベースは Postfix ディレクトリの中に作成されなければいけない点に注意してください。整合性を確保するために、<command>ln -sf /var/spool/postfix/etc/sasldb2 /etc/sasldb2</command> コマンドを使って <filename>/etc/sasldb2</filename> を Postfix の使うデータベースを指すシンボリックリンクにします。"
 
 #. Tag: para
 #, no-c-format
 msgid "Now we need to configure Postfix to use SASL. First the <literal>postfix</literal> user needs to be added to the <literal>sasl</literal> group, so that it can access the SASL account database. A few new parameters are also needed to enable SASL, and the <literal>smtpd_recipient_restrictions</literal> parameter needs to be configured to allow SASL-authenticated clients to send emails freely."
-msgstr ""
+msgstr "この後に Postfix が SASL を使うように設定します。<literal>postfix</literal> ユーザを <literal>sasl</literal> グループに追加して、SASL アカウントデータベースにアクセスできるようにします。Postfix で SASL を有効化するには、いくつかの新しいパラメータが必要です。また、SASL 認証されたクライアントが自由に電子メールを送信することを許可するには、<literal>smtpd_recipient_restrictions</literal> パラメータを設定します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Enabling SASL in <filename>/etc/postfix/main.cf</filename>"
-msgstr ""
+msgstr "<filename>/etc/postfix/main.cf</filename> の中で SASL を有効化"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1276,16 +1282,28 @@ msgid ""
 "    reject_unauth_destination,\n"
 "[...]\n"
 msgstr ""
+"\n"
+"# Enable SASL authentication\n"
+"smtpd_sasl_auth_enable = yes\n"
+"# Define the SASL authentication domain to use\n"
+"smtpd_sasl_local_domain = $myhostname\n"
+"[...]\n"
+"# Adding permit_sasl_authenticated before reject_unauth_destination\n"
+"# allows relaying mail sent by SASL-authenticated users\n"
+"smtpd_recipient_restrictions = permit_mynetworks,\n"
+"    permit_sasl_authenticated,\n"
+"    reject_unauth_destination,\n"
+"[...]\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Authenticated SMTP client"
-msgstr ""
+msgstr "<emphasis>EXTRA</emphasis> 認証済み SMTP クライアント"
 
 #. Tag: para
 #, no-c-format
 msgid "Most email clients are able to authenticate to an SMTP server before sending outgoing messages, and using that feature is a simple matter of configuring the appropriate parameters. If the client in use does not provide that feature, the workaround is to use a local Postfix server and configure it to relay email via the remote SMTP server. In this case, the local Postfix itself will be the client that authenticates with SASL. Here are the required parameters:"
-msgstr ""
+msgstr "ほとんどの電子メールクライアントは、メッセージを送信する前に SMTP サーバに対して認証依頼する機能を持っており、適切なパラメータを設定するだけで簡単に SASL 認証機能を使うことが可能です。クライアントが SASL 認証機能を持たない場合、ローカル Postfix サーバを使い、リモート Postfix サーバに電子メールを中継するようにローカルサーバを設定することが次善策です。この場合、ローカル Postfix が SASL を使って認証するクライアントになります。以下は必要なパラメータです:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1295,83 +1313,87 @@ msgid ""
 "smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\n"
 "relay_host = [mail.falcot.com]\n"
 msgstr ""
+"\n"
+"smtp_sasl_auth_enable = yes\n"
+"smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\n"
+"relay_host = [mail.falcot.com]\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/postfix/sasl_passwd</filename> file needs to contain the username and password to use for authenticating on the <literal>mail.falcot.com</literal> server. Here's an example:"
-msgstr ""
+msgstr "<filename>/etc/postfix/sasl_passwd</filename> ファイルには、<literal>mail.falcot.com</literal> サーバに認証を依頼する際に使うユーザ名とパスワードを含めます。以下は例です:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "[mail.falcot.com]   joe:LyinIsji\n"
-msgstr ""
+msgstr "\n[mail.falcot.com]   joe:LyinIsji\n"
 
 #. Tag: para
 #, no-c-format
 msgid "As for all Postfix maps, this file must be turned into <filename>/etc/postfix/sasl_passwd.db</filename> with the <command>postmap</command> command."
-msgstr ""
+msgstr "全ての Postfix のマッピングファイルについて言えることですが、<command>postmap</command> コマンドを使ってこのファイルを <filename>/etc/postfix/sasl_passwd.db</filename> に変換しなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Web Server (HTTP)"
-msgstr ""
+msgstr "ウェブサーバ (HTTP)"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators decided to use the Apache HTTP server, included in Debian <emphasis role=\"distribution\">Wheezy</emphasis> at version 2.2.22."
-msgstr ""
+msgstr "Falcot Corp 管理者は Debian <emphasis role=\"distribution\">Wheezy</emphasis> に含まれるバージョン 2.2.22 の Apache HTTP サーバを使うことに決めました。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>apache</command></primary>"
-msgstr ""
+msgstr "<primary><command>apache</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>web</secondary>"
-msgstr ""
+msgstr "<primary>サーバ</primary><secondary>ウェブ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>web server</primary>"
-msgstr ""
+msgstr "<primary>ウェブサーバ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>HTTP</secondary>"
-msgstr ""
+msgstr "<primary>サーバ</primary><secondary>HTTP</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>HTTP</primary><secondary>server</secondary>"
-msgstr ""
+msgstr "<primary>HTTP</primary><secondary>サーバ</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Other web servers"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> 他のウェブサーバ"
 
 #. Tag: para
 #, no-c-format
 msgid "Apache is merely the most widely-known (and widely-used) web server, but there are others; they can offer better performance under certain workloads, but this has its counterpart in the smaller number of available features and modules. However, when the prospective web server is built to serve static files or to act as a proxy, the alternatives, such as <emphasis role=\"pkg\">nginx</emphasis> and <emphasis role=\"pkg\">lighttpd</emphasis>, are worth investigating."
-msgstr ""
+msgstr "Apache は最も広く知られている (最も広く使われている) ウェブサーバですが、他にもウェブサーバは存在します; これらのサーバは僅かな負荷で高い性能を発揮しますが、利用可能な機能やモジュールが少ないという欠点も持っています。しかしながら、ウェブサーバを静的ファイルを提供する用途やプロキシ用途で使う場合、<emphasis role=\"pkg\">nginx</emphasis> や <emphasis role=\"pkg\">lighttpd</emphasis> などの代替品は調査する価値があります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">nginx</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">nginx</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">lighttpd</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">lighttpd</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing Apache"
-msgstr ""
+msgstr "Apache のインストール"
 
 #. Tag: para
 #, no-c-format
