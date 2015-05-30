@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -9,18 +9,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.AppHolder;
+import fr.neamar.kiss.pojo.AppPojo;
 
-public class AppRecord extends Record {
-	public AppHolder appHolder;
+public class AppResult extends Result {
+	public AppPojo appPojo;
 
 	protected final ComponentName className;
 
-	public AppRecord(AppHolder appHolder) {
+	public AppResult(AppPojo appPojo) {
 		super();
-		this.holder = this.appHolder = appHolder;
+		this.pojo = this.appPojo = appPojo;
 
-		className = new ComponentName(appHolder.packageName, appHolder.activityName);
+		className = new ComponentName(appPojo.packageName, appPojo.activityName);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class AppRecord extends Record {
 			v = inflateFromId(context, R.layout.item_app);
 
 		TextView appName = (TextView) v.findViewById(R.id.item_app_name);
-		appName.setText(enrichText(appHolder.displayName));
+		appName.setText(enrichText(appPojo.displayName));
 
 		ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 		appIcon.setImageDrawable(this.getDrawable(context));

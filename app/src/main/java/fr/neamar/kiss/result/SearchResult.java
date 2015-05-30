@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
@@ -8,14 +8,14 @@ import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.SearchHolder;
+import fr.neamar.kiss.pojo.SearchPojo;
 
-public class SearchRecord extends Record {
-	public SearchHolder searchHolder;
+public class SearchResult extends Result {
+	public SearchPojo searchPojo;
 
-	public SearchRecord(SearchHolder searchHolder) {
+	public SearchResult(SearchPojo searchPojo) {
 		super();
-		this.holder = this.searchHolder = searchHolder;
+		this.pojo = this.searchPojo = searchPojo;
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class SearchRecord extends Record {
 
 		TextView appName = (TextView) v.findViewById(R.id.item_search_text);
 		appName.setText(enrichText(context.getString(R.string.ui_item_search) + " \"{"
-				+ searchHolder.query + "}\""));
+				+ searchPojo.query + "}\""));
 
 		return v;
 	}
@@ -33,7 +33,7 @@ public class SearchRecord extends Record {
 	@Override
 	public void doLaunch(Context context, View v) {
 		Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
-		search.putExtra(SearchManager.QUERY, searchHolder.query);
+		search.putExtra(SearchManager.QUERY, searchPojo.query);
         // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.
         // Adding FLAG_ACTIVITY_CLEAR_TASK seems to fix the problem.
         search.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -43,7 +43,7 @@ public class SearchRecord extends Record {
 			context.startActivity(search);
 		} catch (ActivityNotFoundException e) {
 			// This exception gets thrown if Google Search has been deactivated:
-			Uri uri = Uri.parse("http://www.google.com/#q=" + searchHolder.query);
+			Uri uri = Uri.parse("http://www.google.com/#q=" + searchPojo.query);
 			search = new Intent(Intent.ACTION_VIEW, uri);
 			search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(search);

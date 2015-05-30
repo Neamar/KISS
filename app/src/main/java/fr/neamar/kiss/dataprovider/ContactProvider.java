@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import fr.neamar.kiss.holder.ContactHolder;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.task.LoadContactHolders;
+import fr.neamar.kiss.pojo.ContactPojo;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.loader.LoadContactPojos;
 
-public class ContactProvider extends Provider<ContactHolder> {
+public class ContactProvider extends Provider<ContactPojo> {
 
 	public ContactProvider(final Context context) {
-		super(new LoadContactHolders(context));
+		super(new LoadContactPojos(context));
 	}
 
-	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> results = new ArrayList<Holder>();
+	public ArrayList<Pojo> getResults(String query) {
+		ArrayList<Pojo> results = new ArrayList<Pojo>();
 
 		int relevance;
 		String contactNameLowerCased;
-		for (int i = 0; i < holders.size(); i++) {
-			ContactHolder contact = holders.get(i);
+		for (int i = 0; i < pojos.size(); i++) {
+			ContactPojo contact = pojos.get(i);
 			relevance = 0;
 			contactNameLowerCased = contact.nameLowerCased;
 
@@ -40,7 +40,7 @@ public class ContactProvider extends Provider<ContactHolder> {
 				if (contact.homeNumber)
 					relevance -= 1;
 
-				contact.displayName = holders.get(i).name.replaceFirst(
+				contact.displayName = pojos.get(i).name.replaceFirst(
 						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
 				contact.relevance = relevance;
 				results.add(contact);
@@ -50,11 +50,11 @@ public class ContactProvider extends Provider<ContactHolder> {
 		return results;
 	}
 
-	public Holder findById(String id) {
-		for (int i = 0; i < holders.size(); i++) {
-			if (holders.get(i).id.equals(id)) {
-				holders.get(i).displayName = holders.get(i).name;
-				return holders.get(i);
+	public Pojo findById(String id) {
+		for (int i = 0; i < pojos.size(); i++) {
+			if (pojos.get(i).id.equals(id)) {
+				pojos.get(i).displayName = pojos.get(i).name;
+				return pojos.get(i);
 			}
 
 		}

@@ -1,8 +1,8 @@
-package fr.neamar.kiss.holder;
+package fr.neamar.kiss.pojo;
 
 import android.net.Uri;
 
-public class ContactHolder extends Holder {
+public class ContactPojo extends Pojo {
 	public String lookupKey = "";
 
 	public String phone = "";

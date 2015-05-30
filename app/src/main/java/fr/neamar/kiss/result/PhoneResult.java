@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,14 +6,14 @@ import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.PhoneHolder;
+import fr.neamar.kiss.pojo.PhonePojo;
 
-public class PhoneRecord extends Record {
-	public PhoneHolder phoneHolder;
+public class PhoneResult extends Result {
+	public PhonePojo phonePojo;
 
-	public PhoneRecord(PhoneHolder phoneHolder) {
+	public PhoneResult(PhonePojo phonePojo) {
 		super();
-		this.holder = this.phoneHolder = phoneHolder;
+		this.pojo = this.phonePojo = phonePojo;
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class PhoneRecord extends Record {
 
 		TextView appName = (TextView) v.findViewById(R.id.item_phone_text);
 		appName.setText(enrichText(context.getString(R.string.ui_item_phone) + " \"{"
-				+ phoneHolder.phone + "}\""));
+				+ phonePojo.phone + "}\""));
 
 		return v;
 	}
@@ -31,7 +31,7 @@ public class PhoneRecord extends Record {
 	@Override
 	public void doLaunch(Context context, View v) {
 		Intent phone = new Intent(Intent.ACTION_CALL);
-		phone.setData(Uri.parse("tel:" + phoneHolder.phone));
+		phone.setData(Uri.parse("tel:" + phonePojo.phone));
 
 		phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

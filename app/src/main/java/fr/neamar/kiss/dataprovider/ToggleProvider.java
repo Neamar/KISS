@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.ToggleHolder;
-import fr.neamar.kiss.task.LoadToggleHolders;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.TogglePojo;
+import fr.neamar.kiss.loader.LoadTogglePojos;
 
-public class ToggleProvider extends Provider<ToggleHolder> {
+public class ToggleProvider extends Provider<TogglePojo> {
 
 	public ToggleProvider(Context context) {
-		super(new LoadToggleHolders(context));
+		super(new LoadTogglePojos(context));
 	}
 
-	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> results = new ArrayList<Holder>();
+	public ArrayList<Pojo> getResults(String query) {
+		ArrayList<Pojo> results = new ArrayList<Pojo>();
 
 		int relevance;
 		String toggleNameLowerCased;
-		for (int i = 0; i < holders.size(); i++) {
-			ToggleHolder toggle = holders.get(i);
+		for (int i = 0; i < pojos.size(); i++) {
+			TogglePojo toggle = pojos.get(i);
 
 			relevance = 0;
 			toggleNameLowerCased = toggle.nameLowerCased;
@@ -43,12 +43,12 @@ public class ToggleProvider extends Provider<ToggleHolder> {
 		return results;
 	}
 
-	public Holder findById(String id) {
-		for (int i = 0; i < holders.size(); i++) {
-			if (holders.get(i).id.equals(id)) {
-				holders.get(i).displayName = holders.get(i).name.replace("Toggle:",
+	public Pojo findById(String id) {
+		for (int i = 0; i < pojos.size(); i++) {
+			if (pojos.get(i).id.equals(id)) {
+				pojos.get(i).displayName = pojos.get(i).name.replace("Toggle:",
 						"<small><small>Toggle:</small></small>");
-				return holders.get(i);
+				return pojos.get(i);
 			}
 
 		}

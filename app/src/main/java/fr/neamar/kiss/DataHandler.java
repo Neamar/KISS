@@ -20,8 +20,8 @@ import fr.neamar.kiss.dataprovider.SettingProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.HolderComparator;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoComparator;
 
 public class DataHandler extends BroadcastReceiver {
 
@@ -75,7 +75,7 @@ public class DataHandler extends BroadcastReceiver {
 	 *
 	 * @return ordered list of records
 	 */
-	public ArrayList<Holder> getResults(Context context, String query) {
+	public ArrayList<Pojo> getResults(Context context, String query) {
 		query = query.toLowerCase();
 
 		currentQuery = query;
@@ -90,31 +90,31 @@ public class DataHandler extends BroadcastReceiver {
 				context, query);
 
 		// Ask all providers for datas
-		ArrayList<Holder> allHolders = new ArrayList<Holder>();
+		ArrayList<Pojo> allPojos = new ArrayList<Pojo>();
 
 		for (int i = 0; i < providers.size(); i++) {
 
 			// Retrieve results for query:
-			ArrayList<Holder> holders = providers.get(i).getResults(query);
+			ArrayList<Pojo> pojos = providers.get(i).getResults(query);
 
 			// Add results to list
-			for (int j = 0; j < holders.size(); j++) {
+			for (int j = 0; j < pojos.size(); j++) {
 
 				// Give a boost if item was previously selected for this query
 				for (int k = 0; k < lastIdsForQuery.size(); k++) {
-					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record)) {
-						holders.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
+					if (pojos.get(j).id.equals(lastIdsForQuery.get(k).record)) {
+						pojos.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
 					}
 				}
 
-				allHolders.add(holders.get(j));
+				allPojos.add(pojos.get(j));
 			}
 		}
 
 		// Sort records according to relevance
-		Collections.sort(allHolders, new HolderComparator());
+		Collections.sort(allPojos, new PojoComparator());
 
-		return allHolders;
+		return allPojos;
 	}
 
 	/**
@@ -125,8 +125,8 @@ public class DataHandler extends BroadcastReceiver {
 	 *
 	 * @return
 	 */
-	protected ArrayList<Holder> getHistory(Context context) {
-		ArrayList<Holder> history = new ArrayList<Holder>();
+	protected ArrayList<Pojo> getHistory(Context context) {
+		ArrayList<Pojo> history = new ArrayList<Pojo>();
 
 		// Read history
 		ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, 50);
@@ -136,10 +136,10 @@ public class DataHandler extends BroadcastReceiver {
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
 				if (providers.get(j).mayFindById(ids.get(i).record)) {
-					//TODO: use new getHolder() function
-					Holder holder = providers.get(j).findById(ids.get(i).record);
-					if (holder != null) {
-						history.add(holder);
+					//TODO: use new getPojo() function
+					Pojo pojo = providers.get(j).findById(ids.get(i).record);
+					if (pojo != null) {
+						history.add(pojo);
 						break;
 					}
 				}
@@ -156,8 +156,8 @@ public class DataHandler extends BroadcastReceiver {
 	 * @param limit max number of items to retrieve. You may end with less items if favorites contains non existing items.
 	 * @return
 	 */
-	protected ArrayList<Holder> getFavorites(Context context, int limit) {
-		ArrayList<Holder> favorites = new ArrayList<Holder>();
+	protected ArrayList<Pojo> getFavorites(Context context, int limit) {
+		ArrayList<Pojo> favorites = new ArrayList<Pojo>();
 
 		// Read history
 		ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, limit);
@@ -165,9 +165,9 @@ public class DataHandler extends BroadcastReceiver {
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
-			Holder holder = getHolder(ids.get(i).record);
-			if (holder != null) {
-				favorites.add(holder);
+			Pojo pojo = getPojo(ids.get(i).record);
+			if (pojo != null) {
+				favorites.add(pojo);
 			}
 		}
 
@@ -191,7 +191,7 @@ public class DataHandler extends BroadcastReceiver {
 		}
 	}
 
-	private Holder getHolder(String id)
+	private Pojo getPojo(String id)
 	{
 		// Ask all providers if they know this id
 		for (int i = 0; i < providers.size(); i++) {

@@ -37,9 +37,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.record.Record;
-import fr.neamar.kiss.task.UpdateRecords;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.result.Result;
+import fr.neamar.kiss.loader.UpdateRecords;
 
 public class MainActivity extends ListActivity implements QueryInterface {
 
@@ -120,7 +120,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         setContentView(R.layout.main);
 
         // Create adapter for records
-        adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Record>());
+        adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
         setListAdapter(adapter);
 
         this.searchEditText = (EditText) findViewById(R.id.searchEditText);
@@ -179,16 +179,16 @@ public class MainActivity extends ListActivity implements QueryInterface {
         View.OnClickListener favoriteListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Holder holder = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
+                Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
                         .get(Integer.parseInt((String) view.getTag()));
-                final Record record = Record.fromHolder(MainActivity.this, holder);
+                final Result result = Result.fromPojo(MainActivity.this, pojo);
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         displayKissBar(false);
-                        record.fastLaunch(MainActivity.this);
+                        result.fastLaunch(MainActivity.this);
                     }
                 }, KissApplication.TOUCH_DELAY);
             }
@@ -433,10 +433,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
 
             // Retrieve favorites. Try to retrieve more, since some favorites may be undisplayable (e.g. search queries)
-            ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
+            ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
                     .getFavorites(MainActivity.this, tryToRetrieve);
 
-            if (favorites_holder.size() == 0) {
+            if (favoritesPojo.size() == 0) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 0, 20);
                 toast.show();
@@ -444,19 +444,19 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
 
             // Don't look for items after favIds length, we won't be able to display them
-            for (int i = 0; i < Math.min(favsIds.length, favorites_holder.size()); i++) {
-                Holder holder = favorites_holder.get(i);
+            for (int i = 0; i < Math.min(favsIds.length, favoritesPojo.size()); i++) {
+                Pojo pojo = favoritesPojo.get(i);
                 ImageView image = (ImageView) findViewById(favsIds[i]);
 
-                Record record = Record.fromHolder(MainActivity.this, holder);
-                Drawable drawable = record.getDrawable(MainActivity.this);
+                Result result = Result.fromPojo(MainActivity.this, pojo);
+                Drawable drawable = result.getDrawable(MainActivity.this);
                 if (drawable != null)
                     image.setImageDrawable(drawable);
                 image.setVisibility(View.VISIBLE);
             }
 
-            // Hide empty favorites holder (not enough favorites yet)
-            for (int i = favorites_holder.size(); i < favsIds.length; i++) {
+            // Hide empty favorites (not enough favorites yet)
+            for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
                 findViewById(favsIds[i]).setVisibility(View.GONE);
             }
 
