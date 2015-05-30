@@ -1,12 +1,13 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import android.content.Context;
+import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.loader.LoadAppPojos;
 
 public class AppProvider extends Provider<AppPojo> {
 
@@ -50,5 +51,17 @@ public class AppProvider extends Provider<AppPojo> {
 		}
 
 		return null;
+	}
+
+	public ArrayList<Pojo> getAllApps() {
+		ArrayList<Pojo> records = new ArrayList<Pojo>(pojos.size());
+		records.trimToSize();
+		String appNameLowerCased;
+
+		for (int i = 0; i < pojos.size(); i++) {
+			pojos.get(i).displayName = pojos.get(i).name;
+			records.add(pojos.get(i));
+		}
+		return records;
 	}
 }

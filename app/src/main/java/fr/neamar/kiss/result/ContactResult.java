@@ -69,7 +69,7 @@ public class ContactResult extends Result {
 			@Override
 			public void onClick(View v) {
 				recordLaunch(v.getContext());
-				queryInterface.launchOccured();
+				queryInterface.launchOccurred();
 			}
 		});
 
@@ -153,7 +153,7 @@ public class ContactResult extends Result {
 			@Override
 			public void run() {
 				recordLaunch(context);
-				queryInterface.launchOccured();
+				queryInterface.launchOccurred();
 			}
 		}, KissApplication.TOUCH_DELAY);
 
@@ -171,7 +171,7 @@ public class ContactResult extends Result {
 			@Override
 			public void run() {
 				recordLaunch(context);
-				queryInterface.launchOccured();
+				queryInterface.launchOccurred();
 			}
 		}, KissApplication.TOUCH_DELAY);
 

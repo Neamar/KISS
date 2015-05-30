@@ -81,7 +81,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 		handler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				parent.launchOccured();
+				parent.launchOccurred();
 			}
 		}, KissApplication.TOUCH_DELAY);
 

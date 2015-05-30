@@ -30,7 +30,8 @@ public class DataHandler extends BroadcastReceiver {
 	/**
 	 * List all known providers
 	 */
-	private ArrayList<Provider> providers = new ArrayList<Provider>();
+	private final ArrayList<Provider> providers = new ArrayList<Provider>();
+	private final AppProvider appProvider;
 	private int providersLoaded = 0;
 
 	/**
@@ -45,8 +46,9 @@ public class DataHandler extends BroadcastReceiver {
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		// Initialize providers
+		appProvider = new AppProvider(context);
 		if (prefs.getBoolean("enable-apps", true)) {
-			providers.add(new AppProvider(context));
+			providers.add(appProvider);
 		}
 		if (prefs.getBoolean("enable-contacts", true)) {
 			providers.add(new ContactProvider(context));
@@ -136,6 +138,15 @@ public class DataHandler extends BroadcastReceiver {
 		}
 
 		return history;
+	}
+
+	/**
+	 * Return all applications
+	 * @param context
+	 * @return
+	 */
+	public ArrayList<Pojo> getApplications(Context context) {
+		return appProvider.getAllApps();
 	}
 
 	/**

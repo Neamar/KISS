@@ -39,6 +39,7 @@ import java.util.ArrayList;
 
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
+import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
@@ -200,6 +201,20 @@ public class MainActivity extends ListActivity implements QueryInterface {
         for (int favid : favsIds) {
             findViewById(favid).setOnClickListener(favoriteListener);
         }
+
+        final View allAppsButton = findViewById(R.id.apps);
+        allAppsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (searcher != null) {
+                    searcher.cancel(true);
+                }
+                searcher = new ApplicationsSearcher(MainActivity.this);
+                searcher.execute();
+
+                displayKissBar(false);
+            }
+        });
 
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
         launcherButton.setOnClickListener(new View.OnClickListener() {
@@ -498,7 +513,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Call this function when we're leaving the activity We can't use
      * onPause(), since it may be called for a configuration change
      */
-    public void launchOccured() {
+    public void launchOccurred() {
         // We made a choice on the list,
         // now we can cleanup the filter:
         searchEditText.setText("");
