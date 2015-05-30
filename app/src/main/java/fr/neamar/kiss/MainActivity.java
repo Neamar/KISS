@@ -202,24 +202,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
             findViewById(favid).setOnClickListener(favoriteListener);
         }
 
-        final View allAppsButton = findViewById(R.id.apps);
-        allAppsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (searcher != null) {
-                    searcher.cancel(true);
-                }
-                searcher = new ApplicationsSearcher(MainActivity.this);
-                searcher.execute();
-
-                displayKissBar(false);
-            }
-        });
-
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
         launcherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Display the kiss bar
                 displayKissBar(true);
             }
         });
@@ -254,7 +241,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 R.id.favorite1,
                 R.id.favorite2,
                 R.id.favorite3,
-                R.id.apps,
         };
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -346,7 +332,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // Is the kiss menu visible?
         View kissMenu = findViewById(R.id.main_kissbar);
         if (kissMenu.getVisibility() == View.VISIBLE) {
-            kissMenu.setVisibility(View.GONE);
+            displayKissBar(false);
         } else {
             // If no kissmenu, empty the search bar
             searchEditText.setText("");
@@ -429,6 +415,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
         final View kissMenu = findViewById(R.id.main_kissbar);
 
         if(display) {
+            // Display the app list
+            if (searcher != null) {
+                searcher.cancel(true);
+            }
+            searcher = new ApplicationsSearcher(MainActivity.this);
+            searcher.execute();
+
             final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
 
             // get the center for the clipping circle
@@ -480,7 +473,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
             hideKeyboard();
         }
         else {
-            kissMenu.setVisibility(View.INVISIBLE);
+            kissMenu.setVisibility(View.GONE);
+            searchEditText.setText("");
         }
     }
 

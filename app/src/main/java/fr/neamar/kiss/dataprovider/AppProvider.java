@@ -56,7 +56,6 @@ public class AppProvider extends Provider<AppPojo> {
 	public ArrayList<Pojo> getAllApps() {
 		ArrayList<Pojo> records = new ArrayList<Pojo>(pojos.size());
 		records.trimToSize();
-		String appNameLowerCased;
 
 		for (int i = 0; i < pojos.size(); i++) {
 			pojos.get(i).displayName = pojos.get(i).name;
