@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.QueryInterface;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.holder.ContactHolder;
@@ -154,7 +155,7 @@ public class ContactRecord extends Record {
 				recordLaunch(context);
 				queryInterface.launchOccured();
 			}
-		}, 75);
+		}, KissApplication.TOUCH_DELAY);
 
 	}
 	
@@ -172,7 +173,7 @@ public class ContactRecord extends Record {
 				recordLaunch(context);
 				queryInterface.launchOccured();
 			}
-		}, 75);
+		}, KissApplication.TOUCH_DELAY);
 
 	}
 }

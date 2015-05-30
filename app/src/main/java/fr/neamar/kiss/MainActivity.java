@@ -181,9 +181,16 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public void onClick(View view) {
                 Holder holder = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
                         .get(Integer.parseInt((String) view.getTag()));
-                Record record = Record.fromHolder(MainActivity.this, holder);
-                displayKissBar(false);
-                record.fastLaunch(MainActivity.this);
+                final Record record = Record.fromHolder(MainActivity.this, holder);
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        displayKissBar(false);
+                        record.fastLaunch(MainActivity.this);
+                    }
+                }, KissApplication.TOUCH_DELAY);
             }
         };
 

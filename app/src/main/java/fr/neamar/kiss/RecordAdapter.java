@@ -1,12 +1,13 @@
 package fr.neamar.kiss;
 
-import java.util.ArrayList;
-
 import android.content.Context;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import fr.neamar.kiss.record.AppRecord;
 import fr.neamar.kiss.record.ContactRecord;
@@ -23,7 +24,7 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	 */
 	private ArrayList<Record> records = new ArrayList<Record>();
 
-	private QueryInterface parent;
+	private final QueryInterface parent;
 
 	public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
 			ArrayList<Record> records) {
@@ -75,6 +76,14 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
 		}
 
-		parent.launchOccured();
+
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				parent.launchOccured();
+			}
+		}, KissApplication.TOUCH_DELAY);
+
 	}
 }
