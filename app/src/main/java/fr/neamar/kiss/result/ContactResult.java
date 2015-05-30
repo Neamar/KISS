@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.io.FileNotFoundException;
 
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.QueryInterface;
+import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
