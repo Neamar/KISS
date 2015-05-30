@@ -3,9 +3,9 @@ package fr.neamar.kiss.dataprovider;
 import android.content.Context;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -20,6 +20,8 @@ public class AppProvider extends Provider<AppPojo> {
 
         int relevance;
         String appNameLowerCased;
+
+        final String highlightRegexp = "(?i)(" + StringNormalizer.unnormalize(query) + ")";
         for (int i = 0; i < pojos.size(); i++) {
             relevance = 0;
             appNameLowerCased = pojos.get(i).nameLowerCased;
@@ -32,7 +34,7 @@ public class AppProvider extends Provider<AppPojo> {
 
             if (relevance > 0) {
                 pojos.get(i).displayName = pojos.get(i).name.replaceFirst(
-                        "(?i)(" + Pattern.quote(query) + ")", "{$1}");
+                        highlightRegexp, "{$1}");
                 pojos.get(i).relevance = relevance;
                 records.add(pojos.get(i));
             }
