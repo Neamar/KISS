@@ -65,6 +65,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:focusable="true"
+                android:onClick="onClearButtonClicked"
                 android:paddingBottom="4dp"
                 android:paddingLeft="1dp"
                 android:paddingRight="1dp"
@@ -98,9 +99,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="6dp"
                 android:focusable="true"
+                android:onClick="onLauncherButtonClicked"
                 android:src="@drawable/ic_launcher"/>
 
             <ProgressBar
+                android:id="@+id/loaderBar"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
@@ -109,8 +112,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="6dp"
                 android:indeterminate="true"
-                android:visibility="gone"
-                android:id="@+id/loaderBar"/>
+                android:visibility="gone"/>
         </RelativeLayout>
     </FrameLayout>
 

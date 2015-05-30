@@ -161,55 +161,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
-        // Clear text content when touching the cross button
-        ImageView clearButton = (ImageView) findViewById(R.id.clearButton);
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchEditText.setText("");
-            }
-        });
-
-        // Clear text content when touching the cross button
-        ImageView menuButton = (ImageView) findViewById(R.id.menuButton);
+        final ImageView menuButton = (ImageView) findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.showContextMenu();
-            }
-        });
-
-        // Favorites handling
-        View.OnClickListener favoriteListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
-                        .get(Integer.parseInt((String) view.getTag()));
-                final Result result = Result.fromPojo(MainActivity.this, pojo);
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        displayKissBar(false);
-                        result.fastLaunch(MainActivity.this);
-                    }
-                }, KissApplication.TOUCH_DELAY);
-            }
-        };
-
-        // Register the listener for each buttons
-        for (int favid : favsIds) {
-            findViewById(favid).setOnClickListener(favoriteListener);
-        }
-
-        final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
-        launcherButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Display the kiss bar
-                displayKissBar(true);
             }
         });
 
@@ -234,7 +191,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Apply some tweaks to the design, depending on the current SDK version
      */
     public void applyDesignTweaks() {
-        final int[] tweakableIds = new int[] {
+        final int[] tweakableIds = new int[]{
                 R.id.menuButton,
                 // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
                 R.id.clearButton,
@@ -249,14 +206,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
 
-            for(int id : tweakableIds) {
+            for (int id : tweakableIds) {
                 findViewById(id).setBackgroundResource(outValue.resourceId);
             }
         } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
 
-            for(int id : tweakableIds) {
+            for (int id : tweakableIds) {
                 findViewById(id).setBackgroundResource(outValue.resourceId);
             }
         }
@@ -364,6 +321,37 @@ public class MainActivity extends ListActivity implements QueryInterface {
         return true;
     }
 
+    /**
+     * Clear text content when touching the cross button
+     */
+    public void onClearButtonClicked(View clearButton) {
+        searchEditText.setText("");
+    }
+
+    /**
+     * Clear text content when touching the cross button
+     */
+    public void onLauncherButtonClicked(View launcherButton) {
+        // Display the kiss bar
+        displayKissBar(true);
+    }
+
+    public void onFavoriteButtonClicked(View favorite) {
+        // Favorites handling
+        Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
+                .get(Integer.parseInt((String) favorite.getTag()));
+        final Result result = Result.fromPojo(MainActivity.this, pojo);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                displayKissBar(false);
+                result.fastLaunch(MainActivity.this);
+            }
+        }, KissApplication.TOUCH_DELAY);
+    }
+
     protected boolean displayClearOnInput() {
         final View clearButton = findViewById(R.id.clearButton);
         final View menuButton = findViewById(R.id.menuButton);
@@ -416,7 +404,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     protected void displayKissBar(Boolean display) {
         final View kissMenu = findViewById(R.id.main_kissbar);
 
-        if(display) {
+        if (display) {
             // Display the app list
             if (searcher != null) {
                 searcher.cancel(true);
@@ -473,8 +461,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
 
             hideKeyboard();
-        }
-        else {
+        } else {
             kissMenu.setVisibility(View.GONE);
             searchEditText.setText("");
         }
@@ -492,10 +479,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
             searcher.cancel(true);
         }
 
-        if(query.length() == 0) {
+        if (query.length() == 0) {
             searcher = new HistorySearcher(this);
-        }
-        else {
+        } else {
             searcher = new QuerySearcher(this, StringNormalizer.normalize(query));
         }
         searcher.execute();

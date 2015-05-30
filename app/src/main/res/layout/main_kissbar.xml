@@ -2,43 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:elevation="2dp"
               android:background="@color/kiss_green"
-              android:gravity="center_vertical"
-              android:padding="5dp"
               android:clipToPadding="false"
-              android:orientation="horizontal">
+              android:elevation="2dp"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:padding="5dp">
 
     <ImageView
+        android:id="@+id/favorite0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:tag="0"
-        android:id="@+id/favorite0"
+        android:onClick="onFavoriteButtonClicked"
         android:src="@drawable/ic_contact"
+        android:tag="0"
         />
 
     <ImageView
+        android:id="@+id/favorite1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:tag="1"
+        android:onClick="onFavoriteButtonClicked"
         android:src="@drawable/ic_contact"
-        android:id="@+id/favorite1"/>
+        android:tag="1"/>
 
     <ImageView
+        android:id="@+id/favorite2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:tag="2"
-        android:src="@drawable/ic_contact"
         android:layout_weight="1"
-        android:id="@+id/favorite2"/>
+        android:onClick="onFavoriteButtonClicked"
+        android:src="@drawable/ic_contact"
+        android:tag="2"/>
 
     <ImageView
+        android:id="@+id/favorite3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_contact"
-        android:tag="3"
         android:layout_weight="1"
-        android:id="@+id/favorite3"/>
+        android:onClick="onFavoriteButtonClicked"
+        android:src="@drawable/ic_contact"
+        android:tag="3"/>
 </LinearLayout>
