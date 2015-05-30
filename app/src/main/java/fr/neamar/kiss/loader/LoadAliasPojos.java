@@ -1,4 +1,4 @@
-package fr.neamar.kiss.task;
+package fr.neamar.kiss.loader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Pair;
 
-public class LoadAliasHolders extends LoadHolders<Pair<String, String>> {
+public class LoadAliasPojos extends LoadPojos<Pair<String, String>> {
 
-	public LoadAliasHolders(Context context) {
+	public LoadAliasPojos(Context context) {
 		super(context, "none://");
 	}
 

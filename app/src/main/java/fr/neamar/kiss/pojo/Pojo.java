@@ -1,12 +1,12 @@
-package fr.neamar.kiss.holder;
+package fr.neamar.kiss.pojo;
 
-public abstract class Holder extends Object {
+public abstract class Pojo extends Object {
 	// Globally unique ID.
 	// Usually start with provider scheme, e.g. "app://" or "contact://" to
 	// ensure unicity
 	public String id = "(none)";
 
-	// Name for this holder, e.g. app name
+	// Name for this pojo, e.g. app name
 	public String name = "";
 
 	// Lowercased name, for faster search

@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.SettingHolder;
-import fr.neamar.kiss.task.LoadSettingHolders;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.loader.LoadSettingPojos;
 
-public class SettingProvider extends Provider<SettingHolder> {
+public class SettingProvider extends Provider<SettingPojo> {
 
 	public SettingProvider(Context context) {
-		super(new LoadSettingHolders(context));
+		super(new LoadSettingPojos(context));
 	}
 
-	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> results = new ArrayList<Holder>();
+	public ArrayList<Pojo> getResults(String query) {
+		ArrayList<Pojo> results = new ArrayList<Pojo>();
 
 		int relevance;
 		String settingNameLowerCased;
-		for (int i = 0; i < holders.size(); i++) {
-			SettingHolder setting = holders.get(i);
+		for (int i = 0; i < pojos.size(); i++) {
+			SettingPojo setting = pojos.get(i);
 			relevance = 0;
 			settingNameLowerCased = setting.nameLowerCased;
 			if (settingNameLowerCased.startsWith(query))
@@ -40,12 +40,12 @@ public class SettingProvider extends Provider<SettingHolder> {
 		return results;
 	}
 
-	public Holder findById(String id) {
-		for (int i = 0; i < holders.size(); i++) {
-			if (holders.get(i).id.equals(id)) {
-				holders.get(i).displayName = holders.get(i).name.replace("Setting:",
+	public Pojo findById(String id) {
+		for (int i = 0; i < pojos.size(); i++) {
+			if (pojos.get(i).id.equals(id)) {
+				pojos.get(i).displayName = pojos.get(i).name.replace("Setting:",
 						"<small><small>Setting:</small></small>");
-				return holders.get(i);
+				return pojos.get(i);
 			}
 
 		}

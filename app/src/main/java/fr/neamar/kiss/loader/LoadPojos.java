@@ -1,31 +1,32 @@
-package fr.neamar.kiss.task;
-
-import java.util.ArrayList;
+package fr.neamar.kiss.loader;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+
+import java.util.ArrayList;
+
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.dataprovider.Provider;
 
-public abstract class LoadHolders<T> extends AsyncTask<Void, Void, ArrayList<T>> {
+public abstract class LoadPojos<T> extends AsyncTask<Void, Void, ArrayList<T>> {
 
 	protected Provider<T> provider;
 	protected Context context;
-	protected String holderScheme = "(none)://";
+	protected String pojoScheme = "(none)://";
 
 	public void setProvider(Provider<T> provider) {
 		this.provider = provider;
 	}
 
-	public String getHolderScheme() {
-		return holderScheme;
+	public String getPojoScheme() {
+		return pojoScheme;
 	}
 
-	public LoadHolders(Context context, String holderScheme) {
+	public LoadPojos(Context context, String pojoScheme) {
 		super();
 		this.context = context;
-		this.holderScheme = holderScheme;
+		this.pojoScheme = pojoScheme;
 	}
 
 	@Override

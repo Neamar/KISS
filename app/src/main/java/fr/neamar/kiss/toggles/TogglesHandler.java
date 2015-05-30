@@ -1,8 +1,5 @@
 package fr.neamar.kiss.toggles;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +9,11 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.util.Log;
-import fr.neamar.kiss.holder.ToggleHolder;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import fr.neamar.kiss.pojo.TogglePojo;
 
 public class TogglesHandler {
 	protected Context context;
@@ -38,52 +39,52 @@ public class TogglesHandler {
 	}
 
 	/**
-	 * Return the state for the specified holder
+	 * Return the state for the specified pojo
 	 * 
-	 * @param holder
+	 * @param pojo
 	 * @return
 	 */
-	public Boolean getState(ToggleHolder holder) {
+	public Boolean getState(TogglePojo pojo) {
 		try {
-			if (holder.settingName.equals("wifi"))
+			if (pojo.settingName.equals("wifi"))
 				return getWifiState();
-			else if (holder.settingName.equals("data"))
+			else if (pojo.settingName.equals("data"))
 				return getDataState();
-			else if (holder.settingName.equals("bluetooth"))
+			else if (pojo.settingName.equals("bluetooth"))
 				return getBluetoothState();
-			else if (holder.settingName.equals("gps"))
+			else if (pojo.settingName.equals("gps"))
 				return getGpsState();
-			else if (holder.settingName.equals("silent"))
+			else if (pojo.settingName.equals("silent"))
 				return getSilentState();
 			else {
-				Log.e("wtf", "Unsupported toggle for reading: " + holder.settingName);
+				Log.e("wtf", "Unsupported toggle for reading: " + pojo.settingName);
 				return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
+			Log.w("log", "Unsupported toggle for device: " + pojo.settingName);
 			return null;
 		}
 	}
 
-	public void setState(ToggleHolder holder, Boolean state) {
+	public void setState(TogglePojo pojo, Boolean state) {
 		try {
-			if (holder.settingName.equals("wifi"))
+			if (pojo.settingName.equals("wifi"))
 				setWifiState(state);
-			else if (holder.settingName.equals("data"))
+			else if (pojo.settingName.equals("data"))
 				setDataState(state);
-			else if (holder.settingName.equals("bluetooth"))
+			else if (pojo.settingName.equals("bluetooth"))
 				setBluetoothState(state);
-			else if (holder.settingName.equals("gps"))
+			else if (pojo.settingName.equals("gps"))
 				setGpsState(state);
-			else if (holder.settingName.equals("silent"))
+			else if (pojo.settingName.equals("silent"))
 				setSilentState(state);
 			else {
-				Log.e("wtf", "Unsupported toggle for update: " + holder.settingName);
+				Log.e("wtf", "Unsupported toggle for update: " + pojo.settingName);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			Log.w("log", "Unsupported toggle for device: " + holder.settingName);
+			Log.w("log", "Unsupported toggle for device: " + pojo.settingName);
 		}
 	}
 

@@ -20,8 +20,8 @@ import fr.neamar.kiss.dataprovider.SettingProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.HolderComparator;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoComparator;
 
 public class DataHandler extends BroadcastReceiver {
 
@@ -30,7 +30,8 @@ public class DataHandler extends BroadcastReceiver {
 	/**
 	 * List all known providers
 	 */
-	private ArrayList<Provider> providers = new ArrayList<Provider>();
+	private final ArrayList<Provider> providers = new ArrayList<Provider>();
+	private final AppProvider appProvider;
 	private int providersLoaded = 0;
 
 	/**
@@ -45,8 +46,9 @@ public class DataHandler extends BroadcastReceiver {
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		// Initialize providers
+		appProvider = new AppProvider(context);
 		if (prefs.getBoolean("enable-apps", true)) {
-			providers.add(new AppProvider(context));
+			providers.add(appProvider);
 		}
 		if (prefs.getBoolean("enable-contacts", true)) {
 			providers.add(new ContactProvider(context));
@@ -75,46 +77,40 @@ public class DataHandler extends BroadcastReceiver {
 	 *
 	 * @return ordered list of records
 	 */
-	public ArrayList<Holder> getResults(Context context, String query) {
+	public ArrayList<Pojo> getResults(Context context, String query) {
 		query = query.toLowerCase();
 
 		currentQuery = query;
-
-		if (query.length() == 0) {
-			// Searching for nothing returns the history
-			return getHistory(context);
-		}
 
 		// Have we ever made the same query and selected something ?
 		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
 				context, query);
 
 		// Ask all providers for datas
-		ArrayList<Holder> allHolders = new ArrayList<Holder>();
+		ArrayList<Pojo> allPojos = new ArrayList<Pojo>();
 
 		for (int i = 0; i < providers.size(); i++) {
 
 			// Retrieve results for query:
-			ArrayList<Holder> holders = providers.get(i).getResults(query);
+			ArrayList<Pojo> pojos = providers.get(i).getResults(query);
 
 			// Add results to list
-			for (int j = 0; j < holders.size(); j++) {
-
+			for (int j = 0; j < pojos.size(); j++) {
 				// Give a boost if item was previously selected for this query
 				for (int k = 0; k < lastIdsForQuery.size(); k++) {
-					if (holders.get(j).id.equals(lastIdsForQuery.get(k).record)) {
-						holders.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
+					if (pojos.get(j).id.equals(lastIdsForQuery.get(k).record)) {
+						pojos.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
 					}
 				}
 
-				allHolders.add(holders.get(j));
+				allPojos.add(pojos.get(j));
 			}
 		}
 
 		// Sort records according to relevance
-		Collections.sort(allHolders, new HolderComparator());
+		Collections.sort(allPojos, new PojoComparator());
 
-		return allHolders;
+		return allPojos;
 	}
 
 	/**
@@ -122,31 +118,35 @@ public class DataHandler extends BroadcastReceiver {
 	 * May return null if no items were ever selected (app first use)<br />
 	 * May return an empty set if the providers are not done building records,
 	 * in this case it is probably a good idea to call this function 500ms after
-	 *
+	 * @param context
+	 * @param itemCount max number of items to retrieve, total number may be less (search or calls are not returned for instance)
 	 * @return
 	 */
-	protected ArrayList<Holder> getHistory(Context context) {
-		ArrayList<Holder> history = new ArrayList<Holder>();
+	public ArrayList<Pojo> getHistory(Context context, int itemCount) {
+		ArrayList<Pojo> history = new ArrayList<Pojo>(itemCount);
 
 		// Read history
-		ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, 50);
+		ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount);
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
 			// Ask all providers if they know this id
-			for (int j = 0; j < providers.size(); j++) {
-				if (providers.get(j).mayFindById(ids.get(i).record)) {
-					//TODO: use new getHolder() function
-					Holder holder = providers.get(j).findById(ids.get(i).record);
-					if (holder != null) {
-						history.add(holder);
-						break;
-					}
-				}
+			Pojo pojo = getPojo(ids.get(i).record);
+			if (pojo != null) {
+				history.add(pojo);
 			}
 		}
 
 		return history;
+	}
+
+	/**
+	 * Return all applications
+	 * @param context
+	 * @return
+	 */
+	public ArrayList<Pojo> getApplications(Context context) {
+		return appProvider.getAllApps();
 	}
 
 	/**
@@ -156,8 +156,8 @@ public class DataHandler extends BroadcastReceiver {
 	 * @param limit max number of items to retrieve. You may end with less items if favorites contains non existing items.
 	 * @return
 	 */
-	protected ArrayList<Holder> getFavorites(Context context, int limit) {
-		ArrayList<Holder> favorites = new ArrayList<Holder>();
+	protected ArrayList<Pojo> getFavorites(Context context, int limit) {
+		ArrayList<Pojo> favorites = new ArrayList<Pojo>();
 
 		// Read history
 		ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, limit);
@@ -165,9 +165,9 @@ public class DataHandler extends BroadcastReceiver {
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
-			Holder holder = getHolder(ids.get(i).record);
-			if (holder != null) {
-				favorites.add(holder);
+			Pojo pojo = getPojo(ids.get(i).record);
+			if (pojo != null) {
+				favorites.add(pojo);
 			}
 		}
 
@@ -191,7 +191,7 @@ public class DataHandler extends BroadcastReceiver {
 		}
 	}
 
-	private Holder getHolder(String id)
+	private Pojo getPojo(String id)
 	{
 		// Ask all providers if they know this id
 		for (int i = 0; i < providers.size(); i++) {

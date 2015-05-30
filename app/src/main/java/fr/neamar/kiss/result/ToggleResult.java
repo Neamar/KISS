@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,20 +9,20 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.ToggleHolder;
+import fr.neamar.kiss.pojo.TogglePojo;
 import fr.neamar.kiss.toggles.TogglesHandler;
 
-public class ToggleRecord extends Record {
-	public final ToggleHolder toggleHolder;
+public class ToggleResult extends Result {
+	public final TogglePojo togglePojo;
 
 	/**
 	 * Handler for all toggle-related queries
 	 */
 	protected TogglesHandler togglesHandler = null;
 
-	public ToggleRecord(ToggleHolder toggleHolder) {
+	public ToggleResult(TogglePojo togglePojo) {
 		super();
-		this.holder = this.toggleHolder = toggleHolder;
+		this.pojo = this.togglePojo = togglePojo;
 	}
 
 	@Override
@@ -35,12 +35,12 @@ public class ToggleRecord extends Record {
 			v = inflateFromId(context, R.layout.item_toggle);
 
 		TextView toggleName = (TextView) v.findViewById(R.id.item_toggle_name);
-		toggleName.setText(enrichText(toggleHolder.displayName));
+		toggleName.setText(enrichText(togglePojo.displayName));
 
 		ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
-		if (toggleHolder.icon != -1) {
+		if (togglePojo.icon != -1) {
 			TypedArray a = context.obtainStyledAttributes(R.style.AppTheme,
-					new int[] { toggleHolder.icon });
+					new int[] { togglePojo.icon });
 			int attributeResourceId = a.getResourceId(0, -1);
 			if (attributeResourceId != -1) {
 				toggleIcon
@@ -52,9 +52,9 @@ public class ToggleRecord extends Record {
 		final CompoundButton toggleButton = (CompoundButton) v
 				.findViewById(R.id.item_toggle_action_toggle);
 
-		Boolean state = togglesHandler.getState(toggleHolder);
+		Boolean state = togglesHandler.getState(togglePojo);
 		if (state != null)
-			toggleButton.setChecked(togglesHandler.getState(toggleHolder));
+			toggleButton.setChecked(togglesHandler.getState(togglePojo));
 		else
 			toggleButton.setEnabled(false);
 
@@ -62,12 +62,12 @@ public class ToggleRecord extends Record {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (!togglesHandler.getState(toggleHolder).equals(toggleButton.isChecked())) {
+				if (!togglesHandler.getState(togglePojo).equals(toggleButton.isChecked())) {
 
 					// record launch manually
 					recordLaunch(buttonView.getContext());
 
-					togglesHandler.setState(toggleHolder, toggleButton.isChecked());
+					togglesHandler.setState(togglePojo, toggleButton.isChecked());
 
 					toggleButton.setEnabled(false);
 					new AsyncTask<Void, Void, Void>() {

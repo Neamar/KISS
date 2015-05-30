@@ -1,25 +1,26 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
-import android.content.Context;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.SearchHolder;
-import fr.neamar.kiss.task.LoadSearchHolders;
+import fr.neamar.kiss.loader.LoadSearchPojos;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.SearchPojo;
 
-public class SearchProvider extends Provider<SearchHolder> {
+public class SearchProvider extends Provider<SearchPojo> {
 
 	public SearchProvider(Context context) {
-		super(new LoadSearchHolders(context));
+		super(new LoadSearchPojos(context));
 	}
 
-	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> holders = new ArrayList<Holder>();
+	public ArrayList<Pojo> getResults(String query) {
+		ArrayList<Pojo> pojos = new ArrayList<Pojo>();
 
-		SearchHolder holder = new SearchHolder();
-		holder.query = query;
-		holder.relevance = 10;
-		holders.add(holder);
-		return holders;
+		SearchPojo pojo = new SearchPojo();
+		pojo.query = query;
+		pojo.relevance = 10;
+		pojos.add(pojo);
+		return pojos;
 	}
 }

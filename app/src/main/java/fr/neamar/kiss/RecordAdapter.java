@@ -1,36 +1,37 @@
 package fr.neamar.kiss;
 
-import java.util.ArrayList;
-
 import android.content.Context;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import fr.neamar.kiss.record.AppRecord;
-import fr.neamar.kiss.record.ContactRecord;
-import fr.neamar.kiss.record.PhoneRecord;
-import fr.neamar.kiss.record.Record;
-import fr.neamar.kiss.record.SearchRecord;
-import fr.neamar.kiss.record.SettingRecord;
-import fr.neamar.kiss.record.ToggleRecord;
+import java.util.ArrayList;
 
-public class RecordAdapter extends ArrayAdapter<Record> {
+import fr.neamar.kiss.result.AppResult;
+import fr.neamar.kiss.result.ContactResult;
+import fr.neamar.kiss.result.PhoneResult;
+import fr.neamar.kiss.result.Result;
+import fr.neamar.kiss.result.SearchResult;
+import fr.neamar.kiss.result.SettingResult;
+import fr.neamar.kiss.result.ToggleResult;
+
+public class RecordAdapter extends ArrayAdapter<Result> {
 
 	/**
-	 * Array list containing all the records currently displayed
+	 * Array list containing all the results currently displayed
 	 */
-	private ArrayList<Record> records = new ArrayList<Record>();
+	private ArrayList<Result> results = new ArrayList<Result>();
 
-	private QueryInterface parent;
+	private final QueryInterface parent;
 
 	public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
-			ArrayList<Record> records) {
-		super(context, textViewResourceId, records);
+			ArrayList<Result> results) {
+		super(context, textViewResourceId, results);
 
 		this.parent = parent;
-		this.records = records;
+		this.results = results;
 	}
 
 	public int getViewTypeCount() {
@@ -38,19 +39,19 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 	}
 
 	public int getItemViewType(int position) {
-		if (records.get(position) instanceof AppRecord)
+		if (results.get(position) instanceof AppResult)
 			return 0;
-		else if (records.get(position) instanceof SearchRecord)
+		else if (results.get(position) instanceof SearchResult)
 			return 1;
-		else if (records.get(position) instanceof ContactRecord)
+		else if (results.get(position) instanceof ContactResult)
 			return 2;
-		else if (records.get(position) instanceof ToggleRecord)
+		else if (results.get(position) instanceof ToggleResult)
 			return 3;
-		else if (records.get(position) instanceof SettingRecord)
+		else if (results.get(position) instanceof SettingResult)
 			return 4;
-		else if (records.get(position) instanceof SettingRecord)
+		else if (results.get(position) instanceof SettingResult)
 			return 4;
-		else if (records.get(position) instanceof PhoneRecord)
+		else if (results.get(position) instanceof PhoneResult)
 			return 5;
 		else
 			return -1;
@@ -58,23 +59,31 @@ public class RecordAdapter extends ArrayAdapter<Record> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		return records.get(position).display(getContext(), convertView);
+		return results.get(position).display(getContext(), convertView);
 	}
 
 	public void onLongClick(int pos) {
-		records.get(pos).deleteRecord(getContext());
-		records.remove(pos);
+		results.get(pos).deleteRecord(getContext());
+		results.remove(pos);
 		Toast.makeText(getContext(), "Removed from history", Toast.LENGTH_SHORT).show();
 		notifyDataSetChanged();
 	}
 
 	public void onClick(int position, View v) {
 		try {
-			records.get(position).launch(getContext(), v);
+			results.get(position).launch(getContext(), v);
 		} catch (ArrayIndexOutOfBoundsException e) {
 
 		}
 
-		parent.launchOccured();
+
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				parent.launchOccurred();
+			}
+		}, KissApplication.TOUCH_DELAY);
+
 	}
 }

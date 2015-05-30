@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -10,15 +10,15 @@ import android.view.View;
 import fr.neamar.kiss.QueryInterface;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.db.DBHelper;
-import fr.neamar.kiss.holder.AppHolder;
-import fr.neamar.kiss.holder.ContactHolder;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.SearchHolder;
-import fr.neamar.kiss.holder.SettingHolder;
-import fr.neamar.kiss.holder.ToggleHolder;
-import fr.neamar.kiss.holder.PhoneHolder;
+import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.ContactPojo;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.pojo.TogglePojo;
+import fr.neamar.kiss.pojo.PhonePojo;
 
-public abstract class Record {
+public abstract class Result {
 	/**
 	 * How relevant is this record ? The higher, the most probable it will be
 	 * displayed
@@ -26,9 +26,9 @@ public abstract class Record {
 	public int relevance = 0;
 
 	/**
-	 * Current information holder
+	 * Current information pojo
 	 */
-	public Holder holder = null;
+	public Pojo pojo = null;
 
 	/**
 	 * How to display this record ?
@@ -41,7 +41,7 @@ public abstract class Record {
 	public abstract View display(Context context, View convertView);
 
 	public final void launch(Context context, View v) {
-		Log.i("log", "Launching " + holder.id);
+		Log.i("log", "Launching " + pojo.id);
 
 		recordLaunch(context);
 
@@ -69,7 +69,7 @@ public abstract class Record {
 	}
 
 	/**
-	 * Return the icon for this Record, or null if non existing.
+	 * Return the icon for this Result, or null if non existing.
 	 *
 	 * @param context
 	 */
@@ -110,28 +110,28 @@ public abstract class Record {
 		// Save in history
 		// TODO: move to datahandler
 		DBHelper.insertHistory(context, KissApplication.getDataHandler(context).currentQuery,
-				holder.id);
+				pojo.id);
 	}
 
 	public void deleteRecord(Context context) {
-		DBHelper.removeFromHistory(context, holder.id);
+		DBHelper.removeFromHistory(context, pojo.id);
 	}
 
-	public static Record fromHolder(QueryInterface parent, Holder holder) {
-		if (holder instanceof AppHolder)
-			return new AppRecord((AppHolder) holder);
-		else if (holder instanceof ContactHolder)
-			return new ContactRecord(parent, (ContactHolder) holder);
-		else if (holder instanceof SearchHolder)
-			return new SearchRecord((SearchHolder) holder);
-		else if (holder instanceof SettingHolder)
-			return new SettingRecord((SettingHolder) holder);
-		else if (holder instanceof ToggleHolder)
-			return new ToggleRecord((ToggleHolder) holder);
-		else if (holder instanceof PhoneHolder)
-			return new PhoneRecord((PhoneHolder) holder);
+	public static Result fromPojo(QueryInterface parent, Pojo pojo) {
+		if (pojo instanceof AppPojo)
+			return new AppResult((AppPojo) pojo);
+		else if (pojo instanceof ContactPojo)
+			return new ContactResult(parent, (ContactPojo) pojo);
+		else if (pojo instanceof SearchPojo)
+			return new SearchResult((SearchPojo) pojo);
+		else if (pojo instanceof SettingPojo)
+			return new SettingResult((SettingPojo) pojo);
+		else if (pojo instanceof TogglePojo)
+			return new ToggleResult((TogglePojo) pojo);
+		else if (pojo instanceof PhonePojo)
+			return new PhoneResult((PhonePojo) pojo);
 
-		Log.e("log", "Unable to create record for specified holder.");
+		Log.e("log", "Unable to create record for specified pojo.");
 		return null;
 	}
 }

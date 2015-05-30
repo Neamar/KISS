@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,31 +14,32 @@ import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.QueryInterface;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.ContactHolder;
+import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 
-public class ContactRecord extends Record {
-	public ContactHolder contactHolder;
+public class ContactResult extends Result {
+	public ContactPojo contactPojo;
 	private QueryInterface queryInterface;
 
-	public ContactRecord(QueryInterface queryInterface, ContactHolder contactHolder) {
+	public ContactResult(QueryInterface queryInterface, ContactPojo contactPojo) {
 		super();
-		this.holder = this.contactHolder = contactHolder;
+		this.pojo = this.contactPojo = contactPojo;
 		this.queryInterface = queryInterface;
 
 		// Try to pretty format phone number
-		if (this.contactHolder.phone.matches("(\\+3)?[0-9]{10}")) {
+		if (this.contactPojo.phone.matches("(\\+3)?[0-9]{10}")) {
 			// Mise en forme du numéro de téléphone
-			String formatted_phone = contactHolder.phone.replace(" ", "");
-			int number_length = contactHolder.phone.length();
+			String formatted_phone = contactPojo.phone.replace(" ", "");
+			int number_length = contactPojo.phone.length();
 			for (int i = 1; i < 5; i++) {
 				formatted_phone = formatted_phone.substring(0, number_length - 2 * i) + " "
 						+ formatted_phone.substring(number_length - 2 * i);
 			}
 
-			contactHolder.phone = formatted_phone;
+			contactPojo.phone = formatted_phone;
 		}
 	}
 
@@ -49,11 +50,11 @@ public class ContactRecord extends Record {
 
 		// Contact name
 		TextView contactName = (TextView) v.findViewById(R.id.item_contact_name);
-		contactName.setText(enrichText(contactHolder.displayName));
+		contactName.setText(enrichText(contactPojo.displayName));
 
 		// Contact phone
 		TextView contactPhone = (TextView) v.findViewById(R.id.item_contact_phone);
-		contactPhone.setText(contactHolder.phone);
+		contactPhone.setText(contactPojo.phone);
 
 		// Contact photo
 		ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) v
@@ -62,13 +63,13 @@ public class ContactRecord extends Record {
 			
 		contactIcon.assignContactUri(Uri.withAppendedPath(
 				ContactsContract.Contacts.CONTENT_LOOKUP_URI,
-				String.valueOf(contactHolder.lookupKey)));
+				String.valueOf(contactPojo.lookupKey)));
 		contactIcon.setExtraOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				recordLaunch(v.getContext());
-				queryInterface.launchOccured();
+				queryInterface.launchOccurred();
 			}
 		});
 
@@ -77,7 +78,7 @@ public class ContactRecord extends Record {
 		// Message action
 		ImageButton messageButton = (ImageButton) v.findViewById(R.id.item_contact_action_message);
 
-		if (contactHolder.homeNumber)
+		if (contactPojo.homeNumber)
 			messageButton.setVisibility(View.INVISIBLE);
 		else
 			messageButton.setVisibility(View.VISIBLE);
@@ -111,10 +112,10 @@ public class ContactRecord extends Record {
 
 	@Override
 	public Drawable getDrawable(Context context) {
-		if (contactHolder.icon != null) {
+		if (contactPojo.icon != null) {
 			try {
 				return Drawable.createFromStream(
-						context.getContentResolver().openInputStream(contactHolder.icon), null);
+						context.getContentResolver().openInputStream(contactPojo.icon), null);
 			} catch (FileNotFoundException e) {
 			}
 		}
@@ -128,7 +129,7 @@ public class ContactRecord extends Record {
 		Intent viewContact = new Intent(Intent.ACTION_VIEW);
 
 		viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
-				String.valueOf(contactHolder.lookupKey)));
+				String.valueOf(contactPojo.lookupKey)));
 		viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 		context.startActivity(viewContact);
@@ -142,7 +143,7 @@ public class ContactRecord extends Record {
 	
 	protected void launchMessaging(final Context context)
 	{
-		String url = "sms:" + contactHolder.phone;
+		String url = "sms:" + contactPojo.phone;
 		Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(i);
@@ -152,15 +153,15 @@ public class ContactRecord extends Record {
 			@Override
 			public void run() {
 				recordLaunch(context);
-				queryInterface.launchOccured();
+				queryInterface.launchOccurred();
 			}
-		}, 75);
+		}, KissApplication.TOUCH_DELAY);
 
 	}
 	
 	protected void launchCall(final Context context)
 	{
-		String url = "tel:" + contactHolder.phone;
+		String url = "tel:" + contactPojo.phone;
 		Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(i);
@@ -170,9 +171,9 @@ public class ContactRecord extends Record {
 			@Override
 			public void run() {
 				recordLaunch(context);
-				queryInterface.launchOccured();
+				queryInterface.launchOccurred();
 			}
-		}, 75);
+		}, KissApplication.TOUCH_DELAY);
 
 	}
 }
