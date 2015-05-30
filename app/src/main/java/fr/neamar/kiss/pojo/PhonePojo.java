@@ -1,5 +1,5 @@
 package fr.neamar.kiss.pojo;
 
-public class PhoneHolder extends Holder {
+public class PhonePojo extends Pojo {
 	public String phone = "";
 }

@@ -1,6 +1,6 @@
 package fr.neamar.kiss.pojo;
 
-public class ToggleHolder extends Holder {
+public class TogglePojo extends Pojo {
 	public String settingName;
 	public int icon = -1;
 }

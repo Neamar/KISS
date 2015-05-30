@@ -2,9 +2,9 @@ package fr.neamar.kiss.pojo;
 
 import java.util.Comparator;
 
-public class HolderComparator implements Comparator<Holder> {
+public class HolderComparator implements Comparator<Pojo> {
 	@Override
-	public int compare(Holder lhs, Holder rhs) {
+	public int compare(Pojo lhs, Pojo rhs) {
 		return (lhs.relevance < rhs.relevance ? 1 : (lhs.relevance == rhs.relevance ? 0 : -1));
 	}
 }

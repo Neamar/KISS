@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import fr.neamar.kiss.pojo.AppHolder;
-import fr.neamar.kiss.pojo.Holder;
+import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.task.LoadAppHolders;
 
-public class AppProvider extends Provider<AppHolder> {
+public class AppProvider extends Provider<AppPojo> {
 
 	public AppProvider(Context context) {
 		super(new LoadAppHolders(context));
 	}
 
-	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> records = new ArrayList<Holder>();
+	public ArrayList<Pojo> getResults(String query) {
+		ArrayList<Pojo> records = new ArrayList<Pojo>();
 
 		int relevance;
 		String appNameLowerCased;
@@ -40,7 +40,7 @@ public class AppProvider extends Provider<AppHolder> {
 		return records;
 	}
 
-	public Holder findById(String id) {
+	public Pojo findById(String id) {
 		for (int i = 0; i < holders.size(); i++) {
 			if (holders.get(i).id.equals(id)) {
 				holders.get(i).displayName = holders.get(i).name;

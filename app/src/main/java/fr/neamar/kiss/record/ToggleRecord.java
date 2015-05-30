@@ -9,20 +9,20 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.ToggleHolder;
+import fr.neamar.kiss.pojo.TogglePojo;
 import fr.neamar.kiss.toggles.TogglesHandler;
 
 public class ToggleRecord extends Record {
-	public final ToggleHolder toggleHolder;
+	public final TogglePojo toggleHolder;
 
 	/**
 	 * Handler for all toggle-related queries
 	 */
 	protected TogglesHandler togglesHandler = null;
 
-	public ToggleRecord(ToggleHolder toggleHolder) {
+	public ToggleRecord(TogglePojo toggleHolder) {
 		super();
-		this.holder = this.toggleHolder = toggleHolder;
+		this.pojo = this.toggleHolder = toggleHolder;
 	}
 
 	@Override

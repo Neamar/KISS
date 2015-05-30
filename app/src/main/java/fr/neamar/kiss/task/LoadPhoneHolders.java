@@ -3,16 +3,16 @@ package fr.neamar.kiss.task;
 import java.util.ArrayList;
 
 import android.content.Context;
-import fr.neamar.kiss.pojo.PhoneHolder;
+import fr.neamar.kiss.pojo.PhonePojo;
 
-public class LoadPhoneHolders extends LoadHolders<PhoneHolder> {
+public class LoadPhoneHolders extends LoadHolders<PhonePojo> {
 
 	public LoadPhoneHolders(Context context) {
 		super(context, "none://");
 	}
 
 	@Override
-	protected ArrayList<PhoneHolder> doInBackground(Void... params) {
+	protected ArrayList<PhonePojo> doInBackground(Void... params) {
 		return null;
 	}
 }

@@ -6,14 +6,14 @@ import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.PhoneHolder;
+import fr.neamar.kiss.pojo.PhonePojo;
 
 public class PhoneRecord extends Record {
-	public PhoneHolder phoneHolder;
+	public PhonePojo phoneHolder;
 
-	public PhoneRecord(PhoneHolder phoneHolder) {
+	public PhoneRecord(PhonePojo phoneHolder) {
 		super();
-		this.holder = this.phoneHolder = phoneHolder;
+		this.pojo = this.phoneHolder = phoneHolder;
 	}
 
 	@Override

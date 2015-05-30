@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.SettingHolder;
+import fr.neamar.kiss.pojo.SettingPojo;
 
 public class SettingRecord extends Record {
-	public final SettingHolder settingHolder;
+	public final SettingPojo settingHolder;
 
-	public SettingRecord(SettingHolder settingHolder) {
+	public SettingRecord(SettingPojo settingHolder) {
 		super();
-		this.holder = this.settingHolder = settingHolder;
+		this.pojo = this.settingHolder = settingHolder;
 	}
 
 	@Override

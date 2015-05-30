@@ -3,23 +3,23 @@ package fr.neamar.kiss.dataprovider;
 import java.util.ArrayList;
 
 import android.content.Context;
-import fr.neamar.kiss.pojo.Holder;
-import fr.neamar.kiss.pojo.SearchHolder;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.task.LoadSearchHolders;
 
-public class SearchProvider extends Provider<SearchHolder> {
+public class SearchProvider extends Provider<SearchPojo> {
 
 	public SearchProvider(Context context) {
 		super(new LoadSearchHolders(context));
 	}
 
-	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> holders = new ArrayList<Holder>();
+	public ArrayList<Pojo> getResults(String query) {
+		ArrayList<Pojo> pojos = new ArrayList<Pojo>();
 
-		SearchHolder holder = new SearchHolder();
+		SearchPojo holder = new SearchPojo();
 		holder.query = query;
 		holder.relevance = 10;
-		holders.add(holder);
-		return holders;
+		pojos.add(holder);
+		return pojos;
 	}
 }

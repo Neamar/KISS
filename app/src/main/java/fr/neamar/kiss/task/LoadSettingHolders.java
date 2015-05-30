@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.SettingHolder;
+import fr.neamar.kiss.pojo.SettingPojo;
 
-public class LoadSettingHolders extends LoadHolders<SettingHolder> {
+public class LoadSettingHolders extends LoadHolders<SettingPojo> {
 
 	public LoadSettingHolders(Context context) {
 		super(context, "setting://");
 	}
 
 	@Override
-	protected ArrayList<SettingHolder> doInBackground(Void... params) {
-		ArrayList<SettingHolder> settings = new ArrayList<SettingHolder>();
+	protected ArrayList<SettingPojo> doInBackground(Void... params) {
+		ArrayList<SettingPojo> settings = new ArrayList<SettingPojo>();
 		settings.add(createHolder("Airplane mode",
 				android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS, R.attr.airplane));
 		settings.add(createHolder("Device info",
@@ -30,12 +30,12 @@ public class LoadSettingHolders extends LoadHolders<SettingHolder> {
 		return settings;
 	}
 
-	private SettingHolder createHolder(String name, String settingName) {
+	private SettingPojo createHolder(String name, String settingName) {
 		return createHolder(name, settingName, android.R.drawable.ic_menu_manage);
 	}
 
-	private SettingHolder createHolder(String name, String settingName, int resId) {
-		SettingHolder holder = new SettingHolder();
+	private SettingPojo createHolder(String name, String settingName, int resId) {
+		SettingPojo holder = new SettingPojo();
 		holder.id = holderScheme + settingName.toLowerCase(Locale.ENGLISH);
 		holder.name = "Setting: " + name;
 		holder.nameLowerCased = holder.name.toLowerCase(Locale.ENGLISH);

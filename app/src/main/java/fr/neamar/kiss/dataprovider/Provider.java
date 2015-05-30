@@ -2,7 +2,7 @@ package fr.neamar.kiss.dataprovider;
 
 import java.util.ArrayList;
 
-import fr.neamar.kiss.pojo.Holder;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.task.LoadHolders;
 
 public abstract class Provider<T> {
@@ -22,7 +22,7 @@ public abstract class Provider<T> {
 		loader.execute();
 	}
 
-	public abstract ArrayList<Holder> getResults(String s);
+	public abstract ArrayList<Pojo> getResults(String s);
 
 	public void loadOver(ArrayList<T> results) {
 		holders = results;
@@ -46,7 +46,7 @@ public abstract class Provider<T> {
 	 * @param id
 	 * @return null if not found
 	 */
-	public Holder findById(String id) {
+	public Pojo findById(String id) {
 		return null;
 	}
 }

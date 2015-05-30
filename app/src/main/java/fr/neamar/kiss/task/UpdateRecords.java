@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.os.AsyncTask;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.pojo.Holder;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.record.Record;
 
 /**
@@ -14,7 +14,7 @@ import fr.neamar.kiss.record.Record;
  * @author dorvaryn
  * 
  */
-public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
+public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Pojo>> {
 
 	private final int MAX_RECORDS = 15;
 	private MainActivity activity;
@@ -25,24 +25,24 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Holder>> {
 	}
 
 	@Override
-	protected ArrayList<Holder> doInBackground(String... queries) {
+	protected ArrayList<Pojo> doInBackground(String... queries) {
 		String workingOnQuery = queries[0];
 
 		// Ask for records
-		final ArrayList<Holder> holders = KissApplication.getDataHandler(activity).getResults(
+		final ArrayList<Pojo> pojos = KissApplication.getDataHandler(activity).getResults(
 				activity, workingOnQuery);
 
-		return holders;
+		return pojos;
 	}
 
 	@Override
-	protected void onPostExecute(ArrayList<Holder> holders) {
-		super.onPostExecute(holders);
+	protected void onPostExecute(ArrayList<Pojo> pojos) {
+		super.onPostExecute(pojos);
 		activity.adapter.clear();
 
-		if (holders != null) {
-			for (int i = Math.min(MAX_RECORDS, holders.size()) - 1; i >= 0; i--) {
-				activity.adapter.add(Record.fromHolder(activity, holders.get(i)));
+		if (pojos != null) {
+			for (int i = Math.min(MAX_RECORDS, pojos.size()) - 1; i >= 0; i--) {
+				activity.adapter.add(Record.fromHolder(activity, pojos.get(i)));
 			}
 		}
 		activity.resetTask();

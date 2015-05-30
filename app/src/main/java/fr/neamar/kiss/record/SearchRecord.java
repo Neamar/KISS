@@ -8,14 +8,14 @@ import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.SearchHolder;
+import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchRecord extends Record {
-	public SearchHolder searchHolder;
+	public SearchPojo searchHolder;
 
-	public SearchRecord(SearchHolder searchHolder) {
+	public SearchRecord(SearchPojo searchHolder) {
 		super();
-		this.holder = this.searchHolder = searchHolder;
+		this.pojo = this.searchHolder = searchHolder;
 	}
 
 	@Override

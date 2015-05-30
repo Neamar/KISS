@@ -10,13 +10,13 @@ import android.view.View;
 import fr.neamar.kiss.QueryInterface;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.db.DBHelper;
-import fr.neamar.kiss.pojo.AppHolder;
-import fr.neamar.kiss.pojo.ContactHolder;
-import fr.neamar.kiss.pojo.Holder;
-import fr.neamar.kiss.pojo.SearchHolder;
-import fr.neamar.kiss.pojo.SettingHolder;
-import fr.neamar.kiss.pojo.ToggleHolder;
-import fr.neamar.kiss.pojo.PhoneHolder;
+import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.ContactPojo;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.pojo.TogglePojo;
+import fr.neamar.kiss.pojo.PhonePojo;
 
 public abstract class Record {
 	/**
@@ -28,7 +28,7 @@ public abstract class Record {
 	/**
 	 * Current information holder
 	 */
-	public Holder holder = null;
+	public Pojo pojo = null;
 
 	/**
 	 * How to display this record ?
@@ -41,7 +41,7 @@ public abstract class Record {
 	public abstract View display(Context context, View convertView);
 
 	public final void launch(Context context, View v) {
-		Log.i("log", "Launching " + holder.id);
+		Log.i("log", "Launching " + pojo.id);
 
 		recordLaunch(context);
 
@@ -110,26 +110,26 @@ public abstract class Record {
 		// Save in history
 		// TODO: move to datahandler
 		DBHelper.insertHistory(context, KissApplication.getDataHandler(context).currentQuery,
-				holder.id);
+				pojo.id);
 	}
 
 	public void deleteRecord(Context context) {
-		DBHelper.removeFromHistory(context, holder.id);
+		DBHelper.removeFromHistory(context, pojo.id);
 	}
 
-	public static Record fromHolder(QueryInterface parent, Holder holder) {
-		if (holder instanceof AppHolder)
-			return new AppRecord((AppHolder) holder);
-		else if (holder instanceof ContactHolder)
-			return new ContactRecord(parent, (ContactHolder) holder);
-		else if (holder instanceof SearchHolder)
-			return new SearchRecord((SearchHolder) holder);
-		else if (holder instanceof SettingHolder)
-			return new SettingRecord((SettingHolder) holder);
-		else if (holder instanceof ToggleHolder)
-			return new ToggleRecord((ToggleHolder) holder);
-		else if (holder instanceof PhoneHolder)
-			return new PhoneRecord((PhoneHolder) holder);
+	public static Record fromHolder(QueryInterface parent, Pojo pojo) {
+		if (pojo instanceof AppPojo)
+			return new AppRecord((AppPojo) pojo);
+		else if (pojo instanceof ContactPojo)
+			return new ContactRecord(parent, (ContactPojo) pojo);
+		else if (pojo instanceof SearchPojo)
+			return new SearchRecord((SearchPojo) pojo);
+		else if (pojo instanceof SettingPojo)
+			return new SettingRecord((SettingPojo) pojo);
+		else if (pojo instanceof TogglePojo)
+			return new ToggleRecord((TogglePojo) pojo);
+		else if (pojo instanceof PhonePojo)
+			return new PhoneRecord((PhonePojo) pojo);
 
 		Log.e("log", "Unable to create record for specified holder.");
 		return null;

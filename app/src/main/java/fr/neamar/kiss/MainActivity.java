@@ -37,7 +37,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import fr.neamar.kiss.pojo.Holder;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.record.Record;
 import fr.neamar.kiss.task.UpdateRecords;
 
@@ -179,9 +179,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
         View.OnClickListener favoriteListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Holder holder = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
+                Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
                         .get(Integer.parseInt((String) view.getTag()));
-                final Record record = Record.fromHolder(MainActivity.this, holder);
+                final Record record = Record.fromHolder(MainActivity.this, pojo);
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -433,7 +433,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
 
             // Retrieve favorites. Try to retrieve more, since some favorites may be undisplayable (e.g. search queries)
-            ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
+            ArrayList<Pojo> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
                     .getFavorites(MainActivity.this, tryToRetrieve);
 
             if (favorites_holder.size() == 0) {
@@ -445,10 +445,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
             // Don't look for items after favIds length, we won't be able to display them
             for (int i = 0; i < Math.min(favsIds.length, favorites_holder.size()); i++) {
-                Holder holder = favorites_holder.get(i);
+                Pojo pojo = favorites_holder.get(i);
                 ImageView image = (ImageView) findViewById(favsIds[i]);
 
-                Record record = Record.fromHolder(MainActivity.this, holder);
+                Record record = Record.fromHolder(MainActivity.this, pojo);
                 Drawable drawable = record.getDrawable(MainActivity.this);
                 if (drawable != null)
                     image.setImageDrawable(drawable);

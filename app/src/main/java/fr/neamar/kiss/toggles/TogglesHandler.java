@@ -12,7 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.util.Log;
-import fr.neamar.kiss.pojo.ToggleHolder;
+import fr.neamar.kiss.pojo.TogglePojo;
 
 public class TogglesHandler {
 	protected Context context;
@@ -43,7 +43,7 @@ public class TogglesHandler {
 	 * @param holder
 	 * @return
 	 */
-	public Boolean getState(ToggleHolder holder) {
+	public Boolean getState(TogglePojo holder) {
 		try {
 			if (holder.settingName.equals("wifi"))
 				return getWifiState();
@@ -66,7 +66,7 @@ public class TogglesHandler {
 		}
 	}
 
-	public void setState(ToggleHolder holder, Boolean state) {
+	public void setState(TogglePojo holder, Boolean state) {
 		try {
 			if (holder.settingName.equals("wifi"))
 				setWifiState(state);

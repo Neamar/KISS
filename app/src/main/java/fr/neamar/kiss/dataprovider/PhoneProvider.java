@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import android.content.pm.PackageManager;
 import android.content.Context;
-import fr.neamar.kiss.pojo.Holder;
-import fr.neamar.kiss.pojo.PhoneHolder;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.task.LoadPhoneHolders;
 
-public class PhoneProvider extends Provider<PhoneHolder> {
+public class PhoneProvider extends Provider<PhonePojo> {
 	public boolean deviceIsPhoneEnabled = false;
 
 	public PhoneProvider(Context context) {
@@ -18,17 +18,17 @@ public class PhoneProvider extends Provider<PhoneHolder> {
 		deviceIsPhoneEnabled = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
 	}
 
-	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> holders = new ArrayList<Holder>();
+	public ArrayList<Pojo> getResults(String query) {
+		ArrayList<Pojo> pojos = new ArrayList<Pojo>();
 
 		// Append an item only if query looks like a phone number and device has phone capabilities
 		if(deviceIsPhoneEnabled && query.matches("^[0-9+ .]{2,}$")) {
-			PhoneHolder holder = new PhoneHolder();
+			PhonePojo holder = new PhonePojo();
 			holder.phone = query;
 			holder.relevance = 20;
-			holders.add(holder);
+			pojos.add(holder);
 		}
 
-		return holders;
+		return pojos;
 	}
 }

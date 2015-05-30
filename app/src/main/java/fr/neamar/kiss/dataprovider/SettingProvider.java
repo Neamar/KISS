@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import fr.neamar.kiss.pojo.Holder;
-import fr.neamar.kiss.pojo.SettingHolder;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.task.LoadSettingHolders;
 
-public class SettingProvider extends Provider<SettingHolder> {
+public class SettingProvider extends Provider<SettingPojo> {
 
 	public SettingProvider(Context context) {
 		super(new LoadSettingHolders(context));
 	}
 
-	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> results = new ArrayList<Holder>();
+	public ArrayList<Pojo> getResults(String query) {
+		ArrayList<Pojo> results = new ArrayList<Pojo>();
 
 		int relevance;
 		String settingNameLowerCased;
 		for (int i = 0; i < holders.size(); i++) {
-			SettingHolder setting = holders.get(i);
+			SettingPojo setting = holders.get(i);
 			relevance = 0;
 			settingNameLowerCased = setting.nameLowerCased;
 			if (settingNameLowerCased.startsWith(query))
@@ -40,7 +40,7 @@ public class SettingProvider extends Provider<SettingHolder> {
 		return results;
 	}
 
-	public Holder findById(String id) {
+	public Pojo findById(String id) {
 		for (int i = 0; i < holders.size(); i++) {
 			if (holders.get(i).id.equals(id)) {
 				holders.get(i).displayName = holders.get(i).name.replace("Setting:",

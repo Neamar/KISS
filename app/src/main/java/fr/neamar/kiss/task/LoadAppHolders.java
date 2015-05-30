@@ -9,16 +9,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
-import fr.neamar.kiss.pojo.AppHolder;
+import fr.neamar.kiss.pojo.AppPojo;
 
-public class LoadAppHolders extends LoadHolders<AppHolder> {
+public class LoadAppHolders extends LoadHolders<AppPojo> {
 
 	public LoadAppHolders(Context context) {
 		super(context, "app://");
 	}
 
 	@Override
-	protected ArrayList<AppHolder> doInBackground(Void... params) {
+	protected ArrayList<AppPojo> doInBackground(Void... params) {
 		long start = System.nanoTime();
 
 		PackageManager manager = context.getPackageManager();
@@ -29,9 +29,9 @@ public class LoadAppHolders extends LoadHolders<AppHolder> {
 		final List<ResolveInfo> appsInfo = manager.queryIntentActivities(mainIntent, 0);
 		Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
 
-		ArrayList<AppHolder> apps = new ArrayList<AppHolder>();
+		ArrayList<AppPojo> apps = new ArrayList<AppPojo>();
 		for (int i = 0; i < appsInfo.size(); i++) {
-			AppHolder app = new AppHolder();
+			AppPojo app = new AppPojo();
 			ResolveInfo info = appsInfo.get(i);
 
 			app.id = holderScheme + info.activityInfo.applicationInfo.packageName + "/"

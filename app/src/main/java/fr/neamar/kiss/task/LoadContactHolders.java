@@ -9,16 +9,16 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import fr.neamar.kiss.pojo.ContactHolder;
+import fr.neamar.kiss.pojo.ContactPojo;
 
-public class LoadContactHolders extends LoadHolders<ContactHolder> {
+public class LoadContactHolders extends LoadHolders<ContactPojo> {
 
 	public LoadContactHolders(Context context) {
 		super(context, "contact://");
 	}
 
 	@Override
-	protected ArrayList<ContactHolder> doInBackground(Void... params) {
+	protected ArrayList<ContactPojo> doInBackground(Void... params) {
 		long start = System.nanoTime();
 
 		// Run query
@@ -36,11 +36,11 @@ public class LoadContactHolders extends LoadHolders<ContactHolder> {
 		// The string key is "phone" + "|" + "name" (so if two contacts
 		// with
 		// distincts name share same number, they both get displayed
-		HashMap<String, ArrayList<ContactHolder>> mapContacts = new HashMap<String, ArrayList<ContactHolder>>();
+		HashMap<String, ArrayList<ContactPojo>> mapContacts = new HashMap<String, ArrayList<ContactPojo>>();
 
 		if (cur.getCount() > 0) {
 			while (cur.moveToNext()) {
-				ContactHolder contact = new ContactHolder();
+				ContactPojo contact = new ContactPojo();
 
 				contact.lookupKey = cur.getString(cur
 						.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
@@ -72,7 +72,7 @@ public class LoadContactHolders extends LoadHolders<ContactHolder> {
 					if (mapContacts.containsKey(contact.lookupKey))
 						mapContacts.get(contact.lookupKey).add(contact);
 					else {
-						ArrayList<ContactHolder> phones = new ArrayList<ContactHolder>();
+						ArrayList<ContactPojo> phones = new ArrayList<ContactPojo>();
 						phones.add(contact);
 						mapContacts.put(contact.lookupKey, phones);
 					}
@@ -80,12 +80,12 @@ public class LoadContactHolders extends LoadHolders<ContactHolder> {
 			}
 		}
 		cur.close();
-		ArrayList<ContactHolder> contacts = new ArrayList<ContactHolder>();
-		for (ArrayList<ContactHolder> phones : mapContacts.values()) {
+		ArrayList<ContactPojo> contacts = new ArrayList<ContactPojo>();
+		for (ArrayList<ContactPojo> phones : mapContacts.values()) {
 			// Find primary phone and add this one.
 			Boolean hasPrimary = false;
 			for (int j = 0; j < phones.size(); j++) {
-				ContactHolder contact = phones.get(j);
+				ContactPojo contact = phones.get(j);
 				if (contact.primary) {
 					contacts.add(contact);
 					hasPrimary = true;

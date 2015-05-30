@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import fr.neamar.kiss.pojo.ContactHolder;
-import fr.neamar.kiss.pojo.Holder;
+import fr.neamar.kiss.pojo.ContactPojo;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.task.LoadContactHolders;
 
-public class ContactProvider extends Provider<ContactHolder> {
+public class ContactProvider extends Provider<ContactPojo> {
 
 	public ContactProvider(final Context context) {
 		super(new LoadContactHolders(context));
 	}
 
-	public ArrayList<Holder> getResults(String query) {
-		ArrayList<Holder> results = new ArrayList<Holder>();
+	public ArrayList<Pojo> getResults(String query) {
+		ArrayList<Pojo> results = new ArrayList<Pojo>();
 
 		int relevance;
 		String contactNameLowerCased;
 		for (int i = 0; i < holders.size(); i++) {
-			ContactHolder contact = holders.get(i);
+			ContactPojo contact = holders.get(i);
 			relevance = 0;
 			contactNameLowerCased = contact.nameLowerCased;
 
@@ -50,7 +50,7 @@ public class ContactProvider extends Provider<ContactHolder> {
 		return results;
 	}
 
-	public Holder findById(String id) {
+	public Pojo findById(String id) {
 		for (int i = 0; i < holders.size(); i++) {
 			if (holders.get(i).id.equals(id)) {
 				holders.get(i).displayName = holders.get(i).name;

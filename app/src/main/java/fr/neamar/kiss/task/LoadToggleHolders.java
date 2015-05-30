@@ -7,17 +7,17 @@ import android.os.Build;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.ToggleHolder;
+import fr.neamar.kiss.pojo.TogglePojo;
 
-public class LoadToggleHolders extends LoadHolders<ToggleHolder> {
+public class LoadToggleHolders extends LoadHolders<TogglePojo> {
 
 	public LoadToggleHolders(Context context) {
 		super(context, "app://");
 	}
 
 	@Override
-	protected ArrayList<ToggleHolder> doInBackground(Void... params) {
-		ArrayList<ToggleHolder> toggles = new ArrayList<ToggleHolder>();
+	protected ArrayList<TogglePojo> doInBackground(Void... params) {
+		ArrayList<TogglePojo> toggles = new ArrayList<TogglePojo>();
 		PackageManager pm = context.getPackageManager();
 		if (pm.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
 			toggles.add(createHolder("Wifi", "wifi", R.attr.wifi));
@@ -33,8 +33,8 @@ public class LoadToggleHolders extends LoadHolders<ToggleHolder> {
 		return toggles;
 	}
 
-	private ToggleHolder createHolder(String name, String settingName, int resId) {
-		ToggleHolder holder = new ToggleHolder();
+	private TogglePojo createHolder(String name, String settingName, int resId) {
+		TogglePojo holder = new TogglePojo();
 		holder.id = holderScheme + name.toLowerCase();
 		holder.name = "Toggle: " + name;
 		holder.nameLowerCased = holder.name.toLowerCase();
