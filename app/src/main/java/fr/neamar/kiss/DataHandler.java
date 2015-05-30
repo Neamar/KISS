@@ -20,8 +20,8 @@ import fr.neamar.kiss.dataprovider.SettingProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.HolderComparator;
+import fr.neamar.kiss.pojo.Holder;
+import fr.neamar.kiss.pojo.HolderComparator;
 
 public class DataHandler extends BroadcastReceiver {
 

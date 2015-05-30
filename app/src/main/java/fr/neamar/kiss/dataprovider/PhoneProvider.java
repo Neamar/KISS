@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import android.content.pm.PackageManager;
 import android.content.Context;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.PhoneHolder;
+import fr.neamar.kiss.pojo.Holder;
+import fr.neamar.kiss.pojo.PhoneHolder;
 import fr.neamar.kiss.task.LoadPhoneHolders;
 
 public class PhoneProvider extends Provider<PhoneHolder> {

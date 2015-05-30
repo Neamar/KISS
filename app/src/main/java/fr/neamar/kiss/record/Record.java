@@ -10,13 +10,13 @@ import android.view.View;
 import fr.neamar.kiss.QueryInterface;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.db.DBHelper;
-import fr.neamar.kiss.holder.AppHolder;
-import fr.neamar.kiss.holder.ContactHolder;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.SearchHolder;
-import fr.neamar.kiss.holder.SettingHolder;
-import fr.neamar.kiss.holder.ToggleHolder;
-import fr.neamar.kiss.holder.PhoneHolder;
+import fr.neamar.kiss.pojo.AppHolder;
+import fr.neamar.kiss.pojo.ContactHolder;
+import fr.neamar.kiss.pojo.Holder;
+import fr.neamar.kiss.pojo.SearchHolder;
+import fr.neamar.kiss.pojo.SettingHolder;
+import fr.neamar.kiss.pojo.ToggleHolder;
+import fr.neamar.kiss.pojo.PhoneHolder;
 
 public abstract class Record {
 	/**

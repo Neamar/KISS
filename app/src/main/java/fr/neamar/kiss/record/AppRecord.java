@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.AppHolder;
+import fr.neamar.kiss.pojo.AppHolder;
 
 public class AppRecord extends Record {
 	public AppHolder appHolder;

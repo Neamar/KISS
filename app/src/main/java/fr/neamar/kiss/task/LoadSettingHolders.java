@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.SettingHolder;
+import fr.neamar.kiss.pojo.SettingHolder;
 
 public class LoadSettingHolders extends LoadHolders<SettingHolder> {
 

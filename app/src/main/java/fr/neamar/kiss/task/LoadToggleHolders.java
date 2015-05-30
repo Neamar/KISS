@@ -7,7 +7,7 @@ import android.os.Build;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.ToggleHolder;
+import fr.neamar.kiss.pojo.ToggleHolder;
 
 public class LoadToggleHolders extends LoadHolders<ToggleHolder> {
 

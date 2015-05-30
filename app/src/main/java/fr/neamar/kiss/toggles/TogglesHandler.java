@@ -12,7 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.util.Log;
-import fr.neamar.kiss.holder.ToggleHolder;
+import fr.neamar.kiss.pojo.ToggleHolder;
 
 public class TogglesHandler {
 	protected Context context;

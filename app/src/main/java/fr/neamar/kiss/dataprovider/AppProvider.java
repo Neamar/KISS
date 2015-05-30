@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.content.Context;
-import fr.neamar.kiss.holder.AppHolder;
-import fr.neamar.kiss.holder.Holder;
+import fr.neamar.kiss.pojo.AppHolder;
+import fr.neamar.kiss.pojo.Holder;
 import fr.neamar.kiss.task.LoadAppHolders;
 
 public class AppProvider extends Provider<AppHolder> {

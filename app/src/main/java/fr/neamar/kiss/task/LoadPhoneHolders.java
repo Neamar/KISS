@@ -3,7 +3,7 @@ package fr.neamar.kiss.task;
 import java.util.ArrayList;
 
 import android.content.Context;
-import fr.neamar.kiss.holder.PhoneHolder;
+import fr.neamar.kiss.pojo.PhoneHolder;
 
 public class LoadPhoneHolders extends LoadHolders<PhoneHolder> {
 

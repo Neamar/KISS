@@ -8,7 +8,7 @@ import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.SearchHolder;
+import fr.neamar.kiss.pojo.SearchHolder;
 
 public class SearchRecord extends Record {
 	public SearchHolder searchHolder;

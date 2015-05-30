@@ -17,7 +17,7 @@ import java.io.FileNotFoundException;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.QueryInterface;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.ContactHolder;
+import fr.neamar.kiss.pojo.ContactHolder;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 
 public class ContactRecord extends Record {

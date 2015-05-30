@@ -3,8 +3,8 @@ package fr.neamar.kiss.dataprovider;
 import java.util.ArrayList;
 
 import android.content.Context;
-import fr.neamar.kiss.holder.Holder;
-import fr.neamar.kiss.holder.SearchHolder;
+import fr.neamar.kiss.pojo.Holder;
+import fr.neamar.kiss.pojo.SearchHolder;
 import fr.neamar.kiss.task.LoadSearchHolders;
 
 public class SearchProvider extends Provider<SearchHolder> {

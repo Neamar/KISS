@@ -9,7 +9,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.ToggleHolder;
+import fr.neamar.kiss.pojo.ToggleHolder;
 import fr.neamar.kiss.toggles.TogglesHandler;
 
 public class ToggleRecord extends Record {

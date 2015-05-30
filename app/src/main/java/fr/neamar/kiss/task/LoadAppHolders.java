@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
-import fr.neamar.kiss.holder.AppHolder;
+import fr.neamar.kiss.pojo.AppHolder;
 
 public class LoadAppHolders extends LoadHolders<AppHolder> {
 

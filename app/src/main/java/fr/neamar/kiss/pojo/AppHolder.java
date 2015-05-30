@@ -1,4 +1,4 @@
-package fr.neamar.kiss.holder;
+package fr.neamar.kiss.pojo;
 
 public class AppHolder extends Holder {
 	public String packageName;

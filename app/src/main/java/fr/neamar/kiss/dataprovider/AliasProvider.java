@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import android.content.Context;
 import android.util.Pair;
-import fr.neamar.kiss.holder.Holder;
+import fr.neamar.kiss.pojo.Holder;
 import fr.neamar.kiss.task.LoadAliasHolders;
 
 public class AliasProvider extends Provider<Pair<String, String>> {

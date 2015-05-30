@@ -9,7 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import fr.neamar.kiss.holder.ContactHolder;
+import fr.neamar.kiss.pojo.ContactHolder;
 
 public class LoadContactHolders extends LoadHolders<ContactHolder> {
 

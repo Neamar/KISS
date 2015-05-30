@@ -1,4 +1,4 @@
-package fr.neamar.kiss.holder;
+package fr.neamar.kiss.pojo;
 
 public abstract class Holder extends Object {
 	// Globally unique ID.

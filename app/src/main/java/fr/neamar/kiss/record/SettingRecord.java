@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.SettingHolder;
+import fr.neamar.kiss.pojo.SettingHolder;
 
 public class SettingRecord extends Record {
 	public final SettingHolder settingHolder;

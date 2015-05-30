@@ -1,4 +1,4 @@
-package fr.neamar.kiss.holder;
+package fr.neamar.kiss.pojo;
 
 public class SearchHolder extends Holder {
 	public String query = "";

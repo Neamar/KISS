@@ -3,7 +3,7 @@ package fr.neamar.kiss.task;
 import java.util.ArrayList;
 
 import android.content.Context;
-import fr.neamar.kiss.holder.SearchHolder;
+import fr.neamar.kiss.pojo.SearchHolder;
 
 public class LoadSearchHolders extends LoadHolders<SearchHolder> {
 

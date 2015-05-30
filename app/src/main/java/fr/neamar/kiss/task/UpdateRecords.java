@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.os.AsyncTask;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.holder.Holder;
+import fr.neamar.kiss.pojo.Holder;
 import fr.neamar.kiss.record.Record;
 
 /**

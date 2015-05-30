@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.holder.PhoneHolder;
+import fr.neamar.kiss.pojo.PhoneHolder;
 
 public class PhoneRecord extends Record {
 	public PhoneHolder phoneHolder;
