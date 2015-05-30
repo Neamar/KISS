@@ -13,12 +13,14 @@ public class StringNormalizer {
     public static String normalize(String input) {
         return input.toLowerCase().replaceAll("[èéêë]", "e")
                 .replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
-                .replaceAll("[àâ]", "a").replaceAll("ô", "o");
+                .replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("-", " ");
     }
 
     /**
      * Return a regexp matching common characters
      * For safe use, all non alpha characters are removed from input
+     * Assume the input was previously sent to normalize()
+     * <p/>
      * "aze" => /[àâa]z[èéêë]/
      *
      * @param input string to "unnormalize"
@@ -27,6 +29,8 @@ public class StringNormalizer {
     public static String unnormalize(String input) {
         input = input.toLowerCase().replaceAll("(?i)([^a-z -])", "");
 
-        return input.replaceAll("e", "[eèéêë]").replaceAll("u", "[uûù]").replaceAll("i", "[iïî]").replace("a", "[aàâ]").replaceAll("o", "[oô]");
+        return input.replaceAll("e", "[eèéêë]")
+                .replaceAll("u", "[uûù]").replaceAll("i", "[iïî]")
+                .replaceAll("a", "[aàâ]").replaceAll("o", "[oô]").replaceAll(" ", "[ -]");
     }
 }
