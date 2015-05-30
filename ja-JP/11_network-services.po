@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-29 18:34+0900\n"
+"PO-Revision-Date: 2015-05-30 18:07+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1398,167 +1398,167 @@ msgstr "Apache のインストール"
 #. Tag: para
 #, no-c-format
 msgid "By default, installing the <emphasis role=\"pkg\">apache2</emphasis> package causes the <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> version of Apache to be installed too. The <emphasis role=\"pkg\">apache2</emphasis> package is an empty shell, and it only serves to ensure that one of the Apache versions is actually installed."
-msgstr ""
+msgstr "デフォルトで、<emphasis role=\"pkg\">apache2</emphasis> パッケージをインストールすると Apache の <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> バージョンがインストールされます。<emphasis role=\"pkg\">apache2</emphasis> パッケージははメタパッケージであり、Apache バージョンの 1 つがが実際にインストールされていることを確保するためだけに提供されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The differences between the variants of Apache 2 are concentrated in the policy used to handle parallel processing of many requests; this policy is implemented by an MPM (short for <emphasis>Multi-Processing Module</emphasis>). Among the available MPMs, <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> uses <emphasis>threads</emphasis> (lightweight processes), whereas <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> uses a pool of processes created in advance (the traditional way, and the only one available in Apache 1.3). <emphasis role=\"pkg\">apache2-mpm-event</emphasis> also uses threads, but they are terminated earlier, when the incoming connection is only kept open by the HTTP <emphasis>keep-alive</emphasis> feature."
-msgstr ""
+msgstr "Apache 2 の亜種同士の主な違いは、多くのリクエストを並列処理する際の取り扱い方法に関するポリシーです; このポリシーは MPM (<emphasis>Multi-Processing Module</emphasis> の略) によって実装されています。利用可能な MPM の中でも特に、<emphasis role=\"pkg\">apache2-mpm-worker</emphasis> は <emphasis>スレッド</emphasis> (軽量プロセス) を使います。これに対して <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> は予め生成したプロセスプール (古典的方法、Apache 1.3 ではこれしか使えません) を使います。<emphasis role=\"pkg\">apache2-mpm-event</emphasis> はスレッドを使いますが、入って来る接続が HTTP の <emphasis>keep-alive</emphasis> 機能を使ってオープン状態を保存するためだけのものの場合、スレッドを早く終わらせます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot administrators also install <emphasis role=\"pkg\">libapache2-mod-php5</emphasis> so as to include the PHP support in Apache. This causes <emphasis role=\"pkg\">apache2-mpm-worker</emphasis> to be removed, and <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> to be installed instead, since PHP only works under that particular MPM."
-msgstr ""
+msgstr "Falcot の管理者はさらに Apache で PHP サポートを有効化するために <emphasis role=\"pkg\">libapache2-mod-php5</emphasis> をインストールします。こうすることで、<emphasis role=\"pkg\">apache2-mpm-worker</emphasis> が削除され、代わりに <emphasis role=\"pkg\">apache2-mpm-prefork</emphasis> がインストールされます。なぜなら、 PHP はこの MPM の下でしか動かないからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Execution under the <literal>www-data</literal> user"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> <literal>www-data</literal> ユーザ下の実行"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>www-data</literal></primary>"
-msgstr ""
+msgstr "<primary><literal>www-data</literal></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>suexec</primary>"
-msgstr ""
+msgstr "<primary>suexec</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, Apache handles incoming requests under the identity of the <literal>www-data</literal> user. This means that a security vulnerability in a CGI script executed by Apache (for a dynamic page) won't compromise the whole system, but only the files owned by this particular user."
-msgstr ""
+msgstr "デフォルトで、Apache は入って来るリクエストを <literal>www-data</literal> ユーザからのリクエストとして取り扱います。これは、Apache が実行する CGI スクリプト (動的ページ) の持つセキュリティ脆弱性によって、システム全体が危険に晒されるのではなく、特定のユーザが所有するファイルだけに被害を留めることが可能であることを意味しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Using the <emphasis>suexec</emphasis> modules allows bypassing this rule so that some CGI scripts are executed under the identity of another user. This is configured with a <literal>SuexecUserGroup <replaceable>user</replaceable><replaceable>group</replaceable></literal> directive in the Apache configuration."
-msgstr ""
+msgstr "<emphasis>suexec</emphasis> モジュールを使うことで、このルールを迂回することが可能です。こうすることで、一部の CGI スクリプトを別のユーザの権限で実行することが可能です。設定を行うには、Apache 設定ファイルの <literal>SuexecUserGroup <replaceable>user</replaceable><replaceable>group</replaceable></literal> 指示文を使います。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">apache2-mpm-itk</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">apache2-mpm-itk</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Another possibility is to use a dedicated MPM, such as the one provided by <emphasis role=\"pkg\">apache2-mpm-itk</emphasis>. This particular one has a slightly different behavior: it allows “isolating” virtual hosts so that they each run as a different user. A vulnerability in one website therefore cannot compromise files belonging to the owner of another website."
-msgstr ""
+msgstr "もう一つの可能性は、例えば <emphasis role=\"pkg\">apache2-mpm-itk</emphasis> の提供する MPM などの、専用 MPM を使うことです。この専用 MPM の挙動は少し異なります: これは仮想ホストを「隔離」し、各仮想ホストを異なるユーザの権限で実行します。このため、あるウェブサイトの持つ脆弱性によって、他のウェブサイトの所有者の持つファイルが危険に晒されることが無くなります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> List of modules"
-msgstr ""
+msgstr "<emphasis>QUICK LOOK</emphasis> モジュールのリスト"
 
 #. Tag: para
 #, no-c-format
 msgid "The full list of Apache standard modules can be found online. <ulink type=\"block\" url=\"http://httpd.apache.org/docs/2.2/mod/index.html\" />"
-msgstr ""
+msgstr "Apache の標準的なモジュールをオンラインで見ることが可能です。<ulink type=\"block\" url=\"http://httpd.apache.org/docs/2.2/mod/index.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Apache is a modular server, and many features are implemented by external modules that the main program loads during its initialization. The default configuration only enables the most common modules, but enabling new modules is a simple matter of running <command>a2enmod <replaceable>module</replaceable></command>; to disable a module, the command is <command>a2dismod <replaceable>module</replaceable></command>. These programs actually only create (or delete) symbolic links in <filename>/etc/apache2/mods-enabled/</filename>, pointing at the actual files (stored in <filename>/etc/apache2/mods-available/</filename>)."
-msgstr ""
+msgstr "Apache はモジュール式サーバで、多くの機能が外部モジュールによって実装されており、主プログラムは初期化の際に外部モジュールを読み込みます。デフォルト設定では、最も一般的なモジュールだけが有効化されていますが、新しいモジュールの有効化は <command>a2enmod <replaceable>module</replaceable></command> を実行するだけで簡単に行うことが可能です; モジュールを無効化するコマンドは <command>a2dismod <replaceable>module</replaceable></command> です。実際のところ、これらのプログラムは <filename>/etc/apache2/mods-enabled/</filename> 内に実際のファイル (<filename>/etc/apache2/mods-available/</filename> 内に保存されている) を指すシンボリックリンクを作成 (削除) しているだけです。"
 
 #. Tag: para
 #, no-c-format
 msgid "With its default configuration, the web server listens on port 80 (as configured in <filename>/etc/apache2/ports.conf</filename>), and serves pages from the <filename>/var/www/</filename> directory (as configured in <filename>/etc/apache2/sites-enabled/000-default</filename>)."
-msgstr ""
+msgstr "Apache のデフォルト設定では、ウェブサーバはポート 80 番をリッスンし (<filename>/etc/apache2/ports.conf</filename> の中で設定されています)、<filename>/var/www/</filename> ディレクトリに含まれるページを提供します (<filename>/etc/apache2/sites-enabled/000-default</filename> の中で設定されています)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Adding support for SSL"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> SSL サポートの追加"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>HTTPS</primary>"
-msgstr ""
+msgstr "<primary>HTTPS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>HTTP</primary><secondary>secure</secondary>"
-msgstr ""
+msgstr "<primary>HTTP</primary><secondary>secure</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Apache 2.2 includes the SSL module required for secure HTTP (HTTPS) out of the box. It just needs to be enabled with <command>a2enmod ssl</command>, then the required directives have to be added to the configuration files. A configuration example is provided in <filename>/usr/share/doc/apache2.2-common/examples/apache2/extra/httpd-ssl.conf.gz</filename>. <ulink type=\"block\" url=\"http://httpd.apache.org/docs/2.2/mod/mod_ssl.html\" />"
-msgstr ""
+msgstr "Apache 2.2 には、すぐに使える安全な HTTP (HTTPS) に必要な SSL モジュールが含まれます。これを有効化するには、<command>a2enmod ssl</command> を使い、必要な指示文を設定ファイルに追加しなければいけません。設定例は <filename>/usr/share/doc/apache2.2-common/examples/apache2/extra/httpd-ssl.conf.gz</filename> で提供されています。<ulink type=\"block\" url=\"http://httpd.apache.org/docs/2.2/mod/mod_ssl.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Some extra care must be taken if you want to favor SSL connections with <emphasis>Perfect Forward Secrecy</emphasis> (those connections use ephemeral session keys ensuring that a compromission of the server's secret key does not result in the compromission of old encrypted traffic that could have been stored while sniffing on the network). Have a look at Mozilla's recommandations in particular: <ulink type=\"block\" url=\"https://wiki.mozilla.org/Security/Server_Side_TLS#Apache\" />"
-msgstr ""
+msgstr "<emphasis>Perfect Forward Secrecy</emphasis> を使った SSL 接続を優先したい場合、一部の特別な注意が必要です (これらの接続は一時的なセッション鍵を使い、サーバの秘密鍵が漏洩した場合でもネットワークをスニッフィングすることで保存される可能性がある古い暗号化されたトラフィックの内容が漏洩しないことを保証します)。特に Mozilla の推奨する設定例を御覧ください: <ulink type=\"block\" url=\"https://wiki.mozilla.org/Security/Server_Side_TLS#Apache\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Perfect Forward Secrecy</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>Perfect Forward Secrecy</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring Virtual Hosts"
-msgstr ""
+msgstr "仮想ホストの設定"
 
 #. Tag: para
 #, no-c-format
 msgid "A virtual host is an extra identity for the web server."
-msgstr ""
+msgstr "仮想ホスト機能を使うことで、ウェブサーバに復数の身元を運用させることが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>virtual host</primary>"
-msgstr ""
+msgstr "<primary>仮想ホスト</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Apache considers two different kinds of virtual hosts: those that are based on the IP address (or the port), and those that rely on the domain name of the web server. The first method requires allocating a different IP address (or port) for each site, whereas the second one can work on a single IP address (and port), and the sites are differentiated by the hostname sent by the HTTP client (which only works in version 1.1 of the HTTP protocol — fortunately that version is old enough that all clients use it already)."
-msgstr ""
+msgstr "Apache は異なる 2 種類の仮想ホストを取り扱うことが可能です: IP アドレス (またはポート番号) またはウェブサーバのドメイン名に基づいて仮想ホスト機能が実装されています。1 番目の方法を使う場合、各サイトに異なる IP アドレス (またはポート番号) を割り当てることが必要です。これに対して、2 番目の方法を使う場合、単一の IP アドレス (またはポート番号) で復数のサイトを運用することが可能で、HTTP クライアントの送信するホスト名によってサイトを識別します (こちらの方法は HTTP プロトコルのバージョン 1.1 で動作します - 幸いなことに、バージョン 1.1 は全てのクライアントが対応していると考えて良い程度に古いプロトコルです)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The (increasing) scarcity of IPv4 addresses usually favors the second method; however, it is made more complex if the virtual hosts need to provide HTTPS too, since the SSL protocol hasn't always provided for name-based virtual hosting; the SNI extension (<emphasis>Server Name Indication</emphasis>) that allows such a combination is not handled by all browsers. When several HTTPS sites need to run on the same server, they will usually be differentiated either by running on a different port or on a different IP address (IPv6 can help there)."
-msgstr ""
+msgstr "IPv4 アドレスは (ますます) 不足し続けているため、通常 2 番目の方法が好まれます; しかしながらこの方法では、仮想ホストが HTTPS を提供する必要がある場合、より複雑です。なぜなら、SSL プロトコルは常にホスト名に基づく仮想ホスト機能を規定しているとは限らないからです; そのような組み合わせを可能にするSNI 拡張 (<emphasis>Server Name Indication</emphasis>) は全てのブラウザで正しく使えるとは限りません。1 つのサーバで復数の HTTPS サイトを運用する必要がある場合、HTTPS サイトは通常異なるポートを使うか、異なる IP アドレスを使う (IPv6 が役立ちます) ことで識別されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The default configuration for Apache 2 enables name-based virtual hosts (with the <literal>NameVirtualHost *:80</literal> directive in the <filename>/etc/apache2/ports.conf</filename> file). In addition, a default virtual host is defined in the <literal>/etc/apache2/sites-enabled/000-default</literal> file; this virtual host will be used if no host matching the request sent by the client is found."
-msgstr ""
+msgstr "Apache 2 のデフォルト設定では、ホスト名に基づく仮想ホスト機能が有効にされています (<filename>/etc/apache2/ports.conf</filename> ファイルの <literal>NameVirtualHost *:80</literal> 指示文がこれに対応します)。加えて、<literal>/etc/apache2/sites-enabled/000-default</literal> ファイルの中でデフォルトの仮想ホストが定義されています; クライアントによって送信された要求に一致するホストが見つからない場合、この仮想ホストが使われます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> First virtual host"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> 最初の仮想ホスト"
 
 #. Tag: para
 #, no-c-format
 msgid "Requests concerning unknown virtual hosts will always be served by the first defined virtual host, which is why we defined <literal>www.falcot.com</literal> first here."
-msgstr ""
+msgstr "不明な仮想ホストに関する要求は最初に定義された仮想ホストへの要求として処理されます。このため 管理者は <literal>www.falcot.com</literal> を最初に定義しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> Apache supports SNI"
-msgstr ""
+msgstr "<emphasis>QUICK LOOK</emphasis> Apache の SNI サポート"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Server Name Indication</primary>"
-msgstr ""
+msgstr "<primary>Server Name Indication</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The Apache server supports an SSL protocol extension called <emphasis>Server Name Indication</emphasis> (SNI). This extension allows the browser to send the hostname of the web server during the establishment of the SSL connection, much earlier than the HTTP request itself, which was previously used to identify the requested virtual host among those hosted on the same server (with the same IP address and port). This allows Apache to select the most appropriate SSL certificate for the transaction to proceed."
-msgstr ""
+msgstr "Apache サーバは <emphasis>Server Name Indication</emphasis> (SNI) と呼ばれるSSL プロトコル拡張をサポートします。SNI 拡張を使うことで、ブラウザは SSL 接続を確立する間の HTTP 要求よりもずっと前にウェブサーバのホスト名を送信することが可能になり、同じサーバ (同じ IP アドレスとポート番号を使う) でホストされているホストから要求された仮想ホストを識別します。これを使うことで、Apache は以降のトランザクションで最も適切な SSL 証明書を選びます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Before SNI, Apache would always use the certificate defined in the default virtual host. Clients trying to access another virtual host would then display warnings, since the certificate they received didn't match the website they were trying to access. Fortunately, most browsers now work with SNI; this includes Microsoft Internet Explorer starting with version 7.0 (starting on Vista), Mozilla Firefox starting with version 2.0, Apple Safari since version 3.2.1, and all versions of Google Chrome."
-msgstr ""
+msgstr "SNI の前に、Apache は常にデフォルトの仮想ホストの定義する証明書を使います。他の仮想ホストへのアクセスを試行するクライアントは警告を表示するかもしれません。なぜなら、クライアントが受け取った証明書はアクセスしようとしているウェブサイトと一致しないからです。幸いなことに、ほとんどのブラウザは SNI を取り扱うことが可能です; Microsoft Internet Explorer バージョン 7.0 以降 (かつ Vista 以降)、Mozilla Firefox バージョン 2.0 以降、Apple Safari バージョン 3.2.1 以降、Google Chrome のすべてのバージョン。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Apache package provided in Debian is built with support for SNI; no particular configuration is therefore needed, apart from enabling name-based virtual hosting on port 443 (SSL) as well as the usual port 80. This is a simple matter of editing <filename>/etc/apache2/ports.conf</filename> so it includes the following:"
-msgstr ""
+msgstr "Debian の提供する Apache パッケージは SNI サポートを有効化した状態でビルドされています; 通常のポート 80 番と同様にポート 443 番 (SSL) でホスト名に基づく仮想ホスト機能を有効化することを除けば、特別な設定は不要です。<filename>/etc/apache2/ports.conf</filename> を編集して、以下の内容を含めるだけで簡単に設定することが可能です:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1569,21 +1569,26 @@ msgid ""
 "    Listen 443\n"
 "&lt;/IfModule&gt;\n"
 msgstr ""
+"\n"
+"&lt;IfModule mod_ssl.c&gt;\n"
+"    NameVirtualHost *:443\n"
+"    Listen 443\n"
+"&lt;/IfModule&gt;\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Care should also be taken to ensure that the configuration for the first virtual host (the one used by default) does enable TLSv1, since Apache uses the parameters of this first virtual host to establish secure connections, and they had better allow them!"
-msgstr ""
+msgstr "最初の仮想ホスト (デフォルトで使われる) に対する設定で TLSv1 を有効化することを忘れないで下さい。なぜなら、Apache は安全な接続を確立するためにこの最初の仮想ホストのパラメータを使うため、パラメータで安全な接続を許すべきです!"
 
 #. Tag: para
 #, no-c-format
 msgid "Each extra virtual host is then described by a file stored in <filename>/etc/apache2/sites-available/</filename>. Setting up a website for the <literal>falcot.org</literal> domain is therefore a simple matter of creating the following file, then enabling the virtual host with <command>a2ensite www.falcot.org</command>."
-msgstr ""
+msgstr "仮想ホストを追加するには、<filename>/etc/apache2/sites-available/</filename> にファイルを追加します。<literal>falcot.org</literal> ドメインで運用されるウェブサイトをセットアップするには、以下のファイルを作成し、<command>a2ensite www.falcot.org</command> を使って仮想ホストを有効化するだけで簡単に可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/apache2/sites-available/www.falcot.org</filename> file"
-msgstr ""
+msgstr "<filename>/etc/apache2/sites-available/www.falcot.org</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1595,16 +1600,22 @@ msgid ""
 "DocumentRoot /srv/www/www.falcot.org\n"
 "&lt;/VirtualHost&gt;\n"
 msgstr ""
+"\n"
+"&lt;VirtualHost *:80&gt;\n"
+"ServerName www.falcot.org\n"
+"ServerAlias falcot.org\n"
+"DocumentRoot /srv/www/www.falcot.org\n"
+"&lt;/VirtualHost&gt;\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The Apache server, as configured so far, uses the same log files for all virtual hosts (although this could be changed by adding <literal>CustomLog</literal> directives in the definitions of the virtual hosts). It therefore makes good sense to customize the format of this log file to have it include the name of the virtual host. This can be done by creating a <filename>/etc/apache2/conf.d/customlog</filename> file that defines a new format for all log files (with the <literal>LogFormat</literal> directive). The <literal>CustomLog</literal> line must also be removed (or commented out) from the <filename>/etc/apache2/sites-available/default</filename> file."
-msgstr ""
+msgstr "ここまでの設定に従うと、Apache サーバは全ての仮想ホストに対して同じログファイルを使います (仮想ホストの定義に <literal>CustomLog</literal> 指示文を追加すればこの挙動を変えることが可能です)。そのため、ログファイルのフォーマットをカスタマイズして、仮想ホストの名前を含むようにすることが道理にかなっています。これを行うには、<filename>/etc/apache2/conf.d/customlog</filename> ファイルを作成して全てのログファイルに対する新しいフォーマットを定義します (<literal>LogFormat</literal> 指示文を使います)。また、<filename>/etc/apache2/sites-available/default</filename> ファイルから <literal>CustomLog</literal> 指示文を削除 (またはコメントアウト) しなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/apache2/conf.d/customlog</filename> file"
-msgstr ""
+msgstr "<filename>/etc/apache2/conf.d/customlog</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1616,46 +1627,52 @@ msgid ""
 "# Now let's use this \"vhost\" format by default\n"
 "CustomLog /var/log/apache2/access.log vhost\n"
 msgstr ""
+"\n"
+"# New log format including (virtual) host name\n"
+"LogFormat \"%v %h %l %u %t \\\"%r\\\" %&gt;s %b \\\"%{Referer}i\\\" \\\"%{User-Agent}i\\\"\" vhost\n"
+"\n"
+"# Now let's use this \"vhost\" format by default\n"
+"CustomLog /var/log/apache2/access.log vhost\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Common Directives"
-msgstr ""
+msgstr "よく使われる指示文"
 
 #. Tag: para
 #, no-c-format
 msgid "This section briefly reviews some of the commonly-used Apache configuration directives."
-msgstr ""
+msgstr "このセクションでは、幾つかのよく使われる Apache 設定指示文を簡単に見直します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Apache directives</primary>"
-msgstr ""
+msgstr "<primary>Apache 指示文</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>directives, Apache</primary>"
-msgstr ""
+msgstr "<primary>指示文、Apache</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The main configuration file usually includes several <literal>Directory</literal> blocks; they allow specifying different behaviors for the server depending on the location of the file being served. Such a block commonly includes <literal>Options</literal> and <literal>AllowOverride</literal> directives."
-msgstr ""
+msgstr "主要設定ファイルには幾つかの <literal>Directory</literal> ブロックが含まれます; これを使うことで、提供されるファイルの位置に従って、サーバの挙動を変えることが可能です。<literal>Directory</literal> ブロックには通常 <literal>Options</literal> と <literal>AllowOverride</literal> 指示文が含まれます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Options</literal>, Apache directive</primary>"
-msgstr ""
+msgstr "<primary><literal>Options</literal>、Apache 指示文</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>AllowOverride</literal>, Apache directive</primary>"
-msgstr ""
+msgstr "<primary><literal>AllowOverride</literal>、Apache 指示文</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Directory block"
-msgstr ""
+msgstr "Directory ブロック"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1667,6 +1684,12 @@ msgid ""
 "DirectoryIndex index.php index.html index.htm\n"
 "&lt;/Directory&gt;\n"
 msgstr ""
+"\n"
+"&lt;Directory /var/www&gt;\n"
+"Options Includes FollowSymlinks\n"
+"AllowOverride All\n"
+"DirectoryIndex index.php index.html index.htm\n"
+"&lt;/Directory&gt;\n"
 
 #. Tag: para
 #, no-c-format
