@@ -9,7 +9,7 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 
-public abstract class Searcher extends AsyncTask<String, Void, ArrayList<Pojo>> {
+public abstract class Searcher extends AsyncTask<Void, Void, ArrayList<Pojo>> {
     private final int MAX_RECORDS = 15;
 
     protected final MainActivity activity;

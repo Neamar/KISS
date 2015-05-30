@@ -39,7 +39,9 @@ import java.util.ArrayList;
 
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
-import fr.neamar.kiss.searcher.UpdateRecords;
+import fr.neamar.kiss.searcher.HistorySearcher;
+import fr.neamar.kiss.searcher.QuerySearcher;
+import fr.neamar.kiss.searcher.Searcher;
 
 public class MainActivity extends ListActivity implements QueryInterface {
 
@@ -62,7 +64,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Task launched on text change
      */
-    private UpdateRecords updateRecords;
+    private Searcher searcher;
 
     /**
      * Store user preferences
@@ -475,15 +477,21 @@ public class MainActivity extends ListActivity implements QueryInterface {
      */
 
     public void updateRecords(String query) {
-        if (updateRecords != null) {
-            updateRecords.cancel(true);
+        if (searcher != null) {
+            searcher.cancel(true);
         }
-        updateRecords = new UpdateRecords(this);
-        updateRecords.execute(query);
+
+        if(query.length() == 0) {
+            searcher = new HistorySearcher(this);
+        }
+        else {
+            searcher = new QuerySearcher(this, query);
+        }
+        searcher.execute();
     }
 
     public void resetTask() {
-        updateRecords = null;
+        searcher = null;
     }
 
     /**

@@ -12,18 +12,17 @@ import fr.neamar.kiss.pojo.Pojo;
  * @author dorvaryn
  *
  */
-public class UpdateRecords extends Searcher {
+public class QuerySearcher extends Searcher {
+	public final String query;
 
-	private final int MAX_RECORDS = 15;
-
-	public UpdateRecords(MainActivity activity) {
+	public QuerySearcher(MainActivity activity, String query) {
 		super(activity);
+		this.query = query;
 	}
 
-	@Override
-	protected ArrayList<Pojo> doInBackground(String... queries) {
-		String query = queries[0];
 
+	@Override
+	protected ArrayList<Pojo> doInBackground(Void... voids) {
 		// Ask for records
 		final ArrayList<Pojo> pojos = KissApplication.getDataHandler(activity).getResults(
 				activity, query);

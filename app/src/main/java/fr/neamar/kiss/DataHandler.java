@@ -80,11 +80,6 @@ public class DataHandler extends BroadcastReceiver {
 
 		currentQuery = query;
 
-		if (query.length() == 0) {
-			// Searching for nothing returns the history
-			return getHistory(context);
-		}
-
 		// Have we ever made the same query and selected something ?
 		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
 				context, query);
@@ -125,7 +120,7 @@ public class DataHandler extends BroadcastReceiver {
 	 *
 	 * @return
 	 */
-	protected ArrayList<Pojo> getHistory(Context context) {
+	public ArrayList<Pojo> getHistory(Context context) {
 		ArrayList<Pojo> history = new ArrayList<Pojo>();
 
 		// Read history
