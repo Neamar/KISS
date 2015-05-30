@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-29 19:08+0200\n"
-"Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
+"PO-Revision-Date: 2015-05-30 21:46+0200\n"
+"Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects"
 "/debian-handbook/12_advanced-administration/pt_BR/>\n"
 "Language: pt-BR\n"
@@ -3062,6 +3062,21 @@ msgstr ""
 #, no-c-format
 msgid "These features can be combined to isolate a whole process family starting from the <command>init</command> process, and the resulting set looks very much like a virtual machine. The official name for such a setup is a “container” (hence the LXC moniker: <emphasis>LinuX Containers</emphasis>), but a rather important difference with “real” virtual machines such as provided by Xen or KVM is that there's no second kernel; the container uses the very same kernel as the host system. This has both pros and cons: advantages include excellent performance due to the total lack of overhead, and the fact that the kernel has a global vision of all the processes running on the system, so the scheduling can be more efficient than it would be if two independent kernels were to schedule different task sets. Chief among the inconveniences is the impossibility to run a different kernel in a container (whether a different Linux version or a different operating system altogether)."
 msgstr ""
+"Esses recursos podem ser combinados para isolar toda uma família de "
+"processos iniciando a partir do processo <command>init</command>, e o "
+"conjunto resultante se parece muito com uma máquina virtual. O nome oficial "
+"para tal configuração é um “container” (daí o apelido LXC: <emphasis>LinuX "
+"Containers</emphasis>), mas uma diferença bastante importanto com as "
+"máquinas virtuais “reais”, tais como as providas pelo Xen ou KVM é que não "
+"há um segundo núcleo; o container usa o mesmo núcleo que o sistema "
+"hospedeiro. Isso tem tanto prós quanto contras: as vantagens incluem "
+"excelente desempenho devido à total falta de sobrecarga, e o fato que o "
+"núcleo tem uma visão global de todos processos rodando no sistema, então o "
+"agendamento pode ser mais eficiente do que seria se dois núcleos "
+"independentes fossem agendar diferentes conjuntos de tarefas. Líder entre os "
+"inconvenientes está a impossibilidade de rodar um núcleo diferente em um "
+"container (seja uma versão diferente do Linux ou um sistema operacional "
+"diferente por completo)."
 
 #. Tag: title
 #, no-c-format
@@ -3103,11 +3118,21 @@ msgstr "por razões parecidas, se o contêiner é comprometido e se uma vulnerab
 #, no-c-format
 msgid "on the filesystem, the kernel checks permissions according to the numerical identifiers for users and groups; these identifiers may designate different users and groups depending on the container, which should be kept in mind if writable parts of the filesystem are shared among containers."
 msgstr ""
+"no sistema de arquivos, o núcleo verifica as permissões de acordo com os "
+"identificadores numéricos para usuários e grupos; esses identificadores "
+"podem designar diferentes usuários e grupos dependendo do container, o que "
+"deve ser mantido em mente se as partes com permissão de escrita do sistema "
+"de arquivos são compartilhadas entre containers."
 
 #. Tag: para
 #, no-c-format
 msgid "Since we're dealing with isolation and not plain virtualization, setting up LXC containers is more complex than just running debian-installer on a virtual machine. We'll describe a few prerequisites, then go on to the network configuration; we will then be able to actually create the system to be run in the container."
 msgstr ""
+"Como nós estamos lidando com isolamento e virtualização não tão simples, a "
+"criação de containers LXC é mais complexa do que simplesmente rodar o debian-"
+"installer em uma máquina virtual. Nós iremos descrever alguns pré-requisitos "
+"e, em seguida, iremos para a configuração de rede; para então depois, sermos "
+"capazes de realmente criar o sistema para ser rodado no container."
 
 #. Tag: title
 #, no-c-format
@@ -3149,11 +3174,28 @@ msgstr "Configuração de Rede"
 #, no-c-format
 msgid "The goal of installing LXC is to set up virtual machines; while we could of course keep them isolated from the network, and only communicate with them via the filesystem, most use cases involve giving at least minimal network access to the containers. In the typical case, each container will get a virtual network interface, connected to the real network through a bridge. This virtual interface can be plugged either directly onto the host's physical network interface (in which case the container is directly on the network), or onto another virtual interface defined on the host (and the host can then filter or route traffic). In both cases, the <emphasis role=\"pkg\">bridge-utils</emphasis> package will be required."
 msgstr ""
+"O objetivo de instalar o LXC é configurar máquinas virtuais; enquanto nós "
+"poderíamos, é claro, mantê-las isoladas da rede, e apenas nos comunicarmos "
+"com elas através do sistema de arquivos, a maioria dos casos de uso envolve "
+"dar, ao menos, um mínimo acesso de rede para os containers. No caso típico, "
+"cada container irá ter uma interface de rede virtual, conectada à rede real "
+"através de uma bridge. Essa interface virtual pode ser plugada tanto "
+"diretamente na interface de rede física do hospedeiro (e nesse caso o "
+"container está diretamente na rede), ou em outra interface virtual definida "
+"no hospedeiro (e o hospedeiro pode então filtrar  ou rotear o tráfego). Em "
+"ambos os casos, o pacote <emphasis role=\"pkg\">bridge-utils</emphasis> será "
+"necessário."
 
 #. Tag: para
 #, no-c-format
 msgid "The simple case is just a matter of editing <filename>/etc/network/interfaces</filename>, moving the configuration for the physical interface (for instance <literal>eth0</literal>) to a bridge interface (usually <literal>br0</literal>), and configuring the link between them. For instance, if the network interface configuration file initially contains entries such as the following:"
 msgstr ""
+"O caso simples é a penas uma questão de editar o "
+"<filename>/etc/network/interfaces</filename>, e mover a configuração da "
+"interface física (por exemplo <literal>eth0</literal>) para a interface "
+"bridge (usualmente <literal>br0</literal>), e configurar a ligação entre "
+"elas. Por exemplo, se o arquivo de configuração da interface de rede "
+"inicialmente contém entradas como as seguintes:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3190,6 +3232,11 @@ msgstr ""
 #, no-c-format
 msgid "The effect of this configuration will be similar to what would be obtained if the containers were machines plugged into the same physical network as the host. The “bridge” configuration manages the transit of Ethernet frames between all the bridged interfaces, which includes the physical <literal>eth0</literal> as well as the interfaces defined for the containers."
 msgstr ""
+"O efeito dessa configuração será similar ao que seria obtido se os "
+"containers fossem máquinas plugadas na mesma rede física como o hospedeiro. "
+"A configuração “bridge” gerencia o trânsito dos quadros Ethernet entre todas "
+"as interfaces \"bridged\", o que inclui a  <literal>eth0</literal> física, "
+"assim como as interfaces definidas para os containers."
 
 #. Tag: para
 #, no-c-format
@@ -3200,6 +3247,9 @@ msgstr ""
 #, no-c-format
 msgid "In addition to <emphasis role=\"pkg\">bridge-utils</emphasis>, this “rich” configuration requires the <emphasis role=\"pkg\">vde2</emphasis> package; the <filename>/etc/network/interfaces</filename> file then becomes:"
 msgstr ""
+"Em adição ao <emphasis role=\"pkg\">bridge-utils</emphasis>, essa “rica” "
+"configuração requer o pacote <emphasis role=\"pkg\">vde2</emphasis>; o "
+"arquivo <filename>/etc/network/interfaces</filename> então torna-se:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3220,13 +3270,30 @@ msgid ""
 "  address 10.0.0.1\n"
 "  netmask 255.255.255.0\n"
 msgstr ""
+"# Interface eth0 is unchanged\n"
+"auto eth0\n"
+"iface eth0 inet dhcp\n"
+"\n"
+"# Virtual interface \n"
+"auto tap0\n"
+"iface tap0 inet manual\n"
+"  vde2-switch -t tap0\n"
+"\n"
+"# Bridge for containers\n"
+"auto br0\n"
+"iface br0 inet static\n"
+"  bridge-ports tap0\n"
+"  address 10.0.0.1\n"
+"  netmask 255.255.255.0\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The network can then be set up either statically in the containers, or dynamically with DHCP server running on the host. Such a DHCP server will need to be configured to answer queries on the <literal>br0</literal> interface."
 msgstr ""
-"A rede então pode ser configurada estaticamente nos contêineres, ou dinamicamente com um servidor DHCP rodando no host.\n"
-"Tal servidor DHCP deverá ser configurado para responder as consultas na interface <literal>br0</literal>."
+"A rede então pode ser configurada tanto estaticamente nos contêineres, "
+"quanto dinamicamente com um servidor DHCP rodando no host.\n"
+"Tal servidor DHCP deverá ser configurado para responder as consultas na "
+"interface <literal>br0</literal>."
 
 #. Tag: title
 #, no-c-format
