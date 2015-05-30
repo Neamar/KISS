@@ -70,6 +70,18 @@ public class MainActivity extends ListActivity implements QueryInterface {
     SharedPreferences prefs;
 
     /**
+     * IDS for the favorites buttons
+     */
+    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
+
+    /**
+     * Number of favorites to retrieve.
+     * We need to pad this number to account for removed items still in history
+     */
+    private final int tryToRetrieve = favsIds.length + 2;
+
+
+    /**
      * Called when the activity is first created.
      */
     @SuppressLint("NewApi")
@@ -163,15 +175,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
-        final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
-        final int tryToRetrieve = favsIds.length + 2;
-
+        // Favorites handling
         View.OnClickListener favoriteListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Holder holder = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
                         .get(Integer.parseInt((String) view.getTag()));
                 Record record = Record.fromHolder(MainActivity.this, holder);
+                displayKissBar(false);
                 record.fastLaunch(MainActivity.this);
             }
         };
@@ -181,59 +192,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
             findViewById(favid).setOnClickListener(favoriteListener);
         }
 
-        // Clear text content when touching the cross button
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
         launcherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View kissMenu = findViewById(R.id.main_kissbar);
-                // get the center for the clipping circle
-                int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
-                int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
-
-                // get the final radius for the clipping circle
-                int finalRadius = Math.max(kissMenu.getWidth(), kissMenu.getHeight());
-
-                // Reveal the bar
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Animator anim =
-                            ViewAnimationUtils.createCircularReveal(kissMenu, cx, cy, 0, finalRadius);
-                    kissMenu.setVisibility(View.VISIBLE);
-                    anim.start();
-                } else {
-                    // No animation before Lollipop
-                    kissMenu.setVisibility(View.VISIBLE);
-                }
-
-                // Retrieve favorites. Try to retrieve more, since some favorites may be undisplayable (e.g. search queries)
-                ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
-                        .getFavorites(MainActivity.this, tryToRetrieve);
-
-                if (favorites_holder.size() == 0) {
-                    Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.TOP, 0, 20);
-                    toast.show();
-                    return;
-                }
-
-                // Don't look for items after favIds length, we won't be able to display them
-                for (int i = 0; i < Math.min(favsIds.length, favorites_holder.size()); i++) {
-                    Holder holder = favorites_holder.get(i);
-                    ImageView image = (ImageView) findViewById(favsIds[i]);
-
-                    Record record = Record.fromHolder(MainActivity.this, holder);
-                    Drawable drawable = record.getDrawable(MainActivity.this);
-                    if (drawable != null)
-                        image.setImageDrawable(drawable);
-                    image.setVisibility(View.VISIBLE);
-                }
-
-                // Hide empty favorites holder (not enough favorites yet)
-                for(int i = favorites_holder.size(); i < favsIds.length; i++) {
-                    findViewById(favsIds[i]).setVisibility(View.GONE);
-                }
-
-                hideKeyboard();
+                displayKissBar(true);
             }
         });
 
@@ -258,26 +221,32 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Apply some tweaks to the design, depending on the current SDK version
      */
     public void applyDesignTweaks() {
-        final View menuButton = findViewById(R.id.menuButton);
-        final View clearButton = findViewById(R.id.clearButton);
-        final View launcherButton = findViewById(R.id.launcherButton);
+        final int[] tweakableIds = new int[] {
+                R.id.menuButton,
+                // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
+                R.id.clearButton,
+                R.id.launcherButton,
+                R.id.favorite0,
+                R.id.favorite1,
+                R.id.favorite2,
+                R.id.favorite3,
+                R.id.apps,
+        };
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
 
-            menuButton.setBackgroundResource(outValue.resourceId);
-            clearButton.setBackgroundResource(outValue.resourceId);
-            launcherButton.setBackgroundResource(outValue.resourceId);
+            for(int id : tweakableIds) {
+                findViewById(id).setBackgroundResource(outValue.resourceId);
+            }
         } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
 
-            // Clicking on menu button should display a focused rectangle
-            menuButton.setBackgroundResource(outValue.resourceId);
-            // Barely visible on the backbutton, since it disappears instant. Can be seen on long click though
-            clearButton.setBackgroundResource(outValue.resourceId);
-            launcherButton.setBackgroundResource(outValue.resourceId);
+            for(int id : tweakableIds) {
+                findViewById(id).setBackgroundResource(outValue.resourceId);
+            }
         }
     }
 
@@ -429,6 +398,65 @@ public class MainActivity extends ListActivity implements QueryInterface {
         } else {
             launcherButton.setVisibility(View.GONE);
             loaderBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    protected void displayKissBar(Boolean display) {
+        final View kissMenu = findViewById(R.id.main_kissbar);
+
+        if(display) {
+            final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+
+            // get the center for the clipping circle
+            int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
+            int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
+
+            // get the final radius for the clipping circle
+            int finalRadius = Math.max(kissMenu.getWidth(), kissMenu.getHeight());
+
+            // Reveal the bar
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Animator anim =
+                        ViewAnimationUtils.createCircularReveal(kissMenu, cx, cy, 0, finalRadius);
+                kissMenu.setVisibility(View.VISIBLE);
+                anim.start();
+            } else {
+                // No animation before Lollipop
+                kissMenu.setVisibility(View.VISIBLE);
+            }
+
+            // Retrieve favorites. Try to retrieve more, since some favorites may be undisplayable (e.g. search queries)
+            ArrayList<Holder> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
+                    .getFavorites(MainActivity.this, tryToRetrieve);
+
+            if (favorites_holder.size() == 0) {
+                Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 0, 20);
+                toast.show();
+                return;
+            }
+
+            // Don't look for items after favIds length, we won't be able to display them
+            for (int i = 0; i < Math.min(favsIds.length, favorites_holder.size()); i++) {
+                Holder holder = favorites_holder.get(i);
+                ImageView image = (ImageView) findViewById(favsIds[i]);
+
+                Record record = Record.fromHolder(MainActivity.this, holder);
+                Drawable drawable = record.getDrawable(MainActivity.this);
+                if (drawable != null)
+                    image.setImageDrawable(drawable);
+                image.setVisibility(View.VISIBLE);
+            }
+
+            // Hide empty favorites holder (not enough favorites yet)
+            for (int i = favorites_holder.size(); i < favsIds.length; i++) {
+                findViewById(favsIds[i]).setVisibility(View.GONE);
+            }
+
+            hideKeyboard();
+        }
+        else {
+            kissMenu.setVisibility(View.INVISIBLE);
         }
     }
 
