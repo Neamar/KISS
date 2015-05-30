@@ -11,9 +11,9 @@ import android.content.pm.ResolveInfo;
 import android.util.Log;
 import fr.neamar.kiss.pojo.AppPojo;
 
-public class LoadAppHolders extends LoadHolders<AppPojo> {
+public class LoadAppPojos extends LoadPojos<AppPojo> {
 
-	public LoadAppHolders(Context context) {
+	public LoadAppPojos(Context context) {
 		super(context, "app://");
 	}
 

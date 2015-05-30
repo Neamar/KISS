@@ -6,13 +6,13 @@ import android.content.pm.PackageManager;
 import android.content.Context;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PhonePojo;
-import fr.neamar.kiss.loader.LoadPhoneHolders;
+import fr.neamar.kiss.loader.LoadPhonePojos;
 
 public class PhoneProvider extends Provider<PhonePojo> {
 	public boolean deviceIsPhoneEnabled = false;
 
 	public PhoneProvider(Context context) {
-		super(new LoadPhoneHolders(context));
+		super(new LoadPhonePojos(context));
 
 		PackageManager pm = context.getPackageManager();
 		deviceIsPhoneEnabled = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);

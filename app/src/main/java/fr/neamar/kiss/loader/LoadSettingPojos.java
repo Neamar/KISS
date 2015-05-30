@@ -9,9 +9,9 @@ import java.util.Locale;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
 
-public class LoadSettingHolders extends LoadHolders<SettingPojo> {
+public class LoadSettingPojos extends LoadPojos<SettingPojo> {
 
-	public LoadSettingHolders(Context context) {
+	public LoadSettingPojos(Context context) {
 		super(context, "setting://");
 	}
 

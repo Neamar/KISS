@@ -21,7 +21,7 @@ import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.HolderComparator;
+import fr.neamar.kiss.pojo.PojoComparator;
 
 public class DataHandler extends BroadcastReceiver {
 
@@ -112,7 +112,7 @@ public class DataHandler extends BroadcastReceiver {
 		}
 
 		// Sort records according to relevance
-		Collections.sort(allPojos, new HolderComparator());
+		Collections.sort(allPojos, new PojoComparator());
 
 		return allPojos;
 	}
@@ -136,7 +136,7 @@ public class DataHandler extends BroadcastReceiver {
 			// Ask all providers if they know this id
 			for (int j = 0; j < providers.size(); j++) {
 				if (providers.get(j).mayFindById(ids.get(i).record)) {
-					//TODO: use new getHolder() function
+					//TODO: use new getPojo() function
 					Pojo pojo = providers.get(j).findById(ids.get(i).record);
 					if (pojo != null) {
 						history.add(pojo);
@@ -165,7 +165,7 @@ public class DataHandler extends BroadcastReceiver {
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
-			Pojo pojo = getHolder(ids.get(i).record);
+			Pojo pojo = getPojo(ids.get(i).record);
 			if (pojo != null) {
 				favorites.add(pojo);
 			}
@@ -191,7 +191,7 @@ public class DataHandler extends BroadcastReceiver {
 		}
 	}
 
-	private Pojo getHolder(String id)
+	private Pojo getPojo(String id)
 	{
 		// Ask all providers if they know this id
 		for (int i = 0; i < providers.size(); i++) {

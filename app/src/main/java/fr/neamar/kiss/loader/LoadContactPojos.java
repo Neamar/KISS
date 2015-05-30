@@ -11,9 +11,9 @@ import java.util.HashMap;
 
 import fr.neamar.kiss.pojo.ContactPojo;
 
-public class LoadContactHolders extends LoadHolders<ContactPojo> {
+public class LoadContactPojos extends LoadPojos<ContactPojo> {
 
-	public LoadContactHolders(Context context) {
+	public LoadContactPojos(Context context) {
 		super(context, "contact://");
 	}
 

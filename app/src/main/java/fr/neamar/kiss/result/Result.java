@@ -117,7 +117,7 @@ public abstract class Result {
 		DBHelper.removeFromHistory(context, pojo.id);
 	}
 
-	public static Result fromHolder(QueryInterface parent, Pojo pojo) {
+	public static Result fromPojo(QueryInterface parent, Pojo pojo) {
 		if (pojo instanceof AppPojo)
 			return new AppResult((AppPojo) pojo);
 		else if (pojo instanceof ContactPojo)
@@ -131,7 +131,7 @@ public abstract class Result {
 		else if (pojo instanceof PhonePojo)
 			return new PhoneResult((PhonePojo) pojo);
 
-		Log.e("log", "Unable to create record for specified holder.");
+		Log.e("log", "Unable to create record for specified pojo.");
 		return null;
 	}
 }

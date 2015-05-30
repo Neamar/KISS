@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import android.content.Context;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
-import fr.neamar.kiss.loader.LoadSearchHolders;
+import fr.neamar.kiss.loader.LoadSearchPojos;
 
 public class SearchProvider extends Provider<SearchPojo> {
 
 	public SearchProvider(Context context) {
-		super(new LoadSearchHolders(context));
+		super(new LoadSearchPojos(context));
 	}
 
 	public ArrayList<Pojo> getResults(String query) {

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import android.content.Context;
 import fr.neamar.kiss.pojo.PhonePojo;
 
-public class LoadPhoneHolders extends LoadHolders<PhonePojo> {
+public class LoadPhonePojos extends LoadPojos<PhonePojo> {
 
-	public LoadPhoneHolders(Context context) {
+	public LoadPhonePojos(Context context) {
 		super(context, "none://");
 	}
 

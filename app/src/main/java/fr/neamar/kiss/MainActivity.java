@@ -181,7 +181,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public void onClick(View view) {
                 Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
                         .get(Integer.parseInt((String) view.getTag()));
-                final Result result = Result.fromHolder(MainActivity.this, pojo);
+                final Result result = Result.fromPojo(MainActivity.this, pojo);
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -433,10 +433,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
 
             // Retrieve favorites. Try to retrieve more, since some favorites may be undisplayable (e.g. search queries)
-            ArrayList<Pojo> favorites_holder = KissApplication.getDataHandler(MainActivity.this)
+            ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
                     .getFavorites(MainActivity.this, tryToRetrieve);
 
-            if (favorites_holder.size() == 0) {
+            if (favoritesPojo.size() == 0) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 0, 20);
                 toast.show();
@@ -444,11 +444,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
 
             // Don't look for items after favIds length, we won't be able to display them
-            for (int i = 0; i < Math.min(favsIds.length, favorites_holder.size()); i++) {
-                Pojo pojo = favorites_holder.get(i);
+            for (int i = 0; i < Math.min(favsIds.length, favoritesPojo.size()); i++) {
+                Pojo pojo = favoritesPojo.get(i);
                 ImageView image = (ImageView) findViewById(favsIds[i]);
 
-                Result result = Result.fromHolder(MainActivity.this, pojo);
+                Result result = Result.fromPojo(MainActivity.this, pojo);
                 Drawable drawable = result.getDrawable(MainActivity.this);
                 if (drawable != null)
                     image.setImageDrawable(drawable);
@@ -456,7 +456,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
 
             // Hide empty favorites holder (not enough favorites yet)
-            for (int i = favorites_holder.size(); i < favsIds.length; i++) {
+            for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
                 findViewById(favsIds[i]).setVisibility(View.GONE);
             }
 

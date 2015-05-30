@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.dataprovider.Provider;
 
-public abstract class LoadHolders<T> extends AsyncTask<Void, Void, ArrayList<T>> {
+public abstract class LoadPojos<T> extends AsyncTask<Void, Void, ArrayList<T>> {
 
 	protected Provider<T> provider;
 	protected Context context;
@@ -23,7 +23,7 @@ public abstract class LoadHolders<T> extends AsyncTask<Void, Void, ArrayList<T>>
 		return holderScheme;
 	}
 
-	public LoadHolders(Context context, String holderScheme) {
+	public LoadPojos(Context context, String holderScheme) {
 		super();
 		this.context = context;
 		this.holderScheme = holderScheme;

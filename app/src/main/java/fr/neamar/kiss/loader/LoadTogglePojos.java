@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.TogglePojo;
 
-public class LoadToggleHolders extends LoadHolders<TogglePojo> {
+public class LoadTogglePojos extends LoadPojos<TogglePojo> {
 
-	public LoadToggleHolders(Context context) {
+	public LoadTogglePojos(Context context) {
 		super(context, "app://");
 	}
 

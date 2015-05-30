@@ -1,18 +1,19 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.content.Context;
+import android.util.Pair;
+
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import android.content.Context;
-import android.util.Pair;
+import fr.neamar.kiss.loader.LoadAliasPojos;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.loader.LoadAliasHolders;
 
 public class AliasProvider extends Provider<Pair<String, String>> {
 	private ArrayList<Provider> providers;
 
 	public AliasProvider(final Context context, ArrayList<Provider> providers) {
-		super(new LoadAliasHolders(context));
+		super(new LoadAliasPojos(context));
 		this.providers = providers;
 	}
 

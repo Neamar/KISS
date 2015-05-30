@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 import android.content.Context;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.TogglePojo;
-import fr.neamar.kiss.loader.LoadToggleHolders;
+import fr.neamar.kiss.loader.LoadTogglePojos;
 
 public class ToggleProvider extends Provider<TogglePojo> {
 
 	public ToggleProvider(Context context) {
-		super(new LoadToggleHolders(context));
+		super(new LoadTogglePojos(context));
 	}
 
 	public ArrayList<Pojo> getResults(String query) {

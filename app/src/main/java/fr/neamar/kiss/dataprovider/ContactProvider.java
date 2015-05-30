@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 import android.content.Context;
 import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.loader.LoadContactHolders;
+import fr.neamar.kiss.loader.LoadContactPojos;
 
 public class ContactProvider extends Provider<ContactPojo> {
 
 	public ContactProvider(final Context context) {
-		super(new LoadContactHolders(context));
+		super(new LoadContactPojos(context));
 	}
 
 	public ArrayList<Pojo> getResults(String query) {

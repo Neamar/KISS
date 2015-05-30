@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 import android.content.Context;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.loader.LoadAppHolders;
+import fr.neamar.kiss.loader.LoadAppPojos;
 
 public class AppProvider extends Provider<AppPojo> {
 
 	public AppProvider(Context context) {
-		super(new LoadAppHolders(context));
+		super(new LoadAppPojos(context));
 	}
 
 	public ArrayList<Pojo> getResults(String query) {

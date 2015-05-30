@@ -42,7 +42,7 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Pojo>> {
 
 		if (pojos != null) {
 			for (int i = Math.min(MAX_RECORDS, pojos.size()) - 1; i >= 0; i--) {
-				activity.adapter.add(Result.fromHolder(activity, pojos.get(i)));
+				activity.adapter.add(Result.fromPojo(activity, pojos.get(i)));
 			}
 		}
 		activity.resetTask();

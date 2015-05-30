@@ -3,7 +3,7 @@ package fr.neamar.kiss.dataprovider;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.loader.LoadHolders;
+import fr.neamar.kiss.loader.LoadPojos;
 
 public abstract class Provider<T> {
 	/**
@@ -11,10 +11,10 @@ public abstract class Provider<T> {
 	 */
 	public String holderScheme = "(none)://";
 
-	protected LoadHolders<T> loader = null;
+	protected LoadPojos<T> loader = null;
 	protected ArrayList<T> holders = new ArrayList<T>();
 
-	public Provider(LoadHolders<T> loader) {
+	public Provider(LoadPojos<T> loader) {
 		super();
 		this.loader = loader;
 		this.loader.setProvider(this);
