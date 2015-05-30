@@ -80,11 +80,6 @@ public class DataHandler extends BroadcastReceiver {
 
 		currentQuery = query;
 
-		if (query.length() == 0) {
-			// Searching for nothing returns the history
-			return getHistory(context);
-		}
-
 		// Have we ever made the same query and selected something ?
 		ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
 				context, query);
@@ -99,7 +94,6 @@ public class DataHandler extends BroadcastReceiver {
 
 			// Add results to list
 			for (int j = 0; j < pojos.size(); j++) {
-
 				// Give a boost if item was previously selected for this query
 				for (int k = 0; k < lastIdsForQuery.size(); k++) {
 					if (pojos.get(j).id.equals(lastIdsForQuery.get(k).record)) {
@@ -122,27 +116,22 @@ public class DataHandler extends BroadcastReceiver {
 	 * May return null if no items were ever selected (app first use)<br />
 	 * May return an empty set if the providers are not done building records,
 	 * in this case it is probably a good idea to call this function 500ms after
-	 *
+	 * @param context
+	 * @param itemCount max number of items to retrieve, total number may be less (search or calls are not returned for instance)
 	 * @return
 	 */
-	protected ArrayList<Pojo> getHistory(Context context) {
-		ArrayList<Pojo> history = new ArrayList<Pojo>();
+	public ArrayList<Pojo> getHistory(Context context, int itemCount) {
+		ArrayList<Pojo> history = new ArrayList<Pojo>(itemCount);
 
 		// Read history
-		ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, 50);
+		ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount);
 
 		// Find associated items
 		for (int i = 0; i < ids.size(); i++) {
 			// Ask all providers if they know this id
-			for (int j = 0; j < providers.size(); j++) {
-				if (providers.get(j).mayFindById(ids.get(i).record)) {
-					//TODO: use new getPojo() function
-					Pojo pojo = providers.get(j).findById(ids.get(i).record);
-					if (pojo != null) {
-						history.add(pojo);
-						break;
-					}
-				}
+			Pojo pojo = getPojo(ids.get(i).record);
+			if (pojo != null) {
+				history.add(pojo);
 			}
 		}
 
