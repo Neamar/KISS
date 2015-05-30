@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import android.content.Context;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.TogglePojo;
-import fr.neamar.kiss.task.LoadToggleHolders;
+import fr.neamar.kiss.loader.LoadToggleHolders;
 
 public class ToggleProvider extends Provider<TogglePojo> {
 

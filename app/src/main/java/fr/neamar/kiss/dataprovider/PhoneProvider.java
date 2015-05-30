@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.Context;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PhonePojo;
-import fr.neamar.kiss.task.LoadPhoneHolders;
+import fr.neamar.kiss.loader.LoadPhoneHolders;
 
 public class PhoneProvider extends Provider<PhonePojo> {
 	public boolean deviceIsPhoneEnabled = false;

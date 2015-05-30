@@ -3,7 +3,7 @@ package fr.neamar.kiss.dataprovider;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.task.LoadHolders;
+import fr.neamar.kiss.loader.LoadHolders;
 
 public abstract class Provider<T> {
 	/**

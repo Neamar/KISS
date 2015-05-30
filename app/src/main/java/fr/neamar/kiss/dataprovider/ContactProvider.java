@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import android.content.Context;
 import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.task.LoadContactHolders;
+import fr.neamar.kiss.loader.LoadContactHolders;
 
 public class ContactProvider extends Provider<ContactPojo> {
 

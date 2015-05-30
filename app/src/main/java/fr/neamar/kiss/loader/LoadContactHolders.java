@@ -1,4 +1,4 @@
-package fr.neamar.kiss.task;
+package fr.neamar.kiss.loader;
 
 import android.content.ContentUris;
 import android.content.Context;

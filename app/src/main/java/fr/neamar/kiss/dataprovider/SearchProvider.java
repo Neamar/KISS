@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
-import fr.neamar.kiss.task.LoadSearchHolders;
+import fr.neamar.kiss.loader.LoadSearchHolders;
 
 public class SearchProvider extends Provider<SearchPojo> {
 

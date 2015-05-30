@@ -1,10 +1,11 @@
-package fr.neamar.kiss.task;
-
-import java.util.ArrayList;
+package fr.neamar.kiss.loader;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+
+import java.util.ArrayList;
+
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.dataprovider.Provider;
 

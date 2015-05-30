@@ -1,4 +1,4 @@
-package fr.neamar.kiss.task;
+package fr.neamar.kiss.loader;
 
 import java.util.ArrayList;
 import java.util.List;

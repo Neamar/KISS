@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import android.content.Context;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.task.LoadAppHolders;
+import fr.neamar.kiss.loader.LoadAppHolders;
 
 public class AppProvider extends Provider<AppPojo> {
 
