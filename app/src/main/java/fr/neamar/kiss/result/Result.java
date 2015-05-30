@@ -7,7 +7,7 @@ import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import fr.neamar.kiss.QueryInterface;
+import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;

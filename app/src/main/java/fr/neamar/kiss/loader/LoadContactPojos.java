@@ -9,6 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactPojo;
 
 public class LoadContactPojos extends LoadPojos<ContactPojo> {
@@ -65,9 +66,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
 				contact.id = pojoScheme + contact.lookupKey + contact.phone;
 
 				if (contact.name != null) {
-					contact.nameLowerCased = contact.name.toLowerCase().replaceAll("[èéêë]", "e")
-							.replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
-							.replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");
+					contact.nameLowerCased = StringNormalizer.normalize(contact.name);
 
 					if (mapContacts.containsKey(contact.lookupKey))
 						mapContacts.get(contact.lookupKey).add(contact);

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
@@ -41,9 +42,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 			
 			//Ugly hack to remove accented characters.
 			//Note Java 5 provides a Normalizer method, unavailable for Android :\
-			app.nameLowerCased = app.name.toLowerCase().replaceAll("[èéêë]", "e")
-					.replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
-					.replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("[ÈÉÊË]", "E");;
+			app.nameLowerCased = StringNormalizer.normalize(app.name);
 
 			app.packageName = info.activityInfo.applicationInfo.packageName;
 			app.activityName = info.activityInfo.name;

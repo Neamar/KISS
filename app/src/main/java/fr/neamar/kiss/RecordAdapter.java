@@ -16,6 +16,7 @@ import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.SearchResult;
 import fr.neamar.kiss.result.SettingResult;
 import fr.neamar.kiss.result.ToggleResult;
+import fr.neamar.kiss.searcher.QueryInterface;
 
 public class RecordAdapter extends ArrayAdapter<Result> {
 
