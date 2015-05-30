@@ -24,4 +24,11 @@ public class SettingsActivity extends PreferenceActivity implements
 		// Reload the DataHandler since Providers preferences have changed
 		KissApplication.resetDataHandler(this);
 	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		// We need to finish the Activity now, else the user may get back to the settings screen the next time he'll press home.
+		finish();
+	}
 }
