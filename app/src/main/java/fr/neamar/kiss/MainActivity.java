@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
-import fr.neamar.kiss.loader.UpdateRecords;
+import fr.neamar.kiss.searcher.UpdateRecords;
 
 public class MainActivity extends ListActivity implements QueryInterface {
 
