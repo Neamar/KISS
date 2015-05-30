@@ -11,11 +11,11 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
 
 public class SettingResult extends Result {
-	public final SettingPojo settingHolder;
+	public final SettingPojo settingPojo;
 
-	public SettingResult(SettingPojo settingHolder) {
+	public SettingResult(SettingPojo settingPojo) {
 		super();
-		this.pojo = this.settingHolder = settingHolder;
+		this.pojo = this.settingPojo = settingPojo;
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class SettingResult extends Result {
 			v = inflateFromId(context, R.layout.item_setting);
 
 		TextView settingName = (TextView) v.findViewById(R.id.item_setting_name);
-		settingName.setText(enrichText(settingHolder.displayName));
+		settingName.setText(enrichText(settingPojo.displayName));
 
 		ImageView settingIcon = (ImageView) v.findViewById(R.id.item_setting_icon);
 		settingIcon.setImageDrawable(getDrawable(context));
@@ -34,9 +34,9 @@ public class SettingResult extends Result {
 
 	@Override
 	public Drawable getDrawable(Context context) {
-		if (settingHolder.icon != -1) {
+		if (settingPojo.icon != -1) {
 			TypedArray a = context.obtainStyledAttributes(R.style.AppTheme,
-					new int[] { settingHolder.icon });
+					new int[] { settingPojo.icon });
 			int attributeResourceId = a.getResourceId(0, -1);
 			if (attributeResourceId != -1) {
 				a.recycle();
@@ -50,7 +50,7 @@ public class SettingResult extends Result {
 
 	@Override
 	public void doLaunch(Context context, View v) {
-		Intent intent = new Intent(settingHolder.settingName);
+		Intent intent = new Intent(settingPojo.settingName);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(intent);
 	}

@@ -19,8 +19,8 @@ public class ContactProvider extends Provider<ContactPojo> {
 
 		int relevance;
 		String contactNameLowerCased;
-		for (int i = 0; i < holders.size(); i++) {
-			ContactPojo contact = holders.get(i);
+		for (int i = 0; i < pojos.size(); i++) {
+			ContactPojo contact = pojos.get(i);
 			relevance = 0;
 			contactNameLowerCased = contact.nameLowerCased;
 
@@ -40,7 +40,7 @@ public class ContactProvider extends Provider<ContactPojo> {
 				if (contact.homeNumber)
 					relevance -= 1;
 
-				contact.displayName = holders.get(i).name.replaceFirst(
+				contact.displayName = pojos.get(i).name.replaceFirst(
 						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
 				contact.relevance = relevance;
 				results.add(contact);
@@ -51,10 +51,10 @@ public class ContactProvider extends Provider<ContactPojo> {
 	}
 
 	public Pojo findById(String id) {
-		for (int i = 0; i < holders.size(); i++) {
-			if (holders.get(i).id.equals(id)) {
-				holders.get(i).displayName = holders.get(i).name;
-				return holders.get(i);
+		for (int i = 0; i < pojos.size(); i++) {
+			if (pojos.get(i).id.equals(id)) {
+				pojos.get(i).displayName = pojos.get(i).name;
+				return pojos.get(i);
 			}
 
 		}

@@ -20,27 +20,27 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
 		ArrayList<TogglePojo> toggles = new ArrayList<TogglePojo>();
 		PackageManager pm = context.getPackageManager();
 		if (pm.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
-			toggles.add(createHolder("Wifi", "wifi", R.attr.wifi));
+			toggles.add(createPojo("Wifi", "wifi", R.attr.wifi));
 		}
 		if (pm.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
-			toggles.add(createHolder("Bluetooth", "bluetooth", R.attr.bluetooth));
+			toggles.add(createPojo("Bluetooth", "bluetooth", R.attr.bluetooth));
 		}
-		toggles.add(createHolder("Silent", "silent", R.attr.silent));
+		toggles.add(createPojo("Silent", "silent", R.attr.silent));
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD
 				&& pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
-			toggles.add(createHolder("Mobile network data", "data", R.attr.data));
+			toggles.add(createPojo("Mobile network data", "data", R.attr.data));
 		}
 		return toggles;
 	}
 
-	private TogglePojo createHolder(String name, String settingName, int resId) {
-		TogglePojo holder = new TogglePojo();
-		holder.id = holderScheme + name.toLowerCase();
-		holder.name = "Toggle: " + name;
-		holder.nameLowerCased = holder.name.toLowerCase();
-		holder.settingName = settingName;
-		holder.icon = resId;
+	private TogglePojo createPojo(String name, String settingName, int resId) {
+		TogglePojo pojo = new TogglePojo();
+		pojo.id = pojoScheme + name.toLowerCase();
+		pojo.name = "Toggle: " + name;
+		pojo.nameLowerCased = pojo.name.toLowerCase();
+		pojo.settingName = settingName;
+		pojo.icon = resId;
 
-		return holder;
+		return pojo;
 	}
 }

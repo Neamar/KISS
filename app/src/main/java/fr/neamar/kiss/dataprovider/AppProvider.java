@@ -19,9 +19,9 @@ public class AppProvider extends Provider<AppPojo> {
 
 		int relevance;
 		String appNameLowerCased;
-		for (int i = 0; i < holders.size(); i++) {
+		for (int i = 0; i < pojos.size(); i++) {
 			relevance = 0;
-			appNameLowerCased = holders.get(i).nameLowerCased;
+			appNameLowerCased = pojos.get(i).nameLowerCased;
 			if (appNameLowerCased.startsWith(query))
 				relevance = 100;
 			else if (appNameLowerCased.contains(" " + query))
@@ -30,10 +30,10 @@ public class AppProvider extends Provider<AppPojo> {
 				relevance = 1;
 
 			if (relevance > 0) {
-				holders.get(i).displayName = holders.get(i).name.replaceFirst(
+				pojos.get(i).displayName = pojos.get(i).name.replaceFirst(
 						"(?i)(" + Pattern.quote(query) + ")", "{$1}");
-				holders.get(i).relevance = relevance;
-				records.add(holders.get(i));
+				pojos.get(i).relevance = relevance;
+				records.add(pojos.get(i));
 			}
 		}
 
@@ -41,10 +41,10 @@ public class AppProvider extends Provider<AppPojo> {
 	}
 
 	public Pojo findById(String id) {
-		for (int i = 0; i < holders.size(); i++) {
-			if (holders.get(i).id.equals(id)) {
-				holders.get(i).displayName = holders.get(i).name;
-				return holders.get(i);
+		for (int i = 0; i < pojos.size(); i++) {
+			if (pojos.get(i).id.equals(id)) {
+				pojos.get(i).displayName = pojos.get(i).name;
+				return pojos.get(i);
 			}
 
 		}

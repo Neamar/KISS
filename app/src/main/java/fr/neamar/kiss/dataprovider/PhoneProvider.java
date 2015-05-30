@@ -1,12 +1,13 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+
 import java.util.ArrayList;
 
-import android.content.pm.PackageManager;
-import android.content.Context;
-import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.loader.LoadPhonePojos;
+import fr.neamar.kiss.pojo.PhonePojo;
+import fr.neamar.kiss.pojo.Pojo;
 
 public class PhoneProvider extends Provider<PhonePojo> {
 	public boolean deviceIsPhoneEnabled = false;
@@ -23,10 +24,10 @@ public class PhoneProvider extends Provider<PhonePojo> {
 
 		// Append an item only if query looks like a phone number and device has phone capabilities
 		if(deviceIsPhoneEnabled && query.matches("^[0-9+ .]{2,}$")) {
-			PhonePojo holder = new PhonePojo();
-			holder.phone = query;
-			holder.relevance = 20;
-			pojos.add(holder);
+			PhonePojo pojo = new PhonePojo();
+			pojo.phone = query;
+			pojo.relevance = 20;
+			pojos.add(pojo);
 		}
 
 		return pojos;

@@ -6,7 +6,7 @@ public abstract class Pojo extends Object {
 	// ensure unicity
 	public String id = "(none)";
 
-	// Name for this holder, e.g. app name
+	// Name for this pojo, e.g. app name
 	public String name = "";
 
 	// Lowercased name, for faster search

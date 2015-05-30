@@ -26,7 +26,7 @@ public abstract class Result {
 	public int relevance = 0;
 
 	/**
-	 * Current information holder
+	 * Current information pojo
 	 */
 	public Pojo pojo = null;
 

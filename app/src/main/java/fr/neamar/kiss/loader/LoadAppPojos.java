@@ -1,14 +1,15 @@
 package fr.neamar.kiss.loader;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
@@ -34,7 +35,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 			AppPojo app = new AppPojo();
 			ResolveInfo info = appsInfo.get(i);
 
-			app.id = holderScheme + info.activityInfo.applicationInfo.packageName + "/"
+			app.id = pojoScheme + info.activityInfo.applicationInfo.packageName + "/"
 					+ info.activityInfo.name;
 			app.name = info.loadLabel(manager).toString();
 			

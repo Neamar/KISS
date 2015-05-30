@@ -7,29 +7,29 @@ import fr.neamar.kiss.loader.LoadPojos;
 
 public abstract class Provider<T> {
 	/**
-	 * Scheme used to build ids for the holders created by this provider
+	 * Scheme used to build ids for the pojos created by this provider
 	 */
-	public String holderScheme = "(none)://";
+	public String pojoScheme = "(none)://";
 
 	protected LoadPojos<T> loader = null;
-	protected ArrayList<T> holders = new ArrayList<T>();
+	protected ArrayList<T> pojos = new ArrayList<T>();
 
 	public Provider(LoadPojos<T> loader) {
 		super();
 		this.loader = loader;
 		this.loader.setProvider(this);
-		this.holderScheme = loader.getHolderScheme();
+		this.pojoScheme = loader.getPojoScheme();
 		loader.execute();
 	}
 
 	public abstract ArrayList<Pojo> getResults(String s);
 
 	public void loadOver(ArrayList<T> results) {
-		holders = results;
+		pojos = results;
 	}
 
 	/**
-	 * Tells whether or not this provider may be able to find the holder with
+	 * Tells whether or not this provider may be able to find the pojo with
 	 * specified id
 	 * 
 	 * @param id
@@ -37,7 +37,7 @@ public abstract class Provider<T> {
 	 *         will!
 	 */
 	public Boolean mayFindById(String id) {
-		return id.startsWith(holderScheme);
+		return id.startsWith(pojoScheme);
 	}
 
 	/**

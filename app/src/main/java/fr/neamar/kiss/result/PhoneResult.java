@@ -9,11 +9,11 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.PhonePojo;
 
 public class PhoneResult extends Result {
-	public PhonePojo phoneHolder;
+	public PhonePojo phonePojo;
 
-	public PhoneResult(PhonePojo phoneHolder) {
+	public PhoneResult(PhonePojo phonePojo) {
 		super();
-		this.pojo = this.phoneHolder = phoneHolder;
+		this.pojo = this.phonePojo = phonePojo;
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class PhoneResult extends Result {
 
 		TextView appName = (TextView) v.findViewById(R.id.item_phone_text);
 		appName.setText(enrichText(context.getString(R.string.ui_item_phone) + " \"{"
-				+ phoneHolder.phone + "}\""));
+				+ phonePojo.phone + "}\""));
 
 		return v;
 	}
@@ -31,7 +31,7 @@ public class PhoneResult extends Result {
 	@Override
 	public void doLaunch(Context context, View v) {
 		Intent phone = new Intent(Intent.ACTION_CALL);
-		phone.setData(Uri.parse("tel:" + phoneHolder.phone));
+		phone.setData(Uri.parse("tel:" + phonePojo.phone));
 
 		phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

@@ -455,7 +455,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 image.setVisibility(View.VISIBLE);
             }
 
-            // Hide empty favorites holder (not enough favorites yet)
+            // Hide empty favorites (not enough favorites yet)
             for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
                 findViewById(favsIds[i]).setVisibility(View.GONE);
             }

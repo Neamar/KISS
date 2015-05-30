@@ -62,7 +62,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
 							Long.parseLong(photoId));
 				}
 
-				contact.id = holderScheme + contact.lookupKey + contact.phone;
+				contact.id = pojoScheme + contact.lookupKey + contact.phone;
 
 				if (contact.name != null) {
 					contact.nameLowerCased = contact.name.toLowerCase().replaceAll("[èéêë]", "e")
