@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -18,7 +18,7 @@ import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.pojo.TogglePojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 
-public abstract class Record {
+public abstract class Result {
 	/**
 	 * How relevant is this record ? The higher, the most probable it will be
 	 * displayed
@@ -69,7 +69,7 @@ public abstract class Record {
 	}
 
 	/**
-	 * Return the icon for this Record, or null if non existing.
+	 * Return the icon for this Result, or null if non existing.
 	 *
 	 * @param context
 	 */
@@ -117,19 +117,19 @@ public abstract class Record {
 		DBHelper.removeFromHistory(context, pojo.id);
 	}
 
-	public static Record fromHolder(QueryInterface parent, Pojo pojo) {
+	public static Result fromHolder(QueryInterface parent, Pojo pojo) {
 		if (pojo instanceof AppPojo)
-			return new AppRecord((AppPojo) pojo);
+			return new AppResult((AppPojo) pojo);
 		else if (pojo instanceof ContactPojo)
-			return new ContactRecord(parent, (ContactPojo) pojo);
+			return new ContactResult(parent, (ContactPojo) pojo);
 		else if (pojo instanceof SearchPojo)
-			return new SearchRecord((SearchPojo) pojo);
+			return new SearchResult((SearchPojo) pojo);
 		else if (pojo instanceof SettingPojo)
-			return new SettingRecord((SettingPojo) pojo);
+			return new SettingResult((SettingPojo) pojo);
 		else if (pojo instanceof TogglePojo)
-			return new ToggleRecord((TogglePojo) pojo);
+			return new ToggleResult((TogglePojo) pojo);
 		else if (pojo instanceof PhonePojo)
-			return new PhoneRecord((PhonePojo) pojo);
+			return new PhoneResult((PhonePojo) pojo);
 
 		Log.e("log", "Unable to create record for specified holder.");
 		return null;

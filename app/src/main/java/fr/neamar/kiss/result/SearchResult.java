@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SearchPojo;
 
-public class SearchRecord extends Record {
+public class SearchResult extends Result {
 	public SearchPojo searchHolder;
 
-	public SearchRecord(SearchPojo searchHolder) {
+	public SearchResult(SearchPojo searchHolder) {
 		super();
 		this.pojo = this.searchHolder = searchHolder;
 	}

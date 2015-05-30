@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.record.Record;
+import fr.neamar.kiss.result.Result;
 
 /**
  * AsyncTask retrieving data from the providers and updating the view
@@ -42,7 +42,7 @@ public class UpdateRecords extends AsyncTask<String, Void, ArrayList<Pojo>> {
 
 		if (pojos != null) {
 			for (int i = Math.min(MAX_RECORDS, pojos.size()) - 1; i >= 0; i--) {
-				activity.adapter.add(Record.fromHolder(activity, pojos.get(i)));
+				activity.adapter.add(Result.fromHolder(activity, pojos.get(i)));
 			}
 		}
 		activity.resetTask();

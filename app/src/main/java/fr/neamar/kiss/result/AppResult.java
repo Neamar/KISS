@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,12 +11,12 @@ import android.widget.TextView;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.AppPojo;
 
-public class AppRecord extends Record {
+public class AppResult extends Result {
 	public AppPojo appPojo;
 
 	protected final ComponentName className;
 
-	public AppRecord(AppPojo appPojo) {
+	public AppResult(AppPojo appPojo) {
 		super();
 		this.pojo = this.appPojo = appPojo;
 

@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
 
-public class SettingRecord extends Record {
+public class SettingResult extends Result {
 	public final SettingPojo settingHolder;
 
-	public SettingRecord(SettingPojo settingHolder) {
+	public SettingResult(SettingPojo settingHolder) {
 		super();
 		this.pojo = this.settingHolder = settingHolder;
 	}

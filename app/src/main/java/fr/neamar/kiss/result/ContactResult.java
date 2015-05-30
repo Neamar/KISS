@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,11 +20,11 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 
-public class ContactRecord extends Record {
+public class ContactResult extends Result {
 	public ContactPojo contactPojo;
 	private QueryInterface queryInterface;
 
-	public ContactRecord(QueryInterface queryInterface, ContactPojo contactPojo) {
+	public ContactResult(QueryInterface queryInterface, ContactPojo contactPojo) {
 		super();
 		this.pojo = this.contactPojo = contactPojo;
 		this.queryInterface = queryInterface;

@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,10 +8,10 @@ import android.widget.TextView;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.PhonePojo;
 
-public class PhoneRecord extends Record {
+public class PhoneResult extends Result {
 	public PhonePojo phoneHolder;
 
-	public PhoneRecord(PhonePojo phoneHolder) {
+	public PhoneResult(PhonePojo phoneHolder) {
 		super();
 		this.pojo = this.phoneHolder = phoneHolder;
 	}

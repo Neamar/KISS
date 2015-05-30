@@ -38,7 +38,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.record.Record;
+import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.loader.UpdateRecords;
 
 public class MainActivity extends ListActivity implements QueryInterface {
@@ -120,7 +120,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         setContentView(R.layout.main);
 
         // Create adapter for records
-        adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Record>());
+        adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
         setListAdapter(adapter);
 
         this.searchEditText = (EditText) findViewById(R.id.searchEditText);
@@ -181,14 +181,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public void onClick(View view) {
                 Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
                         .get(Integer.parseInt((String) view.getTag()));
-                final Record record = Record.fromHolder(MainActivity.this, pojo);
+                final Result result = Result.fromHolder(MainActivity.this, pojo);
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         displayKissBar(false);
-                        record.fastLaunch(MainActivity.this);
+                        result.fastLaunch(MainActivity.this);
                     }
                 }, KissApplication.TOUCH_DELAY);
             }
@@ -448,8 +448,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 Pojo pojo = favorites_holder.get(i);
                 ImageView image = (ImageView) findViewById(favsIds[i]);
 
-                Record record = Record.fromHolder(MainActivity.this, pojo);
-                Drawable drawable = record.getDrawable(MainActivity.this);
+                Result result = Result.fromHolder(MainActivity.this, pojo);
+                Drawable drawable = result.getDrawable(MainActivity.this);
                 if (drawable != null)
                     image.setImageDrawable(drawable);
                 image.setVisibility(View.VISIBLE);

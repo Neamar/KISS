@@ -1,4 +1,4 @@
-package fr.neamar.kiss.record;
+package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,7 +12,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.TogglePojo;
 import fr.neamar.kiss.toggles.TogglesHandler;
 
-public class ToggleRecord extends Record {
+public class ToggleResult extends Result {
 	public final TogglePojo toggleHolder;
 
 	/**
@@ -20,7 +20,7 @@ public class ToggleRecord extends Record {
 	 */
 	protected TogglesHandler togglesHandler = null;
 
-	public ToggleRecord(TogglePojo toggleHolder) {
+	public ToggleResult(TogglePojo toggleHolder) {
 		super();
 		this.pojo = this.toggleHolder = toggleHolder;
 	}
