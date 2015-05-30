@@ -1,6 +1,7 @@
 package fr.neamar.kiss.searcher;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -13,6 +14,8 @@ import fr.neamar.kiss.pojo.Pojo;
  *
  */
 public class QuerySearcher extends Searcher {
+	private final int MAX_RECORDS = 15;
+
 	public final String query;
 
 	public QuerySearcher(MainActivity activity, String query) {
@@ -22,10 +25,15 @@ public class QuerySearcher extends Searcher {
 
 
 	@Override
-	protected ArrayList<Pojo> doInBackground(Void... voids) {
+	protected List<Pojo> doInBackground(Void... voids) {
 		// Ask for records
 		final ArrayList<Pojo> pojos = KissApplication.getDataHandler(activity).getResults(
 				activity, query);
+
+		// Trim items
+		if(pojos.size() > MAX_RECORDS) {
+			return pojos.subList(0, MAX_RECORDS);
+		}
 
 		return pojos;
 	}

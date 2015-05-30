@@ -3,14 +3,13 @@ package fr.neamar.kiss.searcher;
 
 import android.os.AsyncTask;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 
-public abstract class Searcher extends AsyncTask<Void, Void, ArrayList<Pojo>> {
-    private final int MAX_RECORDS = 15;
+public abstract class Searcher extends AsyncTask<Void, Void, List<Pojo>> {
 
     protected final MainActivity activity;
 
@@ -20,12 +19,12 @@ public abstract class Searcher extends AsyncTask<Void, Void, ArrayList<Pojo>> {
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Pojo> pojos) {
+    protected void onPostExecute(List<Pojo> pojos) {
         super.onPostExecute(pojos);
         activity.adapter.clear();
 
         if (pojos != null) {
-            for (int i = Math.min(MAX_RECORDS, pojos.size()) - 1; i >= 0; i--) {
+            for (int i = pojos.size() - 1; i >= 0; i--) {
                 activity.adapter.add(Result.fromPojo(activity, pojos.get(i)));
             }
         }
