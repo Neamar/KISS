@@ -32,6 +32,7 @@ public class SettingResult extends Result {
 		return v;
 	}
 
+	@SuppressWarnings("ResourceType")
 	@Override
 	public Drawable getDrawable(Context context) {
 		if (settingPojo.icon != -1) {

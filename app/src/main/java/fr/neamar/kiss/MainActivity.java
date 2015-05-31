@@ -453,6 +453,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 if (drawable != null)
                     image.setImageDrawable(drawable);
                 image.setVisibility(View.VISIBLE);
+                image.setContentDescription(pojo.displayName);
             }
 
             // Hide empty favorites (not enough favorites yet)
