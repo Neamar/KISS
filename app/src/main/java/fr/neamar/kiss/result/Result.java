@@ -104,7 +104,7 @@ public abstract class Result {
 	/**
 	 * Put this item in application history
 	 *
-	 * @param context
+	 * @param context android context
 	 */
 	protected void recordLaunch(Context context) {
 		// Save in history

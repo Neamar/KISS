@@ -18,7 +18,7 @@ public class AliasProvider extends Provider<Pair<String, String>> {
 	}
 
 	public ArrayList<Pojo> getResults(String query) {
-		ArrayList<Pojo> results = new ArrayList<Pojo>();
+		ArrayList<Pojo> results = new ArrayList<>();
 
 		for (Pair<String, String> entry : pojos) {
 			if (entry.first.startsWith(query)) {

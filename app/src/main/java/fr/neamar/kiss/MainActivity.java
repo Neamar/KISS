@@ -51,7 +51,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
-    public static String NB_PROVIDERS = "nb_providers";
     private BroadcastReceiver mReceiver;
 
     /**

@@ -17,6 +17,6 @@ public class ApplicationsSearcher extends Searcher{
     @Override
     protected List<Pojo> doInBackground(Void... voids) {
         // Ask for records
-        return KissApplication.getDataHandler(activity).getApplications(activity);
+        return KissApplication.getDataHandler(activity).getApplications();
     }
 }

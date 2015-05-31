@@ -6,7 +6,6 @@ public class ContactPojo extends Pojo {
 	public String lookupKey = "";
 
 	public String phone = "";
-	public String mail = "";
 	public Uri icon = null;
 
 	// Is this a primary phone?

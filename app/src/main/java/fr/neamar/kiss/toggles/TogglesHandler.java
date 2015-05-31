@@ -110,10 +110,7 @@ public class TogglesHandler {
 			dataMtd = ConnectivityManager.class.getDeclaredMethod("getMobileDataEnabled");
 			dataMtd.setAccessible(true);
 			return (Boolean) dataMtd.invoke(connectivityManager);
-		} catch (NoSuchMethodException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (NoSuchMethodException | IllegalArgumentException | InvocationTargetException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
