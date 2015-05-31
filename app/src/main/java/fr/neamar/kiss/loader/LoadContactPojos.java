@@ -35,8 +35,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
 
 		// Prevent duplicates by keeping in memory encountered phones.
 		// The string key is "phone" + "|" + "name" (so if two contacts
-		// with
-		// distincts name share same number, they both get displayed
+		// with distinct name share same number, they both get displayed)
 		HashMap<String, ArrayList<ContactPojo>> mapContacts = new HashMap<>();
 
 		if (cur.getCount() > 0) {

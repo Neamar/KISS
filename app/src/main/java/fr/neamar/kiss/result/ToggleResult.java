@@ -49,7 +49,7 @@ public class ToggleResult extends Result {
 			}
 			a.recycle();
 		}
-		// Use the handler to check or uncheck button
+		// Use the handler to check or un-check button
 		final CompoundButton toggleButton = (CompoundButton) v
 				.findViewById(R.id.item_toggle_action_toggle);
 
@@ -98,7 +98,7 @@ public class ToggleResult extends Result {
 
 	@Override
 	public void doLaunch(Context context, View v) {
-		// Use the handler to check or uncheck button
+		// Use the handler to check or un-check button
 		final CompoundButton toggleButton = (CompoundButton) v
 				.findViewById(R.id.item_toggle_action_toggle);
 		if (toggleButton.isEnabled())

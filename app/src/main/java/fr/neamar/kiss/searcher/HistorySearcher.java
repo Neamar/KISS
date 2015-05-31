@@ -10,7 +10,7 @@ import fr.neamar.kiss.pojo.Pojo;
  * Retrieve pojos from history
  */
 public class HistorySearcher extends Searcher {
-    private final int MAX_RECORDS = 25;
+    private static final int MAX_RECORDS = 25;
 
     public HistorySearcher(MainActivity activity) {
         super(activity);

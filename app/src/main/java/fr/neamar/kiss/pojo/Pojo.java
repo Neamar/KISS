@@ -3,13 +3,13 @@ package fr.neamar.kiss.pojo;
 public abstract class Pojo {
 	// Globally unique ID.
 	// Usually start with provider scheme, e.g. "app://" or "contact://" to
-	// ensure unicity
+	// ensure unique constraint
 	public String id = "(none)";
 
 	// Name for this pojo, e.g. app name
 	public String name = "";
 
-	// Lowercased name, for faster search
+	// Lower-cased name, for faster search
 	public String nameLowerCased = "";
 
 	// Name displayed on the screen, may contain HTML (for instance, to put

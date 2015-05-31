@@ -14,7 +14,7 @@ import fr.neamar.kiss.pojo.Pojo;
  *
  */
 public class QuerySearcher extends Searcher {
-	private final int MAX_RECORDS = 15;
+	private static final int MAX_RECORDS = 15;
 
 	public final String query;
 

@@ -429,7 +429,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 kissMenu.setVisibility(View.VISIBLE);
             }
 
-            // Retrieve favorites. Try to retrieve more, since some favorites may be undisplayable (e.g. search queries)
+            // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
             ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
                     .getFavorites(MainActivity.this, tryToRetrieve);
 
@@ -465,7 +465,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     /**
      * This function gets called on changes. It will ask all the providers for
-     * datas
+     * data
      *
      * @param query the query on which to search
      */

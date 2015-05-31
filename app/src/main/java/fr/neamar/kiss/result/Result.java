@@ -108,7 +108,7 @@ public abstract class Result {
 	 */
 	protected void recordLaunch(Context context) {
 		// Save in history
-		// TODO: move to datahandler
+		// TODO: move to DataHandler
 		DBHelper.insertHistory(context, KissApplication.getDataHandler(context).currentQuery,
 				pojo.id);
 	}

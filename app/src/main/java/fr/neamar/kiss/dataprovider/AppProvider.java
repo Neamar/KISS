@@ -21,7 +21,7 @@ public class AppProvider extends Provider<AppPojo> {
         int relevance;
         String appNameLowerCased;
 
-        final String highlightRegexp = "(?i)(" + StringNormalizer.unnormalize(query) + ")";
+        final String highlightRegexp = "(?i)(" + StringNormalizer.unNormalize(query) + ")";
         for (int i = 0; i < pojos.size(); i++) {
             relevance = 0;
             appNameLowerCased = pojos.get(i).nameLowerCased;

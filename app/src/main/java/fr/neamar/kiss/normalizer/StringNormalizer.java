@@ -5,7 +5,7 @@ package fr.neamar.kiss.normalizer;
  */
 public class StringNormalizer {
     /**
-     * Return the input string, lowercased and with standard Ascii characters for common european accents
+     * Return the input string, lower-cased and with standard Ascii characters for common european accents
      *
      * @param input string input, with accents
      * @return normalized string
@@ -23,10 +23,10 @@ public class StringNormalizer {
      * <p/>
      * "aze" => /[àâa]z[èéêë]/
      *
-     * @param input string to "unnormalize"
+     * @param input string to "un-normalize"
      * @return a regexp
      */
-    public static String unnormalize(String input) {
+    public static String unNormalize(String input) {
         input = input.toLowerCase().replaceAll("(?i)([^a-z -])", "");
 
         return input.replaceAll("e", "[eèéêë]")

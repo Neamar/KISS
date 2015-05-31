@@ -145,7 +145,7 @@ public class DataHandler extends BroadcastReceiver {
 
     /**
      * Return all applications
-     * @return
+     * @return pojos for all applications
      */
     public ArrayList<Pojo> getApplications() {
         return appProvider.getAllApps();
