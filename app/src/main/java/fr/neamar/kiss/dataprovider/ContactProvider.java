@@ -16,12 +16,12 @@ public class ContactProvider extends Provider<ContactPojo> {
     }
 
     public ArrayList<Pojo> getResults(String query) {
-        ArrayList<Pojo> results = new ArrayList<Pojo>();
+        ArrayList<Pojo> results = new ArrayList<>();
 
         int relevance;
         String contactNameLowerCased;
 
-        final String highlightRegexp = "(?i)(" + StringNormalizer.unnormalize(query) + ")";
+        final String highlightRegexp = "(?i)(" + StringNormalizer.unNormalize(query) + ")";
 
         for (int i = 0; i < pojos.size(); i++) {
             ContactPojo contact = pojos.get(i);

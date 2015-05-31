@@ -17,7 +17,7 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
 
 	@Override
 	protected ArrayList<TogglePojo> doInBackground(Void... params) {
-		ArrayList<TogglePojo> toggles = new ArrayList<TogglePojo>();
+		ArrayList<TogglePojo> toggles = new ArrayList<>();
 		PackageManager pm = context.getPackageManager();
 		if (pm.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
 			toggles.add(createPojo("Wifi", "wifi", R.attr.wifi));

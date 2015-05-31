@@ -16,17 +16,17 @@ import java.lang.reflect.Method;
 import fr.neamar.kiss.pojo.TogglePojo;
 
 public class TogglesHandler {
-	protected Context context;
-	protected ConnectivityManager connectivityManager;
-	protected WifiManager wifiManager;
-	protected BluetoothAdapter bluetoothAdapter;
-	protected LocationManager locationManager;
-	protected AudioManager audioManager;
+	protected final Context context;
+	protected final ConnectivityManager connectivityManager;
+	protected final WifiManager wifiManager;
+	protected final BluetoothAdapter bluetoothAdapter;
+	protected final LocationManager locationManager;
+	protected final AudioManager audioManager;
 
 	/**
 	 * Initialize managers
 	 * 
-	 * @param context
+	 * @param context android context
 	 */
 	public TogglesHandler(Context context) {
 		this.context = context;
@@ -41,24 +41,25 @@ public class TogglesHandler {
 	/**
 	 * Return the state for the specified pojo
 	 * 
-	 * @param pojo
-	 * @return
+	 * @param pojo item to look for
+	 * @return item state
 	 */
 	public Boolean getState(TogglePojo pojo) {
 		try {
-			if (pojo.settingName.equals("wifi"))
-				return getWifiState();
-			else if (pojo.settingName.equals("data"))
-				return getDataState();
-			else if (pojo.settingName.equals("bluetooth"))
-				return getBluetoothState();
-			else if (pojo.settingName.equals("gps"))
-				return getGpsState();
-			else if (pojo.settingName.equals("silent"))
-				return getSilentState();
-			else {
-				Log.e("wtf", "Unsupported toggle for reading: " + pojo.settingName);
-				return false;
+			switch (pojo.settingName) {
+				case "wifi":
+					return getWifiState();
+				case "data":
+					return getDataState();
+				case "bluetooth":
+					return getBluetoothState();
+				case "gps":
+					return getGpsState();
+				case "silent":
+					return getSilentState();
+				default:
+					Log.e("wtf", "Unsupported toggle for reading: " + pojo.settingName);
+					return false;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,18 +70,25 @@ public class TogglesHandler {
 
 	public void setState(TogglePojo pojo, Boolean state) {
 		try {
-			if (pojo.settingName.equals("wifi"))
-				setWifiState(state);
-			else if (pojo.settingName.equals("data"))
-				setDataState(state);
-			else if (pojo.settingName.equals("bluetooth"))
-				setBluetoothState(state);
-			else if (pojo.settingName.equals("gps"))
-				setGpsState(state);
-			else if (pojo.settingName.equals("silent"))
-				setSilentState(state);
-			else {
-				Log.e("wtf", "Unsupported toggle for update: " + pojo.settingName);
+			switch (pojo.settingName) {
+				case "wifi":
+					setWifiState(state);
+					break;
+				case "data":
+					setDataState(state);
+					break;
+				case "bluetooth":
+					setBluetoothState(state);
+					break;
+				case "gps":
+					setGpsState();
+					break;
+				case "silent":
+					setSilentState(state);
+					break;
+				default:
+					Log.e("wtf", "Unsupported toggle for update: " + pojo.settingName);
+					break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,21 +105,12 @@ public class TogglesHandler {
 	}
 
 	protected Boolean getDataState() {
-		Method dataMtd = null;
+		Method dataMtd;
 		try {
 			dataMtd = ConnectivityManager.class.getDeclaredMethod("getMobileDataEnabled");
 			dataMtd.setAccessible(true);
 			return (Boolean) dataMtd.invoke(connectivityManager);
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
+		} catch (NoSuchMethodException | IllegalArgumentException | InvocationTargetException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -119,22 +118,13 @@ public class TogglesHandler {
 	}
 
 	protected void setDataState(Boolean state) {
-		Method dataMtd = null;
+		Method dataMtd;
 		try {
 			dataMtd = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled",
 					boolean.class);
 			dataMtd.setAccessible(true);
 			dataMtd.invoke(connectivityManager, state);
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
+		} catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -155,7 +145,7 @@ public class TogglesHandler {
 		return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 	}
 
-	protected void setGpsState(Boolean state) {
+	protected void setGpsState() {
 		Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 		myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(myIntent);
@@ -163,10 +153,7 @@ public class TogglesHandler {
 
 	protected Boolean getSilentState() {
 		int state = audioManager.getRingerMode();
-		if (state == AudioManager.RINGER_MODE_SILENT || state == AudioManager.RINGER_MODE_VIBRATE)
-			return true;
-		else
-			return false;
+		return state == AudioManager.RINGER_MODE_SILENT || state == AudioManager.RINGER_MODE_VIBRATE;
 	}
 
 	protected void setSilentState(Boolean state) {

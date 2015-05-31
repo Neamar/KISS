@@ -35,9 +35,8 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
 
 		// Prevent duplicates by keeping in memory encountered phones.
 		// The string key is "phone" + "|" + "name" (so if two contacts
-		// with
-		// distincts name share same number, they both get displayed
-		HashMap<String, ArrayList<ContactPojo>> mapContacts = new HashMap<String, ArrayList<ContactPojo>>();
+		// with distinct name share same number, they both get displayed)
+		HashMap<String, ArrayList<ContactPojo>> mapContacts = new HashMap<>();
 
 		if (cur.getCount() > 0) {
 			while (cur.moveToNext()) {
@@ -71,7 +70,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
 					if (mapContacts.containsKey(contact.lookupKey))
 						mapContacts.get(contact.lookupKey).add(contact);
 					else {
-						ArrayList<ContactPojo> phones = new ArrayList<ContactPojo>();
+						ArrayList<ContactPojo> phones = new ArrayList<>();
 						phones.add(contact);
 						mapContacts.put(contact.lookupKey, phones);
 					}
@@ -79,7 +78,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
 			}
 		}
 		cur.close();
-		ArrayList<ContactPojo> contacts = new ArrayList<ContactPojo>();
+		ArrayList<ContactPojo> contacts = new ArrayList<>();
 		for (ArrayList<ContactPojo> phones : mapContacts.values()) {
 			// Find primary phone and add this one.
 			Boolean hasPrimary = false;
@@ -94,7 +93,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
 
 			// If not available, add all (excluding duplicates).
 			if (!hasPrimary) {
-				HashMap<String, Boolean> added = new HashMap<String, Boolean>();
+				HashMap<String, Boolean> added = new HashMap<>();
 				for (int j = 0; j < phones.size(); j++) {
 					String uniqueKey = phones.get(j).phone.replaceAll("[ \\.\\(\\)]", "");
 					uniqueKey = uniqueKey.replaceAll("^\\+33", "0");

@@ -16,12 +16,12 @@ public class AppProvider extends Provider<AppPojo> {
     }
 
     public ArrayList<Pojo> getResults(String query) {
-        ArrayList<Pojo> records = new ArrayList<Pojo>();
+        ArrayList<Pojo> records = new ArrayList<>();
 
         int relevance;
         String appNameLowerCased;
 
-        final String highlightRegexp = "(?i)(" + StringNormalizer.unnormalize(query) + ")";
+        final String highlightRegexp = "(?i)(" + StringNormalizer.unNormalize(query) + ")";
         for (int i = 0; i < pojos.size(); i++) {
             relevance = 0;
             appNameLowerCased = pojos.get(i).nameLowerCased;
@@ -56,7 +56,7 @@ public class AppProvider extends Provider<AppPojo> {
     }
 
     public ArrayList<Pojo> getAllApps() {
-        ArrayList<Pojo> records = new ArrayList<Pojo>(pojos.size());
+        ArrayList<Pojo> records = new ArrayList<>(pojos.size());
         records.trimToSize();
 
         for (int i = 0; i < pojos.size(); i++) {

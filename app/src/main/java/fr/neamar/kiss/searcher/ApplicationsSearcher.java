@@ -1,6 +1,5 @@
 package fr.neamar.kiss.searcher;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
@@ -18,8 +17,6 @@ public class ApplicationsSearcher extends Searcher{
     @Override
     protected List<Pojo> doInBackground(Void... voids) {
         // Ask for records
-        final ArrayList<Pojo> pojos = KissApplication.getDataHandler(activity).getApplications(activity);
-
-        return pojos;
+        return KissApplication.getDataHandler(activity).getApplications();
     }
 }

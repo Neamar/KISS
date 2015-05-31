@@ -48,10 +48,9 @@ import fr.neamar.kiss.searcher.Searcher;
 
 public class MainActivity extends ListActivity implements QueryInterface {
 
-    public static String START_LOAD = "fr.neamar.summon.START_LOAD";
-    public static String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
-    public static String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
-    public static String NB_PROVIDERS = "nb_providers";
+    public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
+    public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
+    public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
     private BroadcastReceiver mReceiver;
 
     /**
@@ -352,17 +351,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }, KissApplication.TOUCH_DELAY);
     }
 
-    protected boolean displayClearOnInput() {
+    protected void displayClearOnInput() {
         final View clearButton = findViewById(R.id.clearButton);
         final View menuButton = findViewById(R.id.menuButton);
         if (searchEditText.getText().length() > 0) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
-            return true;
         } else {
             clearButton.setVisibility(View.INVISIBLE);
             menuButton.setVisibility(View.VISIBLE);
-            return false;
         }
     }
 
@@ -432,7 +429,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 kissMenu.setVisibility(View.VISIBLE);
             }
 
-            // Retrieve favorites. Try to retrieve more, since some favorites may be undisplayable (e.g. search queries)
+            // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
             ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
                     .getFavorites(MainActivity.this, tryToRetrieve);
 
@@ -453,6 +450,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 if (drawable != null)
                     image.setImageDrawable(drawable);
                 image.setVisibility(View.VISIBLE);
+                image.setContentDescription(pojo.displayName);
             }
 
             // Hide empty favorites (not enough favorites yet)
@@ -467,9 +465,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     /**
      * This function gets called on changes. It will ask all the providers for
-     * datas
+     * data
      *
-     * @param query
+     * @param query the query on which to search
      */
 
     public void updateRecords(String query) {

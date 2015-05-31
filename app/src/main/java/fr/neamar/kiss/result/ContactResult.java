@@ -21,8 +21,8 @@ import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 
 public class ContactResult extends Result {
-	public ContactPojo contactPojo;
-	private QueryInterface queryInterface;
+	public final ContactPojo contactPojo;
+	private final QueryInterface queryInterface;
 
 	public ContactResult(QueryInterface queryInterface, ContactPojo contactPojo) {
 		super();
@@ -31,7 +31,6 @@ public class ContactResult extends Result {
 
 		// Try to pretty format phone number
 		if (this.contactPojo.phone.matches("(\\+3)?[0-9]{10}")) {
-			// Mise en forme du numéro de téléphone
 			String formatted_phone = contactPojo.phone.replace(" ", "");
 			int number_length = contactPojo.phone.length();
 			for (int i = 1; i < 5; i++) {
@@ -116,7 +115,7 @@ public class ContactResult extends Result {
 			try {
 				return Drawable.createFromStream(
 						context.getContentResolver().openInputStream(contactPojo.icon), null);
-			} catch (FileNotFoundException e) {
+			} catch (FileNotFoundException ignored) {
 			}
 		}
 

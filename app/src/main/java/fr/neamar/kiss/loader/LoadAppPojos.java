@@ -31,7 +31,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 		final List<ResolveInfo> appsInfo = manager.queryIntentActivities(mainIntent, 0);
 		Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
 
-		ArrayList<AppPojo> apps = new ArrayList<AppPojo>();
+		ArrayList<AppPojo> apps = new ArrayList<>();
 		for (int i = 0; i < appsInfo.size(); i++) {
 			AppPojo app = new AppPojo();
 			ResolveInfo info = appsInfo.get(i);

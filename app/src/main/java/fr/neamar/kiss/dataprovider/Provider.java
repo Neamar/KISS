@@ -12,7 +12,7 @@ public abstract class Provider<T> {
 	public String pojoScheme = "(none)://";
 
 	protected LoadPojos<T> loader = null;
-	protected ArrayList<T> pojos = new ArrayList<T>();
+	protected ArrayList<T> pojos = new ArrayList<>();
 
 	public Provider(LoadPojos<T> loader) {
 		super();
@@ -32,7 +32,7 @@ public abstract class Provider<T> {
 	 * Tells whether or not this provider may be able to find the pojo with
 	 * specified id
 	 * 
-	 * @param id
+	 * @param id id we're looking for
 	 * @return true if the provider can handle the query ; does not guarantee it
 	 *         will!
 	 */
@@ -43,7 +43,7 @@ public abstract class Provider<T> {
 	/**
 	 * Try to find a record by its id
 	 * 
-	 * @param id
+	 * @param id id we're looking for
 	 * @return null if not found
 	 */
 	public Pojo findById(String id) {

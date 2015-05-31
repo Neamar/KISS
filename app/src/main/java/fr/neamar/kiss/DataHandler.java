@@ -30,7 +30,7 @@ public class DataHandler extends BroadcastReceiver {
     /**
      * List all known providers
      */
-    private final ArrayList<Provider> providers = new ArrayList<Provider>();
+    private final ArrayList<Provider> providers = new ArrayList<>();
     private final AppProvider appProvider;
     private int providersLoaded = 0;
 
@@ -73,7 +73,8 @@ public class DataHandler extends BroadcastReceiver {
     /**
      * Get records for this query.
      *
-     * @param query
+     * @param context android context
+     * @param query query to run
      *
      * @return ordered list of records
      */
@@ -86,8 +87,8 @@ public class DataHandler extends BroadcastReceiver {
         ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
                 context, query);
 
-        // Ask all providers for datas
-        ArrayList<Pojo> allPojos = new ArrayList<Pojo>();
+        // Ask all providers for data
+        ArrayList<Pojo> allPojos = new ArrayList<>();
 
         for (int i = 0; i < providers.size(); i++) {
 
@@ -118,12 +119,14 @@ public class DataHandler extends BroadcastReceiver {
      * May return null if no items were ever selected (app first use)<br />
      * May return an empty set if the providers are not done building records,
      * in this case it is probably a good idea to call this function 500ms after
-     * @param context
+     *
+     * @param context android context
      * @param itemCount max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @return
+     *
+     * @return pojos in recent history
      */
     public ArrayList<Pojo> getHistory(Context context, int itemCount) {
-        ArrayList<Pojo> history = new ArrayList<Pojo>(itemCount);
+        ArrayList<Pojo> history = new ArrayList<>(itemCount);
 
         // Read history
         ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount);
@@ -142,22 +145,23 @@ public class DataHandler extends BroadcastReceiver {
 
     /**
      * Return all applications
-     * @param context
-     * @return
+     * @return pojos for all applications
      */
-    public ArrayList<Pojo> getApplications(Context context) {
+    public ArrayList<Pojo> getApplications() {
         return appProvider.getAllApps();
     }
 
     /**
      * Return most used items.<br />
      * May return null if no items were ever selected (app first use)
-     * @param context
+     *
+     * @param context android context
      * @param limit max number of items to retrieve. You may end with less items if favorites contains non existing items.
-     * @return
+     *
+     * @return favorites' pojo
      */
     protected ArrayList<Pojo> getFavorites(Context context, int limit) {
-        ArrayList<Pojo> favorites = new ArrayList<Pojo>();
+        ArrayList<Pojo> favorites = new ArrayList<>();
 
         // Read history
         ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, limit);

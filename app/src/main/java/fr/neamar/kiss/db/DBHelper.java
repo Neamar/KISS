@@ -14,7 +14,7 @@ public class DBHelper {
     }
 
     private static ArrayList<ValuedHistoryRecord> readCursor(Cursor cursor) {
-        ArrayList<ValuedHistoryRecord> records = new ArrayList<ValuedHistoryRecord>();
+        ArrayList<ValuedHistoryRecord> records = new ArrayList<>();
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -34,9 +34,9 @@ public class DBHelper {
     /**
      * Insert new item into history
      *
-     * @param context
-     * @param query
-     * @param record
+     * @param context android context
+     * @param query query to insert
+     * @param record record to insert
      */
     public static void insertHistory(Context context, String query, String record) {
         SQLiteDatabase db = getDatabase(context);
@@ -57,9 +57,9 @@ public class DBHelper {
     /**
      * Retrieve previous query history
      *
-     * @param context
-     * @param limit
-     * @return
+     * @param context android context
+     * @param limit max number of items to retrieve
+     * @return records with number of use
      */
     public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit) {
         ArrayList<ValuedHistoryRecord> records;
@@ -80,9 +80,9 @@ public class DBHelper {
     /**
      * Retrieve previously selected items for the query
      *
-     * @param context
-     * @param query
-     * @return
+     * @param context android context
+     * @param query query to run
+     * @return records with number of use
      */
     public static ArrayList<ValuedHistoryRecord> getPreviousResultsForQuery(Context context,
                                                                             String query) {
@@ -102,9 +102,9 @@ public class DBHelper {
     /**
      * Retrieve most used records. Warning : filter through applications only
      *
-     * @param context
-     * @param limit   number of item to return
-     * @return
+     * @param context android context
+     * @param limit number of item to return
+     * @return records with number of use
      */
     public static ArrayList<ValuedHistoryRecord> getFavorites(Context context, int limit) {
         ArrayList<ValuedHistoryRecord> records;

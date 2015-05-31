@@ -23,7 +23,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 	/**
 	 * Array list containing all the results currently displayed
 	 */
-	private ArrayList<Result> results = new ArrayList<Result>();
+	private ArrayList<Result> results = new ArrayList<>();
 
 	private final QueryInterface parent;
 
@@ -73,7 +73,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 	public void onClick(int position, View v) {
 		try {
 			results.get(position).launch(getContext(), v);
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException ignored) {
 
 		}
 

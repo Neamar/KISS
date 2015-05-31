@@ -56,8 +56,8 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
+    protected void onSizeChanged(int w, int h, int oldWidth, int oldHeight) {
+        super.onSizeChanged(w, h, oldWidth, oldHeight);
 
 		/*
 		 * Create a new clip path. Anything outside this path will be clipped from this view and not drawn by onDraw method
