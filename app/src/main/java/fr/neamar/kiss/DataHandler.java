@@ -25,13 +25,12 @@ import fr.neamar.kiss.pojo.PojoComparator;
 
 public class DataHandler extends BroadcastReceiver {
 
-    public String currentQuery;
-
     /**
      * List all known providers
      */
     private final ArrayList<Provider> providers = new ArrayList<>();
     private final AppProvider appProvider;
+    public String currentQuery;
     private int providersLoaded = 0;
 
     /**
@@ -74,8 +73,7 @@ public class DataHandler extends BroadcastReceiver {
      * Get records for this query.
      *
      * @param context android context
-     * @param query query to run
-     *
+     * @param query   query to run
      * @return ordered list of records
      */
     public ArrayList<Pojo> getResults(Context context, String query) {
@@ -120,9 +118,8 @@ public class DataHandler extends BroadcastReceiver {
      * May return an empty set if the providers are not done building records,
      * in this case it is probably a good idea to call this function 500ms after
      *
-     * @param context android context
+     * @param context   android context
      * @param itemCount max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     *
      * @return pojos in recent history
      */
     public ArrayList<Pojo> getHistory(Context context, int itemCount) {
@@ -145,6 +142,7 @@ public class DataHandler extends BroadcastReceiver {
 
     /**
      * Return all applications
+     *
      * @return pojos for all applications
      */
     public ArrayList<Pojo> getApplications() {
@@ -156,8 +154,7 @@ public class DataHandler extends BroadcastReceiver {
      * May return null if no items were ever selected (app first use)
      *
      * @param context android context
-     * @param limit max number of items to retrieve. You may end with less items if favorites contains non existing items.
-     *
+     * @param limit   max number of items to retrieve. You may end with less items if favorites contains non existing items.
      * @return favorites' pojo
      */
     protected ArrayList<Pojo> getFavorites(Context context, int limit) {
@@ -174,7 +171,6 @@ public class DataHandler extends BroadcastReceiver {
                 favorites.add(pojo);
             }
         }
-
 
 
         return favorites;
@@ -195,8 +191,7 @@ public class DataHandler extends BroadcastReceiver {
         }
     }
 
-    private Pojo getPojo(String id)
-    {
+    private Pojo getPojo(String id) {
         // Ask all providers if they know this id
         for (int i = 0; i < providers.size(); i++) {
             if (providers.get(i).mayFindById(id)) {

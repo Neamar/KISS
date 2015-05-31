@@ -1,22 +1,22 @@
 package fr.neamar.kiss.pojo;
 
 public abstract class Pojo {
-	// Globally unique ID.
-	// Usually start with provider scheme, e.g. "app://" or "contact://" to
-	// ensure unique constraint
-	public String id = "(none)";
+    // Globally unique ID.
+    // Usually start with provider scheme, e.g. "app://" or "contact://" to
+    // ensure unique constraint
+    public String id = "(none)";
 
-	// Name for this pojo, e.g. app name
-	public String name = "";
+    // Name for this pojo, e.g. app name
+    public String name = "";
 
-	// Lower-cased name, for faster search
-	public String nameLowerCased = "";
+    // Lower-cased name, for faster search
+    public String nameLowerCased = "";
 
-	// Name displayed on the screen, may contain HTML (for instance, to put
-	// query text in blue)
-	public String displayName = "";
+    // Name displayed on the screen, may contain HTML (for instance, to put
+    // query text in blue)
+    public String displayName = "";
 
-	// How relevant is this record ? The higher, the most probable it will be
-	// displayed
-	public int relevance = 0;
+    // How relevant is this record ? The higher, the most probable it will be
+    // displayed
+    public int relevance = 0;
 }

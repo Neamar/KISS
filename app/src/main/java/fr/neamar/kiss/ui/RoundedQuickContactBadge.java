@@ -11,8 +11,8 @@ import java.lang.reflect.Field;
 
 /**
  * A rounded version of {@link QuickContactBadge]
- * @author kishu27 (http://linkd.in/1laN852)
  *
+ * @author kishu27 (http://linkd.in/1laN852)
  */
 public class RoundedQuickContactBadge extends QuickContactBadge {
 
@@ -60,7 +60,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         super.onSizeChanged(w, h, oldWidth, oldHeight);
 
 		/*
-		 * Create a new clip path. Anything outside this path will be clipped from this view and not drawn by onDraw method
+         * Create a new clip path. Anything outside this path will be clipped from this view and not drawn by onDraw method
 		 */
         clipPath = new Path();
 
@@ -68,7 +68,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         //Adding a circle. The circle will be positioned in the center using x = w/2 and y = w/2
         //Circle will be limiting it's radius to the smaller one of height or width.
         //Direction doesn't matter
-        clipPath.addCircle(w/2, h/2, w < h? w/2 : h/2, Direction.CW);
+        clipPath.addCircle(w / 2, h / 2, w < h ? w / 2 : h / 2, Direction.CW);
     }
 
     @Override

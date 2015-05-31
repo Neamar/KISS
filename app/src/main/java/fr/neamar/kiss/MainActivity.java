@@ -51,39 +51,32 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
-    private BroadcastReceiver mReceiver;
-
-    /**
-     * Adapter to display records
-     */
-    public RecordAdapter adapter;
-
-    /**
-     * Search text in the view
-     */
-    private EditText searchEditText;
-
-    /**
-     * Task launched on text change
-     */
-    private Searcher searcher;
-
-    /**
-     * Store user preferences
-     */
-    SharedPreferences prefs;
-
     /**
      * IDS for the favorites buttons
      */
     private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
-
     /**
      * Number of favorites to retrieve.
      * We need to pad this number to account for removed items still in history
      */
     private final int tryToRetrieve = favsIds.length + 2;
-
+    /**
+     * Adapter to display records
+     */
+    public RecordAdapter adapter;
+    /**
+     * Store user preferences
+     */
+    SharedPreferences prefs;
+    private BroadcastReceiver mReceiver;
+    /**
+     * Search text in the view
+     */
+    private EditText searchEditText;
+    /**
+     * Task launched on text change
+     */
+    private Searcher searcher;
 
     /**
      * Called when the activity is first created.

@@ -7,47 +7,48 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
+
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchResult extends Result {
-	public final SearchPojo searchPojo;
+    public final SearchPojo searchPojo;
 
-	public SearchResult(SearchPojo searchPojo) {
-		super();
-		this.pojo = this.searchPojo = searchPojo;
-	}
+    public SearchResult(SearchPojo searchPojo) {
+        super();
+        this.pojo = this.searchPojo = searchPojo;
+    }
 
-	@Override
-	public View display(Context context, View v) {
-		if (v == null)
-			v = inflateFromId(context, R.layout.item_search);
+    @Override
+    public View display(Context context, View v) {
+        if (v == null)
+            v = inflateFromId(context, R.layout.item_search);
 
-		TextView appName = (TextView) v.findViewById(R.id.item_search_text);
-		appName.setText(enrichText(context.getString(R.string.ui_item_search) + " \"{"
-				+ searchPojo.query + "}\""));
+        TextView appName = (TextView) v.findViewById(R.id.item_search_text);
+        appName.setText(enrichText(context.getString(R.string.ui_item_search) + " \"{"
+                + searchPojo.query + "}\""));
 
-		return v;
-	}
+        return v;
+    }
 
-	@Override
-	public void doLaunch(Context context, View v) {
-		Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
-		search.putExtra(SearchManager.QUERY, searchPojo.query);
+    @Override
+    public void doLaunch(Context context, View v) {
+        Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
+        search.putExtra(SearchManager.QUERY, searchPojo.query);
         // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.
         // Adding FLAG_ACTIVITY_CLEAR_TASK seems to fix the problem.
         search.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-		try {
-			context.startActivity(search);
-		} catch (ActivityNotFoundException e) {
-			// This exception gets thrown if Google Search has been deactivated:
-			Uri uri = Uri.parse("http://www.google.com/#q=" + searchPojo.query);
-			search = new Intent(Intent.ACTION_VIEW, uri);
-			search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			context.startActivity(search);
-		}
-	}
+        try {
+            context.startActivity(search);
+        } catch (ActivityNotFoundException e) {
+            // This exception gets thrown if Google Search has been deactivated:
+            Uri uri = Uri.parse("http://www.google.com/#q=" + searchPojo.query);
+            search = new Intent(Intent.ACTION_VIEW, uri);
+            search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(search);
+        }
+    }
 
 }

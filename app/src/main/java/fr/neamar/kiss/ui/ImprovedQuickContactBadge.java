@@ -28,30 +28,30 @@ import android.widget.QuickContactBadge;
  */
 public class ImprovedQuickContactBadge extends RoundedQuickContactBadge {
 
-	private View.OnClickListener mExtraOnClickListener;
+    private View.OnClickListener mExtraOnClickListener;
 
-	public ImprovedQuickContactBadge(Context context) {
-		super(context);
-	}
+    public ImprovedQuickContactBadge(Context context) {
+        super(context);
+    }
 
-	public ImprovedQuickContactBadge(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public ImprovedQuickContactBadge(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public ImprovedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	}
+    public ImprovedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
 
-	@Override
-	public void onClick(View v) {
-		super.onClick(v);
-		if (mExtraOnClickListener != null) {
-			mExtraOnClickListener.onClick(v);
-		}
-	}
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        if (mExtraOnClickListener != null) {
+            mExtraOnClickListener.onClick(v);
+        }
+    }
 
-	public void setExtraOnClickListener(View.OnClickListener extraOnClickListener) {
-		mExtraOnClickListener = extraOnClickListener;
-	}
+    public void setExtraOnClickListener(View.OnClickListener extraOnClickListener) {
+        mExtraOnClickListener = extraOnClickListener;
+    }
 
 }

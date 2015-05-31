@@ -20,71 +20,70 @@ import fr.neamar.kiss.searcher.QueryInterface;
 
 public class RecordAdapter extends ArrayAdapter<Result> {
 
-	/**
-	 * Array list containing all the results currently displayed
-	 */
-	private ArrayList<Result> results = new ArrayList<>();
+    private final QueryInterface parent;
+    /**
+     * Array list containing all the results currently displayed
+     */
+    private ArrayList<Result> results = new ArrayList<>();
 
-	private final QueryInterface parent;
+    public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
+                         ArrayList<Result> results) {
+        super(context, textViewResourceId, results);
 
-	public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
-			ArrayList<Result> results) {
-		super(context, textViewResourceId, results);
+        this.parent = parent;
+        this.results = results;
+    }
 
-		this.parent = parent;
-		this.results = results;
-	}
+    public int getViewTypeCount() {
+        return 6;
+    }
 
-	public int getViewTypeCount() {
-		return 6;
-	}
+    public int getItemViewType(int position) {
+        if (results.get(position) instanceof AppResult)
+            return 0;
+        else if (results.get(position) instanceof SearchResult)
+            return 1;
+        else if (results.get(position) instanceof ContactResult)
+            return 2;
+        else if (results.get(position) instanceof ToggleResult)
+            return 3;
+        else if (results.get(position) instanceof SettingResult)
+            return 4;
+        else if (results.get(position) instanceof SettingResult)
+            return 4;
+        else if (results.get(position) instanceof PhoneResult)
+            return 5;
+        else
+            return -1;
+    }
 
-	public int getItemViewType(int position) {
-		if (results.get(position) instanceof AppResult)
-			return 0;
-		else if (results.get(position) instanceof SearchResult)
-			return 1;
-		else if (results.get(position) instanceof ContactResult)
-			return 2;
-		else if (results.get(position) instanceof ToggleResult)
-			return 3;
-		else if (results.get(position) instanceof SettingResult)
-			return 4;
-		else if (results.get(position) instanceof SettingResult)
-			return 4;
-		else if (results.get(position) instanceof PhoneResult)
-			return 5;
-		else
-			return -1;
-	}
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        return results.get(position).display(getContext(), convertView);
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		return results.get(position).display(getContext(), convertView);
-	}
+    public void onLongClick(int pos) {
+        results.get(pos).deleteRecord(getContext());
+        results.remove(pos);
+        Toast.makeText(getContext(), "Removed from history", Toast.LENGTH_SHORT).show();
+        notifyDataSetChanged();
+    }
 
-	public void onLongClick(int pos) {
-		results.get(pos).deleteRecord(getContext());
-		results.remove(pos);
-		Toast.makeText(getContext(), "Removed from history", Toast.LENGTH_SHORT).show();
-		notifyDataSetChanged();
-	}
+    public void onClick(int position, View v) {
+        try {
+            results.get(position).launch(getContext(), v);
+        } catch (ArrayIndexOutOfBoundsException ignored) {
 
-	public void onClick(int position, View v) {
-		try {
-			results.get(position).launch(getContext(), v);
-		} catch (ArrayIndexOutOfBoundsException ignored) {
-
-		}
+        }
 
 
-		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				parent.launchOccurred();
-			}
-		}, KissApplication.TOUCH_DELAY);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                parent.launchOccurred();
+            }
+        }, KissApplication.TOUCH_DELAY);
 
-	}
+    }
 }

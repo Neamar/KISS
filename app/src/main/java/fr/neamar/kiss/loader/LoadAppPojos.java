@@ -15,42 +15,42 @@ import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
-	public LoadAppPojos(Context context) {
-		super(context, "app://");
-	}
+    public LoadAppPojos(Context context) {
+        super(context, "app://");
+    }
 
-	@Override
-	protected ArrayList<AppPojo> doInBackground(Void... params) {
-		long start = System.nanoTime();
+    @Override
+    protected ArrayList<AppPojo> doInBackground(Void... params) {
+        long start = System.nanoTime();
 
-		PackageManager manager = context.getPackageManager();
+        PackageManager manager = context.getPackageManager();
 
-		Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-		mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-		final List<ResolveInfo> appsInfo = manager.queryIntentActivities(mainIntent, 0);
-		Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
+        final List<ResolveInfo> appsInfo = manager.queryIntentActivities(mainIntent, 0);
+        Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
 
-		ArrayList<AppPojo> apps = new ArrayList<>();
-		for (int i = 0; i < appsInfo.size(); i++) {
-			AppPojo app = new AppPojo();
-			ResolveInfo info = appsInfo.get(i);
+        ArrayList<AppPojo> apps = new ArrayList<>();
+        for (int i = 0; i < appsInfo.size(); i++) {
+            AppPojo app = new AppPojo();
+            ResolveInfo info = appsInfo.get(i);
 
-			app.id = pojoScheme + info.activityInfo.applicationInfo.packageName + "/"
-					+ info.activityInfo.name;
-			app.name = info.loadLabel(manager).toString();
-			
-			//Ugly hack to remove accented characters.
-			//Note Java 5 provides a Normalizer method, unavailable for Android :\
-			app.nameLowerCased = StringNormalizer.normalize(app.name);
+            app.id = pojoScheme + info.activityInfo.applicationInfo.packageName + "/"
+                    + info.activityInfo.name;
+            app.name = info.loadLabel(manager).toString();
 
-			app.packageName = info.activityInfo.applicationInfo.packageName;
-			app.activityName = info.activityInfo.name;
+            //Ugly hack to remove accented characters.
+            //Note Java 5 provides a Normalizer method, unavailable for Android :\
+            app.nameLowerCased = StringNormalizer.normalize(app.name);
 
-			apps.add(app);
-		}
-		long end = System.nanoTime();
-		Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps");
-		return apps;
-	}
+            app.packageName = info.activityInfo.applicationInfo.packageName;
+            app.activityName = info.activityInfo.name;
+
+            apps.add(app);
+        }
+        long end = System.nanoTime();
+        Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps");
+        return apps;
+    }
 }

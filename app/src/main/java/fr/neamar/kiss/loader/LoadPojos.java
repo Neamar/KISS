@@ -11,30 +11,30 @@ import fr.neamar.kiss.dataprovider.Provider;
 
 public abstract class LoadPojos<T> extends AsyncTask<Void, Void, ArrayList<T>> {
 
-	protected Provider<T> provider;
-	protected final Context context;
-	protected String pojoScheme = "(none)://";
+    protected final Context context;
+    protected Provider<T> provider;
+    protected String pojoScheme = "(none)://";
 
-	public void setProvider(Provider<T> provider) {
-		this.provider = provider;
-	}
+    public LoadPojos(Context context, String pojoScheme) {
+        super();
+        this.context = context;
+        this.pojoScheme = pojoScheme;
+    }
 
-	public String getPojoScheme() {
-		return pojoScheme;
-	}
+    public void setProvider(Provider<T> provider) {
+        this.provider = provider;
+    }
 
-	public LoadPojos(Context context, String pojoScheme) {
-		super();
-		this.context = context;
-		this.pojoScheme = pojoScheme;
-	}
+    public String getPojoScheme() {
+        return pojoScheme;
+    }
 
-	@Override
-	protected void onPostExecute(ArrayList<T> result) {
-		super.onPostExecute(result);
-		provider.loadOver(result);
-		Intent i = new Intent(MainActivity.LOAD_OVER);
-		context.sendBroadcast(i);
-	}
+    @Override
+    protected void onPostExecute(ArrayList<T> result) {
+        super.onPostExecute(result);
+        provider.loadOver(result);
+        Intent i = new Intent(MainActivity.LOAD_OVER);
+        context.sendBroadcast(i);
+    }
 
 }
