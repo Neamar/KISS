@@ -1,15 +1,15 @@
 package fr.neamar.kiss.dataprovider;
 
 import android.content.Context;
-import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadAliasPojos;
+import fr.neamar.kiss.pojo.AliasPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
-public class AliasProvider extends Provider<Pair<String, String>> {
+public class AliasProvider extends Provider<AliasPojo> {
     private final ArrayList<Provider> providers;
 
     public AliasProvider(final Context context, ArrayList<Provider> providers) {
@@ -20,16 +20,16 @@ public class AliasProvider extends Provider<Pair<String, String>> {
     public ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> results = new ArrayList<>();
 
-        for (Pair<String, String> entry : pojos) {
-            if (entry.first.startsWith(query)) {
+        for (AliasPojo entry : pojos) {
+            if (entry.alias.startsWith(query)) {
                 for (int i = 0; i < providers.size(); i++) {
-                    if (providers.get(i).mayFindById(entry.second)) {
-                        Pojo pojo = providers.get(i).findById(entry.second);
+                    if (providers.get(i).mayFindById(entry.app)) {
+                        Pojo pojo = providers.get(i).findById(entry.app);
 
                         if (pojo != null) {
                             pojo.displayName = pojo.name
                                     + " <small>("
-                                    + entry.first.replaceFirst(
+                                    + entry.alias.replaceFirst(
                                     "(?i)(" + Pattern.quote(query) + ")", "{$1}")
                                     + ")</small>";
                             pojo.relevance = 10;
