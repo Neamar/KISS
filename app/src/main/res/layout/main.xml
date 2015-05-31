@@ -49,12 +49,12 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/main_menu"
                 android:focusable="true"
                 android:paddingBottom="4dp"
                 android:paddingLeft="1dp"
                 android:paddingRight="1dp"
                 android:paddingTop="4dp"
-                android:contentDescription="@string/main_menu"
                 android:src="@drawable/dots"
                 />
 
@@ -65,13 +65,13 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/main_clear"
                 android:focusable="true"
                 android:onClick="onClearButtonClicked"
                 android:paddingBottom="4dp"
                 android:paddingLeft="1dp"
                 android:paddingRight="1dp"
                 android:paddingTop="4dp"
-                android:contentDescription="@string/main_clear"
                 android:src="@drawable/clear_dark"
                 android:visibility="visible"/>
 
@@ -100,11 +100,11 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="6dp"
-                android:focusable="true"
-                android:tag="showMenu"
                 android:contentDescription="@string/main_kiss"
+                android:focusable="true"
                 android:onClick="onLauncherButtonClicked"
-                android:src="@drawable/ic_launcher"/>
+                android:src="@drawable/ic_launcher"
+                android:tag="showMenu"/>
 
             <ProgressBar
                 android:id="@+id/loaderBar"

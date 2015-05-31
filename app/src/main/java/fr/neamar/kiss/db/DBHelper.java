@@ -35,8 +35,8 @@ public class DBHelper {
      * Insert new item into history
      *
      * @param context android context
-     * @param query query to insert
-     * @param record record to insert
+     * @param query   query to insert
+     * @param record  record to insert
      */
     public static void insertHistory(Context context, String query, String record) {
         SQLiteDatabase db = getDatabase(context);
@@ -58,7 +58,7 @@ public class DBHelper {
      * Retrieve previous query history
      *
      * @param context android context
-     * @param limit max number of items to retrieve
+     * @param limit   max number of items to retrieve
      * @return records with number of use
      */
     public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit) {
@@ -81,7 +81,7 @@ public class DBHelper {
      * Retrieve previously selected items for the query
      *
      * @param context android context
-     * @param query query to run
+     * @param query   query to run
      * @return records with number of use
      */
     public static ArrayList<ValuedHistoryRecord> getPreviousResultsForQuery(Context context,
@@ -103,7 +103,7 @@ public class DBHelper {
      * Retrieve most used records. Warning : filter through applications only
      *
      * @param context android context
-     * @param limit number of item to return
+     * @param limit   number of item to return
      * @return records with number of use
      */
     public static ArrayList<ValuedHistoryRecord> getFavorites(Context context, int limit) {

@@ -9,22 +9,22 @@ import android.widget.Toast;
 
 public class ResetPreference extends DialogPreference {
 
-	public ResetPreference(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public ResetPreference(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		super.onClick(dialog, which);
-		if (which == DialogInterface.BUTTON_POSITIVE) {
-			getContext().deleteDatabase("summon.s3db");
-			KissApplication.resetDataHandler(getContext());
-			PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
-					.putBoolean("layout-updated", true).commit();
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        super.onClick(dialog, which);
+        if (which == DialogInterface.BUTTON_POSITIVE) {
+            getContext().deleteDatabase("summon.s3db");
+            KissApplication.resetDataHandler(getContext());
+            PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
+                    .putBoolean("layout-updated", true).commit();
 
-			Toast.makeText(getContext(), "History erased.", Toast.LENGTH_LONG).show();
-		}
+            Toast.makeText(getContext(), "History erased.", Toast.LENGTH_LONG).show();
+        }
 
-	}
+    }
 
 }
