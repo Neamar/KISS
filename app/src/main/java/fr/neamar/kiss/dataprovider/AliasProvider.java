@@ -1,7 +1,6 @@
 package fr.neamar.kiss.dataprovider;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -23,16 +22,18 @@ public class AliasProvider extends Provider<AliasPojo> {
 
         for (AliasPojo entry : pojos) {
             if (entry.alias.startsWith(query)) {
-                Pojo pojo = appProvider.findById(entry.app);
-
-                if (pojo != null && !pojo.nameLowerCased.contains(query)) {
-                    pojo.displayName = pojo.name
+                // Retrieve the AppPojo from AppProvider, being careful not to create any side effect
+                // (default behavior is to alter displayName, which is not what we want)
+                Pojo appPojo = appProvider.findById(entry.app, false);
+                // Only add if default AppProvider is not already displaying it
+                if (appPojo != null && !appPojo.nameLowerCased.contains(query)) {
+                    appPojo.displayName = appPojo.name
                             + " <small>("
                             + entry.alias.replaceFirst(
                             "(?i)(" + Pattern.quote(query) + ")", "{$1}")
                             + ")</small>";
-                    pojo.relevance = 10;
-                    results.add(pojo);
+                    appPojo.relevance = 10;
+                    results.add(appPojo);
                 }
             }
         }
