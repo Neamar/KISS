@@ -468,7 +468,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * This function gets called on changes. It will ask all the providers for
      * datas
      *
-     * @param query
+     * @param query the query on which to search
      */
 
     public void updateRecords(String query) {

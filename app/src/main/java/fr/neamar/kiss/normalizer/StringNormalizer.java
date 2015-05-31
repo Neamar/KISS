@@ -7,7 +7,7 @@ public class StringNormalizer {
     /**
      * Return the input string, lowercased and with standard Ascii characters for common european accents
      *
-     * @param input
+     * @param input string input, with accents
      * @return normalized string
      */
     public static String normalize(String input) {

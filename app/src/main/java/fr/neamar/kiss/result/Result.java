@@ -33,7 +33,7 @@ public abstract class Result {
 	/**
 	 * How to display this record ?
 	 *
-	 * @param context
+	 * @param context android context
 	 * @param convertView
 	 *            a view to be recycled
 	 * @return a view to display as item
@@ -53,7 +53,7 @@ public abstract class Result {
 	 * How to launch this record ? Most probably, will fire an intent. This
 	 * function must call recordLaunch()
 	 *
-	 * @param context
+	 * @param context android context
 	 */
 	public abstract void doLaunch(Context context, View v);
 
@@ -61,7 +61,7 @@ public abstract class Result {
 	 * How to launch this record "quickly" ? Most probably, same as doLaunch().
 	 * Override to define another behavior.
 	 *
-	 * @param context
+	 * @param context android context
 	 */
 	public void fastLaunch(Context context)
 	{
@@ -71,7 +71,7 @@ public abstract class Result {
 	/**
 	 * Return the icon for this Result, or null if non existing.
 	 *
-	 * @param context
+	 * @param context android context
 	 */
 	public Drawable getDrawable(Context context)
 	{
@@ -81,8 +81,8 @@ public abstract class Result {
 	/**
 	 * Helper function to get a view
 	 *
-	 * @param context
-	 * @param id
+	 * @param context android context
+	 * @param id id to inflate
 	 * @return the view specified by the id
 	 */
 	protected View inflateFromId(Context context, int id) {
@@ -94,7 +94,7 @@ public abstract class Result {
 	/**
 	 * Enrich text for display. Put text requiring highlighting between {}
 	 *
-	 * @param text
+	 * @param text to highlight
 	 * @return text displayable on a textview
 	 */
 	protected Spanned enrichText(String text) {
