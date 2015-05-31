@@ -8,7 +8,7 @@ public class DB extends SQLiteOpenHelper {
 
 	final static int DB_VERSION = 1;
 	final static String DB_NAME = "summon.s3db";
-	Context context;
+	final Context context;
 
 	public DB(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);

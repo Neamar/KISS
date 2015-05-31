@@ -1,7 +1,7 @@
 package fr.neamar.kiss.normalizer;
 
 /**
- * Created by neamar on 5/30/15.
+ * String utils to handle accented characters for search and highlighting
  */
 public class StringNormalizer {
     /**

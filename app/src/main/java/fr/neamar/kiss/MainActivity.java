@@ -48,9 +48,9 @@ import fr.neamar.kiss.searcher.Searcher;
 
 public class MainActivity extends ListActivity implements QueryInterface {
 
-    public static String START_LOAD = "fr.neamar.summon.START_LOAD";
-    public static String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
-    public static String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
+    public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
+    public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
+    public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
     public static String NB_PROVIDERS = "nb_providers";
     private BroadcastReceiver mReceiver;
 
@@ -352,17 +352,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }, KissApplication.TOUCH_DELAY);
     }
 
-    protected boolean displayClearOnInput() {
+    protected void displayClearOnInput() {
         final View clearButton = findViewById(R.id.clearButton);
         final View menuButton = findViewById(R.id.menuButton);
         if (searchEditText.getText().length() > 0) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
-            return true;
         } else {
             clearButton.setVisibility(View.INVISIBLE);
             menuButton.setVisibility(View.VISIBLE);
-            return false;
         }
     }
 

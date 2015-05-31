@@ -16,12 +16,12 @@ import java.lang.reflect.Method;
 import fr.neamar.kiss.pojo.TogglePojo;
 
 public class TogglesHandler {
-	protected Context context;
-	protected ConnectivityManager connectivityManager;
-	protected WifiManager wifiManager;
-	protected BluetoothAdapter bluetoothAdapter;
-	protected LocationManager locationManager;
-	protected AudioManager audioManager;
+	protected final Context context;
+	protected final ConnectivityManager connectivityManager;
+	protected final WifiManager wifiManager;
+	protected final BluetoothAdapter bluetoothAdapter;
+	protected final LocationManager locationManager;
+	protected final AudioManager audioManager;
 
 	/**
 	 * Initialize managers
@@ -76,7 +76,7 @@ public class TogglesHandler {
 			else if (pojo.settingName.equals("bluetooth"))
 				setBluetoothState(state);
 			else if (pojo.settingName.equals("gps"))
-				setGpsState(state);
+				setGpsState();
 			else if (pojo.settingName.equals("silent"))
 				setSilentState(state);
 			else {
@@ -155,7 +155,7 @@ public class TogglesHandler {
 		return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 	}
 
-	protected void setGpsState(Boolean state) {
+	protected void setGpsState() {
 		Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
 		myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(myIntent);
@@ -163,10 +163,7 @@ public class TogglesHandler {
 
 	protected Boolean getSilentState() {
 		int state = audioManager.getRingerMode();
-		if (state == AudioManager.RINGER_MODE_SILENT || state == AudioManager.RINGER_MODE_VIBRATE)
-			return true;
-		else
-			return false;
+		return state == AudioManager.RINGER_MODE_SILENT || state == AudioManager.RINGER_MODE_VIBRATE;
 	}
 
 	protected void setSilentState(Boolean state) {

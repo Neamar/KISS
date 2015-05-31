@@ -73,7 +73,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 	public void onClick(int position, View v) {
 		try {
 			results.get(position).launch(getContext(), v);
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (ArrayIndexOutOfBoundsException ignored) {
 
 		}
 

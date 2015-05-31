@@ -12,7 +12,7 @@ import fr.neamar.kiss.dataprovider.Provider;
 public abstract class LoadPojos<T> extends AsyncTask<Void, Void, ArrayList<T>> {
 
 	protected Provider<T> provider;
-	protected Context context;
+	protected final Context context;
 	protected String pojoScheme = "(none)://";
 
 	public void setProvider(Provider<T> provider) {

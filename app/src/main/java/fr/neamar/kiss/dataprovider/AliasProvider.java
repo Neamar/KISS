@@ -10,7 +10,7 @@ import fr.neamar.kiss.loader.LoadAliasPojos;
 import fr.neamar.kiss.pojo.Pojo;
 
 public class AliasProvider extends Provider<Pair<String, String>> {
-	private ArrayList<Provider> providers;
+	private final ArrayList<Provider> providers;
 
 	public AliasProvider(final Context context, ArrayList<Provider> providers) {
 		super(new LoadAliasPojos(context));

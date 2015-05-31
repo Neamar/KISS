@@ -21,8 +21,8 @@ import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 
 public class ContactResult extends Result {
-	public ContactPojo contactPojo;
-	private QueryInterface queryInterface;
+	public final ContactPojo contactPojo;
+	private final QueryInterface queryInterface;
 
 	public ContactResult(QueryInterface queryInterface, ContactPojo contactPojo) {
 		super();
