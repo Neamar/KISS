@@ -22,14 +22,17 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
         ArrayList<AliasPojo> alias = new ArrayList<>();
         String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
         alias.add(makeAliasPojo("contacts", contactApp));
+        alias.add(makeAliasPojo("people", contactApp));
 
         String phoneApp = getApp(pm, Intent.ACTION_DIAL);
         alias.add(makeAliasPojo("dial", phoneApp));
         alias.add(makeAliasPojo("compose", phoneApp));
+        alias.add(makeAliasPojo("phone", phoneApp));
 
         String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
         alias.add(makeAliasPojo("internet", browserApp));
         alias.add(makeAliasPojo("web", browserApp));
+        alias.add(makeAliasPojo("browser", browserApp));
 
         String mailApp = getAppByCategory(pm, Intent.CATEGORY_APP_EMAIL);
         alias.add(makeAliasPojo("email", mailApp));
@@ -41,6 +44,7 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
         String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
         alias.add(makeAliasPojo("text", messagingApp));
         alias.add(makeAliasPojo("sms", messagingApp));
+        alias.add(makeAliasPojo("messaging", messagingApp));
         return alias;
 
     }

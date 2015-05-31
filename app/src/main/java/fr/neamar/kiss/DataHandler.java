@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,8 +65,8 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-settings", true)) {
             providers.add(new SettingProvider(context));
         }
-        if (prefs.getBoolean("enable-aliases", true)) {
-            providers.add(new AliasProvider(context, providers));
+        if (prefs.getBoolean("enable-alias", true) && prefs.getBoolean("enable-apps", true)) {
+            providers.add(new AliasProvider(context, appProvider));
         }
     }
 
@@ -89,7 +90,6 @@ public class DataHandler extends BroadcastReceiver {
         ArrayList<Pojo> allPojos = new ArrayList<>();
 
         for (int i = 0; i < providers.size(); i++) {
-
             // Retrieve results for query:
             ArrayList<Pojo> pojos = providers.get(i).getResults(query);
 
@@ -101,11 +101,10 @@ public class DataHandler extends BroadcastReceiver {
                         pojos.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
                     }
                 }
-
                 allPojos.add(pojos.get(j));
             }
         }
-
+        
         // Sort records according to relevance
         Collections.sort(allPojos, new PojoComparator());
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Path.Direction;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.QuickContactBadge;
 
@@ -72,7 +73,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
 
         //Erase everything out of our little circle in clipPath and hence create the real rounded QuickContactBadge
         canvas.clipPath(clipPath);
