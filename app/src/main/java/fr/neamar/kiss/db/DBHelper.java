@@ -1,6 +1,5 @@
 package fr.neamar.kiss.db;
 
-import android.app.backup.BackupManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,9 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 public class DBHelper {
-
-    public static final Object sDataLock = new Object();
-
     private static SQLiteDatabase getDatabase(Context context) {
         DB db = new DB(context);
         return db.getReadableDatabase();
@@ -43,25 +39,19 @@ public class DBHelper {
      * @param record
      */
     public static void insertHistory(Context context, String query, String record) {
-        synchronized (DBHelper.sDataLock) {
-            SQLiteDatabase db = getDatabase(context);
+        SQLiteDatabase db = getDatabase(context);
 
-            ContentValues values = new ContentValues();
-            values.put("query", query);
-            values.put("record", record);
-            db.insert("history", null, values);
-            db.close();
-        }
-        new BackupManager(context).dataChanged();
+        ContentValues values = new ContentValues();
+        values.put("query", query);
+        values.put("record", record);
+        db.insert("history", null, values);
+        db.close();
     }
 
     public static void removeFromHistory(Context context, String record) {
-        synchronized (DBHelper.sDataLock) {
-            SQLiteDatabase db = getDatabase(context);
-            db.delete("history", "record = ?", new String[]{record});
-            db.close();
-        }
-        new BackupManager(context).dataChanged();
+        SQLiteDatabase db = getDatabase(context);
+        db.delete("history", "record = ?", new String[]{record});
+        db.close();
     }
 
     /**
@@ -73,18 +63,17 @@ public class DBHelper {
      */
     public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit) {
         ArrayList<ValuedHistoryRecord> records;
-        synchronized (DBHelper.sDataLock) {
-            SQLiteDatabase db = getDatabase(context);
 
-            // Cursor query (boolean distinct, String table, String[] columns,
-            // String selection, String[] selectionArgs, String groupBy, String
-            // having, String orderBy, String limit)
-            Cursor cursor = db.query(true, "history", new String[]{"record", "1"}, null, null,
-                    null, null, "_id DESC", Integer.toString(limit));
+        SQLiteDatabase db = getDatabase(context);
 
-            records = readCursor(cursor);
-            db.close();
-        }
+        // Cursor query (boolean distinct, String table, String[] columns,
+        // String selection, String[] selectionArgs, String groupBy, String
+        // having, String orderBy, String limit)
+        Cursor cursor = db.query(true, "history", new String[]{"record", "1"}, null, null,
+                null, null, "_id DESC", Integer.toString(limit));
+
+        records = readCursor(cursor);
+        db.close();
         return records;
     }
 
@@ -98,17 +87,15 @@ public class DBHelper {
     public static ArrayList<ValuedHistoryRecord> getPreviousResultsForQuery(Context context,
                                                                             String query) {
         ArrayList<ValuedHistoryRecord> records;
-        synchronized (DBHelper.sDataLock) {
-            SQLiteDatabase db = getDatabase(context);
+        SQLiteDatabase db = getDatabase(context);
 
-            // Cursor query (String table, String[] columns, String selection,
-            // String[] selectionArgs, String groupBy, String having, String
-            // orderBy)
-            Cursor cursor = db.query("history", new String[]{"record", "COUNT(*) AS count"},
-                    "query LIKE ?", new String[]{query + "%"}, "record", null, "COUNT(*) DESC", "10");
-            records = readCursor(cursor);
-            db.close();
-        }
+        // Cursor query (String table, String[] columns, String selection,
+        // String[] selectionArgs, String groupBy, String having, String
+        // orderBy)
+        Cursor cursor = db.query("history", new String[]{"record", "COUNT(*) AS count"},
+                "query LIKE ?", new String[]{query + "%"}, "record", null, "COUNT(*) DESC", "10");
+        records = readCursor(cursor);
+        db.close();
         return records;
     }
 
@@ -121,18 +108,16 @@ public class DBHelper {
      */
     public static ArrayList<ValuedHistoryRecord> getFavorites(Context context, int limit) {
         ArrayList<ValuedHistoryRecord> records;
-        synchronized (DBHelper.sDataLock) {
-            SQLiteDatabase db = getDatabase(context);
+        SQLiteDatabase db = getDatabase(context);
 
-            // Cursor query (String table, String[] columns, String selection,
-            // String[] selectionArgs, String groupBy, String having, String
-            // orderBy)
-            Cursor cursor = db.query("history", new String[]{"record", "COUNT(*) AS count"},
-                    null, null, "record", null, "COUNT(*) DESC", Integer.toString(limit));
+        // Cursor query (String table, String[] columns, String selection,
+        // String[] selectionArgs, String groupBy, String having, String
+        // orderBy)
+        Cursor cursor = db.query("history", new String[]{"record", "COUNT(*) AS count"},
+                null, null, "record", null, "COUNT(*) DESC", Integer.toString(limit));
 
-            records = readCursor(cursor);
-            db.close();
-        }
+        records = readCursor(cursor);
+        db.close();
         return records;
     }
 }

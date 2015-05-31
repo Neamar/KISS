@@ -1,6 +1,5 @@
 package fr.neamar.kiss;
 
-import android.app.backup.BackupManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -19,8 +18,6 @@ public class SettingsActivity extends PreferenceActivity implements
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		new BackupManager(this).dataChanged();
-
 		// Reload the DataHandler since Providers preferences have changed
 		KissApplication.resetDataHandler(this);
 	}
