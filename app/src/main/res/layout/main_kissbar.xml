@@ -1,48 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/kiss_green"
-              android:clipToPadding="false"
-              android:elevation="2dp"
-              android:gravity="center_vertical"
-              android:orientation="horizontal"
-              android:padding="5dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/kiss_green"
+                android:clipToPadding="false"
+                android:elevation="2dp">
+
 
     <ImageView
-        android:id="@+id/favorite0"
+        android:id="@+id/launcherButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="onFavoriteButtonClicked"
-        android:src="@drawable/ic_contact"
-        android:tag="0"
-        />
+        android:layout_height="32dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="2dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="4dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:focusable="true"
+        android:tag="hideMenu"
+        android:onClick="onLauncherButtonClicked"
+        android:src="@drawable/ic_launcher_white"/>
 
-    <ImageView
-        android:id="@+id/favorite1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="onFavoriteButtonClicked"
-        android:src="@drawable/ic_contact"
-        android:tag="1"/>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/launcherButton"
+        android:layout_toStartOf="@+id/launcherButton">
 
-    <ImageView
-        android:id="@+id/favorite2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="onFavoriteButtonClicked"
-        android:src="@drawable/ic_contact"
-        android:tag="2"/>
+        <ImageView
+            android:id="@+id/favorite0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onFavoriteButtonClicked"
+            android:src="@drawable/ic_contact"
+            android:tag="0"
+            />
 
-    <ImageView
-        android:id="@+id/favorite3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="onFavoriteButtonClicked"
-        android:src="@drawable/ic_contact"
-        android:tag="3"/>
-</LinearLayout>
+        <ImageView
+            android:id="@+id/favorite1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onFavoriteButtonClicked"
+            android:src="@drawable/ic_contact"
+            android:tag="1"/>
+
+        <ImageView
+            android:id="@+id/favorite2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onFavoriteButtonClicked"
+            android:src="@drawable/ic_contact"
+            android:tag="2"/>
+
+        <ImageView
+            android:id="@+id/favorite3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onFavoriteButtonClicked"
+            android:src="@drawable/ic_contact"
+            android:tag="3"/>
+    </LinearLayout>
+</RelativeLayout>

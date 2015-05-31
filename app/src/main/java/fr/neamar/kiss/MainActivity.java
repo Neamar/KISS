@@ -329,11 +329,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     /**
-     * Clear text content when touching the cross button
+     * Display KISS menu
      */
     public void onLauncherButtonClicked(View launcherButton) {
-        // Display the kiss bar
-        displayKissBar(true);
+        // Display or hide the kiss bar, according to current view tag (showMenu / hideMenu).
+        displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
 
     public void onFavoriteButtonClicked(View favorite) {
@@ -459,8 +459,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
                 findViewById(favsIds[i]).setVisibility(View.GONE);
             }
-
-            hideKeyboard();
         } else {
             kissMenu.setVisibility(View.GONE);
             searchEditText.setText("");
