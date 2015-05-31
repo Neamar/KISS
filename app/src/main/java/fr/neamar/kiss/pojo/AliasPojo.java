@@ -1,6 +1,5 @@
 package fr.neamar.kiss.pojo;
 
-public class AliasPojo extends Pojo {
+public class AliasPojo extends AppPojo {
     public String alias;
-    public String app;
 }

@@ -46,6 +46,7 @@ public class AppProvider extends Provider<AppPojo> {
     public Pojo findById(String id) {
         for (int i = 0; i < pojos.size(); i++) {
             if (pojos.get(i).id.equals(id)) {
+                // Reset displayName to default value
                 pojos.get(i).displayName = pojos.get(i).name;
                 return pojos.get(i);
             }

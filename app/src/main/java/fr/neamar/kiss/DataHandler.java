@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -104,7 +103,7 @@ public class DataHandler extends BroadcastReceiver {
                 allPojos.add(pojos.get(j));
             }
         }
-        
+
         // Sort records according to relevance
         Collections.sort(allPojos, new PojoComparator());
 
