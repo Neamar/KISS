@@ -15,7 +15,7 @@ public class SearchProvider extends Provider<SearchPojo> {
 	}
 
 	public ArrayList<Pojo> getResults(String query) {
-		ArrayList<Pojo> pojos = new ArrayList<Pojo>();
+		ArrayList<Pojo> pojos = new ArrayList<>();
 
 		SearchPojo pojo = new SearchPojo();
 		pojo.query = query;

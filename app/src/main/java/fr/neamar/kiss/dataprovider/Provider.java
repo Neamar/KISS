@@ -12,7 +12,7 @@ public abstract class Provider<T> {
 	public String pojoScheme = "(none)://";
 
 	protected LoadPojos<T> loader = null;
-	protected ArrayList<T> pojos = new ArrayList<T>();
+	protected ArrayList<T> pojos = new ArrayList<>();
 
 	public Provider(LoadPojos<T> loader) {
 		super();

@@ -17,7 +17,7 @@ public class LoadSettingPojos extends LoadPojos<SettingPojo> {
 
 	@Override
 	protected ArrayList<SettingPojo> doInBackground(Void... params) {
-		ArrayList<SettingPojo> settings = new ArrayList<SettingPojo>();
+		ArrayList<SettingPojo> settings = new ArrayList<>();
 		settings.add(createPojo("Airplane mode",
 				android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS, R.attr.airplane));
 		settings.add(createPojo("Device info",

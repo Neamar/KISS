@@ -15,7 +15,7 @@ public class ToggleProvider extends Provider<TogglePojo> {
 	}
 
 	public ArrayList<Pojo> getResults(String query) {
-		ArrayList<Pojo> results = new ArrayList<Pojo>();
+		ArrayList<Pojo> results = new ArrayList<>();
 
 		int relevance;
 		String toggleNameLowerCased;

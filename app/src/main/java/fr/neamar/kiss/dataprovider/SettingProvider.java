@@ -15,7 +15,7 @@ public class SettingProvider extends Provider<SettingPojo> {
 	}
 
 	public ArrayList<Pojo> getResults(String query) {
-		ArrayList<Pojo> results = new ArrayList<Pojo>();
+		ArrayList<Pojo> results = new ArrayList<>();
 
 		int relevance;
 		String settingNameLowerCased;

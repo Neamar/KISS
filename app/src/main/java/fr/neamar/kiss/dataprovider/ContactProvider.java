@@ -16,7 +16,7 @@ public class ContactProvider extends Provider<ContactPojo> {
     }
 
     public ArrayList<Pojo> getResults(String query) {
-        ArrayList<Pojo> results = new ArrayList<Pojo>();
+        ArrayList<Pojo> results = new ArrayList<>();
 
         int relevance;
         String contactNameLowerCased;

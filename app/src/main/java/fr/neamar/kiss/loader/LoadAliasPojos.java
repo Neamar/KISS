@@ -18,28 +18,28 @@ public class LoadAliasPojos extends LoadPojos<Pair<String, String>> {
 	@Override
 	protected ArrayList<Pair<String, String>> doInBackground(Void... params) {
 		final PackageManager pm = context.getPackageManager();
-		ArrayList<Pair<String, String>> alias = new ArrayList<Pair<String, String>>();
+		ArrayList<Pair<String, String>> alias = new ArrayList<>();
 		String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
-		alias.add(new Pair<String, String>("contacts", contactApp));
+		alias.add(new Pair<>("contacts", contactApp));
 
 		String phoneApp = getApp(pm, Intent.ACTION_DIAL);
-		alias.add(new Pair<String, String>("dial", phoneApp));
-		alias.add(new Pair<String, String>("compose", phoneApp));
+		alias.add(new Pair<>("dial", phoneApp));
+		alias.add(new Pair<>("compose", phoneApp));
 
 		String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
-		alias.add(new Pair<String, String>("internet", browserApp));
-		alias.add(new Pair<String, String>("web", browserApp));
+		alias.add(new Pair<>("internet", browserApp));
+		alias.add(new Pair<>("web", browserApp));
 
 		String mailApp = getAppByCategory(pm, Intent.CATEGORY_APP_EMAIL);
-		alias.add(new Pair<String, String>("email", mailApp));
-		alias.add(new Pair<String, String>("mail", mailApp));
+		alias.add(new Pair<>("email", mailApp));
+		alias.add(new Pair<>("mail", mailApp));
 
 		String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
-		alias.add(new Pair<String, String>("market", marketApp));
+		alias.add(new Pair<>("market", marketApp));
 
 		String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
-		alias.add(new Pair<String, String>("text", messagingApp));
-		alias.add(new Pair<String, String>("sms", messagingApp));
+		alias.add(new Pair<>("text", messagingApp));
+		alias.add(new Pair<>("sms", messagingApp));
 		return alias;
 
 	}
