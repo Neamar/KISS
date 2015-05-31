@@ -4,44 +4,72 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoadAliasPojos extends LoadPojos<Pair<String, String>> {
+import fr.neamar.kiss.pojo.AliasPojo;
+
+public class LoadAliasPojos extends LoadPojos<AliasPojo> {
 
     public LoadAliasPojos(Context context) {
         super(context, "none://");
     }
 
     @Override
-    protected ArrayList<Pair<String, String>> doInBackground(Void... params) {
+    protected ArrayList<AliasPojo> doInBackground(Void... params) {
         final PackageManager pm = context.getPackageManager();
-        ArrayList<Pair<String, String>> alias = new ArrayList<>();
+        ArrayList<AliasPojo> alias = new ArrayList<>();
+
         String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
-        alias.add(new Pair<>("contacts", contactApp));
+        if (contactApp != null) {
+            alias.add(makeAliasPojo("contacts", contactApp));
+            alias.add(makeAliasPojo("people", contactApp));
+        }
 
         String phoneApp = getApp(pm, Intent.ACTION_DIAL);
-        alias.add(new Pair<>("dial", phoneApp));
-        alias.add(new Pair<>("compose", phoneApp));
+        if (phoneApp != null) {
+            alias.add(makeAliasPojo("dial", phoneApp));
+            alias.add(makeAliasPojo("compose", phoneApp));
+            alias.add(makeAliasPojo("phone", phoneApp));
+        }
 
         String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
-        alias.add(new Pair<>("internet", browserApp));
-        alias.add(new Pair<>("web", browserApp));
+        if (browserApp != null) {
+            alias.add(makeAliasPojo("internet", browserApp));
+            alias.add(makeAliasPojo("web", browserApp));
+            alias.add(makeAliasPojo("browser", browserApp));
+        }
 
         String mailApp = getAppByCategory(pm, Intent.CATEGORY_APP_EMAIL);
-        alias.add(new Pair<>("email", mailApp));
-        alias.add(new Pair<>("mail", mailApp));
+        if (mailApp != null) {
+            alias.add(makeAliasPojo("email", mailApp));
+            alias.add(makeAliasPojo("mail", mailApp));
+        }
 
         String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
-        alias.add(new Pair<>("market", marketApp));
+        if (marketApp != null) {
+            alias.add(makeAliasPojo("market", marketApp));
+            alias.add(makeAliasPojo("store", marketApp));
+        }
 
         String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
-        alias.add(new Pair<>("text", messagingApp));
-        alias.add(new Pair<>("sms", messagingApp));
+        if (messagingApp != null) {
+            alias.add(makeAliasPojo("text", messagingApp));
+            alias.add(makeAliasPojo("sms", messagingApp));
+            alias.add(makeAliasPojo("messaging", messagingApp));
+        }
+
         return alias;
 
+    }
+
+    public AliasPojo makeAliasPojo(String alias, String appInfos) {
+        AliasPojo aliasPojo = new AliasPojo();
+        aliasPojo.alias = alias;
+        aliasPojo.app = appInfos;
+
+        return aliasPojo;
     }
 
     private String getApp(PackageManager pm, String action) {
@@ -57,11 +85,12 @@ public class LoadAliasPojos extends LoadPojos<Pair<String, String>> {
 
     private String getApp(PackageManager pm, Intent lookingFor) {
         List<ResolveInfo> list = pm.queryIntentActivities(lookingFor, 0);
-        if (list.size() == 0)
-            return "(none)";
-        else
+        if (list.size() == 0) {
+            return null;
+        } else {
             return "app://" + list.get(0).activityInfo.applicationInfo.packageName + "/"
                     + list.get(0).activityInfo.name;
+        }
 
     }
 }

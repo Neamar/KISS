@@ -8,8 +8,9 @@ import java.util.ArrayList;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.dataprovider.Provider;
+import fr.neamar.kiss.pojo.Pojo;
 
-public abstract class LoadPojos<T> extends AsyncTask<Void, Void, ArrayList<T>> {
+public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, ArrayList<T>> {
 
     protected final Context context;
     protected Provider<T> provider;

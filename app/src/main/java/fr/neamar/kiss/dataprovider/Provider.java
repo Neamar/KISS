@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import fr.neamar.kiss.loader.LoadPojos;
 import fr.neamar.kiss.pojo.Pojo;
 
-public abstract class Provider<T> {
+public abstract class Provider<T extends Pojo> {
     /**
      * Scheme used to build ids for the pojos created by this provider
      */

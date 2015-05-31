@@ -43,16 +43,30 @@ public class AppProvider extends Provider<AppPojo> {
         return records;
     }
 
-    public Pojo findById(String id) {
+    /**
+     * Return a Pojo
+     *
+     * @param id we're looking for
+     * @param allowSideEffect do we allow this function to have potential side effect? Set to false to ensure none.
+     * @return an apppojo, or null
+     */
+    public Pojo findById(String id, Boolean allowSideEffect) {
         for (int i = 0; i < pojos.size(); i++) {
             if (pojos.get(i).id.equals(id)) {
-                pojos.get(i).displayName = pojos.get(i).name;
+                // Reset displayName to default value
+                if(allowSideEffect) {
+                    pojos.get(i).displayName = pojos.get(i).name;
+                }
                 return pojos.get(i);
             }
 
         }
 
         return null;
+    }
+
+    public Pojo findById(String id) {
+        return findById(id, true);
     }
 
     public ArrayList<Pojo> getAllApps() {
