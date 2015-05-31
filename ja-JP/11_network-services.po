@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-30 18:07+0900\n"
+"PO-Revision-Date: 2015-05-31 15:12+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1694,92 +1694,92 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The <literal>DirectoryIndex</literal> directive contains a list of files to try when the client request matches a directory. The first existing file in the list is used and sent as a response."
-msgstr ""
+msgstr "<literal>DirectoryIndex</literal> 指示文には、クライアントからディレクトリを要求された場合に応答として送信するファイルのリストを指定します。リスト内の最初に見つかったファイルが、応答として使われます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>DirectoryIndex</literal>, Apache directive</primary>"
-msgstr ""
+msgstr "<primary><literal>DirectoryIndex</literal>、Apache 指示文</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Options</literal> directive is followed by a list of options to enable. The <literal>None</literal> value disables all options; correspondingly, <literal>All</literal> enables them all except <literal>MultiViews</literal>. Available options include:"
-msgstr ""
+msgstr "<literal>Options</literal> 指示文には、有効化するオプションを指定します。<literal>None</literal> 値は全てのオプションを無効化します; 対して <literal>All</literal> は <literal>MultiViews</literal> を除いて全てのオプションを有効化します。利用可能なオプションは以下です:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ExecCGI</literal> indicates that CGI scripts can be executed. <indexterm><primary><literal>ExecCGI</literal>, Apache directive</primary></indexterm>"
-msgstr ""
+msgstr "<literal>ExecCGI</literal> は CGI スクリプトが実行可能なことを意味します。<indexterm><primary><literal>ExecCGI</literal>、Apache 指示文</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>FollowSymlinks</literal> tells the server that symbolic links can be followed, and that the response should contain the contents of the target of such links. <indexterm><primary><literal>FollowSymlinks</literal>, Apache directive</primary></indexterm>"
-msgstr ""
+msgstr "<literal>FollowSymlinks</literal> を使うことで、シンボリックリンクを辿ることが可能であること、リンク先の内容を応答として返すことをサーバに伝えます。<indexterm><primary><literal>FollowSymlinks</literal>、Apache 指示文</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SymlinksIfOwnerMatch</literal> also tells the server to follow symbolic links, but only when the link and the its target have the same owner. <indexterm><primary><literal>SymlinksIfOwnerMatch</literal>, Apache directive</primary></indexterm>"
-msgstr ""
+msgstr "<literal>SymlinksIfOwnerMatch</literal> を使うことで、シンボリックリンクとリンク先が同じ所有者の場合に限り、シンボリックリンクを辿ることが可能であることをサーバに伝えます。<indexterm><primary><literal>SymlinksIfOwnerMatch</literal>、Apache 指示文</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>Includes</literal> enables <emphasis>Server Side Includes</emphasis> (<emphasis>SSI</emphasis> for short). These are directives embedded in HTML pages and executed on the fly for each request. <indexterm><primary><literal>Includes</literal>, Apache directive</primary></indexterm>"
-msgstr ""
+msgstr "<literal>Includes</literal> を使うことで、<emphasis>Server Side Includes</emphasis> (略して <emphasis>SSI</emphasis>) が有効化されます。SSI は HTML ページの中に埋め込まれ、各要求毎にその場で実行される指示です。<indexterm><primary><literal>Includes</literal>、Apache 指示文</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>Indexes</literal> tells the server to list the contents of a directory if the HTTP request sent by the client points at a directory without an index file (ie, when no files mentioned by the <literal>DirectoryIndex</literal> directive exists in this directory). <indexterm><primary><literal>Indexes</literal>, Apache directive</primary></indexterm>"
-msgstr ""
+msgstr "<literal>Indexes</literal> を使うことで、クライアントの送信した HTTP 要求が index ファイルの含まれないディレクトリを指している場合 (例えば <literal>DirectoryIndex</literal> 指示文でリストされているファイルがこのディレクトリ内に存在しない場合)、ディレクトリの内容をリストすることをサーバに伝えます。<indexterm><primary><literal>Indexes</literal>、Apache 指示文</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>MultiViews</literal> enables content negotiation; this can be used by the server to return a web page matching the preferred language as configured in the browser. <indexterm><primary><literal>MultiViews</literal>, Apache directive</primary></indexterm>"
-msgstr ""
+msgstr "<literal>MultiViews</literal> を使うことで、コンテンツネゴシエーションが有効化されます; サーバはこれを使って、ブラウザで設定した優先言語に一致するウェブページを返します。<indexterm><primary><literal>MultiViews</literal>、Apache 指示文</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <filename>.htaccess</filename> file"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> <filename>.htaccess</filename> ファイル"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.htaccess</filename> file contains Apache configuration directives enforced each time a request concerns an element of the directory where it is stored. The scope of these directives also recurses to all the subdirectories within."
-msgstr ""
+msgstr "<filename>.htaccess</filename> ファイルには、Apache 設定指示文が含まれます。その設定内容は、<filename>.htaccess</filename> ファイルが保存されているディレクトリに含まれる要素が要求された時に、強制されます。指示文の有効範囲は <filename>.htaccess</filename> が保存されているディレクトリ以下全てのサブディレクトリです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>.htaccess</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>.htaccess</filename></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Most of the directives that can occur in a <literal>Directory</literal> block are also legal in a <filename>.htaccess</filename> file."
-msgstr ""
+msgstr "<literal>Directory</literal> ブロック内に書かれたほとんどの指示文は <filename>.htaccess</filename> ファイル内でも使うことが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>AllowOverride</literal> directive lists all the options that can be enabled or disabled by way of a <filename>.htaccess</filename> file. A common use of this option is to restrict <literal>ExecCGI</literal>, so that the administrator chooses which users are allowed to run programs under the web server's identity (the <literal>www-data</literal> user)."
-msgstr ""
+msgstr "<literal>AllowOverride</literal> 指示文は <filename>.htaccess</filename> ファイルを使って有効化または無効化された全てのオプションをリストします。このオプションは一般に <literal>ExecCGI</literal> を制限するために使われることが多いです。管理者はウェブサーバ (<literal>www-data</literal> ユーザ) の権限でプログラムを実行することを許可するユーザを選択します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Requiring Authentication"
-msgstr ""
+msgstr "認証要求"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>web authentication</primary>"
-msgstr ""
+msgstr "<primary>ウェブ認証</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "In some circumstances, access to part of a website needs to be restricted, so only legitimate users who provide a username and a password are granted access to the contents."
-msgstr ""
+msgstr "ウェブサイトのある部分へのアクセスを制限し、ユーザ名とパスワードに基づく正当なユーザだけが内容にアクセスできるように設定する必要があるかもしれません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>.htaccess</filename> file requiring authentication"
-msgstr ""
+msgstr "認証要求を行う <filename>.htaccess</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1790,21 +1790,26 @@ msgid ""
 "AuthType Basic\n"
 "AuthUserFile /etc/apache2/authfiles/htpasswd-private\n"
 msgstr ""
+"\n"
+"Require valid-user\n"
+"AuthName \"Private directory\"\n"
+"AuthType Basic\n"
+"AuthUserFile /etc/apache2/authfiles/htpasswd-private\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> No security"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> 無意味なセキュリティ"
 
 #. Tag: para
 #, no-c-format
 msgid "The authentication system used in the above example (<literal>Basic</literal>) has minimal security as the password is sent in clear text (it is only encoded as <emphasis>base64</emphasis>, which is a simple encoding rather than an encryption method). It should also be noted that the documents “protected” by this mechanism also go over the network in the clear. If security is important, the whole HTTP connection should be encrypted with SSL."
-msgstr ""
+msgstr "上の例で使われている (<literal>Basic</literal>) 認証システムは最低限のセキュリティを提供します。パスワードは平文で送信されます (パスワードは暗号化よりも単純な符号化である <emphasis>base64</emphasis> で符号化されるだけです)。この認証システムで「保護」されている文書はネットワークを平文で送信される点も注意するべきです。セキュリティが重要な場合、HTTP 接続全体を SSL で暗号化するべきです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/apache2/authfiles/htpasswd-private</filename> file contains a list of users and passwords; it is commonly manipulated with the <command>htpasswd</command> command. For example, the following command is used to add a user or change their password: <indexterm><primary><command>htpasswd</command></primary></indexterm>"
-msgstr ""
+msgstr "<filename>/etc/apache2/authfiles/htpasswd-private</filename> ファイルには、ユーザとパスワードのリストが含まれます; このファイルを操作するには通常 <command>htpasswd</command> コマンドを使います。例えば、以下のコマンドを使うことで、ユーザを追加するかユーザのパスワードを変更します: <indexterm><primary><command>htpasswd</command></primary></indexterm>"
 
 #. Tag: screen
 #, no-c-format
@@ -1816,51 +1821,57 @@ msgid ""
 "Adding password for user <replaceable>user</replaceable>\n"
 "</computeroutput>"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>htpasswd /etc/apache2/authfiles/htpasswd-private <replaceable>user</replaceable>\n"
+"</userinput><computeroutput>New password:\n"
+"Re-type new password:\n"
+"Adding password for user <replaceable>user</replaceable>\n"
+"</computeroutput>"
 
 #. Tag: title
 #, no-c-format
 msgid "Restricting Access"
-msgstr ""
+msgstr "アクセス制限"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>web access restriction</primary>"
-msgstr ""
+msgstr "<primary>ウェブアクセス制限</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Allow from</literal> and <literal>Deny from</literal> directives control access restrictions for a directory (and its subdirectories, recursively)."
-msgstr ""
+msgstr "<literal>Allow from</literal> と <literal>Deny from</literal> 指示文を使うことで、あるディレクトリへのアクセスを制御 (とサブディレクトリへのアクセスを再帰的に制御) します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Allow from</literal>, Apache directive</primary>"
-msgstr ""
+msgstr "<primary><literal>Allow from</literal>、Apache 指示文</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Deny from</literal>, Apache directive</primary>"
-msgstr ""
+msgstr "<primary><literal>Deny from</literal>、Apache 指示文</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><literal>Order</literal>, Apache directive</primary>"
-msgstr ""
+msgstr "<primary><literal>Order</literal>、Apache 指示文</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Order</literal> directive tells the server of the order in which the <literal>Allow from</literal> and <literal>Deny from</literal> directives are applied; the last one that matches takes precedence. In concrete terms, <literal>Order deny,allow</literal> allows access if no <literal>Deny from</literal> applies, or if an <literal>Allow from</literal> directive does. Conversely, <literal>Order allow,deny</literal> rejects access if no <literal>Allow from</literal> directive matches (or if a <literal>Deny from</literal> directive applies)."
-msgstr ""
+msgstr "<literal>Order</literal> 指示文を使うことで、<literal>Allow from</literal> と <literal>Deny from</literal> 指示文を評価する順番をサーバに伝えます; 最後に一致したものが優先されます。具体的に言えば、<literal>Order deny,allow</literal> を使うと、<literal>Deny from</literal> に一致しないホストまたは <literal>Allow from</literal> に一致するホストからのアクセスを許可します。反対に、<literal>Order allow,deny</literal> を使うと、<literal>Allow from</literal> に一致しないホスト (または <literal>Deny from</literal> に一致するホスト) からのアクセスを拒否します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>Allow from</literal> and <literal>Deny from</literal> directives can be followed by an IP address, a network (such as <literal>192.168.0.0/255.255.255.0</literal>, <literal>192.168.0.0/24</literal> or even <literal>192.168.0</literal>), a hostname or a domain name, or the <literal>all</literal> keyword, designating everyone."
-msgstr ""
+msgstr "<literal>Allow from</literal> と <literal>Deny from</literal> 指示文には、IP アドレス、ネットワーク (例えば <literal>192.168.0.0/255.255.255.0</literal>、<literal>192.168.0.0/24</literal>、<literal>192.168.0</literal> など)、ホスト名、ドメイン名、全員を意味する <literal>all</literal> キーワードを使うことが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Reject by default but allow from the local network"
-msgstr ""
+msgstr "デフォルトで拒否して、ローカルネットワークからのアクセスを許可する例"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1870,46 +1881,50 @@ msgid ""
 "Allow from 192.168.0.0/16\n"
 "Deny from all\n"
 msgstr ""
+"\n"
+"Order deny,allow\n"
+"Allow from 192.168.0.0/16\n"
+"Deny from all\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Log Analyzers"
-msgstr ""
+msgstr "ログ解析ソフトウェア"
 
 #. Tag: para
 #, no-c-format
 msgid "A log analyzer is frequently installed on a web server; since the former provides the administrators with a precise idea of the usage patterns of the latter."
-msgstr ""
+msgstr "ウェブサーバには、通常ログ解析ソフトウェアがインストールされます; なぜなら、ログ解析ソフトウェアを使うことで、管理者はウェブサーバの使用形態に関する正確な知見を得ることが可能だからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators selected <emphasis>AWStats</emphasis> (<emphasis>Advanced Web Statistics</emphasis>) to analyze their Apache log files."
-msgstr ""
+msgstr "Falcot Corp 管理者は <emphasis>AWStats</emphasis> (<emphasis>Advanced Web Statistics</emphasis>) を使って Apache ログファイルを解析することに決めました。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>AWStats</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>AWStats</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>web logs analyzer</primary>"
-msgstr ""
+msgstr "<primary>ウェブログ解析ソフトウェア</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>web logs analyzer</secondary>"
-msgstr ""
+msgstr "<primary>ログ</primary><secondary>ウェブログ解析ソフトウェア</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>analyzer of web logs</primary>"
-msgstr ""
+msgstr "<primary>ウェブログの解析ソフトウェア</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The first configuration step is the customization of the <filename>/etc/awstats/awstats.conf</filename> file. The Falcot administrators keep it unchanged apart from the following parameters:"
-msgstr ""
+msgstr "最初に <filename>/etc/awstats/awstats.conf</filename> ファイルをカスタマイズして設定を行います。Falcot 管理者は以下のパラメータだけを修正し、他はそのままの状態にしています:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1922,36 +1937,43 @@ msgid ""
 "DNSLookup=1\n"
 "LoadPlugin=\"tooltips\"\n"
 msgstr ""
+"\n"
+"LogFile=\"/var/log/apache2/access.log\"\n"
+"LogFormat = \"%virtualname %host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot\"\n"
+"SiteDomain=\"www.falcot.com\"\n"
+"HostAliases=\"falcot.com REGEX[^.*\\.falcot\\.com$]\"\n"
+"DNSLookup=1\n"
+"LoadPlugin=\"tooltips\"\n"
 
 #. Tag: para
 #, no-c-format
 msgid "All these parameters are documented by comments in the template file. In particular, the <varname>LogFile</varname> and <varname>LogFormat</varname> parameters describe the location and format of the log file and the information it contains; <varname>SiteDomain</varname> and <varname>HostAliases</varname> list the various names under which the main web site is known."
-msgstr ""
+msgstr "これらのパラメータに関する説明はテンプレートファイルにコメントとして書かれています。特に、<varname>LogFile</varname> と <varname>LogFormat</varname> パラメータを使って、ログファイルの場所とログファイルに含まれる情報の書式を指定します; <varname>SiteDomain</varname> と <varname>HostAliases</varname> は主要ウェブサイトに与えられている復数の名前をリストします。"
 
 #. Tag: para
 #, no-c-format
 msgid "For high traffic sites, <varname>DNSLookup</varname> should usually not be set to <literal>1</literal>; for smaller sites, such as the Falcot one described above, this setting allows getting more readable reports that include full machine names instead of raw IP addresses."
-msgstr ""
+msgstr "トラフックの多いサイトでは、通常 <varname>DNSLookup</varname> を <literal>1</literal> に設定するべきではありません; トラフィックの少ないサイトでは、Falcot の設定と同様に、<varname>DNSLookup</varname> を設定することで、解析結果に生 IP アドレスではなく完全なマシン名が含まれるようになり、読みやすくなります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> Access to statistics"
-msgstr ""
+msgstr "<emphasis>SECURITY</emphasis> 統計へのアクセス"
 
 #. Tag: para
 #, no-c-format
 msgid "AWStats makes its statistics available on the website with no restrictions by default, but restrictions can be set up so that only a few (probably internal) IP addresses can access them; the list of allowed IP addresses needs to be defined in the <varname>AllowAccessFromWebToFollowingIPAddresses</varname> parameter"
-msgstr ""
+msgstr "AWStats は統計をウェブサイト上で利用可能にしており、デフォルトでは統計へのアクセスは制限されていません。しかし、ごく少数の (おそらく内部の) IP アドレスだけがアクセスできるように制限をかけることも可能です; アクセスを許可する IP アドレスのリストは <varname>AllowAccessFromWebToFollowingIPAddresses</varname> パラメータで定義する必要があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "AWStats will also be enabled for other virtual hosts; each virtual host needs its own configuration file, such as <filename>/etc/awstats/awstats.www.falcot.org.conf</filename>."
-msgstr ""
+msgstr "他の仮想ホストに対して AWStats を有効化することも可能です; 各仮想ホストに対して、<filename>/etc/awstats/awstats.www.falcot.org.conf</filename> などの設定ファイルを作ってください。"
 
 #. Tag: title
 #, no-c-format
 msgid "AWStats configuration file for a virtual host"
-msgstr ""
+msgstr "仮想ホスト用の AWStats 設定ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1961,33 +1983,37 @@ msgid ""
 "SiteDomain=\"www.falcot.org\"\n"
 "HostAliases=\"falcot.org\"\n"
 msgstr ""
+"\n"
+"Include \"/etc/awstats/awstats.conf\"\n"
+"SiteDomain=\"www.falcot.org\"\n"
+"HostAliases=\"falcot.org\"\n"
 
 #. Tag: para
 #, no-c-format
 msgid "AWStats uses many icons stored in the <filename>/usr/share/awstats/icon/</filename> directory. In order for these icons to be available on the web site, the Apache configuration needs to be adapted to include the following directive:"
-msgstr ""
+msgstr "AWStats は <filename>/usr/share/awstats/icon/</filename> ディレクトリに保存されている多くのアイコンを使います。ウェブサイトでこれらのアイコンを使えるようにするためには、以下の指示文を Apache の設定に追加する必要があります:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "Alias /awstats-icon/ /usr/share/awstats/icon/\n"
-msgstr ""
+msgstr "\nAlias /awstats-icon/ /usr/share/awstats/icon/\n"
 
 #. Tag: para
 #, no-c-format
 msgid "After a few minutes (and once the script has been run a few times), the results are available online: <ulink type=\"block\" url=\"http://www.falcot.com/cgi-bin/awstats.pl\" /><ulink type=\"block\" url=\"http://www.falcot.org/cgi-bin/awstats.pl\" />"
-msgstr ""
+msgstr "数分後 (スクリプトを複数回実行した後)、結果をオンラインで見ることが可能になります: <ulink type=\"block\" url=\"http://www.falcot.com/cgi-bin/awstats.pl\" /><ulink type=\"block\" url=\"http://www.falcot.org/cgi-bin/awstats.pl\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Log file rotation"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> ログファイルの循環"
 
 #. Tag: para
 #, no-c-format
 msgid "In order for the statistics to take all the logs into account, <emphasis>AWStats</emphasis> needs to be run right before the Apache log files are rotated. Looking at the <literal>prerotate</literal> directive of <filename>/etc/logrotate.d/apache2</filename> file, this can be solved by putting a symlink to <filename>/usr/share/awstats/tools/update.sh</filename> in <filename>/etc/logrotate.d/httpd-prerotate</filename>:"
-msgstr ""
+msgstr "統計は全てのログに対して取られるため、Apache ログファイルが循環される直前に <emphasis>AWStats</emphasis> を実行する必要があります。<filename>/etc/logrotate.d/apache2</filename> ファイルの <literal>prerotate</literal> 指示文から判断すると、これを解決するには、<filename>/usr/share/awstats/tools/update.sh</filename> へのシンボリックリンクを <filename>/etc/logrotate.d/httpd-prerotate</filename> に作成します:"
 
 #. Tag: screen
 #, no-c-format
@@ -2016,56 +2042,79 @@ msgid ""
 "$ <userinput>sudo ln -sf /usr/share/awstats/tools/update.sh \\\n"
 "  /etc/logrotate.d/httpd-prerotate/awstats</userinput>\n"
 msgstr ""
+"\n"
+"$ <userinput>cat /etc/logrotate.d/apache2</userinput>\n"
+"/var/log/apache2/*.log {\n"
+"  weekly\n"
+"  missingok\n"
+"  rotate 52\n"
+"  compress\n"
+"  delaycompress\n"
+"  notifempty\n"
+"  create 644 root adm\n"
+"  sharedscripts\n"
+"  postrotate\n"
+"    /etc/init.d/apache2 reload &gt; /dev/null\n"
+"  endscript\n"
+"  prerotate\n"
+"    if [ -d /etc/logrotate.d/httpd-prerotate ]; then \\\n"
+"      run-parts /etc/logrotate.d/httpd-prerotate; \\\n"
+"    fi; \\\n"
+"  endscript\n"
+"}\n"
+"$ <userinput>sudo mkdir -p /etc/logrotate.d/httpd-prerotate</userinput>\n"
+"$ <userinput>sudo ln -sf /usr/share/awstats/tools/update.sh \\\n"
+"  /etc/logrotate.d/httpd-prerotate/awstats</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Note also that the log files created by <command>logrotate</command> need to be readable by everyone, especially AWStats. In the above example, this is ensured by the <literal>create 644 root adm</literal> line (instead of the default <literal>640</literal> permissions)."
-msgstr ""
+msgstr "<command>logrotate</command> によって作成されたログファイルは誰でも、特に AWStats から、読み取り可能にしておく必要があります。上の例では、(デフォルトの <literal>640</literal> パーミッションの代わりに) <literal>create 644 root adm</literal> 行を追加することでこれを実現しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "FTP File Server"
-msgstr ""
+msgstr "FTP ファイルサーバ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>FTP (<emphasis>File Transfer Protocol</emphasis>)</primary>"
-msgstr ""
+msgstr "<primary>FTP (<emphasis>File Transfer Protocol</emphasis>)</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "FTP (<emphasis>File Transfer Protocol</emphasis>) is one of the first protocols of the Internet (RFC 959 was issued in 1985!). It was used to distribute files before the Web was even born (the HTTP protocol was created in 1990, and formally defined in its 1.0 version by RFC 1945, issued in 1996)."
-msgstr ""
+msgstr "FTP (<emphasis>File Transfer Protocol</emphasis>) は Internet における最初のプロトコルの 1 つです (RFC 959 は 1985 年に発行されました!)。FTP は Web が生まれる前にファイルを配布するために使われました (HTTP プロトコルは 1990 年に作られ、1996 年の RFC 1945 でバージョン 1.0 が正式に定義されました)。"
 
 #. Tag: para
 #, no-c-format
 msgid "This protocol allows both file uploads and file downloads; for this reason, it is still widely used to deploy updates to a website hosted by one's Internet service provider (or any other entity hosting websites). In these cases, secure access is enforced with a user identifier and password; on successful authentication, the FTP server grants read-write access to that user's home directory."
-msgstr ""
+msgstr "FTP を使うことで、ファイルのアップロードとダウンロードが可能です; この理由から、現在でも Internet サービスプロバイダによってホストされているウェブサイトの更新 (およびウェブサイトを構成する要素) を配置するために広く使われています。この場合、ユーザ識別子とパスワードを使って安全なアクセスが強制されます; 認証に成功したら、FTP サーバはそのユーザのホームディレクトリに対する読み書きアクセスを許可します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Other FTP servers are mainly used to distribute files for public downloading; Debian packages are a good example. The contents of these servers is fetched from other, geographically remote, servers; it is then made available to less distant users. This means that client authentication is not required; as a consequence, this operating mode is known as “anonymous FTP”. To be perfectly correct, the clients do authenticate with the <literal>anonymous</literal> username; the password is often, by convention, the user's email address, but the server ignores it."
-msgstr ""
+msgstr "他の FTP サーバは主に、一般のユーザがダウンロードできる、ファイルを配布するために使われます; これの良い例が Debian パッケージです。サーバの内容は別の、地理的に離れている、サーバから取得されます; ユーザは距離の近いサーバを使う事が可能になります。これはクライアント認証が不要になることを意味します; 結果的に、この挙動は「匿名 FTP」として知られています。完全に正しく言えば、クライアントは<literal>匿名の</literal>ユーザ名で認証します; パスワードは、慣例的に、ユーザの電子メールアドレスですが、サーバはこれを無視します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Many FTP servers are available in Debian (<emphasis role=\"pkg\">ftpd</emphasis>, <emphasis role=\"pkg\">proftpd-basic</emphasis>, <emphasis role=\"pkg\">pyftpd</emphasis> and so on). The Falcot Corp administrators picked <emphasis role=\"pkg\">vsftpd</emphasis> because they only use the FTP server to distribute a few files (including a Debian package repository); since they don't need advanced features, they chose to focus on the security aspects."
-msgstr ""
+msgstr "Debian では、多くの FTP サーバ (<emphasis role=\"pkg\">ftpd</emphasis>、<emphasis role=\"pkg\">proftpd-basic</emphasis>、<emphasis role=\"pkg\">pyftpd</emphasis> など) が利用可能です。Falcot Corp 管理者は <emphasis role=\"pkg\">vsftpd</emphasis> を選びました。なぜなら、管理者だけが幾つかのファイルを配布する (Debian パッケージリポジトリ用) ために FTP サーバを使うからです; 管理者は高度な機能を必要としておらず、セキュリティの観点を重視しているからです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">vsftpd</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">vsftpd</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing the package creates an <literal>ftp</literal> system user. This account is always used for anonymous FTP connections, and its home directory (<filename>/srv/ftp/</filename>) is the root of the tree made available to users connecting to this service. The default configuration (in <filename>/etc/vsftpd.conf</filename>) is very restrictive: it only allows read-only anonymous access (since the <literal>write_enable</literal> and <literal>anon_upload_enable</literal> options are disabled), and local users cannot connect with their usual username and password and access their own files (<literal>local_enable</literal> option). However, this default configuration is well-suited to the needs at Falcot Corp."
-msgstr ""
+msgstr "パッケージをインストールすると、<literal>ftp</literal> システムユーザが作成されます。このアカウントは匿名 FTP 接続の際に常に使われるものです。このアカウントのホームディレクトリ (<filename>/srv/ftp/</filename>) はこのサービスに接続するユーザ向けに利用可能にされます。デフォルト設定 (<filename>/etc/vsftpd.conf</filename>) では操作に大きな制限が加えられています: デフォルト設定では、読み込み専用アクセスだけが許可されています (<literal>write_enable</literal> と <literal>anon_upload_enable</literal> オプションが無効化されているため)。ローカルユーザは自分のユーザ名とパスワードを使って接続できないし、自分のファイルにアクセスすることもできません (<literal>local_enable</literal> オプション)。しかしながら、このデフォルト設定は Falcot Corp のニーズによく適合します。"
 
 #. Tag: title
 #, no-c-format
 msgid "NFS File Server"
-msgstr ""
+msgstr "NFS ファイルサーバ"
 
 #. Tag: para
 #, no-c-format
