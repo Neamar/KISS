@@ -109,6 +109,7 @@ public class ContactResult extends Result {
         return v;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
         if (contactPojo.icon != null) {

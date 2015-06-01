@@ -28,7 +28,7 @@ public class DataHandler extends BroadcastReceiver {
     /**
      * List all known providers
      */
-    private final ArrayList<Provider> providers = new ArrayList<>();
+    private final ArrayList<Provider<? extends Pojo>> providers = new ArrayList<>();
     private final AppProvider appProvider;
     public String currentQuery;
     private int providersLoaded = 0;

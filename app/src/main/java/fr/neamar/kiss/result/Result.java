@@ -21,12 +21,6 @@ import fr.neamar.kiss.searcher.QueryInterface;
 
 public abstract class Result {
     /**
-     * How relevant is this record ? The higher, the most probable it will be
-     * displayed
-     */
-    public int relevance = 0;
-
-    /**
      * Current information pojo
      */
     public Pojo pojo = null;
@@ -45,8 +39,7 @@ public abstract class Result {
         else if (pojo instanceof PhonePojo)
             return new PhoneResult((PhonePojo) pojo);
 
-        Log.e("log", "Unable to create record for specified pojo.");
-        return null;
+        throw new RuntimeException("Unable to create a result from POJO");
     }
 
     /**

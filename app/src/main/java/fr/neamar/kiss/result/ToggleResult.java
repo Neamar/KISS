@@ -26,7 +26,7 @@ public class ToggleResult extends Result {
         this.pojo = this.togglePojo = togglePojo;
     }
 
-    @SuppressWarnings("ResourceType")
+    @SuppressWarnings({"ResourceType", "deprecation"})
     @Override
     public View display(Context context, View v) {
         // On first run, initialize handler
