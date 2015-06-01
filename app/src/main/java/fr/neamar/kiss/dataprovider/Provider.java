@@ -11,13 +11,11 @@ public abstract class Provider<T extends Pojo> {
      */
     private String pojoScheme = "(none)://";
 
-    private LoadPojos<T> loader = null;
     ArrayList<T> pojos = new ArrayList<>();
 
     Provider(LoadPojos<T> loader) {
         super();
-        this.loader = loader;
-        this.loader.setProvider(this);
+        loader.setProvider(this);
         this.pojoScheme = loader.getPojoScheme();
         loader.execute();
     }
