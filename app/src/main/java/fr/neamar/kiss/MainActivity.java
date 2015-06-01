@@ -67,7 +67,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Store user preferences
      */
-    SharedPreferences prefs;
+    private SharedPreferences prefs;
     private BroadcastReceiver mReceiver;
     /**
      * Search text in the view
@@ -182,7 +182,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Apply some tweaks to the design, depending on the current SDK version
      */
-    public void applyDesignTweaks() {
+    private void applyDesignTweaks() {
         final int[] tweakableIds = new int[]{
                 R.id.menuButton,
                 // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
@@ -344,7 +344,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }, KissApplication.TOUCH_DELAY);
     }
 
-    protected void displayClearOnInput() {
+    private void displayClearOnInput() {
         final View clearButton = findViewById(R.id.clearButton);
         final View menuButton = findViewById(R.id.menuButton);
         if (searchEditText.getText().length() > 0) {
@@ -357,7 +357,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
-    protected void displayLoader(Boolean loaded) {
+    private void displayLoader(Boolean loaded) {
         final View loaderBar = findViewById(R.id.loaderBar);
         final View launcherButton = findViewById(R.id.launcherButton);
 
@@ -391,7 +391,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
     }
 
-    protected void displayKissBar(Boolean display) {
+    private void displayKissBar(Boolean display) {
         final View kissMenu = findViewById(R.id.main_kissbar);
 
         if (display) {
@@ -463,7 +463,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * @param query the query on which to search
      */
 
-    public void updateRecords(String query) {
+    private void updateRecords(String query) {
         if (searcher != null) {
             searcher.cancel(true);
         }

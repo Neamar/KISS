@@ -64,7 +64,7 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
 
     }
 
-    public AliasPojo makeAliasPojo(String alias, String appInfos) {
+    private AliasPojo makeAliasPojo(String alias, String appInfos) {
         AliasPojo aliasPojo = new AliasPojo();
         aliasPojo.alias = alias;
         aliasPojo.app = appInfos;

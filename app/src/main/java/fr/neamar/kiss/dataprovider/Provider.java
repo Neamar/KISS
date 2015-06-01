@@ -9,12 +9,12 @@ public abstract class Provider<T extends Pojo> {
     /**
      * Scheme used to build ids for the pojos created by this provider
      */
-    public String pojoScheme = "(none)://";
+    private String pojoScheme = "(none)://";
 
-    protected LoadPojos<T> loader = null;
-    protected ArrayList<T> pojos = new ArrayList<>();
+    private LoadPojos<T> loader = null;
+    ArrayList<T> pojos = new ArrayList<>();
 
-    public Provider(LoadPojos<T> loader) {
+    Provider(LoadPojos<T> loader) {
         super();
         this.loader = loader;
         this.loader.setProvider(this);

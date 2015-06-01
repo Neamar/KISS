@@ -12,7 +12,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
 
 public class SettingResult extends Result {
-    public final SettingPojo settingPojo;
+    private final SettingPojo settingPojo;
 
     public SettingResult(SettingPojo settingPojo) {
         super();

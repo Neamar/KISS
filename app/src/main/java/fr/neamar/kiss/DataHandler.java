@@ -155,7 +155,7 @@ public class DataHandler extends BroadcastReceiver {
      * @param limit   max number of items to retrieve. You may end with less items if favorites contains non existing items.
      * @return favorites' pojo
      */
-    protected ArrayList<Pojo> getFavorites(Context context, int limit) {
+    ArrayList<Pojo> getFavorites(Context context, int limit) {
         ArrayList<Pojo> favorites = new ArrayList<>();
 
         // Read history

@@ -21,7 +21,7 @@ import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 
 public class ContactResult extends Result {
-    public final ContactPojo contactPojo;
+    private final ContactPojo contactPojo;
     private final QueryInterface queryInterface;
 
     public ContactResult(QueryInterface queryInterface, ContactPojo contactPojo) {
@@ -140,7 +140,7 @@ public class ContactResult extends Result {
         launchMessaging(context);
     }
 
-    protected void launchMessaging(final Context context) {
+    private void launchMessaging(final Context context) {
         String url = "sms:" + contactPojo.phone;
         Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -157,7 +157,7 @@ public class ContactResult extends Result {
 
     }
 
-    protected void launchCall(final Context context) {
+    private void launchCall(final Context context) {
         String url = "tel:" + contactPojo.phone;
         Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -12,7 +12,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchResult extends Result {
-    public final SearchPojo searchPojo;
+    private final SearchPojo searchPojo;
 
     public SearchResult(SearchPojo searchPojo) {
         super();

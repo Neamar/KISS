@@ -16,12 +16,12 @@ import java.lang.reflect.Method;
 import fr.neamar.kiss.pojo.TogglePojo;
 
 public class TogglesHandler {
-    protected final Context context;
-    protected final ConnectivityManager connectivityManager;
-    protected final WifiManager wifiManager;
-    protected final BluetoothAdapter bluetoothAdapter;
-    protected final LocationManager locationManager;
-    protected final AudioManager audioManager;
+    private final Context context;
+    private final ConnectivityManager connectivityManager;
+    private final WifiManager wifiManager;
+    private final BluetoothAdapter bluetoothAdapter;
+    private final LocationManager locationManager;
+    private final AudioManager audioManager;
 
     /**
      * Initialize managers
@@ -96,15 +96,15 @@ public class TogglesHandler {
         }
     }
 
-    protected Boolean getWifiState() {
+    private Boolean getWifiState() {
         return wifiManager.isWifiEnabled();
     }
 
-    protected void setWifiState(Boolean state) {
+    private void setWifiState(Boolean state) {
         wifiManager.setWifiEnabled(state);
     }
 
-    protected Boolean getDataState() {
+    private Boolean getDataState() {
         Method dataMtd;
         try {
             dataMtd = ConnectivityManager.class.getDeclaredMethod("getMobileDataEnabled");
@@ -117,7 +117,7 @@ public class TogglesHandler {
         return false;
     }
 
-    protected void setDataState(Boolean state) {
+    private void setDataState(Boolean state) {
         Method dataMtd;
         try {
             dataMtd = ConnectivityManager.class.getDeclaredMethod("setMobileDataEnabled",
@@ -130,33 +130,33 @@ public class TogglesHandler {
         }
     }
 
-    protected Boolean getBluetoothState() {
+    private Boolean getBluetoothState() {
         return bluetoothAdapter.isEnabled();
     }
 
-    protected void setBluetoothState(Boolean state) {
+    private void setBluetoothState(Boolean state) {
         if (state)
             bluetoothAdapter.enable();
         else
             bluetoothAdapter.disable();
     }
 
-    protected Boolean getGpsState() {
+    private Boolean getGpsState() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
-    protected void setGpsState() {
+    private void setGpsState() {
         Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
         myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(myIntent);
     }
 
-    protected Boolean getSilentState() {
+    private Boolean getSilentState() {
         int state = audioManager.getRingerMode();
         return state == AudioManager.RINGER_MODE_SILENT || state == AudioManager.RINGER_MODE_VIBRATE;
     }
 
-    protected void setSilentState(Boolean state) {
+    private void setSilentState(Boolean state) {
 
         if (!state) {
             audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);

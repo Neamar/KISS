@@ -14,12 +14,12 @@ import fr.neamar.kiss.pojo.TogglePojo;
 import fr.neamar.kiss.toggles.TogglesHandler;
 
 public class ToggleResult extends Result {
-    public final TogglePojo togglePojo;
+    private final TogglePojo togglePojo;
 
     /**
      * Handler for all toggle-related queries
      */
-    protected TogglesHandler togglesHandler = null;
+    private TogglesHandler togglesHandler = null;
 
     public ToggleResult(TogglePojo togglePojo) {
         super();
