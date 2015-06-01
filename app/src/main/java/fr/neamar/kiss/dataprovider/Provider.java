@@ -6,12 +6,11 @@ import fr.neamar.kiss.loader.LoadPojos;
 import fr.neamar.kiss.pojo.Pojo;
 
 public abstract class Provider<T extends Pojo> {
+    ArrayList<T> pojos = new ArrayList<>();
     /**
      * Scheme used to build ids for the pojos created by this provider
      */
     private String pojoScheme = "(none)://";
-
-    ArrayList<T> pojos = new ArrayList<>();
 
     Provider(LoadPojos<T> loader) {
         super();

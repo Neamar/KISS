@@ -13,8 +13,8 @@ import fr.neamar.kiss.pojo.Pojo;
 public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, ArrayList<T>> {
 
     final Context context;
-    private Provider<T> provider;
     String pojoScheme = "(none)://";
+    private Provider<T> provider;
 
     LoadPojos(Context context, String pojoScheme) {
         super();
