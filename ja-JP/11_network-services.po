@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-05-31 15:12+0900\n"
+"PO-Revision-Date: 2015-06-01 17:57+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2119,142 +2119,142 @@ msgstr "NFS ファイルサーバ"
 #. Tag: para
 #, no-c-format
 msgid "NFS (<emphasis>Network File System</emphasis>) is a protocol allowing remote access to a filesystem through the network. All Unix systems can work with this protocol; when Windows systems are involved, Samba must be used instead."
-msgstr ""
+msgstr "NFS (<emphasis>Network File System</emphasis>) はネットワークを介したファイルシステムへのリモートアクセスを司るプロトコルです。全ての Unix システムは NFS プロトコルを取り扱うことが可能です; Windows システムを参加させる場合、代わりに Samba を使わなければいけません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NFS</primary>"
-msgstr ""
+msgstr "<primary>NFS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Network</emphasis></primary><secondary><emphasis>File System</emphasis></secondary>"
-msgstr ""
+msgstr "<primary><emphasis>Network</emphasis></primary><secondary><emphasis>File System</emphasis></secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>filesystem</primary><secondary>network</secondary>"
-msgstr ""
+msgstr "<primary>ファイルシステム</primary><secondary>ネットワーク</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>file</primary><secondary>server</secondary>"
-msgstr ""
+msgstr "<primary>ファイル</primary><secondary>サーバ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>server</primary><secondary>file</secondary>"
-msgstr ""
+msgstr "<primary>サーバ</primary><secondary>ファイル</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "NFS is a very useful tool, but its shortcomings must be kept in mind especially where security matters are concerned: all data goes over the network in the clear (a <emphasis>sniffer</emphasis> can intercept it); the server enforces access restrictions based on the client's IP address (which can be spoofed); and finally, when a client machine is granted access to a misconfigured NFS share, the client's root user can access all the files on the share (even those belonging to other users) since the server trusts the username it receives from the client (this is a historical limitation of the protocol)."
-msgstr ""
+msgstr "NFS はとても便利なツールですが、特にセキュリティ問題を気にする場合、NFS の欠点に注意しなければいけません; ネットワークを通過する全てのデータは平文です (<emphasis>スニファ</emphasis> を使えば内容を傍受することが可能です); サーバはクライアントの IP アドレス (これはなりすまし可能です) に基づくアクセス制限を強制します; そして最後に、クライアントマシンが正しく設定されていない NFS 共有にアクセスを許可された場合、クライアントの root ユーザは共有されている全ファイル (他のユーザに所属するファイル) にアクセスすることが可能です。なぜなら、NFS サーバはクライアントから受け取ったユーザ名を信用する (これは NFS プロトコルの歴史的な制限) からです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> NFS HOWTO"
-msgstr ""
+msgstr "<emphasis>DOCUMENTATION</emphasis> NFS HOWTO"
 
 #. Tag: para
 #, no-c-format
 msgid "Even though it is relatively old, the NFS HOWTO is full of interesting information, including methods for optimizing performance. It also describes a way to secure NFS transfers with an SSH tunnel; however, that technique precludes the use of <command>lockd</command>. <ulink type=\"block\" url=\"http://nfs.sourceforge.net/nfs-howto/\" />"
-msgstr ""
+msgstr "NFS HOWTO は比較的古い文書ですが、性能の最適化方法などの興味深い情報に満ち溢れています。さらに SSH トンネルを使って NFS を安全に使う方法を説明しています; しかしながら、SSH トンネルを使う場合 <command>lockd</command> を使えなくなります。<ulink type=\"block\" url=\"http://nfs.sourceforge.net/nfs-howto/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Securing NFS"
-msgstr ""
+msgstr "安全な NFS"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NFS</primary><secondary>security</secondary>"
-msgstr ""
+msgstr "<primary>NFS</primary><secondary>セキュリティ</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Since NFS trusts the information it receives from the network, it is vital to ensure that only the machines allowed to use it can connect to the various required RPC servers. The firewall must also block <emphasis>IP spoofing</emphasis> so as to prevent an outside machine from acting as an inside one, and access to the appropriate ports must be restricted to the machines meant to access the NFS shares."
-msgstr ""
+msgstr "NFS はネットワークから受け取った情報を信用するため、NFS の利用を許可されたマシンだけが種々の要求された RPC サーバに接続できるように制限することが不可欠です。ファイヤーウォールは外部のマシンが内部のマシンの如く振る舞うことを避けるために <emphasis>IP なりすまし</emphasis>をブロックし、NFS 共有にアクセスするように意図されたマシンだけが適切なポートにアクセスするように制限しなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> RPC"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> RPC"
 
 #. Tag: para
 #, no-c-format
 msgid "RPC (<emphasis>Remote Procedure Call</emphasis>) is a Unix standard for remote services. NFS is one such service."
-msgstr ""
+msgstr "RPC (<emphasis>Remote Procedure Call</emphasis>) はリモートサービスに関する Unix 標準です。NFS は RPC サービスの 1 つです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>RPC</primary>"
-msgstr ""
+msgstr "<primary>RPC</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Remote Procedure Call</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>Remote Procedure Call</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "RPC services register to a directory known as the <emphasis>portmapper</emphasis>. A client wishing to perform an NFS query first addresses the <emphasis>portmapper</emphasis> (on port 111, either TCP or UDP), and asks for the NFS server; the reply usually mentions port 2049 (the default for NFS). Not all RPC services necessarily use a fixed port."
-msgstr ""
+msgstr "ディレクトリに登録する RPC サービスは <emphasis>portmapper</emphasis> としても知られています。NFS 問い合わせを実行することを望むクライアントは最初に <emphasis>portmapper</emphasis> (ポート番号 111 番、TCP または UDP) を呼び出し、NFS サーバのポート番号を要求します; 通常ポート番号 2049 番 (NFS のデフォルト) が返されます。全ての RPC サービスが必ず固定されたポートで使われる必要があるわけではありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Other RPC services may be required for NFS to work optimally, including <command>rpc.mountd</command>, <command>rpc.statd</command> and <command>lockd</command>. However, these services use a random port (assigned by the <emphasis>portmapper</emphasis>) by default, which makes it difficult to filter traffic targeting these services. The Falcot Corp administrators found a work-around for this problem, described below."
-msgstr ""
+msgstr "最適な状態で NFS を使うには、<command>rpc.mountd</command>、<command>rpc.statd</command>、<command>lockd</command> などの別の RPC サービスを必要とする場合があります。しかしながら、これらの RPC サービスはデフォルトで (<emphasis>portmapper</emphasis> の割り当てた) ランダムなポートを使うため、対象のサービスに関するトラフィックをフィルタすることが難しくなります。Falcot Corp 管理者はこの問題に対する次善策を見つけました。以下のようなものです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>rpc.mountd</command></primary>"
-msgstr ""
+msgstr "<primary><command>rpc.mountd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>rpc.statd</command></primary>"
-msgstr ""
+msgstr "<primary><command>rpc.statd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>lockd</command></primary>"
-msgstr ""
+msgstr "<primary><command>lockd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>portmapper</command></primary>"
-msgstr ""
+msgstr "<primary><command>portmapper</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The first two services mentioned above are implemented by user-space programs, started respectively by <filename>/etc/init.d/nfs-kernel-server</filename> and <filename>/etc/init.d/nfs-common</filename>. They provide configuration options to force ports; the relevant files to modify to always use these options are <filename>/etc/default/nfs-kernel-server</filename> and <filename>/etc/default/nfs-common</filename>."
-msgstr ""
+msgstr "上で挙げた <command>rpc.mountd</command> と <command>rpc.statd</command> はユーザ空間プログラムとして実装されており、それぞれ <filename>/etc/init.d/nfs-kernel-server</filename> と <filename>/etc/init.d/nfs-common</filename> を使って開始されます。どちらのプログラムも、ポートを強制するための設定オプションを備えています; 常に適用する設定オプションを変更するには、<filename>/etc/default/nfs-kernel-server</filename> と <filename>/etc/default/nfs-common</filename> を編集します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>nfs-kernel-server</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>nfs-kernel-server</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/default/nfs-kernel-server</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/default/nfs-kernel-server</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>nfs-common</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>nfs-common</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/default/nfs-common</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/default/nfs-common</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/default/nfs-kernel-server</filename> file"
-msgstr ""
+msgstr "<filename>/etc/default/nfs-kernel-server</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2280,11 +2280,31 @@ msgid ""
 "# Options for rpc.svcgssd.\n"
 "RPCSVCGSSDOPTS=\n"
 msgstr ""
+"\n"
+"# Number of servers to start up\n"
+"RPCNFSDCOUNT=8\n"
+"\n"
+"# Runtime priority of server (see nice(1))\n"
+"RPCNFSDPRIORITY=0\n"
+"\n"
+"# Options for rpc.mountd.\n"
+"# If you have a port-based firewall, you might want to set up\n"
+"# a fixed port here using the --port option. For more information, \n"
+"# see rpc.mountd(8) or http://wiki.debian.org/SecuringNFS\n"
+"# To disable NFSv4 on the server, specify '--no-nfs-version 4' here\n"
+"RPCMOUNTDOPTS=\"--manage-gids --port 2048\"\n"
+"\n"
+"# Do you want to start the svcgssd daemon? It is only required for Kerberos\n"
+"# exports. Valid alternatives are \"yes\" and \"no\"; the default is \"no\".\n"
+"NEED_SVCGSSD=\n"
+"\n"
+"# Options for rpc.svcgssd.\n"
+"RPCSVCGSSDOPTS=\n"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/default/nfs-common</filename> file"
-msgstr ""
+msgstr "<filename>/etc/default/nfs-common</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2310,236 +2330,256 @@ msgid ""
 "# Do you want to start the gssd daemon? It is required for Kerberos mounts.\n"
 "NEED_GSSD=\n"
 msgstr ""
+"\n"
+"# If you do not set values for the NEED_ options, they will be attempted\n"
+"# autodetected; this should be sufficient for most people. Valid alternatives\n"
+"# for the NEED_ options are \"yes\" and \"no\".\n"
+"\n"
+"# Do you want to start the statd daemon? It is not needed for NFSv4.\n"
+"NEED_STATD=\n"
+"\n"
+"# Options for rpc.statd.\n"
+"#   Should rpc.statd listen on a specific port? This is especially useful\n"
+"#   when you have a port-based firewall. To use a fixed port, set this\n"
+"#   this variable to a statd argument like: \"--port 4000 --outgoing-port 4001\".\n"
+"#   For more information, see rpc.statd(8) or http://wiki.debian.org/SecuringNFS\n"
+"STATDOPTS=\"--port 2046 --outgoing-port 2047\"\n"
+"\n"
+"# Do you want to start the idmapd daemon? It is only needed for NFSv4.\n"
+"NEED_IDMAPD=\n"
+"\n"
+"# Do you want to start the gssd daemon? It is required for Kerberos mounts.\n"
+"NEED_GSSD=\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Once these changes are made and the services are restarted, <command>rpc.mountd</command> uses port 2048; <command>rpc.statd</command> listens on port 2046 and uses port 2047 for outgoing connections."
-msgstr ""
+msgstr "これらの変更を行った後、サービスを再起動すれば、<command>rpc.mountd</command> はポート番号 2048 番を使うようになります; <command>rpc.statd</command> はポート番号 2046 番をリッスンし、外向きの接続にポート番号 2047 番を使うようになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>lockd</command> service is handled by a kernel <emphasis>thread</emphasis> (lightweight process); this feature is built as a module on Debian kernels. The module has two options allowing to always choose the same port, <literal>nlm_udpport</literal> and <literal>nlm_tcpport</literal>. In order for these options to be systematically used, there needs to be a <filename>/etc/modprobe.d/lockd</filename> file such as the following:"
-msgstr ""
+msgstr "<command>lockd</command> サービスはカーネル<emphasis>スレッド</emphasis> (軽量プロセス) によって取り扱われます; この機能は Debian カーネルのモジュールとしてビルドされています。このモジュールは常に同じポートを使うための 2 種類のオプション <literal>nlm_udpport</literal> と <literal>nlm_tcpport</literal> を取ります。これらのオプションを系統的に使うには、以下のような <filename>/etc/modprobe.d/lockd</filename> ファイルが必要です:"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/modprobe.d/lockd</filename> file"
-msgstr ""
+msgstr "<filename>/etc/modprobe.d/lockd</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "options lockd nlm_udpport=2045 nlm_tcpport=2045\n"
-msgstr ""
+msgstr "\noptions lockd nlm_udpport=2045 nlm_tcpport=2045\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Once these parameters are set, it becomes easier to control access to the NFS service from the firewall in a fine-grained way by filtering access to ports 111 and 2045 through 2049 (both UDP and TCP)."
-msgstr ""
+msgstr "これらのパラメータを設定したら、ポート番号 111 番および 2045 番から 2049 番まで (UDP と TCP の両方) を使うアクセスをフィルタすることにより、きめ細かな設定をファイヤーウォールに適用し、NFS サービスへのアクセスを簡単に制御することが可能になります。"
 
 #. Tag: title
 #, no-c-format
 msgid "NFS Server"
-msgstr ""
+msgstr "NFS サーバ"
 
 #. Tag: para
 #, no-c-format
 msgid "The NFS server is part of the Linux kernel; in kernels provided by Debian it is built as a kernel module. If the NFS server is to be run automatically on boot, the <emphasis role=\"pkg\">nfs-kernel-server</emphasis> package should be installed; it contains the relevant start-up scripts."
-msgstr ""
+msgstr "NFS サーバは Linux カーネルの一部です; Debian の提供するカーネルでは、NFS サーバをカーネルモジュールとしてビルドしています。NFS サーバを起動時に自動的に実行するには、<emphasis role=\"pkg\">nfs-kernel-server</emphasis> パッケージをインストールしてください; このパッケージには、対応する起動スクリプトが含まれます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The NFS server configuration file, <filename>/etc/exports</filename>, lists the directories that are made available over the network (<emphasis>exported</emphasis>). For each NFS share, only the given list of machines is granted access. More fine-grained access control can be obtained with a few options. The syntax for this file is quite simple:"
-msgstr ""
+msgstr "NFS サーバ設定ファイル <filename>/etc/exports</filename> には、ネットワークを介して利用可能にする (<emphasis>エクスポートされる</emphasis>) ディレクトリをリストします。各 NFS 共有について、リストされたマシンだけがアクセスを許可されます。よりきめ細かなアクセス制御をするには、幾つかのオプションを使います。<filename>/etc/exports</filename> ファイルの構文はとても単純です:"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>exports</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>exports</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/exports</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/exports</filename></primary>"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "/directory/to/share machine1(option1,option2,...) machine2(...) ...\n"
-msgstr ""
+msgstr "\n/directory/to/share machine1(option1,option2,...) machine2(...) ...\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Each machine can be identified either by its DNS name or its IP address. Whole sets of machines can also be specified using either a syntax such as <literal>*.falcot.com</literal> or an IP address range such as <literal>192.168.0.0/255.255.255.0</literal> or <literal>192.168.0.0/24</literal>."
-msgstr ""
+msgstr "各マシンは DNS 名か IP アドレスのどちらか一方を使って識別されます。マシン群全体を指定するには、<literal>*.falcot.com</literal> などの構文を使うか <literal>192.168.0.0/255.255.255.0</literal> や <literal>192.168.0.0/24</literal> などの IP アドレス範囲を使います。"
 
 #. Tag: para
 #, no-c-format
 msgid "Directories are made available as read-only by default (or with the <literal>ro</literal> option). The <literal>rw</literal> option allows read-write access. NFS clients typically connect from a port restricted to root (in other words, below 1024); this restriction can be lifted by the <literal>insecure</literal> option (the <literal>secure</literal> option is implicit, but it can be made explicit if needed for clarity)."
-msgstr ""
+msgstr "ディレクトリはデフォルトで (または <literal>ro</literal> オプションを使えば) 読み込み専用として利用可能にされます。<literal>rw</literal> オプションを使えば読み書きアクセスが許可されます。典型的に NFS クライアントは root だけが使えるポート (言い換えれば、1024 番よりも低い番号のポート) から接続します; この制限を無くすには、<literal>insecure</literal> オプションを使います (<literal>secure</literal> オプションは暗黙的に有効化されていますが、明示する必要があればオプションを明示することも可能です)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NFS</primary><secondary>options</secondary>"
-msgstr ""
+msgstr "<primary>NFS</primary><secondary>オプション</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, the server only answers an NFS query when the current disk operation is complete (<literal>sync</literal> option); this can be disabled with the <literal>async</literal> option. Asynchronous writes increase performance a bit, but they decrease reliability since there's a data loss risk in case of the server crashing between the acknowledgment of the write and the actual write on disk. Since the default value changed recently (as compared to the historical value of NFS), an explicit setting is recommended."
-msgstr ""
+msgstr "デフォルトの状態では、サーバが NFS 問い合わせに応答するのは、現在のディスク操作が完了した (<literal>sync</literal> オプション) 後です; これを無効化するには、<literal>async</literal> オプションを使います。非同期書き込みを使うことで、性能はほんの少し向上しますが、信頼性は低下します。なぜなら、書き込み確認とディスクへの実際の書き込みの間にサーバがクラッシュした場合に、データを損失する危険性があるからです。デフォルト値が変更されたのは最近なので (NFS バージョンによってデフォルト値が違うので) 、明確に設定することを推奨します。"
 
 #. Tag: para
 #, no-c-format
 msgid "In order to not give root access to the filesystem to any NFS client, all queries appearing to come from a root user are considered by the server as coming from the <literal>nobody</literal> user. This behavior corresponds to the <literal>root_squash</literal> option, and is enabled by default. The <literal>no_root_squash</literal> option, which disables this behavior, is risky and should only be used in controlled environments. The <literal>anonuid=<replaceable>uid</replaceable></literal> and <literal>anongid=<replaceable>gid</replaceable></literal> options allow specifying another fake user to be used instead of UID/GID 65534 (which corresponds to user <literal>nobody</literal> and group <literal>nogroup</literal>)."
-msgstr ""
+msgstr "NFS クライアントがファイルシステムに root 権限でアクセスすることを許可しないために、サーバは root ユーザからの全ての問い合わせを <literal>nobody</literal> ユーザからの問い合わせとして処理します。この挙動は <literal>root_squash</literal> オプションを使った場合の挙動に対応し、このオプションはデフォルトで有効化されています。<literal>no_root_squash</literal> オプションを使うことで、この挙動は無効化されますが、このオプションは危険であり管理された環境の中でのみ使われるべきです。<literal>anonuid=<replaceable>uid</replaceable></literal> と <literal>anongid=<replaceable>gid</replaceable></literal> オプションを使うことで、UID/GID 65534 (これは <literal>nobody</literal> ユーザと <literal>nogroup</literal> グループに対応します) の代わりに使う別の偽ユーザを指定することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Other options are available; they are documented in the <citerefentry><refentrytitle>exports</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page."
-msgstr ""
+msgstr "他のオプションも利用可能です; オプションは <citerefentry><refentrytitle>exports</refentrytitle> <manvolnum>5</manvolnum></citerefentry> マニュアルページで説明されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> First installation"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> 最初のインストール"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/init.d/nfs-kernel-server</filename> boot script only starts the server if the <filename>/etc/exports</filename> lists one or more valid NFS shares. On initial configuration, once this file has been edited to contain valid entries, the NFS server must therefore be started with the following command:"
-msgstr ""
+msgstr "<filename>/etc/init.d/nfs-kernel-server</filename> 起動スクリプトは、<filename>/etc/exports</filename> に 1 つ以上の NFS 共有が含まれる場合に、サーバを起動するだけです。最初の設定で、<filename>/etc/exports</filename> ファイルを編集して適切なエントリを含めたら、NFS サーバを以下のコマンドで起動するべきです。"
 
 #. Tag: screen
 #, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server start</userinput>\n"
-msgstr ""
+msgstr "\n<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server start</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "NFS Client"
-msgstr ""
+msgstr "NFS クライアント"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>client</primary><secondary>NFS</secondary>"
-msgstr ""
+msgstr "<primary>クライアント</primary><secondary>NFS</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NFS</primary><secondary>client</secondary>"
-msgstr ""
+msgstr "<primary>NFS</primary><secondary>クライアント</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "As with other filesystems, integrating an NFS share into the system hierarchy requires mounting. Since this filesystem has its peculiarities, a few adjustments were required in the syntaxes of the <command>mount</command> command and the <filename>/etc/fstab</filename> file."
-msgstr ""
+msgstr "他のファイルシステムと同様、NFS 共有をシステムの階層構造に統合するにはマウント作業が必要です。NFS 共有ファイルシステムは特殊なので、<command>mount</command> コマンドと <filename>/etc/fstab</filename> ファイルに幾つかの調整を行うパラメータを含める必要があります。"
 
 #. Tag: title
 #, no-c-format
 msgid "Manually mounting with the <command>mount</command> command"
-msgstr ""
+msgstr "<command>mount</command> コマンドを用いた手作業によるマウント"
 
 #. Tag: screen
 #, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid arrakis.internal.falcot.com:/srv/shared /shared</userinput>"
-msgstr ""
+msgstr "\n<computeroutput># </computeroutput><userinput>mount -t nfs -o rw,nosuid arrakis.internal.falcot.com:/srv/shared /shared</userinput>"
 
 #. Tag: title
 #, no-c-format
 msgid "NFS entry in the <filename>/etc/fstab</filename> file"
-msgstr ""
+msgstr "<filename>/etc/fstab</filename> ファイルの NFS エントリ"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "arrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
-msgstr ""
+msgstr "\narrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The entry described above mounts, at system startup, the <filename>/srv/shared/</filename> NFS directory from the <literal>arrakis</literal> server into the local <filename>/shared/</filename> directory. Read-write access is requested (hence the <literal>rw</literal> parameter). The <literal>nosuid</literal> option is a protection measure that wipes any <literal>setuid</literal> or <literal>setgid</literal> bit from programs stored on the share. If the NFS share is only meant to store documents, another recommended option is <literal>noexec</literal>, which prevents executing programs stored on the share."
-msgstr ""
+msgstr "上の例で示したエントリを使うことで、システム起動時に、<literal>arrakis</literal> サーバの <filename>/srv/shared/</filename> NFS ディレクトリがローカルの <filename>/shared/</filename> ディレクトリにマウントされます。読み書きアクセスを要求しています (このため <literal>rw</literal> パラメータを追加しています)。<literal>nosuid</literal> オプションは一種の保護手段で、共有ディレクトリに保存されているプログラムに設定された <literal>setuid</literal> または <literal>setgid</literal> ビットを無効化します。文書を保存するだけの目的で NFS 共有を使っている場合、<literal>noexec</literal> オプションを追加することを推奨します。これは共有ディレクトリに含まれるプログラムの実行を避けるものです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <citerefentry><refentrytitle>nfs</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page describes all the options in some detail."
-msgstr ""
+msgstr "<citerefentry><refentrytitle>nfs</refentrytitle> <manvolnum>5</manvolnum></citerefentry> マニュアルページでは、全てのオプションをについて詳しく説明されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Setting Up Windows Shares with Samba"
-msgstr ""
+msgstr "Samba を使った Windows 共有のセットアップ"
 
 #. Tag: para
 #, no-c-format
 msgid "Samba is a suite of tools handling the SMB protocol (also known as “CIFS”) on Linux. This protocol is used by Windows for network shares and shared printers."
-msgstr ""
+msgstr "Samba は Linux 上で SMB プロトコル (「CIFS」としても知られています) を取り扱う一連のツールを指します。Windows はネットワーク共有と共有プリンタを使うために SMB プロトコルを使います。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Windows share</primary>"
-msgstr ""
+msgstr "<primary>Windows 共有</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Samba</primary>"
-msgstr ""
+msgstr "<primary>Samba</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SMB</primary>"
-msgstr ""
+msgstr "<primary>SMB</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>CIFS</primary>"
-msgstr ""
+msgstr "<primary>CIFS</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Samba can also act as an Windows domain controller. This is an outstanding tool for ensuring seamless integration of Linux servers and the office desktop machines still running Windows."
-msgstr ""
+msgstr "さらに Samba は Windows ドメインコントローラとして振る舞うことも可能です。Samba は Linux サーバと Windows が実行されているオフィスデスクトップマシンを完璧に統合する卓越したツールです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Samba Server"
-msgstr ""
+msgstr "Samba サーバ"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">samba</emphasis> package contains the main two servers of Samba 3, <command>smbd</command> and <command>nmbd</command>."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">samba</emphasis> パッケージには、Samba 3 の主要な 2 種類のサーバ <command>smbd</command> と <command>nmbd</command> が含まれます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>smbd</command></primary>"
-msgstr ""
+msgstr "<primary><command>smbd</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>nmbd</command></primary>"
-msgstr ""
+msgstr "<primary><command>nmbd</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Administrating Samba with SWAT"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> SWAT を使った Samba の管理"
 
 #. Tag: para
 #, no-c-format
 msgid "SWAT (<emphasis>Samba Web Administration Tool</emphasis>) is a web interface that allows configuring the Samba service. Since the <emphasis role=\"pkg\">swat</emphasis> package does not enable its configuration interface by default, it must be enabled manually with <command>update-inetd --enable swat</command>."
-msgstr ""
+msgstr "SWAT (<emphasis>Samba Web Administration Tool</emphasis>) はSamba サービスを設定するウェブインターフェイスです。<emphasis role=\"pkg\">swat</emphasis> パッケージはデフォルトで設定インターフェイスを有効化していないため、<command>update-inetd --enable swat</command> を使って有効化しなければいけません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SWAT</primary>"
-msgstr ""
+msgstr "<primary>SWAT</primary>"
 
 #. Tag: para
 #, no-c-format
