@@ -27,7 +27,7 @@ public class StringNormalizer {
      * @return a regexp
      */
     public static String unNormalize(String input) {
-        input = input.toLowerCase().replaceAll("(?i)([^a-z -])", "");
+        input = input.toLowerCase().replaceAll("(?i)([^a-z0-9 -])", "");
 
         return input.replaceAll("e", "[eèéêë]")
                 .replaceAll("u", "[uûù]").replaceAll("i", "[iïî]")
