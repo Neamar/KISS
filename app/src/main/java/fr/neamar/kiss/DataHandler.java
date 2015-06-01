@@ -46,9 +46,8 @@ public class DataHandler extends BroadcastReceiver {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         // Initialize providers
         appProvider = new AppProvider(context);
-        if (prefs.getBoolean("enable-apps", true)) {
-            providers.add(appProvider);
-        }
+        providers.add(appProvider);
+
         if (prefs.getBoolean("enable-contacts", true)) {
             providers.add(new ContactProvider(context));
         }
@@ -64,7 +63,7 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-settings", true)) {
             providers.add(new SettingProvider(context));
         }
-        if (prefs.getBoolean("enable-alias", true) && prefs.getBoolean("enable-apps", true)) {
+        if (prefs.getBoolean("enable-alias", true)) {
             providers.add(new AliasProvider(context, appProvider));
         }
     }
