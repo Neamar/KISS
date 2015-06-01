@@ -20,7 +20,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
     /**
      * This path is used to mask out the outer edges of a circle on this View
      */
-    Path clipPath;
+    private Path clipPath;
 
     public RoundedQuickContactBadge(Context context) {
         super(context);

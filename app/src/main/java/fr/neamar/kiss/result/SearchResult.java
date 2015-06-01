@@ -1,10 +1,12 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.TargetApi;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,7 +14,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchResult extends Result {
-    public final SearchPojo searchPojo;
+    private final SearchPojo searchPojo;
 
     public SearchResult(SearchPojo searchPojo) {
         super();
@@ -31,13 +33,16 @@ public class SearchResult extends Result {
         return v;
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void doLaunch(Context context, View v) {
         Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
         search.putExtra(SearchManager.QUERY, searchPojo.query);
-        // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.
-        // Adding FLAG_ACTIVITY_CLEAR_TASK seems to fix the problem.
-        search.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.
+            // Adding FLAG_ACTIVITY_CLEAR_TASK seems to fix the problem.
+            search.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        }
         search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         try {

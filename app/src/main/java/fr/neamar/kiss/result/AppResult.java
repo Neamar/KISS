@@ -13,9 +13,9 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.AppPojo;
 
 public class AppResult extends Result {
-    public final AppPojo appPojo;
+    private final AppPojo appPojo;
 
-    protected final ComponentName className;
+    private final ComponentName className;
 
     public AppResult(AppPojo appPojo) {
         super();

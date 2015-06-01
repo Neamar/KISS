@@ -12,7 +12,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
 
 public class SettingResult extends Result {
-    public final SettingPojo settingPojo;
+    private final SettingPojo settingPojo;
 
     public SettingResult(SettingPojo settingPojo) {
         super();
@@ -33,7 +33,7 @@ public class SettingResult extends Result {
         return v;
     }
 
-    @SuppressWarnings("ResourceType")
+    @SuppressWarnings({"ResourceType", "deprecation"})
     @Override
     public Drawable getDrawable(Context context) {
         if (settingPojo.icon != -1) {

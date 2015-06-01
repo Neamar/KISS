@@ -21,15 +21,9 @@ import fr.neamar.kiss.searcher.QueryInterface;
 
 public abstract class Result {
     /**
-     * How relevant is this record ? The higher, the most probable it will be
-     * displayed
-     */
-    public int relevance = 0;
-
-    /**
      * Current information pojo
      */
-    public Pojo pojo = null;
+    Pojo pojo = null;
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
         if (pojo instanceof AppPojo)
@@ -45,8 +39,7 @@ public abstract class Result {
         else if (pojo instanceof PhonePojo)
             return new PhoneResult((PhonePojo) pojo);
 
-        Log.e("log", "Unable to create record for specified pojo.");
-        return null;
+        throw new RuntimeException("Unable to create a result from POJO");
     }
 
     /**
@@ -73,7 +66,7 @@ public abstract class Result {
      *
      * @param context android context
      */
-    public abstract void doLaunch(Context context, View v);
+    protected abstract void doLaunch(Context context, View v);
 
     /**
      * How to launch this record "quickly" ? Most probably, same as doLaunch().
@@ -101,7 +94,7 @@ public abstract class Result {
      * @param id      id to inflate
      * @return the view specified by the id
      */
-    protected View inflateFromId(Context context, int id) {
+    View inflateFromId(Context context, int id) {
         LayoutInflater vi = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         return vi.inflate(id, null);
@@ -113,7 +106,7 @@ public abstract class Result {
      * @param text to highlight
      * @return text displayable on a textview
      */
-    protected Spanned enrichText(String text) {
+    Spanned enrichText(String text) {
         return Html.fromHtml(text.replaceAll("\\{(.+)\\}", "<font color=#4caf50>$1</font>"));
     }
 
@@ -122,7 +115,7 @@ public abstract class Result {
      *
      * @param context android context
      */
-    protected void recordLaunch(Context context) {
+    void recordLaunch(Context context) {
         // Save in history
         // TODO: move to DataHandler
         DBHelper.insertHistory(context, KissApplication.getDataHandler(context).currentQuery,

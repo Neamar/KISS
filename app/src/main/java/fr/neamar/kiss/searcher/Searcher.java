@@ -11,9 +11,9 @@ import fr.neamar.kiss.result.Result;
 
 public abstract class Searcher extends AsyncTask<Void, Void, List<Pojo>> {
 
-    protected final MainActivity activity;
+    final MainActivity activity;
 
-    public Searcher(MainActivity activity) {
+    Searcher(MainActivity activity) {
         super();
         this.activity = activity;
     }

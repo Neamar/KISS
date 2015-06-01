@@ -10,7 +10,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.PhonePojo;
 
 public class PhoneResult extends Result {
-    public final PhonePojo phonePojo;
+    private final PhonePojo phonePojo;
 
     public PhoneResult(PhonePojo phonePojo) {
         super();

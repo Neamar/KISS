@@ -10,7 +10,7 @@ import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 
 public class PhoneProvider extends Provider<PhonePojo> {
-    public boolean deviceIsPhoneEnabled = false;
+    private boolean deviceIsPhoneEnabled = false;
 
     public PhoneProvider(Context context) {
         super(new LoadPhonePojos(context));

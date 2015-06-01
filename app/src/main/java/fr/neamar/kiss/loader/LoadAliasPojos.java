@@ -1,9 +1,11 @@
 package fr.neamar.kiss.loader;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.os.Build;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +18,11 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
         super(context, "none://");
     }
 
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
     @Override
     protected ArrayList<AliasPojo> doInBackground(Void... params) {
         final PackageManager pm = context.getPackageManager();
         ArrayList<AliasPojo> alias = new ArrayList<>();
-
-        String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
-        if (contactApp != null) {
-            alias.add(makeAliasPojo("contacts", contactApp));
-            alias.add(makeAliasPojo("people", contactApp));
-        }
 
         String phoneApp = getApp(pm, Intent.ACTION_DIAL);
         if (phoneApp != null) {
@@ -34,37 +31,45 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
             alias.add(makeAliasPojo("phone", phoneApp));
         }
 
-        String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
-        if (browserApp != null) {
-            alias.add(makeAliasPojo("internet", browserApp));
-            alias.add(makeAliasPojo("web", browserApp));
-            alias.add(makeAliasPojo("browser", browserApp));
-        }
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
+            if (contactApp != null) {
+                alias.add(makeAliasPojo("contacts", contactApp));
+                alias.add(makeAliasPojo("people", contactApp));
+            }
 
-        String mailApp = getAppByCategory(pm, Intent.CATEGORY_APP_EMAIL);
-        if (mailApp != null) {
-            alias.add(makeAliasPojo("email", mailApp));
-            alias.add(makeAliasPojo("mail", mailApp));
-        }
+            String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
+            if (browserApp != null) {
+                alias.add(makeAliasPojo("internet", browserApp));
+                alias.add(makeAliasPojo("web", browserApp));
+                alias.add(makeAliasPojo("browser", browserApp));
+            }
 
-        String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
-        if (marketApp != null) {
-            alias.add(makeAliasPojo("market", marketApp));
-            alias.add(makeAliasPojo("store", marketApp));
-        }
+            String mailApp = getAppByCategory(pm, Intent.CATEGORY_APP_EMAIL);
+            if (mailApp != null) {
+                alias.add(makeAliasPojo("email", mailApp));
+                alias.add(makeAliasPojo("mail", mailApp));
+            }
 
-        String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
-        if (messagingApp != null) {
-            alias.add(makeAliasPojo("text", messagingApp));
-            alias.add(makeAliasPojo("sms", messagingApp));
-            alias.add(makeAliasPojo("messaging", messagingApp));
+            String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
+            if (marketApp != null) {
+                alias.add(makeAliasPojo("market", marketApp));
+                alias.add(makeAliasPojo("store", marketApp));
+            }
+
+            String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
+            if (messagingApp != null) {
+                alias.add(makeAliasPojo("text", messagingApp));
+                alias.add(makeAliasPojo("sms", messagingApp));
+                alias.add(makeAliasPojo("messaging", messagingApp));
+            }
         }
 
         return alias;
 
     }
 
-    public AliasPojo makeAliasPojo(String alias, String appInfos) {
+    private AliasPojo makeAliasPojo(String alias, String appInfos) {
         AliasPojo aliasPojo = new AliasPojo();
         aliasPojo.alias = alias;
         aliasPojo.app = appInfos;
