@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-06-01 17:57+0900\n"
+"PO-Revision-Date: 2015-06-02 19:00+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2584,107 +2584,107 @@ msgstr "<primary>SWAT</primary>"
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>SWAT</emphasis> then becomes available at the <literal>http://localhost:901</literal> URL. Accessing it means using the root account (and its usual password). Note that SWAT rewrites the <filename>smb.conf</filename> in its own idiom, so it makes sense to make a backup copy beforehand if you're only interested in testing this tool."
-msgstr ""
+msgstr "<emphasis>SWAT</emphasis> は <literal>http://localhost:901</literal> URL から利用可能になります。<literal>http://localhost:901</literal> にアクセスすることは、root アカウント (と root パスワード) を使うことを意味します。SWAT は <filename>smb.conf</filename> を独自の表現で書き換える事に注意してください。SWAT をテストすることだけに興味が有る場合、事前に <filename>smb.conf</filename>  のバックアップコピーを取ることが賢明です。"
 
 #. Tag: para
 #, no-c-format
 msgid "SWAT is very user-friendly; its interface includes an assistant that allows defining the server's role in three questions. All global options can still be configured, as well as those for all the existing shares, and of course new shares can be added. Each option comes with a link to the relevant documentation."
-msgstr ""
+msgstr "SWAT はとてもユーザフレンドリーです; そのインターフェイスには、3 つの質問を使ってサーバの役割を定義するための補助機能が含まれます。全てのグローバルオプションおよび既存の共有に対するオプションを設定したり、もちろん新しい共有を追加することも可能です。それぞれのオプションには、対応する文書へのリンクが併記されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Unfortunately SWAT is no longer actively maintained and will be dropped from the next version of Debian, known as <emphasis role=\"distribution\">Jessie</emphasis>."
-msgstr ""
+msgstr "残念なことに、SWAT はもはや活発に保守されていないため、Debian の次期バージョンである <emphasis role=\"distribution\">Jessie</emphasis> では提供されない予定です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> Going further"
-msgstr ""
+msgstr "<emphasis>DOCUMENTATION</emphasis> さらなる情報"
 
 #. Tag: para
 #, no-c-format
 msgid "The Samba server is extremely configurable and versatile, and can address a great many different use cases matching very different requirements and network architectures. This book only focuses on the use case where Samba is used as main domain controller, but it can also be a simple server on the domain and delegate authentication to the main controller (which could be a Windows server)."
-msgstr ""
+msgstr "Samba サーバは非常に細かく設定可能で多目的に使えます。そして、全く異なる要求やネットワークアーキテクチャに応じて、様々な用途に使われます。この本では、Samba を主要なドメインコントローラとして使う用途に注目します。しかし、Samba をあるドメインの単純なサーバとして使ったり、主要なコントローラ (Windows サーバなど) への認証を代理するために使うことも可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>domain controller</primary>"
-msgstr ""
+msgstr "<primary>ドメインコントローラ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Windows domain</primary>"
-msgstr ""
+msgstr "<primary>Windows ドメイン</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The documentation available in the <emphasis role=\"pkg\">samba-doc</emphasis> package is very well written. In particular, the <citetitle><foreignphrase>Samba 3 By Example</foreignphrase></citetitle> document (available as <filename>/usr/share/doc/samba-doc/htmldocs/Samba3-ByExample/index.html</filename>) deals with a concrete use case that evolves alongside the growing company."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">samba-doc</emphasis> パッケージに含まれる文書はとても良く書けています。特に、<citetitle><foreignphrase>Samba 3 By Example</foreignphrase></citetitle> 文書 (<filename>/usr/share/doc/samba-doc/htmldocs/Samba3-ByExample/index.html</filename> から読めます) では、会社の成長と共に適用するべき具体的な設定例が説明されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Authenticating with a Windows Server"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> 認証にWindows サーバを使う"
 
 #. Tag: para
 #, no-c-format
 msgid "Winbind gives system administrators the option of using a Windows server as an authentication server. Winbind also integrates cleanly with PAM and NSS. This allows setting up Linux machines where all users of a Windows domain automatically get an account."
-msgstr ""
+msgstr "Winbind を使うことで、システム管理者は Windows サーバを認証サーバとして使う選択肢を与えられます。Winbind は PAM と NSS を上手く統合します。この事により、Windows ドメインの全ユーザが自動的にアカウントを取得できる Linux マシン群をセットアップすることが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Winbind</primary>"
-msgstr ""
+msgstr "<primary>Winbind</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "More information can be found in the <filename>/usr/share/doc/samba-doc/htmldocs/Samba3-HOWTO/winbind.html</filename> file."
-msgstr ""
+msgstr "より詳しい情報は <filename>/usr/share/doc/samba-doc/htmldocs/Samba3-HOWTO/winbind.html</filename> ファイルで説明されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring with <command>debconf</command>"
-msgstr ""
+msgstr "<command>debconf</command> を使った設定"
 
 #. Tag: para
 #, no-c-format
 msgid "The package sets up a minimal configuration based on the answers to a few Debconf questions asked during the initial installation; this configuration step can be replayed later with <command>dpkg-reconfigure samba-common samba</command>."
-msgstr ""
+msgstr "このパッケージは最初のインストール時に尋ねた数個の Debconf 質問に対する回答に基づいた最低限の設定を行います。<command>dpkg-reconfigure samba-common samba</command> を使えば、後から各設定をやり直す事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The first piece of required information is the name of the workgroup where the Samba server will belong (the answer is <literal>FALCOTNET</literal> in our case). Another question asks whether passwords should be encrypted. The answer is that they should, because it's a requirement for the most recent Windows clients; besides, this increases security. The counterpart is that this required managing Samba passwords separately from the Unix passwords."
-msgstr ""
+msgstr "最初の質問で、Samba サーバが所属するワークグループの名前を尋ねられます (我々の場合、この質問に対する回答は <literal>FALCOTNET</literal> です)。もう 1 つの質問で、パスワードを暗号化するか否かを尋ねられます。この質問には、暗号化するべきと答えます。なぜなら、最近の Windows クライアントはほとんど暗号化を要求するからです; 加えて、パスワードの暗号化は安全性を高めます。パスワードの暗号化の欠点は、Samba パスワードを Unix パスワードと別に管理する必要がある点です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The package also proposes identifying the WINS server from the information provided by the DHCP daemon. The Falcot Corp administrators rejected this option, since they intend to use the Samba server itself as the WINS server."
-msgstr ""
+msgstr "次の質問で、DHCP デーモンによって提供される情報を使って WINS サーバを識別するか否かを尋ねられます。Falcot Corp 管理者はこのオプションを拒否しました。なぜなら、管理者は Samba サーバ自体を WINS サーバとして利用する予定だからです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>WINS</primary>"
-msgstr ""
+msgstr "<primary>WINS</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The last question is about whether servers should be started by <command>inetd</command> or as stand-alone daemons. Using <command>inetd</command> is only interesting when Samba is rarely used; the Falcot administrators therefore picked stand-alone daemons."
-msgstr ""
+msgstr "最後の質問で、サーバを <command>inetd</command> を使って起動するか、独立したデーモンとして運用するかを尋ねられます。<command>inetd</command> を使う選択肢は Samba を滅多に使わない場合を除けば効果的とはいえません; このため Falcot の管理者は独立したデーモンとして運用することを選びました。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring Manually"
-msgstr ""
+msgstr "手作業による設定"
 
 #. Tag: title
 #, no-c-format
 msgid "Changes to <filename>smb.conf</filename>"
-msgstr ""
+msgstr "<filename>smb.conf</filename> の変更"
 
 #. Tag: para
 #, no-c-format
 msgid "The requirements at Falcot require other options to be modified in the <filename>/etc/samba/smb.conf</filename> configuration file. The following excerpts summarize the changes that were effected in the <literal>[global]</literal> section."
-msgstr ""
+msgstr "Falcot の用途に対応させるためには、<filename>/etc/samba/smb.conf</filename> 設定ファイルに含まれる他のオプションを変更することが必要です。以下の抜粋は <literal>[global]</literal> セクションに対する変更点を要約したものです。"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2740,71 +2740,121 @@ msgid ""
 "   printing = cups <co id=\"smb.conf.printing\"></co>\n"
 "   printcap name = cups\n"
 msgstr ""
+"\n"
+"[global]\n"
+"\n"
+"## Browsing/Identification ###\n"
+"\n"
+"# Change this to the workgroup/NT-domain name your Samba server will part of\n"
+"   workgroup = FALCOTNET\n"
+"\n"
+"# server string is the equivalent of the NT Description field\n"
+"   server string = %h server (Samba %v)\n"
+"\n"
+"# Windows Internet Name Serving Support Section:\n"
+"# WINS Support - Tells the NMBD component of Samba to enable its WINS Server\n"
+"   wins support = yes <co id=\"smb.conf.wins\"></co>\n"
+"\n"
+"[...]\n"
+"\n"
+"####### Authentication #######\n"
+"\n"
+"# \"security = user\" is always a good idea. This will require a Unix account\n"
+"# in this server for every user accessing the server. See\n"
+"# /usr/share/doc/samba-doc/htmldocs/Samba3-HOWTO/ServerType.html \n"
+"# in the samba-doc package for details.\n"
+"   security = user <co id=\"smb.conf.security\"></co>\n"
+"\n"
+"# You may wish to use password encryption.  See the section on\n"
+"# 'encrypt passwords' in the smb.conf(5) manpage before enabling.\n"
+"   encrypt passwords = true\n"
+"\n"
+"# If you are using encrypted passwords, Samba will need to know what\n"
+"# password database type you are using.\n"
+"   passdb backend = tdbsam\n"
+"\n"
+"[...]\n"
+"\n"
+"########## Printing ##########\n"
+"\n"
+"# If you want to automatically load your printer list rather\n"
+"# than setting them up individually then you'll need this\n"
+"   load printers = yes <co id=\"smb.conf.loadprinters\"></co>\n"
+"\n"
+"# lpr(ng) printing. You may wish to override the location of the\n"
+"# printcap file\n"
+";   printing = bsd\n"
+";   printcap name = /etc/printcap\n"
+"\n"
+"# CUPS printing.  See also the cupsaddsmb(8) manpage in the\n"
+"# cups-client package.\n"
+"   printing = cups <co id=\"smb.conf.printing\"></co>\n"
+"   printcap name = cups\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Indicates that Samba should act as a Netbios name server (WINS) for the local network."
-msgstr ""
+msgstr "Samba がローカルネットワークの Netbios ネームサーバ (WINS) として振る舞うことを意味します。"
 
 #. Tag: para
 #, no-c-format
 msgid "This is the default value for this parameter; however, since it is central to the Samba configuration, filling it explicitly is recommended. Each user must authenticate before accessing any share."
-msgstr ""
+msgstr "これは security パラメータのデフォルト値です; しかしながら、security パラメータは Samba 設定の要ですから、明示的に指定することをお勧めします。各ユーザは、共有の種類に関わらず必ず共有にアクセスする前に認証を必要とします。"
 
 #. Tag: para
 #, no-c-format
 msgid "Tells Samba to automatically share all local printers that exist in the CUPS configuration. Restricting access to these printers is still possible, by adding appropriate sections."
-msgstr ""
+msgstr "Samba が CUPS 設定に存在する全てのローカルプリンタを自動的に共有することを意味します。適切なセクションを追加すれば、これらのプリンタへのアクセスを制限することも可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Specifies the printing system in use; in our case, CUPS."
-msgstr ""
+msgstr "使用する印刷システムを指定します; 我々の場合、CUPS です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Adding Users"
-msgstr ""
+msgstr "ユーザの追加"
 
 #. Tag: para
 #, no-c-format
 msgid "Each Samba user needs an account on the server; the Unix accounts must be created first, then the user needs to be registered in Samba's database. The Unix step is done quite normally (using <command>adduser</command> for instance)."
-msgstr ""
+msgstr "各ユーザはサーバにアカウントを必要とします; 管理者は最初に Unix アカウントを作成し、そのアカウントを Samba のデータベースに登録する必要があります。Unix アカウントを作成する段階は通常通り行います (例えば <command>adduser</command> を使います)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Adding an existing user to the Samba database is a matter of running the <command>smbpasswd -a <replaceable>user</replaceable></command> command; this command asks for the password interactively."
-msgstr ""
+msgstr "既存のユーザを Samba データベースに追加するには、<command>smbpasswd -a <replaceable>user</replaceable></command> コマンドを実行します。コマンドは対話的にパスワードを尋ねます。"
 
 #. Tag: para
 #, no-c-format
 msgid "A user can be deleted with the <command>smbpasswd -x <replaceable>user</replaceable></command> command. A Samba account can also be temporarily disabled (with <command>smbpasswd -d <replaceable>user</replaceable></command>) and re-enabled later (with <command>smbpasswd -e <replaceable>user</replaceable></command>)."
-msgstr ""
+msgstr "ユーザを削除するには、<command>smbpasswd -x <replaceable>user</replaceable></command> コマンドを実行します。Samba アカウントを一時的に利用不可能にしたり (<command>smbpasswd -d <replaceable>user</replaceable></command> を使います)、再度利用可能にすること (<command>smbpasswd -e <replaceable>user</replaceable></command> を使います) も可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Switching to Domain Controller"
-msgstr ""
+msgstr "ドメインコントローラの切り替え"
 
 #. Tag: para
 #, no-c-format
 msgid "This section documents how the Falcot administrators went even further, by turning the Samba server into a domain controller providing roaming profiles (which allow users to find their desktop no matter what machine they connect to)."
-msgstr ""
+msgstr "この節では、Falcot 管理者が更に行った設定について、説明しています。ここで Falcot 管理者は Samba サーバをローミングプロファイルを提供するドメインコントローラとして調整しています (こうすることで、接続したマシンに依存せずユーザは自分のデスクトップを見つけ出すことが可能です)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>roaming profiles</primary>"
-msgstr ""
+msgstr "<primary>ローミングプロファイル</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>profiles, roaming</primary>"
-msgstr ""
+msgstr "<primary>プロファイル、ローミング</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "They first added a few extra directives in the <literal>[global]</literal> section of the configuration file:"
-msgstr ""
+msgstr "最初に管理者は設定ファイルの <literal>[global]</literal> セクションに数個の追加的指示文を追加しました:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2815,31 +2865,36 @@ msgid ""
 "logon path = \\\\%L\\profiles\\%U    <co id=\"smb.conf.logonpath\"></co>\n"
 "logon script = scripts/logon.bat <co id=\"smb.conf.logonscript\"></co>\n"
 msgstr ""
+"\n"
+"domain logons = yes              <co id=\"smb.conf.domainlogons\"></co>\n"
+"preferred master = yes           \n"
+"logon path = \\\\%L\\profiles\\%U    <co id=\"smb.conf.logonpath\"></co>\n"
+"logon script = scripts/logon.bat <co id=\"smb.conf.logonscript\"></co>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Enables the domain controller functionality."
-msgstr ""
+msgstr "ドメインコントローラの機能を有効化します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Specifies the location of the users' home directories. These are stored on a dedicated share, which allows enabling specific options (in particular, <literal>profile acls</literal>, a requirement for compatibility with Windows 2000, XP and Vista)."
-msgstr ""
+msgstr "ユーザのホームディレクトリの位置を指定します。ユーザのホームディレクトリは専用の共有に保存されており、特定のオプション (特に Windows 2000、XP、Vista と互換性を保つために必要な <literal>profile acls</literal> ) を有効化することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Specifies the <emphasis>batch</emphasis> (non-interactive) script that is to be run on the client Windows machine every time a session is opened. In this case, <filename>/var/lib/samba/netlogon/scripts/logon.bat</filename>. The script needs to be in DOS format, where the lines are separated by a carriage-return character and a line-feed character; if the file was created on Linux, running <command>unix2dos</command> will convert it."
-msgstr ""
+msgstr "<emphasis>batch</emphasis> (非対話的) スクリプトを指定します。このスクリプトはセッションの開始毎にクライアントの Windows マシンで実行されます。この場合、<filename>/var/lib/samba/netlogon/scripts/logon.bat</filename> です。このスクリプトは DOS フォーマットにしてください。つまり各行をキャリッジリターン文字とラインフィード文字で分割してください; このスクリプトを Linux で作成した場合、<command>unix2dos</command> を使って変換してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "The commands used most widely in these scripts allow the automatic creation of network drives and synchronizing the system time."
-msgstr ""
+msgstr "このスクリプトの中では、ネットワークドライブを自動作成したり、システム時間を同期するためのコマンドがよく使われます。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>logon.bat</filename> file"
-msgstr ""
+msgstr "<filename>logon.bat</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2849,11 +2904,15 @@ msgid ""
 "net use H: /home\n"
 "net use U: \\\\ARRAKIS\\utils\n"
 msgstr ""
+"\n"
+"net time \\\\ARRAKIS /set /yes\n"
+"net use H: /home\n"
+"net use U: \\\\ARRAKIS\\utils\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Two extra shares, and their associated directories, were also created:"
-msgstr ""
+msgstr "以下のとおり 2 つの追加的共有および関連するディレクトリを作成しました。"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2872,66 +2931,79 @@ msgid ""
 "read only = No\n"
 "profile acls = Yes\n"
 msgstr ""
+"\n"
+"[netlogon]\n"
+"comment = Network Logon Service\n"
+"path = /var/lib/samba/netlogon\n"
+"guest ok = yes\n"
+"writable = no\n"
+"share modes = no\n"
+"\n"
+"[profiles]\n"
+"comment = Profile Share\n"
+"path = /var/lib/samba/profiles\n"
+"read only = No\n"
+"profile acls = Yes\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The home directories for all users must also be created (as <filename>/var/lib/samba/profiles/<replaceable>user</replaceable></filename>), and each of them must be owned by the matching user."
-msgstr ""
+msgstr "全てのユーザのホームディレクトリが (<filename>/var/lib/samba/profiles/<replaceable>user</replaceable></filename> に) 作成され、各ホームディレクトリは必ず対応するユーザに所有されていなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Samba Client"
-msgstr ""
+msgstr "Samba クライアント"
 
 #. Tag: para
 #, no-c-format
 msgid "The client features in Samba allow a Linux machine to access Windows shares and shared printers. The required programs are available in the <emphasis role=\"pkg\">cifs-utils</emphasis> and <emphasis role=\"pkg\">smbclient</emphasis> packages."
-msgstr ""
+msgstr "Samba のクライアント機能を使うことで、Linux マシンは Windows 共有と共有プリンタへアクセスすることが可能になります。必要なプログラムは <emphasis role=\"pkg\">cifs-utils</emphasis> と <emphasis role=\"pkg\">smbclient</emphasis> パッケージに含まれます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>smbclient</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>smbclient</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>cifs-utils</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>cifs-utils</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "The <command>smbclient</command> Program"
-msgstr ""
+msgstr "<command>smbclient</command> プログラム"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>smbclient</command> program queries SMB servers. It accepts a <literal>-U <replaceable>user</replaceable></literal> option, for connecting to the server under a specific identity. <command>smbclient //<replaceable>server</replaceable>/<replaceable>share</replaceable></command> accesses the share in an interactive way similar to the command-line FTP client. <command>smbclient -L <replaceable>server</replaceable></command> lists all available (and visible) shares on a server."
-msgstr ""
+msgstr "<command>smbclient</command> プログラムは SMB サーバに問い合わせを行います。特定のユーザ識別情報を使ってサーバに接続するには、<literal>-U <replaceable>user</replaceable></literal> オプションを使います。<command>smbclient //<replaceable>server</replaceable>/<replaceable>share</replaceable></command> はコマンドライン FTP クライアントに類似した対話的方法を使って共有にアクセスします。<command>smbclient -L <replaceable>server</replaceable></command> は対象のサーバで利用可能な (見える) 共有を全部リストします。"
 
 #. Tag: title
 #, no-c-format
 msgid "Mounting Windows Shares"
-msgstr ""
+msgstr "Windows 共有のマウント"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>mount</command> command allows mounting a Windows share into the Linux filesystem hierarchy (with the help of <command>mount.cifs</command> provided by <emphasis role=\"pkg\">cifs-utils</emphasis>)."
-msgstr ""
+msgstr "<command>mount</command> コマンドを使うことで、Windows 共有を Linux ファイルシステム階層にマウントすることが可能になります (<emphasis role=\"pkg\">cifs-utils</emphasis> の提供する <command>mount.cifs</command> の助けを借ります)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mount.cifs</command></primary>"
-msgstr ""
+msgstr "<primary><command>mount.cifs</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Windows share, mounting</primary>"
-msgstr ""
+msgstr "<primary>Windows 共有、マウント</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Mounting a Windows share"
-msgstr ""
+msgstr "Windows 共有をマウントする"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2940,11 +3012,14 @@ msgid ""
 "mount -t cifs //arrakis/shared /shared \\\n"
 "      -o credentials=/etc/smb-credentials\n"
 msgstr ""
+"\n"
+"mount -t cifs //arrakis/shared /shared \\\n"
+"      -o credentials=/etc/smb-credentials\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/smb-credentials</filename> file (which must not be readable by users) has the following format:"
-msgstr ""
+msgstr "<filename>/etc/smb-credentials</filename> ファイルは (ユーザはこのファイルを読み込むことはできません) 以下の書式で書かれています:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2953,158 +3028,161 @@ msgid ""
 "username = <replaceable>user</replaceable>\n"
 "password = <replaceable>password</replaceable>"
 msgstr ""
+"\n"
+"username = <replaceable>user</replaceable>\n"
+"password = <replaceable>password</replaceable>"
 
 #. Tag: para
 #, no-c-format
 msgid "Other options can be specified on the command-line; their full list is available in the <citerefentry><refentrytitle>mount.cifs</refentrytitle> <manvolnum>1</manvolnum></citerefentry> manual page. Two options in particular can be interesting: <literal>uid</literal> and <literal>gid</literal> allow forcing the owner and group of files available on the mount, so as not to restrict access to root."
-msgstr ""
+msgstr "他のオプションはコマンドラインで指定します; オプションの完全なリストは <citerefentry><refentrytitle>mount.cifs</refentrytitle> <manvolnum>1</manvolnum></citerefentry> マニュアルページに書かれています。オプションの中でも特に次の 2 種類は興味深いです; <literal>uid</literal> と <literal>gid</literal> を使うことで、マウントされたことで利用可能になったファイルの所有者とグループを指定したものに強制することが可能になります。これを指定することで、root 以外のユーザもマウント先にアクセス可能になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "A mount of a Windows share can also be configured in <filename>/etc/fstab</filename>:"
-msgstr ""
+msgstr "<filename>/etc/fstab</filename> の中に設定を書いて、Windows 共有をマウントすることも可能です:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "//<replaceable>server</replaceable>/shared /shared cifs credentials=/etc/smb-credentials\n"
-msgstr ""
+msgstr "\n//<replaceable>server</replaceable>/shared /shared cifs credentials=/etc/smb-credentials\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Unmounting a SMB/CIFS share is done with the standard <command>umount</command> command."
-msgstr ""
+msgstr "SMB/CIFS 共有をアンマウントするには、標準的な <command>umount</command> コマンドを使います。"
 
 #. Tag: title
 #, no-c-format
 msgid "Printing on a Shared Printer"
-msgstr ""
+msgstr "共有プリンタを用いた印刷"
 
 #. Tag: para
 #, no-c-format
 msgid "CUPS is an elegant solution for printing from a Linux workstation to a printer shared by a Windows machine. When the <emphasis role=\"pkg\">smbclient</emphasis> is installed, CUPS allows installing Windows shared printers automatically."
-msgstr ""
+msgstr "CUPS は Linux ワークステーションから Windows マシンによって共有されているプリンタに印刷を行う洗練された解決策です。<emphasis role=\"pkg\">smbclient</emphasis> がインストールされている場合、CUPS を使うことで、Windows 共有プリンタを自動的にインストールすることが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>printing</primary><secondary>network</secondary>"
-msgstr ""
+msgstr "<primary>印刷</primary><secondary>ネットワーク</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Here are the required steps:"
-msgstr ""
+msgstr "以下に必要な各段階を示します:"
 
 #. Tag: para
 #, no-c-format
 msgid "Enter the CUPS configuration interface: <literal>http://localhost:631/admin</literal>"
-msgstr ""
+msgstr "CUPS 設定インターフェイスにアクセスします: <literal>http://localhost:631/admin</literal>"
 
 #. Tag: para
 #, no-c-format
 msgid "Click on “Add Printer”."
-msgstr ""
+msgstr "「Add Printer」をクリックします。"
 
 #. Tag: para
 #, no-c-format
 msgid "Choose the printer device, pick “Windows Printer via SAMBA”."
-msgstr ""
+msgstr "プリンタデバイスを選択し、「Windows Printer via SAMBA」を選んでください。"
 
 #. Tag: para
 #, no-c-format
 msgid "Enter the connection URI for the network printer. It should look like the following:"
-msgstr ""
+msgstr "ネットワークプリンタの接続 URI を入力します。URI は以下の書式を使うべきです:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>smb://<replaceable>user</replaceable>:<replaceable>password</replaceable>@<replaceable>server</replaceable>/<replaceable>printer</replaceable></literal>."
-msgstr ""
+msgstr "<literal>smb://<replaceable>user</replaceable>:<replaceable>password</replaceable>@<replaceable>server</replaceable>/<replaceable>printer</replaceable></literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "Enter the name that will uniquely identify this printer. Then enter the description and location of the printer. Those are the strings that will be shown to end users to help them identify the printers."
-msgstr ""
+msgstr "プリンタを一意に識別する名前を入力してください。その後、プリンタの説明と場所を入力してください。これらは、プリンタの利用者が印刷に使うプリンタを識別できるように、利用者に表示される文字列です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Indicate the manufacturer/model of the printer, or directly provide a working printer description file (PPD)."
-msgstr ""
+msgstr "プリンタの製造者/モデルを指示するか、使用するプリンタの説明ファイル (PPD) を直接提供します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Voilà, the printer is operational!"
-msgstr ""
+msgstr "これで、プリンタが利用可能になりました!"
 
 #. Tag: title
 #, no-c-format
 msgid "HTTP/FTP Proxy"
-msgstr ""
+msgstr "HTTP/FTP プロキシ"
 
 #. Tag: para
 #, no-c-format
 msgid "An HTTP/FTP proxy acts as an intermediary for HTTP and/or FTP connections. Its role is twofold:"
-msgstr ""
+msgstr "HTTP/FTP プロキシは HTTP または FTP 接続の仲介者として機能します。HTTP/FTP プロキシの役割は 2 種類あります:"
 
 #. Tag: para
 #, no-c-format
 msgid "Caching: recently downloaded documents are copied locally, which avoids multiple downloads."
-msgstr ""
+msgstr "キャッシュ: 最近ダウンロードされた文書をローカルにコピーします。これはダウンロード重複して行うことを避ける役割を果たします。"
 
 #. Tag: para
 #, no-c-format
 msgid "Filtering server: if use of the proxy is mandated (and outgoing connections are blocked unless they go through the proxy), then the proxy can determine whether or not the request is to be granted."
-msgstr ""
+msgstr "サーバのフィルタリング: プロキシの利用が強制されている場合 (そしてプロキシを介さない外部への接続がブロックされる場合)、プロキシは接続要求を許可するか否かを決定することが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>HTTP/FTP proxy</primary>"
-msgstr ""
+msgstr "<primary>HTTP/FTP プロキシ</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>proxy cache</primary>"
-msgstr ""
+msgstr "<primary>プロキシキャッシュ</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Falcot Corp selected Squid as their proxy server."
-msgstr ""
+msgstr "Falcot Corp はプロキシサーバとして Squid を選びました。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Squid</primary>"
-msgstr ""
+msgstr "<primary>Squid</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing"
-msgstr ""
+msgstr "インストール"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">squid</emphasis> Debian package only contains the modular (caching) proxy. Turning it into a filtering server requires installing the additional <emphasis role=\"pkg\">squidguard</emphasis> package. In addition, <emphasis role=\"pkg\">squid-cgi</emphasis> provides a querying and administration interface for a Squid proxy."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">squid</emphasis> Debian パッケージには、モジュール式 (キャッシュ) プロキシだけが含まれます。Squid をフィルタリングサーバとして使うには、追加で <emphasis role=\"pkg\">squidguard</emphasis> パッケージをインストールする必要があります。加えて、<emphasis role=\"pkg\">squid-cgi</emphasis> には、Squid プロキシ用の問い合わせおよび管理インターフェイスが含まれます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Prior to installing, care should be taken to check that the system can identify its own complete name: the <command>hostname -f</command> must return a fully-qualified name (including a domain). If it does not, then the <filename>/etc/hosts</filename> file should be edited to contain the full name of the system (for instance, <literal>arrakis.falcot.com</literal>). The official computer name should be validated with the network administrator in order to avoid potential name conflicts."
-msgstr ""
+msgstr "インストールの前に、システムが自分の完全な名前を識別できるか確認することを忘れないで下さい。<command>hostname -f</command> は完全修飾名 (ドメイン名を含むホスト名) を返します。これに失敗した場合、<filename>/etc/hosts</filename> ファイルを編集して、システムの完全な名前 (例えば <literal>arrakis.falcot.com</literal> など) を書き込むべきです。潜在的な名前の衝突を避けるには、ネットワーク管理者に公認のコンピュータの名前の妥当性を確認するべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring a Cache"
-msgstr ""
+msgstr "キャッシュの設定"
 
 #. Tag: para
 #, no-c-format
 msgid "Enabling the caching server feature is a simple matter of editing the <filename>/etc/squid/squid.conf</filename> configuration file and allowing machines from the local network to run queries through the proxy. The following example shows the modifications made by the Falcot Corp administrators:"
-msgstr ""
+msgstr "キャッシュサーバを有効化するには、<filename>/etc/squid/squid.conf</filename> 設定ファイルを編集し、ローカルネットワークからのマシンがプロキシを介して問い合わせを実行することを許可するだけで簡単に可能です。以下の例は Falcot Corp 管理者の行った変更を表わしています:"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/squid/squid.conf</filename> file (excerpts)"
-msgstr ""
+msgstr "<filename>/etc/squid/squid.conf</filename> ファイル (抜粋)"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3121,173 +3199,184 @@ msgid ""
 "# And finally deny all other access to this proxy\n"
 "http_access deny all\n"
 msgstr ""
+"\n"
+"# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS\n"
+"\n"
+"# Example rule allowing access from your local networks. Adapt\n"
+"# to list your (internal) IP networks from where browsing should\n"
+"# be allowed\n"
+"acl our_networks src 192.168.1.0/24 192.168.2.0/24\n"
+"http_access allow our_networks\n"
+"http_access allow localhost\n"
+"# And finally deny all other access to this proxy\n"
+"http_access deny all\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring a Filter"
-msgstr ""
+msgstr "フィルタの設定"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>squid</command> itself does not perform the filtering; this action is delegated to <command>squidGuard</command>. The former must then be configured to interact with the latter. This involves adding the following directive to the <filename>/etc/squid/squid.conf</filename> file:"
-msgstr ""
+msgstr "<command>squid</command> 自身はフィルタリングを実行しません; フィルタリング作業は <command>squidGuard</command> に委任されています。<command>squid</command> を設定して <command>squidGuard</command> と協力するようにしなければいけません。これを行うには、以下の指示文を <filename>/etc/squid/squid.conf</filename>  ファイルに追加します:"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>squidGuard</command></primary>"
-msgstr ""
+msgstr "<primary><command>squidGuard</command></primary>"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "redirect_program /usr/bin/squidGuard -c /etc/squid/squidGuard.conf \n"
-msgstr ""
+msgstr "\nredirect_program /usr/bin/squidGuard -c /etc/squid/squidGuard.conf \n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/usr/lib/cgi-bin/squidGuard.cgi</filename> CGI program also needs to be installed, using <filename>/usr/share/doc/squidguard/examples/squidGuard.cgi.gz</filename> as a starting point. Required modifications to this script are the <varname>$proxy</varname> and <varname>$proxymaster</varname> variables (the name of the proxy and the administrator's contact e-mail, respectively). The <varname>$image</varname> and <varname>$redirect</varname> variables should point to existing images representing the rejection of a query."
-msgstr ""
+msgstr "<filename>/usr/share/doc/squidguard/examples/squidGuard.cgi.gz</filename> をたたき台として使い、<filename>/usr/lib/cgi-bin/squidGuard.cgi</filename> CGI プログラムをインストールすることが必要です。このスクリプトの <varname>$proxy</varname> と <varname>$proxymaster</varname> 変数 (それぞれプロキシの名前と管理者の連絡用電子メールアドレスです) を変更する必要があります。<varname>$image</varname> と <varname>$redirect</varname> 変数は問い合わせが拒否されたことを表現する既存の画像を設定します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The filter is enabled with the <command>/etc/init.d/squid reload</command> command. However, since the <emphasis role=\"pkg\">squidguard</emphasis> package does no filtering by default, it is the administrator's task to define the policy. This can be done by creating the <filename>/etc/squid/squidGuard.conf</filename> file (using <filename>/etc/squidguard/squidGuard.conf.default</filename> as template if required)."
-msgstr ""
+msgstr "このフィルタを有効化するには、<command>/etc/init.d/squid reload</command> コマンドを使います。しかしながら、<emphasis role=\"pkg\">squidguard</emphasis> パッケージはデフォルトで何もフィルタリングしません。フィルタリングポリシーを定義するのは管理者の仕事です。これを行うには、<filename>/etc/squid/squidGuard.conf</filename> ファイルを作成します (必要ならば <filename>/etc/squidguard/squidGuard.conf.default</filename> をテンプレートとして使います)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The working database must be regenerated with <command>update-squidguard</command> after each change of the <command>squidGuard</command> configuration file (or one of the lists of domains or URLs it mentions). The configuration file syntax is documented on the following website: <ulink type=\"block\" url=\"http://www.squidguard.org/Doc/configure.html\" />"
-msgstr ""
+msgstr "<command>squidGuard</command> 設定ファイル (またはその中で言及しているドメインまたは URL のリストの 1 つ) を変更したら、毎回 <command>update-squidguard</command> を使って作業データベースを再生成しなければいけません。設定ファイルの構文は以下のウェブサイトで説明されています: <ulink type=\"block\" url=\"http://www.squidguard.org/Doc/configure.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>update-squidguard</command></primary>"
-msgstr ""
+msgstr "<primary><command>update-squidguard</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> DansGuardian"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> DansGuardian"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">dansguardian</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">dansguardian</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>PICS</primary>"
-msgstr ""
+msgstr "<primary>PICS</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">dansguardian</emphasis> package is an alternative to <emphasis>squidguard</emphasis>. This software does not simply handle a black-list of forbidden URLs, but it can take advantage of the PICS system (<emphasis>Platform for Internet Content Selection</emphasis>) to decide whether a page is acceptable by dynamic analysis of its contents."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">dansguardian</emphasis> パッケージは <emphasis>squidguard</emphasis> の代替品です。dansguardian は単純に禁止された URL のブラックリストを取り扱うだけではありません。PICS システム (<emphasis>Platform for Internet Content Selection</emphasis>) の利点を駆使して、ページ内容を動的に解析することで、ページを許可するか否かを判断することが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "LDAP Directory"
-msgstr ""
+msgstr "LDAP ディレクトリ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LDAP</primary>"
-msgstr ""
+msgstr "<primary>LDAP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>OpenLDAP</primary>"
-msgstr ""
+msgstr "<primary>OpenLDAP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>directory, LDAP</primary>"
-msgstr ""
+msgstr "<primary>ディレクトリ、LDAP</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "OpenLDAP is an implementation of the LDAP protocol; in other words, it's a special-purpose database designed for storing directories. In the most common use case, using an LDAP server allows centralizing management of user accounts and the related permissions. Moreover, an LDAP database is easily replicated, which allows setting up multiple synchronized LDAP servers. When the network and the user base grows quickly, the load can then be balanced across several servers."
-msgstr ""
+msgstr "OpenLDAP は LDAP プロトコルの実装です; 言い換えれば、LDAP プロトコルとはディレクトリを保存するために設計された特製データベースです。これが最もよく使われる用途は、LDAP サーバを使ってユーザアカウントと関連するパーミッションの中央管理を行う場合です。更に、LDAP データベースは簡単に複製できるので、復数の同期された LDAP サーバをセットアプすることが可能になります。ネットワークとユーザの数が急速に多くなった場合でも、復数のサーバ間で負荷のバランスをとることが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "LDAP data is structured and hierarchical. The structure is defined by “schemas” which describe the kind of objects that the database can store, with a list of all their possible attributes. The syntax used to refer to a particular object in the database is based on this structure, which explains its complexity."
-msgstr ""
+msgstr "LDAP データは階層的に構造化されています。データ構造は「スキーマ」によって定義され、スキーマはデータベースに保存できるオブジェクトの種類をその属性リストと一緒に説明しています。データベース内の特定のオブジェクトを参照するために使われる構文はデータ構造に依存し、構文の複雑さはデータ構造の複雑さに対応します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">slapd</emphasis> package contains the OpenLDAP server. The <emphasis role=\"pkg\">ldap-utils</emphasis> package includes command-line tools for interacting with LDAP servers."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">slapd</emphasis> パッケージには、OpenLDAP サーバが含まれます。<emphasis role=\"pkg\">ldap-utils</emphasis> パッケージには、LDAP サーバと情報をやり取りするためのコマンドラインツールが含まれます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>slapd</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>slapd</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing <emphasis role=\"pkg\">slapd</emphasis> is usually non-interactive unless you have configured debconf to display questions with lower priorities. Nevertheless, it is debconf-enabled, and thus a simple <command>dpkg-reconfigure slapd</command> can reconfigure the LDAP database:"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">slapd</emphasis> のインストールは、debconf を設定して低い優先度の質問を表示するようにしていない限り、通常非対話的です。とは言っても、<emphasis role=\"pkg\">slapd</emphasis> は debconf を使うパッケージですから、<command>dpkg-reconfigure slapd</command> を使えば簡単に LDAP データベースを再設定することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Omit OpenLDAP server configuration? No, of course, we want to configure this service."
-msgstr ""
+msgstr "OpenLDAP サーバ設定を中止しますか? もちろん No です。我々は LDAP サービスを設定します。"
 
 #. Tag: para
 #, no-c-format
 msgid "DNS domain name: “<literal>falcot.com</literal>”."
-msgstr ""
+msgstr "DNS ドメイン名: 「<literal>falcot.com</literal>」。"
 
 #. Tag: para
 #, no-c-format
 msgid "Organization name: “Falcot Corp”."
-msgstr ""
+msgstr "組織名: 「Falcot Corp」。"
 
 #. Tag: para
 #, no-c-format
 msgid "An administrative passwords needs to be typed in."
-msgstr ""
+msgstr "管理用パスワードを打ち込む必要があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Database backend to use: “HDB”."
-msgstr ""
+msgstr "使用するデータベースバックエンド: 「HDB」。"
 
 #. Tag: para
 #, no-c-format
 msgid "Do you want the database to be removed when <emphasis role=\"pkg\">slapd</emphasis> is purged? No. No point in risking losing the database in case of a mistake."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">slapd</emphasis> を完全消去する場合に、データベースを削除しますか? いいえ。間違ってデータベースを失う危険性を増やすのは得策ではありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Move old database? This question is only asked when the configuration is attempted while a database already exists. Only answer “yes” if you actually want to start again from a clean database, for instance if you run <command>dpkg-reconfigure slapd</command> right after the initial installation."
-msgstr ""
+msgstr "古いデータベースを移動しますか? データベース既に存在するにも関わらず、設定を行おうとした場合に、この質問を尋ねられます。例えば、最初のインストールの直後に <command>dpkg-reconfigure slapd</command> を実行する場合など、空っぽのデータベースをから設定を再開したい場合、答えは「yes」です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Allow LDAPv2 protocol? No, there's no point in that. All the tools we're going to use understand the LDAPv3 protocol."
-msgstr ""
+msgstr "LDAPv2 プロトコルを許可しますか? いいえ、許可する意味が無いからです。我々が使おうとしているツールは全て LDAPv3 プロトコルを理解します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> LDIF format"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> LDIF フォーマット"
 
 #. Tag: para
 #, no-c-format
 msgid "An LDIF file (<emphasis>LDAP Data Interchange Format</emphasis>) is a portable text file describing the contents of an LDAP database (or a portion thereof); this can then be used to inject the data into any other LDAP server."
-msgstr ""
+msgstr "LDIF ファイル (<emphasis>LDAP Data Interchange Format</emphasis>) は移植可能なテキストファイルで、LDAP データベース (またはデータベースの一部) の内容を説明しています。LDIF ファイルを使って、他の LDAP サーバにデータを投入することが可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LDIF</primary>"
-msgstr ""
+msgstr "<primary>LDIF</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A minimal database is now configured, as demonstrated by the following query:"
-msgstr ""
+msgstr "以下の問い合わせによって実例を示す通り、最低限のデータベースが設定されています:"
 
 #. Tag: screen
 #, no-c-format
@@ -3325,21 +3414,53 @@ msgid ""
 "# numEntries: 2\n"
 "</computeroutput>\n"
 msgstr ""
+"\n"
+"<computeroutput>$ </computeroutput><userinput>ldapsearch -x -b dc=falcot,dc=com</userinput>\n"
+"<computeroutput># extended LDIF\n"
+"#\n"
+"# LDAPv3\n"
+"# base &lt;dc=falcot,dc=com&gt; with scope sub\n"
+"# filter: (objectclass=*)\n"
+"# requesting: ALL\n"
+"#\n"
+"\n"
+"# falcot.com\n"
+"dn: dc=falcot,dc=com\n"
+"objectClass: top\n"
+"objectClass: dcObject\n"
+"objectClass: organization\n"
+"o: Falcot Corp\n"
+"dc: falcot\n"
+"\n"
+"# admin, falcot.com\n"
+"dn: cn=admin,dc=falcot,dc=com\n"
+"objectClass: simpleSecurityObject\n"
+"objectClass: organizationalRole\n"
+"cn: admin\n"
+"description: LDAP administrator\n"
+"\n"
+"# search result\n"
+"search: 2\n"
+"result: 0 Success\n"
+"\n"
+"# numResponses: 3\n"
+"# numEntries: 2\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The query returned two objects: the organization itself, and the administrative user."
-msgstr ""
+msgstr "この問い合わせの結果 2 種類のオブジェクトが返されました: 組織自身と、管理ユーザです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Filling in the Directory"
-msgstr ""
+msgstr "ディレクトリの書き込み"
 
 #. Tag: para
 #, no-c-format
 msgid "Since an empty database is not particularly useful, we're going to inject into it all the existing directories; this includes the users, groups, services and hosts databases."
-msgstr ""
+msgstr "空っぽのデータベースは特に便利というわけではないので、全ての存在するディレクトリをデータベースに投入することにします; ディレクトリにはユーザ、グループ、サービス、ホスト名データベースが含まれます。"
 
 #. Tag: para
 #, no-c-format
