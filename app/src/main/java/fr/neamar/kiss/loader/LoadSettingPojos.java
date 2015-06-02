@@ -18,15 +18,16 @@ public class LoadSettingPojos extends LoadPojos<SettingPojo> {
     @Override
     protected ArrayList<SettingPojo> doInBackground(Void... params) {
         ArrayList<SettingPojo> settings = new ArrayList<>();
-        settings.add(createPojo("Airplane mode",
+        settings.add(createPojo(context.getString(R.string.settings_airplane),
                 android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS, R.attr.airplane));
-        settings.add(createPojo("Device info",
+        settings.add(createPojo(context.getString(R.string.settings_device_info),
                 android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS));
-        settings.add(createPojo("Applications",
+        settings.add(createPojo(context.getString(R.string.settings_applications),
                 android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, R.attr.application));
-        settings.add(createPojo("Connectivity",
+        settings.add(createPojo(context.getString(R.string.settings_connectivity),
                 android.provider.Settings.ACTION_WIRELESS_SETTINGS, R.attr.wifi));
-        settings.add(createPojo("Battery", Intent.ACTION_POWER_USAGE_SUMMARY, R.attr.battery));
+        settings.add(createPojo(context.getString(R.string.settings_battery),
+                Intent.ACTION_POWER_USAGE_SUMMARY, R.attr.battery));
         return settings;
     }
 
@@ -37,7 +38,7 @@ public class LoadSettingPojos extends LoadPojos<SettingPojo> {
     private SettingPojo createPojo(String name, String settingName, int resId) {
         SettingPojo pojo = new SettingPojo();
         pojo.id = pojoScheme + settingName.toLowerCase(Locale.ENGLISH);
-        pojo.name = "Setting: " + name;
+        pojo.name = context.getString(R.string.settings_prefix) + name;
         pojo.nameLowerCased = pojo.name.toLowerCase(Locale.ENGLISH);
         pojo.settingName = settingName;
         pojo.icon = resId;

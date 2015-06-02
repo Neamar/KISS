@@ -10,6 +10,7 @@ import android.os.Build;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.AliasPojo;
 
 public class LoadAliasPojos extends LoadPojos<AliasPojo> {
@@ -26,42 +27,39 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
 
         String phoneApp = getApp(pm, Intent.ACTION_DIAL);
         if (phoneApp != null) {
-            alias.add(makeAliasPojo("dial", phoneApp));
-            alias.add(makeAliasPojo("compose", phoneApp));
-            alias.add(makeAliasPojo("phone", phoneApp));
+            String phoneAlias = context.getResources().getString(R.string.alias_phone);
+            addAliasesPojo(alias, phoneAlias.split(","), phoneApp);
         }
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
             String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
             if (contactApp != null) {
-                alias.add(makeAliasPojo("contacts", contactApp));
-                alias.add(makeAliasPojo("people", contactApp));
+                String contactAlias = context.getResources().getString(R.string.alias_contacts);
+                addAliasesPojo(alias, contactAlias.split(","), contactApp);
             }
 
             String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
             if (browserApp != null) {
-                alias.add(makeAliasPojo("internet", browserApp));
-                alias.add(makeAliasPojo("web", browserApp));
-                alias.add(makeAliasPojo("browser", browserApp));
+                String webAlias = context.getResources().getString(R.string.alias_web);
+                addAliasesPojo(alias, webAlias.split(","), browserApp);
             }
 
             String mailApp = getAppByCategory(pm, Intent.CATEGORY_APP_EMAIL);
             if (mailApp != null) {
-                alias.add(makeAliasPojo("email", mailApp));
-                alias.add(makeAliasPojo("mail", mailApp));
+                String mailAlias = context.getResources().getString(R.string.alias_mail);
+                addAliasesPojo(alias, mailAlias.split(","), mailApp);
             }
 
             String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
             if (marketApp != null) {
-                alias.add(makeAliasPojo("market", marketApp));
-                alias.add(makeAliasPojo("store", marketApp));
+                String marketAlias = context.getResources().getString(R.string.alias_market);
+                addAliasesPojo(alias, marketAlias.split(","), marketApp);
             }
 
             String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
             if (messagingApp != null) {
-                alias.add(makeAliasPojo("text", messagingApp));
-                alias.add(makeAliasPojo("sms", messagingApp));
-                alias.add(makeAliasPojo("messaging", messagingApp));
+                String messagingAlias = context.getResources().getString(R.string.alias_messaging);
+                addAliasesPojo(alias, messagingAlias.split(","), messagingApp);
             }
         }
 
@@ -69,10 +67,15 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
 
     }
 
-    private AliasPojo makeAliasPojo(String alias, String appInfos) {
+    private void addAliasesPojo(ArrayList<AliasPojo> alias, String[] aliases, String appInfo) {
+        for(String a: aliases) {
+            alias.add(makeAliasPojo(a, appInfo));
+        }
+    }
+    private AliasPojo makeAliasPojo(String alias, String appInfo) {
         AliasPojo aliasPojo = new AliasPojo();
         aliasPojo.alias = alias;
-        aliasPojo.app = appInfos;
+        aliasPojo.app = appInfo;
 
         return aliasPojo;
     }
