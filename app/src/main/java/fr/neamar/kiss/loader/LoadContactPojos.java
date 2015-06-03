@@ -21,7 +21,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
 
     @Override
     protected ArrayList<ContactPojo> doInBackground(Void... params) {
-        Pattern homePattern = Pattern.compile("^(\\+33\\s?|0)[1-5]");
+        Pattern homePattern = Pattern.compile("^\\+33\\s?[1-5]");
 
         long start = System.nanoTime();
 

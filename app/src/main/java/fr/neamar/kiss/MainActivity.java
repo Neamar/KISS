@@ -386,7 +386,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                         });
             }
         } else {
-            launcherButton.setVisibility(View.GONE);
+            launcherButton.setVisibility(View.INVISIBLE);
             loaderBar.setVisibility(View.VISIBLE);
         }
     }
