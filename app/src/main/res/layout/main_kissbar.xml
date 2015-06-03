@@ -6,15 +6,14 @@
                 android:clipToPadding="false"
                 android:elevation="2dp">
 
-
     <ImageView
         android:id="@+id/whiteLauncherButton"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="2dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="10dp"
         android:contentDescription="@string/main_kiss_back"
         android:focusable="true"
         android:onClick="onLauncherButtonClicked"
@@ -28,8 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toLeftOf="@+id/whiteLauncherButton"
-        android:layout_toStartOf="@+id/whiteLauncherButton"
+        android:layout_toRightOf="@+id/whiteLauncherButton"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="5dp">
