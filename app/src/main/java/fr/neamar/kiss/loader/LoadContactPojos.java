@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactPojo;
@@ -20,6 +21,8 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
 
     @Override
     protected ArrayList<ContactPojo> doInBackground(Void... params) {
+        Pattern homePattern = Pattern.compile("^(\\+33\\s?|0)[1-5]");
+
         long start = System.nanoTime();
 
         // Run query
@@ -50,7 +53,8 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                 contact.phone = cur.getString(cur
                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                contact.homeNumber = contact.phone.matches("^(\\+33|0)[1-5].*");
+                contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
+
                 contact.starred = cur.getInt(cur
                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
                 contact.primary = cur.getInt(cur

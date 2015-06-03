@@ -77,11 +77,6 @@ public class ContactResult extends Result {
         // Message action
         ImageButton messageButton = (ImageButton) v.findViewById(R.id.item_contact_action_message);
 
-        if (contactPojo.homeNumber)
-            messageButton.setVisibility(View.INVISIBLE);
-        else
-            messageButton.setVisibility(View.VISIBLE);
-
         PackageManager pm = context.getPackageManager();
 
         if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
@@ -105,6 +100,11 @@ public class ContactResult extends Result {
             phoneButton.setVisibility(View.INVISIBLE);
             messageButton.setVisibility(View.INVISIBLE);
         }
+
+        if (contactPojo.homeNumber)
+            messageButton.setVisibility(View.INVISIBLE);
+        else
+            messageButton.setVisibility(View.VISIBLE);
 
         return v;
     }
