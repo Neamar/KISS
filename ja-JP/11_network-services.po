@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-06-02 19:00+0900\n"
+"PO-Revision-Date: 2015-06-03 19:17+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -3465,22 +3465,22 @@ msgstr "空っぽのデータベースは特に便利というわけではない
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">migrationtools</emphasis> package provides a set of scripts dedicated to extract data from the standard Unix directories (<filename>/etc/passwd</filename>, <filename>/etc/group</filename>, <filename>/etc/services</filename>, <filename>/etc/hosts</filename> and so on), convert this data, and inject it into the LDAP database."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">migrationtools</emphasis> パッケージには、標準的な Unix ディレクトリ (<filename>/etc/passwd</filename>、<filename>/etc/group</filename>、<filename>/etc/services</filename>、<filename>/etc/hosts</filename> など) からのデータを展開するための一連のスクリプトが含まれます。スクリプトを使ってデータを変換し、LDAP データベースに投入します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">migrationtools</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">migrationtools</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the package is installed, the <filename>/etc/migrationtools/migrate_common.ph</filename> must be edited; the <varname>IGNORE_UID_BELOW</varname> and <varname>IGNORE_GID_BELOW</varname> options need to be enabled (uncommenting them is enough), and <varname>DEFAULT_MAIL_DOMAIN</varname>/<varname>DEFAULT_BASE</varname> need to be updated."
-msgstr ""
+msgstr "パッケージをインストールしたら、必ず <filename>/etc/migrationtools/migrate_common.ph</filename> を編集してください; <varname>IGNORE_UID_BELOW</varname> と <varname>IGNORE_GID_BELOW</varname> オプションを編集して (コメント解除するだけで十分です)、<varname>DEFAULT_MAIL_DOMAIN</varname>/<varname>DEFAULT_BASE</varname> を更新する必要があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The actual migration operation is handled by the <command>migrate_all_online.sh</command> command, as follows:"
-msgstr ""
+msgstr "実際の移行操作は <command>migrate_all_online.sh</command> コマンドを使って行います、以下の通りです:"
 
 #. Tag: screen
 #, no-c-format
@@ -3489,196 +3489,199 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>cd /usr/share/migrationtools</userinput>\n"
 "<computeroutput># </computeroutput><userinput>LDAPADD=\"/usr/bin/ldapadd -c\" ETC_ALIASES=/dev/null ./migrate_all_online.sh</userinput>\n"
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>cd /usr/share/migrationtools</userinput>\n"
+"<computeroutput># </computeroutput><userinput>LDAPADD=\"/usr/bin/ldapadd -c\" ETC_ALIASES=/dev/null ./migrate_all_online.sh</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>migrate_all_online.sh</command> asks a few questions about the LDAP database into which the data is to be migrated. <xref linkend=\"tab-migrate-all\" xrefstyle=\"select: label nopage\" /> summarizes the answers given in the Falcot use-case."
-msgstr ""
+msgstr "<command>migrate_all_online.sh</command> から LDAP データベースに移行するデータの種類に関する数個の質問を尋ねられます。<xref linkend=\"tab-migrate-all\" xrefstyle=\"select: label nopage\" />には Falcot の使用例で使った回答がまとめられています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Answers to questions asked by the <command>migrate_all_online.sh</command> script"
-msgstr ""
+msgstr "<command>migrate_all_online.sh</command> スクリプトからの質問に対する回答"
 
 #. Tag: entry
 #, no-c-format
 msgid "Question"
-msgstr ""
+msgstr "質問"
 
 #. Tag: entry
 #, no-c-format
 msgid "Answer"
-msgstr ""
+msgstr "回答"
 
 #. Tag: entry
 #, no-c-format
 msgid "X.500 naming context"
-msgstr ""
+msgstr "X.500 命名コンテキスト"
 
 #. Tag: entry
 #, no-c-format
 msgid "<literal>dc=falcot,dc=com</literal>"
-msgstr ""
+msgstr "<literal>dc=falcot,dc=com</literal>"
 
 #. Tag: entry
 #, no-c-format
 msgid "LDAP server hostname"
-msgstr ""
+msgstr "LDAP サーバホスト名"
 
 #. Tag: entry
 #, no-c-format
 msgid "<literal>localhost</literal>"
-msgstr ""
+msgstr "<literal>localhost</literal>"
 
 #. Tag: entry
 #, no-c-format
 msgid "Manager DN"
-msgstr ""
+msgstr "管理者識別名"
 
 #. Tag: entry
 #, no-c-format
 msgid "<literal>cn=admin,dc=falcot,dc=com</literal>"
-msgstr ""
+msgstr "<literal>cn=admin,dc=falcot,dc=com</literal>"
 
 #. Tag: entry
 #, no-c-format
 msgid "Bind credentials"
-msgstr ""
+msgstr "認証情報の紐付け"
 
 #. Tag: entry
 #, no-c-format
 msgid "the administrative password"
-msgstr ""
+msgstr "管理用パスワード"
 
 #. Tag: entry
 #, no-c-format
 msgid "Create DUAConfigProfile"
-msgstr ""
+msgstr "DUAConfigProfile を作成"
 
 #. Tag: entry
 #, no-c-format
 msgid "no"
-msgstr ""
+msgstr "no"
 
 #. Tag: para
 #, no-c-format
 msgid "We deliberately ignore migration of the <filename>/etc/aliases</filename> file, since the standard schema as provided by Debian does not include the structures that this script uses to describe email aliases. Should we want to integrate this data into the directory, the <filename>/etc/ldap/schema/misc.schema</filename> file should be added to the standard schema."
-msgstr ""
+msgstr "我々は意図的に <filename>/etc/aliases</filename> ファイルの移行を行いませんでした。なぜなら、Debian の提供する標準的なスキーマには、このスクリプトが電子メールアドレスを表現するために使う構造が含まれないからです。このデータをディレクトリに統合したい場合、標準的なスキーマに <filename>/etc/ldap/schema/misc.schema</filename> ファイルを追加するべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> Browsing an LDAP directory"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> LDAP ディレクトリの閲覧"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>jxplorer</command> command (in the package of the same name) is a graphical tool allowing to browse and edit an LDAP database. It's an interesting tool that provides an administrator with a good overview of the hierarchical structure of the LDAP data."
-msgstr ""
+msgstr "<command>jxplorer</command> コマンド (同名のパッケージに含まれます) は LDAP データベースを閲覧および編集する事が可能なグラフィカルツールです。<command>jxplorer</command> コマンドは興味深いツールで、このツールを使うことで管理者は LDAP データの階層構造を判りやすく概観する事が可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>jxplorer</command></primary>"
-msgstr ""
+msgstr "<primary><command>jxplorer</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Also note the use of the <literal>-c</literal> option to the <command>ldapadd</command> command; this option requests that processing doesn't stop in case of error. Using this option is required because converting the <filename>/etc/services</filename> often generates a few errors that can safely be ignored."
-msgstr ""
+msgstr "<command>ldapadd</command> コマンドの <literal>-c</literal> オプションの利用について触れておきます; このオプションはエラーが起きた場合に処理を停止しないように要求するものです。このオプションを使うことが必要です。なぜなら、<filename>/etc/services</filename> を変換する際に、無視しても問題無い数個のエラーが起きる事が多いからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Accounts with LDAP"
-msgstr ""
+msgstr "LDAP を用いたアカウントの管理"
 
 #. Tag: para
 #, no-c-format
 msgid "Now the LDAP database contains some useful information, the time has come to make use of this data. This section focuses on how to configure a Linux system so that the various system directories use the LDAP database."
-msgstr ""
+msgstr "これで LDAP データベースに幾つかの実用的な情報が含まれるようになりましたので、このデータを使うように設定します。この節では、様々なシステムディレクトリが LDAP データベースを使うように Linux システムを設定する方法に注目します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring NSS"
-msgstr ""
+msgstr "NSS の設定"
 
 #. Tag: para
 #, no-c-format
 msgid "The NSS system (Name Service Switch, see sidebar <xref linkend=\"sidebar.intro-nss\" />) is a modular system designed to define or fetch information for system directories. Using LDAP as a source of data for NSS requires installing the <emphasis role=\"pkg\">libnss-ldap</emphasis> package. Its installation asks a few questions; the answers are summarized in <xref linkend=\"tab-libnss-ldap\" xrefstyle=\"select: label nopage\" />."
-msgstr ""
+msgstr "NSS システム (Name Service Switch、傍注<xref linkend=\"sidebar.intro-nss\" />参照) はシステムディレクトリの情報を定義または取得するために設計されたモジュール式システムです。NSS 用のデータ源として LDAP を使うには、<emphasis role=\"pkg\">libnss-ldap</emphasis> パッケージをインストールする必要があります。インストール中に数個の質問が行われます; その回答が<xref linkend=\"tab-libnss-ldap\" xrefstyle=\"select: label nopage\" />にまとめられています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>libnss-ldap</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>libnss-ldap</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the <emphasis role=\"pkg\">libnss-ldap</emphasis> package"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">libnss-ldap</emphasis> パッケージの設定"
 
 #. Tag: entry
 #, no-c-format
 msgid "LDAP server Uniform Resource Identifier"
-msgstr ""
+msgstr "LDAP サーバの Uniform Resource Identifier"
 
 #. Tag: entry
 #, no-c-format
 msgid "<literal>ldap://ldap.falcot.com</literal>"
-msgstr ""
+msgstr "<literal>ldap://ldap.falcot.com</literal>"
 
 #. Tag: entry
 #, no-c-format
 msgid "Distinguished name of the search base"
-msgstr ""
+msgstr "検索起点の識別名"
 
 #. Tag: entry
 #, no-c-format
 msgid "LDAP version to use"
-msgstr ""
+msgstr "使用する LDAP バージョン"
 
 #. Tag: entry
 #, no-c-format
 msgid "<literal>3</literal>"
-msgstr ""
+msgstr "<literal>3</literal>"
 
 #. Tag: entry
 #, no-c-format
 msgid "Does the LDAP database require login?"
-msgstr ""
+msgstr "LDAP データベースはログインを必要としますか?"
 
 #. Tag: entry
 #, no-c-format
 msgid "Special LDAP privileges for root"
-msgstr ""
+msgstr "root 用の特別な LDAP 権限"
 
 #. Tag: entry
 #, no-c-format
 msgid "yes"
-msgstr ""
+msgstr "yes"
 
 #. Tag: entry
 #, no-c-format
 msgid "Make the configuration file readable/writeable by its owner only"
-msgstr ""
+msgstr "所有者だけが設定ファイルを読み取り可能/書き込み可能な状態にする"
 
 #. Tag: entry
 #, no-c-format
 msgid "LDAP account for root"
-msgstr ""
+msgstr "root 用 LDAP アカウント"
 
 #. Tag: entry
 #, no-c-format
 msgid "LDAP root account password"
-msgstr ""
+msgstr "LDAP root アカウントパスワード"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/nsswitch.conf</filename> file then needs to be modified, so as to configure NSS to use the freshly-installed <command>ldap</command> module."
-msgstr ""
+msgstr "そして、<filename>/etc/nsswitch.conf</filename> ファイルを変更し、最近インストールした <command>ldap</command> モジュールを使うように NSS を設定する必要があります。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/nsswitch.conf</filename> file"
-msgstr ""
+msgstr "<filename>/etc/nsswitch.conf</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -3704,171 +3707,191 @@ msgid ""
 "\n"
 "netgroup: ldap files\n"
 msgstr ""
+"\n"
+"# /etc/nsswitch.conf\n"
+"#\n"
+"# Example configuration of GNU Name Service Switch functionality.\n"
+"# If you have the `glibc-doc' and `info' packages installed, try:\n"
+"# `info libc \"Name Service Switch\"' for information about this file.\n"
+"\n"
+"passwd: ldap compat\n"
+"group: ldap compat\n"
+"shadow: ldap compat\n"
+"\n"
+"hosts: files dns ldap\n"
+"networks: ldap files\n"
+"\n"
+"protocols: ldap db files\n"
+"services: ldap db files\n"
+"ethers: ldap db files\n"
+"rpc: ldap db files\n"
+"\n"
+"netgroup: ldap files\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>ldap</command> module is usually inserted before others, and it will therefore be queried first. The notable exception is the <literal>hosts</literal> service since contacting the LDAP server requires consulting DNS first (to resolve <literal>ldap.falcot.com</literal>). Without this exception, a hostname query would try to ask the LDAP server; this would trigger a name resolution for the LDAP server, and so on in an infinite loop."
-msgstr ""
+msgstr "通常 <command>ldap</command> モジュールは他のモジュールよりも前に書き込みます。こうすることで、先に使われるようになります。注目すべき除外例が <literal>hosts</literal> サービスです。なぜなら、LDAP サーバに接続するには (<literal>ldap.falcot.com</literal> の名前解決を行うためには) 先に DNS を調べる必要があるからです<literal>hosts</literal> サービスで最初 <command>ldap</command> モジュールを使うようにすると、LDAP サーバにホスト名を問い合わせる事になります; 名前解決を担当する LDAP サーバに接続するには LDAP サーバの名前解決が必要なので、無限ループすることになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "If the LDAP server should be considered authoritative (and the local files used by the <command>files</command> module disregarded), services can be configured with the following syntax:"
-msgstr ""
+msgstr "主に LDAP サーバを信頼する場合 (そして <command>files</command> モジュールの使うローカルファイルを軽視する場合)、以下の構文を使ってサービスを設定します:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal><replaceable>service</replaceable>: ldap [NOTFOUND=return] files</literal>."
-msgstr ""
+msgstr "<literal><replaceable>service</replaceable>: ldap [NOTFOUND=return] files</literal>."
 
 #. Tag: para
 #, no-c-format
 msgid "If the requested entry does not exist in the LDAP database, the query will return a “not existing” reply even if the resource does exist in one of the local files; these local files will only be used when the LDAP service is down."
-msgstr ""
+msgstr "要求されたエントリが LDAP データベースに存在しない場合、問い合わせに対する応答は「not existing」になるでしょう。これはリソースがローカルファイルに存在するか否かに依存しません; LDAP サービスが利用可能でない場合のみ、ローカルファイルが使われます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring PAM"
-msgstr ""
+msgstr "PAM の設定"
 
 #. Tag: para
 #, no-c-format
 msgid "This section describes a PAM configuration (see sidebar <xref linkend=\"sidebar.intro-pam\" />) that will allow applications to perform the required authentications against the LDAP database."
-msgstr ""
+msgstr "この節では、PAM 設定 (傍注<xref linkend=\"sidebar.intro-pam\" />参照) を説明します。ここで説明した PAM 設定で、アプリケーションが LDAP データベースに向けて要求された認証を実行することを可能にします。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Broken authentication"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> 破壊された認証"
 
 #. Tag: para
 #, no-c-format
 msgid "Changing the standard PAM configuration used by various programs is a sensitive operation. A mistake can lead to broken authentication, which could prevent logging in. Keeping a root shell open is therefore a good precaution. If configuration errors occur, they can be then fixed and the services restarted with minimal effort."
-msgstr ""
+msgstr "様々なプログラムが使う標準的な PAM 設定を変更することは慎重に行うべきです。1 つの間違いが認証を破壊し、これによりログイン不可能になる場合があります。このため root シェルを開けた状態に保ちながら作業を行うことが良い予防策です。そうすれば、設定エラーが起きた場合、設定を修正し、最小限の努力でサービスを再起動することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The LDAP module for PAM is provided by the <emphasis role=\"pkg\">libpam-ldap</emphasis> package. Installing this package asks a few questions very similar to those in <emphasis role=\"pkg\">libnss-ldap</emphasis>; some configuration parameters (such as the URI for the LDAP server) are even actually shared with the <emphasis role=\"pkg\">libnss-ldap</emphasis> package. Answers are summarized in <xref linkend=\"tab-libpam-ldap\" xrefstyle=\"select: label nopage\" />."
-msgstr ""
+msgstr "PAM 用の LDAP モジュールは <emphasis role=\"pkg\">libpam-ldap</emphasis> パッケージによって提供されます。<emphasis role=\"pkg\">libpam-ldap</emphasis> パッケージをインストールする際に、<emphasis role=\"pkg\">libnss-ldap</emphasis> をインストールしたにされた質問と良く似た数個の質問を尋ねられます。幾つかの設定パラメータ (LDAP サーバの URI など) は <emphasis role=\"pkg\">libnss-ldap</emphasis> パッケージと共有されます。この回答は<xref linkend=\"tab-libpam-ldap\" xrefstyle=\"select: label nopage\" />にまとめられています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>libpam-ldap</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>libpam-ldap</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuration of <emphasis>libpam-ldap</emphasis>"
-msgstr ""
+msgstr "<emphasis>libpam-ldap</emphasis> の設定"
 
 #. Tag: entry
 #, no-c-format
 msgid "Allow LDAP admin account to behave like local root?"
-msgstr ""
+msgstr "LDAP 管理者がローカルの root の如く振る舞うことを許可しますか?"
 
 #. Tag: entry
 #, no-c-format
 msgid "Yes. This allows using the usual <command>passwd</command> command for changing passwords stored in the LDAP database."
-msgstr ""
+msgstr "はい。こうすることで、通常の <command>passwd</command> コマンドから LDAP データベースに保存されているパスワードを変更する事が可能になります。"
 
 #. Tag: entry
 #, no-c-format
 msgid "Does the LDAP database require logging in?"
-msgstr ""
+msgstr "LDAP データベースはログインを要求しますか?"
 
 #. Tag: entry
 #, no-c-format
 msgid "the LDAP database administrative password"
-msgstr ""
+msgstr "LDAP データベース管理用パスワード"
 
 #. Tag: entry
 #, no-c-format
 msgid "Local encryption algorithm to use for passwords"
-msgstr ""
+msgstr "パスワードに対して用いるローカル暗号化アルゴリズム"
 
 #. Tag: entry
 #, no-c-format
 msgid "crypt"
-msgstr ""
+msgstr "crypt"
 
 #. Tag: para
 #, no-c-format
 msgid "Installing <emphasis role=\"pkg\">libpam-ldap</emphasis> automatically adapts the default PAM configuration defined in the <filename>/etc/pam.d/common-auth</filename>, <filename>/etc/pam.d/common-password</filename> and <filename>/etc/pam.d/common-account</filename> files. This mechanism uses the dedicated <command>pam-auth-update</command> tool (provided by the <emphasis role=\"pkg\">libpam-runtime</emphasis> package). This tool can also be run by the administrator should they wish to enable or disable PAM modules."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">libpam-ldap</emphasis> をインストールと自動的に <filename>/etc/pam.d/common-auth</filename>、<filename>/etc/pam.d/common-password</filename>、<filename>/etc/pam.d/common-account</filename> ファイルで定義されたデフォルトの PAM 設定が適用されます。このメカニズムは専用の <command>pam-auth-update</command> ツール (<emphasis role=\"pkg\">libpam-runtime</emphasis> パッケージから提供される) を使います。<command>pam-auth-update</command> ツールは PAM モジュールを有効化または無効化したい管理者によって実行される場合もあります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>common-auth</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>common-auth</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/pam.d/common-auth</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/pam.d/common-auth</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>common-password</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>common-password</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/pam.d/common-password</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/pam.d/common-password</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>common-account</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>common-account</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><filename>/etc/pam.d/common-account</filename></primary>"
-msgstr ""
+msgstr "<primary><filename>/etc/pam.d/common-account</filename></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Securing LDAP Data Exchanges"
-msgstr ""
+msgstr "安全な LDAP データ交換"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>LDAP</primary><secondary>secure</secondary>"
-msgstr ""
+msgstr "<primary>LDAP</primary><secondary>安全な</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, the LDAP protocol transits on the network as cleartext; this includes the (encrypted) passwords. Since the encrypted passwords can be extracted from the network, they can be vulnerable to dictionary-type attacks. This can be avoided by using an extra encryption layer; enabling this layer is the topic of this section."
-msgstr ""
+msgstr "デフォルトで、LDAP プロトコルはネットワークを平文で通信します; (暗号化された) パスワードがネットワーク上をそのまま流れます。暗号化されたパスワードをネットワークから抽出する事が可能です。パスワードは辞書型攻撃に弱いです。暗号化層を設けることで、このような危険性避ける事が可能です; この節の主題は、暗号化層を有効化することです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Server"
-msgstr ""
+msgstr "サーバの設定"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><foreignphrase>OpenSSL</foreignphrase></primary><secondary>creating keys</secondary>"
-msgstr ""
+msgstr "<primary><foreignphrase>OpenSSL</foreignphrase></primary><secondary>鍵作成</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>key pair</primary>"
-msgstr ""
+msgstr "<primary>鍵ペア</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The first step is to create a key pair (comprising a public key and a private key) for the LDAP server. The Falcot administrators reuse <emphasis>easy-rsa</emphasis> to generate it (see <xref linkend=\"sect.easy-rsa\" />). Running <command>./build-server-key ldap.falcot.com</command> asks a few mundane questions (location, organization name and so on). The answer to the “common name” question <emphasis>must</emphasis> be the fully-qualified hostname for the LDAP server; in our case, <literal>ldap.falcot.com</literal>."
-msgstr ""
+msgstr "最初に LDAP サーバ用の (公開鍵と秘密鍵から成る) 鍵ペアを作成します。Falcot 管理者は鍵ペアを生成するために <emphasis>easy-rsa</emphasis> を再利用します (<xref linkend=\"sect.easy-rsa\" />参照)。<command>./build-server-key ldap.falcot.com</command> を実行すると、数個の一般的な (場所、組織名、などに関する) 質問を尋ねられます。「common name」に対する回答は<emphasis>必ず</emphasis> LDAP サーバの完全修飾ホスト名にしてください; 我々の場合 <literal>ldap.falcot.com</literal> です。"
 
 #. Tag: para
 #, no-c-format
 msgid "This command creates a certificate in the <filename>keys/ldap.falcot.com.crt</filename> file; the corresponding private key is stored in <filename>keys/ldap.falcot.com.key</filename>."
-msgstr ""
+msgstr "上のコマンドは証明書を作成し、<filename>keys/ldap.falcot.com.crt</filename> ファイルに保存します; 対応する秘密鍵は <filename>keys/ldap.falcot.com.key</filename> に保存されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Now these keys have to be installed in their standard location, and we must make sure that the private file is readable by the LDAP server which runs under the <literal>openldap</literal> user identity:"
-msgstr ""
+msgstr "これらの鍵を標準的な場所にインストールし、<literal>openldap</literal> ユーザ権限で実行されている LDAP サーバが秘密鍵を読み込み可能であることを保証しなければいけません:"
 
 #. Tag: screen
 #, no-c-format
@@ -3883,16 +3906,25 @@ msgid ""
 "# <userinput>chmod 0640 /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
 "# <userinput>mv newcert.pem /etc/ssl/certs/ldap.falcot.com.pem</userinput>\n"
 msgstr ""
+"\n"
+"# <userinput>adduser openldap ssl-cert</userinput>\n"
+"Adding user `openldap' to group `ssl-cert' ...\n"
+"Adding user openldap to group ssl-cert\n"
+"Done.\n"
+"# <userinput>mv keys/ldap.falcot.com.key /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
+"# <userinput>chown root:ssl-cert /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
+"# <userinput>chmod 0640 /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
+"# <userinput>mv newcert.pem /etc/ssl/certs/ldap.falcot.com.pem</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>slapd</command> daemon also needs to be told to use these keys for encryption. The LDAP server configuration is managed dynamically: the configuration can be updated with normal LDAP operations on the <literal>cn=config</literal> object hierarchy, and the server updates <filename>/etc/ldap/slapd.d</filename> in real time to make the configuration persistent. <command>ldapmodify</command> is thus the right tool to update the configuration:"
-msgstr ""
+msgstr "<command>slapd</command> デーモンにこれらの鍵を暗号化に使うように伝えることも必要です。LDAP サーバ設定は動的に管理されます: 設定は <literal>cn=config</literal> オブジェクト階層に対する通常の LDAP 操作によって更新され、サーバは設定を永続的なものにするために <filename>/etc/ldap/slapd.d</filename> をリアルタイムで更新します。このため、<command>ldapmodify</command> が設定を更新する適切なツールです:"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring <command>slapd</command> for encryption"
-msgstr ""
+msgstr "暗号化用の <command>slapd</command> の設定"
 
 #. Tag: screen
 #, no-c-format
@@ -3914,43 +3946,59 @@ msgid ""
 "SASL SSF: 0\n"
 "modifying entry \"cn=config\"\n"
 msgstr ""
+"\n"
+"# <userinput>cat &gt;ssl.ldif &lt;&lt;END\n"
+"dn: cn=config\n"
+"changetype: modify\n"
+"add: olcTLSCertificateFile\n"
+"olcTLSCertificateFile: /etc/ssl/certs/ldap.falcot.com.pem\n"
+"-\n"
+"add: olcTLSCertificateKeyFile\n"
+"olcTLSCertificateKeyFile: /etc/ssl/private/ldap.falcot.com.key\n"
+"-\n"
+"END</userinput>\n"
+"# <userinput>ldapmodify -Y EXTERNAL -H ldapi:/// -f ssl.ldif</userinput>\n"
+"SASL/EXTERNAL authentication started\n"
+"SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth\n"
+"SASL SSF: 0\n"
+"modifying entry \"cn=config\"\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TOOL</emphasis> <command>ldapvi</command> to edit an LDAP directory"
-msgstr ""
+msgstr "<emphasis>TOOL</emphasis> <command>ldapvi</command> で LDAP ディレクトリを編集する"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ldapvi</command></primary>"
-msgstr ""
+msgstr "<primary><command>ldapvi</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "With <command>ldapvi</command>, you can display an LDIF output of any part of the LDAP directory, make some changes in the text editor, and let the tool do the corresponding LDAP operations for you."
-msgstr ""
+msgstr "<command>ldapvi</command> を使うことで、LDAP ディレクトリの任意の部分に対する LDIF 出力を表示したり、テキストエディタでそれを変更したり、対応する LDAP 操作を実行したりすることが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "It is thus a convenient way to update the configuration of the LDAP server, simply by editing the <literal>cn=config</literal> hierarchy."
-msgstr ""
+msgstr "このため、 LDAP サーバの設定を更新するには、<command>ldapvi</command> を使って <literal>cn=config</literal> 階層を編集する方法が便利です。"
 
 #. Tag: screen
 #, no-c-format
 msgid ""
 "\n"
 "# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>\n"
-msgstr ""
+msgstr "\n# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The last step for enabling encryption involves changing the <varname>SLAPD_SERVICES</varname> variable in the <filename>/etc/default/slapd</filename> file. We'll play it safe and disable unsecured LDAP altogether."
-msgstr ""
+msgstr "暗号化を有効化するための最後の作業が <filename>/etc/default/slapd</filename> ファイル内の <varname>SLAPD_SERVICES</varname> 変数を変更することです。我々は大事を取って、安全対策されていない LDAP を無効化します。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/default/slapd</filename> file"
-msgstr ""
+msgstr "<filename>/etc/default/slapd</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -4002,21 +4050,67 @@ msgid ""
 "# Additional options to pass to slapd\n"
 "SLAPD_OPTIONS=\"\"\n"
 msgstr ""
+"\n"
+"# Default location of the slapd.conf file or slapd.d cn=config directory. If\n"
+"# empty, use the compiled-in default (/etc/ldap/slapd.d with a fallback to\n"
+"# /etc/ldap/slapd.conf).\n"
+"SLAPD_CONF=\n"
+"\n"
+"# System account to run the slapd server under. If empty the server\n"
+"# will run as root.\n"
+"SLAPD_USER=\"openldap\"\n"
+"\n"
+"# System group to run the slapd server under. If empty the server will\n"
+"# run in the primary group of its user.\n"
+"SLAPD_GROUP=\"openldap\"\n"
+"\n"
+"# Path to the pid file of the slapd server. If not set the init.d script\n"
+"# will try to figure it out from $SLAPD_CONF (/etc/ldap/slapd.conf by\n"
+"# default)\n"
+"SLAPD_PIDFILE=\n"
+"\n"
+"# slapd normally serves ldap only on all TCP-ports 389. slapd can also\n"
+"# service requests on TCP-port 636 (ldaps) and requests via unix\n"
+"# sockets.\n"
+"# Example usage:\n"
+"# SLAPD_SERVICES=\"ldap://127.0.0.1:389/ ldaps:/// ldapi:///\"\n"
+"SLAPD_SERVICES=\"ldaps:/// ldapi:///\"\n"
+"\n"
+"# If SLAPD_NO_START is set, the init script will not start or restart\n"
+"# slapd (but stop will still work).  Uncomment this if you are\n"
+"# starting slapd via some other means or if you don't want slapd normally\n"
+"# started at boot.\n"
+"#SLAPD_NO_START=1\n"
+"\n"
+"# If SLAPD_SENTINEL_FILE is set to path to a file and that file exists,\n"
+"# the init script will not start or restart slapd (but stop will still\n"
+"# work).  Use this for temporarily disabling startup of slapd (when doing\n"
+"# maintenance, for example, or through a configuration management system)\n"
+"# when you don't want to edit a configuration file.\n"
+"SLAPD_SENTINEL_FILE=/etc/ldap/noslapd\n"
+"\n"
+"# For Kerberos authentication (via SASL), slapd by default uses the system\n"
+"# keytab file (/etc/krb5.keytab).  To use a different keytab file,\n"
+"# uncomment this line and change the path.\n"
+"#export KRB5_KTNAME=/etc/krb5.keytab\n"
+"\n"
+"# Additional options to pass to slapd\n"
+"SLAPD_OPTIONS=\"\"\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Configuring the Client"
-msgstr ""
+msgstr "クライアントの設定"
 
 #. Tag: para
 #, no-c-format
 msgid "On the client side, the configuration for the <emphasis>libpam-ldap</emphasis> and <emphasis>libnss-ldap</emphasis> modules needs to be modified to use an <literal>ldaps://</literal> URI."
-msgstr ""
+msgstr "クライアント側で、<emphasis>libpam-ldap</emphasis> と <emphasis>libnss-ldap</emphasis> モジュールの設定を修正し、<literal>ldaps://</literal> URI を使うようにする作業が必要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "LDAP clients also need to be able to authenticate the server. In a X.509 public key infrastructure, public certificates are signed by the key of a certificate authority (CA). With <emphasis>easy-rsa</emphasis>, the Falcot administrators have created their own CA and they now need to configure the system to trust the signatures of Falcot's CA. This can be done by putting the CA certificate in <filename>/usr/local/share/ca-certificates</filename> and running <command>update-ca-certificates</command>."
-msgstr ""
+msgstr "LDAP クライアントにサーバを認証させる必要があります。X.509 公開鍵基盤において、公開証明書は認証局 (CA) の鍵で署名されます。<emphasis>easy-rsa</emphasis> を使うことで、Falcot 管理者は自分自身の CA を作成しました。さらに管理者は Falcot の CA の署名を信頼するようにシステムを設定する必要があります。これを行うには、CA 証明書を <filename>/usr/local/share/ca-certificates</filename> に配置して、<command>update-ca-certificates</command> を実行します。"
 
 #. Tag: screen
 #, no-c-format
@@ -4030,16 +4124,24 @@ msgid ""
 "done.\n"
 "done.\n"
 msgstr ""
+"\n"
+"# <userinput>cp keys/ca.crt /usr/local/share/ca-certificates/falcot.crt</userinput>\n"
+"# <userinput>update-ca-certificates</userinput>\n"
+"Updating certificates in /etc/ssl/certs... 1 added, 0 removed; done.\n"
+"Running hooks in /etc/ca-certificates/update.d....\n"
+"Adding debian:falcot.pem\n"
+"done.\n"
+"done.\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Last but not least, the default LDAP URI and default base DN used by the various command line tools can be modified in <filename>/etc/ldap/ldap.conf</filename>. This will save quite some typing."
-msgstr ""
+msgstr "最後に大事なことですが、様々なコマンドラインツールで使われるデフォルトの LDAP URI とデフォルトの DN は <filename>/etc/ldap/ldap.conf</filename> を編集すれば変更することが可能です。こうすることで、タイプする量を激減させることが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "The <filename>/etc/ldap/ldap.conf</filename> file"
-msgstr ""
+msgstr "<filename>/etc/ldap/ldap.conf</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -4061,8 +4163,24 @@ msgid ""
 "# TLS certificates (needed for GnuTLS)\n"
 "TLS_CACERT      /etc/ssl/certs/ca-certificates.crt\n"
 msgstr ""
+"#\n"
+"# LDAP Defaults\n"
+"#\n"
+"\n"
+"# See ldap.conf(5) for details\n"
+"# This file should be world readable but not world writable.\n"
+"\n"
+"BASE   dc=falcot,dc=com\n"
+"URI    ldaps://ldap.falcot.com\n"
+"\n"
+"#SIZELIMIT      12\n"
+"#TIMELIMIT      15\n"
+"#DEREF          never\n"
+"\n"
+"# TLS certificates (needed for GnuTLS)\n"
+"TLS_CACERT      /etc/ssl/certs/ca-certificates.crt\n"
 
 #. Tag: para
 #, no-c-format
 msgid "This chapter sampled only a fraction of the available server software; however, most of the common network services were described. Now it is time for an even more technical chapter: we'll go into deeper detail for some concepts, describe massive deployments and virtualization."
-msgstr ""
+msgstr "この章では、利用可能なサーバソフトウェアの内のほんの僅かなソフトウェアだけに注目しました; しかしながら、ほとんどの一般的なネットワークサービスについて言及しました。今や、より技術的な章に入る準備が整ったと言えます: 一部の概念に関してより詳細を解説し、大規模な配備と仮想化について説明します。"
