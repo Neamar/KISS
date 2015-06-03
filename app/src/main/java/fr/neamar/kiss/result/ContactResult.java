@@ -5,14 +5,18 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.provider.ContactsContract;
+import android.telephony.PhoneNumberUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.FileNotFoundException;
+import java.util.Locale;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -29,16 +33,11 @@ public class ContactResult extends Result {
         this.pojo = this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
 
-        // Try to pretty format phone number
-        if (this.contactPojo.phone.matches("(\\+3)?[0-9]{10}")) {
-            String formatted_phone = contactPojo.phone.replace(" ", "");
-            int number_length = contactPojo.phone.length();
-            for (int i = 1; i < 5; i++) {
-                formatted_phone = formatted_phone.substring(0, number_length - 2 * i) + " "
-                        + formatted_phone.substring(number_length - 2 * i);
-            }
-
-            contactPojo.phone = formatted_phone;
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            contactPojo.phone = PhoneNumberUtils.formatNumber(contactPojo.phone, Locale.getDefault().getCountry());
+        }
+        else {
+            contactPojo.phone = PhoneNumberUtils.formatNumber(contactPojo.phone);
         }
     }
 
