@@ -37,11 +37,50 @@
         android:padding="4dp">
 
         <ImageView
+            android:id="@+id/launcherButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/main_kiss"
+            android:focusable="true"
+            android:onClick="onLauncherButtonClicked"
+            android:src="@drawable/ic_launcher"
+            android:tag="showMenu"/>
+
+        <ProgressBar
+            android:id="@+id/loaderBar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="10dp"
+            android:indeterminate="true"/>
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/clearButton"
+            android:layout_toRightOf="@+id/launcherButton"
+            android:layout_toStartOf="@+id/launcherButton"
+            android:background="@android:color/white"
+            android:hint="@string/ui_search_hint"
+            android:imeOptions="flagNoExtractUi|actionSearch"
+            android:inputType="textVisiblePassword|textNoSuggestions"
+            android:singleLine="true"
+            android:textCursorDrawable="@drawable/cursor"
+            android:textSize="16sp"/>
+
+        <ImageView
             android:id="@+id/menuButton"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
@@ -56,8 +95,7 @@
             android:id="@+id/clearButton"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:contentDescription="@string/main_clear"
             android:focusable="true"
@@ -68,49 +106,6 @@
             android:paddingTop="4dp"
             android:src="@drawable/clear_dark"
             android:visibility="visible"/>
-
-        <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/launcherButton"
-            android:layout_toRightOf="@+id/clearButton"
-            android:layout_toStartOf="@+id/launcherButton"
-            android:background="@android:color/white"
-            android:hint="@string/ui_search_hint"
-            android:imeOptions="flagNoExtractUi|actionSearch"
-            android:inputType="textVisiblePassword|textNoSuggestions"
-            android:singleLine="true"
-            android:textCursorDrawable="@drawable/cursor"
-            android:textSize="16sp"/>
-
-        <ImageView
-            android:id="@+id/launcherButton"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="6dp"
-            android:contentDescription="@string/main_kiss"
-            android:focusable="true"
-            android:onClick="onLauncherButtonClicked"
-            android:src="@drawable/ic_launcher"
-            android:tag="showMenu"/>
-
-        <ProgressBar
-            android:id="@+id/loaderBar"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="6dp"
-            android:indeterminate="true"
-            android:visibility="gone"/>
     </RelativeLayout>
 
     <ScrollView
