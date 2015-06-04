@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2015-06-03 19:17+0900\n"
+"PO-Revision-Date: 2015-06-04 21:04+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -77,272 +77,272 @@ msgstr "<xref linkend=\"installation\" />では、インストーラの視点か
 #. Tag: para
 #, no-c-format
 msgid "RAID and LVM are both techniques to abstract the mounted volumes from their physical counterparts (actual hard-disk drives or partitions thereof); the former secures the data against hardware failure by introducing redundancy, the latter makes volume management more flexible and independent of the actual size of the underlying disks. In both cases, the system ends up with new block devices, which can be used to create filesystems or swap space, without necessarily having them mapped to one physical disk. RAID and LVM come from quite different backgrounds, but their functionality can overlap somewhat, which is why they are often mentioned together."
-msgstr ""
+msgstr "RAID と LVM は両方ともマウントされたボリュームを物理的に対応する物 (実際のハードディスクドライブまたはそのパーティション) から抽象化する技術です; RAID は冗長性を導入することでデータをハードディスク障害から守り、LVM はボリューム管理をより柔軟にしてディスクの実サイズに依存しないようにします。どちらの場合であっても、最終的にシステムには新しいブロックデバイスが追加されますが、そのブロックデバイスをある物理ディスクに対応付けなくとも、ファイルシステムやスワップ領域を作成するために使うことが可能です。RAID と LVM は全く異なる生い立ちを持っていますが、両者の機能は多少重複しています。このため、両者は一緒に言及されることが多いです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>PERSPECTIVE</emphasis> Btrfs combines LVM and RAID"
-msgstr ""
+msgstr "<emphasis>PERSPECTIVE</emphasis> Btrfs が LVM と RAID を結びつける"
 
 #. Tag: para
 #, no-c-format
 msgid "While LVM and RAID are two distinct kernel subsystems that come between the disk block devices and their filesystems, <emphasis>btrfs</emphasis> is a new filesystem, initially developed at Oracle, that purports to combine the featuresets of LVM and RAID and much more. It is mostly functional, and although it is still tagged “experimental” because its development is incomplete (some features aren't implemented yet), it has already seen some use in production environments. <ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
-msgstr ""
+msgstr "LVM と RAID は 2 種類の明らかに異なるカーネルサブシステムで、これはディスクブロックデバイスとそのファイルシステムの間のやり取りを担います。<emphasis>btrfs</emphasis> は最初 Oracle で開発された新しいファイルシステムで、LVM と RAID の機能を結びつけると主張しています。<emphasis>btrfs</emphasis> は開発がまだ完了していない (一部の機能がまだ実装されていない) ため「実験中」とタグ付けされていますが、大部分が機能し、本番環境で使われています。<ulink type=\"block\" url=\"http://btrfs.wiki.kernel.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Among the noteworthy features are the ability to take a snapshot of a filesystem tree at any point in time. This snapshot copy doesn't initially use any disk space, the data only being duplicated when one of the copies is modified. The filesystem also handles transparent compression of files, and checksums ensure the integrity of all stored data."
-msgstr ""
+msgstr "<emphasis>btrfs</emphasis> の特筆すべき機能に、任意の時点におけるファイルシステムツリーのスナップショットを取る機能があります。このスナップショットコピーは初期状態ではいかなるディスクスペースも使いません、コピー内容の 1 つが修正された際にデータが複製されます。また、このファイルシステムはファイルを透過的に圧縮することが可能で、さらにチェックサムを用いて保存されているデータの完全性を保証します。"
 
 #. Tag: para
 #, no-c-format
 msgid "In both the RAID and LVM cases, the kernel provides a block device file, similar to the ones corresponding to a hard disk drive or a partition. When an application, or another part of the kernel, requires access to a block of such a device, the appropriate subsystem routes the block to the relevant physical layer. Depending on the configuration, this block can be stored on one or several physical disks, and its physical location may not be directly correlated to the location of the block in the logical device."
-msgstr ""
+msgstr "RAID と LVM のどちらの場合も、カーネルはハードディスクドライブやパーティションに対応するものとよく似たブロックデバイスファイルを提供します。アプリケーションやカーネルの別の部分がそのようなデバイスのあるブロックにアクセスを要求する場合、適切なサブシステムがブロックを対応する物理層に転送します。設定に依存して、このブロックは 1 つか復数の物理ディスクに保存されます。その物理的場所は論理デバイス内のブロックの位置と直接的に対応するものではないかもしれません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Software RAID"
-msgstr ""
+msgstr "ソフトウェア RAID"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID <indexterm><primary>RAID</primary></indexterm> means <emphasis>Redundant Array of Independent Disks</emphasis>. The goal of this system is to prevent data loss in case of hard disk failure. The general principle is quite simple: data are stored on several physical disks instead of only one, with a configurable level of redundancy. Depending on this amount of redundancy, and even in the event of an unexpected disk failure, data can be losslessly reconstructed from the remaining disks."
-msgstr ""
+msgstr "RAID <indexterm><primary>RAID</primary></indexterm> は <emphasis>Redundant Array of Independent Disks</emphasis> を意味します。このシステムの目標はハードディスク障害の際にデータ損失を防ぐことです。一般的な原則は極めて単純です: データは設定可能な冗長性のレベルに基いて 1 つではなく復数のディスクに保存されます。冗長性の量に依存して、たとえ予想外のディスク障害が起きた場合でも、データを残りのディスクから損失なく再構成することが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> <foreignphrase>Independent</foreignphrase> or <foreignphrase>inexpensive</foreignphrase>?"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> <foreignphrase>Independent</foreignphrase> それとも <foreignphrase>inexpensive</foreignphrase>?"
 
 #. Tag: para
 #, no-c-format
 msgid "The I in RAID initially stood for <emphasis>inexpensive</emphasis>, because RAID allowed a drastic increase in data safety without requiring investing in expensive high-end disks. Probably due to image concerns, however, it is now more customarily considered to stand for <emphasis>independent</emphasis>, which doesn't have the unsavory flavour of cheapness."
-msgstr ""
+msgstr "当初、RAID の I は <emphasis>inexpensive</emphasis> を意味していました。なぜなら、RAID は高価な高性能ディスクへ投資すること無くデータの安全性を劇的に高める事が可能だったからです。しかしながらおそらく心証的な懸念から、現在 RAID の I は通例 <emphasis>independent</emphasis> を意味するものとされます。 <emphasis>independent</emphasis> には安価であることに対する良くない印象がありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID can be implemented either by dedicated hardware (RAID modules integrated into SCSI or SATA controller cards) or by software abstraction (the kernel). Whether hardware or software, a RAID system with enough redundancy can transparently stay operational when a disk fails; the upper layers of the stack (applications) can even keep accessing the data in spite of the failure. Of course, this “degraded mode” can have an impact on performance, and redundancy is reduced, so a further disk failure can lead to data loss. In practice, therefore, one will strive to only stay in this degraded mode for as long as it takes to replace the failed disk. Once the new disk is in place, the RAID system can reconstruct the required data so as to return to a safe mode. The applications won't notice anything, apart from potentially reduced access speed, while the array is in degraded mode or during the reconstruction phase."
-msgstr ""
+msgstr "RAID は専用ハードウェア (SCSI や SATA コントローラカードに統合された RAID モジュール) またはソフトウェア抽象化 (カーネル) を使って実装することが可能です。ハードウェアかソフトウェアかに関わらず、十分な冗長性を備えた RAID システムはディスク障害があっても透過的に利用可能な状態を継続する事が可能です; スタックの上層 (アプリケーション) はディスク障害にも関わらず、引き続きデータにアクセス可能です。もちろん「信頼性低下状態」は性能に影響を与え、冗長性を低下させます。このため、もう一つ別のディスク障害が起きるとデータを失うことになります。それ故、具体的に言えば管理者は障害の起きたディスクを交換して、せめて信頼性低下状態よりも状態を悪くしないように努力します。新しいディスクが配備されると、RAID システムは要求されたデータを再構成することが可能です。こうすることで信頼性の高い状態に戻ります。アプリケーションは、RAID アレイが信頼性低下状態か再構成状態の間にアクセス速度が低下する可能性のある点を除いて、何も気付かないでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "When RAID is implemented by hardware, its configuration generally happens within the BIOS setup tool, and the kernel will consider a RAID array as a single disk, which will work as a standard physical disk, although the device name may be different. For instance, the kernel in <emphasis role=\"distribution\">Squeeze</emphasis> made some hardware RAID arrays available as <filename>/dev/cciss/c0d0</filename>; the kernel in <emphasis role=\"distribution\">Wheezy</emphasis> changed this name to the more natural <filename>/dev/sda</filename>, but other RAID controllers may still behave differently."
-msgstr ""
+msgstr "RAID がハードウェアで実装された場合、その設定は通常 BIOS セットアップツールによってなされます。カーネルは RAID アレイを、デバイス名は違うかもしれませんが標準的な物理ディスクとして機能する、単一のディスクとみなします。例えば、<emphasis role=\"distribution\">Squeeze</emphasis> のカーネルは一部のハードウェア RAID アレイを <filename>/dev/cciss/c0d0</filename> として利用可能にします; <emphasis role=\"distribution\">Wheezy</emphasis> のカーネルはこの名前をより自然な <filename>/dev/sda</filename> に変えましたが、RAID コントローラによっては命名規則が異なるかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "We only focus on software RAID in this book."
-msgstr ""
+msgstr "この本ではソフトウェア RAID だけに注目します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Different RAID Levels"
-msgstr ""
+msgstr "様々な RAID レベル"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID is actually not a single system, but a range of systems identified by their levels; the levels differ by their layout and the amount of redundancy they provide. The more redundant, the more failure-proof, since the system will be able to keep working with more failed disks. The counterpart is that the usable space shrinks for a given set of disks; seen the other way, more disks will be needed to store a given amount of data."
-msgstr ""
+msgstr "実際のところ RAID は 1 種類しかないわけではなく、そのレベルによって識別される復数の種類があります; 設計と提供される冗長性の度合いが異なる復数の RAID レベルが存在します。より冗長性を高くすれば、より障害に強くなります。なぜなら、より多くのディスクで障害が起きても、システムを動かし続けることができるからです。これに応じて、与えられた一連のディスクに対して利用可能な領域が小さくなります; つまり、あるサイズのデータを保存するために必要なディスク領域のサイズが多くなります。"
 
 #. Tag: term
 #, no-c-format
 msgid "Linear RAID"
-msgstr ""
+msgstr "リニア RAID"
 
 #. Tag: para
 #, no-c-format
 msgid "Even though the kernel's RAID subsystem allows creating “linear RAID”, this is not proper RAID, since this setup doesn't involve any redundancy. The kernel merely aggregates several disks end-to-end and provides the resulting aggregated volume as one virtual disk (one block device). That's about its only function. This setup is rarely used by itself (see later for the exceptions), especially since the lack of redundancy means that one disk failing makes the whole aggregate, and therefore all the data, unavailable."
-msgstr ""
+msgstr "カーネルの RAID サブシステムを使うことで、「リニア RAID」を作ることも可能ですが、これは適切な RAID ではありません。なぜなら、このリニア RAID には冗長性が一切無いからです。カーネルはただ単純に復数のディスク端と端をを統合し結果的に統合されたボリュームを仮想ディスク (1つのブロックデバイス) として提供します。これがリニア RAID の全てです。リニア RAID を使うのは極稀な場合に限られます (後から使用例を説明します)。特に、冗長性が無いということは 1 つのディスクの障害が統合されたボリューム全体を駄目にする、そして全てのデータを駄目にすることを意味します。"
 
 #. Tag: term
 #, no-c-format
 msgid "RAID-0"
-msgstr ""
+msgstr "RAID-0"
 
 #. Tag: para
 #, no-c-format
 msgid "This level doesn't provide any redundancy either, but disks aren't simply stuck on end one after another: they are divided in <emphasis>stripes</emphasis>, and the blocks on the virtual device are stored on stripes on alternating physical disks. In a two-disk RAID-0 setup, for instance, even-numbered blocks of the virtual device will be stored on the first physical disk, while odd-numbered blocks will end up on the second physical disk."
-msgstr ""
+msgstr "RAID-0 レベルも冗長性を提供しませんが、順序通り単純に物理ディスクを連結する構成ではありません: 物理ディスクは<emphasis>ストライプ状</emphasis>に分割され、仮想デバイスのブロックは互い違いになった物理ディスクのストライプに保存されます。例えば 2 台構成の RAID-0 セットアップでは、偶数を付番されたブロックは最初の物理ディスクに保存され、奇数を付番されたブロックは 2 番目の物理ディスクに保存されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "This system doesn't aim at increasing reliability, since (as in the linear case) the availability of all the data is jeopardized as soon as one disk fails, but at increasing performance: during sequential access to large amounts of contiguous data, the kernel will be able to read from both disks (or write to them) in parallel, which increases the data transfer rate. However, RAID-0 use is shrinking, its niche being filled by LVM (see later)."
-msgstr ""
+msgstr "RAID-0 システムは信頼性を向上させることではなく、性能を向上させることを目標にしています。システムの信頼性、データの可用性は (リニア RAID と同様に) ディスク障害があればすぐに脅かされるからです: 隣接した巨大なデータにシーケンシャルアクセスする場合、カーネルは両方のディスクから平行して読み込む (書き込む) ことが可能でしょう。この事により、データの転送率が増加します。しかしながら、RAID-0 が使われる機会は減り、代わりに LVM (後から説明します) が使われるようになっています。"
 
 #. Tag: term
 #, no-c-format
 msgid "RAID-1"
-msgstr ""
+msgstr "RAID-1"
 
 #. Tag: para
 #, no-c-format
 msgid "This level, also known as “RAID mirroring”, is both the simplest and the most widely used setup. In its standard form, it uses two physical disks of the same size, and provides a logical volume of the same size again. Data are stored identically on both disks, hence the “mirror” nickname. When one disk fails, the data is still available on the other. For really critical data, RAID-1 can of course be set up on more than two disks, with a direct impact on the ratio of hardware cost versus available payload space."
-msgstr ""
+msgstr "RAID-1 レベルは「RAID ミラーリング」としても知られ、最も簡単で最も広く使われています。RAID-1 の標準的な構造では、同じサイズの 2 台の物理ディスクを使い、物理ディスクと同じサイズの論理ボリュームが利用可能になります。データを両方のディスクに保存するため、「ミラー」と呼ばれています。一方のディスクに障害があれば、他方のディスク上のデータを利用することが可能です。非常に重要なデータ用に、もちろん RAID-1 を 2 台以上の構成にすることも可能ですが、これはハードウェア費用と利用可能な保存領域の比率に直接的な影響を与えます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Disks and cluster sizes"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> ディスクとクラスタサイズ"
 
 #. Tag: para
 #, no-c-format
 msgid "If two disks of different sizes are set up in a mirror, the bigger one will not be fully used, since it will contain the same data as the smallest one and nothing more. The useful available space provided by a RAID-1 volume therefore matches the size of the smallest disk in the array. This still holds for RAID volumes with a higher RAID level, even though redundancy is stored differently."
-msgstr ""
+msgstr "異なるサイズの 2 台のディスクをミラーでセットアップする場合、サイズの大きい側のディスクは完全に利用されません。なぜなら、大きい側のディスクは最も小さいディスクと同じサイズのデータを含むにすぎないからです。このため RAID-1 ボリュームで提供される利用可能な領域のサイズは RAID アレイの最も小さなディスクのサイズと同じになります。冗長性を異なる方法で確保している、より高い RAID レベルの RAID ボリュームの場合に対しても同じことが言えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "It is therefore important, when setting up RAID arrays (except for RAID-0 and “linear RAID”), to only assemble disks of identical, or very close, sizes, to avoid wasting resources."
-msgstr ""
+msgstr "それ故、(RAID-0 と「リニア RAID」以外の) RAID アレイをセットアップする場合、資源の無駄を防ぐために、アレイを構成するディスクはそのサイズが完全に同じか近いものを使うことが重要です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Spare disks"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> 予備ディスク"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID levels that include redundancy allow assigning more disks than required to an array. The extra disks are used as spares when one of the main disks fails. For instance, in a mirror of two disks plus one spare, if one of the first two disks fails, the kernel will automatically (and immediately) reconstruct the mirror using the spare disk, so that redundancy stays assured after the reconstruction time. This can be used as another kind of safeguard for critical data."
-msgstr ""
+msgstr "冗長性を持たせた RAID レベルでは、アレイに必要なディスク数よりも多くのディスクを使うことが可能です。追加的ディスクは主要ディスクに障害が起きた場合に予備として使われます。例えば、2 台のディスクと 1 台の予備ディスクのミラー構成では、最初の 2 台の内の 1 台に障害が起きた場合、カーネルは自動的に (そして素早く) 予備ディスクを使ってミラーを再構成します。こうすることで、再構成の完了後に冗長性は確保されます。予備ディスクは、重要なデータに対する別の種類の安全装置として使うことが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "One would be forgiven for wondering how this is better than simply mirroring on three disks to start with. The advantage of the “spare disk” configuration is that the spare disk can be shared across several RAID volumes. For instance, one can have three mirrored volumes, with redundancy assured even in the event of one disk failure, with only seven disks (three pairs, plus one shared spare), instead of the nine disks that would be required by three triplets."
-msgstr ""
+msgstr "この方式が単純に 3 台のディスクを最初からミラーリングするよりも優れているとされることに疑問を持つかもしれません。「予備ディスク」を設定する利点は復数の RAID ボリュームで予備ディスクを共有することが可能という点です。例えば、 1 台のディスク障害に対する冗長性を確保した 3 つのミラーされたボリュームを構成するには、ディスクを 7 台 (3 つのペアと 1 台の共有された予備) 用意するだけですみます。これに対して各ボリュームに 3 台のディスクを用意する場合には 9 台のディスクが必要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "This RAID level, although expensive (since only half of the physical storage space, at best, is useful), is widely used in practice. It is simple to understand, and it allows very simple backups: since both disks have identical contents, one of them can be temporarily extracted with no impact on the working system. Read performance is often increased since the kernel can read half of the data on each disk in parallel, while write performance isn't too severely degraded. In case of a RAID-1 array of N disks, the data stays available even with N-1 disk failures."
-msgstr ""
+msgstr "RAID-1 レベルは、高価であるにも関わらず (物理ストレージ領域の、良くても、たった半分しか使えない)、広く実運用されています。RAID-1 は簡単に理解でき、簡単にバックアップ可能です: 両方のディスクが全く同じ内容を持っているため、運用システムに影響を与えることなしに、片方を一時的に取り外すことが可能です。通常、読み込み性能は上昇します。なぜなら、カーネルはデータの半分をそれぞれのディスクから平行して読むことができるからです。これに対して、書き込み性能はそれほど悪化しません。N 台のディスクからなる RAID-1 アレイの場合、データは N-1 台のディスク障害に対して保護されます。"
 
 #. Tag: term
 #, no-c-format
 msgid "RAID-4"
-msgstr ""
+msgstr "RAID-4"
 
 #. Tag: para
 #, no-c-format
 msgid "This RAID level, not widely used, uses N disks to store useful data, and an extra disk to store redundancy information. If that disk fails, the system can reconstruct its contents from the other N. If one of the N data disks fails, the remaining N-1 combined with the “parity” disk contain enough information to reconstruct the required data."
-msgstr ""
+msgstr "RAID-4 は広く使われていません。RAID-4 は実データを保存するために N 台のディスクを使い、冗長性情報を保存するために 1 台の追加的ディスクを使います。追加的ディスクに障害が起きた場合、システムは他の N 台からデータを再構成することが可能です。N 台のデータディスクの内最大で 1 台に障害が起きた場合、残りの N-1 台と「パリティ」ディスクには、要求されたデータを再構成するために十分な情報が含まれます。"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID-4 isn't too expensive since it only involves a one-in-N increase in costs and has no noticeable impact on read performance, but writes are slowed down. Furthermore, since a write to any of the N disks also involves a write to the parity disk, the latter sees many more writes than the former, and its lifespan can shorten dramatically as a consequence. Data on a RAID-4 array is safe only up to one failed disk (of the N+1)."
-msgstr ""
+msgstr "RAID-4 は高価過ぎるわけではありません。なぜなら、1 台当たりの費用は N 分の 1 だけ増加するに過ぎないからです。また、読み込み性能には大きな影響がありませんが、書き込み性能は悪化します。加えて、N 台の実データ用ディスクに対して書き込むと、パリティディスクに対する書き込みが発生するので、パリティディスクは実データ用ディスクに比べて書き込み回数が増えます。その結果、パリティディスクは極めて寿命が短くなります。RAID-4 アレイのデータは (N+1 台のディスクの内) 1 台の障害に対して保護されます。"
 
 #. Tag: term
 #, no-c-format
 msgid "RAID-5"
-msgstr ""
+msgstr "RAID-5"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID-5 addresses the asymmetry issue of RAID-4: parity blocks are spread over all of the N+1 disks, with no single disk having a particular role."
-msgstr ""
+msgstr "RAID-5 は RAID-4 の非対称性問題を対処したものです。パリティブロックは N+1 台のディスクに分散して保存され、特定のディスクが特定の役割を果たすことはありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Read and write performance are identical to RAID-4. Here again, the system stays functional with up to one failed disk (of the N+1), but no more."
-msgstr ""
+msgstr "読み込みと書き込み性能は RAID-4 と同様です。繰り返しになりますが、RAID-5 システムは (N+1 台のディスクの内) 最大で 1 台までに障害が起きても動作します。"
 
 #. Tag: term
 #, no-c-format
 msgid "RAID-6"
-msgstr ""
+msgstr "RAID-6"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID-6 can be considered an extension of RAID-5, where each series of N blocks involves two redundancy blocks, and each such series of N+2 blocks is spread over N+2 disks."
-msgstr ""
+msgstr "RAID-6 は RAID-5 の拡張と考えられます。RAID-6 では、N 個のブロックのそれぞれに対して 2 個の冗長性ブロックを使います。この N+2 個のブロックは N+2 台のディスクに分散して保存されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "This RAID level is slightly more expensive than the previous two, but it brings some extra safety since up to two drives (of the N+2) can fail without compromising data availability. The counterpart is that write operations now involve writing one data block and two redundancy blocks, which makes them even slower."
-msgstr ""
+msgstr "RAID-6 は RAID-4 と RAID-5 に比べて少し高価ですが、追加的な安全策を講じることが可能です。なぜなら、(N+2 台中の) 最大で 2 台までの障害に対してデータを守ることが可能だからです。書き込み操作は 1 つのデータブロックと 2 つの冗長性ブロックを書き込むことになりますから、書き込み性能が更に遅くなります。"
 
 #. Tag: term
 #, no-c-format
 msgid "RAID-1+0"
-msgstr ""
+msgstr "RAID-1+0"
 
 #. Tag: para
 #, no-c-format
 msgid "This isn't strictly speaking, a RAID level, but a stacking of two RAID groupings. Starting from 2×N disks, one first sets them up by pairs into N RAID-1 volumes; these N volumes are then aggregated into one, either by “linear RAID” or (increasingly) by LVM. This last case goes farther than pure RAID, but there's no problem with that."
-msgstr ""
+msgstr "厳密に言えば RAID-1+0 は RAID レベルではなく、2 種類の RAID 分類を積み重ねたものです。2×N 台のディスクが必要で、最初に 2 台毎のペアから N 台の RAID-1 ボリュームを作ります。N 台の RAID-1 ボリュームは「リニア RAID」か LVM (次第にこちらを選ぶケースが増えています) のどちらか一方を使って 1 台に統合されます。LVM を使うと純粋な RAID ではなくなりますが、LVM を使っても問題はありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID-1+0 can survive multiple disk failures: up to N in the 2×N array described above, provided that at least one disk keeps working in each of the RAID-1 pairs."
-msgstr ""
+msgstr "RAID-1+0 は復数のディスク障害を乗り切る事が可能です: 上に挙げた 2×N アレイの内最大で N 台までの障害に耐えます。ただし、各 RAID-1 ペアの内少なくとも 1 台のディスクが動き続けなければいけません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> RAID-10"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> RAID-10"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID-10 is generally considered a synonym of RAID-1+0, but a Linux specificity makes it actually a generalization. This setup allows a system where each block is stored on two different disks, even with an odd number of disks, the copies being spread out along a configurable model."
-msgstr ""
+msgstr "通常 RAID-10 は RAID-1+0 の同意語と考えられますが、Linux では特別に RAID-10 をより一般的な構成を可能にするものとして定めています。RAID-10 では、システムが各ブロックを 2 種類の異なるディスクに保存することが可能です。奇数台のディスク構成の場合でも、このコピーは設定可能なモデルに従って分散して保存されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Performances will vary depending on the chosen repartition model and redundancy level, and of the workload of the logical volume."
-msgstr ""
+msgstr "性能は、選択した再分割モデルと冗長性の度合い、そして論理ボリュームの作業負荷に依存して変化します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Obviously, the RAID level will be chosen according to the constraints and requirements of each application. Note that a single computer can have several distinct RAID arrays with different configurations."
-msgstr ""
+msgstr "明らかに、RAID レベルは各用途からの制限および要求に従って選択されます。1 台のコンピュータに、異なる設定を持つ復数の RAID アレイを配置することが可能である点に注意してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Setting up RAID"
-msgstr ""
+msgstr "RAID の設定"
 
 #. Tag: para
 #, no-c-format
 msgid "Setting up RAID volumes requires the <emphasis role=\"pkg\">mdadm</emphasis> <indexterm><primary><emphasis role=\"pkg\">mdadm</emphasis></primary></indexterm> package; it provides the <command>mdadm</command> command, which allows creating and manipulating RAID arrays, as well as scripts and tools integrating it to the rest of the system, including the monitoring system."
-msgstr ""
+msgstr "RAID ボリュームを設定するには <emphasis role=\"pkg\">mdadm</emphasis> <indexterm><primary><emphasis role=\"pkg\">mdadm</emphasis></primary></indexterm> パッケージが必要です; <emphasis role=\"pkg\">mdadm</emphasis> パッケージには、RAID アレイを作成したり操作するための <command>mdadm</command> コマンド、システムの他の部分に RAID アレイを統合するためのスクリプトやツール、監視システム、が含まれます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Our example will be a server with a number of disks, some of which are already used, the rest being available to setup RAID. We initially have the following disks and partitions:"
-msgstr ""
+msgstr "以下の例では、多数のディスクを持つサーバをセットアップします。ディスクの一部は既に利用されており、残りは RAID をセットアップするために利用可能になっています。最初の状態で、以下のディスクとパーティションが存在します:"
 
 #. Tag: para
 #, no-c-format
 msgid "the <filename>sdb</filename> disk, 4 GB, is entirely available;"
-msgstr ""
+msgstr "<filename>sdb</filename> ディスク、4 GB、は全部利用可能です;"
 
 #. Tag: para
 #, no-c-format
 msgid "the <filename>sdc</filename> disk, 4 GB, is also entirely available;"
-msgstr ""
+msgstr "<filename>sdc</filename> ディスク、4 GB、も全部利用可能です;"
 
 #. Tag: para
 #, no-c-format
 msgid "on the <filename>sdd</filename> disk, only partition <filename>sdd2</filename> (about 4 GB) is available;"
-msgstr ""
+msgstr "<filename>sdd</filename> ディスクでは、<filename>sdd2</filename> (約 4 GB) パーティションだけが利用可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "finally, a <filename>sde</filename> disk, still 4 GB, entirely available."
-msgstr ""
+msgstr "最後に、<filename>sde</filename> ディスク、4 GB、全部利用可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Identifying existing RAID volumes"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> 既存の RAID ボリュームの識別"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/proc/mdstat</filename> file lists existing volumes and their states. When creating a new RAID volume, care should be taken not to name it the same as an existing volume."
-msgstr ""
+msgstr "<filename>/proc/mdstat</filename> ファイルには、既存のボリュームとその状態が書かれています。新しい RAID ボリュームを作成する場合、既存のボリュームと同じ名前を付けないように注意してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "We're going to use these physical elements to build two volumes, one RAID-0 and one mirror (RAID-1). Let's start with the RAID-0 volume:"
-msgstr ""
+msgstr "2 つのボリューム、RAID-0 とミラー (RAID-1)、を作るためにこれらの物理ディスクを使います。RAID-0 ボリュームから始めましょう:"
 
 #. Tag: screen
 #, no-c-format
@@ -406,16 +406,74 @@ msgid ""
 "/dev/md0        7.9G  146M  7.4G   2% /srv/raid-0\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc</userinput>\n"
+"<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
+"mdadm: array /dev/md0 started.\n"
+"# </computeroutput><userinput>mdadm --query /dev/md0</userinput>\n"
+"<computeroutput>/dev/md0: 8.00GiB raid0 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md0</userinput>\n"
+"<computeroutput>/dev/md0:\n"
+"        Version : 1.2\n"
+"  Creation Time : Thu Jan 17 15:56:55 2013\n"
+"     Raid Level : raid0\n"
+"     Array Size : 8387584 (8.00 GiB 8.59 GB)\n"
+"   Raid Devices : 2\n"
+"  Total Devices : 2\n"
+"    Persistence : Superblock is persistent\n"
+"\n"
+"    Update Time : Thu Jan 17 15:56:55 2013\n"
+"          State : clean \n"
+" Active Devices : 2\n"
+"Working Devices : 2\n"
+" Failed Devices : 0\n"
+"  Spare Devices : 0\n"
+"\n"
+"     Chunk Size : 512K\n"
+"\n"
+"           Name : mirwiz:0  (local to host mirwiz)\n"
+"           UUID : bb085b35:28e821bd:20d697c9:650152bb\n"
+"         Events : 0\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       16        0      active sync   /dev/sdb\n"
+"       1       8       32        1      active sync   /dev/sdc\n"
+"# </computeroutput><userinput>mkfs.ext4 /dev/md0</userinput>\n"
+"<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
+"Filesystem label=\n"
+"OS type: Linux\n"
+"Block size=4096 (log=2)\n"
+"Fragment size=4096 (log=2)\n"
+"Stride=128 blocks, Stripe width=256 blocks\n"
+"524288 inodes, 2096896 blocks\n"
+"104844 blocks (5.00%) reserved for the super user\n"
+"First data block=0\n"
+"Maximum filesystem blocks=2147483648\n"
+"64 block groups\n"
+"32768 blocks per group, 32768 fragments per group\n"
+"8192 inodes per group\n"
+"Superblock backups stored on blocks: \n"
+"       32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632\n"
+"\n"
+"Allocating group tables: done                            \n"
+"Writing inode tables: done                            \n"
+"Creating journal (32768 blocks): done\n"
+"Writing superblocks and filesystem accounting information: done \n"
+"# </computeroutput><userinput>mkdir /srv/raid-0</userinput>\n"
+"<computeroutput># </computeroutput><userinput>mount /dev/md0 /srv/raid-0</userinput>\n"
+"<computeroutput># </computeroutput><userinput>df -h /srv/raid-0</userinput>\n"
+"<computeroutput>Filesystem      Size  Used Avail Use% Mounted on\n"
+"/dev/md0        7.9G  146M  7.4G   2% /srv/raid-0\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>mdadm --create</command> command requires several parameters: the name of the volume to create (<filename>/dev/md*</filename>, with MD standing for <foreignphrase>Multiple Device</foreignphrase>), the RAID level, the number of disks (which is compulsory despite being mostly meaningful only with RAID-1 and above), and the physical drives to use. Once the device is created, we can use it like we'd use a normal partition, create a filesystem on it, mount that filesystem, and so on. Note that our creation of a RAID-0 volume on <filename>md0</filename> is nothing but coincidence, and the numbering of the array doesn't need to be correlated to the chosen amount of redundancy. It's also possible to create named RAID arrays, by giving <command>mdadm</command> parameters such as <filename>/dev/md/linear</filename> instead of <filename>/dev/md0</filename>."
-msgstr ""
+msgstr "<command>mdadm --create</command> コマンドは復数のパラメータを要求します: 作成するボリュームの名前 (<filename>/dev/md*</filename>、MD は <foreignphrase>Multiple Device</foreignphrase> を意味します)、RAID レベル、ディスク数 (普通この値は RAID-1 とそれ以上のレベルでのみ意味があるにも関わらず、これは必須オプションです)、利用する物理デバイス。デバイスを作成したら、デバイスを通常のパーティションを取り扱うのと同様のやり方で取り扱うことが可能です。ファイルシステムを作成したり、ファイルシステムをマウントしたり、することが可能です。作成する RAID-0 ボリュームに <filename>md0</filename> と名前をつけたのは偶然に過ぎない点に注意してください。アレイの番号付けと冗長性の度合いを関連付ける必要はありません。また、<filename>/dev/md0</filename> の代わりに <filename>/dev/md/linear</filename> のような <command>mdadm</command> パラメータを使えば、名前付き RAID アレイを作成することも可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Creation of a RAID-1 follows a similar fashion, the differences only being noticeable after the creation:"
-msgstr ""
+msgstr "同様のやり方を使って RAID-1 を作成します。注意するべき違いは作成後に説明します;"
 
 #. Tag: screen
 #, no-c-format
@@ -464,21 +522,64 @@ msgid ""
 "[...]\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdd2 /dev/sde</userinput>\n"
+"<computeroutput>mdadm: Note: this array has metadata at the start and\n"
+"    may not be suitable as a boot device.  If you plan to\n"
+"    store '/boot' on this device please ensure that\n"
+"    your boot-loader understands md/v1.x metadata, or use\n"
+"    --metadata=0.90\n"
+"mdadm: largest drive (/dev/sdd2) exceeds size (4192192K) by more than 1%\n"
+"Continue creating array? </computeroutput><userinput>y</userinput>\n"
+"<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
+"mdadm: array /dev/md1 started.\n"
+"# </computeroutput><userinput>mdadm --query /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1: 4.00GiB raid1 2 devices, 0 spares. Use mdadm --detail for more detail.\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"        Version : 1.2\n"
+"  Creation Time : Thu Jan 17 16:13:04 2013\n"
+"     Raid Level : raid1\n"
+"     Array Size : 4192192 (4.00 GiB 4.29 GB)\n"
+"  Used Dev Size : 4192192 (4.00 GiB 4.29 GB)\n"
+"   Raid Devices : 2\n"
+"  Total Devices : 2\n"
+"    Persistence : Superblock is persistent\n"
+"\n"
+"    Update Time : Thu Jan 17 16:13:04 2013\n"
+"          State : clean, resyncing (PENDING) \n"
+" Active Devices : 2\n"
+"Working Devices : 2\n"
+" Failed Devices : 0\n"
+"  Spare Devices : 0\n"
+"\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 0\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       1       8       64        1      active sync   /dev/sde\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"          State : clean\n"
+"[...]\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> RAID, disks and partitions"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> RAID、ディスク、パーティション"
 
 #. Tag: para
 #, no-c-format
 msgid "As illustrated by our example, RAID devices can be constructed out of disk partitions, and do not require full disks."
-msgstr ""
+msgstr "上の例で示したとおり、RAID デバイスはディスクパーティションに作成することができます。必ずディスク全体を使わなければいけないというわけではありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "A few remarks are in order. First, <command>mdadm</command> notices that the physical elements have different sizes; since this implies that some space will be lost on the bigger element, a confirmation is required."
-msgstr ""
+msgstr "幾つかの注意点があります。最初に、<command>mdadm</command> は物理デバイス同士のサイズが異なる点を指摘しています; この事によりサイズが大きい側のデバイスの一部の領域が使えなくなるため、確認が求められています。"
 
 #. Tag: para
 #, no-c-format
