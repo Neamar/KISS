@@ -1,5 +1,7 @@
 package fr.neamar.kiss;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -17,6 +19,8 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.util.Patterns;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -35,7 +39,13 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
@@ -51,6 +61,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
+
+    public static final String MIXPANEL_TOKEN = "6fd9dbd60ff95d6f42fd017dfc8f5d43";
+
     /**
      * IDS for the favorites buttons
      */
@@ -78,6 +91,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
      */
     private Searcher searcher;
 
+    private MixpanelAPI mixpanel;
+
     /**
      * Called when the activity is first created.
      */
@@ -88,6 +103,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         super.onCreate(savedInstanceState);
+
+        mixpanel = MixpanelAPI.getInstance(this, MIXPANEL_TOKEN);
 
         IntentFilter intentFilter = new IntentFilter(START_LOAD);
         IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
@@ -177,6 +194,19 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         // Apply effects depending on current Android version
         applyDesignTweaks();
+
+        // Retrieve current user email
+        Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
+        Account[] accounts = AccountManager.get(this).getAccounts();
+        for (Account account : accounts) {
+            if (emailPattern.matcher(account.name).matches()) {
+                mixpanel.identify(account.name);
+                mixpanel.getPeople().identify(account.name);
+                mixpanel.getPeople().set("$email", account.name);
+                mixpanel.getPeople().set("$name", account.name);
+                break;
+            }
+        }
     }
 
     /**
@@ -273,6 +303,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     @Override
     protected void onDestroy() {
+        mixpanel.flush();
         super.onDestroy();
         // unregister our receiver
         this.unregisterReceiver(this.mReceiver);
@@ -294,9 +325,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings:
+                mixpanel.track("KISS settings displayed", new JSONObject());
                 startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
                 return true;
             case R.id.preferences:
+                mixpanel.track("Device settings displayed", new JSONObject());
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             default:
@@ -317,6 +350,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Clear text content when touching the cross button
      */
     public void onClearButtonClicked(View clearButton) {
+        mixpanel.track("Clear clicked", new JSONObject());
+
         searchEditText.setText("");
     }
 
@@ -325,10 +360,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
      */
     public void onLauncherButtonClicked(View launcherButton) {
         // Display or hide the kiss bar, according to current view tag (showMenu / hideMenu).
+        mixpanel.track("Launcher clicked", new JSONObject());
+
         displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
 
     public void onFavoriteButtonClicked(View favorite) {
+        mixpanel.track("Favorite clicked", new JSONObject());
+
         // Favorites handling
         Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
                 .get(Integer.parseInt((String) favorite.getTag()));
@@ -484,7 +523,18 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Call this function when we're leaving the activity We can't use
      * onPause(), since it may be called for a configuration change
      */
-    public void launchOccurred() {
+    public void launchOccurred(int index, Result result) {
+        try {
+            JSONObject props = new JSONObject();
+            props.put("index", index);
+            props.put("queryLength", searchEditText.getText().length());
+            props.put("type", result.getClass().toString().replace("class fr.neamar.kiss.result.", ""));
+
+            mixpanel.track("Result Selected", props);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         // We made a choice on the list,
         // now we can cleanup the filter:
         searchEditText.setText("");

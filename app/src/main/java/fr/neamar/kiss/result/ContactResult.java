@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -67,7 +66,7 @@ public class ContactResult extends Result {
             @Override
             public void onClick(View v) {
                 recordLaunch(v.getContext());
-                queryInterface.launchOccurred();
+                queryInterface.launchOccurred(-1, ContactResult.this);
             }
         });
 
@@ -150,7 +149,7 @@ public class ContactResult extends Result {
             @Override
             public void run() {
                 recordLaunch(context);
-                queryInterface.launchOccurred();
+                queryInterface.launchOccurred(-1, ContactResult.this);
             }
         }, KissApplication.TOUCH_DELAY);
 
@@ -167,7 +166,7 @@ public class ContactResult extends Result {
             @Override
             public void run() {
                 recordLaunch(context);
-                queryInterface.launchOccurred();
+                queryInterface.launchOccurred(-1, ContactResult.this);
             }
         }, KissApplication.TOUCH_DELAY);
 

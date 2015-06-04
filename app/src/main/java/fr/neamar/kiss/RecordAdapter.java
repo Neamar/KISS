@@ -69,7 +69,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         notifyDataSetChanged();
     }
 
-    public void onClick(int position, View v) {
+    public void onClick(final int position, View v) {
         try {
             results.get(position).launch(getContext(), v);
         } catch (ArrayIndexOutOfBoundsException ignored) {
@@ -81,7 +81,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                parent.launchOccurred();
+                parent.launchOccurred(results.size() - position, results.get(position));
             }
         }, KissApplication.TOUCH_DELAY);
 
