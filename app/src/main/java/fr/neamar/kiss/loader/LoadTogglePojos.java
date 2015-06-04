@@ -2,7 +2,6 @@ package fr.neamar.kiss.loader;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Build;
 
 import java.util.ArrayList;
 
@@ -26,8 +25,7 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
             toggles.add(createPojo(context.getString(R.string.toggle_bluetooth), "bluetooth", R.attr.bluetooth));
         }
         toggles.add(createPojo(context.getString(R.string.toggle_silent), "silent", R.attr.silent));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD
-                && pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+        if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
             toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.attr.data));
         }
         return toggles;
