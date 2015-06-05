@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="@android:style/Theme.Light">
-        <item name="android:windowBackground">@color/kiss_background</item>
+    <style name="BaseTheme" parent="@android:style/Theme.Light">
+    </style>
+
+    <style name="AppTheme" parent="BaseTheme">
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
 
         <item name="clear">@drawable/clear_dark</item>
         <item name="bluetooth">@drawable/toggle_bluetooth_dark</item>
@@ -14,5 +18,10 @@
         <item name="silent">@drawable/toggle_silent_dark</item>
         <item name="battery">@drawable/setting_battery_dark</item>
         <item name="application">@drawable/setting_application_dark</item>
+    </style>
+
+    <style name="SettingTheme" parent="BaseTheme">
+        <item name="android:windowShowWallpaper">false</item>
+        <item name="android:windowBackground">@color/kiss_background</item>
     </style>
 </resources>

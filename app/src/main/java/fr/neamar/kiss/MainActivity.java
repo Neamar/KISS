@@ -19,7 +19,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.Patterns;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -327,6 +326,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
             case R.id.settings:
                 mixpanel.track("KISS settings displayed", new JSONObject());
                 startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
+                return true;
+            case R.id.wallpaper:
+                Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
+                startActivity(Intent.createChooser(intent, getString(R.string.menu_wallpaper)));
                 return true;
             case R.id.preferences:
                 mixpanel.track("Device settings displayed", new JSONObject());
