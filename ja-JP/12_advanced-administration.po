@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2015-06-04 21:04+0900\n"
+"PO-Revision-Date: 2015-06-05 22:48+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -584,42 +584,42 @@ msgstr "幾つかの注意点があります。最初に、<command>mdadm</comma
 #. Tag: para
 #, no-c-format
 msgid "More importantly, note the state of the mirror. The normal state of a RAID mirror is that both disks have exactly the same contents. However, nothing guarantees this is the case when the volume is first created. The RAID subsystem will therefore provide that guarantee itself, and there will be a synchronization phase as soon as the RAID device is created. After some time (the exact amount will depend on the actual size of the disks…), the RAID array switches to the “active” state. Note that during this reconstruction phase, the mirror is in a degraded mode, and redundancy isn't assured. A disk failing during that risk window could lead to losing all the data. Large amounts of critical data, however, are rarely stored on a freshly created RAID array before its initial synchronization. Note that even in degraded mode, the <filename>/dev/md1</filename> is usable, and a filesystem can be created on it, as well as some data copied on it."
-msgstr ""
+msgstr "更に重要な事は、ミラーの状態に注意する事です。RAID ミラーの正常な状態とは、両方のディスクが全く同じ内容を持っている状態です。しかしながら、ボリュームを最初に作成した直後、RAID ミラーは正常な状態であることを保証されません。このため、RAID サブシステムは RAID ミラーの正常な状態を保証するために、RAID デバイスが作成されたらすぐに同期化作業を始めます。暫くの後 (必要な時間はディスクの実サイズに依存します)、RAID アレイは「active」状態に移行します。同期化作業中、ミラーは信頼性低下状態で、冗長性は保証されない点に注意してください。同期化作業中にディスク障害が起きると、全てのデータを失うことにつながる恐れがあります。しかしながら、最近作成された RAID アレイの最初の同期化作業の前に、大量の重要なデータがこの RAID アレイに保存されていることは殆ど無いでしょう。信頼性低下状態であっても、<filename>/dev/md1</filename> は利用可能で、ファイルシステムを作成したり、データのコピーを取ったりすることが可能、という点に注意してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Starting a mirror in degraded mode"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 信頼性低下状態でミラーを開始する"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes two disks are not immediately available when one wants to start a RAID-1 mirror, for instance because one of the disks one plans to include is already used to store the data one wants to move to the array. In such circumstances, it is possible to deliberately create a degraded RAID-1 array by passing <filename>missing</filename> instead of a device file as one of the arguments to <command>mdadm</command>. Once the data have been copied to the “mirror”, the old disk can be added to the array. A synchronization will then take place, giving us the redundancy that was wanted in the first place."
-msgstr ""
+msgstr "RAID-1 ミラーを構成する 2 台のディスクを両方共すぐに使えないことが時々あります。例えば、ミラーを構成するディスクの片方に、ミラーに移動したいデータが既に保存されている場合です。このような場合、<command>mdadm</command> に渡すデバイスファイル引数の片方をデバイスファイルの代わりに <filename>missing</filename> にすることで、意図的に信頼性低下状態の RAID-1 アレイを作成することも可能です。ミラーに移動したいデータを含むディスクからデータを「ミラー」にコピーした後、そのディスクをアレイに追加することが可能です。追加作業が終われば、同期化作業が行われ、ミラーに移動したかったデータの冗長性が確保されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Setting up a mirror without synchronization"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 同期化作業せずにミラーをセットアップする"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID-1 volumes are often created to be used as a new disk, often considered blank. The actual initial contents of the disk is therefore not very relevant, since one only needs to know that the data written after the creation of the volume, in particular the filesystem, can be accessed later."
-msgstr ""
+msgstr "RAID-1 ボリュームは通常新しいディスクとして使うために作成され、そのディスクにはデータが保存されていないと考えられます。このため、RAID を構成するディスクの初期内容は特に意味を持ちません。ボリュームの作成前、具体的に言えば初期ファイルシステムの作成前、に書き込まれていたデータは作成後にアクセスできないという点に注意してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "One might therefore wonder about the point of synchronizing both disks at creation time. Why care whether the contents are identical on zones of the volume that we know will only be read after we have written to them?"
-msgstr ""
+msgstr "そんなわけで、作成された時点で両方のディスクの同期化が行われる点について疑問に思うかもしれません。内容はゾーンに書き込まれた後で読み込まれるにも関わらず、なぜ、ボリュームのゾーン上で内容が同一であるか否かに注意する必要があるのでしょうか?"
 
 #. Tag: para
 #, no-c-format
 msgid "Fortunately, this synchronization phase can be avoided by passing the <literal>--assume-clean</literal> option to <command>mdadm</command>. However, this option can lead to surprises in cases where the initial data will be read (for instance if a filesystem is already present on the physical disks), which is why it isn't enabled by default."
-msgstr ""
+msgstr "幸いなことに、同期化作業は <literal>--assume-clean</literal> オプションを <command>mdadm</command> に渡せば避ける事が可能です。しかしながら、初期データが読まれる場合、このオプションを使うと問題があります (例えば、物理ディスク上にファイルシステムが既に存在している場合)。このため、デフォルトでこのオプションは有効化されません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Now let's see what happens when one of the elements of the RAID-1 array fails. <command>mdadm</command>, in particular its <literal>--fail</literal> option, allows simulating such a disk failure:"
-msgstr ""
+msgstr "RAID-1 アレイを構成するディスクの 1 台に障害が発生した場合、何が起きるかを見て行きましょう。<command>mdadm</command> に <literal>--fail</literal> オプションを付けることで、ディスク障害を模倣することが可能です:"
 
 #. Tag: screen
 #, no-c-format
@@ -646,11 +646,32 @@ msgid ""
 "\n"
 "       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sde</userinput>\n"
+"<computeroutput>mdadm: set /dev/sde faulty in /dev/md1\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"    Update Time : Thu Jan 17 16:14:09 2013\n"
+"          State : active, degraded \n"
+" Active Devices : 1\n"
+"Working Devices : 1\n"
+" Failed Devices : 1\n"
+"  Spare Devices : 0\n"
+"\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 19\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       1       0        0        1      removed\n"
+"\n"
+"       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The contents of the volume are still accessible (and, if it is mounted, the applications don't notice a thing), but the data safety isn't assured anymore: should the <filename>sdd</filename> disk fail in turn, the data would be lost. We want to avoid that risk, so we'll replace the failed disk with a new one, <filename>sdf</filename>:"
-msgstr ""
+msgstr "ボリュームの内容はまだアクセスすることが可能 (そして、ボリュームがマウントされていた場合、アプリケーションはディスク障害に気が付きません) ですが、データの安全性はもはや保証されません: <filename>sdd</filename> ディスクに障害が発生した場合、データは失われます。この危険性を避けるために、我々は障害の発生したディスクを新しいディスク <filename>sdf</filename> に交換します:"
 
 #. Tag: screen
 #, no-c-format
@@ -704,11 +725,59 @@ msgid ""
 "\n"
 "       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdf</userinput>\n"
+"<computeroutput>mdadm: added /dev/sdf\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"   Raid Devices : 2\n"
+"  Total Devices : 3\n"
+"    Persistence : Superblock is persistent\n"
+"\n"
+"    Update Time : Thu Jan 17 16:15:32 2013\n"
+"          State : clean, degraded, recovering \n"
+" Active Devices : 1\n"
+"Working Devices : 2\n"
+" Failed Devices : 1\n"
+"  Spare Devices : 1\n"
+"\n"
+" Rebuild Status : 28% complete\n"
+"\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 26\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       2       8       80        1      spare rebuilding   /dev/sdf\n"
+"\n"
+"       1       8       64        -      faulty spare   /dev/sde\n"
+"# </computeroutput><userinput>[...]</userinput>\n"
+"<computeroutput>[...]\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"    Update Time : Thu Jan 17 16:16:36 2013\n"
+"          State : clean \n"
+" Active Devices : 2\n"
+"Working Devices : 2\n"
+" Failed Devices : 1\n"
+"  Spare Devices : 0\n"
+"\n"
+"           Name : mirwiz:1  (local to host mirwiz)\n"
+"           UUID : 6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"         Events : 41\n"
+"\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       2       8       80        1      active sync   /dev/sdf\n"
+"\n"
+"       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Here again, the kernel automatically triggers a reconstruction phase during which the volume, although still accessible, is in a degraded mode. Once the reconstruction is over, the RAID array is back to a normal state. One can then tell the system that the <filename>sde</filename> disk is about to be removed from the array, so as to end up with a classical RAID mirror on two disks:"
-msgstr ""
+msgstr "繰り返しになりますが、ボリュームはまだアクセスすることが可能ですが、ボリュームが信頼性低下状態ならば、カーネルは自動的に再構成作業を実行します。再構成作業が終了したら、RAID アレイは正常状態に戻ります。ここで、システムに <filename>sde</filename> ディスクをアレイから削除することを伝えることが可能です。削除することで、2 台のディスクからなる古典的な RAID ミラーになります:"
 
 #. Tag: screen
 #, no-c-format
@@ -722,31 +791,39 @@ msgid ""
 "       0       8       50        0      active sync   /dev/sdd2\n"
 "       2       8       80        1      active sync   /dev/sdf</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sde</userinput>\n"
+"<computeroutput>mdadm: hot removed /dev/sde from /dev/md1\n"
+"# </computeroutput><userinput>mdadm --detail /dev/md1</userinput>\n"
+"<computeroutput>/dev/md1:\n"
+"[...]\n"
+"    Number   Major   Minor   RaidDevice State\n"
+"       0       8       50        0      active sync   /dev/sdd2\n"
+"       2       8       80        1      active sync   /dev/sdf</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "From then on, the drive can be physically removed when the server is next switched off, or even hot-removed when the hardware configuration allows hot-swap. Such configurations include some SCSI controllers, most SATA disks, and external drives operating on USB or Firewire."
-msgstr ""
+msgstr "この後、今後サーバの電源を切った後にドライブを物理的に取り外したり、ハードウェア設定がホットスワップに対応しているならばホットリムーブする事が可能です。一部の SCSI コントローラ、殆どの SATA ディスク、USB や Firewire で接続された外部ドライブ等はホットスワップに対応しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Backing up the Configuration"
-msgstr ""
+msgstr "設定のバックアップ"
 
 #. Tag: para
 #, no-c-format
 msgid "Most of the meta-data concerning RAID volumes are saved directly on the disks that make up these arrays, so that the kernel can detect the arrays and their components and assemble them automatically when the system starts up. However, backing up this configuration is encouraged, because this detection isn't fail-proof, and it is only expected that it will fail precisely in sensitive circumstances. In our example, if the <filename>sde</filename> disk failure had been real (instead of simulated) and the system had been restarted without removing this <filename>sde</filename> disk, this disk could start working again due to having been probed during the reboot. The kernel would then have three physical elements, each claiming to contain half of the same RAID volume. Another source of confusion can come when RAID volumes from two servers are consolidated onto one server only. If these arrays were running normally before the disks were moved, the kernel would be able to detect and reassemble the pairs properly; but if the moved disks had been aggregated into an <filename>md1</filename> on the old server, and the new server already has an <filename>md1</filename>, one of the mirrors would be renamed."
-msgstr ""
+msgstr "RAID ボリュームに関連するメタデータのほとんどはアレイを構成するディスク上に直接保存されています。このため、カーネルはアレイとその構成要素を検出し、システムの起動時に自動的にアレイを組み立てる事が可能です。しかしながら、この設定をバックアップすることを推奨します。なぜなら、この検出機構は不注意による間違いを防ぐものでは無いからです。そして、注意して取り扱うべき状況ではまさに検出機構が上手く働かない事が見込まれます。上の例で、<filename>sde</filename> ディスク障害が本物で (模倣でない)、<filename>sde</filename> ディスクを取り外す前にシステムを再起動した場合、<filename>sde</filename> ディスクは再起動中に検出され、システムに復帰します。カーネルは 3 つの物理ディスクを検出し、それぞれのディスクが同じ RAID ボリュームの片割れであると主張します。さらに別の混乱する状況が考えられます。2 台のサーバで使われていた RAID ボリュームを片方のサーバに集約することを考えてみましょう。ディスクが移動される前、各アレイは正常に実行されていました。カーネルはアレイを検出して、適切なペアを組み立てることが可能です; しかし、片方のサーバに移動されたディスクが前のサーバでは <filename>md1</filename> に組み込まれており、さらに新しいサーバが既に <filename>md1</filename> という名前のアレイを持っていた場合、どちらか一方の名前が変えられます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Backing up the configuration is therefore important, if only for reference. The standard way to do it is by editing the <filename>/etc/mdadm/mdadm.conf</filename> file, an example of which is listed here:"
-msgstr ""
+msgstr "このため、参考情報に過ぎないとはいえ、設定を保存することは重要です。設定を保存する標準的な方法は <filename>/etc/mdadm/mdadm.conf</filename> ファイルを編集することです。以下に例を示します:"
 
 #. Tag: title
 #, no-c-format
 msgid "<command>mdadm</command> configuration file"
-msgstr ""
+msgstr "<command>mdadm</command> 設定ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -777,21 +854,46 @@ msgid ""
 "# This configuration was auto-generated on Thu, 17 Jan 2013 16:21:01 +0100\n"
 "# by mkconf 3.2.5-3\n"
 msgstr ""
+"# mdadm.conf\n"
+"#\n"
+"# Please refer to mdadm.conf(5) for information about this file.\n"
+"#\n"
+"\n"
+"# by default (built-in), scan all partitions (/proc/partitions) and all\n"
+"# containers for MD superblocks. alternatively, specify devices to scan, using\n"
+"# wildcards if desired.\n"
+"DEVICE /dev/sd*\n"
+"\n"
+"# auto-create devices with Debian standard permissions\n"
+"CREATE owner=root group=disk mode=0660 auto=yes\n"
+"\n"
+"# automatically tag new arrays as belonging to the local system\n"
+"HOMEHOST &lt;system&gt;\n"
+"\n"
+"# instruct the monitoring daemon where to send mail alerts\n"
+"MAILADDR root\n"
+"\n"
+"# definitions of existing MD arrays\n"
+"ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
+"ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464\n"
+"\n"
+"# This configuration was auto-generated on Thu, 17 Jan 2013 16:21:01 +0100\n"
+"# by mkconf 3.2.5-3\n"
 
 #. Tag: para
 #, no-c-format
 msgid "One of the most useful details is the <literal>DEVICE</literal> option, which lists the devices where the system will automatically look for components of RAID volumes at start-up time. In our example, we replaced the default value, <literal>partitions containers</literal>, with an explicit list of device files, since we chose to use entire disks and not only partitions, for some volumes."
-msgstr ""
+msgstr "最も役に立つ設定項目の 1 つに <literal>DEVICE</literal> オプションがあります。これは起動時にシステムが RAID ボリュームの構成情報を自動的に探すデバイスをリストします。上の例では、デフォルト値 <literal>partitions containers</literal> を置き替え、デバイスファイルを明示したリストにしました。なぜなら、パーティションだけでなく全てのディスクをボリュームとして使うように決めたからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The last two lines in our example are those allowing the kernel to safely pick which volume number to assign to which array. The metadata stored on the disks themselves are enough to re-assemble the volumes, but not to determine the volume number (and the matching <filename>/dev/md*</filename> device name)."
-msgstr ""
+msgstr "上の例における最後の 2 行を使うことで、カーネルはアレイに割り当てるボリューム番号を安全に選ぶことが可能です。ディスク本体に保存されたメタ情報はボリュームを再度組み上げるのに十分ですが、ボリューム番号を定義する (そして <filename>/dev/md*</filename> デバイス名にマッチすることを確認する) には不十分です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Fortunately, these lines can be generated automatically:"
-msgstr ""
+msgstr "幸いなことに、この行を自動的に生成することが可能です:"
 
 #. Tag: screen
 #, no-c-format
@@ -800,41 +902,44 @@ msgid ""
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
 "ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
+"<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
+"ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The contents of these last two lines doesn't depend on the list of disks included in the volume. It is therefore not necessary to regenerate these lines when replacing a failed disk with a new one. On the other hand, care must be taken to update the file when creating or deleting a RAID array."
-msgstr ""
+msgstr "最後の 2 行の内容はボリュームを構成するディスクのリストに依存しません。このため、障害の発生したディスクを新しいディスクに交換した際に、これを改めて生成する必要はありません。逆に、RAID アレイを作成および削除した際に、必ずこの設定ファイルを注意深く更新する必要があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>LVM</primary></indexterm> LVM, the <emphasis>Logical Volume Manager</emphasis>, is another approach to abstracting logical volumes from their physical supports, which focuses on increasing flexibility rather than increasing reliability. LVM allows changing a logical volume transparently as far as the applications are concerned; for instance, it is possible to add new disks, migrate the data to them, and remove the old disks, without unmounting the volume."
-msgstr ""
+msgstr "<indexterm><primary>LVM</primary></indexterm> LVM、<emphasis>Logical Volume Manager</emphasis>、は物理ディスクから論理ボリュームを抽象化する別のアプローチで、信頼性を増加させるのではなく柔軟性を増加させることに注目しています。LVM を使うことで、アプリケーションから見る限り透過的に論理ボリュームを変更することが可能です; 例えば LVM は、新しいディスクを追加し、データを新しいディスクに移行し、古いディスクを削除することが、ボリュームをアンマウントせずに可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "LVM Concepts"
-msgstr ""
+msgstr "LVM の概念"
 
 #. Tag: para
 #, no-c-format
 msgid "This flexibility is attained by a level of abstraction involving three concepts."
-msgstr ""
+msgstr "LVM の柔軟性は 3 つの概念から成る、抽象化レベルによって達成されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "First, the PV (<emphasis>Physical Volume</emphasis>) is the entity closest to the hardware: it can be partitions on a disk, or a full disk, or even any other block device (including, for instance, a RAID array). Note that when a physical element is set up to be a PV for LVM, it should only be accessed via LVM, otherwise the system will get confused."
-msgstr ""
+msgstr "最初に、PV (<emphasis>物理ボリューム</emphasis>) はハードウェアに最も近い物です: PV はディスクのパーティション、ディスク全体、その他の任意のブロックデバイス (例えば、RAID アレイ) などの物理的要素です。物理的要素を LVM の PV に設定した場合、物理的要素へのアクセスは必ず LVM を介すべきという点に注意してください。そうでなければ、システムが混乱します。"
 
 #. Tag: para
 #, no-c-format
 msgid "A number of PVs can be clustered in a VG (<emphasis>Volume Group</emphasis>), which can be compared to disks both virtual and extensible. VGs are abstract, and don't appear in a device file in the <filename>/dev</filename> hierarchy, so there's no risk of using them directly."
-msgstr ""
+msgstr "復数の PV は VG (<emphasis>ボリュームグループ</emphasis>) にクラスタ化することが可能です。VG は仮想的ディスクや拡張可能なディスクと比較されます。VG は概念的なもので、<filename>/dev</filename> 階層のデバイスファイルに現れません。そのため、VG を直接的に操作する危険はありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "The third kind of object is the LV (<emphasis>Logical Volume</emphasis>), which is a chunk of a VG; if we keep the VG-as-disk analogy, the LV compares to a partition. The LV appears as a block device with an entry in <filename>/dev</filename>, and it can be used as any other physical partition can be (most commonly, to host a filesystem or swap space)."
-msgstr ""
+msgstr "3 番目のオブジェクトは LV (<emphasis>論理ボリューム</emphasis>) です。LV は VG の塊です; VG をディスクと比較する類推に従って考えると、LV はパーティションと比較されます。LV はブロックデバイスとして <filename>/dev</filename> に現れ、他の物理パーティションと同様に取り扱うことが可能です (一般的に言って、ファイルシステムやスワップ領域を作成することが可能です)。"
 
 #. Tag: para
 #, no-c-format
