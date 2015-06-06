@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2015-06-05 22:48+0900\n"
+"PO-Revision-Date: 2015-06-06 21:57+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -944,67 +944,67 @@ msgstr "3 番目のオブジェクトは LV (<emphasis>論理ボリューム</em
 #. Tag: para
 #, no-c-format
 msgid "The important thing is that the splitting of a VG into LVs is entirely independent of its physical components (the PVs). A VG with only a single physical component (a disk for instance) can be split into a dozen logical volumes; similarly, a VG can use several physical disks and appear as a single large logical volume. The only constraint, obviously, is that the total size allocated to LVs can't be bigger than the total capacity of the PVs in the volume group."
-msgstr ""
+msgstr "重要な事柄は、VG を LV に分割する場合に物理的要素 (PV) はいかなる制約も要求しないという点です。1 つの物理的要素 (例えばディスク) から構成される VG は復数の論理ボリュームに分割できます; 同様に、VG に復数の物理ディスクを参加させ、VG を 1 つの大きな論理ボリュームとして提供する事が可能です。明らかに、たった 1 つの制約事項は各 LV に割り当てるサイズの合計が、LV が所属するボリュームグループの PV の合計サイズを超えることができないという点です。"
 
 #. Tag: para
 #, no-c-format
 msgid "It often makes sense, however, to have some kind of homogeneity among the physical components of a VG, and to split the VG into logical volumes that will have similar usage patterns. For instance, if the available hardware includes fast disks and slower disks, the fast ones could be clustered into one VG and the slower ones into another; chunks of the first one can then be assigned to applications requiring fast data access, while the second one will be kept for less demanding tasks."
-msgstr ""
+msgstr "しかしながら、 VG を構成する物理的要素の特徴を一致させること、各論理ボリュームの用途に対する要求性能を考慮しながら VG を論理ボリュームに分割すること、は通常理にかなった方針です。例えば、利用可能なハードウェアに高速なディスクと低速なディスクがある場合、高速なディスクから構成される VG と低速なディスクから構成される VG に分けることが可能です; 高速なディスクから構成される VG に含まれる論理ボリュームを高速なデータアクセスを必要とするアプリケーションに割り当て、低速なディスクから構成される VG に含まれる論理ボリュームを負荷の少ない作業用に割り当てます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In any case, keep in mind that an LV isn't particularly attached to any one PV. It is possible to influence where the data from an LV are physically stored, but this possibility isn't required for day-to-day use. On the contrary: when the set of physical components of a VG evolves, the physical storage locations corresponding to a particular LV can be migrated across disks (while staying within the PVs assigned to the VG, of course)."
-msgstr ""
+msgstr "如何なる場合でも、LV は特定の PV に所属しないことを忘れないで下さい。ある LV に含まれるデータが物理的に保存されている場所を操作することも可能ですが、普通に使っている限りその必要はありません。逆に: VG を構成する一連の物理的要素が変化する場合、特定の LV に対応する物理ストレージの場所がディスク上で変化する事が可能です (もちろん、変化の範囲は対象の VG を構成する PV の中に限られます)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Setting up LVM"
-msgstr ""
+msgstr "LVM の設定"
 
 #. Tag: para
 #, no-c-format
 msgid "Let us now follow, step by step, the process of setting up LVM for a typical use case: we want to simplify a complex storage situation. Such a situation usually happens after some long and convoluted history of accumulated temporary measures. For the purposes of illustration, we'll consider a server where the storage needs have changed over time, ending up in a maze of available partitions split over several partially used disks. In more concrete terms, the following partitions are available:"
-msgstr ""
+msgstr "典型的な用途に対する LVM の設定過程を、段階的に見て行きましょう: 複雑なストレージの状況を単純化したい場合です。通常、長く複雑な一時的措置を繰り返した挙句の果てに、この状況に陥ることがあります。説明目的で、徐々にストレージを変更する必要のあったサーバを考えます。このサーバでは、復数の一部使用済みディスクに、利用可能なパーティションが分けられています。より具体的に言えば、以下のパーティションが利用可能です:"
 
 #. Tag: para
 #, no-c-format
 msgid "on the <filename>sdb</filename> disk, a <filename>sdb2</filename> partition, 4 GB;"
-msgstr ""
+msgstr "<filename>sdb</filename> ディスク上に、<filename>sdb2</filename> パーティション、4 GB;"
 
 #. Tag: para
 #, no-c-format
 msgid "on the <filename>sdc</filename> disk, a <filename>sdc3</filename> partition, 3 GB;"
-msgstr ""
+msgstr "<filename>sdc</filename> ディスク上に、<filename>sdc3</filename> パーティション、3 GB;"
 
 #. Tag: para
 #, no-c-format
 msgid "the <filename>sdd</filename> disk, 4 GB, is fully available;"
-msgstr ""
+msgstr "<filename>sdd</filename> ディスク、4 GB、は全領域を利用可能;"
 
 #. Tag: para
 #, no-c-format
 msgid "on the <filename>sdf</filename> disk, a <filename>sdf1</filename> partition, 4 GB; and a <filename>sdf2</filename> partition, 5 GB."
-msgstr ""
+msgstr "<filename>sdf</filename> ディスク上に、<filename>sdf1</filename> パーティション、4 GB; および <filename>sdf2</filename> パーティション、5 GB。"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition, let's assume that disks <filename>sdb</filename> and <filename>sdf</filename> are faster than the other two."
-msgstr ""
+msgstr "加えて、<filename>sdb</filename> と <filename>sdf</filename> が他の 2 台に比べて高速であると仮定しましょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "Our goal is to set up three logical volumes for three different applications: a file server requiring 5 GB of storage space, a database (1 GB) and some space for back-ups (12 GB). The first two need good performance, but back-ups are less critical in terms of access speed. All these constraints prevent the use of partitions on their own; using LVM can abstract the physical size of the devices, so the only limit is the total available space."
-msgstr ""
+msgstr "我々の目標は、3 種類の異なるアプリケーション用に 3 つの論理ボリュームを設定することです: 5 GB のストレージ領域が必要なファイルサーバ、データベース (1 GB)、バックアップ用のスペース (12 GB) です。ファイルサーバとデータベースは高い性能を必要とします。しかし、バックアップはアクセス速度をそれほど重要視しません。これら全ての制約事項により、各アプリケーションの使うパーティションが制限されます; LVM を使うことで、デバイスの物理的サイズをまとめることが可能です。このため、利用可能なスペースの合計だけが制限です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The required tools are in the <emphasis role=\"pkg\">lvm2</emphasis> package and its dependencies. When they're installed, setting up LVM takes three steps, matching the three levels of concepts."
-msgstr ""
+msgstr "必要なツールは <emphasis role=\"pkg\">lvm2</emphasis> パッケージとその依存パッケージに含まれています。これらのパッケージをインストールしたら、3 つの手順を踏んで LVM をセットアップします。各手順は LVM の概念の 3 つのレベルに対応します。"
 
 #. Tag: para
 #, no-c-format
 msgid "First, we prepare the physical volumes using <command>pvcreate</command>:"
-msgstr ""
+msgstr "最初に、<command>pvcreate</command> を使って物理ボリュームを作成します:"
 
 #. Tag: screen
 #, no-c-format
@@ -1044,16 +1044,50 @@ msgid ""
 "  /dev/sdf2       lvm2 a--  5.22g 5.22g\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
+"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
+"<computeroutput>  Writing physical volume data to disk \"/dev/sdb2\"\n"
+"  Physical volume \"/dev/sdb2\" successfully created\n"
+"# </computeroutput><userinput>pvdisplay</userinput>\n"
+"<computeroutput>  \"/dev/sdb2\" is a new physical volume of \"4.00 GiB\"\n"
+"  --- NEW Physical volume ---\n"
+"  PV Name               /dev/sdb2\n"
+"  VG Name               \n"
+"  PV Size               4.00 GiB\n"
+"  Allocatable           NO\n"
+"  PE Size               0   \n"
+"  Total PE              0\n"
+"  Free PE               0\n"
+"  Allocated PE          0\n"
+"  PV UUID               0zuiQQ-j1Oe-P593-4tsN-9FGy-TY0d-Quz31I\n"
+"\n"
+"# </computeroutput><userinput>for i in sdc3 sdd sdf1 sdf2 ; do pvcreate /dev/$i ; done</userinput>\n"
+"<computeroutput>  Writing physical volume data to disk \"/dev/sdc3\"\n"
+"  Physical volume \"/dev/sdc3\" successfully created\n"
+"  Writing physical volume data to disk \"/dev/sdd\"\n"
+"  Physical volume \"/dev/sdd\" successfully created\n"
+"  Writing physical volume data to disk \"/dev/sdf1\"\n"
+"  Physical volume \"/dev/sdf1\" successfully created\n"
+"  Writing physical volume data to disk \"/dev/sdf2\"\n"
+"  Physical volume \"/dev/sdf2\" successfully created\n"
+"# </computeroutput><userinput>pvdisplay -C</userinput>\n"
+"<computeroutput>  PV         VG   Fmt  Attr PSize PFree\n"
+"  /dev/sdb2       lvm2 a--  4.00g 4.00g\n"
+"  /dev/sdc3       lvm2 a--  3.09g 3.09g\n"
+"  /dev/sdd        lvm2 a--  4.00g 4.00g\n"
+"  /dev/sdf1       lvm2 a--  4.10g 4.10g\n"
+"  /dev/sdf2       lvm2 a--  5.22g 5.22g\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "So far, so good; note that a PV can be set up on a full disk as well as on individual partitions of it. As shown above, the <command>pvdisplay</command> command lists the existing PVs, with two possible output formats."
-msgstr ""
+msgstr "ここまでは順調です; PV はディスク全体およびディスク上の各パーティションに対して設定することが可能です。上に示した通り、<command>pvdisplay</command> コマンドは既存の PV をリストします。出力フォーマットは 2 種類あります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Now let's assemble these physical elements into VGs using <command>vgcreate</command>. We'll gather only PVs from the fast disks into a <filename>vg_critical</filename> VG; the other VG, <filename>vg_normal</filename>, will also include slower elements."
-msgstr ""
+msgstr "<command>vgcreate</command> を使って、これらの物理的要素から VG を構成しましょう。高速なディスクの PV から <filename>vg_critical</filename> VG を構成します; これ以外の低速なディスクを含む PV から <filename>vg_normal</filename> VG を構成します。"
 
 #. Tag: screen
 #, no-c-format
@@ -1092,16 +1126,49 @@ msgid ""
 "  vg_normal     3   0   0 wz--n- 12.30g 12.30g\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
+"<computeroutput>  No volume groups found\n"
+"# </computeroutput><userinput>vgcreate vg_critical /dev/sdb2 /dev/sdf1</userinput>\n"
+"<computeroutput>  Volume group \"vg_critical\" successfully created\n"
+"# </computeroutput><userinput>vgdisplay</userinput>\n"
+"<computeroutput>  --- Volume group ---\n"
+"  VG Name               vg_critical\n"
+"  System ID             \n"
+"  Format                lvm2\n"
+"  Metadata Areas        2\n"
+"  Metadata Sequence No  1\n"
+"  VG Access             read/write\n"
+"  VG Status             resizable\n"
+"  MAX LV                0\n"
+"  Cur LV                0\n"
+"  Open LV               0\n"
+"  Max PV                0\n"
+"  Cur PV                2\n"
+"  Act PV                2\n"
+"  VG Size               8.09 GiB\n"
+"  PE Size               4.00 MiB\n"
+"  Total PE              2071\n"
+"  Alloc PE / Size       0 / 0   \n"
+"  Free  PE / Size       2071 / 8.09 GiB\n"
+"  VG UUID               bpq7zO-PzPD-R7HW-V8eN-c10c-S32h-f6rKqp\n"
+"\n"
+"# </computeroutput><userinput>vgcreate vg_normal /dev/sdc3 /dev/sdd /dev/sdf2</userinput>\n"
+"<computeroutput>  Volume group \"vg_normal\" successfully created\n"
+"# </computeroutput><userinput>vgdisplay -C</userinput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree \n"
+"  vg_critical   2   0   0 wz--n-  8.09g  8.09g\n"
+"  vg_normal     3   0   0 wz--n- 12.30g 12.30g\n"
+"</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Here again, commands are rather straightforward (and <command>vgdisplay</command> proposes two output formats). Note that it is quite possible to use two partitions of the same physical disk into two different VGs. Note also that we used a <filename>vg_</filename> prefix to name our VGs, but it is nothing more than a convention."
-msgstr ""
+msgstr "繰り返しになりますが、コマンドはかなり簡潔です (<command>vgdisplay</command> には 2 種類の出力フォーマットがあります)。同じ物理ディスクの 2 つのパーティションを 2 つの異なる VG に割り当てることが可能である点に注意してください。また、<filename>vg_</filename> 接頭辞を VG の名前に使っていますが、これは慣例に過ぎない点に注意してください。"
 
 #. Tag: para
 #, no-c-format
 msgid "We now have two “virtual disks”, sized about 8 GB and 12 GB, respectively. Let's now carve them up into “virtual partitions” (LVs). This involves the <command>lvcreate</command> command, and a slightly more complex syntax:"
-msgstr ""
+msgstr "これでサイズが約 8 GB と 12 GB の 2 台の「仮想ディスク」を手に入れたことになります。それでは仮想ディスクを「仮想パーティション」(LV) に分割しましょう。これを行うには <command>lvcreate</command> コマンドを少し複雑な構文で実行します:"
 
 #. Tag: screen
 #, no-c-format
@@ -1137,36 +1204,66 @@ msgid ""
 "  lv_files   vg_critical -wi-a---  5.00g                                           \n"
 "  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
+"<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
+"<computeroutput>  Logical volume \"lv_files\" created\n"
+"# </computeroutput><userinput>lvdisplay</userinput>\n"
+"<computeroutput>  --- Logical volume ---\n"
+"  LV Path                /dev/vg_critical/lv_files\n"
+"  LV Name                lv_files\n"
+"  VG Name                vg_critical\n"
+"  LV UUID                J3V0oE-cBYO-KyDe-5e0m-3f70-nv0S-kCWbpT\n"
+"  LV Write Access        read/write\n"
+"  LV Creation host, time mirwiz, 2013-01-17 17:05:13 +0100\n"
+"  LV Status              available\n"
+"  # open                 0\n"
+"  LV Size                5.00 GiB\n"
+"  Current LE             1280\n"
+"  Segments               2\n"
+"  Allocation             inherit\n"
+"  Read ahead sectors     auto\n"
+"  - currently set to     256\n"
+"  Block device           253:0\n"
+"\n"
+"# </computeroutput><userinput>lvcreate -n lv_base -L 1G vg_critical</userinput>\n"
+"<computeroutput>  Logical volume \"lv_base\" created\n"
+"# </computeroutput><userinput>lvcreate -n lv_backups -L 12G vg_normal</userinput>\n"
+"<computeroutput>  Logical volume \"lv_backups\" created\n"
+"# </computeroutput><userinput>lvdisplay -C</userinput>\n"
+"<computeroutput>  LV         VG          Attr     LSize  Pool Origin Data%  Move Log Copy%  Convert\n"
+"  lv_base    vg_critical -wi-a---  1.00g                                           \n"
+"  lv_files   vg_critical -wi-a---  5.00g                                           \n"
+"  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Two parameters are required when creating logical volumes; they must be passed to the <command>lvcreate</command> as options. The name of the LV to be created is specified with the <literal>-n</literal> option, and its size is generally given using the <literal>-L</literal> option. We also need to tell the command what VG to operate on, of course, hence the last parameter on the command line."
-msgstr ""
+msgstr "論理ボリュームを作成する場合、2 種類のパラメータが必要です; 必ず 2 種類のパラメータをオプションとして <command>lvcreate</command> に渡します。作成する LV の名前を <literal>-n</literal> オプションで指定し、サイズを <literal>-L</literal> オプションで指定します。また、操作対象の VG をコマンドに伝えることが必要です。これはもちろん最後のコマンドラインパラメータです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> <command>lvcreate</command> options"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> <command>lvcreate</command> オプション"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>lvcreate</command> command has several options to allow tweaking how the LV is created."
-msgstr ""
+msgstr "<command>lvcreate</command> コマンドは復数のオプションを取り、作成する LV を微調整する事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's first describe the <literal>-l</literal> option, with which the LV's size can be given as a number of blocks (as opposed to the “human” units we used above). These blocks (called PEs, <emphasis>physical extents</emphasis>, in LVM terms) are contiguous units of storage space in PVs, and they can't be split across LVs. When one wants to define storage space for an LV with some precision, for instance to use the full available space, the <literal>-l</literal> option will probably be preferred over <literal>-L</literal>."
-msgstr ""
+msgstr "最初に <literal>-l</literal> オプションについて説明しましょう。<literal>-l</literal> オプションを使った場合 LV のサイズをブロック数で指定することが可能です (上の例で用いた「人間にとって分かりやすい」単位ではなく)。ブロックとは (LVM の用語で PE、<emphasis>物理エクステント</emphasis>、と呼ばれています) PV 中のストレージ領域の連続した単位です。ブロックは LV 中に分散されています。正確にある LV 用のストレージ領域を定義したい場合、例えば利用可能な領域の全てを使いたい場合、<literal>-l</literal> オプションのほうが <literal>-L</literal> オプションよりも使いやすいでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "It's also possible to hint at the physical location of an LV, so that its extents are stored on a particular PV (while staying within the ones assigned to the VG, of course). Since we know that <filename>sdb</filename> is faster than <filename>sdf</filename>, we may want to store the <filename>lv_base</filename> there if we want to give an advantage to the database server compared to the file server. The command line becomes: <command>lvcreate -n lv_base -L 1G vg_critical /dev/sdb2</command>. Note that this command can fail if the PV doesn't have enough free extents. In our example, we would probably have to create <filename>lv_base</filename> before <filename>lv_files</filename> to avoid this situation – or free up some space on <filename>sdb2</filename> with the <command>pvmove</command> command."
-msgstr ""
+msgstr "LV の物理的な位置を指定することも可能です。こうすることで、LV のエクステントが特定の PV 上 (もちろん、VG を構成する PV 上に限ります) に作られます。<filename>sdb</filename> が <filename>sdf</filename> よりも高速なので、<filename>lv_base</filename> を <filename>sdb</filename> 上に作成することで、ファイルサーバよりもデータベースサーバが高速にアクセスできるようにしたいと我々は考えています。コマンドラインは次のようになります: <command>lvcreate -n lv_base -L 1G vg_critical /dev/sdb2</command>。指定した PV に十分な空きエクステントがない場合、このコマンドは失敗する可能性があります。我々の例で、このような失敗を防ぐには <filename>lv_files</filename> の前に <filename>lv_base</filename>を作成するか、<command>pvmove</command> コマンドを使って <filename>sdb2</filename> に多少の領域を空ける必要があるかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Logical volumes, once created, end up as block device files in <filename>/dev/mapper/</filename>:"
-msgstr ""
+msgstr "論理ボリュームが作成され、ブロックデバイスファイルとして <filename>/dev/mapper/</filename> に現れます:"
 
 #. Tag: screen
 #, no-c-format
@@ -1183,26 +1280,37 @@ msgid ""
 "brw-rw---T 1 root disk 253, 2 Jan 17 17:05 /dev/dm-2\n"
 "</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
+"<computeroutput>total 0\n"
+"crw------T 1 root root 10, 236 Jan 17 16:52 control\n"
+"lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_critical-lv_base -&gt; ../dm-1\n"
+"lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_critical-lv_files -&gt; ../dm-0\n"
+"lrwxrwxrwx 1 root root       7 Jan 17 17:05 vg_normal-lv_backups -&gt; ../dm-2\n"
+"# </computeroutput><userinput>ls -l /dev/dm-*</userinput>\n"
+"<computeroutput>brw-rw---T 1 root disk 253, 0 Jan 17 17:05 /dev/dm-0\n"
+"brw-rw---T 1 root disk 253, 1 Jan 17 17:05 /dev/dm-1\n"
+"brw-rw---T 1 root disk 253, 2 Jan 17 17:05 /dev/dm-2\n"
+"</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Autodetecting LVM volumes"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> LVM ボリュームの自動検出"
 
 #. Tag: para
 #, no-c-format
 msgid "When the computer boots, the <filename>/etc/init.d/lvm</filename> script scans the available devices; those that have been initialized as physical volumes for LVM are registered into the LVM subsystem, those that belong to volume groups are assembled, and the relevant logical volumes are started and made available. There is therefore no need to edit configuration files when creating or modifying LVM volumes."
-msgstr ""
+msgstr "コンピュータの起動時、<filename>/etc/init.d/lvm</filename> スクリプトは利用可能なデバイスを探します; LVM 用の物理ボリュームとして初期化されたデバイスは LVM サブシステムに登録され、ボリュームグループに所属するデバイスは組み上げられ、対応する論理ボリュームは開始され、利用可能にされます。このため、LVM ボリュームを作成したり変更する際に設定ファイルを編集する必要はありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Note, however, that the layout of the LVM elements (physical and logical volumes, and volume groups) is backed up in <filename>/etc/lvm/backup</filename>, which can be useful in case of a problem (or just to sneak a peek under the hood)."
-msgstr ""
+msgstr "しかしながら、LVM 要素の配置図 (物理ボリューム、論理ボリューム、ボリュームグループ) は <filename>/etc/lvm/backup</filename> にバックアップされ、問題が起きた時  (状況をを覗き見たい時) に有益です。"
 
 #. Tag: para
 #, no-c-format
 msgid "To make things easier, convenience symbolic links are also created in directories matching the VGs:"
-msgstr ""
+msgstr "分かり易くするために、VG に対応するディレクトリの中に便利なシンボリックリンクが作成されます:"
 
 #. Tag: screen
 #, no-c-format
@@ -1215,11 +1323,18 @@ msgid ""
 "<computeroutput>total 0\n"
 "lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; ../dm-2</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
+"<computeroutput>total 0\n"
+"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_base -&gt; ../dm-1\n"
+"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_files -&gt; ../dm-0\n"
+"# </computeroutput><userinput>ls -l /dev/vg_normal</userinput>\n"
+"<computeroutput>total 0\n"
+"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; ../dm-2</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The LVs can then be used exactly like standard partitions:"
-msgstr ""
+msgstr "LV は標準的なパーティションと全く同じように取り扱われます:"
 
 #. Tag: screen
 #, no-c-format
@@ -1245,21 +1360,41 @@ msgid ""
 "/dev/vg_critical/lv_files   /srv/files      ext4\n"
 "/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
+"<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
+"Filesystem label=\n"
+"OS type: Linux\n"
+"Block size=4096 (log=2)\n"
+"[...]\n"
+"Creating journal (32768 blocks): done\n"
+"Writing superblocks and filesystem accounting information: done \n"
+"# </computeroutput><userinput>mkdir /srv/backups</userinput>\n"
+"<computeroutput># </computeroutput><userinput>mount /dev/vg_normal/lv_backups /srv/backups</userinput>\n"
+"<computeroutput># </computeroutput><userinput>df -h /srv/backups</userinput>\n"
+"<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_normal-lv_backups   12G  158M   12G   2% /srv/backups\n"
+"# </computeroutput><userinput>[...]</userinput>\n"
+"<computeroutput>[...]\n"
+"# </computeroutput><userinput>cat /etc/fstab</userinput>\n"
+"<computeroutput>[...]\n"
+"/dev/vg_critical/lv_base    /srv/base       ext4\n"
+"/dev/vg_critical/lv_files   /srv/files      ext4\n"
+"/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "From the applications' point of view, the myriad small partitions have now been abstracted into one large 12 GB volume, with a friendlier name."
-msgstr ""
+msgstr "アプリケーションにしてみれば、無数の小さなパーティションがわかり易い名前を持つ 1 つの大きな 12 GB のボリュームにまとめられたことになります。"
 
 #. Tag: title
 #, no-c-format
 msgid "LVM Over Time"
-msgstr ""
+msgstr "LVM の経時変化"
 
 #. Tag: para
 #, no-c-format
 msgid "Even though the ability to aggregate partitions or physical disks is convenient, this is not the main advantage brought by LVM. The flexibility it brings is especially noticed as time passes, when needs evolve. In our example, let's assume that new large files must be stored, and that the LV dedicated to the file server is too small to contain them. Since we haven't used the whole space available in <filename>vg_critical</filename>, we can grow <filename>lv_files</filename>. For that purpose, we'll use the <command>lvresize</command> command, then <command>resize2fs</command> to adapt the filesystem accordingly:"
-msgstr ""
+msgstr "パーティションや物理ディスクを統合する機能は便利ですが、これは LVM のもたらす主たる利点ではありません。ボリュームを進化させる必要が生じた場合に、LVM のもたらす柔軟性が時間経過に伴い特に重要視されるようになります。我々の例で、新たに巨大なファイルを保存したいけれども、ファイルサーバ専用の LV はこの巨大なファイルを保存するには狭すぎる、と仮定しましょう。我々はまだ <filename>vg_critical</filename> で利用可能な全領域を使い切っていないので、<filename>lv_files</filename> のサイズを増やすことが可能です。この目的のために <command>lvresize</command> コマンドを使い、ボリュームのサイズの変化にファイルシステムを対応させるために <command>resize2fs</command> を使います。"
 
 #. Tag: screen
 #, no-c-format
@@ -1290,26 +1425,51 @@ msgid ""
 "<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
+"<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_files  5.0G  4.6G  146M  97% /srv/files\n"
+"# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
+"<computeroutput>  LV       VG          Attr     LSize Pool Origin Data%  Move Log Copy%  Convert\n"
+"  lv_files vg_critical -wi-ao-- 5.00g\n"
+"# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
+"  vg_critical   2   2   0 wz--n- 8.09g 2.09g\n"
+"# </computeroutput><userinput>lvresize -L 7G vg_critical/lv_files</userinput>\n"
+"<computeroutput>  Extending logical volume lv_files to 7.00 GB\n"
+"  Logical volume lv_files successfully resized\n"
+"# </computeroutput><userinput>lvdisplay -C vg_critical/lv_files</userinput>\n"
+"<computeroutput>  LV       VG          Attr     LSize Pool Origin Data%  Move Log Copy%  Convert\n"
+"  lv_files vg_critical -wi-ao-- 7.00g\n"
+"# </computeroutput><userinput>resize2fs /dev/vg_critical/lv_files</userinput>\n"
+"<computeroutput>resize2fs 1.42.5 (29-Jul-2012)\n"
+"Filesystem at /dev/vg_critical/lv_files is mounted on /srv/files; on-line resizing required\n"
+"old_desc_blocks = 1, new_desc_blocks = 1\n"
+"Performing an on-line resize of /dev/vg_critical/lv_files to 1835008 (4k) blocks.\n"
+"The filesystem on /dev/vg_critical/lv_files is now 1835008 blocks long.\n"
+"\n"
+"# </computeroutput><userinput>df -h /srv/files/</userinput>\n"
+"<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Resizing filesystems"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> ファイルシステムのサイズ変更"
 
 #. Tag: para
 #, no-c-format
 msgid "Not all filesystems can be resized online; resizing a volume can therefore require unmounting the filesystem first and remounting it afterwards. Of course, if one wants to shrink the space allocated to an LV, the filesystem must be shrunk first; the order is reversed when the resizing goes in the other direction: the logical volume must be grown before the filesystem on it. It's rather straightforward, since at no time must the filesystem size be larger than the block device where it resides (whether that device is a physical partition or a logical volume)."
-msgstr ""
+msgstr "全てのファイルシステムがオンラインでサイズ変更できるわけではありません; このため、ボリュームサイズを変更するには、最初にファイルシステムのアンマウントし、その後に再マウントしなければいけません。もちろん、LV に割り当てられた領域サイズを小さくしたい場合、最初にファイルシステムのサイズを小さくしなければいけません。サイズを大きくする場合、この順番は逆転します: ファイルシステムの前に論理ボリュームのサイズを大きくされなければいけません。これはかなりわかり易いです。なぜなら、ブロックデバイス上に存在するファイルシステムのサイズをブロックデバイスよりも大きくすることは絶対不可能だからです (この原則はデバイスが物理パーティションか論理ボリュームかに依存しません)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The ext3, ext4 and xfs filesystems can be grown online, without unmounting; shrinking requires an unmount. The reiserfs filesystem allows online resizing in both directions. The venerable ext2 allows neither, and always requires unmounting."
-msgstr ""
+msgstr "ext3、ext4、xfs ファイルシステムはオンラインでサイズを増加させる事が可能で、アンマウントが不要です; サイズを減少させる場合はアンマウントを必要とします。reiserfs はオンラインでサイズを増加および減少する事が可能です。ext2 は増加も減少も可能ですが、アンマウントが必要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "We could proceed in a similar fashion to extend the volume hosting the database, only we've reached the VG's available space limit:"
-msgstr ""
+msgstr "データベースをホストしているボリュームを拡張するために、同じやり方を使います。VG の利用可能な領域は既にほぼ使い切った状態になっています:"
 
 #. Tag: screen
 #, no-c-format
@@ -1321,11 +1481,17 @@ msgid ""
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree \n"
 "  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
+"<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_base 1008M  854M  104M  90% /srv/base\n"
+"# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree \n"
+"  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "No matter, since LVM allows adding physical volumes to existing volume groups. For instance, maybe we've noticed that the <filename>sdb1</filename> partition, which was so far used outside of LVM, only contained archives that could be moved to <filename>lv_backups</filename>. We can now recycle it and integrate it to the volume group, and thereby reclaim some available space. This is the purpose of the <command>vgextend</command> command. Of course, the partition must be prepared as a physical volume beforehand. Once the VG has been extended, we can use similar commands as previously to grow the logical volume then the filesystem:"
-msgstr ""
+msgstr "どんな状況であっても、LVM を使っていれば物理ボリュームを既存のボリュームグループに追加することが可能です。例えば、今までは LVM の外で管理されていた <filename>sdb1</filename> パーティションには、<filename>lv_backups</filename> に移動可能なアーカイブだけが含まれていた点に気が付いたとしましょう。このため、<filename>sdb1</filename> パーティションを再利用し、ボリュームグループに統合させることが可能です。その結果、利用可能な領域を増やすことが可能です。これが <command>vgextend</command> コマンドの目的です。もちろん、<filename>sdb1</filename> パーティションを物理ボリュームとして準備しなければいけません。VG を拡張したら、先と同様のコマンドを使って先に論理ボリュームを増加させ、その後にファイルシステムを増加させます:"
 
 #. Tag: screen
 #, no-c-format
@@ -1344,21 +1510,34 @@ msgid ""
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% /srv/base</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
+"<computeroutput>  Writing physical volume data to disk \"/dev/sdb1\"\n"
+"  Physical volume \"/dev/sdb1\" successfully created\n"
+"# </computeroutput><userinput>vgextend vg_critical /dev/sdb1</userinput>\n"
+"<computeroutput>  Volume group \"vg_critical\" successfully extended\n"
+"# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
+"<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree\n"
+"  vg_critical   3   2   0 wz--n- 9.09g 1.09g\n"
+"# </computeroutput><userinput>[...]</userinput>\n"
+"<computeroutput>[...]\n"
+"# </computeroutput><userinput>df -h /srv/base/</userinput>\n"
+"<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
+"/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% /srv/base</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Advanced LVM"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 上級の LVM"
 
 #. Tag: para
 #, no-c-format
 msgid "LVM also caters for more advanced uses, where many details can be specified by hand. For instance, an administrator can tweak the size of the blocks that make up physical and logical volumes, as well as their physical layout. It is also possible to move blocks across PVs, for instance to fine-tune performance or, in a more mundane way, to free a PV when one needs to extract the corresponding physical disk from the VG (whether to affect it to another VG or to remove it from LVM altogether). The manual pages describing the commands are generally clear and detailed. A good entry point is the <citerefentry><refentrytitle>lvm</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page."
-msgstr ""
+msgstr "また、LVM には更に上級の使い方があり、多くの設定事項を手作業で指定することができます。例えば、管理者は物理および論理ボリュームを形作るブロックサイズおよびボリュームの物理的な配置を微調整することが可能です。また、ブロックを PV 間で移動することも可能です。これは、例えば性能を微調整したり、よりありふれたケースでは (別の VG に移動したり、完全に LVM から取り外すために) 対応する物理ボリュームを VG から取り外したい PV を空にする目的で行われます。コマンドを説明しているマニュアルページは基本的に明快で詳細です。取っ掛かりとしては <citerefentry><refentrytitle>lvm</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページが適しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "RAID or LVM?"
-msgstr ""
+msgstr "RAID それとも LVM?"
 
 #. Tag: para
 #, no-c-format
