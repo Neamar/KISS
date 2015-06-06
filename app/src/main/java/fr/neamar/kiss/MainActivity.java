@@ -200,6 +200,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
         for (Account account : accounts) {
             if (emailPattern.matcher(account.name).matches()) {
                 mixpanel.identify(account.name);
+                try {
+                    JSONObject superProperties = new JSONObject();
+                    superProperties.put("email", account.name);
+                    mixpanel.registerSuperProperties(superProperties);
+                } catch (JSONException ignored) {
+                }
+
                 mixpanel.getPeople().identify(account.name);
                 mixpanel.getPeople().set("$email", account.name);
                 mixpanel.getPeople().set("$name", account.name);
