@@ -13,7 +13,13 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
+
         prefs.registerOnSharedPreferenceChangeListener(this);
+
+        int historyLength = KissApplication.getDataHandler(this).getHistoryLength(this);
+        if(historyLength > 5) {
+            findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
+        }
     }
 
     @Override

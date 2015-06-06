@@ -213,6 +213,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 break;
             }
         }
+
+        mixpanel.getPeople().set("resultCount", KissApplication.getDataHandler(this).getHistoryLength(this));
     }
 
     /**

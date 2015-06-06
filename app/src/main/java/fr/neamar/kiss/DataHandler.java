@@ -137,6 +137,10 @@ public class DataHandler extends BroadcastReceiver {
         return history;
     }
 
+    public int getHistoryLength(Context context) {
+        return DBHelper.getHistoryLength(context);
+    }
+
     /**
      * Return all applications
      *
