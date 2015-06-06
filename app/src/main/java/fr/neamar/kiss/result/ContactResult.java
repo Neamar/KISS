@@ -32,11 +32,12 @@ public class ContactResult extends Result {
         this.pojo = this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            contactPojo.phone = PhoneNumberUtils.formatNumber(contactPojo.phone, Locale.getDefault().getCountry());
-        }
-        else {
-            contactPojo.phone = PhoneNumberUtils.formatNumber(contactPojo.phone);
+        if(contactPojo.phone != null) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                contactPojo.phone = PhoneNumberUtils.formatNumber(contactPojo.phone, Locale.getDefault().getCountry());
+            } else {
+                contactPojo.phone = PhoneNumberUtils.formatNumber(contactPojo.phone);
+            }
         }
     }
 
