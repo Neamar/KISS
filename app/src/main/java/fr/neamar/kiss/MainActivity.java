@@ -337,8 +337,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
                 return true;
             case R.id.wallpaper:
+                hideKeyboard();
                 Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
                 startActivity(Intent.createChooser(intent, getString(R.string.menu_wallpaper)));
+                mixpanel.track("Update wallpaper", new JSONObject());
                 return true;
             case R.id.preferences:
                 mixpanel.track("Device settings displayed", new JSONObject());
