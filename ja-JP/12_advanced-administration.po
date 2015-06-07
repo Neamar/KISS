@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2015-06-06 21:57+0900\n"
+"PO-Revision-Date: 2015-06-08 01:55+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1542,42 +1542,42 @@ msgstr "RAID それとも LVM?"
 #. Tag: para
 #, no-c-format
 msgid "RAID and LVM both bring indisputable advantages as soon as one leaves the simple case of a desktop computer with a single hard disk where the usage pattern doesn't change over time. However, RAID and LVM go in two different directions, with diverging goals, and it is legitimate to wonder which one should be adopted. The most appropriate answer will of course depend on current and foreseeable requirements."
-msgstr ""
+msgstr "RAID と LVM はどちらも、用途が変わらない 1 台のハードディスクを備えたデスクトップコンピュータの単純なケースではすぐに、疑う余地のない利点をもたらします。しかしながら、RAID と LVM は目標を分岐させて別々の道を歩んでいます。どちらを使うべきか悩むのは間違っていることではありません。最も適切な答えは、もちろん現在の要求と将来予測される要求に依存します。"
 
 #. Tag: para
 #, no-c-format
 msgid "There are a few simple cases where the question doesn't really arise. If the requirement is to safeguard data against hardware failures, then obviously RAID will be set up on a redundant array of disks, since LVM doesn't really address this problem. If, on the other hand, the need is for a flexible storage scheme where the volumes are made independent of the physical layout of the disks, RAID doesn't help much and LVM will be the natural choice."
-msgstr ""
+msgstr "幾つかの状況では、疑問の余地がないくらい簡単に答えを出す事が可能です。ハードウェア障害からデータを保護すことが求められる場合、ディスクの冗長性アレイ上に RAID をセットアップするのは明らかです。なぜなら LVM はこの種の問題に全く対処しないからです。逆に、柔軟なストレージ計画が必要でディスクの物理的な配置に依存せずにボリュームを構成したい場合、RAID はあまり役に立たず LVM はを選ぶのが自然です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> If performance matters…"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> 性能を重要視する場合"
 
 #. Tag: para
 #, no-c-format
 msgid "If input/output speed is of the essence, especially in terms of access times, using LVM and/or RAID in one of the many combinations may have some impact on performances, and this may influence decisions as to which to pick. However, these differences in performance are really minor, and will only be measurable in a few use cases. If performance matters, the best gain to be obtained would be to use non-rotating storage media (<indexterm><primary>SSD</primary></indexterm><emphasis>solid-state drives</emphasis> or SSDs); their cost per megabyte is higher than that of standard hard disk drives, and their capacity is usually smaller, but they provide excellent performance for random accesses. If the usage pattern includes many input/output operations scattered all around the filesystem, for instance for databases where complex queries are routinely being run, then the advantage of running them on an SSD far outweigh whatever could be gained by picking LVM over RAID or the reverse. In these situations, the choice should be determined by other considerations than pure speed, since the performance aspect is most easily handled by using SSDs."
-msgstr ""
+msgstr "入出力速度が最重要の場合、特にアクセス速度という意味で、LVM および RAID を組み合わせて使うと性能に少なからず影響を与え、どの方式を採用するか関する議論に影響を与えます。しかしながら、性能差は極めて少なく、この程度の性能差が無視できない場合は極めて少ないといえるでしょう。性能が重要な場合、実現可能で最良の改善方針は非回転ストレージメディア (<indexterm><primary>SSD</primary></indexterm><emphasis>ソリッドステートドライブ</emphasis> や SSD) を使うことです; SSD のメガバイト当たりの費用は標準的なハードディスクドライブよりも高価で、SSD の容量は通常小さいですが、SSD はランダムアクセスで素晴らしい性能を発揮します。ファイルシステムに広く分散された位置から数多くの入出力を行うような場合、例えば複雑な問い合わせが定期的に実行されるデータベースの場合、SSD 上にデータベースを置くことは、RAID over LVM または LVM over RAID 上にデータベースを置くことよりも、良好な性能が手に入ります。このような場合、純粋な速度だけでなく他の要素も検討した上で採用の可否を決定するべきです。なぜなら、性能が必要な場合、SSD を採用することが最も短絡的な解決策だからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The third notable use case is when one just wants to aggregate two disks into one volume, either for performance reasons or to have a single filesystem that is larger than any of the available disks. This case can be addressed both by a RAID-0 (or even linear-RAID) and by an LVM volume. When in this situation, and barring extra constraints (for instance, keeping in line with the rest of the computers if they only use RAID), the configuration of choice will often be LVM. The initial set up is barely more complex, and that slight increase in complexity more than makes up for the extra flexibility that LVM brings if the requirements change or if new disks need to be added."
-msgstr ""
+msgstr "3 番目の注目すべき利用形態は単に 2 つのディスクを 1 つのボリュームにまとめる場合です。これは性能が欲しかったり、利用可能なディスクのどれよりも大きな単一のファイルシステムにするという理由が考えられます。この場合、RAID-0 (またはリニア RAID) か LVM ボリュームを使って対処できます。この状況では、追加的な制約事項 (例えば、残りのコンピュータが RAID だけを使っている場合に RAID を使わなければいけないなど) が無ければ、通常 LVM を選択します。LVM の最初のセットアップは RAID に比べて複雑ですが、LVM は複雑度を少し増加させるだけで、要求が変った場合や新しいディスクを追加する必要ができた場合に対処可能な、追加的な柔軟性を大きく上昇させます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Then of course, there is the really interesting use case, where the storage system needs to be made both resistant to hardware failure and flexible when it comes to volume allocation. Neither RAID nor LVM can address both requirements on their own; no matter, this is where we use both at the same time — or rather, one on top of the other. The scheme that has all but become a standard since RAID and LVM have reached maturity is to ensure data redundancy first by grouping disks in a small number of large RAID arrays, and to use these RAID arrays as LVM physical volumes; logical partitions will then be carved from these LVs for filesystems. The selling point of this setup is that when a disk fails, only a small number of RAID arrays will need to be reconstructed, thereby limiting the time spent by the administrator for recovery."
-msgstr ""
+msgstr "そしてもちろん、本当に興味深い利用形態はストレージシステムにハードウェア障害に対する耐性を持たせさらにボリューム割り当てに対する柔軟性を持たせる必要がある場合です。RAID と LVM のどちらも片方だけで両方の要求を満足させることは不可能です; つまり、RAID と LVM の両方を同時に使用する、というより一方の上に他方を構成する方針を採用すべき場面です。RAID と LVM は成熟しているため、この方針はほぼ標準的になりつつあります。この方針では、最初にディスクを少数の大きな RAID アレイにグループ分けして、それらの RAID アレイを LVM 物理ボリュームとして使うことにより、データの冗長性を確保します; 論理パーティションはファイルシステム用の LV から分配されます。この方針の売りは、ディスク障害が起きた場合に再構築しなければいけない RAID アレイの数が少ない点です。このため、管理者は復旧に必要な時間を減らすことが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's take a concrete example: the public relations department at Falcot Corp needs a workstation for video editing, but the department's budget doesn't allow investing in high-end hardware from the bottom up. A decision is made to favor the hardware that is specific to the graphic nature of the work (monitor and video card), and to stay with generic hardware for storage. However, as is widely known, digital video does have some particular requirements for its storage: the amount of data to store is large, and the throughput rate for reading and writing this data is important for the overall system performance (more than typical access time, for instance). These constraints need to be fulfilled with generic hardware, in this case two 300 GB SATA hard disk drives; the system data must also be made resistant to hardware failure, as well as some of the user data. Edited videoclips must indeed be safe, but video rushes pending editing are less critical, since they're still on the videotapes."
-msgstr ""
+msgstr "具体例を見てみましょう: Falcot Corp の広報課では、動画編集用にワークステーションが必要ですが、広報課の予算の都合上、最初から高性能のハードウェアに投資することが不可能です。グラフィック性能を担うハードウェア (モニタとビデオカード) に大きな予算を割き、ストレージ用には一般的なハードウェアを使うように決定されました。しかしながら、広く知られている通り、デジタルビデオ用のストレージはある種の条件を必要とします: 保存されるデータのサイズが大きく、このデータを読み込みおよび書き込みする際の処理速度がシステム全体の性能にとって重要 (例えば、平均的なアクセス時間よりも重要) です。この条件を一般的なハードウェアを使って満足させます。この場合 2 台の SATA ハードディスクドライブを使います; システムデータと一部のユーザデータはハードウェア障害に対する耐性を持たせる必要があります。編集済みのビデオクリップを保護しなければいけませんが、編集前のビデオ素材をそれほど気にする必要はありません。なぜなら、編集前のビデオ素材はまだビデオテープで残されているからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "RAID-1 and LVM are combined to satisfy these constraints. The disks are attached to two different SATA controllers to optimize parallel access and reduce the risk of a simultaneous failure, and they therefore appear as <filename>sda</filename> and <filename>sdc</filename>. They are partitioned identically along the following scheme:"
-msgstr ""
+msgstr "前述の条件を満足させるために RAID-1 と LVM を組み合わせます。ディスクの並行アクセスを最適化し、そして障害が同時に発生する危険性を減らすために、各ディスクは 2 つの異なる SATA コントローラに接続されています。このため、各ディスクは <filename>sda</filename> と <filename>sdc</filename> として現れます。以下の方針で示す通り、全く同一の方法でパーティション分割されます:"
 
 #. Tag: screen
 #, no-c-format
@@ -1599,61 +1599,77 @@ msgid ""
 "/dev/sda6           12698    25146    99996561   fd  Linux raid autodetect\n"
 "/dev/sda7           25147    36483    91064421   8e  Linux LVM</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
+"<computeroutput>\n"
+"Disk /dev/hda: 300.0 GB, 300090728448 bytes\n"
+"255 heads, 63 sectors/track, 36483 cylinders\n"
+"Units = cylinders of 16065 * 512 = 8225280 bytes\n"
+"Sector size (logical/physical): 512 bytes / 512 bytes\n"
+"I/O size (minimum/optimal): 512 bytes / 512 bytes\n"
+"Disk identifier: 0x00039a9f\n"
+"\n"
+"   Device Boot      Start      End      Blocks   Id  System\n"
+"/dev/sda1   *           1      124      995998+  fd  Linux raid autodetect\n"
+"/dev/sda2             125      248      996030   82  Linux swap / Solaris\n"
+"/dev/sda3             249    36483   291057637+   5  Extended\n"
+"/dev/sda5             249    12697    99996561   fd  Linux raid autodetect\n"
+"/dev/sda6           12698    25146    99996561   fd  Linux raid autodetect\n"
+"/dev/sda7           25147    36483    91064421   8e  Linux LVM</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The first partitions of both disks (about 1 GB) are assembled into a RAID-1 volume, <filename>md0</filename>. This mirror is directly used to store the root filesystem."
-msgstr ""
+msgstr "両方のディスクの最初のパーティション (約 1 GB) は RAID-1 ボリューム <filename>md0</filename> に組み込まれます。このミラーは root ファイルシステムを保存するために直接的に使われます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sda2</filename> and <filename>sdc2</filename> partitions are used as swap partitions, providing a total 2 GB of swap space. With 1 GB of RAM, the workstation has a comfortable amount of available memory."
-msgstr ""
+msgstr "<filename>sda2</filename> と <filename>sdc2</filename> パーティションは swap パーティションとして使われます。スワップ領域のサイズは合計で 2 GB になります。RAM のサイズは 1 GB で、ワークステーションで利用可能なメモリサイズは十分な量と言えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>sda5</filename> and <filename>sdc5</filename> partitions, as well as <filename>sda6</filename> and <filename>sdc6</filename>, are assembled into two new RAID-1 volumes of about 100 GB each, <filename>md1</filename> and <filename>md2</filename>. Both these mirrors are initialized as physical volumes for LVM, and assigned to the <filename>vg_raid</filename> volume group. This VG thus contains about 200 GB of safe space."
-msgstr ""
+msgstr "<filename>sda5</filename> と <filename>sdc5</filename> パーティションおよび <filename>sda6</filename> と <filename>sdc6</filename> パーティションは、それぞれ約 100 GB の 2 つの新しい RAID-1 ボリューム <filename>md1</filename> と <filename>md2</filename> に組み上げられます。これらのミラーは LVM の物理ボリュームとして初期化され、<filename>vg_raid</filename> ボリュームグループに割り当てられます。<filename>vg_raid</filename> VG は約 200 GB の安全な領域になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The remaining partitions, <filename>sda7</filename> and <filename>sdc7</filename>, are directly used as physical volumes, and assigned to another VG called <filename>vg_bulk</filename>, which therefore ends up with roughly 200 GB of space."
-msgstr ""
+msgstr "残りのパーティションである <filename>sda7</filename> と <filename>sdc7</filename> は直接的に物理ボリュームとして使われ、<filename>vg_bulk</filename> と呼ばれる別の VG に割り当てられます。これはおよそ 200 GB の領域になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the VGs are created, they can be partitioned in a very flexible way. One must keep in mind that LVs created in <filename>vg_raid</filename> will be preserved even if one of the disks fails, which will not be the case for LVs created in <filename>vg_bulk</filename>; on the other hand, the latter will be allocated in parallel on both disks, which allows higher read or write speeds for large files."
-msgstr ""
+msgstr "VG を作成したら、VG をとても柔軟な方法でパーティション分割することが可能です。<filename>vg_raid</filename> に作成された LV は 1 台にディスク障害に対して耐性を持ちますが、<filename>vg_bulk</filename> の場合そうではない点を忘れないで下さい; 逆に、<filename>vg_bulk</filename> は両方のディスクに渡って割り当てられるので、巨大なファイルの読み書き速度が高速化されるでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "We'll therefore create the <filename>lv_usr</filename>, <filename>lv_var</filename> and <filename>lv_home</filename> LVs on <filename>vg_raid</filename>, to host the matching filesystems; another large LV, <filename>lv_movies</filename>, will be used to host the definitive versions of movies after editing. The other VG will be split into a large <filename>lv_rushes</filename>, for data straight out of the digital video cameras, and a <filename>lv_tmp</filename> for temporary files. The location of the work area is a less straightforward choice to make: while good performance is needed for that volume, is it worth risking losing work if a disk fails during an editing session? Depending on the answer to that question, the relevant LV will be created on one VG or the other."
-msgstr ""
+msgstr "<filename>lv_usr</filename>、<filename>lv_var</filename>、<filename>lv_home</filename> という LV を <filename>vg_raid</filename> に作成し、それぞれに対応するファイルシステムをホストするようにします; 別の大きな LV <filename>lv_movies</filename> は編集済みの最終版の映像をホストするために使われます。<filename>vg_bulk</filename> を、デジタルビデオカメラから取り出したデータ用の大きな <filename>lv_rushes</filename> と、一時ファイル用の <filename>lv_tmp</filename>、に分割します。作業領域を作成する場所は簡単に決められるものではありません: 作業領域用のボリュームは良い性能を必要としますが、編集作業中にディスク障害が起きた場合に作業内容を保護する必要があるでしょうか? この質問の回答次第で、対応する LV を <filename>vg_raid</filename> か <filename>vg_bulk</filename> のどちらの VG に作成するかが決まります。"
 
 #. Tag: para
 #, no-c-format
 msgid "We now have both some redundancy for important data and much flexibility in how the available space is split across the applications. Should new software be installed later on (for editing audio clips, for instance), the LV hosting <filename>/usr/</filename> can be grown painlessly."
-msgstr ""
+msgstr "これで、重要なデータ用に多少の冗長性と、利用可能な領域が用途ごとにどのように分割されるかに関する大きな柔軟性が確保されました。後から (例えば音声クリップの編集用に) 新しいソフトウェアをインストールする場合も、<filename>/usr/</filename> をホストしている LV を簡単に増加する事が可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Why three RAID-1 volumes?"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> なぜ 3 種類の RAID-1 ボリュームが必要なのでしょうか?"
 
 #. Tag: para
 #, no-c-format
 msgid "We could have set up one RAID-1 volume only, to serve as a physical volume for <filename>vg_raid</filename>. Why create three of them, then?"
-msgstr ""
+msgstr "<filename>vg_raid</filename> 用の物理ボリュームとして提供される RAID-1 ボリュームを 1 つだけセットアップすることも可能でした。にも関わらず、なぜ 3 種類の RAID-1 ボリュームを作成したのでしょうか?"
 
 #. Tag: para
 #, no-c-format
 msgid "The rationale for the first split (<filename>md0</filename> vs. the others) is about data safety: data written to both elements of a RAID-1 mirror are exactly the same, and it is therefore possible to bypass the RAID layer and mount one of the disks directly. In case of a kernel bug, for instance, or if the LVM metadata become corrupted, it is still possible to boot a minimal system to access critical data such as the layout of disks in the RAID and LVM volumes; the metadata can then be reconstructed and the files can be accessed again, so that the system can be brought back to its nominal state."
-msgstr ""
+msgstr "最初の分割 (<filename>md0</filename> とその他) の根本的理由はデータの安全性を考慮したためです: RAID-1 ミラーの両方の要素に書き込まれるデータは全く同じです。そのため RAID 層を迂回し、片方のディスクだけを直接マウントすることが可能です。例えば、カーネルバグや LVM メタ情報が破壊された場合、RAID と LVM ボリュームに含まれるディスクの配置などの重要なデータにアクセスするために最小限のシステムを起動することが可能です。そして、このメタ情報を再構成したり、ファイルにアクセスすることが可能です。こうすることで、システムを正常状態に戻すことが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The rationale for the second split (<filename>md1</filename> vs. <filename>md2</filename>) is less clear-cut, and more related to acknowledging that the future is uncertain. When the workstation is first assembled, the exact storage requirements are not necessarily known with perfect precision; they can also evolve over time. In our case, we can't know in advance the actual storage space requirements for video rushes and complete video clips. If one particular clip needs a very large amount of rushes, and the VG dedicated to redundant data is less than halfway full, we can re-use some of its unneeded space. We can remove one of the physical volumes, say <filename>md2</filename> from <filename>vg_raid</filename> and either assign it to <filename>vg_bulk</filename> directly (if the expected duration of the operation is short enough that we can live with the temporary drop in performance), or undo the RAID setup on <filename>md2</filename> and integrate its components <filename>sda6</filename> and <filename>sdc6</filename> into the bulk VG (which grows by 200 GB instead of 100 GB); the <filename>lv_rushes</filename> logical volume can then be grown according to requirements."
-msgstr ""
+msgstr "2 番目の分割 (<filename>md1</filename> と <filename>md2</filename>) の根本的理由は明確というわけではありませんが、将来の不明確さを認めていることに関連します。最初動画編集用ワークステーションを組み上げた時、要求される正確なストレージサイズを完全な精度で知る必要はありません; ストレージサイズは時間経過に従い増加するかもしれません。我々の場合、ビデオ素材と編集済みビデオクリップ用に実際に要求されるストレージ領域を事前に知ることはできません。特定のクリップがとても大きな量の素材を必要とし、冗長性データ専用の VG はまだ半分以上が未使用状態の場合、ここから一部の未使用領域を再利用する事が可能です。我々は物理ボリュームの 1 つを削除、例えば <filename>vg_raid</filename> から <filename>md2</filename> を削除し、これを <filename>vg_bulk</filename> に直接割り当てるか (予想される作業時間が一時的な性能の低下を許容できる程度に十分短い場合に限ります)、<filename>md2</filename> の RAID セットアップをやり直してその構成要素である <filename>sda6</filename> と <filename>sdc6</filename> を VG に統合する (この場合 100 GB ではなく 200 GB の増加になります)、事が可能です; <filename>lv_rushes</filename> 論理ボリュームは必要に応じて増加させる事が可能です。"
 
 #. Tag: para
 #, no-c-format
