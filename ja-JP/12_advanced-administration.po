@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2014-01-09 08:27+0100\n"
-"PO-Revision-Date: 2015-06-08 01:55+0900\n"
+"PO-Revision-Date: 2015-06-08 19:08+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1674,142 +1674,142 @@ msgstr "2 番目の分割 (<filename>md1</filename> と <filename>md2</filename>
 #. Tag: para
 #, no-c-format
 msgid "Virtualization <indexterm><primary>virtualization</primary></indexterm> is one of the most major advances in the recent years of computing. The term covers various abstractions and techniques simulating virtual computers with a variable degree of independence on the actual hardware. One physical server can then host several systems working at the same time and in isolation. Applications are many, and often derive from this isolation: test environments with varying configurations for instance, or separation of hosted services across different virtual machines for security."
-msgstr ""
+msgstr "仮想化 <indexterm><primary>仮想化</primary></indexterm> は最近のコンピューティングにおける最も大きな進歩の一つです。仮想化という用語は、実際のハードウェアに対する様々な独立性の度合いを持つ仮想コンピュータを模倣する様々な抽象化と技術を指します。1 台の物理的なサーバが同時かつ隔離された状態で動く復数のシステムをホストする事が可能です。仮想化アプリケーションは数多く存在し、仮想システムの隔離状態を提供します: 例えば、様々に設定されたテスト環境を作ったり、安全性を確保する目的で異なる仮想マシン間でホストされたサービスを分離したり、する事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "There are multiple virtualization solutions, each with its own pros and cons. This book will focus on Xen, LXC, and KVM, but other noteworthy implementations include the following:"
-msgstr ""
+msgstr "復数の仮想化ソリューションが存在し、それぞれが利点と欠点を持っています。この本では Xen、LXC、KVM に注目しますが、他にも以下の様な注目すべき実装が存在します:"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>VMWare</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>VMWare</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>Bochs</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>Bochs</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>QEMU</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>QEMU</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>VirtualBox</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>VirtualBox</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>KVM</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>KVM</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>LXC</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>LXC</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "QEMU is a software emulator for a full computer; performances are far from the speed one could achieve running natively, but this allows running unmodified or experimental operating systems on the emulated hardware. It also allows emulating a different hardware architecture: for instance, an <emphasis>amd64</emphasis> system can emulate an <emphasis>arm</emphasis> computer. QEMU is free software. <ulink type=\"block\" url=\"http://www.qemu.org/\" />"
-msgstr ""
+msgstr "QEMU は完全にコンピュータを模倣するソフトウェアエミュレータです; QEMU の性能はネイティブに実行した場合の速度には遠く及びませんが、QEMU を使うことで修正されていなかったり実験的なオペレーティングシステムをエミュレートされたハードウェア上で実行する事が可能です。QEMU はまた、異なるハードウェアアーキテクチャをエミュレータする事が可能です。例えば、<emphasis>amd64</emphasis> システムで <emphasis>arm</emphasis> コンピュータをエミュレータする事が可能です。QEMU はフリーソフトウェアです。<ulink type=\"block\" url=\"http://www.qemu.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Bochs is another free virtual machine, but it only emulates the x86 architectures (i386 and amd64)."
-msgstr ""
+msgstr "Bochs はフリーの仮想マシンですが、x86 アーキテクチャ (i386 と amd64) だけをエミュレータする事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "VMWare is a proprietary virtual machine; being one of the oldest out there, it is also one of the most widely-known. It works on principles similar to QEMU. VMWare proposes advanced features such as snapshotting a running virtual machine. <ulink type=\"block\" url=\"http://www.vmware.com/\" />"
-msgstr ""
+msgstr "VMWare はプロプライエタリの仮想マシンです; VMWare はこの分野で最も古く、最も広く使われているソフトウェアの 1 つです。VMWare は QEMU とよく似た原理で動いています。VMWare には、例えば実行中の仮想マシンのスナップショット等の高度な機能が含まれています。<ulink type=\"block\" url=\"http://www.vmware.com/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "VirtualBox is a virtual machine that is mostly free software (although some extra components are available under a proprietary license). It's younger than VMWare and restricted to the i386 and amd64 architectures, but it still includes some snapshotting and other interesting features. VirtualBox has been part of Debian since <emphasis role=\"distribution\">Lenny</emphasis>. <ulink type=\"block\" url=\"http://www.virtualbox.org/\" />"
-msgstr ""
+msgstr "VirtualBox は仮想マシンで、ほぼフリーソフトウェア (追加的な構成要素がプロプライエタリライセンスの下で利用可能) です。VirtualBox は VMWare よりも若く、i386 と amd64 アーキテクチャに制限されていますが、スナップショットやその他の興味深い機能を備えています。VirtualBox は <emphasis role=\"distribution\">Lenny</emphasis> 以降 Debian の一部になっています。<ulink type=\"block\" url=\"http://www.virtualbox.org/\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Xen <indexterm><primary>Xen</primary></indexterm> is a “paravirtualization” solution. It introduces a thin abstraction layer, called a “hypervisor”, between the hardware and the upper systems; this acts as a referee that controls access to hardware from the virtual machines. However, it only handles a few of the instructions, the rest is directly executed by the hardware on behalf of the systems. The main advantage is that performances are not degraded, and systems run close to native speed; the drawback is that the kernels of the operating systems one wishes to use on a Xen hypervisor need to be adapted to run on Xen."
-msgstr ""
+msgstr "Xen <indexterm><primary>Xen</primary></indexterm> は「準仮想化」ソリューションです。Xen には薄い抽象化層が含まれ、この抽象化層は「ハイパーバイザ」と呼ばれ、ハードウェアとその上にあるシステムの間に位置します; ハイパーバイザは審判員として振る舞い、仮想マシンからハードウェアへのアクセスを制御します。しかしながら、ハイパーバイザは命令のほんの一部だけを取り扱い、残りはシステムの代わりにハードウェアによって直接的に実行されます。こうすることによる主な有効性は性能が低下せず、システムがネイティブ速度に迫る性能を発揮するという点です; 欠点は Xen ハイパーバイザ上で使いたいオペレーティングシステムのカーネルは Xen 上で実行するために修正される必要があるという点です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's spend some time on terms. The hypervisor is the lowest layer, that runs directly on the hardware, even below the kernel. This hypervisor can split the rest of the software across several <emphasis>domains</emphasis>, which can be seen as so many virtual machines. One of these domains (the first one that gets started) is known as <emphasis>dom0</emphasis>, and has a special role, since only this domain can control the hypervisor and the execution of other domains. These other domains are known as <emphasis>domU</emphasis>. In other words, and from a user point of view, the <emphasis>dom0</emphasis> matches the “host” of other virtualization systems, while a <emphasis>domU</emphasis> can be seen as a “guest”."
-msgstr ""
+msgstr "用語について少し時間を割きましょう。ハイパーバイザはカーネルよりも下層の最も低い層に位置し、ハードウェア上で直接動きます。ハイパーバイザは残りのソフトウェアを幾つかの<emphasis>ドメイン</emphasis>に分割することが可能で、<emphasis>ドメイン</emphasis>は多数の仮想マシンと考えられます。これらのドメインの 1 つ (最初に起動されたもの) は <emphasis>dom0</emphasis> として知られており、特別な役割の担います。なぜなら、<emphasis>dom0</emphasis> だけがハイパーバイザを制御することが可能だからです。他のドメインは <emphasis>domU</emphasis> として知られています。ユーザ視点で言い換えれば、<emphasis>dom0</emphasis> は他の仮想システムにおける「ホスト」、これに対して <emphasis>domU</emphasis> は「ゲスト」になります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Xen and the various versions of Linux"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> Xen と Linux の様々なバージョン"
 
 #. Tag: para
 #, no-c-format
 msgid "Xen was initially developed as a set of patches that lived out of the official tree, and not integrated to the Linux kernel. At the same time, several upcoming virtualization systems (including KVM) required some generic virtualization-related functions to facilitate their integration, and the Linux kernel gained this set of functions (known as the <emphasis>paravirt_ops</emphasis> or <emphasis>pv_ops</emphasis> interface). Since the Xen patches were duplicating some of the functionality of this interface, they couldn't be accepted officially."
-msgstr ""
+msgstr "当初 Xen は Linux 公式ツリーの外部パッチとして開発され、Linux カーネルに統合されませんでした。同時に、復数の次世代仮想化システム (KVM など) は統合を簡単にするために一部の包括的な仮想化関連関数を必要としており、Linux カーネルは (<emphasis>paravirt_ops</emphasis> または <emphasis>pv_ops</emphasis> インターフェイスとして知られる) 一連の仮想化関連関数を獲得しました。Xen のパッチはこのインターフェイスの幾つかの機能を複製していたため、Xen のパッチは公式に受け入れられませんでした。"
 
 #. Tag: para
 #, no-c-format
 msgid "Xensource, the company behind Xen, therefore had to port Xen to this new framework, so that the Xen patches could be merged into the official Linux kernel. That meant a lot of code rewrite, and although Xensource soon had a working version based on the paravirt_ops interface, the patches were only progressively merged into the official kernel. The merge was completed in Linux 3.0. <ulink type=\"block\" url=\"http://wiki.xenproject.org/wiki/XenParavirtOps\" />"
-msgstr ""
+msgstr "このため、Xen を影で支える会社の Xensource は新しい枠組みの下で Xen を移植しなければいけませんでした。この移植作業により、Xen のパッチを公式の Linux  カーネルにマージする事が可能になりました。この移植作業は多くのコードを書き換えることを意味しています。Xensource はすぐに paravirt_ops インターフェイスを使って評価版を作ったにも関わらず、Xen のパッチを公式カーネルにマージする作業は徐々に進みました。マージか完了したのは Linux 3.0 です。<ulink type=\"block\" url=\"http://wiki.xenproject.org/wiki/XenParavirtOps\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Since <emphasis role=\"distribution\">Wheezy</emphasis> is based on version 3.2 of the Linux kernel, the standard <emphasis role=\"pkg\">linux-image-686-pae</emphasis> and <emphasis role=\"pkg\">linux-image-amd64</emphasis> packages include the necessary code, and the distribution-specific patching that was required for <emphasis role=\"distribution\">Squeeze</emphasis> and earlier versions of Debian is no more. <ulink type=\"block\" url=\"http://wiki.xenproject.org/wiki/Xen_Kernel_Feature_Matrix\" />"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">Wheezy</emphasis> は Linux カーネルのバージョン 3.2 に基づくため、標準的な <emphasis role=\"pkg\">linux-image-686-pae</emphasis> と <emphasis role=\"pkg\">linux-image-amd64</emphasis> パッケージには必要なコードが含まれます。Debian の <emphasis role=\"distribution\">Squeeze</emphasis> およびそれ以前のバージョンに対するディストリビューション特有のパッチはありません。<ulink type=\"block\" url=\"http://wiki.xenproject.org/wiki/Xen_Kernel_Feature_Matrix\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Using Xen under Debian requires three components:"
-msgstr ""
+msgstr "Debian の下で Xen を使うには 3 つの要素が必要です:"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Architectures compatible with Xen"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> Xen 互換のアーキテクチャ"
 
 #. Tag: para
 #, no-c-format
 msgid "Xen is currently only available for the i386 and amd64 architectures. Moreover, it uses processor instructions that haven't always been provided in all i386-class computers. Note that most of the Pentium-class (or better) processors made after 2001 will work, so this restriction won't apply to very many situations."
-msgstr ""
+msgstr "現在のところ、Xen を利用可能なのは i386 と amd64 アーキテクチャだけです。加えて、Xen は全ての i386 型コンピュータで提供されていないプロセッサ命令を使います。2001 年以降に作られた殆どの Pentium 級 (またはそれよりも良い) プロセッサは Xen を動作させる事が可能です。このため、殆どの場合この制限は無いものと思って差し支えありません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CULTURE</emphasis> Xen and non-Linux kernels"
-msgstr ""
+msgstr "<emphasis>CULTURE</emphasis> Xen と非 Linux カーネル"
 
 #. Tag: para
 #, no-c-format
 msgid "Xen requires modifications to all the operating systems one wants to run on it; not all kernels have the same level of maturity in this regard. Many are fully-functional, both as dom0 and domU: Linux 3.0 and later, NetBSD 4.0 and later, and OpenSolaris. Others, such as OpenBSD 4.0, FreeBSD 8 and Plan 9, only work as a domU."
-msgstr ""
+msgstr "Xen 上でオペレーティングシステムを動作させるには、いかなるオペレーティングシステムであってもそれを修正する必要があります; 全てのオペレーティングシステムのカーネルがこの点に関して同じ程度の成熟度を持っているとは限りません。多くのオペレーティングシステムは dom0 と domU の両方で完全に動きます: Linux 3.0 とそれ以降、NetBSD 4.0 とそれ以降、OpenSolaris。他のもの、例えば OpenBSD 4.0、FreeBSD 8、Plan 9 などは domU だけで動きます。"
 
 #. Tag: para
 #, no-c-format
 msgid "However, if Xen can rely on the hardware functions dedicated to virtualization (which are only present in more recent processors), even non-modified operating systems can run as domU (including Windows)."
-msgstr ""
+msgstr "しかしながら、Xen が仮想化専用のハードウェア機能 (最近のプロセッサだけが搭載した機能) に頼っている場合や、修正されていないオペレーティングシステムは domU としてのみ動作します (Windows など)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The hypervisor itself. According to the available hardware, the appropriate package will be either <emphasis role=\"pkg\">xen-hypervisor-4.1-i386</emphasis> or <emphasis role=\"pkg\">xen-hypervisor-4.1-amd64</emphasis>."
-msgstr ""
+msgstr "ハイパーバイザ自身。これは利用可能なハードウェアに依存します。適切なパッケージは <emphasis role=\"pkg\">xen-hypervisor-4.1-i386</emphasis> または <emphasis role=\"pkg\">xen-hypervisor-4.1-amd64</emphasis> のどちらか一方です。"
 
 #. Tag: para
 #, no-c-format
 msgid "A kernel that runs on that hypervisor. Any kernel more recent than 3.0 will do, including the 3.2 version present in <emphasis role=\"distribution\">Wheezy</emphasis>."
-msgstr ""
+msgstr "ハイパーバイザ上で実行するカーネル。<emphasis role=\"distribution\">Wheezy</emphasis> の提供するバージョン 3.2 を含めて、バージョン 3.0 より新しい Linux カーネルが動作します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The i386 architecture also requires a standard library with the appropriate patches taking advantage of Xen; this is in the <emphasis role=\"pkg\">libc6-xen</emphasis> package."
-msgstr ""
+msgstr "i386 アーキテクチャでは、Xen を活用するための適切なパッチを取り込んだ標準的なライブラリが必要です; これは <emphasis role=\"pkg\">libc6-xen</emphasis> パッケージに含まれます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In order to avoid the hassle of selecting these components by hand, a few convenience packages (such as <emphasis role=\"pkg\">xen-linux-system-686-pae</emphasis> and <emphasis role=\"pkg\">xen-linux-system-amd64</emphasis>) have been made available; they all pull in a known-good combination of the appropriate hypervisor and kernel packages. The hypervisor also brings <emphasis role=\"pkg\">xen-utils-4.1</emphasis>, which contains tools to control the hypervisor from the dom0. This in turn brings the appropriate standard library. During the installation of all that, configuration scripts also create a new entry in the Grub bootloader menu, so as to start the chosen kernel in a Xen dom0. Note however that this entry is not usually set to be the first one in the list, and will therefore not be selected by default. If that is not the desired behavior, the following commands will change it:"
-msgstr ""
+msgstr "復数の構成要素を手作業で選択するという煩わしさを避けるために、幾つかの便利なパッケージ (<emphasis role=\"pkg\">xen-linux-system-686-pae</emphasis> と <emphasis role=\"pkg\">xen-linux-system-amd64</emphasis>) が用意されています; これらのパッケージをインストールすることで、適切なハイパーバイザとカーネルパッケージが既知の良い組み合わせで導入されます。ハイパーバイザには <emphasis role=\"pkg\">xen-utils-4.1</emphasis> が含まれます。このパッケージには dom0 からハイパーバイザを操作するためのツールが含まれます。同様に、このパッケージには適切な標準的ライブラリが含まれます。全てのインストール中に、設定スクリプトは Grub ブートローダメニューに新しいエントリを作成します。こうすることで Xen dom0 から選択されたカーネルを開始することが可能です。しかしながら、通常このエントリはリストの最初に置かれないため、デフォルトで選択されません。この点に注意してください。これを望まない場合、以下のコマンドを使って変更してください;"
 
 #. Tag: screen
 #, no-c-format
@@ -1818,16 +1818,19 @@ msgid ""
 "</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
 "</userinput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen\n"
+"</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
+"</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Once these prerequisites are installed, the next step is to test the behavior of the dom0 by itself; this involves a reboot to the hypervisor and the Xen kernel. The system should boot in its standard fashion, with a few extra messages on the console during the early initialization steps."
-msgstr ""
+msgstr "これらの前提要件をインストールしたら、次に dom0 の挙動をテストします; これを行うには、ハイパーバイザと Xen カーネルの再起動が必要です。システムは標準的な方法で起動するべきです。初期化の早い段階でコンソールに幾つかの追加的メッセージが表示されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Now is the time to actually install useful systems on the domU systems, using the tools from <emphasis role=\"pkg\">xen-tools</emphasis>. This package provides the <command>xen-create-image</command> command, which largely automates the task. The only mandatory parameter is <literal>--hostname</literal>, giving a name to the domU; other options are important, but they can be stored in the <filename>/etc/xen-tools/xen-tools.conf</filename> configuration file, and their absence from the command line doesn't trigger an error. It is therefore important to either check the contents of this file before creating images, or to use extra parameters in the <command>xen-create-image</command> invocation. Important parameters of note include the following:"
-msgstr ""
+msgstr "これで、有用なシステムを domU システムに実際にインストールできるようになりました。これを行うには <emphasis role=\"pkg\">xen-tools</emphasis> の提供するツールを使います。このパッケージには <command>xen-create-image</command> コマンドが含まれます。これはタスクの大部分を自動化します。必須のパラメータは <literal>--hostname</literal> だけで、このパラメータは domU の名前を設定します; 他のオプションは重要ですが、<filename>/etc/xen-tools/xen-tools.conf</filename> 設定ファイルに保存することが可能です。そして、コマンドラインでオプションを指定しなくてもエラーは起きません。このため、イメージを作る前にこのファイルの内容を確認するか、<command>xen-create-image</command> の実行時に追加的パラメータを使うことが重要です。注目すべき重要なパラメータを以下に示します:"
 
 #. Tag: para
 #, no-c-format
