@@ -44,6 +44,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -105,6 +106,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         mixpanel = MixpanelAPI.getInstance(this, MIXPANEL_TOKEN);
 
+        final Date initializationDate = new Date();
+
         IntentFilter intentFilter = new IntentFilter(START_LOAD);
         IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
         IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
@@ -113,6 +116,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
+
+                    mixpanel.getPeople().set("loadDuration", new Date().getTime() - initializationDate.getTime());
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     displayLoader(true);
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
@@ -188,7 +193,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
-        // Hide the "X" before the text field, instead displaying the menu button
+        // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
         // Apply effects depending on current Android version
@@ -210,11 +215,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 mixpanel.getPeople().identify(account.name);
                 mixpanel.getPeople().set("$email", account.name);
                 mixpanel.getPeople().set("$name", account.name);
+
                 break;
             }
         }
 
         mixpanel.getPeople().set("resultCount", KissApplication.getDataHandler(this).getHistoryLength(this));
+        mixpanel.getPeople().set("lastUpdated", initializationDate);
     }
 
     /**
@@ -552,6 +559,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // We made a choice on the list,
         // now we can cleanup the filter:
         searchEditText.setText("");
+        hideKeyboard();
     }
 
     private void hideKeyboard() {
