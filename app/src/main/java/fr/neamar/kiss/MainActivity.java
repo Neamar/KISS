@@ -246,6 +246,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             for (int id : tweakableIds) {
                 findViewById(id).setBackgroundResource(outValue.resourceId);
             }
+
         } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
