@@ -49,7 +49,7 @@ public abstract class Result {
      * @param convertView a view to be recycled
      * @return a view to display as item
      */
-    public abstract View display(Context context, View convertView);
+    public abstract View display(Context context, int position, View convertView);
 
     public final void launch(Context context, View v) {
         Log.i("log", "Launching " + pojo.id);

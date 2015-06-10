@@ -506,7 +506,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP, 0, 20);
                 toast.show();
-                return;
             }
 
             // Don't look for items after favIds length, we won't be able to display them

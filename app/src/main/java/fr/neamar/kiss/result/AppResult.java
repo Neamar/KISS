@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,13 +26,14 @@ public class AppResult extends Result {
     }
 
     @Override
-    public View display(Context context, View v) {
+    public View display(Context context, int position, View v) {
         if (v == null)
             v = inflateFromId(context, R.layout.item_app);
 
         TextView appName = (TextView) v.findViewById(R.id.item_app_name);
         appName.setText(enrichText(appPojo.displayName));
 
+        Log.e("WTF", "POSIT:" + position);
         ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
         appIcon.setImageDrawable(this.getDrawable(context));
 

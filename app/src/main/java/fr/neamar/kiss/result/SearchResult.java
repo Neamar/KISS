@@ -22,7 +22,7 @@ public class SearchResult extends Result {
     }
 
     @Override
-    public View display(Context context, View v) {
+    public View display(Context context, int position, View v) {
         if (v == null)
             v = inflateFromId(context, R.layout.item_search);
 

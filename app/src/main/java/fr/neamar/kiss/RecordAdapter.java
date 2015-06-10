@@ -59,7 +59,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return results.get(position).display(getContext(), convertView);
+        return results.get(position).display(getContext(), results.size() - position, convertView);
     }
 
     public void onLongClick(int pos) {

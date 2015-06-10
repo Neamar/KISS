@@ -28,7 +28,7 @@ public class ToggleResult extends Result {
 
     @SuppressWarnings({"ResourceType", "deprecation"})
     @Override
-    public View display(Context context, View v) {
+    public View display(Context context, int position, View v) {
         // On first run, initialize handler
         if (togglesHandler == null)
             togglesHandler = new TogglesHandler(context);
