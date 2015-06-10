@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 class DB extends SQLiteOpenHelper {
 
     private final static int DB_VERSION = 1;
-    private final static String DB_NAME = "summon.s3db";
+    private final static String DB_NAME = "kiss.s3db";
 
     public DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -15,7 +15,7 @@ class DB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        database.execSQL("CREATE TABLE history ( _id INTEGER PRIMARY KEY AUTOINCREMENT, query TEXT NOT NULL, record TEXT NOT NULL)");
+        database.execSQL("CREATE TABLE history ( _id INTEGER PRIMARY KEY AUTOINCREMENT, query TEXT, record TEXT NOT NULL)");
     }
 
     @Override
