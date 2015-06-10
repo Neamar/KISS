@@ -134,9 +134,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
                     mixpanel.getPeople().set("loadDuration", new Date().getTime() - initializationDate.getTime());
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
-                    displayLoader(true);
-                } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
                     displayLoader(false);
+
+                } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
+                    displayLoader(true);
                 }
             }
         };
@@ -192,12 +193,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
         kissBar = findViewById(R.id.main_kissbar);
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.showContextMenu();
-            }
-        });
 
         getListView().setLongClickable(true);
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -388,6 +383,18 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     /**
+     * Display menu, on short or long press.
+     *
+     * @param menuButton
+     */
+    public void onMenuButtonClicked(View menuButton) {
+        // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
+        // To fix this, we discard any click event occurring when the kissbar is displayed
+        if (kissBar.getVisibility() != View.VISIBLE)
+            menuButton.showContextMenu();
+    }
+
+    /**
      * Clear text content when touching the cross button
      */
     public void onClearButtonClicked(View clearButton) {
@@ -435,14 +442,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
-    private void displayLoader(Boolean loaded) {
+    private void displayLoader(Boolean display) {
         final View loaderBar = findViewById(R.id.loaderBar);
         final View launcherButton = findViewById(R.id.launcherButton);
 
         int animationDuration = getResources().getInteger(
                 android.R.integer.config_longAnimTime);
 
-        if (loaded) {
+        if (!display) {
             launcherButton.setVisibility(View.VISIBLE);
 
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -462,6 +469,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
                                 loaderBar.setAlpha(1);
                             }
                         });
+            } else {
+                loaderBar.setVisibility(View.GONE);
             }
         } else {
             launcherButton.setVisibility(View.INVISIBLE);
