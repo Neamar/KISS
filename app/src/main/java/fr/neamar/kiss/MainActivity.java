@@ -68,24 +68,39 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * IDS for the favorites buttons
      */
     private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
+
     /**
      * Number of favorites to retrieve.
      * We need to pad this number to account for removed items still in history
      */
     private final int tryToRetrieve = favsIds.length + 2;
+
     /**
      * Adapter to display records
      */
     public RecordAdapter adapter;
+
     /**
      * Store user preferences
      */
     private SharedPreferences prefs;
     private BroadcastReceiver mReceiver;
+
     /**
-     * Search text in the view
+     * View for the Search text
      */
     private EditText searchEditText;
+
+    /**
+     * Menu button
+     */
+    private View menuButton;
+
+    /**
+     * Kiss bar
+     */
+    private View kissBar;
+
     /**
      * Task launched on text change
      */
@@ -141,7 +156,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
         setListAdapter(adapter);
 
-        this.searchEditText = (EditText) findViewById(R.id.searchEditText);
+        searchEditText = (EditText) findViewById(R.id.searchEditText);
 
         // Listen to changes
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -174,7 +189,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
-        final ImageView menuButton = (ImageView) findViewById(R.id.menuButton);
+        kissBar = findViewById(R.id.main_kissbar);
+        menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -290,8 +306,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
             startActivity(i);
         }
 
-        updateRecords(searchEditText.getText().toString());
-        displayClearOnInput();
+        if (kissBar.getVisibility() != View.VISIBLE) {
+            updateRecords(searchEditText.getText().toString());
+            displayClearOnInput();
+        } else {
+            displayKissBar(false);
+        }
 
         if (prefs.getBoolean("display-keyboard", false)) {
             // Display keyboard
@@ -328,8 +348,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     @Override
     public void onBackPressed() {
         // Is the kiss menu visible?
-        View kissMenu = findViewById(R.id.main_kissbar);
-        if (kissMenu.getVisibility() == View.VISIBLE) {
+        if (menuButton.getVisibility() == View.VISIBLE) {
             displayKissBar(false);
         } else {
             // If no kissmenu, empty the search bar
@@ -399,7 +418,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                displayKissBar(false);
                 result.fastLaunch(MainActivity.this);
             }
         }, KissApplication.TOUCH_DELAY);
@@ -407,7 +425,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     private void displayClearOnInput() {
         final View clearButton = findViewById(R.id.clearButton);
-        final View menuButton = findViewById(R.id.menuButton);
         if (searchEditText.getText().length() > 0) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
@@ -453,8 +470,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     private void displayKissBar(Boolean display) {
-        final View kissMenu = findViewById(R.id.main_kissbar);
-
         if (display) {
             // Display the app list
             if (searcher != null) {
@@ -470,17 +485,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
             int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
 
             // get the final radius for the clipping circle
-            int finalRadius = Math.max(kissMenu.getWidth(), kissMenu.getHeight());
+            int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
             // Reveal the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Animator anim =
-                        ViewAnimationUtils.createCircularReveal(kissMenu, cx, cy, 0, finalRadius);
-                kissMenu.setVisibility(View.VISIBLE);
+                        ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
+                kissBar.setVisibility(View.VISIBLE);
                 anim.start();
             } else {
                 // No animation before Lollipop
-                kissMenu.setVisibility(View.VISIBLE);
+                kissBar.setVisibility(View.VISIBLE);
             }
 
             // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
@@ -512,7 +527,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 findViewById(favsIds[i]).setVisibility(View.GONE);
             }
         } else {
-            kissMenu.setVisibility(View.GONE);
+            kissBar.setVisibility(View.GONE);
             searchEditText.setText("");
         }
     }
@@ -551,7 +566,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             props.put("index", index);
             props.put("queryLength", searchEditText.getText().length());
             props.put("type", result.getClass().toString().replace("class fr.neamar.kiss.result.", ""));
-
+            props.put("listType", searchEditText.getText().length() > 0 ? "search" : kissBar.getVisibility() == View.VISIBLE ? "appList" : "history");
             mixpanel.track("Result Selected", props);
         } catch (JSONException e) {
             e.printStackTrace();
