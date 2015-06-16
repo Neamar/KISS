@@ -20,6 +20,41 @@
   </xsl:choose>
 </xsl:template>
 
+<!-- Add <link rel="canonical"> to the headers -->
+<xsl:template name="user.head.content">
+  <xsl:variable name="filename">
+    <xsl:apply-templates mode="chunk-filename" select="."/>
+  </xsl:variable>
+  <xsl:variable name="lang-scope"
+		select="ancestor-or-self::*
+		        [@lang or @xml:lang][1]"/>
+  <xsl:variable name="lang" select="string(($lang-scope/@lang | $lang-scope/@xml:lang)[1])"/>
+  <link rel="canonical">
+    <xsl:attribute name="href">
+      <xsl:value-of select="'https://debian-handbook.info/browse/'"/>
+      <xsl:choose>
+        <xsl:when test="$lang = 'en-US'">
+	  <xsl:value-of select="'stable/'"/>
+        </xsl:when>
+        <xsl:when test="$lang = 'en'">
+	  <xsl:value-of select="'stable/'"/>
+        </xsl:when>
+        <xsl:when test="contains($lang, '-')">
+	  <xsl:value-of select="concat($lang, '/stable/')" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message terminate="yes">
+            The language code ({$lang}) is not fully qualified as we expect it.
+          </xsl:message>
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:if test="$filename != 'index.html'">
+        <xsl:value-of select="$filename"/>
+      </xsl:if>
+    </xsl:attribute>
+  </link>
+</xsl:template>
+
 <!-- Misc publican fixups -->
 
 <!-- Reinstate the docbook-xsl implementation of anchor -->
