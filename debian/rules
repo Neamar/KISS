@@ -17,6 +17,7 @@ override_dh_auto_install:
 	for lang in $(LANGS); do \
 		mv publish/$$lang/Debian/$(VERSION)/html/debian-handbook $(DOCDIR)/$$lang; \
 	done
+	rdfind -makehardlinks true -makeresultsfile false $(DOCDIR)/en-US $(DOCDIR)
 
 override_dh_auto_clean:
 	publican clean
