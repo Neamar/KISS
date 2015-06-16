@@ -106,21 +106,13 @@ div.sidebar > p, div.sidebar > div.para {
 
 /* CSS for the banner */
 #banner {
-    height: 149px;
-    width: 149px;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
     position: fixed;
     top: 0;
     right: 0;
-    z-index: -1;
+    z-index: 2;
 }
 #banner a {
     display: block;
-    width: 190px;
-    padding: 1px 15px 1px 25px;
-
     font-size: 13px;
     font-family: "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans serif;
     font-weight: bold;
@@ -130,26 +122,7 @@ div.sidebar > p, div.sidebar > div.para {
 
     background-color: #9a0000;
     color: #FFF;
-
-    position: relative;
-    left: 20px;
-    top: -37px;
     text-align: center;
-
-    -moz-transform-origin: 0 0 ;
-    -moz-transform: rotate(45deg);
-    -moz-box-shadow: 0 0 13px #888;
-
-    -webkit-transform-origin: 0 0 ;
-    -webkit-transform: rotate(45deg);
-    -webkit-box-shadow: 0 0 13px #888;
-
-    -ms-transform-origin: 0 0 ;
-    -ms-transform: rotate(45deg);
-    -ms-box-shadow: 0 0 13px #888;
-
-    transform-origin: 0 0 ;
-    transform: rotate(45deg);
     box-shadow: 0 0 13px #888;
 }
 #banner .text {
@@ -159,4 +132,48 @@ div.sidebar > p, div.sidebar > div.para {
 }
 #banner a:hover {
     color: #ffff99;
+}
+
+@media (min-width: 1000px) {
+    #banner {
+	height: 149px;
+	width: 149px;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+    }
+    #banner a {
+	width: 190px;
+	padding: 1px 15px 1px 25px;
+	position: relative;
+	left: 20px;
+	top: -37px;
+
+	-moz-transform-origin: 0 0 ;
+	-moz-transform: rotate(45deg);
+	-moz-box-shadow: 0 0 13px #888;
+
+	-webkit-transform-origin: 0 0 ;
+	-webkit-transform: rotate(45deg);
+	-webkit-box-shadow: 0 0 13px #888;
+
+	-ms-transform-origin: 0 0 ;
+	-ms-transform: rotate(45deg);
+	-ms-box-shadow: 0 0 13px #888;
+
+	transform-origin: 0 0 ;
+	transform: rotate(45deg);
+	box-shadow: 0 0 13px #888;
+    }
+}
+@media (max-width: 999px) {
+    #banner {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+    }
+    #title {
+	padding-top: 20px;
+    }
 }
