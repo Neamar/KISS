@@ -1,16 +1,17 @@
 #!/usr/bin/make -f
 
 DOCDIR=debian/debian-handbook/usr/share/doc/debian-handbook
+VERSION=$(shell sed -n -e 's|.*<productnumber>\(.*\)</productnumber>.*|\1|p' en-US/Book_Info.xml)
 
 %:
 	dh $@ 
 
 override_dh_auto_build:
-	publican build --publish --formats=html --langs=en-US
+	./build/build-html --lang=en-US
 
 override_dh_auto_install:
 	mkdir -p $(DOCDIR)
-	mv publish/en-US/Debian/7/html/debian-handbook $(DOCDIR)/html
+	mv publish/en-US/Debian/$(VERSION)/html/debian-handbook $(DOCDIR)/html
 
 override_dh_auto_clean:
 	publican clean
