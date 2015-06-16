@@ -17,6 +17,11 @@ override_dh_auto_install:
 	for lang in $(LANGS); do \
 		mv publish/$$lang/Debian/$(VERSION)/html/debian-handbook $(DOCDIR)/$$lang; \
 	done
+	# Drop some useless files
+	rm -f $(DOCDIR)/*/images/chap-*.png # Chapter pictures only used in PDF
+	rm -f $(DOCDIR)/*/images/cover.png  # Cover picture (only used in PDF/ePub)
+	rm -f $(DOCDIR)/*/images/*.dia      # Sources of diagrams
+	# Deduplicate the remaining files
 	rdfind -makehardlinks true -makeresultsfile false $(DOCDIR)/en-US $(DOCDIR)
 
 override_dh_auto_clean:
