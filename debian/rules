@@ -1,17 +1,22 @@
 #!/usr/bin/make -f
 
-DOCDIR=debian/debian-handbook/usr/share/doc/debian-handbook
+DOCDIR=debian/debian-handbook/usr/share/doc/debian-handbook/html
 VERSION=$(shell sed -n -e 's|.*<productnumber>\(.*\)</productnumber>.*|\1|p' en-US/Book_Info.xml)
+LANGS=$(shell echo [a-z][a-z]-[A-Z][A-Z])
 
 %:
 	dh $@ 
 
 override_dh_auto_build:
-	./build/build-html --lang=en-US
+	for lang in $(LANGS); do \
+		./build/build-html --lang=$$lang; \
+	done
 
 override_dh_auto_install:
 	mkdir -p $(DOCDIR)
-	mv publish/en-US/Debian/$(VERSION)/html/debian-handbook $(DOCDIR)/html
+	for lang in $(LANGS); do \
+		mv publish/$$lang/Debian/$(VERSION)/html/debian-handbook $(DOCDIR)/$$lang; \
+	done
 
 override_dh_auto_clean:
 	publican clean
