@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
 
 import fr.neamar.kiss.KissApplication;
@@ -32,7 +34,7 @@ public class ContactResult extends Result {
         this.pojo = this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
 
-        if(contactPojo.phone != null) {
+        if (contactPojo.phone != null) {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 contactPojo.phone = PhoneNumberUtils.formatNumber(contactPojo.phone, Locale.getDefault().getCountry());
             } else {
@@ -112,10 +114,18 @@ public class ContactResult extends Result {
     @Override
     public Drawable getDrawable(Context context) {
         if (contactPojo.icon != null) {
+            InputStream inputStream = null;
             try {
-                return Drawable.createFromStream(
-                        context.getContentResolver().openInputStream(contactPojo.icon), null);
+                inputStream = context.getContentResolver().openInputStream(contactPojo.icon);
+                return Drawable.createFromStream(inputStream, null);
             } catch (FileNotFoundException ignored) {
+            } finally {
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (IOException ignored) {
+                    }
+                }
             }
         }
 

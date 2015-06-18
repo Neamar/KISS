@@ -73,6 +73,7 @@ public class DBHelper {
                 null, null, "_id DESC", Integer.toString(limit));
 
         records = readCursor(cursor);
+        cursor.close();
         db.close();
         return records;
     }
@@ -97,6 +98,7 @@ public class DBHelper {
 
         cursor.moveToFirst();
         int historyLength = cursor.getInt(0);
+        cursor.close();
         db.close();
         return historyLength;
     }
@@ -119,6 +121,7 @@ public class DBHelper {
         Cursor cursor = db.query("history", new String[]{"record", "COUNT(*) AS count"},
                 "query LIKE ?", new String[]{query + "%"}, "record", null, "COUNT(*) DESC", "10");
         records = readCursor(cursor);
+        cursor.close();
         db.close();
         return records;
     }
@@ -141,6 +144,7 @@ public class DBHelper {
                 null, null, "record", null, "COUNT(*) DESC", Integer.toString(limit));
 
         records = readCursor(cursor);
+        cursor.close();
         db.close();
         return records;
     }
