@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -66,6 +68,12 @@ public class AppResult extends Result {
         intent.setComponent(className);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 
-        context.startActivity(intent);
+        try {
+            context.startActivity(intent);
+        }
+        catch (ActivityNotFoundException e) {
+            // Application was just removed?
+            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+        }
     }
 }
