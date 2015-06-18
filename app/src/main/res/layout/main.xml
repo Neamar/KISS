@@ -58,8 +58,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="10dp"
-            android:visibility="gone"
-            android:indeterminate="true"/>
+            android:indeterminate="true"
+            android:visibility="gone"/>
 
         <EditText
             android:id="@+id/searchEditText"
@@ -86,11 +86,11 @@
             android:layout_marginLeft="10dp"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
+            android:onClick="onMenuButtonClicked"
             android:paddingBottom="4dp"
             android:paddingLeft="1dp"
             android:paddingRight="1dp"
             android:paddingTop="4dp"
-            android:onClick="onMenuButtonClicked"
             android:src="@drawable/dots"
             />
 

@@ -36,7 +36,7 @@ public class AppResult extends Result {
         appName.setText(enrichText(appPojo.displayName));
 
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
-        if(position < 10) {
+        if (position < 10) {
             appIcon.setImageDrawable(this.getDrawable(context));
         } else {
             // Do actions on a message queue to avoid performance issues on main thread
@@ -70,8 +70,7 @@ public class AppResult extends Result {
 
         try {
             context.startActivity(intent);
-        }
-        catch (ActivityNotFoundException e) {
+        } catch (ActivityNotFoundException e) {
             // Application was just removed?
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
         }

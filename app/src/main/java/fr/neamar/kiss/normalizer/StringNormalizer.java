@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
  */
 public class StringNormalizer {
     private static final Pattern nonAscii = Pattern.compile("(?i)([^a-z0-9 -])");
+
     /**
      * Return the input string, lower-cased and with standard Ascii characters for common european accents
      *

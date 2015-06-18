@@ -68,10 +68,11 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
     }
 
     private void addAliasesPojo(ArrayList<AliasPojo> alias, String[] aliases, String appInfo) {
-        for(String a: aliases) {
+        for (String a : aliases) {
             alias.add(makeAliasPojo(a, appInfo));
         }
     }
+
     private AliasPojo makeAliasPojo(String alias, String appInfo) {
         AliasPojo aliasPojo = new AliasPojo();
         aliasPojo.alias = alias;

@@ -17,7 +17,7 @@ public class SettingsActivity extends PreferenceActivity implements
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength(this);
-        if(historyLength > 5) {
+        if (historyLength > 5) {
             findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
         }
     }
