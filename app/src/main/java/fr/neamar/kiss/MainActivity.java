@@ -53,8 +53,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
 
-    public static final String MIXPANEL_TOKEN = "6fd9dbd60ff95d6f42fd017dfc8f5d43";
-
     /**
      * IDS for the favorites buttons
      */
@@ -254,7 +252,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         if (prefs.getBoolean("layout-updated", false)) {
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
-            prefs.edit().putBoolean("layout-updated", false).commit();
+            prefs.edit().putBoolean("layout-updated", false).apply();
             Intent i = getApplicationContext().getPackageManager().getLaunchIntentForPackage(
                     getApplicationContext().getPackageName());
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
@@ -354,8 +352,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Clear text content when touching the cross button
      */
+    @SuppressWarnings("UnusedParameters")
     public void onClearButtonClicked(View clearButton) {
-
         searchEditText.setText("");
     }
 

@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
  * String utils to handle accented characters for search and highlighting
  */
 public class StringNormalizer {
-    public static Pattern nonAscii = Pattern.compile("(?i)([^a-z0-9 -])");
+    private static final Pattern nonAscii = Pattern.compile("(?i)([^a-z0-9 -])");
     /**
      * Return the input string, lower-cased and with standard Ascii characters for common european accents
      *
