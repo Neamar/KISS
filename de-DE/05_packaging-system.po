@@ -4,11 +4,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-06-18T12:29:19\n"
 "PO-Revision-Date: 2014-11-18 23:27+0200\n"
 "Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/debian-handbook"
-"/05_packaging-system/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/debian-handbook/05_packaging-system/de/>\n"
 "Language: de-DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
@@ -73,34 +72,13 @@ msgstr "<primary><command>ar</command></primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command>. This seemingly trivial property is important for portability and disaster recovery."
 msgid "The Debian package format is designed so that its content may be extracted on any Unix system that has the classic commands <command>ar</command>, <command>tar</command>, and <command>gzip</command> (sometimes <command>xz</command> or <command>bzip2</command>). This seemingly trivial property is important for portability and disaster recovery."
-msgstr ""
-"Das Debian-Paketformat ist so gestaltet, dass sein Inhalt auf jedem "
-"Unixsystem entpackt werden kann, das über die klassischen Befehle "
-"<command>ar</command>, <command>tar</command> und <command>gzip</command> ("
-"manchmal auch <command>xz</command> oder <command>bzip2</command>) verfügt. "
-"Diese eigentlich triviale Anforderung ist wichtig für die Portierbarkeit und "
-"Wiederherstellung."
+msgstr "Das Debian-Paketformat ist so gestaltet, dass sein Inhalt auf jedem Unixsystem entpackt werden kann, das über die klassischen Befehle <command>ar</command>, <command>tar</command> und <command>gzip</command> (manchmal auch <command>xz</command> oder <command>bzip2</command>) verfügt. Diese eigentlich triviale Anforderung ist wichtig für die Portierbarkeit und Wiederherstellung."
 
 #. Tag: para
 #, no-c-format
-#| msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
 msgid "Imagine, for example, that you mistakenly deleted the <command>dpkg</command> program, and that you could thus no longer install Debian packages. <command>dpkg</command> being a Debian package itself, it would seem your system would be done for... Fortunately, you know the format of a package and can therefore download the <filename>.deb</filename> file of the <emphasis role=\"pkg\">dpkg</emphasis> package and install it manually (see the “TOOLS” sidebar). If by some misfortune one or more of the programs <command>ar</command>, <command>tar</command> or <command>gzip</command>/<command>xz</command>/<command>bzip2</command> have disappeared, you will only need to copy the missing program from another system (since each of these operates in a completely autonomous manner, without dependencies, a simple copy will suffice)."
-msgstr ""
-"Nehmen Sie zum Beispiel an, dass Sie aus Versehen das Programm "
-"<command>dpkg</command> gelöscht haben, und dass Sie daher keine Debian-"
-"Pakete mehr installieren können. Da <command>dpkg</command> selbst ein "
-"Debian-Paket ist, sieht es so aus, als ob ihr System erledigt sei... Zum "
-"Glück kennen Sie das Format eines Pakets und können daher die "
-"<filename>.deb</filename>-Datei des <emphasis role=\"pkg\">dpkg</emphasis>-"
-"Pakets herunterladen und es manuell installieren (siehe Seitenleiste "
-"„HILFSPROGRAMME“). Wenn durch ein Missgeschick eines oder mehrere der "
-"Programme <command>ar</command>, <command>tar</command> oder "
-"<command>gzip</command>/<command>xz</command>/<command>bzip2</command> "
-"verschwunden sind, brauchen Sie nur das fehlende Programm von einem anderen "
-"System zu kopieren (da jedes von ihnen auf vollständig autonome Weise ohne "
-"Abhängigkeiten arbeitet, reicht einfaches Kopieren)."
+msgstr "Nehmen Sie zum Beispiel an, dass Sie aus Versehen das Programm <command>dpkg</command> gelöscht haben, und dass Sie daher keine Debian-Pakete mehr installieren können. Da <command>dpkg</command> selbst ein Debian-Paket ist, sieht es so aus, als ob ihr System erledigt sei... Zum Glück kennen Sie das Format eines Pakets und können daher die <filename>.deb</filename>-Datei des <emphasis role=\"pkg\">dpkg</emphasis>-Pakets herunterladen und es manuell installieren (siehe Seitenleiste „HILFSPROGRAMME“). Wenn durch ein Missgeschick eines oder mehrere der Programme <command>ar</command>, <command>tar</command> oder <command>gzip</command>/<command>xz</command>/<command>bzip2</command> verschwunden sind, brauchen Sie nur das fehlende Programm von einem anderen System zu kopieren (da jedes von ihnen auf vollständig autonome Weise ohne Abhängigkeiten arbeitet, reicht einfaches Kopieren)."
 
 #. Tag: title
 #, no-c-format
@@ -129,44 +107,19 @@ msgstr "<command>APT</command> ist eine Gruppe von Programmen, die es ermöglich
 
 #. Tag: para
 #, no-c-format
-#| msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents its many other operations. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the archive <filename>data.tar.gz</filename> in the system's root (<filename>/</filename>):"
 msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for the <command>ar</command> program, it allows handling files of the same name: <command>ar t <replaceable>archive</replaceable></command> displays the list of files contained in such an archive, <command>ar x <replaceable>archive</replaceable></command> extracts the files from the archive into the current working directory, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> deletes a file from the archive, etc. Its man page (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) documents all its other features. <command>ar</command> is a very rudimentary tool that a Unix administrator would only use on rare occasions, but admins routinely use <command>tar</command>, a more evolved archive and file management program. This is why it is easy to restore <command>dpkg</command> in the event of an erroneous deletion. You would only have to download the Debian package and extract the content from the <filename>data.tar.gz</filename> archive in the system's root (<filename>/</filename>):"
-msgstr ""
-"<indexterm><primary><command>ar</command></primary></indexterm> Das Paket "
-"<command>ar</command> ermöglicht es, mit Dateien, die diesen Namen tragen, "
-"umzugehen: <command>ar t <replaceable>archiv</replaceable></command> zeigt "
-"eine Liste der in einem solchen Archiv enthaltenen Dateien an, <command>ar x "
-"<replaceable>archiv</replaceable></command> entpackt die Dateien aus dem "
-"Archiv in das aktuelle Arbeitsverzeichnis, <command>ar d "
-"<replaceable>archiv</replaceable> <replaceable>datei</replaceable></command> "
-"löscht eine Datei aus dem Archiv usw. Die zugehörige Handbuchseite (<citerefe"
-"ntry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>"
-") dokumentiert noch viele andere Funkionen. <command>ar</command> ist ein "
-"sehr rudimentäres Werkzeug, das ein Unix-Administrator nur selten benutzen "
-"wird. Stattdessen verwenden Administratoren üblicherweise "
-"<command>tar</command>, ein höher entwickeltes Programm für das Archiv- und "
-"Dateimanagement. Daher ist es einfach, <command>dpkg</command> wieder "
-"herzustellen, falls es versehentlich gelöscht wurde. Sie brauchen nur das "
-"Debian-Paket herunterzuladen und seinen Inhalt aus dem Archiv "
-"<filename>data.tar.gz</filename> in das Wurzelverzeichnis des Systems "
-"(<filename>/</filename>) zu entpacken:"
+msgstr "<indexterm><primary><command>ar</command></primary></indexterm> Das Paket <command>ar</command> ermöglicht es, mit Dateien, die diesen Namen tragen, umzugehen: <command>ar t <replaceable>archiv</replaceable></command> zeigt eine Liste der in einem solchen Archiv enthaltenen Dateien an, <command>ar x <replaceable>archiv</replaceable></command> entpackt die Dateien aus dem Archiv in das aktuelle Arbeitsverzeichnis, <command>ar d <replaceable>archiv</replaceable> <replaceable>datei</replaceable></command> löscht eine Datei aus dem Archiv usw. Die zugehörige Handbuchseite (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) dokumentiert noch viele andere Funkionen. <command>ar</command> ist ein sehr rudimentäres Werkzeug, das ein Unix-Administrator nur selten benutzen wird. Stattdessen verwenden Administratoren üblicherweise <command>tar</command>, ein höher entwickeltes Programm für das Archiv- und Dateimanagement. Daher ist es einfach, <command>dpkg</command> wieder herzustellen, falls es versehentlich gelöscht wurde. Sie brauchen nur das Debian-Paket herunterzuladen und seinen Inhalt aus dem Archiv <filename>data.tar.gz</filename> in das Wurzelverzeichnis des Systems (<filename>/</filename>) zu entpacken:"
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput># </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
-#| "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
 "<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>ar x "
-"dpkg_1.16.10_amd64.deb</userinput>\n"
-"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf "
-"data.tar.gz</userinput>\n"
+"<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
+"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -185,11 +138,8 @@ msgstr "Manchmal wird diese Ausdrucksweise auch verwendet um Mehrdeutigkeiten zu
 
 #. Tag: para
 #, no-c-format
-#| msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"section.manuel\" />)."
 msgid "<xref linkend=\"solving-problems\" /> discusses manual pages in further detail (see <xref linkend=\"sect.manual-pages\" />)."
-msgstr ""
-"<xref linkend=\"solving-problems\" /> erläutert Handbuchseiten "
-"ausführlicher  (siehe <xref linkend=\"sect.manual-pages\" />)."
+msgstr "<xref linkend=\"solving-problems\" /> erläutert Handbuchseiten ausführlicher  (siehe <xref linkend=\"sect.manual-pages\" />)."
 
 #. Tag: para
 #, no-c-format
@@ -198,40 +148,6 @@ msgstr "Werfen Sie einen Blick auf den Inhalt einer <filename>.deb</filename>-Da
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.15.8.5_i386.deb</userinput>\n"
-#| "<computeroutput>debian-binary\n"
-#| "control.tar.gz\n"
-#| "data.tar.gz\n"
-#| "$ </computeroutput><userinput>ar x dpkg_1.15.8.5_i386.deb</userinput>\n"
-#| "<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
-#| "<computeroutput>control.tar.gz  data.tar.gz  debian-binary  dpkg_1.15.8.5_i386.deb\n"
-#| "$ </computeroutput><userinput>tar tzf data.tar.gz | head -15</userinput>\n"
-#| "<computeroutput>./\n"
-#| "./var/\n"
-#| "./var/lib/\n"
-#| "./var/lib/dpkg/\n"
-#| "./var/lib/dpkg/updates/\n"
-#| "./var/lib/dpkg/parts/\n"
-#| "./var/lib/dpkg/info/\n"
-#| "./var/lib/dpkg/alternatives/\n"
-#| "./sbin/\n"
-#| "./sbin/start-stop-daemon\n"
-#| "./usr/\n"
-#| "./usr/sbin/\n"
-#| "./usr/sbin/install-info\n"
-#| "./usr/bin/\n"
-#| "./usr/bin/dpkg-split\n"
-#| "$ </computeroutput><userinput>tar tzf control.tar.gz</userinput>\n"
-#| "<computeroutput>./\n"
-#| "./control\n"
-#| "./preinst\n"
-#| "./md5sums\n"
-#| "./conffiles\n"
-#| "./postrm\n"
-#| "./postinst\n"
-#| "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
-#| "<computeroutput>2.0</computeroutput>\n"
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.16.10_amd64.deb</userinput>\n"
 "<computeroutput>debian-binary\n"
@@ -268,15 +184,13 @@ msgid ""
 "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
 "<computeroutput>2.0</computeroutput>\n"
 msgstr ""
-"<computeroutput>$ </computeroutput><userinput>ar t "
-"dpkg_1.16.10_amd64.deb</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.16.10_amd64.deb</userinput>\n"
 "<computeroutput>debian-binary\n"
 "control.tar.gz\n"
 "data.tar.gz\n"
 "$ </computeroutput><userinput>ar x dpkg_1.16.10_i386.deb</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>ls</userinput>\n"
-"<computeroutput>control.tar.gz…data.tar.gz…debian-binary  dpkg_1.16.10_i386."
-"deb\n"
+"<computeroutput>control.tar.gz…data.tar.gz…debian-binary  dpkg_1.16.10_i386.deb\n"
 "$ </computeroutput><userinput>tar tzf data.tar.gz | head n 15</userinput>\n"
 "<computeroutput>./\n"
 "./var/\n"
@@ -312,24 +226,13 @@ msgstr "Wie Sie sehen, besteht das <command>ar</command>-Archiv eines Debian-Pak
 
 #. Tag: para
 #, no-c-format
-#| msgid "<filename>debian-binary</filename>. This is a text file which simply indicates the version of the <filename>.deb</filename> file used (in 2011: version 2.0)."
 msgid "<filename>debian-binary</filename>. This is a text file which simply indicates the version of the <filename>.deb</filename> file used (in 2013: version 2.0)."
-msgstr ""
-"<filename>debian-binary</filename>. Dies ist eine Textdatei, die lediglich "
-"die Version der verwendeten <filename>.deb</filename>-Datei angibt (2013: "
-"Version 2.0)."
+msgstr "<filename>debian-binary</filename>. Dies ist eine Textdatei, die lediglich die Version der verwendeten <filename>.deb</filename>-Datei angibt (2013: Version 2.0)."
 
 #. Tag: para
 #, no-c-format
-#| msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information. In it, package management tools find, among other things, the name and version of the package. Some of this meta-information allows them to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
 msgid "<filename>control.tar.gz</filename>. This archive file contains all of the available meta-information, like the name and version of the package. Some of this meta-information allows package management tools to determine if it is possible to install or uninstall it, for example according to the list of packages already on the machine."
-msgstr ""
-"<filename>control.tar.gz</filename>. Diese Archivdatei enthält alle "
-"verfügbaren Meta-Informationen, wie Name und die Version des Paketes. Teile "
-"dieser Meta-Information ermöglicht es Paket-Management-Werkzeugen "
-"festzustellen, ob die enthaltenen Programme, zum Beispiel unter Beachtung "
-"der Liste der bereits auf dem Gerät installierten Pakete, installiert oder "
-"deinstalliert werden können."
+msgstr "<filename>control.tar.gz</filename>. Diese Archivdatei enthält alle verfügbaren Meta-Informationen, wie Name und die Version des Paketes. Teile dieser Meta-Information ermöglicht es Paket-Management-Werkzeugen festzustellen, ob die enthaltenen Programme, zum Beispiel unter Beachtung der Liste der bereits auf dem Gerät installierten Pakete, installiert oder deinstalliert werden können."
 
 #. Tag: para
 #, no-c-format
@@ -369,10 +272,7 @@ msgstr "<primary><filename>control</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "This file uses a structure similar to email headers (as defined by RFC 2822). For example, for <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> file looks like the following:"
-msgstr ""
-"Diese Datei verwendet eine den E-Mail-Kopfzeilen ähnliche Struktur (wie sie "
-"in RFC 2822 definiert ist). So sieht zum Beispiel für <emphasis role=\"pkg\""
-">apt</emphasis>die <filename>control</filename>-Datei folgendermaßen aus:"
+msgstr "Diese Datei verwendet eine den E-Mail-Kopfzeilen ähnliche Struktur (wie sie in RFC 2822 definiert ist). So sieht zum Beispiel für <emphasis role=\"pkg\">apt</emphasis>die <filename>control</filename>-Datei folgendermaßen aus:"
 
 #. Tag: screen
 #, no-c-format
@@ -417,18 +317,15 @@ msgid ""
 "SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>"
-"\n"
+"<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
 "<computeroutput>Package: apt\n"
 "Version: 0.9.7.9\n"
 "Installed-Size: 3271\n"
 "Maintainer: APT Development Team &lt;deity@lists.debian.org&gt;\n"
 "Architecture: amd64\n"
 "Replaces: manpages-pl (&lt;&lt; 20060617-3~)\n"
-"Depends: libapt-pkg4.12 (&gt;= 0.9.7.9), libc6 (&gt;= 2.4), libgcc1 (&gt;= "
-"1:4.1.1), libstdc++6 (&gt;= 4.6), debian-archive-keyring, gnupg\n"
-"Suggests: aptitude | synaptic | wajig, dpkg-dev, apt-doc, xz-utils, python-"
-"apt\n"
+"Depends: libapt-pkg4.12 (&gt;= 0.9.7.9), libc6 (&gt;= 2.4), libgcc1 (&gt;= 1:4.1.1), libstdc++6 (&gt;= 4.6), debian-archive-keyring, gnupg\n"
+"Suggests: aptitude | synaptic | wajig, dpkg-dev, apt-doc, xz-utils, python-apt\n"
 "Conflicts: python-apt (&lt;&lt; 0.7.93.2~)\n"
 "Description-en: commandline package manager\n"
 " This package provides commandline tools for searching and\n"
@@ -456,8 +353,7 @@ msgstr ""
 "Size: 1253524\n"
 "MD5sum: 00a128b2eb2b08f4ecee7fe0d7e3c1c4\n"
 "SHA1: 6a271487ceee6f6d7bc4c47a8a16f49c26e4ca04\n"
-"SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</com"
-"puteroutput>\n"
+"SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
@@ -521,11 +417,8 @@ msgstr "<command>&lt;=</command>: kleiner als oder gleich;"
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>=</command>: equal to (note, “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
 msgid "<command>=</command>: equal to (note that “<literal>2.6.1</literal>” is not equal to “<literal>2.6.1-1</literal>”);"
-msgstr ""
-"<command>=</command>: gleich (man beachte, „<literal>2.6.1</literal>“ ist "
-"nicht gleich „<literal>2.6.1-1</literal>“);"
+msgstr "<command>=</command>: gleich (man beachte, „<literal>2.6.1</literal>“ ist nicht gleich „<literal>2.6.1-1</literal>“);"
 
 #. Tag: para
 #, no-c-format
@@ -539,22 +432,8 @@ msgstr "<command>&gt;&gt;</command>: größer als."
 
 #. Tag: para
 #, no-c-format
-#| msgid "In a list of conditions to be met, the comma serves as a separator. In logic, its meaning would be interpreted as “and”. In conditions, the vertical bar (“|”) expresses “or” in logic (it is an inclusive “or”, as opposed to meaning “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 msgid "In a list of conditions to be met, the comma serves as a separator. It must be interpreted as a logical “and”. In conditions, the vertical bar (“|”) expresses a logical “or” (it is an inclusive “or”, not an exclusive “either/or”). Carrying greater priority than “and”, it can be used as many times as necessary. Thus, the dependency “(A or B) and C” is written <command>A | B, C</command>. In contrast, the expression “A or (B and C)” should be written as “(A or B) and (A or C)”, since the <literal>Depends</literal> field does not tolerate parentheses that change the order of priorities between the logical operators “or” and “and”. It would thus be written <command>A | B, A | C</command>. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
-msgstr ""
-"In einer Liste der zu erfüllenden Bedingungen dient das Komma als "
-"Trennzeichen. Logisch wird es als „UND“ interpretiert. In den Bedingungen "
-"drückt der vertikale Strich („|“) ein logisches „ODER“ aus (es ist ein nicht "
-"ausschließendes bzw. inklusives „ODER“, im Gegensatz zum exklusiven „ODER“, "
-"bei dem nur eine der  Aussagen wahr ist). Es hat einen höheren Rang als „UND“"
-" und kann so oft aneinandergereiht werden wie nötig. So wird die "
-"Abhängigkeit „(A ODER B) UND C“ geschrieben als <command>A | B, C</command>. "
-"Dagegen sollte der Ausdruck „A ODER (B UND C)“ geschrieben werden als „(A "
-"ODER B) UND (A ODER C)“, da die <literal>Depends</literal>-Zeilen keine "
-"Klammern zulassen, die die Rangordnung zwischen den logischen Operatoren "
-"„ODER“ und „UND“ verändern. Es würde daher als <command>A | B, A | "
-"C</command> geschrieben. <ulink type=\"block\" url=\""
-"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
+msgstr "In einer Liste der zu erfüllenden Bedingungen dient das Komma als Trennzeichen. Logisch wird es als „UND“ interpretiert. In den Bedingungen drückt der vertikale Strich („|“) ein logisches „ODER“ aus (es ist ein nicht ausschließendes bzw. inklusives „ODER“, im Gegensatz zum exklusiven „ODER“, bei dem nur eine der  Aussagen wahr ist). Es hat einen höheren Rang als „UND“ und kann so oft aneinandergereiht werden wie nötig. So wird die Abhängigkeit „(A ODER B) UND C“ geschrieben als <command>A | B, C</command>. Dagegen sollte der Ausdruck „A ODER (B UND C)“ geschrieben werden als „(A ODER B) UND (A ODER C)“, da die <literal>Depends</literal>-Zeilen keine Klammern zulassen, die die Rangordnung zwischen den logischen Operatoren „ODER“ und „UND“ verändern. Es würde daher als <command>A | B, A | C</command> geschrieben. <ulink type=\"block\" url=\"http://www.debian.org/doc/debian-policy/ch-relationships.html\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -563,19 +442,8 @@ msgstr "<primary>Meta-Paket</primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "The dependencies system is a good mechanism for guaranteeing the operation of a program, but it has another use with “meta-packages”. These are empty packages that only describe dependencies. They facilitate the installation of a consistent group of programs preselected by the meta-package maintainer; as such, <command>apt-get install <replaceable>meta-package</replaceable></command> will automatically install all of these programs using the meta-package's dependencies. The <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde</emphasis> and <emphasis role=\"pkg\">linux-image-2.6-686</emphasis> packages are examples of meta-packages."
 msgid "The dependencies system is a good mechanism for guaranteeing the operation of a program, but it has another use with “meta-packages”. These are empty packages that only describe dependencies. They facilitate the installation of a consistent group of programs preselected by the meta-package maintainer; as such, <command>apt-get install <replaceable>meta-package</replaceable></command> will automatically install all of these programs using the meta-package's dependencies. The <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde-full</emphasis> and <emphasis role=\"pkg\">linux-image-amd64</emphasis> packages are examples of meta-packages."
-msgstr ""
-"Das Abhängigkeitensystem ist eine gute Vorrichtung um das Funktionieren "
-"eines Programms sicherzustellen, aber es hat mit den „Meta-Paketen“ noch "
-"eine weitere Funktion. Dies sind leere Pakete, die lediglich Abhängigkeiten "
-"beschreiben. Sie erleichtern die Installation einer zusammenhängenden Gruppe "
-"von Programmen, die vom Betreuer des Meta-Pakets ausgewählt wurden. So "
-"installiert <command>apt-get install <replaceable>Meta-"
-"Paket</replaceable></command> automatisch alle Programme unter Verwendung "
-"der Abhängigkeiten des Meta-Pakets. Die Pakete <emphasis role=\"pkg\""
-">gnome</emphasis>, <emphasis role=\"pkg\">kde-full</emphasis> und <emphasis "
-"role=\"pkg\">linux-image-amd64</emphasis> sind Beispiele solcher Meta-Pakete."
+msgstr "Das Abhängigkeitensystem ist eine gute Vorrichtung um das Funktionieren eines Programms sicherzustellen, aber es hat mit den „Meta-Paketen“ noch eine weitere Funktion. Dies sind leere Pakete, die lediglich Abhängigkeiten beschreiben. Sie erleichtern die Installation einer zusammenhängenden Gruppe von Programmen, die vom Betreuer des Meta-Pakets ausgewählt wurden. So installiert <command>apt-get install <replaceable>Meta-Paket</replaceable></command> automatisch alle Programme unter Verwendung der Abhängigkeiten des Meta-Pakets. Die Pakete <emphasis role=\"pkg\">gnome</emphasis>, <emphasis role=\"pkg\">kde-full</emphasis> und <emphasis role=\"pkg\">linux-image-amd64</emphasis> sind Beispiele solcher Meta-Pakete."
 
 #. Tag: title
 #, no-c-format
@@ -594,17 +462,8 @@ msgstr "<primary>Vorabhängigkeit</primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "“Pre-dependencies”, which are listed in the “<literal>Pre-Depends</literal>” field in the package headers, complete the normal dependencies; their syntax is identical. A normal dependency indicates that the package in question must be unpacked and configured before the package declaring the dependency. A pre-dependency stipulates that the package in question must be unpacked and configured before execution of the pre-installation script of the package declaring the pre-dependency, that is before its installation."
 msgid "“Pre-dependencies”, which are listed in the “<literal>Pre-Depends</literal>” field in the package headers, complete the normal dependencies; their syntax is identical. A normal dependency indicates that the package in question must be unpacked and configured before configuration of the package declaring the dependency. A pre-dependency stipulates that the package in question must be unpacked and configured before execution of the pre-installation script of the package declaring the pre-dependency, that is before its installation."
-msgstr ""
-"„Vorabhängigkeiten“, die in der „<literal>Pre-Depends</literal>“-Zeilen des "
-"Paketkopfes aufgeführt sind, vervollständigen die normalen Abhängigkeiten; "
-"ihre Syntax ist identisch. Eine normale Abhängigkeit bedeutet, dass das "
-"betreffende Paket vor dem Paket, das die Abhängigkeit dokumentiert, entpackt "
-"und konfiguriert werden muss. Eine Vorabhängigkeit schreibt vor, dass das "
-"betreffende Paket entpackt und konfiguriert werden muss, bevor das Skript "
-"zur Auflösung der \"normalemn\" Abhängigkeiten des Paketes, das die "
-"Vorabhängigkeit definiert, ausgeführt wird, also vor dessen Installation."
+msgstr "„Vorabhängigkeiten“, die in der „<literal>Pre-Depends</literal>“-Zeilen des Paketkopfes aufgeführt sind, vervollständigen die normalen Abhängigkeiten; ihre Syntax ist identisch. Eine normale Abhängigkeit bedeutet, dass das betreffende Paket vor dem Paket, das die Abhängigkeit dokumentiert, entpackt und konfiguriert werden muss. Eine Vorabhängigkeit schreibt vor, dass das betreffende Paket entpackt und konfiguriert werden muss, bevor das Skript zur Auflösung der \"normalemn\" Abhängigkeiten des Paketes, das die Vorabhängigkeit definiert, ausgeführt wird, also vor dessen Installation."
 
 #. Tag: para
 #, no-c-format
@@ -643,21 +502,8 @@ msgstr "<primary><literal>Enhances</literal>Kopfzeilen</primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "The <literal>Enhances</literal> field also describes a suggestion, but in a different context. It is indeed located in the suggested package, and not in the package that benefits from the suggestion. Its interest lies in that it is possible to add a suggestion without having to modify the package that is concerned. Thus, all add-ons, plug-ins, and other extensions of a program can then take place in the list of suggestions related to the software. Although it has existed for several years, this last field is still largely ignored by programs such as <command>apt-get</command> or <command>synaptic</command>. Its purpose is for a suggestion made by the <literal>Enhances</literal> field to appear to the user in addition to the traditional suggestions — found in the <literal>Suggests</literal> field."
 msgid "The <literal>Enhances</literal> field also describes a suggestion, but in a different context. It is indeed located in the suggested package, and not in the package that benefits from the suggestion. Its interest lies in that it is possible to add a suggestion without having to modify the package that is concerned. Thus, all add-ons, plug-ins, and other extensions of a program can then appear in the list of suggestions related to the software. Although it has existed for several years, this last field is still largely ignored by programs such as <command>apt-get</command> or <command>synaptic</command>. Its purpose is for a suggestion made by the <literal>Enhances</literal> field to appear to the user in addition to the traditional suggestions — found in the <literal>Suggests</literal> field."
-msgstr ""
-"Die <literal>Enhances</literal>-Zeilen beschreibt auch eine Empfehlung, aber "
-"in einem anderen Zusammenhang. Und zwar befindet sie sich in dem "
-"vorgeschlagenen Paket, nicht in dem Paket, dem der Vorschlag zugute kommt. "
-"Sie ist deshalb interessant, weil man auf diese Weise eine Empfehlung "
-"hinzufügen kann, ohne das betroffene Paket zu verändern. So können alle Add-"
-"ons, Plug-ins und sonstigen Erweiterungen in der Liste der Empfehlungen für "
-"ein Programm erscheinen. Obwohl es sie bereits seit mehreren Jahren gibt, "
-"werden diese Zeilen noch weitgehend von Programmen wie <command>apt-"
-"get</command> oder <command>synaptic</command> ignoriert. Ihr Zweck besteht "
-"darin, dem Nutzer einen von der <literal>Enhances</literal>-Zeile gemachten "
-"Vorschlag zusätzlich zu den herkömmlichen Vorschlägen - in der "
-"<literal>Suggests</literal>-Zeile - anzuzeigen."
+msgstr "Die <literal>Enhances</literal>-Zeilen beschreibt auch eine Empfehlung, aber in einem anderen Zusammenhang. Und zwar befindet sie sich in dem vorgeschlagenen Paket, nicht in dem Paket, dem der Vorschlag zugute kommt. Sie ist deshalb interessant, weil man auf diese Weise eine Empfehlung hinzufügen kann, ohne das betroffene Paket zu verändern. So können alle Add-ons, Plug-ins und sonstigen Erweiterungen in der Liste der Empfehlungen für ein Programm erscheinen. Obwohl es sie bereits seit mehreren Jahren gibt, werden diese Zeilen noch weitgehend von Programmen wie <command>apt-get</command> oder <command>synaptic</command> ignoriert. Ihr Zweck besteht darin, dem Nutzer einen von der <literal>Enhances</literal>-Zeile gemachten Vorschlag zusätzlich zu den herkömmlichen Vorschlägen - in der <literal>Suggests</literal>-Zeile - anzuzeigen."
 
 #. Tag: title
 #, no-c-format
@@ -681,14 +527,8 @@ msgstr "<primary>Paket</primary><secondary>Konflikt</secondary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "The <literal>Conflicts</literal> field indicates when a package cannot be installed simultaneously with another. The most common reasons for this are that both packages include a file containing the same name, or provide the same service on the same TCP port, or would hinder each other's operation."
 msgid "The <literal>Conflicts</literal> field indicates when a package cannot be installed simultaneously with another. The most common reasons for this are that both packages include a file of the same name, or provide the same service on the same TCP port, or would hinder each other's operation."
-msgstr ""
-"Die <literal>Conflicts</literal>-Zeilen zeigen an, dass ein Paket nicht "
-"gleichzeitig mit einem anderen installiert sein kann. Die häufigsten Gründe "
-"hierfür sind, dass beide Pakete eine Datei gleichen Namens enthalten, dass "
-"sie den gleichen Dienst am selben TCP-Port anbieten oder dass sie sich "
-"gegenseitig im Betrieb behindern würden."
+msgstr "Die <literal>Conflicts</literal>-Zeilen zeigen an, dass ein Paket nicht gleichzeitig mit einem anderen installiert sein kann. Die häufigsten Gründe hierfür sind, dass beide Pakete eine Datei gleichen Namens enthalten, dass sie den gleichen Dienst am selben TCP-Port anbieten oder dass sie sich gegenseitig im Betrieb behindern würden."
 
 #. Tag: para
 #, no-c-format
@@ -777,25 +617,8 @@ msgstr "Einen „Dienst“ bereitstellen"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Let us discuss the first case in greater detail with an example: all mail servers, such as <emphasis role=\"pkg\">postfix</emphasis> or <emphasis role=\"pkg\">sendmail</emphasis> are said to “provide” the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. Thus, any package that needs this service to be functional (e.g. a mailing list manager, such as <emphasis role=\"pkg\">smartlist</emphasis> or <emphasis role=\"pkg\">sympa</emphasis>) simply states in its dependencies that it requires a <emphasis role=\"pkg\">mail-transport-agent</emphasis> instead of specifying a large yet incomplete list of possible solutions (e.g. <command>postfix | sendmail | exim | …</command>). Furthermore, it is useless to install two mail servers on the same machine, which is why each of these packages declares a conflict with the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. The conflict with itself is ignored by the system, but this technique will prohibit the installation of two mail servers side by side."
 msgid "Let us discuss the first case in greater detail with an example: all mail servers, such as <emphasis role=\"pkg\">postfix</emphasis> or <emphasis role=\"pkg\">sendmail</emphasis> are said to “provide” the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. Thus, any package that needs this service to be functional (e.g. a mailing list manager, such as <emphasis role=\"pkg\">smartlist</emphasis> or <emphasis role=\"pkg\">sympa</emphasis>) simply states in its dependencies that it requires a <emphasis role=\"pkg\">mail-transport-agent</emphasis> instead of specifying a large yet incomplete list of possible solutions (e.g. <command>postfix | sendmail | exim4 | …</command>). Furthermore, it is useless to install two mail servers on the same machine, which is why each of these packages declares a conflict with the <emphasis role=\"pkg\">mail-transport-agent</emphasis> virtual package. The conflict with itself is ignored by the system, but this technique will prohibit the installation of two mail servers side by side."
-msgstr ""
-"Lassen Sie uns den ersten Fall anhand eines Beispiels ausführlicher erörtern:"
-" alle Mailserver, wie <emphasis role=\"pkg\">postfix</emphasis> oder <"
-"emphasis role=\"pkg\">sendmail</emphasis>, „stellen“ angeblich das virtuelle "
-"Paket <emphasis role=\"pkg\">mail-transport-agent</emphasis> „bereit“. Daher "
-"erklärt jedes Paket, das diesen Service benötigt, um funktionsfähig zu sein ("
-"z. B. Mailinglisten-Manager wie <emphasis role=\"pkg\">smartlist</emphasis> "
-"oder <emphasis role=\"pkg\">sympa</emphasis>), in seinen Abhängigkeiten "
-"einfach, dass es einen <emphasis role=\"pkg\">mail-transport-agent</emphasis>"
-" benötigt, anstatt eine lange, jedoch unvollständige Liste möglicher "
-"Lösungen aufzustellen (z. B. <command>postfix | sendmail | exim4 | "
-"…</command>). Außerdem wäre es sinnlos, zwei Mailserver auf demselben "
-"Rechner zu installieren, weshalb jedes dieser Pakete einen Konflikt mit dem "
-"virtuellen Paket <emphasis role=\"pkg\">mail-transport-agent</emphasis> "
-"angibt. Der Konflikt mit sich selbst wird vom System ignoriert, jedoch "
-"verhindert dieses Verfahren. dass zwei Mailserver nebeneinander installiert "
-"werden."
+msgstr "Lassen Sie uns den ersten Fall anhand eines Beispiels ausführlicher erörtern: alle Mailserver, wie <emphasis role=\"pkg\">postfix</emphasis> oder <emphasis role=\"pkg\">sendmail</emphasis>, „stellen“ angeblich das virtuelle Paket <emphasis role=\"pkg\">mail-transport-agent</emphasis> „bereit“. Daher erklärt jedes Paket, das diesen Service benötigt, um funktionsfähig zu sein (z. B. Mailinglisten-Manager wie <emphasis role=\"pkg\">smartlist</emphasis> oder <emphasis role=\"pkg\">sympa</emphasis>), in seinen Abhängigkeiten einfach, dass es einen <emphasis role=\"pkg\">mail-transport-agent</emphasis> benötigt, anstatt eine lange, jedoch unvollständige Liste möglicher Lösungen aufzustellen (z. B. <command>postfix | sendmail | exim4 | …</command>). Außerdem wäre es sinnlos, zwei Mailserver auf demselben Rechner zu installieren, weshalb jedes dieser Pakete einen Konflikt mit dem virtuellen Paket <emphasis role=\"pkg\">mail-transport-agent</emphasis> angibt. Der Konflikt mit sich selbst wird vom System ignoriert, jedoch verhindert dieses Verfahren. dass zwei Mailserver nebeneinander installiert werden."
 
 #. Tag: title
 #, no-c-format
@@ -804,28 +627,13 @@ msgstr "<emphasis>DEBIAN-RICHTLINIEN</emphasis> Liste virtueller Pakete"
 
 #. Tag: para
 #, no-c-format
-#| msgid "For virtual packages to be useful, everyone must agree on their name. This is why they are standardized in the Debian Policy. The list includes among others <emphasis role=\"pkg\">mail-transport-agent</emphasis> for mail servers, <emphasis role=\"pkg\">c-compiler</emphasis> for C programming language compilers, <emphasis role=\"pkg\">www-browser</emphasis> for web browsers, <emphasis role=\"pkg\">httpd</emphasis> for web servers, <emphasis role=\"pkg\">ftp-server</emphasis> for FTP servers, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> for terminal emulators in graphical mode (<command>xterm</command> ), and <emphasis role=\"pkg\">x-window-manager</emphasis> for window managers."
 msgid "For virtual packages to be useful, everyone must agree on their name. This is why they are standardized in the Debian Policy. The list includes among others <emphasis role=\"pkg\">mail-transport-agent</emphasis> for mail servers, <emphasis role=\"pkg\">c-compiler</emphasis> for C programming language compilers, <emphasis role=\"pkg\">www-browser</emphasis> for web browsers, <emphasis role=\"pkg\">httpd</emphasis> for web servers, <emphasis role=\"pkg\">ftp-server</emphasis> for FTP servers, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> for terminal emulators in graphical mode (<command>xterm</command>), and <emphasis role=\"pkg\">x-window-manager</emphasis> for window managers."
-msgstr ""
-"Damit virtuelle Pakete verwndet werden können, müssen alle sich über ihre "
-"Namen einig sein. Daher sind diese in den Debian-Richtlinien standardisiert. "
-"Die Liste enthält unter anderem <emphasis role=\"pkg\">mail-transport-"
-"agent</emphasis> für Mailserver, <emphasis role=\"pkg\">c-compiler</emphasis>"
-" für Kompilierer der Programmiersprache C, <emphasis role=\"pkg\">www-"
-"browser</emphasis> für Webbrowser, <emphasis role=\"pkg\">httpd</emphasis> "
-"für Webserver, <emphasis role=\"pkg\">ftp-server</emphasis> für FTP-Server, <"
-"emphasis role=\"pkg\">x-terminal-emulator</emphasis> für Terminal-Emulatoren "
-"im Grafikmodus (<command>xterm</command>) sowie <emphasis role=\"pkg\">x"
-"-window-manager</emphasis> für Fenstermanager."
+msgstr "Damit virtuelle Pakete verwndet werden können, müssen alle sich über ihre Namen einig sein. Daher sind diese in den Debian-Richtlinien standardisiert. Die Liste enthält unter anderem <emphasis role=\"pkg\">mail-transport-agent</emphasis> für Mailserver, <emphasis role=\"pkg\">c-compiler</emphasis> für Kompilierer der Programmiersprache C, <emphasis role=\"pkg\">www-browser</emphasis> für Webbrowser, <emphasis role=\"pkg\">httpd</emphasis> für Webserver, <emphasis role=\"pkg\">ftp-server</emphasis> für FTP-Server, <emphasis role=\"pkg\">x-terminal-emulator</emphasis> für Terminal-Emulatoren im Grafikmodus (<command>xterm</command>) sowie <emphasis role=\"pkg\">x-window-manager</emphasis> für Fenstermanager."
 
 #. Tag: para
 #, no-c-format
-#| msgid "The full list can be found on the Web, at <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt\" />"
 msgid "The full list can be found on the Web. <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt\" />"
-msgstr ""
-"Die vollständige Liste ist im Internet zu finden. <ulink type=\"block\" url="
-"\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list."
-"txt\" />"
+msgstr "Die vollständige Liste ist im Internet zu finden. <ulink type=\"block\" url=\"http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt\" />"
 
 #. Tag: title
 #, no-c-format
@@ -834,21 +642,8 @@ msgstr "Austauschbarkeit mit einem anderen Paket"
 
 #. Tag: para
 #, no-c-format
-#| msgid "The <literal>Provides</literal> field is again interesting when the content of a package is included in a larger package. For example, the <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> Perl module was an optional module in Perl 5.6, and has been integrated as standard in Perl 5.8 (and later versions, such as 5.10 present in <emphasis role=\"distribution\">Squeeze</emphasis>). As such, the package <emphasis role=\"pkg\">perl</emphasis> has since version 5.8 declared <literal>Provides: libdigest-md5-perl</literal> so that the dependencies on this package are met if the user has Perl 5.8 or 5.10. The <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> package itself has eventually been deleted, since it no longer had any purpose when old Perl versions were removed."
 msgid "The <literal>Provides</literal> field is again interesting when the content of a package is included in a larger package. For example, the <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> Perl module was an optional module in Perl 5.6, and has been integrated as standard in Perl 5.8 (and later versions, such as 5.14 present in <emphasis role=\"distribution\">Wheezy</emphasis>). As such, the package <emphasis role=\"pkg\">perl</emphasis> has since version 5.8 declared <literal>Provides: libdigest-md5-perl</literal> so that the dependencies on this package are met if the user has Perl 5.8 (or newer). The <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> package itself has eventually been deleted, since it no longer had any purpose when old Perl versions were removed."
-msgstr ""
-"Die <literal>Provides</literal>-Zeile ist dagegen von Interesse, wenn der "
-"Inhalt eines Pakets in einem größeren Paket enthalten ist. So war zum "
-"Beispiel das Perl-Modul <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> "
-"ein optionales Modul in Perl 5.6 und ist als Standard in Perl 5.8 (und "
-"späteren Versionen wie der aktuellen Version 5.14 in <emphasis role=\""
-"distribution\">Wheezy</emphasis>) integriert worden. Daher gibt das Paket <"
-"emphasis role=\"pkg\">perl</emphasis> seit der Version 5.8 <literal>Provides:"
-" libdigest-md5-perl</literal> an, so dass die Abhängigkeiten dieses Pakets "
-"erfüllt sind, falls der Nutzer Perl 5.8 oder neuer hat. Das Paket <emphasis "
-"role=\"pkg\">libdigest-md5-perl</emphasis> selbst ist irgendwann gelöscht "
-"worden, da es keinen weiteren Nutzen mehr hatte, nachdem alte Perl-Versionen "
-"entfernt worden waren."
+msgstr "Die <literal>Provides</literal>-Zeile ist dagegen von Interesse, wenn der Inhalt eines Pakets in einem größeren Paket enthalten ist. So war zum Beispiel das Perl-Modul <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> ein optionales Modul in Perl 5.6 und ist als Standard in Perl 5.8 (und späteren Versionen wie der aktuellen Version 5.14 in <emphasis role=\"distribution\">Wheezy</emphasis>) integriert worden. Daher gibt das Paket <emphasis role=\"pkg\">perl</emphasis> seit der Version 5.8 <literal>Provides: libdigest-md5-perl</literal> an, so dass die Abhängigkeiten dieses Pakets erfüllt sind, falls der Nutzer Perl 5.8 oder neuer hat. Das Paket <emphasis role=\"pkg\">libdigest-md5-perl</emphasis> selbst ist irgendwann gelöscht worden, da es keinen weiteren Nutzen mehr hatte, nachdem alte Perl-Versionen entfernt worden waren."
 
 #. Tag: title
 #, no-c-format
@@ -892,17 +687,8 @@ msgstr "Gegenwärtige Einschränkungen"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Virtual packages suffer from some troubling limitations, the most significant of which being the absence of a version number. To return to the previous example, a dependency such as <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal>, despite the presence of Perl 5.10, will never be considered as satisfied by the packaging system — while in fact it most likely is satisfied. Unaware of this, the package system chooses the least risky option, assuming that the versions do not match."
 msgid "Virtual packages suffer from some limitations, the most significant of which being the absence of a version number. To return to the previous example, a dependency such as <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal>, despite the presence of Perl 5.10, will never be considered as satisfied by the packaging system — while in fact it most likely is satisfied. Unaware of this, the package system chooses the least risky option, assuming that the versions do not match."
-msgstr ""
-"Virtuelle Pakete leiden an einigen Einschränkungen, von denen die wichtigste "
-"das Fehlen einer Versionsnummer ist. Um zum vorhergehenden Beispiel "
-"zurückzukehren: eine Abhängigkeit wie <literal>Depends: libdigest-md5-perl "
-"(&gt;= 1.6)</literal> wird trotz der Anwesenheit von Perl 5.10 von der "
-"Paketverwaltung niemals als erfüllt angesehen werden - obwohl sie in "
-"Wirklichkeit höchstwahrscheinlich erfüllt ist. In Unkenntnis dieser Tatsache "
-"wählt die Paketverwaltung die risikoärmste Option und geht davon aus, dass "
-"die Versionen nicht übereinstimmen."
+msgstr "Virtuelle Pakete leiden an einigen Einschränkungen, von denen die wichtigste das Fehlen einer Versionsnummer ist. Um zum vorhergehenden Beispiel zurückzukehren: eine Abhängigkeit wie <literal>Depends: libdigest-md5-perl (&gt;= 1.6)</literal> wird trotz der Anwesenheit von Perl 5.10 von der Paketverwaltung niemals als erfüllt angesehen werden - obwohl sie in Wirklichkeit höchstwahrscheinlich erfüllt ist. In Unkenntnis dieser Tatsache wählt die Paketverwaltung die risikoärmste Option und geht davon aus, dass die Versionen nicht übereinstimmen."
 
 #. Tag: title
 #, no-c-format
@@ -956,22 +742,8 @@ msgstr "<emphasis>WEITERE SCHRITTE</emphasis> Die <literal>Tag</literal>-Zeile"
 
 #. Tag: para
 #, no-c-format
-#| msgid "In the <emphasis role=\"pkg\">apt</emphasis> example above, we can see the presence of a field that we have not yet described, the <literal>Tag</literal> field. This field does not describe a relationship between packages, but is simply a way of categorizing a package in a thematic taxonomy. This classification of packages according to several criteria (type of interface, programming language, domain of application, etc.) is a recent development in Debian. For this purpose, it is not yet integrated in all of its tools; <command>aptitude</command> displays these tags, and allows them to be used as search criteria. For those who are repelled by <command>aptitude</command>'s search criteria, the following site allows navigation of the tag database:<ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
 msgid "In the <emphasis role=\"pkg\">apt</emphasis> example above, we can see the presence of a field that we have not yet described, the <literal>Tag</literal> field. This field does not describe a relationship between packages, but is simply a way of categorizing a package in a thematic taxonomy. This classification of packages according to several criteria (type of interface, programming language, domain of application, etc.) has been available for a long time. Despite this, not all packages have accurate tags and it is not yet integrated in all Debian tools; <command>aptitude</command> displays these tags, and allows them to be used as search criteria. For those who are repelled by <command>aptitude</command>'s search criteria, the following website allows navigation of the tag database: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
-msgstr ""
-"In obenstehendem <emphasis role=\"pkg\">apt</emphasis>-Beispiel sehen wir "
-"eine Zeile, die wir noch nicht erläutert haben: die <literal>Tag</literal>-"
-"Zeile. Diese Zeile beschreibt keine Beziehung zwischen Paketen, sondern ist "
-"eine einfache Möglichkeit, ein Paket in einer thematischen Taxonomie zu "
-"kategorisieren. Diese Einordnung von Paketen aufgrund verschiedener "
-"Kriterien (Art der Schnittstelle, Programmiersprache, Verwendungsbereich "
-"usw.) ist schon seit längerem möglich. Aber nicht alle Pakte enthalten "
-"korrekte Tags und es ist noch nicht in alle Debian-Hilfsprogramme integriert;"
-" <command>aptitude</command> zeigt diese Kennzeichnungen an und erlaubt es, "
-"sie als Suchkriterien zu verwenden. Für diejenigen, denen "
-"<command>aptitude</command>'s Suchkriterien nicht gefallen, ermöglicht "
-"folgende Webseite das Nvigieren durch die Kennzeichen-Datenbank: <ulink type="
-"\"block\" url=\"http://debtags.alioth.debian.org/\" />"
+msgstr "In obenstehendem <emphasis role=\"pkg\">apt</emphasis>-Beispiel sehen wir eine Zeile, die wir noch nicht erläutert haben: die <literal>Tag</literal>-Zeile. Diese Zeile beschreibt keine Beziehung zwischen Paketen, sondern ist eine einfache Möglichkeit, ein Paket in einer thematischen Taxonomie zu kategorisieren. Diese Einordnung von Paketen aufgrund verschiedener Kriterien (Art der Schnittstelle, Programmiersprache, Verwendungsbereich usw.) ist schon seit längerem möglich. Aber nicht alle Pakte enthalten korrekte Tags und es ist noch nicht in alle Debian-Hilfsprogramme integriert; <command>aptitude</command> zeigt diese Kennzeichnungen an und erlaubt es, sie als Suchkriterien zu verwenden. Für diejenigen, denen <command>aptitude</command>'s Suchkriterien nicht gefallen, ermöglicht folgende Webseite das Nvigieren durch die Kennzeichen-Datenbank: <ulink type=\"block\" url=\"http://debtags.alioth.debian.org/\" />"
 
 #. Tag: title
 #, no-c-format
@@ -1010,7 +782,6 @@ msgstr "Zusätzlich zur <filename>control</filename>-Datei kann das <filename>co
 
 #. Tag: title
 #, no-c-format
-#| msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command> data directory"
 msgid "<emphasis>GOING FURTHER</emphasis> <command>dpkg</command>'s database"
 msgstr "<emphasis>WEITERE SCHRITTE</emphasis> <command>dpkg</command>-Datenbank"
 
@@ -1021,7 +792,6 @@ msgstr "<primary><filename>/var/lib/dpkg/</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>status</secondary>"
 msgid "<primary>dpkg</primary><secondary>database</secondary>"
 msgstr "<primary>dpkg</primary><secondary>Datenbank</secondary>"
 
@@ -1067,11 +837,8 @@ msgstr "Installation und Aktualisierung"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary><command>dpkg</command>, internal operation</primary>"
 msgid "<primary><command>dpkg</command></primary><secondary>internal operation</secondary>"
-msgstr ""
-"<primary><command>dpkg</command></primary><secondary>interner "
-"Ablauf</secondary>"
+msgstr "<primary><command>dpkg</command></primary><secondary>interner Ablauf</secondary>"
 
 #. Tag: para
 #, no-c-format
@@ -1105,13 +872,8 @@ msgstr "<command>dpkg</command> aktualisiert alle internen Daten (Dateiliste, Ko
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>dpkg</command> will update the configuration files, asking the user to decide if it is unable to automatically manage this task. The details of this procedure are discussed in <xref linkend=\"section.conffiles\" />."
 msgid "<command>dpkg</command> will update the configuration files, asking the user to decide if it is unable to automatically manage this task. The details of this procedure are discussed in <xref linkend=\"sect.conffiles\" />."
-msgstr ""
-"<command>dpkg</command> aktualisiert dann die Konfigurationsdateien, wobei "
-"es den Nutzer auffordert, Entscheidungen zu treffen, falls es diese Aufgabe "
-"nicht selbsttätig erledigen kann. Die Einzelheiten dieses Vorgangs sind in <"
-"xref linkend=\"sect.conffiles\" /> erläutert."
+msgstr "<command>dpkg</command> aktualisiert dann die Konfigurationsdateien, wobei es den Nutzer auffordert, Entscheidungen zu treffen, falls es diese Aufgabe nicht selbsttätig erledigen kann. Die Einzelheiten dieses Vorgangs sind in <xref linkend=\"sect.conffiles\" /> erläutert."
 
 #. Tag: para
 #, no-c-format
@@ -1140,13 +902,8 @@ msgstr "<command>dpkg</command> entfernt alle Dateien des Pakets bis auf die Kon
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>dpkg</command> executes <command>postrm remove</command>. All of the configuration scripts, except <filename>postrm</filename>, are removed. If the user has not used the “purge” option, the operations are completed there."
 msgid "<command>dpkg</command> executes <command>postrm remove</command>. All of the configuration scripts, except <filename>postrm</filename>, are removed. If the user has not used the “purge” option, the process stops here."
-msgstr ""
-"<command>dpkg</command> führt <command>postrm remove</command> aus. "
-"Hierdurch werden alle Konfigurationsskripte bis auf "
-"<filename>postrm</filename> entfernt. Falls der Nutzer nicht die Option "
-"„purge“ benutzt hat, wird der Ablauf hier beendet."
+msgstr "<command>dpkg</command> führt <command>postrm remove</command> aus. Hierdurch werden alle Konfigurationsskripte bis auf <filename>postrm</filename> entfernt. Falls der Nutzer nicht die Option „purge“ benutzt hat, wird der Ablauf hier beendet."
 
 #. Tag: para
 #, no-c-format
@@ -1155,7 +912,6 @@ msgstr "Bei einer vollständigen Entfernung des Paketes (durch den Befehl <comma
 
 #. Tag: title
 #, no-c-format
-#| msgid "<emphasis>VOCABULARY</emphasis> Purge, complete removal"
 msgid "<emphasis>VOCABULARY</emphasis> Purge, a complete removal"
 msgstr "<emphasis>WÖRTERVERZEICHNIS</emphasis> „Purge“, vollständig Entfernen"
 
@@ -1181,29 +937,13 @@ msgstr "Angesichts der Unwiderruflichkeit einer derartigen Datenlöschung sollte
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary><filename>config</filename>, <filename>debconf</filename> script</primary>"
 msgid "<primary><filename>config</filename>, <command>debconf</command> script</primary>"
-msgstr ""
-"<primary><filename>config</filename>, <command>debconf</command> "
-"script</primary>"
+msgstr "<primary><filename>config</filename>, <command>debconf</command> script</primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "The four scripts detailed below are complemented by a <filename>config</filename> script, provided by packages using <command>debconf</command> to acquire information from the user for configuration. During installation, this script defines in detail the questions asked by <command>debconf</command>. The responses are recorded in the <command>debconf</command> database for future reference. The script is generally executed by <command>apt</command> prior to installing packages one by one in order to group all the questions and ask them all to the user at the beginning of the process. The pre- and post-installation scripts can then use this information to operate according to the user's wishes."
 msgid "The four scripts detailed above are complemented by a <filename>config</filename> script, provided by packages using <command>debconf</command> to acquire information from the user for configuration. During installation, this script defines in detail the questions asked by <command>debconf</command>. The responses are recorded in the <command>debconf</command> database for future reference. The script is generally executed by <command>apt</command> prior to installing packages one by one in order to group all the questions and ask them all to the user at the beginning of the process. The pre- and post-installation scripts can then use this information to operate according to the user's wishes."
-msgstr ""
-"Die vier oben beschriebenen Skripte werden durch ein "
-"<filename>config</filename>-Skript ergänzt, das von Paketen bereitgestellt "
-"wird, die <command>debconf</command> verwenden, um vom Nutzer Informationen "
-"für die Konfigurierung zu bekommen. Während der Installation bestimmt dieses "
-"Skript im Einzelnen die Fragen, die von <command>debconf</command> gestellt "
-"werden. Die Antworten werden zur späteren Verwendung in der "
-"<command>debconf</command>-Datenbank aufgezeichnet. Das Skript wird von "
-"<command>apt</command> normalerweise ausgeführt, bevor es ein Paket nach dem "
-"anderen installiert, um so alle Fragen zu gliedern und sie dem Nutzer "
-"vollständig zu Beginn des Vorgangs zu stellen. Die Vor- und "
-"Nachinstallationsskripte können dann diese Information verwenden, um den "
-"Wünschen des Nutzers entsprechend zu agieren."
+msgstr "Die vier oben beschriebenen Skripte werden durch ein <filename>config</filename>-Skript ergänzt, das von Paketen bereitgestellt wird, die <command>debconf</command> verwenden, um vom Nutzer Informationen für die Konfigurierung zu bekommen. Während der Installation bestimmt dieses Skript im Einzelnen die Fragen, die von <command>debconf</command> gestellt werden. Die Antworten werden zur späteren Verwendung in der <command>debconf</command>-Datenbank aufgezeichnet. Das Skript wird von <command>apt</command> normalerweise ausgeführt, bevor es ein Paket nach dem anderen installiert, um so alle Fragen zu gliedern und sie dem Nutzer vollständig zu Beginn des Vorgangs zu stellen. Die Vor- und Nachinstallationsskripte können dann diese Information verwenden, um den Wünschen des Nutzers entsprechend zu agieren."
 
 #. Tag: title
 #, no-c-format
@@ -1217,38 +957,13 @@ msgstr "<primary><command>debconf</command></primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>debconf</command> was created to resolve a recurring problem in Debian. All Debian packages unable to function without a minimum of configuration used to ask questions with calls to the <command>echo</command> and <command>read</command> commands in shell scripts such as <filename>postinst</filename> and similar scripts. But this also means that during a large installation or update the user must stay with their computer to respond to various questions that may arise at any time. These manual interactions have now been almost entirely dispensed with, thanks to the <command>debconf</command> tool."
 msgid "<command>debconf</command> was created to resolve a recurring problem in Debian. All Debian packages unable to function without a minimum of configuration used to ask questions with calls to the <command>echo</command> and <command>read</command> commands in <filename>postinst</filename> shell scripts (and other similar scripts). But this also means that during a large installation or update the user must stay with their computer to respond to various questions that may arise at any time. These manual interactions have now been almost entirely dispensed with, thanks to the <command>debconf</command> tool."
-msgstr ""
-"<command>debconf</command> wurde entwickelt, um ein in Debian immer "
-"wiederkehrendes Problem zu lösen. Debian-Pakete, die zumindest ein Minimum "
-"an Konfiguration benötigen, benutzten die Befehle <command>echo</command> "
-"und <command>read</command> in <filename>postinst</filename> (und anderen "
-"ähnlichen Shell-Skripten), um die Antworten abzufragen. Dies bedeutete "
-"jedoch, dass der Nutzer während einer umfangreichen Installation oder "
-"Aktualisierung beim Rechner bleiben musste, um diverse Fragen, die sich "
-"jederzeit ergeben konnten, zu beantworten. Auf dieses manuelle "
-"Zusammenwirken kann inzwischen dank <command>debconf</command> fast "
-"vollständig verzichtet werden."
+msgstr "<command>debconf</command> wurde entwickelt, um ein in Debian immer wiederkehrendes Problem zu lösen. Debian-Pakete, die zumindest ein Minimum an Konfiguration benötigen, benutzten die Befehle <command>echo</command> und <command>read</command> in <filename>postinst</filename> (und anderen ähnlichen Shell-Skripten), um die Antworten abzufragen. Dies bedeutete jedoch, dass der Nutzer während einer umfangreichen Installation oder Aktualisierung beim Rechner bleiben musste, um diverse Fragen, die sich jederzeit ergeben konnten, zu beantworten. Auf dieses manuelle Zusammenwirken kann inzwischen dank <command>debconf</command> fast vollständig verzichtet werden."
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>debconf</command> has many interesting features: it requires the developer to specify user interaction; it allows localization of various strings of characters posted (all translations are stored in the <filename>templates</filename> file describing the interactions); it has different display models for presenting the questions to the user (text mode, graphical mode, non-interactive); and it allows creation of a central database of responses to share the same configuration with several computers... but the most important is that it is now possible to present all of the questions in a block to the user prior to starting a long installation or update process. The user can go about their business while the system handles the installation on its own, without having to stay there staring at the screen waiting for questions."
 msgid "<command>debconf</command> has many interesting features: it requires the developer to specify user interaction; it allows localization of all the strings displayed to users (all translations are stored in the <filename>templates</filename> file describing the interactions); it has different frontends to display the questions to the user (text mode, graphical mode, non-interactive); and it allows creation of a central database of responses to share the same configuration with several computers... but the most important is that it is now possible to present all of the questions in a row to the user, prior to starting a long installation or update process. The user can go about their business while the system handles the installation on its own, without having to stay there staring at the screen waiting for questions."
-msgstr ""
-"<command>debconf</command> hat zahlreiche interessante Merkmale: es verlangt "
-"vom Entwickler, die Interaktionen mit dem Anwender festzulegen; es erlaubt "
-"die Lokalisierung aller angezeigten Texte (alle Übersetzungen der "
-"Interaktionsbezeichnungen sind in der <filename>Template</filename>-Datei "
-"gespeichert); es verfügt über verschiedene Frontends zur Interaktion mit dem "
-"Anwender (Textmodus, Grafikmodus, nicht interaktiv); und es ermöglicht die "
-"Erstellung einer zentralen Datenbank von Antworten, um so dieselbe "
-"Konfiguration mit verschiedenen Rechnern zu teilen... aber das Wichtigste "
-"ist, dass es jetzt möglich ist, dem Nutzer vor Beginn einer langen "
-"Installation oder Aktualisierung alle Fragen in einem Block zu stellen. Der "
-"Nutzer kann dann andere Aufgaben erledigen, während das System die "
-"Installation selbstständig erledigt, und er braucht nicht mehr vor Ort zu "
-"bleiben und in Erwartung möglicher Fragen auf den Bildschirm zu starren."
+msgstr "<command>debconf</command> hat zahlreiche interessante Merkmale: es verlangt vom Entwickler, die Interaktionen mit dem Anwender festzulegen; es erlaubt die Lokalisierung aller angezeigten Texte (alle Übersetzungen der Interaktionsbezeichnungen sind in der <filename>Template</filename>-Datei gespeichert); es verfügt über verschiedene Frontends zur Interaktion mit dem Anwender (Textmodus, Grafikmodus, nicht interaktiv); und es ermöglicht die Erstellung einer zentralen Datenbank von Antworten, um so dieselbe Konfiguration mit verschiedenen Rechnern zu teilen... aber das Wichtigste ist, dass es jetzt möglich ist, dem Nutzer vor Beginn einer langen Installation oder Aktualisierung alle Fragen in einem Block zu stellen. Der Nutzer kann dann andere Aufgaben erledigen, während das System die Installation selbstständig erledigt, und er braucht nicht mehr vor Ort zu bleiben und in Erwartung möglicher Fragen auf den Bildschirm zu starren."
 
 #. Tag: title
 #, no-c-format
@@ -1267,7 +982,6 @@ msgstr "<primary><filename>conffiles</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>conflicts</primary>"
 msgid "<primary>checksums</primary>"
 msgstr "<primary>Prüfsummen(checksums)</primary>"
 
@@ -1283,55 +997,18 @@ msgstr "<primary>Konfiguration</primary><secondary>Dateien</secondary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "In addition to the configuration files mentioned in the previous sections, the <filename>control.tar.gz</filename> file in a Debian package contains others. The first, <filename>md5sums</filename>, contains the list of digital fingerprints for all of the package's files. Its main advantage is that it allows a tool such as <command>debsums</command> (which we will study in <xref linkend=\"section.debsums\" />) to check if these files have been modified since their installation."
 msgid "In addition to the maintainer scripts and control data already mentioned in the previous sections, the <filename>control.tar.gz</filename> archive of a Debian package may contain other interesting files. The first, <filename>md5sums</filename>, contains the MD5 checksums for all of the package's files. Its main advantage is that it allows a tool such as <command>debsums</command> (which we will study in <xref linkend=\"sect.debsums\" />) to check if these files have been modified since their installation. Note that when this file doesn't exist, <command>dpkg</command> will generate it dynamically at installation time (and store it in the dpkg database just like other control files)."
-msgstr ""
-"Zusätzlich zu den in den vorherigen Kapiteln genannten Verwaltungsskripten "
-"und Kontrolldaten enthält das Archiv  <filename>control.tar.gz</filename> "
-"eines Debian-Pakets weitere interessante Dateien. Die erste, "
-"<filename>md5sums</filename>, enthält die MD5-Prüfsumme aller Dateien des "
-"Pakets. Ihr Hauptvorteil besteht darin, dass sie es einem Programm wie "
-"<command>debsums</command> (auf das wir in <xref linkend=\"sect.debsums\" /> "
-"noch näher eingehen werden) ermöglicht, zu überprüfen, ob diese Dateien seit "
-"ihrer Installation verändert worden sind. Man beachte, dass der Befehl "
-"<command>dpkg</command> diese Datei dynamisch zur Installationszeit erzeugt, "
-"falls sie nicht vorhanden ist (und in der dpkg-Datenbank speichert wie die "
-"anderen Kontrolldateien)."
+msgstr "Zusätzlich zu den in den vorherigen Kapiteln genannten Verwaltungsskripten und Kontrolldaten enthält das Archiv  <filename>control.tar.gz</filename> eines Debian-Pakets weitere interessante Dateien. Die erste, <filename>md5sums</filename>, enthält die MD5-Prüfsumme aller Dateien des Pakets. Ihr Hauptvorteil besteht darin, dass sie es einem Programm wie <command>debsums</command> (auf das wir in <xref linkend=\"sect.debsums\" /> noch näher eingehen werden) ermöglicht, zu überprüfen, ob diese Dateien seit ihrer Installation verändert worden sind. Man beachte, dass der Befehl <command>dpkg</command> diese Datei dynamisch zur Installationszeit erzeugt, falls sie nicht vorhanden ist (und in der dpkg-Datenbank speichert wie die anderen Kontrolldateien)."
 
 #. Tag: para
 #, no-c-format
-#| msgid "<filename>conffiles</filename> lists package files that must be handled as configuration files. This involves a special handling, since configuration files can be modified by the administrator, and the changes are usually preserved during a package update."
 msgid "<filename>conffiles</filename> lists package files that must be handled as configuration files. Configuration files can be modified by the administrator, and <command>dpkg</command> will try to preserve those changes during a package update."
-msgstr ""
-"<filename>conffiles</filename> führt Paketdateien auf, die als "
-"Konfigurationsdateien behandelt werden müssen. Konfigurationsdateien können "
-"durch den Administrator angepasst werden und <command>dpkg</command> wird "
-"versuchen, diese Anpassungen bei einer Paketaktualisierung zu erhalten."
+msgstr "<filename>conffiles</filename> führt Paketdateien auf, die als Konfigurationsdateien behandelt werden müssen. Konfigurationsdateien können durch den Administrator angepasst werden und <command>dpkg</command> wird versuchen, diese Anpassungen bei einer Paketaktualisierung zu erhalten."
 
 #. Tag: para
 #, no-c-format
 msgid "In effect, in this situation, <command>dpkg</command> behaves as intelligently as possible: if the standard configuration file has not changed between the two versions, it does nothing. If, however, the file has changed, it will try to update this file. Two cases are possible: either the administrator has not touched this configuration file, in which case <command>dpkg</command> automatically installs the new version; or the file has been modified, in which case <command>dpkg</command> asks the administrator which version they wish to use (the old one with modifications, or the new one provided with the package). To assist in making this decision, <command>dpkg</command> offers to display a “<command>diff</command>” that shows the difference between the two versions. If the user chooses to retain the old version, the new one will be stored in the same location in a file with the <filename>.dpkg-dist</filename> suffix. If the user chooses the new version, the old one is retained in a file with the <filename>.dpkg-old</filename> suffix. Another available action consists of momentarily interrupting <command>dpkg</command> to edit the file and attempt to re-instate the relevant modifications (previously identified with <command>diff</command>)."
-msgstr ""
-"Im Ergebnis verhält sich <command>dpkg</command> in dieser Situation "
-"möglichst intelligent: falls die Standard-Konfigurationsdatei zwischen zwei "
-"Versionen nicht verändert worden ist, tut es gar nichts. Falls die Datei "
-"jedoch verändert wurde, wird es versuchen, sie zu aktualisieren. Zwei Fälle "
-"sind möglich: entweder hat der Administrator diese Konfigurationsdatei nicht "
-"angerührt, dann installiert <command>dpkg</command> automatisch die neue "
-"Version; oder die Datei ist verändert worden, dann fragt "
-"<command>dpkg</command> den Administrator, welche Version er verwenden "
-"möchte (die alte mit den Veränderungen oder die neue, die mit dem Paket "
-"bereitgestellt wird). Um diese Entscheidung zu erleichtern, bietet "
-"<command>dpkg</command> an, ein „<command>diff</command>“ anzuzeigen, das "
-"die Unterschiede zwischen den beiden Versionen aufführt. Falls der Nutzer "
-"sich entscheidet, die alte Version zu behalten, wird die neue am selben Ort "
-"in einer Datei mit dem Zusatz <filename>.dpkg-dist</filename> abgespeichert. "
-"Wenn der Anwender die neue Version auswählt, wird die alte in einer Datei "
-"mit dem Suffix <filename>.dpkg-old</filename> suffix gespeichert. Eine "
-"weitere mögliche Maßnahme besteht darin, <command>dpkg</command> "
-"vorübergehend anzuhalten und dann die Datei zu editieren, und dabei zu "
-"versuchen, die relevanten Veränderungen (die zuvor durch "
-"<command>diff</command> identifiziert worden sind) wieder einzusetzen."
+msgstr "Im Ergebnis verhält sich <command>dpkg</command> in dieser Situation möglichst intelligent: falls die Standard-Konfigurationsdatei zwischen zwei Versionen nicht verändert worden ist, tut es gar nichts. Falls die Datei jedoch verändert wurde, wird es versuchen, sie zu aktualisieren. Zwei Fälle sind möglich: entweder hat der Administrator diese Konfigurationsdatei nicht angerührt, dann installiert <command>dpkg</command> automatisch die neue Version; oder die Datei ist verändert worden, dann fragt <command>dpkg</command> den Administrator, welche Version er verwenden möchte (die alte mit den Veränderungen oder die neue, die mit dem Paket bereitgestellt wird). Um diese Entscheidung zu erleichtern, bietet <command>dpkg</command> an, ein „<command>diff</command>“ anzuzeigen, das die Unterschiede zwischen den beiden Versionen aufführt. Falls der Nutzer sich entscheidet, die alte Version zu behalten, wird die neue am selben Ort in einer Datei mit dem Zusatz <filename>.dpkg-dist</filename> abgespeichert. Wenn der Anwender die neue Version auswählt, wird die alte in einer Datei mit dem Suffix <filename>.dpkg-old</filename> suffix gespeichert. Eine weitere mögliche Maßnahme besteht darin, <command>dpkg</command> vorübergehend anzuhalten und dann die Datei zu editieren, und dabei zu versuchen, die relevanten Veränderungen (die zuvor durch <command>diff</command> identifiziert worden sind) wieder einzusetzen."
 
 #. Tag: title
 #, no-c-format
@@ -1340,24 +1017,8 @@ msgstr "<emphasis>WEITERE SCHRITTE</emphasis> Die Fragen zur Konfigurationsdatei
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>dpkg</command> handles configuration file updates, but regularly interrupts these operations to ask for input from the administrator. This makes it less than enjoyable for those who wish to run updates in a non-interactive manner. This is why this program offers options that allow the system to respond automatically according to the same logic: <command>--force-confold</command> retains the old version of the file; <command>--force-confnew</command> will use the new version of the file (these choices are respected, even if the file has not been changed by the administrator, which only rarely has the desired effect). Adding the <command>--force-confdef</command> option tells <command>dpkg</command> to use the default option when a choice is offered (in other words, when the original configuration file has not been touched), and only uses <command>--force-confnew</command> or <command>--force-confold</command> for other cases."
 msgid "<command>dpkg</command> handles configuration file updates, but, while doing so, regularly interrupts its work to ask for input from the administrator. This makes it less than enjoyable for those who wish to run updates in a non-interactive manner. This is why this program offers options that allow the system to respond automatically according to the same logic: <command>--force-confold</command> retains the old version of the file; <command>--force-confnew</command> will use the new version of the file (these choices are respected, even if the file has not been changed by the administrator, which only rarely has the desired effect). Adding the <command>--force-confdef</command> option tells <command>dpkg</command> to decide by itself when possible (in other words, when the original configuration file has not been touched), and only uses <command>--force-confnew</command> or <command>--force-confold</command> for other cases."
-msgstr ""
-"<command>dpkg</command> erledigt die Aktualisierung von "
-"Konfigurationsdateien, unterbricht aber regelmäßig diese Aktionen, um vom "
-"Administrator Eingaben zu verlangen. Dies ist für diejenigen, die "
-"Aktualisierungen in einer nicht-interaktiven Weise ablaufen lassen möchten, "
-"weniger erfreulich. Daher bietet dieses Programm auch Optionen an, die "
-"Fragen selbstständig gemäß dieser Logik zu entscheiden: <command>--force-"
-"confold</command> behält die alte Dateiversion; <command>--force-"
-"confnew</command> verwendet die neue (diese Auswahl wird selbst dann "
-"eingehalten, wenn die Datei vom Administrator gar nicht verändert wurde, was "
-"nur manchmal den gewünschten Effekt hat). Durch Hinzufügen der Option "
-"<command>--force-confdef</command> wird <command>dpkg</command> mitgeteilt, "
-"dass es wenn möglich selbst entscheiden soll (anders ausgedrückt, wenn die "
-"ursprüngliche Konfigurationsdatei nicht angerührt worden ist), und dass es "
-"die Optionen <command>--force-confnew</command> oder <command>--force-"
-"confold</command> nur in den anderen Fällen verwenden soll."
+msgstr "<command>dpkg</command> erledigt die Aktualisierung von Konfigurationsdateien, unterbricht aber regelmäßig diese Aktionen, um vom Administrator Eingaben zu verlangen. Dies ist für diejenigen, die Aktualisierungen in einer nicht-interaktiven Weise ablaufen lassen möchten, weniger erfreulich. Daher bietet dieses Programm auch Optionen an, die Fragen selbstständig gemäß dieser Logik zu entscheiden: <command>--force-confold</command> behält die alte Dateiversion; <command>--force-confnew</command> verwendet die neue (diese Auswahl wird selbst dann eingehalten, wenn die Datei vom Administrator gar nicht verändert wurde, was nur manchmal den gewünschten Effekt hat). Durch Hinzufügen der Option <command>--force-confdef</command> wird <command>dpkg</command> mitgeteilt, dass es wenn möglich selbst entscheiden soll (anders ausgedrückt, wenn die ursprüngliche Konfigurationsdatei nicht angerührt worden ist), und dass es die Optionen <command>--force-confnew</command> oder <command>--force-confold</command> nur in den anderen Fällen verwenden soll."
 
 #. Tag: para
 #, no-c-format
@@ -1366,32 +1027,20 @@ msgstr "Diese Optionen gelten für <command>dpkg</command>, aber meistens wird d
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput># </computeroutput><userinput>apt-get -o DPkg::Options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options"
-"::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-"
-"upgrade</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
 
 #. Tag: para
 #, no-c-format
-#| msgid "These options can be stored directly in the configuration for the <command>apt</command> program, rather than specified them each time on the command line. To do so, simply write the following line in the <filename>/etc/apt/apt.conf.d/local</filename> file:"
 msgid "These options can be stored directly in <command>apt</command>'s configuration. To do so, simply write the following line in the <filename>/etc/apt/apt.conf.d/local</filename> file:"
-msgstr ""
-"Diese Optionen können direkt in der Konfiguration von <command>apt</command> "
-"gespeichert werden. Dazu schreibt man einfach die folgende Zeile in die "
-"Datei <filename>/etc/apt/apt.conf.d/local</filename>:"
+msgstr "Diese Optionen können direkt in der Konfiguration von <command>apt</command> gespeichert werden. Dazu schreibt man einfach die folgende Zeile in die Datei <filename>/etc/apt/apt.conf.d/local</filename>:"
 
 #. Tag: programlisting
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "DPkg::Options { \"--force-confdef\"; \"--force-confold\"; }\n"
 msgid ""
 "\n"
 "DPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
@@ -1401,12 +1050,8 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-#| msgid "Including this option in the configuration file will allow it to also be used in a graphical interface such as <command>aptitude</command>."
 msgid "Including this option in the configuration file means that it will also be used in a graphical interface such as <command>aptitude</command>."
-msgstr ""
-"Die Aufnahme dieser Option in die Konfigurationsdatei hat zur Folge, dass "
-"sie auch in einer grafischen Schnittstelle wie <command>aptitude</command> "
-"verwendet wird."
+msgstr "Die Aufnahme dieser Option in die Konfigurationsdatei hat zur Folge, dass sie auch in einer grafischen Schnittstelle wie <command>aptitude</command> verwendet wird."
 
 #. Tag: title
 #, no-c-format
@@ -1415,20 +1060,8 @@ msgstr "<emphasis>WEITERE SCHRITTE</emphasis> Zwinge dpkg, Fragen zur Konfigurat
 
 #. Tag: para
 #, no-c-format
-#| msgid "The option, <command>--force-confask</command> requires <command>dpkg</command> to display the questions about the configuration files, even in cases where they would not normally be necessary. Thus, when reinstalling a package with this option, <command>dpkg</command> will ask the questions again for all of the configuration files modified by the administrator. This is very convenient, especially for reinstalling the original configuration file if it has been deleted and no other copy is available: a normal re-installation won't work, because <command>dpkg</command> considers removal as a form of legitimate modification, and, thus, doesn't install the desired configuration file."
 msgid "The <command>--force-confask</command> option requires <command>dpkg</command> to display the questions about the configuration files, even in cases where they would not normally be necessary. Thus, when reinstalling a package with this option, <command>dpkg</command> will ask the questions again for all of the configuration files modified by the administrator. This is very convenient, especially for reinstalling the original configuration file if it has been deleted and no other copy is available: a normal re-installation won't work, because <command>dpkg</command> considers removal as a form of legitimate modification, and, thus, doesn't install the desired configuration file."
-msgstr ""
-"Die Option <command>--force-confask</command> zwingt <command>dpkg</command> "
-"dazu, die Fragen zu den Konfigurationsdateien selbst dann zu stellen, wenn "
-"sie nicht notwendig wären. Deshalb wird <command>dpkg</command> bei der Re-"
-"Installation eines Pakets mit dieser Option erneut die Fragen aus allen "
-"Konfigurationsdateien stellen, die vom Administrator verändert worden sind. "
-"Dies ist vor allem sehr praktisch für das erneute Installieren der "
-"ursprünglichen Konfigurationsdatei, falls sie gelöscht worden ist oder keine "
-"andere Kopie verfügbar ist: eine normale Re-Installation würde nicht "
-"funktionieren, weil <command>dpkg</command> das Entfernen als eine zulässige "
-"Form der Veränderung ansieht und daher die gewünschte Konfigurationsdatei "
-"nicht installiert."
+msgstr "Die Option <command>--force-confask</command> zwingt <command>dpkg</command> dazu, die Fragen zu den Konfigurationsdateien selbst dann zu stellen, wenn sie nicht notwendig wären. Deshalb wird <command>dpkg</command> bei der Re-Installation eines Pakets mit dieser Option erneut die Fragen aus allen Konfigurationsdateien stellen, die vom Administrator verändert worden sind. Dies ist vor allem sehr praktisch für das erneute Installieren der ursprünglichen Konfigurationsdatei, falls sie gelöscht worden ist oder keine andere Kopie verfügbar ist: eine normale Re-Installation würde nicht funktionieren, weil <command>dpkg</command> das Entfernen als eine zulässige Form der Veränderung ansieht und daher die gewünschte Konfigurationsdatei nicht installiert."
 
 #. Tag: title
 #, no-c-format
@@ -1442,7 +1075,6 @@ msgstr "<primary>Paket</primary><secondary>Quellpaket</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>unpacking</secondary>"
 msgid "<primary>source</primary><secondary>package</secondary>"
 msgstr "<primary>Quell</primary><secondary>paket</secondary>"
 
@@ -1463,40 +1095,23 @@ msgstr "<primary><filename>diff.gz</filename>-Datei</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary><filename>diff.gz</filename> file</primary>"
 msgid "<primary><filename>debian.tar.gz</filename> file</primary>"
 msgstr "<primary>Datei <filename>debian.tar.gz</filename></primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary><filename>diff.gz</filename> file</primary>"
 msgid "<primary><filename>orig.tar.gz</filename> file</primary>"
 msgstr "<primary>Datei <filename>orig.tar.gz</filename></primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "A source package is usually comprised of three files, a <filename>.dsc</filename>, a <filename>.orig.tar.gz</filename>, and a <filename>.debian.tar.gz</filename> or <filename>.diff.gz</filename>. They allow creation of binary packages (<filename>.deb</filename> files described above) for the program(s) from their source code, written in a programming language."
 msgid "A source package is usually comprised of three files, a <filename>.dsc</filename>, a <filename>.orig.tar.gz</filename>, and a <filename>.debian.tar.gz</filename> (or <filename>.diff.gz</filename>). They allow creation of binary packages (<filename>.deb</filename> files described above) from the source code files of the program, which are written in a programming language."
-msgstr ""
-"Ein Quellpaket besteht normalerweise aus drei Dateien, einer "
-"Datei<filename>.dsc</filename>, <filename>.orig.tar.gz</filename> und "
-"<filename>.debian.tar.gz</filename> oder <filename>.diff.gz</filename>. "
-"Diese ermöglichen es, aus dem in einer Programmiersprache geschriebenen "
-"Quellcode  Binärpakete (<filename>.deb</filename>-Dateien wie weiter oben "
-"beschrieben) für das oder die Programm(e) zu erzeugen."
+msgstr "Ein Quellpaket besteht normalerweise aus drei Dateien, einer Datei<filename>.dsc</filename>, <filename>.orig.tar.gz</filename> und <filename>.debian.tar.gz</filename> oder <filename>.diff.gz</filename>. Diese ermöglichen es, aus dem in einer Programmiersprache geschriebenen Quellcode  Binärpakete (<filename>.deb</filename>-Dateien wie weiter oben beschrieben) für das oder die Programm(e) zu erzeugen."
 
 #. Tag: para
 #, no-c-format
-#| msgid "The <filename>.dsc</filename> (Debian Source Control) file is a short text file containing an RFC 2822 header (just like the <filename>control</filename> file studied in <xref linkend=\"section.control\" />) which describes the source package and indicates which other files are part thereof. It is signed by its maintainer, which guarantees authenticity. See <xref linkend=\"sect.package-authentication\" /> for further details on this subject."
 msgid "The <filename>.dsc</filename> (Debian Source Control) file is a short text file containing an RFC 2822 header (just like the <filename>control</filename> file studied in <xref linkend=\"sect.control\" />) which describes the source package and indicates which other files are part thereof. It is signed by its maintainer, which guarantees authenticity. See <xref linkend=\"sect.package-authentication\" /> for further details on this subject."
-msgstr ""
-"Die Datei <filename>.dsc</filename> (Debian Source Control) ist eine kurze "
-"Textdatei, die einen RFC 2822 Header enthält (genau wie die in <xref linkend="
-"\"sect.control\" /> betrachtete Datei <filename>control</filename>), der das "
-"Quellpaket beschreibt und angibt, welche anderen Dateien dazugehören. Sie "
-"ist von ihrem Betreuer signiert, wodurch Authentizität gewährleistet ist. "
-"Siehe <xref linkend=\"sect.package-authentication\" /> für weitere "
-"Einzelheiten zu diesem Thema."
+msgstr "Die Datei <filename>.dsc</filename> (Debian Source Control) ist eine kurze Textdatei, die einen RFC 2822 Header enthält (genau wie die in <xref linkend=\"sect.control\" /> betrachtete Datei <filename>control</filename>), der das Quellpaket beschreibt und angibt, welche anderen Dateien dazugehören. Sie ist von ihrem Betreuer signiert, wodurch Authentizität gewährleistet ist. Siehe <xref linkend=\"sect.package-authentication\" /> für weitere Einzelheiten zu diesem Thema."
 
 #. Tag: title
 #, no-c-format
@@ -1601,16 +1216,8 @@ msgstr "<emphasis>VORSICHT</emphasis> Unterschiedliche Namensräume"
 
 #. Tag: para
 #, no-c-format
-#| msgid "It is important to note here that there is no strong correspondence between the name of the source package and that of the binary packages that they generate. It is easy enough to understand if you know that each source package may generate several binary packages. This is why the <filename>.dsc</filename> file has fields for <literal>Source</literal> and <literal>Binary</literal> to explicitly name the source package and store the list of binary packages that it generates."
 msgid "It is important to note here that there is no required correspondence between the name of the source package and that of the binary package(s) that it generates. It is easy enough to understand if you know that each source package may generate several binary packages. This is why the <filename>.dsc</filename> file has the <literal>Source</literal> and <literal>Binary</literal> fields to explicitly name the source package and store the list of binary packages that it generates."
-msgstr ""
-"Es ist hier wichtig festzustellen, dass die Namen der Quellpakete und der "
-"daraus erstellten Binärpakete nicht korrespondieren müssen. Dies ist leicht "
-"einzusehen, wenn man weiß, dass jedes Quellpaket verschiedene Binärpakete "
-"erzeugen kann. Daher gibt es in der <filename>.dsc</filename>-Datei Zeilen "
-"für <literal>Source</literal> und <literal>Binary</literal>, um so "
-"ausdrücklich das Quellpaket und eine Reihe von Binärpaketen zu nennen, die "
-"es erzeugen soll."
+msgstr "Es ist hier wichtig festzustellen, dass die Namen der Quellpakete und der daraus erstellten Binärpakete nicht korrespondieren müssen. Dies ist leicht einzusehen, wenn man weiß, dass jedes Quellpaket verschiedene Binärpakete erzeugen kann. Daher gibt es in der <filename>.dsc</filename>-Datei Zeilen für <literal>Source</literal> und <literal>Binary</literal>, um so ausdrücklich das Quellpaket und eine Reihe von Binärpaketen zu nennen, die es erzeugen soll."
 
 #. Tag: title
 #, no-c-format
@@ -1619,21 +1226,8 @@ msgstr "<emphasis>KULTUR</emphasis> Warum in mehrere Pakete aufteilen"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Quite frequently, a source package (for a certain group of programs) can generate several binary packages. The reasons are multiple: a program may often be used in different contexts, so a shared library may be installed to make an application work (for example, <emphasis role=\"pkg\">libc6</emphasis>), or when it can be installed to develop a new program (<emphasis role=\"pkg\">libc6-dev</emphasis> will then be the correct package). We find the same logic for client/server services where we want to install the server part on one machine and the client part on others (this is the case, for example, of <emphasis role=\"pkg\">openssh-server</emphasis> and <emphasis role=\"pkg\">openssh-client</emphasis>)."
 msgid "Quite frequently, a source package (for a given software) can generate several binary packages. The split is justified by the possibility to use (parts of) the software in different contexts. Consider a shared library, it may be installed to make an application work (for example, <emphasis role=\"pkg\">libc6</emphasis>), or it can be installed to develop a new program (<emphasis role=\"pkg\">libc6-dev</emphasis> will then be the correct package). We find the same logic for client/server services where we want to install the server part on one machine and the client part on others (this is the case, for example, of <emphasis role=\"pkg\">openssh-server</emphasis> and <emphasis role=\"pkg\">openssh-client</emphasis>)."
-msgstr ""
-"Nicht selten kann ein Quellpaket (für eine bestimmte Anwendung) verschiedene "
-"Binärpakete erzeugen. Die Aufsplittung angebracht, da Software (oder Teile "
-"davon) in unterschiedlichen Zusammenhängen verwendet werden kann. Man denke "
-"an eine gemeinsam genutzte Bibliothek, die installiert werden kann, um eine "
-"Anwendung zum Laufen zu bringen (zum Beispiel <emphasis role=\"pkg\""
-">libc6</emphasis>), oder sie kann benutzt werden, um eine neue Anwendung zu "
-"entwickeln (dann wäre <emphasis role=\"pkg\">libc6-dev</emphasis> das "
-"richtige Paket). Wir finden den gleichen Gedankengang bei Client/Server-"
-"Diensten, bei denen wir den Serverteil auf einem Rechner installieren "
-"möchten und den Clientteil auf anderen (dies ist zum Beispiel bei <emphasis "
-"role=\"pkg\">openssh-server</emphasis> und <emphasis role=\"pkg\">openssh-"
-"client</emphasis> der Fall)."
+msgstr "Nicht selten kann ein Quellpaket (für eine bestimmte Anwendung) verschiedene Binärpakete erzeugen. Die Aufsplittung angebracht, da Software (oder Teile davon) in unterschiedlichen Zusammenhängen verwendet werden kann. Man denke an eine gemeinsam genutzte Bibliothek, die installiert werden kann, um eine Anwendung zum Laufen zu bringen (zum Beispiel <emphasis role=\"pkg\">libc6</emphasis>), oder sie kann benutzt werden, um eine neue Anwendung zu entwickeln (dann wäre <emphasis role=\"pkg\">libc6-dev</emphasis> das richtige Paket). Wir finden den gleichen Gedankengang bei Client/Server-Diensten, bei denen wir den Serverteil auf einem Rechner installieren möchten und den Clientteil auf anderen (dies ist zum Beispiel bei <emphasis role=\"pkg\">openssh-server</emphasis> und <emphasis role=\"pkg\">openssh-client</emphasis> der Fall)."
 
 #. Tag: para
 #, no-c-format
@@ -1652,50 +1246,18 @@ msgstr "Ursprünglich gab es nur ein Quellpaket-Format. Dies ist das <literal>1.
 
 #. Tag: para
 #, no-c-format
-#| msgid "Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, Debian developers have the option to use new formats that correct many problems of the historical format. Format <literal>3.0 (quilt)</literal> can combine multiple upstream archives in the same source package: in addition to the usual <filename>.orig.tar.gz</filename>, supplementary <filename>.orig-<replaceable>component</replaceable>.tar.gz</filename> archives. This is useful with software that are distributed in several upstream components but for which a single source package is desired. These archives can also be compressed with <command>bzip2</command> rather than <command>gzip</command> (<command>lzma</command> and <command>xz</command> are supported by <command>dpkg-source</command> but not accepted into the official archive), which saves disk space and network resources. Finally, the monolithic patch, <filename>.diff.gz</filename> is replaced by a <filename>.debian.tar.gz</filename> archive containing the compiling instructions and a set of upstream patches contributed by the package maintainer. These last are recorded in a format compatible with <command>quilt</command>, a tool that facilitates the management of a series of patches."
 msgid "Since Debian <emphasis role=\"distribution\">Squeeze</emphasis>, Debian developers have the option to use new formats that correct many problems of the historical format. Format <literal>3.0 (quilt)</literal> can combine multiple upstream archives in the same source package: in addition to the usual <filename>.orig.tar.gz</filename>, supplementary <filename>.orig-<replaceable>component</replaceable>.tar.gz</filename> archives can be included. This is useful with software that are distributed in several upstream components but for which a single source package is desired. These archives can also be compressed with <command>bzip2</command> or <command>xz</command> rather than <command>gzip</command> (<command>lzma</command> is also supported by <command>dpkg-source</command> but not accepted into the official archive), which saves disk space and network resources. Finally, the monolithic patch, <filename>.diff.gz</filename> is replaced by a <filename>.debian.tar.gz</filename> archive containing the compiling instructions and a set of upstream patches contributed by the package maintainer. These last are recorded in a format compatible with <command>quilt</command> — a tool that facilitates the management of a series of patches."
-msgstr ""
-"Seit Debian <emphasis role=\"distribution\">Squeeze</emphasis> haben "
-"Debianentwickler die Möglichkeit, neue Formate zu verwenden, die zahlreiche "
-"Probleme des früheren Formats beheben. Format <literal>3.0 (quilt)</literal> "
-"kann mehrere Ursprungsarchive in einem Quellpaket vereinen: zusätzlich zu "
-"den üblichen <filename>.orig.tar.gz</filename>-Archiven können ergänzende "
-"<filename>.orig-<replaceable>komponente</replaceable>.tar.gz</filename>-"
-"Archive eingeschlossen werden. Dies ist bei Software hilfreich, die in Form "
-"verschiedener Ursprungskomponenten veröffentlicht wird, für die aber ein "
-"einzelnes Quellpaket erwünscht ist. Diese Archive können auch mit "
-"<command>bzip2</command> oder <command>xz</command> komprimiert werden statt "
-"mit <command>gzip</command> (<command>lzma</command> wird ebenfalls von "
-"<command>dpkg-source</command> unterstützt, aber wird nicht für die "
-"offiziellen Archive akzeptiert), wodurch Speicherplatz und "
-"Netzwerkressourcen gespart werden. Schließlich wurde der monolithische Patch "
-"<filename>.diff.gz</filename> durch ein <filename>.debian.tar.gz</filename>-"
-"Archiv ersetzt, das die Kompilierungsanweisungen enthält und einen Satz von "
-"Ursprungspatches, die vom Paketbetreuer beigesteuert wurden. Letztere sind "
-"in einem Format aufgezeichnet, das mit <command>quilt</command> kompatibel "
-"ist, einem Programm, das die Verwaltung einer Serie von Patches erleichtert."
+msgstr "Seit Debian <emphasis role=\"distribution\">Squeeze</emphasis> haben Debianentwickler die Möglichkeit, neue Formate zu verwenden, die zahlreiche Probleme des früheren Formats beheben. Format <literal>3.0 (quilt)</literal> kann mehrere Ursprungsarchive in einem Quellpaket vereinen: zusätzlich zu den üblichen <filename>.orig.tar.gz</filename>-Archiven können ergänzende <filename>.orig-<replaceable>komponente</replaceable>.tar.gz</filename>-Archive eingeschlossen werden. Dies ist bei Software hilfreich, die in Form verschiedener Ursprungskomponenten veröffentlicht wird, für die aber ein einzelnes Quellpaket erwünscht ist. Diese Archive können auch mit <command>bzip2</command> oder <command>xz</command> komprimiert werden statt mit <command>gzip</command> (<command>lzma</command> wird ebenfalls von <command>dpkg-source</command> unterstützt, aber wird nicht für die offiziellen Archive akzeptiert), wodurch Speicherplatz und Netzwerkressourcen gespart werden. Schließlich wurde der monolithische Patch <filename>.diff.gz</filename> durch ein <filename>.debian.tar.gz</filename>-Archiv ersetzt, das die Kompilierungsanweisungen enthält und einen Satz von Ursprungspatches, die vom Paketbetreuer beigesteuert wurden. Letztere sind in einem Format aufgezeichnet, das mit <command>quilt</command> kompatibel ist, einem Programm, das die Verwaltung einer Serie von Patches erleichtert."
 
 #. Tag: para
 #, no-c-format
-#| msgid "The <filename>.orig.tar.gz</filename> is an archive containing the source code as provided by the original developer. Debian package maintainers are asked to not modify this archive in order to be able to easily check the source and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
 msgid "The <filename>.orig.tar.gz</filename> file is an archive containing the source code as provided by the original developer. Debian package maintainers are asked to not modify this archive in order to be able to easily check the origin and integrity of the file (by simple comparison with a checksum) and to respect the wishes of some authors."
-msgstr ""
-"Die Datei <filename>.orig.tar.gz</filename> ist ein Archiv, das den Programm-"
-"Quellcode enthält, wie er vom ursprünglichen Entwickler bereitgestellt "
-"wurde. Debian-Entwickler sind gehalten, dieses Archiv nicht zu verändern, "
-"damit es möglich ist, die Herkunft und Integrität der Datei (durch einen "
-"einfachen Vergleich mit einer Prüfsumme) zu kontrollieren, und um die "
-"Wünsche mancher Autoren zu berücksichtigen."
+msgstr "Die Datei <filename>.orig.tar.gz</filename> ist ein Archiv, das den Programm-Quellcode enthält, wie er vom ursprünglichen Entwickler bereitgestellt wurde. Debian-Entwickler sind gehalten, dieses Archiv nicht zu verändern, damit es möglich ist, die Herkunft und Integrität der Datei (durch einen einfachen Vergleich mit einer Prüfsumme) zu kontrollieren, und um die Wünsche mancher Autoren zu berücksichtigen."
 
 #. Tag: para
 #, no-c-format
-#| msgid "The <filename>.debian.tar.gz</filename> contains all of the modifications made by the Debian maintainer, especially the addition of a <filename>debian</filename> directory containing instructions to execute to construct a Debian package."
 msgid "The <filename>.debian.tar.gz</filename> contains all of the modifications made by the Debian maintainer, especially the addition of a <filename>debian</filename> directory containing the instructions to execute to construct a Debian package."
-msgstr ""
-"Das <filename>.debian.tar.gz</filename>-Archiv enthält alle vom Debian-"
-"Betreuer vorgenommenen Veränderungen, insbesondere auch ein ergänzendes "
-"<filename>debian</filename>-Verzeichnis, das die Ausführungsanweisungen für "
-"die Erstellung eines Debian-Paketes enthält."
+msgstr "Das <filename>.debian.tar.gz</filename>-Archiv enthält alle vom Debian-Betreuer vorgenommenen Veränderungen, insbesondere auch ein ergänzendes <filename>debian</filename>-Verzeichnis, das die Ausführungsanweisungen für die Erstellung eines Debian-Paketes enthält."
 
 #. Tag: title
 #, no-c-format
@@ -1709,30 +1271,23 @@ msgstr "<primary><command>dpkg-source</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>source (package)</primary>"
 msgid "<primary>decompressing, source package</primary>"
 msgstr "<primary>Entpacken, Quellpaket</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>source (package)</primary>"
 msgid "<primary>uncompressing, source package</primary>"
 msgstr "<primary>Dekomprimieren, Quellpaket</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>source package</secondary>"
 msgid "<primary>unpacking</primary><secondary>source package</secondary>"
 msgstr "<primary>Entpacken</primary><secondary>Quellpaket</secondary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "If you have a source package, you can use the <command>dpkg-source</command> (from the <emphasis>dpkg-dev</emphasis> package) to decompress it:"
 msgid "If you have a source package, you can use the <command>dpkg-source</command> command (from the <emphasis>dpkg-dev</emphasis> package) to decompress it:"
-msgstr ""
-"Falls Sie ein Quellpaket haben, können Sie den Befehl <command>dpkg-"
-"source</command> (aus dem <emphasis>dpkg-dev</emphasis>-Paket) zum Entpacken "
-"verwenden:"
+msgstr "Falls Sie ein Quellpaket haben, können Sie den Befehl <command>dpkg-source</command> (aus dem <emphasis>dpkg-dev</emphasis>-Paket) zum Entpacken verwenden:"
 
 #. Tag: screen
 #, no-c-format
@@ -1756,30 +1311,13 @@ msgstr "Verwendung innerhalb von Debian"
 
 #. Tag: para
 #, no-c-format
-#| msgid "The source package is the foundation of everything in Debian. All Debian packages come from a source package, and each modification in a Debian package is the consequence of a modification made to the source package. The Debian maintainers work with the source package, knowing, however, the consequences of their actions on the binary packages. The fruits of their labors are found, thus, in the source packages available from Debian: you can easily go back and follow everything."
 msgid "The source package is the foundation of everything in Debian. All Debian packages come from a source package, and each modification in a Debian package is the consequence of a modification made to the source package. The Debian maintainers work with the source package, knowing, however, the consequences of their actions on the binary packages. The fruits of their labors are thus found in the source packages available from Debian: you can easily go back to them and everything stems from them."
-msgstr ""
-"Das Quellpaket ist die Grundlage für alles in Debian. Alle Debian-Pakete "
-"entstammen einem Quellpaket, und jede Veränderung in einem Debian-Paket ist "
-"die Folge einer Veränderung in eines solchen. Die Debian-Betreuer arbeiten "
-"mit dem Quellpaket, kennen jedoch die Auswirkungen ihrer Änderungen auf die "
-"Binärpakete. Die Ergebnisse ihrer Arbeit basieren auf den von Debian "
-"bereitgestellten Quellpaketen: sie können problemlos zu diesen zurückkehren, "
-"da alles Weitere darauf aufbaut."
+msgstr "Das Quellpaket ist die Grundlage für alles in Debian. Alle Debian-Pakete entstammen einem Quellpaket, und jede Veränderung in einem Debian-Paket ist die Folge einer Veränderung in eines solchen. Die Debian-Betreuer arbeiten mit dem Quellpaket, kennen jedoch die Auswirkungen ihrer Änderungen auf die Binärpakete. Die Ergebnisse ihrer Arbeit basieren auf den von Debian bereitgestellten Quellpaketen: sie können problemlos zu diesen zurückkehren, da alles Weitere darauf aufbaut."
 
 #. Tag: para
 #, no-c-format
-#| msgid "When a new version of a package (source package and one or more binary packages) arrives on the Debian server, the source package is the most important. Indeed, it will then be used by a network of machines of different architectures for compilation of the various architectures supported by Debian. The fact that the developer also sends one or more binary packages for a given architecture (usually i386 or amd64) is relatively unimportant, since these could just as well have been automatically generated."
 msgid "When a new version of a package (source package and one or more binary packages) arrives on the Debian server, the source package is the most important. Indeed, it will then be used by a network of machines of different architectures for compilation on the various architectures supported by Debian. The fact that the developer also sends one or more binary packages for a given architecture (usually i386 or amd64) is relatively unimportant, since these could just as well have been automatically generated."
-msgstr ""
-"Wenn eine neue Version eines Pakets (Quellpaket und ein oder mehrere "
-"Binärpakete) beim Debian-Server eintrifft, ist das Quellpaket das "
-"wichtigste. Es wird dann nämlich von einem Netzwerk aus Rechnern "
-"verschiedener Architekturen benutzt, um Kompilierungen für die verschiedenen "
-"von Debian unterstützten Architekturen zu erstellen. Die Tatsache, dass der "
-"Entwickler auch ein oder mehrere Binärpakete für eine bestimmte Architektur "
-"mitschickt (gewöhnlich i386 oder amd64), ist relativ unwichtig, da diese "
-"genauso gut automatisch erzeugt worden sein könnten."
+msgstr "Wenn eine neue Version eines Pakets (Quellpaket und ein oder mehrere Binärpakete) beim Debian-Server eintrifft, ist das Quellpaket das wichtigste. Es wird dann nämlich von einem Netzwerk aus Rechnern verschiedener Architekturen benutzt, um Kompilierungen für die verschiedenen von Debian unterstützten Architekturen zu erstellen. Die Tatsache, dass der Entwickler auch ein oder mehrere Binärpakete für eine bestimmte Architektur mitschickt (gewöhnlich i386 oder amd64), ist relativ unwichtig, da diese genauso gut automatisch erzeugt worden sein könnten."
 
 #. Tag: title
 #, no-c-format
@@ -1788,19 +1326,8 @@ msgstr "Pakete mit <command>dpkg</command> handhaben"
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>dpkg</command> is the base command for handling Debian packages on the system. If you have <filename>.deb</filename> packages, it is <command>dpkg</command> that allows installation or analysis of their contents. But this program only has a partial view of the Debian universe: it knows what is installed on the system, and whatever it is given on the command line, but knows nothing of the other available packages. As such, it will fail if a dependency is not met. Tools such as <command>apt-get</command>, on the contrary, will create a list of dependencies to be installed as automatically as possible."
 msgid "<command>dpkg</command> is the base command for handling Debian packages on the system. If you have <filename>.deb</filename> packages, it is <command>dpkg</command> that allows installation or analysis of their contents. But this program only has a partial view of the Debian universe: it knows what is installed on the system, and whatever it is given on the command line, but knows nothing of the other available packages. As such, it will fail if a dependency is not met. Tools such as <command>apt-get</command>, on the contrary, will create a list of dependencies to install everything as automatically as possible."
-msgstr ""
-"<command>dpkg</command> ist der Grundbefehl zum Umgang mit Debian-Paketen "
-"auf dem System. Falls Sie <filename>.deb</filename>-Pakete haben, ermöglicht "
-"<command>dpkg</command> es Ihnen, sie zu installieren oder ihren Inhalt zu "
-"analysieren. Aber dieses Programm sieht nur einen begrenzten Ausschnitt des "
-"Debian-Universums: es weiß, was auf dem System installiert ist und was auch "
-"immer in der Befehlszeile eingegeben wird, aber es weiß nichts von den "
-"anderen verfügbaren Paketen. Daher wird es scheitern, wenn eine Abhängigkeit "
-"nicht erfüllt ist. Dagegen erzeugen Programme wie <command>apt-get</command> "
-"eine Liste von Abhängigkeiten, um alles soweit wie möglich automatisch zu "
-"installieren."
+msgstr "<command>dpkg</command> ist der Grundbefehl zum Umgang mit Debian-Paketen auf dem System. Falls Sie <filename>.deb</filename>-Pakete haben, ermöglicht <command>dpkg</command> es Ihnen, sie zu installieren oder ihren Inhalt zu analysieren. Aber dieses Programm sieht nur einen begrenzten Ausschnitt des Debian-Universums: es weiß, was auf dem System installiert ist und was auch immer in der Befehlszeile eingegeben wird, aber es weiß nichts von den anderen verfügbaren Paketen. Daher wird es scheitern, wenn eine Abhängigkeit nicht erfüllt ist. Dagegen erzeugen Programme wie <command>apt-get</command> eine Liste von Abhängigkeiten, um alles soweit wie möglich automatisch zu installieren."
 
 #. Tag: title
 #, no-c-format
@@ -1809,14 +1336,8 @@ msgstr "<emphasis>ANMERKUNG</emphasis> <command>dpkg</command> oder <command>apt
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>dpkg</command> should be seen as a system tool (backend), and <command>apt-get</command> as a tool closer to the user, which overcomes the previous limitations. These tools work together, each one with its particularities, suited to specific tasks."
 msgid "<command>dpkg</command> should be seen as a system tool (backend), and <command>apt-get</command> as a tool closer to the user, which overcomes the limitations of the former. These tools work together, each one with its particularities, suited to specific tasks."
-msgstr ""
-"<command>dpkg</command> sollte als ein Systemprogramm (backend) angesehen "
-"werden und <command>apt-get</command> eher als ein Programm für den "
-"Endanwender, das die Einschränkungen des ersteren nicht kennt. Diese "
-"Programme arbeiten zusammen, jedes mit seinen Besonderheiten und seiner "
-"Eignung für bestimmte Aufgaben."
+msgstr "<command>dpkg</command> sollte als ein Systemprogramm (backend) angesehen werden und <command>apt-get</command> eher als ein Programm für den Endanwender, das die Einschränkungen des ersteren nicht kennt. Diese Programme arbeiten zusammen, jedes mit seinen Besonderheiten und seiner Eignung für bestimmte Aufgaben."
 
 #. Tag: title
 #, no-c-format
@@ -1825,7 +1346,6 @@ msgstr "Pakete installieren"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>installation</primary><secondary>of packages</secondary>"
 msgid "<primary>installation</primary><secondary>package installation</secondary>"
 msgstr "<primary>Installation</primary><secondary>Paketinstallation</secondary>"
 
@@ -1836,13 +1356,8 @@ msgstr "<primary>Paket</primary><secondary>Installation</secondary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "<command>dpkg</command> is, above all, a tool for installing an already available Debian package (because it does not download anything). To do this, we use its <literal>-i</literal> or <literal>--install</literal> option."
 msgid "<command>dpkg</command> is, above all, the tool for installing an already available Debian package (because it does not download anything). To do this, we use its <literal>-i</literal> or <literal>--install</literal> option."
-msgstr ""
-"<command>dpkg</command> ist vor allem das Programm zur Installation eines "
-"bereits vorhandenen Debian-Pakets (da es nichts herunterlädt). Hierzu "
-"verwenden wir seine Option <literal>-i</literal> oder "
-"<literal>--install</literal>."
+msgstr "<command>dpkg</command> ist vor allem das Programm zur Installation eines bereits vorhandenen Debian-Pakets (da es nichts herunterlädt). Hierzu verwenden wir seine Option <literal>-i</literal> oder <literal>--install</literal>."
 
 #. Tag: title
 #, no-c-format
@@ -1851,17 +1366,6 @@ msgstr "Installation eines Pakets mit <command>dpkg</command>"
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.5.7-4_i386.deb</userinput>\n"
-#| "<computeroutput>(Reading database... 284247 files and directories currently installed.)\n"
-#| "Preparing replacement man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
-#| "Unpacking the man-db update...\n"
-#| "Configuring man-db (2.5.7-4) ...\n"
-#| "Updating database of manual pages ...\n"
-#| "Processing triggers for “doc-base”...\n"
-#| "Processing 1 modified documentation file(s) \n"
-#| "Recording documents with scrollkeeper ... </computeroutput>\n"
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1872,10 +1376,8 @@ msgid ""
 "Building database of manual pages ... </computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>dpkg -i man-"
-"db_2.6.2-1_amd64.deb</userinput>\n"
-"<computeroutput>(Reading database ... 96357 files and directories currently "
-"installed.)\n"
+"<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.6.2-1_amd64.deb</userinput>\n"
+"<computeroutput>(Reading database ... 96357 files and directories currently installed.)\n"
 "Preparing to replace man-db 2.6.1-3 (using man-db_2.6.2-1_amd64.deb) ...\n"
 "Unpacking replacement man-db ...\n"
 "Setting up man-db (2.6.2-1) ...\n"
@@ -1893,18 +1395,6 @@ msgstr "Getrenntes Entpacken und Konfigurieren"
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.5.7-4_i386.deb</userinput>\n"
-#| "<computeroutput>(Reading database... 284247 files already installed.)\n"
-#| "Preparing replacement of man-db 2.5.7-3 (using .../man-db_2.5.7-4_i386.deb) ...\n"
-#| "Unpacking the man-db update...\n"
-#| "Processing triggers for “doc-base”...\n"
-#| "Treatment of a modified documentation file(s) \n"
-#| "Recording documents with scrollkeeper ... \n"
-#| "# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
-#| "<computeroutput>Configuring man-db (2.5.7-4) ...\n"
-#| "Updating database of manual pages ...</computeroutput>\n"
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1916,10 +1406,8 @@ msgid ""
 "Building database of manual pages ...</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>dpkg --unpack man-"
-"db_2.6.2-1_amd64.deb</userinput>\n"
-"<computeroutput>(Reading database ... 96357 files and directories currently "
-"installed.)\n"
+"<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.6.2-1_amd64.deb</userinput>\n"
+"<computeroutput>(Reading database ... 96357 files and directories currently installed.)\n"
 "Preparing to replace man-db 2.6.2-1 (using man-db_2.6.2-1_amd64.deb) ...\n"
 "Unpacking replacement man-db ...\n"
 "# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
@@ -1933,7 +1421,6 @@ msgstr "<primary>Paket</primary><secondary>entpacken</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>binary package</secondary>"
 msgid "<primary>unpacking</primary><secondary>binary package</secondary>"
 msgstr "<primary>Entpacken</primary><secondary>Binärpaket</secondary>"
 
@@ -1944,11 +1431,6 @@ msgstr "Manchmal wird <command>dpkg</command> bei der Installation eines Pakets 
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>Unpacking libisc52 (from .../libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb) ...\n"
-#| "dpkg : error processing /var/cache/apt/archives/libisc52_1%3a9.6.ESV.R1+dfsg-0+lenny2_amd64.deb (--unpack) :\n"
-#| " trying to overwrite \"/usr/lib/libisc.so.50\", which is also in package libisc50 1:9.6.1.dfsg.P1-3</computeroutput>\n"
 msgid ""
 "\n"
 "<computeroutput>Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...\n"
@@ -1957,10 +1439,8 @@ msgid ""
 msgstr ""
 "\n"
 "<computeroutput>Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...\n"
-"dpkg: error processing /var/cache/apt/archives/libgdm_3.8.3-2_amd64.deb "
-"(--unpack):\n"
-" trying to overwrite '/usr/bin/gdmflexiserver', which is also in package "
-"gdm3 3.4.1-9</computeroutput>\n"
+"dpkg: error processing /var/cache/apt/archives/libgdm_3.8.3-2_amd64.deb (--unpack):\n"
+" trying to overwrite '/usr/bin/gdmflexiserver', which is also in package gdm3 3.4.1-9</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
@@ -1984,22 +1464,8 @@ msgstr "<primary>Gebrochene Abhängigkeit</primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "If you are not careful, the use of an option <literal>--force-*</literal> can lead to a system where the APT family of commands will refuse to function. In effect, some of these options allow installation of a package when a dependency is not met, or when there is a conflict. The result is an inconsistent system from the point of view of dependencies, and the APT commands will refuse to execute any action unless the action enables it to return the system to a consistent state (this often consists of installing the missing dependency or removing a problematic package). This often results in a message like this one, obtained after installing a new version of <emphasis role=\"pkg\">rdesktop</emphasis> while ignoring its dependency on a newer version of the <emphasis role=\"pkg\">libc6</emphasis>:"
 msgid "If you are not careful, the use of an option <literal>--force-*</literal> can lead to a system where the APT family of commands will refuse to function. In effect, some of these options allow installation of a package when a dependency is not met, or when there is a conflict. The result is an inconsistent system from the point of view of dependencies, and the APT commands will refuse to execute any action except those that will bring the system back to a consistent state (this often consists of installing the missing dependency or removing a problematic package). This often results in a message like this one, obtained after installing a new version of <emphasis role=\"pkg\">rdesktop</emphasis> while ignoring its dependency on a newer version of the <emphasis role=\"pkg\">libc6</emphasis>:"
-msgstr ""
-"Falls Sie nicht vorsichtig sind, kann der Gebrauch einer der "
-"<literal>--force-*</literal>-Optionen zu einem System führen, bei dem die "
-"APT-Befehlsfamilie nicht mehr funktioniert. In der Tat erlauben es einige "
-"dieser Optionen, ein Paket zu installieren, obwohl eine Abhängigkeit nicht "
-"erfüllt ist, oder wenn ein Konflikt vorliegt. Das Ergebnis ist ein aus Sicht "
-"der Abhängigkeiten inkonsistentes System, und die APT-Befehle werden sich "
-"weigern, irgendeine Aktion auszuführen, außer solchen, die  das System "
-"wieder in einen konsistenten Zustand versetzen (dies geschieht oft dadurch, "
-"dass die fehlende Abhängigkeit installiert oder ein problematisches Paket "
-"entfernt wird). Häufig führt dies zu einer Meldung wie der folgenden, die "
-"angezeigt wurde, nachdem eine neue Version von <emphasis role=\"pkg\""
-">rdesktop</emphasis> installiert und dabei seine Abhängigkeit von einer "
-"neueren Version von <emphasis role=\"pkg\">libc6</emphasis> ignoriert wurde:"
+msgstr "Falls Sie nicht vorsichtig sind, kann der Gebrauch einer der <literal>--force-*</literal>-Optionen zu einem System führen, bei dem die APT-Befehlsfamilie nicht mehr funktioniert. In der Tat erlauben es einige dieser Optionen, ein Paket zu installieren, obwohl eine Abhängigkeit nicht erfüllt ist, oder wenn ein Konflikt vorliegt. Das Ergebnis ist ein aus Sicht der Abhängigkeiten inkonsistentes System, und die APT-Befehle werden sich weigern, irgendeine Aktion auszuführen, außer solchen, die  das System wieder in einen konsistenten Zustand versetzen (dies geschieht oft dadurch, dass die fehlende Abhängigkeit installiert oder ein problematisches Paket entfernt wird). Häufig führt dies zu einer Meldung wie der folgenden, die angezeigt wurde, nachdem eine neue Version von <emphasis role=\"pkg\">rdesktop</emphasis> installiert und dabei seine Abhängigkeit von einer neueren Version von <emphasis role=\"pkg\">libc6</emphasis> ignoriert wurde:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2027,15 +1493,8 @@ msgstr "Ein mutiger Administrator, der von der Richtigkeit seiner Analyse überz
 
 #. Tag: para
 #, no-c-format
-#| msgid "This manipulation is an ugly hack, and should never be used, except in the most extreme case of necessity. Quite frequently, a more fitting solution is to recompile the package that's causing the problem (see <xref linkend=\"sect.rebuilding-package\" />) or use a new version (potentially corrected) from a site such as <literal>backports.debian.org</literal> (see <xref linkend=\"section.backports\" />)."
 msgid "This manipulation is an ugly hack, and should never be used, except in the most extreme case of necessity. Quite frequently, a more fitting solution is to recompile the package that's causing the problem (see <xref linkend=\"sect.rebuilding-package\" />) or use a new version (potentially corrected) from a repository such as the <literal>stable-backports</literal> one (see <xref linkend=\"sect.backports\" />)."
-msgstr ""
-"Diese Manipulation ist ein unschöner Eingriff und sollte nicht benutzt "
-"werden, oder doch nur im äußersten Notfall. Häufig besteht eine bessere "
-"Lösung darin, das Paket, das das Problem verursacht, neu zu kompilieren ("
-"siehe <xref linkend=\"sect.rebuilding-package\" />) oder eine neue ("
-"möglicherweise korrigierte) Version aus einem Repository wie <literal>stable-"
-"backports</literal> zu verwenden (siehe <xref linkend=\"sect.backports\" />)."
+msgstr "Diese Manipulation ist ein unschöner Eingriff und sollte nicht benutzt werden, oder doch nur im äußersten Notfall. Häufig besteht eine bessere Lösung darin, das Paket, das das Problem verursacht, neu zu kompilieren (siehe <xref linkend=\"sect.rebuilding-package\" />) oder eine neue (möglicherweise korrigierte) Version aus einem Repository wie <literal>stable-backports</literal> zu verwenden (siehe <xref linkend=\"sect.backports\" />)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -2044,7 +1503,6 @@ msgstr "<primary>Ein Paket entfernen</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>purge of a package</primary>"
 msgid "<primary>purging a package</primary>"
 msgstr "<primary>vollständiges Entfernen („purge“) eines Pakets</primary>"
 
@@ -2060,19 +1518,8 @@ msgstr "<primary>Paket</primary><secondary>vollständig löschen</secondary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Invoking <command>dpkg</command> with the <literal>-r</literal> or <literal>--remove</literal> option, followed by the name of a package, removes that package. This removal is, however, not complete: all of the configuration files and scripts, log files (system logs) and other user data handled by the package remain. The reason for keeping them is to disable the program by uninstalling it, while preserving the option to reinstall it quickly and with the same configurations. To completely remove everything associated with a package, use the <literal>-P</literal> or <literal>--purge</literal> option, followed by the package name."
 msgid "Invoking <command>dpkg</command> with the <literal>-r</literal> or <literal>--remove</literal> option, followed by the name of a package, removes that package. This removal is, however, not complete: all of the configuration files, maintainer scripts, log files (system logs) and other user data handled by the package remain. That way disabling the program is easily done by uninstalling it, and it's still possible to quickly reinstall it with the same configuration. To completely remove everything associated with a package, use the <literal>-P</literal> or <literal>--purge</literal> option, followed by the package name."
-msgstr ""
-"Der Aufruf von <command>dpkg</command> mit der Option <literal>-r</literal> "
-"oder <literal>--remove</literal>, gefolgt von dem Paketnamen, entfernt das "
-"Paket. Dieses Entfernen ist jedoch nicht vollständig: alle "
-"Konfigurationsdateien, Betreuerskripte, Protokolldateien (Systemprotokolle) "
-"und andere vom Paket verarbeitete Nutzerdaten bleiben zurück. Es auf diese "
-"Weise zu deinstallieren ist schnell geschehen, andererseits bleibt aber die "
-"Möglichkeit bestehen, es schnell und mit derselben Konfiguration wieder zu "
-"installieren. Um alles, was mit einem Paket in Zusammenhang steht, "
-"vollständig zu entfernen, verwenden Sie die Option <literal>-P</literal> "
-"oder <literal>--purge</literal>, gefolgt von dem Paketnamen."
+msgstr "Der Aufruf von <command>dpkg</command> mit der Option <literal>-r</literal> oder <literal>--remove</literal>, gefolgt von dem Paketnamen, entfernt das Paket. Dieses Entfernen ist jedoch nicht vollständig: alle Konfigurationsdateien, Betreuerskripte, Protokolldateien (Systemprotokolle) und andere vom Paket verarbeitete Nutzerdaten bleiben zurück. Es auf diese Weise zu deinstallieren ist schnell geschehen, andererseits bleibt aber die Möglichkeit bestehen, es schnell und mit derselben Konfiguration wieder zu installieren. Um alles, was mit einem Paket in Zusammenhang steht, vollständig zu entfernen, verwenden Sie die Option <literal>-P</literal> oder <literal>--purge</literal>, gefolgt von dem Paketnamen."
 
 #. Tag: title
 #, no-c-format
@@ -2081,14 +1528,6 @@ msgstr "Entfernen und vollständiges Löschen des Pakets <emphasis>debian-cd</em
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
-#| "<computeroutput>(Reading database... 14170 files and directories already installed.)\n"
-#| "Removing debian-cd ...\n"
-#| "# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
-#| "<computeroutput>(Reading database... 13794 files and directories already installed.)\n"
-#| "Removing debian-cd ...\n"
-#| "Removing debian-cd configuration files...</computeroutput>\n"
 msgid ""
 "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
 "<computeroutput>(Reading database ... 97747 files and directories currently installed.)\n"
@@ -2099,21 +1538,17 @@ msgid ""
 "Purging configuration files for debian-cd ...</computeroutput>\n"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
-"<computeroutput>(Reading database ... 97747 files and directories currently "
-"installed.)\n"
+"<computeroutput>(Reading database ... 97747 files and directories currently installed.)\n"
 "Removing debian-cd ...\n"
 "# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
-"<computeroutput>(Reading database ... 97401 files and directories currently "
-"installed.)\n"
+"<computeroutput>(Reading database ... 97401 files and directories currently installed.)\n"
 "Removing debian-cd ...\n"
 "Purging configuration files for debian-cd ...</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Querying <command>dpkg</command>'s Database and Inspecting <filename>.deb</filename> Files"
-msgstr ""
-"Abfragen der Datenbank von <command>dpkg</command> und Untersuchen der "
-"<filename>.deb</filename>-Dateien"
+msgstr "Abfragen der Datenbank von <command>dpkg</command> und Untersuchen der <filename>.deb</filename>-Dateien"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2137,38 +1572,13 @@ msgstr "<emphasis>ZURÜCK ZU DEN GRUNDLAGEN</emphasis> Optionen-Syntax"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Most options are available in the “long” version (one or more relevant words, preceded by a double dash) or a “short” version (a single letter, often the initial of one word from the long version, and preceded by a single dash). This convention is so common that it is a POSIX standard. <indexterm><primary>POSIX</primary></indexterm> <indexterm><primary>option</primary><secondary>POSIX</secondary></indexterm>"
 msgid "Most options are available in a “long” version (one or more relevant words, preceded by a double dash) and a “short” version (a single letter, often the initial of one word from the long version, and preceded by a single dash). This convention is so common that it is a POSIX standard."
-msgstr ""
-"Die meisten Optionen gibt es sowohl in einer „langen“ Version (ein oder "
-"mehrere einschlägige Wörter mit einem vorangestellten doppelten Bindestrich) "
-"als auch in einer „kurzen“ Version (ein einzelner Buchstabe, häufig der "
-"Anfangsbuchstabe einer der Wörter der langen Version, mit einem einzelnen "
-"vorangestellten Bindestrich). Diese Konvention ist so sehr verbreitet, dass "
-"sie zu einem POSIX-Standard wurde."
+msgstr "Die meisten Optionen gibt es sowohl in einer „langen“ Version (ein oder mehrere einschlägige Wörter mit einem vorangestellten doppelten Bindestrich) als auch in einer „kurzen“ Version (ein einzelner Buchstabe, häufig der Anfangsbuchstabe einer der Wörter der langen Version, mit einem einzelnen vorangestellten Bindestrich). Diese Konvention ist so sehr verbreitet, dass sie zu einem POSIX-Standard wurde."
 
 #. Tag: para
 #, no-c-format
-#| msgid "Before concluding this section, we note that some <command>dpkg</command> options may query the internal database in order to obtain information. Giving first the long options and then corresponding short options (that will evidently take the same possible arguments) we cite <literal>--listfiles <replaceable>package</replaceable></literal> (or <literal>-L</literal>), which lists the files installed by this package; <literal>--search <replaceable>file</replaceable></literal> (or <literal>-S</literal>), which finds the package from which the file comes; <literal>--status <replaceable>package</replaceable></literal> (or <literal>-s</literal>), which displays the headers of an installed package; <literal>--list</literal> (or <literal>-l</literal>), which displays the list of packages known to the system and their installation status; <literal>--contents <replaceable>file.deb</replaceable></literal> (or <literal>-c</literal>), which lists the files in the Debian package specified; <literal>--info<replaceable> file.deb </replaceable></literal> (or <literal>-I</literal>), which displays the headers of the Debian package."
 msgid "Before concluding this section, we will study <command>dpkg</command> options that query the internal database in order to obtain information. Giving first the long options and then corresponding short options (that will evidently take the same possible arguments) we cite <literal>--listfiles <replaceable>package</replaceable></literal> (or <literal>-L</literal>), which lists the files installed by this package; <literal>--search <replaceable>file</replaceable></literal> (or <literal>-S</literal>), which finds the package(s) containing the file; <literal>--status <replaceable>package</replaceable></literal> (or <literal>-s</literal>), which displays the headers of an installed package; <literal>--list</literal> (or <literal>-l</literal>), which displays the list of packages known to the system and their installation status; <literal>--contents <replaceable>file.deb</replaceable></literal> (or <literal>-c</literal>), which lists the files in the Debian package specified; <literal>--info<replaceable> file.deb </replaceable></literal> (or <literal>-I</literal>), which displays the headers of this Debian package."
-msgstr ""
-"Bevor wir dieses Kapitel abschließen, möchten wir uns noch einige "
-"<command>dpkg</command>-Optionen ansehen, welche die interne Datenbank "
-"abfragen, um Informationen zu erhalten. Wir führen hierzu folgende Beispiele "
-"zunächst in der langen Version und dann der entsprechenden kurzen Version ("
-"die natürlich dieselben Parameter haben kann) an: <literal>--listfiles "
-"<replaceable>paket</replaceable></literal> (oder <literal>-L</literal>), "
-"listet die von diesem Paket installierten Dateien auf; <literal>--search "
-"<replaceable>datei</replaceable></literal> (oder <literal>-S</literal>), "
-"liefert das Paket, aus welchem die Datei stammt; <literal>--status "
-"<replaceable>paket</replaceable></literal> (oder <literal>-s</literal>), "
-"zeigt die Kopfzeilen eines installierten Pakets an; <literal>--list</literal>"
-" (oder <literal>-l</literal>), zeigt eine Liste der Pakete an, die dem "
-"System bekannt sind, und ihren Installationsstatus; <literal>--contents "
-"<replaceable>datei.deb</replaceable></literal> (oder <literal>-c</literal>), "
-"führt die in dem genannten Debian-Paket enthaltenen Dateien auf; "
-"<literal>--info<replaceable> datei.deb </replaceable></literal> (oder "
-"<literal>-I</literal>), zeigt die Kopfzeilen des Debian-Pakets an."
+msgstr "Bevor wir dieses Kapitel abschließen, möchten wir uns noch einige <command>dpkg</command>-Optionen ansehen, welche die interne Datenbank abfragen, um Informationen zu erhalten. Wir führen hierzu folgende Beispiele zunächst in der langen Version und dann der entsprechenden kurzen Version (die natürlich dieselben Parameter haben kann) an: <literal>--listfiles <replaceable>paket</replaceable></literal> (oder <literal>-L</literal>), listet die von diesem Paket installierten Dateien auf; <literal>--search <replaceable>datei</replaceable></literal> (oder <literal>-S</literal>), liefert das Paket, aus welchem die Datei stammt; <literal>--status <replaceable>paket</replaceable></literal> (oder <literal>-s</literal>), zeigt die Kopfzeilen eines installierten Pakets an; <literal>--list</literal> (oder <literal>-l</literal>), zeigt eine Liste der Pakete an, die dem System bekannt sind, und ihren Installationsstatus; <literal>--contents <replaceable>datei.deb</replaceable></literal> (oder <literal>-c</literal>), führt die in dem genannten Debian-Paket enthaltenen Dateien auf; <literal>--info<replaceable> datei.deb </replaceable></literal> (oder <literal>-I</literal>), zeigt die Kopfzeilen des Debian-Pakets an."
 
 #. Tag: title
 #, no-c-format
@@ -2177,128 +1587,6 @@ msgstr "Verschiedene Anfragen mit <command>dpkg</command>"
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
-#| "<computeroutput>/.\n"
-#| "/usr\n"
-#| "/usr/sbin\n"
-#| "/usr/sbin/update-passwd\n"
-#| "/usr/share\n"
-#| "/usr/share/man\n"
-#| "/usr/share/man/ru\n"
-#| "/usr/share/man/ru/man8\n"
-#| "/usr/share/man/ru/man8/update-passwd.8.gz\n"
-#| "/usr/share/man/pl\n"
-#| "/usr/share/man/pl/man8\n"
-#| "/usr/share/man/pl/man8/update-passwd.8.gz\n"
-#| "/usr/share/man/man8\n"
-#| "/usr/share/man/man8/update-passwd.8.gz\n"
-#| "/usr/share/man/fr\n"
-#| "/usr/share/man/fr/man8\n"
-#| "/usr/share/man/fr/man8/update-passwd.8.gz\n"
-#| "/usr/share/doc-base\n"
-#| "/usr/share/doc-base/users-and-groups\n"
-#| "/usr/share/base-passwd\n"
-#| "/usr/share/base-passwd/passwd.master\n"
-#| "/usr/share/base-passwd/group.master\n"
-#| "/usr/share/lintian\n"
-#| "/usr/share/lintian/overrides\n"
-#| "/usr/share/lintian/overrides/base-passwd\n"
-#| "/usr/share/doc\n"
-#| "/usr/share/doc/base-passwd\n"
-#| "/usr/share/doc/base-passwd/copyright\n"
-#| "/usr/share/doc/base-passwd/users-and-groups.html\n"
-#| "/usr/share/doc/base-passwd/changelog.gz\n"
-#| "/usr/share/doc/base-passwd/users-and-groups.txt.gz\n"
-#| "/usr/share/doc/base-passwd/README\n"
-#| "$ </computeroutput><userinput>dpkg -S /bin/date</userinput>\n"
-#| "<computeroutput>coreutils: /bin/date\n"
-#| "$ </computeroutput><userinput>dpkg -s coreutils</userinput>\n"
-#| "<computeroutput>Package: coreutils\n"
-#| "Essential: yes\n"
-#| "Status: install ok installed\n"
-#| "Priority: required\n"
-#| "Section: utils\n"
-#| "Installed-Size: 12188\n"
-#| "Maintainer: Michael Stone &lt;mstone@debian.org&gt;\n"
-#| "Architecture: i386\n"
-#| "Version: 8.5-1\n"
-#| "Replaces: mktemp, timeout\n"
-#| "Pre-Depends: libacl1 (&gt;= 2.2.11-1), libattr1 (&gt;= 2.4.41-1), libc6 (&gt;= 2.6), libselinux1 (&gt;= 1.32)\n"
-#| "Conflicts: timeout\n"
-#| "Description: GNU core utilities\n"
-#| " This package contains the basic file, shell and text manipulation\n"
-#| " utilities which are expected to exist on every operating system.\n"
-#| " .\n"
-#| " Specifically, this package includes:\n"
-#| " arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp\n"
-#| " csplit cut date dd df dir dircolors dirname du echo env expand expr\n"
-#| " factor false flock fmt fold groups head hostid id install join link ln\n"
-#| " logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup nproc od\n"
-#| " paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir runcon\n"
-#| " sha*sum seq shred sleep sort split stat stty sum sync tac tail tee test\n"
-#| " timeout touch tr true truncate tsort tty uname unexpand uniq unlink\n"
-#| " users vdir wc who whoami yes\n"
-#| "Homepage: http://gnu.org/software/coreutils\n"
-#| "$ </computeroutput><userinput>dpkg -l 'b*' | head</userinput>\n"
-#| "<computeroutput>Desired=Unknown/Install/Remove/Purge/Hold\n"
-#| "| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend\n"
-#| "|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)\n"
-#| "||/ Name                   Version    Description\n"
-#| "+++-===================-==========-============================================\n"
-#| "un  backupninja         &lt;none&gt;    (no description available)\n"
-#| "un  base                &lt;none&gt;    (no description available)\n"
-#| "un  base-config         &lt;none&gt;    (no description available)\n"
-#| "ii  base-files          4          Debian base system miscellaneous files\n"
-#| "ii  base-passwd         3.5.11     Debian base system master password and group\n"
-#| "$ </computeroutput><userinput>dpkg -c /var/cache/apt/archives/iceweasel_2.0.0.18-0etch1_i386.deb</userinput>\n"
-#| "<computeroutput>\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:18 ./\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:16 ./etc/\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/profile/\n"
-#| "-rw-r--r-- root/root      7138 2006-08-19 08:04 ./etc/iceweasel/profile/bookmarks.html\n"
-#| "-rw-r--r-- root/root       153 2006-09-14 19:13 ./etc/iceweasel/profile/localstore.rdf\n"
-#| "-rw-r--r-- root/root      3287 2005-02-01 18:36 ./etc/iceweasel/profile/search.rdf\n"
-#| "-rw-r--r-- root/root       287 2004-11-30 22:26 ./etc/iceweasel/profile/mimeTypes.rdf\n"
-#| "drwxr-xr-x root/root         0 2008-11-23 23:18 ./etc/iceweasel/profile/chrome/\n"
-#| "-rw-r--r-- root/root      1078 2004-11-30 22:26 ./etc/iceweasel/profile/chrome/userChrome-example.css\n"
-#| "-rw-r--r-- root/root       663 2004-11-30 22:26 ./etc/iceweasel/profile/chrome/userContent-example.css\n"
-#| "-rw-r--r-- root/root       347 2004-07-28 23:20 ./etc/iceweasel/profile/prefs.js\n"
-#| "-rw-r--r-- root/root        53 2008-11-23 22:43 ./etc/iceweasel/iceweaselrc\n"
-#| "[...]\n"
-#| "$ </computeroutput><userinput>dpkg -I /var/cache/apt/archives/iceweasel_2.0.0.18-0etch1_i386.deb</userinput>\n"
-#| "<computeroutput> new Debian package, version 2.0.\n"
-#| " size 9126828 bytes : control file = 37297 bytes.\n"
-#| "     346 bytes,     9 lines      conffiles            \n"
-#| "    1255 bytes,    20 lines      control              \n"
-#| "  122920 bytes,  1249 lines      md5sums              \n"
-#| "    1267 bytes,    37 lines   *  postinst             #!/bin/sh\n"
-#| "     293 bytes,     8 lines   *  postrm               #!/bin/sh\n"
-#| "    2763 bytes,    70 lines   *  preinst              #!/bin/sh\n"
-#| "     274 bytes,    12 lines   *  prerm                #!/bin/sh\n"
-#| " Package: iceweasel\n"
-#| " Version: 2.0.0.18-0etch1\n"
-#| " Section: web\n"
-#| " Priority: optional\n"
-#| " Architecture: i386\n"
-#| " Depends: fontconfig, psmisc, debianutils (&gt;= 1.16), libatk1.0-0 (&gt;= 1.12.2), libc6 (&gt;= 2.3.6-6)...\n"
-#| " Suggests: iceweasel-gnome-support (= 2.0.0.18-0etch1), latex-xft-fonts, xprint, mozplugger, libkrb53\n"
-#| " Conflicts: mozilla-firefox (&lt;&lt; 1.5.dfsg-1), firefox (&lt;&lt; 2.0+dfsg-1)\n"
-#| " Replaces: mozilla-firefox, firefox (&lt;&lt; 2.0+dfsg-1)\n"
-#| " Provides: www-browser\n"
-#| " Installed-Size: 26364\n"
-#| " Maintainer: Eric Dorland &lt;eric@debian.org&gt;\n"
-#| " Description: lightweight web browser based on Mozilla\n"
-#| "  Iceweasel is a redesign of the Mozilla browser component, similar to\n"
-#| "  Galeon, K-Meleon and Camino, but written using the XUL user interface\n"
-#| "  language and designed to be lightweight and cross-platform.\n"
-#| "  .\n"
-#| "  This browser is based on the Firefox source-code, with minor\n"
-#| "  modifications. Historically, this browser was previously known as\n"
-#| "  Firebird and Phoenix.\n"
-#| "</computeroutput>\n"
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
@@ -2416,8 +1704,7 @@ msgid ""
 "[...]</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>"
-"\n"
+"<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
 "<computeroutput>/.\n"
 "/usr\n"
 "/usr/sbin\n"
@@ -2465,8 +1752,7 @@ msgstr ""
 "Version: 8.13-3.5\n"
 "Replaces: mktemp, timeout\n"
 "Depends: dpkg (&gt;= 1.15.4) | install-info\n"
-"Pre-Depends: libacl1 (&gt;= 2.2.51-8), libattr1 (&gt;= 1:2.4.46-8), libc6 "
-"(&gt;= 2.7), libselinux1 (&gt;= 1.32)\n"
+"Pre-Depends: libacl1 (&gt;= 2.2.51-8), libattr1 (&gt;= 1:2.4.46-8), libc6 (&gt;= 2.7), libselinux1 (&gt;= 1.32)\n"
 "Conflicts: timeout\n"
 "Description: GNU core utilities\n"
 " This package contains the basic file, shell and text manipulation\n"
@@ -2484,25 +1770,17 @@ msgstr ""
 "Homepage: http://gnu.org/software/coreutils\n"
 "$ </computeroutput><userinput>dpkg -l 'b*'</userinput>\n"
 "<computeroutput>Desired=Unknown/Install/Remove/Purge/Hold\n"
-"| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-"
-"pend\n"
+"| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend\n"
 "|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)\n"
 "||/ Name         Version        Architecture   Description\n"
-"+++-============-==============-==============-=============================="
-"==\n"
-"un  backupninja  &lt;none&gt;                        (no description "
-"available)\n"
-"un  base         &lt;none&gt;                        (no description "
-"available)\n"
-"un  base-config  &lt;none&gt;                        (no description "
-"available)\n"
-"ii  base-files   7.1            amd64          Debian base system "
-"miscellaneous\n"
-"ii  base-passwd  3.5.26         amd64          Debian base system master "
-"passwo\n"
+"+++-============-==============-==============-================================\n"
+"un  backupninja  &lt;none&gt;                        (no description available)\n"
+"un  base         &lt;none&gt;                        (no description available)\n"
+"un  base-config  &lt;none&gt;                        (no description available)\n"
+"ii  base-files   7.1            amd64          Debian base system miscellaneous\n"
+"ii  base-passwd  3.5.26         amd64          Debian base system master passwo\n"
 "[...]\n"
-"$ </computeroutput><userinput>dpkg -c "
-"/var/cache/apt/archives/gnupg_1.4.12-7_amd64.deb</userinput>\n"
+"$ </computeroutput><userinput>dpkg -c /var/cache/apt/archives/gnupg_1.4.12-7_amd64.deb</userinput>\n"
 "<computeroutput>drwxr-xr-x root/root         0 2013-01-02 19:28 ./\n"
 "drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/\n"
 "drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/share/\n"
@@ -2510,15 +1788,11 @@ msgstr ""
 "drwxr-xr-x root/root         0 2013-01-02 19:28 ./usr/share/doc/gnupg/\n"
 "-rw-r--r-- root/root      3258 2012-01-20 10:51 ./usr/share/doc/gnupg/TODO\n"
 "-rw-r--r-- root/root       308 2011-12-02 18:34 ./usr/share/doc/gnupg/FAQ\n"
-"-rw-r--r-- root/root      3543 2012-02-20 18:41 "
-"./usr/share/doc/gnupg/Upgrading_From_PGP.txt\n"
-"-rw-r--r-- root/root       690 2012-02-20 18:41 ./usr/share/doc/gnupg/README."
-"Debian\n"
-"-rw-r--r-- root/root      1418 2012-02-20 18:41 ./usr/share/doc/gnupg/TODO."
-"Debian\n"
+"-rw-r--r-- root/root      3543 2012-02-20 18:41 ./usr/share/doc/gnupg/Upgrading_From_PGP.txt\n"
+"-rw-r--r-- root/root       690 2012-02-20 18:41 ./usr/share/doc/gnupg/README.Debian\n"
+"-rw-r--r-- root/root      1418 2012-02-20 18:41 ./usr/share/doc/gnupg/TODO.Debian\n"
 "[...]\n"
-"$ </computeroutput><userinput>dpkg -I "
-"/var/cache/apt/archives/gnupg_1.4.12-7_amd64.deb</userinput>\n"
+"$ </computeroutput><userinput>dpkg -I /var/cache/apt/archives/gnupg_1.4.12-7_amd64.deb</userinput>\n"
 "<computeroutput> new debian package, version 2.0.\n"
 " size 1952176 bytes: control archive=3312 bytes.\n"
 "    1449 bytes,    30 lines      control              \n"
@@ -2528,12 +1802,9 @@ msgstr ""
 " Package: gnupg\n"
 " Version: 1.4.12-7\n"
 " Architecture: amd64\n"
-" Maintainer: Debian GnuPG-Maintainers &lt;pkg-gnupg-"
-"maint@lists.alioth.debian.org&gt;\n"
+" Maintainer: Debian GnuPG-Maintainers &lt;pkg-gnupg-maint@lists.alioth.debian.org&gt;\n"
 " Installed-Size: 4627\n"
-" Depends: libbz2-1.0, libc6 (&gt;= 2.4), libreadline6 (&gt;= 6.0), "
-"libusb-0.1-4 (&gt;= 2:0.1.12), zlib1g (&gt;= 1:1.1.4), dpkg (&gt;= 1.15.4) | "
-"install-info, gpgv\n"
+" Depends: libbz2-1.0, libc6 (&gt;= 2.4), libreadline6 (&gt;= 6.0), libusb-0.1-4 (&gt;= 2:0.1.12), zlib1g (&gt;= 1:1.1.4), dpkg (&gt;= 1.15.4) | install-info, gpgv\n"
 " Recommends: libldap-2.4-2 (&gt;= 2.4.7), gnupg-curl\n"
 " Suggests: gnupg-doc, xloadimage | imagemagick | eog, libpcsclite1\n"
 " Section: utils\n"
@@ -2564,23 +1835,8 @@ msgstr "<primary>Vergleich von Versionen</primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Since <command>dpkg</command> is the program for handling Debian packages, it also provides the reference implementation of the logic of comparing version numbers. This is why it has a <literal>--compare-versions</literal> option, usable by external programs (especially configuration scripts executed by <command>dpkg</command> itself). This option requires three parameters: a version number, a comparison operator, and a second version number. The different possible operators are <literal>lt</literal> (strictly less than), <literal>le</literal> (less than or equal to), <literal>eq</literal> (equal), <literal>ne</literal> (not equal), <literal>ge</literal> (greater than or equal to), and <literal>gt</literal> (strictly greater than). If the comparison is correct, <command>dpkg</command> gives the return code, 0 (success); if not, it gives a non-zero return value (indicating failure)."
 msgid "Since <command>dpkg</command> is the program for handling Debian packages, it also provides the reference implementation of the logic of comparing version numbers. This is why it has a <literal>--compare-versions</literal> option, usable by external programs (especially configuration scripts executed by <command>dpkg</command> itself). This option requires three parameters: a version number, a comparison operator, and a second version number. The different possible operators are <literal>lt</literal> (strictly less than), <literal>le</literal> (less than or equal to), <literal>eq</literal> (equal), <literal>ne</literal> (not equal), <literal>ge</literal> (greater than or equal to), and <literal>gt</literal> (strictly greater than). If the comparison is correct, <command>dpkg</command> returns 0 (success); if not, it gives a non-zero return value (indicating failure)."
-msgstr ""
-"Da <command>dpkg</command> das Programm zur Handhabung von Debian-Paketen "
-"ist, stellt es auch die Referenzanwendung für die Logik zum Vergleich von "
-"Versionsnummern bereit. Daher hat es die Option <literal>--compare-"
-"versions</literal>, die von externen Programmen benutzt werden kann ("
-"insbesondere von Konfigurationsskripten, die von <command>dpkg</command> "
-"selbst ausgeführt werden). Diese Option benötigt drei Parameter: eine "
-"Versionsnummer, einen Vergleichsoperator und eine zweite Versionsnummer. Die "
-"möglichen Operatoren sind <literal>lt</literal> (kleiner als), "
-"<literal>le</literal> (kleiner als oder gleich), <literal>eq</literal> "
-"(gleich), <literal>ne</literal> (ungleich), <literal>ge</literal> (größer "
-"als oder gleich) und <literal>gt</literal> (größer als). Falls der Vergleich "
-"zutrifft, gibt <command>dpkg</command> den Rückgabewert 0 (Erfolg) zurück; "
-"anderenfalls gibt es einen von Null verschiedenen Wert zurück (zeigt einen "
-"Fehler an)."
+msgstr "Da <command>dpkg</command> das Programm zur Handhabung von Debian-Paketen ist, stellt es auch die Referenzanwendung für die Logik zum Vergleich von Versionsnummern bereit. Daher hat es die Option <literal>--compare-versions</literal>, die von externen Programmen benutzt werden kann (insbesondere von Konfigurationsskripten, die von <command>dpkg</command> selbst ausgeführt werden). Diese Option benötigt drei Parameter: eine Versionsnummer, einen Vergleichsoperator und eine zweite Versionsnummer. Die möglichen Operatoren sind <literal>lt</literal> (kleiner als), <literal>le</literal> (kleiner als oder gleich), <literal>eq</literal> (gleich), <literal>ne</literal> (ungleich), <literal>ge</literal> (größer als oder gleich) und <literal>gt</literal> (größer als). Falls der Vergleich zutrifft, gibt <command>dpkg</command> den Rückgabewert 0 (Erfolg) zurück; anderenfalls gibt es einen von Null verschiedenen Wert zurück (zeigt einen Fehler an)."
 
 #. Tag: screen
 #, no-c-format
@@ -2609,17 +1865,8 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-#| msgid "Note the unexpected failure of the last comparison: for <command>dpkg</command>, <literal>pre</literal>, usually denoting a pre-release, has no particular meaning, and this program compares the alphabetic characters in the same way as the numbers (a &lt;b &lt;c ...), in alphabetical order. This is why it considers “<literal>0pre3</literal>” to be greater than “<literal>0</literal>”. When we want a package's version number to indicate that it is a pre-release, we use the tilde character, “<literal>~</literal>”:"
 msgid "Note the unexpected failure of the last comparison: for <command>dpkg</command>, <literal>pre</literal>, usually denoting a pre-release, has no particular meaning, and this program compares the alphabetic characters in the same way as the numbers (a &lt; b &lt; c ...), in alphabetical order. This is why it considers “<literal>0pre3</literal>” to be greater than “<literal>0</literal>”. When we want a package's version number to indicate that it is a pre-release, we use the tilde character, “<literal>~</literal>”:"
-msgstr ""
-"Beachten Sie den unerwarteten Fehlschlag des letzten Vergleichs: für "
-"<command>dpkg</command> hat <literal>pre</literal>, das normalerweise eine "
-"Vorabveröffentlichung bezeichnet, keine besondere Bedeutung, und es "
-"behandelt die Buchstaben in derselben Weise wie die Zahlen (a &lt;_b &lt;_c "
-"...), in alphabetischer Reihenfolge. Daher hält es „<literal>0pre3</literal>“"
-" für größer als „<literal>0</literal>“. Wenn wir möchten, dass die "
-"Versionsnummer eines Pakets eine Vorabveröffentlichung kennzeichnet, "
-"verwenden wir die Tilde „<literal>~</literal>“:"
+msgstr "Beachten Sie den unerwarteten Fehlschlag des letzten Vergleichs: für <command>dpkg</command> hat <literal>pre</literal>, das normalerweise eine Vorabveröffentlichung bezeichnet, keine besondere Bedeutung, und es behandelt die Buchstaben in derselben Weise wie die Zahlen (a &lt;_b &lt;_c ...), in alphabetischer Reihenfolge. Daher hält es „<literal>0pre3</literal>“ für größer als „<literal>0</literal>“. Wenn wir möchten, dass die Versionsnummer eines Pakets eine Vorabveröffentlichung kennzeichnet, verwenden wir die Tilde „<literal>~</literal>“:"
 
 #. Tag: screen
 #, no-c-format
@@ -2641,21 +1888,8 @@ msgstr "<command>dpkg</command>s Protokolldatei"
 
 #. Tag: para
 #, no-c-format
-#| msgid "A recently introduced feature in <command>dpkg</command> is that it keeps a log of all of its actions in <filename>/var/log/dpkg.log</filename>. This log is extremely verbose, since it details every one of the stages through which packages handled by <command>dpkg</command> go. In addition to offering a way to track dpkg's behavior, it helps, above all, to keep a history of the development of the system: one can find the exact moment when each package has been installed or updated, and this information can be extremely useful in understanding a recent change in behavior. Additionally, all versions being recorded, it is easy to cross-check the information with the <filename>changelog.Debian.gz</filename> for packages in question, or even with online bug reports."
 msgid "<command>dpkg</command> keeps a log of all of its actions in <filename>/var/log/dpkg.log</filename>. This log is extremely verbose, since it details every one of the stages through which packages handled by <command>dpkg</command> go. In addition to offering a way to track dpkg's behavior, it helps, above all, to keep a history of the development of the system: one can find the exact moment when each package has been installed or updated, and this information can be extremely useful in understanding a recent change in behavior. Additionally, all versions being recorded, it is easy to cross-check the information with the <filename>changelog.Debian.gz</filename> for packages in question, or even with online bug reports."
-msgstr ""
-"<command>dpkg</command> speichert ein Protokoll über alle seine Aktivitäten "
-"in <filename>/var/log/dpkg.log</filename>. Dieses Protokoll ist äußerst "
-"umfangreich, da es jeden einzelnen Schritt aufzeichnet, durch den die von "
-"<command>dpkg</command> verarbeiteten Pakete gehen. Zusätzlich zu der "
-"Möglichkeit, das Verhalten von dpkg zu verfolgen, hilft es vor allem auch "
-"dabei, den Verlauf der Entwicklung des Systems festzuhalten: man kann den "
-"genauen Zeitpunkt feststellen, zu dem jedes Paket installiert oder "
-"aktualisiert worden ist, und diese Information kann für das Verständnis "
-"einer kürzlich aufgetretenen Verhaltensänderung äußerst hilfreich sein. Da "
-"alle Versionen aufgezeichnet werden, erleichtert es außerdem eine Gegenprobe "
-"mit <filename>changelog.Debian.gz</filename> für betroffene Pakete oder "
-"sogar mit Online-Fehlerberichten."
+msgstr "<command>dpkg</command> speichert ein Protokoll über alle seine Aktivitäten in <filename>/var/log/dpkg.log</filename>. Dieses Protokoll ist äußerst umfangreich, da es jeden einzelnen Schritt aufzeichnet, durch den die von <command>dpkg</command> verarbeiteten Pakete gehen. Zusätzlich zu der Möglichkeit, das Verhalten von dpkg zu verfolgen, hilft es vor allem auch dabei, den Verlauf der Entwicklung des Systems festzuhalten: man kann den genauen Zeitpunkt feststellen, zu dem jedes Paket installiert oder aktualisiert worden ist, und diese Information kann für das Verständnis einer kürzlich aufgetretenen Verhaltensänderung äußerst hilfreich sein. Da alle Versionen aufgezeichnet werden, erleichtert es außerdem eine Gegenprobe mit <filename>changelog.Debian.gz</filename> für betroffene Pakete oder sogar mit Online-Fehlerberichten."
 
 #. Tag: title
 #, no-c-format
@@ -2664,39 +1898,23 @@ msgstr "Multi-Arch Unterstützung"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>APT</primary>"
 msgid "<primary>Multi-Arch</primary>"
 msgstr "<primary>Multi-Arch</primary>"
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary>package</primary><secondary>conflict</secondary>"
 msgid "<primary>architecture</primary><secondary>multi-arch support</secondary>"
-msgstr ""
-"<primary>Architektur</primary><secondary>multi-arch Unterstützung</secondary>"
+msgstr "<primary>Architektur</primary><secondary>multi-arch Unterstützung</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "All Debian packages have an <literal>Architecture</literal> field in their control information. This field can contain either “<literal>all</literal>” (for packages that are architecture independent) or the name of the architecture that it targets (like “amd64”, “armhf”, …). In the latter case, by default, <command>dpkg</command> will only accept to install the package if its architecture matches the host's architecture as returned by <command>dpkg --print-architecture</command>."
-msgstr ""
-"Alle Debian Pakete haben ein <literal>Architektur</literal>-Feld in ihren "
-"Kontrollinformationen. Dieses Feld kann entweder “<literal>all</literal>” ("
-"für Pakete, die architekturunabhängig sind) enthalten oder die Bezeichnung "
-"der Ziel-Architektur (wie “amd64”, “armhf”, …). Im letzteren Fall wird "
-"<command>dpkg</command> standardmäßig das Paket nur installieren, wenn diese "
-"Architekturangabe zu derjenigen des ausführenden Systems passt, wie sie von "
-"<command>dpkg --print-architecture</command> zurückgegeben wird."
+msgstr "Alle Debian Pakete haben ein <literal>Architektur</literal>-Feld in ihren Kontrollinformationen. Dieses Feld kann entweder “<literal>all</literal>” (für Pakete, die architekturunabhängig sind) enthalten oder die Bezeichnung der Ziel-Architektur (wie “amd64”, “armhf”, …). Im letzteren Fall wird <command>dpkg</command> standardmäßig das Paket nur installieren, wenn diese Architekturangabe zu derjenigen des ausführenden Systems passt, wie sie von <command>dpkg --print-architecture</command> zurückgegeben wird."
 
 #. Tag: para
 #, no-c-format
 msgid "This restriction ensures that users do not end up with binaries compiled for an incorrect architecture. Everything would be perfect except that (some) computers can run binaries for multiple architectures, either natively (an “amd64“ system can run “i386” binaries) or through emulators."
-msgstr ""
-"Diese Einschränkung stellt sicher, dass Anwender nicht am Ende mit einem "
-"übersetzten Programm für eine falsche Architektur dastehen. Damit wäre "
-"eigentlich alles in bester Ordnung, aber es gibt (einige wenige)  Computer, "
-"die in der Lage sind, Programme für mehrere Architekturen auszuführen, "
-"entweder nativ (ein Amd64-System kann \"i386\"-Code ausführen) oder mit "
-"Hilfe von Emulatoren."
+msgstr "Diese Einschränkung stellt sicher, dass Anwender nicht am Ende mit einem übersetzten Programm für eine falsche Architektur dastehen. Damit wäre eigentlich alles in bester Ordnung, aber es gibt (einige wenige)  Computer, die in der Lage sind, Programme für mehrere Architekturen auszuführen, entweder nativ (ein Amd64-System kann \"i386\"-Code ausführen) oder mit Hilfe von Emulatoren."
 
 #. Tag: title
 #, no-c-format
@@ -2706,14 +1924,7 @@ msgstr "Multi-Arch einschalten"
 #. Tag: para
 #, no-c-format
 msgid "<command>dpkg</command>'s multi-arch support allows users to define “foreign architectures” that can be installed on the current system. This is simply done with <command>dpkg --add-architecture</command> like in the example below. There's a corresponding <command>dpkg --remove-architecture</command> to drop support of a foreign architecture, but it can only be used when no packages of this architecture remain."
-msgstr ""
-"Die Unterstützung für multi-arch von <command>dpkg</command> ermöglicht es "
-"Anwendern, \"fremde\" Architekturen festzulegen, die auf dem aktullen System "
-"installiert werden können. Dazu wird einfach der Befehl <command>dpkg --add-"
-"architecture</command>, wie unten gezeigt, aufgerufen. Der korrespondierende "
-"Befehl zum Beenden der Unterstützung für die andere Architektur lautet "
-"<command>dpkg --remove-architecture</command>, er funktioniert allerdings "
-"nur, wenn keine Pakete für diese Architektur mehr in Benutzung sind."
+msgstr "Die Unterstützung für multi-arch von <command>dpkg</command> ermöglicht es Anwendern, \"fremde\" Architekturen festzulegen, die auf dem aktullen System installiert werden können. Dazu wird einfach der Befehl <command>dpkg --add-architecture</command>, wie unten gezeigt, aufgerufen. Der korrespondierende Befehl zum Beenden der Unterstützung für die andere Architektur lautet <command>dpkg --remove-architecture</command>, er funktioniert allerdings nur, wenn keine Pakete für diese Architektur mehr in Benutzung sind."
 
 #. Tag: screen
 #, no-c-format
@@ -2744,91 +1955,62 @@ msgid ""
 "<computeroutput>armhf</computeroutput>\n"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>dpkg --print-"
-"architecture</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --print-architecture</userinput>\n"
 "<computeroutput>amd64\n"
-"# </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>"
-"\n"
-"<computeroutput># </computeroutput><userinput>dpkg -i "
-"gcc-4.7-base_4.7.2-5_armhf.deb</userinput>\n"
-"<computeroutput>dpkg: error processing gcc-4.7-base_4.7.2-5_armhf.deb "
-"(--install):\n"
+"# </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>\n"
+"<computeroutput>dpkg: error processing gcc-4.7-base_4.7.2-5_armhf.deb (--install):\n"
 " package architecture (armhf) does not match system (amd64)\n"
 "Errors were encountered while processing:\n"
 " gcc-4.7-base_4.7.2-5_armhf.deb\n"
 "# </computeroutput><userinput>dpkg --add-architecture armhf</userinput>\n"
-"<computeroutput># </computeroutput><userinput>dpkg --add-architecture "
-"armel</userinput>\n"
-"<computeroutput># </computeroutput><userinput>dpkg --print-foreign-"
-"architectures</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --add-architecture armel</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
 "<computeroutput>armhf\n"
 "armel\n"
-"# </computeroutput><userinput>dpkg -i "
-"gcc-4.7-base_4.7.2-5_armhf.deb</userinput>\n"
+"# </computeroutput><userinput>dpkg -i gcc-4.7-base_4.7.2-5_armhf.deb</userinput>\n"
 "<computeroutput>Selecting previously unselected package gcc-4.7-base:armhf.\n"
 "(Reading database ... 97399 files and directories currently installed.)\n"
 "Unpacking gcc-4.7-base:armhf (from gcc-4.7-base_4.7.2-5_armhf.deb) ...\n"
 "Setting up gcc-4.7-base:armhf (4.7.2-5) ...\n"
 "# </computeroutput><userinput>dpkg --remove-architecture armhf</userinput>\n"
-"<computeroutput>dpkg: error: cannot remove architecture 'armhf' currently in "
-"use by the database\n"
+"<computeroutput>dpkg: error: cannot remove architecture 'armhf' currently in use by the database\n"
 "# </computeroutput><userinput>dpkg --remove-architecture armel</userinput>\n"
-"<computeroutput># </computeroutput><userinput>dpkg --print-foreign-"
-"architectures</userinput>\n"
+"<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
 "<computeroutput>armhf</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
-#| msgid "<emphasis>TIP</emphasis> State diagrams"
 msgid "<emphasis>NOTE</emphasis> APT's multi-arch support"
 msgstr "<emphasis>Anmerkung</emphasis> die Multi-Arch-Unterstützung von APT"
 
 #. Tag: para
 #, no-c-format
 msgid "APT will automatically detect when dpkg has been configured to support foreign architectures and will start downloading the corresponding <filename>Packages</filename> files durings its update process."
-msgstr ""
-"APT erkennt automatisch, wenn die Unterstützung für fremde Architekturen in "
-"dpkg konfiguriert ist und wird die dazu passenden <filename>Paket</filename>-"
-"Dateien bei einer Aktualisierung herunterladen."
+msgstr "APT erkennt automatisch, wenn die Unterstützung für fremde Architekturen in dpkg konfiguriert ist und wird die dazu passenden <filename>Paket</filename>-Dateien bei einer Aktualisierung herunterladen."
 
 #. Tag: para
 #, no-c-format
 msgid "Foreign packages can then be installed with <command>apt-get install <replaceable>package</replaceable>:<replaceable>architecture</replaceable></command>."
-msgstr ""
-"Architektur-fremde Pakete können dann mit dem Befehl <command>apt-get "
-"install <replaceable>Paket</replaceable>:<replaceable>Architektur</replaceabl"
-"e></command> installiert werden."
+msgstr "Architektur-fremde Pakete können dann mit dem Befehl <command>apt-get install <replaceable>Paket</replaceable>:<replaceable>Architektur</replaceable></command> installiert werden."
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Using proprietary i386 binaries on amd64"
-msgstr ""
-"<emphasis>Praktisches Beispiel</emphasis> Verwenden von i386-Programmen "
-"unter amd64"
+msgstr "<emphasis>Praktisches Beispiel</emphasis> Verwenden von i386-Programmen unter amd64"
 
 #. Tag: para
 #, no-c-format
 msgid "There are multiple use cases for multi-arch, but the most popular one is the possibility to execute 32 bit binaries (i386) on 64 bit systems (amd64), in particular since several popular proprietary applications (like Skype) are only provided in 32 bit versions."
-msgstr ""
-"Es gibt mehrere Anwendungsszenarien für multi-arch, aber die verbreitetste "
-"ist die Möglichkeit, i386-Code auf 64bit-Systemen (amd64) auszuführen, "
-"besonders, weil einige populäre AnWendungen (wie Skype) nur in 32bit-"
-"Versionen vorliegen."
+msgstr "Es gibt mehrere Anwendungsszenarien für multi-arch, aber die verbreitetste ist die Möglichkeit, i386-Code auf 64bit-Systemen (amd64) auszuführen, besonders, weil einige populäre AnWendungen (wie Skype) nur in 32bit-Versionen vorliegen."
 
 #. Tag: para
 #, no-c-format
 msgid "Before multi-arch, when you wanted to uses a 32 bit appliction on a 64 bit system, you had to install <emphasis role=\"pkg\">ia32-libs</emphasis> to have 32 bit versions of the most popular libraries. That package was a huge hack that repackaged 32 bit libraries in an “amd64” package."
-msgstr ""
-"Vor der multi-arch-Unterstützung mussten Sie <emphasis role=\"pkg\""
-">ia32-libs</emphasis> installieren, wenn Sie eine 32bit-Anwendung auf einem "
-"64bit-System ausführen wollten, damit Sie die 32bit-Versionen der "
-"beliebtesten Bibliotheken zur Verfügung hatten. Dieses Paket war ein "
-"aufwändiger Hack, mit welchem 32bit-Bibliotheken in amd64-Pakete verpackt "
-"wurden."
+msgstr "Vor der multi-arch-Unterstützung mussten Sie <emphasis role=\"pkg\">ia32-libs</emphasis> installieren, wenn Sie eine 32bit-Anwendung auf einem 64bit-System ausführen wollten, damit Sie die 32bit-Versionen der beliebtesten Bibliotheken zur Verfügung hatten. Dieses Paket war ein aufwändiger Hack, mit welchem 32bit-Bibliotheken in amd64-Pakete verpackt wurden."
 
 #. Tag: indexterm
 #, no-c-format
-#| msgid "<primary><command>alien</command></primary>"
 msgid "<primary><emphasis role=\"pkg\">ia32-libs</emphasis></primary>"
 msgstr "<primary><emphasis role=\"pkg\">ia32-libs</emphasis></primary>"
 
@@ -2840,18 +2022,7 @@ msgstr "Anpassungen im Hinblick auf Multi-Arch"
 #. Tag: para
 #, no-c-format
 msgid "To make multi-arch actually useful and usable, libraries had to be repackaged and moved to an architecture-specific directory so that multiple copies (targeting different architectures) can be installed alongside. Such updated packages contain the “<literal>Multi-Arch: same</literal>” header field to tell the packaging system that the various architectures of the package can be safely co-installed (and that those packages can only satisfy dependencies of packages of the same architecture). Since multi-arch made its debut in Debian Wheezy, not all libraries have been converted yet (but all libraries which were embedded in <emphasis role=\"pkg\">ia32-libs</emphasis> do!)."
-msgstr ""
-"Um Multi-Arch tatsächlich nützlich und anwendbar zu machen, mussten "
-"Bibliotheken neu gepackt und in architekturspezifische Verzeichnisse "
-"eingestellt werden, damit mehrere Kopien (die für unterschiedliche "
-"Architekturen gedacht sind,) nebeneinander installiert werden können. Derart "
-"aktualisierte Pakete enthalten die “<literal>Multi-Arch: same</literal>”-"
-"Kopfzeilen die dem Paketier-System sagen, dass die verschiedenen "
-"Architekturen des Pakets problemlos parallel installiert werden können (und "
-"zeigen darüber hinaus an, dass diese Pakete nur Abhängigkeiten innerhalb der "
-"gleichen Architektur genügen können). Da Multi-Arch seine Geburtsstunde in "
-"Wheezy hatte, sind noch nicht alle Bibliotheken umgestellt. (Es sind jedoch "
-"alle Bibliotheken in <emphasis role=\"pkg\">ia32-libs</emphasis> enthalten!)"
+msgstr "Um Multi-Arch tatsächlich nützlich und anwendbar zu machen, mussten Bibliotheken neu gepackt und in architekturspezifische Verzeichnisse eingestellt werden, damit mehrere Kopien (die für unterschiedliche Architekturen gedacht sind,) nebeneinander installiert werden können. Derart aktualisierte Pakete enthalten die “<literal>Multi-Arch: same</literal>”-Kopfzeilen die dem Paketier-System sagen, dass die verschiedenen Architekturen des Pakets problemlos parallel installiert werden können (und zeigen darüber hinaus an, dass diese Pakete nur Abhängigkeiten innerhalb der gleichen Architektur genügen können). Da Multi-Arch seine Geburtsstunde in Wheezy hatte, sind noch nicht alle Bibliotheken umgestellt. (Es sind jedoch alle Bibliotheken in <emphasis role=\"pkg\">ia32-libs</emphasis> enthalten!)"
 
 #. Tag: screen
 #, no-c-format
@@ -2871,47 +2042,26 @@ msgid ""
 msgstr ""
 "\n"
 "$ <userinput>dpkg -s gcc-4.7-base</userinput>\n"
-"dpkg-query: error: --status needs a valid package name but 'gcc-4.7-base' is "
-"not: ambiguous package name 'gcc-4.7-base' with more than one installed "
-"instance\n"
+"dpkg-query: error: --status needs a valid package name but 'gcc-4.7-base' is not: ambiguous package name 'gcc-4.7-base' with more than one installed instance\n"
 "\n"
 "Use --help for help about querying packages.\n"
-"$ <userinput>dpkg -s gcc-4.7-base:amd64 gcc-4.7-base:armhf | grep "
-"^Multi</userinput>\n"
+"$ <userinput>dpkg -s gcc-4.7-base:amd64 gcc-4.7-base:armhf | grep ^Multi</userinput>\n"
 "Multi-Arch: same\n"
 "Multi-Arch: same\n"
 "$ <userinput>dpkg -L libgcc1:amd64 |grep .so</userinput>\n"
 "/lib/x86_64-linux-gnu/libgcc_s.so.1\n"
 "$ <userinput>dpkg -S /usr/share/doc/gcc-4.7-base/copyright</userinput>\n"
-"gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/"
-"copyright\n"
+"gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright\n"
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that <literal>Multi-Arch: same</literal> packages must have their names qualified with their architecture to be unambiguously identifiable. They also have the possibility to share files with other instances of the same package; <command>dpkg</command> ensures that all packages have bit-for-bit identical files when they are shared. Last but not least, all instances of a package must have the same version. They must thus be upgraded together."
-msgstr ""
-"Es sollte darauf hingewiesen werden, dass <literal>Multi-Arch: same</literal>"
-" Pakete im Namen den Hinweis auf die Architektur enthalten müssen, um "
-"eindeutig erkennbar zu sein. Auch können sie  Dateien mit anderen Instanzen "
-"des gleichen Pakets teilen. Der Befehl <command>dpkg</command> stellt "
-"sicher, dass gemeinsam genutzte Dateien auf Bit-Ebene identisch sind. Und "
-"nicht zuletzt, müssen alle Instanzen eines Pakets den gleichen Versionsstand "
-"haben. Sie müssen also auch gleichzeitig aktualisiert werden."
+msgstr "Es sollte darauf hingewiesen werden, dass <literal>Multi-Arch: same</literal> Pakete im Namen den Hinweis auf die Architektur enthalten müssen, um eindeutig erkennbar zu sein. Auch können sie  Dateien mit anderen Instanzen des gleichen Pakets teilen. Der Befehl <command>dpkg</command> stellt sicher, dass gemeinsam genutzte Dateien auf Bit-Ebene identisch sind. Und nicht zuletzt, müssen alle Instanzen eines Pakets den gleichen Versionsstand haben. Sie müssen also auch gleichzeitig aktualisiert werden."
 
 #. Tag: para
 #, no-c-format
 msgid "Multi-Arch support also brings some interesting challenges in the way dependencies are handled. Satisfying a dependency requires either a package marked “<literal>Multi-Arch: foreign</literal>” or a package whose architecture matches the one of the package declaring the dependency (in this dependency resolution process, architecture-independent packages are assumed to be of the same architecture than the host). A dependency can also be weakened to allow any architecture to fulfill it, with the <literal><replaceable>package</replaceable>:any</literal> syntax, but foreign packages can only satisfy such a dependency if they are marked “<literal>Multi-Arch: allowed</literal>”."
-msgstr ""
-"Multi-Arch birgt noch einige weitere interessante Herausforderungen im "
-"Hinblick darauf, wie Abhängigkeiten gehandhabt werden. Um einer Abhängigkeit "
-"zu genügen, muss ein Paket entweder als “<literal>Multi-Arch: "
-"foreign</literal>” gekennzeichnet sein, oder seine Architektur muss mit "
-"derjenigen des Pakets übereinstimmen, das die Anhängigkeit festgelegt hat. "
-"Eine Architekturfestlegung kann auch noch dadurch auf alle möglichen "
-"Architekturen ausgeweitet werden, wenn "
-"<literal><replaceable>package</replaceable>:any</literal> angegeben wird, "
-"aber architekturfremde Pakete können dieser Anforderung nur genügen, wenn "
-"sie als  “<literal>Multi-Arch: allowed</literal>” gekennzeichne sind."
+msgstr "Multi-Arch birgt noch einige weitere interessante Herausforderungen im Hinblick darauf, wie Abhängigkeiten gehandhabt werden. Um einer Abhängigkeit zu genügen, muss ein Paket entweder als “<literal>Multi-Arch: foreign</literal>” gekennzeichnet sein, oder seine Architektur muss mit derjenigen des Pakets übereinstimmen, das die Anhängigkeit festgelegt hat. Eine Architekturfestlegung kann auch noch dadurch auf alle möglichen Architekturen ausgeweitet werden, wenn <literal><replaceable>package</replaceable>:any</literal> angegeben wird, aber architekturfremde Pakete können dieser Anforderung nur genügen, wenn sie als  “<literal>Multi-Arch: allowed</literal>” gekennzeichne sind."
 
 #. Tag: title
 #, no-c-format
@@ -2935,14 +2085,8 @@ msgstr "<primary><command>alien</command></primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Debian packages are not the only software packages used in the free software world. The main competitor is the RPM format for Red Hat Linux and its many derivatives. Red Hat is a very popular, commercial distribution. It is common for software provided by third parties to be offered as RPM packages rather than Debian."
 msgid "Debian packages are not the only software packages used in the free software world. The main competitor is the RPM format of the Red Hat Linux distribution and its many derivatives. Red Hat is a very popular, commercial distribution. It is thus common for software provided by third parties to be offered as RPM packages rather than Debian."
-msgstr ""
-"Debian-Pakete sind nicht die einzigen in der freien Software-Welt "
-"verwendeten Software-Pakete. Hauptkonkurrent ist das RPM-Format der Red Hat "
-"Linux Distribution und seine zahlreichen Abkömmlinge. Red Hat ist eine sehr "
-"populäre kommerzielle Distribution. Häufig wird von Drittanbietern "
-"bereitgestellte Software als RPM-Paket angeboten und nicht als Debian."
+msgstr "Debian-Pakete sind nicht die einzigen in der freien Software-Welt verwendeten Software-Pakete. Hauptkonkurrent ist das RPM-Format der Red Hat Linux Distribution und seine zahlreichen Abkömmlinge. Red Hat ist eine sehr populäre kommerzielle Distribution. Häufig wird von Drittanbietern bereitgestellte Software als RPM-Paket angeboten und nicht als Debian."
 
 #. Tag: para
 #, no-c-format
@@ -2961,20 +2105,8 @@ msgstr "<emphasis>GEMEINSCHAFT</emphasis> Die Einführung von <filename>.deb</fi
 
 #. Tag: para
 #, no-c-format
-#| msgid "If you regularly use the <command>alien</command> program to install RPM packages coming from one of your providers, do not hesitate to write to them and amicably express your strong preference for the <filename>.deb</filename> format. Note that the format of the package is not everything: a <filename>.deb</filename> package built with <command>alien</command> or prepared for a version of Debian different than that which you use, even for a derivative distribution like Ubuntu, would probably not offer the same level of quality and integration as a package specifically developed for Debian <emphasis role=\"distribution\">Squeeze</emphasis>."
 msgid "If you regularly use the <command>alien</command> program to install RPM packages coming from one of your providers, do not hesitate to write to them and amicably express your strong preference for the <filename>.deb</filename> format. Note that the format of the package is not everything: a <filename>.deb</filename> package built with <command>alien</command> or prepared for a version of Debian different than that which you use, or even for a derivative distribution like Ubuntu, would probably not offer the same level of quality and integration as a package specifically developed for Debian <emphasis role=\"distribution\">Wheezy</emphasis>."
-msgstr ""
-"Falls Sie regelmäßig das Programm <command>alien</command> verwenden, um RPM-"
-"Pakete eines Ihrer Lieferanten zu installieren, sollten Sie ihm schreiben "
-"und freundlich darauf hinweisen, dass Sie das <filename>.deb</filename>-"
-"Format bevorzugen würden. Beachten Sie, dass das Format eines Pakets nicht "
-"alles ist: ein mit <command>alien</command> erzeugtes "
-"<filename>.deb</filename>-Paket oder eines, das für eine andere Debian-"
-"Version erstellt wurde als die von Ihnen verwendete oder gar für eine "
-"abgeleitete Distribution wie Ubuntu, würde wahrscheinlich nicht das gleiche "
-"Niveau an Qualität und Integration bieten, wie ein Paket, das speziell für "
-"Debian <emphasis role=\"distribution\">Wheezy</emphasis> entwickelt worden "
-"ist."
+msgstr "Falls Sie regelmäßig das Programm <command>alien</command> verwenden, um RPM-Pakete eines Ihrer Lieferanten zu installieren, sollten Sie ihm schreiben und freundlich darauf hinweisen, dass Sie das <filename>.deb</filename>-Format bevorzugen würden. Beachten Sie, dass das Format eines Pakets nicht alles ist: ein mit <command>alien</command> erzeugtes <filename>.deb</filename>-Paket oder eines, das für eine andere Debian-Version erstellt wurde als die von Ihnen verwendete oder gar für eine abgeleitete Distribution wie Ubuntu, würde wahrscheinlich nicht das gleiche Niveau an Qualität und Integration bieten, wie ein Paket, das speziell für Debian <emphasis role=\"distribution\">Wheezy</emphasis> entwickelt worden ist."
 
 #. Tag: screen
 #, no-c-format
@@ -2993,28 +2125,13 @@ msgstr ""
 
 #. Tag: para
 #, no-c-format
-#| msgid "You will find that this process is extremely simple. You must know, however, that the package generated does not have any information on dependencies, since the dependencies in the two packaging formats don't have systematic correspondence. The administrator, thus, must manually ensure that the converted package will function correctly, and this is why Debian packages thus generated should be avoided as much as possible. Fortunately, Debian has the largest collection of software packages of all distributions, and it is likely that whatever you seek is already in there."
 msgid "You will find that this process is extremely simple. You must know, however, that the package generated does not have any dependency information, since the dependencies in the two packaging formats don't have systematic correspondence. The administrator must thus manually ensure that the converted package will function correctly, and this is why Debian packages thus generated should be avoided as much as possible. Fortunately, Debian has the largest collection of software packages of all distributions, and it is likely that whatever you seek is already in there."
-msgstr ""
-"Sie werden feststellen, dass dieses Verfahren sehr einfach ist. Sie müssen "
-"jedoch wissen, dass das so erstellte Paket keinerlei Informationen über "
-"Abhängigkeiten enthält, da die Abhängigkeiten in den beiden Paketformaten "
-"keine systematische Entsprechung haben. Der Administrator muss daher manuell "
-"sicherstellen, dass das konvertierte Paket richtig funktioniert, und aus "
-"diesem Grund sollten so erzeugte Debian-Pakete möglichst vermieden werden. "
-"Glücklicherweise hat Debian von allen Distributionen die größte Sammlung an "
-"Softwarepaketen, und es ist wahrscheinlich, dass das, was Sie suchen, "
-"bereits darin vorhanden ist."
+msgstr "Sie werden feststellen, dass dieses Verfahren sehr einfach ist. Sie müssen jedoch wissen, dass das so erstellte Paket keinerlei Informationen über Abhängigkeiten enthält, da die Abhängigkeiten in den beiden Paketformaten keine systematische Entsprechung haben. Der Administrator muss daher manuell sicherstellen, dass das konvertierte Paket richtig funktioniert, und aus diesem Grund sollten so erzeugte Debian-Pakete möglichst vermieden werden. Glücklicherweise hat Debian von allen Distributionen die größte Sammlung an Softwarepaketen, und es ist wahrscheinlich, dass das, was Sie suchen, bereits darin vorhanden ist."
 
 #. Tag: para
 #, no-c-format
-#| msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program also handles other packaging formats, especially the one used by the Slackware distribution (it is made of a simple <filename>tar.gz</filename> archive)."
 msgid "Looking at the man page for the <command>alien</command> command, you will also note that this program handles other packaging formats, especially the one used by the Slackware distribution (it is made of a simple <filename>tar.gz</filename> archive)."
-msgstr ""
-"Wenn Sie sich die Man-Page für das Programm <command>alien</command> "
-"ansehen, werden sie feststellen, dass es auch andere Paketformate "
-"verarbeiten kann, vor allem solche der Slackware-Distribution (sie sind "
-"einfache <filename>tar.gz</filename> Archive)."
+msgstr "Wenn Sie sich die Man-Page für das Programm <command>alien</command> ansehen, werden sie feststellen, dass es auch andere Paketformate verarbeiten kann, vor allem solche der Slackware-Distribution (sie sind einfache <filename>tar.gz</filename> Archive)."
 
 #. Tag: para
 #, no-c-format

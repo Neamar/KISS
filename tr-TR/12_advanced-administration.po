@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2014-01-09 08:27+0100\n"
+"POT-Creation-Date: 2015-06-18T12:29:20\n"
 "PO-Revision-Date: 2012-06-01T20:23:58\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
@@ -1818,21 +1818,6 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Let us now set up the filesystem to be used by the container. Since this “virtual machine” will not run directly on the hardware, some tweaks are required when compared to a standard filesystem, especially as far as the kernel, devices and consoles are concerned. Fortunately, the <emphasis role=\"pkg\">lxc</emphasis> includes scripts that mostly automate this configuration. For instance, the following commands (which require the <emphasis role=\"pkg\">debootstrap</emphasis> and <emphasis role=\"pkg\">rsync</emphasis> packages) will install a Debian container:"
-msgstr ""
-
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>BEWARE</emphasis> Bugs in default <literal>debian</literal> template"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "The <command>/usr/share/lxc/templates/lxc-debian</command> template creation script provided in the initial <emphasis role=\"distribution\">Wheezy</emphasis> package (aka <emphasis role=\"pkg\">lxc</emphasis> 0.8.0~rc1-8+deb7u1) suffers from numerous problems. The most important one is that it relies on the <command>live-debconfig</command> program which is not available in <emphasis role=\"distribution\">Wheezy</emphasis> but only in newer versions of Debian. <ulink type=\"block\" url=\"http://bugs.debian.org/680469\" /> <ulink type=\"block\" url=\"http://bugs.debian.org/686747\" />"
-msgstr ""
-
-#. Tag: para
-#, no-c-format
-msgid "At the time of writing, there was no good solution and no usable work-around, except to use an alternate template creation script. Further updates of lxc might fix this though. This section assumes that <command>/usr/share/lxc/templates/lxc-debian</command> matches the upstream provided script: <ulink type=\"block\" url=\"https://github.com/lxc/lxc/raw/master/templates/lxc-debian.in\" />"
 msgstr ""
 
 #. Tag: screen

@@ -6,8 +6,7 @@ msgstr ""
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
 "PO-Revision-Date: 2014-11-16 22:58+0200\n"
 "Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/debian-handbook"
-"/92_short-remedial-course/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/debian-handbook/92_short-remedial-course/de/>\n"
 "Language: de-DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
@@ -87,20 +86,8 @@ msgstr "Den Verzeichnisbaum durchsuchen und Dateien verwalten"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Once a session is open, the <command>pwd</command> command (<emphasis>print working directory</emphasis>) displays the current location in the filesystem. The current directory is changed with the <command>cd <replaceable>directory</replaceable></command> command (<command>cd</command> is for <emphasis>change directory</emphasis>). The parent directory is always called <literal>..</literal> (two dots), whereas the current directory is also known as <literal>.</literal> (one dot). The <command>ls</command> command allows <emphasis>listing</emphasis> the contents of a directory. If no parameters are given, it operates on the current directory."
 msgid "Once a session is open, the <command>pwd</command> command (which stands for <emphasis>print working directory</emphasis>) displays the current location in the filesystem. The current directory is changed with the <command>cd <replaceable>directory</replaceable></command> command (<command>cd</command> is for <emphasis>change directory</emphasis>). The parent directory is always called <literal>..</literal> (two dots), whereas the current directory is also known as <literal>.</literal> (one dot). The <command>ls</command> command allows <emphasis>listing</emphasis> the contents of a directory. If no parameters are given, it operates on the current directory."
-msgstr ""
-"Sobald eine Sitzung gestartet ist, zeigt der Befehl <command>pwd</command> "
-"(das steht für <emphasis>print working directory</emphasis>) die derzeitige "
-"Position im Dateisystem an. Das aktuelle Verzeichnis kann mit dem Befehl "
-"<command>cd <replaceable>verzeichnis</replaceable></command> "
-"(<command>cd</command> steht für <emphasis>change directory</emphasis>) "
-"gewechselt werden. Das übergeordnete Verzeichnis heißt immer "
-"<literal>..</literal> (zwei Punkte), während das aktuelle Verzeichnis auch "
-"als <literal>.</literal> (ein Punkt) bekannt ist. Der Befehl "
-"<command>ls</command> (<emphasis>list</emphasis>) zeigt den Inhalt eines "
-"Verzeichnisses an. Wenn keine zusätzlichen Parameter angegeben werden, wird "
-"das aktuelle Verzeichnis angezeigt."
+msgstr "Sobald eine Sitzung gestartet ist, zeigt der Befehl <command>pwd</command> (das steht für <emphasis>print working directory</emphasis>) die derzeitige Position im Dateisystem an. Das aktuelle Verzeichnis kann mit dem Befehl <command>cd <replaceable>verzeichnis</replaceable></command> (<command>cd</command> steht für <emphasis>change directory</emphasis>) gewechselt werden. Das übergeordnete Verzeichnis heißt immer <literal>..</literal> (zwei Punkte), während das aktuelle Verzeichnis auch als <literal>.</literal> (ein Punkt) bekannt ist. Der Befehl <command>ls</command> (<emphasis>list</emphasis>) zeigt den Inhalt eines Verzeichnisses an. Wenn keine zusätzlichen Parameter angegeben werden, wird das aktuelle Verzeichnis angezeigt."
 
 #. Tag: screen
 #, no-c-format
@@ -142,15 +129,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "A new directory can be created with <command>mkdir <replaceable>directory</replaceable></command>, and an existing (empty) directory can be removed with <command>rmdir <replaceable>directory</replaceable></command>. The <command>mv</command> command allows <emphasis>moving</emphasis> and/or renaming files and directories; <emphasis>removing</emphasis> a file involves <command>rm <replaceable>file</replaceable></command>."
-msgstr ""
-"Ein neues Verzeichnis kann mit <command>mkdir "
-"<replaceable>verzeichnis</replaceable></command> erstellt und ein "
-"bestehendes (leeres) Verzeichnis mit <command>rmdir "
-"<replaceable>verzeichnis</replaceable></command> entfernt werden. Der Befehl "
-"<command>mv</command> (<emphasis>moving</emphasis>) ermöglicht es, Dateien "
-"und Verzeichnisse zu verschieben oder umzubenennen. Eine Datei wird mit "
-"<command>rm <replaceable>datei</replaceable></command> "
-"(<emphasis>remove</emphasis>) gelöscht."
+msgstr "Ein neues Verzeichnis kann mit <command>mkdir <replaceable>verzeichnis</replaceable></command> erstellt und ein bestehendes (leeres) Verzeichnis mit <command>rmdir <replaceable>verzeichnis</replaceable></command> entfernt werden. Der Befehl <command>mv</command> (<emphasis>moving</emphasis>) ermöglicht es, Dateien und Verzeichnisse zu verschieben oder umzubenennen. Eine Datei wird mit <command>rm <replaceable>datei</replaceable></command> (<emphasis>remove</emphasis>) gelöscht."
 
 #. Tag: screen
 #, no-c-format
@@ -212,17 +191,8 @@ msgstr "Der Befehl <command>find <replaceable>verzeichnis</replaceable> <replace
 
 #. Tag: para
 #, no-c-format
-#| msgid "The <command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> command searches the contents of the files and extracts the lines matching the regular expression (see sidebar <xref linkend=\"encadre.expression-rationnelle\" />). Adding the <literal>-r</literal> option enables a recursive search on all files contained in the directory passed as a parameter. This allows looking for a file when only a part of the contents are known."
 msgid "The <command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> command searches the contents of the files and extracts the lines matching the regular expression (see sidebar <xref linkend=\"sidebar.regexp\" />). Adding the <literal>-r</literal> option enables a recursive search on all files contained in the directory passed as a parameter. This allows looking for a file when only a part of the contents are known."
-msgstr ""
-"Der Befehl <command>grep <replaceable>ausdruck</replaceable> "
-"<replaceable>dateien</replaceable></command> durchsucht den Inhalt der "
-"Dateien und exzerpiert die Zeilen, die dem regulären Ausdruck entsprechen "
-"(siehe <xref linkend=\"sidebar.regexp\" /> in der Seitenleiste). Das "
-"Hinzufügen der Option <literal>-r</literal> bewirkt eine rekursive Suche in "
-"allen Dateien des Verzeichnisses, das als Parameter angegeben wird. So ist "
-"es möglich, nach einer Datei zu suchen, wenn nur ein Teil ihres Inhalts "
-"bekannt ist."
+msgstr "Der Befehl <command>grep <replaceable>ausdruck</replaceable> <replaceable>dateien</replaceable></command> durchsucht den Inhalt der Dateien und exzerpiert die Zeilen, die dem regulären Ausdruck entsprechen (siehe <xref linkend=\"sidebar.regexp\" /> in der Seitenleiste). Das Hinzufügen der Option <literal>-r</literal> bewirkt eine rekursive Suche in allen Dateien des Verzeichnisses, das als Parameter angegeben wird. So ist es möglich, nach einer Datei zu suchen, wenn nur ein Teil ihres Inhalts bekannt ist."
 
 #. Tag: title
 #, no-c-format
@@ -236,25 +206,8 @@ msgstr "Der Befehl <command>ps aux</command> listet die Prozesse auf, die gerade
 
 #. Tag: para
 #, no-c-format
-#| msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key pair pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
 msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key combination pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
-msgstr ""
-"Der Befehlsinterpreter kann auch Programme im Hintergrund ausführen, wenn "
-"der Befehl mit „&amp;“ endet. Durch Verwendung dieses Und-Zeichens übernimmt "
-"der Benutzer sofort wieder die Kontrolle über das Terminal, obwohl der "
-"Befehl noch läuft (vor dem Benutzer verborgen als Hintergrundprozess). Der "
-"Befehl <command>jobs</command> listet die im Hintergrund laufenden Prozesse "
-"auf; das Ausführen von <command>fg %<replaceable>job-"
-"nummer</replaceable></command> (für <emphasis>foreground</emphasis>) stellt "
-"einen Job wieder im Vordergrund her. Wenn ein Befehl im Vordergrund läuft "
-"(weil er entweder normal gestartet wurde oder mit <command>fg</command> "
-"wieder in den Vordergrund gebracht wurde), hält die Tastenkombination "
-"<keycombo "
-"action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> den "
-"Prozess an und stellt die Kontrolle über die Befehlszeile wieder her. Der "
-"Prozess kann dann im Hintergrund mit <command>bg %<replaceable>job-"
-"nummer</replaceable></command> (für "
-"<foreignphrase>background</foreignphrase>) fortgesetzt werden."
+msgstr "Der Befehlsinterpreter kann auch Programme im Hintergrund ausführen, wenn der Befehl mit „&amp;“ endet. Durch Verwendung dieses Und-Zeichens übernimmt der Benutzer sofort wieder die Kontrolle über das Terminal, obwohl der Befehl noch läuft (vor dem Benutzer verborgen als Hintergrundprozess). Der Befehl <command>jobs</command> listet die im Hintergrund laufenden Prozesse auf; das Ausführen von <command>fg %<replaceable>job-nummer</replaceable></command> (für <emphasis>foreground</emphasis>) stellt einen Job wieder im Vordergrund her. Wenn ein Befehl im Vordergrund läuft (weil er entweder normal gestartet wurde oder mit <command>fg</command> wieder in den Vordergrund gebracht wurde), hält die Tastenkombination <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> den Prozess an und stellt die Kontrolle über die Befehlszeile wieder her. Der Prozess kann dann im Hintergrund mit <command>bg %<replaceable>job-nummer</replaceable></command> (für <foreignphrase>background</foreignphrase>) fortgesetzt werden."
 
 #. Tag: title
 #, no-c-format
@@ -268,22 +221,6 @@ msgstr "Der Befehl <command>free</command> zeigt Informationen über den Speiche
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>$ </computeroutput><userinput>free</userinput>\n"
-#| "<computeroutput>             total       used       free     shared    buffers     cached\n"
-#| "Mem:       1028420    1009624      18796          0      47404     391804\n"
-#| "-/+ buffers/cache:     570416     458004\n"
-#| "Swap:      2771172     404588    2366584\n"
-#| "$ </computeroutput><userinput>df</userinput>\n"
-#| "<computeroutput>Filesystem           1K-blocks      Used Available Use% Mounted on\n"
-#| "/dev/sda2              9614084   4737916   4387796  52% /\n"
-#| "tmpfs                   514208         0    514208   0% /lib/init/rw\n"
-#| "udev                     10240       100     10140   1% /dev\n"
-#| "tmpfs                   514208    269136    245072  53% /dev/shm\n"
-#| "/dev/sda5             44552904  36315896   7784380  83% /home\n"
-#| "</computeroutput>\n"
-#| "      "
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>free</userinput>\n"
@@ -302,14 +239,12 @@ msgid ""
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>free</userinput>\n"
-"<computeroutput>             total       used       free     shared    "
-"buffers     cached\n"
+"<computeroutput>             total       used       free     shared    buffers     cached\n"
 "Mem:       1028420    1009624      18796          0      47404     391804\n"
 "-/+ buffers/cache:     570416     458004\n"
 "Swap:      2771172     404588    2366584\n"
 "$ </computeroutput><userinput>df</userinput>\n"
-"<computeroutput>Filesystem           1K-blocks      Used Available Use% "
-"Mounted on\n"
+"<computeroutput>Filesystem           1K-blocks      Used Available Use% Mounted on\n"
 "/dev/sda2              9614084   4737916   4387796  52% /\n"
 "tmpfs                   514208         0    514208   0% /lib/init/rw\n"
 "udev                     10240       100     10140   1% /dev\n"
@@ -447,58 +382,23 @@ msgstr "Der Inhalt des Home-Verzeichnisses eines Benutzers ist nicht standardisi
 
 #. Tag: para
 #, no-c-format
-#| msgid "Application configuration files are often stored directly under the user's home directory, but their names usually start with a dot (for instance, the <command>mutt</command> email client stores its configuration in <filename>~/.muttrc</filename>). Filenames that start with a dot are hidden by default, and <command>ls</command> only lists them when the <literal>-a</literal> option is used."
 msgid "Traditionally, application configuration files are often stored directly under the user's home directory, but their names usually start with a dot (for instance, the <command>mutt</command> email client stores its configuration in <filename>~/.muttrc</filename>). Note that filenames that start with a dot are hidden by default; and <command>ls</command> only lists them when the <literal>-a</literal> option is used, and graphical file managers need to be told to display hidden files."
-msgstr ""
-"Die Konfigurationsdateien der Anwendungen werden häufig direkt im Home-"
-"Verzeichnis des Benutzers gespeichert, jedoch beginnen ihre Namen gewöhnlich "
-"mit einem Punkt (zum Beispiel speichert der E-Mail-Client "
-"<command>mutt</command> seine Konfiguration in "
-"<filename>~/.muttrc</filename>). Achten Sie darauf: Dateinamen, die mit "
-"einem Punkt beginnen, sind standardmäßig unsichtbar, und "
-"<command>ls</command> führt sie nur auf, wenn die Option "
-"<literal>-a</literal> benutzt wird und bei Dateimanagern muß dies auch "
-"explizit eingestellt werden."
+msgstr "Die Konfigurationsdateien der Anwendungen werden häufig direkt im Home-Verzeichnis des Benutzers gespeichert, jedoch beginnen ihre Namen gewöhnlich mit einem Punkt (zum Beispiel speichert der E-Mail-Client <command>mutt</command> seine Konfiguration in <filename>~/.muttrc</filename>). Achten Sie darauf: Dateinamen, die mit einem Punkt beginnen, sind standardmäßig unsichtbar, und <command>ls</command> führt sie nur auf, wenn die Option <literal>-a</literal> benutzt wird und bei Dateimanagern muß dies auch explizit eingestellt werden."
 
 #. Tag: para
 #, no-c-format
-#| msgid "Some programs use multiple configuration files organized in one directory (for instance, <filename>~/.evolution/</filename>). Some applications (such as the Iceweasel web browser) also use their directory to store a cache of downloaded data. This means that those directories can end up using a lot of disk space."
 msgid "Some programs also use multiple configuration files organized in one directory (for instance, <filename>~/.ssh/</filename>). Some applications (such as the Iceweasel web browser) also use their directory to store a cache of downloaded data. This means that those directories can end up using a lot of disk space."
-msgstr ""
-"Einige Programme verwenden auch mehrere in einem Verzeichnis organisierte "
-"Konfigurationsdateien (zum Beispiel <filename>~/.ssh/</filename>). Einige "
-"Anwendungen (wie zum Beispiel der Web-Browser Iceweasel) benutzen ihr "
-"Verzeichnis auch, um einen Cache heruntergeladener Daten zu speichern. Dies "
-"bedeutet, dass diese Verzeichnisse schließlich sehr viel Speicherplatz "
-"belegen können."
+msgstr "Einige Programme verwenden auch mehrere in einem Verzeichnis organisierte Konfigurationsdateien (zum Beispiel <filename>~/.ssh/</filename>). Einige Anwendungen (wie zum Beispiel der Web-Browser Iceweasel) benutzen ihr Verzeichnis auch, um einen Cache heruntergeladener Daten zu speichern. Dies bedeutet, dass diese Verzeichnisse schließlich sehr viel Speicherplatz belegen können."
 
 #. Tag: para
 #, no-c-format
 msgid "These configuration files stored directly in a user's home directory, often collectively referred to as <emphasis>dotfiles</emphasis>, have long proliferated to the point that these directories can be quite cluttered with them. Fortunately, an effort led collectively under the FreeDesktop.org umbrella has resulted in the “XDG Base Directory Specification”, a convention that aims at cleaning up these files and directory. This specification states that configuration files should be stored under <filename>~/.config</filename>, cache files under <filename>~/.cache</filename>, and application data files under <filename>~/.local</filename> (or subdirectories thereof). This convention is slowly gaining traction, and several applications (especially graphical ones) have started following it."
-msgstr ""
-"Diese Konfigurationsdateien die direkt im Benutzerverzeichnis gespeichert "
-"werden und die oft gemeinschaftlich als <emphasis>Dotfiles</emphasis> "
-"bezeichnet werden, haben so stark gewuchert dass diese Verzeichnisse nun "
-"vollgestopft davon sind. Glücklicherweise führte führte eine Verbesserung "
-"unter dem Schirm der FreeDesktop.org hinaus in die “XDG Base Directory "
-"Specification”, ein Abkommen mit dem Ziel diese Dateien und Verzeichnisse "
-"aufzuräumen. Diese Spezifikation besagt, dass Konfigurationsdateien "
-"unterhalb von <filename>~/.config</filename>, Cache-Dateien unter "
-"<filename>~/.cache</filename> und Applikationsdaten unter "
-"<filename>~/.local</filename> (oder Unterverzeichnissen davon) gespeichert "
-"werden sollen. Dieses Abkommen bekommt so langsam Zugkraft und verschiedene "
-"Applikationen (insbesondere grafische) beginnen es nun umzusetzen."
+msgstr "Diese Konfigurationsdateien die direkt im Benutzerverzeichnis gespeichert werden und die oft gemeinschaftlich als <emphasis>Dotfiles</emphasis> bezeichnet werden, haben so stark gewuchert dass diese Verzeichnisse nun vollgestopft davon sind. Glücklicherweise führte führte eine Verbesserung unter dem Schirm der FreeDesktop.org hinaus in die “XDG Base Directory Specification”, ein Abkommen mit dem Ziel diese Dateien und Verzeichnisse aufzuräumen. Diese Spezifikation besagt, dass Konfigurationsdateien unterhalb von <filename>~/.config</filename>, Cache-Dateien unter <filename>~/.cache</filename> und Applikationsdaten unter <filename>~/.local</filename> (oder Unterverzeichnissen davon) gespeichert werden sollen. Dieses Abkommen bekommt so langsam Zugkraft und verschiedene Applikationen (insbesondere grafische) beginnen es nun umzusetzen."
 
 #. Tag: para
 #, no-c-format
-#| msgid "Graphical desktops usually display the contents of the <filename>~/Desktop/</filename> directory (or <filename>~/Bureau/</filename> or whatever the appropriate translation is for systems not configured in English) on the desktop (ie, what's visible on screen once all applications are closed or iconized)."
 msgid "Graphical desktops usually display the contents of the <filename>~/Desktop/</filename> directory (or whatever the appropriate translation is for systems not configured in English) on the desktop (ie, what's visible on screen once all applications are closed or iconized)."
-msgstr ""
-"Grafische Arbeitsflächen zeigen normalerweise den Inhalt des Verzeichnisses "
-"<filename>~/Desktop/</filename> (oder was immer die entsprechende "
-"Übersetzung für Systeme ist, die nicht in Englisch konfiguriert sind) auf "
-"der Arbeitsfläche an (das heißt, was auf dem Bildschirm sichtbar ist, wenn "
-"alle Anwendungen geschlossen oder zu Piktogrammen minimiert sind)."
+msgstr "Grafische Arbeitsflächen zeigen normalerweise den Inhalt des Verzeichnisses <filename>~/Desktop/</filename> (oder was immer die entsprechende Übersetzung für Systeme ist, die nicht in Englisch konfiguriert sind) auf der Arbeitsfläche an (das heißt, was auf dem Bildschirm sichtbar ist, wenn alle Anwendungen geschlossen oder zu Piktogrammen minimiert sind)."
 
 #. Tag: para
 #, no-c-format
@@ -567,26 +467,8 @@ msgstr "<primary>USB</primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Let us start with a basic reminder that a computer is, first and foremost, a set of hardware elements. There is generally a main board, with one (or more) processor(s), some RAM, device controllers, and extension slots for option boards (for other device controllers). Most noteworthy among these controllers are IDE (Parallel ATA), SCSI and Serial ATA, for connecting to storage devices such as hard disks. Other controllers include USB, which is able to host a great variety of devices (ranging from webcams to thermometers, from keyboards to home automation systems) and IEEE_1394 (Firewire). These controllers often allow connecting several devices so the complete subsystem handled by a controller is therefore usually known as a “bus”. Option boards include graphics cards (where monitor screens will be plugged in to), sound cards, network interface cards, and so on. Some main boards are pre-built with these features, and don't need option boards."
 msgid "Let us start with a basic reminder that a computer is, first and foremost, a set of hardware elements. There is generally a main board (known as the <emphasis>motherboard</emphasis>), with one (or more) processor(s), some RAM, device controllers, and extension slots for option boards (for other device controllers). Most noteworthy among these controllers are IDE (Parallel ATA), SCSI and Serial ATA, for connecting to storage devices such as hard disks. Other controllers include USB, which is able to host a great variety of devices (ranging from webcams to thermometers, from keyboards to home automation systems) and IEEE 1394 (Firewire). These controllers often allow connecting several devices so the complete subsystem handled by a controller is therefore usually known as a “bus”. Option boards include graphics cards (where monitor screens will be plugged in to), sound cards, network interface cards, and so on. Some main boards are pre-built with these features, and don't need option boards."
-msgstr ""
-"Lassen Sie uns mit der grundlegenden Erinnerung beginnen, dass ein Rechner "
-"in erster Linie eine Zusammenstellung von Hardwareelementen ist. Es gibt im "
-"Allgemeinen eine Hauptplatine (das <emphasis>Motherboard</emphasis>) mit "
-"einem (oder mehreren) Prozessor(en), etwas RAM, Gerätesteuerungen und "
-"Erweiterungssteckplätze für Optionskarten (für weitere Gerätesteuerungen). "
-"Von diesen Steuerungen sind vor allem das IDE (paralleles ATA), das SCSCI "
-"und das serielle ATA zum Anschluss von Speichergeräten wie Festplatten "
-"beachtenswert. Zu den weiteren Steuerungen gehören das USB, das eine große "
-"Vielfalt an Geräten (von Webkameras zu Thermometern, von Tastaturen zu "
-"Systemen für die Hausautomation) aufnehmen kann, und das IEEE_1394 "
-"(Firewire). Diese Steuerungen ermöglichen es häufig, mehrere Geräte "
-"anzuschließen. Daher wird das vollständige Subsystem, für das eine Steuerung "
-"zuständig ist, gewöhnlich als „Bus“ bezeichnet. Zu den Optionskarten "
-"gehören Grafikkarten (an die Bildschirme angeschlossen werden), Soundkarten, "
-"Netzwerkschnittstellenkarten und so weiter. Bei einigen Hauptplatinen sind "
-"diese Bestandteile bereits fest eingebaut, so dass sie keine Optionskarten "
-"benötigen."
+msgstr "Lassen Sie uns mit der grundlegenden Erinnerung beginnen, dass ein Rechner in erster Linie eine Zusammenstellung von Hardwareelementen ist. Es gibt im Allgemeinen eine Hauptplatine (das <emphasis>Motherboard</emphasis>) mit einem (oder mehreren) Prozessor(en), etwas RAM, Gerätesteuerungen und Erweiterungssteckplätze für Optionskarten (für weitere Gerätesteuerungen). Von diesen Steuerungen sind vor allem das IDE (paralleles ATA), das SCSCI und das serielle ATA zum Anschluss von Speichergeräten wie Festplatten beachtenswert. Zu den weiteren Steuerungen gehören das USB, das eine große Vielfalt an Geräten (von Webkameras zu Thermometern, von Tastaturen zu Systemen für die Hausautomation) aufnehmen kann, und das IEEE_1394 (Firewire). Diese Steuerungen ermöglichen es häufig, mehrere Geräte anzuschließen. Daher wird das vollständige Subsystem, für das eine Steuerung zuständig ist, gewöhnlich als „Bus“ bezeichnet. Zu den Optionskarten gehören Grafikkarten (an die Bildschirme angeschlossen werden), Soundkarten, Netzwerkschnittstellenkarten und so weiter. Bei einigen Hauptplatinen sind diese Bestandteile bereits fest eingebaut, so dass sie keine Optionskarten benötigen."
 
 #. Tag: title
 #, no-c-format
@@ -605,15 +487,8 @@ msgstr "Ein Festplattenlaufwerk besteht aus sich drehenden Platten und sich bewe
 
 #. Tag: para
 #, no-c-format
-#| msgid "Network cards often include LEDs displaying the state of the link. If a cable is plugged in and leads to a working network hub or switch, at least one LED will be on. If no LEDs lights, either the card itself, the network device, or the cable between them, is faulty. The next step is therefore testing each component individually."
 msgid "Network cards often include LEDs displaying the state of the link. If a cable is plugged in and leads to a working network hub or switch, at least one LED will be on. If no LED lights up, either the card itself, the network device, or the cable between them, is faulty. The next step is therefore testing each component individually."
-msgstr ""
-"Netzwerkkarten besitzen häufig LEDs, die den Verbindungsstatus anzeigen. "
-"Falls ein Kabel angeschlossen ist und zu einem funktionierenden Netzwerk-Hub "
-"oder -Schalter führt, wird zumindest eine LED an sein. Falls keine LED "
-"leuchtet, ist entweder die Karte selbst, das Netzwerkgerät oder das Kabel "
-"zwischen ihnen defekt. Der nächste Schritt besteht deshalb dann darin, jede "
-"Komponente einzeln zu überprüfen."
+msgstr "Netzwerkkarten besitzen häufig LEDs, die den Verbindungsstatus anzeigen. Falls ein Kabel angeschlossen ist und zu einem funktionierenden Netzwerk-Hub oder -Schalter führt, wird zumindest eine LED an sein. Falls keine LED leuchtet, ist entweder die Karte selbst, das Netzwerkgerät oder das Kabel zwischen ihnen defekt. Der nächste Schritt besteht deshalb dann darin, jede Komponente einzeln zu überprüfen."
 
 #. Tag: para
 #, no-c-format
@@ -662,21 +537,8 @@ msgstr "Der Bootsektor enthält seinerseits ein Stück Software, Boot-Loader gen
 
 #. Tag: para
 #, no-c-format
-#| msgid "The BIOS is also in charge of detecting and initializing a number of devices. Obviously, this includes the IDE/SATA devices (usually hard disk(s) and CD/DVD-ROM drives), but also PCI devices. Detected devices are often listed on screen during the boot process. If this list goes by too fast, use the <keycap>Pause</keycap> key to freeze it for long enough to read. Installed PCI devices that don't appear, are a bad omen. At worst, the device is faulty. At best, it is merely incompatible with the current version of the BIOS or main board. PCI specifications evolve, and old main boards are not guaranteed to handle newer PCI devices."
 msgid "The BIOS is also in charge of detecting and initializing a number of devices. Obviously, this includes the IDE/SATA devices (usually hard disk(s) and CD/DVD-ROM drives), but also PCI devices. Detected devices are often listed on screen during the boot process. If this list goes by too fast, use the <keycap>Pause</keycap> key to freeze it for long enough to read. Installed PCI devices that don't appear are a bad omen. At worst, the device is faulty. At best, it is merely incompatible with the current version of the BIOS or main board. PCI specifications evolve, and old main boards are not guaranteed to handle newer PCI devices."
-msgstr ""
-"Das BIOS ist auch dafür zuständig, eine Anzahl von Geräten zu finden und zu "
-"initialisieren. Offensichtlich gehören hierzu die IDE/SATA-Geräte "
-"(normalerweise Festplatten und CD/DVD-ROM-Laufwerke) aber auch PCI-Geräte. "
-"Erkannte Geräte werden häufig während des Hochfahrens auf dem Bildschirm "
-"angezeigt. Falls diese Liste zu schnell vorbeiläuft, können Sie die "
-"<keycap>Pause</keycap>-Taste drücken, um sie zum Lesen anzuhalten. PCI-"
-"Geräte, die installiert sind, aber nicht angezeigt werden, sind ein "
-"schlechtes Zeichen. Im schlimmsten Fall ist das Gerät defekt. Im besten Fall "
-"ist es nur nicht mit der aktuellen Version des BIOS oder der Hauptplatine "
-"kompatibel. PCI-Spezifikationen entwickeln sich weiter, und bei alten "
-"Hauptplatinen ist nicht gewährleistet, dass sie mit neueren PCI-Geräten "
-"umgehen können."
+msgstr "Das BIOS ist auch dafür zuständig, eine Anzahl von Geräten zu finden und zu initialisieren. Offensichtlich gehören hierzu die IDE/SATA-Geräte (normalerweise Festplatten und CD/DVD-ROM-Laufwerke) aber auch PCI-Geräte. Erkannte Geräte werden häufig während des Hochfahrens auf dem Bildschirm angezeigt. Falls diese Liste zu schnell vorbeiläuft, können Sie die <keycap>Pause</keycap>-Taste drücken, um sie zum Lesen anzuhalten. PCI-Geräte, die installiert sind, aber nicht angezeigt werden, sind ein schlechtes Zeichen. Im schlimmsten Fall ist das Gerät defekt. Im besten Fall ist es nur nicht mit der aktuellen Version des BIOS oder der Hauptplatine kompatibel. PCI-Spezifikationen entwickeln sich weiter, und bei alten Hauptplatinen ist nicht gewährleistet, dass sie mit neueren PCI-Geräten umgehen können."
 
 #. Tag: title
 #, no-c-format
@@ -725,25 +587,6 @@ msgstr "Beispiel der von <command>lspci</command> und <command>lsusb</command> a
 
 #. Tag: screen
 #, no-c-format
-#| msgid ""
-#| "\n"
-#| "<computeroutput>$ </computeroutput><userinput>lspci</userinput>\n"
-#| "<computeroutput>[...]\n"
-#| "00:02.1 Display controller: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller (rev 03)\n"
-#| "00:1c.0 PCI bridge: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) PCI Express Port 1 (rev 03)\n"
-#| "00:1d.0 USB Controller: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #1 (rev 03)\n"
-#| "[...]\n"
-#| "01:00.0 Ethernet controller: Broadcom Corporation NetXtreme BCM5751 Gigabit Ethernet PCI Express (rev 01)\n"
-#| "02:03.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network Connection (rev 05)\n"
-#| "$ </computeroutput><userinput>lsusb</userinput>\n"
-#| "<computeroutput>Bus 005 Device 004: ID 413c:a005 Dell Computer Corp.\n"
-#| "Bus 005 Device 008: ID 413c:9001 Dell Computer Corp.\n"
-#| "Bus 005 Device 007: ID 045e:00dd Microsoft Corp.\n"
-#| "Bus 005 Device 006: ID 046d:c03d Logitech, Inc.\n"
-#| "[...]\n"
-#| "Bus 002 Device 004: ID 413c:8103 Dell Computer Corp. Wireless 350 Bluetooth\n"
-#| "</computeroutput>\n"
-#| "      "
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>lspci</userinput>\n"
@@ -766,17 +609,12 @@ msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>lspci</userinput>\n"
 "<computeroutput>[...]\n"
-"00:02.1 Display controller: Intel Corporation Mobile 915GM/GMS/910GML "
-"Express Graphics Controller (rev 03)\n"
-"00:1c.0 PCI bridge: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) "
-"PCI Express Port 1 (rev 03)\n"
-"00:1d.0 USB Controller: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 "
-"Family) USB UHCI #1 (rev 03)\n"
+"00:02.1 Display controller: Intel Corporation Mobile 915GM/GMS/910GML Express Graphics Controller (rev 03)\n"
+"00:1c.0 PCI bridge: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) PCI Express Port 1 (rev 03)\n"
+"00:1d.0 USB Controller: Intel Corporation 82801FB/FBM/FR/FW/FRW (ICH6 Family) USB UHCI #1 (rev 03)\n"
 "[...]\n"
-"01:00.0 Ethernet controller: Broadcom Corporation NetXtreme BCM5751 Gigabit "
-"Ethernet PCI Express (rev 01)\n"
-"02:03.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network "
-"Connection (rev 05)\n"
+"01:00.0 Ethernet controller: Broadcom Corporation NetXtreme BCM5751 Gigabit Ethernet PCI Express (rev 01)\n"
+"02:03.0 Network controller: Intel Corporation PRO/Wireless 2200BG Network Connection (rev 05)\n"
 "$ </computeroutput><userinput>lsusb</userinput>\n"
 "<computeroutput>Bus 005 Device 004: ID 413c:a005 Dell Computer Corp.\n"
 "Bus 005 Device 008: ID 413c:9001 Dell Computer Corp.\n"
@@ -793,19 +631,8 @@ msgstr "Diese Programme haben eine Option <literal>-v</literal>, durch die wesen
 
 #. Tag: para
 #, no-c-format
-#| msgid "Applications often access devices by way of special files created within <filename>/dev/</filename> (see sidebar <xref linkend=\"cadre.fichiers-speciaux\" />). These are special files that represent disk drives (for instance, <filename>/dev/hda</filename> and <filename>/dev/sdc</filename>), partitions (<filename>/dev/hda1</filename> or <filename>/dev/sdc3</filename>), mice (<filename>/dev/input/mouse0</filename>), keyboards (<filename>/dev/input/event0</filename>), soundcards (<filename>/dev/snd/*</filename>), serial ports (<filename>/dev/ttyS*</filename>), and so on."
 msgid "Applications often access devices by way of special files created within <filename>/dev/</filename> (see sidebar <xref linkend=\"sidebar.special-files\" />). These are special files that represent disk drives (for instance, <filename>/dev/hda</filename> and <filename>/dev/sdc</filename>), partitions (<filename>/dev/hda1</filename> or <filename>/dev/sdc3</filename>), mice (<filename>/dev/input/mouse0</filename>), keyboards (<filename>/dev/input/event0</filename>), soundcards (<filename>/dev/snd/*</filename>), serial ports (<filename>/dev/ttyS*</filename>), and so on."
-msgstr ""
-"Anwendungen greifen häufig mittels spezieller in <filename>/dev/</filename> "
-"erzeugter Dateien auf Geräte zu (siehe Seitenleiste <xref linkend=\"sidebar"
-".special-files\" />). Dies sind besondere Dateien, die Plattenlaufwerke (zum "
-"Beispiel <filename>/dev/hda</filename> und <filename>/dev/sdc</filename>), "
-"Partitionen (<filename>/dev/hda1</filename> oder "
-"<filename>/dev/sdc3</filename>), Mäuse "
-"(<filename>/dev/input/mouse0</filename>), Tastaturen "
-"(<filename>/dev/input/event0</filename>), Soundkarten "
-"(<filename>/dev/snd/*</filename>), serielle Schnittstellen "
-"(<filename>/dev/ttyS*</filename>) und so weiter repräsentieren."
+msgstr "Anwendungen greifen häufig mittels spezieller in <filename>/dev/</filename> erzeugter Dateien auf Geräte zu (siehe Seitenleiste <xref linkend=\"sidebar.special-files\" />). Dies sind besondere Dateien, die Plattenlaufwerke (zum Beispiel <filename>/dev/hda</filename> und <filename>/dev/sdc</filename>), Partitionen (<filename>/dev/hda1</filename> oder <filename>/dev/sdc3</filename>), Mäuse (<filename>/dev/input/mouse0</filename>), Tastaturen (<filename>/dev/input/event0</filename>), Soundkarten (<filename>/dev/snd/*</filename>), serielle Schnittstellen (<filename>/dev/ttyS*</filename>) und so weiter repräsentieren."
 
 #. Tag: title
 #, no-c-format
@@ -834,21 +661,8 @@ msgstr "Der Ausgangspunkt dieses Hierarchiebaums wird „root“ genannt, <filen
 
 #. Tag: para
 #, no-c-format
-#| msgid "Unlike other systems, there's only one such hierarchy, and it can integrate data from several disks. One of these disks is used as the root, and the others are “mounted” on directories in the hierarchy (the Unix command is called <command>mount</command>); these other disks are then available under these “mount points”. This allows storing users' home directories (traditionally stored within <filename>/home/</filename>) on a second hard disk, which will contain <literal>rhertzog</literal> and <literal>rmas</literal> directories. Once the disk is mounted on <filename>/home/</filename>, these directories become accessible at their usual locations, and paths such as <filename>/home/rmas/Desktop/hello.txt</filename> keep working."
 msgid "Unlike other systems, there's only one such hierarchy, and it can integrate data from several disks. One of these disks is used as the root, and the others are “mounted” on directories in the hierarchy (the Unix command is called <command>mount</command>); these other disks are then available under these “mount points”. This allows storing users' home directories (traditionally stored within <filename>/home/</filename>) on a second hard disk, which will contain the <literal>rhertzog</literal> and <literal>rmas</literal> directories. Once the disk is mounted on <filename>/home/</filename>, these directories become accessible at their usual locations, and paths such as <filename>/home/rmas/Desktop/hello.txt</filename> keep working."
-msgstr ""
-"Im Gegensatz zu anderen Systemen gibt es nur eine derartige Hierarchie, und "
-"sie kann Daten verschiedener Speicherplatten einbinden. Eine dieser Platten "
-"wird als Wurzelverzeichnis verwendet, und die übrigen werden innerhalb der "
-"Hierarchie in Verzeichnissen „eingehängt“ (der entsprechende Unixbefehl "
-"heißt <command>mount</command>); diese anderen Platten sind dann unter ihren "
-"„Einhängepunkten“ verfügbar. Hierdurch wird es möglich, die Home-"
-"Verzeichnisse der Benutzer (üblicherweise in <filename>/home/</filename> "
-"gespeichert) auf einer zweiten Festplatte abzuspeichern, die dann "
-"Verzeichnisse wie <literal>rhertzog</literal> und <literal>rmas</literal> "
-"enthält. Sobald diese Platte auf <filename>/home/</filename> eingehängt ist, "
-"sind diese Verzeichnisse an ihren üblichen Orten zugänglich, und Pfade wie "
-"<filename>/home/rmas/Desktop/hello.txt</filename> funktionieren weiterhin."
+msgstr "Im Gegensatz zu anderen Systemen gibt es nur eine derartige Hierarchie, und sie kann Daten verschiedener Speicherplatten einbinden. Eine dieser Platten wird als Wurzelverzeichnis verwendet, und die übrigen werden innerhalb der Hierarchie in Verzeichnissen „eingehängt“ (der entsprechende Unixbefehl heißt <command>mount</command>); diese anderen Platten sind dann unter ihren „Einhängepunkten“ verfügbar. Hierdurch wird es möglich, die Home-Verzeichnisse der Benutzer (üblicherweise in <filename>/home/</filename> gespeichert) auf einer zweiten Festplatte abzuspeichern, die dann Verzeichnisse wie <literal>rhertzog</literal> und <literal>rmas</literal> enthält. Sobald diese Platte auf <filename>/home/</filename> eingehängt ist, sind diese Verzeichnisse an ihren üblichen Orten zugänglich, und Pfade wie <filename>/home/rmas/Desktop/hello.txt</filename> funktionieren weiterhin."
 
 #. Tag: indexterm
 #, no-c-format
@@ -872,20 +686,8 @@ msgstr "Gemeinsam genutzte Funktionen"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Since a number of the same functions are used by all software, it makes sense to centralize them in the kernel. For instance, shared filesystem handling allow any application to simply open a file by name, without needing to worry where the file is stored physically. The file can be stored in several different slices on a hard disk, or split across several hard disks, or even stored on a remote file server. Shared communication functions, are used by applications to exchange data independently of the way the data is transported. For instance, transport could be over any combination of local or wireless networks, or over a telephone landline."
 msgid "Since a number of the same functions are used by all software, it makes sense to centralize them in the kernel. For instance, shared filesystem handling allows any application to simply open a file by name, without needing to worry where the file is stored physically. The file can be stored in several different slices on a hard disk, or split across several hard disks, or even stored on a remote file server. Shared communication functions are used by applications to exchange data independently of the way the data is transported. For instance, transport could be over any combination of local or wireless networks, or over a telephone landline."
-msgstr ""
-"Da eine Anzahl von Funktionen von allen Programmen gemeinsam benutzt wird, "
-"macht es Sinn, sie im Kernel zusammenzufassen. Zum Beispiel ermöglicht der "
-"Einsatz eines gemeinsam benutzten Dateisystems es jeder Anwendung, einfach "
-"eine Datei anhand ihres Namens zu öffnen, ohne sich darum zu kümmern, wo die "
-"Datei physisch gespeichert ist. Die Datei kann in mehreren Teilen auf einer "
-"Festplatte gespeichert sein, über mehrere Festplatten verteilt sein oder "
-"sogar auf einem entfernten Dateiserver abgelegt sein. Gemeinsam genutzte "
-"Kommunikationsfunktionen werden von Anwendungen dazu verwendet, Daten "
-"unabhängig von der Art auf der sie transportiert werden, auszutauschen. Zum "
-"Beispiel könnte der Transport über eine beliebige Kombination aus lokalen "
-"und kabellosen Netzwerken oder über eine Festnetztelefonleitung verlaufen."
+msgstr "Da eine Anzahl von Funktionen von allen Programmen gemeinsam benutzt wird, macht es Sinn, sie im Kernel zusammenzufassen. Zum Beispiel ermöglicht der Einsatz eines gemeinsam benutzten Dateisystems es jeder Anwendung, einfach eine Datei anhand ihres Namens zu öffnen, ohne sich darum zu kümmern, wo die Datei physisch gespeichert ist. Die Datei kann in mehreren Teilen auf einer Festplatte gespeichert sein, über mehrere Festplatten verteilt sein oder sogar auf einem entfernten Dateiserver abgelegt sein. Gemeinsam genutzte Kommunikationsfunktionen werden von Anwendungen dazu verwendet, Daten unabhängig von der Art auf der sie transportiert werden, auszutauschen. Zum Beispiel könnte der Transport über eine beliebige Kombination aus lokalen und kabellosen Netzwerken oder über eine Festnetztelefonleitung verlaufen."
 
 #. Tag: indexterm
 #, no-c-format
@@ -894,41 +696,13 @@ msgstr "<primary><emphasis>pid</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "A process is a running instance of a program. This requires memory to store both the program itself and its operating data. The kernel is in charge of creating and tracking them. When a program runs, first the kernel sets aside memory, then loads the executable code from the filesystem into it, and then starts the code running. It keeps information about this process, the most visible of which, is an identification number known as <emphasis>pid</emphasis> (<emphasis>process identifier</emphasis>)."
 msgid "A process is a running instance of a program. This requires memory to store both the program itself and its operating data. The kernel is in charge of creating and tracking them. When a program runs, the kernel first sets aside some memory, then loads the executable code from the filesystem into it, and then starts the code running. It keeps information about this process, the most visible of which is an identification number known as <emphasis>pid</emphasis> (<emphasis>process identifier</emphasis>)."
-msgstr ""
-"Ein Prozess führt ein Programm aus. Dies erfordert Speicherplatz, um sowohl "
-"das Programm selbst als auch seine Betriebsdaten zu speichern. Es ist die "
-"Aufgabe des Kernels, sie zu erzeugen und zu verfolgen. Wenn ein Programm "
-"läuft, reserviert der Kernel zunächst Speicherplatz, lädt dann den "
-"ausführbaren Code aus dem Dateisystem in den Speicher und beginnt "
-"schließlich, den Code auszuführen. Er hält Informationen über diesen Prozess "
-"bereit, von denen die am leichtesten erkennbare eine Identifikationsnummer "
-"namens <emphasis>pid</emphasis> (<emphasis>process identifier</emphasis>) "
-"ist."
+msgstr "Ein Prozess führt ein Programm aus. Dies erfordert Speicherplatz, um sowohl das Programm selbst als auch seine Betriebsdaten zu speichern. Es ist die Aufgabe des Kernels, sie zu erzeugen und zu verfolgen. Wenn ein Programm läuft, reserviert der Kernel zunächst Speicherplatz, lädt dann den ausführbaren Code aus dem Dateisystem in den Speicher und beginnt schließlich, den Code auszuführen. Er hält Informationen über diesen Prozess bereit, von denen die am leichtesten erkennbare eine Identifikationsnummer namens <emphasis>pid</emphasis> (<emphasis>process identifier</emphasis>) ist."
 
 #. Tag: para
 #, no-c-format
-#| msgid "Unix-like kernels (including Linux), and like most other modern operating systems, are able of “multi-tasking”. In other words, they allow running many processes “at the same time”. There's actually only one running process at any one time, but the kernel cuts time into small slices and runs each process in turn. Since these time slices are very short (in the millisecond range), they create the illusion of processes running in parallel, although they're actually only active during some time intervals and idle the rest of the time. The kernel's job is to adjust its scheduling mechanisms to keep that illusion, while maximizing the global system performance. If the time slices are too long, the application may lack in snappiness and user interactivity. Too short, and the system loses time switching tasks too frequently. These decisions can be tweaked with process priorities. High-priority processes will run for longer and more frequent time slices than low-priority processes."
 msgid "Unix-like kernels (including Linux), like most other modern operating systems, are able of “multi-tasking”. In other words, they allow running many processes “at the same time”. There's actually only one running process at any one time, but the kernel cuts time into small slices and runs each process in turn. Since these time slices are very short (in the millisecond range), they create the illusion of processes running in parallel, although they're actually only active during some time intervals and idle the rest of the time. The kernel's job is to adjust its scheduling mechanisms to keep that illusion, while maximizing the global system performance. If the time slices are too long, the application may lack in snappiness and user interactivity. Too short, and the system loses time switching tasks too frequently. These decisions can be tweaked with process priorities. High-priority processes will run for longer and more frequent time slices than low-priority processes."
-msgstr ""
-"Unix-artige Kernel (einschließlich Linux) sind, wie die meisten anderen "
-"modernen Betriebssysteme, fähig, im „Mehrprozessbetrieb“ zu laufen. Mit "
-"anderen Worten ermöglichen sie die Ausführung zahlreicher Prozesse „zur "
-"gleichen Zeit“. In Wirklichkeit läuft zu einem bestimmten Zeitpunkt immer "
-"nur ein Prozess, aber der Kernel teilt die Zeit in kleine Abschnitte auf und "
-"führt reihum jeden Prozess aus. Da diese Zeitabschnitte sehr kurz sind (im "
-"Bereich von Tausendstelsekunden), entsteht die Illusion, dass die Prozesse "
-"parallel laufen, obwohl sie jeweils nur während bestimmter Zeitabschnitte "
-"aktiv sind und im übrigen untätig. Die Aufgabe des Kernels besteht darin, "
-"seinen Zeitplanungsmechanismus so anzupassen, dass diese Illusion erhalten "
-"bleibt, und gleichzeitig die allgemeine Systemleistung maximiert wird. Wenn "
-"die Zeitabschnitte zu lang sind, könnte es der Anwendung an Wendigkeit und "
-"Interaktivität mit dem Benutzer mangeln. Zu kurz, und das System verliert "
-"Zeit durch zu häufiges Umschalten zwischen den Aufgaben. Diese "
-"Entscheidungen können mithilfe von Prozessprioritäten optimiert werden. "
-"Prozesse mit hoher Priorität laufen länger und häufiger als Prozesse mit "
-"niedriger Priorität."
+msgstr "Unix-artige Kernel (einschließlich Linux) sind, wie die meisten anderen modernen Betriebssysteme, fähig, im „Mehrprozessbetrieb“ zu laufen. Mit anderen Worten ermöglichen sie die Ausführung zahlreicher Prozesse „zur gleichen Zeit“. In Wirklichkeit läuft zu einem bestimmten Zeitpunkt immer nur ein Prozess, aber der Kernel teilt die Zeit in kleine Abschnitte auf und führt reihum jeden Prozess aus. Da diese Zeitabschnitte sehr kurz sind (im Bereich von Tausendstelsekunden), entsteht die Illusion, dass die Prozesse parallel laufen, obwohl sie jeweils nur während bestimmter Zeitabschnitte aktiv sind und im übrigen untätig. Die Aufgabe des Kernels besteht darin, seinen Zeitplanungsmechanismus so anzupassen, dass diese Illusion erhalten bleibt, und gleichzeitig die allgemeine Systemleistung maximiert wird. Wenn die Zeitabschnitte zu lang sind, könnte es der Anwendung an Wendigkeit und Interaktivität mit dem Benutzer mangeln. Zu kurz, und das System verliert Zeit durch zu häufiges Umschalten zwischen den Aufgaben. Diese Entscheidungen können mithilfe von Prozessprioritäten optimiert werden. Prozesse mit hoher Priorität laufen länger und häufiger als Prozesse mit niedriger Priorität."
 
 #. Tag: title
 #, no-c-format
@@ -937,18 +711,8 @@ msgstr "<emphasis>HINWEIS</emphasis> Multiprozessorsysteme (und Varianten)"
 
 #. Tag: para
 #, no-c-format
-#| msgid "The restriction described here is only a corner case. The actual restriction is that there can only be one running process <emphasis>per processor core</emphasis> at a time. Multi-processor, multi-core or “hyper-threaded” systems allow several processes to run in parallel. The same time-slicing system is still used, though, so as to handle cases where there are more active processes than available processor cores. This is the usual case: a basic system, even a mostly idle one, almost always has tens of running processes."
 msgid "The restriction described here is only a corner case. The actual restriction is that there can only be one running process <emphasis>per processor core</emphasis> at a time. Multi-processor, multi-core or “hyper-threaded” systems allow several processes to run in parallel. The same time-slicing system is still used, though, so as to handle cases where there are more active processes than available processor cores. This is far from unusual: a basic system, even a mostly idle one, almost always has tens of running processes."
-msgstr ""
-"Die hier beschriebene Einschränkung ist lediglich ein Ausnahmefall. Die "
-"tatsächliche Einschränkung besteht darin, dass zu einem gegebenen Zeitpunkt "
-"immer nur ein Prozess <emphasis>je Prozessorkern</emphasis> laufen kann. "
-"Multiprozessor-, Multikern- oder „Hyper-Threading“-Systeme ermöglichen die "
-"parallele Ausführung mehrerer Prozesse. Das gleiche Zeitunterteilungssystem "
-"wird zwar weiterhin verwendet, jetzt jedoch dazu, mit Situationen umzugehen, "
-"in denen es mehr aktive Prozesse als verfügbare Prozessorkerne gibt. Dies "
-"ist nicht ungewöhnlich: ein einfaches System, selbst wenn es weitgehend "
-"nichts tut, führt fast ständig Dutzende von Prozessen aus."
+msgstr "Die hier beschriebene Einschränkung ist lediglich ein Ausnahmefall. Die tatsächliche Einschränkung besteht darin, dass zu einem gegebenen Zeitpunkt immer nur ein Prozess <emphasis>je Prozessorkern</emphasis> laufen kann. Multiprozessor-, Multikern- oder „Hyper-Threading“-Systeme ermöglichen die parallele Ausführung mehrerer Prozesse. Das gleiche Zeitunterteilungssystem wird zwar weiterhin verwendet, jetzt jedoch dazu, mit Situationen umzugehen, in denen es mehr aktive Prozesse als verfügbare Prozessorkerne gibt. Dies ist nicht ungewöhnlich: ein einfaches System, selbst wenn es weitgehend nichts tut, führt fast ständig Dutzende von Prozessen aus."
 
 #. Tag: para
 #, no-c-format
@@ -962,20 +726,8 @@ msgstr "Rechteverwaltung"
 
 #. Tag: para
 #, no-c-format
-#| msgid "Unix-like systems are also multi-user. They provide a rights management system that allows separate groups and users, and for choosing to permit or block actions based on permissions. The kernel manages, for each process, data allowing permission checking. Most of the time, this means the process' “identity” is the same as the user that started it. And, the process is only able to take user permitted actions. For instance, trying to open a file requires the kernel to check the process identity against access permissions (for more details on this particular example, see <xref linkend=\"sect.rights-management\" />)."
 msgid "Unix-like systems are also multi-user. They provide a rights management system that allows separate groups and users; it also allows choosing to permit or block actions based on permissions. The kernel manages, for each process, data allowing permission checking. Most of the time, this means the process' “identity” is the same as the user that started it. And the process is only able to take the actions allowed to its owner. For instance, trying to open a file requires the kernel to check the process identity against access permissions (for more details on this particular example, see <xref linkend=\"sect.rights-management\" />)."
-msgstr ""
-"Unix-artige Systeme sind auch Mehrplatzsysteme. Sie verfügen über ein "
-"Rechteverwaltungssystem, das getrennte Gruppen und Benutzer ermöglicht und "
-"auf der Basis von Berechtigungen die Auswahl zwischen dem Zulassen und "
-"Blockieren von Aktionen. Der Kernel verwaltet für jeden Prozess die Daten, "
-"die es ermöglichen, Berechtigungen zu überprüfen. Meistens bedeutet dies, "
-"dass die „Identität“ eines Prozesses die gleiche ist, wie die des Benutzers, "
-"der ihn gestartet hat. Und der Prozess kann nur die Aktionen ausführen, die "
-"auch dem Benutzer erlaubt sind. Zum Beispiel muss der Kernel beim Versuch, "
-"eine Datei zu öffnen, die Identität des Prozesses hinsichtlich der "
-"Zugriffsberechtigungen überprüfen (für mehr Einzelheiten zu diesem "
-"speziellen Beispiel siehe <xref linkend=\"sect.rights-management\" />)."
+msgstr "Unix-artige Systeme sind auch Mehrplatzsysteme. Sie verfügen über ein Rechteverwaltungssystem, das getrennte Gruppen und Benutzer ermöglicht und auf der Basis von Berechtigungen die Auswahl zwischen dem Zulassen und Blockieren von Aktionen. Der Kernel verwaltet für jeden Prozess die Daten, die es ermöglichen, Berechtigungen zu überprüfen. Meistens bedeutet dies, dass die „Identität“ eines Prozesses die gleiche ist, wie die des Benutzers, der ihn gestartet hat. Und der Prozess kann nur die Aktionen ausführen, die auch dem Benutzer erlaubt sind. Zum Beispiel muss der Kernel beim Versuch, eine Datei zu öffnen, die Identität des Prozesses hinsichtlich der Zugriffsberechtigungen überprüfen (für mehr Einzelheiten zu diesem speziellen Beispiel siehe <xref linkend=\"sect.rights-management\" />)."
 
 #. Tag: indexterm
 #, no-c-format
@@ -1014,25 +766,8 @@ msgstr "Zunächst einmal kann sich ein Prozess kopieren (dies wird als <emphasis
 
 #. Tag: para
 #, no-c-format
-#| msgid "Sometimes, the child process continues to lead its own life independently from its parent, with its own data copied from the parent process. In many cases, though, this child process executes another program. With a few exceptions, its memory is simply replaced by that of the new program, and execution of this new program begins. One of the very first actions of process number 1 thus is to duplicate itself (which means there are, for a tiny amount of time, two running copies of the same <command>init</command> process), but the child process is then replaced by the first system initialization script, usually <filename>/etc/init.d/rcS</filename>. This script, in turn, clones itself and runs several other programs. At some point, one process among <command>init</command>'s offspring starts a graphical interface for users to log in to (the actual sequence of events is described in more details in <xref linkend=\"sect.system-boot\" />)."
 msgid "Sometimes, the child process continues to lead its own life independently from its parent, with its own data copied from the parent process. In many cases, though, this child process executes another program. With a few exceptions, its memory is simply replaced by that of the new program, and execution of this new program begins. One of the very first actions of process number 1, for instance, is to duplicate itself (which means there are, for a tiny amount of time, two running copies of the same <command>init</command> process), but the child process is then replaced by the first system initialization script, usually <filename>/etc/init.d/rcS</filename>. This script, in turn, clones itself and runs several other programs. At some point, one process among <command>init</command>'s offspring starts a graphical interface for users to log in to (the actual sequence of events is described in more details in <xref linkend=\"sect.system-boot\" />)."
-msgstr ""
-"Manchmal fährt der Kindprozess fort, sein eigenes Leben unabhängig vom "
-"Elternprozess zu führen, mit seinen eigenen, vom Elternprozess kopierten "
-"Daten. In vielen Fällen führt der Kindprozess jedoch ein anderes Programm "
-"aus. Bis auf wenige Ausnahmen wird sein Speicher einfach durch den Speicher "
-"des neuen Programms ersetzt, und die Ausführung dieses neuen Programms "
-"beginnt. Eine der ersten Aktionen von Prozess 1 besteht beispielsweise "
-"darin, sich zu verdoppeln (das heißt, dass es für eine winzige Zeitspanne "
-"zwei laufende Exemplare desselben <command>init</command>-Prozesses gibt), "
-"jedoch wird der Kindprozess dann durch das erste "
-"Systeminitialisierungsskript ersetzt, normalerweise durch "
-"<filename>/etc/init.d/rcS</filename>. Dieses Skript kopiert sich seinerseits "
-"und führt mehrere andere Programme aus. Zu einem bestimmten Zeitpunkt "
-"startet ein Prozess der <command>init</command>-Abkömmlinge dann eine "
-"grafische Schnittstelle, über die sich Benutzer anmelden können (der "
-"tatsächliche Ablauf der Ereignisse ist in größerer Ausführlichkeit in <xref "
-"linkend=\"sect.system-boot\" /> beschrieben."
+msgstr "Manchmal fährt der Kindprozess fort, sein eigenes Leben unabhängig vom Elternprozess zu führen, mit seinen eigenen, vom Elternprozess kopierten Daten. In vielen Fällen führt der Kindprozess jedoch ein anderes Programm aus. Bis auf wenige Ausnahmen wird sein Speicher einfach durch den Speicher des neuen Programms ersetzt, und die Ausführung dieses neuen Programms beginnt. Eine der ersten Aktionen von Prozess 1 besteht beispielsweise darin, sich zu verdoppeln (das heißt, dass es für eine winzige Zeitspanne zwei laufende Exemplare desselben <command>init</command>-Prozesses gibt), jedoch wird der Kindprozess dann durch das erste Systeminitialisierungsskript ersetzt, normalerweise durch <filename>/etc/init.d/rcS</filename>. Dieses Skript kopiert sich seinerseits und führt mehrere andere Programme aus. Zu einem bestimmten Zeitpunkt startet ein Prozess der <command>init</command>-Abkömmlinge dann eine grafische Schnittstelle, über die sich Benutzer anmelden können (der tatsächliche Ablauf der Ereignisse ist in größerer Ausführlichkeit in <xref linkend=\"sect.system-boot\" /> beschrieben."
 
 #. Tag: para
 #, no-c-format
@@ -1061,15 +796,8 @@ msgstr "<emphasis>WÖRTERVERZEICHNIS</emphasis> Daemon, Dämon, eine abwertende 
 
 #. Tag: para
 #, no-c-format
-#| msgid "Although <emphasis>daemon</emphasis> term shares its Greek etymology with <emphasis>demon</emphasis>, the former does not imply diabolical evil, instead, it should be understood as a kind-of helper spirit. This distinction is subtle enough in English, but it's even worse in other languages where the same word is used for both meanings."
 msgid "Although <emphasis>daemon</emphasis> term shares its Greek etymology with <emphasis>demon</emphasis>, the former does not imply diabolical evil, instead, it should be understood as a kind of helper spirit. This distinction is subtle enough in English; it's even worse in other languages where the same word is used for both meanings."
-msgstr ""
-"Obwohl die Bezeichnung <emphasis>Daemon</emphasis> ihren griechischen "
-"Ursprung mit <emphasis>Dämon</emphasis> teilt, unterstellt erstere nichts "
-"teuflisch Übles, im Gegenteil sollte sie als eine Art hilfreicher Geist "
-"verstanden werden. Diese Unterscheidung ist im Englischen bereits recht "
-"subtil, in anderen Sprachen ist es jedoch noch schlimmer, in denen dasselbe "
-"Wort in beiden Bedeutungen verwendet wird."
+msgstr "Obwohl die Bezeichnung <emphasis>Daemon</emphasis> ihren griechischen Ursprung mit <emphasis>Dämon</emphasis> teilt, unterstellt erstere nichts teuflisch Übles, im Gegenteil sollte sie als eine Art hilfreicher Geist verstanden werden. Diese Unterscheidung ist im Englischen bereits recht subtil, in anderen Sprachen ist es jedoch noch schlimmer, in denen dasselbe Wort in beiden Bedeutungen verwendet wird."
 
 #. Tag: para
 #, no-c-format
@@ -1108,25 +836,8 @@ msgstr "<primary><emphasis>Pipe</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
-#| msgid "In the case where one does not wish to store data on disk, one can use a <emphasis>pipe</emphasis>, which is simply an object with two ends; bytes written in one end, are readable at the other. If the ends are controlled by separate processes, this leads to a simple and convenient inter-process communication channel. Pipes can be classified into two categories: named pipes, and anonymous pipes. A named pipe is represented by an entry on the filesystem (although the transmitted data is not stored there), so both processes can open it independently if the location of the named pipe is known beforehand. In cases where the communicating processes are related (for instance, a parent and its child process), the parent process can also create an anonymous pipe before forking, and the child inherits it. Both processes will then be able to exchange data through the pipe without needing the filesystem."
 msgid "In the case where one does not wish to store data on disk, one can use a <emphasis>pipe</emphasis>, which is simply an object with two ends; bytes written in one end are readable at the other. If the ends are controlled by separate processes, this leads to a simple and convenient inter-process communication channel. Pipes can be classified into two categories: named pipes, and anonymous pipes. A named pipe is represented by an entry on the filesystem (although the transmitted data is not stored there), so both processes can open it independently if the location of the named pipe is known beforehand. In cases where the communicating processes are related (for instance, a parent and its child process), the parent process can also create an anonymous pipe before forking, and the child inherits it. Both processes will then be able to exchange data through the pipe without needing the filesystem."
-msgstr ""
-"In den Fällen, in denen man keine Daten auf einer Platte speichern möchte, "
-"kann man eine <emphasis>Pipe</emphasis> benutzen, die einfach ein Objekt mit "
-"zwei Enden ist; Bytes, die am einen Ende geschrieben werden, können am "
-"anderen gelesen werden. Wenn diese Enden von verschiedenen Prozessen "
-"kontrolliert werden, führt dies zu einem einfachen und praktischen "
-"Interprozesskommunikationskanal. Pipes können in zwei Arten unterschieden "
-"werden: benannte Pipes und anonyme Pipes. Eine benannte Pipe wird durch "
-"einen Eintrag im Dateisystem dargestellt (obwohl die übermittelten Daten "
-"dort nicht gespeichert sind), so dass beide Prozesse sie unabhängig "
-"voneinander öffnen können, falls der Ort der benannten Pipe vorab bekannt "
-"ist. In Fällen, in denen die Kommunikationsprozesse in Zusammenhang "
-"miteinander stehen (zum Beispiel ein Eltern- und sein Kindprozess), kann der "
-"Elternprozess auch eine anonyme Pipe erstellen, bevor er sich "
-"vervielfältigt, und der Kindprozess übernimmt sie dann. Beide Prozesse "
-"können sodann durch diese Pipe Daten miteinander austauschen, ohne das "
-"Dateisystem zu benötigen."
+msgstr "In den Fällen, in denen man keine Daten auf einer Platte speichern möchte, kann man eine <emphasis>Pipe</emphasis> benutzen, die einfach ein Objekt mit zwei Enden ist; Bytes, die am einen Ende geschrieben werden, können am anderen gelesen werden. Wenn diese Enden von verschiedenen Prozessen kontrolliert werden, führt dies zu einem einfachen und praktischen Interprozesskommunikationskanal. Pipes können in zwei Arten unterschieden werden: benannte Pipes und anonyme Pipes. Eine benannte Pipe wird durch einen Eintrag im Dateisystem dargestellt (obwohl die übermittelten Daten dort nicht gespeichert sind), so dass beide Prozesse sie unabhängig voneinander öffnen können, falls der Ort der benannten Pipe vorab bekannt ist. In Fällen, in denen die Kommunikationsprozesse in Zusammenhang miteinander stehen (zum Beispiel ein Eltern- und sein Kindprozess), kann der Elternprozess auch eine anonyme Pipe erstellen, bevor er sich vervielfältigt, und der Kindprozess übernimmt sie dann. Beide Prozesse können sodann durch diese Pipe Daten miteinander austauschen, ohne das Dateisystem zu benötigen."
 
 #. Tag: title
 #, no-c-format
@@ -1155,42 +866,18 @@ msgstr "Ein ähnlicher Vorgang findet beim zweiten Befehl statt: <command>bash</
 
 #. Tag: para
 #, no-c-format
-#| msgid "All the pieces of the puzzle are now set up: <command>ls</command> writes the list of files in the current directory into the pipe; <command>sort</command> reads this list, sorts it alphabetically, and displays the results. Processes numbers #4521 and #4522 then terminate, and #4374 (which was waiting for them during the operation), resumes control and displays the prompt to allow the user to type in a new command."
 msgid "All the pieces of the puzzle are now set up: <command>ls</command> reads the current directory and writes the list of files into the pipe; <command>sort</command> reads this list, sorts it alphabetically, and displays the results. Processes numbers #4521 and #4522 then terminate, and #4374 (which was waiting for them during the operation), resumes control and displays the prompt to allow the user to type in a new command."
-msgstr ""
-"Alle Teile des Puzzles stehen nun bereit: <command>ls</command> liest das "
-"aktuelle Verzeichnis ein und schreibt die Liste der Dateien in die Pipe; "
-"<command>sort</command> liest diese Liste, sortiert sie alphabetisch und "
-"zeigt die Ergebnisse an. Die Prozesse 4521 und 4522 enden dann, und 4374 "
-"(der während des Vorgangs auf sie gewartet hatte) übernimmt wieder die "
-"Kontrolle und zeigt die Eingabeaufforderung an, die es dem Benutzer "
-"ermöglicht, einen neuen Befehl einzugeben."
+msgstr "Alle Teile des Puzzles stehen nun bereit: <command>ls</command> liest das aktuelle Verzeichnis ein und schreibt die Liste der Dateien in die Pipe; <command>sort</command> liest diese Liste, sortiert sie alphabetisch und zeigt die Ergebnisse an. Die Prozesse 4521 und 4522 enden dann, und 4374 (der während des Vorgangs auf sie gewartet hatte) übernimmt wieder die Kontrolle und zeigt die Eingabeaufforderung an, die es dem Benutzer ermöglicht, einen neuen Befehl einzugeben."
 
 #. Tag: para
 #, no-c-format
-#| msgid "Not all inter-process communications are used to move data around though. In many situations, the only information that needs to be transmitted are control messages such as “pause execution” or “resume execution”. Unix (and Linux) provides a mechanism known as <emphasis>signals</emphasis>, through which a process can simply send a signal (chosen within a fixed list of a few tens of predefined signals) to another process. The only requirement is to know the <emphasis>pid</emphasis> of the target."
 msgid "Not all inter-process communications are used to move data around, though. In many situations, the only information that needs to be transmitted are control messages such as “pause execution” or “resume execution”. Unix (and Linux) provides a mechanism known as <emphasis>signals</emphasis>, through which a process can simply send a signal (chosen within a fixed list of a few tens of predefined signals) to another process. The only requirement is to know the <emphasis>pid</emphasis> of the target."
-msgstr ""
-"Jedoch werden nicht alle Interprozesskommunikationen zur Übermittlung von "
-"Daten benutzt. In vielen Situationen bestehen die einzigen Informationen, "
-"die übertragen werden müssen, aus Steuerungsmitteilungen wie „Ausführung "
-"anhalten“ oder „Ausführung fortsetzen“. Unix (und Linux) stellen einen "
-"Mechanismus bereit, der <emphasis>Signale</emphasis> genannt wird, durch den "
-"ein Prozess einfach ein Signal (aus einer festgelegten Liste mit Dutzenden "
-"vordefinierter Signale) an einen anderen Prozess senden kann. Die einzige "
-"Voraussetzung besteht hierbei darin, dass die <emphasis>PID</emphasis> des "
-"Zielprozesses bekannt ist."
+msgstr "Jedoch werden nicht alle Interprozesskommunikationen zur Übermittlung von Daten benutzt. In vielen Situationen bestehen die einzigen Informationen, die übertragen werden müssen, aus Steuerungsmitteilungen wie „Ausführung anhalten“ oder „Ausführung fortsetzen“. Unix (und Linux) stellen einen Mechanismus bereit, der <emphasis>Signale</emphasis> genannt wird, durch den ein Prozess einfach ein Signal (aus einer festgelegten Liste mit Dutzenden vordefinierter Signale) an einen anderen Prozess senden kann. Die einzige Voraussetzung besteht hierbei darin, dass die <emphasis>PID</emphasis> des Zielprozesses bekannt ist."
 
 #. Tag: para
 #, no-c-format
-#| msgid "For more complex communications, there are also mechanisms allowing a process to open access, or share, part of its allocated memory to other processes. Memory then shared between them, allows moving data across."
 msgid "For more complex communications, there are also mechanisms allowing a process to open access, or share, part of its allocated memory to other processes. Memory shared between them can be used to move data across."
-msgstr ""
-"Für komplexere Kommunikationen gibt es ebenfalls Mechanismen, die es einem "
-"Prozess ermöglichen, einem anderen Prozess Zugriff auf einen Teil des ihm "
-"zugeteilten Speicherplatzes zu gewähren oder ihn gemeinsam mit ihm zu "
-"benutzen. Der gemeinsam benutzte Speicherplatz ermöglicht es dann, Daten hin "
-"und her zu schieben."
+msgstr "Für komplexere Kommunikationen gibt es ebenfalls Mechanismen, die es einem Prozess ermöglichen, einem anderen Prozess Zugriff auf einen Teil des ihm zugeteilten Speicherplatzes zu gewähren oder ihn gemeinsam mit ihm zu benutzen. Der gemeinsam benutzte Speicherplatz ermöglicht es dann, Daten hin und her zu schieben."
 
 #. Tag: para
 #, no-c-format

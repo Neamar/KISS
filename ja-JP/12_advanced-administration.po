@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2014-01-09 08:27+0100\n"
+"POT-Creation-Date: 2015-06-18T12:29:20\n"
 "PO-Revision-Date: 2015-06-14 23:57+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -2298,21 +2298,6 @@ msgstr "システムのセットアップ"
 msgid "Let us now set up the filesystem to be used by the container. Since this “virtual machine” will not run directly on the hardware, some tweaks are required when compared to a standard filesystem, especially as far as the kernel, devices and consoles are concerned. Fortunately, the <emphasis role=\"pkg\">lxc</emphasis> includes scripts that mostly automate this configuration. For instance, the following commands (which require the <emphasis role=\"pkg\">debootstrap</emphasis> and <emphasis role=\"pkg\">rsync</emphasis> packages) will install a Debian container:"
 msgstr "コンテナがファイルシステムを使うようにファイルシステムを設定しましょう。この「仮想マシン」はハードウェア上で直接的に実行されないため、標準的なファイルシステムに比べて幾つかの微調整を必要とします。これは特にカーネル、デバイス、コンソールが該当します。幸いな事に、<emphasis role=\"pkg\">lxc</emphasis> にはこの設定をほぼ自動化するスクリプトが含まれます。例えば、以下のコマンド (<emphasis role=\"pkg\">debootstrap</emphasis> と <emphasis role=\"pkg\">rsync</emphasis> パッケージが必要です) で Debian コンテナがインストールされます:"
 
-#. Tag: title
-#, no-c-format
-msgid "<emphasis>BEWARE</emphasis> Bugs in default <literal>debian</literal> template"
-msgstr "<emphasis>BEWARE</emphasis> デフォルトの <literal>debian</literal> テンプレートに含まれるバグ"
-
-#. Tag: para
-#, no-c-format
-msgid "The <command>/usr/share/lxc/templates/lxc-debian</command> template creation script provided in the initial <emphasis role=\"distribution\">Wheezy</emphasis> package (aka <emphasis role=\"pkg\">lxc</emphasis> 0.8.0~rc1-8+deb7u1) suffers from numerous problems. The most important one is that it relies on the <command>live-debconfig</command> program which is not available in <emphasis role=\"distribution\">Wheezy</emphasis> but only in newer versions of Debian. <ulink type=\"block\" url=\"http://bugs.debian.org/680469\" /> <ulink type=\"block\" url=\"http://bugs.debian.org/686747\" />"
-msgstr "最初の <emphasis role=\"distribution\">Wheezy</emphasis> パッケージ (別名 <emphasis role=\"pkg\">lxc</emphasis> 0.8.0~rc1-8+deb7u1) に含まれていた <command>/usr/share/lxc/templates/lxc-debian</command> テンプレートを作成するスクリプトは数多くの問題を抱えていました。最も重要な問題は <command>live-debconfig</command> プログラムに頼っていたにも関わらず <emphasis role=\"distribution\">Wheezy</emphasis> ではこのプログラムが利用可能でなかった点です。<command>live-debconfig</command> プログラムは Debian のより新しいバージョンで利用可能になりました。<ulink type=\"block\" url=\"http://bugs.debian.org/680469\" /> <ulink type=\"block\" url=\"http://bugs.debian.org/686747\" />"
-
-#. Tag: para
-#, no-c-format
-msgid "At the time of writing, there was no good solution and no usable work-around, except to use an alternate template creation script. Further updates of lxc might fix this though. This section assumes that <command>/usr/share/lxc/templates/lxc-debian</command> matches the upstream provided script: <ulink type=\"block\" url=\"https://github.com/lxc/lxc/raw/master/templates/lxc-debian.in\" />"
-msgstr "執筆時点で、別のテンプレート作成スクリプトを使う以外に良い解決策はありませんし、利用可能な次善策もありません。lxc の今後の更新によりこの問題が修正されるかもしれません。この節では <command>/usr/share/lxc/templates/lxc-debian</command> が上流開発が提供するスクリプトと一致することを仮定します: <ulink type=\"block\" url=\"https://github.com/lxc/lxc/raw/master/templates/lxc-debian.in\" />"
-
 #. Tag: screen
 #, no-c-format
 msgid ""
@@ -3968,3 +3953,12 @@ msgstr "<emphasis>GOING FURTHER</emphasis> NRPE を使ったリモートマシ�
 #, no-c-format
 msgid "Many Nagios plugins allow checking some parameters local to a host; if many machines need these checks while a central installation gathers them, the NRPE (<emphasis>Nagios Remote Plugin Executor</emphasis>) plugin needs to be deployed. The <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> package needs to be installed on the Nagios server, and <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> on the hosts where local tests need to run. The latter gets its configuration from <filename>/etc/nagios/nrpe.cfg</filename>. This file should list the tests that can be started remotely, and the IP addresses of the machines allowed to trigger them. On the Nagios side, enabling these remote tests is a simple matter of adding matching services using the new <emphasis>check_nrpe</emphasis> command."
 msgstr "多くの Nagios プラグインでは、あるホスト固有の幾つかのパラメータを確認することが可能です; 多くのマシンに対するパラメータの確認が必要にも関わらず Nagios サーバでパラメータを収拾する場合、NRPE (<emphasis>Nagios Remote Plugin Executor</emphasis>) プラグインを配備する必要があります。Nagios サーバには <emphasis role=\"pkg\">nagios-nrpe-plugin</emphasis> パッケージをインストールし、ローカルでテストを実行するホストに <emphasis role=\"pkg\">nagios-nrpe-server</emphasis> をインストールする必要があります。<emphasis role=\"pkg\">nagios-nrpe-server</emphasis> は <filename>/etc/nagios/nrpe.cfg</filename> から設定を取得します。このファイルには、リモートからの命令に従って実行されるテストとリモートからのテスト開始命令を受け入れるマシンの IP アドレスをリストするべきです。Nagios サーバ側でリモートテストを有効化するには、<emphasis>check_nrpe</emphasis> コマンドを使って一致するサービスを追加するだけで済みます。"
+
+#~ msgid "<emphasis>BEWARE</emphasis> Bugs in default <literal>debian</literal> template"
+#~ msgstr "<emphasis>BEWARE</emphasis> デフォルトの <literal>debian</literal> テンプレートに含まれるバグ"
+
+#~ msgid "The <command>/usr/share/lxc/templates/lxc-debian</command> template creation script provided in the initial <emphasis role=\"distribution\">Wheezy</emphasis> package (aka <emphasis role=\"pkg\">lxc</emphasis> 0.8.0~rc1-8+deb7u1) suffers from numerous problems. The most important one is that it relies on the <command>live-debconfig</command> program which is not available in <emphasis role=\"distribution\">Wheezy</emphasis> but only in newer versions of Debian. <ulink type=\"block\" url=\"http://bugs.debian.org/680469\" /> <ulink type=\"block\" url=\"http://bugs.debian.org/686747\" />"
+#~ msgstr "最初の <emphasis role=\"distribution\">Wheezy</emphasis> パッケージ (別名 <emphasis role=\"pkg\">lxc</emphasis> 0.8.0~rc1-8+deb7u1) に含まれていた <command>/usr/share/lxc/templates/lxc-debian</command> テンプレートを作成するスクリプトは数多くの問題を抱えていました。最も重要な問題は <command>live-debconfig</command> プログラムに頼っていたにも関わらず <emphasis role=\"distribution\">Wheezy</emphasis> ではこのプログラムが利用可能でなかった点です。<command>live-debconfig</command> プログラムは Debian のより新しいバージョンで利用可能になりました。<ulink type=\"block\" url=\"http://bugs.debian.org/680469\" /> <ulink type=\"block\" url=\"http://bugs.debian.org/686747\" />"
+
+#~ msgid "At the time of writing, there was no good solution and no usable work-around, except to use an alternate template creation script. Further updates of lxc might fix this though. This section assumes that <command>/usr/share/lxc/templates/lxc-debian</command> matches the upstream provided script: <ulink type=\"block\" url=\"https://github.com/lxc/lxc/raw/master/templates/lxc-debian.in\" />"
+#~ msgstr "執筆時点で、別のテンプレート作成スクリプトを使う以外に良い解決策はありませんし、利用可能な次善策もありません。lxc の今後の更新によりこの問題が修正されるかもしれません。この節では <command>/usr/share/lxc/templates/lxc-debian</command> が上流開発が提供するスクリプトと一致することを仮定します: <ulink type=\"block\" url=\"https://github.com/lxc/lxc/raw/master/templates/lxc-debian.in\" />"
