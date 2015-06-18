@@ -1,7 +1,5 @@
 package fr.neamar.kiss;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -19,7 +17,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Patterns;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -38,14 +35,8 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import com.mixpanel.android.mpmetrics.MixpanelAPI;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
@@ -106,8 +97,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
      */
     private Searcher searcher;
 
-    private MixpanelAPI mixpanel;
-
     /**
      * Called when the activity is first created.
      */
@@ -119,8 +108,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         super.onCreate(savedInstanceState);
 
-        mixpanel = MixpanelAPI.getInstance(this, MIXPANEL_TOKEN);
-
         final Date initializationDate = new Date();
 
         IntentFilter intentFilter = new IntentFilter(START_LOAD);
@@ -131,8 +118,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
-
-                    mixpanel.getPeople().set("loadDuration", new Date().getTime() - initializationDate.getTime());
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     displayLoader(false);
 
@@ -209,30 +194,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         // Apply effects depending on current Android version
         applyDesignTweaks();
-
-        // Retrieve current user email
-        Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
-        Account[] accounts = AccountManager.get(this).getAccounts();
-        for (Account account : accounts) {
-            if (emailPattern.matcher(account.name).matches()) {
-                mixpanel.identify(account.name);
-                try {
-                    JSONObject superProperties = new JSONObject();
-                    superProperties.put("email", account.name);
-                    mixpanel.registerSuperProperties(superProperties);
-                } catch (JSONException ignored) {
-                }
-
-                mixpanel.getPeople().identify(account.name);
-                mixpanel.getPeople().set("$email", account.name);
-                mixpanel.getPeople().set("$name", account.name);
-
-                break;
-            }
-        }
-
-        mixpanel.getPeople().set("resultCount", KissApplication.getDataHandler(this).getHistoryLength(this));
-        mixpanel.getPeople().set("lastUpdated", initializationDate);
     }
 
     /**
@@ -334,7 +295,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     @Override
     protected void onDestroy() {
-        mixpanel.flush();
         super.onDestroy();
         // unregister our receiver
         this.unregisterReceiver(this.mReceiver);
@@ -355,17 +315,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings:
-                mixpanel.track("KISS settings displayed", new JSONObject());
                 startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
                 return true;
             case R.id.wallpaper:
                 hideKeyboard();
                 Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
                 startActivity(Intent.createChooser(intent, getString(R.string.menu_wallpaper)));
-                mixpanel.track("Update wallpaper", new JSONObject());
                 return true;
             case R.id.preferences:
-                mixpanel.track("Device settings displayed", new JSONObject());
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             default:
@@ -398,7 +355,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Clear text content when touching the cross button
      */
     public void onClearButtonClicked(View clearButton) {
-        mixpanel.track("Clear clicked", new JSONObject());
 
         searchEditText.setText("");
     }
@@ -408,13 +364,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
      */
     public void onLauncherButtonClicked(View launcherButton) {
         // Display or hide the kiss bar, according to current view tag (showMenu / hideMenu).
-        mixpanel.track("Launcher clicked", new JSONObject());
 
         displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
 
     public void onFavoriteButtonClicked(View favorite) {
-        mixpanel.track("Favorite clicked", new JSONObject());
 
         // Favorites handling
         Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
@@ -569,17 +523,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * onPause(), since it may be called for a configuration change
      */
     public void launchOccurred(int index, Result result) {
-        try {
-            JSONObject props = new JSONObject();
-            props.put("index", index);
-            props.put("queryLength", searchEditText.getText().length());
-            props.put("type", result.getClass().toString().replace("class fr.neamar.kiss.result.", ""));
-            props.put("listType", searchEditText.getText().length() > 0 ? "search" : kissBar.getVisibility() == View.VISIBLE ? "appList" : "history");
-            mixpanel.track("Result Selected", props);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         // We made a choice on the list,
         // now we can cleanup the filter:
         searchEditText.setText("");
