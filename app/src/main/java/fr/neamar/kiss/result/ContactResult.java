@@ -97,7 +97,7 @@ public class ContactResult extends Result {
                     launchMessaging(v.getContext());
                 }
             });
-            
+
             if (contactPojo.homeNumber)
                 messageButton.setVisibility(View.INVISIBLE);
             else

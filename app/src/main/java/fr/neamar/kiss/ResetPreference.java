@@ -22,7 +22,7 @@ public class ResetPreference extends DialogPreference {
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
                     .putBoolean("layout-updated", true).commit();
 
-            Toast.makeText(getContext(), "History erased.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.history_erased, Toast.LENGTH_LONG).show();
         }
 
     }
