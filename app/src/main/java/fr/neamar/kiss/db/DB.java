@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-class DB extends SQLiteOpenHelper {
+public class DB extends SQLiteOpenHelper {
 
     private final static int DB_VERSION = 1;
-    private final static String DB_NAME = "kiss.s3db";
+    public final static String DB_NAME = "kiss.s3db";
 
     public DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

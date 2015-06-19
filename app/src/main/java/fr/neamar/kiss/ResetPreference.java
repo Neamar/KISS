@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
+import fr.neamar.kiss.db.DB;
+
 public class ResetPreference extends DialogPreference {
 
     public ResetPreference(Context context, AttributeSet attrs) {
@@ -17,7 +19,7 @@ public class ResetPreference extends DialogPreference {
     public void onClick(DialogInterface dialog, int which) {
         super.onClick(dialog, which);
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            getContext().deleteDatabase("summon.s3db");
+            getContext().deleteDatabase(DB.DB_NAME);
             KissApplication.resetDataHandler(getContext());
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
                     .putBoolean("layout-updated", true).commit();
