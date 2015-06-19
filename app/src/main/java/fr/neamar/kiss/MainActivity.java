@@ -19,7 +19,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -465,8 +464,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
             if (favoritesPojo.size() == 0) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP, 0, 20);
                 toast.show();
+                // Hide the green bar
+                if(display) {
+                    displayKissBar(false);
+                }
+                return;
             }
 
             // Don't look for items after favIds length, we won't be able to display them

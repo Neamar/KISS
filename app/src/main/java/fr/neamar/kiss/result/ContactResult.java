@@ -97,15 +97,16 @@ public class ContactResult extends Result {
                     launchMessaging(v.getContext());
                 }
             });
+
+            if (contactPojo.homeNumber)
+                messageButton.setVisibility(View.INVISIBLE);
+            else
+                messageButton.setVisibility(View.VISIBLE);
+
         } else {
             phoneButton.setVisibility(View.INVISIBLE);
             messageButton.setVisibility(View.INVISIBLE);
         }
-
-        if (contactPojo.homeNumber)
-            messageButton.setVisibility(View.INVISIBLE);
-        else
-            messageButton.setVisibility(View.VISIBLE);
 
         return v;
     }
