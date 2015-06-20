@@ -19,14 +19,14 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
         ArrayList<TogglePojo> toggles = new ArrayList<>();
         PackageManager pm = context.getPackageManager();
         if (pm.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
-            toggles.add(createPojo(context.getString(R.string.toggle_wifi), "wifi", R.attr.wifi));
+            toggles.add(createPojo(context.getString(R.string.toggle_wifi), "wifi", R.drawable.toggle_wifi));
         }
         if (pm.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
-            toggles.add(createPojo(context.getString(R.string.toggle_bluetooth), "bluetooth", R.attr.bluetooth));
+            toggles.add(createPojo(context.getString(R.string.toggle_bluetooth), "bluetooth", R.drawable.toggle_bluetooth));
         }
-        toggles.add(createPojo(context.getString(R.string.toggle_silent), "silent", R.attr.silent));
+        toggles.add(createPojo(context.getString(R.string.toggle_silent), "silent", R.drawable.toggle_silent));
         if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
-            toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.attr.data));
+            toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.drawable.toggle_data));
         }
         return toggles;
     }
