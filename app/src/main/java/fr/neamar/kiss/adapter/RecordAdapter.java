@@ -1,4 +1,4 @@
-package fr.neamar.kiss;
+package fr.neamar.kiss.adapter;
 
 import android.content.Context;
 import android.os.Handler;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactResult;
 import fr.neamar.kiss.result.PhoneResult;
@@ -70,18 +71,20 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     public void onClick(final int position, View v) {
+        final Result result;
+
         try {
-            results.get(position).launch(getContext(), v);
+            result = results.get(position);
+            result.launch(getContext(), v);
         } catch (ArrayIndexOutOfBoundsException ignored) {
-
+            return;
         }
-
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                parent.launchOccurred(results.size() - position, results.get(position));
+                parent.launchOccurred(results.size() - position, result);
             }
         }, KissApplication.TOUCH_DELAY);
 

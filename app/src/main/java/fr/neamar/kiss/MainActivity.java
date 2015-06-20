@@ -37,6 +37,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 
+import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
