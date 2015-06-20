@@ -2,7 +2,6 @@ package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,18 +32,11 @@ public class SettingResult extends Result {
         return v;
     }
 
-    @SuppressWarnings({"ResourceType", "deprecation"})
+    @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
         if (settingPojo.icon != -1) {
-            TypedArray a = context.obtainStyledAttributes(R.style.AppTheme,
-                    new int[]{settingPojo.icon});
-            int attributeResourceId = a.getResourceId(0, -1);
-            if (attributeResourceId != -1) {
-                a.recycle();
-                return context.getResources().getDrawable(attributeResourceId);
-            }
-            a.recycle();
+            return context.getResources().getDrawable(settingPojo.icon);
         }
 
         return null;

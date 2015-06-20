@@ -1,7 +1,6 @@
 package fr.neamar.kiss.result;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -40,16 +39,7 @@ public class ToggleResult extends Result {
         toggleName.setText(enrichText(togglePojo.displayName));
 
         ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
-        if (togglePojo.icon != -1) {
-            TypedArray a = context.obtainStyledAttributes(R.style.AppTheme,
-                    new int[]{togglePojo.icon});
-            int attributeResourceId = a.getResourceId(0, -1);
-            if (attributeResourceId != -1) {
-                toggleIcon
-                        .setImageDrawable(context.getResources().getDrawable(attributeResourceId));
-            }
-            a.recycle();
-        }
+        toggleIcon.setImageDrawable(context.getResources().getDrawable(togglePojo.icon));
         // Use the handler to check or un-check button
         final CompoundButton toggleButton = (CompoundButton) v
                 .findViewById(R.id.item_toggle_action_toggle);

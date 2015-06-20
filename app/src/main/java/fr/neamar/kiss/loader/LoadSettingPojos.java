@@ -19,20 +19,16 @@ public class LoadSettingPojos extends LoadPojos<SettingPojo> {
     protected ArrayList<SettingPojo> doInBackground(Void... params) {
         ArrayList<SettingPojo> settings = new ArrayList<>();
         settings.add(createPojo(context.getString(R.string.settings_airplane),
-                android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS, R.attr.airplane));
+                android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS, R.drawable.setting_airplane));
         settings.add(createPojo(context.getString(R.string.settings_device_info),
-                android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS));
+                android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS, android.R.drawable.ic_menu_manage));
         settings.add(createPojo(context.getString(R.string.settings_applications),
-                android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, R.attr.application));
+                android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, android.R.drawable.sym_def_app_icon));
         settings.add(createPojo(context.getString(R.string.settings_connectivity),
-                android.provider.Settings.ACTION_WIRELESS_SETTINGS, R.attr.wifi));
+                android.provider.Settings.ACTION_WIRELESS_SETTINGS, R.drawable.toggle_wifi));
         settings.add(createPojo(context.getString(R.string.settings_battery),
-                Intent.ACTION_POWER_USAGE_SUMMARY, R.attr.battery));
+                Intent.ACTION_POWER_USAGE_SUMMARY, R.drawable.setting_battery));
         return settings;
-    }
-
-    private SettingPojo createPojo(String name, String settingName) {
-        return createPojo(name, settingName, android.R.drawable.ic_menu_manage);
     }
 
     private SettingPojo createPojo(String name, String settingName, int resId) {
