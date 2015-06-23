@@ -314,7 +314,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         switch (keycode) {
             case KeyEvent.KEYCODE_MENU:
                 // For user with a physical menu button, we still want to display *our* contextual menu
-                
+
                 menuButton.showContextMenu();
                 return true;
         }
@@ -444,6 +444,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     private void displayKissBar(Boolean display) {
+        final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+
+        // get the center for the clipping circle
+        int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
+        int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
+
+        // get the final radius for the clipping circle
+        int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
+
         if (display) {
             // Display the app list
             if (searcher != null) {
@@ -452,19 +461,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
             searcher = new ApplicationsSearcher(MainActivity.this);
             searcher.execute();
 
-            final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
-
-            // get the center for the clipping circle
-            int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
-            int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
-
-            // get the final radius for the clipping circle
-            int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
-
             // Reveal the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Animator anim =
-                        ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
+                Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
                 kissBar.setVisibility(View.VISIBLE);
                 anim.start();
             } else {
@@ -480,7 +479,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
                 // Hide the green bar
-                if(display) {
+                if (display) {
                     displayKissBar(false);
                 }
                 return;
@@ -504,7 +503,21 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 findViewById(favsIds[i]).setVisibility(View.GONE);
             }
         } else {
-            kissBar.setVisibility(View.GONE);
+            // Hide the bar
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, finalRadius, 0);
+                anim.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        kissBar.setVisibility(View.GONE);
+                        super.onAnimationEnd(animation);
+                    }
+                });
+                anim.start();
+            } else {
+                // No animation before Lollipop
+                kissBar.setVisibility(View.GONE);
+            }
             searchEditText.setText("");
         }
     }
