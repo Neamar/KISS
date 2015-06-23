@@ -310,6 +310,19 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     @Override
+    public boolean onKeyDown(int keycode, KeyEvent e) {
+        switch (keycode) {
+            case KeyEvent.KEYCODE_MENU:
+                // For user with a physical menu button, we still want to display *our* contextual menu
+                
+                menuButton.showContextMenu();
+                return true;
+        }
+
+        return false;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings:
