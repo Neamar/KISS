@@ -25,7 +25,7 @@ Previews
 ![Preview](https://lh3.googleusercontent.com/17JTZKi0wh8ReNTMmhEzoR1Iu_mirK867_H2GbMwDhFf8QwpqhxzccpBLAFo5DbFdg)
 
 
-How does it works?
+How does it work?
 -------------------
 Different data types can be aggregated via KISS simple interface : apps, contacts, settings...
 
