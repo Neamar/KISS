@@ -551,10 +551,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * onPause(), since it may be called for a configuration change
      */
     public void launchOccurred(int index, Result result) {
-        // We made a choice on the list,
+        // We selected an item on the list,
         // now we can cleanup the filter:
-        searchEditText.setText("");
-        hideKeyboard();
+        if(!searchEditText.getText().equals("")) {
+            searchEditText.setText("");
+            hideKeyboard();
+        }
     }
 
     private void hideKeyboard() {
