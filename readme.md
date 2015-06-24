@@ -11,9 +11,9 @@ KISS is a fast launcher for your Android.
 
 Search through you app, contacts and settings lightning fast.
 No more time spent trying to find the app you need to launch : enter a few characters from the name and press enter.
-Need to phone someone ? Don't meddle with the call log, just give three letters of his name and push the "phone" button.
+Need to phone someone ? Don't meddle with the call log, just give three letters of their name and push the "phone" button.
 
-KISS becomes smarter and smarter as you uses it, pushing forward results you're more likely to select.
+KISS becomes smarter and smarter as you use it, pushing forward results you're more likely to select.
 
 Get ready to be amazed.
 
@@ -27,14 +27,14 @@ Previews
 
 How does it work?
 -------------------
-Different data types can be aggregated via KISS simple interface : apps, contacts, settings...
+Different data types can be aggregated via KISS' simple interface : apps, contacts, settings...
 
 Each data types uses four classes :
 
-* A *loader*, which retrieve all available items at startup
-* A *provider*, which knows all of its items (e.g. all contacts), and responsible for filtering those records according to the query
-* A *pojo*, which is a POJO storing simple data for one item (e.g. contact name, display name, phone number, photo)
-* A *result*, which ensure the *pojo* is properly displayed in the list
+* A *loader*, which retrieves all available items at startup
+* A *provider*, which knows all of its items (e.g. all contacts), and is responsible for filtering those records according to the query
+* A *pojo*, which is a [POJO](https://en.wikipedia.org/wiki/Plain_Old_Java_Object) storing simple data for one item (e.g. contact name, display name, phone number, photo)
+* A *result*, which ensures the *pojo* is properly displayed in the list
 
 Controlling the workflow is *SummonActivity*, initializing the UI, dispatching the query to the providers and ordering the results according to their relevance and user search history.
 
