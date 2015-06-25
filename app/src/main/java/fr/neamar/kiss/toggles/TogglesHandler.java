@@ -2,12 +2,9 @@ package fr.neamar.kiss.toggles;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
-import android.content.Intent;
-import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
-import android.provider.Settings;
 import android.util.Log;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,7 +17,6 @@ public class TogglesHandler {
     private final ConnectivityManager connectivityManager;
     private final WifiManager wifiManager;
     private final BluetoothAdapter bluetoothAdapter;
-    private final LocationManager locationManager;
     private final AudioManager audioManager;
 
     /**
@@ -34,7 +30,6 @@ public class TogglesHandler {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         this.wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         this.audioManager = ((AudioManager) context.getSystemService(Context.AUDIO_SERVICE));
     }
 
@@ -53,8 +48,6 @@ public class TogglesHandler {
                     return getDataState();
                 case "bluetooth":
                     return getBluetoothState();
-                case "gps":
-                    return getGpsState();
                 case "silent":
                     return getSilentState();
                 default:
@@ -79,9 +72,6 @@ public class TogglesHandler {
                     break;
                 case "bluetooth":
                     setBluetoothState(state);
-                    break;
-                case "gps":
-                    setGpsState();
                     break;
                 case "silent":
                     setSilentState(state);
@@ -111,7 +101,6 @@ public class TogglesHandler {
             dataMtd.setAccessible(true);
             return (Boolean) dataMtd.invoke(connectivityManager);
         } catch (NoSuchMethodException | IllegalArgumentException | InvocationTargetException | IllegalAccessException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return false;
@@ -125,7 +114,6 @@ public class TogglesHandler {
             dataMtd.setAccessible(true);
             dataMtd.invoke(connectivityManager, state);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | IllegalArgumentException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -141,23 +129,12 @@ public class TogglesHandler {
             bluetoothAdapter.disable();
     }
 
-    private Boolean getGpsState() {
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-    }
-
-    private void setGpsState() {
-        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(myIntent);
-    }
-
     private Boolean getSilentState() {
         int state = audioManager.getRingerMode();
         return state == AudioManager.RINGER_MODE_SILENT || state == AudioManager.RINGER_MODE_VIBRATE;
     }
 
     private void setSilentState(Boolean state) {
-
         if (!state) {
             audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
             audioManager.setStreamVolume(AudioManager.STREAM_RING,
