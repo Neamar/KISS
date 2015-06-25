@@ -5,14 +5,17 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadSettingPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SettingPojo;
 
 public class SettingProvider extends Provider<SettingPojo> {
+    private final String settingName;
 
     public SettingProvider(Context context) {
         super(new LoadSettingPojos(context));
+        settingName = context.getString(R.string.settings_prefix).toLowerCase();
     }
 
     public ArrayList<Pojo> getResults(String query) {
@@ -28,10 +31,13 @@ public class SettingProvider extends Provider<SettingPojo> {
                 relevance = 10;
             else if (settingNameLowerCased.contains(" " + query))
                 relevance = 5;
+            else if (settingName.startsWith(query)) {
+                // Also display for a search on "settings" for instance
+                relevance = 4;
+            }
 
             if (relevance > 0) {
-                setting.displayName = setting.name.replace("Setting:",
-                        "<small><small>Setting:</small></small>").replaceFirst(
+                setting.displayName = setting.name.replaceFirst(
                         "(?i)(" + Pattern.quote(query) + ")", "{$1}");
                 setting.relevance = relevance;
                 results.add(setting);
@@ -44,8 +50,7 @@ public class SettingProvider extends Provider<SettingPojo> {
     public Pojo findById(String id) {
         for (int i = 0; i < pojos.size(); i++) {
             if (pojos.get(i).id.equals(id)) {
-                pojos.get(i).displayName = pojos.get(i).name.replace("Setting:",
-                        "<small><small>Setting:</small></small>");
+                pojos.get(i).displayName = pojos.get(i).name;
                 return pojos.get(i);
             }
 

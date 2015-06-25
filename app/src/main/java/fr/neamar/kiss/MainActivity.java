@@ -553,7 +553,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public void launchOccurred(int index, Result result) {
         // We selected an item on the list,
         // now we can cleanup the filter:
-        if(!searchEditText.getText().equals("")) {
+        if (!searchEditText.getText().equals("")) {
             searchEditText.setText("");
             hideKeyboard();
         }

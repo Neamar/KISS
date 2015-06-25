@@ -2,6 +2,8 @@ package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -35,8 +37,10 @@ public class ToggleResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_toggle);
 
+        String togglePrefix = "<small><small>" + context.getString(R.string.toggles_prefix) + "</small></small>";
+
         TextView toggleName = (TextView) v.findViewById(R.id.item_toggle_name);
-        toggleName.setText(enrichText(togglePojo.displayName));
+        toggleName.setText(TextUtils.concat(Html.fromHtml(togglePrefix), enrichText(togglePojo.displayName)));
 
         ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
         toggleIcon.setImageDrawable(context.getResources().getDrawable(togglePojo.icon));
