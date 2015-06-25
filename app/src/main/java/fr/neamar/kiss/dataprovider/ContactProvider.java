@@ -22,6 +22,7 @@ public class ContactProvider extends Provider<ContactPojo> {
         String contactNameLowerCased;
 
         final String highlightRegexp = "(?i)(" + StringNormalizer.unNormalize(query) + ")";
+        final String queryWithSpace = " " + query;
 
         for (int i = 0; i < pojos.size(); i++) {
             ContactPojo contact = pojos.get(i);
@@ -30,7 +31,7 @@ public class ContactProvider extends Provider<ContactPojo> {
 
             if (contactNameLowerCased.startsWith(query))
                 relevance = 50;
-            else if (contactNameLowerCased.contains(" " + query))
+            else if (contactNameLowerCased.contains(queryWithSpace))
                 relevance = 40;
 
             if (relevance > 0) {
@@ -59,7 +60,6 @@ public class ContactProvider extends Provider<ContactPojo> {
                 pojos.get(i).displayName = pojos.get(i).name;
                 return pojos.get(i);
             }
-
         }
 
         return null;
