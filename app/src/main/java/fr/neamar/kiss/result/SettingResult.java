@@ -3,6 +3,8 @@ package fr.neamar.kiss.result;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,8 +25,9 @@ public class SettingResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_setting);
 
+        String settingPrefix = "<small><small>" + context.getString(R.string.settings_prefix) + "</small></small>";
         TextView settingName = (TextView) v.findViewById(R.id.item_setting_name);
-        settingName.setText(enrichText(settingPojo.displayName));
+        settingName.setText(TextUtils.concat(Html.fromHtml(settingPrefix), enrichText(settingPojo.displayName)));
 
         ImageView settingIcon = (ImageView) v.findViewById(R.id.item_setting_icon);
         settingIcon.setImageDrawable(getDrawable(context));

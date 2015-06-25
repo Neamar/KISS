@@ -30,8 +30,7 @@ public class SettingProvider extends Provider<SettingPojo> {
                 relevance = 5;
 
             if (relevance > 0) {
-                setting.displayName = setting.name.replace("Setting:",
-                        "<small><small>Setting:</small></small>").replaceFirst(
+                setting.displayName = setting.name.replaceFirst(
                         "(?i)(" + Pattern.quote(query) + ")", "{$1}");
                 setting.relevance = relevance;
                 results.add(setting);
@@ -44,8 +43,7 @@ public class SettingProvider extends Provider<SettingPojo> {
     public Pojo findById(String id) {
         for (int i = 0; i < pojos.size(); i++) {
             if (pojos.get(i).id.equals(id)) {
-                pojos.get(i).displayName = pojos.get(i).name.replace("Setting:",
-                        "<small><small>Setting:</small></small>");
+                pojos.get(i).displayName = pojos.get(i).name;
                 return pojos.get(i);
             }
 

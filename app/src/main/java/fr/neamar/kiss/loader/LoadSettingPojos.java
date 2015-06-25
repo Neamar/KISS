@@ -34,7 +34,7 @@ public class LoadSettingPojos extends LoadPojos<SettingPojo> {
     private SettingPojo createPojo(String name, String settingName, int resId) {
         SettingPojo pojo = new SettingPojo();
         pojo.id = pojoScheme + settingName.toLowerCase(Locale.ENGLISH);
-        pojo.name = context.getString(R.string.settings_prefix) + name;
+        pojo.name = name;
         pojo.nameLowerCased = pojo.name.toLowerCase(Locale.ENGLISH);
         pojo.settingName = settingName;
         pojo.icon = resId;
