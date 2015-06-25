@@ -11,7 +11,7 @@ import fr.neamar.kiss.pojo.TogglePojo;
 public class LoadTogglePojos extends LoadPojos<TogglePojo> {
 
     public LoadTogglePojos(Context context) {
-        super(context, "app://");
+        super(context, "toggle://");
     }
 
     @Override
@@ -28,6 +28,7 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
         if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
             toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.drawable.toggle_data));
         }
+
         return toggles;
     }
 

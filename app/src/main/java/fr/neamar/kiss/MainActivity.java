@@ -278,7 +278,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 }
             }, 10);
         } else {
-            // Display keyboard
+            // Hide keyboard
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
