@@ -15,8 +15,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -35,7 +37,6 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -105,8 +106,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         super.onCreate(savedInstanceState);
-
-        final Date initializationDate = new Date();
 
         IntentFilter intentFilter = new IntentFilter(START_LOAD);
         IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
@@ -310,11 +309,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     @Override
-    public boolean onKeyDown(int keycode, KeyEvent e) {
+    public boolean onKeyDown(int keycode, @NonNull KeyEvent e) {
         switch (keycode) {
             case KeyEvent.KEYCODE_MENU:
                 // For user with a physical menu button, we still want to display *our* contextual menu
-
                 menuButton.showContextMenu();
                 return true;
         }
@@ -353,7 +351,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Display menu, on short or long press.
      *
-     * @param menuButton
+     * @param menuButton "kebab" menu (3 dots)
      */
     public void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
@@ -479,9 +477,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
                 // Hide the green bar
-                if (display) {
-                    displayKissBar(false);
-                }
+                displayKissBar(false);
                 return;
             }
 
@@ -553,7 +549,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public void launchOccurred(int index, Result result) {
         // We selected an item on the list,
         // now we can cleanup the filter:
-        if (!searchEditText.getText().equals("")) {
+        if (!searchEditText.getText().toString().equals("")) {
             searchEditText.setText("");
             hideKeyboard();
         }
