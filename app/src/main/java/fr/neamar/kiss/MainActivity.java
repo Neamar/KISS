@@ -298,6 +298,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        // Empty method,
+        // This is called when the user press Home again while already browsing MainActivity
+        // onResume() will be called right after, hiding the kissbar if any.
+        // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
+    }
+
+    @Override
     public void onBackPressed() {
         // Is the kiss menu visible?
         if (menuButton.getVisibility() == View.VISIBLE) {
