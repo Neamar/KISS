@@ -48,6 +48,16 @@ public class ContactProvider extends Provider<ContactPojo> {
                 contact.displayName = pojos.get(i).name.replaceFirst(highlightRegexp, "{$1}");
                 contact.relevance = relevance;
                 results.add(contact);
+
+                // Circuit-breaker to avoid spending too much time
+                // building results
+                // Important: this is made possible because LoadContactPojos already
+                // returns contacts sorted by popularity, so the first items should be the most useful ones.
+                // (short queries, e.g. "a" with thousands of contacts,
+                // can return hundreds of results which are then slow to sort and display)
+                if(results.size() > 50) {
+                    break;
+                }
             }
         }
 
