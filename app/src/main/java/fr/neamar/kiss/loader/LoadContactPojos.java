@@ -84,6 +84,8 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
         cur.close();
 
         ArrayList<ContactPojo> contacts = new ArrayList<>();
+
+        Pattern phoneFormatter = Pattern.compile("[ \\.\\(\\)]");
         for (ArrayList<ContactPojo> phones : mapContacts.values()) {
             // Find primary phone and add this one.
             Boolean hasPrimary = false;
@@ -100,7 +102,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
             if (!hasPrimary) {
                 HashMap<String, Boolean> added = new HashMap<>();
                 for (int j = 0; j < phones.size(); j++) {
-                    String uniqueKey = phones.get(j).phone.replaceAll("[ \\.\\(\\)]", "");
+                    String uniqueKey = phoneFormatter.matcher(phones.get(j).phone).replaceFirst("");
                     uniqueKey = uniqueKey.replaceAll("^\\+33", "0");
                     uniqueKey = uniqueKey.replaceAll("^\\+1", "0");
                     if (!added.containsKey(uniqueKey)) {
