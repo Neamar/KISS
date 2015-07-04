@@ -18,7 +18,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -95,6 +94,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Task launched on text change
      */
     private Searcher searcher;
+
+    private Runnable displayKeyboardRunnable = new Runnable() {
+        @Override
+        public void run() {
+            showKeyboard();
+        }
+    };
 
     /**
      * Called when the activity is first created.
@@ -266,25 +272,24 @@ public class MainActivity extends ListActivity implements QueryInterface {
             displayKissBar(false);
         }
 
+        // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
+        // so the keyboard will be hidden by default
+        // we may want to display it if the setting is set
         if (prefs.getBoolean("display-keyboard", false)) {
             // Display keyboard
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    searchEditText.requestFocus();
-                    InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
-                }
-            }, 10);
-        } else {
-            // Hide keyboard
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    hideKeyboard();
-                    searchEditText.clearFocus();
-                }
-            }, 10);
+            showKeyboard();
+
+            new Handler().postDelayed(displayKeyboardRunnable, 10);
+            // For some weird reasons, keyboard may be hidden by the system
+            // So we have to run this multiple time at different time
+            // See https://github.com/Neamar/KISS/issues/119
+            new Handler().postDelayed(displayKeyboardRunnable, 100);
+            new Handler().postDelayed(displayKeyboardRunnable, 500);
+        }
+        else {
+            // Not used (thanks windowSoftInputMode)
+            // unless coming back from KISS settings
+            hideKeyboard();
         }
 
         super.onResume();
@@ -570,5 +575,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    private void showKeyboard() {
+        searchEditText.requestFocus();
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
     }
 }
