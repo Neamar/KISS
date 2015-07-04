@@ -100,4 +100,11 @@ public class ToggleResult extends Result {
             toggleButton.performClick();
         }
     }
+
+    @Override
+    public void fastLaunch(Context context) {
+        // Can't fast launch a toggle.
+        // (should only happen when the user has a toggle in its favorite)
+        return;
+    }
 }
