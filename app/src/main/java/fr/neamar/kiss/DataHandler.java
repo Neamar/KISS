@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
@@ -83,6 +86,10 @@ public class DataHandler extends BroadcastReceiver {
         // Have we ever made the same query and selected something ?
         ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
                 context, query);
+        HashMap<String, Integer> knownIds = new HashMap();
+        for (int k = 0; k < lastIdsForQuery.size(); k++) {
+            knownIds.put(lastIdsForQuery.get(k).record, lastIdsForQuery.get(k).value);
+        }
 
         // Ask all providers for data
         ArrayList<Pojo> allPojos = new ArrayList<>();
@@ -94,10 +101,8 @@ public class DataHandler extends BroadcastReceiver {
             // Add results to list
             for (int j = 0; j < pojos.size(); j++) {
                 // Give a boost if item was previously selected for this query
-                for (int k = 0; k < lastIdsForQuery.size(); k++) {
-                    if (pojos.get(j).id.equals(lastIdsForQuery.get(k).record)) {
-                        pojos.get(j).relevance += 25 * Math.min(5, lastIdsForQuery.get(k).value);
-                    }
+                if(knownIds.containsKey(pojos.get(j).id)) {
+                    pojos.get(j).relevance += 25 * Math.min(5, knownIds.get(pojos.get(j).id));
                 }
                 allPojos.add(pojos.get(j));
             }
