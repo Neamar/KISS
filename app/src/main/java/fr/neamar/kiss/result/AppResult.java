@@ -44,7 +44,7 @@ public class AppResult extends Result {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    appIcon.setImageDrawable(AppResult.this.getDrawable(context));
+                    appIcon.setImageDrawable(getDrawable(context));
                 }
             });
         }
