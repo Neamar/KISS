@@ -34,7 +34,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
                         ContactsContract.CommonDataKinds.Phone.NUMBER,
                         ContactsContract.CommonDataKinds.Phone.STARRED,
                         ContactsContract.CommonDataKinds.Phone.IS_SUPER_PRIMARY,
-                        ContactsContract.Contacts.PHOTO_ID}, null, null, null);
+                        ContactsContract.Contacts.PHOTO_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
 
         // Prevent duplicates by keeping in memory encountered phones.
         // The string key is "phone" + "|" + "name" (so if two contacts
@@ -82,6 +82,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
             }
         }
         cur.close();
+
         ArrayList<ContactPojo> contacts = new ArrayList<>();
         for (ArrayList<ContactPojo> phones : mapContacts.values()) {
             // Find primary phone and add this one.

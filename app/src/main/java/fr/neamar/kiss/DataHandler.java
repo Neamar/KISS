@@ -10,7 +10,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 
 import fr.neamar.kiss.dataprovider.AliasProvider;
@@ -86,7 +85,7 @@ public class DataHandler extends BroadcastReceiver {
         // Have we ever made the same query and selected something ?
         ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
                 context, query);
-        HashMap<String, Integer> knownIds = new HashMap();
+        HashMap<String, Integer> knownIds = new HashMap<>();
         for (int k = 0; k < lastIdsForQuery.size(); k++) {
             knownIds.put(lastIdsForQuery.get(k).record, lastIdsForQuery.get(k).value);
         }
