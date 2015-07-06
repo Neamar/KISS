@@ -102,7 +102,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
             if (!hasPrimary) {
                 HashMap<String, Boolean> added = new HashMap<>();
                 for (int j = 0; j < phones.size(); j++) {
-                    String uniqueKey = phoneFormatter.matcher(phones.get(j).phone).replaceFirst("");
+                    String uniqueKey = phoneFormatter.matcher(phones.get(j).phone).replaceAll("");
                     uniqueKey = uniqueKey.replaceAll("^\\+33", "0");
                     uniqueKey = uniqueKey.replaceAll("^\\+1", "0");
                     if (!added.containsKey(uniqueKey)) {
