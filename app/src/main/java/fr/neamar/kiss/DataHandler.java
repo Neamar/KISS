@@ -14,9 +14,10 @@ import java.util.HashMap;
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactProvider;
+import fr.neamar.kiss.dataprovider.DuckduckgoSearchProvider;
+import fr.neamar.kiss.dataprovider.GoogleSearchProvider;
 import fr.neamar.kiss.dataprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.Provider;
-import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.SettingProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
@@ -57,9 +58,11 @@ public class DataHandler extends BroadcastReceiver {
         else {
             contactProvider = null;
         }
-
-        if (prefs.getBoolean("enable-search", true)) {
-            providers.add(new SearchProvider(context));
+        if (prefs.getBoolean("enable-google-search", true)) {
+            providers.add(new GoogleSearchProvider(context));
+        }
+        if (prefs.getBoolean("enable-duckduckgo-search", true)) {
+            providers.add(new DuckduckgoSearchProvider(context));
         }
         if (prefs.getBoolean("enable-phone", true)) {
             providers.add(new PhoneProvider(context));

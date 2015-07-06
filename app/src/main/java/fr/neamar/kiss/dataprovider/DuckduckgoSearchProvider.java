@@ -4,20 +4,20 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-import fr.neamar.kiss.loader.LoadSearchPojos;
+import fr.neamar.kiss.loader.LoadDuckduckgoSearchPojos;
+import fr.neamar.kiss.pojo.DuckduckgoSearchPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.SearchPojo;
 
-public class SearchProvider extends Provider<SearchPojo> {
+public class DuckduckgoSearchProvider extends Provider<DuckduckgoSearchPojo> {
 
-    public SearchProvider(Context context) {
-        super(new LoadSearchPojos(context));
+    public DuckduckgoSearchProvider(Context context) {
+        super(new LoadDuckduckgoSearchPojos(context));
     }
 
     public ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> pojos = new ArrayList<>();
 
-        SearchPojo pojo = new SearchPojo();
+        DuckduckgoSearchPojo pojo = new DuckduckgoSearchPojo();
         pojo.query = query;
         pojo.relevance = 10;
         pojos.add(pojo);
