@@ -1,6 +1,7 @@
 package fr.neamar.kiss.loader;
 
 import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -61,6 +62,12 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
                 String messagingAlias = context.getResources().getString(R.string.alias_messaging);
                 addAliasesPojo(alias, messagingAlias.split(","), messagingApp);
             }
+
+            String clockApp = getClockApp(pm);
+            if (messagingApp != null) {
+                String clockAlias = context.getResources().getString(R.string.alias_clock);
+                addAliasesPojo(alias, clockAlias.split(","), clockApp);
+            }
         }
 
         return alias;
@@ -100,6 +107,39 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
             return "app://" + list.get(0).activityInfo.applicationInfo.packageName + "/"
                     + list.get(0).activityInfo.name;
         }
+    }
 
+    private String getClockApp(PackageManager pm) {
+        Intent alarmClockIntent = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER);
+
+        // Known clock implementation
+        String clockImpls[][] = {
+                {"Standar Alarm Clock3", "com.android.deskclock", "com.android.deskclock.DeskClock"},
+                {"HTC Alarm Clock", "com.htc.android.worldclock", "com.htc.android.worldclock.WorldClockTabControl"},
+                {"Standar Alarm Clock", "com.android.deskclock", "com.android.deskclock.AlarmClock"},
+                {"Standar Alarm Clock2", "com.google.android.deskclock", "com.android.deskclock.AlarmClock"},
+                {"Froyo Nexus Alarm Clock", "com.google.android.deskclock", "com.android.deskclock.DeskClock"},
+                {"Moto Blur Alarm Clock", "com.motorola.blur.alarmclock", "com.motorola.blur.alarmclock.AlarmClock"},
+                {"Samsung Galaxy Clock", "com.sec.android.app.clockpackage", "com.sec.android.app.clockpackage.ClockPackage"},
+                {"Sony Ericsson Xperia Z", "com.sonyericsson.organizer", "com.sonyericsson.organizer.Organizer_WorldClock"}
+        };
+
+        for (int i = 0; i < clockImpls.length; i++) {
+            String vendor = clockImpls[i][0];
+            String packageName = clockImpls[i][1];
+            String className = clockImpls[i][2];
+            try {
+                ComponentName cn = new ComponentName(packageName, className);
+
+                pm.getActivityInfo(cn, PackageManager.GET_META_DATA);
+                alarmClockIntent.setComponent(cn);
+
+                return "app://" + packageName + "/" + className;
+            } catch (PackageManager.NameNotFoundException e) {
+                // Try next suggestion, this one does not exists on the phone.
+            }
+        }
+
+        return null;
     }
 }
