@@ -1,6 +1,7 @@
 package fr.neamar.kiss.loader;
 
 import android.annotation.TargetApi;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -61,6 +62,12 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
                 String messagingAlias = context.getResources().getString(R.string.alias_messaging);
                 addAliasesPojo(alias, messagingAlias.split(","), messagingApp);
             }
+
+            String clockApp = getClockApp(pm);
+            if (messagingApp != null) {
+                String clockAlias = context.getResources().getString(R.string.alias_clock);
+                addAliasesPojo(alias, clockAlias.split(","), clockApp);
+            }
         }
 
         return alias;
@@ -100,6 +107,47 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
             return "app://" + list.get(0).activityInfo.applicationInfo.packageName + "/"
                     + list.get(0).activityInfo.name;
         }
+    }
 
+    private String getClockApp(PackageManager pm) {
+        Intent alarmClockIntent = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER);
+
+        // Known clock implementations
+        // See http://stackoverflow.com/questions/3590955/intent-to-launch-the-clock-application-on-android
+        String clockImpls[][] = {
+                // Nexus
+                {"com.android.deskclock", "com.android.deskclock.DeskClock"},
+                // Samsung
+                {"com.sec.android.app.clockpackage", "com.sec.android.app.clockpackage.ClockPackage"},
+                // HTC
+                {"com.htc.android.worldclock", "com.htc.android.worldclock.WorldClockTabControl"},
+                // Standard Android
+                {"com.android.deskclock", "com.android.deskclock.AlarmClock"},
+                // New Android versions
+                {"com.google.android.deskclock", "com.android.deskclock.AlarmClock"},
+                // Froyo
+                {"com.google.android.deskclock", "com.android.deskclock.DeskClock"},
+                // Motorola
+                {"com.motorola.blur.alarmclock", "com.motorola.blur.alarmclock.AlarmClock"},
+                // Sony
+                {"com.sonyericsson.organizer", "com.sonyericsson.organizer.Organizer_WorldClock"}
+        };
+
+        for (int i = 0; i < clockImpls.length; i++) {
+            String packageName = clockImpls[i][0];
+            String className = clockImpls[i][1];
+            try {
+                ComponentName cn = new ComponentName(packageName, className);
+
+                pm.getActivityInfo(cn, PackageManager.GET_META_DATA);
+                alarmClockIntent.setComponent(cn);
+
+                return "app://" + packageName + "/" + className;
+            } catch (PackageManager.NameNotFoundException e) {
+                // Try next suggestion, this one does not exists on the phone.
+            }
+        }
+
+        return null;
     }
 }
