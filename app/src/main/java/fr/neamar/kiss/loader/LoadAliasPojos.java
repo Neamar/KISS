@@ -112,22 +112,30 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
     private String getClockApp(PackageManager pm) {
         Intent alarmClockIntent = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER);
 
-        // Known clock implementation
+        // Known clock implementations
+        // See http://stackoverflow.com/questions/3590955/intent-to-launch-the-clock-application-on-android
         String clockImpls[][] = {
-                {"Standar Alarm Clock3", "com.android.deskclock", "com.android.deskclock.DeskClock"},
-                {"HTC Alarm Clock", "com.htc.android.worldclock", "com.htc.android.worldclock.WorldClockTabControl"},
-                {"Standar Alarm Clock", "com.android.deskclock", "com.android.deskclock.AlarmClock"},
-                {"Standar Alarm Clock2", "com.google.android.deskclock", "com.android.deskclock.AlarmClock"},
-                {"Froyo Nexus Alarm Clock", "com.google.android.deskclock", "com.android.deskclock.DeskClock"},
-                {"Moto Blur Alarm Clock", "com.motorola.blur.alarmclock", "com.motorola.blur.alarmclock.AlarmClock"},
-                {"Samsung Galaxy Clock", "com.sec.android.app.clockpackage", "com.sec.android.app.clockpackage.ClockPackage"},
-                {"Sony Ericsson Xperia Z", "com.sonyericsson.organizer", "com.sonyericsson.organizer.Organizer_WorldClock"}
+                // Nexus
+                {"com.android.deskclock", "com.android.deskclock.DeskClock"},
+                // Samsung
+                {"com.sec.android.app.clockpackage", "com.sec.android.app.clockpackage.ClockPackage"},
+                // HTC
+                {"com.htc.android.worldclock", "com.htc.android.worldclock.WorldClockTabControl"},
+                // Standard Android
+                {"com.android.deskclock", "com.android.deskclock.AlarmClock"},
+                // New Android versions
+                {"com.google.android.deskclock", "com.android.deskclock.AlarmClock"},
+                // Froyo
+                {"com.google.android.deskclock", "com.android.deskclock.DeskClock"},
+                // Motorola
+                {"com.motorola.blur.alarmclock", "com.motorola.blur.alarmclock.AlarmClock"},
+                // Sony
+                {"com.sonyericsson.organizer", "com.sonyericsson.organizer.Organizer_WorldClock"}
         };
 
         for (int i = 0; i < clockImpls.length; i++) {
-            String vendor = clockImpls[i][0];
-            String packageName = clockImpls[i][1];
-            String className = clockImpls[i][2];
+            String packageName = clockImpls[i][0];
+            String className = clockImpls[i][1];
             try {
                 ComponentName cn = new ComponentName(packageName, className);
 
