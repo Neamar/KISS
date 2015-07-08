@@ -58,11 +58,13 @@ public class DataHandler extends BroadcastReceiver {
         else {
             contactProvider = null;
         }
-        if (prefs.getBoolean("enable-google-search", true)) {
-            providers.add(new GoogleSearchProvider(context));
-        }
-        if (prefs.getBoolean("enable-duckduckgo-search", true)) {
-            providers.add(new DuckduckgoSearchProvider(context));
+        switch(prefs.getString("searchEngine", "none")) {
+            case "duckduckgo":
+                providers.add(new DuckduckgoSearchProvider(context));
+                break;
+            case "google":
+                providers.add(new GoogleSearchProvider(context));
+                break;
         }
         if (prefs.getBoolean("enable-phone", true)) {
             providers.add(new PhoneProvider(context));

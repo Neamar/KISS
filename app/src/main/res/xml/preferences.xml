@@ -42,18 +42,13 @@
             android:summary="@string/aliases_desc"
             android:title="@string/aliases_name">
         </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enable-google-search"
-            android:summary="@string/google_search_desc"
-            android:title="@string/google_search_name">
-        </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enable-duckduckgo-search"
-            android:summary="@string/duckduckgo_search_desc"
-            android:title="@string/duckduckgo_search_name">
-        </CheckBoxPreference>
+        <ListPreference
+            android:title="@string/search_engines"
+            android:summary="@string/choose_search_engine"
+            android:key="searchEngine"
+            android:defaultValue="google"
+            android:entries="@array/search_engine_name_list"
+            android:entryValues="@array/search_engine_list" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-phone"
