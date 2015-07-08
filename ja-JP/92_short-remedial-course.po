@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-07-02 22:47+0900\n"
+"PO-Revision-Date: 2015-07-08 08:02+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -62,7 +62,7 @@ msgstr "シェルと基本コマンド"
 #. Tag: para
 #, no-c-format
 msgid "In the Unix world, every administrator has to use the command line sooner or later; for example, when the system fails to start properly and only provides a command-line rescue mode. Being able to handle such an interface, therefore, is a basic survival skill for these circumstances."
-msgstr "Unix 世界では、管理者全員が遅かれ早かれコマンドラインを使わなければいけません; 例えば、システムが正常な起動に失敗して、コマンドラインのレスキューモードだけが提供される場合です。それゆえ、このような状況下ではコマンドラインインターフェイスを取り扱うことが可能なことが基本的なサバイバル技術です。"
+msgstr "Unix 世界では、管理者全員が遅かれ早かれコマンドラインを使わなければいけません; 例えば、システムが正常な起動に失敗して、コマンドラインのレスキューモードだけが提供される場合です。それゆえ、このような状況下ではコマンドラインインターフェースを取り扱う事が可能な事が基本的なサバイバル技術です。"
 
 #. Tag: title
 #, no-c-format
@@ -77,7 +77,7 @@ msgstr "コマンドライン環境はグラフィカルデスクトップから
 #. Tag: para
 #, no-c-format
 msgid "This section only gives a quick peek at the commands. They all have many options not described here; accordingly, they also have abundant documentation in their respective manual pages."
-msgstr "この説では、コマンドを簡単に見ていきます。全てのコマンドは多くのオプションを持っていますが、ここでは説明しません; また、コマンドのマニュアルページには豊富な文書が用意されています。"
+msgstr "この説では、コマンドを簡単に見ていきます。すべてのコマンドは多くのオプションを持っていますが、ここでは説明しません; また、コマンドのマニュアルページには豊富な文書が用意されています。"
 
 #. Tag: title
 #, no-c-format
@@ -87,7 +87,7 @@ msgstr "ディレクトリツリーの閲覧とファイル管理"
 #. Tag: para
 #, no-c-format
 msgid "Once a session is open, the <command>pwd</command> command (which stands for <emphasis>print working directory</emphasis>) displays the current location in the filesystem. The current directory is changed with the <command>cd <replaceable>directory</replaceable></command> command (<command>cd</command> is for <emphasis>change directory</emphasis>). The parent directory is always called <literal>..</literal> (two dots), whereas the current directory is also known as <literal>.</literal> (one dot). The <command>ls</command> command allows <emphasis>listing</emphasis> the contents of a directory. If no parameters are given, it operates on the current directory."
-msgstr "一度セッションが開始されたら、<command>pwd</command> コマンド (これは <emphasis>print working directory</emphasis> の略語です) でファイルシステム上の現在の場所を表示することが可能です。現在のディレクトリを変更するには、<command>cd <replaceable>directory</replaceable></command> コマンド (<command>cd</command> は <emphasis>change directory</emphasis> の略語です) を使います。親ディレクトリは常に <literal>..</literal> (ドット 2 つ) で表します。これに対して、現在のディレクトリは <literal>.</literal> (ドット 1 つ) で表します。<command>ls</command> コマンドは指定したディレクトリの内容を <emphasis>listing (表示)</emphasis> します。パラメータを与えなかった場合、<command>ls</command> コマンドは現在のディレクトリの内容を表示します。"
+msgstr "一度セッションが開始されたら、<command>pwd</command> コマンド (これは <emphasis>print working directory</emphasis> の略語です) でファイルシステム上の現在の場所を表示する事が可能です。現在のディレクトリを変更するには、<command>cd <replaceable>directory</replaceable></command> コマンド (<command>cd</command> は <emphasis>change directory</emphasis> の略語です) を使います。親ディレクトリは常に <literal>..</literal> (ドット 2 つ) で表します。これに対して、現在のディレクトリは <literal>.</literal> (ドット 1 つ) で表します。<command>ls</command> コマンドは指定したディレクトリの内容を <emphasis>listing (表示)</emphasis> します。パラメータを与えなかった場合、<command>ls</command> コマンドは現在のディレクトリの内容を表示します。"
 
 #. Tag: screen
 #, no-c-format
@@ -177,7 +177,7 @@ msgstr "<command>cat <replaceable>file</replaceable></command> コマンド (フ
 #. Tag: para
 #, no-c-format
 msgid "The <command>editor</command> command always points at a text editor (such as <command>vi</command> or <command>nano</command>) and allows creating, modifying and reading text files. The simplest files can sometimes be created directly from the command interpreter thanks to redirection: <command>echo \"<replaceable>text</replaceable>\" &gt;<replaceable>file</replaceable></command> creates a file named <replaceable>file</replaceable> with “<replaceable>text</replaceable>” as its contents. Adding a line at the end of this file is possible too, with a command such as <command>echo \"<replaceable>line</replaceable>\" &gt;&gt;<replaceable>file</replaceable></command>."
-msgstr "<command>editor</command> コマンドは常にテキストエディタ (<command>vi</command> や <command>nano</command> など) を指しており、テキストファイルの作成、修正、読み込みを行います。リダイレクト機能のおかげで、しばしばコマンドインタプリタから最も簡単なファイルを作ることが可能です: <command>echo \"<replaceable>text</replaceable>\" &gt;<replaceable>file</replaceable></command> は「<replaceable>text</replaceable>」という内容で <replaceable>file</replaceable> と名付けられたファイルを作成します。<command>echo \"<replaceable>line</replaceable>\" &gt;&gt;<replaceable>file</replaceable></command> などのコマンドを使えば、ファイルの最後に行を追加することも可能です。"
+msgstr "<command>editor</command> コマンドは常にテキストエディタ (<command>vi</command> や <command>nano</command> など) を指しており、テキストファイルの作成、修正、読み込みを行います。リダイレクト機能のお陰で、しばしばコマンドインタプリタから最も簡単なファイルを作る事が可能です: <command>echo \"<replaceable>text</replaceable>\" &gt;<replaceable>file</replaceable></command> は「<replaceable>text</replaceable>」という内容で <replaceable>file</replaceable> と名付けられたファイルを作成します。<command>echo \"<replaceable>line</replaceable>\" &gt;&gt;<replaceable>file</replaceable></command> などのコマンドを使えば、ファイルの最後に行を追加する事も可能です。"
 
 #. Tag: title
 #, no-c-format
@@ -192,7 +192,7 @@ msgstr "<command>find <replaceable>directory</replaceable> <replaceable>criteria
 #. Tag: para
 #, no-c-format
 msgid "The <command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> command searches the contents of the files and extracts the lines matching the regular expression (see sidebar <xref linkend=\"sidebar.regexp\" />). Adding the <literal>-r</literal> option enables a recursive search on all files contained in the directory passed as a parameter. This allows looking for a file when only a part of the contents are known."
-msgstr "<command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> コマンドはファイルの内容を検索して、正規表現 (傍注<xref linkend=\"sidebar.regexp\" />参照) に一致する行を抽出します。<literal>-r</literal> オプションを追加すれば、パラメータとして指定されたディレクトリに含まれる全てのファイルに対して再帰検索することが可能です。<literal>-r</literal> オプションを使うことで、内容の一部がわかっているファイルを探す事が可能です。"
+msgstr "<command>grep <replaceable>expression</replaceable> <replaceable>files</replaceable></command> コマンドはファイルの内容を検索して、正規表現 (傍注<xref linkend=\"sidebar.regexp\" />参照) に一致する行を抽出します。<literal>-r</literal> オプションを追加すれば、パラメータとして指定されたディレクトリに含まれるすべてのファイルに対して再帰検索する事が可能です。<literal>-r</literal> オプションを使うことで、内容の一部がわかっているファイルを探す事が可能です。"
 
 #. Tag: title
 #, no-c-format
@@ -202,12 +202,12 @@ msgstr "プロセス管理"
 #. Tag: para
 #, no-c-format
 msgid "The <command>ps aux</command> command lists the processes currently running and allows identifying them by their <emphasis>pid</emphasis> (process id). Once the <emphasis>pid</emphasis> of a process is known, the <command>kill -<replaceable>signal</replaceable> <replaceable>pid</replaceable></command> command allows sending it a signal (if the process belongs to the current user). Several signals exist; most commonly used are <literal>TERM</literal> (a request to terminate) and <literal>KILL</literal> (a heavy-handed kill)."
-msgstr "<command>ps aux</command> コマンドは現在実行中のプロセスをリストし、プロセスの <emphasis>pid</emphasis> (プロセス ID) を使ってプロセスを識別することが可能です。プロセスの <emphasis>pid</emphasis> が判ったら、<command>kill -<replaceable>signal</replaceable> <replaceable>pid</replaceable></command> コマンドを使ってプロセスにシグナルを送信することが可能です (対象のプロセスがシグナルを送信するユーザのものである場合に限ります)。シグナルには様々な種類があります; 最もよく使われるのが <literal>TERM</literal> (処理の終了を依頼する) と <literal>KILL</literal> (強制的に終了する)。"
+msgstr "<command>ps aux</command> コマンドは現在実行中のプロセスをリストし、プロセスの <emphasis>pid</emphasis> (プロセス ID) を使ってプロセスを識別する事が可能です。プロセスの <emphasis>pid</emphasis> が判ったら、<command>kill -<replaceable>signal</replaceable> <replaceable>pid</replaceable></command> コマンドを使ってプロセスにシグナルを送信する事が可能です (対象のプロセスがシグナルを送信するユーザのものである場合に限ります)。シグナルには様々な種類があります; 最もよく使われるのが <literal>TERM</literal> (処理の終了を依頼する) と <literal>KILL</literal> (強制的に終了する)。"
 
 #. Tag: para
 #, no-c-format
 msgid "The command interpreter can also run programs in the background if the command ends with “&amp;”. By using the ampersand, the user resumes control of the shell immediately even though the command is still running (hidden from the user; as a background process). The <command>jobs</command> command lists the processes running in the background; running <command>fg %<replaceable>job-number</replaceable></command> (for <emphasis>foreground</emphasis>) restores a job to the foreground. When a command is running in the foreground (either because it was started normally, or brought back to the foreground with <command>fg</command>), the <keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> key combination pauses the process and resumes control of the command-line. The process can then be restarted in the background with <command>bg %<replaceable>job-number</replaceable></command> (for <foreignphrase>background</foreignphrase>)."
-msgstr "コマンドインタプリタは、コマンドの最後に「&amp;」がついていた場合、バックグラウンドでプログラムを実行します。アンパサンドを使うことで、ユーザは、コマンドがまだ実行中であっても、すぐにシェルの制御を再開することが可能です (ここで実行したコマンドはユーザから見えなくなります; バックグラウンドプロセスになります)。<command>jobs</command> コマンドはバックグラウンドで実行中のプロセスをリストします; <command>fg %<replaceable>job-number</replaceable></command> (<emphasis>foreground</emphasis> の略語) は指定したジョブをフォアグラウンドに復活させます。コマンドがフォアグラウンドで実行されている場合 (通常通り開始した場合も、<command>fg</command> でフォアグラウンドに復活した場合も)、<keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> キーの組み合わせでフォアグラウンドプロセスを一時停止してコマンドラインの制御を再開することが可能です。プロセスをバックグラウンドで再開するには、<command>bg %<replaceable>job-number</replaceable></command> (<foreignphrase>background</foreignphrase> の略語) を使います。"
+msgstr "コマンドインタプリタは、コマンドの最後に「&amp;」がついていた場合、バックグラウンドでプログラムを実行します。アンパサンドを使うことで、ユーザは、コマンドがまだ実行中であっても、すぐにシェルの制御を再開する事が可能です (ここで実行したコマンドはユーザから見えなくなります; バックグラウンドプロセスになります)。<command>jobs</command> コマンドはバックグラウンドで実行中のプロセスをリストします; <command>fg %<replaceable>job-number</replaceable></command> (<emphasis>foreground</emphasis> の略語) は指定したジョブをフォアグラウンドに復活させます。コマンドがフォアグラウンドで実行されている場合 (通常通り開始した場合も、<command>fg</command> でフォアグラウンドに復活した場合も)、<keycombo action=\"simul\"><keycap>Control</keycap><keycap>Z</keycap></keycombo> キーの組み合わせでフォアグラウンドプロセスを一時停止してコマンドラインの制御を再開する事が可能です。プロセスをバックグラウンドで再開するには、<command>bg %<replaceable>job-number</replaceable></command> (<foreignphrase>background</foreignphrase> の略語) を使います。"
 
 #. Tag: title
 #, no-c-format
@@ -244,18 +244,18 @@ msgstr ""
 "-/+ buffers/cache:     570416     458004\n"
 "Swap:      2771172     404588    2366584\n"
 "$ </computeroutput><userinput>df</userinput>\n"
-"<computeroutput>Filesystem           1K-blocks      Used Available Use% Mounted on\n"
-"/dev/sda2              9614084   4737916   4387796  52% /\n"
-"tmpfs                   514208         0    514208   0% /lib/init/rw\n"
-"udev                     10240       100     10140   1% /dev\n"
-"tmpfs                   514208    269136    245072  53% /dev/shm\n"
-"/dev/sda5             44552904  36315896   7784380  83% /home\n"
+"<computeroutput>ファイルシス       1K-ブロック      使用    使用可 使用% マウント位置\n"
+"/dev/sda2              9614084   4737916   4387796   52% /\n"
+"tmpfs                   514208         0    514208    0% /lib/init/rw\n"
+"udev                     10240       100     10140    1% /dev\n"
+"tmpfs                   514208    269136    245072   53% /dev/shm\n"
+"/dev/sda5             44552904  36315896   7784380   83% /home\n"
 "</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>id</command> command displays the identity of the user running the session, along with the list of groups they belong to. Since access to some files or devices may be limited to group members, checking available group membership may be useful."
-msgstr "<command>id</command> コマンドはセッションを実行しているユーザの識別情報をユーザが所属するグループのリストと一緒に表示します。一部のファイルやデバイスへのアクセスはグループメンバーだけに制限されているかもしれませんので、ユーザの所属するグループの確認することが役に立つ場合があります。"
+msgstr "<command>id</command> コマンドはセッションを実行しているユーザの識別情報をユーザが所属するグループのリストと一緒に表示します。一部のファイルやデバイスへのアクセスはグループメンバーだけに制限されているかもしれませんので、ユーザの所属するグループの確認する事が役に立つ場合があります。"
 
 #. Tag: screen
 #, no-c-format
@@ -298,7 +298,7 @@ msgstr "<filename>/bin/</filename>: 基本プログラム;"
 #. Tag: para
 #, no-c-format
 msgid "<filename>/boot/</filename>: Linux kernel and other files required for its early boot process;"
-msgstr "<filename>/boot/</filename>: Linux カーネルとブートプロセスの初期に要求されるその他のファイル;"
+msgstr "<filename>/boot/</filename>: Linux カーネルと起動処理の初期に要求されるその他のファイル;"
 
 #. Tag: para
 #, no-c-format
@@ -358,7 +358,7 @@ msgstr "<filename>/tmp/</filename>: 一時ファイル; このディレクトリ
 #. Tag: para
 #, no-c-format
 msgid "<filename>/usr/</filename>: applications; this directory is further subdivided into <filename>bin</filename>, <filename>sbin</filename>, <filename>lib</filename> (according to the same logic as in the root directory). Furthermore, <filename>/usr/share/</filename> contains architecture-independent data. <filename>/usr/local/</filename> is meant to be used by the administrator for installing applications manually without overwriting files handled by the packaging system (<command>dpkg</command>)."
-msgstr "<filename>/usr/</filename>: アプリケーション; このディレクトリは <filename>bin</filename>、<filename>sbin</filename>、<filename>lib</filename> のようにさらに細分されます (各ディレクトリの目的はルートディレクトリにこれらのディレクトリが含まれる場合と同じです)。更に、<filename>/usr/share/</filename> にはアーキテクチャに依存しないデータが含まれます。<filename>/usr/local/</filename> は管理者が手作業でアプリケーションをインストールするために使われることを意味します。こうすることで、パッケージ化システム (<command>dpkg</command>) によって取り扱われるファイルを上書きしなくても済むようになります。"
+msgstr "<filename>/usr/</filename>: アプリケーション; このディレクトリは <filename>bin</filename>、<filename>sbin</filename>、<filename>lib</filename> のようにさらに細分されます (各ディレクトリの目的はルートディレクトリにこれらのディレクトリが含まれる場合と同じです)。更に、<filename>/usr/share/</filename> にはアーキテクチャに依存しないデータが含まれます。<filename>/usr/local/</filename> は管理者が手作業でアプリケーションをインストールするために使われる事を意味します。こうすることで、パッケージ化システム (<command>dpkg</command>) によって取り扱われるファイルを上書きしなくても済むようになります。"
 
 #. Tag: para
 #, no-c-format
@@ -378,7 +378,7 @@ msgstr "ユーザのホームディレクトリ"
 #. Tag: para
 #, no-c-format
 msgid "The contents of a user's home directory is not standardized, but there are still a few noteworthy conventions. One is that a user's home directory is often referred to by a tilde (“~”). That is useful to know because command interpreters automatically replace a tilde with the correct directory (usually <filename>/home/<replaceable>user</replaceable>/</filename>)."
-msgstr "ユーザのホームディレクトリの内容は標準化されていませんが、特筆すべき規則が存在します。1 つ目は、ユーザのホームディレクトリがチルダ (「~」) で表される場合が多いということです。これを知っておくと便利です。なぜなら、コマンドラインインタプリタは自動的にチルダを正しいディレクトリ (通常 <filename>/home/<replaceable>user</replaceable>/</filename>) に置き換えるからです。"
+msgstr "ユーザのホームディレクトリの内容は標準化されていませんが、特筆すべき規則が存在します。1 つ目は、ユーザのホームディレクトリがチルダ (「~」) で表される場合が多いという事です。これを知っておくと便利です。なぜなら、コマンドラインインタプリタは自動的にチルダを正しいディレクトリ (通常 <filename>/home/<replaceable>user</replaceable>/</filename>) に置き換えるからです。"
 
 #. Tag: para
 #, no-c-format
@@ -388,17 +388,17 @@ msgstr "伝統的に、アプリケーション設定ファイルはユーザの
 #. Tag: para
 #, no-c-format
 msgid "Some programs also use multiple configuration files organized in one directory (for instance, <filename>~/.ssh/</filename>). Some applications (such as the Iceweasel web browser) also use their directory to store a cache of downloaded data. This means that those directories can end up using a lot of disk space."
-msgstr "一部のプログラムは 1 つのディレクトリに含まれる複数の設定ファイルを使用します (例えば、<filename>~/.ssh/</filename>)。また、一部のアプリケーション (Iceweasel ウェブブラウザなど) は自分の設定ディレクトリをダウンロードデータをキャッシュする目的で使います。これはアプリケーション設定ディレクトリが大量のディスク領域を消費する場合があることを意味します。"
+msgstr "一部のプログラムは 1 つのディレクトリに含まれる複数の設定ファイルを使用します (例えば、<filename>~/.ssh/</filename>)。また、一部のアプリケーション (Iceweasel ウェブブラウザなど) は自分の設定ディレクトリをダウンロードデータをキャッシュする目的で使います。これはアプリケーション設定ディレクトリが大量のディスク領域を消費する場合がある事を意味します。"
 
 #. Tag: para
 #, no-c-format
 msgid "These configuration files stored directly in a user's home directory, often collectively referred to as <emphasis>dotfiles</emphasis>, have long proliferated to the point that these directories can be quite cluttered with them. Fortunately, an effort led collectively under the FreeDesktop.org umbrella has resulted in the “XDG Base Directory Specification”, a convention that aims at cleaning up these files and directory. This specification states that configuration files should be stored under <filename>~/.config</filename>, cache files under <filename>~/.cache</filename>, and application data files under <filename>~/.local</filename> (or subdirectories thereof). This convention is slowly gaining traction, and several applications (especially graphical ones) have started following it."
-msgstr "これらの設定ファイルはユーザのホームディレクトリに直接保存され、まとめて<emphasis>ドットファイル</emphasis>と呼ばれており、増え続けることでユーザのホームディレクトリを散らからせる原因となっています。幸いなことに、FreeDesktop.org の傘下で行われた努力により「XDG 基本ディレクトリ仕様」が生まれました。これは設定ファイルと設定ディレクトリを一掃することを目的とする仕様です。XDG 基本ディレクトリ仕様によれば、設定ファイルは <filename>~/.config</filename> に、キャッシュファイルは <filename>~/.cache</filename> に、アプリケーションデータファイルは <filename>~/.local</filename> (およびそのサブディレクトリ) に保存すると決められています。XDG 基本ディレクトリ仕様はゆっくりと勢いを増しつつあり、一部のアプリケーション (特にグラフィカルアプリケーション) はこの仕様に従うようになっています。"
+msgstr "これらの設定ファイルはユーザのホームディレクトリに直接保存され、まとめて<emphasis>ドットファイル</emphasis>と呼ばれており、増え続けることでユーザのホームディレクトリを散らからせる原因となっています。幸いなことに、FreeDesktop.org の傘下で行われた努力により「XDG 基本ディレクトリ仕様」が生まれました。これは設定ファイルと設定ディレクトリを一掃する事を目的とする仕様です。XDG 基本ディレクトリ仕様によれば、設定ファイルは <filename>~/.config</filename> に、キャッシュファイルは <filename>~/.cache</filename> に、アプリケーションデータファイルは <filename>~/.local</filename> (およびそのサブディレクトリ) に保存すると決められています。XDG 基本ディレクトリ仕様はゆっくりと勢いを増しつつあり、一部のアプリケーション (特にグラフィカルアプリケーション) はこの仕様に従うようになっています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Graphical desktops usually display the contents of the <filename>~/Desktop/</filename> directory (or whatever the appropriate translation is for systems not configured in English) on the desktop (ie, what's visible on screen once all applications are closed or iconized)."
-msgstr "通常グラフィカルデスクトップは <filename>~/Desktop/</filename> ディレクトリ (または英語で設定されていないシステムの場合、適切に翻訳された名前のディレクトリ) の内容をデスクトップ (つまり、全てのアプリケーションを閉じるかアイコン化した時の画面の内容) に表示します。"
+msgstr "通常グラフィカルデスクトップは <filename>~/Desktop/</filename> ディレクトリ (または英語で設定されていないシステムの場合、適切に翻訳された名前のディレクトリ) の内容をデスクトップ (つまり、すべてのアプリケーションを閉じるかアイコン化した時の画面の内容) に表示します。"
 
 #. Tag: para
 #, no-c-format
@@ -413,12 +413,12 @@ msgstr "コンピュータ内部の仕組み: 様々な層の関係性"
 #. Tag: para
 #, no-c-format
 msgid "A computer is often considered as something rather abstract, and the externally visible interface is much simpler than its internal complexity. Such complexity comes in part from the number of pieces involved. However, these pieces can be viewed in layers, where a layer only interacts with those immediately above or below."
-msgstr "コンピュータは抽象的なものとして考えられる場合が多く、外から見えるインターフェイスは内部の複雑さに比べてずっと簡単なものです。この複雑さの原因は関連する要素が多いことです。しかしながら、これらの要素は層状構造をしており、ある層が影響を及ぼしたり影響を受けたりするその層の真上と真下の層だけです。"
+msgstr "コンピュータは抽象的なものとして考えられる場合が多く、外から見えるインターフェースは内部の複雑さに比べてずっと簡単なものです。この複雑さの原因は関連する要素が多い事です。しかしながら、これらの要素は層状構造をしており、ある層が影響を及ぼしたり影響を受けたりするその層の真上と真下の層だけです。"
 
 #. Tag: para
 #, no-c-format
 msgid "An end-user can get by without knowing these details… as long as everything works. When confronting a problem such as, “The internet doesn't work!”, the first thing to do is to identify in which layer the problem originates. Is the network card (hardware) working? Is it recognized by the computer? Does the Linux kernel see it? Are the network parameters properly configured? All these questions isolate an appropriate layer and focus on a potential source of the problem."
-msgstr "すべてが上手く動作している限り、エンドユーザは各層の詳細を理解する必要はありません。「インターネットに繋がらない!」などの問題に直面した場合、最初に問題の原因になっている層を特定することが重要です。ネットワークカード (ハードウェア) は動いていますか? コンピュータはネットワークカードを認識していますか? Linux カーネルはネットワークカードを認識していますか? ネットワークパラメータは適切に設定されていますか? これらの質問により、コンピュータは適切な層に分割され、問題の本質的な原因になっている層を特定することが可能です。"
+msgstr "すべてが上手く動作している限り… エンドユーザは各層の詳細を理解する必要はありません。「インターネットに繋がらない!」などの問題に直面した場合、最初に問題の原因になっている層を特定する事が重要です。ネットワークカード (ハードウェア) は動いていますか? コンピュータはネットワークカードを認識していますか? Linux カーネルはネットワークカードを認識していますか? ネットワークパラメータは適切に設定されていますか? これらの質問により、コンピュータは適切な層に分割され、問題の本質的な原因になっている層を特定する事が可能です。"
 
 #. Tag: title
 #, no-c-format
@@ -468,7 +468,7 @@ msgstr "<primary>USB</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Let us start with a basic reminder that a computer is, first and foremost, a set of hardware elements. There is generally a main board (known as the <emphasis>motherboard</emphasis>), with one (or more) processor(s), some RAM, device controllers, and extension slots for option boards (for other device controllers). Most noteworthy among these controllers are IDE (Parallel ATA), SCSI and Serial ATA, for connecting to storage devices such as hard disks. Other controllers include USB, which is able to host a great variety of devices (ranging from webcams to thermometers, from keyboards to home automation systems) and IEEE 1394 (Firewire). These controllers often allow connecting several devices so the complete subsystem handled by a controller is therefore usually known as a “bus”. Option boards include graphics cards (where monitor screens will be plugged in to), sound cards, network interface cards, and so on. Some main boards are pre-built with these features, and don't need option boards."
-msgstr "基本的なことを思い出すことからはじめましょう。何よりもまず、コンピュータはハードウェア部品の集合体である、という点です。ほとんどの場合主要基板 (<emphasis>マザーボード</emphasis>として知られています) があり、これには 1 台 (または複数台) のプロセッサ、RAM、デバイスコントローラ、(他のデバイスコントローラを搭載する) 拡張ボード用の拡張スロットが取り付けられています。特に注意すべきコントローラはハードディスクなどのストレージデバイスを接続する IDE (パラレル ATA)、SCSI、シリアル ATA、です。その他のコントローラには、多くの様々なデバイス (ウェブカメラから温度計、キーボードからホームオートメーションシステム) をホストすることが可能な USB と IEEE 1394 (Firewire) があります。これらのコントローラには複数のデバイスを接続することが可能です。このため、コントローラによって取り扱われる完全なサブシステムは「バス」と呼ばれます。拡張ボードには、グラフィックカード (モニタ画面をここに接続します)、サウンドカード、ネットワークインターフェイスカード、などがあります。一部のマザーボードはいくつかの機能を予め備えており、拡張カードを必要としません。"
+msgstr "基本的な事を思い出すことからはじめましょう。何よりもまず、コンピュータはハードウェア部品の集合体である、という点です。ほとんどの場合主要基板 (<emphasis>マザーボード</emphasis>として知られています) があり、これには 1 台 (または複数台) のプロセッサ、RAM、デバイスコントローラ、(他のデバイスコントローラを搭載する) 拡張ボード用の拡張スロットが取り付けられています。特に注意すべきコントローラはハードディスクなどのストレージデバイスを接続する IDE (パラレル ATA)、SCSI、シリアル ATA、です。その他のコントローラには、多くの様々なデバイス (ウェブカメラから温度計、キーボードからホームオートメーションシステム) をホストする事が可能な USB と IEEE 1394 (Firewire) があります。これらのコントローラには複数のデバイスを接続する事が可能です。このため、コントローラによって取り扱われる完全なサブシステムは「バス」と呼ばれます。拡張ボードには、グラフィックカード (モニタ画面をここに接続します)、サウンドカード、ネットワークインターフェースカード、などがあります。一部のマザーボードはいくつかの機能を予め備えており、拡張カードを必要としません。"
 
 #. Tag: title
 #, no-c-format
@@ -478,7 +478,7 @@ msgstr "<emphasis>IN PRACTICE</emphasis> ハードウェアが動作している
 #. Tag: para
 #, no-c-format
 msgid "Checking that a piece of hardware works can be tricky. On the other hand, proving that it doesn't work is sometimes quite simple."
-msgstr "ハードウェアの一部が動作していることを確認することは難しいです。逆に、ハードウェアが動作していないことを証明することはとても簡単です。"
+msgstr "ハードウェアの一部が動作している事を確認することは難しいです。逆に、ハードウェアが動作していない事を証明することはとても簡単です。"
 
 #. Tag: para
 #, no-c-format
@@ -488,12 +488,12 @@ msgstr "ハードディスクドライブは回転する円盤と移動する磁
 #. Tag: para
 #, no-c-format
 msgid "Network cards often include LEDs displaying the state of the link. If a cable is plugged in and leads to a working network hub or switch, at least one LED will be on. If no LED lights up, either the card itself, the network device, or the cable between them, is faulty. The next step is therefore testing each component individually."
-msgstr "ネットワークカードは多くの場合リンク状態を示す LED を備えています。ケーブルが装着されており、そのケーブルが動いているネットワークハブまたはスイッチにつなげられている場合、少なくとも 1 つの LED が点灯しているはずです。全ての LED が消灯している場合、ネットワークカード本体、ネットワーク機器、両者をつなげるケーブルが壊れています。それ故、次の段階では各要素を個別にテストします。"
+msgstr "ネットワークカードは多くの場合リンク状態を示す LED を備えています。ケーブルが装着されており、そのケーブルが動いているネットワークハブまたはスイッチにつなげられている場合、少なくとも 1 つの LED が点灯しているはずです。すべての LED が消灯している場合、ネットワークカード本体、ネットワーク機器、両者をつなげるケーブルが壊れています。それ故、次の段階では各要素を個別にテストします。"
 
 #. Tag: para
 #, no-c-format
 msgid "Some option boards — especially 3D video cards — include cooling devices, such as heat sinks and/or fans. If the fan does not spin even though the card is powered up, a plausible explanation is the card overheated. This also applies to the main processor(s) located on the main board."
-msgstr "一部のオプションボード - 特に 3D ビデオカード - はヒートシンクやファンなどの冷却装置を備えています。カードの電源が入っているにも関わらずファンが回転していない場合、もっともらしい状況はカードが過熱している状況です。マザーボードに装着されているプロセッサにも同じことが言えます。"
+msgstr "一部のオプションボード - 特に 3D ビデオカード - はヒートシンクやファンなどの冷却装置を備えています。カードの電源が入っているにも関わらずファンが回転していない場合、もっともらしい状況はカードが過熱している状況です。マザーボードに装着されているプロセッサにも同じ事が言えます。"
 
 #. Tag: title
 #, no-c-format
@@ -528,17 +528,17 @@ msgstr "<primary><emphasis>Setup</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The BIOS also contains a piece of software called Setup, designed to allow configuring aspects of the computer. In particular, it allows choosing which boot device is preferred (for instance, the floppy disk or CD-ROM drive), setting the system clock, and so on. Starting Setup usually involves pressing a key very soon after the computer is powered on. This key is often <keycap>Del</keycap> or <keycap>Esc</keycap>, sometimes <keycap>F2</keycap> or <keycap>F10</keycap>. Most of the time, the choice is flashed on screen while booting."
-msgstr "BIOS には、Setup と呼ばれるソフトウェアが含まれます。Setup はコンピュータを設定する目的で設計されています。特に、Setup を使うことで優先するブートデバイス (例えば、フロッピーディスクや CD-ROM ドライブなど) を選択したり、システム時計を設定したりすることが可能です。Setup を開始するには、コンピュータ起動直後の非常に早い時期に特定のキーを押します。多くの場合このキーは <keycap>Del</keycap> か <keycap>Esc</keycap> で、時々 <keycap>F2</keycap> や <keycap>F10</keycap> の場合もあります。殆どの場合、Setup を開始するキーは起動画面に一瞬表示されます。"
+msgstr "BIOS には、Setup と呼ばれるソフトウェアが含まれます。Setup はコンピュータを設定する目的で設計されています。特に、Setup を使うことで優先する起動デバイス (例えば、フロッピーディスクや CD-ROM ドライブなど) を選択したり、システム時計を設定したりする事が可能です。Setup を開始するには、コンピュータ起動直後の非常に早い時期に特定のキーを押します。多くの場合このキーは <keycap>Del</keycap> か <keycap>Esc</keycap> で、時々 <keycap>F2</keycap> や <keycap>F10</keycap> の場合もあります。ほとんどの場合、Setup を開始するキーは起動画面に一瞬表示されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The boot sector, in turn, contains another tiny piece of software, called the bootloader, whose purpose is to find and run an operating system. Since this bootloader is not embedded in the main board but loaded from disk, it can be smarter than the BIOS, which explains why the BIOS does not load the operating system by itself. For instance, the bootloader (often GRUB on Linux systems) can list the available operating systems and ask the user to choose one. Usually, a time-out and default choice is provided. Sometimes the user can also choose to add parameters to pass to the kernel, and so on. Eventually, a kernel is found, loaded into memory, and executed."
-msgstr "ブートセクタには、別の小さなソフトウェアが含まれます。これはブートローダと呼ばれ、オペレーティングシステムを探して実行するためのものです。ブートローダはマザーボードに組み込まれているのではなく、ディスクから読み込まれます。このため、BIOS よりも多くの機能を持っています。BIOS 自身がオペレーティングシステムを読み込まないのはこれが理由です。例えば、ブートローダ (Linux システムでは GRUB を使うことが多いです) は利用可能なオペレーティングシステムを表示し、ユーザに起動するオペレーティングシステムを尋ねることが可能です。通常、タイムアウトとデフォルトの回答が設定されています。ここでユーザはカーネルに渡すパラメータを追加したりすることも可能です。最終的に、カーネルが見つかり、メモリに読み込まれ、実行されます。"
+msgstr "ブートセクタには、別の小さなソフトウェアが含まれます。これはブートローダと呼ばれ、オペレーティングシステムを探して実行するためのものです。ブートローダはマザーボードに組み込まれているのではなく、ディスクから読み込まれます。このため、BIOS よりも多くの機能を持っています。BIOS 自身がオペレーティングシステムを読み込まないのはこれが理由です。例えば、ブートローダ (Linux システムでは GRUB を使う事が多いです) は利用可能なオペレーティングシステムを表示し、ユーザに起動するオペレーティングシステムを尋ねる事が可能です。通常、タイムアウトとデフォルトの回答が設定されています。ここでユーザはカーネルに渡すパラメータを追加したりする事も可能です。最終的に、カーネルが見つかり、メモリに読み込まれ、実行されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The BIOS is also in charge of detecting and initializing a number of devices. Obviously, this includes the IDE/SATA devices (usually hard disk(s) and CD/DVD-ROM drives), but also PCI devices. Detected devices are often listed on screen during the boot process. If this list goes by too fast, use the <keycap>Pause</keycap> key to freeze it for long enough to read. Installed PCI devices that don't appear are a bad omen. At worst, the device is faulty. At best, it is merely incompatible with the current version of the BIOS or main board. PCI specifications evolve, and old main boards are not guaranteed to handle newer PCI devices."
-msgstr "さらに BIOS は多数のデバイスを検出して初期化します。言うまでもなくこのデバイスには、IDE/SATA デバイス (通常ハードディスクおよび CD/DVD-ROM デバイス) だけでなく PCI デバイスも含まれます。検出されたデバイスは起動プロセス中に画面に表示されます。デバイスリストがすぐに消えてしまう場合、<keycap>Pause</keycap> キーを押せば表示を止めて内容を読むことが可能です。インストールされた PCI デバイスがリストに含まれないのは悪い兆しです。最悪の場合、デバイスは欠陥品ということになります。良くても、デバイスはBIOS かマザーボードの現在のバージョンと互換性が無いということになります。PCI 仕様は進化しており、古いマザーボードで新しい PCI デバイスを使える保証はありません。"
+msgstr "さらに BIOS は多数のデバイスを検出して初期化します。言うまでもなくこのデバイスには、IDE/SATA デバイス (通常ハードディスクおよび CD/DVD-ROM デバイス) だけでなく PCI デバイスも含まれます。検出されたデバイスは起動処理中に画面に表示されます。デバイスリストがすぐに消えてしまう場合、<keycap>Pause</keycap> キーを押せば表示を止めて内容を読む事が可能です。インストールされた PCI デバイスがリストに含まれないのは悪い兆しです。最悪の場合、デバイスは欠陥品ということになります。良くても、デバイスは BIOS かマザーボードの現在のバージョンと互換性が無いということになります。PCI 仕様は進化しており、古いマザーボードで新しい PCI デバイスを使える保証はありません。"
 
 #. Tag: title
 #, no-c-format
@@ -548,7 +548,7 @@ msgstr "カーネル"
 #. Tag: para
 #, no-c-format
 msgid "Both the BIOS and the bootloader only run for a few seconds each; now we're getting to the first piece of software that runs for a longer time, the operating system kernel. This kernel assumes the role of a conductor in an orchestra, and ensures coordination between hardware and software. This role involves several tasks including: driving hardware, managing processes, users and permissions, the filesystem, and so on. The kernel provides a common base to all other programs on the system."
-msgstr "BIOS とブートローダはそれぞれ数秒間だけ実行されます; これでついに、長時間実行するソフトウェア、オペレーティングシステムカーネル、に到達します。カーネルはオーケストラの指揮者の役割を果たし、ハードウェアとソフトウェア間の調整を行います。カーネルは複数の仕事を担当しています: ハードウェアの駆動、プロセスの管理、ユーザとパーミッション、ファイルシステム、などです。カーネルはシステム上の全ての他のプログラムに共通基盤を提供します。"
+msgstr "BIOS とブートローダはそれぞれ数秒間だけ実行されます; これでついに、長時間実行するソフトウェア、オペレーティングシステムカーネル、に到達します。カーネルはオーケストラの指揮者の役割を果たし、ハードウェアとソフトウェア間の調整を行います。カーネルは複数の仕事を担当しています: ハードウェアの駆動、プロセスの管理、ユーザとパーミッション、ファイルシステム、などです。カーネルはシステム上のすべての他のプログラムに共通基盤を提供します。"
 
 #. Tag: title
 #, no-c-format
@@ -558,7 +558,7 @@ msgstr "ユーザ空間"
 #. Tag: para
 #, no-c-format
 msgid "Although everything that happens outside of the kernel can be lumped together under “user-space”, we can still separate it into software layers. However, their interactions are more complex than before, and the classifications may not be as simple. An application commonly uses libraries, which in turn involve the kernel, but the communications can also involve other programs, or even many libraries calling each other."
-msgstr "カーネルの以外の全ては「ユーザ空間」の意味でひとくくりにされますが、「ユーザ空間」を更にいくつかのソフトウェア層に分割することが可能です。しかしながら、ソフトウェア層同士の相互作用は以前に比べてさらに複雑化しており、ソフトウェア層の分類分けは単純ではありません。アプリケーションは一般にライブラリを使います。ライブラリはカーネルと通信しますが、通信には他のプログラムまたはさらに多くのライブラリが必要です。"
+msgstr "カーネルの以外のすべては「ユーザ空間」の意味でひとくくりにされますが、「ユーザ空間」を更にいくつかのソフトウェア層に分割する事が可能です。しかしながら、ソフトウェア層同士の相互作用は以前に比べてさらに複雑化しており、ソフトウェア層の分類分けは単純ではありません。アプリケーションは一般にライブラリを使います。ライブラリはカーネルと通信しますが、通信には他のプログラムまたはさらに多くのライブラリが必要です。"
 
 #. Tag: title
 #, no-c-format
@@ -573,12 +573,12 @@ msgstr "ハードウェアの操作"
 #. Tag: para
 #, no-c-format
 msgid "The kernel is, first and foremost, tasked with controlling the hardware parts, detecting them, switching them on when the computer is powered on, and so on. It also makes them available to higher-level software with a simplified programming interface, so applications can take advantage of devices without having to worry about details such as which extension slot the option board is plugged into. The programming interface also provides an abstraction layer; this allows video-conferencing software, for example, to use a webcam independently of its make and model. The software can just use the <emphasis>Video for Linux</emphasis> (V4L) interface, and the kernel translates the function calls of this interface into the actual hardware commands needed by the specific webcam in use."
-msgstr "カーネルの第一義はハードウェア部分を制御すること、検知すること、コンピュータが起動された時に切り替えることです。更にカーネルは単純化されたプログラミングインターフェイスを使った高レベルソフトウェアからのハードウェアの利用を可能にします。こうすることで、アプリケーションは拡張ボードがどの拡張スロットに接続されているかなどの詳細を気にすることなくデバイスをうまく活用することが可能になります。更にこのプログラミングインターフェイスは抽象化レイヤを提供します; 抽象化レイヤを使うことで、例えばビデオ会議ソフトは種類やモデル番号を気にせずにウェブカメラを使う事が可能です。ビデオ会議ソフトは <emphasis>Video for Linux</emphasis> (V4L) を使うだけです。カーネルが V4L インターフェイスの機能呼び出しを特定のウェブカメラを制御するために必要な実際のハードウェアコマンドに変換します。"
+msgstr "カーネルの第一義はハードウェア部分を制御すること、検知すること、コンピュータが起動された時に切り替える事です。更にカーネルは単純化されたプログラミングインターフェースを使った高レベルソフトウェアからのハードウェアの利用を可能にします。こうすることで、アプリケーションは拡張ボードがどの拡張スロットに接続されているかなどの詳細を気にすることなくデバイスを上手く活用する事が可能になります。更にこのプログラミングインターフェースは抽象化レイヤを提供します; 抽象化レイヤを使うことで、例えばビデオ会議ソフトは種類やモデル番号を気にせずにウェブカメラを使う事が可能です。ビデオ会議ソフトは <emphasis>Video for Linux</emphasis> (V4L) を使うだけです。カーネルが V4L インターフェースの機能呼び出しを特定のウェブカメラを制御するために必要な実際のハードウェアコマンドに変換します。"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary><command>lspci</command></primary></indexterm> <indexterm><primary><command>lsusb</command></primary></indexterm> <indexterm><primary><command>lsdev</command></primary></indexterm> <indexterm><primary><command>lspcmcia</command></primary></indexterm> The kernel exports many details about detected hardware through the <filename>/proc/</filename> and <filename>/sys/</filename> virtual filesystems. Several tools summarize those details. Among them, <command>lspci</command> (in the <emphasis role=\"pkg\">pciutils</emphasis> package) lists PCI devices, <command>lsusb</command> (in the <emphasis role=\"pkg\">usbutils</emphasis> package) lists USB devices, and <command>lspcmcia</command> (in the <emphasis role=\"pkg\">pcmciautils</emphasis> package) lists PCMCIA cards. These tools are very useful for identifying the exact model of a device. This identification also allows more precise searches on the web, which in turn, lead to more relevant documents."
-msgstr "<indexterm><primary><command>lspci</command></primary></indexterm> <indexterm><primary><command>lsusb</command></primary></indexterm> <indexterm><primary><command>lsdev</command></primary></indexterm> <indexterm><primary><command>lspcmcia</command></primary></indexterm> カーネルは検出されたハードウェアに関する多くの詳細を <filename>/proc/</filename> と <filename>/sys/</filename> 仮想ファイルシステムを通じて書き出します。ハードウェアの詳細をまとめて表示するツールも存在します。中でも、<command>lspci</command> (<emphasis role=\"pkg\">pciutils</emphasis> パッケージに含まれます) は PCI デバイスをリストし、<command>lsusb</command> (<emphasis role=\"pkg\">usbutils</emphasis> パッケージに含まれます) は USB デバイスをリストし、<command>lspcmcia</command> (<emphasis role=\"pkg\">pcmciautils</emphasis> パッケージに含まれます) は PCMCIA カードをリストします。これらのツールはデバイスの正確なモデル番号を識別するのに役立ちます。デバイスの正確なモデル番号を使えば、より的確に検索したり、より関連性の高い文書を見つけることが可能です。"
+msgstr "<indexterm><primary><command>lspci</command></primary></indexterm> <indexterm><primary><command>lsusb</command></primary></indexterm> <indexterm><primary><command>lsdev</command></primary></indexterm> <indexterm><primary><command>lspcmcia</command></primary></indexterm> カーネルは検出されたハードウェアに関する多くの詳細を <filename>/proc/</filename> と <filename>/sys/</filename> 仮想ファイルシステムを通じて書き出します。ハードウェアの詳細をまとめて表示するツールも存在します。中でも、<command>lspci</command> (<emphasis role=\"pkg\">pciutils</emphasis> パッケージに含まれます) は PCI デバイスをリストし、<command>lsusb</command> (<emphasis role=\"pkg\">usbutils</emphasis> パッケージに含まれます) は USB デバイスをリストし、<command>lspcmcia</command> (<emphasis role=\"pkg\">pcmciautils</emphasis> パッケージに含まれます) は PCMCIA カードをリストします。これらのツールはデバイスの正確なモデル番号を識別するのに役立ちます。デバイスの正確なモデル番号を使えば、より的確に検索したり、より関連性の高い文書を見つける事が可能です。"
 
 #. Tag: title
 #, no-c-format
@@ -652,17 +652,17 @@ msgstr "<primary>システム、ファイルシステム</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Filesystems are one of the most prominent aspects of the kernel. Unix systems merge all the file stores into a single hierarchy, which allows users (and applications) to access data simply by knowing its location within that hierarchy."
-msgstr "ファイルシステムはカーネルの最も目立つ側面の 1 つです。Unix システムは全てのファイルを統合し、1 つの階層構造の中に保存します。こうすることで、ユーザ (とアプリケーション) は階層構造の中のファイルの場所を知るだけでデータにアクセスすることが可能です。"
+msgstr "ファイルシステムはカーネルの最も目立つ側面の 1 つです。Unix システムはすべてのファイルを統合し、1 つの階層構造の中に保存します。こうすることで、ユーザ (とアプリケーション) は階層構造の中のファイルの場所を知るだけでデータにアクセスする事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The starting point of this hierarchical tree is called the root, <filename>/</filename>. This directory can contain named subdirectories. For instance, the <literal>home</literal> subdirectory of <filename>/</filename> is called <filename>/home/</filename>. This subdirectory can, in turn, contain other subdirectories, and so on. Each directory can also contain files, where the actual data will be stored. Thus, the <filename>/home/rmas/Desktop/hello.txt</filename> name refers to a file named <literal>hello.txt</literal> stored in the <literal>Desktop</literal> subdirectory of the <literal>rmas</literal> subdirectory of the <literal>home</literal> directory present in the root. The kernel translates between this naming system and the actual, physical storage on a disk."
-msgstr "階層構造ツリーの起点はルート、<filename>/</filename>、と呼ばれています。ルートディレクトリには名前を付けられたサブディレクトリが含まれます。例えば、<filename>/</filename> の <literal>home</literal> サブディレクトリは <filename>/home/</filename> と呼ばれます。このサブディレクトリには、更に別のサブディレクトリを含めることが可能です。各ディレクトリには、実際のデータが保存されるファイルを含めることも可能です。そんなわけで、<filename>/home/rmas/Desktop/hello.txt</filename> ファイルはルートディレクトリ内の <literal>home</literal> サブディレクトリ内の <literal>rmas</literal> サブディレクトリ内の <literal>Desktop</literal> サブディレクトリ内の <literal>hello.txt</literal> と名付けられたファイルを表します。カーネルはこの命名システムと実際のディスク上の物理的な保存領域を変換します。"
+msgstr "階層構造ツリーの起点はルート、<filename>/</filename>、と呼ばれています。ルートディレクトリには名前を付けられたサブディレクトリが含まれます。例えば、<filename>/</filename> の <literal>home</literal> サブディレクトリは <filename>/home/</filename> と呼ばれます。このサブディレクトリには、更に別のサブディレクトリを含める事が可能です。各ディレクトリには、実際のデータが保存されるファイルを含める事も可能です。そんなわけで、<filename>/home/rmas/Desktop/hello.txt</filename> ファイルはルートディレクトリ内の <literal>home</literal> サブディレクトリ内の <literal>rmas</literal> サブディレクトリ内の <literal>Desktop</literal> サブディレクトリ内の <literal>hello.txt</literal> と名付けられたファイルを表します。カーネルはこの命名システムと実際のディスク上の物理的な保存領域を変換します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Unlike other systems, there's only one such hierarchy, and it can integrate data from several disks. One of these disks is used as the root, and the others are “mounted” on directories in the hierarchy (the Unix command is called <command>mount</command>); these other disks are then available under these “mount points”. This allows storing users' home directories (traditionally stored within <filename>/home/</filename>) on a second hard disk, which will contain the <literal>rhertzog</literal> and <literal>rmas</literal> directories. Once the disk is mounted on <filename>/home/</filename>, these directories become accessible at their usual locations, and paths such as <filename>/home/rmas/Desktop/hello.txt</filename> keep working."
-msgstr "他のシステムと異なり、このような階層構造は一つしかありません。そしてこの単独の階層構造に複数のディスクからのデータを統合できます。1 台のディスクがルートディレクトリとして使われ、他のディスクは階層構造中のディレクトリに「マウント」されます (Unix コマンドは <command>mount</command> と呼ばれます)。マウントされたディスクは「マウントポイント」の下から利用可能になります。これのおかげで、2 台目のハードディスクにユーザのホームディレクトリ (伝統的に <filename>/home/</filename> の中に保存されます) を保存することが可能です。このディスクには <literal>rhertzog</literal> と <literal>rmas</literal> ディレクトリが含まれます。2 台目のハードディスクを <filename>/home/</filename> にマウントすると、ユーザのホームディレクトリの通常の場所からこれらのディレクトリにアクセス可能になり、<filename>/home/rmas/Desktop/hello.txt</filename> などのパスが動作するようになります。"
+msgstr "他のシステムと異なり、このような階層構造は一つしかありません。そしてこの単独の階層構造に複数のディスクからのデータを統合できます。1 台のディスクがルートディレクトリとして使われ、他のディスクは階層構造中のディレクトリに「マウント」されます (Unix コマンドは <command>mount</command> と呼ばれます)。マウントされたディスクは「マウントポイント」の下から利用可能になります。これのお陰で、2 台目のハードディスクにユーザのホームディレクトリ (伝統的に <filename>/home/</filename> の中に保存されます) を保存する事が可能です。このディスクには <literal>rhertzog</literal> と <literal>rmas</literal> ディレクトリが含まれます。2 台目のハードディスクを <filename>/home/</filename> にマウントすると、ユーザのホームディレクトリの通常の場所からこれらのディレクトリにアクセス可能になり、<filename>/home/rmas/Desktop/hello.txt</filename> などのパスが動作するようになります。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -672,7 +672,7 @@ msgstr "<primary><command>mkfs</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "There are many filesystems, corresponding to many ways of physically storing data on disks. The most widely known are <emphasis>ext2</emphasis>, <emphasis>ext3</emphasis> and <emphasis>ext4</emphasis>, but others exist. For instance, <emphasis>vfat</emphasis> is the system that was historically used by DOS and Windows operating systems, which allows using hard disks under Debian as well as under Windows. In any case, a filesystem must be prepared on a disk before it can be mounted and this operation is known as “formatting”. Commands such as <command>mkfs.ext3</command> (where <command>mkfs</command> stands for <emphasis>MaKe FileSystem</emphasis>) handle formatting. These commands require, as a parameter, a device file representing the partition to be formatted (for instance, <filename>/dev/sda1</filename>). This operation is destructive and should only be run once, except if one deliberately wishes to wipe a filesystem and start afresh."
-msgstr "ディスク上に物理的にデータを保存する方法の違いに対応して、多くのファイルシステムが存在します。最も広く知られているファイルシステムは <emphasis>ext2</emphasis>、<emphasis>ext3</emphasis>、<emphasis>ext4</emphasis> ですが、他にも存在します。例えば、<emphasis>vfat</emphasis> は歴史的に DOS と Windows オペレーティングシステムで使われていたファイルシステムで、<emphasis>vfat</emphasis> ファイルシステムを使っているハードディスクは Debian および Windows の下で使うことが可能です。いかなる場合でも、ディスクをマウントする前に必ずディスク上にファイルシステムを準備しなければいけません。この準備作業は「フォーマット」として知られています。フォーマットを行うには <command>mkfs.ext3</command> (ここで <command>mkfs</command> は <emphasis>MaKe FileSystem</emphasis> の略語です) などのコマンドを使います。<command>mkfs</command> コマンドには、フォーマットされるパーティションを指すデバイスファイル (例えば <filename>/dev/sda1</filename>) をパラメータとして渡す必要があります。ファイルシステムの作成作業は破壊的なものです。意図的にファイルシステムを完全消去して、最初からやり直したい場合を除いて、2 回やってはいけません。"
+msgstr "ディスク上に物理的にデータを保存する方法の違いに対応して、多くのファイルシステムが存在します。最も広く知られているファイルシステムは <emphasis>ext2</emphasis>、<emphasis>ext3</emphasis>、<emphasis>ext4</emphasis> ですが、他にも存在します。例えば、<emphasis>vfat</emphasis> は歴史的に DOS と Windows オペレーティングシステムで使われていたファイルシステムで、<emphasis>vfat</emphasis> ファイルシステムを使っているハードディスクは Debian および Windows の下で使う事が可能です。いかなる場合でも、ディスクをマウントする前に必ずディスク上にファイルシステムを準備しなければいけません。この準備作業は「フォーマット」として知られています。フォーマットを行うには <command>mkfs.ext3</command> (ここで <command>mkfs</command> は <emphasis>MaKe FileSystem</emphasis> の略語です) などのコマンドを使います。<command>mkfs</command> コマンドには、フォーマットされるパーティションを指すデバイスファイル (例えば <filename>/dev/sda1</filename>) をパラメータとして渡す必要があります。ファイルシステムの作成作業は破壊的なものです。意図的にファイルシステムを完全消去して、最初からやり直したい場合を除いて、2 回やってはいけません。"
 
 #. Tag: para
 #, no-c-format
@@ -687,7 +687,7 @@ msgstr "共有機能"
 #. Tag: para
 #, no-c-format
 msgid "Since a number of the same functions are used by all software, it makes sense to centralize them in the kernel. For instance, shared filesystem handling allows any application to simply open a file by name, without needing to worry where the file is stored physically. The file can be stored in several different slices on a hard disk, or split across several hard disks, or even stored on a remote file server. Shared communication functions are used by applications to exchange data independently of the way the data is transported. For instance, transport could be over any combination of local or wireless networks, or over a telephone landline."
-msgstr "数多くの同じ機能がすべてのソフトウェアで使われますから、これらの機能をカーネルに集中させることは合理的です。例えば、共有ファイルシステムを取り扱う機能を使うことで、名前から簡単にファイルを開くことが可能になります。ファイルが物理的に保存されている場所を気にする必要はありません。ファイルは 1 台のハードディスクの複数の異なる部分に保存したり、複数のハードディスクに渡って分割したり、リモートファイルサーバに保存することが可能です。アプリケーションはデータを交換するために共有された通信機能を使います。アプリケーション側からするとデータを転送する方法を意識する必要はありません。例えば、データ転送はローカル、ワイヤレスネットワーク、固定電話回線の任意の組み合わせを通じて行われるかもしれません。"
+msgstr "数多くの同じ機能がすべてのソフトウェアで使われますから、これらの機能をカーネルに集中させることは合理的です。例えば、共有ファイルシステムを取り扱う機能を使うことで、名前から簡単にファイルを開く事が可能になります。ファイルが物理的に保存されている場所を気にする必要はありません。ファイルは 1 台のハードディスクの複数の異なる部分に保存したり、複数のハードディスクに渡って分割したり、リモートファイルサーバに保存する事が可能です。アプリケーションはデータを交換するために共有された通信機能を使います。アプリケーション側からするとデータを転送する方法を意識する必要はありません。例えば、データ転送はローカル、ワイヤレスネットワーク、固定電話回線の任意の組み合わせを通じて行われるかもしれません。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -702,7 +702,7 @@ msgstr "プロセスとはプログラムの実行中インスタンスです。
 #. Tag: para
 #, no-c-format
 msgid "Unix-like kernels (including Linux), like most other modern operating systems, are able of “multi-tasking”. In other words, they allow running many processes “at the same time”. There's actually only one running process at any one time, but the kernel cuts time into small slices and runs each process in turn. Since these time slices are very short (in the millisecond range), they create the illusion of processes running in parallel, although they're actually only active during some time intervals and idle the rest of the time. The kernel's job is to adjust its scheduling mechanisms to keep that illusion, while maximizing the global system performance. If the time slices are too long, the application may lack in snappiness and user interactivity. Too short, and the system loses time switching tasks too frequently. These decisions can be tweaked with process priorities. High-priority processes will run for longer and more frequent time slices than low-priority processes."
-msgstr "Unix 系カーネル (Linux を含めて) は、多くの他の現代的なオペレーティングシステムと同様、「マルチタスク」機能を備えています。言い換えれば、Unix 系カーネルは多くのプロセスを「同時に」実行することが可能です。ある時点で動いているのは 1 つのプロセスだけですが、カーネルは時間を小さな単位に切り分け、順繰りにそれぞれのプロセスを実行します。これらの時分割単位は極めて短い (ミリ秒程度) ので、プロセスが並列実行されているような錯覚を起こさせます。しかし実際のところプロセスはある時間周期で活動しており、残りの時間は動いていません。カーネルの仕事はこの錯覚を保つためにスケジューリングメカニズムを調節し、同時にシステム全体の性能を最大化することです。時分割単位が長すぎる場合、アプリケーションからの応答が遅れ、ユーザとの対話処理に支障をきたすかもしれません。短すぎる場合、タスク切り替えが頻繁に起こるようになり、システムは処理時間を損する事になります。プロセス優先度を使えば、時分割単位を微調整する事が可能です。優先度の高いプロセスは優先度の低いプロセスに比べて長くそしてより頻繁な時分割単位で実行されます。"
+msgstr "Unix 系カーネル (Linux を含めて) は、多くの他の現代的なオペレーティングシステムと同様、「マルチタスク」機能を備えています。言い換えれば、Unix 系カーネルは多くのプロセスを「同時に」実行する事が可能です。ある時点で動いているのは 1 つのプロセスだけですが、カーネルは時間を小さな単位に切り分け、順繰りにそれぞれのプロセスを実行します。これらの時分割単位は極めて短い (ミリ秒程度) ので、プロセスが並列実行されているような錯覚を起こさせます。しかし実際のところプロセスはある時間周期で活動しており、残りの時間は動いていません。カーネルの仕事はこの錯覚を保つためにスケジューリングメカニズムを調節し、同時にシステム全体の性能を最大化する事です。時分割単位が長すぎる場合、アプリケーションからの応答が遅れ、ユーザとの対話処理に支障をきたすかもしれません。短すぎる場合、タスク切り替えが頻繁に起こるようになり、システムは処理時間を損する事になります。プロセス優先度を使えば、時分割単位を微調整する事が可能です。優先度の高いプロセスは優先度の低いプロセスに比べて長くそしてより頻繁な時分割単位で実行されます。"
 
 #. Tag: title
 #, no-c-format
@@ -712,12 +712,12 @@ msgstr "<emphasis>NOTE</emphasis> マルチプロセッサシステム (とそ�
 #. Tag: para
 #, no-c-format
 msgid "The restriction described here is only a corner case. The actual restriction is that there can only be one running process <emphasis>per processor core</emphasis> at a time. Multi-processor, multi-core or “hyper-threaded” systems allow several processes to run in parallel. The same time-slicing system is still used, though, so as to handle cases where there are more active processes than available processor cores. This is far from unusual: a basic system, even a mostly idle one, almost always has tens of running processes."
-msgstr "ここで説明している制限はかなり珍しいケースです。実用上の制限としては、同時に実行されるプロセスの数が<emphasis>プロセッサのコア 1 つあたり</emphasis> 1 つという制限です。マルチプロセッサ、マルチコア、「ハイパースレッディング」システムを使うことで、複数のプロセスを並列実行することが可能です。ここでも同じ時分割システムを使いますが、このシステムは利用可能なプロセッサコアよりも多くのプロセスを実行させるようなケースを取り扱うことが可能です。これは決して珍しいことではありません: 基本システムはほとんど動いていませんが、殆ど常時数十個の実行中プロセスを抱えています。"
+msgstr "ここで説明している制限はかなり珍しいケースです。実用上の制限としては、同時に実行されるプロセスの数が<emphasis>プロセッサのコア 1 つあたり</emphasis> 1 つという制限です。マルチプロセッサ、マルチコア、「ハイパースレッディング」システムを使うことで、複数のプロセスを並列実行する事が可能です。ここでも同じ時分割システムを使いますが、このシステムは利用可能なプロセッサコアよりも多くのプロセスを実行させるようなケースを取り扱う事が可能です。これは決して珍しいことではありません: ベースシステムはほとんど動いていませんが、ほとんど常時数十個の実行中プロセスを抱えています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Of course, the kernel allows running several independent instances of the same program. But each can only access its own time slices and memory. Their data thus remain independent."
-msgstr "もちろん、カーネルは同じプログラムの複数の独立したインスタンスも取り扱うことが可能です。しかし各プロセスは自分自身以外の時分割基準とメモリにアクセスすることはできません。このため、プロセスごとのデータは独立に管理されています。"
+msgstr "もちろん、カーネルは同じプログラムの複数の独立したインスタンスも取り扱う事が可能です。しかし各プロセスは自分自身以外の時分割基準とメモリにアクセスすることはできません。このため、プロセスごとのデータは独立に管理されています。"
 
 #. Tag: title
 #, no-c-format
@@ -727,7 +727,7 @@ msgstr "権限管理"
 #. Tag: para
 #, no-c-format
 msgid "Unix-like systems are also multi-user. They provide a rights management system that allows separate groups and users; it also allows choosing to permit or block actions based on permissions. The kernel manages, for each process, data allowing permission checking. Most of the time, this means the process' “identity” is the same as the user that started it. And the process is only able to take the actions allowed to its owner. For instance, trying to open a file requires the kernel to check the process identity against access permissions (for more details on this particular example, see <xref linkend=\"sect.rights-management\" />)."
-msgstr "Unix 系システムはマルチユーザに対応しています。Unix 系システムの提供する権限管理システムを使うことで、グループとユーザを別々に管理することが可能です; さらに、パーミッションに基いて操作を許可したり拒否したりすることが可能です。カーネルがそれぞれのプロセスについてパーミッション確認用のデータを管理しています。殆どの場合、これはプロセスの「識別情報」はプロセスを起動したユーザと同じということ意味しています。そして、プロセスは自分を起動した所有者の可能な動作だけを実行吸うことが可能です。例えば、プロセスがファイルを開く前に、カーネルによってそのプロセスの識別情報がアクセスパーミッションを持つことを確認されます (具体的な例についてのより詳しい情報は<xref linkend=\"sect.rights-management\" />を御覧ください)。"
+msgstr "Unix 系システムはマルチユーザに対応しています。Unix 系システムの提供する権限管理システムを使うことで、グループとユーザを別々に管理する事が可能です; さらに、パーミッションに基いて操作を許可したり拒否したりする事が可能です。カーネルがそれぞれのプロセスについてパーミッション確認用のデータを管理しています。ほとんどの場合、これはプロセスの「識別情報」はプロセスを起動したユーザと同じということ意味しています。そして、プロセスは自分を起動した所有者の可能な動作だけを実行吸う事が可能です。例えば、プロセスがファイルを開く前に、カーネルによってそのプロセスの識別情報がアクセスパーミッションを持つ事を確認されます (具体的な例についてのより詳しい情報は<xref linkend=\"sect.rights-management\" />をご覧ください)。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -762,17 +762,17 @@ msgstr "<primary><emphasis>フォーク</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "First of all, a process can clone itself (this is known as a <emphasis>fork</emphasis>). The kernel allocates a new, but identical, process memory space, and another process to use it. At this point in time, the only difference between these two processes is their <emphasis>pid</emphasis>. The new process is customarily called a child process, and the process whose <emphasis>pid</emphasis> doesn't change, is called the parent process."
-msgstr "まず最初に、プロセスは自分自身を複製 (これは<emphasis>フォーク</emphasis>として知られています) することが可能です。カーネルは全く同じプロセスを新しいメモリ空間に割り当てます。そして、複製したプロセスが複製されたプロセスを使います。この時点で、2 つのプロセスの違いは <emphasis>pid</emphasis> だけです。新しいプロセスは習慣的に子プロセスと呼ばれています。そして <emphasis>pid</emphasis> が変わらなかったプロセスは親プロセスと呼ばれています。"
+msgstr "まず最初に、プロセスは自分自身を複製 (これは<emphasis>フォーク</emphasis>として知られています) する事が可能です。カーネルは全く同じプロセスを新しいメモリ空間に割り当てます。そして、複製したプロセスが複製されたプロセスを使います。この時点で、2 つのプロセスの違いは <emphasis>pid</emphasis> だけです。新しいプロセスは習慣的に子プロセスと呼ばれています。そして <emphasis>pid</emphasis> が変わらなかったプロセスは親プロセスと呼ばれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Sometimes, the child process continues to lead its own life independently from its parent, with its own data copied from the parent process. In many cases, though, this child process executes another program. With a few exceptions, its memory is simply replaced by that of the new program, and execution of this new program begins. One of the very first actions of process number 1, for instance, is to duplicate itself (which means there are, for a tiny amount of time, two running copies of the same <command>init</command> process), but the child process is then replaced by the first system initialization script, usually <filename>/etc/init.d/rcS</filename>. This script, in turn, clones itself and runs several other programs. At some point, one process among <command>init</command>'s offspring starts a graphical interface for users to log in to (the actual sequence of events is described in more details in <xref linkend=\"sect.system-boot\" />)."
-msgstr "しばしば、子プロセスは親プロセスからコピーされたデータを持った状態で、親プロセスから独立して引き続き実行されます。とはいえ、子プロセスは他のプログラムを実行する場合が多いです。この場合、いくつかの例外を除いて、子プロセスのメモリは単純に新しいプログラムで置き換えられ、新しいプログラムの実行が始まります。例えば、プロセス番号 1 の最も初期の挙動の 1 つは自分自身を複製することですが (これは、ごく僅かな時間ですが、同じ <command>init</command> プロセスの 2 つの実行コピーが存在することを意味します)、子プロセスは最初のシステム初期化スクリプト <filename>/etc/init.d/rcS</filename> で置き換えられます。システム初期化スクリプトは自分自身の複製を取り、複数の他のプログラムを実行します。同時に、<command>init</command> の子プロセスの 1 つがログイン機能を提供するユーザ用のグラフィカルインターフェースを開始します(実際のイベントの順番は<xref linkend=\"sect.system-boot\" />に詳しく書かれています)。"
+msgstr "しばしば、子プロセスは親プロセスからコピーされたデータを持った状態で、親プロセスから独立して引き続き実行されます。とはいえ、子プロセスは他のプログラムを実行する場合が多いです。この場合、いくつかの例外を除いて、子プロセスのメモリは単純に新しいプログラムで置き換えられ、新しいプログラムの実行が始まります。例えば、プロセス番号 1 の最も初期の挙動の 1 つは自分自身を複製する事ですが (これは、ごく僅かな時間ですが、同じ <command>init</command> プロセスの 2 つの実行コピーが存在する事を意味します)、子プロセスは最初のシステム初期化スクリプト <filename>/etc/init.d/rcS</filename> で置き換えられます。システム初期化スクリプトは自分自身の複製を取り、複数の他のプログラムを実行します。同時に、<command>init</command> の子プロセスの 1 つがログイン機能を提供するユーザ用のグラフィカルインターフェースを開始します(実際のイベントの順番は<xref linkend=\"sect.system-boot\" />に詳しく書かれています)。"
 
 #. Tag: para
 #, no-c-format
 msgid "When a process finishes the task for which it was started, it terminates. The kernel then recovers the memory assigned to this process, and stops giving it slices of running time. The parent process is told about its child process being terminated, which allows a process to wait for the completion of a task it delegated to a child process. This behavior is plainly visible in command-line interpreters (known as <emphasis>shells</emphasis>). When a command is typed into a shell, the prompt only comes back when the execution of the command is over. Most shells allow for running the command in the background, it is a simple matter of adding an <userinput>&amp;</userinput> to the end of the command. The prompt is displayed again right away, which can lead to problems if the command needs to display data of its own."
-msgstr "プロセスが開始時に設定されたタスクを完了したら、プロセスは終了します。その後、カーネルがこのプロセスに割り当てられたメモリを回収し、カーネルはプロセスに実行時間を与えることを停止します。親プロセスは子プロセスが終了したことについて通知を受けます。このおかげで、親プロセスは子プロセスに委託したタスクの完了を待つことが可能になります。コマンドラインインタプリタ (<emphasis>シェル</emphasis>として知られています) ではこの挙動がはっきりと見えます。コマンドがシェルに入力された場合、コマンドの実行が終了するまでプロンプトは戻って来ません。ほとんどのシェルでは、コマンドをバックグラウンドで実行することが可能です。これを行うには、コマンドの最後に <userinput>&amp;</userinput> を追加するだけです。この場合、プロンプトはすぐに戻ってきます。コマンドからデータが表示される場合、このやり方は問題を引き起こすかもしれません。"
+msgstr "プロセスが開始時に設定されたタスクを完了したら、プロセスは終了します。その後、カーネルがこのプロセスに割り当てられたメモリを回収し、カーネルはプロセスに実行時間を与える事を停止します。親プロセスは子プロセスが終了したことについて通知を受けます。このお陰で、親プロセスは子プロセスに委託したタスクの完了を待つ事が可能になります。コマンドラインインタプリタ (<emphasis>シェル</emphasis>として知られています) ではこの挙動がはっきりと見えます。コマンドがシェルに入力された場合、コマンドの実行が終了するまでプロンプトは戻って来ません。ほとんどのシェルでは、コマンドをバックグラウンドで実行する事が可能です。これを行うには、コマンドの最後に <userinput>&amp;</userinput> を追加するだけです。この場合、プロンプトはすぐに戻ってきます。コマンドからデータが表示される場合、このやり方は問題を引き起こすかもしれません。"
 
 #. Tag: title
 #, no-c-format
@@ -837,7 +837,7 @@ msgstr "<primary><emphasis>パイプ</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "In the case where one does not wish to store data on disk, one can use a <emphasis>pipe</emphasis>, which is simply an object with two ends; bytes written in one end are readable at the other. If the ends are controlled by separate processes, this leads to a simple and convenient inter-process communication channel. Pipes can be classified into two categories: named pipes, and anonymous pipes. A named pipe is represented by an entry on the filesystem (although the transmitted data is not stored there), so both processes can open it independently if the location of the named pipe is known beforehand. In cases where the communicating processes are related (for instance, a parent and its child process), the parent process can also create an anonymous pipe before forking, and the child inherits it. Both processes will then be able to exchange data through the pipe without needing the filesystem."
-msgstr "データをディスクに保存したくないと思っている場合、<emphasis>パイプ</emphasis>を使う事が可能です。<emphasis>パイプ</emphasis>は 2 つの端を持つ単純なオブジェクトです; 片側に書き込まれたデータを逆側から読み出すことが可能です。パイプの一方の端が別のプロセスによって制御されている場合、これは単純で便利なプロセス間通信チャネルになります。パイプは 2 種類に分類分けされます: 名前付きパイプと無名パイプです。名前付きパイプはファイルシステム上のエントリによって表現されます (転送されたデータは保存されません)。事前に名前付きパイプの場所がわかっていれば、2 つのプロセスが独立に名前付きパイプを開くことが可能です。通信プロセス同士に関連性がある場合 (例えば、親と子プロセス)、親プロセスはフォークの前に無名パイプを作成し、子プロセスがこれを継承するだけで済みます。両方のプロセスはパイプを通じてデータを交換することが可能です。ファイルシステムは必要ありません。"
+msgstr "データをディスクに保存したくないと思っている場合、<emphasis>パイプ</emphasis>を使う事が可能です。<emphasis>パイプ</emphasis>は 2 つの端を持つ単純なオブジェクトです; 片側に書き込まれたデータを逆側から読み出す事が可能です。パイプの一方の端が別のプロセスによって制御されている場合、これは単純で便利なプロセス間通信チャネルになります。パイプは 2 種類に分類分けされます: 名前付きパイプと無名パイプです。名前付きパイプはファイルシステム上のエントリによって表現されます (転送されたデータは保存されません)。事前に名前付きパイプの場所がわかっていれば、2 つのプロセスが独立に名前付きパイプを開く事が可能です。通信プロセス同士に関連性がある場合 (例えば、親と子プロセス)、親プロセスはフォークの前に無名パイプを作成し、子プロセスがこれを継承するだけで済みます。両方のプロセスはパイプを通じてデータを交換する事が可能です。ファイルシステムは必要ありません。"
 
 #. Tag: title
 #, no-c-format
@@ -857,7 +857,7 @@ msgstr "シェルは最初に入力されたコマンドを解釈します。今
 #. Tag: para
 #, no-c-format
 msgid "Then the shell clones itself; this leads to a new <command>bash</command> process, with <emphasis>pid</emphasis> #4521 (<emphasis>pids</emphasis> are abstract numbers, and generally have no particular meaning). Process #4521 inherits the pipe, which means it is able to write in its “input” side; <command>bash</command> redirects its standard output stream to this pipe's input. Then it executes (and replaces itself with) the <command>ls</command> program, which lists the contents of the current directory. Since <command>ls</command> writes on its standard output, and this output has previously been redirected, the results are effectively sent into the pipe."
-msgstr "その後、シェルは自分自身の複製を作ります; これは新しい <command>bash</command> プロセスで <emphasis>pid</emphasis> #4521 を持っています (<emphasis>pid</emphasis> は抽象的な数で、一般に特別な意味はありません)。プロセス #4521 はパイプを継承します。これは「入力」側に書き込むことが可能ということを意味しています; <command>bash</command> は自分の標準出力ストリームをパイプの入力にリダイレクトします。その後、<command>bash</command> は <command>ls</command> プログラムを実行します (さらに自分自身を置き換えます)。<command>ls</command> は現在のディレクトリの内容をリストします。<command>ls</command> の書き込み先は標準出力で、この出力は予めリダイレクトされていたため、結果はパイプに送られます。"
+msgstr "その後、シェルは自分自身の複製を作ります; これは新しい <command>bash</command> プロセスで <emphasis>pid</emphasis> #4521 を持っています (<emphasis>pid</emphasis> は抽象的な数で、一般に特別な意味はありません)。プロセス #4521 はパイプを継承します。これは「入力」側に書き込む事が可能という事を意味しています; <command>bash</command> は自分の標準出力ストリームをパイプの入力にリダイレクトします。その後、<command>bash</command> は <command>ls</command> プログラムを実行します (さらに自分自身を置き換えます)。<command>ls</command> は現在のディレクトリの内容をリストします。<command>ls</command> の書き込み先は標準出力で、この出力は予めリダイレクトされていたため、結果はパイプに送られます。"
 
 #. Tag: para
 #, no-c-format
@@ -867,12 +867,12 @@ msgstr "2 番目のコマンドについても同様の操作が行われます:
 #. Tag: para
 #, no-c-format
 msgid "All the pieces of the puzzle are now set up: <command>ls</command> reads the current directory and writes the list of files into the pipe; <command>sort</command> reads this list, sorts it alphabetically, and displays the results. Processes numbers #4521 and #4522 then terminate, and #4374 (which was waiting for them during the operation), resumes control and displays the prompt to allow the user to type in a new command."
-msgstr "これで、パズルの全てのピースが揃った状態になります: <command>ls</command> は現在のディレクトリを読み込んで、ファイルのリストをパイプに書き込みます; <command>sort</command> はファイルのリストを読み込んで、アルファベット順にソートして、結果を表示します。プロセス番号 #4521 と #4522 は終了し、#4374 (操作中の他プロセスを待っていました) は制御を取り戻し、ユーザが新しいコマンドを入力するためのプロンプトを表示します。"
+msgstr "これで、パズルのすべてのピースが揃った状態になります: <command>ls</command> は現在のディレクトリを読み込んで、ファイルのリストをパイプに書き込みます; <command>sort</command> はファイルのリストを読み込んで、アルファベット順にソートして、結果を表示します。プロセス番号 #4521 と #4522 は終了し、#4374 (操作中の他プロセスを待っていました) は制御を取り戻し、ユーザが新しいコマンドを入力するためのプロンプトを表示します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Not all inter-process communications are used to move data around, though. In many situations, the only information that needs to be transmitted are control messages such as “pause execution” or “resume execution”. Unix (and Linux) provides a mechanism known as <emphasis>signals</emphasis>, through which a process can simply send a signal (chosen within a fixed list of a few tens of predefined signals) to another process. The only requirement is to know the <emphasis>pid</emphasis> of the target."
-msgstr "しかしながら、全てのプロセス間通信がデータを移動させるために使われるわけではありません。多くの状況で、送信する必要のある情報は「実行を一時停止」や「実行を再開」などの制御メッセージです。Unix (と Linux) は <emphasis>シグナル</emphasis> として知られているメカニズムを提供します。このメカニズムを使って、プロセスは別のプロセスに対して簡単にシグナルを送信することが可能です (送信するシグナルは事前に定義された数十個のシグナルのリストから選びます)。送信に必要な情報は送信先の <emphasis>pid</emphasis> だけです。"
+msgstr "しかしながら、すべてのプロセス間通信がデータを移動させるために使われるわけではありません。多くの状況で、送信する必要のある情報は「実行を一時停止」や「実行を再開」などの制御メッセージです。Unix (と Linux) は <emphasis>シグナル</emphasis> として知られているメカニズムを提供します。このメカニズムを使って、プロセスは別のプロセスに対して簡単にシグナルを送信する事が可能です (送信するシグナルは事前に定義された数十個のシグナルのリストから選びます)。送信に必要な情報は送信先の <emphasis>pid</emphasis> だけです。"
 
 #. Tag: para
 #, no-c-format
@@ -912,17 +912,17 @@ msgstr "標準 C ライブラリ (<emphasis>glibc</emphasis>)、これにはフ�
 #. Tag: para
 #, no-c-format
 msgid "graphical toolkits, such as Gtk+ and Qt, allowing many programs to reuse the graphical objects they provide;"
-msgstr "Gtk+ と Qt などのグラフィカルツールキット、これを使うことで、多くのプログラムはツールキットの提供するグラフィカルオブジェクトを再利用することが可能です;"
+msgstr "Gtk+ と Qt などのグラフィカルツールキット、これを使うことで、多くのプログラムはツールキットの提供するグラフィカルオブジェクトを再利用する事が可能です;"
 
 #. Tag: para
 #, no-c-format
 msgid "the <emphasis>libpng</emphasis> library, that allows loading, interpreting and saving images in the PNG format."
-msgstr "<emphasis>libpng</emphasis> ライブラリ、これを使うことで、PNG フォーマットイメージを読み込み、編集、保存することが可能になります。"
+msgstr "<emphasis>libpng</emphasis> ライブラリ、これを使うことで、PNG フォーマットイメージを読み込み、編集、保存する事が可能になります。"
 
 #. Tag: para
 #, no-c-format
 msgid "Thanks to those libraries, applications can reuse existing code. Their development is thus correspondingly simplified, in particular when many applications reuse the same functions. Since libraries are often developed by different persons, the global development of the system is closer to Unix's historical philosophy."
-msgstr "これらのライブラリのお陰で、アプリケーションは既存のコードを再利用することが可能です。これに応じて、アプリケーションの開発が簡単になります。多くのアプリケーションが同じ関数を再利用している場合、この傾向は特に顕著になります。通常ライブラリはアプリケーションとは別の人によって開発されているため、システムの大域的な開発は Unix の歴史的哲学に近いものです。"
+msgstr "これらのライブラリのお陰で、アプリケーションは既存のコードを再利用する事が可能です。これに応じて、アプリケーションの開発が簡単になります。多くのアプリケーションが同じ関数を再利用している場合、この傾向は特に顕著になります。通常ライブラリはアプリケーションとは別の人によって開発されているため、システムの大域的な開発は Unix の歴史的哲学に近いものです。"
 
 #. Tag: title
 #, no-c-format
@@ -932,9 +932,9 @@ msgstr "<emphasis>CULTURE</emphasis> Unix 流: 一度に一つの事をせよ"
 #. Tag: para
 #, no-c-format
 msgid "One of the fundamental concepts that underlies the Unix family of operating systems is that each tool should only do one thing, and do it well; applications can then reuse these tools to build more advanced logic on top. This Way can be seen in many incarnations. Shell scripts may be the best example: they assemble complex sequences of very simple tools (such as <command>grep</command>, <command>wc</command>, <command>sort</command>, <command>uniq</command> and so on). Another implementation of this philosophy can be seen in code libraries: the <emphasis>libpng</emphasis> library allows reading and writing PNG images, with different options and in different ways, but it does only that; no question of including functions that display or edit images."
-msgstr "Unix 系オペレーティングシステムの根底にある基本的概念の一つとして、それぞれのツールがたった 1 つのことを担当し、それをうまくこなす、というものがあります; アプリケーションはこれらのツールを再利用して、より高度な論理をつくり上げることが可能です。この基本的概念は様々な形で具現化されています。シェルスクリプトは最良の例かもしれません: シェルスクリプトは極めて簡単なツール (例えば <command>grep</command>、<command>wc</command>、<command>sort</command>、<command>uniq</command> など) を複雑に並べたものです。コードライブラリも基本的概念を具現化したものとして見ることが可能です: <emphasis>libpng</emphasis> ライブラリを使うことで、様々なオプションと様々な方法を使って、PNG イメージの読み込みと書き込みを行うことが可能です。しかし、<emphasis>libpng</emphasis> ライブラリはそれ以上のことを行いません; イメージを表示したり編集する関数は含まれません。"
+msgstr "Unix 系オペレーティングシステムの根底にある基本的概念の一つとして、それぞれのツールがたった 1 つの事を担当し、それを上手くこなす、というものがあります; アプリケーションはこれらのツールを再利用して、より高度な論理をつくり上げる事が可能です。この基本的概念は様々な形で具現化されています。シェルスクリプトは最良の例かもしれません: シェルスクリプトは極めて簡単なツール (例えば <command>grep</command>、<command>wc</command>、<command>sort</command>、<command>uniq</command> など) を複雑に並べたものです。コードライブラリも基本的概念を具現化したものとして見る事が可能です: <emphasis>libpng</emphasis> ライブラリを使うことで、様々なオプションと様々な方法を使って、PNG イメージの読み込みと書き込みを行う事が可能です。しかし、<emphasis>libpng</emphasis> ライブラリはそれ以上の事を行いません; イメージを表示したり編集する関数は含まれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Moreover, these libraries are often referred to as “shared libraries”, since the kernel is able to only load them into memory once, even if several processes use the same library at the same time. This allows saving memory, when compared with the opposite (hypothetical) situation where the code for a library would be loaded as many times as there are processes using it."
-msgstr "さらに、これらのライブラリは「共有ライブラリ」とも呼ばれています。なぜなら、複数のプロセスが同じライブラリを同時に使う場合、カーネルはライブラルの読み込みを一回だけで済ませることが可能だからです。プロセスが使うライブラリのコードを何度も読み込むような逆の (仮想的) 状況に比べて、これはメモリを節約することになります。"
+msgstr "さらに、これらのライブラリは「共有ライブラリ」とも呼ばれています。なぜなら、複数のプロセスが同じライブラリを同時に使う場合、カーネルはライブラルの読み込みを一回だけで済ませる事が可能だからです。プロセスが使うライブラリのコードを何度も読み込むような逆の (仮想的) 状況に比べて、これはメモリを節約することになります。"

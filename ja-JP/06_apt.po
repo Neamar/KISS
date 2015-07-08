@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-06-18 10:22+0900\n"
+"POT-Creation-Date: 2015-07-08 09:41+0000\n"
+"PO-Revision-Date: 2015-07-08 20:43+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -147,7 +147,7 @@ msgstr "構文"
 #. Tag: para
 #, no-c-format
 msgid "Each active line of the <filename>/etc/apt/sources.list</filename> file contains the description of a source, made of 3 parts separated by spaces."
-msgstr "<filename>/etc/apt/sources.list</filename> ファイルの各有効行には、スペースで分割された 3 つの部分からなる、ソースの説明が含まれています。"
+msgstr "<filename>/etc/apt/sources.list</filename> ファイルの各有効行には、空白で分割された 3 つの部分からなる、ソースの説明が含まれています。"
 
 #. Tag: para
 #, no-c-format
@@ -167,12 +167,12 @@ msgstr "「<literal>deb-src</literal>」はソースパッケージ用です。"
 #. Tag: para
 #, no-c-format
 msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM/DVD-ROM/Blu-ray disc based installations, although this is less frequent, since network-based installation methods are more and more common."
-msgstr "2 番目のフィールドはパッケージソースの基点 URL です (<filename>Packages.gz</filename> ファイル内のファイル名と組み合わせます、これは完全で有効な URL でなければいけません): 起点 URL には Debian ミラーまたはサードパーティが提供する他のパッケージアーカイブを指定できます。URL は、システムのファイル階層構造内にあるローカルソースを表す <literal>file://</literal>、ウェブサーバにあるソースを示す <literal>http://</literal>、FTP サーバにあるソースを示す <literal>ftp://</literal>、で始めることができます。この URL はまた CD-ROM/DVD-ROM/ブルーレイディスクからインストールしたことを表す <literal>cdrom://</literal> で始めることもできます。しかしこれはそれほど多くありません。なぜなら、ネットワークを使ったインストール方法がずっと一般的だからです。"
+msgstr "2 番目のフィールドはパッケージソースの基点 URL です (<filename>Packages.gz</filename> ファイル内のファイル名と組み合わせます、これは完全で有効な URL でなければいけません): 起点 URL には Debian ミラーまたはサードパーティが提供する他のパッケージアーカイブを指定できます。URL は、システムのファイル階層構造内にあるローカルソースを表す <literal>file://</literal>、ウェブサーバにあるソースを示す <literal>http://</literal>、FTP サーバにあるソースを示す <literal>ftp://</literal>、で始める事が可能です。この URL はまた CD-ROM/DVD-ROM/ブルーレイディスクからインストールした事を表す <literal>cdrom://</literal> で始める事も可能です。しかしこれはそれほど多くありません。なぜなら、ネットワークを使ったインストール方法がずっと一般的だからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the last field depends on the structure of the repository. In the simplest cases, you can simply indicate a subdirectory (with a required trailing slash) of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL). But in the most common case, the repositories will be structured like a Debian mirror, with multiple distributions each having multiple components. In those cases, name the chosen distribution (by its “codename” — see the list in sidebar <xref linkend=\"sidebar.bruce-perens\" /> — or by the corresponding “suites” — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal>), then the components (or sections) to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal> in a typical Debian mirror)."
-msgstr "最後のフィールドの構文はリポジトリの構造に依存します。最も単純な場合、このフィールドにはソースから見たサブディレクトリ (末尾スラッシュ必須) を指定します (サブディレクトリが無い - パッケージが指定された URL の直下に有る - ことを示す単純な「<filename>./</filename>」の場合が多いです)。しかし最も多く見られるのは、リポジトリが Debian ミラーのように構造化されている、つまり、複数のコンポーネントを持つ複数のディストリビューションを配布している場合です。この場合、そのマシンのディストリビューションの名前 (「コードネーム」- 傍注 <xref linkend=\"sidebar.bruce-perens\" /> を参照 - または対応する「スイート」- <literal>stable</literal>、<literal>testing</literal>、<literal>unstable</literal>) を指定し、その後に有効化するコンポーネント (またはセクション) を指定します (典型的な Debian ミラーでは <literal>main</literal>、<literal>contrib</literal>、<literal>non-free</literal> から選びます)。"
+msgstr "最後のフィールドの構文はリポジトリの構造に依存します。最も単純な場合、このフィールドにはソースから見たサブディレクトリ (末尾スラッシュ必須) を指定します (サブディレクトリが無い - パッケージが指定された URL の直下に有る - 事を示す単純な「<filename>./</filename>」の場合が多いです)。しかし最も多く見られるのは、リポジトリが Debian ミラーのように構造化されている、つまり、複数のコンポーネントを持つ複数のディストリビューションを配布している場合です。この場合、そのマシンのディストリビューションの名前 (「コードネーム」- 傍注 <xref linkend=\"sidebar.bruce-perens\" /> を参照 - または対応する「スイート」- <literal>stable</literal>、<literal>testing</literal>、<literal>unstable</literal>) を指定し、その後に有効化するコンポーネント (またはセクション) を指定します (典型的な Debian ミラーでは <literal>main</literal>、<literal>contrib</literal>、<literal>non-free</literal> から選びます)。"
 
 #. Tag: title
 #, no-c-format
@@ -217,17 +217,17 @@ msgstr "<primary>(リポジトリの) コンポーネント</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <literal>Main</literal> gathers all packages which fully comply with the Debian Free Software Guidelines."
-msgstr "Debian では、パッケージの作者が決めたライセンスを基準に、パッケージを 3 つのセクションに分類しています。<literal>Main</literal> には Debian フリーソフトウェアガイドラインに適合する全てのパッケージが収録されています。"
+msgstr "Debian では、パッケージの作者が決めたライセンスを基準に、パッケージを 3 つのセクションに分類しています。<literal>Main</literal> には Debian フリーソフトウェアガイドラインに適合するすべてのパッケージが収録されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>non-free</literal> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed without restrictions. This archive, which is not officially part of Debian, is a service for users who could need some of those programs — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
-msgstr "これに対して、<literal>non-free</literal> アーカイブには、原則に (完全に) 従うわけではないものの制限なく配布することを許されたソフトウェアが収録されています。このアーカイブは公式には Debian の一部ではなく、これらのプログラムを必要としている - しかし Debian は常にフリーソフトウェアを重点的に使うことを推奨します - ユーザ向けのサービスです。このセクションの存在は Richard M. Stallman さんにとって無視できない問題であり、このセクションがあるためフリーソフトウェア財団は Debian をユーザに推奨し続けています。"
+msgstr "これに対して、<literal>non-free</literal> アーカイブには、原則に (完全に) 従うわけではないものの制限なく配布する事を許されたソフトウェアが収録されています。このアーカイブは公式には Debian の一部ではなく、これらのプログラムを必要としている - しかし Debian は常にフリーソフトウェアを重点的に使う事を推奨します - ユーザ向けのサービスです。このセクションの存在は Richard M. Stallman さんにとって無視できない問題であり、このセクションがあるためフリーソフトウェア財団は Debian をユーザに推奨し続けています。"
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>Contrib</literal> (contributions) is a set of open source software which cannot function without some non-free elements. These elements can be software from the <literal>non-free</literal> section, or non-free files such as game ROMs, BIOS of consoles, etc. <literal>Contrib</literal> also includes free software whose compilation requires proprietary elements. This was initially the case for the OpenOffice.org office suite, which used to require a proprietary Java environment."
-msgstr "<literal>ontrib</literal> (貢献) には、フリーでない要素を使わないと動かないオープンソースソフトウェアが収録されています。フリーでない要素とは <literal>non-free</literal> セクションからのソフトウェア、または例えばゲーム ROM、コンソールの BIOS、などのフリーでないファイルを指します。また、<literal>contrib</literal> にはコンパイルの際にプロプライエタリな要素を必要とするフリーソフトウェアが収録されています。当初これはプロプライエタリな Java 環境を必要とする OpenOffice.org オフィススイートのためのものでした。"
+msgstr "<literal>contrib</literal> (貢献) には、フリーでない要素を使わないと動かないオープンソースソフトウェアが収録されています。フリーでない要素とは <literal>non-free</literal> セクションからのソフトウェア、または例えばゲーム ROM、コンソールの BIOS、などのフリーでないファイルを指します。また、<literal>contrib</literal> にはコンパイルの際にプロプライエタリな要素を必要とするフリーソフトウェアが収録されています。当初これはプロプライエタリな Java 環境を必要とする OpenOffice.org オフィススイートのためのものでした。"
 
 #. Tag: title
 #, no-c-format
@@ -283,7 +283,7 @@ msgid ""
 "\n"
 "# Stable backports\n"
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
-"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free"
 msgstr ""
 "# Security updates\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
@@ -301,7 +301,7 @@ msgstr ""
 "\n"
 "# Stable backports\n"
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
-"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free"
 
 #. Tag: para
 #, no-c-format
@@ -326,12 +326,12 @@ msgstr "このソフトウェアはいくつかの Debian ミラーのダウン�
 #. Tag: para
 #, no-c-format
 msgid "The mirror selected during installation is generally suitable since its selection is based on the country. However, if the download is a little slow, or after a move, you can try running the application available in the <emphasis role=\"pkg\">apt-spy</emphasis> package."
-msgstr "一般に、インストール中に選ばれたミラーは、国に基づいて選ばれているため、適切なものです。しかしながら、もしダウンロードが遅かったり引っ越しした場合は、<emphasis role=\"pkg\">apt-spy</emphasis> パッケージから利用できるこのアプリケーションを試しに実行してみることもできます。"
+msgstr "一般に、インストール中に選ばれたミラーは、国に基づいて選ばれているため、適切なものです。しかしながら、もしダウンロードが遅かったり引っ越しした場合は、<emphasis role=\"pkg\">apt-spy</emphasis> パッケージから利用できるこのアプリケーションを試しに実行してみる事も可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Most packages will come from the “base repository” which contains all packages but is seldom updated (about once every 2 months for a “point release”). The other repositories are partial (they do not contain all packages) and can host updates (packages with newer version) that APT might install. The following sections will explain the purpose and the rules governing each of those repositories."
-msgstr "ほとんどのパッケージは「ベースリポジトリ」から取得されます。「ベースリポジトリ」には全てのパッケージが収録されていますが、めったに更新されません (約 2 ヶ月に 1 度の「ポイントリリース」で更新されます)。他のリポジトリには、一部のパッケージしか収録されていません (全てパッケージが収録されているわけではありません) が、APT がインストールする更新 (パッケージの新しいバージョン) が収録されています。以下の節ではこの目的と、それぞれのリポジトリを支配しているルールについて説明します。"
+msgstr "ほとんどのパッケージは「ベースリポジトリ」から取得されます。「ベースリポジトリ」にはすべてのパッケージが収録されていますが、めったに更新されません (約 2 ヶ月に 1 度の「ポイントリリース」で更新されます)。他のリポジトリには、一部のパッケージしか収録されていません (すべてパッケージが収録されているわけではありません) が、APT がインストールする更新 (パッケージの新しいバージョン) が収録されています。以下の節ではこの目的と、それぞれのリポジトリを支配しているルールについて説明します。"
 
 #. Tag: para
 #, no-c-format
@@ -341,7 +341,7 @@ msgstr "あるパッケージの希望したバージョンが複数のリポジ
 #. Tag: para
 #, no-c-format
 msgid "As a side note, most of what this section says about <emphasis role=\"distribution\">Stable</emphasis> applies equally well to <emphasis role=\"distribution\">Oldstable</emphasis> since the latter is just an older <emphasis role=\"distribution\">Stable</emphasis> that is maintained in parallel."
-msgstr "ちなみに、この節で<emphasis role=\"distribution\">安定版</emphasis>に関して述べていることのほとんどは<emphasis role=\"distribution\">旧安定版</emphasis>に関しても同じことが言えます。なぜなら、<emphasis role=\"distribution\">旧安定版</emphasis>とは並行して保守されている古い<emphasis role=\"distribution\">安定版</emphasis>に過ぎないからです。"
+msgstr "ちなみに、この節で<emphasis role=\"distribution\">安定版</emphasis>に関して述べていることのほとんどは<emphasis role=\"distribution\">旧安定版</emphasis>に関しても同じ事が言えます。なぜなら、<emphasis role=\"distribution\">旧安定版</emphasis>とは並行して保守されている古い<emphasis role=\"distribution\">安定版</emphasis>に過ぎないからです。"
 
 #. Tag: title
 #, no-c-format
@@ -371,7 +371,7 @@ msgstr "セキュリティ更新は Debian ミラーの通常のネットワー�
 #. Tag: para
 #, no-c-format
 msgid "The server can also host security updates for <emphasis role=\"distribution\">Testing</emphasis> but this doesn't happen very often since those updates tend to reach <emphasis role=\"distribution\">Testing</emphasis> via the regular flow of updates coming from <emphasis role=\"distribution\">Unstable</emphasis>."
-msgstr "このサーバは<emphasis role=\"distribution\">テスト版</emphasis>用のセキュリティ更新もホストしていますが、実際にこれがホストされることはめったにありません。なぜなら、<emphasis role=\"distribution\">テスト版</emphasis> 対するセキュリティ更新は<emphasis role=\"distribution\">不安定版</emphasis>対する通常の更新手順を通じて行われることが多いからです。"
+msgstr "このサーバは<emphasis role=\"distribution\">テスト版</emphasis>用のセキュリティ更新もホストしていますが、実際にこれがホストされることはめったにありません。なぜなら、<emphasis role=\"distribution\">テスト版</emphasis> 対するセキュリティ更新は<emphasis role=\"distribution\">不安定版</emphasis>対する通常の更新手順を通じて行われる事が多いからです。"
 
 #. Tag: title
 #, no-c-format
@@ -401,7 +401,7 @@ msgstr "安定版更新はセキュリティに影響を及ぼすものではあ
 #. Tag: para
 #, no-c-format
 msgid "This repository will typically contain fixes for critical bugs which could not be fixed before release or which have been introduced by subsequent updates. Depending on the urgency, it can also contain updates for packages that have to evolve over time… like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
-msgstr "このリポジトリには通常、リリースの前に修正できなかったり、後続のアップデートによって生まれた、重要なバグの修正が含まれています。緊急度に応じて、時間と共に進化させる必要のあるパッケージの更新、例えば <emphasis role=\"pkg\">spamassassin</emphasis> のスパム検出ルール、<emphasis role=\"pkg\">clamav</emphasis> のウィルスデータベース、全てのタイムゾーンの夏時間ルール (<emphasis role=\"pkg\">tzdata</emphasis>) など、を含めることができる。"
+msgstr "このリポジトリには通常、リリースの前に修正できなかったり、後続の更新によって生まれた、重要なバグの修正が含まれています。緊急度に応じて、時間と共に進化させる必要のあるパッケージの更新… 例えば <emphasis role=\"pkg\">spamassassin</emphasis> のスパム検出ルール、<emphasis role=\"pkg\">clamav</emphasis> のウィルスデータベース、すべてのタイムゾーンの夏時間ルール (<emphasis role=\"pkg\">tzdata</emphasis>) など、を含める事が可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -431,17 +431,17 @@ msgstr "一旦公開されたら、 <emphasis role=\"distribution\">安定版</e
 #. Tag: para
 #, no-c-format
 msgid "The security and stable updates documented in the former sections are always included in this repository, but there is more too, because package maintainers also have the opportunity to fix important bugs that do not deserve an immediate release."
-msgstr "前の節で説明したセキュリティ更新と安定版更新は、常に <literal>proposed-updates</literal> リポジトリに加えられますが、更新は他にもあります。なぜなら、パッケージメンテナは素早くリリースすることもないけれど重要と思われるバグを修正する機会があるからです。"
+msgstr "前の節で説明したセキュリティ更新と安定版更新は、常に <literal>proposed-updates</literal> リポジトリに加えられますが、更新は他にもあります。なぜなら、パッケージメンテナは素早くリリースする事もないけれど重要と思われるバグを修正する機会があるからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "Anyone can use this repository to test those updates before their official publication. The extract below uses the <literal>wheezy-proposed-updates</literal> alias which is both more explicit and more consistent since <literal>squeeze-proposed-updates</literal> also exists (for the <emphasis role=\"distribution\">Oldstable</emphasis> updates):"
-msgstr "誰でも、正式公開前に更新をテストするために、<literal>proposed-updates</literal> リポジトリを使うことができます。以下で引用した例は <literal>wheezy-proposed-updates</literal> 別名を使っています。このような、より明白でより一貫性のある別名を使っている理由は、(<emphasis role=\"distribution\">旧安定版</emphasis> 用の) <literal>squeeze-proposed-updates</literal> 別名が存在するからです。"
+msgstr "誰でも、正式公開前に更新をテストするために、<literal>proposed-updates</literal> リポジトリを使う事が可能です。以下で引用した例は <literal>wheezy-proposed-updates</literal> 別名を使っています。このような、より明白でより一貫性のある別名を使っている理由は、(<emphasis role=\"distribution\">旧安定版</emphasis> 用の) <literal>squeeze-proposed-updates</literal> 別名が存在するからです。"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
-msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
+msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free"
+msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free"
 
 #. Tag: title
 #, no-c-format
@@ -471,7 +471,7 @@ msgstr "<literal>stable-backports</literal> リポジトリは「パッケージ
 #. Tag: para
 #, no-c-format
 msgid "When the distribution becomes a little dated, numerous software projects have released new versions that are not integrated into the current <emphasis role=\"distribution\">Stable</emphasis> (which is only modified to address the most critical problems, such as security problems). Since the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> distributions can be more risky, package maintainers sometimes offer recompilations of recent software applications for <emphasis role=\"distribution\">Stable</emphasis>, which has the advantage to limit potential instability to a small number of chosen packages. <ulink type=\"block\" url=\"http://backports.debian.org\" />"
-msgstr "ディストリビューションがほんの少し時代遅れになっただけで、多くのソフトウェアプロジェクトが新バージョンをリリースしますが、新バージョンは現在の<emphasis role=\"distribution\">安定版</emphasis>に取り込まれません (このディストリビューションは最も重要な問題、例えばセキュリティ問題など、の修正しか取り込みません)。<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>ディストリビューションはより危険性が高いので、パッケージメンテナはしばしば<emphasis role=\"distribution\">安定版</emphasis>向けに最新のソフトウェアアプリケーションを再コンパイルして提供することがあります。これは潜在的不安定性を少数の選ばれたパッケージだけに制限できるという利点があります。<ulink type=\"block\" url=\"http://backports.debian.org\" />"
+msgstr "ディストリビューションがほんの少し時代遅れになっただけで、多くのソフトウェアプロジェクトが新バージョンをリリースしますが、新バージョンは現在の<emphasis role=\"distribution\">安定版</emphasis>に取り込まれません (このディストリビューションは最も重要な問題、例えばセキュリティ問題など、の修正しか取り込みません)。<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>ディストリビューションはより危険性が高いので、パッケージメンテナはしばしば<emphasis role=\"distribution\">安定版</emphasis>向けに最新のソフトウェアアプリケーションを再コンパイルして提供する事があります。これは潜在的不安定性を少数の選ばれたパッケージだけに制限できるという利点があります。<ulink type=\"block\" url=\"http://backports.debian.org\" />"
 
 #. Tag: para
 #, no-c-format
@@ -485,13 +485,13 @@ msgstr "<primary><literal>backports.debian.org</literal></primary>"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
-msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
+msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free"
+msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free"
 
 #. Tag: para
 #, no-c-format
 msgid "Backports from <literal>stable-backports</literal> are always created from packages available in <emphasis role=\"distribution\">Testing</emphasis>. This ensures that all installed backports will be upgradable to the corresponding stable version once the next stable release of Debian is available."
-msgstr "<literal>stable-backports</literal> に収録されているバックポートは常に<emphasis role=\"distribution\">テスト版</emphasis>で利用可能なパッケージから作成されます。これは、次の Debian 安定版リリースが利用可能になったら、全てのインストール済みバックポートは対応する安定版にアップグレード可能である、ということを保証します。"
+msgstr "<literal>stable-backports</literal> に収録されているバックポートは常に<emphasis role=\"distribution\">テスト版</emphasis>で利用可能なパッケージから作成されます。これは、次の Debian 安定版リリースが利用可能になったら、すべてのインストール済みバックポートは対応する安定版にアップグレード可能である、という事を保証します。"
 
 #. Tag: para
 #, no-c-format
@@ -503,11 +503,11 @@ msgstr "このリポジトリはパッケージの新しいバージョンを提
 msgid ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
-"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>"
 msgstr ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
-"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>"
 
 #. Tag: title
 #, no-c-format
@@ -544,7 +544,7 @@ msgid ""
 "deb http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb http://security.debian.org/ testing/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
-"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free"
 msgstr ""
 "\n"
 "# Unstable\n"
@@ -563,7 +563,7 @@ msgstr ""
 "deb http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb http://security.debian.org/ testing/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
-"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free"
 
 #. Tag: para
 #, no-c-format
@@ -573,12 +573,12 @@ msgstr "この <filename>sources.list</filename> ファイルを使う場合、A
 #. Tag: para
 #, no-c-format
 msgid "There are good reasons to include all those repositories, even though a single one should be enough. <emphasis role=\"distribution\">Testing</emphasis> users will appreciate the possibility to cherry-pick a fixed package from <emphasis role=\"distribution\">Unstable</emphasis> when the version in <emphasis role=\"distribution\">Testing</emphasis> is affected by an annoying bug. On the opposite, <emphasis role=\"distribution\">Unstable</emphasis> users bitten by unexpected regressions have the possibility to downgrade packages to their (supposedly working) <emphasis role=\"distribution\">Testing</emphasis> version."
-msgstr "1 つでも十分なのに、全てのリポジトリを含めるのには正当な理由があります。<emphasis role=\"distribution\">テスト版</emphasis>ユーザは、あるパッケージの<emphasis role=\"distribution\">テスト版</emphasis>に含まれるバージョンが厄介なバグの影響を受けている場合、<emphasis role=\"distribution\">不安定版</emphasis>に含まれる修正されたバージョンを使えると良いと考えるでしょう。逆に、予期しない不具合に悩まされ続けている<emphasis role=\"distribution\">不安定版</emphasis>のユーザは、パッケージを (おそらく動く) <emphasis role=\"distribution\">テスト版</emphasis>に含まれるバージョンにダウングレードできます。"
+msgstr "1 つでも十分なのに、すべてのリポジトリを含めるのには正当な理由があります。<emphasis role=\"distribution\">テスト版</emphasis>ユーザは、あるパッケージの<emphasis role=\"distribution\">テスト版</emphasis>に含まれるバージョンが厄介なバグの影響を受けている場合、<emphasis role=\"distribution\">不安定版</emphasis>に含まれる修正されたバージョンを使えると良いと考えるでしょう。逆に、予期しない不具合に悩まされ続けている<emphasis role=\"distribution\">不安定版</emphasis>のユーザは、パッケージを (おそらく動く) <emphasis role=\"distribution\">テスト版</emphasis>に含まれるバージョンにダウングレードできます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The inclusion of <emphasis role=\"distribution\">Stable</emphasis> is more debatable but it often gives access to some packages which have been removed from the development versions. It also ensures that you get the latest updates for packages which have not been modified since the last stable release."
-msgstr "ここに<emphasis role=\"distribution\">安定版</emphasis>が含まれている点については異論があるかもしれませんが、こうすることで開発版から削除されたパッケージを入手可能になります。また、最新安定版リリース以降に変更されたパッケージの最新更新を手に入れることも保証されます。"
+msgstr "ここに<emphasis role=\"distribution\">安定版</emphasis>が含まれている点については異論があるかもしれませんが、こうすることで開発版から削除されたパッケージを入手可能になります。また、最新安定版リリース以降に変更されたパッケージの最新更新を手に入れる事も保証されます。"
 
 #. Tag: title
 #, no-c-format
@@ -593,17 +593,17 @@ msgstr "<primary><emphasis role=\"distribution\">実験版</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The archive of <emphasis role=\"distribution\">Experimental</emphasis> packages is present on all Debian mirrors, and contains packages which are not in the <emphasis role=\"distribution\">Unstable</emphasis> version yet because of their substandard quality — they are often software development versions or pre-versions (alpha, beta, release candidate…). A package can also be sent there after undergoing subsequent changes which can generate problems. The maintainer then tries to uncover them thanks to advanced users who can manage important issues. After this first stage, the package is moved into <emphasis role=\"distribution\">Unstable</emphasis>, where it reaches a much larger audience and where it will be tested in much more detail."
-msgstr "<emphasis role=\"distribution\">テスト版</emphasis>パッケージは全ての Debian ミラーに存在し、品質基準を満たしていないためにまだ<emphasis role=\"distribution\">不安定版</emphasis>に収録されていないパッケージを含んでいます - このようなパッケージはソフトウェアの開発版バージョンか先行バージョン (アルファ、ベータ、リリース候補) であることが多いです。メンテナは、重要な問題に対処する能力を持つ先進的なユーザに向けて、パッケージを公開しようとします。この最初のステージの後、パッケージは<emphasis role=\"distribution\">不安定版</emphasis>に移動されます。ここで、パッケージはより多くのユーザに配布され、より詳細にテストされます。"
+msgstr "<emphasis role=\"distribution\">テスト版</emphasis>パッケージはすべての Debian ミラーに存在し、品質基準を満たしていないためにまだ<emphasis role=\"distribution\">不安定版</emphasis>に収録されていないパッケージを含んでいます - このようなパッケージはソフトウェアの開発版バージョンか先行バージョン (アルファ、ベータ、リリース候補…) である事が多いです。メンテナは、重要な問題に対処する能力を持つ先進的なユーザに向けて、パッケージを公開しようとします。この最初のステージの後、パッケージは<emphasis role=\"distribution\">不安定版</emphasis>に移動されます。ここで、パッケージはより多くのユーザに配布され、より詳細にテストされます。"
 
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"distribution\">Experimental</emphasis> is generally used by users who do not mind breaking their system and then repairing it. This distribution gives the possibility to import a package which a user wants to try or use as the need arises. That is exactly how Debian approaches it, since adding it in APT's <filename>sources.list</filename> file does not lead to the systematic use of its packages. The line to be added is:"
-msgstr "<emphasis role=\"distribution\">実験版</emphasis>を使うのは通常、システムを破壊したり修復することを気にしないユーザです。このディストリビューションでは、ユーザは必要に応じてが試してみたいか使ってみたいと思ったパッケージを取り込むことがきます。これはまさに Debian が<emphasis role=\"distribution\">実験版</emphasis>を使う時の方法です。なぜなら、<emphasis role=\"distribution\">実験版</emphasis>を APT の <filename>sources.list</filename> ファイルに追加することは、パッケージの体系的な利用に結び付かないからです。<emphasis role=\"distribution\">実験版</emphasis>を追加するには以下のようにします:"
+msgstr "<emphasis role=\"distribution\">実験版</emphasis>を使うのは通常、システムを破壊したり修復する事を気にしないユーザです。このディストリビューションでは、ユーザは必要に応じてが試してみたいか使ってみたいと思ったパッケージを取り込む事がきます。これはまさに Debian が<emphasis role=\"distribution\">実験版</emphasis>を使う時の方法です。なぜなら、<emphasis role=\"distribution\">実験版</emphasis>を APT の <filename>sources.list</filename> ファイルに追加することは、パッケージの体系的な利用に結び付かないからです。<emphasis role=\"distribution\">実験版</emphasis>を追加するには以下のようにします:"
 
 #. Tag: programlisting
 #, no-c-format
-msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
-msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
+msgid "deb http://ftp.debian.org/debian experimental main contrib non-free"
+msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free"
 
 #. Tag: title
 #, no-c-format
@@ -623,7 +623,7 @@ msgstr "<primary><literal>mentors.debian.net</literal></primary>"
 #. Tag: para
 #, no-c-format
 msgid "There are numerous non-official sources of Debian packages set up by advanced users who have recompiled some software, by programmers who make their creation available to all, and even by Debian developers who offer pre-versions of their package online. A web site was set up to find these alternative sources more easily. It contains an impressive amount of Debian package sources which can immediately be integrated into <filename>sources.list</filename> files. However, be careful not to add random packages. Each source is designed for a particular version of Debian (the one used to compile the packages in question); each user should maintain a certain coherence in what they choose to install. <ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
-msgstr "Debian パッケージの非公式ソースはたくさんあります。非公式ソースにパッケージを提供しているのは、ソフトウェアを再コンパイルした先進的ユーザ、つまり自分の創作物を誰でも利用可能な状態にするプログラマや自分のパッケージの先行バージョンをオンラインで提供する Debian 開発者です。非公式ソースをより簡単に発見するためのウェブサイトがあります。このウェブサイトには、大量の Debian パッケージソースが含まれ、それらは即座に <filename>sources.list</filename> ファイルに統合できます。しかしながら、当てずっぽうにパッケージソースを追加しないように気を付けてください。それぞれのソースは Debian の特定のバージョン (パッケージのコンパイルを実行したバージョン) 用に設計されいてます; 各ユーザは、追加するパッケージソースが設計されたバージョンが自分が使っているバージョンと一致していることを確認するべきです。<ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
+msgstr "Debian パッケージの非公式ソースはたくさんあります。非公式ソースにパッケージを提供しているのは、ソフトウェアを再コンパイルした先進的ユーザ、つまり自分の創作物を誰でも利用可能な状態にするプログラマや自分のパッケージの先行バージョンをオンラインで提供する Debian 開発者です。非公式ソースをより簡単に発見するためのウェブサイトがあります。このウェブサイトには、大量の Debian パッケージソースが含まれ、それらは即座に <filename>sources.list</filename> ファイルに統合できます。しかしながら、当てずっぽうにパッケージソースを追加しないように気を付けてください。それぞれのソースは Debian の特定のバージョン (パッケージのコンパイルを実行したバージョン) 用に設計されいてます; 各ユーザは、追加するパッケージソースが設計されたバージョンが自分が使っているバージョンと一致している事を確認するべきです。<ulink type=\"block\" url=\"http://www.apt-get.org/\" />"
 
 #. Tag: para
 #, no-c-format
@@ -648,7 +648,7 @@ msgstr "<emphasis>debian.net</emphasis> ドメインは Debian プロジェク�
 #. Tag: para
 #, no-c-format
 msgid "Installing a package means giving root rights to its creator, because they decide on the contents of the initialization scripts which are run under that identity. Official Debian packages are created by volunteers who have been co-opted and reviewed and who can seal their packages so that their origin and integrity can be checked."
-msgstr "あるパッケージをインストールすることは、パッケージの作者に root 権を与えることを意味しています。なぜなら、パッケージ作者は root 権で実行される初期化スクリプトの内容を決定するからです。公式 Debian パッケージは、パッケージの起源と整合性が確認できるように、選出され審査を受けたボランティアとパッケージの内容の責任を請け負うことができるボランティアによって作成されます。"
+msgstr "あるパッケージをインストールすることは、パッケージの作者に root 権を与える事を意味しています。なぜなら、パッケージ作者は root 権で実行される初期化スクリプトの内容を決定するからです。公式 Debian パッケージは、パッケージの起源と整合性が確認できるように、選出され審査を受けたボランティアとパッケージの内容の責任を請け負う事ができるボランティアによって作成されます。"
 
 #. Tag: para
 #, no-c-format
@@ -668,7 +668,7 @@ msgstr "<primary><literal>snapshot.debian.org</literal></primary>"
 #. Tag: para
 #, no-c-format
 msgid "A new service (introduced in April 2010) can be used to “go backwards in time” and to find an old version of a package. It can be used for example to identify which version of a package introduced a regression, and more concretely, to come back to the former version while waiting for the regression fix."
-msgstr "新しいサービス (2010 年 4 月に登場) により、「時間を逆行」したり、パッケージの古いバージョンを見つけることが可能になりました。このサービスは、例えばパッケージのどのバージョンで不具合が生じたかを特定するために、より正確に言えば、不具合が修正されるまでの間古いバージョンに戻るために、使えます。"
+msgstr "新しいサービス (2010 年 4 月に登場) により、「時間を逆行」したり、パッケージの古いバージョンを見つける事が可能になりました。このサービスは、例えばパッケージのどのバージョンで不具合が生じたかを特定するために、より正確に言えば、不具合が修正されるまでの間古いバージョンに戻るために、使えます。"
 
 #. Tag: title
 #, no-c-format
@@ -693,7 +693,7 @@ msgstr "マシンのネットワーク全体で、同じ更新済みパッケー
 #. Tag: para
 #, no-c-format
 msgid "You can configure APT to use a \"standard\" proxy (see <xref linkend=\"sect.apt-config\" /> for the APT side, and <xref linkend=\"sect.http-ftp-proxy\" /> for the proxy side), but the Debian ecosystem offers better options to solve this problem. The dedicated software presented in this section are smarter than a plain proxy cache because they can rely on the specific structure of APT repositories (for instance they know when individual files are obsolete or not, and thus adjust the time during which they are kept)."
-msgstr "APT が「標準的な」プロキシを使うように設定することもできます (APT 側は <xref linkend=\"sect.apt-config\" />、プロキシ側は <xref linkend=\"sect.http-ftp-proxy\" /> を参照) が、Debian にはこの問題に対するより優れた選択肢が準備されています。この節で取り上げる専用ソフトウェアは単純なプロキシキャッシュよりも賢いです。なぜなら、このソフトウェアは APT リポジトリの特定の構造を頼りにすることができるからです (例えば、個々のファイルが時代遅れになるタイミングがわかるので、ファイルを保存しておく時間を調整できます)。"
+msgstr "APT が「標準的な」プロキシを使うように設定する事も可能です (APT 側は <xref linkend=\"sect.apt-config\" />、プロキシ側は <xref linkend=\"sect.http-ftp-proxy\" /> を参照) が、Debian にはこの問題に対するより優れた選択肢が準備されています。この節で取り上げる専用ソフトウェアは単純なプロキシキャッシュよりも賢いです。なぜなら、このソフトウェアは APT リポジトリの特定の構造を頼りにする事ができるからです (例えば、個々のファイルが時代遅れになるタイミングがわかるので、ファイルを保存しておく時間を調整できます)。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -726,12 +726,12 @@ msgid ""
 "\n"
 "# &lt;name&gt; &lt;repository-base-url&gt;\n"
 "debian   http://ftp.debian.org/debian\n"
-"security http://security.debian.org\n"
+"security http://security.debian.org"
 msgstr ""
 "\n"
 "# &lt;name&gt; &lt;repository-base-url&gt;\n"
 "debian   http://ftp.debian.org/debian\n"
-"security http://security.debian.org\n"
+"security http://security.debian.org"
 
 #. Tag: para
 #, no-c-format
@@ -769,12 +769,12 @@ msgstr "<primary><command>aptitude</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first front end — command-line based — which was developed within the project."
-msgstr "APT は巨大なプロジェクトで、当初の予定ではグラフィカルインターフェイスを含んでいました。APT はライブラリに基づいており、ライブラリにはコアアプリケーションが含まれています。<command>apt-get</command> は最初のフロントエンド - コマンドラインベース - で、APT プロジェクト内で開発されました。"
+msgstr "APT は巨大なプロジェクトで、当初の予定ではグラフィカルインターフェースを含んでいました。APT はライブラリに基づいており、ライブラリにはコアアプリケーションが含まれています。<command>apt-get</command> は最初のフロントエンド - コマンドラインベース - で、APT プロジェクト内で開発されました。"
 
 #. Tag: para
 #, no-c-format
 msgid "Numerous other graphical interfaces then appeared as external projects: <command>synaptic</command>, <command>aptitude</command> (which includes both a text mode interface and a graphical one — even if not complete yet), <command>wajig</command>, etc. The most recommended interface, <command>apt-get</command>, is the one used during the installation of Debian, and the one that we will use in the examples given in this section. Note however that <command>aptitude</command>'s command-line syntax is very similar. When there are major differences between <command>apt-get</command> and <command>aptitude</command>, these differences will be detailed."
-msgstr "外部プロジェクトから、数多くのグラフィカルインターフェイスが生まれました: <command>synaptic</command>、<command>aptitude</command> (テキストとグラフィカルモードインターフェイス - まだ完成していません- の両方を含んでいます)、<command>wajig</command> などです。最も推奨されるインターフェイスは Debian のインストール中に使われる <command>apt-get</command> で、この節ではこれを例に使います。<command>aptitude</command> のコマンドライン構文はよく似ていることに注意してください。<command>apt-get</command> と <command>aptitude</command> に大きな違いがある場合は、違いを詳しく述べます。"
+msgstr "外部プロジェクトから、数多くのグラフィカルインターフェースが生まれました: <command>synaptic</command>、<command>aptitude</command> (テキストとグラフィカルモードインターフェース - まだ完成していません- の両方を含んでいます)、<command>wajig</command> などです。最も推奨されるインターフェースは Debian のインストール中に使われる <command>apt-get</command> で、この節ではこれを例に使います。<command>aptitude</command> のコマンドライン構文はよく似ていることに注意してください。<command>apt-get</command> と <command>aptitude</command> に大きな違いがある場合は、違いを詳しく述べます。"
 
 #. Tag: title
 #, no-c-format
@@ -784,7 +784,7 @@ msgstr "初期設定"
 #. Tag: para
 #, no-c-format
 msgid "For any work with APT, the list of available packages needs to be updated; this can be done simply through <command>apt-get update</command>. Depending on the speed of your connection, the operation can take a while since it involves downloading a certain number of <filename>Packages</filename>/<filename>Sources</filename>/<filename>Translation-<replaceable>language-code</replaceable></filename> files, which have gradually become bigger and bigger as Debian has developed (at least 10 MB of data for the <literal>main</literal> section). Of course, installing from a CD-ROM set does not require any downloading — in this case, the operation is very fast."
-msgstr "APT を使う作業では、事前に利用可能なパッケージのリストを更新しなければいけません; これを行うには <command>apt-get update</command> を使ってください。ネットワークのスピードに依存しますが、この操作には少し時間がかかります。なぜなら、<filename>Packages</filename>/<filename>Sources</filename>/<filename>Translation-<replaceable>language-code</replaceable></filename> などのファイルをダウンロードするからです。これらのファイルは Debian の開発が進につて徐々に大きくなります (<literal>main</literal> セクションの場合、データのサイズは少なく見積もっても 10 MB です)。もちろん CD-ROM セットからインストールする場合はダウンロードに時間は必要ありません - この場合、操作はとても速くなります。"
+msgstr "APT を使う作業では、事前に利用可能なパッケージのリストを更新しなければいけません; これを行うには <command>apt-get update</command> を使ってください。ネットワークのスピードに依存しますが、この操作には少し時間がかかります。なぜなら、<filename>Packages</filename>/<filename>Sources</filename>/<filename>Translation-<replaceable>language-code</replaceable></filename> などのファイルをダウンロードするからです。これらのファイルは Debian の開発が進むにつれて徐々に大きくなります (<literal>main</literal> セクションの場合、データのサイズは少なく見積もっても 10 MB です)。もちろん CD-ROM セットからインストールする場合はダウンロードに時間は必要ありません - この場合、操作はとても速くなります。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -873,8 +873,8 @@ msgstr "最初に、コンピュータにインストールされたパッケー
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
-msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
+msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>"
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>"
 
 #. Tag: para
 #, no-c-format
@@ -892,7 +892,7 @@ msgid ""
 "## Update dpkg's selections\n"
 "# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
 "## Ask apt-get to install the selected packages\n"
-"# <userinput>apt-get dselect-upgrade</userinput>\n"
+"# <userinput>apt-get dselect-upgrade</userinput>"
 msgstr ""
 "## Update dpkg's database of known packages\n"
 "# <userinput>avail=`mktemp`</userinput>\n"
@@ -902,7 +902,7 @@ msgstr ""
 "## Update dpkg's selections\n"
 "# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
 "## Ask apt-get to install the selected packages\n"
-"# <userinput>apt-get dselect-upgrade</userinput>\n"
+"# <userinput>apt-get dselect-upgrade</userinput>"
 
 #. Tag: para
 #, no-c-format
@@ -930,17 +930,17 @@ msgid ""
 "# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
-"[...]\n"
+"[...]"
 msgstr ""
 "# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
-"[...]\n"
+"[...]"
 
 #. Tag: para
 #, no-c-format
 msgid "This can also be used to exclude packages which would otherwise be installed, for example due to a <literal>Recommends</literal>. In general, the dependency solver will use that information as a hint to look for alternative solutions."
-msgstr "これは例えば <literal>Recommends</literal> に指定されているなどの原因でインストールされてしまうパッケージを除外するために使うこともできます。一般に、依存関係ソルバは代替解決策を探すための手掛かりとしてこの情報を使います。"
+msgstr "これは例えば <literal>Recommends</literal> に指定されているなどの原因でインストールされてしまうパッケージを除外するために使う事も可能です。一般に、依存関係ソルバは代替解決策を探すための手掛かりとしてこの情報を使います。"
 
 #. Tag: title
 #, no-c-format
@@ -955,12 +955,12 @@ msgstr "<primary>再インストール</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The system can sometimes be damaged after the removal or modification of files in a package. The easiest way to retrieve these files is to reinstall the affected package. Unfortunately, the packaging system finds that the latter is already installed and politely refuses to reinstall it; to avoid this, use the <literal>--reinstall</literal> option of the <command>apt-get</command> command. The following command reinstalls <emphasis role=\"pkg\">postfix</emphasis> even if it is already present:"
-msgstr "システムはパッケージ中のファイルが削除されたり変更されたりした後に被害を受ける場合があります。これらのファイルを再取得する最も簡単な方法は、影響を受けたパッケージを再インストールすることです。残念なことに、パッケージ化システムはパッケージがすでにインストール済みで、再インストールできないことを丁寧に教えてくれます; これを避けるために、<command>apt-get</command> コマンドの <literal>--reinstall</literal> オプションを使います。以下は、すでにインストール済みでも <emphasis role=\"pkg\">postfix</emphasis> を再インストールするコマンドです:"
+msgstr "システムはパッケージ中のファイルが削除されたり変更されたりした後に被害を受ける場合があります。これらのファイルを再取得する最も簡単な方法は、影響を受けたパッケージを再インストールする事です。残念なことに、パッケージ化システムはパッケージが既にインストール済みで、再インストールできない事を丁寧に教えてくれます; これを避けるために、<command>apt-get</command> コマンドの <literal>--reinstall</literal> オプションを使います。以下は、既にインストール済みでも <emphasis role=\"pkg\">postfix</emphasis> を再インストールするコマンドです:"
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
-msgstr "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
+msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>"
+msgstr "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>"
 
 #. Tag: para
 #, no-c-format
@@ -980,7 +980,7 @@ msgstr "攻撃を受けている最中に、変更されたパッケージを修
 #. Tag: para
 #, no-c-format
 msgid "If the file <filename>sources.list</filename> mentions several distributions, it is possible to give the version of the package to install. A specific version number can be requested with <command>apt-get install <replaceable>package</replaceable>=<replaceable>version</replaceable></command>, but indicating its distribution of origin (<emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis>) — with <command>apt-get install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> — is usually preferred. With this command, it is possible to go back to an older version of a package (if for instance you know that it works well), provided that it is still available in one of the sources referenced by the <filename>sources.list</filename> file. Otherwise the <literal>snapshot.debian.org</literal> archive can come to the rescue (see sidebar <xref linkend=\"sidebar.snapshot.debian.org\" />)."
-msgstr "<filename>sources.list</filename> が複数のディストリビューションを参照しているのなら、パッケージのバージョンを指定してインストールすることも可能です。特定のバージョンを指定するには、<command>apt-get install <replaceable>package</replaceable>=<replaceable>version</replaceable></command> を使いますが、<command>apt-get install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> のようにして、ディストリビューション (<emphasis role=\"distribution\">安定版</emphasis>、<emphasis role=\"distribution\">テスト版</emphasis>、<emphasis role=\"distribution\">不安定版</emphasis>) を指定するやり方のほうが通常好まれます。<filename>sources.list</filename> ファイルに書かれたどこかのソースから古いバージョンをまだ入手できるなら、このコマンドを使ってパッケージを古いバージョンに戻すことができます (例えば古いバージョンがうまく動作すると知っている場合など)。そうでないなら、<literal>snapshot.debian.org</literal> アーカイブを使ってください (傍注<xref linkend=\"sidebar.snapshot.debian.org\" />参照)。"
+msgstr "<filename>sources.list</filename> が複数のディストリビューションを参照しているのなら、パッケージのバージョンを指定してインストールする事も可能です。特定のバージョンを指定するには、<command>apt-get install <replaceable>package</replaceable>=<replaceable>version</replaceable></command> を使いますが、<command>apt-get install <replaceable>package</replaceable>/<replaceable>distribution</replaceable></command> のようにして、ディストリビューション (<emphasis role=\"distribution\">安定版</emphasis>、<emphasis role=\"distribution\">テスト版</emphasis>、<emphasis role=\"distribution\">不安定版</emphasis>) を指定するやり方のほうが通常好まれます。<filename>sources.list</filename> ファイルに書かれたどこかのソースから古いバージョンをまだ入手できるなら、このコマンドを使ってパッケージを古いバージョンに戻す事が可能です (例えば古いバージョンが上手く動作すると知っている場合など)。そうでないなら、<literal>snapshot.debian.org</literal> アーカイブを使ってください (傍注<xref linkend=\"sidebar.snapshot.debian.org\" />参照)。"
 
 #. Tag: title
 #, no-c-format
@@ -989,8 +989,8 @@ msgstr "<emphasis role=\"pkg\">spamassassin</emphasis> の<emphasis role=\"distr
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
-msgstr "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
+msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>"
+msgstr "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>"
 
 #. Tag: title
 #, no-c-format
@@ -1000,7 +1000,7 @@ msgstr "<emphasis>GOING FURTHER</emphasis> <filename>.deb</filename> ファイ�
 #. Tag: para
 #, no-c-format
 msgid "APT keeps a copy of each downloaded <filename>.deb</filename> file in the directory <filename>/var/cache/apt/archives/</filename>. In case of frequent updates, this directory can quickly take a lot of disk space with several versions of each package; you should regularly sort through them. Two commands can be used: <command>apt-get clean</command> entirely empties the directory; <command>apt-get autoclean</command> only removes packages which cannot be downloaded (because they have disappeared from the Debian mirror) and are therefore clearly useless (the configuration parameter <literal>APT::Clean-Installed</literal> can prevent the removal of <filename>.deb</filename> files that are currently installed)."
-msgstr "APT はダウンロード済み <filename>.deb</filename> ファイルのコピーを <filename>/var/cache/apt/archives/</filename> ディレクトリに保存します。頻繁に更新をする場合、パッケージの複数のバージョンが保存されるためこのディレクトリは多くのディスクスペースを消費します; 日常的にこのディレクトリの内容を調べたほうがよいでしょう。2 つのコマンドが使えます: <command>apt-get clean</command> はこのディレクトリを完全に空にします; <command>apt-get autoclean</command> は (Debian ミラーから削除されたために) ダウンロードできない、明らかに無駄なパッケージだけを削除します (設定パラメータ <literal>APT::Clean-Installed</literal> を使って現在インストール済みパッケージの <filename>.deb</filename> は削除しないようにすることも可能です)。"
+msgstr "APT はダウンロード済み <filename>.deb</filename> ファイルのコピーを <filename>/var/cache/apt/archives/</filename> ディレクトリに保存します。頻繁に更新をする場合、パッケージの複数のバージョンが保存されるためこのディレクトリは多くのディスク領域を消費します; 日常的にこのディレクトリの内容を調べたほうがよいでしょう。2 つのコマンドが使えます: <command>apt-get clean</command> はこのディレクトリを完全に空にします; <command>apt-get autoclean</command> は (Debian ミラーから削除されたために) ダウンロードできない、明らかに無駄なパッケージだけを削除します (設定パラメータ <literal>APT::Clean-Installed</literal> を使って現在インストール済みパッケージの <filename>.deb</filename> は削除しないようにする事も可能です)。"
 
 #. Tag: title
 #, no-c-format
@@ -1025,7 +1025,7 @@ msgstr "<primary><command>aptitude safe-upgrade</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Regular upgrades are recommended, because they include the latest security updates. To upgrade, use <command>apt-get upgrade</command> or <command>aptitude safe-upgrade</command> (of course after <command>apt-get update</command>). This command looks for installed packages which can be upgraded without removing any packages. In other words, the goal is to ensure the least intrusive upgrade possible. <command>apt-get</command> is slightly more demanding than <command>aptitude</command> because it will refuse to install packages which were not installed beforehand."
-msgstr "最新のセキュリティアップデートを入手するために、定期的にアップグレードすることをお勧めします。アップグレードするには、(もちろん <command>apt-get update</command> を実行した後で) <command>apt-get upgrade</command> または <command>aptitude safe-upgrade</command> を実行してください。このコマンドは他のパッケージを削除せずにアップグレード可能なインストール済みパッケージを探します。言い換えれば、最低限可能なアップグレードを行います。<command>apt-get</command> のアップグレードパッケージの選択ルールは <command>aptitude</command> よりも少し条件が厳しいです。これは <command>apt-get</command> はすでにインストール済みのパッケージだけをアップグレードするからです。"
+msgstr "最新のセキュリティ更新を入手するために、定期的にアップグレードする事をお勧めします。アップグレードするには、(もちろん <command>apt-get update</command> を実行した後で) <command>apt-get upgrade</command> または <command>aptitude safe-upgrade</command> を実行してください。このコマンドは他のパッケージを削除せずにアップグレード可能なインストール済みパッケージを探します。言い換えれば、最低限可能なアップグレードを行います。<command>apt-get</command> のアップグレードパッケージの選択ルールは <command>aptitude</command> よりも少し条件が厳しいです。これは <command>apt-get</command> は既にインストール済みのパッケージだけをアップグレードするからです。"
 
 #. Tag: title
 #, no-c-format
@@ -1035,7 +1035,7 @@ msgstr "<emphasis>TIP</emphasis> 増分アップグレード"
 #. Tag: para
 #, no-c-format
 msgid "As we explained earlier, the aim of the <command>apt-get update</command> command is to download for each package source the corresponding <filename>Packages</filename> (or <filename>Sources</filename>) file. However, even after a <command>bzip2</command> compression, these files can remain rather large (the <filename>Packages.bz2</filename> for the <foreignphrase>main</foreignphrase> section of <emphasis role=\"distribution\">Wheezy</emphasis> takes more than 5 MB). If you wish to upgrade regularly, these downloads can take up a lot of time."
-msgstr "先に説明したとおり、<command>apt-get update</command> コマンドは、複数のパッケージソースから適当な <filename>Packages</filename> (または <filename>Sources</filename>)  ファイルをダウンロードします。しかしながら、これらのファイルのサイズは <command>bzip2</command> 圧縮してもまだ大きいです (<emphasis role=\"distribution\">Wheezy</emphasis> の <foreignphrase>main</foreignphrase> セクションの <filename>Packages.bz2</filename> は 5 MB 以上です)。日常的にアップグレードしたい場合、ダウンロードに時間がかかるということです。"
+msgstr "先に説明したとおり、<command>apt-get update</command> コマンドは、複数のパッケージソースから適当な <filename>Packages</filename> (または <filename>Sources</filename>)  ファイルをダウンロードします。しかしながら、これらのファイルのサイズは <command>bzip2</command> 圧縮してもまだ大きいです (<emphasis role=\"distribution\">Wheezy</emphasis> の <foreignphrase>main</foreignphrase> セクションの <filename>Packages.bz2</filename> は 5 MB 以上です)。日常的にアップグレードしたい場合、ダウンロードに時間がかかるという事です。"
 
 #. Tag: para
 #, no-c-format
@@ -1105,7 +1105,7 @@ msgstr "<primary><filename>/etc/apt/apt.conf.d/</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Besides the configuration elements already mentioned, it is possible to configure certain aspects of APT by adding directives in a file of the <filename>/etc/apt/apt.conf.d/</filename> directory. Remember for instance that it is possible for APT to tell <command>dpkg</command> to ignore file conflict errors by specifying <literal>DPkg::Options { \"--force-overwrite\"; }</literal>."
-msgstr "すでに説明した設定項目に加えて、<filename>/etc/apt/apt.conf.d/</filename> ディレクトリにファイルを追加して APT の特定の機能を設定できます。例えば、APT に <command>dpkg</command> がファイルの衝突によるエラーを無視するよう設定するには、<literal>DPkg::Options { \"--force-overwrite\"; }</literal> を指定してください。"
+msgstr "既に説明した設定項目に加えて、<filename>/etc/apt/apt.conf.d/</filename> ディレクトリにファイルを追加して APT の特定の機能を設定できます。例えば、APT に <command>dpkg</command> がファイルの衝突によるエラーを無視するよう設定するには、<literal>DPkg::Options { \"--force-overwrite\"; }</literal> を指定してください。"
 
 #. Tag: para
 #, no-c-format
@@ -1125,12 +1125,12 @@ msgstr "<primary><filename>.d</filename></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Directories with a <filename>.d</filename> suffix are used more and more often. Each directory represents a configuration file which is split over multiple files. In this sense, all of the files in <filename>/etc/apt/apt.conf.d/</filename> are instructions for the configuration of APT. APT includes them in alphabetical order, so that the last ones can modify a configuration element defined in one of the first ones."
-msgstr "名前に <filename>.d</filename> サフィックスが付けられたディレクトリは頻繁に使われます。それぞれのディレクトリは複数ファイルに渡って分割された設定ファイルを表しています。この意味において、<filename>/etc/apt/apt.conf.d/</filename> 内の全てのファイルには APT に対する設定が含まれています。APT はこれらをアルファベット順に読み込みます。つまり、読み込まれる順番が遅いファイルの設定が早いファイルの設定を上書きするということです。"
+msgstr "名前に <filename>.d</filename> サフィックスが付けられたディレクトリは頻繁に使われます。それぞれのディレクトリは複数ファイルに渡って分割された設定ファイルを表しています。この意味において、<filename>/etc/apt/apt.conf.d/</filename> 内のすべてのファイルには APT に対する設定が含まれています。APT はこれらをアルファベット順に読み込みます。つまり、読み込まれる順番が遅いファイルの設定が早いファイルの設定を上書きするという事です。"
 
 #. Tag: para
 #, no-c-format
 msgid "This structure brings some flexibility to the machine administrator and to the package maintainers. Indeed, the administrator can easily modify the configuration of the software by adding a ready-made file in the directory in question without having to change an existing file. Package maintainers use the same approach when they need to adapt the configuration of another software to ensure that it perfectly co-exists with theirs. The Debian policy explicitly forbids modifying configuration files of other packages — only users are allowed to do this. Remember that during a package upgrade, the user gets to choose the version of the configuration file that should be kept when a modification has been detected. Any external modification of the file would trigger that request, which would disturb the administrator, who is sure not to have changed anything."
-msgstr "この体制により、マシンの管理者とパッケージメンテナは設定にいくつかの自由度を持つことができます。実際、管理者はソフトウェアの設定を、出来合いのファイルをこのディレクトリに追加することによって、既存のファイルを編集せずに、簡単に修正できます。パッケージメンテナはこれと同じやり方で、自分のパッケージと上手に共存させながら、他のソフトウェアの設定を変更します。他のパッケージが提供する設定ファイルを変更することは Debian ポリシーによって禁止されています - 変更できるのはユーザだけです。パッケージのアップグレード中に設定ファイルの変更が検出されたら、ユーザは設定ファイルのどのバージョンを保存するか聞かれることを忘れないでください。外部から設定ファイルが変更されれば必ず聞かれます。これは何も変えたくない管理者にとって煩わしいでしょう。"
+msgstr "この体制により、マシンの管理者とパッケージメンテナは設定にいくつかの自由度を持つ事が可能です。実際、管理者はソフトウェアの設定を、出来合いのファイルをこのディレクトリに追加することによって、既存のファイルを編集せずに、簡単に修正できます。パッケージメンテナはこれと同じやり方で、自分のパッケージと上手に共存させながら、他のソフトウェアの設定を変更します。他のパッケージが提供する設定ファイルを変更することは Debian ポリシーによって禁止されています - 変更できるのはユーザだけです。パッケージのアップグレード中に設定ファイルの変更が検出されたら、ユーザは設定ファイルのどのバージョンを保存するか聞かれる事を忘れないでください。外部から設定ファイルが変更されれば必ず聞かれます。これは何も変えたくない管理者にとって煩わしいでしょう。"
 
 #. Tag: para
 #, no-c-format
@@ -1140,7 +1140,7 @@ msgstr "<filename>.d</filename> ディレクトリがない場合、設定ファ
 #. Tag: para
 #, no-c-format
 msgid "Depending on the application, the <filename>.d</filename> directory is used directly or managed by an external script which will concatenate all the files to create the configuration file itself. It is important to execute the script after any change in that directory so that the most recent modifications are taken into account. In the same way, it is important not to work directly in the configuration file created automatically, since everything would be lost at the next execution of the script. The chosen method (<filename>.d</filename> directory used directly or a file generated from that directory) is usually dictated by implementation constraints, but in both cases the gains in terms of configuration flexibility more than make up for the small complications that they entail. The Exim 4 mail server is an example of the generated file method: it can be configured through several files (<filename>/etc/exim4/conf.d/*</filename>) which are concatenated into <filename>/var/lib/exim4/config.autogenerated</filename> by the <command>update-exim4.conf</command> command."
-msgstr "アプリケーションに依存しますが、<filename>.d</filename> ディレクトリは直接または全てのファイルを連結して設定ファイルを作成する外部スクリプトを介して使われます。最新の変更を反映させるため、ディレクトリ内のファイルを変更した後にスクリプトを実行することが重要です。同様に、自動的に生成された設定ファイルを直接編集しないことが重要です。なぜなら、スクリプトを実行すれば生成された設定ファイルに行った全ての変更が失われるからです。どちらの方法をとるか (<filename>.d</filename> ディレクトリを直接使うかディレクトリからファイルを生成するか) は通常実装に依存します。しかし、どちらの場合でも設定の柔軟性が増えるのに対して、設定の複雑さは少ししか増加しません。Exim 4 メールサーバはファイルを生成する方針をとるアプリケーションの例です: ファイル (<filename>/etc/exim4/conf.d/*</filename>) に設定を書き込み、<command>update-exim4.conf</command> コマンドがこれらを連結して <filename>/var/lib/exim4/config.autogenerated</filename> を生成します。"
+msgstr "アプリケーションに依存しますが、<filename>.d</filename> ディレクトリは直接またはすべてのファイルを連結して設定ファイルを作成する外部スクリプトを介して使われます。最新の変更を反映させるため、ディレクトリ内のファイルを変更した後にスクリプトを実行する事が重要です。同様に、自動的に生成された設定ファイルを直接編集しない事が重要です。なぜなら、スクリプトを実行すれば生成された設定ファイルに行ったすべての変更が失われるからです。どちらの方法をとるか (<filename>.d</filename> ディレクトリを直接使うかディレクトリからファイルを生成するか) は通常実装に依存します。しかし、どちらの場合でも設定の柔軟性が増えるのに対して、設定の複雑さは少ししか増加しません。Exim 4 メールサーバはファイルを生成する方針をとるアプリケーションの例です: ファイル (<filename>/etc/exim4/conf.d/*</filename>) に設定を書き込み、<command>update-exim4.conf</command> コマンドがこれらを連結して <filename>/var/lib/exim4/config.autogenerated</filename> を生成します。"
 
 #. Tag: title
 #, no-c-format
@@ -1150,7 +1150,7 @@ msgstr "パッケージ優先度の管理"
 #. Tag: para
 #, no-c-format
 msgid "One of the most important aspects in the configuration of APT is the management of the priorities associated with each package source. For instance, you might want to extend one distribution with one or two newer packages from <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis>. It is possible to assign a priority to each available package (the same package can have several priorities depending on its version or the distribution providing it). These priorities will influence APT's behavior: for each package, it will always select the version with the highest priority (except if this version is older than the installed one and if its priority is less than 1000)."
-msgstr "APT の設定で最も重要な側面の 1 つに各パッケージソースに対する優先度の管理があります。例えば、<emphasis role=\"distribution\">テスト版</emphasis>、<emphasis role=\"distribution\">不安定版</emphasis>、<emphasis role=\"distribution\">実験版</emphasis>から入手できる新しいパッケージを 1 つか 2 つあるディストリビューションにインストールしたいと思うかもしれません。利用可能なパッケージに対して優先度を割り当てることが可能です (同じパッケージに対してバージョンやそれを提供しているディストリビューションに依存する異なる優先度を設定することも可能です)。優先度の設定は APT の挙動に影響を与えます: 各パッケージについて、APT は常に最も優先度の高いバージョンをインストールします (例外は、最も優先度の高いバージョンがインストール済みのバージョンよりも古い場合か 1000 より低い優先順位を持っている場合です)。"
+msgstr "APT の設定で最も重要な側面の 1 つに各パッケージソースに対する優先度の管理があります。例えば、<emphasis role=\"distribution\">テスト版</emphasis>、<emphasis role=\"distribution\">不安定版</emphasis>、<emphasis role=\"distribution\">実験版</emphasis>から入手できる新しいパッケージを 1 つか 2 つあるディストリビューションにインストールしたいと思うかもしれません。利用可能なパッケージに対して優先度を割り当てる事が可能です (同じパッケージに対してバージョンやそれを提供しているディストリビューションに依存する異なる優先度を設定する事も可能です)。優先度の設定は APT の挙動に影響を与えます: 各パッケージについて、APT は常に最も優先度の高いバージョンをインストールします (例外は、最も優先度の高いバージョンがインストール済みのバージョンよりも古い場合か 1000 より低い優先順位を持っている場合です)。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1205,12 +1205,12 @@ msgstr "APT は優先度が 1000 より高い場合を除いて、パッケー�
 #. Tag: para
 #, no-c-format
 msgid "In more concrete terms, a package whose priority is less than 0 will never be installed. A package with a priority ranging between 0 and 100 will only be installed if no other version of the package is already installed. With a priority between 100 and 500, the package will only be installed if there is no other newer version installed or available in another distribution. A package of priority between 501 and 990 will only be installed if there is no newer version installed or available in the target distribution. With a priority between 990 and 1000, the package will be installed except if the installed version is newer. A priority greater than 1000 will always lead to the installation of the package even if it forces APT to downgrade to an older version."
-msgstr "より具体的に言えば、優先度が 0 より低いパッケージは決してインストールされません。0 から 100 までの優先度を持つパッケージは、パッケージの他のバージョンがインストール済みでない場合にだけ、インストールされます。100 から 500 までの優先度を持つパッケージは、インストール済みのバージョンに新しいものが存在しないか、他のディストリビューションに利用可能なバージョンが存在する場合にだけ、インストールされます。501 から 990 までの優先度を持つパッケージは、インストール済みのバージョンに新しいものが存在しないか、ターゲットディストリビューションに利用可能なバージョンが存在する場合にだけ、インストールされます。990 から1000 までの優先度を持つパッケージは、インストール済みバージョンが古い場合に、インストールされます。1000 より大きい優先度を持つパッケージは、古いバージョンにダウングレードすることになったとしても、常にインストールされます。"
+msgstr "より具体的に言えば、優先度が 0 より低いパッケージは決してインストールされません。0 から 100 までの優先度を持つパッケージは、パッケージの他のバージョンがインストール済みでない場合にだけ、インストールされます。100 から 500 までの優先度を持つパッケージは、インストール済みのバージョンに新しいものが存在しないか、他のディストリビューションに利用可能なバージョンが存在する場合にだけ、インストールされます。501 から 990 までの優先度を持つパッケージは、インストール済みのバージョンに新しいものが存在しないか、ターゲットディストリビューションに利用可能なバージョンが存在する場合にだけ、インストールされます。990 から 1000 までの優先度を持つパッケージは、インストール済みバージョンが古い場合に、インストールされます。1000 より大きい優先度を持つパッケージは、古いバージョンにダウングレードすることになったとしても、常にインストールされます。"
 
 #. Tag: para
 #, no-c-format
 msgid "When APT checks <filename>/etc/apt/preferences</filename>, it first takes into account the most specific entries (often those specifying the concerned package), then the more generic ones (including for example all the packages of a distribution). If several generic entries exist, the first match is used. The available selection criteria include the package's name and the source providing it. Every package source is identified by the information contained in a <filename>Release</filename> file that APT downloads together with the <filename>Packages</filename> files. It specifies the origin (usually “Debian” for the packages of official mirrors, but it can also be a person's or an organization's name for third-parties repositories). It also gives the name of the distribution (usually <emphasis role=\"distribution\">Stable</emphasis>, <emphasis role=\"distribution\">Testing</emphasis>, <emphasis role=\"distribution\">Unstable</emphasis> or <emphasis role=\"distribution\">Experimental</emphasis> for the standard distributions provided by Debian) together with its version (for example 5.0 for Debian <emphasis role=\"distribution\">Lenny</emphasis>). Let's have a look at its syntax through some realistic case studies of this mechanism."
-msgstr "APT が <filename>/etc/apt/preferences</filename> の設定を評価する際、最初に具体的なエントリ (該当するパッケージに関連するエントリ)、その後に一般的なエントリ (例えばあるディストリビューションの全てのパッケージを含めたものなど) を評価します。一般的なエントリが複数存在する場合、最初にマッチしたものを使います。利用可能な選択基準には、パッケージの名前とパッケージを配布しているパッケージソースが含まれます。各パッケージソースは APT が <filename>Packages</filename> と一緒にダウンロードする <filename>Release</filename> ファイルに含まれる情報によって区別されます。このファイルは提供者 (公式ミラーのパッケージの場合、通常「Debian」ですが、人名やサードパーティリポジトリの組織名になる場合もあります) を規定しています。また、このファイルはディストリビューションの名前 (Debian の提供する標準的ディストリビューションの場合、通常 <emphasis role=\"distribution\">安定版</emphasis>、<emphasis role=\"distribution\">テスト版</emphasis>、<emphasis role=\"distribution\">不安定版</emphasis>、<emphasis role=\"distribution\">実験版</emphasis>) とバージョン (例えば Debian <emphasis role=\"distribution\">Lenny</emphasis> なら 5.0) を規定しています。このメカニズムの実際のケーススタディを通じて、構文を見てみましょう。"
+msgstr "APT が <filename>/etc/apt/preferences</filename> の設定を評価する際、最初に具体的なエントリ (該当するパッケージに関連するエントリ)、その後に一般的なエントリ (例えばあるディストリビューションのすべてのパッケージを含めたものなど) を評価します。一般的なエントリが複数存在する場合、最初にマッチしたものを使います。利用可能な選択基準には、パッケージの名前とパッケージを配布しているパッケージソースが含まれます。各パッケージソースは APT が <filename>Packages</filename> と一緒にダウンロードする <filename>Release</filename> ファイルに含まれる情報によって区別されます。このファイルは提供者 (公式ミラーのパッケージの場合、通常「Debian」ですが、人名やサードパーティリポジトリの組織名になる場合もあります) を規定しています。また、このファイルはディストリビューションの名前 (Debian の提供する標準的ディストリビューションの場合、通常 <emphasis role=\"distribution\">安定版</emphasis>、<emphasis role=\"distribution\">テスト版</emphasis>、<emphasis role=\"distribution\">不安定版</emphasis>、<emphasis role=\"distribution\">実験版</emphasis>) とバージョン (例えば Debian <emphasis role=\"distribution\">Lenny</emphasis> なら 5.0) を規定しています。このメカニズムの実際のケーススタディを通じて、構文を見てみましょう。"
 
 #. Tag: title
 #, no-c-format
@@ -1220,18 +1220,18 @@ msgstr "<emphasis>SPECIFIC CASE</emphasis> <emphasis role=\"distribution\">実�
 #. Tag: para
 #, no-c-format
 msgid "If you listed <emphasis role=\"distribution\">Experimental</emphasis> in your <filename>sources.list</filename> file, the corresponding packages will almost never be installed because their default APT priority is 1. This is of course a specific case, designed to keep users from installing <emphasis role=\"distribution\">Experimental</emphasis> packages by mistake. The packages can only be installed by typing <command>aptitude install <replaceable>package</replaceable>/experimental</command> — users typing this command can only be aware of the risks that they take. It is still possible (though <emphasis>not</emphasis> recommended) to treat packages of <emphasis role=\"distribution\">Experimental</emphasis> like those of other distributions by giving them a priority of 500. This is done with a specific entry in <filename>/etc/apt/preferences</filename>:"
-msgstr "<emphasis role=\"distribution\">実験版</emphasis>を <filename>sources.list</filename> ファイルに含めても対応するパッケージは決してインストールされません。なぜなら優先度が 1 だからです。これはもちろん特別な場合で、誤って<emphasis role=\"distribution\">実験版</emphasis>のパッケージをインストールするのを避けるためこうなっています。パッケージをインストールする唯一の方法は <command>aptitude install <replaceable>package</replaceable>/experimental</command> と実行することです - このコマンドを実行するユーザは嫌でもリスクをとることに気付くでしょう。<emphasis role=\"distribution\">実験版</emphasis> のパッケージの優先度を 500 にして他のディストリビューションのパッケージと同列に扱うことも (推奨<emphasis>しません</emphasis>が) 不可能ではありません。こうするには <filename>/etc/apt/preferences</filename> に以下のエントリを含めてください:"
+msgstr "<emphasis role=\"distribution\">実験版</emphasis>を <filename>sources.list</filename> ファイルに含めても対応するパッケージは決してインストールされません。なぜなら優先度が 1 だからです。これはもちろん特別な場合で、誤って<emphasis role=\"distribution\">実験版</emphasis>のパッケージをインストールするのを避けるためこうなっています。パッケージをインストールする唯一の方法は <command>aptitude install <replaceable>package</replaceable>/experimental</command> と実行する事です - このコマンドを実行するユーザは嫌でもリスクをとることに気付くでしょう。<emphasis role=\"distribution\">実験版</emphasis> のパッケージの優先度を 500 にして他のディストリビューションのパッケージと同列に扱う事も (推奨<emphasis>しません</emphasis>が) 不可能ではありません。こうするには <filename>/etc/apt/preferences</filename> に以下のエントリを含めてください:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 "Package: *\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 
 #. Tag: para
 #, no-c-format
@@ -1247,7 +1247,7 @@ msgid ""
 "\n"
 "Package: *\n"
 "Pin: release o=Debian\n"
-"Pin-Priority: -10\n"
+"Pin-Priority: -10"
 msgstr ""
 "Package: *\n"
 "Pin: release a=stable\n"
@@ -1255,7 +1255,7 @@ msgstr ""
 "\n"
 "Package: *\n"
 "Pin: release o=Debian\n"
-"Pin-Priority: -10\n"
+"Pin-Priority: -10"
 
 #. Tag: para
 #, no-c-format
@@ -1265,18 +1265,18 @@ msgstr "<literal>a=stable</literal> で選択するディストリビューシ�
 #. Tag: para
 #, no-c-format
 msgid "Let's now assume that you have a server with several local programs depending on the version 5.14 of Perl and that you want to ensure that upgrades will not install another version of it. You could use this entry:"
-msgstr "さてここで、サーバには Perl バージョン 5.14 に依存するローカルプログラムがあり、アップグレードによって他のバージョンがインストールされないことを保証したいと仮定しましょう。この場合、以下のエントリを使います:"
+msgstr "さてここで、サーバには Perl バージョン 5.14 に依存するローカルプログラムがあり、アップグレードによって他のバージョンがインストールされない事を保証したいと仮定しましょう。この場合、以下のエントリを使います:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
-"Pin-Priority: 1001\n"
+"Pin-Priority: 1001"
 msgstr ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
-"Pin-Priority: 1001\n"
+"Pin-Priority: 1001"
 
 #. Tag: para
 #, no-c-format
@@ -1315,13 +1315,13 @@ msgid ""
 "Explanation: in experimental can be used safely\n"
 "Package: xserver-xorg-video-intel\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 "Explanation: The package xserver-xorg-video-intel provided\n"
 "Explanation: in experimental can be used safely\n"
 "Package: xserver-xorg-video-intel\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 
 #. Tag: title
 #, no-c-format
@@ -1336,12 +1336,12 @@ msgstr "<command>apt-get</command> はこのように素晴らしく、他のデ
 #. Tag: para
 #, no-c-format
 msgid "Even if you will occasionally encounter problems while mixing packages from different distributions, <command>apt-get</command> manages such coexistence very well and limits risks very effectively. The best way to proceed is to list all distributions used in <filename>/etc/apt/sources.list</filename> (some people always put the three distributions, but remember that <emphasis role=\"distribution\">Unstable</emphasis> is reserved for experienced users) and to define your reference distribution with the <literal>APT::Default-Release</literal> parameter (see <xref linkend=\"sect.apt-upgrade\" />)."
-msgstr "ディストリビューションの異なるパッケージを混在させると、時々問題に遭遇するかもしれませんが、<command>apt-get</command> はパッケージをうまく共存させ、危険の及ぶ範囲をうまく限定します。進むべき最善の道は、<filename>/etc/apt/sources.list</filename> で使われている全てのディストリビューションをリストアップ (常に 3 つのディストリビューションを使う人がいるかもしれませんが、<emphasis role=\"distribution\">不安定版</emphasis>は経験豊かなユーザ向けであることを忘れないでください) して、<literal>APT::Default-Release</literal> パラメータ (<xref linkend=\"sect.apt-upgrade\" />参照) で基準ディストリビューションをを定義することです。"
+msgstr "ディストリビューションの異なるパッケージを混在させると、時々問題に遭遇するかもしれませんが、<command>apt-get</command> はパッケージを上手く共存させ、危険の及ぶ範囲を上手く限定します。進むべき最善の道は、<filename>/etc/apt/sources.list</filename> で使われているすべてのディストリビューションをリストアップ (常に 3 つのディストリビューションを使う人がいるかもしれませんが、<emphasis role=\"distribution\">不安定版</emphasis>は経験豊かなユーザ向けである事を忘れないでください) して、<literal>APT::Default-Release</literal> パラメータ (<xref linkend=\"sect.apt-upgrade\" />参照) で基準ディストリビューションをを定義する事です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Let's suppose that <emphasis role=\"distribution\">Stable</emphasis> is your reference distribution but that <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> are also listed in your <filename>sources.list</filename> file. In this case, you can use <command>apt-get install <replaceable>package</replaceable>/testing</command> to install a package from <emphasis role=\"distribution\">Testing</emphasis>. If the installation fails due to some unsatisfiable dependencies, let it solve those dependencies within <emphasis role=\"distribution\">Testing</emphasis> by adding the <literal>-t testing</literal> parameter. The same obviously applies to <emphasis role=\"distribution\">Unstable</emphasis>."
-msgstr "<emphasis role=\"distribution\">安定版</emphasis>が基準ディストリビューションと仮定しますが、併せて<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>も <filename>sources.list</filename> ファイルに書かれているとします。この場合、<emphasis role=\"distribution\">テスト版</emphasis> からのパッケージをインストールするには <command>apt-get install <replaceable>package</replaceable>/testing</command> を使います。依存関係の解決に失敗してインストールできなかった場合、<literal>-t testing</literal> パラメータをつけて <emphasis role=\"distribution\">テスト版</emphasis>を使って依存関係を解決させることができます。<emphasis role=\"distribution\">不安定版</emphasis>でも同じことが言えます。"
+msgstr "<emphasis role=\"distribution\">安定版</emphasis>が基準ディストリビューションと仮定しますが、併せて<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>も <filename>sources.list</filename> ファイルに書かれているとします。この場合、<emphasis role=\"distribution\">テスト版</emphasis> からのパッケージをインストールするには <command>apt-get install <replaceable>package</replaceable>/testing</command> を使います。依存関係の解決に失敗してインストールできなかった場合、<literal>-t testing</literal> パラメータをつけて <emphasis role=\"distribution\">テスト版</emphasis>を使って依存関係を解決させる事が可能です。<emphasis role=\"distribution\">不安定版</emphasis>でも同じ事が言えます。"
 
 #. Tag: para
 #, no-c-format
@@ -1351,7 +1351,7 @@ msgstr "この状況では、アップグレード (<command>upgrade</command> �
 #. Tag: para
 #, no-c-format
 msgid "Everything centers around the fact that APT only considers packages of higher or equal version than the installed one (assuming that <filename>/etc/apt/preferences</filename> has not been used to force priorities higher than 1000 for some packages)."
-msgstr "APT はインストール済みのパッケージに比べてバージョンが高いか同じのパッケージだけを考慮するという事実を知れば、すべてを理解できます (ここでは <filename>/etc/apt/preferences</filename> の中に一部のパッケージに対して 1000より高い優先度を強制する設定が無いと仮定します)。"
+msgstr "APT はインストール済みのパッケージに比べてバージョンが高いか同じのパッケージだけを考慮するという事実を知れば、すべてを理解できます (ここでは <filename>/etc/apt/preferences</filename> の中に一部のパッケージに対して 1000 より高い優先度を強制する設定が無いと仮定します)。"
 
 #. Tag: title
 #, no-c-format
@@ -1361,7 +1361,7 @@ msgstr "<emphasis>TIP</emphasis> <command>apt-cache policy</command>"
 #. Tag: para
 #, no-c-format
 msgid "To gain a better understanding of the mechanism of priority, do not hesitate to execute <command>apt-cache policy</command> to display the default priority associated with each package source. You can also use <command>apt-cache policy <replaceable>package</replaceable></command> to display the priorities of all available versions of a given package."
-msgstr "優先度のメカニズムをさらに良く理解するためには、<command>apt-cache policy</command> を実行し、各パッケージソースに対して設定されているデフォルトの優先度を確認して下さい。また、あるパッケージの利用可能なバージョン全てに対する優先度を表示するために <command>apt-cache policy <replaceable>package</replaceable></command> を使う事も可能です。"
+msgstr "優先度のメカニズムをさらに良く理解するためには、<command>apt-cache policy</command> を実行し、各パッケージソースに対して設定されているデフォルトの優先度を確認して下さい。また、あるパッケージの利用可能なバージョンすべてに対する優先度を表示するために <command>apt-cache policy <replaceable>package</replaceable></command> を使う事も可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -1378,11 +1378,11 @@ msgstr "<emphasis role=\"distribution\">テスト版</emphasis>から提供さ�
 msgid ""
 "Package: *\n"
 "Pin: release a=unstable\n"
-"Pin-Priority: 490\n"
+"Pin-Priority: 490"
 msgstr ""
 "Package: *\n"
 "Pin: release a=unstable\n"
-"Pin-Priority: 490\n"
+"Pin-Priority: 490"
 
 #. Tag: title
 #, no-c-format
@@ -1397,7 +1397,7 @@ msgstr "<command>apt-get</command> の本質的な機能の 1 つに、依存関
 #. Tag: para
 #, no-c-format
 msgid "With this information, when packages are removed, the package managers can compute a list of automatic packages that are no longer needed (because there's no “manually installed” packages depending on them). <command>apt-get autoremove</command> will get rid of those packages. <command>aptitude</command> does not have this command because it removes them automatically as soon as they are identified. Both programs include a clear message listing the affected packages."
-msgstr "あるパッケージを削除する際に、パッケージマネージャは、この追跡情報を元に、もはや不要になった自動パッケージ (「手作業でインストール」されていないパッケージ) を選び出すことができる。不要になった自動パッケージを削除するには <command>apt-get autoremove</command> を使います。<command>aptitude</command> にはこのコマンドがありませんが、これは不要な自動パッケージは見つかり次第自動的に削除されるからです。どちらのプログラムでも、不要になったパッケージは分かりやすく表示されます。"
+msgstr "あるパッケージを削除する際に、パッケージマネージャは、この追跡情報を元に、もはや不要になった自動パッケージ (「手作業でインストール」されていないパッケージ) を選び出す事ができる。不要になった自動パッケージを削除するには <command>apt-get autoremove</command> を使います。<command>aptitude</command> にはこのコマンドがありませんが、これは不要な自動パッケージは見つかり次第自動的に削除されるからです。どちらのプログラムでも、不要になったパッケージは分かりやすく表示されます。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1422,7 +1422,7 @@ msgstr "<primary><command>aptitude unmarkauto</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "It is a good habit to mark as automatic any package that you don't need directly so that they are automatically removed when they aren't necessary anymore. <command>apt-mark auto <replaceable>package</replaceable></command> will mark the given package as automatic whereas <command>apt-mark manual <replaceable>package</replaceable></command> does the opposite. <command>aptitude markauto</command> and <command>aptitude unmarkauto</command> work in the same way although they offer more features for marking many packages at once (see <xref linkend=\"sect.aptitude\" />). The console-based interactive interface of <command>aptitude</command> also makes it easy to review the “automatic flag” on many packages."
-msgstr "直接的に使うわけではないパッケージを自動パッケージとしてマークするのは良い癖です。こうすれば、そのパッケージがいらなくなった時に自動的に削除されます。<command>apt-mark auto <replaceable>package</replaceable></command> はパッケージを自動パッケージとしてマークし、逆に <command>apt-mark manual <replaceable>package</replaceable></command> は手動パッケージとしてマークします。<command>aptitude markauto</command> と <command>aptitude unmarkauto</command> は同様に動きますが、多くのパッケージを同時にマークする機能を持っています (<xref linkend=\"sect.aptitude\" />参照)。<command>aptitude</command> のコンソールベース対話型インターフェイスを使うと、多くのパッケージの「自動パッケージフラグ」を容易に確認できます。"
+msgstr "直接的に使うわけではないパッケージを自動パッケージとしてマークするのは良い癖です。こうすれば、そのパッケージがいらなくなった時に自動的に削除されます。<command>apt-mark auto <replaceable>package</replaceable></command> はパッケージを自動パッケージとしてマークし、逆に <command>apt-mark manual <replaceable>package</replaceable></command> は手動パッケージとしてマークします。<command>aptitude markauto</command> と <command>aptitude unmarkauto</command> は同様に動きますが、多くのパッケージを同時にマークする機能を持っています (<xref linkend=\"sect.aptitude\" />参照)。<command>aptitude</command> のコンソールベース対話型インターフェースを使うと、多くのパッケージの「自動パッケージフラグ」を容易に確認できます。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1443,8 +1443,8 @@ msgid ""
 "      "
 msgstr ""
 "$ <userinput>aptitude why python-debian</userinput>\n"
-"i   aptitude         Recommends apt-xapian-index         \n"
-"i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)\n"
+"i   aptitude         推奨 apt-xapian-index         \n"
+"i A apt-xapian-index 依存 python-debian (&gt;= 0.1.15)\n"
 "      "
 
 #. Tag: title
@@ -1520,7 +1520,7 @@ msgstr "<emphasis>VOCABULARY</emphasis> キャッシュ"
 #. Tag: para
 #, no-c-format
 msgid "A cache is a temporary storage system used to speed up frequent data access when the usual access method is expensive (performance-wise). This concept can be applied in numerous situations and at different scales, from the core of microprocessors up to high-end storage systems."
-msgstr "キャッシュとは (パフォーマンスの観点から) 通常のアクセス方法が高くつく場合に、頻繁なデータアクセスを高速化する目的で使われれる一時的な保存システムです。この概念は、数多くの状況と異なる規模に対して、例えばマイクロプロセッサのコアや高性能のストレージシステムにさえも、応用出来ます。"
+msgstr "キャッシュとは (パフォーマンスの観点から) 通常のアクセス方法が高くつく場合に、頻繁なデータアクセスを高速化する目的で使われれる一時的な保存システムです。この概念は、数多くの状況と異なる規模に対して、例えばマイクロプロセッサのコアや高性能のストレージシステムにさえも、応用できます。"
 
 #. Tag: para
 #, no-c-format
@@ -1550,7 +1550,7 @@ msgstr "<primary><command>aptitude search</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <command>apt-cache</command> command can do keyword-based package searches with <command>apt-cache search <replaceable>keyword</replaceable></command>. It can also display the headers of the package's available versions with <command>apt-cache show <replaceable>package</replaceable></command>. This command provides the package's description, its dependencies, the name of its maintainer, etc. Note that <command>aptitude search</command> and <command>aptitude show</command> work in the same way."
-msgstr "<command>apt-cache</command> コマンドを <command>apt-cache search <replaceable>keyword</replaceable></command> のように使うことで、キーワードを元にパッケージを検索することが可能です。さらに、<command>apt-cache show <replaceable>package</replaceable></command> のように使うことで、利用可能なバージョンのパッケージヘッダを表示することも可能です。このコマンドで、パッケージの説明、依存関係、メンテナの名前などの情報が表示されます。また、<command>aptitude search</command> と <command>aptitude show</command> は同様の機能を持っている点に注意してください。"
+msgstr "<command>apt-cache</command> コマンドを <command>apt-cache search <replaceable>keyword</replaceable></command> のように使うことで、キーワードを元にパッケージを検索する事が可能です。さらに、<command>apt-cache show <replaceable>package</replaceable></command> のように使うことで、利用可能なバージョンのパッケージヘッダを表示する事も可能です。このコマンドで、パッケージの説明、依存関係、メンテナの名前などの情報が表示されます。また、<command>aptitude search</command> と <command>aptitude show</command> は同様の機能を持っている点に注意してください。"
 
 #. Tag: title
 #, no-c-format
@@ -1575,7 +1575,7 @@ msgstr "<command>apt-cache search</command> はとても基本的なツールで
 #. Tag: para
 #, no-c-format
 msgid "<command>axi-cache search <replaceable>term</replaceable></command>, on the other hand, provides better results, sorted by relevancy. It uses the <emphasis>Xapian</emphasis> search engine and is part of the <emphasis role=\"pkg\">apt-xapian-index</emphasis> package whichs indexes all package information (and more, like the <filename>.desktop</filename> files from all Debian packages). It knows about tags (see sidebar <xref linkend=\"sidebar.debtags\" />) and returns results in a matter of milliseconds."
-msgstr "一方、<command>axi-cache search <replaceable>term</replaceable></command> は関連度順により良い結果を提供します。このコマンドは <emphasis>Xapian</emphasis> 検索エンジンを使い、全パッケージの情報 (と全ての Debian パッケージから提供される <filename>.desktop</filename> ファイル) をインデックス化している <emphasis role=\"pkg\">apt-xapian-index</emphasis> パッケージの一部です。これはタグ (傍注<xref linkend=\"sidebar.debtags\" />参照) に関しても知っており、わずか数ミリ秒で結果を返す。"
+msgstr "一方、<command>axi-cache search <replaceable>term</replaceable></command> は関連度順により良い結果を提供します。このコマンドは <emphasis>Xapian</emphasis> 検索エンジンを使い、全パッケージの情報 (とすべての Debian パッケージから提供される <filename>.desktop</filename> ファイル) をインデックス化している <emphasis role=\"pkg\">apt-xapian-index</emphasis> パッケージの一部です。これはタグ (傍注<xref linkend=\"sidebar.debtags\" />参照) に関しても知っており、わずか数ミリ秒で結果を返す。"
 
 #. Tag: screen
 #, no-c-format
@@ -1645,12 +1645,12 @@ msgstr "<primary><command>synaptic</command></primary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>APT</primary><secondary>interfaces</secondary>"
-msgstr "<primary>APT</primary><secondary>インターフェイス</secondary>"
+msgstr "<primary>APT</primary><secondary>インターフェース</secondary>"
 
 #. Tag: para
 #, no-c-format
 msgid "APT is a C++ program whose code mainly resides in the <command>libapt-pkg</command> shared library. Using a shared library facilitates the creation of user interfaces (front-ends), since the code contained in the library can easily be reused. Historically, <command>apt-get</command> was only designed as a test front-end for <command>libapt-pkg</command> but its success tends to obscure this fact."
-msgstr "APT は C++ プログラムで、<command>libapt-pkg</command> 共有ライブラリがその機能の多くを担っています。共有ライブラリを使うとユーザインターフェイス (フロントエンド) の作成が楽になります。なぜなら、ライブラリに含まれるコードは簡単に再利用できるからです。歴史的に言って、<command>apt-get</command> は <command>libapt-pkg</command> のテスト用フロントエンドとして設計されましたが、成功を収めたためにその事実は曖昧にされがちです。"
+msgstr "APT は C++ プログラムで、<command>libapt-pkg</command> 共有ライブラリがその機能の多くを担っています。共有ライブラリを使うとユーザインターフェース (フロントエンド) の作成が楽になります。なぜなら、ライブラリに含まれるコードは簡単に再利用できるからです。歴史的に言って、<command>apt-get</command> は <command>libapt-pkg</command> のテスト用フロントエンドとして設計されましたが、成功を収めたためにその事実は曖昧にされがちです。"
 
 #. Tag: title
 #, no-c-format
@@ -1660,7 +1660,7 @@ msgstr "<command>aptitude</command>"
 #. Tag: para
 #, no-c-format
 msgid "<command>aptitude</command> is an interactive program that can be used in semi-graphical mode on the console. You can browse the list of installed and available packages, look up all the available information, and select packages to install or remove. The program is designed specifically to be used by administrators, so that its default behaviors are much more intelligent than <command>apt-get</command>'s, and its interface much easier to understand."
-msgstr "<command>aptitude</command> は対話型プログラムで、コンソールの準グラフィカルモードで使うことができます。このプログラムを使うと、インストール済みや利用可能なパッケージのリストを閲覧したり、全ての利用可能な情報を調べたり、インストールや削除するパッケージを選択できます。このプログラムは、特に管理者が使うように設計されました。そのため、デフォルトの挙動は <command>apt-get</command> よりもずっと合理的で、インターフェイスもより理解しやすいです。"
+msgstr "<command>aptitude</command> は対話型プログラムで、コンソールの準グラフィカルモードで使う事が可能です。このプログラムを使うと、インストール済みや利用可能なパッケージのリストを閲覧したり、すべての利用可能な情報を調べたり、インストールや削除するパッケージを選択できます。このプログラムは、特に管理者が使うように設計されました。そのため、デフォルトの挙動は <command>apt-get</command> よりもずっと合理的で、インターフェースもより理解しやすいです。"
 
 #. Tag: title
 #, no-c-format
@@ -1670,7 +1670,7 @@ msgstr "<command>aptitude</command> パッケージマネージャ"
 #. Tag: para
 #, no-c-format
 msgid "When it starts, <command>aptitude</command> shows a list of packages sorted by state (installed, non-installed, or installed but not available on the mirrors — other sections display tasks, virtual packages, and new packages that appeared recently on mirrors). To facilitate thematic browsing, other views are available. In all cases, <command>aptitude</command> displays a list combining categories and packages on the screen. Categories are organized through a tree structure, whose branches can respectively be unfolded or closed with the <keycombo><keycap>Enter</keycap></keycombo>, <keycombo><keycap>[</keycap></keycombo> and <keycombo><keycap>]</keycap></keycombo> keys. <keycombo><keycap>+</keycap></keycombo> should be used to mark a package for installation, <keycombo><keycap>-</keycap></keycombo> to mark it for removal and <keycombo><keycap>_</keycap></keycombo> to purge it (note than these keys can also be used for categories, in which case the corresponding actions will be applied to all the packages of the category). <keycombo><keycap>u</keycap></keycombo> updates the lists of available packages and <keycombo action=\"simul\"><keycap>Shift</keycap><keycap>u</keycap></keycombo> prepares a global system upgrade. <keycombo><keycap>g</keycap></keycombo> switches to a summary view of the requested changes (and typing <keycombo><keycap>g</keycap></keycombo> again will apply the changes), and <keycombo><keycap>q</keycap></keycombo> quits the current view. If you are in the initial view, this will effectively close <command>aptitude</command>."
-msgstr "<command>aptitude</command> は起動すると、状態 (インストール済み、未インストール、インストール済みだがミラーから利用不可 - 他のセクションでタスク、仮想パッケージ、最近ミラーに登場した新しいパッケージを表示します。) ごとに分類したパッケージのリストを表示します。テーマ別のパッケージリストを簡便に閲覧できるビューも用意されています。すべての場合について、<command>aptitude</command> はカテゴリとパッケージを併せたリストを画面に表示します。カテゴリは木構造を使って系統付けられ、木構造の枝は <keycombo><keycap>Enter</keycap></keycombo>、<keycombo><keycap>[</keycap></keycombo>、<keycombo><keycap>]</keycap></keycombo> キーで開けたり閉じたりする事ができます。<keycombo><keycap>+</keycap></keycombo> はインストールマーク、<keycombo><keycap>-</keycap></keycombo> は削除マーク、<keycombo><keycap>_</keycap></keycombo> は完全消去マークをパッケージに対して付加するのに使われます (これらのキーはカテゴリに対しても使えることに注意してください。この場合、カテゴリ内の全てのパッケージに対して対応する操作を行います)。<keycombo><keycap>u</keycap></keycombo> は利用可能なパッケージのリストを更新、<keycombo action=\"simul\"><keycap>Shift</keycap><keycap>u</keycap></keycombo> はグローバルシステムのアップグレードを準備します。<keycombo><keycap>g</keycap></keycombo> は要求された変更の要約ビューに切り替えます (再度 <keycombo><keycap>g</keycap></keycombo> を打てば変更を適用します)。<keycombo><keycap>q</keycap></keycombo> は現在のビューを終了します。最初のビューにいるなら、<command>aptitude</command> を閉じます。"
+msgstr "<command>aptitude</command> は起動すると、状態 (インストール済み、未インストール、インストール済みだがミラーから利用不可 - 他のセクションでタスク、仮想パッケージ、最近ミラーに登場した新しいパッケージを表示します。) ごとに分類したパッケージのリストを表示します。テーマ別のパッケージリストを簡便に閲覧できるビューも用意されています。すべての場合について、<command>aptitude</command> はカテゴリとパッケージを併せたリストを画面に表示します。カテゴリは木構造を使って系統付けられ、木構造の枝は <keycombo><keycap>Enter</keycap></keycombo>、<keycombo><keycap>[</keycap></keycombo>、<keycombo><keycap>]</keycap></keycombo> キーで開けたり閉じたりする事ができます。<keycombo><keycap>+</keycap></keycombo> はインストールマーク、<keycombo><keycap>-</keycap></keycombo> は削除マーク、<keycombo><keycap>_</keycap></keycombo> は完全消去マークをパッケージに対して付加するのに使われます (これらのキーはカテゴリに対しても使えることに注意してください。この場合、カテゴリ内のすべてのパッケージに対して対応する操作を行います)。<keycombo><keycap>u</keycap></keycombo> は利用可能なパッケージのリストを更新、<keycombo action=\"simul\"><keycap>Shift</keycap><keycap>u</keycap></keycombo> はグローバルシステムのアップグレードを準備します。<keycombo><keycap>g</keycap></keycombo> は要求された変更の要約ビューに切り替えます (再度 <keycombo><keycap>g</keycap></keycombo> を打てば変更を適用します)。<keycombo><keycap>q</keycap></keycombo> は現在のビューを終了します。最初のビューにいるなら、<command>aptitude</command> を閉じます。"
 
 #. Tag: title
 #, no-c-format
@@ -1680,7 +1680,7 @@ msgstr "<emphasis>DOCUMENTATION</emphasis> <command>aptitude</command>"
 #. Tag: para
 #, no-c-format
 msgid "This section does not cover the finer details of using <command>aptitude</command>, it rather focuses on giving you a survival kit to use it. <command>aptitude</command> is rather well documented and we advise you to use its complete manual available in the <emphasis role=\"pkg\">aptitude-doc-en</emphasis> package. <ulink type=\"block\" url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />"
-msgstr "この節では <command>aptitude</command> の使い方をより詳しく述べません。この節ではこのプログラムを活用して生き残るための知恵を与えることに注力します。<command>aptitude</command> の文書は比較的詳しく書かれており、<emphasis role=\"pkg\">aptitude-doc-en</emphasis> パッケージから利用可能なプログラムの完全なマニュアルを使うことをお勧めします。<ulink type=\"block\" url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />"
+msgstr "この節では <command>aptitude</command> の使い方をより詳しく述べません。この節ではこのプログラムを活用して生き残るための知恵を与えることに注力します。<command>aptitude</command> の文書は比較的詳しく書かれており、<emphasis role=\"pkg\">aptitude-doc-en</emphasis> パッケージから利用可能なプログラムの完全なマニュアルを使う事をお勧めします。<ulink type=\"block\" url=\"file:///usr/share/doc/aptitude/html/en/index.html\" />"
 
 #. Tag: para
 #, no-c-format
@@ -1690,7 +1690,7 @@ msgstr "パッケージを検索するには、<keycombo><keycap>/</keycap></key
 #. Tag: para
 #, no-c-format
 msgid "Managing the “automatic flag” of Debian packages (see <xref linkend=\"sect.automatic-tracking\" />) is a breeze with <command>aptitude</command>. It is possible to browse the list of installed packages and mark packages as automatic with <keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo> or to remove the mark with the <keycombo><keycap>m</keycap></keycombo> key. “Automatic packages” are tagged with an “A” in the list of packages. This feature also offers a simple way to visualize the packages in use on a machine, without all the libraries and dependencies that you don't really care about. The related pattern that can be used with <keycombo><keycap>l</keycap></keycombo> (to activate the filter mode) is <literal>~i!~M</literal>. It specifies that you only want to see installed packages (<literal>~i</literal>) not marked as automatic (<literal>!~M</literal>)."
-msgstr "Debian パッケージの「自動フラグ」の管理 (<xref linkend=\"sect.automatic-tracking\" />参照) は <command>aptitude</command> を使えば簡単にできます。インストール済みパッケージのリストを閲覧し、<keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo> キーでパッケージに自動マークを付けるかまたは <keycombo><keycap>m</keycap></keycombo> キーでそのマークを消すすることが可能です。「自動パッケージ」はパッケージリストでは「A」でタグ付けされています。この機能はまた、全く関心の無いライブラリと依存関係を除外して、マシンで利用されているパッケージを可視化する単純な方法を提供します。<keycombo><keycap>l</keycap></keycombo> (フィルタモードを有効化する) と一緒に使える関連パターンは <literal>~i!~M</literal> です。これは、インストール済みパッケージを (<literal>~i</literal>) 見たいけれど自動パッケージとしてマークされたパッケージを見たくない (<literal>!~M</literal>) ということを意味しています。"
+msgstr "Debian パッケージの「自動フラグ」の管理 (<xref linkend=\"sect.automatic-tracking\" />参照) は <command>aptitude</command> を使えば簡単にできます。インストール済みパッケージのリストを閲覧し、<keycombo action=\"simul\"><keycap>Shift</keycap> <keycap>m</keycap></keycombo> キーでパッケージに自動マークを付けるかまたは <keycombo><keycap>m</keycap></keycombo> キーでそのマークを消すする事が可能です。「自動パッケージ」はパッケージリストでは「A」でタグ付けされています。この機能はまた、全く関心の無いライブラリと依存関係を除外して、マシンで利用されているパッケージを可視化する単純な方法を提供します。<keycombo><keycap>l</keycap></keycombo> (フィルタモードを有効化する) と一緒に使える関連パターンは <literal>~i!~M</literal> です。これは、インストール済みパッケージを (<literal>~i</literal>) 見たいけれど自動パッケージとしてマークされたパッケージを見たくない (<literal>!~M</literal>) という事を意味しています。"
 
 #. Tag: title
 #, no-c-format
@@ -1700,17 +1700,17 @@ msgstr "<emphasis>TOOL</emphasis> コマンドラインインターフェース�
 #. Tag: para
 #, no-c-format
 msgid "Most of <command>aptitude</command>'s features are accessible via the interactive interface as well as via command-lines. These command-lines will seem familiar to regular users of <command>apt-get</command> and <command>apt-cache</command>."
-msgstr "<command>aptitude</command> の機能のほとんどは対話型インターフェイスだけでなくコマンドラインインターフェースからも利用出来ます。コマンドラインは <command>apt-get</command> と <command>apt-cache</command> を日常的に使っているユーザにとって身近なものでしょう。"
+msgstr "<command>aptitude</command> の機能のほとんどは対話型インターフェースだけでなくコマンドラインインターフェースからも利用できます。コマンドラインは <command>apt-get</command> と <command>apt-cache</command> を日常的に使っているユーザにとって身近なものでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "The advanced features of <command>aptitude</command> are also available on the command-line. You can use the same package search patterns as in the interactive version. For example, if you want to cleanup the list of “manually installed” packages, and if you know that none of the locally installed programs require any particular libraries or Perl modules, you can mark the corresponding packages as automatic with a single command:"
-msgstr "<command>aptitude</command> の先進的な機能はコマンドラインからも使えます。パッケージ検索パターンは対話的インターフェイスの場合と同じです。例えば、「手作業でインストールされた」パッケージのリストを綺麗に片付けたい場合、インストール済みでパッケージ管理下に無いプログラムが特定のライブラリと Perl モジュールに依存していないと知っていれば、たった 1 つのコマンドで関連するパッケージを自動パッケージとしてマークすることができます:"
+msgstr "<command>aptitude</command> の先進的な機能はコマンドラインからも使えます。パッケージ検索パターンは対話的インターフェースの場合と同じです。例えば、「手作業でインストールされた」パッケージのリストを綺麗に片付けたい場合、インストール済みでパッケージ管理下に無いプログラムが特定のライブラリと Perl モジュールに依存していないと知っていれば、たった 1 つのコマンドで関連するパッケージを自動パッケージとしてマークする事が可能です:"
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
-msgstr "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
+msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>"
+msgstr "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>"
 
 #. Tag: para
 #, no-c-format
@@ -1730,7 +1730,7 @@ msgstr "推奨パッケージ、提案パッケージ、タスクの管理"
 #. Tag: para
 #, no-c-format
 msgid "Another interesting feature of <command>aptitude</command> is the fact that it respects recommendations between packages while still giving users the choice not to install them on a case by case basis. For example, the <emphasis role=\"pkg\">gnome</emphasis> package recommends <emphasis role=\"pkg\">gdebi</emphasis> (among others). When you select the former for installation, the latter will also be selected (and marked as automatic if not already installed on the system). Typing <keycombo><keycap>g</keycap></keycombo> will make it obvious: <emphasis role=\"pkg\">gdebi</emphasis> appears on the summary screen of pending actions in the list of packages installed automatically to satisfy dependencies. However, you can decide not to install it by deselecting it before confirming the operations."
-msgstr "<command>aptitude</command> が提供するもう 1 つの興味深い特徴は、パッケージ間の推奨関係を尊重する点です。とは言え、個々の場合に応じて、推奨パッケージをインストールしないようにすることも可能です。例えば、<emphasis role=\"pkg\">gnome</emphasis> パッケージは (数ある中でも特に) <emphasis role=\"pkg\">gdebi</emphasis> のインストールを推奨しています。<emphasis role=\"pkg\">gnome</emphasis> をインストールするよう選んだ場合、同時に <emphasis role=\"pkg\">gdebi</emphasis> も選ばれます (既にシステムにインストール済みでない限り、自動パッケージとしてマークされます)。これを確認するには、<keycombo><keycap>g</keycap></keycombo> とタイプしてください: <emphasis role=\"pkg\">gdebi</emphasis> は、依存関係を満足させる目的で自動的にインストールされたパッケージのリスト中、保留動作の要約画面に現れます。しかしながら、操作確認の前にインストールマークを外すことで、パッケージをインストールしないようにできます。"
+msgstr "<command>aptitude</command> が提供するもう 1 つの興味深い特徴は、パッケージ間の推奨関係を尊重する点です。とは言え、個々の場合に応じて、推奨パッケージをインストールしないようにする事も可能です。例えば、<emphasis role=\"pkg\">gnome</emphasis> パッケージは (数ある中でも特に) <emphasis role=\"pkg\">gdebi</emphasis> のインストールを推奨しています。<emphasis role=\"pkg\">gnome</emphasis> をインストールするよう選んだ場合、同時に <emphasis role=\"pkg\">gdebi</emphasis> も選ばれます (既にシステムにインストール済みでない限り、自動パッケージとしてマークされます)。これを確認するには、<keycombo><keycap>g</keycap></keycombo> とタイプしてください: <emphasis role=\"pkg\">gdebi</emphasis> は、依存関係を満足させる目的で自動的にインストールされたパッケージのリスト中、保留動作の要約画面に現れます。しかしながら、操作確認の前にインストールマークを外すことで、パッケージをインストールしないようにできます。"
 
 #. Tag: para
 #, no-c-format
@@ -1745,7 +1745,7 @@ msgstr "さらに、パッケージ間の提案関係が考慮されますが、
 #. Tag: para
 #, no-c-format
 msgid "In the same spirit, remember that <command>aptitude</command> makes intelligent use of the concept of task. Since tasks are displayed as categories in the screens of packages lists, you can either select a full task for installation or removal, or browse the list of packages included in the task to select a smaller subset."
-msgstr "同様の姿勢で、<command>aptitude</command> はタスクの概念を上手に取り扱うことを思い出してください。タスクはパッケージの画面内にカテゴリとして表示されるため、ユーザはタスクのインストール作業および削除作業を、タスク全体に対して適用するか、タスクのパッケージの一部を選択してそれらに適用するかを選ぶことができます。"
+msgstr "同様の姿勢で、<command>aptitude</command> はタスクの概念を上手に取り扱う事を思い出してください。タスクはパッケージの画面内にカテゴリとして表示されるため、ユーザはタスクのインストール作業および削除作業を、タスク全体に対して適用するか、タスクのパッケージの一部を選択してそれらに適用するかを選ぶ事が可能です。"
 
 #. Tag: title
 #, no-c-format
@@ -1755,7 +1755,7 @@ msgstr "より良いソルバアルゴリズム"
 #. Tag: para
 #, no-c-format
 msgid "To conclude this section, let's note that <command>aptitude</command> has more elaborate algorithms compared to <command>apt-get</command> when it comes to resolving difficult situations. When a set of actions is requested and when these combined actions would lead to an incoherent system, <command>aptitude</command> evaluates several possible scenarios and presents them in order of decreasing relevance. However, these algorithms are not failproof. Fortunately there is always the possibility to manually select the actions to perform. When the currently selected actions lead to contradictions, the upper part of the screen indicates a number of “broken” packages (and you can directly navigate to those packages by pressing <keycombo><keycap>b</keycap></keycombo>). It is then possible to manually build a solution for the problems found. In particular, you can get access to the different available versions by simply selecting the package with <keycombo><keycap>Enter</keycap></keycombo>. If the selection of one of these versions solves the problem, you should not hesitate to use the function. When the number of broken packages gets down to zero, you can safely go to the summary screen of pending actions for a last check before you apply them."
-msgstr "この節を締め括るために、<command>aptitude</command> は <command>apt-get</command> に比べてより複雑なアルゴリズム使って難しい状況を解決する、という点に注意しましょう。一連の動作が要求され、全ての動作を適用するとシステムの一貫性が失われる場合、<command>aptitude</command> は幾つかの解決策を検討し、適用後の一貫性が高い順に解決策を提示します。しかしながら、このアルゴリズムは単なるケアレスミスの予防策ではありません。幸いなことに、ユーザは常に手作業で適用する動作を選択できます。現在選択された動作によって矛盾が引き起こされる場合、画面の上の方に「壊れた」パッケージの数が表示されます (パッケージの選択を直接操作するには <keycombo><keycap>b</keycap></keycombo> を押してください)。そして、見つかった問題を手作業で解決することも可能です。具体的に言うと、単純に <keycombo><keycap>Enter</keycap></keycombo> でパッケージを選択すれば、利用可能な複数のバージョンを確認できます。複数のバージョンから 1 つ選ぶだけで問題が解決されるなら、迷わずこの機能を使うべきです。壊れたパッケージの数がゼロになったら、動作適用前の最終確認のために、保留動作の要約画面に問題なく移動できるはずです。"
+msgstr "この節を締め括るために、<command>aptitude</command> は <command>apt-get</command> に比べてより複雑なアルゴリズム使って難しい状況を解決する、という点に注意しましょう。一連の動作が要求され、すべての動作を適用するとシステムの一貫性が失われる場合、<command>aptitude</command> は幾つかの解決策を検討し、適用後の一貫性が高い順に解決策を提示します。しかしながら、このアルゴリズムは単なるケアレスミスの予防策ではありません。幸いなことに、ユーザは常に手作業で適用する動作を選択できます。現在選択された動作によって矛盾が引き起こされる場合、画面の上の方に「壊れた」パッケージの数が表示されます (パッケージの選択を直接操作するには <keycombo><keycap>b</keycap></keycombo> を押してください)。そして、見つかった問題を手作業で解決する事も可能です。具体的に言うと、単純に <keycombo><keycap>Enter</keycap></keycombo> でパッケージを選択すれば、利用可能な複数のバージョンを確認できます。複数のバージョンから 1 つ選ぶだけで問題が解決されるなら、迷わずこの機能を使うべきです。壊れたパッケージの数がゼロになったら、動作適用前の最終確認のために、保留動作の要約画面に問題なく移動できるはずです。"
 
 #. Tag: title
 #, no-c-format
@@ -1765,7 +1765,7 @@ msgstr "<emphasis>NOTE</emphasis> <command>aptitude</command> のログ"
 #. Tag: para
 #, no-c-format
 msgid "Like <command>dpkg</command>, <command>aptitude</command> keeps a trace of executed actions in its logfile (<filename>/var/log/aptitude</filename>). However, since both commands work at a very different level, you cannot find the same information in their respective logfiles. While <command>dpkg</command> logs all the operations executed on individual packages step by step, <command>aptitude</command> gives a broader view of high-level operations like a system-wide upgrade."
-msgstr "<command>dpkg</command> と同様に、<command>aptitude</command> は実行した動作をログファイル (<filename>/var/log/aptitude</filename>) に記録します。しかしながら、両方のコマンドは全く異なる階層で動いているので、それぞれのログファイルには異なる情報が含まれます。<command>dpkg</command> が各パッケージに対して行った全ての動作を 1 つづつ記録するのに対し、<command>aptitude</command> はシステム全体のアップグレードなどの高レベル動作に対するより俯瞰的な情報を記録します。"
+msgstr "<command>dpkg</command> と同様に、<command>aptitude</command> は実行した動作をログファイル (<filename>/var/log/aptitude</filename>) に記録します。しかしながら、両方のコマンドは全く異なる階層で動いているので、それぞれのログファイルには異なる情報が含まれます。<command>dpkg</command> が各パッケージに対して行ったすべての動作を 1 つづつ記録するのに対し、<command>aptitude</command> はシステム全体のアップグレードなどの高レベル動作に対するより俯瞰的な情報を記録します。"
 
 #. Tag: para
 #, no-c-format
@@ -1780,7 +1780,7 @@ msgstr "<command>synaptic</command>"
 #. Tag: para
 #, no-c-format
 msgid "<command>synaptic</command> is a graphical package manager for Debian which features a clean and efficient graphical interface based on GTK+/GNOME. Its many ready-to-use filters give fast access to newly available packages, installed packages, upgradable packages, obsolete packages and so on. If you browse through these lists, you can select the operations to be done on the packages (install, upgrade, remove, purge); these operations are not performed immediately, but put into a task list. A single click on a button then validates the operations, and they are performed in one go."
-msgstr "<command>synaptic</command> は Debian 用のグラフィカルパッケージマネージャで、GTK+/GNOME を使った綺麗で効率的なグラフィカルインターフェイスです。数多くのすぐに使えるフィルタのおかげで、新しく利用可能になったパッケージ、インストール済みパッケージ、アップグレード可能なパッケージ、時代遅れのパッケージなどを素早く確認できます。リストを全て閲覧して、パッケージに対して行われる操作 (インストール、アップグレード、削除、完全消去) を選択できます; これらの操作はすぐに実行されるのではなく、まずは操作リストに追加されます。ボタンを一度クリックするだけで、操作の正当性が検証され、操作は一度に実行されます。"
+msgstr "<command>synaptic</command> は Debian 用のグラフィカルパッケージマネージャで、GTK+/GNOME を使った綺麗で効率的なグラフィカルインターフェースです。数多くのすぐに使えるフィルタのお陰で、新しく利用可能になったパッケージ、インストール済みパッケージ、アップグレード可能なパッケージ、時代遅れのパッケージなどを素早く確認できます。リストをすべて閲覧して、パッケージに対して行われる操作 (インストール、アップグレード、削除、完全消去) を選択できます; これらの操作はすぐに実行されるのではなく、まずは操作リストに追加されます。ボタンを一度クリックするだけで、操作の正当性が検証され、操作は一度に実行されます。"
 
 #. Tag: title
 #, no-c-format
@@ -1820,12 +1820,12 @@ msgstr "<primary>信頼性</primary><secondary>パッケージ信頼性</seconda
 #. Tag: para
 #, no-c-format
 msgid "Security is very important for Falcot Corp administrators. Accordingly, they need to ensure that they only install packages which are guaranteed to come from Debian with no tampering on the way. A computer cracker could try to add malicious code to an otherwise legitimate package. Such a package, if installed, could do anything the cracker designed it to do, including for instance disclosing passwords or confidential information. To circumvent this risk, Debian provides a tamper-proof seal to guarantee — at install time — that a package really comes from its official maintainer and hasn't been modified by a third party."
-msgstr "Falcot Corp の管理者にとって、セキュリティはとても重要です。つまり管理者は、パッケージが途中で改竄されていないこと、確かに Debian から提供されていることを確認し、確認のとれたパッケージだけをインストールしなければいけません。コンピュータクラッカーは、他の合法的なパッケージに悪意あるコードを追加しようと試みます。そのようなパッケージがインストールされた場合、クラッカーが設計したことは何でも、例えばパスワードや機密情報の漏洩などでも、実行されます。この危険性を回避するために、Debian は不正加工を防ぐ封印を提供し、インストール時にそのパッケージが、公式メンテナから提供されたものと本当に同じこと、第三者によって変更されていないこと、を保証します。"
+msgstr "Falcot Corp の管理者にとって、セキュリティはとても重要です。つまり管理者は、パッケージが途中で改竄されていないこと、確かに Debian から提供されている事を確認し、確認のとれたパッケージだけをインストールしなければいけません。コンピュータクラッカーは、他の合法的なパッケージに悪意あるコードを追加しようと試みます。そのようなパッケージがインストールされた場合、クラッカーが設計したことは何でも、例えばパスワードや機密情報の漏洩などでも、実行されます。この危険性を回避するために、Debian は不正加工を防ぐ封印を提供し、インストール時にそのパッケージが、公式メンテナから提供されたものと本当に同じこと、第三者によって変更されていないこと、を保証します。"
 
 #. Tag: para
 #, no-c-format
 msgid "The seal works with a chain of cryptographical hashes and a signature. The signed file is the <filename>Release</filename> file, provided by the Debian mirrors. It contains a list of the <filename>Packages</filename> files (including their compressed forms, <filename>Packages.gz</filename> and <filename>Packages.bz2</filename>, and the incremental versions), along with their MD5, SHA1 and SHA256 hashes, which ensures that the files haven't been tampered with. These <filename>Packages</filename> files contain a list of the Debian packages available on the mirror, along with their hashes, which ensures in turn that the contents of the packages themselves haven't been altered either."
-msgstr "この封印は一連の暗号学的ハッシュと署名を使って行われます。署名されたファイルは <filename>Release</filename> ファイルで、Debian ミラーから提供されます。このファイルには、<filename>Packages</filename> ファイル (<filename>Packages.gz</filename>、<filename>Packages.bz2</filename>、そして増分バージョンの圧縮形式など) のリストが改竄されていないことを保証するための MD5、SHA1、SHA256 ハッシュと一緒に含まれています。<filename>Packages</filename> ファイルには、ミラーで提供されている Debian パッケージのリストがパッケージの内容が変更されていないことを保証するハッシュと一緒に含まれています。"
+msgstr "この封印は一連の暗号学的ハッシュと署名を使って行われます。署名されたファイルは <filename>Release</filename> ファイルで、Debian ミラーから提供されます。このファイルには、<filename>Packages</filename> ファイル (<filename>Packages.gz</filename>、<filename>Packages.bz2</filename>、そして増分バージョンの圧縮形式など) のリストが改竄されていない事を保証するための MD5、SHA1、SHA256 ハッシュと一緒に含まれています。<filename>Packages</filename> ファイルには、ミラーで提供されている Debian パッケージのリストがパッケージの内容が変更されていない事を保証するハッシュと一緒に含まれています。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1878,32 +1878,32 @@ msgid ""
 "--------------------------------------------------------\n"
 "pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
 "      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
-"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;"
 msgstr ""
 "# <userinput>apt-key fingerprint</userinput>\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
 "------------------------------------------------------------\n"
-"pub   4096R/473041FA 2010-08-27 [expires: 2018-03-05]\n"
-"      Key fingerprint = 9FED 2BCB DCD2 9CDF 7626  78CB AED4 B06F 4730 41FA\n"
+"pub   4096R/473041FA 2010-08-27 [満了: 2018-03-05]\n"
+"                 指紋 = 9FED 2BCB DCD2 9CDF 7626  78CB AED4 B06F 4730 41FA\n"
 "uid                  Debian Archive Automatic Signing Key (6.0/squeeze) &lt;ftpmaster@debian.org&gt;\n"
 "\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-stable.gpg\n"
 "---------------------------------------------------------\n"
-"pub   4096R/B98321F9 2010-08-07 [expires: 2017-08-05]\n"
-"      Key fingerprint = 0E4E DE2C 7F3E 1FC0 D033  800E 6448 1591 B983 21F9\n"
+"pub   4096R/B98321F9 2010-08-07 [満了: 2017-08-05]\n"
+"                 指紋 = 0E4E DE2C 7F3E 1FC0 D033  800E 6448 1591 B983 21F9\n"
 "uid                  Squeeze Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
 "\n"
 "/etc/apt/trusted.gpg.d//debian-archive-wheezy-automatic.gpg\n"
 "-----------------------------------------------------------\n"
-"pub   4096R/46925553 2012-04-27 [expires: 2020-04-25]\n"
-"      Key fingerprint = A1BD 8E9D 78F7 FE5C 3E65  D8AF 8B48 AD62 4692 5553\n"
+"pub   4096R/46925553 2012-04-27 [満了: 2020-04-25]\n"
+"                 指紋 = A1BD 8E9D 78F7 FE5C 3E65  D8AF 8B48 AD62 4692 5553\n"
 "uid                  Debian Archive Automatic Signing Key (7.0/wheezy) &lt;ftpmaster@debian.org&gt;\n"
 "\n"
 "/etc/apt/trusted.gpg.d//debian-archive-wheezy-stable.gpg\n"
 "--------------------------------------------------------\n"
-"pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
-"      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
-"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
+"pub   4096R/65FFB764 2012-05-08 [満了: 2019-05-07]\n"
+"                 指紋 = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;"
 
 #. Tag: title
 #, no-c-format
@@ -1923,12 +1923,12 @@ msgstr "<primary>key</primary><secondary>APT の認証鍵</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "When a third-party package source is added to the <filename>sources.list</filename> file, APT needs to be told to trust the corresponding GPG authentication key (otherwise it will keep complaining that it can't ensure the authenticity of the packages coming from that repository). The first step is of course to get the public key. More often than not, the key will be provided as a small text file, which we'll call <filename>key.asc</filename> in the following examples."
-msgstr "第三者のパッケージソースを <filename>sources.list</filename> に追加したら、APT にパッケージソースに対応する GPG 認証鍵を信頼することを伝える必要があります (そうでなければ、APT はそのパッケージソースから提供されるパッケージの信頼性を保証できないとエラーを出し続けます)。最初のステップはもちろん公開鍵を手に入れることです。大抵の場合、公開鍵は小さなテキストファイルの形で配布されています。以降の例ではこの公開鍵を <filename>key.asc</filename> と呼びます。"
+msgstr "第三者のパッケージソースを <filename>sources.list</filename> に追加したら、APT にパッケージソースに対応する GPG 認証鍵を信頼する事を伝える必要があります (そうでなければ、APT はそのパッケージソースから提供されるパッケージの信頼性を保証できないとエラーを出し続けます)。最初のステップはもちろん公開鍵を手に入れる事です。大抵の場合、公開鍵は小さなテキストファイルの形で配布されています。以降の例ではこの公開鍵を <filename>key.asc</filename> と呼びます。"
 
 #. Tag: para
 #, no-c-format
 msgid "To add the key to the trusted keyring, the administrator can run <command>apt-key add &lt; key.asc</command>. Another way is to use the <command>synaptic</command> graphical interface: its “Authentication” tab in the <menuchoice><guimenu>Settings</guimenu> <guisubmenu>Repositories</guisubmenu></menuchoice> menu gives the possibility of importing a key from the <filename>key.asc</filename> file."
-msgstr "信頼された鍵束に鍵を追加するために、管理者は <command>apt-key add &lt; key.asc</command> を実行します。また、<command>synaptic</command> グラフィカルインターフェースを利用することもできます: <menuchoice><guimenu>設定</guimenu> <guisubmenu>リポジトリ</guisubmenu></menuchoice>メニューの「認証」タブで <filename>key.asc</filename> から鍵を取り込みます。"
+msgstr "信頼された鍵束に鍵を追加するために、管理者は <command>apt-key add &lt; key.asc</command> を実行します。また、<command>synaptic</command> グラフィカルインターフェースを利用する事も可能です: <menuchoice><guimenu>設定(S)</guimenu> <guisubmenu>リポジトリ(R)</guisubmenu></menuchoice> メニューの「認証」タブで <filename>key.asc</filename> から鍵を取り込みます。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1938,7 +1938,7 @@ msgstr "<primary><emphasis role=\"pkg\">gui-apt-key</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "For people who would want a dedicated application and more details on the trusted keys, it is possible to use <command>gui-apt-key</command> (in the package of the same name), a small graphical user interface which manages the trusted keyring."
-msgstr "専用のアプリケーションを使いたくなかったり、信頼された鍵の詳細を知りたい人は <command>gui-apt-key</command> (同じ名前のパッケージに含まれます) を使うことも可能です。これは質素なユーザインタフェースで、信頼された鍵束を管理します。"
+msgstr "専用のアプリケーションを使いたくなかったり、信頼された鍵の詳細を知りたい人は <command>gui-apt-key</command> (同名のパッケージに含まれます) を使う事も可能です。これは質素なユーザインタフェースで、信頼された鍵束を管理します。"
 
 #. Tag: para
 #, no-c-format
@@ -1953,7 +1953,7 @@ msgstr "安定版から次のディストリビューションへのアップグ
 #. Tag: para
 #, no-c-format
 msgid "One of the best-known features of Debian is its ability to upgrade an installed system from one stable release to the next: <foreignphrase>dist-upgrade</foreignphrase> — a well-known phrase — has largely contributed to the project's reputation. With a few precautions, upgrading a computer can take as little as a few minutes, or a few dozen minutes, depending on the download speed from the package repositories."
-msgstr "Debian の最もよく知られた特色の 1 つに、インストールされたシステムを安定版から次のリリースにアップグレードできることが挙げられます: <foreignphrase>dist-upgrade</foreignphrase> - よく知られた語句 - はプロジェクトの評判に大きく寄与し続けています。幾つかの予防措置を伴いますが、コンピュータのアップグレードに必要な時間は、パッケージリポジトリからのダウンロード速度に依存して、わずか数分から数十分です。"
+msgstr "Debian の最もよく知られた特色の 1 つに、インストールされたシステムを安定版から次のリリースにアップグレードできる事が挙げられます: <foreignphrase>dist-upgrade</foreignphrase> - よく知られた語句 - はプロジェクトの評判に大きく寄与し続けています。幾つかの予防措置を伴いますが、コンピュータのアップグレードに必要な時間は、パッケージリポジトリからのダウンロード速度に依存して、わずか数分から数十分です。"
 
 #. Tag: title
 #, no-c-format
@@ -1983,17 +1983,17 @@ msgstr "リリースノートはオンライン上で利用可能です: 現在�
 #. Tag: para
 #, no-c-format
 msgid "In this section, we will focus on upgrading a <emphasis role=\"distribution\">Squeeze</emphasis> system to <emphasis role=\"distribution\">Wheezy</emphasis>. This is a major operation on a system; as such, it is never 100% risk-free, and should not be attempted before all important data has been backed up."
-msgstr "この節では、特に <emphasis role=\"distribution\">Squeeze</emphasis> システムを <emphasis role=\"distribution\">Wheezy</emphasis> にアップグレードする場合について解説します。システムのアップグレードはシステムに甚大な変更を加えます; このため、危険が全く無いわけではありません、全ての重要なデータをバックアップする前にアップグレードを実行するべきではありません。"
+msgstr "この節では、特に <emphasis role=\"distribution\">Squeeze</emphasis> システムを <emphasis role=\"distribution\">Wheezy</emphasis> にアップグレードする場合について解説します。システムのアップグレードはシステムに甚大な変更を加えます; このため、危険が全く無いわけではありません、すべての重要なデータをバックアップする前にアップグレードを実行するべきではありません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Another good habit which makes the upgrade easier (and shorter) is to tidy your installed packages and keep only the ones that are really needed. Helpful tools to do that include <command>aptitude</command>, <command>deborphan</command> and <command>debfoster</command> (see <xref linkend=\"sect.automatic-tracking\" />). For example, you can use the following command, and then use <command>aptitude</command>'s interactive mode to double check and fine-tune the scheduled removals:"
-msgstr "アップグレードを簡単に (短く) 実行するために身につけるべき良い癖の 1 つに、インストール済みパッケージを整理整頓し、本当に必要なものだけを残すことがあります。これを行う便利なツールが <command>aptitude</command>、<command>deborphan</command>、<command>debfoster</command> (<xref linkend=\"sect.automatic-tracking\" />参照) です。例えば以下のコマンドを実行した後、<command>aptitude</command> の対話型モードで削除予定としてマークされたパッケージの再確認と微調整を行う事ができます:"
+msgstr "アップグレードを簡単に (短く) 実行するために身に付けるべき良い癖の 1 つに、インストール済みパッケージを整理整頓し、本当に必要なものだけを残す事があります。これを行う便利なツールが <command>aptitude</command>、<command>deborphan</command>、<command>debfoster</command> (<xref linkend=\"sect.automatic-tracking\" />参照) です。例えば以下のコマンドを実行した後、<command>aptitude</command> の対話型モードで削除予定としてマークされたパッケージの再確認と微調整を行う事ができます:"
 
 #. Tag: screen
 #, no-c-format
-msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
-msgstr "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
+msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>"
+msgstr "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>"
 
 #. Tag: para
 #, no-c-format
@@ -2003,7 +2003,7 @@ msgstr "さて次に、システムをアップグレードします。最初に
 #. Tag: para
 #, no-c-format
 msgid "Once these new package sources are registered, you should first do a minimal upgrade with <command>apt-get upgrade</command>. By doing the upgrade in two steps, we ease the job of the package management tools and often ensure that we have the latest versions of those, which might have accumulated bugfixes and improvements required to complete the full distribution upgrade."
-msgstr "一度新しいパッケージソースが登録されたら、あなたは最初に <command>apt-get upgrade</command> を使う最小アップグレードを実行するべきです。アップグレードを 2 段階に分けて行うことにより、パッケージ管理ツールの仕事を軽減し、パッケージ管理ツールが最新のバージョンになっていることが保証されます。パッケージ管理ツールには、バグ修正が溜まっているかもしれませんし、ディストリビューション全体のアップグレードを完了させるために必要な改善が含まれているかもしれません。"
+msgstr "一度新しいパッケージソースが登録されたら、あなたは最初に <command>apt-get upgrade</command> を使う最小アップグレードを実行するべきです。アップグレードを 2 段階に分けて行うことにより、パッケージ管理ツールの仕事を軽減し、パッケージ管理ツールが最新のバージョンになっている事が保証されます。パッケージ管理ツールには、バグ修正が溜まっているかもしれませんし、ディストリビューション全体のアップグレードを完了させるために必要な改善が含まれているかもしれません。"
 
 #. Tag: para
 #, no-c-format
@@ -2018,22 +2018,22 @@ msgstr "アップグレードの後から問題を取り扱う"
 #. Tag: para
 #, no-c-format
 msgid "In spite of the Debian maintainers' best efforts, a major system upgrade isn't always as smooth as you could wish. New software versions may be incompatible with previous ones (for instance, their default behavior or their data format may have changed). Also, some bugs may slip through the cracks despite the testing phase which always precedes a Debian release."
-msgstr "Debian メンテナの最大限の努力にも関わらず、システムのメジャーアップデートは常に望んだ通り順調に進むわけではありません。新しいソフトウェアバージョンは古いものと互換性が無いかもしれません (例えば、デフォルト動作やデータフォーマットが変わっているかもしれません)。また、幾つかのバグは Debian リリースに先んじるテスト段階を経たにもかかわらず見過ごされているかもしれません。"
+msgstr "Debian メンテナの最大限の努力にも関わらず、システムのメジャー更新は常に望んだ通り順調に進むわけではありません。新しいソフトウェアバージョンは古いものと互換性が無いかもしれません (例えば、デフォルト動作やデータフォーマットが変わっているかもしれません)。また、幾つかのバグは Debian リリースに先んじるテスト段階を経たにもかかわらず見過ごされているかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "To anticipate some of these problems, you can install the <emphasis role=\"pkg\">apt-listchanges</emphasis> package, which displays information about possible problems at the beginning of a package upgrade. This information is compiled by the package maintainers and put in <filename>/usr/share/doc/<replaceable>package</replaceable>/NEWS.Debian</filename> files for the benefit of users. Reading these files (possibly through <emphasis role=\"pkg\">apt-listchanges</emphasis>) should help you avoid bad surprises."
-msgstr "幾つかの問題を未然に防ぐために、<emphasis role=\"pkg\">apt-listchanges</emphasis> パッケージをインストールすることができます。<emphasis role=\"pkg\">apt-listchanges</emphasis>は、あるパッケージのアップグレード作業の最初に、このパッケージをアップグレードすることで生じる可能性のある問題の情報を表示します。この情報はパッケージメンテナがまとめたもので、ユーザが確認できるように <filename>/usr/share/doc/<replaceable>package</replaceable>/NEWS.Debian</filename> ファイルに含まれています。これらのファイルを (場合によっては <emphasis role=\"pkg\">apt-listchanges</emphasis> を通じて) 読めば、予期しない驚きを避けることができます。"
+msgstr "幾つかの問題を未然に防ぐために、<emphasis role=\"pkg\">apt-listchanges</emphasis> パッケージをインストールする事が可能です。<emphasis role=\"pkg\">apt-listchanges</emphasis>は、あるパッケージのアップグレード作業の最初に、このパッケージをアップグレードすることで生じる可能性のある問題の情報を表示します。この情報はパッケージメンテナがまとめたもので、ユーザが確認できるように <filename>/usr/share/doc/<replaceable>package</replaceable>/NEWS.Debian</filename> ファイルに含まれています。これらのファイルを (場合によっては <emphasis role=\"pkg\">apt-listchanges</emphasis> を通じて) 読めば、予期しない驚きを避ける事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "You might sometimes find that the new version of a software doesn't work at all. This generally happens if the application isn't particularly popular and hasn't been tested enough; a last-minute update can also introduce regressions which are only found after the stable release. In both cases, the first thing to do is to have a look at the bug tracking system at <literal>http://bugs.debian.org/<replaceable>package</replaceable></literal>, and check whether the problem has already been reported. If it hasn't, you should report it yourself with <command>reportbug</command>. If it is already known, the bug report and the associated messages are usually an excellent source of information related to the bug:"
-msgstr "あるソフトウェアの新しいバージョンが全く動かないことに気付くことがあるかもしれません。これは通常、そのアプリケーションがそれほど人気ではない場合や十分にテストされていない場合に起こります; リリース直前の更新によって、それ迄に存在しなかった不具合を混入する事があり、この不具合は安定版がリリースされた後に見つかります。どちらの場合でも、まず最初にやることはバグ追跡システム <literal>http://bugs.debian.org/<replaceable>package</replaceable></literal> でこの問題が既に報告されているか確認することです。まだ報告されていなければ、<command>reportbug</command> を使って自分で報告するべきです。既に報告されていれば、バグレポートと関連メッセージは通常バグに関連する情報の素晴らしいソースです:"
+msgstr "あるソフトウェアの新しいバージョンが全く動かないことに気付く事があるかもしれません。これは通常、そのアプリケーションがそれほど人気ではない場合や十分にテストされていない場合に起こります; リリース直前の更新によって、それ迄に存在しなかった不具合を混入する事があり、この不具合は安定版がリリースされた後に見つかります。どちらの場合でも、まず最初にやることはバグ追跡システム <literal>http://bugs.debian.org/<replaceable>package</replaceable></literal> でこの問題が既に報告されているか確認する事です。まだ報告されていなければ、<command>reportbug</command> を使って自分で報告するべきです。既に報告されていれば、バグレポートと関連メッセージは通常バグに関連する情報の素晴らしいソースです:"
 
 #. Tag: para
 #, no-c-format
 msgid "sometimes a patch already exists, and it is available on the bug report; you can then recompile a fixed version of the broken package locally (see <xref linkend=\"sect.rebuilding-package\" />);"
-msgstr "パッチが既に存在し、バグレポートからそれを入手することができることがあります; 壊れたパッケージの修正されたバージョンを再コンパイルすることができます (<xref linkend=\"sect.rebuilding-package\" /> をご覧ください);"
+msgstr "パッチが既に存在し、バグレポートからそれを入手する事ができる事があります; 壊れたパッケージの修正されたバージョンを再コンパイルする事が可能です (<xref linkend=\"sect.rebuilding-package\" /> をご覧ください);"
 
 #. Tag: para
 #, no-c-format
@@ -2063,17 +2063,17 @@ msgstr "システムを最新の状態に保つ"
 #. Tag: para
 #, no-c-format
 msgid "The Debian distribution is dynamic and changes continually. Most of the changes are in the <emphasis role=\"distribution\">Testing</emphasis> and <emphasis role=\"distribution\">Unstable</emphasis> versions, but even <emphasis role=\"distribution\">Stable</emphasis> is updated from time to time, mostly for security-related fixes. Whatever version of Debian a system runs, it is generally a good idea to keep it up to date, so that you can get the benefit of recent evolutions and bug fixes."
-msgstr "Debian ディストリビューションは活動的で、絶えず変化しています。変更は<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>バージョンに対するものが多いですが、<emphasis role=\"distribution\">安定版</emphasis>も多くの場合セキュリティ関連の修正によって時々更新されます。システムでどんな Debian のバージョンを使っていたとしても、システムを最新の状態に保つのが通常得策です。そうすれば、最新の進化とバグ修正の恩恵を受けることができます。"
+msgstr "Debian ディストリビューションは活動的で、絶えず変化しています。変更は<emphasis role=\"distribution\">テスト版</emphasis>と<emphasis role=\"distribution\">不安定版</emphasis>バージョンに対するものが多いですが、<emphasis role=\"distribution\">安定版</emphasis>も多くの場合セキュリティ関連の修正によって時々更新されます。システムでどんな Debian のバージョンを使っていたとしても、システムを最新の状態に保つのが通常得策です。そうすれば、最新の進化とバグ修正の恩恵を受ける事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "While it is of course possible to periodically run a tool to check for available updates and run the upgrades, such a repetitive task is tedious, especially when it needs to be performed on several machines. Fortunately, like many repetitive tasks, it can be partly automated, and a set of tools have already been developed to that effect."
-msgstr "利用可能なアップデートを確認するために日常的にツールを実行することはもちろん可能ですが、特に複数のマシンでこれを行う必要がある場合、このような反復作業は面白くありません。幸いなことに、多くの反復作業と同様この作業もある程度自動化が可能で、効果的な一連のツールが開発されています。"
+msgstr "利用可能な更新を確認するために日常的にツールを実行することはもちろん可能ですが、特に複数のマシンでこれを行う必要がある場合、このような反復作業は面白くありません。幸いなことに、多くの反復作業と同様この作業もある程度自動化が可能で、効果的な一連のツールが開発されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The first of these tools is <command>apticron</command>, in the package of the same name. Its main effect is to run a script daily (via <command>cron</command>). The script updates the list of available packages, and, if some installed packages are not in the latest available version, it sends an email with a list of these packages along with the changes that have been made in the new versions. Obviously, this package mostly targets users of Debian <emphasis role=\"distribution\">Stable</emphasis>, since the daily emails would be very long for the faster paced versions of Debian. When updates are available, <command>apticron</command> automatically downloads them. It does not install them — the administrator will still do it — but having the packages already downloaded and available locally (in APT's cache) makes the job faster."
-msgstr "更新作業の自動化を担うツールの 1 つ目は <command>apticron</command> で、同じ名前のパッケージから提供されます。主たる挙動は (<command>cron</command> を使って) 毎日スクリプトを実行することです。スクリプトは利用可能なパッケージのリストを更新し、インストール済みパッケージが入手できる最新バージョンと異なる場合、そのようなパッケージのリストと新しいバージョンにおける修正点をメールで送信します。明らかにこの挙動は、Debian <emphasis role=\"distribution\">安定版</emphasis>のユーザを対象にしています。なぜなら、より頻繁にパッケージが更新される Debian の他のディストリビューションでは毎日のメールがとても長くなるからです。アップデートが利用可能になったら、<command>apticron</command> は自動的にそれらをダウンロードします。<command>apticron</command> はインストール作業を行いません - 管理者がインストールします - が、パッケージをダウンロードして手元 (APT のキャッシュ) に保存しておくことで、管理者は作業を迅速に行うことができます。"
+msgstr "更新作業の自動化を担うツールの 1 つ目は <command>apticron</command> で、同名のパッケージに含まれます。主たる挙動は (<command>cron</command> を使って) 毎日スクリプトを実行する事です。スクリプトは利用可能なパッケージのリストを更新し、インストール済みパッケージが入手できる最新バージョンと異なる場合、そのようなパッケージのリストと新しいバージョンにおける修正点をメールで送信します。明らかにこの挙動は、Debian <emphasis role=\"distribution\">安定版</emphasis>のユーザを対象にしています。なぜなら、より頻繁にパッケージが更新される Debian の他のディストリビューションでは毎日のメールがとても長くなるからです。更新が利用可能になったら、<command>apticron</command> は自動的にそれらをダウンロードします。<command>apticron</command> はインストール作業を行いません - 管理者がインストールします - が、パッケージをダウンロードして手元 (APT のキャッシュ) に保存しておくことで、管理者は作業を迅速に行う事が可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -2088,7 +2088,7 @@ msgstr "<literal>APT::Periodic::Update-Package-Lists</literal>"
 #. Tag: para
 #, no-c-format
 msgid "This option allows you to specify the frequency (in days) at which the package lists are refreshed. <command>apticron</command> users can do without this variable, since <command>apticron</command> already does this task."
-msgstr "このオプションを使えば、パッケージリストを更新する頻度 (日単位) を設定することができます。<command>apticron</command> ユーザならこの変数を設定しなくても大丈夫です。なぜなら <command>apticron</command> が設定するからです。"
+msgstr "このオプションを使えば、パッケージリストを更新する頻度 (日単位) を設定する事が可能です。<command>apticron</command> ユーザならこの変数を設定しなくても大丈夫です。なぜなら <command>apticron</command> が設定するからです。"
 
 #. Tag: term
 #, no-c-format
@@ -2098,7 +2098,7 @@ msgstr "<literal>APT::Periodic::Download-Upgradeable-Packages</literal>"
 #. Tag: para
 #, no-c-format
 msgid "Again, this option indicates a frequency (in days), this time for the downloading of the actual packages. Again, <command>apticron</command> users won't need it."
-msgstr "このオプションを使えば、パッケージをダウンロードする頻度 (日単位) を設定することができます。<command>apticron</command> ユーザはこの変数を設定する必要はありません。"
+msgstr "このオプションを使えば、パッケージをダウンロードする頻度 (日単位) を設定する事が可能です。<command>apticron</command> ユーザはこの変数を設定する必要はありません。"
 
 #. Tag: term
 #, no-c-format
@@ -2108,7 +2108,7 @@ msgstr "<literal>APT::Periodic::AutocleanInterval</literal>"
 #. Tag: para
 #, no-c-format
 msgid "This option covers a feature that <command>apticron</command> doesn't have. It controls how often obsolete packages (those not referenced by any distribution anymore) are removed from the APT cache. This keeps the APT cache at a reasonable size and means that you don't need to worry about that task."
-msgstr "このオプションは <command>apticron</command> が備えていない機能を担うものです。これはどの程度の頻度で時代遅れのパッケージ (他のどのディストリビューションからも参照されていないパッケージ)をAPT キャッシュから削除するかを制御します。APT キャッシュを合理的なサイズに保ち、この作業について心配する必要がなくなります。"
+msgstr "このオプションは <command>apticron</command> が備えていない機能を担うものです。これはどの程度の頻度で時代遅れのパッケージ (他のどのディストリビューションからも参照されていないパッケージ)を APT キャッシュから削除するかを制御します。APT キャッシュを合理的なサイズに保ち、この作業について心配する必要がなくなります。"
 
 #. Tag: term
 #, no-c-format
@@ -2123,7 +2123,7 @@ msgstr "<primary><emphasis role=\"pkg\">unattended-upgrades</emphasis></primary>
 #. Tag: para
 #, no-c-format
 msgid "When this option is enabled, the daily script will execute <command>unattended-upgrade</command> (from the <emphasis role=\"pkg\">unattended-upgrades</emphasis> package) which — as its name suggest — can automatize the upgrade process for some packages (by default it only takes care of security updates, but this can be customized in <filename>/etc/apt/apt.conf.d/50unattended-upgrades</filename>). Note that this option can be set with the help of debconf by running <command>dpkg-reconfigure -plow unattended-upgrades</command>."
-msgstr "このオプションが有効化されると、毎日のスクリプトで <command>unattended-upgrade</command> (<emphasis role=\"pkg\">unattended-upgrades</emphasis> パッケージの提供する) が実行さるようになります。これは - その名前が示す通り - 幾つかのパッケージのアップグレード作業を自動化します (デフォルトでは、セキュリティアップデートだけを処理しますが <filename>/etc/apt/apt.conf.d/50unattended-upgrades</filename> で挙動をカスタマイズできます)。このオプションを設定するには <command>dpkg-reconfigure -plow unattended-upgrades</command> を実行して debconf の助けを借りることに注意してください。"
+msgstr "このオプションが有効化されると、毎日のスクリプトで <command>unattended-upgrade</command> (<emphasis role=\"pkg\">unattended-upgrades</emphasis> パッケージの提供する) が実行さるようになります。これは - その名前が示す通り - 幾つかのパッケージのアップグレード作業を自動化します (デフォルトでは、セキュリティ更新だけを処理しますが <filename>/etc/apt/apt.conf.d/50unattended-upgrades</filename> で挙動をカスタマイズできます)。このオプションを設定するには <command>dpkg-reconfigure -plow unattended-upgrades</command> を実行して debconf の助けを借りることに注意してください。"
 
 #. Tag: para
 #, no-c-format
@@ -2138,7 +2138,7 @@ msgstr "<primary><emphasis role=\"pkg\">gnome-packagekit</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "These tools work very well for servers, but desktop users generally prefer a more interactive system. That is why the “Graphical desktop environment” task installs <emphasis role=\"pkg\">gnome-packagekit</emphasis>. It provides an icon in the notification area of desktop environments when updates are available; clicking on this icon then runs <command>gpk-update-viewer</command>, a simplified interface to perform updates. You can browse through available updates, read the short description of the relevant packages and the corresponding <filename>changelog</filename> entries, and select whether to apply the update or not on a case-by-case basis."
-msgstr "サーバではこれらのツールがとても上手く動きますが、通常デスクトップユーザはより対話型なシステムを好みます。このため「グラフィカルデスクトップ環境」タスクは <emphasis role=\"pkg\">gnome-packagekit</emphasis> をインストールします。このパッケージは、アップデートが利用可能になった時、デスクトップ環境の通知エリアにアイコンを表示します; 表示されたアイコンをクリックすると <command>gpk-update-viewer</command> が実行されます。これは更新を実行する簡易化されたインターフェイスです。利用可能なアップデートを閲覧したり、関連するパッケージと対応する <filename>changelog</filename> エントリの短い説明を読んだり、個々の場合に応じてその更新を適用するか否かを選択したりする事ができます。"
+msgstr "サーバではこれらのツールがとても上手く動きますが、通常デスクトップユーザはより対話型なシステムを好みます。このため「グラフィカルデスクトップ環境」タスクは <emphasis role=\"pkg\">gnome-packagekit</emphasis> をインストールします。このパッケージは、更新が利用可能になった時、デスクトップ環境の通知エリアにアイコンを表示します; 表示されたアイコンをクリックすると <command>gpk-update-viewer</command> が実行されます。これは更新を実行する簡易化されたインターフェースです。利用可能な更新を閲覧したり、関連するパッケージと対応する <filename>changelog</filename> エントリの短い説明を読んだり、個々の場合に応じてその更新を適用するか否かを選択したりする事ができます。"
 
 #. Tag: title
 #, no-c-format
@@ -2183,7 +2183,7 @@ msgstr "APT の設定"
 #. Tag: para
 #, no-c-format
 msgid "The case of APT is simple: the <literal>-y</literal> option (or <literal>--assume-yes</literal>) tells APT to consider the answer to all its questions to be “yes”."
-msgstr "APT の場合は簡単です: <literal>-y</literal> オプション (または <literal>--assume-yes</literal>) を使えば、APT の出す全ての質問に「yes」と答えたことになります。"
+msgstr "APT の場合は簡単です: <literal>-y</literal> オプション (または <literal>--assume-yes</literal>) を使えば、APT の出すすべての質問に「yes」と答えたことになります。"
 
 #. Tag: title
 #, no-c-format
@@ -2198,12 +2198,12 @@ msgstr "<command>debconf</command> の場合はより詳細に説明が必要で
 #. Tag: para
 #, no-c-format
 msgid "The other relevant configuration element is the interface used by the front-end. If you choose <literal>noninteractive</literal> out of the choices, all user interaction is disabled. If a package tries to display an informative note, it will be sent to the administrator by email."
-msgstr "他の関連設定項目はフロントエンドが使うインターフェイスです。中でも <literal>noninteractive</literal> を選んだら、ユーザからの入力は完全に使用不能にされます。パッケージが有益な注意を表示しようとした場合、管理者にメールで通知されます。"
+msgstr "他の関連設定項目はフロントエンドが使うインターフェースです。中でも <literal>noninteractive</literal> を選んだら、ユーザからの入力は完全に使用不能にされます。パッケージが有益な注意を表示しようとした場合、管理者にメールで通知されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "To reconfigure <command>debconf</command>, use the <command>dpkg-reconfigure</command> tool from the <emphasis role=\"pkg\">debconf</emphasis> package; the relevant command is <command>dpkg-reconfigure debconf</command>. Note that the configured values can be temporarily overridden with environment variables when needed (for instance, <varname>DEBIAN_FRONTEND</varname> controls the interface, as documented in the <citerefentry><refentrytitle>debconf</refentrytitle><manvolnum>7</manvolnum></citerefentry> manual page)."
-msgstr "<command>debconf</command> を再設定するには、<emphasis role=\"pkg\">debconf</emphasis> パッケージから提供される <command>dpkg-reconfigure</command> ツールを使ってください; これを実行するコマンドは <command>dpkg-reconfigure debconf</command> です。ここで設定した値は、必要ならば環境変数を使って一時的に上書きすることができる点に注意してください。(例えば、<varname>DEBIAN_FRONTEND</varname> 環境変数は、<citerefentry><refentrytitle>debconf</refentrytitle><manvolnum>7</manvolnum></citerefentry> マニュアルページで説明されている通り、インターフェイスを制御します)。"
+msgstr "<command>debconf</command> を再設定するには、<emphasis role=\"pkg\">debconf</emphasis> パッケージから提供される <command>dpkg-reconfigure</command> ツールを使ってください; これを実行するコマンドは <command>dpkg-reconfigure debconf</command> です。ここで設定した値は、必要ならば環境変数を使って一時的に上書きする事ができる点に注意してください。(例えば、<varname>DEBIAN_FRONTEND</varname> 環境変数は、<citerefentry><refentrytitle>debconf</refentrytitle><manvolnum>7</manvolnum></citerefentry> マニュアルページで説明されている通り、インターフェースを制御します)。"
 
 #. Tag: title
 #, no-c-format
@@ -2213,7 +2213,7 @@ msgstr "コマンドラインインターフェースの取り扱い"
 #. Tag: para
 #, no-c-format
 msgid "The last source of interactions, and the hardest to get rid of, is the configuration scripts run by <command>dpkg</command>. There is unfortunately no standard solution, and no answer is overwhelmingly better than another."
-msgstr "ユーザに入力を要求する最後の要素は、<command>dpkg</command> が実行する設定スクリプトで、これは克服することが最も難しいものです。これに対する標準的な解決策はありませんし、無回答以外に良い解決策はありません。"
+msgstr "ユーザに入力を要求する最後の要素は、<command>dpkg</command> が実行する設定スクリプトで、これは克服する事が最も難しいものです。これに対する標準的な解決策はありませんし、無回答以外に良い解決策はありません。"
 
 #. Tag: para
 #, no-c-format
@@ -2228,7 +2228,7 @@ msgstr "奇跡の組み合わせ"
 #. Tag: para
 #, no-c-format
 msgid "By combining the previous elements, it is possible to design a small but rather reliable script which can handle automatic upgrades."
-msgstr "上記の説明を組み合わせれば、小規模で比較的信頼できるスクリプトを設計することが可能です。これで自動アップグレードが可能になります。"
+msgstr "上記の説明を組み合わせれば、小規模で比較的信頼できるスクリプトを設計する事が可能です。これで自動アップグレードが可能になります。"
 
 #. Tag: title
 #, no-c-format
@@ -2239,10 +2239,10 @@ msgstr "非対話型のアップグレードスクリプト"
 #, no-c-format
 msgid ""
 "export DEBIAN_FRONTEND=noninteractive\n"
-"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
+"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade"
 msgstr ""
 "export DEBIAN_FRONTEND=noninteractive\n"
-"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
+"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade"
 
 #. Tag: title
 #, no-c-format
@@ -2262,7 +2262,7 @@ msgstr "実際のところ、<emphasis role=\"distribution\">Wheezy</emphasis> �
 #. Tag: para
 #, no-c-format
 msgid "The office workstations in the administrative services also run <emphasis role=\"distribution\">Wheezy</emphasis>, but they are equipped with <emphasis role=\"pkg\">gnome-packagekit</emphasis>, so that users trigger the upgrades themselves. The rationale for this decision is that if upgrades happen without an explicit action, the behavior of the computer might change unexpectedly, which could cause confusion for the main users."
-msgstr "管理部局で使われるオフィスワークステーションでは <emphasis role=\"distribution\">Wheezy</emphasis> が動いていますが、<emphasis role=\"pkg\">gnome-packagekit</emphasis> を備えています。そうすればユーザが自分でアップグレードを動作させることができるからです。このように設定した根拠は、明確な指示無しにアップグレードが実行された場合、コンピュータの挙動が突然変わってしまうかもしれないからです。こうなると主たるユーザは混乱するでしょう。"
+msgstr "管理部局で使われるオフィスワークステーションでは <emphasis role=\"distribution\">Wheezy</emphasis> が動いていますが、<emphasis role=\"pkg\">gnome-packagekit</emphasis> を備えています。そうすればユーザが自分でアップグレードを動作させる事ができるからです。このように設定した根拠は、明確な指示無しにアップグレードが実行された場合、コンピュータの挙動が突然変わってしまうかもしれないからです。こうなると主たるユーザは混乱するでしょう。"
 
 #. Tag: para
 #, no-c-format
@@ -2277,12 +2277,12 @@ msgstr "パッケージの検索"
 #. Tag: para
 #, no-c-format
 msgid "With the large and ever-growing amount of software in Debian, there emerges a paradox: Debian usually has a tool for most tasks, but that tool can be very difficult to find amongst the myriad other packages. The lack of appropriate ways to search for (and to find) the right tool has long been a problem. Fortunately, this problem has almost entirely been solved."
-msgstr "Debian に含まれるソフトウェアの数は多くさらに増加し続けていることが原因でパラドックスが生じます: Debian には通常ほとんどの作業に適したツールが用意されていますが、無数のパッケージからその作業に適したツールを見つけることがとても難しくなります。適切なツールを検索する (発見する) ための良い方法が無い点は長い間問題とされていました。幸いなことに、この問題はほぼ解決されています。"
+msgstr "Debian に含まれるソフトウェアの数は多くさらに増加し続けている事が原因でパラドックスが生じます: Debian には通常ほとんどの作業に適したツールが用意されていますが、無数のパッケージからその作業に適したツールを見つける事がとても難しくなります。適切なツールを検索する (発見する) ための良い方法が無い点は長い間問題とされていました。幸いなことに、この問題はほぼ解決されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The most trivial search possible is looking up an exact package name. If <command>apt-cache show <replaceable>package</replaceable></command> returns a result, then the package exists. Unfortunately, this requires knowing or even guessing the package name, which isn't always possible."
-msgstr "最も普通な検索方法の候補は正確なパッケージ名を調べることです。<command>apt-cache show <replaceable>package</replaceable></command> で結果が返されたら、パッケージが存在するということです。不幸なことにこの方法では、パッケージ名を知っているか推測する必要があり、それは常に可能とは限りません。"
+msgstr "最も普通な検索方法の候補は正確なパッケージ名を調べる事です。<command>apt-cache show <replaceable>package</replaceable></command> で結果が返されたら、パッケージが存在するという事です。不幸なことにこの方法では、パッケージ名を知っているか推測する必要があり、それは常に可能とは限りません。"
 
 #. Tag: title
 #, no-c-format
@@ -2292,17 +2292,17 @@ msgstr "<emphasis>TIP</emphasis> パッケージ命名規則"
 #. Tag: para
 #, no-c-format
 msgid "Some categories of packages are named according to a conventional naming scheme; knowing the scheme can sometimes allow you to guess exact package names. For instance, for Perl modules, the convention says that a module called <literal>XML::Handler::Composer</literal> upstream should be packaged as <emphasis role=\"pkg\">libxml-handler-composer-perl</emphasis>. The library enabling the use of the <command>gconf</command> system from Python is packaged as <emphasis role=\"pkg\">python-gconf</emphasis>. It is unfortunately not possible to define a fully general naming scheme for all packages, even though package maintainers usually try to follow the choice of the upstream developers."
-msgstr "幾つかのカテゴリに含まれるパッケージは従来続けられている命名規則に基いて命名されます; この規則を知っておけば、正確なパッケージ名を推測できる場合があります。例えば、Perl モジュールに関して、規約では <literal>XML::Handler::Composer</literal> と呼ばれるモジュールは <emphasis role=\"pkg\">libxml-handler-composer-perl</emphasis> のようにパッケージ化されるべきであると定められています。Python から <command>gconf</command> システムを扱うためのライブラリは <emphasis role=\"pkg\">python-gconf</emphasis> としてパッケージ化されています。不幸なことに、たとえパッケージメンテナが通常は上流開発者の選択に従おうとするとしても、全てのパッケージに対する完全に一般的な命名規則を定義することは不可能です。"
+msgstr "幾つかのカテゴリに含まれるパッケージは従来続けられている命名規則に基いて命名されます; この規則を知っておけば、正確なパッケージ名を推測できる場合があります。例えば、Perl モジュールに関して、規約では <literal>XML::Handler::Composer</literal> と呼ばれるモジュールは <emphasis role=\"pkg\">libxml-handler-composer-perl</emphasis> のようにパッケージ化されるべきであると定められています。Python から <command>gconf</command> システムを扱うためのライブラリは <emphasis role=\"pkg\">python-gconf</emphasis> としてパッケージ化されています。不幸なことに、たとえパッケージメンテナが通常は上流開発者の選択に従おうとするとしても、すべてのパッケージに対する完全に一般的な命名規則を定義することは不可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "A slightly more successful searching pattern is a plain-text search in package names, but it remains very limited. You can generally find results by searching package descriptions: since each package has a more or less detailed description in addition to its package name, a keyword search in these descriptions will often be useful. <command>apt-cache</command> and <command>axi-cache</command> are the tools of choice for this kind of search; for instance, <command>apt-cache search video</command> will return a list of all packages whose name or description contains the keyword “video”."
-msgstr "もう少し上手い検索パターンはパッケージ名の中をプレーンテキスト検索することですが、この方法も大きな制約を受けます。通常、パッケージ説明を検索すれば結果が見つかるでしょう: なぜなら、大体のパッケージはパッケージ名だけでなく詳しい説明文を備えているからです。パッケージ説明のキーワード検索はしばしば役に立ちます。<command>apt-cache</command> と <command>axi-cache</command> はパッケージ説明のキーワード検索を行う際に選ぶツールです; 例えば、<command>apt-cache search video</command> は「video」というキーワードがパッケージ説明に含まれる全てのパッケージのリストを返します。"
+msgstr "もう少し上手い検索パターンはパッケージ名の中をプレーンテキスト検索する事ですが、この方法も大きな制約を受けます。通常、パッケージ説明を検索すれば結果が見つかるでしょう: なぜなら、大体のパッケージはパッケージ名だけでなく詳しい説明文を備えているからです。パッケージ説明のキーワード検索はしばしば役に立ちます。<command>apt-cache</command> と <command>axi-cache</command> はパッケージ説明のキーワード検索を行う際に選ぶツールです; 例えば、<command>apt-cache search video</command> は「video」というキーワードがパッケージ説明に含まれるすべてのパッケージのリストを返します。"
 
 #. Tag: para
 #, no-c-format
 msgid "For more complex searches, a more powerful tool such as <command>aptitude</command> is required. <command>aptitude</command> allows you to search according to a logical expression based on the package's meta-data fields. For instance, the following command searches for packages whose name contains <literal>kino</literal>, whose description contains <literal>video</literal> and whose maintainer's name contains <literal>paul</literal>:"
-msgstr "より複雑な検索を行うには、<command>aptitude</command> などのより強力なツールが必要です。<command>aptitude</command> を使うことで、パッケージのメタ情報フィールドを指定した論理演算表現を使って検索できます。例えば、以下のコマンドはパッケージ名に <literal>kino</literal> が含まれ、パッケージの説明文に <literal>video</literal> が含まれ、メンテナの名前に <literal>paul</literal> が含まれるパッケージを検索します。"
+msgstr "より複雑な検索を行うには、<command>aptitude</command> などのより強力なツールが必要です。<command>aptitude</command> を使うことで、パッケージのメタ情報フィールドを指定した論理演算表現を使って検索できます。例えば、以下のコマンドはパッケージ名に <literal>kino</literal> が含まれ、パッケージの説明文に<literal>ビデオ</literal>が含まれ、メンテナの名前に <literal>paul</literal> が含まれるパッケージを検索します。"
 
 #. Tag: screen
 #, no-c-format
@@ -2339,51 +2339,51 @@ msgid ""
 "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-"      works-with::video, x11::application\n"
+"      works-with::video, x11::application"
 msgstr ""
-"$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
-"p   kino  - Non-linear editor for Digital Video data\n"
+"$ <userinput>aptitude search kino~dビデオ~mpaul</userinput>\n"
+"p   kino  - デジタルビデオデータ用ノンリニア編集ツール\n"
 "$ <userinput>aptitude show kino</userinput>\n"
-"Package: kino                            \n"
-"State: not installed\n"
-"Version: 1.3.4-1.3\n"
-"Priority: extra\n"
-"Section: video\n"
-"Maintainer: Paul Brossier &lt;piem@debian.org&gt;\n"
-"Architecture: amd64\n"
-"Uncompressed Size: 7936 k\n"
-"Depends: libasound2 (&gt; 1.0.24.1), libatk1.0-0 (&gt;= 1.12.4),\n"
+"パッケージ: kino                         \n"
+"状態: インストールされていません\n"
+"バージョン: 1.3.4-1.3\n"
+"優先度: 特別\n"
+"セクション: video\n"
+"メンテナ: Paul Brossier &lt;piem@debian.org&gt;\n"
+"アーキテクチャ: amd64\n"
+"展開サイズ: 7,936 k\n"
+"依存: libasound2 (&gt; 1.0.24.1), libatk1.0-0 (&gt;= 1.12.4),\n"
 "         libavc1394-0 (&gt;= 0.5.3), libavcodec53 (&gt;= 4:0.8~beta1~) |\n"
 "         libavcodec-extra-53 (&gt;= 4:0.8~beta1~), libavformat53\n"
 "         […]\n"
-"Recommends: ffmpeg, curl\n"
-"Suggests: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, ffmpeg2theora\n"
-"Conflicts: kino-dvtitler, kino-timfx, kinoplus\n"
-"Replaces: kino-dvtitler, kino-timfx, kinoplus\n"
-"Provides: kino-dvtitler, kino-timfx, kinoplus\n"
-"Description: Non-linear editor for Digital Video data\n"
-" Kino allows you to record, create, edit, and play movies recorded with\n"
-" DV camcorders. This program uses many keyboard commands for fast\n"
-" navigating and editing inside the movie.\n"
+"推奨: ffmpeg, curl\n"
+"提案: udev | hotplug, vorbis-tools, sox, mjpegtools, lame, ffmpeg2theora\n"
+"競合: kino-dvtitler, kino-timfx, kinoplus\n"
+"置換: kino-dvtitler, kino-timfx, kinoplus\n"
+"提供: kino-dvtitler, kino-timfx, kinoplus\n"
+"説明: デジタルビデオデータ用ノンリニア編集ツール\n"
+" Kino で、DV カメラで録画された動画を記録、作成、編集、再生できるようになり\n"
+" ます。このプログラムには多くのキーボードコマンドがあり、動画内を高速に移動\n"
+" し編集できます。 \n"
 " \n"
-" The kino-timfx, kino-dvtitler and kinoplus sets of plugins, formerly\n"
-" distributed as separate packages, are now provided with Kino.\n"
-"Homepage: http://www.kinodv.org/\n"
+" プラグイン集 kino-timfx, kino-dvtitler, kinoplus は、以前は個別のパッケージ\n"
+" として配布していましたが、現在は Kino に同梱しています。\n"
+"ホームページ: http://www.kinodv.org/\n"
 "\n"
-"Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
+"タグ: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-"      works-with::video, x11::application\n"
+"      works-with::video, x11::application"
 
 #. Tag: para
 #, no-c-format
 msgid "The search only returns one package, <emphasis role=\"pkg\">kino</emphasis>, which satisfies all three criteria."
-msgstr "この検索は、3 つの基準全てを満足するパッケージ、<emphasis role=\"pkg\">kino</emphasis>、を 1 つだけ返します。"
+msgstr "この検索は、3 つの基準すべてを満足するパッケージ、<emphasis role=\"pkg\">kino</emphasis>、を 1 つだけ返します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Even these multi-criteria searches are rather unwieldy, which explains why they are not used as much as they could. A new tagging system has therefore been developed, and it provides a new approach to searching. Packages are given tags that provide a thematical classification along several strands, known as a “facet-based classification”. In the case of <emphasis role=\"pkg\">kino</emphasis> above, the package's tags indicate that Kino is a Gnome-based software that works on video data and whose main purpose is editing."
-msgstr "このように条件が複数の検索はちょっと扱いにくいことが理由で、これはあまり使われません。そんなわけで、新しいタグ付けシステムが開発され、このシステムによって新しい検索方法が提供されました。パッケージには、「ファセット分類」として知られている様々な側面に従ってテーマ別に分類された、タグが付けられています。上に挙げた <emphasis role=\"pkg\">kino</emphasis> の場合、パッケージのタグによれば、Kino は Gnome ベースのソフトウェアで、動画データの処理に有用であり、主用途は編集であることがわかります。"
+msgstr "このように条件が複数の検索はちょっと扱いにくい事が理由で、これはあまり使われません。そんなわけで、新しいタグ付けシステムが開発され、このシステムによって新しい検索方法が提供されました。パッケージには、「ファセット分類」として知られている様々な側面に従ってテーマ別に分類された、タグが付けられています。上に挙げた <emphasis role=\"pkg\">kino</emphasis> の場合、パッケージのタグによれば、Kino は Gnome ベースのソフトウェアで、動画データの処理に有用であり、主用途は編集である事がわかります。"
 
 #. Tag: para
 #, no-c-format
@@ -2403,12 +2403,12 @@ msgstr "<primary>タグ</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Selecting the <literal>works-with::video</literal> and <literal>use::editing</literal> tags yields a handful of packages, including the <emphasis role=\"pkg\">kino</emphasis> and <emphasis role=\"pkg\">pitivi</emphasis> video editors. This system of classification is bound to be used more and more as time goes on, and package managers will gradually provide efficient search interfaces based on it."
-msgstr "<literal>works-with::video</literal> と <literal>use::editing</literal> タグを選ぶと、<emphasis role=\"pkg\">kino</emphasis> と <emphasis role=\"pkg\">pitivi</emphasis> 動画編集ソフトを含む、一握りのパッケージがヒットします。分類分けのシステムは時間が経てば経つ程使われる運命にあり、パッケージマネージャはこれに基づく効率的な検索インターフェイスを少しづつ提供するでしょう。"
+msgstr "<literal>works-with::video</literal> と <literal>use::editing</literal> タグを選ぶと、<emphasis role=\"pkg\">kino</emphasis> と <emphasis role=\"pkg\">pitivi</emphasis> 動画編集ソフトを含む、一握りのパッケージがヒットします。分類分けのシステムは時間が経てば経つ程使われる運命にあり、パッケージマネージャはこれに基づく効率的な検索インターフェースを少しづつ提供するでしょう。"
 
 #. Tag: para
 #, no-c-format
 msgid "To sum up, the best tool for the job depends on the complexity of the search that you wish to do:"
-msgstr "要約すると、検索したい内容の複雑さに依存して、最良の検索ツールも変わりうるということです:"
+msgstr "要約すると、検索したい内容の複雑さに依存して、最良の検索ツールも変わりうるという事です:"
 
 #. Tag: para
 #, no-c-format
@@ -2423,7 +2423,7 @@ msgstr "検索条件にパッケージ間の関連性や例えばメンテナの
 #. Tag: para
 #, no-c-format
 msgid "when a tag-based search is needed, a good tool is <command>packagesearch</command>, a graphical interface dedicated to searching available packages along several criteria (including the names of the files that they contain). For usage on the command-line, <command>axi-cache</command> will fit the bill."
-msgstr "タグベースの検索が必要な場合、<command>packagesearch</command> は良いツールです。これは複数の条件 (パッケージに含まれるファイルの名前も含みます) に基いて利用可能なパッケージを検索する専用のグラフィカルインターフェイスです。コマンドラインで使う場合は、<command>axi-cache</command> がぴったりでしょう。"
+msgstr "タグベースの検索が必要な場合、<command>packagesearch</command> は良いツールです。これは複数の条件 (パッケージに含まれるファイルの名前も含みます) に基いて利用可能なパッケージを検索する専用のグラフィカルインターフェースです。コマンドラインで使う場合は、<command>axi-cache</command> がぴったりでしょう。"
 
 #. Tag: indexterm
 #, no-c-format

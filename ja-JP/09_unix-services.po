@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-06-12 20:44+0900\n"
+"POT-Creation-Date: 2015-07-08 09:41+0000\n"
+"PO-Revision-Date: 2015-07-08 19:35+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -92,7 +92,7 @@ msgstr "Unix サービス"
 #. Tag: para
 #, no-c-format
 msgid "This chapter covers a number of basic services that are common to many Unix systems. All administrators should be familiar with them."
-msgstr "この章では、多くの Unix システムに共通する数多くの基本的なサービスをカバーします。全ての管理者はこれらに精通しているべきです。"
+msgstr "この章では、多くの Unix システムに共通する数多くの基本的なサービスをカバーします。すべての管理者はこれらに精通しているべきです。"
 
 #. Tag: title
 #, no-c-format
@@ -107,12 +107,12 @@ msgstr "<primary>起動</primary><secondary>システムの</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "When you boot the computer, the many messages scrolling by on the console display many automatic initializations and configurations that are being executed. Sometimes you may wish to slightly alter how this stage works, which means that you need to understand it well. That is the purpose of this section."
-msgstr "コンピュータを起動する際、コンソール画面にスクロールされる多くのメッセージには、実行されている多くの自動初期化と自動設定に関する情報が表示されます。この段階の挙動を少し変えたいと思うことがあるかもしれません。これは起動処理をよく理解する必要があることを意味しています。これがこの節の目的です。"
+msgstr "コンピュータを起動する際、コンソール画面にスクロールされる多くのメッセージには、実行されている多くの自動初期化と自動設定に関する情報が表示されます。この段階の挙動を少し変えたいと思う事があるかもしれません。これは起動処理をよく理解する必要がある事を意味しています。これがこの節の目的です。"
 
 #. Tag: para
 #, no-c-format
 msgid "First, the BIOS takes control of the computer, detects the disks, loads the <emphasis>Master Boot Record</emphasis>, and executes the bootloader. The bootloader takes over, finds the kernel on the disk, loads and executes it. The kernel is then initialized, and starts to search for and mount the partition containing the root filesystem, and finally executes the first program — <command>init</command>. Frequently, this “root partition” and this <command>init</command> are, in fact, located in a virtual filesystem that only exists in RAM (hence its name, “initramfs”, formerly called “initrd” for “initialization RAM disk”). This filesystem is loaded in memory by the bootloader, often from a file on a hard drive or from the network. It contains the bare minimum required by the kernel to load the “true” root filesystem: this may be driver modules for the hard drive, or other devices without which the system can not boot, or, more frequently, initialization scripts and modules for assembling RAID arrays, opening encrypted partitions, activating LVM volumes, etc. Once the root partition is mounted, the initramfs hands over control to the real init, and the machine goes back to the standard boot process."
-msgstr "最初に BIOS がコンピュータを制御し、ディスクを検出し、<emphasis>Master Boot Record</emphasis> を読み込み、ブートローダを実行します。以降、ブートローダが引き継ぎ、ディスクからカーネルを見つけ、カーネルを読み込んで実行します。そして、カーネルが初期化され、root ファイルシステムを含むパーティションの検索とマウントを開始し、最後に最初のプログラム - <command>init</command> - を実行します。実際には、「root パーティション」と <command>init</command> は RAM の中にだけ存在する仮想ファイルシステム (そのためこの名前は「initramfs」、以前は「初期化 RAM ディスク」という意味で「initrd」と呼ばれていました) 上に置かれていることが多いです。このファイルシステムは、多くの場合ハードドライブのファイルかネットワークから、ブートローダによってメモリに読み込まれます。このファイルシステムには、カーネルが「真の」root ファイルシステムを読み込むために必要な最低限の要素が含まれています: ハードドライブやそれなしではシステムが起動できないその他のデバイスのドライバモジュール、より頻繁にあるのが、RAID アレイを組み立て、暗号化パーティションを開き、LVM ボリュームを有効化するなどの初期化スクリプトとモジュールです。一度 root パーティションがマウントされたら、initramfs は制御を真の init に渡し、マシンは標準的な起動プロセスに戻ります。"
+msgstr "最初に BIOS がコンピュータを制御し、ディスクを検出し、<emphasis>Master Boot Record</emphasis> を読み込み、ブートローダを実行します。以降、ブートローダが引き継ぎ、ディスクからカーネルを見つけ、カーネルを読み込んで実行します。そして、カーネルが初期化され、root ファイルシステムを含むパーティションの検索とマウントを開始し、最後に最初のプログラム - <command>init</command> - を実行します。実際には、「root パーティション」と <command>init</command> は RAM の中にだけ存在する仮想ファイルシステム (そのためこの名前は「initramfs」、以前は「初期化 RAM ディスク」という意味で「initrd」と呼ばれていました) 上に置かれている事が多いです。このファイルシステムは、多くの場合ハードドライブのファイルかネットワークから、ブートローダによってメモリに読み込まれます。このファイルシステムには、カーネルが「真の」root ファイルシステムを読み込むために必要な最低限の要素が含まれています: ハードドライブやそれなしではシステムが起動できないその他のデバイスのドライバモジュール、より頻繁にあるのが、RAID アレイを組み立て、暗号化されたパーティションを開き、LVM ボリュームを有効化するなどの初期化スクリプトとモジュールです。一度 root パーティションがマウントされたら、initramfs は制御を真の init に渡し、マシンは標準的な起動処理に戻ります。"
 
 #. Tag: para
 #, no-c-format
@@ -127,7 +127,7 @@ msgstr "<emphasis>SPECIFIC CASE</emphasis> ネットワークからの起動"
 #. Tag: para
 #, no-c-format
 msgid "In some configurations, the BIOS may be configured not to execute the MBR, but to seek its equivalent on the network, making it possible to build computers without a hard drive, or which are completely reinstalled on each boot. This option is not available on all hardware and it generally requires an appropriate combination of BIOS and network card."
-msgstr "一部の設定では、BIOS が MBR を実行しないように設定され、その代わり同じものをネットワークから探すように設定されているかもしれません。こうすることで、ハードドライブ無しでコンピュータを組み立てたり、起動時に毎回完全に再インストールすることが可能になります。このオプションは、全てのハードウェアで利用可能というわけではありませんし、通常 BIOS とネットワークカードの適切な組み合わせが必要です。"
+msgstr "一部の設定では、BIOS が MBR を実行しないように設定され、その代わり同じものをネットワークから探すように設定されているかもしれません。こうすることで、ハードドライブ無しでコンピュータを組み立てたり、起動時に毎回完全に再インストールする事が可能になります。このオプションは、すべてのハードウェアで利用可能というわけではありませんし、通常 BIOS とネットワークカードの適切な組み合わせが必要です。"
 
 #. Tag: para
 #, no-c-format
@@ -147,7 +147,7 @@ msgstr "<primary>プロセス</primary>"
 #. Tag: para
 #, no-c-format
 msgid "A process is the representation in memory of a running program. It includes all of the information necessary for the proper execution of the software (the code itself, but also the data that it has in memory, the list of files that it has opened, the network connections it has established, etc.). A single program may be instantiated into several processes, not necessarily running under different user IDs."
-msgstr "プロセスとは、実行中のプログラムのメモリ内表現です。プロセスには、ソフトウェアを適切に実行するために必要な全ての情報が含まれます (ソフトウェアのコードだけでなく、ソフトウェアが所有するメモリ内のデータ、ソフトウェアが開いたファイルのリスト、ソフトウェアが確立したネットワーク接続など)。単独のプログラムは複数のプロセスにインスタンス化されるかもしれませんし、異なるユーザ ID の下で実行される必要はありません。"
+msgstr "プロセスとは、実行中のプログラムのメモリ内表現です。プロセスには、ソフトウェアを適切に実行するために必要なすべての情報が含まれます (ソフトウェアのコードだけでなく、ソフトウェアが所有するメモリ内のデータ、ソフトウェアが開いたファイルのリスト、ソフトウェアが確立したネットワーク接続など)。単独のプログラムは複数のプロセスにインスタンス化されるかもしれませんし、異なるユーザ ID の下で実行される必要はありません。"
 
 #. Tag: para
 #, no-c-format
@@ -197,7 +197,7 @@ msgstr "<emphasis>SECURITY</emphasis> root 権を獲得するために <command>
 #. Tag: para
 #, no-c-format
 msgid "By convention, the first process that is booted is the <command>init</command> program. However, it is possible to pass an <literal>init</literal> option to the kernel indicating a different program."
-msgstr "慣例により、起動される最初のプロセスは <command>init</command> プログラムです。しかしながら、カーネルに異なるプログラムを示す <literal>init</literal> オプションを渡すことが可能です。"
+msgstr "慣例により、起動される最初のプロセスは <command>init</command> プログラムです。しかしながら、カーネルに異なるプログラムを示す <literal>init</literal> オプションを渡す事が可能です。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -207,17 +207,17 @@ msgstr "<primary><command>init</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Any person who is able to access the computer can press the <keycap>Reset</keycap> button, and thus reboot it. Then, at the bootloader's prompt, it is possible to pass the <literal>init=/bin/sh</literal> option to the kernel to gain root access without knowing the administrator's password."
-msgstr "コンピュータに触ることができる人は誰でも、<keycap>Reset</keycap> ボタンを押して、コンピュータを再起動することが可能です。そして、ブートローダプロンプトでカーネルに <literal>init=/bin/sh</literal> オプションを渡せば、管理者パスワードを知らなくても root 権を取得できます。"
+msgstr "コンピュータに触る事ができる人は誰でも、<keycap>Reset</keycap> ボタンを押して、コンピュータを再起動する事が可能です。そして、ブートローダプロンプトでカーネルに <literal>init=/bin/sh</literal> オプションを渡せば、管理者パスワードを知らなくても root 権を取得できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "To prevent this, you can protect the bootloader itself with a password. You might also think about protecting access to the BIOS (a password protection mechanism is almost always available), without which a malicious intruder could still boot the machine on a removable media containing its own Linux system, which they could then use to access data on the computer's hard drives."
-msgstr "これを避けるため、パスワードでブートローダを保護することが可能です。さらに BIOS へのアクセスも保護したいと考えるかもしれません (パスワード保護機能はほぼ必ず付いています)。パスワードが無ければ、悪意ある侵入者が、自分の Linux システムを含むリムーバブルメディアからマシンを起動して、コンピュータのハードドライブのデータにアクセスするかもしれません。"
+msgstr "これを避けるため、パスワードでブートローダを保護する事が可能です。さらに BIOS へのアクセスも保護したいと考えるかもしれません (パスワード保護機能はほぼ必ず付いています)。パスワードが無ければ、悪意ある侵入者が、自分の Linux システムを含むリムーバブルメディアからマシンを起動して、コンピュータのハードドライブのデータにアクセスするかもしれません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Finally, be aware that most BIOS have a generic password available. Initially intended for troubleshooting for those who have forgotten their password, these passwords are now public and available on the Internet (see for yourself by searching for “generic BIOS passwords” in a search engine). All of these protections will thus impede unauthorized access to the machine without being able to completely prevent it. There's no reliable way to protect a computer if the attacker can physically access it; they could dismount the hard drives to connect them to a computer under their own control anyway, or even steal the entire machine, or erase the BIOS memory to reset the password…"
-msgstr "最後に、ほとんどの BIOS では、汎用的なパスワードが使えることに注意してください。当初、汎用パスワードはパスワードを忘れた人向けのトラブルシューティングを意図していましたが、今や汎用パスワードは公開され Internet から入手できます (ご自分の手で、検索エンジンで「generic BIOS passwords」を検索してみてください)。これらの保護により、マシンへの不正アクセスを完全に防ぐことは出来ないにせよ、それを遅らせる事になるでしょう。攻撃者が物理的にコンピュータにアクセスできる場合、確実にコンピュータを保護する方法はありません; 攻撃者はハードドライブを取り外して自分の制御下にあるコンピュータに接続したり、マシン本体ごと盗んだり、パスワードをリセットするために BIOS メモリを消去することも可能です。"
+msgstr "最後に、ほとんどの BIOS では、汎用的なパスワードが使えることに注意してください。当初、汎用パスワードはパスワードを忘れた人向けのトラブルシューティングを意図していましたが、今や汎用パスワードは公開されインターネットから入手できます (ご自分の手で、検索エンジンで「generic BIOS passwords」を検索してみてください)。これらの保護により、マシンへの不正アクセスを完全に防ぐことはできないにせよ、それを遅らせる事になるでしょう。攻撃者が物理的にコンピュータにアクセスできる場合、確実にコンピュータを保護する方法はありません; 攻撃者はハードドライブを取り外して自分の制御下にあるコンピュータに接続したり、マシン本体ごと盗んだり、パスワードをリセットするために BIOS メモリを消去する事も可能です…"
 
 #. Tag: title
 #, no-c-format
@@ -252,12 +252,12 @@ msgstr "<primary><emphasis role=\"pkg\">kmod</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "After this stage, <command>init</command> takes over and starts the programs enabled in the default runlevel (which is usually runlevel 2). It executes <command>/etc/init.d/rc 2</command>, a script that starts all services which are listed in <filename>/etc/rc2.d/</filename> and whose name start with the “S” letter. The two-figures number that follows had historically been used to define the order in which services had to be started, but nowadays the default boot system uses <command>insserv</command>, which schedules everything automatically based on the scripts' dependencies. Each boot script thus declares the conditions that must be met to start or stop the service (for example, if it must start before or after another service); <command>init</command> then launches them in the order that meets these conditions. The static numbering of scripts is therefore no longer taken into consideration (but they must always have a name beginning with “S” followed by two digits and the actual name of the script used for the dependencies). Generally, base services (such as logging with <command>rsyslog</command>, or port assignment with <command>portmap</command>) are started first, followed by standard services and the graphical interface (<command>gdm</command>)."
-msgstr "この段階の後、<command>init</command> が引き継ぎ、デフォルトランレベル (通常ランレベル 2) で有効化されたプログラムを起動します。<command>init</command> は <command>/etc/init.d/rc 2</command> を実行します。これは <filename>/etc/rc2.d/</filename> 置かれて、「S」で始まる名前の全てのサービスを開始するスクリプトです。「S」の後に続く 2 桁の数字は、歴史的言って、起動するサービスの順番を定義するために使われていました。しかし今やデフォルトの起動システムは <command>insserv</command> を使って、スクリプト同士の依存関係に従った起動順を自動的に決定します。このため、各起動スクリプトはサービスを起動または終了させる時に満足しなければいけない条件を宣言します (例えば、あるサービスは他のサービスの前または後に起動しなければいけないなど); そして、<command>init</command> は条件を満足するようにサービスを起動します。このため、スクリプトの静的な番号付けはもはや考慮されません (しかしスクリプトの名前は必ず「S」で始まり、その後ろに 2 桁の番号を付け、依存関係に使われる実際のスクリプトの名前を続けなければいけません)。一般に、基本システム (ログ記録を担当する <command>rsyslog</command> やポート割り当てを担当する <command>portmap</command>) が最初に起動され、その後に標準的なサービスとグラフィカルインターフェイス (<command>gdm</command>) が起動されます。"
+msgstr "この段階の後、<command>init</command> が引き継ぎ、デフォルトランレベル (通常ランレベル 2) で有効化されたプログラムを起動します。<command>init</command> は <command>/etc/init.d/rc 2</command> を実行します。これは <filename>/etc/rc2.d/</filename> 置かれて、「S」で始まる名前のすべてのサービスを開始するスクリプトです。「S」の後に続く 2 桁の数字は、歴史的言って、起動するサービスの順番を定義するために使われていました。しかし今やデフォルトの起動システムは <command>insserv</command> を使って、スクリプト同士の依存関係に従った起動順を自動的に決定します。このため、各起動スクリプトはサービスを起動または終了させる時に満足しなければいけない条件を宣言します (例えば、あるサービスは他のサービスの前または後に起動しなければいけないなど); そして、<command>init</command> は条件を満足するようにサービスを起動します。このため、スクリプトの静的な番号付けはもはや考慮されません (しかしスクリプトの名前は必ず「S」で始まり、その後ろに 2 桁の番号を付け、依存関係に使われる実際のスクリプトの名前を続けなければいけません)。一般に、ベースシステム (ログ記録を担当する <command>rsyslog</command> やポート割り当てを担当する <command>portmap</command>) が最初に起動され、その後に標準的なサービスとグラフィカルインターフェース (<command>gdm</command>) が起動されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "This dependency-based boot system makes it possible to automate re-numbering, which could be rather tedious if it had to be done manually, and it limits the risks of human error, since scheduling is conducted according to the parameters that are indicated. Another benefit is that services can be started in parallel when they are independent from one another, which can accelerate the boot process."
-msgstr "この依存関係に基づく起動システムのお陰で、自動的な起動順の再定義が可能になります。これは手作業でやるにはちょっと退屈な作業で、人的ミスの危険性があります。なぜなら、起動順は宣言された依存関係に従って定義されるからです。別の利益として、他のサービスに依存しないサービスは並列して開始できるという点があります。この事により、起動プロセスを加速する事ができます。"
+msgstr "この依存関係に基づく起動システムのお陰で、自動的な起動順の再定義が可能になります。これは手作業でやるにはちょっと退屈な作業で、人的ミスの危険性があります。なぜなら、起動順は宣言された依存関係に従って定義されるからです。別の利益として、他のサービスに依存しないサービスは並列して開始できるという点があります。この事により、起動処理を加速する事ができます。"
 
 #. Tag: title
 #, no-c-format
@@ -282,7 +282,7 @@ msgstr "Debian は <command>upstart</command> システムをまだ完全に試�
 #. Tag: para
 #, no-c-format
 msgid "Another new option that is gaining a lot of traction is <command>systemd</command>. Its approach is opposite to the previous systems; instead of preemptively launching all services, and having to deal with the question of scheduling, <command>systemd</command> chooses to start services on demand, somewhat along the principle of <command>inetd</command>. But this means that the boot system must be able to know how services are made available (it could be through a socket, a filesystem, or others), and thus requires small modifications of those services. It also provides backwards compatibility to System V init scripts."
-msgstr "別の新しい選択肢は <command>systemd</command> で、多くの注目を集めています。<command>systemd</command> は前に挙げたシステムと対極のやり方を取ります; 事前に全てのサービスを起動して、起動順の問題を解決する代わりに、<command>systemd</command> は要求に応じてサービスを起動します。これは若干 <command>inetd</command> の原則と似ています。しかしこれは、起動システムは必ずサービスを利用可能にする方法を知らなければいけない (ソケット、ファイルシステム、その他を介すことで可能です) こと、を意味しており、サービスはこれに合わせて挙動を少し変更しなければいけません。さらに <command>systemd</command> は System V init スクリプトに対する後方互換性を提供します。"
+msgstr "別の新しい選択肢は <command>systemd</command> で、多くの注目を集めています。<command>systemd</command> は前に挙げたシステムと対極のやり方を取ります; 事前にすべてのサービスを起動して、起動順の問題を解決する代わりに、<command>systemd</command> は要求に応じてサービスを起動します。これは若干 <command>inetd</command> の原則と似ています。しかしこれは、起動システムは必ずサービスを利用可能にする方法を知らなければいけない (ソケット、ファイルシステム、その他を介すことで可能です) こと、を意味しており、サービスはこれに合わせて挙動を少し変更しなければいけません。さらに <command>systemd</command> は System V init スクリプトに対する後方互換性を提供します。"
 
 #. Tag: para
 #, no-c-format
@@ -302,7 +302,7 @@ msgstr "<primary>レベル、ランレベル</primary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>init</command> distinguishes several runlevels, so it can switch from one to another with the <command>telinit <replaceable>new-level</replaceable></command> command. Immediately, <command>init</command> executes <command>/etc/init.d/rc</command> again with the new runlevel. This script will then start the missing services and stop those that are no longer desired. To do this, it refers to the content of the <filename>/etc/rc<replaceable>X</replaceable>.d</filename> (where <replaceable>X</replaceable> represents the new runlevel). Scripts starting with “S” (as in “Start”) are services to be started; those starting with “K” (as in “Kill”) are the services to be stopped. The script does not start any service that was already active in the previous runlevel."
-msgstr "<command>init</command> は幾つかのランレベルを区別します。そうすることで、<command>telinit <replaceable>new-level</replaceable></command> コマンドを使ってあるランレベルから別のランレベルに切り替える事ができます。即座に <command>init</command> は新しいランレベルで <command>/etc/init.d/rc</command> を再実行します。このスクリプトは欠けているサービスを開始し、もはや不要なサービスを停止します。これを行うために、<command>init</command> は <filename>/etc/rc<replaceable>X</replaceable>.d</filename> の内容を参照します (ここで <replaceable>X</replaceable> は新しいランレベルです)。(「Start」の)「S」で始まるスクリプトは開始されるサービスです; (「Kill」の)「K」で始まるスクリプトは停止されるサービスです。このスクリプトは前のランレベルですでに起動されているサービスは開始しません。"
+msgstr "<command>init</command> は幾つかのランレベルを区別します。そうすることで、<command>telinit <replaceable>new-level</replaceable></command> コマンドを使ってあるランレベルから別のランレベルに切り替える事ができます。即座に <command>init</command> は新しいランレベルで <command>/etc/init.d/rc</command> を再実行します。このスクリプトは欠けているサービスを開始し、もはや不要なサービスを停止します。これを行うために、<command>init</command> は <filename>/etc/rc<replaceable>X</replaceable>.d</filename> の内容を参照します (ここで <replaceable>X</replaceable> は新しいランレベルです)。(「Start」の)「S」で始まるスクリプトは開始されるサービスです; (「Kill」の)「K」で始まるスクリプトは停止されるサービスです。このスクリプトは前のランレベルで既に起動されているサービスは開始しません。"
 
 #. Tag: para
 #, no-c-format
@@ -322,7 +322,7 @@ msgstr "シングルユーザモードとしても知られるレベル 1 はシ
 #. Tag: para
 #, no-c-format
 msgid "Level 2 is the level for normal operation, which includes networking services, a graphical interface, user logins, etc."
-msgstr "レベル 2 は通常動作用のモードで、ネットワークサービス、グラフィカルインターフェイス、ユーザログイン等の機能を使うことが出来ます。"
+msgstr "レベル 2 は通常動作用のモードで、ネットワークサービス、グラフィカルインターフェース、ユーザログイン等の機能を使う事が可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -347,7 +347,7 @@ msgstr "<primary>初期化スクリプト</primary>"
 #. Tag: para
 #, no-c-format
 msgid "All the scripts contained in the various <filename>/etc/rc<replaceable>X</replaceable>.d</filename> directories are really only symbolic links — created upon package installation by the <command>update-rc.d</command> program — pointing to the actual scripts which are stored in <filename>/etc/init.d/</filename>. The administrator can fine tune the services available in each runlevel by re-running <command>update-rc.d</command> with adjusted parameters. The <citerefentry><refentrytitle>update-rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> manual page describes the syntax in detail. Please note that removing all symbolic links (with the <literal>remove</literal> parameter) is not a good method to disable a service. Instead you should simply configure it to not start in the desired runlevel (while preserving the corresponding calls to stop it in the event that the service runs in the previous runlevel). Since <command>update-rc.d</command> has a somewhat convoluted interface, you may prefer using <command>rcconf</command> (from the <emphasis role=\"pkg\">rcconf</emphasis> package) which provides a more user-friendly interface."
-msgstr "様々な <filename>/etc/rc<replaceable>X</replaceable>.d</filename> ディレクトリに含まれる全てのスクリプトは <filename>/etc/init.d/</filename> に格納されたスクリプトの実体を指すシンボリックリンク - パッケージのインストール時に <command>update-rc.d</command> プログラムによって作られます - に過ぎません。管理者は、調整したパラメータを与えて <command>update-rc.d</command> を再実行して、各ランレベルで利用可能なサービスを微調整する事が可能です。<command>update-rc.d</command> の構文は <citerefentry><refentrytitle>update-rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> マニュアルページに詳しく説明されています。サービスを無効化する目的で、(<literal>remove</literal> パラメータを付けて) 全てのシンボリックリンクを削除するのは悪い方法であるという点に注意してください。その代わりに、単純に希望するランレベルでそのサービスを起動しないよう設定するべきです (一方で、万が一、前のランレベルでそのサービスが実行されている場合に備えて、そのランレベルでもサービスを停止するために必要なシンボリックリンクを確保しておくべきです)。<command>update-rc.d</command> は複雑なインターフェイスを持っているため、(<emphasis role=\"pkg\">rcconf</emphasis> パッケージの提供する) <command>rcconf</command> を使いたいと思うかもしれません。<command>rcconf</command> はよりユーザにとって使い勝手の良いインターフェイスを提供します。"
+msgstr "様々な <filename>/etc/rc<replaceable>X</replaceable>.d</filename> ディレクトリに含まれるすべてのスクリプトは <filename>/etc/init.d/</filename> に格納されたスクリプトの実体を指すシンボリックリンク - パッケージのインストール時に <command>update-rc.d</command> プログラムによって作られます - に過ぎません。管理者は、調整したパラメータを与えて <command>update-rc.d</command> を再実行して、各ランレベルで利用可能なサービスを微調整する事が可能です。<command>update-rc.d</command> の構文は <citerefentry><refentrytitle>update-rc.d</refentrytitle><manvolnum>1</manvolnum></citerefentry> マニュアルページに詳しく説明されています。サービスを無効化する目的で、(<literal>remove</literal> パラメータを付けて) すべてのシンボリックリンクを削除するのは悪い方法であるという点に注意してください。その代わりに、単純に希望するランレベルでそのサービスを起動しないよう設定するべきです (一方で、万が一、前のランレベルでそのサービスが実行されている場合に備えて、そのランレベルでもサービスを停止するために必要なシンボリックリンクを確保しておくべきです)。<command>update-rc.d</command> は複雑なインターフェースを持っているため、(<emphasis role=\"pkg\">rcconf</emphasis> パッケージの提供する) <command>rcconf</command> を使いたいと思うかもしれません。<command>rcconf</command> はよりユーザにとって使い勝手の良いインターフェースを提供します。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -377,7 +377,7 @@ msgstr "<primary>サービスの再起動</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The maintainer scripts for Debian packages will sometimes restart certain services to ensure their availability or get them to take certain options into account. The command that controls a service — <command>/etc/init.d/<replaceable>service</replaceable> <replaceable>operation</replaceable></command> — doesn't take runlevel into consideration, assumes (wrongly) that the service is currently being used, and may thus initiate incorrect operations (starting a service that was deliberately stopped, or stopping a service that is already stopped, etc.). Debian therefore introduced the <command>invoke-rc.d</command> program: this program must be used by maintainer scripts to run services initialization scripts and it will only execute the necessary commands. Note that, contrary to common usage, the <filename>.d</filename> suffix is used here in a program name, and not in a directory."
-msgstr "Debian のメンテナスクリプトは、サービスを利用可能にするためか、特定のオプションを考慮するために、特定のサービスを再起動することがあります。サービスを操作するコマンド - <command>/etc/init.d/<replaceable>service</replaceable> <replaceable>operation</replaceable></command> - はランレベルを考慮しません。サービスが現在使用中であると (間違って) 仮定し、間違った操作 (故意に停止されたサービスの開始や既に停止されたサービスの停止など) を開始するかもしれません。このため Debian は <command>invoke-rc.d</command> プログラムを導入しました: メンテナスクリプト内でサービス初期化スクリプトを実行する場合は、必ずこのプログラムを使わなければいけません。このプログラムは必要なコマンドを実行するだけです。通常の使い方と異なり、ディレクトリではなくプログラム名に <filename>.d</filename> サフィックスが使われている点に注意してください。"
+msgstr "Debian のメンテナスクリプトは、サービスを利用可能にするためか、特定のオプションを考慮するために、特定のサービスを再起動する事があります。サービスを操作するコマンド - <command>/etc/init.d/<replaceable>service</replaceable> <replaceable>operation</replaceable></command> - はランレベルを考慮しません。サービスが現在使用中であると (間違って) 仮定し、間違った操作 (故意に停止されたサービスの開始や既に停止されたサービスの停止など) を開始するかもしれません。このため Debian は <command>invoke-rc.d</command> プログラムを導入しました: メンテナスクリプト内でサービス初期化スクリプトを実行する場合は、必ずこのプログラムを使わなければいけません。このプログラムは必要なコマンドを実行するだけです。通常の使い方と異なり、ディレクトリではなくプログラム名に <filename>.d</filename> サフィックスが使われている点に注意してください。"
 
 #. Tag: para
 #, no-c-format
@@ -467,7 +467,7 @@ msgstr "<primary>Secure Shell</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>SSH</emphasis> (Secure SHell) protocol was designed with security and reliability in mind. Connections using SSH are secure: the partner is authenticated and all data exchanges are encrypted."
-msgstr "<emphasis>SSH</emphasis> (Secure SHell) プロトコルは安全性と信頼性を念頭に置いて設計されました。SSH を使う接続は安全です: 通信相手は認証され、交換されるデータは全て暗号化されます。"
+msgstr "<emphasis>SSH</emphasis> (Secure SHell) プロトコルは安全性と信頼性を念頭に置いて設計されました。SSH を使う接続は安全です: 通信相手は認証され、交換されるデータはすべて暗号化されます。"
 
 #. Tag: title
 #, no-c-format
@@ -497,7 +497,7 @@ msgstr "<emphasis>VOCABULARY</emphasis> 認証、暗号化"
 #. Tag: para
 #, no-c-format
 msgid "When you need to give a client the ability to conduct or trigger actions on a server, security is important. You must ensure the identity of the client; this is authentication. This identity usually consists of a password that must be kept secret, or any other client could get the password. This is the purpose of encryption, which is a form of encoding that allows two systems to communicate confidential information on a public channel while protecting it from being readable to others."
-msgstr "サーバ上でクライアントが活動を行ったり始めることを許可する必要がある場合、安全性が重要です。必ずクライアントの本人確認を必要とします; これが認証です。通常、本人確認はパスワードを使って行います。パスワードは人目に触れさせてはいけません。さもなくば、他のクライアントがパスワードを取得できてしまいます。これが暗号化の目的です。暗号化は符号化の形をしています。暗号化することで、2 つのシステムが公衆回線を使って秘密の情報を他人に読まれないように保護した状態でやり取りすることが可能になります。"
+msgstr "サーバ上でクライアントが活動を行ったり始める事を許可する必要がある場合、安全性が重要です。必ずクライアントの本人確認を必要とします; これが認証です。通常、本人確認はパスワードを使って行います。パスワードは人目に触れさせてはいけません。さもなくば、他のクライアントがパスワードを取得できてしまいます。これが暗号化の目的です。暗号化は符号化の形をしています。暗号化することで、2 つのシステムが公衆回線を使って秘密の情報を他人に読まれないように保護した状態でやり取りする事が可能になります。"
 
 #. Tag: para
 #, no-c-format
@@ -511,13 +511,13 @@ msgstr "さらに SSH は 2 種類のファイル転送サービスを提供し�
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
-msgstr "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
+msgid "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>"
+msgstr "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>"
 
 #. Tag: para
 #, no-c-format
 msgid "<command>sftp</command> is an interactive command, similar to <command>ftp</command>. In a single session, <command>sftp</command> can transfer several files, and it is possible to manipulate remote files with it (delete, rename, change permissions, etc.)."
-msgstr "<command>sftp</command> は対話的コマンドで <command>ftp</command> に似ています。<command>sftp</command> は単一のセッションの中で、複数のファイルを転送したり、リモートのファイルを操作 (削除、リネーム、パーミッション変更など) することが可能です。"
+msgstr "<command>sftp</command> は対話的コマンドで <command>ftp</command> に似ています。<command>sftp</command> は単一のセッションの中で、複数のファイルを転送したり、リモートのファイルを操作 (削除、リネーム、パーミッション変更など) する事が可能です。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -532,7 +532,7 @@ msgstr "<primary><command>sftp</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Debian uses OpenSSH, a free version of SSH maintained by the <command>OpenBSD</command> project (a free operating system based on the BSD kernel, focused on security) and fork of the original SSH software developed by the SSH Communications Security Corp company, of Finland. This company initially developed SSH as free software, but eventually decided to continue its development under a proprietary license. The OpenBSD project then created OpenSSH to maintain a free version of SSH."
-msgstr "Debian は OpenSSH を使います。OpenSSH は SSH のフリー版で <command>OpenBSD</command> (BSD カーネルに基づき、安全性を重要視するフリーオペレーティングシステム) によって保守されており、フィンランドの SSH Communications Security Corp 社が開発した元祖 SSH ソフトウェアのフォークです。SSH Communications Security Corp 社は当初 SSH をフリーソフトウェアとして開発していましたが、結局プロプライエタリライセンスで開発を続けることを決定しました。そして OpenBSD プロジェクトが SSH のフリー版として保守するために OpenSSH を作成しました。"
+msgstr "Debian は OpenSSH を使います。OpenSSH は SSH のフリー版で <command>OpenBSD</command> (BSD カーネルに基づき、安全性を重要視するフリーオペレーティングシステム) によって保守されており、フィンランドの SSH Communications Security Corp 社が開発した元祖 SSH ソフトウェアのフォークです。SSH Communications Security Corp 社は当初 SSH をフリーソフトウェアとして開発していましたが、結局プロプライエタリライセンスで開発を続ける事を決定しました。そして OpenBSD プロジェクトが SSH のフリー版として保守するために OpenSSH を作成しました。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -577,7 +577,7 @@ msgstr "リモートサーバはユーザを認証するために SSH でログ�
 #. Tag: para
 #, no-c-format
 msgid "The user generates a key pair on the client machine with <command>ssh-keygen -t rsa</command>; the public key is stored in <filename>~/.ssh/id_rsa.pub</filename>, while the corresponding private key is stored in <filename>~/.ssh/id_rsa</filename>. The user then uses <command>ssh-copy-id <replaceable>server</replaceable></command> to add their public key to the <filename>~/.ssh/authorized_keys</filename> file on the server. If the private key was not protected with a “passphrase” at the time of its creation, all subsequent logins on the server will work without a password. Otherwise, the private key must be decrypted each time by entering the passphrase. Fortunately, <command>ssh-agent</command> allows us to keep private keys in memory to not have to regularly re-enter the password. For this, you simply use <command>ssh-add</command> (once per work session) provided that the session is already associated with a functional instance of <command>ssh-agent</command>. Debian activates it by default in graphical sessions, but this can be deactivated by changing <filename>/etc/X11/Xsession.options</filename>. For a console session, you can manually start it with <command>eval $(ssh-agent)</command>."
-msgstr "ユーザはクライアントマシンで <command>ssh-keygen -t rsa</command> を使って鍵ペアを生成します; 公開鍵は <filename>~/.ssh/id_rsa.pub</filename> に保存され、一方で対応する秘密鍵は <filename>~/.ssh/id_rsa</filename> に保存されます。その後ユーザは <command>ssh-copy-id <replaceable>server</replaceable></command> を使って、自分の公開鍵をサーバの <filename>~/.ssh/authorized_keys</filename> ファイルに追加します。秘密鍵を生成した際に「パスフレーズ」で保護しなかった場合、公開鍵を登録したサーバに対する以降全てのログインでパスワードは不要です。そうでなければ、秘密鍵を使う際は毎回パスフレーズを入力して復号化しなければいけません。幸いなことに、<command>ssh-agent</command> を使えば秘密鍵がメモリ内に保存され、パスワードを日常的に再入力しなくても良くなります。これを実現するには、セッションが既に機能する<command>ssh-agent</command> のインスタンスに関連付けられている条件下で、単純に (作業セッション毎に 1 回) <command>ssh-add</command> を使ってください。Debian はグラフィカルセッションではデフォルトでこれを有効化しますが、<filename>/etc/X11/Xsession.options</filename> を変更すれば無効化することも可能です。コンソールセッションでは、<command>eval $(ssh-agent)</command> を使って手作業で開始できます。"
+msgstr "ユーザはクライアントマシンで <command>ssh-keygen -t rsa</command> を使って鍵ペアを生成します; 公開鍵は <filename>~/.ssh/id_rsa.pub</filename> に保存され、一方で対応する秘密鍵は <filename>~/.ssh/id_rsa</filename> に保存されます。その後ユーザは <command>ssh-copy-id <replaceable>server</replaceable></command> を使って、自分の公開鍵をサーバの <filename>~/.ssh/authorized_keys</filename> ファイルに追加します。秘密鍵を生成した際に「パスフレーズ」で保護しなかった場合、公開鍵を登録したサーバに対する以降すべてのログインでパスワードは不要です。そうでなければ、秘密鍵を使う際は毎回パスフレーズを入力して復号化しなければいけません。幸いなことに、<command>ssh-agent</command> を使えば秘密鍵がメモリ内に保存され、パスワードを日常的に再入力しなくても良くなります。これを実現するには、セッションが既に機能する<command>ssh-agent</command> のインスタンスに関連付けられている条件下で、単純に (作業セッション毎に 1 回) <command>ssh-add</command> を使ってください。Debian はグラフィカルセッションではデフォルトでこれを有効化しますが、<filename>/etc/X11/Xsession.options</filename> を変更すれば無効化する事も可能です。コンソールセッションでは、<command>eval $(ssh-agent)</command> を使って手作業で開始できます。"
 
 #. Tag: title
 #, no-c-format
@@ -587,7 +587,7 @@ msgstr "<emphasis>SECURITY</emphasis> 秘密鍵の保護"
 #. Tag: para
 #, no-c-format
 msgid "Whoever has the private key can login on the account thus configured. This is why access to the private key is protected by a “passphrase”. Someone who acquires a copy of a private key file (for example, <filename>~/.ssh/id_rsa</filename>) still has to know this phrase in order to be able to use it. This additional protection is not, however, impregnable, and if you think that this file has been compromised, it is best to disable that key on the computers in which it has been installed (by removing it from the <filename>authorized_keys</filename> files) and replacing it with a newly generated key."
-msgstr "秘密鍵を持つものは誰でも、対応する公開鍵を登録したアカウントにログインすることが可能です。このため、秘密鍵の利用は「パスフレーズ」で保護されています。秘密鍵ファイル (例えば <filename>~/.ssh/id_rsa</filename>) のコピーを不正に入手した人が秘密鍵を使うためには、パスフレーズを知らなければいけません。しかしながら、この追加的な保護は堅固ではありません。秘密鍵ファイルが不正に使われていると感じた場合、その秘密鍵に対応する公開鍵をインストールしたコンピュータでその公開鍵を使わないで (<filename>authorized_keys</filename> ファイルから公開鍵を削除して)、新しく生成した鍵で公開鍵を置き換えるのが最良です。"
+msgstr "秘密鍵を持つものは誰でも、対応する公開鍵を登録したアカウントにログインする事が可能です。このため、秘密鍵の利用は「パスフレーズ」で保護されています。秘密鍵ファイル (例えば <filename>~/.ssh/id_rsa</filename>) のコピーを不正に入手した人が秘密鍵を使うためには、パスフレーズを知らなければいけません。しかしながら、この追加的な保護は堅固ではありません。秘密鍵ファイルが不正に使われていると感じた場合、その秘密鍵に対応する公開鍵をインストールしたコンピュータでその公開鍵を使わないで (<filename>authorized_keys</filename> ファイルから公開鍵を削除して)、新しく生成した鍵で公開鍵を置き換えるのが最良です。"
 
 #. Tag: title
 #, no-c-format
@@ -602,17 +602,17 @@ msgstr "当初 Debian <emphasis role=\"distribution\">Etch</emphasis> から配�
 #. Tag: para
 #, no-c-format
 msgid "Specifically, whenever OpenSSL was used to generate a key, it always produced a key within a known set of hundreds of thousands of keys (32,000 multiplied by a small number of key lengths). This affected SSH keys, SSL keys, and X.509 certificates used by numerous applications, such as OpenVPN. A cracker had only to try all of the keys to gain unauthorized access. To reduce the impact of the problem, the SSH daemon was modified to refuse problematic keys that are listed in the <emphasis role=\"pkg\">openssh-blacklist</emphasis> and <emphasis role=\"pkg\">openssh-blacklist-extra</emphasis> packages. Additionally, the <command>ssh-vulnkey</command> command allows identification of possibly compromised keys in the system."
-msgstr "具体的に言えば、OpenSSL を使って鍵を生成した場合、生成された鍵は常に数十万 (32,000 かける鍵長種数) の既知の範囲内に有る鍵の内の 1 つになります。この脆弱性は、例えば OpenVPN など数多くのアプリケーションが使う SSH 鍵、SSL 鍵、X.509 証明書に、影響を与えました。クラッカーは、鍵を全種類試すだけで、不正にアクセスすることが可能でした。この問題の影響を減らす目的で、SSH デーモンは <emphasis role=\"pkg\">openssh-blacklist</emphasis> と <emphasis role=\"pkg\">openssh-blacklist-extra</emphasis> パッケージにリストされている問題の有る鍵を拒否するように変更されました。更に、<command>ssh-vulnkey</command> コマンドを使えば、システム内からこの脆弱性の影響を受けているかもしれない鍵を識別することが可能です。"
+msgstr "具体的に言えば、OpenSSL を使って鍵を生成した場合、生成された鍵は常に数十万 (32,000 かける鍵長種数) の既知の範囲内に有る鍵の内の 1 つになります。この脆弱性は、例えば OpenVPN など数多くのアプリケーションが使う SSH 鍵、SSL 鍵、X.509 証明書に、影響を与えました。クラッカーは、鍵を全種類試すだけで、不正にアクセスする事が可能でした。この問題の影響を減らす目的で、SSH デーモンは <emphasis role=\"pkg\">openssh-blacklist</emphasis> と <emphasis role=\"pkg\">openssh-blacklist-extra</emphasis> パッケージにリストされている問題の有る鍵を拒否するように変更されました。更に、<command>ssh-vulnkey</command> コマンドを使えば、システム内からこの脆弱性の影響を受けているかもしれない鍵を識別する事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "A more thorough analysis of this incident brings to light that it is the result of multiple (small) problems, both at the OpenSSL project, as well as with the Debian package maintainer. A widely used library like OpenSSL should — without modifications — not generate warnings when tested by <command>valgrind</command>. Furthermore, the code (especially the parts as sensitive as the RNG) should be better commented to prevent such errors. The Debian maintainer, for his part, wanting to validate his modifications with the OpenSSL developers, simply explained his modifications without providing them the corresponding patch to review. He also did not clearly identify himself as the maintainer of the corresponding Debian package. Finally, in his maintenance choices, the maintainer did not clearly document the changes made to the original code; all the modifications are effectively stored in a Subversion repository, but they ended up all lumped into one single patch during creation of the source package."
-msgstr "この出来事をいっそう詳しく調べると、これは OpenSSL プロジェクトおよび Debian パッケージメンテナ双方の持つ多数の (小さな) 問題の結果であるということが、明らかになります。OpenSSL のように広く使われるライブラリは - 修正せずとも - <command>valgrind</command> でテストした時に警告を出すべきではありません。更に、コード (特に RNG と同様に慎重な箇所) はこのような誤解を避ける目的で詳しい注釈を付けられるべきです。Debian メンテナについて言えば、彼は OpenSSL 開発者から自分の修正に対する検証を受けることを望んでいながら、自分の修正について詳しく説明せず、修正の検証に必要なパッチを OpenSSL 開発者に提供することもしませんでした。さらに、彼は自分が OpenSSL に対応する Debian パッケージのメンテナであることを明らかにしませんでした。最終的に、彼のメンテナンス上の方針で、メンテナは文書の中で元のコードに対して行った修正を明らかにしませんでした; 全ての修正は Subversion リポジトリに効果的に保存されますが、最終的に全ての修正はソースパッケージの作成中に 1 つのパッチにまとめられました。"
+msgstr "この出来事をいっそう詳しく調べると、これは OpenSSL プロジェクトおよび Debian パッケージメンテナ双方の持つ多数の (小さな) 問題の結果であるという事が、明らかになります。OpenSSL のように広く使われるライブラリは - 修正せずとも - <command>valgrind</command> でテストした時に警告を出すべきではありません。更に、コード (特に RNG と同様に慎重な箇所) はこのような誤解を避ける目的で詳しい注釈を付けられるべきです。Debian メンテナについて言えば、彼は OpenSSL 開発者から自分の修正に対する検証を受ける事を望んでいながら、自分の修正について詳しく説明せず、修正の検証に必要なパッチを OpenSSL 開発者に提供する事もしませんでした。さらに、彼は自分が OpenSSL に対応する Debian パッケージのメンテナである事を明らかにしませんでした。最終的に、彼のメンテナンス上の方針で、メンテナは文書の中で元のコードに対して行った修正を明らかにしませんでした; すべての修正は Subversion リポジトリに効果的に保存されますが、最終的にすべての修正はソースパッケージの作成中に 1 つのパッチにまとめられました。"
 
 #. Tag: para
 #, no-c-format
 msgid "It is difficult under such conditions to find the corrective measures to prevent such incidents from recurring. The lesson to be learned here is that every divergence Debian introduces to upstream software must be justified, documented, submitted to the upstream project when possible, and widely publicized. It is from this perspective that the new source package format (“3.0 (quilt)”) and the Debian patch tracker were developed. <ulink type=\"block\" url=\"http://patch-tracker.debian.org\" />"
-msgstr "このような状況下で、これと同様の出来事が繰り返されることを避けるための適切な矯正措置を見つけるのは難しいです。ここで覚えておくべき教訓は、Debian が上流開発ソフトウェアに対して導入した全ての変更は、正当化され、文書化され、可能であれば上流プロジェクトに提出され、広く公開されなければいけない、ということです。この視点から、新しいソースパッケージフォーマット (「3.0 (quilt)」) と Debian パッチ追跡システムが開発されました。<ulink type=\"block\" url=\"http://patch-tracker.debian.org\" />"
+msgstr "このような状況下で、これと同様の出来事が繰り返される事を避けるための適切な矯正措置を見つけるのは難しいです。ここで覚えておくべき教訓は、Debian が上流開発ソフトウェアに対して導入したすべての変更は、正当化され、文書化され、可能であれば上流プロジェクトに提出され、広く公開されなければいけない、という事です。この視点から、新しいソースパッケージフォーマット (「3.0 (quilt)」) と Debian パッチ追跡システムが開発されました。<ulink type=\"block\" url=\"http://patch-tracker.debian.org\" />"
 
 #. Tag: title
 #, no-c-format
@@ -622,7 +622,7 @@ msgstr "リモートの X11 アプリケーションを使う"
 #. Tag: para
 #, no-c-format
 msgid "The SSH protocol allows forwarding of graphical data (“X11” session, from the name of the most widespread graphical system in Unix); the server then keeps a dedicated channel for those data. Specifically, a graphical program executed remotely can be displayed on the X.org server of the local screen, and the whole session (input and display) will be secure. Since this feature allows remote applications to interfere with the local system, it is disabled by default. You can enable it by specifying <literal>X11Forwarding yes</literal> in the server configuration file (<filename>/etc/ssh/sshd_config</filename>). Finally, the user must also request it by adding the <literal>-X</literal> option to the <command>ssh</command> command-line."
-msgstr "SSH プロトコルを使うと、グラフィカルデータ (「X11」セッション、Unix で最も広く使われているグラフィカルシステム) を転送することが可能です; そして、サーバはこれらのデータ専用の経路を開いたままにします。具体的に言うと、リモートで実行されたグラフィカルプログラムはローカル画面の X.org サーバ上に表示され、全てのセッション (入力と表示) は安全です。この機能により、リモートアプリケーションがローカルシステムに干渉することになるため、この機能はデフォルトで無効化されています。この機能を有効化するには、サーバ設定ファイル (<filename>/etc/ssh/sshd_config</filename>) で <literal>X11Forwarding yes</literal> と指定してください。最後に、ユーザは <command>ssh</command> コマンドラインに <literal>-X</literal> オプションを追加して、転送を要求しなければいけません。"
+msgstr "SSH プロトコルを使うと、グラフィカルデータ (「X11」セッション、Unix で最も広く使われているグラフィカルシステム) を転送する事が可能です; そして、サーバはこれらのデータ専用の経路を開いたままにします。具体的に言うと、リモートで実行されたグラフィカルプログラムはローカル画面の X.org サーバ上に表示され、すべてのセッション (入力と表示) は安全です。この機能により、リモートアプリケーションがローカルシステムに干渉することになるため、この機能はデフォルトで無効化されています。この機能を有効化するには、サーバ設定ファイル (<filename>/etc/ssh/sshd_config</filename>) で <literal>X11Forwarding yes</literal> と指定してください。最後に、ユーザは <command>ssh</command> コマンドラインに <literal>-X</literal> オプションを追加して、転送を要求しなければいけません。"
 
 #. Tag: title
 #, no-c-format
@@ -637,7 +637,7 @@ msgstr "<primary>ポート転送</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Its <literal>-R</literal> and <literal>-L</literal> options allow <command>ssh</command> to create “encrypted tunnels” between two machines, securely forwarding a local TCP port (see sidebar <xref linkend=\"sidebar.tcp-udp\" />) to a remote machine or vice versa."
-msgstr "<literal>-R</literal> と <literal>-L</literal> オプションを使うと、<command>ssh</command> が 2 台のマシン間で「暗号化トンネル」を作成することが可能です。ローカル TCP ポート (傍注<xref linkend=\"sidebar.tcp-udp\" />参照) をリモートのマシンに安全に転送したりその逆も可能です。"
+msgstr "<literal>-R</literal> と <literal>-L</literal> オプションを使うと、<command>ssh</command> が 2 台のマシン間で「暗号化トンネル」を作成する事が可能です。ローカル TCP ポート (傍注<xref linkend=\"sidebar.tcp-udp\" />参照) をリモートのマシンに安全に転送したりその逆も可能です。"
 
 #. Tag: title
 #, no-c-format
@@ -657,12 +657,12 @@ msgstr "<primary>SSH トンネル</primary><seealso>VPN</seealso>"
 #. Tag: para
 #, no-c-format
 msgid "The Internet, and most LANs that are connected to it, operate in packet mode and not in connected mode, meaning that a packet issued from one computer to another is going to be stopped at several intermediary routers to find its way to its destination. You can still simulate a connected operation where the stream is encapsulated in normal IP packets. These packets follow their usual route, but the stream is reconstructed unchanged at the destination. We call this a “tunnel”, analogous to a road tunnel in which vehicles drive directly from the entrance (input) to the exit (output) without encountering any intersections, as opposed to a path on the surface that would involve intersections and changing direction."
-msgstr "インターネットとインターネットに接続されているほとんどの LAN はパケットモードで動作しており、接続モードで動作していません。これは、一方のコンピュータから他方のコンピュータに向かって送信されたパケットは、宛先への経路を見つけるために複数の中間ルータで止められることを意味しています。とは言っても、接続モードを模倣することも可能です。接続モードではストリームを普通の IP パケットの中にカプセル化します。これらのパケットは通常の経路を通過しますが、ストリームの宛先を変わりません。我々はこれを道路のトンネルにかけて「トンネル」と読んでいます。トンネルでは車両が入り口 (入力) から出口 (出力) まで交差点に遭遇すること無くまっすぐ進むのに対し、見かけ上の経路は交差点や方向の変化を伴います。"
+msgstr "インターネットとインターネットに接続されているほとんどの LAN はパケットモードで動作しており、接続モードで動作していません。これは、一方のコンピュータから他方のコンピュータに向かって送信されたパケットは、宛先への経路を見つけるために複数の中間ルータで止められる事を意味しています。とは言っても、接続モードを模倣する事も可能です。接続モードではストリームを普通の IP パケットの中にカプセル化します。これらのパケットは通常の経路を通過しますが、ストリームの宛先を変わりません。我々はこれを道路のトンネルにかけて「トンネル」と読んでいます。トンネルでは車両が入り口 (入力) から出口 (出力) まで交差点に遭遇すること無くまっすぐ進むのに対し、見かけ上の経路は交差点や方向の変化を伴います。"
 
 #. Tag: para
 #, no-c-format
 msgid "You can use this opportunity to add encryption to the tunnel: the stream that flows through it is then unrecognizable from the outside, but it is returned in decrypted form at the exit of the tunnel."
-msgstr "トンネルに暗号化機能を追加することが可能です: トンネルの中を流れるストリームは外から認識できませんが、トンネルの出口で復号化された形で返されます。"
+msgstr "トンネルに暗号化機能を追加する事が可能です: トンネルの中を流れるストリームは外から認識できませんが、トンネルの出口で復号化された形で返されます。"
 
 #. Tag: para
 #, no-c-format
@@ -697,7 +697,7 @@ msgstr "リモートグラフィカルデスクトップの利用"
 #. Tag: para
 #, no-c-format
 msgid "VNC (Virtual Network Computing) allows remote access to graphical desktops."
-msgstr "VNC (Virtual Network Computing) を使うとグラフィカルデスクトップにリモートからアクセスすることが可能になります。"
+msgstr "VNC (Virtual Network Computing) を使うとグラフィカルデスクトップにリモートからアクセスする事が可能になります。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -727,7 +727,7 @@ msgstr "<primary>デスクトップ、リモートグラフィカルデスクト
 #. Tag: para
 #, no-c-format
 msgid "This tool is mostly used for technical assistance; the administrator can see the errors that the user is facing, and show them the correct course of action without having to stand by them."
-msgstr "このツールは技術支援に使われることが多いです: 管理者はユーザが直面しているエラーを見ることが可能で、ユーザの側にいなくても正しい行動の仕方をユーザに示すことが可能です。"
+msgstr "このツールは技術支援に使われる事が多いです: 管理者はユーザが直面しているエラーを見る事が可能で、ユーザの側にいなくても正しい行動の仕方をユーザに示す事が可能です。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -747,7 +747,7 @@ msgstr "<primary><emphasis role=\"pkg\">x11vnc</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "First, the user must authorize sharing their session. The GNOME and KDE graphical desktop environments include, respectively, <command>vino</command> and <command>krfb</command>, which provide a graphical interface that allows sharing an existing session over VNC (both are identified as <emphasis>Desktop Sharing</emphasis> either in the GNOME application list or in the KDE menu). For other graphical desktop environments, the <command>x11vnc</command> command (from the Debian package of the same name) serves the same purpose; you can make it available to the user with an explicit icon."
-msgstr "最初に、ユーザは自分のセッションの権限を共有しなければいけません。GNOME と KDE グラフィカルデスクトップ環境には、それぞれ <command>vino</command> と <command>krfb</command> が含まれています。これらは VNC を通じて既存のセッションを共有する事が可能になるグラフィカルインターフェイス提供します (GNOME アプリケーションリストか KDE メニューの中にある<emphasis>デスクトップ共有</emphasis>がこのプログラムです)。他のグラフィカルデスクトップ環境に対しては、(同名の Debian パッケージの提供する) <command>x11vnc</command> コマンドがその代わりになります; 明確なアイコンを使って、ユーザがこれを使えるようにすることが可能です。"
+msgstr "最初に、ユーザは自分のセッションの権限を共有しなければいけません。GNOME と KDE グラフィカルデスクトップ環境には、それぞれ <command>vino</command> と <command>krfb</command> が含まれています。これらは VNC を通じて既存のセッションを共有する事が可能になるグラフィカルインターフェース提供します (GNOME アプリケーションリストか KDE メニューの中にある<emphasis>デスクトップ共有</emphasis>がこのプログラムです)。他のグラフィカルデスクトップ環境に対しては、<command>x11vnc</command> コマンド (同名の Debian パッケージに含まれます) がその代わりになります; 明確なアイコンを使って、ユーザがこれを使えるようにする事が可能です。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -772,7 +772,7 @@ msgstr "<primary><emphasis role=\"pkg\">xvnc4viewer</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "When the graphical session is made available by VNC, the administrator must connect to it with a VNC client. GNOME has <command>vinagre</command> and <command>remmina</command> for that, while KDE includes <command>krdc</command> (in the menu at <menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>Remote Desktop Client</guimenuitem></menuchoice>). There are other VNC clients that use the command line, such as <command>xvnc4viewer</command> in the Debian package of the same name. Once connected, the administrator can see what's going on, work on the machine remotely, and show the user how to proceed."
-msgstr "VNC がグラフィカルセッションを利用可能にしたら、管理者は VNC クライアントでセッションに接続しなければいけません。VNC クライアントとして、GNOME には <command>vinagre</command> と <command>remmina</command> が、KDE には <command>krdc</command> (<menuchoice> <guimenu>K</guimenu> <guisubmenu>Internet</guisubmenu> <guimenuitem>リモートデスクトップクライアント</guimenuitem></menuchoice>) が用意されています。コマンドラインを使う他の VNC クライアントもあります。例えば、同名の Debian パッケージが提供する<command>xvnc4viewer</command> などです。一旦セッションに接続したら、管理者は、何が起きているか見て、リモートでマシンの作業を行い、ユーザにその様子を見せることが可能です。"
+msgstr "VNC がグラフィカルセッションを利用可能にしたら、管理者は VNC クライアントでセッションに接続しなければいけません。VNC クライアントとして、GNOME には <command>vinagre</command> と <command>remmina</command> が、KDE には <command>krdc</command> (<menuchoice> <guimenu>K</guimenu> <guisubmenu>インターネット</guisubmenu> <guimenuitem>リモートデスクトップクライアント</guimenuitem></menuchoice>) が用意されています。コマンドラインを使う他の VNC クライアントもあります。例えば、同名の Debian パッケージに含まれる <command>xvnc4viewer</command> などです。一旦セッションに接続したら、管理者は、何が起きているか見て、リモートでマシンの作業を行い、ユーザにその様子を見せる事が可能です。"
 
 #. Tag: title
 #, no-c-format
@@ -787,17 +787,17 @@ msgstr "<primary>SSH トンネル</primary><secondary>VNC</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "If you want to connect by VNC, and you don't want your data sent in clear text on the network, it is possible to encapsulate the data in an SSH tunnel (see <xref linkend=\"sect.ssh-port-forwarding\" />). You simply have to know that VNC uses port 5900 by default for the first screen (called “localhost:0”), 5901 for the second (called “localhost:1”), etc."
-msgstr "VNC で接続したいけれども、データを平文でネットワークに流したくない場合、SSH トンネルでデータをカプセル化することが可能です (<xref linkend=\"sect.ssh-port-forwarding\" />参照)。知っておかなければいけない点は、VNC がデフォルトで最初の画面 (「localhost:0」と呼ばれる) にポート 5900 番、2 番目の画面に (「localhost:1」と呼ばれる) 5901 番を使うという点だけです。"
+msgstr "VNC で接続したいけれども、データを平文でネットワークに流したくない場合、SSH トンネルでデータをカプセル化する事が可能です (<xref linkend=\"sect.ssh-port-forwarding\" />参照)。知っておかなければいけない点は、VNC がデフォルトで最初の画面 (「localhost:0」と呼ばれる) にポート 5900 番、2 番目の画面に (「localhost:1」と呼ばれる) 5901 番を使うという点だけです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>ssh -L localhost:5901:localhost:5900 -N -T <replaceable>machine</replaceable></command> command creates a tunnel between local port 5901 in the localhost interface and port 5900 of the <replaceable>machine</replaceable> host. The first “localhost” restricts SSH to listening to only that interface on the local machine. The second “localhost” indicates the interface on the remote machine which will receive the network traffic entering in “localhost:5901”. Thus <command>vncviewer localhost:1</command> will connect the VNC client to the remote screen, even though you indicate the name of the local machine."
-msgstr "<command>ssh -L localhost:5901:localhost:5900 -N -T <replaceable>machine</replaceable></command> コマンドは localhost インターフェイスのポート 5901 番と<replaceable>machine</replaceable> ホストのポート 5900 番の間にトンネルを作成します。最初の「localhost」はローカルマシンのインターフェイスのみをリッスンするように SSH を制限します。2 番目の「localhost」は「localhost:5901」に入ってきたネットワークトラフィックを受け取るリモートマシンのインターフェイスを表します。そんな訳で、<command>vncviewer localhost:1</command> はローカルマシンの名前を使っているにも関わらず VNC クライアントをリモートのスクリーンに接続します。"
+msgstr "<command>ssh -L localhost:5901:localhost:5900 -N -T <replaceable>machine</replaceable></command> コマンドは localhost インターフェースのポート 5901 番と<replaceable>machine</replaceable> ホストのポート 5900 番の間にトンネルを作成します。最初の「localhost」はローカルマシンのインターフェースのみをリッスンするように SSH を制限します。2 番目の「localhost」は「localhost:5901」に入ってきたネットワークトラフィックを受け取るリモートマシンのインターフェースを表します。そんな訳で、<command>vncviewer localhost:1</command> はローカルマシンの名前を使っているにも関わらず VNC クライアントをリモートのスクリーンに接続します。"
 
 #. Tag: para
 #, no-c-format
 msgid "When the VNC session is closed, remember to close the tunnel by also quitting the corresponding SSH session."
-msgstr "VNC セッションを閉じたら、対応する SSH セッションを終了してトンネルを閉じることも忘れないで下さい。"
+msgstr "VNC セッションを閉じたら、対応する SSH セッションを終了してトンネルを閉じる事も忘れないで下さい。"
 
 #. Tag: title
 #, no-c-format
@@ -837,7 +837,7 @@ msgstr "<primary>ディスプレイマネージャ</primary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>gdm</command>, <command>kdm</command>, <command>lightdm</command>, and <command>xdm</command> are Display Managers. They take control of the graphical interface shortly after boot in order to provide the user a login screen. Once the user has logged in, they execute the programs needed to start a graphical work session."
-msgstr "<command>gdm</command>、<command>kdm</command>、<command>lightdm</command>、<command>xdm</command> はディスプレイマネージャです。ディスプレイマネージャは起動直後にログイン画面をユーザに提供する目的でグラフィカルインターフェイスを制御します。ユーザがログインしたら、ディスプレイマネージャはグラフィカル作業セッションを始めるために必要なプログラムを実行します。"
+msgstr "<command>gdm</command>、<command>kdm</command>、<command>lightdm</command>、<command>xdm</command> はディスプレイマネージャです。ディスプレイマネージャは起動直後にログイン画面をユーザに提供する目的でグラフィカルインターフェースを制御します。ユーザがログインしたら、ディスプレイマネージャはグラフィカル作業セッションを始めるために必要なプログラムを実行します。"
 
 #. Tag: para
 #, no-c-format
@@ -846,8 +846,8 @@ msgstr "また VNC は、モバイルユーザや会社幹部のような、自�
 
 #. Tag: programlisting
 #, no-c-format
-msgid "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none\n"
-msgstr "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none\n"
+msgid "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none"
+msgstr "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none"
 
 #. Tag: para
 #, no-c-format
@@ -867,7 +867,7 @@ msgstr "権限の管理"
 #. Tag: para
 #, no-c-format
 msgid "Linux is definitely a multi-user system, so it is necessary to provide a permission system to control the set of authorized operations on files and directories, which includes all the system resources and devices (on a Unix system, any device is represented by a file or directory). This principle is common to all Unix systems, but a reminder is always useful, especially as there are some interesting and relatively unknown advanced uses."
-msgstr "Linux は完全なマルチユーザシステムです。このため、ユーザの権限に基いてファイルやディレクトリに対する操作を制御するために、パーミッションシステムを提供する事が必要です。このパーミッションシステムは、全てのシステムリソースとデバイス (Unix システムでは全てのデバイスはファイルまたはディレクトリとして表現されます) を対象とします。この原理は全ての Unix システムで共通ですが、特に興味深く比較的知られていない上級の使い方があるので、注意は常に必要です。"
+msgstr "Linux は完全なマルチユーザシステムです。このため、ユーザの権限に基いてファイルやディレクトリに対する操作を制御するために、パーミッションシステムを提供する事が必要です。このパーミッションシステムは、すべてのシステムリソースとデバイス (Unix システムではすべてのデバイスはファイルまたはディレクトリとして表現されます) を対象とします。この原理はすべての Unix システムで共通ですが、特に興味深く比較的知られていない上級の使い方があるので、注意は常に必要です。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -922,7 +922,7 @@ msgstr "その他 (「other」の <literal>o</literal> で表記されます)。
 #. Tag: para
 #, no-c-format
 msgid "Three types of rights can be combined:"
-msgstr "3 種類の権限は組み合わせて使うことが可能です:"
+msgstr "3 種類の権限は組み合わせて使う事が可能です:"
 
 #. Tag: para
 #, no-c-format
@@ -962,7 +962,7 @@ msgstr "<primary>実行、権限</primary>"
 #. Tag: para
 #, no-c-format
 msgid "In the case of a file, these rights are easily understood: read access allows reading the content (including copying), write access allows changing it, and execute access allows you to run it (which will only work if it's a program)."
-msgstr "ファイルの場合、これらの権限は簡単に理解できます: 読み込み権限があれば、内容を読む (コピーを含めて) ことが可能です。書き込み権限があれば、内容を変更する事が可能です。実行権限があれば、内容を実行することが可能です (プログラムの場合のみ有効)。"
+msgstr "ファイルの場合、これらの権限は簡単に理解できます: 読み込み権限があれば、内容を読む (コピーを含めて) 事が可能です。書き込み権限があれば、内容を変更する事が可能です。実行権限があれば、内容を実行する事が可能です (プログラムの場合のみ有効)。"
 
 #. Tag: title
 #, no-c-format
@@ -972,7 +972,7 @@ msgstr "<emphasis>SECURITY</emphasis> <literal>setuid</literal> と <literal>set
 #. Tag: para
 #, no-c-format
 msgid "Two particular rights are relevant to executable files: <literal>setuid</literal> and <literal>setgid</literal> (symbolized with the letter “s”). Note that we frequently speak of “bit”, since each of these boolean values can be represented by a 0 or a 1. These two rights allow any user to execute the program with the rights of the owner or the group, respectively. This mechanism grants access to features requiring higher level permissions than those you would usually have."
-msgstr "実行ファイルに関係する 2 種類の特別な権限があります: <literal>setuid</literal> と <literal>setgid</literal> (「s」で表記されます) です。これらは「ビット」と呼ばれることが多い点に注意してください。なぜなら、これらは 0 か 1 で表されるブール値だからです。これら 2 種類の権限を使うと、実行されたプログラムは、所有者か所有グループの権限で動くことになります。このメカニズムを使うと、プログラムはプログラムを実行したユーザが通常持っているよりも高位のパーミッションを要求する機能にアクセスできるようになります。"
+msgstr "実行ファイルに関係する 2 種類の特別な権限があります: <literal>setuid</literal> と <literal>setgid</literal> (「s」で表記されます) です。これらは「ビット」と呼ばれる事が多い点に注意してください。なぜなら、これらは 0 か 1 で表されるブール値だからです。これら 2 種類の権限を使うと、実行されたプログラムは、所有者か所有グループの権限で動くことになります。このメカニズムを使うと、プログラムはプログラムを実行したユーザが通常持っているよりも高位のパーミッションを要求する機能にアクセスできるようになります。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -987,12 +987,12 @@ msgstr "<primary><literal>setgid</literal>、権限</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Since a <literal>setuid</literal> root program is systematically run under the super-user identity, it is very important to ensure it is secure and reliable. Indeed, a user who would manage to subvert it to call a command of their choice could then impersonate the root user and have all rights on the system."
-msgstr "<literal>setuid</literal> root プログラムは一貫してスーパーユーザとして実行されるため、安全で信頼できるプログラムか否かはとても重要です。実際、好きなコマンドを呼び出すために何とかしてシステムを破壊したいと思うユーザは root ユーザになりすまし、システムの全ての権限を持つ事が可能です。"
+msgstr "<literal>setuid</literal> root プログラムは一貫してスーパーユーザとして実行されるため、安全で信頼できるプログラムか否かはとても重要です。実際、好きなコマンドを呼び出すために何とかしてシステムを破壊したいと思うユーザは root ユーザになりすまし、システムのすべての権限を持つ事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "A directory is handled differently. Read access gives the right to consult the list of its entries (files and directories), write access allows creating or deleting files, and execute access allows crossing through it (especially to go there with the <command>cd</command> command). Being able to cross through a directory without being able to read it gives permission to access the entries therein that are known by name, but not to find them if you do not know their existence or their exact name."
-msgstr "ディレクトリは別のやり方で取り扱われます。読み込み権限があれば、そのエントリ (ファイルとディレクトリ) のリストを閲覧することが可能です。書き込み権限があれば、ファイルを作成および削除することが可能です。実行権限があれば、そのディレクトリを横断することが可能です (<command>cd</command> コマンドでそのディレクトリに移動できます)。ディレクトリの読み込み権限が無くてもディレクトリを横断する事ができるならば、ディレクトリ内の名前を知っているエントリにアクセスすることが可能です。ただし、エントリの存在を知らないか、エントリの完全な名前を知らない場合、そのエントリを見つけることは出来ません。"
+msgstr "ディレクトリは別のやり方で取り扱われます。読み込み権限があれば、そのエントリ (ファイルとディレクトリ) のリストを閲覧する事が可能です。書き込み権限があれば、ファイルを作成および削除する事が可能です。実行権限があれば、そのディレクトリを横断する事が可能です (<command>cd</command> コマンドでそのディレクトリに移動できます)。ディレクトリの読み込み権限が無くてもディレクトリを横断する事ができるならば、ディレクトリ内の名前を知っているエントリにアクセスする事が可能です。ただし、エントリの存在を知らないか、エントリの完全な名前を知らない場合、そのエントリを見つけることはできません。"
 
 #. Tag: title
 #, no-c-format
@@ -1042,7 +1042,7 @@ msgstr "<command>chmod <replaceable>rights</replaceable> <replaceable>file</repl
 #. Tag: para
 #, no-c-format
 msgid "There are two ways of presenting rights. Among them, the symbolic representation is probably the easiest to understand and remember. It involves the letter symbols mentioned above. You can define rights for each category of users (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>), by setting them explicitly (with <literal>=</literal>), by adding (<literal>+</literal>), or subtracting (<literal>-</literal>). Thus the <literal>u=rwx,g+rw,o-r</literal> formula gives the owner read, write, and execute rights, adds read and write rights for the owner group, and removes read rights for other users. Rights not altered by the addition or subtraction in such a command remain unmodified. The letter <literal>a</literal>, for “all”, covers all three categories of users, so that <literal>a=rx</literal> grants all three categories the same rights (read and execute, but not write)."
-msgstr "権限の指定方法には 2 種類あります。それらの中でも、記号指定が最もわかりやすく覚えやすいでしょう。これは上で述べた文字記号を使います。ユーザのカテゴリ (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>) に対する権限を (<literal>=</literal> で) 明示するか、(<literal>+</literal> で) 追加するか、(<literal>-</literal> で) 取り除く事ができます。そんな訳で、<literal>u=rwx,g+rw,o-r</literal> 式は、所有者に読み込み、書き込み、実行権限を与え、所有グループに読み込み、書き込み権限を追加し、その他のユーザから読み込み権限を奪います。追加と削除によって変更されない権限はそのままです。「all」を意味する文字 <literal>a</literal> は 3 つのユーザカテゴリ全てを表現します。このため、<literal>a=rx</literal> は全てのカテゴリのユーザに対して同じ権限 (読み込みと実行権限を与えますが、書き込み権限は与えません) を与えます。"
+msgstr "権限の指定方法には 2 種類あります。それらの中でも、記号指定が最もわかりやすく覚えやすいでしょう。これは上で述べた文字記号を使います。ユーザのカテゴリ (<literal>u</literal>/<literal>g</literal>/<literal>o</literal>) に対する権限を (<literal>=</literal> で) 明示するか、(<literal>+</literal> で) 追加するか、(<literal>-</literal> で) 取り除く事ができます。そんな訳で、<literal>u=rwx,g+rw,o-r</literal> 式は、所有者に読み込み、書き込み、実行権限を与え、所有グループに読み込み、書き込み権限を追加し、その他のユーザから読み込み権限を奪います。追加と削除によって変更されない権限はそのままです。「all」を意味する文字 <literal>a</literal> は 3 つのユーザカテゴリすべてを表現します。このため、<literal>a=rx</literal> はすべてのカテゴリのユーザに対して同じ権限 (読み込みと実行権限を与えますが、書き込み権限は与えません) を与えます。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1077,7 +1077,7 @@ msgstr "(8 進数) 数値表記は各権限を値で表現します: 読み込�
 #. Tag: para
 #, no-c-format
 msgid "For instance, the <command>chmod 754 <replaceable>file</replaceable></command> command will set the following rights: read, write and execute for the owner (since 7 = 4 + 2 + 1); read and execute for the group (since 5 = 4 + 1); read-only for others. The <literal>0</literal> means no rights; thus <command>chmod 600 <replaceable>file</replaceable></command> allows for read/write rights for the owner, and no rights for anyone else. The most frequent right combinations are <literal>755</literal> for executable files and directories, and <literal>644</literal> for data files."
-msgstr "例えば、<command>chmod 754 <replaceable>file</replaceable></command> コマンドは以下の権限を設定します: 所有者に書き込み、読み込み、実行権限 (7 = 4 + 2 + 1 なので) を設定し; 所有グループに読み込み、実行権限 (5 = 4 + 1 なので) を設定し; その他のユーザに読み込み権限を設定します。<literal>0</literal> は権限が無いことを意味します; このため <command>chmod 600 <replaceable>file</replaceable></command> は所有者に読み込み、書き込み権限を設定し、所有者以外のユーザにはいかなる権限も与えません。最もよく使われる権限の組み合わせは、実行ファイルやディレクトリの場合 <literal>755</literal> で、データファイルの場合 <literal>644</literal> です。"
+msgstr "例えば、<command>chmod 754 <replaceable>file</replaceable></command> コマンドは以下の権限を設定します: 所有者に書き込み、読み込み、実行権限 (7 = 4 + 2 + 1 なので) を設定し; 所有グループに読み込み、実行権限 (5 = 4 + 1 なので) を設定し; その他のユーザに読み込み権限を設定します。<literal>0</literal> は権限が無い事を意味します; このため <command>chmod 600 <replaceable>file</replaceable></command> は所有者に読み込み、書き込み権限を設定し、所有者以外のユーザにはいかなる権限も与えません。最もよく使われる権限の組み合わせは、実行ファイルやディレクトリの場合 <literal>755</literal> で、データファイルの場合 <literal>644</literal> です。"
 
 #. Tag: para
 #, no-c-format
@@ -1087,7 +1087,7 @@ msgstr "同じ原則に従って特別な権限を表す 4 番目の桁は先に
 #. Tag: para
 #, no-c-format
 msgid "Note that the use of octal notation only allows to set all the rights at once on a file; you can not use it to simply add a new right, such as read access for the group owner, since you must take into account the existing rights and compute the new corresponding numerical value."
-msgstr "8 進数表記の権限設定が使えるのは、あるファイルに対する全ての権限を一度に設定する場合だけです; 例えば、所有グループに読み込み権限を与えるなどの、新しい権限を追加したい場合は使えません。なぜなら、既に設定されている権限を考慮して、新しい権限を数値表記に直さなければいけないからです。"
+msgstr "8 進数表記の権限設定が使えるのは、あるファイルに対するすべての権限を一度に設定する場合だけです; 例えば、所有グループに読み込み権限を与えるなどの、新しい権限を追加したい場合は使えません。なぜなら、既に設定されている権限を考慮して、新しい権限を数値表記に直さなければいけないからです。"
 
 #. Tag: title
 #, no-c-format
@@ -1102,7 +1102,7 @@ msgstr "しばしばファイルツリー全体の権限を変更しなければ
 #. Tag: para
 #, no-c-format
 msgid "The distinction between directories and files sometimes causes problems with recursive operations. That's why the “X” letter has been introduced in the symbolic representation of rights. It represents a right to execute which applies only to directories (and not to files lacking this right). Thus, <command>chmod -R a+X <replaceable>directory</replaceable></command> will only add execute rights for all categories of users (<literal>a</literal>) for all of the sub-directories and files for which at least one category of user (even if their sole owner) already has execute rights."
-msgstr "再帰操作を行った時に、ディレクトリとファイルの間の違いが原因で、時々問題が起こります。このため、「X」文字が権限の記号表記に導入されました。「X」文字はディレクトリだけに適用される (そして実行権限の無いファイルには適用されない) 実行権限を表します。このため、<command>chmod -R a+X <replaceable>directory</replaceable></command> は、少なくとも 1 つのカテゴリのユーザ (所有者が一人しかいなくても) が既に対象の実行権限を持っている場合に、全てのカテゴリのユーザ (<literal>a</literal>) に対して全てのサブディレクトリとファイルへの実行権限を追加します。"
+msgstr "再帰操作を行った時に、ディレクトリとファイルの間の違いが原因で、時々問題が起こります。このため、「X」文字が権限の記号表記に導入されました。「X」文字はディレクトリだけに適用される (そして実行権限の無いファイルには適用されない) 実行権限を表します。このため、<command>chmod -R a+X <replaceable>directory</replaceable></command> は、少なくとも 1 つのカテゴリのユーザ (所有者が一人しかいなくても) が既に対象の実行権限を持っている場合に、すべてのカテゴリのユーザ (<literal>a</literal>) に対してすべてのサブディレクトリとファイルへの実行権限を追加します。"
 
 #. Tag: title
 #, no-c-format
@@ -1147,37 +1147,37 @@ msgstr "新しい 8 進数値でマスクを再設定したければ、<command>
 #. Tag: title
 #, no-c-format
 msgid "Administration Interfaces"
-msgstr "管理インターフェイス"
+msgstr "管理インターフェース"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>interface</primary><secondary>administration interface</secondary>"
-msgstr "<primary>インターフェイス</primary><secondary>管理インターフェイス</secondary>"
+msgstr "<primary>インターフェース</primary><secondary>管理インターフェース</secondary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>administration, interfaces</primary>"
-msgstr "<primary>管理、インターフェイス</primary>"
+msgstr "<primary>管理、インターフェース</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "Using a graphical interface for administration is interesting in various circumstances. An administrator does not necessarily know all the configuration details for all their services, and doesn't always have the time to go seeking out the documentation on the matter. A graphical interface for administration can thus accelerate the deployment of a new service. It can also simplify the setup of services which are hard to configure."
-msgstr "管理にグラフィカルインターフェイスを使うことは様々な状況で興味深いです。管理者は全てのサービスの全ての設定の詳細を知る必要はありませんし、常に問題に関連する文書を探し出すための時間があるというわけでもありません。管理用のグラフィカルインターフェイスを使うと、新しいサービスを素早く配置できるようになります。さらに、設定の難しいサービスのセットアップを単純に行うことが可能です。"
+msgstr "管理にグラフィカルインターフェースを使うことは様々な状況で興味深いです。管理者はすべてのサービスのすべての設定の詳細を知る必要はありませんし、常に問題に関連する文書を探し出すための時間があるというわけでもありません。管理用のグラフィカルインターフェースを使うと、新しいサービスを素早く配置できるようになります。さらに、設定の難しいサービスのセットアップを単純に行う事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "Such an interface is only an aid, and not an end in itself. In all cases, the administrator must master its behavior in order to understand and work around any potential problem."
-msgstr "グラフィカルインターフェイスは補助でしかなく、インターフェイス自身は目的ではありません。どんな場合でも管理者は、様々な潜在的問題を理解してに対処するために、サービスの挙動に精通しなければいけません。"
+msgstr "グラフィカルインターフェースは補助でしかなく、インターフェース自身は目的ではありません。どんな場合でも管理者は、様々な潜在的問題を理解してに対処するために、サービスの挙動に精通しなければいけません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Since no interface is perfect, you may be tempted to try several solutions. This is to be avoided as much as possible, since different tools are sometimes incompatible in their work methods. Even if they all target to be very flexible and try to adopt the configuration file as a single reference, they are not always able to integrate external changes."
-msgstr "どんなインターフェイスも完璧ではありませんから、様々なインターフェイスを試したくなるかもしれません。これは可能な限り避けるべきです。なぜなら、ツールが違えばそのやり方に互換性がないこともあるからです。ツールが、全ての目標をとても柔軟性の高い方法で取り扱い、基準としてその設定ファイルを採用しようとしていたとしても、ツールは外部からの変更を必ず統合出来るわけではありません。"
+msgstr "どんなインターフェースも完璧ではありませんから、様々なインターフェースを試したくなるかもしれません。これは可能な限り避けるべきです。なぜなら、ツールが違えばそのやり方に互換性がない事もあるからです。ツールが、すべての目標をとても柔軟性の高い方法で取り扱い、基準としてその設定ファイルを採用しようとしていたとしても、ツールは外部からの変更を必ず統合できるわけではありません。"
 
 #. Tag: title
 #, no-c-format
 msgid "Administrating on a Web Interface: <command>webmin</command>"
-msgstr "ウェブインターフェイスを使った管理: <command>webmin</command>"
+msgstr "ウェブインターフェースを使った管理: <command>webmin</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1187,7 +1187,7 @@ msgstr "<primary><emphasis>webmin</emphasis></primary>"
 #. Tag: para
 #, no-c-format
 msgid "This is, without a doubt, one of the most successful administration interfaces. It is a modular system managed through a web browser, covering a wide array of areas and tools. Furthermore, it is internationalized and available in many languages."
-msgstr "<command>webmin</command> が最も成功した管理インターフェイスの 1 つであることは間違いないでしょう。<command>webmin</command> はモジュールシステムで、ウェブブラウザから管理され、幅広い領域とツールをカバーしています。更に、<command>webmin</command> は国際化されており、多くの言語で利用可能です。"
+msgstr "<command>webmin</command> が最も成功した管理インターフェースの 1 つであることは間違いないでしょう。<command>webmin</command> はモジュールシステムで、ウェブブラウザから管理され、幅広い領域とツールをカバーしています。更に、<command>webmin</command> は国際化されており、多くの言語で利用可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -1197,7 +1197,7 @@ msgstr "残念なことに、Debian はもはや <command>webmin</command> を�
 #. Tag: para
 #, no-c-format
 msgid "There is, however, an unofficial package distributed on the <literal>webmin.com</literal> website. Contrary to the original Debian packages, this package is monolithic; all of its configuration modules are installed and activated by default, even if the corresponding service is not installed on the machine."
-msgstr "しかしながら、非公式パッケージが <literal>webmin.com</literal> ウェブサイトから配布されています。元の Debian パッケージと異なり、このパッケージは柔軟性に欠けています; 対応するサービスがマシンがインストールされているか否かに関わらず、全ての設定モジュールがインストールされ、デフォルトで有効化されます。"
+msgstr "しかしながら、非公式パッケージが <literal>webmin.com</literal> ウェブサイトから配布されています。元の Debian パッケージと異なり、このパッケージは柔軟性に欠けています; 対応するサービスがマシンがインストールされているか否かに関わらず、すべての設定モジュールがインストールされ、デフォルトで有効化されます。"
 
 #. Tag: title
 #, no-c-format
@@ -1207,17 +1207,17 @@ msgstr "<emphasis>SECURITY</emphasis> root パスワードの変更"
 #. Tag: para
 #, no-c-format
 msgid "On first login, identification is conduced with the root username and its usual password. It is recommended to change the password used for <command>webmin</command> as soon as possible, so that if it is compromised, the root password for the server will not be involved, even if this confers important administrative rights to the machine."
-msgstr "最初のログインでは、root というユーザ名と root のパスワードを使って身分証明します。可能な限り早く、<command>webmin</command> 用のパスワードを変更することを推奨します。<command>webmin</command> を使えばマシンに対する重要な管理上の権限が必要な操作が可能とは言っても、こうしておけば、<command>webmin</command> が不正アクセスを受けた場合でも、サーバの root パスワードは守られます。"
+msgstr "最初のログインでは、root というユーザ名と root のパスワードを使って身分証明します。可能な限り早く、<command>webmin</command> 用のパスワードを変更する事を推奨します。<command>webmin</command> を使えばマシンに対する重要な管理上の権限が必要な操作が可能とは言っても、こうしておけば、<command>webmin</command> が不正アクセスを受けた場合でも、サーバの root パスワードは守られます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Beware! Since <command>webmin</command> has so many features, a malicious user accessing it could compromise the security of the entire system. In general, interfaces of this kind are not recommended for important systems with strong security constraints (firewall, sensitive servers, etc.)."
-msgstr "注意してください! <command>webmin</command> は多くの機能を持っていますから、悪意あるユーザが <command>webmin</command> を使って全システムのセキュリティを侵害する事が可能です。一般に、この種のインターフェイスを強固なセキュリティを要求される重要なシステム (ファイヤーウォール、外部向けサーバなど) で使うのは推奨されません。"
+msgstr "注意してください! <command>webmin</command> は多くの機能を持っていますから、悪意あるユーザが <command>webmin</command> を使って全システムのセキュリティを侵害する事が可能です。一般に、この種のインターフェースを強固なセキュリティを要求される重要なシステム (ファイヤーウォール、外部向けサーバなど) で使うのは推奨されません。"
 
 #. Tag: para
 #, no-c-format
 msgid "Webmin is used through a web interface, but it does not require Apache to be installed. Essentially, this software has its own integrated mini web server. This server listens by default on port 10000 and accepts secure HTTP connections."
-msgstr "Webmin はウェブインターフェイスを通じて使われますが、Apache をインストールする必要はありません。元から Webmin には統合された小さなウェブサーバが含まれています。このサーバはデフォルトでポート 10000 番をリッスンし、安全な HTTP 接続を受け入れます。"
+msgstr "Webmin はウェブインターフェースを通じて使われますが、Apache をインストールする必要はありません。元から Webmin には統合された小さなウェブサーバが含まれています。このサーバはデフォルトでポート 10000 番をリッスンし、安全な HTTP 接続を受け入れます。"
 
 #. Tag: para
 #, no-c-format
@@ -1227,7 +1227,7 @@ msgstr "導入されたモジュールは多種多様なサービスをカバー
 #. Tag: para
 #, no-c-format
 msgid "all base services: creation of users and groups, management of <filename>crontab</filename> files, init scripts, viewing of logs, etc."
-msgstr "全ての基本的サービス: ユーザとグループの作成、<filename>crontab</filename> ファイルの管理、init スクリプト、ログの閲覧など。"
+msgstr "すべての基本的サービス: ユーザとグループの作成、<filename>crontab</filename> ファイルの管理、init スクリプト、ログの閲覧など。"
 
 #. Tag: para
 #, no-c-format
@@ -1272,7 +1272,7 @@ msgstr "ソフトウェア: Debian パッケージを使ったソフトウェア
 #. Tag: para
 #, no-c-format
 msgid "The administration interface is available in a web browser at <literal>https://localhost:10000</literal>. Beware! Not all the modules are directly usable. Sometimes they must be configured by specifying the locations of the corresponding configuration files and some executable files (program). Frequently the system will politely prompt you when it fails to activate a requested module."
-msgstr "ウェブブラウザで <literal>https://localhost:10000</literal> にアクセスすれば管理インターフェイスを使えます。注意してください! 全てのモジュールがすぐに使えるわけではありません。対応する設定ファイルと一部の実行ファイル (プログラム) の場所を指定して、モジュールを設定しなければいけない場合もあります。要求されたモジュールの有効化に失敗した場合、Webmin システムから丁寧な指示をもらうでしょう。"
+msgstr "ウェブブラウザで <literal>https://localhost:10000</literal> にアクセスすれば管理インターフェースを使えます。注意してください! すべてのモジュールがすぐに使えるわけではありません。対応する設定ファイルと一部の実行ファイル (プログラム) の場所を指定して、モジュールを設定しなければいけない場合もあります。要求されたモジュールの有効化に失敗した場合、Webmin システムから丁寧な指示をもらうでしょう。"
 
 #. Tag: title
 #, no-c-format
@@ -1287,7 +1287,7 @@ msgstr "<primary><emphasis role=\"pkg\">gnome-control-center</emphasis></primary
 #. Tag: para
 #, no-c-format
 msgid "The GNOME project also provides multiple administration interfaces that are usually accessible via the “Settings” entry in the user menu on the top right. <command>gnome-control-center</command> is the main program that brings them all together but many of the system wide configuration tools are effectively provided by other packages (<emphasis role=\"pkg\">accountsservice</emphasis>, <emphasis role=\"pkg\">system-config-printer</emphasis>, etc.). Easy to use, these applications cover only a limited number of base services: user management, time configuration, network configuration, printer configuration, and so on."
-msgstr "GNOME プロジェクトは、通常右上に位置するユーザメニューの「設定」エントリから利用可能な、複数の管理インターフェイスを提供します。<command>gnome-control-center</command> は複数の管理インターフェイスを一纏めにしたメインプログラムですが、システム共通設定ツールの多くは他のパッケージによって提供されています (<emphasis role=\"pkg\">accountsservice</emphasis>、<emphasis role=\"pkg\">system-config-printer</emphasis> など)。それらのアプリケーションは使いやすく、基本サービスの一部だけをカバーします: ユーザ管理、時間設定、ネットワーク設定、プリンタ設定、など。"
+msgstr "GNOME プロジェクトは、通常右上に位置するユーザメニューの「設定」エントリから利用可能な、複数の管理インターフェースを提供します。<command>gnome-control-center</command> は複数の管理インターフェースを一纏めにしたメインプログラムですが、システム共通設定ツールの多くは他のパッケージによって提供されています (<emphasis role=\"pkg\">accountsservice</emphasis>、<emphasis role=\"pkg\">system-config-printer</emphasis> など)。それらのアプリケーションは使いやすく、基本サービスの一部だけをカバーします: ユーザ管理、時間設定、ネットワーク設定、プリンタ設定、など。"
 
 #. Tag: title
 #, no-c-format
@@ -1312,7 +1312,7 @@ msgstr "多くのパッケージが、インストール中 Debconf ツールを
 #. Tag: para
 #, no-c-format
 msgid "For most cases, these settings are very simple; only a few important variables in the configuration file are changed. These variables are often grouped between two “demarcation” lines so that reconfiguration of the package only impacts the enclosed area. In other cases, reconfiguration will not change anything if the script detects a manual modification of the configuration file, in order to preserve these human interventions (because the script can't ensure that its own modifications will not disrupt the existing settings)."
-msgstr "殆どの場合、これらの設定はとても簡素です; 設定ファイル中の僅かな重要変数だけが変更されます。これらの重要変数は多くの場合 2 つの「境界」線で挟まれています。そうすれば、パッケージを再設定しても影響を受けるのは境界線で挟まれた範囲だけに限定されるからです。「境界」線で挟まれていない場合、スクリプトが手作業で設定ファイルが変更されたことを検出したら、人間による設定変更を上書きしないよう、再設定しても何も変更されません (なぜなら、スクリプトは自分の修正が既存の設定を破壊しないことを保証できないからです)。"
+msgstr "ほとんどの場合、これらの設定はとても簡素です; 設定ファイル中の僅かな重要変数だけが変更されます。これらの重要変数は多くの場合 2 つの「境界」線で挟まれています。そうすれば、パッケージを再設定しても影響を受けるのは境界線で挟まれた範囲だけに限定されるからです。「境界」線で挟まれていない場合、スクリプトが手作業で設定ファイルが変更された事を検出したら、人間による設定変更を上書きしないよう、再設定しても何も変更されません (なぜなら、スクリプトは自分の修正が既存の設定を破壊しない事を保証できないからです)。"
 
 #. Tag: title
 #, no-c-format
@@ -1322,12 +1322,12 @@ msgstr "<emphasis>DEBIAN POLICY</emphasis> 変更の保存"
 #. Tag: para
 #, no-c-format
 msgid "The Debian Policy expressly stipulates that everything should be done to preserve manual changes made to a configuration file, so more and more scripts take precautions when editing configuration files. The general principle is simple: the script will only make changes if it knows the status of the configuration file, which is verified by comparing the checksum of the file against that of the last automatically generated file. If they are the same, the script is authorized to change the configuration file. Otherwise, it determines that the file has been changed and asks what action it should take (install the new file, save the old file, or try to integrate the new changes with the existing file). This precautionary principle has long been unique to Debian, but other distributions have gradually begun to embrace it."
-msgstr "Debian ポリシーには、スクリプトは設定ファイルに対して行われた手作業の変更を保護するように作業を実行しなければいけないことが、明確に規定されています。このため、ますます多くのスクリプトが設定ファイルを編集する際に事前注意を出します。一般的な原則は単純です: スクリプトが修正を行うのは、設定ファイルの状態を検証して、修正しても問題ないと判断した場合だけです。設定ファイルの状態検証は、最後に自動的に生成された設定ファイルのチェックサムと現在の設定ファイルのチェックサムを比較することで行います。両者のチェックサムが同じ場合、スクリプトは設定ファイルを変更する権限を与えられます。チェックサムが違った場合、設定ファイルが変更されたと判断し、対応 (新しいファイルをインストールする、古いファイルを保存する、新しい変更を既存のファイルと統合しようとする) を尋ねます。この事前注意の原則は長きに渡り Debian に固有のものでしたが、他のディストリビューションもこの原則を採用し始めています。"
+msgstr "Debian ポリシーには、スクリプトは設定ファイルに対して行われた手作業の変更を保護するように作業を実行しなければいけない事が、明確に規定されています。このため、ますます多くのスクリプトが設定ファイルを編集する際に事前注意を出します。一般的な原則は単純です: スクリプトが修正を行うのは、設定ファイルの状態を検証して、修正しても問題ないと判断した場合だけです。設定ファイルの状態検証は、最後に自動的に生成された設定ファイルのチェックサムと現在の設定ファイルのチェックサムを比較することで行います。両者のチェックサムが同じ場合、スクリプトは設定ファイルを変更する権限を与えられます。チェックサムが違った場合、設定ファイルが変更されたと判断し、対応 (新しいファイルをインストールする、古いファイルを保存する、新しい変更を既存のファイルと統合しようとする) を尋ねます。この事前注意の原則は長きに渡り Debian に固有のものでしたが、他のディストリビューションもこの原則を採用し始めています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>ucf</command> program (from the Debian package of the same name) can be used to implement such a behavior."
-msgstr "(同名の Debian パッケージの提供する) <command>ucf</command> プログラムはこの原則を実行に移すために使われます。"
+msgstr "<command>ucf</command> プログラム (同名の Debian パッケージに含まれます) はこの原則を実行に移すために使われます。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1482,7 +1482,7 @@ msgstr "設定ファイル"
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the <filename>/etc/rsyslog.conf</filename> file is detailed in the <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, but there is also HTML documentation available in the <emphasis role=\"pkg\">rsyslog-doc</emphasis> package (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>). The overall principle is to write “selector” and “action” pairs. The selector defines all relevant messages, and the actions describes how to deal with them."
-msgstr "<filename>/etc/rsyslog.conf</filename> ファイルの構文は <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページで詳しく説明されています。しかし、<emphasis role=\"pkg\">rsyslog-doc</emphasis> パッケージから提供される HTML 文書 (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>) も利用可能です。全般的な原則は「セレクタ」と「アクション」の組を書くことです。セレクタは全ての関連するメッセージを定義し、アクションはそれらのメッセージをどのように取り扱うかを定義します。"
+msgstr "<filename>/etc/rsyslog.conf</filename> ファイルの構文は <citerefentry><refentrytitle>rsyslog.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページで詳しく説明されています。しかし、<emphasis role=\"pkg\">rsyslog-doc</emphasis> パッケージから提供される HTML 文書 (<filename>/usr/share/doc/rsyslog-doc/html/index.html</filename>) も利用可能です。全般的な原則は「セレクタ」と「アクション」の組を書く事です。セレクタはすべての関連するメッセージを定義し、アクションはそれらのメッセージをどのように取り扱うかを定義します。"
 
 #. Tag: title
 #, no-c-format
@@ -1492,12 +1492,12 @@ msgstr "セレクタの構文"
 #. Tag: para
 #, no-c-format
 msgid "The selector is a semicolon-separated list of <literal><replaceable>subsystem</replaceable>.<replaceable>priority</replaceable></literal> pairs (example: <literal>auth.notice;mail.info</literal>). An asterisk may represent all subsystems or all priorities (examples: <literal>*.alert</literal> or <literal>mail.*</literal>). Several subsystems can be grouped, by separating them with a comma (example: <literal>auth,mail.info</literal>). The priority indicated also covers messages of equal or higher priority; thus <literal>auth.alert</literal> indicates the <literal>auth</literal> subsystem messages of <literal>alert</literal> or <literal>emerg</literal> priority. Prefixed with an exclamation point (!), it indicates the opposite, in other words the strictly lower priorities; <literal>auth.!notice</literal>, thus, indicates messages issued from <literal>auth</literal>, with <literal>info</literal> or <literal>debug</literal> priority. Prefixed with an equal sign (=), it corresponds to precisely and only the priority indicated (<literal>auth.=notice</literal> only concerns messages from <literal>auth</literal> with <literal>notice</literal> priority)."
-msgstr "セレクタは <literal><replaceable>subsystem</replaceable>.<replaceable>priority</replaceable></literal> の組からなるセミコロン区切りリストです (例: <literal>auth.notice;mail.info</literal>)。アスタリスクは全てのサブシステムまたは全ての優先順位を表します (例: <literal>*.alert</literal>、<literal>mail.*</literal>)。コンマで区切れば複数のサブシステムをグループ化することが可能です (例: <literal>auth,mail.info</literal>)。優先度は同じかより高い優先度を持つメッセージを意味します; このため <literal>auth.alert</literal> は <literal>alert</literal> および <literal>emerg</literal> 優先度を持つ <literal>auth</literal> サブシステムメッセージを表現します。優先度の前に感嘆符 (!) を付けると否定を表します。言い換えれば、その優先度より低い優先度です; このため <literal>auth.!notice</literal> は <literal>auth</literal> から発行された <literal>info</literal> および <literal>debug</literal> 優先度を持つメッセージを表現します。優先度の前に等号 (=) をつけると、その優先度だけを表します (<literal>auth.=notice</literal> は <literal>auth</literal> から発行された <literal>notice</literal> 優先度を持つメッセージを表現します)。"
+msgstr "セレクタは <literal><replaceable>subsystem</replaceable>.<replaceable>priority</replaceable></literal> の組からなるセミコロン区切りリストです (例: <literal>auth.notice;mail.info</literal>)。アスタリスクはすべてのサブシステムまたはすべての優先順位を表します (例: <literal>*.alert</literal>、<literal>mail.*</literal>)。コンマで区切れば複数のサブシステムをグループ化する事が可能です (例: <literal>auth,mail.info</literal>)。優先度は同じかより高い優先度を持つメッセージを意味します; このため <literal>auth.alert</literal> は <literal>alert</literal> および <literal>emerg</literal> 優先度を持つ <literal>auth</literal> サブシステムメッセージを表現します。優先度の前に感嘆符 (!) を付けると否定を表します。言い換えれば、その優先度より低い優先度です; このため <literal>auth.!notice</literal> は <literal>auth</literal> から発行された <literal>info</literal> および <literal>debug</literal> 優先度を持つメッセージを表現します。優先度の前に等号 (=) をつけると、その優先度だけを表します (<literal>auth.=notice</literal> は <literal>auth</literal> から発行された <literal>notice</literal> 優先度を持つメッセージを表現します)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each element in the list on the selector overrides previous elements. It is thus possible to restrict a set or to exclude certain elements from it. For example, <literal>kern.info;kern.!err</literal> means messages from the kernel with priority between <literal>info</literal> and <literal>warn</literal>. The <literal>none</literal> priority indicates the empty set (no priorities), and may serve to exclude a subsystem from a set of messages. Thus, <literal>*.crit;kern.none</literal> indicates all the messages of priority equal to or higher than <literal>crit</literal> not coming from the kernel."
-msgstr "セレクタリスト内の各要素は前の要素を上書きします。このため、セレクタリストからある組を制限したり、ある要素を除外することが可能です。例えば、<literal>kern.info;kern.!err</literal> はカーネルの発行した <literal>info</literal> と <literal>warn</literal> の間の優先度を持つメッセージを意味します。<literal>none</literal> 優先度は空の組 (優先度を持たない) を意味します。これはあるサブシステムをメッセージの組から除外するのに役立つかもしれません。そんなわけで、<literal>*.crit;kern.none</literal> はカーネルの発行した <literal>crit</literal> 以上の優先度を持つメッセージを意味します。"
+msgstr "セレクタリスト内の各要素は前の要素を上書きします。このため、セレクタリストからある組を制限したり、ある要素を除外する事が可能です。例えば、<literal>kern.info;kern.!err</literal> はカーネルの発行した <literal>info</literal> と <literal>warn</literal> の間の優先度を持つメッセージを意味します。<literal>none</literal> 優先度は空の組 (優先度を持たない) を意味します。これはあるサブシステムをメッセージの組から除外するのに役立つかもしれません。そんなわけで、<literal>*.crit;kern.none</literal> はカーネルの発行した <literal>crit</literal> 以上の優先度を持つメッセージを意味します。"
 
 #. Tag: title
 #, no-c-format
@@ -1522,7 +1522,7 @@ msgstr "<primary>パイプ、名前付きパイプ</primary>"
 #. Tag: para
 #, no-c-format
 msgid "A named pipe is a particular type of file that operates like a traditional pipe (the pipe that you make with the “|” symbol on the command line), but via a file. This mechanism has the advantage of being able to relate two unrelated processes. Anything written to a named pipe blocks the process that writes until another process attempts to read the data written. This second process reads the data written by the first, which can then resume execution."
-msgstr "名前付きパイプは特殊なファイル型で、古典的なパイプ (コマンドラインで「|」文字を使って表すパイプ) のように振る舞いますが、ファイルを経由します。名前付きパイプのメカニズムは 2 つの別々のプロセスを関連付けることが可能という利点を持っています。別のプロセスが名前付きパイプに書き込まれたデータを読む準備を整えるまで、名前付きパイプに書き込むプロセスはブロックされます。読み込み側のプロセスが書き込み側のプロセスの書き込んだデータを読み込むと、書き込み側のプロセスのブロックが解除されます。"
+msgstr "名前付きパイプは特殊なファイル型で、古典的なパイプ (コマンドラインで「|」文字を使って表すパイプ) のように振る舞いますが、ファイルを経由します。名前付きパイプのメカニズムは 2 つの別々のプロセスを関連付ける事が可能という利点を持っています。別のプロセスが名前付きパイプに書き込まれたデータを読む準備を整えるまで、名前付きパイプに書き込むプロセスはブロックされます。読み込み側のプロセスが書き込み側のプロセスの書き込んだデータを読み込むと、書き込み側のプロセスのブロックが解除されます。"
 
 #. Tag: para
 #, no-c-format
@@ -1577,7 +1577,7 @@ msgstr "<primary>ログ</primary><secondary>転送</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "It is a good idea to record the most important logs on a separate machine (perhaps dedicated for this purpose), since this will prevent any possible intruder from removing traces of their intrusion (unless, of course, they also compromise this other server). Furthermore, in the event of a major problem (such as a kernel crash), you have the logs available on another machine, which increases your chances of determining the sequence of events that caused the crash."
-msgstr "最重要のログを別のマシン (ログ記録専用マシン) に記録することをは良い考えです。なぜなら、そうすることで侵入者に不正侵入の形跡を削除されないようにすることが可能だからです (これを削除するにはもちろん、ログを記録させた別のマシンに不正アクセスするしかありません)。更に、深刻な問題 (カーネルクラッシュなど) が起きた場合に、他のマシンにログを記録しておけば、クラッシュを引き起こす一連の出来事を決定できる可能性を増やす事が可能です。"
+msgstr "最重要のログを別のマシン (ログ記録専用マシン) に記録する事をは良い考えです。なぜなら、そうすることで侵入者に不正侵入の形跡を削除されないようにする事が可能だからです (これを削除するにはもちろん、ログを記録させた別のマシンに不正アクセスするしかありません)。更に、深刻な問題 (カーネルクラッシュなど) が起きた場合に、他のマシンにログを記録しておけば、クラッシュを引き起こす一連の出来事を決定できる可能性を増やす事が可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -1592,7 +1592,7 @@ msgstr "<command>inetd</command> スーパーサーバ"
 #. Tag: para
 #, no-c-format
 msgid "Inetd (often called “Internet super-server”) is a server of servers. It executes rarely used servers on demand, so that they do not have to run continuously."
-msgstr "Inetd (通常「Internet スーパーサーバ」と呼ばれます) はサーバのサーバです。Inetd は要求に応じてまれに使われるサーバを実行します。そうすれば、まれにしか使われないサーバを常に実行しておく必要が無くなります。"
+msgstr "Inetd (通常「インターネットスーパーサーバ」と呼ばれます) はサーバのサーバです。Inetd は要求に応じてまれに使われるサーバを実行します。そうすれば、まれにしか使われないサーバを常に実行しておく必要が無くなります。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1607,7 +1607,7 @@ msgstr "<primary>スーパーサーバ</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/inetd.conf</filename> file lists these servers and their usual ports. The <command>inetd</command> command listens to all of them; when it detects a connection to any such port, it executes the corresponding server program."
-msgstr "<filename>/etc/inetd.conf</filename> ファイルには、そのようなサーバとサーバの使うポート番号が書かれています。<command>inetd</command> コマンドはここで書かれた全てのポートをリッスンします; そのポートに対する接続を検出したら、<command>inetd</command> は対応するサーバプログラムを実行します。"
+msgstr "<filename>/etc/inetd.conf</filename> ファイルには、そのようなサーバとサーバの使うポート番号が書かれています。<command>inetd</command> コマンドはここで書かれたすべてのポートをリッスンします; そのポートに対する接続を検出したら、<command>inetd</command> は対応するサーバプログラムを実行します。"
 
 #. Tag: title
 #, no-c-format
@@ -1617,12 +1617,12 @@ msgstr "<emphasis>DEBIAN POLICY</emphasis> <filename>inetd.conf</filename> へ�
 #. Tag: para
 #, no-c-format
 msgid "Packages frequently want to register a new server in the <filename>/etc/inetd.conf</filename> file, but Debian Policy prohibits any package from modifying a configuration file that it doesn't own. This is why the <command>updated-inetd</command> script (in the package with the same name) was created: It manages the configuration file, and other packages can thus use it to register a new server to the super-server's configuration."
-msgstr "多くの場合 inetd を使うサーバのパッケージは <filename>/etc/inetd.conf</filename> ファイルに自分を登録することを望むのですが、Debian ポリシーはあるパッケージが提供する設定ファイルを他のパッケージが修正することを禁止しています。このため、<command>updated-inetd</command> スクリプト (同名のパッケージに含まれる) が作成されました: <command>updated-inetd</command> スクリプトは設定ファイルを管理し、他のパッケージはこれを使って、スーパーサーバの設定に新しいサーバを登録します。"
+msgstr "多くの場合 inetd を使うサーバのパッケージは <filename>/etc/inetd.conf</filename> ファイルに自分を登録する事を望むのですが、Debian ポリシーはあるパッケージが提供する設定ファイルを他のパッケージが修正する事を禁止しています。このため、<command>updated-inetd</command> スクリプト (同名のパッケージに含まれます) が作成されました: <command>updated-inetd</command> スクリプトは設定ファイルを管理し、他のパッケージはこれを使って、スーパーサーバの設定に新しいサーバを登録します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each significant line of the <filename>/etc/inetd.conf</filename> file describes a server through seven fields (separated by spaces):"
-msgstr "<filename>/etc/inetd.conf</filename> ファイルの有効な各行は (スペースで区切られた) 7 つのフィールドで 1 つのサーバを表現します:"
+msgstr "<filename>/etc/inetd.conf</filename> ファイルの有効な各行は (空白で区切られた) 7 つのフィールドで 1 つのサーバを表現します:"
 
 #. Tag: para
 #, no-c-format
@@ -1642,7 +1642,7 @@ msgstr "プロトコル: <literal>tcp</literal> または <literal>udp</literal>
 #. Tag: para
 #, no-c-format
 msgid "The options: two possible values: <literal>wait</literal> or <literal>nowait</literal>, to tell <command>inetd</command> whether it should wait or not for the end of the launched process before accepting another connection. For TCP connections, easily multiplexable, you can usually use <literal>nowait</literal>. For programs responding over UDP, you should use <literal>nowait</literal> only if the server is capable of managing several connections in parallel. You can suffix this field with a period, followed by the maximum number of connections authorized per minute (the default limit is 256)."
-msgstr "オプション: 設定できる値は 2 種類です: <literal>wait</literal> または <literal>nowait</literal> です。これは <command>inetd</command> に他の接続を受け入れる前に、起動されたプロセスの終了を待つか否かを伝えます。簡単に多重送信対応できる TCP 接続の場合、通常 <literal>nowait</literal> を使います。UDP を使って応答するプログラムに対しては、サーバが複数接続の並列化を管理する機能を持っている場合に限り <literal>nowait</literal> を使うべきです。この後に子プロセスの最大数、さらに 1 分間に認められる接続の最大数 (デフォルトの値は 256) を指定することが可能です。"
+msgstr "オプション: 設定できる値は 2 種類です: <literal>wait</literal> または <literal>nowait</literal> です。これは <command>inetd</command> に他の接続を受け入れる前に、起動されたプロセスの終了を待つか否かを伝えます。簡単に多重送信対応できる TCP 接続の場合、通常 <literal>nowait</literal> を使います。UDP を使って応答するプログラムに対しては、サーバが複数接続の並列化を管理する機能を持っている場合に限り <literal>nowait</literal> を使うべきです。この後に子プロセスの最大数、さらに 1 分間に認められる接続の最大数 (デフォルトの値は 256) を指定する事が可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -1674,11 +1674,11 @@ msgstr "<filename>/etc/inetd.conf</filename> からの抜粋"
 msgid ""
 "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
 "finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd\n"
-"ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
+"ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i"
 msgstr ""
 "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
 "finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd\n"
-"ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
+"ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1688,7 +1688,7 @@ msgstr "<primary><command>tcpd</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <command>tcpd</command> program is frequently used in the <filename>/etc/inetd.conf</filename> file. It allows limiting incoming connections by applying access control rules, documented in the <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page, and which are configured in the <filename>/etc/hosts.allow</filename> and <filename>/etc/hosts.deny</filename> files. Once it has been determined that the connection is authorized, <command>tcpd</command> executes the real server (like <command>in.fingerd</command> in our example). It is worth noting that <command>tcpd</command> relies on the name under which it was invoked (that is the first argument, <literal>argv[0]</literal>) to identify the real program to run. So you should not start the arguments list with <literal>tcpd</literal> but with the program that must be wrapped."
-msgstr "<filename>/etc/inetd.conf</filename> ファイルの中では <command>tcpd</command> プログラムを使うことが多いです。<command>tcpd</command> プログラムを使うと、アクセス制御ルールを適用して新たな接続を制限することが可能です。アクセス制御ルール <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページで説明されており、<filename>/etc/hosts.allow</filename> と <filename>/etc/hosts.deny</filename> ファイルを使います。一旦その接続が認証されたら、<command>tcpd</command> は実際のサーバを実行します (以下の例では <command>in.fingerd</command> など)。<command>tcpd</command> はそれが実行されたときの名前 (1 番目の引数 <literal>argv[0]</literal>) を頼りに、実際に実行するプログラムを識別します。この点に注意してください。そのため、引数リストは <literal>tcpd</literal> で始めるのではなく、ラップされなければいけないプログラムで始めるべきです。"
+msgstr "<filename>/etc/inetd.conf</filename> ファイルの中では <command>tcpd</command> プログラムを使う事が多いです。<command>tcpd</command> プログラムを使うと、アクセス制御ルールを適用して新たな接続を制限する事が可能です。アクセス制御ルール <citerefentry><refentrytitle>hosts_access</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページで説明されており、<filename>/etc/hosts.allow</filename> と <filename>/etc/hosts.deny</filename> ファイルを使います。一旦その接続が認証されたら、<command>tcpd</command> は実際のサーバを実行します (以下の例では <command>in.fingerd</command> など)。<command>tcpd</command> はそれが実行されたときの名前 (1 番目の引数 <literal>argv[0]</literal>) を頼りに、実際に実行するプログラムを識別します。この点に注意してください。そのため、引数リストは <literal>tcpd</literal> で始めるのではなく、ラップされなければいけないプログラムで始めるべきです。"
 
 #. Tag: title
 #, no-c-format
@@ -1783,7 +1783,7 @@ msgstr "メンテナンススクリプト (一時ファイルの掃除など)。
 #. Tag: para
 #, no-c-format
 msgid "By default, all users can schedule the execution of tasks. Each user has thus their own <emphasis>crontab</emphasis> in which they can record scheduled commands. It can be edited by running <command>crontab -e</command> (its content is stored in the <filename>/var/spool/cron/crontabs/<replaceable>user</replaceable></filename> file)."
-msgstr "デフォルトで、全てのユーザはタスク実行の予定を入れることが可能です。各ユーザは自分専用の <emphasis>crontab</emphasis> を持っており、これを使ってコマンド実行の予定を登録することが可能です。<emphasis>crontab</emphasis> を編集するには <command>crontab -e</command>を実行します (<filename>/var/spool/cron/crontabs/<replaceable>user</replaceable></filename> ファイルに保存されます)。"
+msgstr "デフォルトで、すべてのユーザはタスク実行の予定を入れる事が可能です。各ユーザは自分専用の <emphasis>crontab</emphasis> を持っており、これを使ってコマンド実行の予定を登録する事が可能です。<emphasis>crontab</emphasis> を編集するには <command>crontab -e</command>を実行します (<filename>/var/spool/cron/crontabs/<replaceable>user</replaceable></filename> ファイルに保存されます)。"
 
 #. Tag: title
 #, no-c-format
@@ -1793,12 +1793,12 @@ msgstr "<emphasis>SECURITY</emphasis> <command>cron</command> または <command
 #. Tag: para
 #, no-c-format
 msgid "You can restrict access to <command>cron</command> by creating an explicit authorization file (whitelist) in <filename>/etc/cron.allow</filename>, in which you indicate the only users authorized to schedule commands. All others will automatically be deprived of this feature. Conversely, to only block one or two troublemakers, you could write their username in the explicit prohibition file (blacklist), <filename>/etc/cron.deny</filename>. This same feature is available for <command>atd</command>, with the <filename>/etc/at.allow</filename> and <filename>/etc/at.deny</filename> files."
-msgstr "実行を許可するユーザを明示するファイル (ホワイトリスト) <filename>/etc/cron.allow</filename> の中にコマンドの予定を入れることを許可するユーザを書けば、<command>cron</command> へのアクセスを制限することが可能です。その他のユーザは自動的にこの機能を使えなくなります。反対に、実行を禁止するユーザを明示するファイル (ブラックリスト) <filename>/etc/cron.deny</filename> の中にユーザ名を書けば、1 人か 2 人の問題児だけをブロックすることが可能です。<command>atd</command> に対しても <filename>/etc/at.allow</filename> と <filename>/etc/at.deny</filename> ファイルを使って同等の機能が利用可能です。"
+msgstr "実行を許可するユーザを明示するファイル (ホワイトリスト) <filename>/etc/cron.allow</filename> の中にコマンドの予定を入れる事を許可するユーザを書けば、<command>cron</command> へのアクセスを制限する事が可能です。その他のユーザは自動的にこの機能を使えなくなります。反対に、実行を禁止するユーザを明示するファイル (ブラックリスト) <filename>/etc/cron.deny</filename> の中にユーザ名を書けば、1 人か 2 人の問題児だけをブロックする事が可能です。<command>atd</command> に対しても <filename>/etc/at.allow</filename> と <filename>/etc/at.deny</filename> ファイルを使って同等の機能が利用可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "The root user has their own <emphasis>crontab</emphasis>, but can also use the <filename>/etc/crontab</filename> file, or write additional <emphasis>crontab</emphasis> files in the <filename>/etc/cron.d</filename> directory. These last two solutions have the advantage of being able to specify the user identity to use when executing the command."
-msgstr "root ユーザは自分専用の <emphasis>crontab</emphasis> を持っていますが、<filename>/etc/crontab</filename> ファイルを使ったり、追加的な <emphasis>crontab</emphasis> ファイルを <filename>/etc/cron.d</filename> ディレクトリに置くことが可能です。最後の 2 つの解決策には、コマンドを実行する際に実行するユーザを明示できるという利点があります。"
+msgstr "root ユーザは自分専用の <emphasis>crontab</emphasis> を持っていますが、<filename>/etc/crontab</filename> ファイルを使ったり、追加的な <emphasis>crontab</emphasis> ファイルを <filename>/etc/cron.d</filename> ディレクトリに置く事が可能です。最後の 2 つの解決策には、コマンドを実行する際に実行するユーザを明示できるという利点があります。"
 
 #. Tag: para
 #, no-c-format
@@ -1888,7 +1888,7 @@ msgstr "Debian では、<command>cron</command> は可能な限り正確に時�
 #. Tag: para
 #, no-c-format
 msgid "Be careful, however, if the order in which the different scheduled tasks and the delay between their respective executions matters, you should check the compatibility of these constraints with <command>cron</command>'s behavior; if necessary, you can prepare a special schedule for the two problematic nights per year."
-msgstr "しかしながら気を付けてください、別にスケジュールされたタスクとの順番とそれぞれの実行間の遅延が重要な問題の場合、それらの制約の互換性と <command>cron</command> の挙動を照合するべきです。必要ならは、1 年に 2 回の問題の夜用に特別なスケジュールを用意することも可能です。"
+msgstr "しかしながら気を付けてください、別にスケジュールされたタスクとの順番とそれぞれの実行間の遅延が重要な問題の場合、それらの制約の互換性と <command>cron</command> の挙動を照合するべきです。必要ならは、1 年に 2 回の問題の夜用に特別なスケジュールを用意する事も可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -1918,7 +1918,7 @@ msgstr "月 (1 から 12 までの数字);"
 #. Tag: para
 #, no-c-format
 msgid "the value for the day of the week (from 0 to 7, 1 corresponding to Monday, Sunday being represented by both 0 and 7; it is also possible to use the first three letters of the name of the day of the week in English, such as <literal>Sun</literal>, <literal>Mon</literal>, etc.);"
-msgstr "曜日 (0 から 7 までの数字、月曜日は 1、日曜日は 0 と 7 の両方; 英語で書いた曜日の最初の 3 文字 <literal>Sun</literal>、<literal>Mon</literal> などを使うことも可能です);"
+msgstr "曜日 (0 から 7 までの数字、月曜日は 1、日曜日は 0 と 7 の両方; 英語で書いた曜日の最初の 3 文字 <literal>Sun</literal>、<literal>Mon</literal> などを使う事も可能です);"
 
 #. Tag: para
 #, no-c-format
@@ -1933,12 +1933,12 @@ msgstr "実行するコマンド (最初の 5 つのフィールドで定義さ�
 #. Tag: para
 #, no-c-format
 msgid "All these details are documented in the <citerefentry><refentrytitle>crontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> man page."
-msgstr "全ての詳細は <citerefentry><refentrytitle>crontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> man ページに書かれています。"
+msgstr "すべての詳細は <citerefentry><refentrytitle>crontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> man ページに書かれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "Each value can be expressed in the form of a list of possible values (separated by commas). The syntax <literal>a-b</literal> describes the interval of all the values between <literal>a</literal> and <literal>b</literal>. The syntax <literal>a-b/c</literal> describes the interval with an increment of <literal>c</literal> (example: <literal>0-10/2</literal> means <literal>0,2,4,6,8,10</literal>). An asterisk <literal>*</literal> is a wildcard, representing all possible values."
-msgstr "各値は設定可能な値の (コンマ区切り) リストの形で表現することが可能です。<literal>a-b</literal> 構文は <literal>a</literal> と <literal>b</literal> の間にある全ての値を表現します。<literal>a-b/c</literal> 構文は <literal>a</literal> から <literal>c</literal> づつ増加させて <literal>b</literal> までの全ての値を表現します (例: <literal>0-10/2</literal> は <literal>0,2,4,6,8,10</literal> を意味します)。アスタリスク <literal>*</literal> はワイルドカードで、とり得るすべての値を意味します。"
+msgstr "各値は設定可能な値の (コンマ区切り) リストの形で表現する事が可能です。<literal>a-b</literal> 構文は <literal>a</literal> と <literal>b</literal> の間にあるすべての値を表現します。<literal>a-b/c</literal> 構文は <literal>a</literal> から <literal>c</literal> づつ増加させて <literal>b</literal> までのすべての値を表現します (例: <literal>0-10/2</literal> は <literal>0,2,4,6,8,10</literal> を意味します)。アスタリスク <literal>*</literal> はワイルドカードで、とり得るすべての値を意味します。"
 
 #. Tag: title
 #, no-c-format
@@ -1958,7 +1958,7 @@ msgid ""
 " 00  08   *   *   1-5  $HOME/bin/dosomething\n"
 "\n"
 "# Restart the IRC proxy after each reboot\n"
-"@reboot /usr/bin/dircproxy\n"
+"@reboot /usr/bin/dircproxy"
 msgstr ""
 "#Format\n"
 "#min hour day mon dow  command\n"
@@ -1970,7 +1970,7 @@ msgstr ""
 " 00  08   *   *   1-5  $HOME/bin/dosomething\n"
 "\n"
 "# Restart the IRC proxy after each reboot\n"
-"@reboot /usr/bin/dircproxy\n"
+"@reboot /usr/bin/dircproxy"
 
 #. Tag: title
 #, no-c-format
@@ -1995,7 +1995,7 @@ msgstr "<primary><command>at</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <command>at</command> executes a command at a specified moment in the future. It takes the desired time and date as command-line parameters, and the command to be executed in its standard input. The command will be executed as if it had been entered in the current shell. <command>at</command> even takes care to retain the current environment, in order to reproduce the same conditions when it executes the command. The time is indicated by following the usual conventions: <literal>16:12</literal> or <literal>4:12pm</literal> represents 4:12 pm. The date can be specified in several European and Western formats, including <literal>DD.MM.YY</literal> (<literal>27.07.12</literal> thus representing 27 July 2012), <literal>YYYY-MM-DD</literal> (this same date being expressed as <literal>2012-07-27</literal>), <literal>MM/DD/[CC]YY</literal> (ie., <literal>12/25/12</literal> or <literal>12/25/2012</literal> will be December 25, 2012), or simple <literal>MMDD[CC]YY</literal> (so that <literal>122512</literal> or <literal>12252012</literal> will, likewise, represent December 25, 2012). Without it, the command will be executed as soon as the clock reaches the time indicated (the same day, or tomorrow if that time has already passed on the same day). You can also simply write “today” or “tomorrow”, which is self-explanatory."
-msgstr "<command>at</command> は未来の特定の時点にコマンドを実行します。<command>at</command> は時刻と日付をコマンドラインパラメータで受け取り、実行するコマンドを標準入力で受け取ります。このコマンドは、あたかも現在のシェルで実行されたかの如く実行されます。<command>at</command> はコマンドを実行する際に現在と同じ状況を再現するために、現在の環境を保存するように気を付けます。時刻は以下のように普通の慣例に従って表現されます: <literal>16:12</literal> または <literal>4:12pm</literal> は午後 4:12 を意味します。日付はヨーロッパと西洋で使われる幾つかの書式で指定します。<literal>DD.MM.YY</literal> (<literal>27.07.12</literal> は 2012 年 7 月 27 日を意味します)、<literal>YYYY-MM-DD</literal> (<literal>2012-07-27</literal> は上と同じ日付を意味します)、<literal>MM/DD/[CC]YY</literal> (<literal>12/25/12</literal> や <literal>12/25/2012</literal> は 2012 年 12 月 25 日を意味します)、または単純な <literal>MMDD[CC]YY</literal> (<literal>122512</literal> や <literal>12252012</literal> は同様に 2012 年 12 月 25 日を意味します) などです。日付の指定がなければ、コマンドは最も早く到達した指定時刻に実行されます (当日中、または、指定時刻が既に過ぎていれば明日)。読んで字の通り「today」、「tomorrow」などと簡単に書くことも可能です。"
+msgstr "<command>at</command> は未来の特定の時点にコマンドを実行します。<command>at</command> は時刻と日付をコマンドラインパラメータで受け取り、実行するコマンドを標準入力で受け取ります。このコマンドは、あたかも現在のシェルで実行されたかの如く実行されます。<command>at</command> はコマンドを実行する際に現在と同じ状況を再現するために、現在の環境を保存するように気を付けます。時刻は以下のように普通の慣例に従って表現されます: <literal>16:12</literal> または <literal>4:12pm</literal> は午後 4:12 を意味します。日付はヨーロッパと西洋で使われる幾つかの書式で指定します。<literal>DD.MM.YY</literal> (<literal>27.07.12</literal> は 2012 年 7 月 27 日を意味します)、<literal>YYYY-MM-DD</literal> (<literal>2012-07-27</literal> は上と同じ日付を意味します)、<literal>MM/DD/[CC]YY</literal> (<literal>12/25/12</literal> や <literal>12/25/2012</literal> は 2012 年 12 月 25 日を意味します)、または単純な <literal>MMDD[CC]YY</literal> (<literal>122512</literal> や <literal>12252012</literal> は同様に 2012 年 12 月 25 日を意味します) などです。日付の指定がなければ、コマンドは最も早く到達した指定時刻に実行されます (当日中、または、指定時刻が既に過ぎていれば明日)。読んで字の通り「today」、「tomorrow」などと簡単に書く事も可能です。"
 
 #. Tag: screen
 #, no-c-format
@@ -2006,7 +2006,7 @@ msgid ""
 "<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
-"job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
+"job 31 at Fri Jul 27 09:00:00 2012</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.14 &lt;&lt;END</userinput>\n"
@@ -2014,12 +2014,12 @@ msgstr ""
 "<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
-"job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
+"job 31 at Fri Jul 27 09:00:00 2012</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "An alternative syntax postpones the execution for a given duration: <command>at now + <replaceable>number</replaceable> <replaceable>period</replaceable></command>. The <replaceable>period</replaceable> can be <literal>minutes</literal>, <literal>hours</literal>, <literal>days</literal>, or <literal>weeks</literal>. The <replaceable>number</replaceable> simply indicates the number of said units that must elapse before execution of the command."
-msgstr "与えられた期間だけ実行を延期する構文もあります: <command>at now + <replaceable>number</replaceable> <replaceable>period</replaceable></command> です。<replaceable>period</replaceable> には <literal>minutes</literal>、<literal>hours</literal>、<literal>days</literal>、<literal>weeks</literal> を指定することが可能です。<replaceable>number</replaceable> は単純に <replaceable>period</replaceable> で指定した単位の量を表し、この量だけコマンドの実行が延期されます。"
+msgstr "与えられた期間だけ実行を延期する構文もあります: <command>at now + <replaceable>number</replaceable> <replaceable>period</replaceable></command> です。<replaceable>period</replaceable> には <literal>minutes</literal>、<literal>hours</literal>、<literal>days</literal>、<literal>weeks</literal> を指定する事が可能です。<replaceable>number</replaceable> は単純に <replaceable>period</replaceable> で指定した単位の量を表し、この量だけコマンドの実行が延期されます。"
 
 #. Tag: para
 #, no-c-format
@@ -2044,7 +2044,7 @@ msgstr "非同期タスクのスケジューリング: <command>anacron</command
 #. Tag: para
 #, no-c-format
 msgid "<command>anacron</command> is the daemon that completes <command>cron</command> for computers that are not on at all times. Since regular tasks are usually scheduled for the middle of the night, they will never be executed if the computer is off at that time. The purpose of <command>anacron</command> is to execute them, taking into account periods in which the computer is not working."
-msgstr "<command>anacron</command> はデーモンで、常に起動されていないコンピュータの <command>cron</command> を完成するものです。定期的なタスクは通常真夜中に予定されているため、その時間にコンピュータの電源が切れていればタスクは決して実行されません。<command>anacron</command> の目的は、コンピュータの電源が切れている期間を考慮して、OFF 期間中のタスクを実行することです。"
+msgstr "<command>anacron</command> はデーモンで、常に起動されていないコンピュータの <command>cron</command> を完成するものです。定期的なタスクは通常真夜中に予定されているため、その時間にコンピュータの電源が切れていればタスクは決して実行されません。<command>anacron</command> の目的は、コンピュータの電源が切れている期間を考慮して、OFF 期間中のタスクを実行する事です。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2054,7 +2054,7 @@ msgstr "<primary><command>anacron</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Please note that <command>anacron</command> will frequently execute such activity a few minutes after booting the machine, which can render the computer less responsive. This is why the tasks in the <filename>/etc/anacrontab</filename> file are started with the <command>nice</command> command, which reduces their execution priority and thus limits their impact on the rest of the system. Beware, the format of this file is not the same as that of <filename>/etc/crontab</filename>; if you have particular needs for <command>anacron</command>, see the <citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> manual page."
-msgstr "<command>anacron</command> は通常そのようなタスクをマシンの起動数分後に実行します。この事により、コンピュータの反応が遅くなります。このため、<filename>/etc/anacrontab</filename> ファイルに載せられたタスクは <command>nice</command> コマンドと一緒に開始されます。こうすることで、タスクの優先度を低くして実行できるので、システムの残りの部分に対する影響を減らすことが可能です。<filename>/etc/anacrontab</filename> ファイルの書式は <filename>/etc/crontab</filename> と異なる点に注意してください; <command>anacron</command> を使う特定の必要性がある場合、<citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> マニュアルページを御覧ください。"
+msgstr "<command>anacron</command> は通常そのようなタスクをマシンの起動数分後に実行します。この事により、コンピュータの反応が遅くなります。このため、<filename>/etc/anacrontab</filename> ファイルに載せられたタスクは <command>nice</command> コマンドと一緒に開始されます。こうすることで、タスクの優先度を低くして実行できるので、システムの残りの部分に対する影響を減らす事が可能です。<filename>/etc/anacrontab</filename> ファイルの書式は <filename>/etc/crontab</filename> と異なる点に注意してください; <command>anacron</command> を使う特定の必要性がある場合、<citerefentry><refentrytitle>anacrontab</refentrytitle> <manvolnum>5</manvolnum></citerefentry> マニュアルページをご覧ください。"
 
 #. Tag: title
 #, no-c-format
@@ -2074,12 +2074,12 @@ msgstr "<command>nice</command> は「niceness」と呼ばれる優先度と連�
 #. Tag: para
 #, no-c-format
 msgid "If you discover that an already running task should have been started with <command>nice</command> it is not too late to fix it; the <command>renice</command> command changes the priority of an already running process, in either direction (but reducing the “niceness” of a process is reserved to the root user)."
-msgstr "既に実行中のタスクの中に <command>nice</command> で開始するべきプロセスを発見した場合、今からでも優先度を修正することが可能です; <command>renice</command> コマンドは実行中のプロセスの優先度を変更します。優先度を低くすることも高くすることも可能です (ただし、「niceness」を減らす (優先度を高くする) 事ができるのは root だけです)。"
+msgstr "既に実行中のタスクの中に <command>nice</command> で開始するべきプロセスを発見した場合、今からでも優先度を修正する事が可能です; <command>renice</command> コマンドは実行中のプロセスの優先度を変更します。優先度を低くする事も高くする事も可能です (ただし、「niceness」を減らす (優先度を高くする) 事ができるのは root だけです)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Installation of the <emphasis role=\"pkg\">anacron</emphasis> package deactivates execution by <command>cron</command> of the scripts in the <filename>/etc/cron.hourly/</filename>, <filename>/etc/cron.daily/</filename>, <filename>/etc/cron.weekly/</filename>, and <filename>/etc/cron.monthly/</filename> directories. This avoids their double execution by <command>anacron</command> and <command>cron</command>. The <command>cron</command> command remains active and will continue to handle the other scheduled tasks (especially those scheduled by users)."
-msgstr "<emphasis role=\"pkg\">anacron</emphasis> パッケージをインストールすることにより、<command>cron</command> は <filename>/etc/cron.hourly/</filename>、<filename>/etc/cron.daily/</filename>、<filename>/etc/cron.weekly/</filename>、<filename>/etc/cron.monthly/</filename> ディレクトリに含まれるスクリプトを実行しなくなります。これは <command>anacron</command> と <command>cron</command> がスクリプトを二重に実行することを避けるためです。<command>cron</command> コマンドはまだ有効で、他のスケジュールされたタスク (特にユーザがスケジュールしたタスク) を取り扱う事が可能です。"
+msgstr "<emphasis role=\"pkg\">anacron</emphasis> パッケージをインストールすることにより、<command>cron</command> は <filename>/etc/cron.hourly/</filename>、<filename>/etc/cron.daily/</filename>、<filename>/etc/cron.weekly/</filename>、<filename>/etc/cron.monthly/</filename> ディレクトリに含まれるスクリプトを実行しなくなります。これは <command>anacron</command> と <command>cron</command> がスクリプトを二重に実行する事を避けるためです。<command>cron</command> コマンドはまだ有効で、他のスケジュールされたタスク (特にユーザがスケジュールしたタスク) を取り扱う事が可能です。"
 
 #. Tag: title
 #, no-c-format
@@ -2094,17 +2094,17 @@ msgstr "<primary>quota</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The quota system allows limiting disk space allocated to a user or group of users. To set it up, you must have a kernel that supports it (compiled with the <varname>CONFIG_QUOTA</varname> option) — as is the case of Debian kernels. The quota management software is found in the <emphasis role=\"pkg\">quota</emphasis> Debian package."
-msgstr "クォータシステムを使うことで、ユーザまたはユーザグループに割り当てられたディスクスペースを制限することが可能です。クォータを設定するには、クォータをサポートする (<varname>CONFIG_QUOTA</varname> オプションを有効化してコンパイルされた) カーネルを使わなければいけません - Debian カーネルはクォータをサポートします。クォータ管理ソフトウェアは <emphasis role=\"pkg\">quota</emphasis> Debian パッケージに含まれています。"
+msgstr "クォータシステムを使うことで、ユーザまたはユーザグループに割り当てられたディスク領域を制限する事が可能です。クォータを設定するには、クォータをサポートする (<varname>CONFIG_QUOTA</varname> オプションを有効化してコンパイルされた) カーネルを使わなければいけません - Debian カーネルはクォータをサポートします。クォータ管理ソフトウェアは <emphasis role=\"pkg\">quota</emphasis> Debian パッケージに含まれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "To activate them in a filesystem, you have to indicate the <literal>usrquota</literal> and <literal>grpquota</literal> options in <filename>/etc/fstab</filename> for the user and group quotas, respectively. Rebooting the computer will then update the quotas in the absence of disk activity (a necessary condition for proper accounting of already used disk space)."
-msgstr "あるファイルシステムでクォータを有効化するには、<filename>/etc/fstab</filename> の中でそれぞれユーザやグループクォータに対応する <literal>usrquota</literal> や <literal>grpquota</literal> オプションを使います。この後コンピュータを再起動すると、ディスク活動の無いときに (これは既に利用されているディスクスペースを適切に計量する必要条件です)、クォータが更新されます。"
+msgstr "あるファイルシステムでクォータを有効化するには、<filename>/etc/fstab</filename> の中でそれぞれユーザやグループクォータに対応する <literal>usrquota</literal> や <literal>grpquota</literal> オプションを使います。この後コンピュータを再起動すると、ディスク活動の無いときに (これは既に利用されているディスク領域を適切に計量する必要条件です)、クォータが更新されます。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <command>edquota <replaceable>user</replaceable></command> (or <command>edquota -g <replaceable>group</replaceable></command>) command allows you to change the limits while examining current disk space usage."
-msgstr "<command>edquota <replaceable>user</replaceable></command> (または <command>edquota -g <replaceable>group</replaceable></command>) コマンドを使うと、現在のディスクスペース使用量を検査している最中に、制限を変更することが可能です。"
+msgstr "<command>edquota <replaceable>user</replaceable></command> (または <command>edquota -g <replaceable>group</replaceable></command>) コマンドを使うと、現在のディスク領域使用量を検査している最中に、制限を変更する事が可能です。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2124,27 +2124,27 @@ msgstr "<primary><command>setquota</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <command>setquota</command> program can be used in a script to automatically change many quotas. Its <citerefentry><refentrytitle>setquota</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page details the syntax to use."
-msgstr "<command>setquota</command> プログラムはスクリプトの中で自動的に多くのクォータを変更する目的で使うことが可能です。構文の使い方は <citerefentry><refentrytitle>setquota</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページを御覧ください。"
+msgstr "<command>setquota</command> プログラムはスクリプトの中で自動的に多くのクォータを変更する目的で使う事が可能です。構文の使い方は <citerefentry><refentrytitle>setquota</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページをご覧ください。"
 
 #. Tag: para
 #, no-c-format
 msgid "The quota system allows you to set four limits:"
-msgstr "クォータシステムを使うと 4 種類の制限を設定することが可能です:"
+msgstr "クォータシステムを使うと 4 種類の制限を設定する事が可能です:"
 
 #. Tag: para
 #, no-c-format
 msgid "two limits (called “soft” and “hard”) refer to the number of blocks consumed. If the filesystem was created with a block-size of 1 kibibyte, a block contains 1024 bytes from the same file. Unsaturated blocks thus induce losses of disk space. A quota of 100 blocks, which theoretically allows storage of 102,400 bytes, will however be saturated with just 100 files of 500 bytes each, only representing 50,000 bytes in total."
-msgstr "消費ブロック数に対する 2 種類の制限 (「ソフト」と「ハード」と呼ばれます) があります。もしファイルシステムが 1 キロバイトのブロックサイズで作られた場合、1 ブロックには、あるファイルの 1024 バイト分を入れることが可能です。飽和していないブロックにより、ディスクスペースの損失が生じます。100 ブロックのクォータは理論的には 102,400 バイト保存できることを意味しますが、500 バイトのファイル 100 個、合計 50,000 バイト、で上限に達することになります。"
+msgstr "消費ブロック数に対する 2 種類の制限 (「ソフト」と「ハード」と呼ばれます) があります。もしファイルシステムが 1 キロバイトのブロックサイズで作られた場合、1 ブロックには、あるファイルの 1024 バイト分を入れる事が可能です。飽和していないブロックにより、ディスク領域の損失が生じます。100 ブロックのクォータは理論的には 102,400 バイト保存できる事を意味しますが、500 バイトのファイル 100 個、合計 50,000 バイト、で上限に達することになります。"
 
 #. Tag: para
 #, no-c-format
 msgid "two limits (soft and hard) refer to the number of inodes used. Each file occupies at least one inode to store information about it (permissions, owner, timestamp of last access, etc.). It is thus a limit on the number of user files."
-msgstr "i ノードに対して 2 種類の制限 (ソフトとハード) があります。各ファイルはファイルの情報 (パーミッション、所有者、最後にアクセスされた時間、など) を保存するために少なくとも 1 つの i ノードを専有します。この性質を使うことで、ユーザファイルの数を制限することが可能です。"
+msgstr "i ノードに対して 2 種類の制限 (ソフトとハード) があります。各ファイルはファイルの情報 (パーミッション、所有者、最後にアクセスされた時間、など) を保存するために少なくとも 1 つの i ノードを専有します。この性質を使うことで、ユーザファイルの数を制限する事が可能です。"
 
 #. Tag: para
 #, no-c-format
 msgid "A “soft” limit can be temporarily exceeded; the user will simply be warned that they are exceeding the quota by the <command>warnquota</command> command, which is usually invoked by <command>cron</command>. A “hard” limit can never be exceeded: the system will refuse any operation that will cause a hard quota to be exceeded."
-msgstr "「ソフト」リミットは一時的に超過できます; ユーザは単純に <command>warnquota</command> コマンドからクォータを超過していることに対する警告を受けるだけです。 <command>warnquota</command> コマンドは通常 <command>cron</command> コマンドによって呼び出されます。「ハード」リミットは決して超過できません: システムはハードクォータを超過するような操作を全て拒否します。"
+msgstr "「ソフト」リミットは一時的に超過できます; ユーザは単純に <command>warnquota</command> コマンドからクォータを超過していることに対する警告を受けるだけです。 <command>warnquota</command> コマンドは通常 <command>cron</command> コマンドによって呼び出されます。「ハード」リミットは決して超過できません: システムはハードクォータを超過するような操作をすべて拒否します。"
 
 #. Tag: title
 #, no-c-format
@@ -2169,7 +2169,7 @@ msgstr "ファイルシステムはハードドライブをブロック - 小さ
 #. Tag: para
 #, no-c-format
 msgid "A block can be used either to store the real data of a file, or for meta-data used by the filesystem. Among this meta-data, you will especially find the inodes. An inode uses a block on the hard drive (but this block is not taken into consideration in the block quota, only in the inode quota), and contains both the information on the file to which it corresponds (name, owner, permissions, etc.) and the pointers to the data blocks that are actually used. For very large files that occupy more blocks than it is possible to reference in a single inode, there is an indirect block system; the inode references a list of blocks that do not directly contain data, but another list of blocks."
-msgstr "ブロックはファイルの実データまたはファイルシステムの使うメタデータのどちらか一方を保存するために使われます。メタデータの中でも特に、i ノードについて説明します。1 つの i ノードはハードドライブ上の 1 ブロックを使い (しかし、このブロックはブロッククォータに考慮されず、i ノードクォータだけに考慮されます)、その i ノードに対応するファイルの情報 (名前、所有者、パーミッション、など) と実際に使われるデータブロックへのポインタ情報の両方を含みます。単一の i ノードで対応出来ないくらい多くのブロックを専有するとても大きなファイルのために、間接ブロックシステムがあります; i ノードは、実データではなく別のブロックのリストを保存しているブロックのリストを参照します。"
+msgstr "ブロックはファイルの実データまたはファイルシステムの使うメタデータのどちらか一方を保存するために使われます。メタデータの中でも特に、i ノードについて説明します。1 つの i ノードはハードドライブ上の 1 ブロックを使い (しかし、このブロックはブロッククォータに考慮されず、i ノードクォータだけに考慮されます)、その i ノードに対応するファイルの情報 (名前、所有者、パーミッション、など) と実際に使われるデータブロックへのポインタ情報の両方を含みます。単一の i ノードで対応できないくらい多くのブロックを専有するとても大きなファイルのために、間接ブロックシステムがあります; i ノードは、実データではなく別のブロックのリストを保存しているブロックのリストを参照します。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2179,7 +2179,7 @@ msgstr "<primary><command>warnquota</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "With the <command>edquota -t</command> command, you can define a maximum authorized “grace period” within which a soft limit may be exceeded. After this period, the soft limit will be treated like a hard limit, and the user will have to reduce their disk space usage to within this limit in order to be able to write anything to the hard drive."
-msgstr "<command>edquota -t</command> コマンドを使って、ソフトリミットの超過を許す「猶予期間」の最長値を定義することが可能です。この期間の後、ソフトリミットはハードリミットと同じ様に扱われます。ユーザがハードドライブに何かを書き込むには、ディスクスペースの使用量を減らしてクォータの制限内に収めなければいけません。"
+msgstr "<command>edquota -t</command> コマンドを使って、ソフトリミットの超過を許す「猶予期間」の最長値を定義する事が可能です。この期間の後、ソフトリミットはハードリミットと同じ様に扱われます。ユーザがハードドライブに何かを書き込むには、ディスク領域の使用量を減らしてクォータの制限内に収めなければいけません。"
 
 #. Tag: title
 #, no-c-format
@@ -2209,7 +2209,7 @@ msgstr "<primary>復元</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Many programs exist, such as <command>amanda</command>, <command>bacula</command>, <command>BackupPC</command>. Those are client/server system featuring many options, whose configuration is rather difficult. Some of them provide user-friendly web interfaces to mitigate this. But Debian contains dozens of other backup software covering all possible use cases, as you can easily confirm with <command>apt-cache search backup</command>."
-msgstr "<command>amanda</command>、<command>bacula</command>、<command>BackupPC</command> 等の多くのプログラムが存在します。これらはクライアント/サーバシステムに適した多くの選択肢で、設定はかなり難しいです。幾つかは難しさを和らげるためのユーザフレンドリーなウェブインターフェイスを提供しています。しかし Debian には、全ての考え得る使用事例に対応できる、他の数多くのバックアップソフトウェアが含まれています。ソフトウェアを確認するには <command>apt-cache search backup</command> を使ってください。"
+msgstr "<command>amanda</command>、<command>bacula</command>、<command>BackupPC</command> 等の多くのプログラムが存在します。これらはクライアント/サーバシステムに適した多くの選択肢で、設定はかなり難しいです。幾つかは難しさを和らげるためのユーザフレンドリーなウェブインターフェースを提供しています。しかし Debian には、すべての考え得る使用事例に対応できる、他の数多くのバックアップソフトウェアが含まれています。ソフトウェアを確認するには <command>apt-cache search backup</command> を使ってください。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2234,7 +2234,7 @@ msgstr "これらのうちの幾つかを詳細に説明するのではなく、
 #. Tag: para
 #, no-c-format
 msgid "At Falcot Corp, backups have two goals: recovering erroneously deleted files, and quickly restoring any computer (server or desktop) whose hard drive has failed."
-msgstr "Falcot Corp では、バックアップには 2 つの目標があります: 誤って削除したファイルを回復することと、ハードドライブに障害が起きた際にコンピュータ (サーバおよびデスクトップ) を素早く復元することです。"
+msgstr "Falcot Corp では、バックアップには 2 つの目標があります: 誤って削除したファイルを回復することと、ハードドライブに障害が起きた際にコンピュータ (サーバおよびデスクトップ) を素早く復元する事です。"
 
 #. Tag: title
 #, no-c-format
@@ -2244,7 +2244,7 @@ msgstr "<command>rsync</command> を使ったバックアップ"
 #. Tag: para
 #, no-c-format
 msgid "Backups on tape having been deemed too slow and costly, data will be backed up on hard drives on a dedicated server, on which the use of software RAID (see <xref linkend=\"sect.raid-soft\" />) will protect the data from hard drive failure. Desktop computers are not backed up individually, but users are advised that their personal account on their department's file server will be backed up. The <command>rsync</command> command (from the package of the same name) is used daily to back up these different servers."
-msgstr "テープへのバックアップは遅くて費用がかかりすぎるとみなされ、データは専用サーバのハードドライブにバックアップされる事になりました。専用サーバはソフトウェア RAID (<xref linkend=\"sect.raid-soft\" />参照) を使ってデータをハードウェア障害から守っています。デスクトップコンピュータは個別にバックアップされませんが、ユーザは部署のファイルサーバの個人アカウントはバックアップされると忠告されています。毎日 <command>rsync</command> コマンド (同名のパッケージに含まれる) を使って、異なるサーバにバックアップを行います。"
+msgstr "テープへのバックアップは遅くて費用がかかりすぎるとみなされ、データは専用サーバのハードドライブにバックアップされる事になりました。専用サーバはソフトウェア RAID (<xref linkend=\"sect.raid-soft\" />参照) を使ってデータをハードウェア障害から守っています。デスクトップコンピュータは個別にバックアップされませんが、ユーザは部署のファイルサーバの個人アカウントはバックアップされると忠告されています。毎日 <command>rsync</command> コマンド (同名のパッケージに含まれます) を使って、異なるサーバにバックアップを行います。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2269,7 +2269,7 @@ msgstr "<primary>ハードリンク</primary>"
 #. Tag: para
 #, no-c-format
 msgid "A hard link, as opposed to a symbolic link, can not be differentiated from the linked file. Creating a hard link is essentially the same as giving an existing file a second name. This is why the deletion of a hard link only removes one of the names associated with the file. As long as another name is still assigned to the file, the data therein remain present on the filesystem. It is interesting to note that, unlike a copy, the hard link does not take up additional space on the hard drive."
-msgstr "ハードリンクはシンボリックリンクと異なり、リンクされたファイルと区別することができません。本質的に、ハードリンクの作成は既存のファイルに別名を与えることと同義です。そのため、ハードリンクの削除はそのファイルに関連する名前を削除するに過ぎません。他の名前がまだそのファイルに関連付けられている場合、データの実体ファイルシステムから削除されません。コピーと異なり、ハードリンクはハードドライブ上に追加的なスペースを必要としない点について注意することは興味深いです。"
+msgstr "ハードリンクはシンボリックリンクと異なり、リンクされたファイルと区別する事ができません。本質的に、ハードリンクの作成は既存のファイルに別名を与えることと同義です。そのため、ハードリンクの削除はそのファイルに関連する名前を削除するに過ぎません。他の名前がまだそのファイルに関連付けられている場合、データの実体ファイルシステムから削除されません。コピーと異なり、ハードリンクはハードドライブ上に追加的な領域を必要としない点について注意することは興味深いです。"
 
 #. Tag: para
 #, no-c-format
@@ -2279,7 +2279,7 @@ msgstr "ハードリンクは <command>ln <replaceable>target</replaceable> <rep
 #. Tag: para
 #, no-c-format
 msgid "The available hard drive space prohibits implementation of a complete daily backup. As such, the <command>rsync</command> command is preceded by a duplication of the content of the previous backup with hard links, which prevents usage of too much hard drive space. The <command>rsync</command> process then only replaces files that have been modified since the last backup. With this mechanism a great number of backups can be kept in a small amount of space. Since all backups are immediately available and accessible (for example, in different directories of a given share on the network), you can quickly make comparisons between two given dates."
-msgstr "利用可能なハードドライブの空き領域によっては、完全な日次バックアップが出来ない場合があります。このため、まず <command>rsync</command> コマンドはバックアップの内容をハードリンクで複製します。このお陰で、ハードドライブ領域を無駄に消費する事がなくなります。そして <command>rsync</command> プロセスは最後のバックアップ以降に変更されたファイルだけを置き換えます。このメカニズムにより、多くのバックアップを少ない領域に保存することが可能です。全てのバックアップは素早く利用可能でアクセス可能 (例えば、ネットワーク共有されたディレクトリの中) なので、ある日付同士の違いを素早く比較できます。"
+msgstr "利用可能なハードドライブの空き領域によっては、完全な日次バックアップができない場合があります。このため、まず <command>rsync</command> コマンドはバックアップの内容をハードリンクで複製します。このお陰で、ハードドライブ領域を無駄に消費する事がなくなります。そして <command>rsync</command> プロセスは最後のバックアップ以降に変更されたファイルだけを置き換えます。このメカニズムにより、多くのバックアップを少ない領域に保存する事が可能です。すべてのバックアップは素早く利用可能でアクセス可能 (例えば、ネットワーク共有されたディレクトリの中) なので、ある日付同士の違いを素早く比較できます。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2304,7 +2304,7 @@ msgstr "<command>dirvish</command> プログラムを使えば、このバック
 #. Tag: para
 #, no-c-format
 msgid "The main configuration is in the <filename>/etc/dirvish/master.conf</filename> file. It defines the location of the backup storage space, the list of “vaults” to manage, and default values for expiration of the backups. The rest of the configuration is located in the <filename><replaceable>bank</replaceable>/<replaceable>vault</replaceable>/dirvish/default.conf</filename> files and contains the specific configuration for the corresponding set of files."
-msgstr "主要な設定は <filename>/etc/dirvish/master.conf</filename> ファイルに含まれます。<filename>/etc/dirvish/master.conf</filename> ファイルでは、バックアップストレージスペースの場所、管理する「vaults」のリスト、バックアップの保存期限のデフォルト値を定義します。残りの設定は <filename><replaceable>bank</replaceable>/<replaceable>vault</replaceable>/dirvish/default.conf</filename> ファイルの中に書き、このファイルには対応するファイルセットに対する特定の設定が含まれます。"
+msgstr "主要な設定は <filename>/etc/dirvish/master.conf</filename> ファイルに含まれます。<filename>/etc/dirvish/master.conf</filename> ファイルでは、バックアップストレージ領域の場所、管理する「vaults」のリスト、バックアップの保存期限のデフォルト値を定義します。残りの設定は <filename><replaceable>bank</replaceable>/<replaceable>vault</replaceable>/dirvish/default.conf</filename> ファイルの中に書き、このファイルには対応するファイルセットに対する特定の設定が含まれます。"
 
 #. Tag: title
 #, no-c-format
@@ -2327,7 +2327,7 @@ msgid ""
 "#   MIN HR    DOM MON       DOW  STRFTIME_FMT\n"
 "    *   *     *   *         1    +3 months\n"
 "    *   *     1-7 *         1    +1 year\n"
-"    *   *     1-7 1,4,7,10  1\n"
+"    *   *     1-7 1,4,7,10  1"
 msgstr ""
 "bank:\n"
 "    /backup\n"
@@ -2342,12 +2342,12 @@ msgstr ""
 "#   MIN HR    DOM MON       DOW  STRFTIME_FMT\n"
 "    *   *     *   *         1    +3 months\n"
 "    *   *     1-7 *         1    +1 year\n"
-"    *   *     1-7 1,4,7,10  1\n"
+"    *   *     1-7 1,4,7,10  1"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>bank</literal> setting indicates the directory in which the backups are stored. The <literal>exclude</literal> setting allows you to indicate files (or file types) to exclude from the backup. The <literal>Runall</literal> is a list of file sets to backup with a time-stamp for each set, which allows you to assign the correct date to the copy, in case the backup is not triggered at precisely the assigned time. You have to indicate a time just before the actual execution time (which is, by default, 10:04 pm in Debian, according to <filename>/etc/cron.d/dirvish</filename>). Finally, the <literal>expire-default</literal> and <literal>expire-rule</literal> settings define the expiration policy for backups. The above example keeps forever backups that are generated on the first Sunday of each quarter, deletes after one year those from the first Sunday of each month, and after 3 months those from other Sundays. Other daily backups are kept for 15 days. The order of the rules does matter, Dirvish uses the last matching rule, or the <literal>expire-default</literal> one if no other <literal>expire-rule</literal> matches."
-msgstr "<literal>bank</literal> 設定はバックアップが保存されるディレクトリを表します。<literal>exclude</literal> 設定を使うと、バックアップからファイル (またはファイルタイプ) を除外することが可能です。<literal>Runall</literal> はタイムスタンプを付けてバックアップするファイルセットのリストです。これにより、万が一割り当てられた時間に正確にバックアップが実行されない場合、コピーする正確な時刻を割り当てることが可能です。ここで指定する時刻は実際の実行時間の直前の時刻でなければいけません (<filename>/etc/cron.d/dirvish</filename> によれば、Debian では実際の実行時間はデフォルトで午後 10:04です)。最後に <literal>expire-default</literal> と <literal>expire-rule</literal> 設定でバックアップ保存期限ポリシーを定義します。上の例は、各四半期の最初の日曜日に作成されたバックアップを永久に保存し、それに当てはまらない各月の最初の日曜日作成されたバックアップを 1 年経過後に削除し、それに当てはまらない日曜日に作成されたバックアップを 3 ヶ月経過後に削除します。その他の日次バックアップは 15 日間保存されます。ルールが適用される順番が問題です。Dirvish は最後にマッチしたルールを使い、<literal>expire-rule</literal> にマッチするものがなければ <literal>expire-default</literal> を使います。"
+msgstr "<literal>bank</literal> 設定はバックアップが保存されるディレクトリを表します。<literal>exclude</literal> 設定を使うと、バックアップからファイル (またはファイルタイプ) を除外する事が可能です。<literal>Runall</literal> はタイムスタンプを付けてバックアップするファイルセットのリストです。これにより、万が一割り当てられた時間に正確にバックアップが実行されない場合、コピーする正確な時刻を割り当てる事が可能です。ここで指定する時刻は実際の実行時間の直前の時刻でなければいけません (<filename>/etc/cron.d/dirvish</filename> によれば、Debian では実際の実行時間はデフォルトで午後 10:04 です)。最後に <literal>expire-default</literal> と <literal>expire-rule</literal> 設定でバックアップ保存期限ポリシーを定義します。上の例は、各四半期の最初の日曜日に作成されたバックアップを永久に保存し、それに当てはまらない各月の最初の日曜日作成されたバックアップを 1 年経過後に削除し、それに当てはまらない日曜日に作成されたバックアップを 3 ヶ月経過後に削除します。その他の日次バックアップは 15 日間保存されます。ルールが適用される順番が問題です。Dirvish は最後にマッチしたルールを使い、<literal>expire-rule</literal> にマッチするものがなければ <literal>expire-default</literal> を使います。"
 
 #. Tag: title
 #, no-c-format
@@ -2377,7 +2377,7 @@ msgid ""
 "    /var/cache/man/**\n"
 "    /tmp/**\n"
 "    /var/tmp/**\n"
-"    *.bak\n"
+"    *.bak"
 msgstr ""
 "client: rivendell.falcot.com\n"
 "tree: /\n"
@@ -2389,7 +2389,7 @@ msgstr ""
 "    /var/cache/man/**\n"
 "    /tmp/**\n"
 "    /var/tmp/**\n"
-"    *.bak\n"
+"    *.bak"
 
 #. Tag: para
 #, no-c-format
@@ -2399,7 +2399,7 @@ msgstr "上の例は、バックアップするファイルセットを指定し
 #. Tag: para
 #, no-c-format
 msgid "There are many options available, all documented in the <citerefentry><refentrytitle>dirvish.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> manual page. Once these configuration files are setup, you have to initialize each file set with the <command>dirvish --vault <replaceable>vault</replaceable> --init</command> command. From there on the daily invocation of <command>dirvish-runall</command> will automatically create a new backup copy just after having deleted those that expired."
-msgstr "多くのオプションがあり、全ては <citerefentry><refentrytitle>dirvish.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページに書かれています。一度これらの設定ファイルを作ったら、<command>dirvish --vault <replaceable>vault</replaceable> --init</command> コマンドを使って、各ファイルセットを初期化します。毎日の <command>dirvish-runall</command> 実行時に、期限切れになったバックアップコピーが削除され、その直後に自動的に新しいバックアップコピーが作成されます。"
+msgstr "多くのオプションがあり、すべては <citerefentry><refentrytitle>dirvish.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry> マニュアルページに書かれています。一度これらの設定ファイルを作ったら、<command>dirvish --vault <replaceable>vault</replaceable> --init</command> コマンドを使って、各ファイルセットを初期化します。毎日の <command>dirvish-runall</command> 実行時に、期限切れになったバックアップコピーが削除され、その直後に自動的に新しいバックアップコピーが作成されます。"
 
 #. Tag: title
 #, no-c-format
@@ -2419,12 +2419,12 @@ msgstr "バックアップ無しのマシンの復元"
 #. Tag: para
 #, no-c-format
 msgid "Desktop computers, which are not backed up, will be easy to reinstall from custom DVD-ROMs prepared with <emphasis>Simple-CDD</emphasis> (see <xref linkend=\"sect.simple-cdd\" />). Since this performs an installation from scratch, it loses any customization that can have been made after the initial installation. This is fine since the systems are all hooked to a central LDAP directory for accounts and most desktop applications are preconfigured thanks to dconf (see <xref linkend=\"sect.gnome-desktop\" /> for more information about this)."
-msgstr "バックアップされていないデスクトップコンピュータに対しては <emphasis>Simple-CDD</emphasis> でカスタマイズされた DVD-ROM からシステムを再インストールするのが簡単でしょう (see <xref linkend=\"sect.simple-cdd\" />)。インストールを最初からやり直すので、初回インストール後に行われた全ての設定は失われます。これは問題ではありません。なぜなら、アカウントについてはシステムは全て中央 LDAP ディレクトリに接続されており、ほとんどのデスクトップアプリケーションについては dconf のお陰で事前設定されている (詳しい情報は<xref linkend=\"sect.gnome-desktop\" />参照) からです。"
+msgstr "バックアップされていないデスクトップコンピュータに対しては <emphasis>Simple-CDD</emphasis> でカスタマイズされた DVD-ROM からシステムを再インストールするのが簡単でしょう (see <xref linkend=\"sect.simple-cdd\" />)。インストールを最初からやり直すので、初回インストール後に行われたすべての設定は失われます。これは問題ではありません。なぜなら、アカウントについてはシステムはすべて中央 LDAP ディレクトリに接続されており、ほとんどのデスクトップアプリケーションについては dconf のお陰で事前設定されている (詳しい情報は<xref linkend=\"sect.gnome-desktop\" />参照) からです。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators are aware of the limits in their backup policy. Since they can't protect the backup server as well as a tape in a fireproof safe, they have installed it in a separate room so that a disaster such as a fire in the server room won't destroy backups along with everything else. Furthermore, they do an incremental backup on DVD-ROM once per week — only files that have been modified since the last backup are included."
-msgstr "Falcot Corp の管理者は自分達のバックアップポリシーの限界を理解しています。バックアップサーバを、テープを耐火金庫に入れるかの如く、保護することが出来ないため、管理者はバックアップサーバを他のサーバと別の部屋に設置しました。そうすれば災害、例えばサーバルームの火事、が起きてもその他全てと一緒にバックアップも破壊されることを避けられるからです。更に、管理者は 1 週間に 1 回 DVD-ROM に増分バックアップ - 最後のバックアップ以降に修正されたファイルだけのバックアップ - をとります。"
+msgstr "Falcot Corp の管理者は自分達のバックアップポリシーの限界を理解しています。バックアップサーバを、テープを耐火金庫に入れるかの如く、保護する事ができないため、管理者はバックアップサーバを他のサーバと別の部屋に設置しました。そうすれば災害、例えばサーバルームの火事、が起きてもその他すべてと一緒にバックアップも破壊される事を避けられるからです。更に、管理者は 1 週間に 1 回 DVD-ROM に増分バックアップ - 最後のバックアップ以降に修正されたファイルだけのバックアップ - をとります。"
 
 #. Tag: title
 #, no-c-format
@@ -2434,7 +2434,7 @@ msgstr "<emphasis>GOING FURTHER</emphasis> SQL と LDAP サービスのバック
 #. Tag: para
 #, no-c-format
 msgid "Many services (such as SQL or LDAP databases) can not be backed up by simply copying their files (unless they are properly interrupted during creation of the backups, which is frequently problematic, since they are intended to be available at all times). As such, it is necessary to use an “export” mechanism to create a “data dump” that can be safely backed up. These are often quite large, but they compress well. To reduce the storage space required, you will only store a complete text file per week, and a <command>diff</command> each day, which is created with a command of the type <command>diff <replaceable>file_from_yesterday</replaceable> <replaceable>file_from_today</replaceable></command>. The <command>xdelta</command> program produces incremental differences from binary dumps."
-msgstr "多くのサービス (SQL や LDAP データベースなど) は単純にファイルをコピーするだけではバックアップできません (それらのサービスをバックアップの作成中に適切に中断しない限りバックアップできません。サービスの中断は通常問題です。なぜなら、サービスは常に利用可能であることを意図されているからです)。そのような場合、安全にバックアップ可能な「データダンプ」を作るために「エクスポート」メカニズムを使う事が必要です。データダンプは通常サイズのとても大きいファイルですが、よく圧縮できます。要求されるストレージ領域を減らすために、完全なテキストファイルを保存するのは 1 週間に 1 回、<command>diff</command> を保存するのは毎日にするでしょう。差分は <command>diff <replaceable>file_from_yesterday</replaceable> <replaceable>file_from_today</replaceable></command> で生成されます。バイナリダンプから増分差分を作成するには <command>xdelta</command> プログラムを使ってください。"
+msgstr "多くのサービス (SQL や LDAP データベースなど) は単純にファイルをコピーするだけではバックアップできません (それらのサービスをバックアップの作成中に適切に中断しない限りバックアップできません。サービスの中断は通常問題です。なぜなら、サービスは常に利用可能である事を意図されているからです)。そのような場合、安全にバックアップ可能な「データダンプ」を作るために「エクスポート」メカニズムを使う事が必要です。データダンプは通常サイズのとても大きいファイルですが、よく圧縮できます。要求されるストレージ領域を減らすために、完全なテキストファイルを保存するのは 1 週間に 1 回、<command>diff</command> を保存するのは毎日にするでしょう。差分は <command>diff <replaceable>file_from_yesterday</replaceable> <replaceable>file_from_today</replaceable></command> で生成されます。バイナリダンプから増分差分を作成するには <command>xdelta</command> プログラムを使ってください。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2489,12 +2489,12 @@ msgstr "はじめに"
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>hotplug</emphasis> kernel subsystem dynamically handles the addition and removal of devices, by loading the appropriate drivers and by creating the corresponding device files (with the help of <command>udevd</command>). With modern hardware and virtualization, almost everything can be hotplugged: from the usual USB/PCMCIA/IEEE 1394 peripherals to SATA hard drives, but also the CPU and the memory."
-msgstr "<emphasis>hotplug</emphasis> カーネルサブシステムはデバイスの追加と削除を、適切なドライバを読み込んだり関連するデバイスファイルを作成する (<command>udevd</command> の助けを借りて) ことで、動的に取り扱います。現代的なハードウェアと仮想化を使えば、ほとんど全てはホットプラグ対応です: USB/PCMCIA/IEEE 1394 周辺機器から SATA ハードドライブ、さらには CPU やメモリに至るまで。"
+msgstr "<emphasis>hotplug</emphasis> カーネルサブシステムはデバイスの追加と削除を、適切なドライバを読み込んだり関連するデバイスファイルを作成する (<command>udevd</command> の助けを借りて) ことで、動的に取り扱います。現代的なハードウェアと仮想化を使えば、ほとんどすべてはホットプラグ対応です: USB/PCMCIA/IEEE 1394 周辺機器から SATA ハードドライブ、さらには CPU やメモリに至るまで。"
 
 #. Tag: para
 #, no-c-format
 msgid "The kernel has a database that associates each device ID with the required driver. This database is used during boot to load all the drivers for the peripheral devices detected on the different buses, but also when an additional hotplug device is connected. Once the device is ready for use, a message is sent to <command>udevd</command> so it will be able to create the corresponding entry in <filename>/dev/</filename>."
-msgstr "カーネルは必要なドライバとデバイス ID を関連付けるデータベースを持っています。このデータベースは、起動中に様々なバスで検出された周辺機器用の全てのドライバを読み込んだり、追加的なホットプラグデバイスが接続された時に、使われます。デバイスの使用準備が整ったら、メッセージが <command>udevd</command> に送信され、<command>udevd</command> は対応するエントリを <filename>/dev/</filename> 内に作成します。"
+msgstr "カーネルは必要なドライバとデバイス ID を関連付けるデータベースを持っています。このデータベースは、起動中に様々なバスで検出された周辺機器用のすべてのドライバを読み込んだり、追加的なホットプラグデバイスが接続された時に、使われます。デバイスの使用準備が整ったら、メッセージが <command>udevd</command> に送信され、<command>udevd</command> は対応するエントリを <filename>/dev/</filename> 内に作成します。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2539,7 +2539,7 @@ msgstr "ホットプラグ接続の出現前、デバイスに固定された名
 #. Tag: para
 #, no-c-format
 msgid "Additionally, more and more drivers use dynamic values for devices' major/minor numbers, which makes it impossible to have static entries for the given devices, since these essential characteristics may vary after a reboot."
-msgstr "さらに、ますます多くのドライバがデバイスのメジャー/マイナー番号に動的な値を使うことで、あるデバイスに対する静的なエントリを持つことが不可能になります。なぜなら、これらのエントリは再起動の後に変化するかもしれないからです。"
+msgstr "さらに、ますます多くのドライバがデバイスのメジャー/マイナー番号に動的な値を使うことで、あるデバイスに対する静的なエントリを持つ事が不可能になります。なぜなら、これらのエントリは再起動の後に変化するかもしれないからです。"
 
 #. Tag: para
 #, no-c-format
@@ -2554,17 +2554,17 @@ msgstr "<emphasis>IN PRACTICE</emphasis> ネットワークカード管理"
 #. Tag: para
 #, no-c-format
 msgid "Many computers have multiple network cards (sometimes two wired interfaces and a wifi interface), and with <emphasis>hotplug</emphasis> support on most bus types, the 2.6 kernel no longer guarantees fixed naming of network interfaces. But a user who wants to configure their network in <filename>/etc/network/interfaces</filename> needs a fixed name!"
-msgstr "多くのコンピュータは複数のネットワークカードを持っており (2 つの有線インターフェイスと 1 つの wifi インターフェイス)、<emphasis>hotplug</emphasis> はほとんどのバスタイプをサポートするので 2.6 カーネルはもはや名前の固定されたネットワークインターフェイスを生成しません。しかし <filename>/etc/network/interfaces</filename> の中で自分のネットワークを設定したいユーザは名前を固定しなければいけません!"
+msgstr "多くのコンピュータは複数のネットワークカードを持っており (2 つの有線インターフェースと 1 つの wifi インターフェース)、<emphasis>hotplug</emphasis> はほとんどのバスタイプをサポートするので 2.6 カーネルはもはや名前の固定されたネットワークインターフェースを生成しません。しかし <filename>/etc/network/interfaces</filename> の中で自分のネットワークを設定したいユーザは名前を固定しなければいけません!"
 
 #. Tag: para
 #, no-c-format
 msgid "It would be difficult to ask every user to create their own <emphasis>udev</emphasis> rules to address this problem. This is why <emphasis>udev</emphasis> was configured in a rather peculiar manner; on first boot (and, more generally, each time that a new network card appears) it uses the name of the network interface and its MAC address to create new rules that will reassign the same name on subsequent boots. These rules are stored in <filename>/etc/udev/rules.d/70-persistent-net.rules</filename>."
-msgstr "この問題を解決する目的で、各ユーザに自分の <emphasis>udev</emphasis> ルールを作るようにお願いするのは難しいでしょう。そのため <emphasis>udev</emphasis> は比較的独特なやり方で設定されました; 最初の起動時 (より一般的に言えば、新しいネットワークカードが初めて見つかった時) に、<emphasis>udev</emphasis> はネットワークインターフェイスの名前と MAC アドレスを基にして、2 度目の起動から同じ名前を割り当てられるような新しいルールを作ります。これらのルールは <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> に保存されています。"
+msgstr "この問題を解決する目的で、各ユーザに自分の <emphasis>udev</emphasis> ルールを作るようにお願いするのは難しいでしょう。そのため <emphasis>udev</emphasis> は比較的独特なやり方で設定されました; 最初の起動時 (より一般的に言えば、新しいネットワークカードが初めて見つかった時) に、<emphasis>udev</emphasis> はネットワークインターフェースの名前と MAC アドレスを基にして、2 度目の起動から同じ名前を割り当てられるような新しいルールを作ります。これらのルールは <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> に保存されています。"
 
 #. Tag: para
 #, no-c-format
 msgid "This mechanism has some side effects that you should know about. Let's consider the case of computer that has only one PCI network card. The network interface is named <literal>eth0</literal>, logically. Now say the card breaks down, and the administrator replaces it; the new card will have a new MAC address. Since the old card was assigned the name, <literal>eth0</literal>, the new one will be assigned <literal>eth1</literal>, even though the <literal>eth0</literal> card is gone for good (and the network will not be functional because <filename>/etc/network/interfaces</filename> likely configures an <literal>eth0</literal> interface). In this case, it is enough to simply delete the <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> file before rebooting the computer. The new card will then be given the expected <literal>eth0</literal> name."
-msgstr "このメカニズムには幾つかの副作用がありますので、それについて知っておくべきです。コンピュータが PCI ネットワークカードを 1 つだけ持っている場合について考えましょう。このネットワークインターフェイスは必然的に <literal>eth0</literal> と名付けられます。カードが壊れて、管理者がそれを交換したとしましょう; 新しいカードは新しい MAC アドレスを持っています。古いカードには <literal>eth0</literal> という名前が割り当てられていたため、<literal>eth0</literal> カードが完全に消え去っているにも関わらず、新しいカードには <literal>eth1</literal> という名前が割り当てられます (ネットワークは機能しません。なぜなら、<filename>/etc/network/interfaces</filename> で <literal>eth0</literal> インターフェイスを設定しているからです)。この場合、コンピュータの再起動前に単純に <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> ファイルを削除すれば十分です。新しいカードはおそらく <literal>eth0</literal> という名前を与えられるでしょう。"
+msgstr "このメカニズムには幾つかの副作用がありますので、それについて知っておくべきです。コンピュータが PCI ネットワークカードを 1 つだけ持っている場合について考えましょう。このネットワークインターフェースは必然的に <literal>eth0</literal> と名付けられます。カードが壊れて、管理者がそれを交換したとしましょう; 新しいカードは新しい MAC アドレスを持っています。古いカードには <literal>eth0</literal> という名前が割り当てられていたため、<literal>eth0</literal> カードが完全に消え去っているにも関わらず、新しいカードには <literal>eth1</literal> という名前が割り当てられます (ネットワークは機能しません。なぜなら、<filename>/etc/network/interfaces</filename> で <literal>eth0</literal> インターフェースを設定しているからです)。この場合、コンピュータの再起動前に単純に <filename>/etc/udev/rules.d/70-persistent-net.rules</filename> ファイルを削除すれば十分です。新しいカードはおそらく <literal>eth0</literal> という名前を与えられるでしょう。"
 
 #. Tag: title
 #, no-c-format
@@ -2579,7 +2579,7 @@ msgstr "<emphasis>udev</emphasis> が新しいデバイスの出現について�
 #. Tag: para
 #, no-c-format
 msgid "Armed with all of this information, <emphasis>udev</emphasis> then consults all of the rules contained in <filename>/etc/udev/rules.d/</filename> and <filename>/lib/udev/rules.d/</filename>. In this process it decides how to name the device, what symbolic links to create (to give it alternative names), and what commands to execute. All of these files are consulted, and the rules are all evaluated sequentially (except when a file uses “GOTO” directives). Thus, there may be several rules that correspond to a given event."
-msgstr "この情報を武器にして、<emphasis>udev</emphasis> は <filename>/etc/udev/rules.d/</filename> と <filename>/lib/udev/rules.d/</filename> に含まれる全てのルールを調査します。この過程で <emphasis>udev</emphasis> は、どのような名前をデバイスに割り当てるか、どのような名前でシンボリックリンクを作成するか (別名を与えるために)、どのようなコマンドを実行するか、を決定します。これらのファイルすべてが調査され、ルールが全て順番に評価されます (「GOTO」ディレクティブを使う場合を除いて)。そのため、与えられたイベントに対応する複数のルールが有るかもしれません。"
+msgstr "この情報を武器にして、<emphasis>udev</emphasis> は <filename>/etc/udev/rules.d/</filename> と <filename>/lib/udev/rules.d/</filename> に含まれるすべてのルールを調査します。この過程で <emphasis>udev</emphasis> は、どのような名前をデバイスに割り当てるか、どのような名前でシンボリックリンクを作成するか (別名を与えるために)、どのようなコマンドを実行するか、を決定します。これらのファイルすべてが調査され、ルールがすべて順番に評価されます (「GOTO」ディレクティブを使う場合を除いて)。そのため、与えられたイベントに対応する複数のルールが有るかもしれません。"
 
 #. Tag: para
 #, no-c-format
@@ -2634,12 +2634,12 @@ msgstr "<literal>RESULT</literal>: <literal>PROGRAM</literal> が最後に呼び
 #. Tag: para
 #, no-c-format
 msgid "The right operands can use pattern expressions to match several values at the same time. For instance, <literal>*</literal> matches any string (even an empty one); <literal>?</literal> matches any character, and <literal>[]</literal> matches the set of characters listed between the square brackets (or the opposite thereof if the first character is an exclamation point, and contiguous ranges of characters are indicated like <literal>a-z</literal>)."
-msgstr "演算子の右側引数には、複数の値に同時にマッチするようなパターン式を使うことが可能です。例えば、<literal>*</literal> は任意の文字列に (空文字列にも) マッチします; <literal>?</literal> は任意の文字にマッチし、<literal>[]</literal> は角括弧の間にリストされた文字セットにマッチします (最初の文字が感嘆符の場合は、その否定にマッチします。また、文字の連続範囲は <literal>a-z</literal> のように表記します)。"
+msgstr "演算子の右側引数には、複数の値に同時にマッチするようなパターン式を使う事が可能です。例えば、<literal>*</literal> は任意の文字列に (空文字列にも) マッチします; <literal>?</literal> は任意の文字にマッチし、<literal>[]</literal> は角括弧の間にリストされた文字セットにマッチします (最初の文字が感嘆符の場合は、その否定にマッチします。また、文字の連続範囲は <literal>a-z</literal> のように表記します)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Regarding the assignment operators, <literal>=</literal> assigns a value (and replaces the current value); in the case of a list, it is emptied and contains only the value assigned. <literal>:=</literal> does the same, but prevents later changes to the same variable. As for <literal>+=</literal>, it adds an item to a list. The following variables can be changed:"
-msgstr "代入演算子に関して、<literal>=</literal> は値を代入します (そして現在の値を入れ替えます); リストに代入する場合、リストを空にした後、割り当てた値だけを代入します。<literal>:=</literal> は同じことをしますが、後から値を変更できなくなります。<literal>+=</literal> はリストにアイテムを追加します。代入演算子を使って変更できる変数は以下です:"
+msgstr "代入演算子に関して、<literal>=</literal> は値を代入します (そして現在の値を入れ替えます); リストに代入する場合、リストを空にした後、割り当てた値だけを代入します。<literal>:=</literal> は同じ事をしますが、後から値を変更できなくなります。<literal>+=</literal> はリストにアイテムを追加します。代入演算子を使って変更できる変数は以下です:"
 
 #. Tag: para
 #, no-c-format
@@ -2709,7 +2709,7 @@ msgstr "そして最後に、<literal>%%</literal> と <literal>$$</literal> は
 #. Tag: para
 #, no-c-format
 msgid "The above lists are not complete (they include only the most important parameters), but the <citerefentry><refentrytitle>udev</refentrytitle><manvolnum>7</manvolnum></citerefentry> manual page should be."
-msgstr "上のリストは完全なものではありません (最も重要なパラメータの抜粋です)。完全なリストは <citerefentry><refentrytitle>udev</refentrytitle><manvolnum>7</manvolnum></citerefentry> マニュアルページを御覧ください。"
+msgstr "上のリストは完全なものではありません (最も重要なパラメータの抜粋です)。完全なリストは <citerefentry><refentrytitle>udev</refentrytitle><manvolnum>7</manvolnum></citerefentry> マニュアルページをご覧ください。"
 
 #. Tag: title
 #, no-c-format
@@ -2772,7 +2772,7 @@ msgid ""
 "    ATTRS{product}==\"USB Mass Storage Device\"\n"
 "    ATTRS{serial}==\"M004021000001\"\n"
 "[...]\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>udevadm info -a -n /dev/sdc</userinput>\n"
 "<computeroutput>[...]\n"
@@ -2822,7 +2822,7 @@ msgstr ""
 "    ATTRS{product}==\"USB Mass Storage Device\"\n"
 "    ATTRS{serial}==\"M004021000001\"\n"
 "[...]\n"
-"</computeroutput>\n"
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -2833,10 +2833,10 @@ msgstr "新しいルールを作るために、デバイスの変数および親
 #, no-c-format
 msgid ""
 "KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
-"KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\"\n"
+"KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\""
 msgstr ""
 "KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
-"KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\"\n"
+"KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\""
 
 #. Tag: para
 #, no-c-format
@@ -2871,7 +2871,7 @@ msgstr "<primary>管理、電源管理</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The topic of power management is often problematic. Indeed, properly suspending the computer requires that all the computer's device drivers know how to put them to standby, and that they properly reconfigure the devices upon waking. Unfortunately, there are still a few devices unable to sleep well under Linux, because their manufacturers have not provided the required specifications."
-msgstr "電源管理は問題のある場合が多いです。実際、適切にコンピュータを一時停止するには、コンピュータの全てのデバイスドライバがデバイスをスタンバイ状態にする方法を知り、デバイスドライバがデバイスを再始動する際に適切に再設定できなければいけません。不幸なことに、Linux の下では上手くスタンバイ状態に出来ないデバイスが多いです。なぜなら、デバイスの製造業者が必要な仕様を公開しないからです。"
+msgstr "電源管理は問題のある場合が多いです。実際、適切にコンピュータを一時停止するには、コンピュータのすべてのデバイスドライバがデバイスをスタンバイ状態にする方法を知り、デバイスドライバがデバイスを再始動する際に適切に再設定できなければいけません。不幸なことに、Linux の下では上手くスタンバイ状態にできないデバイスが多いです。なぜなら、デバイスの製造業者が必要な仕様を公開しないからです。"
 
 #. Tag: para
 #, no-c-format
@@ -2921,9 +2921,9 @@ msgstr "<emphasis>BEWARE</emphasis> グラフィックカードとスタンバ�
 #. Tag: para
 #, no-c-format
 msgid "The graphics card driver is often the culprit when standby doesn't work properly. In that case, it is a good idea to test the latest version of the X.org graphics server."
-msgstr "グラフィックカードドライバはスタンバイが上手くできない問題の原因になることが多いです。この場合、X.org グラフィックサーバの最新版を試してみるのが良いアイディアです。"
+msgstr "グラフィックカードドライバはスタンバイが上手くできない問題の原因になる事が多いです。この場合、X.org グラフィックサーバの最新版を試してみるのが良いアイディアです。"
 
 #. Tag: para
 #, no-c-format
 msgid "After this overview of basic services common to many Unix systems, we will focus on the environment of the administered machines: the network. Many services are required for the network to work properly. They will be discussed in the next chapter."
-msgstr "多くの Unix システムで共通の基本的サービスの概要の後、管理されているマシンの環境に焦点を合わせます: ネットワークです。多くのサービスはネットワークを正しく動作させることを必要とします。次の章ではこれについて議論します。"
+msgstr "多くの Unix システムで共通の基本的サービスの概要の後、管理されているマシンの環境に焦点を合わせます: ネットワークです。多くのサービスはネットワークを正しく動作させる事を必要とします。次の章ではこれについて議論します。"

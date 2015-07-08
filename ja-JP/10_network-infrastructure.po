@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
-"PO-Revision-Date: 2015-05-24 16:26+0900\n"
+"POT-Creation-Date: 2015-07-08 09:41+0000\n"
+"PO-Revision-Date: 2015-07-08 19:37+0900\n"
 "Last-Translator: AYANOKOUZI, Ryuunosuke <i38w7i3@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -62,12 +62,12 @@ msgstr "ネットワークインフラ"
 #. Tag: para
 #, no-c-format
 msgid "Linux sports the whole Unix heritage for networking, and Debian provides a full set of tools to create and manage them. This chapter reviews these tools."
-msgstr "Linux はネットワークに関する Unix の財産全てをサポートし、Debian はネットワークを作成および管理する完全なツールセットを提供します。この章では、これらのツールを説明します。"
+msgstr "Linux はネットワークに関する Unix の財産すべてをサポートし、Debian はネットワークを作成および管理する完全なツールセットを提供します。この章では、これらのツールを説明します。"
 
 #. Tag: para
 #, no-c-format
 msgid "A gateway is a system linking several networks. This term often refers to a local network's “exit point” on the mandatory path to all external IP addresses. The gateway is connected to each of the networks it links together, and acts as a router to convey IP packets between its various interfaces."
-msgstr "ゲートウェイは複数のネットワークを連結するシステムです。ゲートウェイは外部 IP アドレスへの経路に出るために必須のローカルネットワークの「出口」を意味する場合が多いです。ゲートウェイは相互に連結する各ネットワークに接続されており、複数のインターフェイス間で IP パケットを相互に伝送するためのルータのように振る舞う。"
+msgstr "ゲートウェイは複数のネットワークを連結するシステムです。ゲートウェイは外部 IP アドレスへの経路に出るために必須のローカルネットワークの「出口」を意味する場合が多いです。ゲートウェイは相互に連結する各ネットワークに接続されており、複数のインターフェース間で IP パケットを相互に伝送するためのルータのように振る舞う。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -97,7 +97,7 @@ msgstr "<primary>パケット</primary><secondary>IP</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "Most networks nowadays use the IP protocol (<emphasis>Internet Protocol</emphasis>). This protocol segments the transmitted data into limited-size packets. Each packet contains, in addition to its payload data, a number of details required for its proper routing."
-msgstr "今日、多くのネットワークは IP プロトコル (<emphasis>Internet プロトコル</emphasis>) を使います。このプロトコルは転送するデータをサイズを制限したパケットに分割します。それぞれのパケットには、実データ本体に加えて、適切な経路選択に必要な数々のデータが含まれます。"
+msgstr "今日、多くのネットワークは IP プロトコル (<emphasis>インターネットプロトコル</emphasis>) を使います。このプロトコルは転送するデータをサイズを制限したパケットに分割します。それぞれのパケットには、実データ本体に加えて、適切な経路選択に必要な数々のデータが含まれます。"
 
 #. Tag: title
 #, no-c-format
@@ -127,17 +127,17 @@ msgstr "<primary>UDP、ポート</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Many programs do not handle the individual packets themselves, even though the data they transmit does travel over IP; they often use TCP (<emphasis>Transmission Control Protocol</emphasis>). TCP is a layer over IP allowing the establishment of connections dedicated to data streams between two points. The programs then only see an entry point into which data can be fed with the guarantee that the same data exits without loss (and in the same sequence) at the exit point at the other end of the connection. Although many kinds of errors can happen in the lower layers, they are compensated by TCP: lost packets are retransmitted, and packets arriving out of order (for example, if they used different paths) are re-ordered appropriately."
-msgstr "多くのプログラムは、送信するデータが IP 経由で伝わる場合でさえ、個々のパケットそれ自体を取り扱いません。多くのプログラムは TCP (<emphasis>Transmission Control Protocol</emphasis>) を使います。TCP は IP 上のレイヤで、2 点間のデータストリーム専用の接続の確立することが可能です。プログラムは、接続の別の側にある出口から損失なく同じデータ (同じ順番で) が出てくると保証される、データを送り込むための入口を見るだけです。低レイヤで起きる様々なエラーは TCP で補正されます: 損失したパケットは再度転送され、順番が狂って到着したパケット (例えば、異なる経路で到着したために) は適切な順番に揃えられます。"
+msgstr "多くのプログラムは、送信するデータが IP 経由で伝わる場合でさえ、個々のパケットそれ自体を取り扱いません。多くのプログラムは TCP (<emphasis>Transmission Control Protocol</emphasis>) を使います。TCP は IP 上のレイヤで、2 点間のデータストリーム専用の接続の確立する事が可能です。プログラムは、接続の別の側にある出口から損失なく同じデータ (同じ順番で) が出てくると保証される、データを送り込むための入口を見るだけです。低レイヤで起きる様々なエラーは TCP で補正されます: 損失したパケットは再度転送され、順番が狂って到着したパケット (例えば、異なる経路で到着したために) は適切な順番に揃えられます。"
 
 #. Tag: para
 #, no-c-format
 msgid "Another protocol relying on IP is UDP (<emphasis>User Datagram Protocol</emphasis>). In contrast to TCP, it is packet-oriented. Its goals are different: the purpose of UDP is only to transmit one packet from an application to another. The protocol does not try to compensate for possible packet loss on the way, nor does it ensure that packets are received in the same order as were sent. The main advantage to this protocol is that the latency is greatly improved, since the loss of a single packet does not delay the receiving of all following packets until the lost one is retransmitted."
-msgstr "IP に依存する別のプロトコルが UDP (<emphasis>User Datagram Protocol</emphasis>) です。TCP と対照的に、UDP はパケット重視です。UDP の目標は TCP と異なります: UDP の目的は 1 つのパケットをあるアプリケーションから別のアプリケーションに転送するだけです。UDP を使った場合、転送中のパケット損失は補償されませんし、パケットが送信順と同じ順番で受信されることも保証されません。UDP の主な利点は、遅延が大きく改善される点です。なぜなら、1 パケットを損失しても、損失したパケットが再転送されるまで、損失したパケット以降に続くパケットの受信は遅延しないからです。"
+msgstr "IP に依存する別のプロトコルが UDP (<emphasis>User Datagram Protocol</emphasis>) です。TCP と対照的に、UDP はパケット重視です。UDP の目標は TCP と異なります: UDP の目的は 1 つのパケットをあるアプリケーションから別のアプリケーションに転送するだけです。UDP を使った場合、転送中のパケット損失は補償されませんし、パケットが送信順と同じ順番で受信される事も保証されません。UDP の主な利点は、遅延が大きく改善される点です。なぜなら、1 パケットを損失しても、損失したパケットが再転送されるまで、損失したパケット以降に続くパケットの受信は遅延しないからです。"
 
 #. Tag: para
 #, no-c-format
 msgid "TCP and UDP both involve ports, which are “extension numbers” for establishing communication with a given application on a machine. This concept allows keeping several different communications in parallel with the same correspondent, since these communications can be distinguished by the port number."
-msgstr "TCP と UDP は両方ポート番号を使います。ポート番号とは、マシン上で動くあるアプリケーションと通信を確立するための「内線番号」といえます。この概念を使うことで、同一のマシンに対して、復数の異なる通信を並列して保つことが可能になります。なぜなら、通信はポート番号で区別されるからです。"
+msgstr "TCP と UDP は両方ポート番号を使います。ポート番号とは、マシン上で動くあるアプリケーションと通信を確立するための「内線番号」といえます。この概念を使うことで、同一のマシンに対して、復数の異なる通信を並列して保つ事が可能になります。なぜなら、通信はポート番号で区別されるからです。"
 
 #. Tag: para
 #, no-c-format
@@ -147,7 +147,7 @@ msgstr "IANA (<emphasis>Internet Assigned Numbers Authority</emphasis>) が標�
 #. Tag: para
 #, no-c-format
 msgid "When a local network uses a private address range (not routable on the Internet), the gateway needs to implement <emphasis>address masquerading</emphasis> so that the machines on the network can communicate with the outside world. The masquerading operation is a kind of proxy operating on the network level: each outgoing connection from an internal machine is replaced with a connection from the gateway itself (since the gateway does have an external, routable address), the data going through the masqueraded connection is sent to the new one, and the data coming back in reply is sent through to the masqueraded connection to the internal machine. The gateway uses a range of dedicated TCP ports for this purpose, usually with very high numbers (over 60000). Each connection coming from an internal machine then appears to the outside world as a connection coming from one of these reserved ports."
-msgstr "ローカルネットワークがプライベートアドレス (Internet にルーティングされないアドレス) 範囲を使う場合、ゲートウェイは<emphasis>アドレスマスカレード</emphasis>を実行する必要があります。<emphasis>アドレスマスカレード</emphasis>を使うことで、ローカルネットワーク上のマシンが外部と通信することが可能になります。マスカレード動作とはネットワークレベルのプロキシ動作のようなものです: 内部のマシンからの外部宛接続はゲートウェイ自身からの接続に置き替えられます (なぜなら、ゲートウェイは外部にルーティング可能なアドレスを持っているからです)。マスカレード接続を通過するデータは外部に送信され、応答として戻ってくるデータはマスカレード接続を通過して内部のマシンに送信されます。ゲートウェイはこの目的に専用の TCP ポート範囲を使います。この範囲は通常とても大きな番号 (60000 番より大きい番号) です。内部マシンからの接続はこれらの予約されたポート番号の 1 つから送信された接続として外部に送信されます。"
+msgstr "ローカルネットワークがプライベートアドレス (インターネットにルーティングされないアドレス) 範囲を使う場合、ゲートウェイは<emphasis>アドレスマスカレード</emphasis>を実行する必要があります。<emphasis>アドレスマスカレード</emphasis>を使うことで、ローカルネットワーク上のマシンが外部と通信する事が可能になります。マスカレード動作とはネットワークレベルのプロキシ動作のようなものです: 内部のマシンからの外部宛接続はゲートウェイ自身からの接続に置き替えられます (なぜなら、ゲートウェイは外部にルーティング可能なアドレスを持っているからです)。マスカレード接続を通過するデータは外部に送信され、応答として戻ってくるデータはマスカレード接続を通過して内部のマシンに送信されます。ゲートウェイはこの目的に専用の TCP ポート範囲を使います。この範囲は通常とても大きな番号 (60000 番より大きい番号) です。内部マシンからの接続はこれらの予約されたポート番号の 1 つから送信された接続として外部に送信されます。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -172,12 +172,12 @@ msgstr "<primary>プライベート IP アドレス</primary>"
 #. Tag: para
 #, no-c-format
 msgid "RFC 1918 defines three ranges of IPv4 addresses not meant to be routed on the Internet but only used in local networks. The first one, <literal>10.0.0.0/8</literal> (see sidebar <xref linkend=\"sidebar.networking-basics\" />), is a class-A range (with 2<superscript>24</superscript> IP addresses). The second one, <literal>172.16.0.0/12</literal>, gathers 16 class-B ranges (<literal>172.16.0.0/16</literal> to <literal>172.31.0.0/16</literal>), each containing 2<superscript>16</superscript> IP addresses. Finally, <literal>192.168.0.0/16</literal> is a class-B range (grouping 256 class-C ranges, <literal>192.168.0.0/24</literal> to <literal>192.168.255.0/24</literal>, with 256 IP addresses each). <ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
-msgstr "RFC 1918 では、Internet にルーティングされずローカルネットワークにのみ使うことができる、IPv4 アドレスの範囲が定義されています。1 番目が <literal>10.0.0.0/8</literal> で (傍注<xref linkend=\"sidebar.networking-basics\" />参照)、クラス A 範囲です (2<superscript>24</superscript> 個の IP アドレス)。2 番目が <literal>172.16.0.0/12</literal> で、16 個 (<literal>172.16.0.0/16</literal> から <literal>172.31.0.0/16</literal> まで) のクラス B 範囲です。各範囲に 2<superscript>16</superscript> 個の IP アドレスが含まれます。3 番目が <literal>192.168.0.0/16</literal> で、クラス B 範囲です (256 個のクラス C 範囲、<literal>192.168.0.0/24</literal> から <literal>192.168.255.0/24</literal> まで、各範囲に 256 個の IP アドレス)。<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
+msgstr "RFC 1918 では、インターネットにルーティングされずローカルネットワークにのみ使う事ができる、IPv4 アドレスの範囲が定義されています。1 番目が <literal>10.0.0.0/8</literal> で (傍注<xref linkend=\"sidebar.networking-basics\" />参照)、クラス A 範囲です (2<superscript>24</superscript> 個の IP アドレス)。2 番目が <literal>172.16.0.0/12</literal> で、16 個 (<literal>172.16.0.0/16</literal> から <literal>172.31.0.0/16</literal> まで) のクラス B 範囲です。各範囲に 2<superscript>16</superscript> 個の IP アドレスが含まれます。3 番目が <literal>192.168.0.0/16</literal> で、クラス B 範囲です (256 個のクラス C 範囲、<literal>192.168.0.0/24</literal> から <literal>192.168.255.0/24</literal> まで、各範囲に 256 個の IP アドレス)。<ulink type=\"block\" url=\"http://www.faqs.org/rfcs/rfc1918.html\" />"
 
 #. Tag: para
 #, no-c-format
 msgid "The gateway can also perform two kinds of <emphasis>network address translation</emphasis> (or NAT for short). The first kind, <emphasis>Destination NAT</emphasis> (DNAT) is a technique to alter the destination IP address (and/or the TCP or UDP port) for a (generally) incoming connection. The connection tracking mechanism also alters the following packets in the same connection to ensure continuity in the communication. The second kind of NAT is <emphasis>Source NAT</emphasis> (SNAT), of which <emphasis>masquerading</emphasis> is a particular case; SNAT alters the source IP address (and/or the TCP or UDP port) of a (generally) outgoing connection. As for DNAT, all the packets in the connection are appropriately handled by the connection tracking mechanism. Note that NAT is only relevant for IPv4 and its limited address space; in IPv6, the wide availability of addresses greatly reduces the usefulness of NAT by allowing all “internal” addresses to be directly routable on the Internet (this does not imply that internal machines are accessible, since intermediary firewalls can filter traffic)."
-msgstr "ゲートウェイでは 2 種類の<emphasis>ネットワークアドレス変換</emphasis> (略して NAT) が実行されます。1 種類目は<emphasis>Destination NAT</emphasis> (DNAT) で、(通常は) 到着した接続の宛先 IP アドレス (および TCP や UDP ポート) を書き換える手法です。接続追跡メカニズムによって、通信の継続性を保証するために同じ接続でそれ以降に使われるパケットの宛先が書き換えられます。NAT の 2 種類目は <emphasis>Source NAT</emphasis> (SNAT) で、<emphasis>マスカレード</emphasis> は SNAT の特別な場合です; SNAT は (通常は) 出て行く接続のソース IP アドレス (および TCP や UDP ポート) を書き換えます。DNAT に関しては、出て行く接続の全パケットが接続追跡メカニズムによって適切に取り扱われます。NAT は IPv4 と IPv4 の制限されたアドレス空間だけに関連します; IPv6 では、アドレス空間が広くなったことにより、全ての「内部」アドレスは直接インターネットにルーティングできるようになるため、NAT の有用性が減ります (これは内部マシンをアクセス可能にすること意味しているのではありません。なぜなら、中間ファイヤーウォールがトラフィックをフィルタするからです)。"
+msgstr "ゲートウェイでは 2 種類の<emphasis>ネットワークアドレス変換</emphasis> (略して NAT) が実行されます。1 種類目は<emphasis>Destination NAT</emphasis> (DNAT) で、(通常は) 到着した接続の宛先 IP アドレス (および TCP や UDP ポート) を書き換える手法です。接続追跡メカニズムによって、通信の継続性を保証するために同じ接続でそれ以降に使われるパケットの宛先が書き換えられます。NAT の 2 種類目は <emphasis>Source NAT</emphasis> (SNAT) で、<emphasis>マスカレード</emphasis> は SNAT の特別な場合です; SNAT は (通常は) 出て行く接続のソース IP アドレス (および TCP や UDP ポート) を書き換えます。DNAT に関しては、出て行く接続の全パケットが接続追跡メカニズムによって適切に取り扱われます。NAT は IPv4 と IPv4 の制限されたアドレス空間だけに関連します; IPv6 では、アドレス空間が広くなったことにより、すべての「内部」アドレスは直接インターネットにルーティングできるようになるため、NAT の有用性が減ります (これは内部マシンをアクセス可能にすること意味しているのではありません。なぜなら、中間ファイヤーウォールがトラフィックをフィルタするからです)。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -233,10 +233,10 @@ msgstr "理論はここまでにして、具体的な例を説明します。Deb
 #, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>\n"
+"<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>"
 msgstr ""
 "\n"
-"<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>\n"
+"<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>"
 
 #. Tag: para
 #, no-c-format
@@ -254,12 +254,12 @@ msgid ""
 "\n"
 "net.ipv4.conf.default.forwarding = 1\n"
 "net.ipv4.conf.default.rp_filter = 1\n"
-"net.ipv4.tcp_syncookies = 1\n"
+"net.ipv4.tcp_syncookies = 1"
 msgstr ""
 "\n"
 "net.ipv4.conf.default.forwarding = 1\n"
 "net.ipv4.conf.default.rp_filter = 1\n"
-"net.ipv4.tcp_syncookies = 1\n"
+"net.ipv4.tcp_syncookies = 1"
 
 #. Tag: para
 #, no-c-format
@@ -284,7 +284,7 @@ msgstr "仮想プライベートネットワーク"
 #. Tag: para
 #, no-c-format
 msgid "A <emphasis>Virtual Private Network</emphasis> (VPN for short) is a way to link two different local networks through the Internet by way of a tunnel; the tunnel is usually encrypted for confidentiality. VPNs are often used to integrate a remote machine within a company's local network."
-msgstr "<emphasis>仮想プライベートネットワーク</emphasis> (略して VPN) は 2 つの異なるローカルネットワークを Internet に作ったトンネルを経由して繋げる方法です; トンネルは通常機密を守るために暗号化されます。VPN はリモートマシンを会社のローカルネットワークの中に参加させるために使われます。"
+msgstr "<emphasis>仮想プライベートネットワーク</emphasis> (略して VPN) は 2 つの異なるローカルネットワークをインターネットに作ったトンネルを経由して繋げる方法です; トンネルは通常機密を守るために暗号化されます。VPN はリモートマシンを会社のローカルネットワークの中に参加させるために使われます。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -304,7 +304,7 @@ msgstr "<primary>仮想プライベートネットワーク</primary>"
 #. Tag: para
 #, no-c-format
 msgid "Several tools provide this. OpenVPN is an efficient solution, easy to deploy and maintain, based on SSL/TLS. Another possibility is using IPsec to encrypt IP traffic between two machines; this encryption is transparent, which means that applications running on these hosts need not be modified to take the VPN into account. SSH can also be used to provide a VPN, in addition to its more conventional features. Finally, a VPN can be established using Microsoft's PPTP protocol. Other solutions exist, but are beyond the focus of this book."
-msgstr "この機能を提供するツールには様々なものがあります。OpenVPN は効果的な解決策で、設置と保守が簡単で、SSL/TLS に基いています。別の可能性は IPsec を使って 2 台のマシン間の IP トラフィックを暗号化することです; この暗号化は透過的です。つまり、ホスト上で実行されているアプリケーションは VPN の存在を気にする必要がありません。SSH は伝統的な機能に加えて、VPN を提供するために使われる場合もあります。最後に、Microsoft の PPTP プロトコルを使って VPN を作ることも可能です。他にも解決策は存在しますが、この本の主題を超えます。"
+msgstr "この機能を提供するツールには様々なものがあります。OpenVPN は効果的な解決策で、設置と保守が簡単で、SSL/TLS に基いています。別の可能性は IPsec を使って 2 台のマシン間の IP トラフィックを暗号化する事です; この暗号化は透過的です。つまり、ホスト上で実行されているアプリケーションは VPN の存在を気にする必要がありません。SSH は伝統的な機能に加えて、VPN を提供するために使われる場合もあります。最後に、Microsoft の PPTP プロトコルを使って VPN を作る事も可能です。他にも解決策は存在しますが、この本の主題を超えます。"
 
 #. Tag: title
 #, no-c-format
@@ -319,12 +319,12 @@ msgstr "<primary>OpenVPN</primary>"
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN is a piece of software dedicated to creating virtual private networks. Its setup involves creating virtual network interfaces on the VPN server and on the client(s); both <literal>tun</literal> (for IP-level tunnels) and <literal>tap</literal> (for Ethernet-level tunnels) interfaces are supported. In practice, <literal>tun</literal> interfaces will most often be used except when the VPN clients are meant to be integrated into the server's local network by way of an Ethernet bridge."
-msgstr "OpenVPN は仮想プライベートネットワーク作成専用ソフトウェアの一種です。OpenVPN をセットアップするには VPN サーバ上とクライアント上に仮想ネットワークインターフェイスの作成が必要です; <literal>tun</literal> (IP レベルトンネル) と <literal>tap</literal> (イーサネットレベルトンネル) インターフェイスをサポートします。具体的には、VPN クライアントをイーサネットブリッジ経由でサーバのローカルネットワークに参加させる場合を除いて、<literal>tun</literal> インターフェイスが最もよく使われます。"
+msgstr "OpenVPN は仮想プライベートネットワーク作成専用ソフトウェアの一種です。OpenVPN をセットアップするには VPN サーバ上とクライアント上に仮想ネットワークインターフェースの作成が必要です; <literal>tun</literal> (IP レベルトンネル) と <literal>tap</literal> (イーサネットレベルトンネル) インターフェースをサポートします。具体的には、VPN クライアントをイーサネットブリッジ経由でサーバのローカルネットワークに参加させる場合を除いて、<literal>tun</literal> インターフェースが最もよく使われます。"
 
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN relies on OpenSSL for all the SSL/TLS cryptography and associated features (confidentiality, authentication, integrity, non-repudiation). It can be configured either with a shared private key or using X.509 certificates based on a public key infrastructure. The latter configuration is strongly preferred since it allows greater flexibility when faced with a growing number of roaming users accessing the VPN."
-msgstr "OpenVPN は、SSL/TLS 暗号化と関連する機能 (機密性、認証、整合性、否認防止) を使うために、OpenSSL に依存しています。OpenVPN は共有秘密鍵または公開鍵基盤に基づく X.509 証明書を使うように設定できます。設定は後者を使うことをお勧めします。なぜなら、VPN にアクセスするローミングユーザの数が増えた場合も、大きな自由度があるからです。"
+msgstr "OpenVPN は、SSL/TLS 暗号化と関連する機能 (機密性、認証、整合性、否認防止) を使うために、OpenSSL に依存しています。OpenVPN は共有秘密鍵または公開鍵基盤に基づく X.509 証明書を使うように設定できます。設定は後者を使う事をお勧めします。なぜなら、VPN にアクセスするローミングユーザの数が増えた場合も、大きな自由度があるからです。"
 
 #. Tag: title
 #, no-c-format
@@ -389,7 +389,7 @@ msgstr "<primary>鍵ペア</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The RSA algorithm is widely used in public-key cryptography. It involves a “key pair”, comprised of a private and a public key. The two keys are closely linked to each other, and their mathematical properties are such that a message encrypted with the public key can only be decrypted by someone knowing the private key, which ensures confidentiality. In the opposite direction, a message encrypted with the private key can be decrypted by anyone knowing the public key, which allows authenticating the origin of a message since only someone with access to the private key could generate it. When associated with a digital hash function (MD5, SHA1, or a more recent variant), this leads to a signature mechanism that can be applied to any message."
-msgstr "公開鍵暗号では RSA アルゴリズムが広く使われています。公開鍵暗号は秘密鍵と公開鍵からなる「鍵ペア」を使います。2 種類の鍵は互いに密接な関係を持っており、公開鍵で暗号化されたメッセージは秘密鍵を知っている人だけが復号化できるという数学的特徴によって機密性が保証されます。逆に、秘密鍵を使って暗号化されたメッセージは公開鍵を持っている人なら誰でも復号化できます。この特徴を使うことで、メッセージの出自が本物であることを確認することができます。なぜなら、秘密鍵を持つものだけがその暗号化メッセージを生成できるからです。デジタルハッシュ関数 (MD5、SHA1、最近の亜種など) を関連させる場合、いかなるメッセージにも適用できる署名メカニズムになります。"
+msgstr "公開鍵暗号では RSA アルゴリズムが広く使われています。公開鍵暗号は秘密鍵と公開鍵からなる「鍵ペア」を使います。2 種類の鍵は互いに密接な関係を持っており、公開鍵で暗号化されたメッセージは秘密鍵を知っている人だけが復号化できるという数学的特徴によって機密性が保証されます。逆に、秘密鍵を使って暗号化されたメッセージは公開鍵を持っている人なら誰でも復号化できます。この特徴を使うことで、メッセージの出自が本物である事を確認する事が可能です。なぜなら、秘密鍵を持つものだけがその暗号化メッセージを生成できるからです。デジタルハッシュ関数 (MD5、SHA1、最近の亜種など) を関連させる場合、いかなるメッセージにも適用できる署名メカニズムになります。"
 
 #. Tag: para
 #, no-c-format
@@ -399,23 +399,23 @@ msgstr "しかしながら、鍵ペアを作り、鍵ペアに任意の識別情
 #. Tag: para
 #, no-c-format
 msgid "OpenVPN follows this rule. Since public CAs only emit certificates in exchange for a (hefty) fee, it is also possible to create a private certification authority within the company. For that purpose, OpenVPN provides the <emphasis>easy-rsa</emphasis> tool which serves as an X.509 certification infrastructure. Its implementation is a set of scripts using the <command>openssl</command> command; these scripts can be found under <filename>/usr/share/doc/openvpn/examples/easy-rsa/2.0/</filename>."
-msgstr "OpenVPN はこのルールに従います。なぜなら、パブリック認証局は (高額な) 料金と引き換えに証明書を発行するだけなので、OpenVPN を使えば会社内のプライベート認証局を作成することが可能です。この目的で、OpenVPN には <emphasis>easy-rsa</emphasis> ツールが含まれ、これを使って X.509 証明書基盤の機能が提供されます。<emphasis>easy-rsa</emphasis> ツールは <command>openssl</command> コマンドを使うスクリプト群です; スクリプトは <filename>/usr/share/doc/openvpn/examples/easy-rsa/2.0/</filename> 以下に含まれています。"
+msgstr "OpenVPN はこのルールに従います。なぜなら、パブリック認証局は (高額な) 料金と引き換えに証明書を発行するだけなので、OpenVPN を使えば会社内のプライベート認証局を作成する事が可能です。この目的で、OpenVPN には <emphasis>easy-rsa</emphasis> ツールが含まれ、これを使って X.509 証明書基盤の機能が提供されます。<emphasis>easy-rsa</emphasis> ツールは <command>openssl</command> コマンドを使うスクリプト群です; スクリプトは <filename>/usr/share/doc/openvpn/examples/easy-rsa/2.0/</filename> 以下に含まれています。"
 
 #. Tag: para
 #, no-c-format
 msgid "The Falcot Corp administrators use this tool to create the required certificates, both for the server and the clients. This allows the configuration of all clients to be similar since they will only have to be set up so as to trust certificates coming from Falcot's local CA. This CA is the first certificate to create; to this end, the administrators copy the directory containing <emphasis>easy-rsa</emphasis> into a more appropriate location, preferably on a machine not connected to the network in order to mitigate the risk of the CA's private key being stolen."
-msgstr "Falcot Corp の管理者は <emphasis>easy-rsa</emphasis> ツールを使い、サーバおよびクライアントに必要な証明書を作ります。<emphasis>easy-rsa</emphasis> ツールを使うことで、全てのクライアントの設定を同じ様にすることが可能です。クライアントは Falcot のプライベート認証局から来た証明書を信頼するようにセットアップしなければいけません。Falcot のプライベート認証局が最初に作成する証明書です; この目的を達成するために、管理者は <emphasis>easy-rsa</emphasis> を含むディレクトリをより適切な場所にコピーします。コピーする場所は、認証局の秘密鍵が盗まれる危険性を和らげるために、ネットワークに繋がれていないマシンが好ましいです。"
+msgstr "Falcot Corp の管理者は <emphasis>easy-rsa</emphasis> ツールを使い、サーバおよびクライアントに必要な証明書を作ります。<emphasis>easy-rsa</emphasis> ツールを使うことで、すべてのクライアントの設定を同じ様にする事が可能です。クライアントは Falcot のプライベート認証局から来た証明書を信頼するようにセットアップしなければいけません。Falcot のプライベート認証局が最初に作成する証明書です; この目的を達成するために、管理者は <emphasis>easy-rsa</emphasis> を含むディレクトリをより適切な場所にコピーします。コピーする場所は、認証局の秘密鍵が盗まれる危険性を和らげるために、ネットワークに繋がれていないマシンが好ましいです。"
 
 #. Tag: screen
 #, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 pki-falcot\n"
-"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>\n"
+"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 pki-falcot\n"
-"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>\n"
+"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>"
 
 #. Tag: para
 #, no-c-format
@@ -441,7 +441,7 @@ msgid ""
 "$ </computeroutput><userinput>. ./vars\n"
 "</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a rm -rf on /home/rhertzog/pki-falcot/keys\n"
 "$ </computeroutput><userinput>./clean-all\n"
-"</userinput>\n"
+"</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>vim vars\n"
@@ -459,7 +459,7 @@ msgstr ""
 "$ </computeroutput><userinput>. ./vars\n"
 "</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a rm -rf on /home/rhertzog/pki-falcot/keys\n"
 "$ </computeroutput><userinput>./clean-all\n"
-"</userinput>\n"
+"</userinput>"
 
 #. Tag: para
 #, no-c-format
@@ -491,7 +491,7 @@ msgid ""
 "Common Name (eg, your name or your server's hostname) [Falcot Corp CA]:\n"
 "Name []:\n"
 "Email Address [admin@falcot.com]:\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
@@ -515,12 +515,12 @@ msgstr ""
 "Common Name (eg, your name or your server's hostname) [Falcot Corp CA]:\n"
 "Name []:\n"
 "Email Address [admin@falcot.com]:\n"
-"</computeroutput>\n"
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "The certificate for the VPN server can now be created, as well as the Diffie-Hellman parameters required for the server side of an SSL/TLS connection. The VPN server is identified by its DNS name <literal>vpn.falcot.com</literal>; this name is re-used for the generated key files (<filename>keys/vpn.falcot.com.crt</filename> for the public certificate, <filename>keys/vpn.falcot.com.key</filename>for the private key):"
-msgstr "今や VPN サーバの証明書を作ることが可能です。同様に SSL/TLS 接続のサーバ側には Diffie-Hellman パラメータが必要です。VPN サーバは DNS 名 <literal>vpn.falcot.com</literal> で識別されます; 作成された鍵ファイルの名前に、ここで与えた DNS 名が使われます (<filename>keys/vpn.falcot.com.crt</filename> は公開鍵証明書、<filename>keys/vpn.falcot.com.key</filename> は秘密鍵):"
+msgstr "今や VPN サーバの証明書を作る事が可能です。同様に SSL/TLS 接続のサーバ側には Diffie-Hellman パラメータが必要です。VPN サーバは DNS 名 <literal>vpn.falcot.com</literal> で識別されます; 作成された鍵ファイルの名前に、ここで与えた DNS 名が使われます (<filename>keys/vpn.falcot.com.crt</filename> は公開鍵証明書、<filename>keys/vpn.falcot.com.key</filename> は秘密鍵):"
 
 #. Tag: screen
 #, no-c-format
@@ -573,7 +573,7 @@ msgid ""
 "</userinput><computeroutput>Generating DH parameters, 2048 bit long safe prime, generator 2\n"
 "This is going to take a long time\n"
 "..............+.......+.................................++*++*++*\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com\n"
@@ -623,7 +623,7 @@ msgstr ""
 "</userinput><computeroutput>Generating DH parameters, 2048 bit long safe prime, generator 2\n"
 "This is going to take a long time\n"
 "..............+.......+.................................++*++*++*\n"
-"</computeroutput>\n"
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
@@ -684,7 +684,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "Now all certificates have been created, they need to be copied where appropriate: the root certificate's public key (<filename>keys/ca.crt</filename>) will be stored on all machines (both server and clients) as <filename>/etc/ssl/certs/Falcot_CA.crt</filename>. The server's certificate is installed only on the server (<filename>keys/vpn.falcot.com.crt</filename> goes to <filename>/etc/ssl/vpn.falcot.com.crt</filename>, and <filename>keys/vpn.falcot.com.key</filename> goes to <filename>/etc/ssl/private/vpn.falcot.com.key</filename> with restricted permissions so that only the administrator can read it), with the corresponding Diffie-Hellman parameters (<filename>keys/dh2048.pem</filename>) installed to <filename>/etc/openvpn/dh2048.pem</filename>. Client certificates are installed on the corresponding VPN client in a similar fashion."
-msgstr "全ての証明書を作ったら、証明書を適切な場所にコピーする必要があります: ルート証明書の公開鍵 (<filename>keys/ca.crt</filename>) は全てのマシン (サーバもクライアントも) に <filename>/etc/ssl/certs/Falcot_CA.crt</filename> という名前で保存されます。サーバの証明書はサーバにだけインストールされます (<filename>keys/vpn.falcot.com.crt</filename> は <filename>/etc/ssl/vpn.falcot.com.crt</filename> に、<filename>keys/vpn.falcot.com.key</filename> は管理者だけが読めるようなパーミッション制限を掛けるために <filename>/etc/ssl/private/vpn.falcot.com.key</filename> に、インストールされます)。同時に、対応する Diffie-Hellman パラメータ (<filename>keys/dh2048.pem</filename>) は <filename>/etc/openvpn/dh2048.pem</filename> にインストールされます。クライアント証明書は対応する VPN クライアントに同様の方法でインストールされます。"
+msgstr "すべての証明書を作ったら、証明書を適切な場所にコピーする必要があります: ルート証明書の公開鍵 (<filename>keys/ca.crt</filename>) はすべてのマシン (サーバもクライアントも) に <filename>/etc/ssl/certs/Falcot_CA.crt</filename> という名前で保存されます。サーバの証明書はサーバにだけインストールされます (<filename>keys/vpn.falcot.com.crt</filename> は <filename>/etc/ssl/vpn.falcot.com.crt</filename> に、<filename>keys/vpn.falcot.com.key</filename> は管理者だけが読めるようなパーミッション制限を掛けるために <filename>/etc/ssl/private/vpn.falcot.com.key</filename> に、インストールされます)。同時に、対応する Diffie-Hellman パラメータ (<filename>keys/dh2048.pem</filename>) は <filename>/etc/openvpn/dh2048.pem</filename> にインストールされます。クライアント証明書は対応する VPN クライアントに同様の方法でインストールされます。"
 
 #. Tag: title
 #, no-c-format
@@ -694,17 +694,17 @@ msgstr "OpenVPN サーバの設定"
 #. Tag: para
 #, no-c-format
 msgid "By default, the OpenVPN initialization script tries starting all virtual private networks defined in <filename>/etc/openvpn/*.conf</filename>. Setting up a VPN server is therefore a matter of storing a corresponding configuration file in this directory. A good starting point is <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename>, which leads to a rather standard server. Of course, some parameters need to be adapted: <literal>ca</literal>, <literal>cert</literal>, <literal>key</literal> and <literal>dh</literal> need to describe the selected locations (respectively, <literal>/etc/ssl/certs/Falcot_CA.crt</literal>, <literal>/etc/ssl/vpn.falcot.com.crt</literal>, <literal>/etc/ssl/private/vpn.falcot.com.key</literal> and <literal>/etc/openvpn/dh2048.pem</literal>). The <literal>server 10.8.0.0 255.255.255.0</literal> directive defines the subnet to be used by the VPN; the server uses the first IP address in that range (<literal>10.8.0.1</literal>) and the rest of the addresses are allocated to clients."
-msgstr "デフォルトで、OpenVPN 初期化スクリプトは <filename>/etc/openvpn/*.conf</filename> で定義された全ての仮想プライベートネットワークを開始します。このため、VPN サーバをセットアップする場合、このディレクトリ内に対応する設定ファイルを配置する事になります。設定ファイルの良い足掛かりとして <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename> が用意されています。これは比較的標準的なサーバを作るためのものです。もちろん、一部のパラメータを適切に設定しなければいけません: <literal>ca</literal>、<literal>cert</literal>、<literal>key</literal>、<literal>dh</literal> をファイルを設置した場所に設定する必要があります (それぞれ、<literal>/etc/ssl/certs/Falcot_CA.crt</literal>、<literal>/etc/ssl/vpn.falcot.com.crt</literal>、<literal>/etc/ssl/private/vpn.falcot.com.key</literal>、<literal>/etc/openvpn/dh2048.pem</literal>)。<literal>server 10.8.0.0 255.255.255.0</literal> ディレクティブは VPN によって使われるサブネットを定義します; サーバにはこの範囲に含まれる最初の IP アドレス (<literal>10.8.0.1</literal>) が割り当てられ、クライアントには残りの IP アドレスが割り当てられます。"
+msgstr "デフォルトで、OpenVPN 初期化スクリプトは <filename>/etc/openvpn/*.conf</filename> で定義されたすべての仮想プライベートネットワークを開始します。このため、VPN サーバをセットアップする場合、このディレクトリ内に対応する設定ファイルを配置する事になります。設定ファイルの良い足掛かりとして <filename>/usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz</filename> が用意されています。これは比較的標準的なサーバを作るためのものです。もちろん、一部のパラメータを適切に設定しなければいけません: <literal>ca</literal>、<literal>cert</literal>、<literal>key</literal>、<literal>dh</literal> をファイルを設置した場所に設定する必要があります (それぞれ、<literal>/etc/ssl/certs/Falcot_CA.crt</literal>、<literal>/etc/ssl/vpn.falcot.com.crt</literal>、<literal>/etc/ssl/private/vpn.falcot.com.key</literal>、<literal>/etc/openvpn/dh2048.pem</literal>)。<literal>server 10.8.0.0 255.255.255.0</literal> ディレクティブは VPN によって使われるサブネットを定義します; サーバにはこの範囲に含まれる最初の IP アドレス (<literal>10.8.0.1</literal>) が割り当てられ、クライアントには残りの IP アドレスが割り当てられます。"
 
 #. Tag: para
 #, no-c-format
 msgid "With this configuration, starting OpenVPN creates the virtual network interface, usually under the <literal>tun0</literal> name. However, firewalls are often configured at the same time as the real network interfaces, which happens before OpenVPN starts. Good practice therefore recommends creating a persistent virtual network interface, and configuring OpenVPN to use this pre-existing interface. This further allows choosing the name for this interface. To this end, <command>openvpn --mktun --dev vpn --dev-type tun</command> creates a virtual network interface named <literal>vpn</literal> with type <literal>tun</literal>; this command can easily be integrated in the firewall configuration script, or in an <literal>up</literal> directive of the <filename>/etc/network/interfaces</filename> file. The OpenVPN configuration file must also be updated accordingly, with the <literal>dev vpn</literal> and <literal>dev-type tun</literal> directives."
-msgstr "この設定で OpenVPN を開始すると、通常 <literal>tun0</literal> という名前の仮想ネットワークインターフェイスが作成されます。しかしながら、ファイヤーウォールは OpenVPN の開始前に実ネットワークインターフェイスと同時に設定される場合が多いです。このため、永続的に仮想ネットワークインターフェイスを作成すると良いでしょう。OpenVPN は事前に作成された仮想インターフェイスを使うように設定することを推奨します。この追加的設定により、インターフェイスの名前を選ぶことが可能になります。この目的を達成するには、<command>openvpn --mktun --dev vpn --dev-type tun</command> を使って <literal>tun</literal> タイプの <literal>vpn</literal> と名付けられた仮想ネットワークインターフェイスを作成します; このコマンドをファイヤーウォール設定スクリプトの中で使えば、簡単に設定を統合できます。つまり <filename>/etc/network/interfaces</filename> ファイルの <literal>up</literal> 指示文を使います。OpenVPN 設定ファイルをファイヤーウォール設定に対応させるために、<literal>dev vpn</literal> と <literal>dev-type tun</literal> 指示文を使って、更新します。"
+msgstr "この設定で OpenVPN を開始すると、通常 <literal>tun0</literal> という名前の仮想ネットワークインターフェースが作成されます。しかしながら、ファイヤーウォールは OpenVPN の開始前に実ネットワークインターフェースと同時に設定される場合が多いです。このため、永続的に仮想ネットワークインターフェースを作成すると良いでしょう。OpenVPN は事前に作成された仮想インターフェースを使うように設定する事を推奨します。この追加的設定により、インターフェースの名前を選ぶ事が可能になります。この目的を達成するには、<command>openvpn --mktun --dev vpn --dev-type tun</command> を使って <literal>tun</literal> タイプの <literal>vpn</literal> と名付けられた仮想ネットワークインターフェースを作成します; このコマンドをファイヤーウォール設定スクリプトの中で使えば、簡単に設定を統合できます。つまり <filename>/etc/network/interfaces</filename> ファイルの <literal>up</literal> 指示文を使います。OpenVPN 設定ファイルをファイヤーウォール設定に対応させるために、<literal>dev vpn</literal> と <literal>dev-type tun</literal> 指示文を使って、更新します。"
 
 #. Tag: para
 #, no-c-format
 msgid "Barring further action, VPN clients can only access the VPN server itself by way of the <literal>10.8.0.1</literal> address. Granting the clients access to the local network (192.168.0.0/24), requires adding a <literal>push route 192.168.0.0 255.255.255.0</literal> directive to the OpenVPN configuration so that VPN clients automatically get a network route telling them that this network is reachable by way of the VPN. Furthermore, machines on the local network also need to be informed that the route to the VPN goes through the VPN server (this automatically works when the VPN server is installed on the gateway). Alternatively, the VPN server can be configured to perform IP masquerading so that connections coming from VPN clients appear as if they are coming from the VPN server instead (see <xref linkend=\"sect.gateway\" />)."
-msgstr "これ以上の動作が無ければ、VPN クライアントは <literal>10.8.0.1</literal> アドレスの VPN サーバにアクセス出来るだけです。クライアントをローカルネットワーク (192.168.0.0/24) にアクセス可能な状態にするには、<literal>push route 192.168.0.0 255.255.255.0</literal> 指示文を OpenVPN 設定に追加します。こうすることで、VPN クライアントは自動的にネットワーク経路を取得し、VPN を経由でローカルネットワークに到達できるようになります。更に、ローカルネットワークにいるマシンに対して VPN サーバを通じて VPN への経路を知らせる必要もあります (VPN サーバがゲートウェイにインストールされている場合、これは自動的に動きます)。別の方法として、VPN サーバは IP マスカレードを動かすように設定されなければいけません。そうすれば、VPN クライアントからの接続はあたかもクライアントが VPN サーバからアクセスしたかのように見えます (<xref linkend=\"sect.gateway\" /> 参照)。"
+msgstr "これ以上の動作が無ければ、VPN クライアントは <literal>10.8.0.1</literal> アドレスの VPN サーバにアクセスできるだけです。クライアントをローカルネットワーク (192.168.0.0/24) にアクセス可能な状態にするには、<literal>push route 192.168.0.0 255.255.255.0</literal> 指示文を OpenVPN 設定に追加します。こうすることで、VPN クライアントは自動的にネットワーク経路を取得し、VPN を経由でローカルネットワークに到達できるようになります。更に、ローカルネットワークにいるマシンに対して VPN サーバを通じて VPN への経路を知らせる必要もあります (VPN サーバがゲートウェイにインストールされている場合、これは自動的に動きます)。別の方法として、VPN サーバは IP マスカレードを動かすように設定されなければいけません。そうすれば、VPN クライアントからの接続はあたかもクライアントが VPN サーバからアクセスしたかのように見えます (<xref linkend=\"sect.gateway\" /> 参照)。"
 
 #. Tag: title
 #, no-c-format
@@ -724,7 +724,7 @@ msgstr "起動時に VPN を自動的に開始したくない場合、<filename>
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> package contains an extension to Network Manager (see <xref linkend=\"sect.roaming-network-config\" />) that allows managing OpenVPN virtual private networks. This allows every user to configure OpenVPN connections graphically and to control them from the network management icon. <indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
-msgstr "<emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> パッケージには、Network Manager の拡張 (<xref linkend=\"sect.roaming-network-config\" /> 参照) が含まれ、これを使うことで OpenVPN 仮想プライベートネットワークを管理することが可能です。誰もがグラフィカルに OpenVPN 接続を設定し、ネットワーク管理アイコンからこれを制御することが可能です。<indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
+msgstr "<emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis> パッケージには、Network Manager の拡張 (<xref linkend=\"sect.roaming-network-config\" /> 参照) が含まれ、これを使うことで OpenVPN 仮想プライベートネットワークを管理する事が可能です。誰もがグラフィカルに OpenVPN 接続を設定し、ネットワーク管理アイコンからこれを制御する事が可能です。<indexterm><primary><emphasis role=\"pkg\">network-manager-openvpn-gnome</emphasis></primary></indexterm>"
 
 #. Tag: title
 #, no-c-format
@@ -749,12 +749,12 @@ msgstr "SSH を使った仮想プライベートネットワークの作成法�
 #. Tag: para
 #, no-c-format
 msgid "The second method is more recent, and was introduced with OpenSSH 4.3; it is now possible for OpenSSH to create virtual network interfaces (<literal>tun*</literal>) on both sides of an SSH connection, and these virtual interfaces can be configured exactly as if they were physical interfaces. The tunneling system must first be enabled by setting <literal>PermitTunnel</literal> to “yes” in the SSH server configuration file (<filename>/etc/ssh/sshd_config</filename>). When establishing the SSH connection, the creation of a tunnel must be explicitly requested with the <literal>-w any:any</literal> option (<literal>any</literal> can be replaced with the desired <literal>tun</literal> device number). This requires the user to have administrator privilege on both sides, so as to be able to create the network device (in other words, the connection must be established as root)."
-msgstr "2 番目の方法はより最近の方法で、OpenSSH 4.3 で導入されました; 今や、OpenSSH は SSH 接続のサーバおよびクライアント側に仮想ネットワークインターフェイス (<literal>tun*</literal>) を作り、仮想インターフェイスをあたかも物理インターフェイスの如く設定することが可能です。このトンネルシステムを有効化するにはまず、SSH サーバ設定ファイル (<filename>/etc/ssh/sshd_config</filename>) の中で <literal>PermitTunnel</literal> を「yes」に設定しなければいけません。SSH 接続を確立する際には、<literal>-w any:any</literal> オプションを使って明示的にトンネルの作成を要求しなければいけません (ここで <literal>any</literal> は必要な <literal>tun</literal> デバイス番号で置き替えます)。トンネルを作成するには、サーバおよびクライアント側でそのユーザが管理者権限を持っていることが必要です。そうすればネットワークデバイスを作成することが可能です (言い換えれば、接続は root で確立されなければいけません)。"
+msgstr "2 番目の方法はより最近の方法で、OpenSSH 4.3 で導入されました; 今や、OpenSSH は SSH 接続のサーバおよびクライアント側に仮想ネットワークインターフェース (<literal>tun*</literal>) を作り、仮想インターフェースをあたかも物理インターフェースの如く設定する事が可能です。このトンネルシステムを有効化するにはまず、SSH サーバ設定ファイル (<filename>/etc/ssh/sshd_config</filename>) の中で <literal>PermitTunnel</literal> を「yes」に設定しなければいけません。SSH 接続を確立する際には、<literal>-w any:any</literal> オプションを使って明示的にトンネルの作成を要求しなければいけません (ここで <literal>any</literal> は必要な <literal>tun</literal> デバイス番号で置き替えます)。トンネルを作成するには、サーバおよびクライアント側でそのユーザが管理者権限を持っている事が必要です。そうすればネットワークデバイスを作成する事が可能です (言い換えれば、接続は root で確立されなければいけません)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Both methods for creating a virtual private network over SSH are quite straightforward. However, the VPN they provide is not the most efficient available; in particular, it does not handle high levels of traffic very well."
-msgstr "SSH を使って仮想プライベートネットワークを作成する方法は、どうちらもかなり直接的なものです。しかしながら、SSH の提供する VPN は最も効率のよい方法ではありません。特に、高レベルのトラフィックを上手に取り扱うことができません。"
+msgstr "SSH を使って仮想プライベートネットワークを作成する方法は、どうちらもかなり直接的なものです。しかしながら、SSH の提供する VPN は最も効率のよい方法ではありません。特に、高レベルのトラフィックを上手に取り扱う事ができません。"
 
 #. Tag: para
 #, no-c-format
@@ -789,7 +789,7 @@ msgstr "<primary><command>racoon</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "IPsec, despite being the standard in IP VPNs, is rather more involved in its implementation. The IPsec engine itself is integrated in the Linux kernel; the required user-space parts, the control and configuration tools, are provided by the <emphasis role=\"pkg\">ipsec-tools</emphasis> package. In concrete terms, each host's <filename>/etc/ipsec-tools.conf</filename> contains the parameters for <emphasis>IPsec tunnels</emphasis> (or <emphasis>Security Associations</emphasis>, in the IPsec terminology) that the host is concerned with; the <command>/etc/init.d/setkey</command> script provides a way to start and stop a tunnel (each tunnel is a secure link to another host connected to the virtual private network). This file can be built by hand from the documentation provided by the <citerefentry><refentrytitle>setkey</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page. However, explicitly writing the parameters for all hosts in a non-trivial set of machines quickly becomes an arduous task, since the number of tunnels grows fast. Installing an IKE daemon (for <emphasis>IPsec Key Exchange</emphasis>) such as <emphasis role=\"pkg\">racoon</emphasis>, <emphasis role=\"pkg\">strongswan</emphasis> or <emphasis role=\"pkg\">openswan</emphasis> makes the process much simpler by bringing administration together at a central point, and more secure by rotating the keys periodically."
-msgstr "IPsec は標準的な IP VPN の中にありますが、更に詳しく実装を説明します。IPsec エンジンそれ自身は Linux カーネルに統合されています; 要求されるユーザ空間部分、制御と設定ツール、は <emphasis role=\"pkg\">ipsec-tools</emphasis> パッケージによって提供されます。具体的には、それぞれのホストの <filename>/etc/ipsec-tools.conf</filename> には、ホストが接続する <emphasis>IPsec トンネル</emphasis> (IPsec 用語で <emphasis>Security Associations</emphasis>) のパラメータが含まれます; <command>/etc/init.d/setkey</command> スクリプトを使うことで、トンネルを開始したり停止することが可能です (それぞれのトンネルは、仮想ネットワークに接続された他のホストと、安全なリンクを確立しています)。このファイルは <citerefentry><refentrytitle>setkey</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページの提供する文書を使って手作業で作ることも可能です。しかしながら、多数のマシン群に全てのホスト用のパラメータを明示的に書くことはすぐに難しい作業になります。なぜなら、トンネルの数はすぐに増えるからです。この作業をより簡単にする、例えば <emphasis role=\"pkg\">racoon</emphasis>、<emphasis role=\"pkg\">strongswan</emphasis>、<emphasis role=\"pkg\">openswan</emphasis> 等の (<emphasis>IPsec Key Exchange</emphasis> 用の) IKE デーモンがあります。これを使えば、一元管理による作業の簡素化と、鍵を定期的に循環することによる作業の安全化が可能になります。"
+msgstr "IPsec は標準的な IP VPN の中にありますが、更に詳しく実装を説明します。IPsec エンジンそれ自身は Linux カーネルに統合されています; 要求されるユーザ空間部分、制御と設定ツール、は <emphasis role=\"pkg\">ipsec-tools</emphasis> パッケージによって提供されます。具体的には、それぞれのホストの <filename>/etc/ipsec-tools.conf</filename> には、ホストが接続する <emphasis>IPsec トンネル</emphasis> (IPsec 用語で <emphasis>Security Associations</emphasis>) のパラメータが含まれます; <command>/etc/init.d/setkey</command> スクリプトを使うことで、トンネルを開始したり停止する事が可能です (それぞれのトンネルは、仮想ネットワークに接続された他のホストと、安全なリンクを確立しています)。このファイルは <citerefentry><refentrytitle>setkey</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページの提供する文書を使って手作業で作る事も可能です。しかしながら、多数のマシン群にすべてのホスト用のパラメータを明示的に書くことはすぐに難しい作業になります。なぜなら、トンネルの数はすぐに増えるからです。この作業をより簡単にする、例えば <emphasis role=\"pkg\">racoon</emphasis>、<emphasis role=\"pkg\">strongswan</emphasis>、<emphasis role=\"pkg\">openswan</emphasis> 等の (<emphasis>IPsec Key Exchange</emphasis> 用の) IKE デーモンがあります。これを使えば、一元管理による作業の簡素化と、鍵を定期的に循環することによる作業の安全化が可能になります。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -809,7 +809,7 @@ msgstr "<primary><command>setkey</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "In spite of its status as the reference, the complexity of setting up IPsec restricts its usage in practice. OpenVPN-based solutions will generally be preferred when the required tunnels are neither too many nor too dynamic."
-msgstr "IPsec は標準規格という地位があるにも関わらず、その設定が複雑なことが原因で、具体的に使われることが少ないです。必要なトンネルが多くなく動的でもない場合は、OpenVPN に基づく解決策が通常好まれます。"
+msgstr "IPsec は標準規格という地位があるにも関わらず、その設定が複雑な事が原因で、具体的に使われる事が少ないです。必要なトンネルが多くなく動的でもない場合は、OpenVPN に基づく解決策が通常好まれます。"
 
 #. Tag: title
 #, no-c-format
@@ -924,14 +924,14 @@ msgid ""
 "lock\n"
 "noauth\n"
 "nobsdcomp\n"
-"nodeflate\n"
+"nodeflate"
 msgstr ""
 "\n"
 "# PPP options used for a PPTP connection\n"
 "lock\n"
 "noauth\n"
 "nobsdcomp\n"
-"nodeflate\n"
+"nodeflate"
 
 #. Tag: title
 #, no-c-format
@@ -950,7 +950,7 @@ msgid ""
 "# encryption is needed\n"
 "require-mppe-128\n"
 "file /etc/ppp/options.pptp\n"
-"ipparam falcot\n"
+"ipparam falcot"
 msgstr ""
 "\n"
 "# vpn.falcot.com is the PPTP server\n"
@@ -961,7 +961,7 @@ msgstr ""
 "# encryption is needed\n"
 "require-mppe-128\n"
 "file /etc/ppp/options.pptp\n"
-"ipparam falcot\n"
+"ipparam falcot"
 
 #. Tag: title
 #, no-c-format
@@ -976,14 +976,14 @@ msgid ""
 "if [ \"$6\" = \"falcot\" ]; then\n"
 "  # 192.168.0.0/24 is the (remote) Falcot network\n"
 "  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
-"fi\n"
+"fi"
 msgstr ""
 "\n"
 "# Create the route to the Falcot network\n"
 "if [ \"$6\" = \"falcot\" ]; then\n"
 "  # 192.168.0.0/24 is the (remote) Falcot network\n"
 "  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
-"fi\n"
+"fi"
 
 #. Tag: title
 #, no-c-format
@@ -998,14 +998,14 @@ msgid ""
 "if [ \"$6\" = \"falcot\" ]; then\n"
 "  # 192.168.0.0/24 is the (remote) Falcot network\n"
 "  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
-"fi\n"
+"fi"
 msgstr ""
 "\n"
 "# Delete the route to the Falcot network\n"
 "if [ \"$6\" = \"falcot\" ]; then\n"
 "  # 192.168.0.0/24 is the (remote) Falcot network\n"
 "  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
-"fi\n"
+"fi"
 
 #. Tag: title
 #, no-c-format
@@ -1040,7 +1040,7 @@ msgstr "<emphasis>CAUTION</emphasis> PPTP とファイヤーウォール"
 #. Tag: para
 #, no-c-format
 msgid "Intermediate firewalls need to be configured to let through IP packets using protocol 47 (GRE). Moreover, the PPTP server's port 1723 needs to be open so that the communication channel can happen."
-msgstr "中間ファイヤーウォールはプロトコル 47 番 (GRE) を使っているIP パケットを通過させるように設定されなければいけません。さらに、PPTP サーバのポート 1723 番を開け、通信チャンネルを開けることが必要です。"
+msgstr "中間ファイヤーウォールはプロトコル 47 番 (GRE) を使っている IP パケットを通過させるように設定されなければいけません。さらに、PPTP サーバのポート 1723 番を開け、通信チャンネルを開ける事が必要です。"
 
 #. Tag: para
 #, no-c-format
@@ -1105,7 +1105,7 @@ msgid ""
 "#localip 10.0.1.1\n"
 "#remoteip 10.0.1.2-100\n"
 "localip 192.168.0.199\n"
-"remoteip 192.168.0.200-250\n"
+"remoteip 192.168.0.200-250"
 msgstr ""
 "\n"
 "# TAG: speed\n"
@@ -1157,7 +1157,7 @@ msgstr ""
 "#localip 10.0.1.1\n"
 "#remoteip 10.0.1.2-100\n"
 "localip 192.168.0.199\n"
-"remoteip 192.168.0.200-250\n"
+"remoteip 192.168.0.200-250"
 
 #. Tag: para
 #, no-c-format
@@ -1201,7 +1201,7 @@ msgid ""
 "## some defaults\n"
 "nodefaultroute\n"
 "proxyarp\n"
-"lock\n"
+"lock"
 msgstr ""
 "\n"
 "## turn pppd syslog debugging on\n"
@@ -1232,12 +1232,12 @@ msgstr ""
 "## some defaults\n"
 "nodefaultroute\n"
 "proxyarp\n"
-"lock\n"
+"lock"
 
 #. Tag: para
 #, no-c-format
 msgid "The last step involves registering the <literal>vpn</literal> user (and the associated password) in the <filename>/etc/ppp/chap-secrets</filename> file. Contrary to other instances where an asterisk (<literal>*</literal>) would work, the server name must be filled explicitly here. Furthermore, Windows PPTP clients identify themselves under the <literal><replaceable>DOMAIN</replaceable>\\\\<replaceable>USER</replaceable></literal> form, instead of only providing a user name. This explains why the file also mentions the <literal>FALCOT\\\\vpn</literal> user. It is also possible to specify individual IP addresses for users; an asterisk in this field specifies that dynamic addressing should be used."
-msgstr "最後に、<literal>vpn</literal> ユーザ (と対応するパスワード) を <filename>/etc/ppp/chap-secrets</filename> ファイルに登録します。サーバ名だけは、アスタリスク (<literal>*</literal>) を使える他のインスタンスと異なり、明示的に指定しなければいけません。さらに、Windows PPTP クライアントはユーザ名ではなく <literal><replaceable>DOMAIN</replaceable>\\\\<replaceable>USER</replaceable></literal> という形で身元を語ります。このため、以下のファイルに <literal>FALCOT\\\\vpn</literal> ユーザが追加されています。ユーザに割り当てる IP アドレスを明記することも可能です; IP アドレスフィールドのアスタリスクは動的にアドレスを割り当てることを意味します。"
+msgstr "最後に、<literal>vpn</literal> ユーザ (と対応するパスワード) を <filename>/etc/ppp/chap-secrets</filename> ファイルに登録します。サーバ名だけは、アスタリスク (<literal>*</literal>) を使える他のインスタンスと異なり、明示的に指定しなければいけません。さらに、Windows PPTP クライアントはユーザ名ではなく <literal><replaceable>DOMAIN</replaceable>\\\\<replaceable>USER</replaceable></literal> という形で身元を語ります。このため、以下のファイルに <literal>FALCOT\\\\vpn</literal> ユーザが追加されています。ユーザに割り当てる IP アドレスを明記する事も可能です; IP アドレスフィールドのアスタリスクは動的にアドレスを割り当てる事を意味します。"
 
 #. Tag: title
 #, no-c-format
@@ -1251,13 +1251,13 @@ msgid ""
 "# Secrets for authentication using CHAP\n"
 "# client        server  secret      IP addresses\n"
 "vpn             pptp    f@Lc3au     *\n"
-"FALCOT\\\\vpn     pptp    f@Lc3au     *\n"
+"FALCOT\\\\vpn     pptp    f@Lc3au     *"
 msgstr ""
 "\n"
 "# Secrets for authentication using CHAP\n"
 "# client        server  secret      IP addresses\n"
 "vpn             pptp    f@Lc3au     *\n"
-"FALCOT\\\\vpn     pptp    f@Lc3au     *\n"
+"FALCOT\\\\vpn     pptp    f@Lc3au     *"
 
 #. Tag: title
 #, no-c-format
@@ -1282,7 +1282,7 @@ msgstr "原理とメカニズム"
 #. Tag: para
 #, no-c-format
 msgid "<emphasis>Quality of Service</emphasis> (or <emphasis>QoS</emphasis> for short) refers to a set of techniques that guarantee or improve the quality of the service provided to applications. The most popular such technique involves classifying the network traffic into categories, and differentiating the handling of traffic according to which category it belongs to. The main application of this differentiated services concept is <emphasis>traffic shaping</emphasis>, which limits the data transmission rates for connections related to some services and/or hosts so as not to saturate the available bandwidth and starve important other services. Traffic shaping is a particularly good fit for TCP traffic, since this protocol automatically adapts to available bandwidth."
-msgstr "<emphasis>Quality of Service (サービスの品質)</emphasis> (略して <emphasis>QoS</emphasis>) はアプリケーションに提供されるサービスの品質を向上させる技術群を指します。最も人気の技術は、ネットワークトラフィックをカテゴリ分けして、トラフィックの所属するカテゴリ別にその取り扱いに違いを付けることです。サービスを差別化するという概念の主な用途が<emphasis>トラフィックシェーピング</emphasis>です。これは一部のサービスおよびホストに関連する接続のデータの転送率を制限します。これを使うことで、利用可能な帯域幅が飽和することを避け、重要な他のサービスに支障が出ないようにします。トラフィックシェーピングは TCP トラフィックに対して特に有効です。なぜなら、TCP は自動的に利用可能な帯域幅に適応するからです。"
+msgstr "<emphasis>Quality of Service (サービスの品質)</emphasis> (略して <emphasis>QoS</emphasis>) はアプリケーションに提供されるサービスの品質を向上させる技術群を指します。最も人気の技術は、ネットワークトラフィックをカテゴリ分けして、トラフィックの所属するカテゴリ別にその取り扱いに違いを付ける事です。サービスを差別化するという概念の主な用途が<emphasis>トラフィックシェーピング</emphasis>です。これは一部のサービスおよびホストに関連する接続のデータの転送率を制限します。これを使うことで、利用可能な帯域幅が飽和する事を避け、重要な他のサービスに支障が出ないようにします。トラフィックシェーピングは TCP トラフィックに対して特に有効です。なぜなら、TCP は自動的に利用可能な帯域幅に適応するからです。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1307,7 +1307,7 @@ msgstr "<primary>サービス</primary><secondary>品質</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "It is also possible to alter the priorities on traffic, which allows prioritizing packets related to interactive services (such as <command>ssh</command> and <command>telnet</command>) or to services that only deal with small blocks of data."
-msgstr "これを使うことで、トラフィックの優先度を変更し、対話的サービス(<command>ssh</command> や <command>telnet</command> など) や小さなブロックのデータだけを取り扱うサービスに関連するパケットに高い優先順位を付けることが可能です。"
+msgstr "これを使うことで、トラフィックの優先度を変更し、対話的サービス(<command>ssh</command> や <command>telnet</command> など) や小さなブロックのデータだけを取り扱うサービスに関連するパケットに高い優先順位を付ける事が可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -1322,7 +1322,7 @@ msgstr "<emphasis>CULTURE</emphasis> LARTC - <emphasis>Linux Advanced Routing &a
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis> HOWTO is the reference document covering everything there is to know about network quality of service. <ulink type=\"block\" url=\"http://www.lartc.org/howto/\" />"
-msgstr "<emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis> HOWTO はネットワークのサービス品質に関して知っておくべき全ての内容をカバーする基礎的な文書です。<ulink type=\"block\" url=\"http://www.lartc.org/howto/\" />"
+msgstr "<emphasis>Linux Advanced Routing &amp; Traffic Control</emphasis> HOWTO はネットワークのサービス品質に関して知っておくべきすべての内容をカバーする基礎的な文書です。<ulink type=\"block\" url=\"http://www.lartc.org/howto/\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1347,7 +1347,7 @@ msgstr "設定と実践"
 #. Tag: para
 #, no-c-format
 msgid "QoS parameters are set through the <command>tc</command> command (provided by the <emphasis role=\"pkg\">iproute</emphasis> package). Since its interface is quite complex, using higher-level tools is recommended."
-msgstr "QoS パラメータは <command>tc</command> コマンド (<emphasis role=\"pkg\">iproute</emphasis> パッケージの提供する) を使って設定します。このコマンドはインターフェイスがかなり複雑なので、高レベルツールを使うことをおすすめします。"
+msgstr "QoS パラメータは <command>tc</command> コマンド (<emphasis role=\"pkg\">iproute</emphasis> パッケージの提供する) を使って設定します。このコマンドはインターフェースがかなり複雑なので、高レベルツールを使う事をおすすめします。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1367,7 +1367,7 @@ msgstr "待ち時間の低減: <command>wondershaper</command>"
 #. Tag: para
 #, no-c-format
 msgid "The main purpose of <command>wondershaper</command> (in the similarly-named package) is to minimize latencies independent of network load. This is achieved by limiting total traffic to a value that falls just short of the link saturation value."
-msgstr "<command>wondershaper</command> (同名のパッケージに含まれる) の主目的はネットワーク負荷とは無関係に待ち時間を最小化することです。このコマンドを使うことで、全トラフィックがある値に制限されます。この値には帯域を飽和させるよりほんの少しだけ小さな値を設定します。"
+msgstr "<command>wondershaper</command> (よく似た名前のパッケージに含まれます) の主目的はネットワーク負荷とは無関係に待ち時間を最小化する事です。このコマンドを使うことで、全トラフィックがある値に制限されます。この値には帯域を飽和させるよりほんの少しだけ小さな値を設定します。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1387,12 +1387,12 @@ msgstr "<primary>トラフィック</primary><secondary>制限</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "Once a network interface is configured, setting up this traffic limitation is achieved by running <command>wondershaper <replaceable>interface</replaceable> <replaceable>download_rate</replaceable> <replaceable>upload_rate</replaceable></command>. The interface can be <literal>eth0</literal> or <literal>ppp0</literal> for example, and both rates are expressed in kilobits per second. The <command>wondershaper remove <replaceable>interface</replaceable></command> command disables traffic control on the specified interface."
-msgstr "ネットワークインターフェイスを設定した後、<command>wondershaper <replaceable>interface</replaceable> <replaceable>download_rate</replaceable> <replaceable>upload_rate</replaceable></command> を実行することでトラフィックが制限されます。インターフェイスは例えば <literal>eth0</literal> または <literal>ppp0</literal> などで、各制限値はキロビット毎秒単位です。特定のインターフェイスで実施されているトラフィック制限を無効化するには <command>wondershaper remove <replaceable>interface</replaceable></command> コマンドを使います。"
+msgstr "ネットワークインターフェースを設定した後、<command>wondershaper <replaceable>interface</replaceable> <replaceable>download_rate</replaceable> <replaceable>upload_rate</replaceable></command> を実行することでトラフィックが制限されます。インターフェースは例えば <literal>eth0</literal> または <literal>ppp0</literal> などで、各制限値はキロビット毎秒単位です。特定のインターフェースで実施されているトラフィック制限を無効化するには <command>wondershaper remove <replaceable>interface</replaceable></command> コマンドを使います。"
 
 #. Tag: para
 #, no-c-format
 msgid "For an Ethernet connection, this script is best called right after the interface is configured. This is done by adding <literal>up</literal> and <literal>down</literal> directives to the <filename>/etc/network/interfaces</filename> file allowing declared commands to be run, respectively, after the interface is configured and before it is deconfigured. For example:"
-msgstr "イーサネット接続の場合、このスクリプトをインターフェイスが設定された直後に呼び出すのが最良です。これを行うには、<filename>/etc/network/interfaces</filename> ファイルに <literal>up</literal> と <literal>down</literal> 指示文を追加して、それぞれインターフェイスが開始された後と停止される前に実行するコマンドを宣言します。例えば:"
+msgstr "イーサネット接続の場合、このスクリプトをインターフェースが設定された直後に呼び出すのが最良です。これを行うには、<filename>/etc/network/interfaces</filename> ファイルに <literal>up</literal> と <literal>down</literal> 指示文を追加して、それぞれインターフェースが開始された後と停止される前に実行するコマンドを宣言します。例えば:"
 
 #. Tag: title
 #, no-c-format
@@ -1405,12 +1405,12 @@ msgid ""
 "\n"
 "iface eth0 inet dhcp\n"
 "    up /sbin/wondershaper eth0 500 100\n"
-"    down /sbin/wondershaper remove eth0\n"
+"    down /sbin/wondershaper remove eth0"
 msgstr ""
 "\n"
 "iface eth0 inet dhcp\n"
 "    up /sbin/wondershaper eth0 500 100\n"
-"    down /sbin/wondershaper remove eth0\n"
+"    down /sbin/wondershaper remove eth0"
 
 #. Tag: para
 #, no-c-format
@@ -1425,7 +1425,7 @@ msgstr "<emphasis>GOING FURTHER</emphasis> 最適な設定"
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/usr/share/doc/wondershaper/README.Debian.gz</filename> file describes, in some detail, the configuration method recommended by the package maintainer. In particular, it advises measuring the download and upload speeds so as to best evaluate real limits."
-msgstr "<filename>/usr/share/doc/wondershaper/README.Debian.gz</filename> ファイルでは、パッケージメンテナの推奨する設定方法が少し詳しく説明されています。特に、ダウンロードとアップロード速度を計測することを勧めています。実際の速度を計測することで、制限を適切に見積もることが可能です。"
+msgstr "<filename>/usr/share/doc/wondershaper/README.Debian.gz</filename> ファイルでは、パッケージメンテナの推奨する設定方法が少し詳しく説明されています。特に、ダウンロードとアップロード速度を計測する事を勧めています。実際の速度を計測することで、制限を適切に見積もる事が可能です。"
 
 #. Tag: title
 #, no-c-format
@@ -1475,18 +1475,18 @@ msgstr "<primary>Type of Service</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The ToS field can be set by applications that generate IP packets, or modified on the fly by <emphasis>netfilter</emphasis>. The following rules are sufficient to increase responsiveness for a server's SSH service:"
-msgstr "ToS フィールドは IP パケットを生成するアプリケーションによって設定されるか、<emphasis>netfilter</emphasis> によってその場で修正されます。以下のルールを使うだけで、サーバの SSH サービスに対する応答性を増加させることが可能です:"
+msgstr "ToS フィールドは IP パケットを生成するアプリケーションによって設定されるか、<emphasis>netfilter</emphasis> によってその場で修正されます。以下のルールを使うだけで、サーバの SSH サービスに対する応答性を増加させる事が可能です:"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
 "iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos Minimize-Delay\n"
-"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay\n"
+"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay"
 msgstr ""
 "\n"
 "iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos Minimize-Delay\n"
-"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay\n"
+"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay"
 
 #. Tag: title
 #, no-c-format
@@ -1511,7 +1511,7 @@ msgstr "<primary><command>zebra</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The reference tool for dynamic routing is currently <command>quagga</command>, from the similarly-named package; it used to be <command>zebra</command> until development of the latter stopped. However, <command>quagga</command> kept the names of the programs for compatibility reasons which explains the <command>zebra</command> commands below."
-msgstr "現在の動的ルーティングの標準ツールは <command>quagga</command> です。これは同名のパッケージによって提供されます。以前は <command>zebra</command> でしたが、開発が中止されたため  <command>quagga</command> に取って代わられました。しかしながら、<command>quagga</command> は互換性の理由から、プログラムの名前に <command>zebra</command> を使っています。"
+msgstr "現在の動的ルーティングの標準ツールは <command>quagga</command> で、よく似た名前のパッケージに含まれます。以前は <command>zebra</command> でしたが、開発が中止されたため  <command>quagga</command> に取って代わられました。しかしながら、<command>quagga</command> は互換性の理由から、プログラムの名前に <command>zebra</command> を使っています。"
 
 #. Tag: title
 #, no-c-format
@@ -1521,7 +1521,7 @@ msgstr "<emphasis>BACK TO BASICS</emphasis> 動的ルーティング"
 #. Tag: para
 #, no-c-format
 msgid "Dynamic routing allows routers to adjust, in real time, the paths used for transmitting IP packets. Each protocol involves its own method of defining routes (shortest path, use routes advertised by peers, and so on)."
-msgstr "動的ルーティングを使うことで、ルータは IP パケットの送信経路をリアルタイムで調整することが可能になります。プロトコルごとに経路を定義する方法 (最短経路、各装置が希望する経路、など) は違います。"
+msgstr "動的ルーティングを使うことで、ルータは IP パケットの送信経路をリアルタイムで調整する事が可能になります。プロトコルごとに経路を定義する方法 (最短経路、各装置が希望する経路、など) は違います。"
 
 #. Tag: para
 #, no-c-format
@@ -1606,7 +1606,7 @@ msgstr "これらのデーモンを有効化するには、<filename>/etc/quagga
 #. Tag: para
 #, no-c-format
 msgid "The configuration of each of these daemons requires knowledge of the routing protocol in question. These protocols cannot be described in detail here, but the <emphasis role=\"pkg\">quagga-doc</emphasis> provides ample explanation in the form of an <command>info</command> file. The same contents may be more easily browsed as HTML on the Quagga website: <ulink type=\"block\" url=\"http://www.quagga.net/docs/docs-info.php\" /> In addition, the syntax is very close to a standard router's configuration interface, and network administrators will adapt quickly to <command>quagga</command>."
-msgstr "デーモンを設定するには、対象のルーティングプロトコルに関する知識が必要です。ここではそれぞれのプロトコルの詳細を説明できませんが、<emphasis role=\"pkg\">quagga-doc</emphasis> パッケージに含まれる <command>info</command> ファイルで、十分な説明が行われています。また、同じ内容を Quagga のウェブサイト上で HTML として閲覧するほうが簡単かもしれません: <ulink type=\"block\" url=\"http://www.quagga.net/docs/docs-info.php\" /> 加えて、設定構文は標準的なルータの設定インターフェイスととても似ているため、ネットワーク管理者は <command>quagga</command> に素早く順応するでしょう。"
+msgstr "デーモンを設定するには、対象のルーティングプロトコルに関する知識が必要です。ここではそれぞれのプロトコルの詳細を説明できませんが、<emphasis role=\"pkg\">quagga-doc</emphasis> パッケージに含まれる <command>info</command> ファイルで、十分な説明が行われています。また、同じ内容を Quagga のウェブサイト上で HTML として閲覧するほうが簡単かもしれません: <ulink type=\"block\" url=\"http://www.quagga.net/docs/docs-info.php\" /> 加えて、設定構文は標準的なルータの設定インターフェースととても似ているため、ネットワーク管理者は <command>quagga</command> に素早く順応するでしょう。"
 
 #. Tag: title
 #, no-c-format
@@ -1616,12 +1616,12 @@ msgstr "<emphasis>IN PRACTICE</emphasis> OSPF、BGP、RIP?"
 #. Tag: para
 #, no-c-format
 msgid "OSPF is generally the best protocol to use for dynamic routing on private networks, but BGP is more common for Internet-wide routing. RIP is rather ancient, and hardly used anymore."
-msgstr "一般に、OSPF はプライベートネットワークの動的ルーティングに使われる最良のプロトコルです。BGP はInternet 全体のルーティング使われることが多いプロトコルです。RIP は比較的古典的で、ほとんど使われません。"
+msgstr "一般に、OSPF はプライベートネットワークの動的ルーティングに使われる最良のプロトコルです。BGP はインターネット全体のルーティング使われる事が多いプロトコルです。RIP は比較的古典的で、ほとんど使われません。"
 
 #. Tag: para
 #, no-c-format
 msgid "IPv6, successor to IPv4, is a new version of the IP protocol designed to fix its flaws, most notably the scarcity of available IP addresses. This protocol handles the network layer; its purpose is to provide a way to address machines, to convey data to their intended destination, and to handle data fragmentation if needed (in other words, to split packets into chunks with a size that depends on the network links to be used on the path and to reassemble the chunks in their proper order on arrival)."
-msgstr "IPv6 は IPv4 の後継で、IP プロトコルの新しいバージョンで、IPv4 の欠点、中でも注目すべきは利用可能な IP アドレスの不足、を修正するために設計されました。IPv6 プロトコルはネットワーク層で動きます; IPv6 の目的は、マシンをアドレス指定する方法を提供すること、目標の宛先にデータを伝達すること、必要ならばデータの断片化をを取り扱うこと、です (言い換えれば、経路で使われるネットワークリンクに従ってパケットをあるサイズのチャンクに分割し、到着した時に適切な順番にチャンクを再構築することです)。"
+msgstr "IPv6 は IPv4 の後継で、IP プロトコルの新しいバージョンで、IPv4 の欠点、中でも注目すべきは利用可能な IP アドレスの不足、を修正するために設計されました。IPv6 プロトコルはネットワーク層で動きます; IPv6 の目的は、マシンをアドレス指定する方法を提供すること、目標の宛先にデータを伝達すること、必要ならばデータの断片化をを取り扱うこと、です (言い換えれば、経路で使われるネットワークリンクに従ってパケットをあるサイズのチャンクに分割し、到着した時に適切な順番にチャンクを再構築する事です)。"
 
 #. Tag: para
 #, no-c-format
@@ -1664,7 +1664,7 @@ msgid ""
 "    # autoconf 0\n"
 "    # The router is auto-configured and has no fixed address\n"
 "    # (accept_ra 1). If it had:\n"
-"    # gateway 2001:db8:1234:5::1\n"
+"    # gateway 2001:db8:1234:5::1"
 msgstr ""
 "\n"
 "iface eth0 inet6 static\n"
@@ -1674,17 +1674,17 @@ msgstr ""
 "    # autoconf 0\n"
 "    # The router is auto-configured and has no fixed address\n"
 "    # (accept_ra 1). If it had:\n"
-"    # gateway 2001:db8:1234:5::1\n"
+"    # gateway 2001:db8:1234:5::1"
 
 #. Tag: para
 #, no-c-format
 msgid "IPv6 subnets usually have a netmask of 64 bits. This means that 2<superscript>64</superscript> distinct addresses exist within the subnet. This allows Stateless Address Autoconfiguration (<acronym>SLAAC</acronym>) to pick an address based on the network interface's MAC address. By default, if <acronym>SLAAC</acronym> is activated in your network and IPv6 on your computer, the kernel will automatically find IPv6 routers and configure the network interfaces."
-msgstr "IPv6 サブネットのネットマスクは通常 64 ビットです。これは、サブネットの中に 2<superscript>64</superscript> 個の異なるアドレスが存在することを意味します。この特徴のおかげで、インターフェイスの MAC アドレスに基づいたアドレスを選ぶ、ステートレスアドレス自動設定 (<acronym>SLAAC</acronym>) を使うことが可能です。ネットワークで <acronym>SLAAC</acronym> が有効化され、コンピュータで IPv6 が有効化された場合、デフォルトでカーネルは自動的に IPv6 ルータを探して、ネットワークインターフェイスを設定します。"
+msgstr "IPv6 サブネットのネットマスクは通常 64 ビットです。これは、サブネットの中に 2<superscript>64</superscript> 個の異なるアドレスが存在する事を意味します。この特徴のお陰で、インターフェースの MAC アドレスに基づいたアドレスを選ぶ、ステートレスアドレス自動設定 (<acronym>SLAAC</acronym>) を使う事が可能です。ネットワークで <acronym>SLAAC</acronym> が有効化され、コンピュータで IPv6 が有効化された場合、デフォルトでカーネルは自動的に IPv6 ルータを探して、ネットワークインターフェースを設定します。"
 
 #. Tag: para
 #, no-c-format
 msgid "This behavior may have privacy implications. If you switch networks frequently, e.g. with a laptop, you might not want your <acronym>MAC</acronym> address being a part of your public IPv6 address. This makes it easy to identify the same device across networks. A solution to this are IPv6 privacy extensions, which will assign an additional randomly generated address to the interface, periodically change them and prefer them for outgoing connections. Incoming connections can still use the address generated by SLAAC. The following example, for use in <filename>/etc/network/interfaces</filename>, activates these privacy extensions."
-msgstr "SLAAC の挙動はプライバシーを推測される危険性をはらんでいます。例えばラップトップでネットワークを頻繁に切り替える場合、公開 IPv6 アドレスの一部に <acronym>MAC</acronym> アドレスを含めたくないかもしれません。SLAAC のせいで、異なるネットワーク上の同じデバイスを容易に識別可能になります。この問題に対する解決策が IPv6 プライバシー拡張です。これを使うと、インターフェイスにランダムに生成されたアドレスを割り当て、定期的にこれを変更し、外部に出る接続にはこのアドレスを使う、ようになります。外部から入ってくる接続は SLAAC で生成されたアドレスを使うことも可能です。以下の例では <filename>/etc/network/interfaces</filename> の中で IPv6 プライバシー拡張を有効化しています。"
+msgstr "SLAAC の挙動はプライバシーを推測される危険性をはらんでいます。例えばラップトップでネットワークを頻繁に切り替える場合、公開 IPv6 アドレスの一部に <acronym>MAC</acronym> アドレスを含めたくないかもしれません。SLAAC のせいで、異なるネットワーク上の同じデバイスを容易に識別可能になります。この問題に対する解決策が IPv6 プライバシー拡張です。これを使うと、インターフェースにランダムに生成されたアドレスを割り当て、定期的にこれを変更し、外部に出る接続にはこのアドレスを使う、ようになります。外部から入ってくる接続は SLAAC で生成されたアドレスを使う事も可能です。以下の例では <filename>/etc/network/interfaces</filename> の中で IPv6 プライバシー拡張を有効化しています。"
 
 #. Tag: title
 #, no-c-format
@@ -1697,12 +1697,12 @@ msgid ""
 "\n"
 "iface eth0 inet6 auto\n"
 "    # Prefer the randomly assigned addresses for outgoing connections.\n"
-"    privext 2\n"
+"    privext 2"
 msgstr ""
 "\n"
 "iface eth0 inet6 auto\n"
 "    # Prefer the randomly assigned addresses for outgoing connections.\n"
-"    privext 2\n"
+"    privext 2"
 
 #. Tag: title
 #, no-c-format
@@ -1712,7 +1712,7 @@ msgstr "<emphasis>TIP</emphasis> プログラムの IPv6 対応"
 #. Tag: para
 #, no-c-format
 msgid "Many pieces of software need to be adapted to handle IPv6. Most of the packages in Debian have been adapted already, but not all. If your favorite package does not work with IPv6 yet, you can ask for help on the <emphasis>debian-ipv6</emphasis> mailing-list. They might know about an IPv6-aware replacement and could file a bug to get the issue properly tracked. <ulink type=\"block\" url=\"http://lists.debian.org/debian-ipv6/\" />"
-msgstr "多くのソフトウェアを IPv6 に対応させる必要があります。Debian に含まれる数多くのパッケージは既に IPv6 に対応済みですが、全てではありません。もしお気に入りのパッケージがまだ IPv6 に対応していない場合、<emphasis>debian-ipv6</emphasis> メーリングリストでこれを手伝うようお願いすることも可能です。彼らは IPv6 に対応させる方法について知っているかもしれませんし、この問題について適切な追跡が行えるようなバグ報告を投稿できるかもしれません。<ulink type=\"block\" url=\"http://lists.debian.org/debian-ipv6/\" />"
+msgstr "多くのソフトウェアを IPv6 に対応させる必要があります。Debian に含まれる数多くのパッケージは既に IPv6 に対応済みですが、すべてではありません。もしお気に入りのパッケージがまだ IPv6 に対応していない場合、<emphasis>debian-ipv6</emphasis> メーリングリストでこれを手伝うようお願いする事も可能です。彼らは IPv6 に対応させる方法について知っているかもしれませんし、この問題について適切な追跡が行えるようなバグ報告を投稿できるかもしれません。<ulink type=\"block\" url=\"http://lists.debian.org/debian-ipv6/\" />"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1732,7 +1732,7 @@ msgstr "<primary><command>ip6tables</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "IPv6 connections can be restricted, in the same fashion as for IPv4: the standard Debian kernels include an adaptation of <emphasis>netfilter</emphasis> for IPv6. This IPv6-enabled <emphasis>netfilter</emphasis> is configured in a similar fashion to its IPv4 counterpart, except the program to use is <command>ip6tables</command> instead of <command>iptables</command>."
-msgstr "IPv6 接続は IPv4 と同様の方法で制限することが可能です: 標準的な Debian カーネルは IPv6 用の <emphasis>netfilter</emphasis> に対応しています。IPv6 対応の <emphasis>netfilter</emphasis> を設定するには IPv4 でやったのと同様の方法を使います。ただし、<command>iptables</command> の代わりに <command>ip6tables</command> を使います。"
+msgstr "IPv6 接続は IPv4 と同様の方法で制限する事が可能です: 標準的な Debian カーネルは IPv6 用の <emphasis>netfilter</emphasis> に対応しています。IPv6 対応の <emphasis>netfilter</emphasis> を設定するには IPv4 でやったのと同様の方法を使います。ただし、<command>iptables</command> の代わりに <command>ip6tables</command> を使います。"
 
 #. Tag: title
 #, no-c-format
@@ -1772,7 +1772,7 @@ msgstr "Freenet6 トンネルを使うには、ウェブサイトから Freenet6
 #. Tag: para
 #, no-c-format
 msgid "IPv6 connectivity is proposed to all machines on a local network by adding the three following directives to the <filename>/etc/gogoc/gogoc.conf</filename> file (assuming the local network is connected to the eth0 interface):"
-msgstr "IPv6 接続をローカルネットワークの全てのマシンに提供するには、以下の 3 つの指示文を <filename>/etc/gogoc/gogoc.conf</filename> ファイルに追加します (ここで、ローカルネットワークは eth0 インターフェイスに接続されていると仮定します):"
+msgstr "IPv6 接続をローカルネットワークのすべてのマシンに提供するには、以下の 3 つの指示文を <filename>/etc/gogoc/gogoc.conf</filename> ファイルに追加します (ここで、ローカルネットワークは eth0 インターフェースに接続されていると仮定します):"
 
 #. Tag: programlisting
 #, no-c-format
@@ -1780,22 +1780,22 @@ msgid ""
 "\n"
 "host_type=router\n"
 "prefixlen=56\n"
-"if_prefix=eth0\n"
+"if_prefix=eth0"
 msgstr ""
 "\n"
 "host_type=router\n"
 "prefixlen=56\n"
-"if_prefix=eth0\n"
+"if_prefix=eth0"
 
 #. Tag: para
 #, no-c-format
 msgid "The machine then becomes the access router for a subnet with a 56-bit prefix. Once the tunnel is aware of this change, the local network must be told about it; this implies installing the <command>radvd</command> daemon (from the similarly-named package). This IPv6 configuration daemon has a role similar to <command>dhcpd</command> in the IPv4 world."
-msgstr "マシンは 56 ビットのプレフィックスを持つサブネット用のアクセスルータになります。ローカルネットワークは、トンネルの変更を通知しなければいけません; これは <command>radvd</command> デーモン (同名のパッケージが提供する) をインストールすることを意味します。この IPv6 設定デーモンは IPv4 で言うところの <command>dhcpd</command> と同様の役割を果たします。"
+msgstr "マシンは 56 ビットのプレフィックスを持つサブネット用のアクセスルータになります。ローカルネットワークは、トンネルの変更を通知しなければいけません; これは <command>radvd</command> デーモン (よく似た名前のパッケージに含まれます) をインストールする事を意味します。この IPv6 設定デーモンは IPv4 で言うところの <command>dhcpd</command> と同様の役割を果たします。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>/etc/radvd.conf</filename> configuration file must then be created (see <filename>/usr/share/doc/radvd/examples/simple-radvd.conf</filename> as a starting point). In our case, the only required change is the prefix, which needs to be replaced with the one provided by Freenet6; it can be found in the output of the <command>ifconfig</command> command, in the block concerning the <literal>tun</literal> interface."
-msgstr "<filename>/etc/radvd.conf</filename> 設定ファイルを作成しなければいけません (雛形の <filename>/usr/share/doc/radvd/examples/simple-radvd.conf</filename> 参照)。Freenet6 を使う場合、プレフィックス設定を Freenet6 から提供されたものに変更するだけで十分です; プレフィックスを探すには <command>ifconfig</command> コマンドの出力から <literal>tun</literal> インターフェイスを含むブロックを参照します。"
+msgstr "<filename>/etc/radvd.conf</filename> 設定ファイルを作成しなければいけません (雛形の <filename>/usr/share/doc/radvd/examples/simple-radvd.conf</filename> 参照)。Freenet6 を使う場合、プレフィックス設定を Freenet6 から提供されたものに変更するだけで十分です; プレフィックスを探すには <command>ifconfig</command> コマンドの出力から <literal>tun</literal> インターフェースを含むブロックを参照します。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1825,7 +1825,7 @@ msgstr "<primary>サーバ</primary><secondary>ネーム</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The <emphasis>Domain Name Service</emphasis> (DNS) is a fundamental component of the Internet: it maps host names to IP addresses (and vice-versa), which allows the use of <literal>www.debian.org</literal> instead of <literal>5.153.231.4</literal> or <literal>2001:41c8:1000:21::21:4</literal>."
-msgstr "<emphasis>ドメインネームサービス</emphasis> (DNS) は Internet の基礎要素です: DNS はホスト名を IP アドレスに (その逆も) 対応付け、<literal>5.153.231.4</literal> や <literal>2001:41c8:1000:21::21:4</literal> の代わりに <literal>www.debian.org</literal> を使えるようにします。"
+msgstr "<emphasis>ドメインネームサービス</emphasis> (DNS) はインターネットの基礎要素です: DNS はホスト名を IP アドレスに (その逆も) 対応付け、<literal>5.153.231.4</literal> や <literal>2001:41c8:1000:21::21:4</literal> の代わりに <literal>www.debian.org</literal> を使えるようにします。"
 
 #. Tag: para
 #, no-c-format
@@ -1875,7 +1875,7 @@ msgstr "<literal>AAAA</literal>: IPv6 アドレス。<indexterm><primary>AAAA、
 #. Tag: para
 #, no-c-format
 msgid "<literal>NS</literal>: maps a name to a name server. Each domain must have at least one NS record. These records point at a DNS server that can answer queries concerning this domain; they usually point at the primary and secondary servers for the domain. These records also allow DNS delegation; for instance, the <literal>falcot.com</literal> zone can include an NS record for <literal>internal.falcot.com</literal>, which means that the <literal>internal.falcot.com</literal> zone is handled by another server. Of course, this server must declare an <literal>internal.falcot.com</literal> zone. <indexterm><primary>NS, DNS record</primary></indexterm>"
-msgstr "<literal>NS</literal>: 名前をネームサーバに対応付けます。それぞれのドメインは最低 1 つの NS レコードを持っています。NS レコードでは、このドメインに対する問い合わせに答える事ができる DNS サーバを指定します; これは通常そのドメインに対するプライマリおよびセカンダリサーバです。NS レコードを使って DNS の権限委譲を指定することも可能です; 例えば、<literal>falcot.com</literal> ゾーンの NS レコードには <literal>internal.falcot.com</literal> が含まれます。これは <literal>internal.falcot.com</literal> ゾーンは別のサーバが担当することを意味します。もちろん、このサーバは <literal>internal.falcot.com</literal> ゾーンを宣言しなければいけません。<indexterm><primary>NS、DNS レコード</primary></indexterm>"
+msgstr "<literal>NS</literal>: 名前をネームサーバに対応付けます。それぞれのドメインは最低 1 つの NS レコードを持っています。NS レコードでは、このドメインに対する問い合わせに答える事ができる DNS サーバを指定します; これは通常そのドメインに対するプライマリおよびセカンダリサーバです。NS レコードを使って DNS の権限委譲を指定する事も可能です; 例えば、<literal>falcot.com</literal> ゾーンの NS レコードには <literal>internal.falcot.com</literal> が含まれます。これは <literal>internal.falcot.com</literal> ゾーンは別のサーバが担当する事を意味します。もちろん、このサーバは <literal>internal.falcot.com</literal> ゾーンを宣言しなければいけません。<indexterm><primary>NS、DNS レコード</primary></indexterm>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1890,12 +1890,12 @@ msgstr "<primary>DNS レコード</primary>"
 #. Tag: para
 #, no-c-format
 msgid "The reference name server, Bind, was developed and is maintained by ISC (<emphasis>Internet Software Consortium</emphasis>). It is provided in Debian by the <emphasis role=\"pkg\">bind9</emphasis> package. Version 9 brings two major changes compared to previous versions. First, the DNS server can now run under an unprivileged user, so that a security vulnerability in the server does not grant root privileges to the attacker (as was seen repeatedly with versions 8.x)."
-msgstr "標準的なネームサーバである Bind は ISC (<emphasis>Internet Software Consortium</emphasis>) によって開発され、保守されています。Debian では、Bind を提供するパッケージは <emphasis role=\"pkg\">bind9</emphasis> です。バージョン 9 では、前のバージョンに比べて 2 種類の大きな変更が導入されました。1 番目は、DNS サーバを非特権ユーザとして実行するという変更です。これにより、サーバのセキュリティ脆弱性によって攻撃者に root 特権を渡してしまうことが無くなりました (バージョン 8.x ではこのようなことがよくありました)。"
+msgstr "標準的なネームサーバである Bind は ISC (<emphasis>Internet Software Consortium</emphasis>) によって開発され、保守されています。Debian では、Bind を提供するパッケージは <emphasis role=\"pkg\">bind9</emphasis> です。バージョン 9 では、前のバージョンに比べて 2 種類の大きな変更が導入されました。1 番目は、DNS サーバを非特権ユーザとして実行するという変更です。これにより、サーバのセキュリティ脆弱性によって攻撃者に root 特権を渡してしまう事が無くなりました (バージョン 8.x ではこのような事がよくありました)。"
 
 #. Tag: para
 #, no-c-format
 msgid "Furthermore, Bind supports the DNSSEC standard for signing (and therefore authenticating) DNS records, which allows blocking any spoofing of this data during man-in-the-middle attacks."
-msgstr "2 番目は、Bind が DNS レコードの署名 (認証されている) に DNSSEC 標準をサポートするようになった変更です。これにより、中間者攻撃中に DNS レコードがなりすましされても、それを遮ることが可能になりました。"
+msgstr "2 番目は、Bind が DNS レコードの署名 (認証されている) に DNSSEC 標準をサポートするようになった変更です。これにより、中間者攻撃中に DNS レコードがなりすましされても、それを遮る事が可能になりました。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -1990,7 +1990,7 @@ msgstr "<emphasis>TIP</emphasis> DNS サーバのテスト"
 #. Tag: para
 #, no-c-format
 msgid "The <command>host</command> command (in the <emphasis role=\"pkg\">bind9-host</emphasis> package) queries a DNS server, and can be used to test the server configuration. For example, <command>host machine.falcot.com localhost</command> checks the local server's reply for the <literal>machine.falcot.com</literal> query. The <command>host <replaceable>ipaddress</replaceable> localhost</command> tests the reverse resolution."
-msgstr "<command>host</command> コマンド (<emphasis role=\"pkg\">bind9-host</emphasis> パッケージに含まれる) は引数に DNS サーバを与えることができ、サーバ設定をテストするために使うことも可能です。例えば、<command>host machine.falcot.com localhost</command> を使うと、ローカルサーバに <literal>machine.falcot.com</literal> を問い合わせた際の応答を確認することが可能です。<command>host <replaceable>ipaddress</replaceable> localhost</command> を使うと逆引きをテストすることが可能です。"
+msgstr "<command>host</command> コマンド (<emphasis role=\"pkg\">bind9-host</emphasis> パッケージに含まれる) は引数に DNS サーバを与える事ができ、サーバ設定をテストするために使う事も可能です。例えば、<command>host machine.falcot.com localhost</command> を使うと、ローカルサーバに <literal>machine.falcot.com</literal> を問い合わせた際の応答を確認する事が可能です。<command>host <replaceable>ipaddress</replaceable> localhost</command> を使うと逆引きをテストする事が可能です。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2041,7 +2041,7 @@ msgid ""
 "        type master;\n"
 "        file \"/etc/bind/db.192.168\";\n"
 "        allow-query { 192.168.0.0/16; };\n"
-"};\n"
+"};"
 msgstr ""
 "\n"
 "zone \"falcot.com\" {\n"
@@ -2064,7 +2064,7 @@ msgstr ""
 "        type master;\n"
 "        file \"/etc/bind/db.192.168\";\n"
 "        allow-query { 192.168.0.0/16; };\n"
-"};\n"
+"};"
 
 #. Tag: title
 #, no-c-format
@@ -2101,7 +2101,7 @@ msgid ""
 "mail2   IN      A       212.94.201.11\n"
 "www     IN      A       212.94.201.11\n"
 "\n"
-"dns     IN      CNAME   ns\n"
+"dns     IN      CNAME   ns"
 msgstr ""
 "; falcot.com Zone \n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
@@ -2130,7 +2130,7 @@ msgstr ""
 "mail2   IN      A       212.94.201.11\n"
 "www     IN      A       212.94.201.11\n"
 "\n"
-"dns     IN      CNAME   ns\n"
+"dns     IN      CNAME   ns"
 
 #. Tag: title
 #, no-c-format
@@ -2168,7 +2168,7 @@ msgid ""
 "2.0     IN      PTR     neptune.internal.falcot.com.\n"
 "\n"
 "; 192.168.3.1 -&gt; pau\n"
-"1.3     IN      PTR     pau.internal.falcot.com.\n"
+"1.3     IN      PTR     pau.internal.falcot.com."
 msgstr ""
 "; Reverse zone for 192.168.0.0/16\n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
@@ -2188,12 +2188,12 @@ msgstr ""
 "2.0     IN      PTR     neptune.internal.falcot.com.\n"
 "\n"
 "; 192.168.3.1 -&gt; pau\n"
-"1.3     IN      PTR     pau.internal.falcot.com.\n"
+"1.3     IN      PTR     pau.internal.falcot.com."
 
 #. Tag: para
 #, no-c-format
 msgid "DHCP (for <emphasis>Dynamic Host Configuration Protocol</emphasis>) is a protocol by which a machine can automatically get its network configuration when it boots. This allows centralizing the management of network configurations, and ensuring that all desktop machines get similar settings."
-msgstr "DHCP (for <emphasis>Dynamic Host Configuration Protocol</emphasis>) とは、マシンが起動時にネットワーク設定を自動的に取得することを可能にするプロトコルです。DHCP のお陰で、ネットワーク設定の管理を中央集権化し、全てのデスクトップマシンに類似した設定を行う、ことが可能になります。"
+msgstr "DHCP (for <emphasis>Dynamic Host Configuration Protocol</emphasis>) とは、マシンが起動時にネットワーク設定を自動的に取得する事を可能にするプロトコルです。DHCP のお陰で、ネットワーク設定の管理を中央集権化し、すべてのデスクトップマシンに類似した設定を行う、事が可能になります。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2213,7 +2213,7 @@ msgstr "<primary>ネットワーク</primary><secondary>DHCP 設定</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "A DHCP server provides many network-related parameters. The most common of these is an IP address and the network where the machine belongs, but it can also provide other information, such as DNS servers, WINS servers, NTP servers, and so on."
-msgstr "DHCP サーバは多くのネットワーク関連パラメータを提供します。DHCP サーバが提供する最も一般的なパラメータは IP アドレスとマシンの所属するネットワークですが、他にも DNS サーバ、WINS サーバ、NTP サーバなどの情報を提供することも可能です。"
+msgstr "DHCP サーバは多くのネットワーク関連パラメータを提供します。DHCP サーバが提供する最も一般的なパラメータは IP アドレスとマシンの所属するネットワークですが、他にも DNS サーバ、WINS サーバ、NTP サーバなどの情報を提供する事も可能です。"
 
 #. Tag: para
 #, no-c-format
@@ -2265,7 +2265,7 @@ msgid ""
 "    option broadcast-address 192.168.0.255;\n"
 "    range 192.168.0.128 192.168.0.254;\n"
 "    ddns-domainname \"internal.falcot.com\";\n"
-"}\n"
+"}"
 msgstr ""
 "\n"
 "#\n"
@@ -2299,7 +2299,7 @@ msgstr ""
 "    option broadcast-address 192.168.0.255;\n"
 "    range 192.168.0.128 192.168.0.254;\n"
 "    ddns-domainname \"internal.falcot.com\";\n"
-"}\n"
+"}"
 
 #. Tag: title
 #, no-c-format
@@ -2319,21 +2319,21 @@ msgstr "DNS ゾーン内に DHCP クライアントを自動登録するとい�
 #. Tag: para
 #, no-c-format
 msgid "In the <command>bind</command> case, the <literal>allow-update</literal> directive needs to be added to each of the zones that the DHCP server is to edit (the one for the <literal>internal.falcot.com</literal> domain, and the reverse zone). This directive lists the IP addresses allowed to perform these updates; it should therefore contain the possible addresses of the DHCP server (both the local address and the public address, if appropriate)."
-msgstr "<command>bind</command> の場合、DHCP サーバからの更新を受け入れる各ゾーンに <literal>allow-update</literal> 指示文を追加する必要があります (<literal>internal.falcot.com</literal> ドメインの 1 つと逆引きゾーンの両方に追加する)。この指示文は更新要求を受け入れる IP アドレスをリストします; 考え得る DHCP サーバの全アドレスを列挙します (そうすることが適切なら、ローカルアドレスと公開アドレスの両方)。"
+msgstr "<command>bind</command> の場合、DHCP サーバからの更新を受け入れる各ゾーンに <literal>allow-update</literal> 指示文を追加する必要があります (<literal>internal.falcot.com</literal> ドメインの 1 つと逆引きゾーンの両方に追加する)。この指示文は更新要求を受け入れる IP アドレスをリストします; 考え得る DHCP サーバの全アドレスを列挙します (そうする事が適切なら、ローカルアドレスと公開アドレスの両方)。"
 
 #. Tag: programlisting
 #, no-c-format
 msgid ""
 "\n"
-"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
+"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };"
 msgstr ""
 "\n"
-"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
+"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };"
 
 #. Tag: para
 #, no-c-format
 msgid "Beware! A zone that can be modified <emphasis>will</emphasis> be changed by <command>bind</command>, and the latter will overwrite its configuration files at regular intervals. Since this automated procedure produces files that are less human-readable than manually-written ones, the Falcot administrators handle the <literal>internal.falcot.com</literal> domain with a delegated DNS server; this means the <literal>falcot.com</literal> zone file stays firmly under their manual control."
-msgstr "注意してください! <command>bind</command> は変更可能なゾーンに変更を加え、設定ファイルを定期的に上書きします。この自動手続きにより作成されるファイルは手作業で書かれたものよりも人間にとって読みづらいため、Falcot 管理者は権限委譲された DNS サーバを備える <literal>internal.falcot.com</literal> ドメインを用意しています; これは <literal>falcot.com</literal> ゾーンファイルは手作業で制御することを意味します。"
+msgstr "注意してください! <command>bind</command> は変更可能なゾーンに変更を加え、設定ファイルを定期的に上書きします。この自動手続きにより作成されるファイルは手作業で書かれたものよりも人間にとって読みづらいため、Falcot 管理者は権限委譲された DNS サーバを備える <literal>internal.falcot.com</literal> ドメインを用意しています; これは <literal>falcot.com</literal> ゾーンファイルは手作業で制御する事を意味します。"
 
 #. Tag: para
 #, no-c-format
@@ -2348,7 +2348,7 @@ msgstr "ネットワーク診断ツール"
 #. Tag: para
 #, no-c-format
 msgid "When a network application does not run as expected, it is important to be able to look under the hood. Even when everything seems to run smoothly, running a network diagnosis can help ensure everything is working as it should. Several diagnosis tools exists for this purpose; each one operates on a different level."
-msgstr "ネットワークアプリケーションが思った通りに動かない場合、中身を確かめる事が重要です。全てが問題なく動いているように見える場合でも、ネットワーク診断を実行すれば全てがあるべき姿で動いていることを確かめる手助けになります。この目的で復数の診断ツールが存在します; 各ツールは異なるレベルを診断します。"
+msgstr "ネットワークアプリケーションが思った通りに動かない場合、中身を確かめる事が重要です。すべてが問題なく動いているように見える場合でも、ネットワーク診断を実行すればすべてがあるべき姿で動いている事を確かめる手助けになります。この目的で復数の診断ツールが存在します; 各ツールは異なるレベルを診断します。"
 
 #. Tag: title
 #, no-c-format
@@ -2393,7 +2393,7 @@ msgstr "<literal>-n</literal>、結果を数値的に表示します: IP アド�
 #. Tag: para
 #, no-c-format
 msgid "<literal>-p</literal>, to list the processes involved; this option is only useful when <command>netstat</command> is run as root, since normal users will only see their own processes;"
-msgstr "<literal>-p</literal>、関係付けられたプロセスを表示します; <command>netstat</command>をroot 権限で実行した場合にのみ、このオプションは便利です。なぜなら、普通のユーザは自分のプロセス以外を見ることができないからです;"
+msgstr "<literal>-p</literal>、関係付けられたプロセスを表示します; <command>netstat</command>を root 権限で実行した場合にのみ、このオプションは便利です。なぜなら、普通のユーザは自分のプロセス以外を見る事ができないからです;"
 
 #. Tag: para
 #, no-c-format
@@ -2403,7 +2403,7 @@ msgstr "<literal>-c</literal>、継続的に接続リストを更新します。
 #. Tag: para
 #, no-c-format
 msgid "Other options, documented in the <citerefentry><refentrytitle>netstat</refentrytitle> <manvolnum>8</manvolnum></citerefentry> manual page, provide an even finer control over the displayed results. In practice, the first five options are so often used together that systems and network administrators practically acquired <command>netstat -tupan</command> as a reflex. Typical results, on a lightly loaded machine, may look like the following:"
-msgstr "<citerefentry><refentrytitle>netstat</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページに書かれている他のオプションを使えば、表示される結果をさらに細かく制御することが可能です。具体的にいえば、上に挙げたオプションの内最初の 5 種類を組み合わせて使うことが多いため、結果としてシステムとネットワークの管理者は事実上 <command>netstat -tupan</command> を習得します。負荷の高くないマシンでは、以下の様な典型的な結果を返します:"
+msgstr "<citerefentry><refentrytitle>netstat</refentrytitle> <manvolnum>8</manvolnum></citerefentry> マニュアルページに書かれている他のオプションを使えば、表示される結果をさらに細かく制御する事が可能です。具体的にいえば、上に挙げたオプションの内最初の 5 種類を組み合わせて使う事が多いため、結果としてシステムとネットワークの管理者は事実上 <command>netstat -tupan</command> を習得します。負荷の高くないマシンでは、以下の様な典型的な結果を返します:"
 
 #. Tag: screen
 #, no-c-format
@@ -2430,8 +2430,8 @@ msgid ""
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>netstat -tupan</userinput>\n"
-"<computeroutput>Active Internet connections (servers and established)\n"
-"Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name\n"
+"<computeroutput>稼働中のインターネット接続 (サーバと確立)\n"
+"Proto 受信-Q 送信-Q 内部アドレス            外部アドレス            状態        PID/Program name\n"
 "tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2224/sshd       \n"
 "tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      994/exim4       \n"
 "tcp        0      0 192.168.1.241:22        192.168.1.128:47372     ESTABLISHED 2944/sshd: roland [\n"
@@ -2466,12 +2466,12 @@ msgstr "<primary><command>nmap</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "<command>nmap</command> (in the similarly-named package) is, in a way, the remote equivalent for <command>netstat</command>. It can scan a set of “well-known” ports for one or several remote servers, and list the ports where an application is found to answer to incoming connections. Furthermore, <command>nmap</command> is able to identify some of these applications, sometimes even their version number. The counterpart of this tool is that, since it runs remotely, it cannot provide information on processes or users; however, it can operate on several targets at once."
-msgstr "<command>nmap</command> (同名のパッケージから提供される) は、ある意味で、リモートに対する <command>netstat</command> に相当します。これは 1 台または数台のリモートサーバに対して「well-known」ポート群をスキャンし、入ってきた接続に応答したアプリケーションの見つかったポートをリストします。更に、<command>nmap</command> は一部のアプリケーションを識別することが可能です。場合によってはアプリケーションのバージョン番号さえも識別することが可能です。<command>nmap</command> に対する問題点として、<command>nmap</command> はリモートから実行されるため、プロセスやユーザの情報を提供することができないという点が挙げられます; しかしながら、<command>nmap</command> は復数のターゲットに一気に実行できます。"
+msgstr "<command>nmap</command> (よく似た名前のパッケージに含まれます) は、ある意味で、リモートに対する <command>netstat</command> に相当します。これは 1 台または数台のリモートサーバに対して「well-known」ポート群をスキャンし、入ってきた接続に応答したアプリケーションの見つかったポートをリストします。更に、<command>nmap</command> は一部のアプリケーションを識別する事が可能です。場合によってはアプリケーションのバージョン番号さえも識別する事が可能です。<command>nmap</command> に対する問題点として、<command>nmap</command> はリモートから実行されるため、プロセスやユーザの情報を提供する事ができないという点が挙げられます; しかしながら、<command>nmap</command> は復数のターゲットに一気に実行できます。"
 
 #. Tag: para
 #, no-c-format
 msgid "A typical <command>nmap</command> invocation only uses the <literal>-A</literal> option (so that <command>nmap</command> attempts to identify the versions of the server software it finds) followed by one or more IP addresses or DNS names of machines to scan. Again, many more options exist to finely control the behavior of <command>nmap</command>; please refer to the documentation in the <citerefentry> <refentrytitle>nmap</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> manual page."
-msgstr "<command>nmap</command> を実行する際の典型例は、<literal>-A</literal> オプション (<command>nmap</command> は見つかったサーバソフトウェアのバージョンを識別しようとします) だけを使い、その後ろにスキャンする 1 つか復数の IP アドレスまたは DNS 名を渡すことです。繰り返しになりますが、さらに多くのオプションが存在し、<command>nmap</command> の挙動をさらに細かく制御することが可能です。<citerefentry> <refentrytitle>nmap</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> マニュアルページを参照してください。"
+msgstr "<command>nmap</command> を実行する際の典型例は、<literal>-A</literal> オプション (<command>nmap</command> は見つかったサーバソフトウェアのバージョンを識別しようとします) だけを使い、その後ろにスキャンする 1 つか復数の IP アドレスまたは DNS 名を渡す事です。繰り返しになりますが、さらに多くのオプションが存在し、<command>nmap</command> の挙動をさらに細かく制御する事が可能です。<citerefentry> <refentrytitle>nmap</refentrytitle> <manvolnum>1</manvolnum> </citerefentry> マニュアルページを参照してください。"
 
 #. Tag: screen
 #, no-c-format
@@ -2535,7 +2535,7 @@ msgid ""
 "\n"
 "OS and Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .\n"
 "Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>nmap mirwiz</userinput>\n"
@@ -2596,12 +2596,12 @@ msgstr ""
 "\n"
 "OS and Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .\n"
 "Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds\n"
-"</computeroutput>\n"
+"</computeroutput>"
 
 #. Tag: para
 #, no-c-format
 msgid "As expected, the SSH and Exim4 applications are listed. Note that not all applications listen on all IP addresses; since Exim4 is only accessible on the <literal>lo</literal> loopback interface, it only appears during an analysis of <literal>localhost</literal> and not when scanning <literal>mirwiz</literal> (which maps to the <literal>eth0</literal> interface on the same machine)."
-msgstr "予想通り、SSH と Exim4 アプリケーションが表示されます。全てのアプリケーションが全ての IP アドレスをリッスンしているわけではない点に注意してください; Exim4 は <literal>lo</literal> ループバックインターフェイスからのみアクセス可能ですから、<literal>localhost</literal> の解析にのみ表示され、<literal>mirwiz</literal> (これは同じマシンの <literal>eth0</literal> インターフェイスに対応付けられています) をスキャンした時には表示されません。"
+msgstr "予想通り、SSH と Exim4 アプリケーションが表示されます。すべてのアプリケーションがすべての IP アドレスをリッスンしているわけではない点に注意してください; Exim4 は <literal>lo</literal> ループバックインターフェースからのみアクセス可能ですから、<literal>localhost</literal> の解析にのみ表示され、<literal>mirwiz</literal> (これは同じマシンの <literal>eth0</literal> インターフェースに対応付けられています) をスキャンした時には表示されません。"
 
 #. Tag: title
 #, no-c-format
@@ -2611,7 +2611,7 @@ msgstr "スニファ: <command>tcpdump</command> と <command>wireshark</command
 #. Tag: para
 #, no-c-format
 msgid "Sometimes, one needs to look at what actually goes on the wire, packet by packet. These cases call for a “frame analyzer”, more widely known as a <emphasis>sniffer</emphasis>. Such a tool observes all the packets that reach a given network interface, and displays them in a user-friendly way."
-msgstr "しばしば実際にワイヤを行き来する情報をパケット毎に見る必要がある場合があります。この際に使われるツールは「フレームアナライザ」と呼ばれ、<emphasis>スニファ</emphasis> としても広く知られています。これらのツールはあるネットワークに到達した全てのパケットを観察し、ユーザにわかりやすい方法でパケットを表示します。"
+msgstr "しばしば実際にワイヤを行き来する情報をパケット毎に見る必要がある場合があります。この際に使われるツールは「フレームアナライザ」と呼ばれ、<emphasis>スニファ</emphasis> としても広く知られています。これらのツールはあるネットワークに到達したすべてのパケットを観察し、ユーザにわかりやすい方法でパケットを表示します。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2631,7 +2631,7 @@ msgstr "<primary><command>wireshark</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "A more recent (and more modern) tool, <command>wireshark</command> (in the <emphasis role=\"pkg\">wireshark</emphasis> package), is slowly becoming the new reference in network traffic analysis due to its many decoding modules that allow for a simplified analysis of the captured packets. The packets are displayed graphically with an organization based on the protocol layers. This allows a user to visualize all protocols involved in a packet. For example, given a packet containing an HTTP request, <command>wireshark</command> displays, separately, the information concerning the physical layer, the Ethernet layer, the IP packet information, the TCP connection parameters, and finally the HTTP request itself."
-msgstr "より最近の (そしてより現代的な) ツールである <command>wireshark</command> (<emphasis role=\"pkg\">wireshark</emphasis> パッケージの提供する) は、キャプチャされたパケットの解析を単純化する多くのデコーディングモジュールのお陰で、ゆっくりとネットワークトラフィック解析分野における新しい標準的なツールになりつつあります。パケットはプロトコルの層に基いてグラフィカルに表示されます。<command>wireshark</command> を使うと、ユーザはあるパケットに関わる全てのプロトコルを可視化することが可能です。例えば、HTTP リクエストを含むパケットに対して、<command>wireshark</command> は物理層、イーサネット層、IP パケット情報、TCP 接続パラメータ、最後に HTTP リクエスト自身に関連する情報を別々に表示します。"
+msgstr "より最近の (そしてより現代的な) ツールである <command>wireshark</command> (<emphasis role=\"pkg\">wireshark</emphasis> パッケージの提供する) は、キャプチャされたパケットの解析を単純化する多くのデコーディングモジュールのお陰で、ゆっくりとネットワークトラフィック解析分野における新しい標準的なツールになりつつあります。パケットはプロトコルの層に基いてグラフィカルに表示されます。<command>wireshark</command> を使うと、ユーザはあるパケットに関わるすべてのプロトコルを可視化する事が可能です。例えば、HTTP リクエストを含むパケットに対して、<command>wireshark</command> は物理層、イーサネット層、IP パケット情報、TCP 接続パラメータ、最後に HTTP リクエスト自身に関連する情報を別々に表示します。"
 
 #. Tag: title
 #, no-c-format
@@ -2646,7 +2646,7 @@ msgstr "上の例では、SSH を通じて移動するパケットを (<literal>
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <command>wireshark</command> with no graphical interface: <command>tshark</command>"
-msgstr "<emphasis>TIP</emphasis> グラフィカルインターフェイスを持たない <command>wireshark</command>: <command>tshark</command>"
+msgstr "<emphasis>TIP</emphasis> グラフィカルインターフェースを持たない <command>wireshark</command>: <command>tshark</command>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -2656,7 +2656,7 @@ msgstr "<primary><command>tshark</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "When one cannot run a graphical interface, or does not wish to do so for whatever reason, a text-only version of <command>wireshark</command> also exists under the name <command>tshark</command> (in a separate <emphasis role=\"pkg\">tshark</emphasis> package). Most of the capture and decoding features are still available, but the lack of a graphical interface necessarily limits the interactions with the program (filtering packets after they've been captured, tracking of a given TCP connection, and so on). It can still be used as a first approach. If further manipulations are intended and require the graphical interface, the packets can be saved to a file and this file can be loaded into a graphical <command>wireshark</command> running on another machine."
-msgstr "グラフィカルインターフェイスを実行できない場合や何らかの理由で実行したくない場合に備えて、<command>wireshark</command> のテキスト版 <command>tshark</command> (<emphasis role=\"pkg\">tshark</emphasis> パッケージに分割されています) が存在します。キャプチャとデコード機能のほとんどを利用可能ですが、グラフィカルインターフェイスが無いことでプログラムとのやり取りが制限されます (例えば、パケットがキャプチャされた後にフィルタをかけたり、ある TCP 接続を追跡することができません)。しかし <command>tshark</command> を足掛かりとして使うことが可能です。さらなる操作が必要だったり、グラフィカルインターフェイスが必要な操作をを行う場合、パケットをファイルに保存して、そのファイルを別のマシンで実行されているグラフィカルな <command>wireshark</command> で読み込むことが可能です。"
+msgstr "グラフィカルインターフェースを実行できない場合や何らかの理由で実行したくない場合に備えて、<command>wireshark</command> のテキスト版 <command>tshark</command> (<emphasis role=\"pkg\">tshark</emphasis> パッケージに分割されています) が存在します。キャプチャとデコード機能のほとんどを利用可能ですが、グラフィカルインターフェースが無いことでプログラムとのやり取りが制限されます (例えば、パケットがキャプチャされた後にフィルタをかけたり、ある TCP 接続を追跡する事ができません)。しかし <command>tshark</command> を足掛かりとして使う事が可能です。さらなる操作が必要だったり、グラフィカルインターフェースが必要な操作をを行う場合、パケットをファイルに保存して、そのファイルを別のマシンで実行されているグラフィカルな <command>wireshark</command> で読み込む事が可能です。"
 
 #. Tag: title
 #, no-c-format
