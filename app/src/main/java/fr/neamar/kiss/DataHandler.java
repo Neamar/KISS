@@ -31,6 +31,7 @@ public class DataHandler extends BroadcastReceiver {
      */
     private final ArrayList<Provider<? extends Pojo>> providers = new ArrayList<>();
     private final AppProvider appProvider;
+    private final ContactProvider contactProvider;
     public String currentQuery;
     private int providersLoaded = 0;
 
@@ -50,8 +51,13 @@ public class DataHandler extends BroadcastReceiver {
         providers.add(appProvider);
 
         if (prefs.getBoolean("enable-contacts", true)) {
-            providers.add(new ContactProvider(context));
+            contactProvider = new ContactProvider(context);
+            providers.add(contactProvider);
         }
+        else {
+            contactProvider = null;
+        }
+
         if (prefs.getBoolean("enable-search", true)) {
             providers.add(new SearchProvider(context));
         }
@@ -99,7 +105,7 @@ public class DataHandler extends BroadcastReceiver {
             // Add results to list
             for (int j = 0; j < pojos.size(); j++) {
                 // Give a boost if item was previously selected for this query
-                if(knownIds.containsKey(pojos.get(j).id)) {
+                if (knownIds.containsKey(pojos.get(j).id)) {
                     pojos.get(j).relevance += 25 * Math.min(5, knownIds.get(pojos.get(j).id));
                 }
                 allPojos.add(pojos.get(j));
@@ -153,6 +159,10 @@ public class DataHandler extends BroadcastReceiver {
         return appProvider.getAllApps();
     }
 
+    public ContactProvider getContactProvider() {
+        return contactProvider;
+    }
+
     /**
      * Return most used items.<br />
      * May return null if no items were ever selected (app first use)
@@ -182,8 +192,9 @@ public class DataHandler extends BroadcastReceiver {
 
     /**
      * Insert specified ID (probably a pojo.id) into history
+     *
      * @param context
-     * @param id pojo.id of item to record
+     * @param id      pojo.id of item to record
      */
     public void addToHistory(Context context, String id) {
         DBHelper.insertHistory(context, currentQuery, id);

@@ -74,4 +74,18 @@ public class ContactProvider extends Provider<ContactPojo> {
 
         return null;
     }
+
+
+    public ArrayList<ContactPojo> findByLookupKey(String lookupKey) {
+        ArrayList<ContactPojo> contactPojos = new ArrayList<>();
+
+        for (int i = 0; i < pojos.size(); i++) {
+            if (pojos.get(i).lookupKey.equals(lookupKey)) {
+                pojos.get(i).displayName = pojos.get(i).name;
+                contactPojos.add((pojos.get(i)));
+            }
+        }
+
+        return contactPojos;
+    }
 }
