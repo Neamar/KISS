@@ -18,7 +18,6 @@ import java.io.InputStream;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
@@ -31,10 +30,6 @@ public class ContactResult extends Result {
         super();
         this.pojo = this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
-
-        if (contactPojo.phone != null) {
-            contactPojo.phone = PhoneNormalizer.normalizePhone(contactPojo.phone);
-        }
     }
 
     @Override
