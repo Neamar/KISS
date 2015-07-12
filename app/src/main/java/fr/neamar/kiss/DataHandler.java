@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -179,6 +178,15 @@ public class DataHandler extends BroadcastReceiver {
 
 
         return favorites;
+    }
+
+    /**
+     * Insert specified ID (probably a pojo.id) into history
+     * @param context
+     * @param id pojo.id of item to record
+     */
+    public void addToHistory(Context context, String id) {
+        DBHelper.insertHistory(context, currentQuery, id);
     }
 
     @Override
