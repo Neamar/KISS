@@ -1,8 +1,10 @@
-package fr.neamar.kiss;
+package fr.neamar.kiss.broadcast;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import fr.neamar.kiss.KissApplication;
 
 /**
  * This class gets called when an application is created or removed on the
@@ -12,7 +14,7 @@ import android.content.Intent;
  *
  * @author dorvaryn
  */
-public class UpdateHandler extends BroadcastReceiver {
+public class NewAppInstalledHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {

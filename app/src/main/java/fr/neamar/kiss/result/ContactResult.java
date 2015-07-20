@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.provider.ContactsContract;
-import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -17,7 +15,6 @@ import android.widget.TextView;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Locale;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -33,14 +30,6 @@ public class ContactResult extends Result {
         super();
         this.pojo = this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
-
-        if (contactPojo.phone != null) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                contactPojo.phone = PhoneNumberUtils.formatNumber(contactPojo.phone, Locale.getDefault().getCountry());
-            } else {
-                contactPojo.phone = PhoneNumberUtils.formatNumber(contactPojo.phone);
-            }
-        }
     }
 
     @Override
