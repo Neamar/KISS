@@ -285,8 +285,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             // See https://github.com/Neamar/KISS/issues/119
             new Handler().postDelayed(displayKeyboardRunnable, 100);
             new Handler().postDelayed(displayKeyboardRunnable, 500);
-        }
-        else {
+        } else {
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
@@ -319,6 +318,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
             // If no kissmenu, empty the search bar
             searchEditText.setText("");
         }
+
+        // No call to super.onBackPressed, since this would quit the launcher.
     }
 
     @Override
@@ -330,7 +331,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 return true;
         }
 
-        return false;
+        return super.onKeyDown(keycode, e);
     }
 
     @Override
