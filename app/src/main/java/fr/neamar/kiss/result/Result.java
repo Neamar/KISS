@@ -117,9 +117,7 @@ public abstract class Result {
      */
     void recordLaunch(Context context) {
         // Save in history
-        // TODO: move to DataHandler
-        DBHelper.insertHistory(context, KissApplication.getDataHandler(context).currentQuery,
-                pojo.id);
+        KissApplication.getDataHandler(context).addToHistory(context, pojo.id);
     }
 
     public void deleteRecord(Context context) {

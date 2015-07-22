@@ -2,8 +2,8 @@
 <manifest
     package="fr.neamar.kiss"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="43"
-    android:versionName="2.5.3">
+    android:versionCode="44"
+    android:versionName="2.6.0">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
@@ -20,6 +20,9 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <!-- Incoming SMS history -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -66,12 +69,20 @@
             android:theme="@style/SettingTheme">
         </activity>
 
-        <receiver android:name="fr.neamar.kiss.UpdateHandler">
+        <!-- On new app installed, refresh the list -->
+        <receiver android:name=".broadcast.NewAppInstalledHandler">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED"/>
                 <action android:name="android.intent.action.PACKAGE_REMOVED"/>
 
                 <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- On incoming messages, add user to history -->
+        <receiver android:name=".broadcast.IncomingSmsHandler">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
     </application>

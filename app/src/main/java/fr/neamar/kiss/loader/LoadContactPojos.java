@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactPojo;
 
@@ -51,8 +52,12 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
                 contact.name = cur.getString(cur
                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                contact.phone = cur.getString(cur
-                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
+                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
+                if(contact.phone == null) {
+                    contact.phone = "";
+                }
+
                 contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
 
                 contact.starred = cur.getInt(cur
