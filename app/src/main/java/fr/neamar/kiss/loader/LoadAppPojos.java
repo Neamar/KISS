@@ -32,9 +32,8 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
 
         ArrayList<AppPojo> apps = new ArrayList<>();
-        for (int i = 0; i < appsInfo.size(); i++) {
+        for (ResolveInfo info : appsInfo) {
             AppPojo app = new AppPojo();
-            ResolveInfo info = appsInfo.get(i);
 
             app.id = pojoScheme + info.activityInfo.applicationInfo.packageName + "/"
                     + info.activityInfo.name;
