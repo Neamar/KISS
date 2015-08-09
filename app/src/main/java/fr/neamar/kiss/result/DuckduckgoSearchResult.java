@@ -32,7 +32,6 @@ public class DuckduckgoSearchResult extends Result {
         return v;
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void doLaunch(Context context, View v) {
         // TODO: use DDG app if available
