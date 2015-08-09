@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -289,6 +290,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
+        }
+
+        if (prefs.getBoolean("use-spellcheck", true))
+        {
+            searchEditText.setInputType(InputType.TYPE_CLASS_TEXT |
+                                        InputType.TYPE_TEXT_FLAG_AUTO_CORRECT);
+        }
+        else {
+            searchEditText.setInputType(InputType.TYPE_CLASS_TEXT |
+                                        InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD |
+                                        InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         }
 
         super.onResume();
