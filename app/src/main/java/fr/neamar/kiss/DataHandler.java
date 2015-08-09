@@ -58,7 +58,8 @@ public class DataHandler extends BroadcastReceiver {
         else {
             contactProvider = null;
         }
-        switch(prefs.getString("searchEngine", "none")) {
+        // search engines are sorted alphabetically
+        switch(prefs.getString("search-engine", "none")) {
             case "duckduckgo":
                 providers.add(new DuckduckgoSearchProvider(context));
                 break;
