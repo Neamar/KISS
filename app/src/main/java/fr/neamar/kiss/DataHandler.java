@@ -46,6 +46,10 @@ public class DataHandler extends BroadcastReceiver {
         Intent i = new Intent(MainActivity.START_LOAD);
         context.sendBroadcast(i);
 
+        // pick up default values (otherwise these are not read unless settings
+        // have been opened) thanks http://stackoverflow.com/a/8708967
+        PreferenceManager.setDefaultValues(context, R.xml.preferences, false);
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         // Initialize providers
         appProvider = new AppProvider(context);
