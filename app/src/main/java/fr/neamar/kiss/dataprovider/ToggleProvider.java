@@ -23,9 +23,7 @@ public class ToggleProvider extends Provider<TogglePojo> {
 
         int relevance;
         String toggleNameLowerCased;
-        for (int i = 0; i < pojos.size(); i++) {
-            TogglePojo toggle = pojos.get(i);
-
+        for (TogglePojo toggle : pojos) {
             relevance = 0;
             toggleNameLowerCased = toggle.nameLowerCased;
             if (toggleNameLowerCased.startsWith(query))
@@ -51,12 +49,11 @@ public class ToggleProvider extends Provider<TogglePojo> {
     }
 
     public Pojo findById(String id) {
-        for (int i = 0; i < pojos.size(); i++) {
-            if (pojos.get(i).id.equals(id)) {
-                pojos.get(i).displayName = pojos.get(i).name;
-                return pojos.get(i);
+        for (Pojo pojo : pojos) {
+            if (pojo.id.equals(id)) {
+                pojo.displayName = pojo.name;
+                return pojo;
             }
-
         }
 
         return null;

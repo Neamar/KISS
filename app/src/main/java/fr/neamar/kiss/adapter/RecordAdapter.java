@@ -50,8 +50,6 @@ public class RecordAdapter extends ArrayAdapter<Result> {
             return 3;
         else if (results.get(position) instanceof SettingResult)
             return 4;
-        else if (results.get(position) instanceof SettingResult)
-            return 4;
         else if (results.get(position) instanceof PhoneResult)
             return 5;
         else

@@ -23,8 +23,7 @@ public class SettingProvider extends Provider<SettingPojo> {
 
         int relevance;
         String settingNameLowerCased;
-        for (int i = 0; i < pojos.size(); i++) {
-            SettingPojo setting = pojos.get(i);
+        for (SettingPojo setting : pojos) {
             relevance = 0;
             settingNameLowerCased = setting.nameLowerCased;
             if (settingNameLowerCased.startsWith(query))
@@ -48,12 +47,11 @@ public class SettingProvider extends Provider<SettingPojo> {
     }
 
     public Pojo findById(String id) {
-        for (int i = 0; i < pojos.size(); i++) {
-            if (pojos.get(i).id.equals(id)) {
-                pojos.get(i).displayName = pojos.get(i).name;
-                return pojos.get(i);
+        for (Pojo pojo : pojos) {
+            if (pojo.id.equals(id)) {
+                pojo.displayName = pojo.name;
+                return pojo;
             }
-
         }
 
         return null;
