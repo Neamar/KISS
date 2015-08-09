@@ -15,8 +15,12 @@ import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
+    public static String KISS_PACKAGE_NAME;
+
     public LoadAppPojos(Context context) {
         super(context, "app://");
+
+        KISS_PACKAGE_NAME = context.getPackageName();
     }
 
     @Override
@@ -32,22 +36,23 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
 
         ArrayList<AppPojo> apps = new ArrayList<>();
-        for (int i = 0; i < appsInfo.size(); i++) {
-            AppPojo app = new AppPojo();
-            ResolveInfo info = appsInfo.get(i);
+        for (ResolveInfo info : appsInfo) {
+            if (!KISS_PACKAGE_NAME.equals(info.activityInfo.applicationInfo.packageName)) {
+                AppPojo app = new AppPojo();
 
-            app.id = pojoScheme + info.activityInfo.applicationInfo.packageName + "/"
-                    + info.activityInfo.name;
-            app.name = info.loadLabel(manager).toString();
+                app.id = pojoScheme + info.activityInfo.applicationInfo.packageName + "/"
+                        + info.activityInfo.name;
+                app.name = info.loadLabel(manager).toString();
 
-            //Ugly hack to remove accented characters.
-            //Note Java 5 provides a Normalizer method, unavailable for Android :\
-            app.nameLowerCased = StringNormalizer.normalize(app.name);
+                //Ugly hack to remove accented characters.
+                //Note Java 5 provides a Normalizer method, unavailable for Android :\
+                app.nameLowerCased = StringNormalizer.normalize(app.name);
 
-            app.packageName = info.activityInfo.applicationInfo.packageName;
-            app.activityName = info.activityInfo.name;
+                app.packageName = info.activityInfo.applicationInfo.packageName;
+                app.activityName = info.activityInfo.name;
 
-            apps.add(app);
+                apps.add(app);
+            }
         }
         long end = System.nanoTime();
         Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps");
