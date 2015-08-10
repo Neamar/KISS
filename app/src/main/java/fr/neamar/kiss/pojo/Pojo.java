@@ -2,7 +2,7 @@ package fr.neamar.kiss.pojo;
 
 public abstract class Pojo {
     // Globally unique ID.
-    // Usually start with provider scheme, e.g. "app://" or "contact://" to
+    // Usually starts with provider scheme, e.g. "app://" or "contact://" to
     // ensure unique constraint
     public String id = "(none)";
 
