@@ -12,6 +12,8 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactPojo;
+import fr.neamar.kiss.pojo.DuckduckgoSearchPojo;
+import fr.neamar.kiss.pojo.GoogleSearchPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
@@ -30,8 +32,10 @@ public abstract class Result {
             return new AppResult((AppPojo) pojo);
         else if (pojo instanceof ContactPojo)
             return new ContactResult(parent, (ContactPojo) pojo);
-        else if (pojo instanceof SearchPojo)
-            return new SearchResult((SearchPojo) pojo);
+        else if (pojo instanceof GoogleSearchPojo)
+            return new GoogleSearchResult((GoogleSearchPojo) pojo);
+        else if (pojo instanceof DuckduckgoSearchPojo)
+            return new DuckduckgoSearchResult((DuckduckgoSearchPojo) pojo);
         else if (pojo instanceof SettingPojo)
             return new SettingResult((SettingPojo) pojo);
         else if (pojo instanceof TogglePojo)

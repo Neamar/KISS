@@ -42,12 +42,13 @@
             android:summary="@string/aliases_desc"
             android:title="@string/aliases_name">
         </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enable-search"
-            android:summary="@string/search_desc"
-            android:title="@string/search_name">
-        </CheckBoxPreference>
+        <ListPreference
+            android:title="@string/search_engines"
+            android:summary="@string/choose_search_engine"
+            android:key="search-engine"
+            android:defaultValue="google"
+            android:entries="@array/search_engine_names"
+            android:entryValues="@array/search_engine_values" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-phone"

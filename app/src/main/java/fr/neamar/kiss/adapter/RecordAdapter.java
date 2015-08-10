@@ -14,7 +14,7 @@ import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactResult;
 import fr.neamar.kiss.result.PhoneResult;
 import fr.neamar.kiss.result.Result;
-import fr.neamar.kiss.result.SearchResult;
+import fr.neamar.kiss.result.GoogleSearchResult;
 import fr.neamar.kiss.result.SettingResult;
 import fr.neamar.kiss.result.ToggleResult;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -42,7 +42,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     public int getItemViewType(int position) {
         if (results.get(position) instanceof AppResult)
             return 0;
-        else if (results.get(position) instanceof SearchResult)
+        else if (results.get(position) instanceof GoogleSearchResult)
             return 1;
         else if (results.get(position) instanceof ContactResult)
             return 2;

@@ -11,12 +11,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.pojo.GoogleSearchPojo;
 
-public class SearchResult extends Result {
-    private final SearchPojo searchPojo;
+public class GoogleSearchResult extends Result {
+    private final GoogleSearchPojo searchPojo;
 
-    public SearchResult(SearchPojo searchPojo) {
+    public GoogleSearchResult(GoogleSearchPojo searchPojo) {
         super();
         this.pojo = this.searchPojo = searchPojo;
     }
@@ -27,8 +27,7 @@ public class SearchResult extends Result {
             v = inflateFromId(context, R.layout.item_search);
 
         TextView appName = (TextView) v.findViewById(R.id.item_search_text);
-        appName.setText(enrichText(context.getString(R.string.ui_item_search) + " \"{"
-                + searchPojo.query + "}\""));
+        appName.setText(enrichText("Google \"{" + searchPojo.query + "}\""));
 
         return v;
     }
@@ -48,8 +47,8 @@ public class SearchResult extends Result {
         try {
             context.startActivity(search);
         } catch (ActivityNotFoundException e) {
-            // This exception gets thrown if Google Search has been deactivated:
-            Uri uri = Uri.parse("http://www.google.com/#q=" + searchPojo.query);
+            // This exception gets thrown if the Google Search app has been deactivated (so we'll just open the browser instead)
+            Uri uri = Uri.parse("https://encrypted.google.com/search?q=" + searchPojo.query);
             search = new Intent(Intent.ACTION_VIEW, uri);
             search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(search);

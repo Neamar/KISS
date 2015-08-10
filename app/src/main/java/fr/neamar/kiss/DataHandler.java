@@ -14,9 +14,10 @@ import java.util.HashMap;
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactProvider;
+import fr.neamar.kiss.dataprovider.DuckduckgoSearchProvider;
+import fr.neamar.kiss.dataprovider.GoogleSearchProvider;
 import fr.neamar.kiss.dataprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.Provider;
-import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.SettingProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
@@ -45,6 +46,10 @@ public class DataHandler extends BroadcastReceiver {
         Intent i = new Intent(MainActivity.START_LOAD);
         context.sendBroadcast(i);
 
+        // pick up default values (otherwise these are not read unless settings
+        // have been opened) thanks http://stackoverflow.com/a/8708967
+        PreferenceManager.setDefaultValues(context, R.xml.preferences, false);
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         // Initialize providers
         appProvider = new AppProvider(context);
@@ -57,9 +62,14 @@ public class DataHandler extends BroadcastReceiver {
         else {
             contactProvider = null;
         }
-
-        if (prefs.getBoolean("enable-search", true)) {
-            providers.add(new SearchProvider(context));
+        // search engines are sorted alphabetically
+        switch(prefs.getString("search-engine", "none")) {
+            case "duckduckgo":
+                providers.add(new DuckduckgoSearchProvider(context));
+                break;
+            case "google":
+                providers.add(new GoogleSearchProvider(context));
+                break;
         }
         if (prefs.getBoolean("enable-phone", true)) {
             providers.add(new PhoneProvider(context));
