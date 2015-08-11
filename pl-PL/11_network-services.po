@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
 "POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2015-04-18 20:35+0100\n"
+"PO-Revision-Date: 2015-05-11 01:58+0100\n"
 "Last-Translator: Marek Gubiec <mgubiec@gmail.com>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -173,7 +173,7 @@ msgstr "Drugie pytanie odnosi się do konfiguracji pełnej nazwy maszyny, która
 #. Tag: para
 #, no-c-format
 msgid "One of the extra questions asks for all the domain names related to this machine. The default list includes its full name as well as a few synonyms for <literal>localhost</literal>, but the main <literal>falcot.com</literal> domain needs to be added by hand. More generally, this question should usually be answered with all the domain names for which this machine should serve as an MX server; in other words, all the domain names for which the DNS says that this machine will accept email. This information ends up in the <literal>mydestination</literal> variable of the main Postfix configuration file — <filename>/etc/postfix/main.cf</filename>."
-msgstr "Jedno z dodatkowych pytań wymaga podania "
+msgstr "Jedno z dodatkowych pytań wymaga podania wszystkich nazw domenowych powiązanych z maszyną. Domyślna lista zawiera pełną nazwę maszyny oraz kilka nazw synonimicznych do <literal>localhost</literal>, ale główna domena <literal>falcot.com</literal> musi zostać dodana ręcznie. Mówiąc bardziej ogólnikowo, w odpowiedzi na pytanie należy najczęściej wpisać wszystkie nazwy domenowe, dla których maszyna ma służyć jako serwer wymiany poczty elektronicznej; innymi słowy, wszystkie nazwy domenowe, dla których DNS zgłasza gotowość do przyjmowania poczty. Informacja ta wyląduje w zmiennej <literal>mydestination</literal> głównego pliku konfiguracyjnego Postfix — <filename>/etc/postfix/main.cf</filename>."
 
 #. Tag: indexterm
 #, no-c-format
@@ -183,57 +183,57 @@ msgstr "<primary>serwer</primary><secondary>MX</secondary>"
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>MX</primary><secondary>server</secondary>"
-msgstr ""
+msgstr "<primary>MX</primary><secondary>serwer</secondary>"
 
 #. Tag: title
 #, no-c-format
 msgid "Role of the DNS <emphasis>MX</emphasis> record while sending a mail"
-msgstr ""
+msgstr "Rola rekordu DNS <emphasis>MX</emphasis> przy wysyłce poczty elektronicznej"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>EXTRA</emphasis> Querying the MX records"
-msgstr ""
+msgstr "<emphasis>DODATEK</emphasis> Odpytywanie rekordów MX"
 
 #. Tag: para
 #, no-c-format
 msgid "When the DNS does not have an MX record for a domain, the email server will try sending the messages to the host itself, by using the matching A record (or AAAA in IPv6)."
-msgstr ""
+msgstr "Kiedy serwer DNS nie posiada rekordów MX ustawionych dla danej domeny, serwer pocztowy spróbuje wysłać wiadomości do samego hosta, używając pasującego rekordu A (lub AAAA w IPv6)."
 
 #. Tag: para
 #, no-c-format
 msgid "In some cases, the installation can also ask what networks should be allowed to send email via the machine. In its default configuration, Postfix only accepts emails coming from the machine itself; the local network will usually be added. The Falcot Corp administrators added <literal>192.168.0.0/16</literal> to the default answer. If the question is not asked, the relevant variable in the configuration file is <literal>mynetworks</literal>, as seen in the example below."
-msgstr ""
+msgstr "W niektórych przypadkach, instalator może także zapytań o to jakie sieci będą mogły wysyłać pocztę przez daną maszynę. W domyślnej konfiguracji, Postfix akceptuje jedynie pocztę pochodzącą z maszyny, na której działa (samego siebie) - zostanie dodana sieć lokalna. Administratorzy Falcot Corp dodali <literal>192.168.0.0./16</literal> do domyślnej odpowiedzi. Jeżeli nie zostanie wpisana własna odpowiedź, domyślnie odpowiednia zmienna w pliku konfiguracyjnym przyjmie wartość <literal>mynetworks</literal>, co widać w przykładzie poniżej."
 
 #. Tag: para
 #, no-c-format
 msgid "Local email can also be delivered through <command>procmail</command>. This tool allows users to sort their incoming email according to rules stored in their <filename>~/.procmailrc</filename> file."
-msgstr ""
+msgstr "Lokalna poczta może także być dostarczona przez <procmail</command>. Narzędzie to pozwala użytkownikom sortować ich pocztę przychodzącą zgodnie z regułami przechowywanymi w pliku <filename>~/.procmailrc</filename>."
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary><command>procmail</command></primary>"
-msgstr ""
+msgstr "<primary><command>procmail</command></primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>email</primary><secondary>filtering</secondary>"
-msgstr ""
+msgstr "<secondary>filtrowanie</secondary><primary>poczty</primary>"
 
 #. Tag: indexterm
 #, no-c-format
 msgid "<primary>filtering email</primary>"
-msgstr ""
+msgstr "<primary>filtrowanie poczty</primary>"
 
 #. Tag: para
 #, no-c-format
 msgid "After this first step, the administrators got the following configuration file; it will be used as a starting point for adding some extra functionality in the next sections."
-msgstr ""
+msgstr "Po kroku pierwszym, administratorzy otrzymali pliku konfiguracyjny jak poniżej; zostanie on użyty jako punkt wyjścia do dodania kolejnych funkcji w kolejnych podrozdziałach."
 
 #. Tag: title
 #, no-c-format
 msgid "Initial <filename>/etc/postfix/main.cf</filename> file"
-msgstr ""
+msgstr "Początkowa wersja pliku <filename>/etc/postfix/main.cf</filename>"
 
 #. Tag: programlisting
 #, no-c-format
@@ -281,11 +281,53 @@ msgid ""
 "inet_interfaces = all\n"
 "inet_protocols = all\n"
 msgstr ""
+"\n"
+"# Zobacz /usr/share/postfix/main.cf.dist dla skomentowanej, bardziej szczegółowej wersji.\n"
+"\n"
+"\n"
+"# Specyficzne dla Debiana: Określenie nazwy pliku spowoduje, że pierwsza\n"
+"# linia w tym pliku zostanie użyta jako nazwa. Domyślna dla Debiana to\n"
+"# /etc/mailname.n\n"
+"#myorigin = /etc/mailname\n"
+"\n"
+"smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)\n"
+"biff = no\n"
+"\n"
+"# dodawanie domen najwyższego poziomu (.domena) jest po stronie MUA.\n"
+"append_dot_mydomain = no\n"
+"\n"
+"# Odkomentuj następną linię, aby generować ostrzeżenia o \"opóźnionej poczcie\"\n"
+"#delay_warning_time = 4h\n"
+"\n"
+"readme_directory = no\n"
+"\n"
+"# Parametry TLS\n"
+"smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem\n"
+"smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key\n"
+"smtpd_use_tls=yes\n"
+"smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache\n"
+"smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache\n"
+"\n"
+"# Zobacz /usr/share/doc/postfix/TLS_README.gz z pakietu postfix-doc dla\n"
+"# informacji jak włączyć SSL w kliencie smtp.\n"
+"\n"
+"myhostname = mail.falcot.com\n"
+"alias_maps = hash:/etc/aliases\n"
+"alias_database = hash:/etc/aliases\n"
+"myorigin = /etc/mailname\n"
+"mydestination = mail.falcot.com, falcot.com, localhost.localdomain, localhost\n"
+"relayhost = \n"
+"mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 192.168.0.0/16\n"
+"mailbox_command = procmail -a \"$EXTENSION\"\n"
+"mailbox_size_limit = 0\n"
+"recipient_delimiter = +\n"
+"inet_interfaces = all\n"
+"inet_protocols = all\n"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>SECURITY</emphasis> <emphasis>Snake oil</emphasis> SSL certificates"
-msgstr ""
+msgstr "<emphasis>BEZPIECZEŃSTWO</emphasis> Certyfikaty SSL z <emphasis>podpisem własnym</emphasis>"
 
 #. Tag: para
 #, no-c-format
