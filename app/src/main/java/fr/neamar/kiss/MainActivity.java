@@ -486,9 +486,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             if (favoritesPojo.size() == 0) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
-                // Hide the green bar
-                displayKissBar(false);
-                return;
             }
 
             // Don't look for items after favIds length, we won't be able to display them
