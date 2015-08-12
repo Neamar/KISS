@@ -58,45 +58,39 @@ public class AppResult extends Result {
     }
 
     @Override
-    public PopupMenu getPopupMenu(final Context context, final RecordAdapter parent, View parentView) {
+    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = new PopupMenu(context, parentView);
-        menu.getMenuInflater().inflate(R.menu.menu_app, menu.getMenu());
-
-        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem item) {
-                popupMenuClickHandler(context, parent, appPojo, item);
-                return true;
-            }
-        });
+        menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
 
         return menu;
     }
 
-    private void popupMenuClickHandler(Context context, RecordAdapter parent, AppPojo appPojo, MenuItem item) {
+    @Override
+    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.item_remove:
-                removeItem(context, parent);
-                break;
             case R.id.item_app_details:
                 launchAppDetails(context, appPojo);
-                break;
+                return true;
             case R.id.item_app_uninstall:
                 launchUninstall(context, appPojo);
-                break;
+                return true;
         }
+
+        return super.popupMenuClickHandler(context, parent, item);
     }
 
-    private void removeItem(Context context, RecordAdapter parent) {
-        parent.removeResult(this);
-        Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();
-    }
-
+    /**
+     * Open an activity displaying details regarding the current package
+     */
     private void launchAppDetails(Context context, AppPojo app) {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.fromParts("package", app.packageName, null));
         context.startActivity(intent);
     }
 
+    /**
+     * Open an activity to uninstall the current package
+     */
     private void launchUninstall(Context context, AppPojo app) {
         Intent intent = new Intent(Intent.ACTION_DELETE,
                 Uri.fromParts("package", app.packageName, null));
