@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
+import android.widget.PopupMenu;
 
 import java.util.ArrayList;
 
@@ -61,11 +61,11 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         return results.get(position).display(getContext(), results.size() - position, convertView);
     }
 
-    public void onLongClick(int pos) {
-        results.get(pos).deleteRecord(getContext());
-        results.remove(pos);
-        Toast.makeText(getContext(), "Removed from history", Toast.LENGTH_SHORT).show();
-        notifyDataSetChanged();
+    public void onLongClick(final int pos, View v) {
+        PopupMenu menu = results.get(pos).getPopupMenu(getContext(), this, v);
+        if (menu != null) {
+            menu.show();
+        }
     }
 
     public void onClick(final int position, View v) {
@@ -90,5 +90,11 @@ public class RecordAdapter extends ArrayAdapter<Result> {
             }
         }, KissApplication.TOUCH_DELAY * 3);
 
+    }
+
+    public void removeResult(Result result) {
+        results.remove(result);
+        result.deleteRecord(getContext());
+        notifyDataSetChanged();
     }
 }

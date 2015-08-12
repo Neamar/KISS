@@ -7,8 +7,10 @@ import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.PopupMenu;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactPojo;
@@ -50,6 +52,17 @@ public abstract class Result {
      * @return a view to display as item
      */
     public abstract View display(Context context, int position, View convertView);
+
+    /**
+     * How to display the popup menu
+     * If null is returned, no menu should be displayed
+     *
+     * @return a PopupMenu object
+     */
+    public PopupMenu getPopupMenu(final Context context, final RecordAdapter parent, View parentView) {
+        parent.removeResult(this);
+        return null;
+    }
 
     public final void launch(Context context, View v) {
         Log.i("log", "Launching " + pojo.id);
