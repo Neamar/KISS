@@ -79,28 +79,24 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * View for the Search text
      */
     private EditText searchEditText;
-
-    /**
-     * Menu button
-     */
-    private View menuButton;
-
-    /**
-     * Kiss bar
-     */
-    private View kissBar;
-
-    /**
-     * Task launched on text change
-     */
-    private Searcher searcher;
-
     private final Runnable displayKeyboardRunnable = new Runnable() {
         @Override
         public void run() {
             showKeyboard();
         }
     };
+    /**
+     * Menu button
+     */
+    private View menuButton;
+    /**
+     * Kiss bar
+     */
+    private View kissBar;
+    /**
+     * Task launched on text change
+     */
+    private Searcher searcher;
 
     /**
      * Called when the activity is first created.

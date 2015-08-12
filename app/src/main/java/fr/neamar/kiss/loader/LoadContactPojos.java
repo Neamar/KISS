@@ -54,7 +54,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                 contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
-                if(contact.phone == null) {
+                if (contact.phone == null) {
                     contact.phone = "";
                 }
 
@@ -105,7 +105,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
             // If not available, add all (excluding duplicates).
             if (!hasPrimary) {
                 HashMap<String, Boolean> added = new HashMap<>();
-                    for (ContactPojo contact : phones) {
+                for (ContactPojo contact : phones) {
                     String uniqueKey = phoneFormatter.matcher(contact.phone).replaceAll("");
                     uniqueKey = uniqueKey.replaceAll("^\\+33", "0");
                     uniqueKey = uniqueKey.replaceAll("^\\+1", "0");

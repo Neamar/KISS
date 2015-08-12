@@ -53,8 +53,7 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-contacts", true)) {
             contactProvider = new ContactProvider(context);
             providers.add(contactProvider);
-        }
-        else {
+        } else {
             contactProvider = null;
         }
 
