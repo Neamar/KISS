@@ -37,7 +37,7 @@ public class PhoneProvider extends Provider<PhonePojo> {
         return getResult(id.replaceFirst(Pattern.quote(PHONE_SCHEME), ""));
     }
 
-    public Pojo getResult(String phoneNumber) {
+    private Pojo getResult(String phoneNumber) {
         PhonePojo pojo = new PhonePojo();
         pojo.id = PHONE_SCHEME + phoneNumber;
         pojo.phone = phoneNumber;

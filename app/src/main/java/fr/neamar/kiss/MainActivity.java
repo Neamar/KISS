@@ -95,7 +95,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
      */
     private Searcher searcher;
 
-    private Runnable displayKeyboardRunnable = new Runnable() {
+    private final Runnable displayKeyboardRunnable = new Runnable() {
         @Override
         public void run() {
             showKeyboard();
