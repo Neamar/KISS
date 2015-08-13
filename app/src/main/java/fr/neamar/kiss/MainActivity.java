@@ -182,8 +182,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View arg1, int pos, long id) {
-                ((RecordAdapter) parent.getAdapter()).onLongClick(pos);
+            public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
+                ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
                 return true;
             }
         });
