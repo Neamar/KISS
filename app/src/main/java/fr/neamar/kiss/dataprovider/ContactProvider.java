@@ -55,7 +55,7 @@ public class ContactProvider extends Provider<ContactPojo> {
                 // returns contacts sorted by popularity, so the first items should be the most useful ones.
                 // (short queries, e.g. "a" with thousands of contacts,
                 // can return hundreds of results which are then slow to sort and display)
-                if(results.size() > 50) {
+                if (results.size() > 50) {
                     break;
                 }
             }
@@ -79,6 +79,7 @@ public class ContactProvider extends Provider<ContactPojo> {
     /**
      * Find a ContactPojo from a phoneNumber
      * If many contacts match, the one most often contacted will be returned
+     *
      * @param phoneNumber phone number to find (will be normalized)
      * @return a contactpojo, or null.
      */
