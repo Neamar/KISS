@@ -77,6 +77,16 @@ public class MainActivity extends ListActivity implements QueryInterface {
     private BroadcastReceiver mReceiver;
 
     /**
+     * Spellcheck related fields
+     */
+    private int autoSpellcheck;
+    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
+                                              InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+
+    private final int spellcheckDisabledType = InputType.TYPE_CLASS_TEXT |
+                                               InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
+
+    /**
      * View for the Search text
      */
     private EditText searchEditText;
@@ -163,6 +173,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 updateRecords(s.toString());
                 displayClearOnInput();
+
+                if (s.length() >= autoSpellcheck) {
+                    searchEditText.setInputType(spellcheckEnabledType);
+                }
+                else {
+                    searchEditText.setInputType(spellcheckDisabledType);
+                }
             }
         });
 
@@ -292,16 +309,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             hideKeyboard();
         }
 
-        if (prefs.getBoolean("use-spellcheck", true))
-        {
-            searchEditText.setInputType(InputType.TYPE_CLASS_TEXT |
-                                        InputType.TYPE_TEXT_FLAG_AUTO_CORRECT);
-        }
-        else {
-            searchEditText.setInputType(InputType.TYPE_CLASS_TEXT |
-                                        InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD |
-                                        InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-        }
+        autoSpellcheck = prefs.getInt("auto-spellcheck", 5);
 
         super.onResume();
     }

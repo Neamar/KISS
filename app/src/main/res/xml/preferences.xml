@@ -16,11 +16,18 @@
             android:summary="@string/keyboard_desc"
             android:title="@string/keyboard_name">
         </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="use-spellcheck"
-            android:title="@string/spellcheck_name">
-        </CheckBoxPreference>
+        <!--
+            DO NOT set default value as this will cause problems when using getInt, since Android
+            will store the value as a string
+        -->
+        <EditTextPreference
+            android:key="auto-spellcheck"
+            android:title="@string/autospellcheck_name"
+            android:summary="@string/autospellcheck_desc"
+            android:dialogTitle="@string/autospellcheck_name"
+            android:dialogMessage="@string/autospellcheck_dialog_message"
+            android:inputType="number">
+        </EditTextPreference>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_providers">
         <CheckBoxPreference
