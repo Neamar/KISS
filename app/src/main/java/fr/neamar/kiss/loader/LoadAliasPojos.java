@@ -130,9 +130,9 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
                 // Motorola
                 {"com.motorola.blur.alarmclock", "com.motorola.blur.alarmclock.AlarmClock"},
                 // Sony
-                {"com.sonyericsson.organizer", "com.sonyericsson.organizer.Organizer_WorldClock"}
+                {"com.sonyericsson.organizer", "com.sonyericsson.organizer.Organizer_WorldClock"},
                 // ASUS Tablets
-                {"com.asus.deskclock","com.asus.deskclock.DeskClock"}
+                {"com.asus.deskclock", "com.asus.deskclock.DeskClock"}
         };
 
         for (int i = 0; i < clockImpls.length; i++) {
