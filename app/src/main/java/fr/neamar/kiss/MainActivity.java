@@ -80,28 +80,24 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * View for the Search text
      */
     private EditText searchEditText;
-
-    /**
-     * Menu button
-     */
-    private View menuButton;
-
-    /**
-     * Kiss bar
-     */
-    private View kissBar;
-
-    /**
-     * Task launched on text change
-     */
-    private Searcher searcher;
-
-    private Runnable displayKeyboardRunnable = new Runnable() {
+    private final Runnable displayKeyboardRunnable = new Runnable() {
         @Override
         public void run() {
             showKeyboard();
         }
     };
+    /**
+     * Menu button
+     */
+    private View menuButton;
+    /**
+     * Kiss bar
+     */
+    private View kissBar;
+    /**
+     * Task launched on text change
+     */
+    private Searcher searcher;
 
     /**
      * Called when the activity is first created.
@@ -502,9 +498,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             if (favoritesPojo.size() == 0) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
-                // Hide the green bar
-                displayKissBar(false);
-                return;
             }
 
             // Don't look for items after favIds length, we won't be able to display them

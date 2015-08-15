@@ -15,7 +15,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
-    public static String KISS_PACKAGE_NAME;
+    private static String KISS_PACKAGE_NAME;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");

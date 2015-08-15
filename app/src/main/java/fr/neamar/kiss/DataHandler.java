@@ -32,7 +32,7 @@ public class DataHandler extends BroadcastReceiver {
     private final ArrayList<Provider<? extends Pojo>> providers = new ArrayList<>();
     private final AppProvider appProvider;
     private final ContactProvider contactProvider;
-    public String currentQuery;
+    private String currentQuery;
     private int providersLoaded = 0;
 
     /**
@@ -53,8 +53,7 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-contacts", true)) {
             contactProvider = new ContactProvider(context);
             providers.add(contactProvider);
-        }
-        else {
+        } else {
             contactProvider = null;
         }
 
