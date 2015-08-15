@@ -64,7 +64,7 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
             }
 
             String clockApp = getClockApp(pm);
-            if (messagingApp != null) {
+            if (clockApp != null) {
                 String clockAlias = context.getResources().getString(R.string.alias_clock);
                 addAliasesPojo(alias, clockAlias.split(","), clockApp);
             }
@@ -130,7 +130,9 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
                 // Motorola
                 {"com.motorola.blur.alarmclock", "com.motorola.blur.alarmclock.AlarmClock"},
                 // Sony
-                {"com.sonyericsson.organizer", "com.sonyericsson.organizer.Organizer_WorldClock"}
+                {"com.sonyericsson.organizer", "com.sonyericsson.organizer.Organizer_WorldClock"},
+                // ASUS Tablets
+                {"com.asus.deskclock", "com.asus.deskclock.DeskClock"}
         };
 
         for (int i = 0; i < clockImpls.length; i++) {
