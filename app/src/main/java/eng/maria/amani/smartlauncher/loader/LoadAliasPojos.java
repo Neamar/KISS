@@ -1,4 +1,4 @@
-package eng.maria.amani.smartlauncher.loader;
+package fr.neamar.kiss.loader;
 
 import android.annotation.TargetApi;
 import android.content.ComponentName;
@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import eng.maria.amani.smartlauncher.R;
-import eng.maria.amani.smartlauncher.pojo.AliasPojo;
+import fr.neamar.kiss.R;
+import fr.neamar.kiss.pojo.AliasPojo;
 
 public class LoadAliasPojos extends LoadPojos<AliasPojo> {
    
@@ -65,7 +65,7 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
             }
 
             String clockApp = getClockApp(pm);
-            if (clockApp != null) {                     // The wrong string messagingApp was there,instead!
+            if (clockApp != null) {
                 String clockAlias = context.getResources().getString(R.string.alias_clock);
                 addAliasesPojo(alias, clockAlias.split(","), clockApp);
             }
