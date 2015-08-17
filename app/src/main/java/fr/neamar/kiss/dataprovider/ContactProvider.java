@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadContactPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -24,19 +23,23 @@ public class ContactProvider extends Provider<ContactPojo> {
         query = query.replaceAll("-", " ");
 
         int relevance;
-        String contactNameLowerCased;
+        int matchPositionStart;
+        int matchPositionEnd;
+        String contactNameNormalized;
 
-        final String highlightRegexp = "(?i)(" + StringNormalizer.unNormalize(query) + ")";
         final String queryWithSpace = " " + query;
-
         for (ContactPojo contact : pojos) {
             relevance = 0;
-            contactNameLowerCased = contact.nameLowerCased;
+            contactNameNormalized = contact.nameNormalized;
 
-            if (contactNameLowerCased.startsWith(query))
-                relevance = 50;
-            else if (contactNameLowerCased.contains(queryWithSpace))
-                relevance = 40;
+            matchPositionEnd = 0;
+            if ((matchPositionStart = contactNameNormalized.indexOf(query)) > -1) {
+                relevance        = 50;
+                matchPositionEnd = matchPositionStart + query.length();
+            } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
+                relevance        = 40;
+                matchPositionEnd = matchPositionStart + queryWithSpace.length();
+            }
 
             if (relevance > 0) {
                 // Increase relevance according to number of times the contacts
@@ -49,7 +52,7 @@ public class ContactProvider extends Provider<ContactPojo> {
                 if (contact.homeNumber)
                     relevance -= 1;
 
-                contact.displayName = contact.name.replaceFirst(highlightRegexp, "{$1}");
+                contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 contact.relevance = relevance;
                 results.add(contact);
 

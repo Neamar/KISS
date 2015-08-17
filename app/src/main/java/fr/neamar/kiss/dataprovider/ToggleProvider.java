@@ -25,7 +25,7 @@ public class ToggleProvider extends Provider<TogglePojo> {
         String toggleNameLowerCased;
         for (TogglePojo toggle : pojos) {
             relevance = 0;
-            toggleNameLowerCased = toggle.nameLowerCased;
+            toggleNameLowerCased = toggle.nameNormalized;
             if (toggleNameLowerCased.startsWith(query))
                 relevance = 75;
             else if (toggleNameLowerCased.contains(" " + query))

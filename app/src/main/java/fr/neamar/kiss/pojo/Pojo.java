@@ -1,5 +1,9 @@
 package fr.neamar.kiss.pojo;
 
+import android.util.Pair;
+
+import fr.neamar.kiss.normalizer.StringNormalizer;
+
 public abstract class Pojo {
     // Globally unique ID.
     // Usually starts with provider scheme, e.g. "app://" or "contact://" to
@@ -10,7 +14,11 @@ public abstract class Pojo {
     public String name = "";
 
     // Lower-cased name, for faster search
-    public String nameLowerCased = "";
+    public String nameNormalized = "";
+
+    // Array that contains the non-normalized positions for every normalized
+    // character entry
+    public int[] namePositionMap = null;
 
     // Name displayed on the screen, may contain HTML (for instance, to put
     // query text in blue)
@@ -19,4 +27,68 @@ public abstract class Pojo {
     // How relevant is this record ? The higher, the most probable it will be
     // displayed
     public int relevance = 0;
+
+
+    /**
+     * Map a position in the normalized name to a position in the standard name string
+     *
+     * @param position Position in normalized name
+     * @return Position in non-normalized string
+     */
+    public int mapPosition(int position) {
+        if(this.namePositionMap != null) {
+            if(position < this.namePositionMap.length) {
+                return this.namePositionMap[position];
+            } else {
+                return this.namePositionMap[this.namePositionMap.length - 1];
+            }
+        } else{
+            // No mapping defined
+            if(position < this.name.length()) {
+                return position;
+            } else {
+                return this.name.length();
+            }
+        }
+    }
+
+    /**
+     * Set the user-displayable name of this container
+     *
+     * When this method a searchable version of the name will be generated for the name and stored
+     * as `nameNormalized`. Additionally a mapping from the positions in the searchable name
+     * to the positions in the displayable name will be stored (as `namePositionMap`).
+     *
+     * @param name User-friendly name of this container
+     */
+    public void setName(String name) {
+        // Set the actual user-friendly name
+        this.name = name;
+
+        if(name != null) {
+            // Normalize name for faster searching
+            Pair<String, int[]> normalized = StringNormalizer.normalizeWithMap(this.name);
+            this.nameNormalized  = normalized.first;
+            this.namePositionMap = normalized.second;
+        }
+    }
+
+    /**
+     * Set which area of the display name should marked as highlighted in the `displayName`
+     * attribute
+     *
+     * The start and end positions should be offsets in the normalized string and will be converted
+     * to their non-normalized positions before they are used.
+     *
+     * @param positionNormalizedStart Highlighting start position in normalized name
+     * @param positionNormalizedEnd   Highlighting end position in normalized name
+     */
+    public void setDisplayNameHighlightRegion(int positionNormalizedStart, int positionNormalizedEnd) {
+        int positionStart = this.mapPosition(positionNormalizedStart);
+        int positionEnd   = this.mapPosition(positionNormalizedEnd);
+
+        this.displayName = this.name.substring(0, positionStart)
+                + '{' + this.name.substring(positionStart, positionEnd) + '}'
+                + this.name.substring(positionEnd);
+    }
 }

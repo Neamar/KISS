@@ -1,40 +1,84 @@
 package fr.neamar.kiss.normalizer;
 
-import java.util.regex.Pattern;
+import android.util.Pair;
+
+import java.nio.CharBuffer;
+import java.text.Normalizer;
+
+import org.apache.commons.collections.primitives.ArrayIntList;
 
 /**
  * String utils to handle accented characters for search and highlighting
  */
 public class StringNormalizer {
-    private static final Pattern nonAscii = Pattern.compile("(?i)([^a-z0-9 -])");
+    /**
+     * Return the input string, lower-cased, with all combining characters parts stripped
+     * (i.e. `ë` → `e`) and combination characters, consisting of one or more basic characters
+     * (i.e. `Ⅱ` → `II`), decomposed into their respective parts
+     *
+     * @param input string input, with accents and anything else you can think of
+     * @return normalized string and list that maps each result string position to its source
+     *         string position
+     */
+    public static Pair<String, int[]> normalizeWithMap(String input) {
+        StringBuilder resultString = new StringBuilder();
+        ArrayIntList  resultMap    = new ArrayIntList(input.length() * 3 / 2);
+
+        StringBuilder charBuffer = new StringBuilder(2);
+
+        int inputOffset = 0, inputLength = input.length();
+        while(inputOffset < inputLength) {
+            int inputChar = input.codePointAt(inputOffset);
+
+            // Decompose codepoint at given position
+            charBuffer.append(Character.toChars(inputChar));
+            String decomposedCharString = Normalizer.normalize(charBuffer, Normalizer.Form.NFKD);
+            charBuffer.delete(0, charBuffer.length());
+
+            // `inputChar` codepoint may be decomposed to four (or maybe even more) new code points
+            int decomposedCharOffset = 0;
+            while(decomposedCharOffset < decomposedCharString.length()) {
+                int resultChar = decomposedCharString.codePointAt(decomposedCharOffset);
+
+                // Only process characters that are not combining Unicode
+                // characters. This way all the decomposed diacritical marks
+                // (and some other not-that-important modifiers), that were
+                // part of the original string or produced by the NFKD
+                // normalizer above, disappear.
+                switch(Character.getType(resultChar)) {
+                    case Character.NON_SPACING_MARK:
+                    case Character.COMBINING_SPACING_MARK:
+                        // Some combining character found
+                        break;
+
+                    default:
+                        resultString.appendCodePoint(Character.toLowerCase(resultChar));
+                        resultMap.add(inputOffset);
+                }
+
+                decomposedCharOffset += Character.charCount(resultChar);
+            }
+
+            inputOffset += Character.charCount(inputChar);
+        }
+
+        // Since we stripped all combining Unicode characters in the
+        // previous while-loop there should be no combining character
+        // remaining in the string and the composed and decomposed
+        // versions of the string should be equivalent. This also means
+        // we do not need to convert the string back to composed Unicode
+        // before returning it.
+        return new Pair<>(resultString.toString(), resultMap.toArray());
+    }
+
 
     /**
-     * Return the input string, lower-cased and with standard Ascii characters for common european accents
+     * @see StringNormalizer.normalizeWithMap(String)
      *
-     * @param input string input, with accents
+     * @param input string input, with accents and anything else you can think of
      * @return normalized string
      */
     public static String normalize(String input) {
-        return input.toLowerCase().replaceAll("[èéêë]", "e")
-                .replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
-                .replaceAll("[àâ]", "a").replaceAll("ô", "o");
-    }
-
-    /**
-     * Return a regexp matching common characters
-     * For safe use, all non alpha characters are removed from input
-     * Assume the input was previously sent to normalize()
-     * <p/>
-     * "aze" => /[àâa]z[èéêë]/
-     *
-     * @param input string to "un-normalize"
-     * @return a regexp
-     */
-    public static String unNormalize(String input) {
-        input = nonAscii.matcher(input.toLowerCase()).replaceAll("");
-
-        return input.replaceAll("e", "[eèéêë]")
-                .replaceAll("u", "[uûù]").replaceAll("i", "[iïî]")
-                .replaceAll("a", "[aàâ]").replaceAll("o", "[oô]").replaceAll(" ", "[ -]");
+        return StringNormalizer.normalizeWithMap(input).first;
     }
 }
