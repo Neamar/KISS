@@ -2,10 +2,7 @@ package fr.neamar.kiss.normalizer;
 
 import android.util.Pair;
 
-import java.nio.CharBuffer;
 import java.text.Normalizer;
-
-import org.apache.commons.collections.primitives.ArrayIntList;
 
 /**
  * String utils to handle accented characters for search and highlighting
@@ -21,8 +18,8 @@ public class StringNormalizer {
      *         string position
      */
     public static Pair<String, int[]> normalizeWithMap(String input) {
-        StringBuilder resultString = new StringBuilder();
-        ArrayIntList  resultMap    = new ArrayIntList(input.length() * 3 / 2);
+        StringBuilder    resultString = new StringBuilder();
+        IntSequenceBuilder resultMap    = new IntSequenceBuilder(input.length() * 3 / 2);
 
         StringBuilder charBuffer = new StringBuilder(2);
 
