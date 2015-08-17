@@ -40,7 +40,7 @@ public abstract class Pojo {
             if(position < this.namePositionMap.length) {
                 return this.namePositionMap[position];
             } else {
-                return this.namePositionMap[this.namePositionMap.length - 1];
+                return this.name.length();
             }
         } else{
             // No mapping defined
