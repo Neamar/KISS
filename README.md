@@ -26,7 +26,7 @@ Previews
 ![Preview](https://lh3.googleusercontent.com/ADlhgu6JBVOJRn_XS-BbFbw6HtGopVABpBSdBMfANXpGpicFY3jxVLcuBhnJ9QkSshTp)
 ![Preview](https://lh3.googleusercontent.com/17JTZKi0wh8ReNTMmhEzoR1Iu_mirK867_H2GbMwDhFf8QwpqhxzccpBLAFo5DbFdg)
 
-Translation
+Translation <img src="https://hosted.weblate.org/widgets/kiss/-/shields-badge.svg" alt="Translation status" />
 -------------------
 Wants to help with the translation? Use https://hosted.weblate.org/projects/kiss/strings/ to collaborate on strings translation!
 
