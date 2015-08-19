@@ -20,6 +20,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
     <!-- Incoming SMS sender history -->
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <!-- To read phone state -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -82,6 +84,13 @@
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
+        </receiver>
+        
+        <!-- On incoming calls, add user to history -->
+        <receiver android:name=".broadcast.IncomingCallHandler">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>            
         </receiver>
     </application>
 
