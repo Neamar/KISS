@@ -69,13 +69,14 @@
             android:layout_toLeftOf="@+id/clearButton"
             android:layout_toRightOf="@+id/launcherButton"
             android:layout_toStartOf="@+id/launcherButton"
-            android:background="@android:color/white"
+            android:background="?attr/mainBackground"
             android:hint="@string/ui_search_hint"
             android:imeOptions="flagNoExtractUi|actionSearch"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:singleLine="true"
             android:textCursorDrawable="@drawable/cursor"
             android:textColor="?android:attr/textColor"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:textSize="16sp"/>
 
         <ImageView

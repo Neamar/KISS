@@ -4,7 +4,10 @@
     <style name="BaseTheme" parent="@android:style/Theme.NoTitleBar">
     </style>
 
-    <style name="AppTheme" parent="BaseTheme">
+    <style name="BaseThemeBlack" parent="@android:style/Theme.NoTitleBar">
+    </style>
+
+    <style name="AppThemeTemp" parent="BaseTheme">
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:textColor">@android:color/black</item>
@@ -12,10 +15,21 @@
         <item name="android:textColorSecondary">#d3d3d3</item>
 
         <item name="mainBackground">@android:color/white</item>
+        <item name="dividerColor">@color/kiss_divider</item>
+    </style>
+
+    <style name="AppTheme" parent="BaseThemeBlack">
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:textColor">#b3b3b3</item>
+        <item name="android:textColorPrimary">#b3b3b3</item>
+        <item name="android:textColorSecondary">#7f7f7f</item>
+
+        <item name="mainBackground">@color/kiss_list_background_inverse</item>
+        <item name="dividerColor">@color/kiss_divider_dark</item>
     </style>
 
     <style name="SettingTheme" parent="BaseTheme">
-        <item name="android:windowShowWallpaper">false</item>
         <item name="android:windowBackground">@color/kiss_background</item>
     </style>
 </resources>
