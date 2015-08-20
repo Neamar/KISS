@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#ffffff"
+        android:background="?attr/mainBackground"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@drawable/list_separator"
         android:dividerHeight="1dp"
@@ -31,7 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_margin="10dp"
-        android:background="@android:color/white"
+        android:background="?attr/mainBackground"
         android:clipToPadding="false"
         android:elevation="2dp"
         android:padding="4dp">
@@ -75,6 +75,7 @@
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:singleLine="true"
             android:textCursorDrawable="@drawable/cursor"
+            android:textColor="?android:attr/textColor"
             android:textSize="16sp"/>
 
         <ImageView
