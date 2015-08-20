@@ -15,7 +15,7 @@
             android:key="display-keyboard"
             android:summary="@string/keyboard_desc"
             android:title="@string/keyboard_name">
-        </CheckBoxPreference>
+        </CheckBoxPreference>        
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_providers">
         <CheckBoxPreference
@@ -55,5 +55,12 @@
             android:title="@string/phone_name">
         </CheckBoxPreference>
     </PreferenceCategory>
-
+    <PreferenceCategory android:title="@string/title_advanced">
+    <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="root-mode"
+            android:summary="@string/root_mode_desc"
+            android:title="@string/root_mode_name">
+        </CheckBoxPreference>
+	</PreferenceCategory>
 </PreferenceScreen>

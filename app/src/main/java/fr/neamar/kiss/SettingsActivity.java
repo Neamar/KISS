@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -25,7 +26,13 @@ public class SettingsActivity extends PreferenceActivity implements
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         // Reload the DataHandler since Providers preferences have changed
+    	if (key.equals("root-mode")) {
+    		if (sharedPreferences.getBoolean("root-mode", false))
+    			sharedPreferences.edit().putBoolean("root-mode", KissApplication.getRootHander(this).isRootAvailable());
+    	}
+    	
         KissApplication.resetDataHandler(this);
+        KissApplication.resetRootHander(this);
     }
 
     @Override
