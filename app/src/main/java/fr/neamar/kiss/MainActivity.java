@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -106,6 +107,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public void onCreate(Bundle savedInstanceState) {
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String theme = prefs.getString("theme", "light");
+        if(theme.equals("black")) {
+            setTheme(R.style.AppThemeBlack);
+        }
 
         super.onCreate(savedInstanceState);
 
@@ -250,15 +256,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Empty text field on resume and show keyboard
      */
     protected void onResume() {
-        if (prefs.getBoolean("layout-updated", false)) {
+        if (prefs.getBoolean("require-layout-update", false)) {
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
-            prefs.edit().putBoolean("layout-updated", false).apply();
-            Intent i = getApplicationContext().getPackageManager().getLaunchIntentForPackage(
-                    getApplicationContext().getPackageName());
+            prefs.edit().putBoolean("require-layout-update", false).apply();
+            Intent i = new Intent(this, getClass());
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            finish();
+            overridePendingTransition(0, 0);
             startActivity(i);
+            overridePendingTransition(0, 0);
         }
 
         if (kissBar.getVisibility() != View.VISIBLE) {

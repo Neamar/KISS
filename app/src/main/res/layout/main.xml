@@ -74,9 +74,9 @@
             android:imeOptions="flagNoExtractUi|actionSearch"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:singleLine="true"
-            android:textCursorDrawable="@drawable/cursor"
             android:textColor="?android:attr/textColor"
             android:textColorHint="?android:attr/textColorSecondary"
+            android:textCursorDrawable="@drawable/cursor"
             android:textSize="16sp"/>
 
         <ImageView
@@ -86,6 +86,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:tint="?android:attr/textColor"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
             android:onClick="onMenuButtonClicked"
@@ -111,6 +112,7 @@
             android:paddingRight="1dp"
             android:paddingTop="4dp"
             android:src="@drawable/clear_dark"
+            android:tint="?android:attr/textColor"
             android:visibility="visible"/>
     </RelativeLayout>
 

@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="BaseTheme" parent="@android:style/Theme.NoTitleBar">
+    <style name="BaseThemeLight" parent="@android:style/Theme.NoTitleBar">
     </style>
 
     <style name="BaseThemeBlack" parent="@android:style/Theme.NoTitleBar">
     </style>
 
-    <style name="AppThemeTemp" parent="BaseTheme">
+    <style name="AppThemeLight" parent="BaseThemeLight">
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:textColor">@android:color/black</item>
-        <item name="android:textColorPrimary">#7e7e7e</item>
         <item name="android:textColorSecondary">#d3d3d3</item>
 
         <item name="mainBackground">@android:color/white</item>
         <item name="dividerColor">@color/kiss_divider</item>
     </style>
 
-    <style name="AppTheme" parent="BaseThemeBlack">
+    <style name="AppThemeBlack" parent="BaseThemeBlack">
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:textColor">#b3b3b3</item>
-        <item name="android:textColorPrimary">#b3b3b3</item>
         <item name="android:textColorSecondary">#7f7f7f</item>
+        <item name="android:textColorTertiary">#7f7f7f</item>
 
         <item name="mainBackground">@color/kiss_list_background_inverse</item>
         <item name="dividerColor">@color/kiss_divider_dark</item>
     </style>
 
-    <style name="SettingTheme" parent="BaseTheme">
+    <style name="SettingTheme" parent="AppThemeLight">
         <item name="android:windowBackground">@color/kiss_background</item>
+        <item name="android:textColorSecondary">?android:attr/textColorTertiary</item>
+    </style>
+
+    <style name="SettingThemeBlack" parent="AppThemeBlack">
+        <item name="android:windowBackground">@color/kiss_list_background_inverse</item>
     </style>
 </resources>
