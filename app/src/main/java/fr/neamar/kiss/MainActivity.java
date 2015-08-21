@@ -18,7 +18,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -109,8 +108,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String theme = prefs.getString("theme", "light");
-        if(theme.equals("black")) {
-            setTheme(R.style.AppThemeBlack);
+        if(theme.equals("dark")) {
+            setTheme(R.style.AppThemeDark);
         }
 
         super.onCreate(savedInstanceState);

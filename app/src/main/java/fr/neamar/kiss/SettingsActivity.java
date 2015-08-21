@@ -14,8 +14,8 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String theme = prefs.getString("theme", "light");
-        if(theme.equals("black")) {
-            setTheme(R.style.SettingThemeBlack);
+        if(theme.equals("dark")) {
+            setTheme(R.style.SettingThemeDark);
         }
 
         super.onCreate(savedInstanceState);
