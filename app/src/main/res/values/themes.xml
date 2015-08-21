@@ -14,6 +14,7 @@
         <item name="android:textColorSecondary">#d3d3d3</item>
 
         <item name="mainBackground">@android:color/white</item>
+        <item name="mainBackgroundSecondary">@android:color/white</item>
         <item name="dividerColor">@color/kiss_divider</item>
     </style>
 
@@ -25,8 +26,14 @@
         <item name="android:textColorTertiary">#7f7f7f</item>
 
         <item name="mainBackground">@color/kiss_list_background_inverse</item>
+        <item name="mainBackgroundSecondary">@color/kiss_list_background_inverse</item>
         <item name="dividerColor">@color/kiss_divider_dark</item>
     </style>
+
+    <style name="AppThemeLightTransparent" parent="AppThemeLight">
+        <item name="mainBackground">@color/kiss_background_light_opaque</item>
+    </style>
+
 
     <style name="SettingTheme" parent="AppThemeLight">
         <item name="android:windowBackground">@color/kiss_background</item>

@@ -3,7 +3,7 @@
 
     <style name="BaseThemeLight" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:colorPrimary">@color/kiss_green</item>
-        <item name="android:colorPrimaryDark">@color/kiss_green_dark</item>
+        <item name="android:colorPrimaryDark">@android:color/transparent</item>
         <item name="android:colorAccent">@color/kiss_green</item>
     </style>
 
@@ -11,5 +11,11 @@
         <item name="android:colorPrimary">@color/kiss_green</item>
         <item name="android:colorPrimaryDark">@android:color/black</item>
         <item name="android:colorAccent">@color/kiss_green</item>
+    </style>
+
+    <style name="AppThemeLightTransparent" parent="AppThemeLight">
+        <item name="mainBackground">@color/kiss_background_light_opaque</item>
+        <item name="android:colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 </resources>

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -14,7 +13,7 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String theme = prefs.getString("theme", "light");
-        if(theme.equals("dark")) {
+        if(theme.contains("dark")) {
             setTheme(R.style.SettingThemeDark);
         }
 
@@ -47,7 +46,6 @@ public class SettingsActivity extends PreferenceActivity implements
             overridePendingTransition(0, 0);
         } else if(!key.equalsIgnoreCase("require-layout-update")) {
             // Reload the DataHandler since Providers preferences have changed
-            Log.e("WTF", "RESET DH" + key);
             KissApplication.resetDataHandler(this);
         }
     }
