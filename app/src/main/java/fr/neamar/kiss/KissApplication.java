@@ -27,7 +27,7 @@ public class KissApplication extends Application {
     }
     
     public static void resetRootHander(Context ctx) {
-    	rootHandler = new RootHandler(ctx);    	
+    	rootHandler.resetRootHander(ctx);    	
     }
 
     public static void initDataHandler(Context ctx) {

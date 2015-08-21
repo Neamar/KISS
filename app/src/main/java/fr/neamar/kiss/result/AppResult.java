@@ -63,7 +63,7 @@ public class AppResult extends Result {
     @Override
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = new PopupMenu(context, parentView);
-        if (KissApplication.getRootHander(context).isRootAvailable())
+        if (KissApplication.getRootHander(context).isRootActivated() && KissApplication.getRootHander(context).isRootAvailable())
         	menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
         else
         	menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
