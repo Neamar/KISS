@@ -101,7 +101,12 @@ public class AppResult extends Result {
     }
     
     private void hibernate(Context context, AppPojo app) {
-        KissApplication.getRootHander(context).hibernateApp(appPojo.packageName);
+    	String msg = context.getResources().getString(R.string.toast_hibernate_completed);
+        if (!KissApplication.getRootHander(context).hibernateApp(appPojo.packageName)) {
+        	msg = context.getResources().getString(R.string.toast_hibernate_error);	
+        }
+        
+        Toast.makeText(context, app.name+" "+msg, Toast.LENGTH_SHORT).show();
     }
 
     /**
