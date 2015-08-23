@@ -22,6 +22,9 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <!-- To read phone state -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- To use camera -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -32,6 +35,12 @@
     <uses-feature
         android:name="android.hardware.wifi"
         android:required="false"/>
+    <uses-feature 
+	android:name="android.hardware.camera" 
+	android:required="false"/>    
+    <uses-feature 
+	android:name="android.hardware.camera.autofocus"
+	android-required="false"/>
 
     <application
         android:allowBackup="true"

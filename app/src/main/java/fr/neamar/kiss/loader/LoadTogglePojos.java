@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 
 import java.util.ArrayList;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.TogglePojo;
 
@@ -27,6 +28,10 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
         toggles.add(createPojo(context.getString(R.string.toggle_silent), "silent", R.drawable.toggle_silent));
         if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
             toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.drawable.toggle_data));
+        }        
+        if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA) && pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH) && 
+        		KissApplication.getCameraHandler().isTorchAvailable()) {
+            toggles.add(createPojo(context.getString(R.string.toggle_torch), "torch", R.drawable.toggle_torch));
         }
 
         return toggles;
