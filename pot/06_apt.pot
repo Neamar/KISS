@@ -4,13 +4,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
+"PO-Revision-Date: 2015-08-28 11:29+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: en-US \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Publican v4.3.2\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -264,7 +266,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# Security updates\n"
+msgid ""
+"# Security updates\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ wheezy/updates main contrib non-free\n"
 "\n"
@@ -280,8 +283,7 @@ msgid "# Security updates\n"
 "\n"
 "# Stable backports\n"
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
-"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
-""
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free"
 msgstr ""
 
 #. Tag: para
@@ -421,8 +423,7 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
-""
+msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free"
 msgstr ""
 
 #. Tag: title
@@ -467,8 +468,7 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
-""
+msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free"
 msgstr ""
 
 #. Tag: para
@@ -483,10 +483,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
-"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
-""
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>"
 msgstr ""
 
 #. Tag: title
@@ -506,7 +506,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Unstable\n"
 "deb http://ftp.debian.org/debian unstable main contrib non-free\n"
 "deb-src http://ftp.debian.org/debian unstable main contrib non-free\n"
@@ -523,8 +524,7 @@ msgid "\n"
 "deb http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb http://security.debian.org/ testing/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
-"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
-""
+"deb-src http://security.debian.org/ testing/updates main contrib non-free"
 msgstr ""
 
 #. Tag: para
@@ -564,8 +564,7 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
-""
+msgid "deb http://ftp.debian.org/debian experimental main contrib non-free"
 msgstr ""
 
 #. Tag: title
@@ -685,11 +684,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# &lt;name&gt; &lt;repository-base-url&gt;\n"
 "debian   http://ftp.debian.org/debian\n"
-"security http://security.debian.org\n"
-""
+"security http://security.debian.org"
 msgstr ""
 
 #. Tag: para
@@ -699,7 +698,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# Sample sources.list pointing to a local approx server\n"
+msgid ""
+"# Sample sources.list pointing to a local approx server\n"
 "deb http://apt.falcot.com:9999/security wheezy/updates main contrib non-free\n"
 "deb http://apt.falcot.com:9999/debian wheezy main contrib non-free\n"
 "      "
@@ -827,8 +827,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
-""
+msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -838,7 +837,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "## Update dpkg's database of known packages\n"
+msgid ""
+"## Update dpkg's database of known packages\n"
 "# <userinput>avail=`mktemp`</userinput>\n"
 "# <userinput>apt-cache dumpavail &gt; \"$avail\"</userinput>\n"
 "# <userinput>dpkg --merge-avail \"$avail\"</userinput>\n"
@@ -846,8 +846,7 @@ msgid "## Update dpkg's database of known packages\n"
 "## Update dpkg's selections\n"
 "# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
 "## Ask apt-get to install the selected packages\n"
-"# <userinput>apt-get dselect-upgrade</userinput>\n"
-""
+"# <userinput>apt-get dselect-upgrade</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -872,11 +871,11 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
+msgid ""
+"# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
-"[...]\n"
-""
+"[...]"
 msgstr ""
 
 #. Tag: para
@@ -901,8 +900,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
-""
+msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -932,8 +930,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
-""
+msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>"
 msgstr ""
 
 #. Tag: title
@@ -1168,10 +1165,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: *\n"
+msgid ""
+"Package: *\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
-""
+"Pin-Priority: 500"
 msgstr ""
 
 #. Tag: para
@@ -1181,14 +1178,14 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: *\n"
+msgid ""
+"Package: *\n"
 "Pin: release a=stable\n"
 "Pin-Priority: 900\n"
 "\n"
 "Package: *\n"
 "Pin: release o=Debian\n"
-"Pin-Priority: -10\n"
-""
+"Pin-Priority: -10"
 msgstr ""
 
 #. Tag: para
@@ -1203,10 +1200,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: perl\n"
+msgid ""
+"Package: perl\n"
 "Pin: version 5.14*\n"
-"Pin-Priority: 1001\n"
-""
+"Pin-Priority: 1001"
 msgstr ""
 
 #. Tag: para
@@ -1241,12 +1238,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Explanation: The package xserver-xorg-video-intel provided\n"
+msgid ""
+"Explanation: The package xserver-xorg-video-intel provided\n"
 "Explanation: in experimental can be used safely\n"
 "Package: xserver-xorg-video-intel\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
-""
+"Pin-Priority: 500"
 msgstr ""
 
 #. Tag: title
@@ -1301,10 +1298,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "Package: *\n"
+msgid ""
+"Package: *\n"
 "Pin: release a=unstable\n"
-"Pin-Priority: 490\n"
-""
+"Pin-Priority: 490"
 msgstr ""
 
 #. Tag: title
@@ -1359,7 +1356,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "$ <userinput>aptitude why python-debian</userinput>\n"
+msgid ""
+"$ <userinput>aptitude why python-debian</userinput>\n"
 "i   aptitude         Recommends apt-xapian-index         \n"
 "i A apt-xapian-index Depends    python-debian (&gt;= 0.1.15)\n"
 "      "
@@ -1497,7 +1495,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "$ <userinput>axi-cache search package use::searching</userinput>\n"
+msgid ""
+"$ <userinput>axi-cache search package use::searching</userinput>\n"
 "105 results found.\n"
 "Results 1-20:\n"
 "100% packagesearch - GUI for searching packages and viewing package information\n"
@@ -1611,8 +1610,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
-""
+msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -1757,7 +1755,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "# <userinput>apt-key fingerprint</userinput>\n"
+msgid ""
+"# <userinput>apt-key fingerprint</userinput>\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
 "------------------------------------------------------------\n"
 "pub   4096R/473041FA 2010-08-27 [expires: 2018-03-05]\n"
@@ -1780,8 +1779,7 @@ msgid "# <userinput>apt-key fingerprint</userinput>\n"
 "--------------------------------------------------------\n"
 "pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
 "      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
-"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
-""
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;"
 msgstr ""
 
 #. Tag: title
@@ -1871,8 +1869,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
-""
+msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -2118,8 +2115,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "export DEBIAN_FRONTEND=noninteractive\n"
-"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
-""
+"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade"
 msgstr ""
 
 #. Tag: title
@@ -2184,7 +2180,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
+msgid ""
+"$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "p   kino  - Non-linear editor for Digital Video data\n"
 "$ <userinput>aptitude show kino</userinput>\n"
 "Package: kino                            \n"
@@ -2216,8 +2213,7 @@ msgid "$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-"      works-with::video, x11::application\n"
-""
+"      works-with::video, x11::application"
 msgstr ""
 
 #. Tag: para

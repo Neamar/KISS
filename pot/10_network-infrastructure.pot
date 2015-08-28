@@ -4,13 +4,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
-"PO-Revision-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
+"PO-Revision-Date: 2015-08-28 11:29+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: en-US \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Publican v4.3.2\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -230,8 +232,7 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "\n"
-"<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>\n"
-""
+"<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -246,11 +247,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "net.ipv4.conf.default.forwarding = 1\n"
 "net.ipv4.conf.default.rp_filter = 1\n"
-"net.ipv4.tcp_syncookies = 1\n"
-""
+"net.ipv4.tcp_syncookies = 1"
 msgstr ""
 
 #. Tag: para
@@ -400,10 +401,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 pki-falcot\n"
-"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>\n"
-""
+"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -413,7 +414,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>vim vars\n"
 "</userinput><computeroutput>$ </computeroutput><userinput>grep KEY_ vars\n"
 "</userinput><computeroutput>export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`\n"
@@ -429,8 +431,7 @@ msgid "\n"
 "$ </computeroutput><userinput>. ./vars\n"
 "</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a rm -rf on /home/rhertzog/pki-falcot/keys\n"
 "$ </computeroutput><userinput>./clean-all\n"
-"</userinput>\n"
-""
+"</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -440,7 +441,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
 "<computeroutput>Generating a 2048 bit RSA private key\n"
 "..............................................++++++\n"
@@ -462,8 +464,7 @@ msgid "\n"
 "Common Name (eg, your name or your server's hostname) [Falcot Corp CA]:\n"
 "Name []:\n"
 "Email Address [admin@falcot.com]:\n"
-"</computeroutput>\n"
-""
+"</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -473,7 +474,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com\n"
 "</userinput><computeroutput>Generating a 2048 bit RSA private key\n"
 "...............++++++\n"
@@ -521,8 +523,7 @@ msgid "\n"
 "</userinput><computeroutput>Generating DH parameters, 2048 bit long safe prime, generator 2\n"
 "This is going to take a long time\n"
 "..............+.......+.................................++*++*++*\n"
-"</computeroutput>\n"
-""
+"</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -532,7 +533,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>./build-key JoeSmith\n"
 "</userinput><computeroutput>Generating a 2048 bit RSA private key\n"
 "................++++++\n"
@@ -794,13 +796,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# PPP options used for a PPTP connection\n"
 "lock\n"
 "noauth\n"
 "nobsdcomp\n"
-"nodeflate\n"
-""
+"nodeflate"
 msgstr ""
 
 #. Tag: title
@@ -810,7 +812,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# vpn.falcot.com is the PPTP server\n"
 "pty \"pptp vpn.falcot.com --nolaunchpppd\"\n"
 "# the connection will identify as the \"vpn\" user\n"
@@ -819,8 +822,7 @@ msgid "\n"
 "# encryption is needed\n"
 "require-mppe-128\n"
 "file /etc/ppp/options.pptp\n"
-"ipparam falcot\n"
-""
+"ipparam falcot"
 msgstr ""
 
 #. Tag: title
@@ -830,13 +832,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Create the route to the Falcot network\n"
 "if [ \"$6\" = \"falcot\" ]; then\n"
 "  # 192.168.0.0/24 is the (remote) Falcot network\n"
 "  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
-"fi\n"
-""
+"fi"
 msgstr ""
 
 #. Tag: title
@@ -846,13 +848,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Delete the route to the Falcot network\n"
 "if [ \"$6\" = \"falcot\" ]; then\n"
 "  # 192.168.0.0/24 is the (remote) Falcot network\n"
 "  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
-"fi\n"
-""
+"fi"
 msgstr ""
 
 #. Tag: title
@@ -902,7 +904,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# TAG: speed\n"
 "#\n"
 "#       Specifies the speed for the PPP daemon to talk at.\n"
@@ -952,8 +955,7 @@ msgid "\n"
 "#localip 10.0.1.1\n"
 "#remoteip 10.0.1.2-100\n"
 "localip 192.168.0.199\n"
-"remoteip 192.168.0.200-250\n"
-""
+"remoteip 192.168.0.200-250"
 msgstr ""
 
 #. Tag: para
@@ -968,7 +970,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "## turn pppd syslog debugging on\n"
 "#debug\n"
 "\n"
@@ -997,8 +1000,7 @@ msgid "\n"
 "## some defaults\n"
 "nodefaultroute\n"
 "proxyarp\n"
-"lock\n"
-""
+"lock"
 msgstr ""
 
 #. Tag: para
@@ -1013,12 +1015,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Secrets for authentication using CHAP\n"
 "# client        server  secret      IP addresses\n"
 "vpn             pptp    f@Lc3au     *\n"
-"FALCOT\\\\vpn     pptp    f@Lc3au     *\n"
-""
+"FALCOT\\\\vpn     pptp    f@Lc3au     *"
 msgstr ""
 
 #. Tag: title
@@ -1163,11 +1165,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "iface eth0 inet dhcp\n"
 "    up /sbin/wondershaper eth0 500 100\n"
-"    down /sbin/wondershaper remove eth0\n"
-""
+"    down /sbin/wondershaper remove eth0"
 msgstr ""
 
 #. Tag: para
@@ -1237,10 +1239,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos Minimize-Delay\n"
-"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay\n"
-""
+"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay"
 msgstr ""
 
 #. Tag: title
@@ -1410,7 +1412,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "iface eth0 inet6 static\n"
 "    address 2001:db8:1234:5::1:1\n"
 "    netmask 64\n"
@@ -1418,8 +1421,7 @@ msgid "\n"
 "    # autoconf 0\n"
 "    # The router is auto-configured and has no fixed address\n"
 "    # (accept_ra 1). If it had:\n"
-"    # gateway 2001:db8:1234:5::1\n"
-""
+"    # gateway 2001:db8:1234:5::1"
 msgstr ""
 
 #. Tag: para
@@ -1439,11 +1441,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "iface eth0 inet6 auto\n"
 "    # Prefer the randomly assigned addresses for outgoing connections.\n"
-"    privext 2\n"
-""
+"    privext 2"
 msgstr ""
 
 #. Tag: title
@@ -1518,11 +1520,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "host_type=router\n"
 "prefixlen=56\n"
-"if_prefix=eth0\n"
-""
+"if_prefix=eth0"
 msgstr ""
 
 #. Tag: para
@@ -1757,7 +1759,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "zone \"falcot.com\" {\n"
 "        type master;\n"
 "        file \"/etc/bind/db.falcot.com\";\n"
@@ -1778,8 +1781,7 @@ msgid "\n"
 "        type master;\n"
 "        file \"/etc/bind/db.192.168\";\n"
 "        allow-query { 192.168.0.0/16; };\n"
-"};\n"
-""
+"};"
 msgstr ""
 
 #. Tag: title
@@ -1789,7 +1791,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "; falcot.com Zone \n"
+msgid ""
+"; falcot.com Zone \n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
 "$TTL    604800\n"
 "@       IN      SOA     falcot.com. admin.falcot.com. (\n"
@@ -1816,8 +1819,7 @@ msgid "; falcot.com Zone \n"
 "mail2   IN      A       212.94.201.11\n"
 "www     IN      A       212.94.201.11\n"
 "\n"
-"dns     IN      CNAME   ns\n"
-""
+"dns     IN      CNAME   ns"
 msgstr ""
 
 #. Tag: title
@@ -1837,7 +1839,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "; Reverse zone for 192.168.0.0/16\n"
+msgid ""
+"; Reverse zone for 192.168.0.0/16\n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
 "$TTL    604800\n"
 "@       IN      SOA     ns.internal.falcot.com. admin.falcot.com. (\n"
@@ -1855,8 +1858,7 @@ msgid "; Reverse zone for 192.168.0.0/16\n"
 "2.0     IN      PTR     neptune.internal.falcot.com.\n"
 "\n"
 "; 192.168.3.1 -&gt; pau\n"
-"1.3     IN      PTR     pau.internal.falcot.com.\n"
-""
+"1.3     IN      PTR     pau.internal.falcot.com."
 msgstr ""
 
 #. Tag: para
@@ -1901,7 +1903,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "#\n"
 "# Sample configuration file for ISC dhcpd for Debian\n"
 "#\n"
@@ -1933,8 +1936,7 @@ msgid "\n"
 "    option broadcast-address 192.168.0.255;\n"
 "    range 192.168.0.128 192.168.0.254;\n"
 "    ddns-domainname \"internal.falcot.com\";\n"
-"}\n"
-""
+"}"
 msgstr ""
 
 #. Tag: title
@@ -1960,8 +1962,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
-""
+"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };"
 msgstr ""
 
 #. Tag: para
@@ -2041,7 +2042,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>netstat -tupan</userinput>\n"
 "<computeroutput>Active Internet connections (servers and established)\n"
 "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name\n"
@@ -2089,7 +2091,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>nmap mirwiz</userinput>\n"
 "<computeroutput>\n"
 "nmap 192.168.1.30\n"
@@ -2148,8 +2151,7 @@ msgid "\n"
 "\n"
 "OS and Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .\n"
 "Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds\n"
-"</computeroutput>\n"
-""
+"</computeroutput>"
 msgstr ""
 
 #. Tag: para

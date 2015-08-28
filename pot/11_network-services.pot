@@ -4,13 +4,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
-"PO-Revision-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
+"PO-Revision-Date: 2015-08-28 11:29+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
+"Language: en-US \n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Publican v4.3.2\n"
 
 #. Tag: keyword
 #, no-c-format
@@ -234,7 +236,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# See /usr/share/postfix/main.cf.dist for a commented, more complete version\n"
 "\n"
 "\n"
@@ -275,8 +278,7 @@ msgid "\n"
 "mailbox_size_limit = 0\n"
 "recipient_delimiter = +\n"
 "inet_interfaces = all\n"
-"inet_protocols = all\n"
-""
+"inet_protocols = all"
 msgstr ""
 
 #. Tag: title
@@ -351,10 +353,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "virtual_alias_domains = falcotsbrand.com\n"
-"virtual_alias_maps = hash:/etc/postfix/virtual\n"
-""
+"virtual_alias_maps = hash:/etc/postfix/virtual"
 msgstr ""
 
 #. Tag: para
@@ -369,15 +371,15 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "webmaster@falcotsbrand.com  jean@falcot.com\n"
 "contact@falcotsbrand.com    laure@falcot.com, sophie@falcot.com\n"
 "# The alias below is generic and covers all addresses within \n"
 "# the falcotsbrand.com domain not otherwise covered by this file.\n"
 "# These addresses forward email to the same user name in the\n"
 "# falcot.com domain.\n"
-"@falcotsbrand.com           @falcot.com\n"
-""
+"@falcotsbrand.com           @falcot.com"
 msgstr ""
 
 #. Tag: title
@@ -422,11 +424,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "virtual_mailbox_domains = falcot.org\n"
 "virtual_mailbox_maps = hash:/etc/postfix/vmailbox\n"
-"virtual_mailbox_base = /var/mail/vhosts\n"
-""
+"virtual_mailbox_base = /var/mail/vhosts"
 msgstr ""
 
 #. Tag: para
@@ -441,14 +443,14 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Jean's email is stored as maildir, with\n"
 "# one file per email in a dedicated directory\n"
 "jean@falcot.org falcot.org/jean/\n"
 "# Sophie's email is stored in a traditional \"mbox\" file,\n"
 "# with all mails concatenated into one single file\n"
-"sophie@falcot.org falcot.org/sophie\n"
-""
+"sophie@falcot.org falcot.org/sophie"
 msgstr ""
 
 #. Tag: title
@@ -498,13 +500,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_client_restrictions = permit_mynetworks,\n"
 "    warn_if_reject reject_unknown_client,\n"
 "    check_client_access hash:/etc/postfix/access_clientip,\n"
 "    reject_rbl_client sbl-xbl.spamhaus.org,\n"
-"    reject_rbl_client list.dsbl.org\n"
-""
+"    reject_rbl_client list.dsbl.org"
 msgstr ""
 
 #. Tag: para
@@ -599,13 +601,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_helo_restrictions = permit_mynetworks,\n"
 "    reject_invalid_hostname,\n"
 "    check_helo_access hash:/etc/postfix/access_helo,\n"
 "    reject_non_fqdn_hostname,\n"
-"    warn_if_reject reject_unknown_hostname\n"
-""
+"    warn_if_reject reject_unknown_hostname"
 msgstr ""
 
 #. Tag: para
@@ -650,12 +652,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_sender_restrictions = \n"
 "    check_sender_access hash:/etc/postfix/access_sender,\n"
 "    reject_unknown_sender_domain, reject_unlisted_sender,\n"
-"    reject_non_fqdn_sender\n"
-""
+"    reject_non_fqdn_sender"
 msgstr ""
 
 #. Tag: para
@@ -700,11 +702,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_recipient_restrictions = permit_mynetworks, \n"
 "    reject_unauth_destination, reject_unlisted_recipient, \n"
-"    reject_non_fqdn_recipient\n"
-""
+"    reject_non_fqdn_recipient"
 msgstr ""
 
 #. Tag: para
@@ -740,8 +742,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"smtpd_data_restrictions = reject_unauth_pipelining\n"
-""
+"smtpd_data_restrictions = reject_unauth_pipelining"
 msgstr ""
 
 #. Tag: para
@@ -786,10 +787,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "header_checks = regexp:/etc/postfix/header_checks\n"
-"body_checks = regexp:/etc/postfix/body_checks\n"
-""
+"body_checks = regexp:/etc/postfix/body_checks"
 msgstr ""
 
 #. Tag: indexterm
@@ -819,10 +820,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "/^X-Mailer: GOTO Sarbacane/ REJECT I fight spam (GOTO Sarbacane)\n"
-"/^Subject: *Your email contains VIRUSES/ DISCARD virus notification\n"
-""
+"/^Subject: *Your email contains VIRUSES/ DISCARD virus notification"
 msgstr ""
 
 #. Tag: title
@@ -877,11 +878,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtpd_recipient_restrictions = permit_mynetworks,\n"
 "    [...]\n"
-"    check_policy_service inet:127.0.0.1:10023\n"
-""
+"    check_policy_service inet:127.0.0.1:10023"
 msgstr ""
 
 #. Tag: para
@@ -956,7 +957,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "smtpd_restriction_classes = greylisting, aggressive, permissive\n"
+msgid ""
+"smtpd_restriction_classes = greylisting, aggressive, permissive\n"
 "\n"
 "greylisting = check_policy_service inet:127.0.0.1:10023\n"
 "aggressive = reject_rbl_client sbl-xbl.spamhaus.org,\n"
@@ -965,8 +967,7 @@ msgid "smtpd_restriction_classes = greylisting, aggressive, permissive\n"
 "\n"
 "smtpd_recipient_restrictions = permit_mynetworks,\n"
 "        reject_unauth_destination,\n"
-"        check_recipient_access hash:/etc/postfix/recipient_access\n"
-""
+"        check_recipient_access hash:/etc/postfix/recipient_access"
 msgstr ""
 
 #. Tag: title
@@ -976,7 +977,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Unfiltered addresses\n"
 "postmaster@falcot.com  permissive\n"
 "support@falcot.com     permissive\n"
@@ -989,8 +991,7 @@ msgid "\n"
 "sympa@falcot.com       reject_unverified_sender\n"
 "\n"
 "# Greylisting by default\n"
-"falcot.com             greylisting\n"
-""
+"falcot.com             greylisting"
 msgstr ""
 
 #. Tag: title
@@ -1070,10 +1071,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Virus check with clamav-milter\n"
-"smtpd_milters = inet:[127.0.0.1]:10002\n"
-""
+"smtpd_milters = inet:[127.0.0.1]:10002"
 msgstr ""
 
 #. Tag: para
@@ -1118,7 +1119,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>saslpasswd2 -u `postconf -h myhostname` -f /var/spool/postfix/etc/sasldb2 -c jean</userinput>\n"
 "<computeroutput>[... type jean's password twice ...]</computeroutput>"
 msgstr ""
@@ -1140,7 +1142,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Enable SASL authentication\n"
 "smtpd_sasl_auth_enable = yes\n"
 "# Define the SASL authentication domain to use\n"
@@ -1151,8 +1154,7 @@ msgid "\n"
 "smtpd_recipient_restrictions = permit_mynetworks,\n"
 "    permit_sasl_authenticated,\n"
 "    reject_unauth_destination,\n"
-"[...]\n"
-""
+"[...]"
 msgstr ""
 
 #. Tag: title
@@ -1167,11 +1169,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "smtp_sasl_auth_enable = yes\n"
 "smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\n"
-"relay_host = [mail.falcot.com]\n"
-""
+"relay_host = [mail.falcot.com]"
 msgstr ""
 
 #. Tag: para
@@ -1182,8 +1184,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"[mail.falcot.com]   joe:LyinIsji\n"
-""
+"[mail.falcot.com]   joe:LyinIsji"
 msgstr ""
 
 #. Tag: para
@@ -1418,12 +1419,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "&lt;IfModule mod_ssl.c&gt;\n"
 "    NameVirtualHost *:443\n"
 "    Listen 443\n"
-"&lt;/IfModule&gt;\n"
-""
+"&lt;/IfModule&gt;"
 msgstr ""
 
 #. Tag: para
@@ -1443,13 +1444,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "&lt;VirtualHost *:80&gt;\n"
 "ServerName www.falcot.org\n"
 "ServerAlias falcot.org\n"
 "DocumentRoot /srv/www/www.falcot.org\n"
-"&lt;/VirtualHost&gt;\n"
-""
+"&lt;/VirtualHost&gt;"
 msgstr ""
 
 #. Tag: para
@@ -1464,13 +1465,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# New log format including (virtual) host name\n"
 "LogFormat \"%v %h %l %u %t \\\"%r\\\" %&gt;s %b \\\"%{Referer}i\\\" \\\"%{User-Agent}i\\\"\" vhost\n"
 "\n"
 "# Now let's use this \"vhost\" format by default\n"
-"CustomLog /var/log/apache2/access.log vhost\n"
-""
+"CustomLog /var/log/apache2/access.log vhost"
 msgstr ""
 
 #. Tag: title
@@ -1515,13 +1516,13 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "&lt;Directory /var/www&gt;\n"
 "Options Includes FollowSymlinks\n"
 "AllowOverride All\n"
 "DirectoryIndex index.php index.html index.htm\n"
-"&lt;/Directory&gt;\n"
-""
+"&lt;/Directory&gt;"
 msgstr ""
 
 #. Tag: para
@@ -1616,12 +1617,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "Require valid-user\n"
 "AuthName \"Private directory\"\n"
 "AuthType Basic\n"
-"AuthUserFile /etc/apache2/authfiles/htpasswd-private\n"
-""
+"AuthUserFile /etc/apache2/authfiles/htpasswd-private"
 msgstr ""
 
 #. Tag: title
@@ -1641,7 +1642,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>htpasswd /etc/apache2/authfiles/htpasswd-private <replaceable>user</replaceable>\n"
 "</userinput><computeroutput>New password:\n"
 "Re-type new password:\n"
@@ -1696,11 +1698,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "Order deny,allow\n"
 "Allow from 192.168.0.0/16\n"
-"Deny from all\n"
-""
+"Deny from all"
 msgstr ""
 
 #. Tag: title
@@ -1745,14 +1747,14 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "LogFile=\"/var/log/apache2/access.log\"\n"
 "LogFormat = \"%virtualname %host %other %logname %time1 %methodurl %code %bytesd %refererquot %uaquot\"\n"
 "SiteDomain=\"www.falcot.com\"\n"
 "HostAliases=\"falcot.com REGEX[^.*\\.falcot\\.com$]\"\n"
 "DNSLookup=1\n"
-"LoadPlugin=\"tooltips\"\n"
-""
+"LoadPlugin=\"tooltips\""
 msgstr ""
 
 #. Tag: para
@@ -1787,11 +1789,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "Include \"/etc/awstats/awstats.conf\"\n"
 "SiteDomain=\"www.falcot.org\"\n"
-"HostAliases=\"falcot.org\"\n"
-""
+"HostAliases=\"falcot.org\""
 msgstr ""
 
 #. Tag: para
@@ -1802,8 +1804,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"Alias /awstats-icon/ /usr/share/awstats/icon/\n"
-""
+"Alias /awstats-icon/ /usr/share/awstats/icon/"
 msgstr ""
 
 #. Tag: para
@@ -1823,7 +1824,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "$ <userinput>cat /etc/logrotate.d/apache2</userinput>\n"
 "/var/log/apache2/*.log {\n"
 "  weekly\n"
@@ -1845,8 +1847,7 @@ msgid "\n"
 "}\n"
 "$ <userinput>sudo mkdir -p /etc/logrotate.d/httpd-prerotate</userinput>\n"
 "$ <userinput>sudo ln -sf /usr/share/awstats/tools/update.sh \\\n"
-"  /etc/logrotate.d/httpd-prerotate/awstats</userinput>\n"
-""
+"  /etc/logrotate.d/httpd-prerotate/awstats</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -2041,7 +2042,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Number of servers to start up\n"
 "RPCNFSDCOUNT=8\n"
 "\n"
@@ -2060,8 +2062,7 @@ msgid "\n"
 "NEED_SVCGSSD=\n"
 "\n"
 "# Options for rpc.svcgssd.\n"
-"RPCSVCGSSDOPTS=\n"
-""
+"RPCSVCGSSDOPTS="
 msgstr ""
 
 #. Tag: title
@@ -2071,7 +2072,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# If you do not set values for the NEED_ options, they will be attempted\n"
 "# autodetected; this should be sufficient for most people. Valid alternatives\n"
 "# for the NEED_ options are \"yes\" and \"no\".\n"
@@ -2090,8 +2092,7 @@ msgid "\n"
 "NEED_IDMAPD=\n"
 "\n"
 "# Do you want to start the gssd daemon? It is required for Kerberos mounts.\n"
-"NEED_GSSD=\n"
-""
+"NEED_GSSD="
 msgstr ""
 
 #. Tag: para
@@ -2112,8 +2113,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"options lockd nlm_udpport=2045 nlm_tcpport=2045\n"
-""
+"options lockd nlm_udpport=2045 nlm_tcpport=2045"
 msgstr ""
 
 #. Tag: para
@@ -2149,8 +2149,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"/directory/to/share machine1(option1,option2,...) machine2(...) ...\n"
-""
+"/directory/to/share machine1(option1,option2,...) machine2(...) ..."
 msgstr ""
 
 #. Tag: para
@@ -2196,8 +2195,7 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "\n"
-"<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server start</userinput>\n"
-""
+"<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server start</userinput>"
 msgstr ""
 
 #. Tag: title
@@ -2239,8 +2237,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"arrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
-""
+"arrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0"
 msgstr ""
 
 #. Tag: para
@@ -2430,7 +2427,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "[global]\n"
 "\n"
 "## Browsing/Identification ###\n"
@@ -2479,8 +2477,7 @@ msgid "\n"
 "# CUPS printing.  See also the cupsaddsmb(8) manpage in the\n"
 "# cups-client package.\n"
 "   printing = cups <co id=\"smb.conf.printing\"></co>\n"
-"   printcap name = cups\n"
-""
+"   printcap name = cups"
 msgstr ""
 
 #. Tag: para
@@ -2550,12 +2547,12 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "domain logons = yes              <co id=\"smb.conf.domainlogons\"></co>\n"
 "preferred master = yes           \n"
 "logon path = \\\\%L\\profiles\\%U    <co id=\"smb.conf.logonpath\"></co>\n"
-"logon script = scripts/logon.bat <co id=\"smb.conf.logonscript\"></co>\n"
-""
+"logon script = scripts/logon.bat <co id=\"smb.conf.logonscript\"></co>"
 msgstr ""
 
 #. Tag: para
@@ -2585,11 +2582,11 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "net time \\\\ARRAKIS /set /yes\n"
 "net use H: /home\n"
-"net use U: \\\\ARRAKIS\\utils\n"
-""
+"net use U: \\\\ARRAKIS\\utils"
 msgstr ""
 
 #. Tag: para
@@ -2599,7 +2596,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "[netlogon]\n"
 "comment = Network Logon Service\n"
 "path = /var/lib/samba/netlogon\n"
@@ -2611,8 +2609,7 @@ msgid "\n"
 "comment = Profile Share\n"
 "path = /var/lib/samba/profiles\n"
 "read only = No\n"
-"profile acls = Yes\n"
-""
+"profile acls = Yes"
 msgstr ""
 
 #. Tag: para
@@ -2677,10 +2674,10 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "mount -t cifs //arrakis/shared /shared \\\n"
-"      -o credentials=/etc/smb-credentials\n"
-""
+"      -o credentials=/etc/smb-credentials"
 msgstr ""
 
 #. Tag: para
@@ -2690,7 +2687,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "username = <replaceable>user</replaceable>\n"
 "password = <replaceable>password</replaceable>"
 msgstr ""
@@ -2708,8 +2706,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"//<replaceable>server</replaceable>/shared /shared cifs credentials=/etc/smb-credentials\n"
-""
+"//<replaceable>server</replaceable>/shared /shared cifs credentials=/etc/smb-credentials"
 msgstr ""
 
 #. Tag: para
@@ -2849,7 +2846,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS\n"
 "\n"
 "# Example rule allowing access from your local networks. Adapt\n"
@@ -2859,8 +2857,7 @@ msgid "\n"
 "http_access allow our_networks\n"
 "http_access allow localhost\n"
 "# And finally deny all other access to this proxy\n"
-"http_access deny all\n"
-""
+"http_access deny all"
 msgstr ""
 
 #. Tag: title
@@ -2881,8 +2878,7 @@ msgstr ""
 #. Tag: programlisting
 #, no-c-format
 msgid "\n"
-"redirect_program /usr/bin/squidGuard -c /etc/squid/squidGuard.conf \n"
-""
+"redirect_program /usr/bin/squidGuard -c /etc/squid/squidGuard.conf "
 msgstr ""
 
 #. Tag: para
@@ -3032,7 +3028,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput>$ </computeroutput><userinput>ldapsearch -x -b dc=falcot,dc=com</userinput>\n"
 "<computeroutput># extended LDIF\n"
 "#\n"
@@ -3063,8 +3060,7 @@ msgid "\n"
 "\n"
 "# numResponses: 3\n"
 "# numEntries: 2\n"
-"</computeroutput>\n"
-""
+"</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -3104,10 +3100,10 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "<computeroutput># </computeroutput><userinput>cd /usr/share/migrationtools</userinput>\n"
-"<computeroutput># </computeroutput><userinput>LDAPADD=\"/usr/bin/ldapadd -c\" ETC_ALIASES=/dev/null ./migrate_all_online.sh</userinput>\n"
-""
+"<computeroutput># </computeroutput><userinput>LDAPADD=\"/usr/bin/ldapadd -c\" ETC_ALIASES=/dev/null ./migrate_all_online.sh</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -3302,7 +3298,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# /etc/nsswitch.conf\n"
 "#\n"
 "# Example configuration of GNU Name Service Switch functionality.\n"
@@ -3321,8 +3318,7 @@ msgid "\n"
 "ethers: ldap db files\n"
 "rpc: ldap db files\n"
 "\n"
-"netgroup: ldap files\n"
-""
+"netgroup: ldap files"
 msgstr ""
 
 #. Tag: para
@@ -3492,7 +3488,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# <userinput>adduser openldap ssl-cert</userinput>\n"
 "Adding user `openldap' to group `ssl-cert' ...\n"
 "Adding user openldap to group ssl-cert\n"
@@ -3500,8 +3497,7 @@ msgid "\n"
 "# <userinput>mv keys/ldap.falcot.com.key /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
 "# <userinput>chown root:ssl-cert /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
 "# <userinput>chmod 0640 /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
-"# <userinput>mv newcert.pem /etc/ssl/certs/ldap.falcot.com.pem</userinput>\n"
-""
+"# <userinput>mv newcert.pem /etc/ssl/certs/ldap.falcot.com.pem</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -3516,7 +3512,8 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# <userinput>cat &gt;ssl.ldif &lt;&lt;END\n"
 "dn: cn=config\n"
 "changetype: modify\n"
@@ -3531,8 +3528,7 @@ msgid "\n"
 "SASL/EXTERNAL authentication started\n"
 "SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth\n"
 "SASL SSF: 0\n"
-"modifying entry \"cn=config\"\n"
-""
+"modifying entry \"cn=config\""
 msgstr ""
 
 #. Tag: title
@@ -3558,8 +3554,7 @@ msgstr ""
 #. Tag: screen
 #, no-c-format
 msgid "\n"
-"# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>\n"
-""
+"# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -3574,7 +3569,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# Default location of the slapd.conf file or slapd.d cn=config directory. If\n"
 "# empty, use the compiled-in default (/etc/ldap/slapd.d with a fallback to\n"
 "# /etc/ldap/slapd.conf).\n"
@@ -3619,8 +3615,7 @@ msgid "\n"
 "#export KRB5_KTNAME=/etc/krb5.keytab\n"
 "\n"
 "# Additional options to pass to slapd\n"
-"SLAPD_OPTIONS=\"\"\n"
-""
+"SLAPD_OPTIONS=\"\""
 msgstr ""
 
 #. Tag: title
@@ -3640,15 +3635,15 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "\n"
+msgid ""
+"\n"
 "# <userinput>cp keys/ca.crt /usr/local/share/ca-certificates/falcot.crt</userinput>\n"
 "# <userinput>update-ca-certificates</userinput>\n"
 "Updating certificates in /etc/ssl/certs... 1 added, 0 removed; done.\n"
 "Running hooks in /etc/ca-certificates/update.d....\n"
 "Adding debian:falcot.pem\n"
 "done.\n"
-"done.\n"
-""
+"done."
 msgstr ""
 
 #. Tag: para
@@ -3663,7 +3658,8 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "#\n"
+msgid ""
+"#\n"
 "# LDAP Defaults\n"
 "#\n"
 "\n"
@@ -3678,8 +3674,7 @@ msgid "#\n"
 "#DEREF          never\n"
 "\n"
 "# TLS certificates (needed for GnuTLS)\n"
-"TLS_CACERT      /etc/ssl/certs/ca-certificates.crt\n"
-""
+"TLS_CACERT      /etc/ssl/certs/ca-certificates.crt"
 msgstr ""
 
 #. Tag: para
