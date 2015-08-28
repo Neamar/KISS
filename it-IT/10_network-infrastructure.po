@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-01-09 19:01+0100\n"
 "Last-Translator: Innocenzo Ventre <innocenzo.ventre@gmail.com>\n"
 "Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
@@ -230,10 +230,10 @@ msgid "Enough theory, let's get practical. Turning a Debian system into a gatewa
 msgstr "Basta teoria, andiamo sul pratico. Trasformare un sistema Debian in un gateway è una questione semplice, basta attivare l'apposita opzione nel kernel Linux, mediante il filesystem virtuale <filename>/proc/</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>\n"
+"<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>echo 1 &gt; /proc/sys/net/ipv4/conf/default/forwarding</userinput>\n"
@@ -249,12 +249,12 @@ msgid "The <filename>/etc/sysctl.conf</filename> file"
 msgstr "Il file <filename>/etc/sysctl.conf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "net.ipv4.conf.default.forwarding = 1\n"
 "net.ipv4.conf.default.rp_filter = 1\n"
-"net.ipv4.tcp_syncookies = 1\n"
+"net.ipv4.tcp_syncookies = 1"
 msgstr ""
 "\n"
 "net.ipv4.conf.default.forwarding = 1\n"
@@ -407,11 +407,11 @@ msgid "The Falcot Corp administrators use this tool to create the required certi
 msgstr "Gli amministratori della Falcot Corp utilizzano questo strumento per creare i certificati richiesti, sia per il server che per i client. Questo permette una configurazione simile di tutti i client, dato che dovranno essere impostati solo per considerare attendibili i certificati provenienti dalla CA locale di Falcot. Questa CA è il primo certificato da creare; a tal fine, gli amministratori copiano la directory che contiene <emphasis>easy-rsa</emphasis> in un luogo più appropriato, preferibilmente su una macchina non connessa alla rete, per ridurre il rischio di furto della chiave privata della CA."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 pki-falcot\n"
-"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>\n"
+"</userinput><computeroutput>$ </computeroutput><userinput>cd pki-falcot</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 pki-falcot\n"
@@ -441,7 +441,7 @@ msgid ""
 "$ </computeroutput><userinput>. ./vars\n"
 "</userinput><computeroutput>NOTE: If you run ./clean-all, I will be doing a rm -rf on /home/rhertzog/pki-falcot/keys\n"
 "$ </computeroutput><userinput>./clean-all\n"
-"</userinput>\n"
+"</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>vim vars\n"
@@ -491,7 +491,7 @@ msgid ""
 "Common Name (eg, your name or your server's hostname) [Falcot Corp CA]:\n"
 "Name []:\n"
 "Email Address [admin@falcot.com]:\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-ca</userinput>\n"
@@ -573,7 +573,7 @@ msgid ""
 "</userinput><computeroutput>Generating DH parameters, 2048 bit long safe prime, generator 2\n"
 "This is going to take a long time\n"
 "..............+.......+.................................++*++*++*\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>./build-key-server vpn.falcot.com\n"
@@ -917,14 +917,14 @@ msgid "The <filename>/etc/ppp/options.pptp</filename> file"
 msgstr "Il file <filename>/etc/ppp/options.pptp</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# PPP options used for a PPTP connection\n"
 "lock\n"
 "noauth\n"
 "nobsdcomp\n"
-"nodeflate\n"
+"nodeflate"
 msgstr ""
 "\n"
 "# Opzioni PPP usate per una connessione PPTP\n"
@@ -939,7 +939,7 @@ msgid "The <filename>/etc/ppp/peers/falcot</filename> file"
 msgstr "Il file <filename>/etc/ppp/peers/falcot</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# vpn.falcot.com is the PPTP server\n"
@@ -950,7 +950,7 @@ msgid ""
 "# encryption is needed\n"
 "require-mppe-128\n"
 "file /etc/ppp/options.pptp\n"
-"ipparam falcot\n"
+"ipparam falcot"
 msgstr ""
 "\n"
 "# vpn.falcot.com e' il server PPTP\n"
@@ -969,14 +969,14 @@ msgid "The <filename>/etc/ppp/ip-up.d/falcot</filename> file"
 msgstr "Il file <filename>/etc/ppp/ip-up.d/falcot</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Create the route to the Falcot network\n"
 "if [ \"$6\" = \"falcot\" ]; then\n"
 "  # 192.168.0.0/24 is the (remote) Falcot network\n"
 "  route add -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
-"fi\n"
+"fi"
 msgstr ""
 "\n"
 "# Creare l'instradamento per la rete Falcot\n"
@@ -991,14 +991,14 @@ msgid "The <filename>/etc/ppp/ip-down.d/falcot</filename> file"
 msgstr "Il file <filename>/etc/ppp/ip-down.d/falcot</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Delete the route to the Falcot network\n"
 "if [ \"$6\" = \"falcot\" ]; then\n"
 "  # 192.168.0.0/24 is the (remote) Falcot network\n"
 "  route del -net 192.168.0.0 netmask 255.255.255.0 dev $1\n"
-"fi\n"
+"fi"
 msgstr ""
 "\n"
 "# Eliminare l'instradamento alla rete Falcot\n"
@@ -1053,7 +1053,7 @@ msgid "The <filename>/etc/pptpd.conf</filename> file"
 msgstr "Il file <filename>/etc/pptpd.conf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# TAG: speed\n"
@@ -1105,7 +1105,7 @@ msgid ""
 "#localip 10.0.1.1\n"
 "#remoteip 10.0.1.2-100\n"
 "localip 192.168.0.199\n"
-"remoteip 192.168.0.200-250\n"
+"remoteip 192.168.0.200-250"
 msgstr ""
 "\n"
 "# TAG: speed\n"
@@ -1170,7 +1170,7 @@ msgid "The <filename>/etc/ppp/pptpd-options</filename> file"
 msgstr "Il file <filename>/etc/ppp/pptpd-options</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "## turn pppd syslog debugging on\n"
@@ -1201,7 +1201,7 @@ msgid ""
 "## some defaults\n"
 "nodefaultroute\n"
 "proxyarp\n"
-"lock\n"
+"lock"
 msgstr ""
 "\n"
 "## turn pppd syslog debugging on\n"
@@ -1245,13 +1245,13 @@ msgid "The <filename>/etc/ppp/chap-secrets</filename> file"
 msgstr "Il file <filename>/etc/ppp/chap-secrets</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Secrets for authentication using CHAP\n"
 "# client        server  secret      IP addresses\n"
 "vpn             pptp    f@Lc3au     *\n"
-"FALCOT\\\\vpn     pptp    f@Lc3au     *\n"
+"FALCOT\\\\vpn     pptp    f@Lc3au     *"
 msgstr ""
 "\n"
 "# Secrets for authentication using CHAP\n"
@@ -1400,12 +1400,12 @@ msgid "Changes in the <filename>/etc/network/interfaces</filename> file"
 msgstr "Modifiche nel file <filename>/etc/network/interfaces</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "iface eth0 inet dhcp\n"
 "    up /sbin/wondershaper eth0 500 100\n"
-"    down /sbin/wondershaper remove eth0\n"
+"    down /sbin/wondershaper remove eth0"
 msgstr ""
 "\n"
 "iface eth0 inet dhcp\n"
@@ -1484,11 +1484,11 @@ msgid "The ToS field can be set by applications that generate IP packets, or mod
 msgstr "Il campo ToS può essere impostato da applicazioni che generano i pacchetti IP, o modificato al volo da <emphasis>netfilter</emphasis>. Le seguenti regole sono sufficienti per aumentare la reattività per il servizio SSH di un server:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos Minimize-Delay\n"
-"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay\n"
+"iptables -t mangle -A PREROUTING -p tcp --dport ssh -j TOS --set-tos Minimize-Delay"
 msgstr ""
 "\n"
 "iptables -t mangle -A PREROUTING -p tcp --sport ssh -j TOS --set-tos Minimize-Delay\n"
@@ -1673,7 +1673,7 @@ msgid ""
 "    # autoconf 0\n"
 "    # The router is auto-configured and has no fixed address\n"
 "    # (accept_ra 1). If it had:\n"
-"    # gateway 2001:db8:1234:5::1\n"
+"    # gateway 2001:db8:1234:5::1"
 msgstr ""
 "\n"
 "iface eth0 inet6 static\n"
@@ -1706,7 +1706,7 @@ msgid ""
 "\n"
 "iface eth0 inet6 auto\n"
 "    # Prefer the randomly assigned addresses for outgoing connections.\n"
-"    privext 2\n"
+"    privext 2"
 msgstr ""
 
 #. Tag: title
@@ -1785,7 +1785,7 @@ msgid ""
 "\n"
 "host_type=router\n"
 "prefixlen=56\n"
-"if_prefix=eth0\n"
+"if_prefix=eth0"
 msgstr ""
 "\n"
 "host_type=router\n"
@@ -2023,7 +2023,7 @@ msgid "Excerpt of <filename>/etc/bind/named.conf.local</filename>"
 msgstr "Estratto da <filename>/etc/bind/named.conf.local</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "zone \"falcot.com\" {\n"
@@ -2046,7 +2046,7 @@ msgid ""
 "        type master;\n"
 "        file \"/etc/bind/db.192.168\";\n"
 "        allow-query { 192.168.0.0/16; };\n"
-"};\n"
+"};"
 msgstr ""
 "\n"
 "zone \"falcot.com\" {\n"
@@ -2106,7 +2106,7 @@ msgid ""
 "mail2   IN      A       212.94.201.11\n"
 "www     IN      A       212.94.201.11\n"
 "\n"
-"dns     IN      CNAME   ns\n"
+"dns     IN      CNAME   ns"
 msgstr ""
 "; falcot.com Zone \n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
@@ -2173,7 +2173,7 @@ msgid ""
 "2.0     IN      PTR     neptune.internal.falcot.com.\n"
 "\n"
 "; 192.168.3.1 -&gt; pau\n"
-"1.3     IN      PTR     pau.internal.falcot.com.\n"
+"1.3     IN      PTR     pau.internal.falcot.com."
 msgstr ""
 "; Reverse zone for 192.168.0.0/16\n"
 "; admin.falcot.com. =&gt; zone contact: admin@falcot.com\n"
@@ -2236,7 +2236,7 @@ msgid "Excerpt of <filename>/etc/dhcp/dhcpd.conf</filename>"
 msgstr "Estratto da <filename>/etc/dhcp/dhcpd.conf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "#\n"
@@ -2270,7 +2270,7 @@ msgid ""
 "    option broadcast-address 192.168.0.255;\n"
 "    range 192.168.0.128 192.168.0.254;\n"
 "    ddns-domainname \"internal.falcot.com\";\n"
-"}\n"
+"}"
 msgstr ""
 "\n"
 "#\n"
@@ -2327,10 +2327,10 @@ msgid "In the <command>bind</command> case, the <literal>allow-update</literal> 
 msgstr "Nel caso di <command>bind</command>, la direttiva <literal>allow-update</literal> deve essere aggiunta in ciascuna delle zone che il server DHCP deve modificare (quella per il dominio <literal>internal.falcot.com</literal> e la sua zona inversa). Questa direttiva elenca gli indirizzi IP autorizzati ad effettuare questi aggiornamenti. Pertanto dovrebbe contenere i possibili indirizzi del server DHCP (l'indirizzo locale e l'indirizzo pubblico, se opportuno)."
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
+"allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };"
 msgstr ""
 "\n"
 "allow-update { 127.0.0.1 192.168.0.1 212.94.201.10 !any };\n"
@@ -2540,7 +2540,7 @@ msgid ""
 "\n"
 "OS and Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .\n"
 "Nmap done: 1 IP address (1 host up) scanned in 48.20 seconds\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>nmap scouzmir</userinput>\n"

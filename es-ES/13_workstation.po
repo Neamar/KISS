@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-02-07 23:25+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <http://debian.weblate.org/projects/debian-handbook/13_workstation/es-ES/>\n"
@@ -126,7 +126,7 @@ msgid "Note that if the detected video card is not handled by any of the availab
 msgstr "Sepa que si la tarjeta de video detectada no es compatible con ninguno de los controladores disponibles, X.org intentará utilizar los controladores VESA y fbdev. El primero es un controlador genérico que debería funcionar siempre, pero con capacidades limitadas (menos resoluciones disponibles, sin aceleración por hardware para juegos o efectos visuales del escritorio, etc.) mientras que el último funciona sobre el dispositivo «framebuffer» del núcleo. El servidor X escribe sus mensajes al archivo de registro <filename>/var/log/Xorg.0.log</filename>, donde uno buscaría para saber qué controlador está utilizando actualmente. Por ejemplo, el siguiente extracto coincide con la salida de cuando se carga el controlador <literal>intel</literal>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -134,7 +134,7 @@ msgid ""
 "(==) Matched fbdev as autoconfigured driver 2\n"
 "(==) Assigned the driver to the xf86ConfigLayout\n"
 "(II) LoadModule: \"intel\"\n"
-"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
+"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so"
 msgstr ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -1325,10 +1325,10 @@ msgid "Now let's install the required packages:"
 msgstr "Instalemos ahora los paquetes necesarios:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"

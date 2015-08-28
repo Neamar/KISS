@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:19\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-12-10 10:48+0700\n"
 "Last-Translator: Samsul Ma'arif <samsul@samsul.web.id>\n"
 "Language-Team: Indonesian <debian-l10n-indonesian@lists.debian.org>\n"
@@ -380,7 +380,7 @@ msgid "As far as file names are concerned, the migration can be relatively simpl
 msgstr "Sejauh nama berkas diperhatikan, migrasi dapat relatif sederhana. Alat <command>convmv</command> (dalam paket dengan nama yang sama) dibuat secara khusus untuk tujuan ini; ini memungkinkan mengganti nama berkas dari satu encoding ke lainnya. Penggunaan alat ini relatif sederhana, namun kami merekomendasikan melakukannya dalam dua langkah untuk menghindari kejutan. Contoh berikut mengilustrasikan lingkungan UTF-8 berisi nama direktori ter-encode dalam ISO-8859-15, dan menggunakan <command>convmv</command> untuk mengganti namanya."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
@@ -394,7 +394,7 @@ msgid ""
 "mv \"travail/Ic�nes\"     \"travail/Icônes\"\n"
 "Ready!\n"
 "$ </computeroutput><userinput>ls travail/</userinput>\n"
-"<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
+"<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
@@ -601,12 +601,12 @@ msgid "DHCP configuration"
 msgstr "Konfigurasi DHCP"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "auto eth0\n"
 "iface eth0 inet dhcp\n"
-"  hostname arrakis\n"
+"  hostname arrakis"
 msgstr ""
 "\n"
 "auto eth0\n"
@@ -624,7 +624,7 @@ msgid "Static configuration"
 msgstr "Konfigurasi statis"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "auto eth0\n"
@@ -633,7 +633,7 @@ msgid ""
 "  netmask 255.255.255.0\n"
 "  broadcast 192.168.0.255\n"
 "  network 192.168.0.0\n"
-"  gateway 192.168.0.1\n"
+"  gateway 192.168.0.1"
 msgstr ""
 "\n"
 "auto eth0\n"
@@ -810,10 +810,10 @@ msgid "PPP connections over ADSL are, by definition, intermittent. Since they ar
 msgstr "Koneksi PPP melalui ADSL, secara definisi, berselang-seling. Karena mereka biasanya tidak dibayar berdasarkan waktu, beberapa downside condong menjaganya tetap terbuka; satu cara sederhana untuk melakukannya adalah dengan menggunakan proses <command>init</command> untuk mengontrol koneksi. Semua yang diperlukan adalah dengan menambahkan baris berikut pada akhir berkas <filename>/etc/inittab</filename>; kemudian, kapan pun koneksi terputus, <command>init</command> akan menyambungkannya lagi."
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
+"adsl:2345:respawn:/usr/sbin/pppd call dsl-provider"
 msgstr ""
 "\n"
 "adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
@@ -999,11 +999,11 @@ msgid "Surprisingly, the domain name is not managed in the same way, but comes f
 msgstr "Herannya, nama domain tidak diatur dengan cara yang sama, namun datang dari nama lengkap dari mesin, didapatkan melalui resolusi nama. Anda dapat mengubahnya dalam berkas <filename>/etc/hosts</filename>; caranya tulis nama lengkap untuk mesin di sana di awal daftar nama yang sesuai dengan alamat mesin, sebagaimana contoh berikut:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "127.0.0.1     localhost\n"
-"192.168.0.1   arrakis.falcot.com arrakis\n"
+"192.168.0.1   arrakis.falcot.com arrakis"
 msgstr ""
 "\n"
 "127.0.0.1     localhost\n"
@@ -1105,12 +1105,12 @@ msgid "The DNS servers to be used are indicated in the <filename>/etc/resolv.con
 msgstr "Server DNS yang digunakan ditunjukkan dalam <filename>/etc/resolv.conf</filename>, satu per baris, dengan katakunci <literal>nameserver</literal> diikuti sebuah alamat IP, sebagaimana contoh berikut:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "nameserver 212.27.32.176\n"
 "nameserver 212.27.32.177\n"
-"nameserver 8.8.8.8\n"
+"nameserver 8.8.8.8"
 msgstr ""
 "\n"
 "nameserver 212.27.32.176\n"
@@ -2069,7 +2069,7 @@ msgid "It is not always easy to remember what disk is connected to which SATA co
 msgstr "Tidak mudah untuk mengingat cakram apa yang terhubung dengan SATA controller, atau pada posisi ketiga dalam chain SCSI, khususnya sejak penamaan hard drive yang tertancap (termasuk di antaranya kebanyakan disk SATA dan disk eksternal) dapat berubah dari satu boot ke lainnya. Untungnya, <command>udev</command> membuat tambahannya pada <filename>/dev/sd*</filename>, tautan simbolis dengan nama tetap, yang dapat Anda gunakan kemudian jika Anda ingin mengidentifikasi hard drive dengan cara yang tidak membingungkan. Tautan simbolis ini tersimpan di <filename>/dev/disk/by-id</filename>. Pada mesin dengan dua cakram fisik, misalnya, dapat ditemukan sebagai berikut:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
 "total 0\n"
@@ -2096,7 +2096,7 @@ msgid ""
 "lrwxrwxrwx 1 root root  9 23 jul. 08:58 wwn-0x5000c50015c4842f -&gt; ../../sda\n"
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 wwn-0x5000c50015c4842f-part1 -&gt; ../../sda1\n"
 "[...]\n"
-"mirexpress:/dev/disk/by-id# </computeroutput>\n"
+"mirexpress:/dev/disk/by-id# </computeroutput>"
 msgstr ""
 "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
 "total 0\n"
@@ -2166,7 +2166,7 @@ msgid "LILO configuration file"
 msgstr "Berkas konfigurasi LILO"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# The disk on which LILO should be installed.\n"
@@ -2193,7 +2193,7 @@ msgid ""
 "\n"
 "# only for Linux/Windows dual boot\n"
 "other=/dev/sda1\n"
-"  label=Windows\n"
+"  label=Windows"
 msgstr ""
 "\n"
 "# The disk on which LILO should be installed.\n"
@@ -2288,7 +2288,7 @@ msgid "Yaboot configuration file"
 msgstr "Berkas konfigurasi Yaboot"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# bootstrap partition\n"
@@ -2322,7 +2322,7 @@ msgid ""
 "macosx=/dev/sda5\n"
 "\n"
 "# bsd=/dev/sdaX and macos=/dev/sdaX\n"
-"# are also possible\n"
+"# are also possible"
 msgstr ""
 "\n"
 "# bootstrap partition\n"
@@ -2814,7 +2814,7 @@ msgid "Example <filename>/etc/fstab</filename> file:"
 msgstr "Contoh berkas<filename>/etc/fstab</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# /etc/fstab: static file system information.\n"
@@ -2827,7 +2827,7 @@ msgid ""
 "UUID=ee880013-0f63-4251-b5c6-b771f53bd90e none swap sw  0       0\n"
 "/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto 0       0\n"
 "/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
-"arrakis:/shared /shared         nfs     defaults        0       0\n"
+"arrakis:/shared /shared         nfs     defaults        0       0"
 msgstr ""
 "\n"
 "# /etc/fstab: static file system information.\n"
@@ -3038,11 +3038,11 @@ msgid "We assume the <emphasis role=\"pkg\">linux-source-3.2</emphasis> package 
 msgstr "Kita asumsikan paket <emphasis role=\"pkg\">linux-source-3.2</emphasis> telah terinstall. Ini berisi <filename>/usr/src/linux-source-3.2.tar.bz2</filename>, sebuah arsip sumber kernel yang dikompres. Anda harus mengekstrak berkas ini dalam sebuah direktori baru (tidak secara langsung dalam <filename>/usr/src/</filename>, sebab untuk mengompilasi kernel Linux tidak memerlukan hak akses khusus): <filename>~/kernel/</filename> cukup bagus."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-3.2.tar.bz2</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-3.2.tar.bz2</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
@@ -3089,10 +3089,10 @@ msgid "When recompiling a more recent version of the kernel (possibly with an ad
 msgstr "Ketika mengompilasi versi kernel lebih baru (mungkin dengan patch tambahan), konfigurasinya sebaiknya akan sedekat mungkin dengan yang ditawarkan oleh Debian. Dalam hal ini, dan daripada mengonfigurasi segalanya dari scratch, cukup menyalin berkas <filename>/boot/config-<replaceable>versi</replaceable></filename> (versi kernel yang sedang digunakan, yang dapat ditemukan dengan perintah <command>uname -r</command>) ke sebuah berkas <filename>.config</filename> dalam direktori yang berisi sumber kernel."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 ~/kernel/linux-source-3.2/.config</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 ~/kernel/linux-source-3.2/.config</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 ~/kernel/linux-source-3.2/.config</userinput>\n"
@@ -3158,7 +3158,7 @@ msgid "The <replaceable>version</replaceable> is defined by the concatenation of
 msgstr "<replaceable>version</replaceable> didefinisikan dengan rentetan versi hulu (sebagaimana didefinisikan oleh variabel <literal>VERSION</literal>, <literal>PATCHLEVEL</literal>, <literal>SUBLEVEL</literal> dan <literal>EXTRAVERSION</literal> dalam <filename>Makefile</filename>), dari parameter konfigurasi <literal>LOCALVERSION</literal>, dan variabel lingkungan <literal>LOCALVERSION</literal>. Versi paket menggunakan string versi yang sama dengan revisi ditambahkan yang umumnya ditingkatkan (dan diurutkan dalam <filename>.version</filename>), kecuali jika Anda meng-override-nya dengan variabel lingkungan <literal>KDEB_PKGVERSION</literal>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-falcot KDEB_PKGVERSION=1</userinput>\n"
@@ -3169,7 +3169,7 @@ msgid ""
 "../linux-image-3.2.46-falcot_1_amd64.deb\n"
 "../linux-image-3.2.46-falcot-dbg_1_amd64.deb\n"
 "../linux-libc-dev_1_amd64.deb\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-falcot KDEB_PKGVERSION=1</userinput>\n"
@@ -3218,7 +3218,7 @@ msgid "For example, let's look at the <emphasis role=\"pkg\">virtualbox-source</
 msgstr "Misalnya, mari lihat pada paket <emphasis role=\"pkg\">virtualbox-source</emphasis>: setelah instalasi, sebuah sumber modul <filename>.tar.bz2</filename> tersimpan di <filename>/usr/src/</filename>. Kita dapat mengekstraknya secara manual berkas tarball tersebut dan membangun modul, dalam prakteknya kita lebih memilih untuk mengotomatisasi seluruh menggunakan DKMS. Kebanyakan modul menawarkan integrasi DKMS yang diperlukan dalam sebuah paket yang diakhiri dengan akhiran <literal>-dkms</literal>. Dalam kasus kita, menginstall <emphasis role=\"pkg\">virtualbox-dkms</emphasis> hanya itu yang diperlukan untuk mengompilasi modul kernel untuk kernel saat ini yang tersedia bahwa kita memiliki paket <emphasis role=\"pkg\">linux-headers-*</emphasis> cocok dengan kernel yang terinstall. Umpamanya, Jika Anda menggunakan <emphasis role=\"pkg\">linux-image-amd64</emphasis>, Anda juga perlu menginstall <emphasis role=\"pkg\">linux-headers-amd64</emphasis>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>sudo apt-get install virtualbox-dkms</userinput>\n"
@@ -3247,7 +3247,7 @@ msgid ""
 "license:        GPL\n"
 "description:    Oracle VM VirtualBox Support Driver\n"
 "[...]\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>sudo apt-get install virtualbox-dkms</userinput>\n"
@@ -3324,13 +3324,13 @@ msgid "To apply one or more of these installed patches, use the <command>patch</
 msgstr "Untuk menerapkan satu atau lebih patch ini yang terinstall, gunakan perintah <command>patch</command> dalam direktori sumber kemudian mulai kompilasi kernel sebagaimana dijelaskan di atas."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-3.2</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>make clean</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-patches/diffs/grsecurity2/grsecurity-2.9.1-3.2.21-201206221855.patch.gz | patch -p1</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-grsec</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-grsec</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-3.2</userinput>\n"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:19\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-11-18 23:27+0200\n"
 "Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/debian-handbook/05_packaging-system/de/>\n"
@@ -111,11 +111,11 @@ msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for th
 msgstr "<indexterm><primary><command>ar</command></primary></indexterm> Das Paket <command>ar</command> ermöglicht es, mit Dateien, die diesen Namen tragen, umzugehen: <command>ar t <replaceable>archiv</replaceable></command> zeigt eine Liste der in einem solchen Archiv enthaltenen Dateien an, <command>ar x <replaceable>archiv</replaceable></command> entpackt die Dateien aus dem Archiv in das aktuelle Arbeitsverzeichnis, <command>ar d <replaceable>archiv</replaceable> <replaceable>datei</replaceable></command> löscht eine Datei aus dem Archiv usw. Die zugehörige Handbuchseite (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) dokumentiert noch viele andere Funkionen. <command>ar</command> ist ein sehr rudimentäres Werkzeug, das ein Unix-Administrator nur selten benutzen wird. Stattdessen verwenden Administratoren üblicherweise <command>tar</command>, ein höher entwickeltes Programm für das Archiv- und Dateimanagement. Daher ist es einfach, <command>dpkg</command> wieder herzustellen, falls es versehentlich gelöscht wurde. Sie brauchen nur das Debian-Paket herunterzuladen und seinen Inhalt aus dem Archiv <filename>data.tar.gz</filename> in das Wurzelverzeichnis des Systems (<filename>/</filename>) zu entpacken:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
-"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
+"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
@@ -147,7 +147,7 @@ msgid "Have a look at the content of a <filename>.deb</filename> file:"
 msgstr "Werfen Sie einen Blick auf den Inhalt einer <filename>.deb</filename>-Datei:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.16.10_amd64.deb</userinput>\n"
 "<computeroutput>debian-binary\n"
@@ -182,7 +182,7 @@ msgid ""
 "./prerm\n"
 "./postinst\n"
 "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
-"<computeroutput>2.0</computeroutput>\n"
+"<computeroutput>2.0</computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.16.10_amd64.deb</userinput>\n"
 "<computeroutput>debian-binary\n"
@@ -275,7 +275,7 @@ msgid "This file uses a structure similar to email headers (as defined by RFC 28
 msgstr "Diese Datei verwendet eine den E-Mail-Kopfzeilen ähnliche Struktur (wie sie in RFC 2822 definiert ist). So sieht zum Beispiel für <emphasis role=\"pkg\">apt</emphasis>die <filename>control</filename>-Datei folgendermaßen aus:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
@@ -314,7 +314,7 @@ msgid ""
 "Size: 1253524\n"
 "MD5sum: 00a128b2eb2b08f4ecee7fe0d7e3c1c4\n"
 "SHA1: 6a271487ceee6f6d7bc4c47a8a16f49c26e4ca04\n"
-"SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>\n"
+"SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
@@ -1026,10 +1026,10 @@ msgid "These options apply to <command>dpkg</command>, but most of the time the 
 msgstr "Diese Optionen gelten für <command>dpkg</command>, aber meistens wird der Administrator direkt mit den Programmen <command>aptitude</command> oder <command>apt-get</command> arbeiten. Es ist daher erforderlich, die Syntax zu kennen, die zur Bezeichnung der Optionen verwendet wird, die an <command>dpkg</command> weitergeleitet werden (ihre Befehlszeilen-Schnittstellen sind sehr ähnlich)."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
@@ -1040,10 +1040,10 @@ msgid "These options can be stored directly in <command>apt</command>'s configur
 msgstr "Diese Optionen können direkt in der Konfiguration von <command>apt</command> gespeichert werden. Dazu schreibt man einfach die folgende Zeile in die Datei <filename>/etc/apt/apt.conf.d/local</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"DPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
+"DPkg::options { \"--force-confdef\"; \"--force-confold\"; }"
 msgstr ""
 "\n"
 "DPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
@@ -1119,7 +1119,7 @@ msgid "A <filename>.dsc</filename> file"
 msgstr "Eine <filename>.dsc</filename>-Datei"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "-----BEGIN PGP SIGNED MESSAGE-----\n"
@@ -1158,7 +1158,7 @@ msgid ""
 "uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9\n"
 "0EnvMTfMpeQOA68ZqsNpUjomv5r/EGwdCbAWo5iJDsZzXQ1Feh6iSNrjv3yeRzg=\n"
 "=qnbh\n"
-"-----END PGP SIGNATURE-----\n"
+"-----END PGP SIGNATURE-----"
 msgstr ""
 "\n"
 "-----BEGIN PGP SIGNED MESSAGE-----\n"
@@ -1290,8 +1290,8 @@ msgid "If you have a source package, you can use the <command>dpkg-source</comma
 msgstr "Falls Sie ein Quellpaket haben, können Sie den Befehl <command>dpkg-source</command> (aus dem <emphasis>dpkg-dev</emphasis>-Paket) zum Entpacken verwenden:"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
 
 #. Tag: para
@@ -1300,8 +1300,8 @@ msgid "You can also use <command>apt-get</command> to download a source package 
 msgstr "Sie können auch <command>apt-get</command> dazu benutzen, ein Quellpaket herunterzuladen und direkt zu entpacken. Hierzu ist es jedoch erforderlich, dass die entsprechenden <emphasis>deb-src</emphasis>-Zeilen in der Datei <filename>/etc/apt/sources.list</filename> vorhanden sind (für weitere Einzelheiten siehe <xref linkend=\"sect.apt-sources.list\" />). Diese dienen dazu, die „Quellen“ der Quellpakete aufzulisten (das heißt, die Server, die eine Gruppe von Quellpaketen beherbergen)."
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
 
 #. Tag: title
@@ -1365,7 +1365,7 @@ msgid "Installation of a package with <command>dpkg</command>"
 msgstr "Installation eines Pakets mit <command>dpkg</command>"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1373,7 +1373,7 @@ msgid ""
 "Preparing to replace man-db 2.6.1-3 (using man-db_2.6.2-1_amd64.deb) ...\n"
 "Unpacking replacement man-db ...\n"
 "Setting up man-db (2.6.2-1) ...\n"
-"Building database of manual pages ... </computeroutput>\n"
+"Building database of manual pages ... </computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1394,7 +1394,7 @@ msgid "Separate unpacking and configuration"
 msgstr "Getrenntes Entpacken und Konfigurieren"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1403,7 +1403,7 @@ msgid ""
 "Unpacking replacement man-db ...\n"
 "# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
 "<computeroutput>Setting up man-db (2.6.2-1) ...\n"
-"Building database of manual pages ...</computeroutput>\n"
+"Building database of manual pages ...</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1430,12 +1430,12 @@ msgid "Sometimes <command>dpkg</command> will fail to install a package and retu
 msgstr "Manchmal wird <command>dpkg</command> bei der Installation eines Pakets scheitern und eine Fehlermeldung ausgeben; falls der Nutzer die Anweisung gibt, ihn zu ignorieren, wird es nur eine Warnung anzeigen; aus diesem Grund haben wir die verschiedenen <literal>--force-*</literal>-Optionen. Der Befehl <command>dpkg --force-help</command> oder die Dokumentation dieses Befehls zeigt Ihnen eine vollständige Liste dieser Optionen. Der häufigste Fehler, dem Sie früher oder später mit Sicherheit begegnen werden, ist eine Dateikollision. Wenn ein Paket eine Datei enthält, die bereits mit einem anderen Paket installiert worden ist, wird <command>dpkg</command> sich weigern, es zu installieren. In diesem Fall wird dann folgende Meldung erscheinen:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...\n"
 "dpkg: error processing /var/cache/apt/archives/libgdm_3.8.3-2_amd64.deb (--unpack):\n"
-" trying to overwrite '/usr/bin/gdmflexiserver', which is also in package gdm3 3.4.1-9</computeroutput>\n"
+" trying to overwrite '/usr/bin/gdmflexiserver', which is also in package gdm3 3.4.1-9</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...\n"
@@ -1527,7 +1527,7 @@ msgid "Removal and purge of the <emphasis>debian-cd</emphasis> package"
 msgstr "Entfernen und vollständiges Löschen des Pakets <emphasis>debian-cd</emphasis>"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
 "<computeroutput>(Reading database ... 97747 files and directories currently installed.)\n"
@@ -1535,7 +1535,7 @@ msgid ""
 "# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
 "<computeroutput>(Reading database ... 97401 files and directories currently installed.)\n"
 "Removing debian-cd ...\n"
-"Purging configuration files for debian-cd ...</computeroutput>\n"
+"Purging configuration files for debian-cd ...</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
 "<computeroutput>(Reading database ... 97747 files and directories currently installed.)\n"
@@ -1586,7 +1586,7 @@ msgid "Various queries with <command>dpkg</command>"
 msgstr "Verschiedene Anfragen mit <command>dpkg</command>"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
@@ -1701,7 +1701,7 @@ msgid ""
 "  It can be used to encrypt data and to create digital signatures.\n"
 "  It includes an advanced key management facility and is compliant\n"
 "  with the proposed OpenPGP Internet standard as described in RFC 4880.\n"
-"[...]</computeroutput>\n"
+"[...]</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
@@ -1839,7 +1839,7 @@ msgid "Since <command>dpkg</command> is the program for handling Debian packages
 msgstr "Da <command>dpkg</command> das Programm zur Handhabung von Debian-Paketen ist, stellt es auch die Referenzanwendung für die Logik zum Vergleich von Versionsnummern bereit. Daher hat es die Option <literal>--compare-versions</literal>, die von externen Programmen benutzt werden kann (insbesondere von Konfigurationsskripten, die von <command>dpkg</command> selbst ausgeführt werden). Diese Option benötigt drei Parameter: eine Versionsnummer, einen Vergleichsoperator und eine zweite Versionsnummer. Die möglichen Operatoren sind <literal>lt</literal> (kleiner als), <literal>le</literal> (kleiner als oder gleich), <literal>eq</literal> (gleich), <literal>ne</literal> (ungleich), <literal>ge</literal> (größer als oder gleich) und <literal>gt</literal> (größer als). Falls der Vergleich zutrifft, gibt <command>dpkg</command> den Rückgabewert 0 (Erfolg) zurück; anderenfalls gibt es einen von Null verschiedenen Wert zurück (zeigt einen Fehler an)."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 gt 1.1-4</userinput>\n"
@@ -1850,7 +1850,7 @@ msgid ""
 "<computeroutput>1\n"
 "$ </computeroutput><userinput>dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
-"<computeroutput>1</computeroutput>\n"
+"<computeroutput>1</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 gt 1.1-4</userinput>\n"
@@ -1869,12 +1869,12 @@ msgid "Note the unexpected failure of the last comparison: for <command>dpkg</co
 msgstr "Beachten Sie den unerwarteten Fehlschlag des letzten Vergleichs: für <command>dpkg</command> hat <literal>pre</literal>, das normalerweise eine Vorabveröffentlichung bezeichnet, keine besondere Bedeutung, und es behandelt die Buchstaben in derselben Weise wie die Zahlen (a &lt;_b &lt;_c ...), in alphabetischer Reihenfolge. Daher hält es „<literal>0pre3</literal>“ für größer als „<literal>0</literal>“. Wenn wir möchten, dass die Versionsnummer eines Pakets eine Vorabveröffentlichung kennzeichnet, verwenden wir die Tilde „<literal>~</literal>“:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 2.6.0~pre3-1 lt 2.6.0-1</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
-"<computeroutput>0</computeroutput>\n"
+"<computeroutput>0</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 2.6.0~pre3-1 lt 2.6.0-1</userinput>\n"
@@ -1927,7 +1927,7 @@ msgid "<command>dpkg</command>'s multi-arch support allows users to define “fo
 msgstr "Die Unterstützung für multi-arch von <command>dpkg</command> ermöglicht es Anwendern, \"fremde\" Architekturen festzulegen, die auf dem aktullen System installiert werden können. Dazu wird einfach der Befehl <command>dpkg --add-architecture</command>, wie unten gezeigt, aufgerufen. Der korrespondierende Befehl zum Beenden der Unterstützung für die andere Architektur lautet <command>dpkg --remove-architecture</command>, er funktioniert allerdings nur, wenn keine Pakete für diese Architektur mehr in Benutzung sind."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --print-architecture</userinput>\n"
@@ -1952,7 +1952,7 @@ msgid ""
 "<computeroutput>dpkg: error: cannot remove architecture 'armhf' currently in use by the database\n"
 "# </computeroutput><userinput>dpkg --remove-architecture armel</userinput>\n"
 "<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
-"<computeroutput>armhf</computeroutput>\n"
+"<computeroutput>armhf</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --print-architecture</userinput>\n"
@@ -2025,7 +2025,7 @@ msgid "To make multi-arch actually useful and usable, libraries had to be repack
 msgstr "Um Multi-Arch tatsächlich nützlich und anwendbar zu machen, mussten Bibliotheken neu gepackt und in architekturspezifische Verzeichnisse eingestellt werden, damit mehrere Kopien (die für unterschiedliche Architekturen gedacht sind,) nebeneinander installiert werden können. Derart aktualisierte Pakete enthalten die “<literal>Multi-Arch: same</literal>”-Kopfzeilen die dem Paketier-System sagen, dass die verschiedenen Architekturen des Pakets problemlos parallel installiert werden können (und zeigen darüber hinaus an, dass diese Pakete nur Abhängigkeiten innerhalb der gleichen Architektur genügen können). Da Multi-Arch seine Geburtsstunde in Wheezy hatte, sind noch nicht alle Bibliotheken umgestellt. (Es sind jedoch alle Bibliotheken in <emphasis role=\"pkg\">ia32-libs</emphasis> enthalten!)"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "$ <userinput>dpkg -s gcc-4.7-base</userinput>\n"
@@ -2038,7 +2038,7 @@ msgid ""
 "$ <userinput>dpkg -L libgcc1:amd64 |grep .so</userinput>\n"
 "/lib/x86_64-linux-gnu/libgcc_s.so.1\n"
 "$ <userinput>dpkg -S /usr/share/doc/gcc-4.7-base/copyright</userinput>\n"
-"gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright\n"
+"gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright"
 msgstr ""
 "\n"
 "$ <userinput>dpkg -s gcc-4.7-base</userinput>\n"
@@ -2109,13 +2109,13 @@ msgid "If you regularly use the <command>alien</command> program to install RPM 
 msgstr "Falls Sie regelmäßig das Programm <command>alien</command> verwenden, um RPM-Pakete eines Ihrer Lieferanten zu installieren, sollten Sie ihm schreiben und freundlich darauf hinweisen, dass Sie das <filename>.deb</filename>-Format bevorzugen würden. Beachten Sie, dass das Format eines Pakets nicht alles ist: ein mit <command>alien</command> erzeugtes <filename>.deb</filename>-Paket oder eines, das für eine andere Debian-Version erstellt wurde als die von Ihnen verwendete oder gar für eine abgeleitete Distribution wie Ubuntu, würde wahrscheinlich nicht das gleiche Niveau an Qualität und Integration bieten, wie ein Paket, das speziell für Debian <emphasis role=\"distribution\">Wheezy</emphasis> entwickelt worden ist."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot alien --to-deb phpMyAdmin-2.0.5-2.noarch.rpm</userinput> \n"
 "<computeroutput>phpmyadmin_2.0.5-2_all.deb generated\n"
 "$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
-"<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
+"<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot alien --to-deb phpMyAdmin-2.0.5-2.noarch.rpm</userinput> \n"

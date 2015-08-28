@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-10-08 14:36+0200\n"
 "Last-Translator: Samsul Ma'arif <samsul@samsul.web.id>\n"
 "Language-Team: Indonesian <debian-l10n-indonesian@lists.debian.org>\n"
@@ -267,7 +267,7 @@ msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian Stabl
 msgstr "Berkas <filename>/etc/apt/sources.list</filename> untuk pengguna Debian Stable"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# Security updates\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
@@ -285,7 +285,7 @@ msgid ""
 "\n"
 "# Stable backports\n"
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
-"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free"
 msgstr ""
 "# Security updates\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
@@ -441,8 +441,8 @@ msgid "Anyone can use this repository to test those updates before their officia
 msgstr "Siapapun dapat menggunakan repositori ini untuk mengetest pembaharuan tersebut sebelum publikasi resminya. Ekstraksi berikut menggunakan alias <literal>wheezy-proposed-updates</literal> yang keduanya eksplisit dan lebih konsisten karena <literal>squeeze-proposed-updates</literal> juga ada (untuk pembaharuan <emphasis role=\"distribution\">Oldstable</emphasis>):"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free"
 msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
 
 #. Tag: title
@@ -486,8 +486,8 @@ msgid "<primary><literal>backports.debian.org</literal></primary>"
 msgstr "<primary><literal>backports.debian.org</literal></primary>"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free"
 msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
 
 #. Tag: para
@@ -501,11 +501,11 @@ msgid "Even though this repository provides newer versions of packages, APT will
 msgstr "Meskipun repositori ini menyediakan versi terbaru paket, APT tidak akan menginstallnya kecuali Anda memberikan instruksi secara eksplisit (atau Anda telah melakukannya dengan versi sebelumnya backport yang diberikan):"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
-"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>"
 msgstr ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
@@ -527,7 +527,7 @@ msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian <emph
 msgstr "Berkas <filename>/etc/apt/sources.list</filename> untuk pengguna Debian <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Unstable\n"
@@ -546,7 +546,7 @@ msgid ""
 "deb http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb http://security.debian.org/ testing/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
-"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free"
 msgstr ""
 "\n"
 "# Unstable\n"
@@ -603,8 +603,8 @@ msgid "<emphasis role=\"distribution\">Experimental</emphasis> is generally used
 msgstr "<emphasis role=\"distribution\">Experimental</emphasis> umumnya digunakan oleh pengguna yang tidak peduli menghancurkan sistemnya dan kemudian memerbaikinya. Distribusi ini memberikan kemungkinan untuk mengimpor paket yang diinginkan pengguna untuk dicoba atau gunakan sebagaimana mereka perlukan. Inilah tentunya bagaimana pendekatan oleh Debian, karena mengambahkannya ke berkas <filename>sources.list</filename> APT tidak membawa ke penggunaan sistematis paketnya. Baris yang ditambahkan ialah:"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://ftp.debian.org/debian experimental main contrib non-free"
 msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
 
 #. Tag: title
@@ -723,12 +723,12 @@ msgid "<emphasis role=\"pkg\">approx</emphasis>, on the other hand, acts like an
 msgstr "<emphasis role=\"pkg\">approx</emphasis>, di lain pihak, berlaku serperti server HTTP yang “me-mirror” beberapa repositori remote pada level tertinggi URL. Pemetaan antara level-tertinggi direktori tersebut dan URL remote repositori di simpan di <filename>/etc/approx/approx.conf</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# &lt;name&gt; &lt;repository-base-url&gt;\n"
 "debian   http://ftp.debian.org/debian\n"
-"security http://security.debian.org\n"
+"security http://security.debian.org"
 msgstr ""
 "\n"
 "# &lt;name&gt; &lt;repository-base-url&gt;\n"
@@ -874,8 +874,8 @@ msgid "First, retrieve the list of packages installed on the computer which will
 msgstr "Pertama, ambil daftar paket terinstall pada komputer yang akan tersaji sebagai “model” untuk disalin."
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
 
 #. Tag: para
@@ -884,7 +884,7 @@ msgid "The <filename>pkg-list</filename> file then contains the list of installe
 msgstr "Berkas <filename>pkg-list</filename> kemudian berisi daftar paket terinstall. Selanjutnya, kirim berkas <filename>pkg-list</filename> ke komputer yang ingin Anda perbaharui dan gunakan perintah berikut:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "## Update dpkg's database of known packages\n"
 "# <userinput>avail=`mktemp`</userinput>\n"
@@ -894,7 +894,7 @@ msgid ""
 "## Update dpkg's selections\n"
 "# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
 "## Ask apt-get to install the selected packages\n"
-"# <userinput>apt-get dselect-upgrade</userinput>\n"
+"# <userinput>apt-get dselect-upgrade</userinput>"
 msgstr ""
 "## Update dpkg's database of known packages\n"
 "# <userinput>avail=`mktemp`</userinput>\n"
@@ -927,12 +927,12 @@ msgid "The next example shows two different ways to install <replaceable>package
 msgstr "Contoh berikutnya menunjukkan dua perbedaan cara untuk menginstall <replaceable>paket1</replaceable> dan menghapus <replaceable>paket2</replaceable>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
-"[...]\n"
+"[...]"
 msgstr ""
 "# <userinput>apt-get install <replaceable>paket1</replaceable> <replaceable>paket2-</replaceable></userinput>\n"
 "[...]\n"
@@ -960,8 +960,8 @@ msgid "The system can sometimes be damaged after the removal or modification of 
 msgstr "Terkadang sistem dapat menjadi rusak setelah penghapusan atau modifikasi berkas dalam sebuah paket. Cara termudah untuk mengembalikan berkas ini ialah dengan menginstall ulang paket terdampak. Sayangnya, sistem pemaketan menemukan bahwa sebelumnya telah terinstall dan menolak dengan sopan untuk menginstallnya; untuk menghindari hal ini, gunakan pilihan <literal>--reinstall</literal> untuk perintah <command>apt-get</command>. Perintah berikut menginstall ulang <emphasis role=\"pkg\">postfix</emphasis> merskipun paket tersebut telah ada."
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>"
 msgstr "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
 
 #. Tag: para
@@ -990,8 +990,8 @@ msgid "Installation of the <emphasis role=\"distribution\">unstable</emphasis> v
 msgstr "Instalasi versi <emphasis role=\"distribution\">unstable</emphasis> dari <emphasis role=\"pkg\">spamassassin</emphasis>"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>"
 msgstr "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
 
 #. Tag: title
@@ -1225,11 +1225,11 @@ msgid "If you listed <emphasis role=\"distribution\">Experimental</emphasis> in 
 msgstr "Jika Anda mendaftarkan <emphasis role=\"distribution\">Experimental</emphasis> dalam berkas <filename>sources.list</filename> Anda, paket yang sesuai hampir tidak akan pernah diinstall karena prioritas bawaan mereka adalah 1. Ini tentu saja sebuah kasus spesifik, didesain untuk menjaga pengguna dari kesalahan menginstall paket <emphasis role=\"distribution\">Experimental</emphasis>. Paket hanya dapat diinstall dengan mengetikkan <command>aptitude install <replaceable>package</replaceable>/experimental</command> — pengguna yang mengetikkan perintah ini hanya dapat berhati-hati terhadap resiko yang mereka ambil. Ini masih memungkinkan (melalui <emphasis>tidak</emphasis> direkomendasikan) untuk memerlakukan paket <emphasis role=\"distribution\">Experimental</emphasis> seperti distribusi lain tersebut dengan memberikannya prioritas 500. Hal ini dapat dilakukan dengan entri spesidik di <filename>/etc/apt/preferences</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 "Package: *\n"
 "Pin: release a=experimental\n"
@@ -1241,7 +1241,7 @@ msgid "Let's suppose that you only want to use packages from the stable version 
 msgstr "Mari anggap bahwa Anda hanya ingin menggunakan paket dari versi stable Debian. Yang disediakan dalam versi lain tidak boleh diinstall kecuali jika diminta secara eksplisit. Anda dapat menulis entri berikut dalam berkas <filename>/etc/apt/preferences</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=stable\n"
@@ -1249,7 +1249,7 @@ msgid ""
 "\n"
 "Package: *\n"
 "Pin: release o=Debian\n"
-"Pin-Priority: -10\n"
+"Pin-Priority: -10"
 msgstr ""
 "Package: *\n"
 "Pin: release a=stable\n"
@@ -1270,11 +1270,11 @@ msgid "Let's now assume that you have a server with several local programs depen
 msgstr "Sekarang mari asumsikan bahwa Anda memiliki sebuah server dengan beberapa program lokal bergantung pada Perl versi 5.14 dan Anda ingin memastikan bahwa pembaharuan tidak akan menginstall versi lain darinya. Anda dapat menggunakan entri ini:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
-"Pin-Priority: 1001\n"
+"Pin-Priority: 1001"
 msgstr ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
@@ -1311,13 +1311,13 @@ msgid "There is no official syntax to put comments in the <filename>/etc/apt/pre
 msgstr "Tidak ada sintaks resmi untuk menaruh komentar di berkas <filename>/etc/apt/preferences</filename>, namun beberapa penjelasan tekstual dapat disediakan dengan meletakkan satu atau beberapa field “<literal>Explanation</literal>” pada permulaan setiap entri:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Explanation: The package xserver-xorg-video-intel provided\n"
 "Explanation: in experimental can be used safely\n"
 "Package: xserver-xorg-video-intel\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 "Explanation: The package xserver-xorg-video-intel provided\n"
 "Explanation: in experimental can be used safely\n"
@@ -1376,11 +1376,11 @@ msgid "Let's take the example of another package whose version 2 has been insta
 msgstr "Mari ambil contoh paket lain yang versi 2 telah terinstall dari <emphasis role=\"distribution\">Testing</emphasis>. Versi 1 tersedia di <emphasis role=\"distribution\">Stable</emphasis> dan versi 3 di <emphasis role=\"distribution\">Unstable</emphasis>. Versi 1 (prioritas 990 - kurang dari 1000) diabaikan karena kurang dari versi yang terinstall. Ini hanya meninggalkan versi 2 dan 3, keduanya prioritas 500. Berhadapan dengan alternatif ini, APT memilih versi terbaru, salah satu dari <emphasis role=\"distribution\">Unstable</emphasis>. Jika Anda tidak ingin sebuah paket terinstall dari <emphasis role=\"distribution\">Testing</emphasis> untuk migrasi ke <emphasis role=\"distribution\">Unstable</emphasis>, Anda harus menerapkan sebuah prioritas kurang dari 500 (490 misalnya) ke paket yang datang dari <emphasis role=\"distribution\">Unstable</emphasis>. Anda dapat memodifikasi <filename>/etc/apt/preferences</filename> untuk efek ini:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=unstable\n"
-"Pin-Priority: 490\n"
+"Pin-Priority: 490"
 msgstr ""
 "Package: *\n"
 "Pin: release a=unstable\n"
@@ -1710,8 +1710,8 @@ msgid "The advanced features of <command>aptitude</command> are also available o
 msgstr "Fitur lanjutan <command>aptitude</command> juga tersedia pada baris-perintah. Anda dapat menggunakan pola pencarian paket yang sama sebagaimana pada versi interaktif. Misalnya, jika Anda ingin membersihkan daftar paket “terinstall manual”, dan jika anda mengetahui bahwa tidak ada program lokal yang memerlukan pustaka tertentu atau modul Perl, Anda dapat menandai paket yang sesai sebagai otomatis sengan perintah tunggal:"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>"
 msgstr "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
 
 #. Tag: para
@@ -1855,7 +1855,7 @@ msgid "The trusted keys are managed with the <command>apt-key</command> command 
 msgstr "Kunci terpercaya dikelola dengan perintah <command>apt-key</command> yang ditemukan dalam paket <emphasis role=\"pkg\">apt</emphasis>. Program ini memelihata sebuah keyring kunci publik GnuPG, yang digunakan untuk memverifikasi tanda-tangan dalam berkas <filename>Release.gpg</filename> tersedia di mirror. Dapat pula digunakan untuk menambahkan kunci baru secara otomatis (ketika mirror tak resmi diperlukan). Akan tetapi umumnya, hanya kunci resmi Debian yang diperlukan. Kunci ini secara otomatis dijaga ke-up-to-date-annya oleh paket <emphasis role=\"pkg\">debian-archive-keyring</emphasis> (yang menaruh keyring yang sesuai di <filename>/etc/apt/trusted.gpg.d</filename>). Akan tetapi, instalasi pertama pada paket tertentu ini memerlukan perhatian: bahkan jika paket ditandatangani seperti lainnya, tanda tangan tidak dapat terverifikasi secara eksternal. Karena itu administrator yang berhati-hati harus memeriksa sidik jari kunci yang diimpor sebelum memercayainya untuk menginstall paket baru:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# <userinput>apt-key fingerprint</userinput>\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
@@ -1880,7 +1880,7 @@ msgid ""
 "--------------------------------------------------------\n"
 "pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
 "      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
-"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;"
 msgstr ""
 "# <userinput>apt-key fingerprint</userinput>\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
@@ -1993,8 +1993,8 @@ msgid "Another good habit which makes the upgrade easier (and shorter) is to tid
 msgstr "Kebiasaan baik lainnya yang membuat upgrade lebih mudah (dan ringkas) adalah membereskan paket terinstall dan tersisa hanya yang diperlukan saja. Peralatan yang membantu untuk melakukan hal tersebua termasuk <command>aptitude</command>, <command>deborphan</command> dan <command>debfoster</command> (lihat <xref linkend=\"sect.automatic-tracking\" />). Misalnya, Anda dapat menggunakan perintah berikut, kemudian menggunakan mode interaktif <command>aptitude</command> untuk pemeriksaan ulang dan jadwal penghapusan yang rapih:"
 
 #. Tag: screen
-#, no-c-format
-msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>"
 msgstr "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
 
 #. Tag: para
@@ -2238,10 +2238,10 @@ msgid "Non-interactive upgrade script"
 msgstr "Skrip pembaharuan non-interaktif"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "export DEBIAN_FRONTEND=noninteractive\n"
-"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
+"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade"
 msgstr ""
 "export DEBIAN_FRONTEND=noninteractive\n"
 "yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
@@ -2307,7 +2307,7 @@ msgid "For more complex searches, a more powerful tool such as <command>aptitude
 msgstr "Untuk pencarian yang lebih kompleks, diperlukan peralatan yang lebih powerful semacam <command>aptitude</command>. <command>aptitude</command> mengizinkan Anda untuk mencari berdasarkan ekspresi logis pada field meta-data paket. Misalnya, perintah berikut mencari paket yang namanya berisi <literal>kino</literal>, yang deskripsinya berisi <literal>video</literal> dan nama maintainernya berisi <literal>paul</literal>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "p   kino  - Non-linear editor for Digital Video data\n"
@@ -2341,7 +2341,7 @@ msgid ""
 "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-"      works-with::video, x11::application\n"
+"      works-with::video, x11::application"
 msgstr ""
 "$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "p   kino  - Non-linear editor for Digital Video data\n"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-08-06 09:46+0200\n"
 "Last-Translator: Samsul Ma'arif <samsul@samsul.web.id>\n"
 "Language-Team: Indonesian <debian-l10n-indonesian@lists.debian.org>\n"
@@ -111,11 +111,11 @@ msgid "<indexterm><primary><command>ar</command></primary></indexterm> As for th
 msgstr "<indexterm><primary><command>ar</command></primary></indexterm> Sebagaimana untuk program <command>ar</command>, menangani berkas dengan nama yang sama: <command>ar t <replaceable>archive</replaceable></command> menampilkan daftar berkas yang berada pada sebuah arsip, <command>ar x <replaceable>archive</replaceable></command> mengekstrak berkas dari arsip ke lokasi direktori saat ini, <command>ar d <replaceable>archive</replaceable> <replaceable>file</replaceable></command> menghapus berkas dari arsip, dll. Man page-nya (<citerefentry><refentrytitle>ar</refentrytitle><manvolnum>1</manvolnum></citerefentry>) mendokumentasikan seluruh fitur-fiturnya. <command>ar</command> ialah alat yang belum sempurna yang digunakan oleh administrator Unix hanya pada saat tertentu, namun admin sering menggunakan <command>tar</command>, program arsip dan pengelola berkas yang lebih evolutif. Itulah alasannya mudah untuk mengembalikan <command>dpkg</command> saat terjadi kesalahan penghapusan. Anda hanya perlu mengunduh paket Debian dan mengekstrak kontennya dari arsip <filename>data.tar.gz</filename> ke sistem root (<filename>/</filename>):"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
-"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>\n"
+"<computeroutput># </computeroutput><userinput>tar -C / -p -xzf data.tar.gz</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>ar x dpkg_1.16.10_amd64.deb</userinput>\n"
@@ -147,7 +147,7 @@ msgid "Have a look at the content of a <filename>.deb</filename> file:"
 msgstr "Lihatlah isi berkas <filename>.deb</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.16.10_amd64.deb</userinput>\n"
 "<computeroutput>debian-binary\n"
@@ -182,7 +182,7 @@ msgid ""
 "./prerm\n"
 "./postinst\n"
 "$ </computeroutput><userinput>cat debian-binary</userinput>\n"
-"<computeroutput>2.0</computeroutput>\n"
+"<computeroutput>2.0</computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>ar t dpkg_1.16.10_amd64.deb</userinput>\n"
 "<computeroutput>debian-binary\n"
@@ -275,7 +275,7 @@ msgid "This file uses a structure similar to email headers (as defined by RFC 28
 msgstr "Berkas ini menggunakan struktur yang mirip dengan header email (sebagaimana didefinisikan oleh RFC 2822). Contohnya, untuk berkas <emphasis role=\"pkg\">apt</emphasis>, the <filename>control</filename> nampak sebagai berikut:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
@@ -314,7 +314,7 @@ msgid ""
 "Size: 1253524\n"
 "MD5sum: 00a128b2eb2b08f4ecee7fe0d7e3c1c4\n"
 "SHA1: 6a271487ceee6f6d7bc4c47a8a16f49c26e4ca04\n"
-"SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>\n"
+"SHA256: 3bba3b15fb5ace96df052935d7069e0d21ff1f5b496510ec9d2dc939eefad104</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>apt-cache show apt</userinput>\n"
@@ -1026,10 +1026,10 @@ msgid "These options apply to <command>dpkg</command>, but most of the time the 
 msgstr "Pilihan ini berlaku untuk <command>dpkg</command>, namun sering kali administrator langsung bekerja dengan program <command>aptitude</command> atau <command>apt-get</command>. Nah, penting untuk mengetahui sintaks yang digunakan untuk mengindikasikan pilihan yang dilalui ke perintah <command>dpkg</command> (antarmuka baris perintahnya sangat mirip)."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get -o DPkg::options::=\"--force-confdef\" -o DPkg::options::=\"--force-confold\" dist-upgrade</userinput>\n"
@@ -1040,10 +1040,10 @@ msgid "These options can be stored directly in <command>apt</command>'s configur
 msgstr "Pilihan ini dapat disimpan secara langsung di konfigurasi <command>apt</command>. Untuk melakukannya, tulis baris berikut di berkas <filename>/etc/apt/apt.conf.d/local</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"DPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
+"DPkg::options { \"--force-confdef\"; \"--force-confold\"; }"
 msgstr ""
 "\n"
 "DPkg::options { \"--force-confdef\"; \"--force-confold\"; }\n"
@@ -1119,7 +1119,7 @@ msgid "A <filename>.dsc</filename> file"
 msgstr "Berkas <filename>.dsc</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "-----BEGIN PGP SIGNED MESSAGE-----\n"
@@ -1158,7 +1158,7 @@ msgid ""
 "uV48hsT8cj0paqVXl5+P9Ww8XIE3clxNpE/45/tvKvkqGOeysc6OPAqsIw6HYFY9\n"
 "0EnvMTfMpeQOA68ZqsNpUjomv5r/EGwdCbAWo5iJDsZzXQ1Feh6iSNrjv3yeRzg=\n"
 "=qnbh\n"
-"-----END PGP SIGNATURE-----\n"
+"-----END PGP SIGNATURE-----"
 msgstr ""
 "\n"
 "-----BEGIN PGP SIGNED MESSAGE-----\n"
@@ -1290,8 +1290,8 @@ msgid "If you have a source package, you can use the <command>dpkg-source</comma
 msgstr "Jika Anda memiliki sebuah paket sumber, Anda dapat menggunakan perintah <command>dpkg-source</command> (dari paket <emphasis>dpkg-dev</emphasis>) untuk mendekompressnya:"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>dpkg-source -x package_0.7-1.dsc</userinput>\n"
 
 #. Tag: para
@@ -1300,8 +1300,8 @@ msgid "You can also use <command>apt-get</command> to download a source package 
 msgstr "Anda juga dapat menggunakan <command>apt-get</command> untuk mengunduh paket sumber dan membongkarnya saat itu juga. Hal ini memerlukan baris <emphasis>deb-src</emphasis> yang sesuai di berkas <filename>/etc/apt/sources.list</filename>, akan tetapi (untuk detail lebih jauh, lihat <xref linkend=\"sect.apt-sources.list\" />). Hal ini diperlukan untuk mendaftar “sumber” paket sumber (maksudnya server di mana kelompok paket sumber di simpan)."
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>apt-get source <replaceable>package</replaceable></userinput>\n"
 
 #. Tag: title
@@ -1365,7 +1365,7 @@ msgid "Installation of a package with <command>dpkg</command>"
 msgstr "Instalasi sebuah paket dengan <command>dpkg</command>"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1373,7 +1373,7 @@ msgid ""
 "Preparing to replace man-db 2.6.1-3 (using man-db_2.6.2-1_amd64.deb) ...\n"
 "Unpacking replacement man-db ...\n"
 "Setting up man-db (2.6.2-1) ...\n"
-"Building database of manual pages ... </computeroutput>\n"
+"Building database of manual pages ... </computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg -i man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1394,7 +1394,7 @@ msgid "Separate unpacking and configuration"
 msgstr "Memisahkan unpacking dan konfigurasi"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1403,7 +1403,7 @@ msgid ""
 "Unpacking replacement man-db ...\n"
 "# </computeroutput><userinput> dpkg --configure man-db</userinput>\n"
 "<computeroutput>Setting up man-db (2.6.2-1) ...\n"
-"Building database of manual pages ...</computeroutput>\n"
+"Building database of manual pages ...</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --unpack man-db_2.6.2-1_amd64.deb</userinput>\n"
@@ -1430,12 +1430,12 @@ msgid "Sometimes <command>dpkg</command> will fail to install a package and retu
 msgstr "Terkadang <command>dpkg</command> gagal menginstall paket dan menghasilkan error; jika pengguna memerintahkan untuk mengabaikannya, ini hanya akan menghasilkan peringatan; untuk alasan inilah kita memiliki pilihan <literal>--force-*</literal> yang berbeda. Perintah <command>dpkg --force-help</command>, atau dokumentasi perintah ini, akan memberikan daftar lengkap pilihan tersebut. Error yang sering, yang akan Anda temukan cepat atau lambat, ialah tabrakan berkas. Ketika sebuah paket berisi berkas yang telah terinstall oleh paket lain, <command>dpkg</command> akan menolak menginstallnya. Persan berikut kemudian akan nampak:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...\n"
 "dpkg: error processing /var/cache/apt/archives/libgdm_3.8.3-2_amd64.deb (--unpack):\n"
-" trying to overwrite '/usr/bin/gdmflexiserver', which is also in package gdm3 3.4.1-9</computeroutput>\n"
+" trying to overwrite '/usr/bin/gdmflexiserver', which is also in package gdm3 3.4.1-9</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>Unpacking libgdm (from .../libgdm_3.8.3-2_amd64.deb) ...\n"
@@ -1527,7 +1527,7 @@ msgid "Removal and purge of the <emphasis>debian-cd</emphasis> package"
 msgstr "Menghapus dan purge paket <emphasis>debian-cd</emphasis>"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
 "<computeroutput>(Reading database ... 97747 files and directories currently installed.)\n"
@@ -1535,7 +1535,7 @@ msgid ""
 "# </computeroutput><userinput>dpkg -P debian-cd</userinput>\n"
 "<computeroutput>(Reading database ... 97401 files and directories currently installed.)\n"
 "Removing debian-cd ...\n"
-"Purging configuration files for debian-cd ...</computeroutput>\n"
+"Purging configuration files for debian-cd ...</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>dpkg -r debian-cd</userinput>\n"
 "<computeroutput>(Reading database ... 97747 files and directories currently installed.)\n"
@@ -1586,7 +1586,7 @@ msgid "Various queries with <command>dpkg</command>"
 msgstr "Berbagai queri dengan <command>dpkg</command>"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
@@ -1701,7 +1701,7 @@ msgid ""
 "  It can be used to encrypt data and to create digital signatures.\n"
 "  It includes an advanced key management facility and is compliant\n"
 "  with the proposed OpenPGP Internet standard as described in RFC 4880.\n"
-"[...]</computeroutput>\n"
+"[...]</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg -L base-passwd</userinput>\n"
@@ -1839,7 +1839,7 @@ msgid "Since <command>dpkg</command> is the program for handling Debian packages
 msgstr "Karena <command>dpkg</command> merupakan program untuk menangani paket Debian, program ini juga menyediakan referensi implementasi logika perbandingan nomor versi. Oleh karena itu, program ini memiliki pilihan <literal>--compare-versions</literal>, dapat digunakan oleh program eksternal (khususnya skrip konfigurasi yang dieksekusi oleh <command>dpkg</command> itu sendiri). Pilihan ini memerlukan tiga parameter: nomor versi, operator perbandingan, dan nomor versi kedua. Perbedaan operasi yang mungkin ialah <literal>lt</literal> (kurang dari), <literal>le</literal> (kurang dari atau sama dengan), <literal>eq</literal> (sama dengan), <literal>ne</literal> (tidak sama dengan), <literal>ge</literal> (lebih besar atau sama dengan), dan <literal>gt</literal> (lebih besar dari). Jika perbandingan benar, <command>dpkg</command> menghasilkan 0 (sukses); jika tidak, akan menghasilkan nilai non-zero (menandakan kegagalan)."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 gt 1.1-4</userinput>\n"
@@ -1850,7 +1850,7 @@ msgid ""
 "<computeroutput>1\n"
 "$ </computeroutput><userinput>dpkg --compare-versions 2.6.0pre3-1 lt 2.6.0-1</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
-"<computeroutput>1</computeroutput>\n"
+"<computeroutput>1</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 1.2-3 gt 1.1-4</userinput>\n"
@@ -1869,12 +1869,12 @@ msgid "Note the unexpected failure of the last comparison: for <command>dpkg</co
 msgstr "Catat kesalahan yang tidak diinginkan pada perbandingan terakhir: untuk <command>dpkg</command>, <literal>pre</literal>, biasanya menandakan pre-release, tidak memiliki makna khusus, program ini membandingkan karakter alfabetis dengan cara yang sama dengan angka (a &lt; b &lt; c ...), dalam urutan alfabet. Karenanya “<literal>0pre3</literal>” lebih besar dari “<literal>0</literal>”. Ketika kita ingin nomor versi paket menunjukkan bahwa pre-release, kita menggunakan karakter tilde, “<literal>~</literal>”:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 2.6.0~pre3-1 lt 2.6.0-1</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>echo $?</userinput>\n"
-"<computeroutput>0</computeroutput>\n"
+"<computeroutput>0</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg --compare-versions 2.6.0~pre3-1 lt 2.6.0-1</userinput>\n"
@@ -1927,7 +1927,7 @@ msgid "<command>dpkg</command>'s multi-arch support allows users to define “fo
 msgstr "Dukungan multi-arch <command>dpkg</command> mengizinkan pengguna untuk menentukan “arsitektur asing” yang dapat diinstall pada sistem terkini. Hal ini dapat dengan mudah dilakukan dengan <command>dpkg --add-architecture</command> seperti contoh di bawah ini. Ada <command>dpkg --remove-architecture</command> yang sesuai untuk menghilangkah dukungan ke arsitektur asing, namun hanya dapat digunakan ketika tidak ada paket dengan arsitektur ini."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --print-architecture</userinput>\n"
@@ -1952,7 +1952,7 @@ msgid ""
 "<computeroutput>dpkg: error: cannot remove architecture 'armhf' currently in use by the database\n"
 "# </computeroutput><userinput>dpkg --remove-architecture armel</userinput>\n"
 "<computeroutput># </computeroutput><userinput>dpkg --print-foreign-architectures</userinput>\n"
-"<computeroutput>armhf</computeroutput>\n"
+"<computeroutput>armhf</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>dpkg --print-architecture</userinput>\n"
@@ -2025,7 +2025,7 @@ msgid "To make multi-arch actually useful and usable, libraries had to be repack
 msgstr "Untuk membuat multi-arch benar-benar dapat berguna dan bermanfaat, pustaka harus dipaketkan ulang dan dipindahkan ke arsitektur-spesifik agar beberapa salinan (menargetkan arsitektur yang berbeda) dapat diinstall bersamaan. Seperti pembaruan paket berisi field header “<literal>Multi-Arch: same</literal>” untuk memberitahu sistem pemaketan bahwa berbagai arsitektur paket dapat diinstall bersamaan (dan paket tersebut hanya dapat memenuhi ketergantungan paket dengan arsitektur yang sama). Karena multi-arch memulai debutnya di Debian Wheezy, belum semua pustaka telah dikonversikan (namun semua pustaka yang embedded di <emphasis role=\"pkg\">ia32-libs</emphasis> bisa!"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "$ <userinput>dpkg -s gcc-4.7-base</userinput>\n"
@@ -2038,7 +2038,7 @@ msgid ""
 "$ <userinput>dpkg -L libgcc1:amd64 |grep .so</userinput>\n"
 "/lib/x86_64-linux-gnu/libgcc_s.so.1\n"
 "$ <userinput>dpkg -S /usr/share/doc/gcc-4.7-base/copyright</userinput>\n"
-"gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright\n"
+"gcc-4.7-base:armhf, gcc-4.7-base:amd64: /usr/share/doc/gcc-4.7-base/copyright"
 msgstr ""
 "\n"
 "$ <userinput>dpkg -s gcc-4.7-base</userinput>\n"
@@ -2109,13 +2109,13 @@ msgid "If you regularly use the <command>alien</command> program to install RPM 
 msgstr "Jika Anda sering menggunakan program <command>alien</command> untuk menginstall paket RPM dari salah satu provider anda, jangan ragu untuk menulis buat mereka dan ekspresikan preferensi Anda secara damai untuk format <filename>.deb</filename>. Catat bahwa format paket bukanlah segalanya: sebuah paket  <filename>.deb</filename> dibangun dengan <command>alien</command> atau yang dipersiapkan untuk versi Debiannya berbeda dengan yang Anda gunakan, atau bahkan untuk distribusi turunan seperti Ubuntu, mungkin tidak menawarkan level kualitas dan integrasi sebagai paket yang dikembangkan secara spesifik untuk Debian <emphasis role=\"distribution\">Wheezy</emphasis>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot alien --to-deb phpMyAdmin-2.0.5-2.noarch.rpm</userinput> \n"
 "<computeroutput>phpmyadmin_2.0.5-2_all.deb generated\n"
 "$ </computeroutput><userinput>ls -s phpmyadmin_2.0.5-2_all.deb</userinput>\n"
-"<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>\n"
+"<computeroutput>  64 phpmyadmin_2.0.5-2_all.deb</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>fakeroot alien --to-deb phpMyAdmin-2.0.5-2.noarch.rpm</userinput> \n"

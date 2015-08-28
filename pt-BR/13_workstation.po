@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2015-06-11 05:22+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/debian-handbook/13_workstation/pt_BR/>\n"
@@ -126,7 +126,7 @@ msgid "Note that if the detected video card is not handled by any of the availab
 msgstr "Note que se a placa de vídeo detectada não for suportada por nenhum dos drivers disponíveis, o X.org tenta usar os drivers VESA e fbdev. O primeiro é um driver genérico que deve funcionar com qualquer coisa, mas com capacidades limitadas (poucas resoluções disponíveis, sem aceleração de hardware para jogos e efeitos visuais para desktop, e assim por diante) enquanto o último funciona no topo do dispositivo framebuffer do núcleo. O servidor X escreve suas mensagens no arquivo de log <filename>/var/log/Xorg.0.log</filename>, que é aonde uma pessoa deveria olhar para saber qual driver está sendo usado no momento. Por exemplo, o seguinte trecho coincide com a saída de um driver <literal>intel</literal> quando este é carregado:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -134,7 +134,7 @@ msgid ""
 "(==) Matched fbdev as autoconfigured driver 2\n"
 "(==) Assigned the driver to the xf86ConfigLayout\n"
 "(II) LoadModule: \"intel\"\n"
-"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
+"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so"
 msgstr ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -1325,10 +1325,10 @@ msgid "Now let's install the required packages:"
 msgstr "Agora vamos instalar os pacotes necessários:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"

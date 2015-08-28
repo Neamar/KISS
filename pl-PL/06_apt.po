@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2015-04-19 19:25+0100\n"
 "Last-Translator: Mateusz Kacprzak <mateusz.kacprzak@yandex.ru>\n"
 "Language-Team: Polish <http://debian.weblate.org/projects/debian-handbook/06_apt/pl/>\n"
@@ -318,7 +318,7 @@ msgstr "plik <filename>/etc/apt/sources.list</filename> dla użytkowników Stabi
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# Security updates\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
@@ -336,7 +336,7 @@ msgid ""
 "\n"
 "# Stable backports\n"
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
-"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free"
 msgstr ""
 "# Aktualizacje bezpieczeństwa\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
@@ -522,8 +522,8 @@ msgstr "Każdy może używać tego repozytorium do testowania tych aktualizacji 
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free"
 msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
 
 # mateunho
@@ -576,8 +576,8 @@ msgstr "<primary><literal>backports.debian.org</literal></primary>"
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free"
 msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
 
 # mateunho
@@ -594,11 +594,11 @@ msgstr "Mimo, że to repozytorium dostarcza nowsze wersje pakietów, APT nie zai
 
 # mateunho
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
-"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>"
 msgstr ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
@@ -624,7 +624,7 @@ msgstr "plik <filename>/etc/apt/sources.list</filename> dla użytkowników <emph
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Unstable\n"
@@ -643,7 +643,7 @@ msgid ""
 "deb http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb http://security.debian.org/ testing/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
-"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free"
 msgstr ""
 "\n"
 "# Niestabilny\n"
@@ -709,8 +709,8 @@ msgstr "<emphasis role=\"distribution\">Eksperymentalny</emphasis> jest używany
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://ftp.debian.org/debian experimental main contrib non-free"
 msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
 
 # mateunho
@@ -853,12 +853,12 @@ msgstr "Z kolei <emphasis role=\"pkg\">approx</emphasis> działa jako serwer HTT
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# &lt;name&gt; &lt;repository-base-url&gt;\n"
 "debian   http://ftp.debian.org/debian\n"
-"security http://security.debian.org\n"
+"security http://security.debian.org"
 msgstr ""
 "\n"
 "# &lt;nazwa&gt; &lt;adres-bazowy-repozytorium&gt;\n"
@@ -1032,8 +1032,8 @@ msgstr "Najpierw należy uzyskać listę pakietów zainstalowanych na komputerze
 
 # mateunho
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
 
 # mateunho
@@ -1044,7 +1044,7 @@ msgstr "Po tej czynności plik <filename>pkg-list</filename> będzie zawierał l
 
 # mateunho
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "## Update dpkg's database of known packages\n"
 "# <userinput>avail=`mktemp`</userinput>\n"
@@ -1054,7 +1054,7 @@ msgid ""
 "## Update dpkg's selections\n"
 "# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
 "## Ask apt-get to install the selected packages\n"
-"# <userinput>apt-get dselect-upgrade</userinput>\n"
+"# <userinput>apt-get dselect-upgrade</userinput>"
 msgstr ""
 "## Aktualizacja bazy danych znanych pakietów programu dpkg\n"
 "# <userinput>avail=`mktemp`</userinput>\n"
@@ -1092,12 +1092,12 @@ msgstr "Następny przykład ukazuje dwa różne sposoby na zainstalowanie <repla
 
 # mateunho
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
-"[...]\n"
+"[...]"
 msgstr ""
 "# <userinput>apt-get install <replaceable>pakiet1</replaceable> <replaceable>pakiet2-</replaceable></userinput>\n"
 "[...]\n"
@@ -1130,8 +1130,8 @@ msgstr "Czasami system może zostać uszkodzony po usunięciu lub modyfikacji pl
 
 # mateunho
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>"
 msgstr "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
 
 # mateunho
@@ -1166,8 +1166,8 @@ msgstr "Instalacja <emphasis role=\"distribution\">niestabilnej</emphasis> wersj
 
 # mateunho
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>"
 msgstr "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
 
 # mateunho
@@ -1448,11 +1448,11 @@ msgstr "Jeżeli w pliku <filename>sources.list</filename> został wymieniony <em
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 "Package: *\n"
 "Pin: release a=experimental\n"
@@ -1466,7 +1466,7 @@ msgstr "Załóżmy, że chcesz używać tylko pakietów ze stabilnej wersji Debi
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=stable\n"
@@ -1474,7 +1474,7 @@ msgid ""
 "\n"
 "Package: *\n"
 "Pin: release o=Debian\n"
-"Pin-Priority: -10\n"
+"Pin-Priority: -10"
 msgstr ""
 "Package: *\n"
 "Pin: release a=stable\n"
@@ -1498,11 +1498,11 @@ msgstr "Załóżmy, że masz serwer z kilkoma lokalnymi programami zależnymi od
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
-"Pin-Priority: 1001\n"
+"Pin-Priority: 1001"
 msgstr ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
@@ -1546,13 +1546,13 @@ msgstr "Nie istnieje oficjalna składnia do umieszczania komentarzy w pliku <fil
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Explanation: The package xserver-xorg-video-intel provided\n"
 "Explanation: in experimental can be used safely\n"
 "Package: xserver-xorg-video-intel\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 "Explanation: Pakiet xserver-xorg-video-intel dostarczony\n"
 "Explanation: w eksparymentalnym może być bezpiecznie używany\n"
@@ -1622,11 +1622,11 @@ msgstr "Weźmy teraz przykład innego pakietu, który jest w wersji 2 i został 
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=unstable\n"
-"Pin-Priority: 490\n"
+"Pin-Priority: 490"
 msgstr ""
 "Package: *\n"
 "Pin: release a=unstable\n"
@@ -2013,8 +2013,8 @@ msgstr "Zaawansowane opcje <command>aptitude</command> są również dostępne w
 
 # mateunho
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>"
 msgstr "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
 
 # mateunho
@@ -2187,7 +2187,7 @@ msgstr "Zarządzanie zaufanymi kluczami odbywa się przez użycie komendy <comma
 
 # mateunho
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# <userinput>apt-key fingerprint</userinput>\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
@@ -2212,7 +2212,7 @@ msgid ""
 "--------------------------------------------------------\n"
 "pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
 "      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
-"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;"
 msgstr ""
 "# <userinput>apt-key fingerprint</userinput>\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
@@ -2343,8 +2343,8 @@ msgstr "Kolejnym dobrym zwyczajem ułatwiającym uaktualnienie (i skracającym j
 
 # mateunho
 #. Tag: screen
-#, no-c-format
-msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>"
 msgstr "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
 
 # mateunho
@@ -2640,10 +2640,10 @@ msgstr "Skrypt uaktualniający bez interakcji"
 
 # mateunho
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "export DEBIAN_FRONTEND=noninteractive\n"
-"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
+"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade"
 msgstr ""
 "export DEBIAN_FRONTEND=noninteractive\n"
 "yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
@@ -2723,7 +2723,7 @@ msgstr "Do bardziej złożonych wyszukiwań potrzebne jest potężniejsze narzę
 
 # mateunho
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "p   kino  - Non-linear editor for Digital Video data\n"
@@ -2757,7 +2757,7 @@ msgid ""
 "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-"      works-with::video, x11::application\n"
+"      works-with::video, x11::application"
 msgstr ""
 "$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "p   kino  - Nieliniowy edytor danych Digital Video\n"

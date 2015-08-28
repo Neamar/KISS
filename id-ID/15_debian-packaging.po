@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2013-07-17 12:14+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
@@ -66,7 +66,6 @@ msgstr "Membangun ulang sebuah Paket dari Source-nya"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Rebuilding a binary package is required under several sets of circumstances. In some cases, the administrator needs a software feature that requires the software to be compiled from sources, with a particular compilation option; in others, the software as packaged in the installed version of Debian is not recent enough. In the latter case, the administrator will usually build a more recent package taken from a newer version of Debian — such as <emphasis role=\"distribution\">Testing</emphasis> or even <emphasis role=\"distribution\">Unstable</emphasis> — so that this new package works in their <emphasis role=\"distribution\">Stable</emphasis> distribution; this operation is called “backporting”. As usual, care should be taken, before undertaking such a task, to check whether it has been done already. This can be checked at the <literal>backports.debian.org</literal> site. <indexterm><primary>backport</primary></indexterm>"
 msgid "Rebuilding a binary package is required under several sets of circumstances. In some cases, the administrator needs a software feature that requires the software to be compiled from sources, with a particular compilation option; in others, the software as packaged in the installed version of Debian is not recent enough. In the latter case, the administrator will usually build a more recent package taken from a newer version of Debian — such as <emphasis role=\"distribution\">Testing</emphasis> or even <emphasis role=\"distribution\">Unstable</emphasis> — so that this new package works in their <emphasis role=\"distribution\">Stable</emphasis> distribution; this operation is called “backporting”. As usual, care should be taken, before undertaking such a task, to check whether it has been done already — a quick look on the Package Tracking System's page for that package will reveal that information. <ulink type=\"block\" url=\"http://packages.qa.debian.org/\" /> <indexterm><primary>backport</primary></indexterm>"
 msgstr "Membangun ulang sebuah paket binari dibutuhkan dalam beberapa kondisi. Dalam kondisi tertentu, administrator membutuhkan fitur perangkat lunak yang mensyaratkan untuk di-compile dari source, dengan opsi kompilasi tertentu; atau pada sisi lain, perangkat yang dipaketkan dalam Debian yang ter-install tidak cukup anyar. Pada kasus kedua, administrator umumnya akan mem-build paket yang lebih baru diambil dari Debian dengan versi yang lebih baru — seperti <emphasis role=\"distribution\">Testing</emphasis> atau bahkan <emphasis role=\"distribution\">Unstable</emphasis> — sehingga paket yang lebih baru ini dapat bekerja pada distribusi <emphasis role=\"distribution\">Stable</emphasis> mereka; operasi ini disebut dengan “backporting”. Seperti biasa, perlu hati-hati sebelum memutuskan melakukan backporting. Periksa apakah sebelumnya sudah pernah dilakukan, dengan cara melihat di situs <literal>backports.debian.org</literal>. <indexterm><primary>backport</primary></indexterm>"
 
@@ -87,19 +86,16 @@ msgstr "Membuat Perubahan"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The source of the package is now available in a directory named after the source package and its version (for instance, <emphasis>samba-3.0.24</emphasis>); this is where we'll work on our local changes."
 msgid "The source of the package is now available in a directory named after the source package and its version (for instance, <emphasis>samba-3.6.16</emphasis>); this is where we'll work on our local changes."
 msgstr "Source dari paket sekarang tersedia di dalam direktori dengan nama paket sumber berikut dengan versinya (sebagai contoh, <emphasis>samba-3.0.24</emphasis>); di sini lah kita akan bekerja untuk melakukan perubahan lokal."
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The first thing to do is to change the package version number, so that the rebuilt packages can be distinguished from the original packages provided by Debian. Assuming the current version is <literal>3.0.24-6</literal>, we can create version <literal>3.0.24-6.falcot1</literal>, which clearly indicates the origin of the package. This makes the package version number higher than the one provided by Debian, so that the package will easily install as an update do the original package. Such a change is best effected with the <command>dch</command> command (<emphasis>Debian CHangelog</emphasis>) from the <emphasis role=\"pkg\">devscripts</emphasis> package, with an invocation such as <command>dch -v 3.0.24-6.falcot1</command>. This invocation invokes a text editor (<command>sensible-editor</command> — this should be your favorite editor if it's mentioned in the <varname>VISUAL</varname> or <varname>EDITOR</varname> environment variables, and default editor otherwise) to allow documenting the differences brought by this rebuild. This editor shows us that <command>dch</command> really did change the <filename>debian/changelog</filename> file."
 msgid "The first thing to do is to change the package version number, so that the rebuilt packages can be distinguished from the original packages provided by Debian. Assuming the current version is <literal>3.6.16-2</literal>, we can create version <literal>3.6.16-2falcot1</literal>, which clearly indicates the origin of the package. This makes the package version number higher than the one provided by Debian, so that the package will easily install as an update do the original package. Such a change is best effected with the <command>dch</command> command (<emphasis>Debian CHangelog</emphasis>) from the <emphasis role=\"pkg\">devscripts</emphasis> package, with an command such as <command>dch --local falcot</command>. This invokes a text editor (<command>sensible-editor</command> — this should be your favorite editor if it's mentioned in the <varname>VISUAL</varname> or <varname>EDITOR</varname> environment variables, and the default editor otherwise) to allow documenting the differences brought by this rebuild. This editor shows us that <command>dch</command> really did change the <filename>debian/changelog</filename> file."
 msgstr "Hal pertama yang perlu dilakukan adalah mengubah nomor versi paket, sehingga paket hasil rebuilt dapat dibedakan dari paket asalnya yang disediakan Debian. Dengan asumsi versi saat ini adalah <literal>3.0.24-6</literal>, kita dapat membuat versi <literal>3.0.24-6.falcot1</literal>, yang dengan jelas menandakan asal dari paket. Hal ini membuat nomor versi paket lebih tinggi dari yang disediakan Debian, sehingga paket akan dengan mudah ter-install sebagai pemutakhiran dari paket asalnya. Perubahan seperti ini paling baik dihasilkan menggunakan perintah <command>dch</command> (<emphasis>Debian CHangelog</emphasis>) dari paket <emphasis role=\"pkg\">devscripts</emphasis>, dengan invokasi seperti <command>dch -v 3.0.24-6.falcot1</command>. Invokasi ini meng-invoke penyunting teks (<command>sensible-editor</command> — ini harus menjadi penyunting teks favorit Anda jika disebutkan variabel lingkungan <varname>VISUAL</varname> atau <varname>EDITOR</varname> dan penyunting teks default) untuk dapat mendokumentasikan perbedaan yang dihasilkan oleh rebuild ini. Penyunting ini menunjukkan bahwa <command>dch</command> benar-benar mengubah berkas <filename>debian/changelog</filename>."
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "When a change in build options is required, changes are made to <filename>debian/rules</filename>, which drives the steps in the package build process. In the simplest cases, the lines concerning the initial configuration (<literal>./configure …</literal>) or the actual build (<literal>$(MAKE) …</literal> or <literal>make …</literal>) are easy to spot. If these commands are not explicitly called, they are probably a side effect of another explicit command, in which case please refer to their documentation to learn more about how to change the default behavior."
 msgid "When a change in build options is required, the changes need to be made in <filename>debian/rules</filename>, which drives the steps in the package build process. In the simplest cases, the lines concerning the initial configuration (<literal>./configure …</literal>) or the actual build (<literal>$(MAKE) …</literal> or <literal>make …</literal>) are easy to spot. If these commands are not explicitly called, they are probably a side effect of another explicit command, in which case please refer to their documentation to learn more about how to change the default behavior."
 msgstr "Saat perubahan pada opsi build diperlukan, perubahan dibuat pada <filename>debian/rules</filename>, yang membuat langkah-langkah pada proses build. Pada kasus yang paling sederhana, baris terkait konfigurasi awal (<literal>./configure …</literal>) atau pada build sesungguhnya (<literal>$(MAKE) …</literal> atau <literal>make …</literal>) dapat dengan mudah ditemukan. Jika perintah ini tidak dipanggil secara eksplisit, mereka merupakan efek samping dari perintah eksplisit lainnya, yang pada kasus tertentu mengacu pada dokumentasi mereka untuk mempelajari lebih lanjut bagaimana mengubah perilaku default."
 
@@ -110,7 +106,6 @@ msgstr "Tergantung pada perubahan lokal pada paket, pemutakhiran bisa jadi dibut
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "If you know for sure that these build-dependencies are too strict, you should feel free to relax them locally. Reading the files which document the standard way of building the software — these files are often called <filename>INSTALL</filename> — will help you figure out the appropriate dependencies. Ideally, all dependencies should be satisfiable from the distribution used for the rebuild; if they are not, a recursive process starts, whereby the packages mentioned in the <literal>Build-Depends</literal> field must be backported before the target package can be. Some packages may not need backporting, and can be installed as-is during the build process (a notable example is <emphasis role=\"pkg\">debhelper</emphasis>). Note that the backporting process can quickly become complex if you are not vigilant. Therefore, backports should be kept to a strict minimum when possible."
 msgid "If you know for sure that these build-dependencies are too strict, you should feel free to relax them locally. Reading the files which document the standard way of building the software — these files are often called <filename>INSTALL</filename> — will help you figure out the appropriate dependencies. Ideally, all dependencies should be satisfiable from the distribution used for the rebuild; if they are not, a recursive process starts, whereby the packages mentioned in the <literal>Build-Depends</literal> field must be backported before the target package can be. Some packages may not need backporting, and can be installed as-is during the build process (a notable example is <emphasis role=\"pkg\">debhelper</emphasis>). Note that the backporting process can quickly become complex if you are not careful. Therefore, backports should be kept to a strict minimum when possible."
 msgstr "Jika Anda yakin mengetahui bahwa build-dependencies terlalu ketat, Anda bebas untuk melonggarkannya secara lokal. Dengan membaca berkas yang mendokumentasikan standar membangun perangkat lunak — berkas ini sering disebut sebagai <filename>INSTALL</filename> — akan membantu Anda mengetahui dependensi yang sesuai. Idealnya, semua dependensi harus dapat dipenuhi dari distribusi yang digunakan untuk rebuild; jika tidak, sebuah proses rekursif dimulai, yaitu saat paket yang disebutkan dalam field  <literal>Build-Depends</literal> harus di-backport sebelum paket target dapat di-backport. Beberapa paket bisa jadi tidak perlu di-backport, dan dapat di-install apa-adanya selama proses build (contoh yang jelas adalah <emphasis role=\"pkg\">debhelper</emphasis>). Perlu dicatat bahwa proses backport dapat dengan cepat menjadi kompleks jika Anda tidak vigilant. Oleh karena itu, backport sedapat mungkin diminimalisir."
 
@@ -140,11 +135,11 @@ msgid "Rebuilding a package"
 msgstr "Membangun ulang sebuah paket"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg-buildpackage -us -uc</userinput>\n"
-"[...]\n"
+"[...]"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg-buildpackage -us -uc</userinput>\n"
@@ -157,7 +152,6 @@ msgstr "<emphasis>TOOL</emphasis> <command>fakeroot</command>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "In essence, the package creation process is a simple matter of gathering in an archive a set of existing (or build) files; most of the files will end up being owned by <emphasis>root</emphasis> in the archive. However, building the whole package under this user would imply increased risks; fortunately, this can be avoided with the <command>fakeroot</command> command. This tool can be used to run a program and give it the impression that it runs as <emphasis>root</emphasis> and creates files with arbitrary ownership and permissions. When the program creates the archive that will become the Debian package, it is tricked into creating an archive containing files marked as belonging to arbitrary owners, including <emphasis>root</emphasis>. This setup is so convenient that <command>dpkg-buildpackage</command> uses <command>fakeroot</command> by default when building packages."
 msgid "In essence, the package creation process is a simple matter of gathering in an archive a set of existing (or built) files; most of the files will end up being owned by <emphasis>root</emphasis> in the archive. However, building the whole package under this user would imply increased risks; fortunately, this can be avoided with the <command>fakeroot</command> command. This tool can be used to run a program and give it the impression that it runs as <emphasis>root</emphasis> and creates files with arbitrary ownership and permissions. When the program creates the archive that will become the Debian package, it is tricked into creating an archive containing files marked as belonging to arbitrary owners, including <emphasis>root</emphasis>. This setup is so convenient that <command>dpkg-buildpackage</command> uses <command>fakeroot</command> by default when building packages."
 msgstr "Esensinya, proses pembuatan paket adalah perihal pengumpulan sekumpulan berkas yang ada dalam sebuah archive; mayoritas berkas akan berakhir dengan dimiliki oleh <emphasis>root</emphasis> dalam arsip. Namun, membangun seluruh paket dengan pengguna root akan secara langsung meningkatkan risiko; untungnya hal ini dapat dihindari dengan perintah <command>fakeroot</command>. Perkakas ini dapat digunakan untuk menjalankan sebuah program dan memberikan kesan pengguna berjalan seolah-olah sebagai <emphasis>root</emphasis> dan membuat berkas dengan kepemilikan dan izin arbitrer (arbitrary ownership and permissions). Saat program membuat archive yang akan menjadi paket Debian, hal ini diakali dengan membuat sebuah archive yang mengandung berkas ditandai dengan kepemilikan arbitrer, termasuk <emphasis>root</emphasis>. Persiapan ini sungguh nyaman sehingga <command>dpkg-buildpackage</command> menggunakan <command>fakeroot</command> secara default saat membangun paket."
 
@@ -232,7 +226,7 @@ msgid "Header file of the <emphasis>libxml-libxml-perl</emphasis> fake package"
 msgstr "Berkas header dari <emphasis>libxml-libxml-perl</emphasis> paket palsu"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "Section: perl\n"
@@ -250,7 +244,7 @@ msgid ""
 " .\n"
 " In fact, the package is not installed since a newer version\n"
 " of the module has been manually compiled &amp; installed in the\n"
-" site_perl directory.\n"
+" site_perl directory."
 msgstr ""
 "\n"
 "Section: perl\n"
@@ -291,7 +285,7 @@ msgid "The first step is creating a <filename>falcot-data-1.0</filename> directo
 msgstr "Langkah pertama adalah membuat direktori <filename>falcot-data-1.0</filename> berisi target dari paket sumber. Paket secara logika akan dinamakan <literal>falcot-data</literal> dan dengan nomor versi <literal>1.0</literal>. Administrator selanjutnya meletakkan berkas dokumen dalam subdirektori <filename>data</filename>. Lalu mereka meng-invoke perintah <command>dh_make</command> (dari paket <emphasis role=\"pkg\">dh-make</emphasis>) untuk menambah berkas yang dibutuhkan oleh proses pembuatan paket, yang akan disimpan dalam subdirektori <filename>debian</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd falcot-data-1.0</userinput>\n"
@@ -312,7 +306,7 @@ msgid ""
 "Currently there is no top level Makefile. This may require additional tuning.\n"
 "Done. Please edit the files in the debian/ subdirectory now. You should also\n"
 "check that the falcot-data Makefiles install into $DESTDIR and not in / .\n"
-"$</computeroutput>\n"
+"$</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd falcot-data-1.0</userinput>\n"
@@ -356,11 +350,11 @@ msgid "Most of the programs involved in package maintenance will look for your n
 msgstr "Kebanyakan program yang terlibat dalam pengelolaan paket akan mencari nama Anda dan alamat surel dalam variabel environment <varname>DEBFULLNAME</varname> dan <varname>DEBEMAIL</varname> atau <varname>EMAIL</varname>. Definisikan variabel ini sekali dan selamanya akan menghindari Anda dari harus mengisi-nya berulang kali. Jika shell Anda adalah <command>bash</command>, sesederhana menambahkan dua baris berikut dalam <filename>~/.bashrc</filename> dan <filename>~/.bash_profile</filename> (tentunya Anda akan mengisi dengan nilai yang relevan!):"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "export EMAIL=\"hertzog@debian.org\"\n"
-"export DEBFULLNAME=\"Raphael Hertzog\"\n"
+"export DEBFULLNAME=\"Raphael Hertzog\""
 msgstr ""
 "\n"
 "export EMAIL=\"hertzog@debian.org\"\n"
@@ -368,7 +362,6 @@ msgstr ""
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The <command>dh_make</command> command created a <filename>debian</filename> subdirectory with many files. Some are required, in particular <filename>rules</filename>, <filename>control</filename>, <filename>changelog</filename> and <filename>copyright</filename>. Files with the <filename>.ex</filename> extension are example files that can used by modifying them (and removing the extension) when appropriate. When they are not needed, removing them is recommended. The <filename>compat</filename> file should be kept, since it is required for the correct functioning of the <emphasis>debhelper</emphasis> suite of programs (all beginning with the <command>dh_</command> prefix) used at various stages of the package build process."
 msgid "The <command>dh_make</command> command created a <filename>debian</filename> subdirectory with many files. Some are required, in particular <filename>rules</filename>, <filename>control</filename>, <filename>changelog</filename> and <filename>copyright</filename>. Files with the <filename>.ex</filename> extension are example files that can be used by modifying them (and removing the extension) when appropriate. When they are not needed, removing them is recommended. The <filename>compat</filename> file should be kept, since it is required for the correct functioning of the <emphasis>debhelper</emphasis> suite of programs (all beginning with the <command>dh_</command> prefix) used at various stages of the package build process."
 msgstr "Perintah <command>dh_make</command> membuat sebuah subdirektori <filename>debian</filename> dengan banyak berkas. Beberapa diperlukan, khususnya <filename>rules</filename>, <filename>control</filename>, <filename>changelog</filename> dan <filename>copyright</filename>. Berkas dengan ekstensi <filename>.ex</filename> adalah contoh yang dapat digunakan dengan memodifikasi mereka (dan menghapus ekstensi) saat diperlukan. Saat mereka tidak lagi diperlukan, removing adalah hal yand direkomendasikan. Berkas <filename>compat</filename> harus disimpan, karena dibutuhkan agar kumpulan program <emphasis>debhelper</emphasis> berfungsi dengan benar (semuanya dimulai dengan awalan <command>dh_</command>) yang digunakan pada beragam tingkat proses pembuatan paket."
 
@@ -383,7 +376,7 @@ msgid "The <filename>control</filename> file"
 msgstr "Berkas <filename>control</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "Source: falcot-data\n"
@@ -403,7 +396,7 @@ msgid ""
 "  - contacts for each department.\n"
 " .\n"
 " These documents MUST NOT leave the company.\n"
-" Their use is INTERNAL ONLY.\n"
+" Their use is INTERNAL ONLY."
 msgstr ""
 "\n"
 "Source: falcot-data\n"
@@ -431,7 +424,7 @@ msgid "The <filename>changelog</filename> file"
 msgstr "Berkas <filename>changelog</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "falcot-data (1.0) internal; urgency=low\n"
@@ -441,7 +434,7 @@ msgid ""
 "    - internal company structure;\n"
 "    - contacts for each department.\n"
 "\n"
-" -- Raphael Hertzog &lt;hertzog@debian.org&gt;  Mon, 11 Apr 2011 20:46:33 +0200\n"
+" -- Raphael Hertzog &lt;hertzog@debian.org&gt;  Mon, 11 Apr 2011 20:46:33 +0200"
 msgstr ""
 "\n"
 "falcot-data (1.0) internal; urgency=low\n"
@@ -459,7 +452,7 @@ msgid "The <filename>copyright</filename> file"
 msgstr "Berkas <filename>copyright</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "This work was packaged for Debian by Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
@@ -471,7 +464,7 @@ msgid ""
 "\n"
 "License:\n"
 "\n"
-"    All rights reserved.\n"
+"    All rights reserved."
 msgstr ""
 "\n"
 "This work was packaged for Debian by Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
@@ -497,22 +490,16 @@ msgstr "<primary><filename>Makefile</filename></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "A <filename>Makefile</filename> file is a script used by the <command>make</command> program; it describes rules for how to build a set of files from each other in a tree of dependencies (for instance, a program can be build from a set of source files). The <filename>Makefile</filename> file describes these rules in the following format:"
 msgid "A <filename>Makefile</filename> file is a script used by the <command>make</command> program; it describes rules for how to build a set of files from each other in a tree of dependencies (for instance, a program can be built from a set of source files). The <filename>Makefile</filename> file describes these rules in the following format:"
 msgstr "Berkas <filename>Makefile</filename> adalah sebuah script yang digunakan oleh program <command>make</command>; Berkas ini mendeskripsikan bagaimana mem-build sekumpulan berkas dari berkas lainnya dalam dependensi tree (contohnya, sebuah program dapat di-build dari beberapa berkas sumber). Berkas <filename>Makefile</filename> mendeskripsikan aturan ini dalam format berikut:"
 
 #. Tag: programlisting
 #, fuzzy, no-c-format
-#| msgid ""
-#| "\n"
-#| "target: sources\n"
-#| "        command1\n"
-#| "        command2\n"
 msgid ""
 "\n"
 "target: source1 source2 ...\n"
 "        command1\n"
-"        command2\n"
+"        command2"
 msgstr ""
 "\n"
 "target: sources\n"
@@ -521,7 +508,6 @@ msgstr ""
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The interpretation of such a rule is as follows: if one of the files of <literal>sources</literal> is more recent than the <literal>target</literal> file, then the target needs to be generated, using <command>command1</command> and <command>command2</command>."
 msgid "The interpretation of such a rule is as follows: if one of the <literal>source*</literal> files is more recent than the <literal>target</literal> file, then the target needs to be generated, using <command>command1</command> and <command>command2</command>."
 msgstr "Interpretasi dari aturan tersebut sebagai berikut: jika salah satu dari berkas <literal>sources</literal> lebih baru dari berkas <literal>target</literal>, maka target perlu dibuat, menggunakan <command>command1</command> dan <command>command2</command>."
 
@@ -541,17 +527,16 @@ msgid "Although this file is the heart of the process, it increasingly contains 
 msgstr "Walaupun berkas ini merupakan jantung dari proses, lama kelamaan hanya berisi bare minimum untuk menjalankan sekumpulan perintah yang disediakan oleh perkakas <command>debhelper</command>. Sebagai contoh dalam kasus untuk berkas yang dihasilkan oleh <command>dh_make</command>. Untuk menginstall berkas kita, kita hanya perlu mengkonfigurasi perilaku dari perintah <command>dh_install</command> dengan membuat berkas berikut <filename>debian/falcot-data.install</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"data/* usr/share/falcot-data/\n"
+"data/* usr/share/falcot-data/"
 msgstr ""
 "\n"
 "data/* usr/share/falcot-data/\n"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "At this point, the package can be created. We will however add a lick of paint. Since the administrators want the documents to be easily accessed from the Help menus of graphical desktop environment, we create an entry in the Debian menu system. This is simply done by renaming the <filename>debian/menu.ex</filename> without its extension and editing it as follows:"
 msgid "At this point, the package can be created. We will however add a lick of paint. Since the administrators want the documents to be easily accessed from the Help menus of graphical desktop environments, we create an entry in the Debian menu system. This is simply done by renaming the <filename>debian/menu.ex</filename> without its extension and editing it as follows:"
 msgstr "Pada titik ini, paket dapat dibuat. Namun kita akan namun menumpahkan sedikit cat. Karena administrator ingin dokumen dapat diakses dengan mudah dari menu Bantuan dalam lingkungan grafis desktop, kita membuat sebuah entri dalam menu sistem Debian. Hal ini dilakukan sederhana dengan cara menamakan-ulang <filename>debian/menu.ex</filename> tanpa ekstensi dan menyuntingnya sebagai berikut:"
 
@@ -561,7 +546,7 @@ msgid "The <filename>menu</filename> file"
 msgstr "Berkas <filename>menu</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "?package(falcot-data):needs=X11|wm section=Help\\\n"
@@ -569,7 +554,7 @@ msgid ""
 "  command=\"/usr/bin/x-www-browser /usr/share/falcot-data/index.html\"\n"
 "?package(falcot-data):needs=text section=Help\\\n"
 "  title=\"Internal Falcot Corp Documentation\" \\\n"
-"  command=\"/usr/bin/www-browser /usr/share/falcot-data/index.html\"\n"
+"  command=\"/usr/bin/www-browser /usr/share/falcot-data/index.html\""
 msgstr ""
 "\n"
 "?package(falcot-data):needs=X11|wm section=Help\\\n"
@@ -640,11 +625,11 @@ msgid "To make deployment easier, they want to integrate these packages in a pac
 msgstr "Untuk membuat deployent lebih mudah, mereka ingin mengintegrasikan paket-paket ke dalam sebuah arsip paket yang dapat digunakan langsung oleh APT. Untuk alasan pengelolaan, mereka ingin memisahkan paket internal dari paket yang dibangun-ulang-lokal. Tujuannya adalah untuk menyamakan entri berkas <filename>/etc/apt/sources.list</filename> sebagai berikut:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "deb http://packages.falcot.com/ updates/\n"
-"deb http://packages.falcot.com/ internal/\n"
+"deb http://packages.falcot.com/ internal/"
 msgstr ""
 "\n"
 "deb http://packages.falcot.com/ updates/\n"
@@ -676,14 +661,14 @@ msgid "If <command>mini-dinstall</command> seems too complex for your Debian arc
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd /srv/vhosts/packages</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages updates &gt;updates/Packages</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>gzip updates/Packages</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages internal &gt;internal/Packages</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>gzip internal/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>gzip internal/Packages</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd /srv/vhosts/packages</userinput>\n"
@@ -703,7 +688,7 @@ msgid "Configuring <command>mini-dinstall</command> requires setting up a <filen
 msgstr "Mengkonfigurasi <command>mini-dinstall</command> membutuhkan menyiapkan sebuah berkas <filename>~/.mini-dinstall.conf</filename>; dalam kasus Falcot Corp, isinya adalah sebagai berikut:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "[DEFAULT]\n"
@@ -721,7 +706,7 @@ msgid ""
 "release_label = Recompiled Debian Packages\n"
 "\n"
 "[internal]\n"
-"release_label = Internal Packages\n"
+"release_label = Internal Packages"
 msgstr ""
 "\n"
 "[DEFAULT]\n"
@@ -743,7 +728,6 @@ msgstr ""
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "One decision worth noting is the generation of <filename>Release</filename> files for each archive. This can help manage package installation priorities using the <filename>/etc/apt/preferences</filename> configuration file (see chapter on APT configuration for details)."
 msgid "One decision worth noting is the generation of <filename>Release</filename> files for each archive. This can help manage package installation priorities using the <filename>/etc/apt/preferences</filename> configuration file (see <xref linkend=\"sect.apt.priorities\" /> for details)."
 msgstr "Satu keputusan yang perlu diperhatikan adalah membuat berkas <filename>Release</filename> untuk setiap archive. Hal ini bisa membantu mengelola prioritas instalasi paket menggunakan berkas konfigurasi <filename>/etc/apt/preferences</filename> (lihat bab konfigurasi APT untuk detailnya)."
 
@@ -849,13 +833,11 @@ msgstr "Perkakas ini hanyalah pembantu, dan sesekali salah (contohnya, sejak keb
 
 #. Tag: title
 #, fuzzy, no-c-format
-#| msgid "The <command>lintian</command> Program"
 msgid "The <command>piuparts</command> Program"
 msgstr "Program <command>lintian</command>"
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
-#| msgid "<primary><command>dput</command></primary>"
 msgid "<primary><command>piuparts</command></primary>"
 msgstr "<primary><command>dput</command></primary>"
 
@@ -1071,13 +1053,11 @@ msgstr "Langkah pertama (nyata) terdiri dari mencari sponsor atau advokat; hal i
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "At the same time, the candidate must generate a public/private RSA key pair <indexterm><primary>key pair</primary></indexterm> with GnuPG, which should be signed by at least one official Debian developer. The signature authenticates the name on the key. Effectively, during a key signing party, each participant must show an identity card together with their key identifiers. This step makes the link between the human and the keys official. This signature thus requires meeting in real life. If you have not yet met any Debian developers in a public free software conference, you can explicitly seek developers living nearby using the list on the following webpage as a starting point. <ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
 msgid "At the same time, the candidate must generate a public/private RSA key pair <indexterm><primary>key pair</primary></indexterm> with GnuPG, which should be signed by at least two official Debian developers. The signature authenticates the name on the key. Effectively, during a key signing party, each participant must show an official identification (usually an ID card or passport) together with their key identifiers. This step makes the link between the human and the keys official. This signature thus requires meeting in real life. If you have not yet met any Debian developers in a public free software conference, you can explicitly seek developers living nearby using the list on the following webpage as a starting point. <ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
 msgstr "Pada waktu yang bersamaan, kandidat harus membuat sepasang kunci publik/privat RSA <indexterm><primary>pasang kunci</primary></indexterm> dengan GnuPG, yang harus ditandatangai paling tidak oleh seorang pengembagn resmi Debian. Tanda tangan mengotentikasi nama pada kunci. Secara efektif pada pesta penandatanganan, setiap partisipan harus menunjukkan kartu identitas bersamaan dengan identifier kunci. Langkah ini membuat hubungan antara manusia dengan kunci resmi. Jika Anda belum pernah bertemu dengan pengembang Debian dalam konferensi perangkat lunak bebas publik, Anda dapat secara eksplisit mencari pengembang yang hidup di dekat Anda menggunakan halaman ini sebagai permulaan. <ulink type=\"block\" url=\"http://wiki.debian.org/Keysigning\" />"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Once the registration on <literal>nm.debian.org</literal> has been validated by the advocate, an <emphasis>Application Manager</emphasis> is assigned to the candidate. The application manager will, from there on, follow procedures and validate the various steps that the process includes."
 msgid "Once the registration on <literal>nm.debian.org</literal> has been validated by the advocate, an <emphasis>Application Manager</emphasis> is assigned to the candidate. The application manager will then drive the process through multiple pre-defined steps and checks."
 msgstr "Usai proses registrasi pada <literal>nm.debian.org</literal> telah divalidasi oleh advokat, seorang <emphasis>Application Manager</emphasis> ditugaskan ... kandidat. Manajer aplikasi selanjutnya akan mengikuti prosedur dan memvalidasi beragam langkah proses ini."
 
@@ -1143,7 +1123,6 @@ msgstr "Akhirnya, penguji memeriksa kemampuan teknis (pemaketan) kandidat dengan
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "This step is known as the <emphasis>Tasks &amp; Skills</emphasis> step in the examiners' jargon. <indexterm><primary><emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
 msgid "This step is known as the <emphasis>Tasks &amp; Skills</emphasis> step (T&amp;S for short) in the examiners' jargon. <indexterm><primary><emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
 msgstr "Langkah ini dikenal sebagai <emphasis>Tasks &amp; Skills</emphasis> pada jargon penguji. <indexterm><primary><emphasis>Tasks &amp; Skills</emphasis></primary></indexterm>"
 

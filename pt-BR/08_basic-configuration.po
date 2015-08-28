@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:19\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-11-29 23:15+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/debian-handbook/08_basic-configuration/pt_BR/>\n"
@@ -381,7 +381,7 @@ msgid "As far as file names are concerned, the migration can be relatively simpl
 msgstr "As far as file names are concerned, a migração pode ser relativamente simples. A ferramenta <command>convmv</command> (no pacote com o mesmo nome) foi criada especificamente com este objetivo; ela permite renomear arquivos de uma codificação para outra. O uso desta ferramenta é relativamente simples, mas recomendamos fazê-lo em dois passos para evitar surpresas. O seguinte exemplo ilustra um ambiente UTF-8 contendo nomes de diretórios codificados em ISO-8859-15, e o uso do <command>convmv</command> para renomeá-los."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
@@ -395,7 +395,7 @@ msgid ""
 "mv \"travail/Ic�nes\"     \"travail/Icônes\"\n"
 "Ready!\n"
 "$ </computeroutput><userinput>ls travail/</userinput>\n"
-"<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>\n"
+"<computeroutput>Éléments graphiques  Icônes  Textes</computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>ls travail/</userinput>\n"
 "<computeroutput>Ic?nes  ?l?ments graphiques  Textes\n"
@@ -604,12 +604,12 @@ msgid "DHCP configuration"
 msgstr "Configuração DHCP"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "auto eth0\n"
 "iface eth0 inet dhcp\n"
-"  hostname arrakis\n"
+"  hostname arrakis"
 msgstr ""
 "\n"
 "auto eth0\n"
@@ -627,7 +627,7 @@ msgid "Static configuration"
 msgstr "Configuração estática"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "auto eth0\n"
@@ -636,7 +636,7 @@ msgid ""
 "  netmask 255.255.255.0\n"
 "  broadcast 192.168.0.255\n"
 "  network 192.168.0.0\n"
-"  gateway 192.168.0.1\n"
+"  gateway 192.168.0.1"
 msgstr ""
 "\n"
 "auto eth0\n"
@@ -813,10 +813,10 @@ msgid "PPP connections over ADSL are, by definition, intermittent. Since they ar
 msgstr "conexões PPP sobre ADSL são, por definicão, intermitentes. Como eles normalmente não são cobradas por tempo, existem poucas problemas com a tentacão de mante-las abertas sempre. uma forma simples de fazer isto é usando o processo <command>init</command> para controlar a conexão. Tudo que é preciso é adicionar uma linha como a seguinte no final do arquivo <filename>/etc/inittab</filename>; então, a qualquer momento que a conexão cai, o <command>init</command> reconecta."
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
+"adsl:2345:respawn:/usr/sbin/pppd call dsl-provider"
 msgstr ""
 "\n"
 "adsl:2345:respawn:/usr/sbin/pppd call dsl-provider\n"
@@ -1002,11 +1002,11 @@ msgid "Surprisingly, the domain name is not managed in the same way, but comes f
 msgstr "Surpreendentemente, o nome de domínio não é gerenciado da mesma forma, mas vem de um nome de máquina completo, adquirido através de resolução de nome. Você pode mudá-lo no arquivo <filename>/etc/hosts</filename>; simplesmente escreva um nome completo para a máquina no começo da lista de nomes associada com o endereço da máquina, como no exemplo seguinte:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "127.0.0.1     localhost\n"
-"192.168.0.1   arrakis.falcot.com arrakis\n"
+"192.168.0.1   arrakis.falcot.com arrakis"
 msgstr ""
 "\n"
 "127.0.0.1     localhost\n"
@@ -1108,12 +1108,12 @@ msgid "The DNS servers to be used are indicated in the <filename>/etc/resolv.con
 msgstr "Os servidores DNS a serem usados são indicados no <filename>/etc/resolv.conf</filename>, um por linha, com a palavra-chave <literal>nameserver</literal> seguida por um endereço IP, como no exemplo a seguir:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "nameserver 212.27.32.176\n"
 "nameserver 212.27.32.177\n"
-"nameserver 8.8.8.8\n"
+"nameserver 8.8.8.8"
 msgstr ""
 "\n"
 "nameserver 212.27.32.176\n"
@@ -2071,7 +2071,7 @@ msgid "It is not always easy to remember what disk is connected to which SATA co
 msgstr "Nem sempre é fácil lembrar qual disco está conectado a qual controladora SATA, ou na terceira posição da cadeia SCSI, especialmente a partir da nomeação de discos rígidos \"hotplugged\" (que inclui, entre outros, a maioria dos discos SATA e discos externos) que podem mudar de uma inicialização para outra. Felizmente, o <command>udev</command> cria, em adição ao <filename>/dev/sd*</filename>, ligações simbólicas com um nome fixo, o qual você poderia, então, usar se você deseja identificar um disco rígido de maneira não ambigua. Essas ligações simbólicas são armazenadas em <filename>/dev/disk/by-id</filename>. Em uma máquina com dois discos físicos, por exemplo, pode-se encontrar o seguinte:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
 "total 0\n"
@@ -2098,7 +2098,7 @@ msgid ""
 "lrwxrwxrwx 1 root root  9 23 jul. 08:58 wwn-0x5000c50015c4842f -&gt; ../../sda\n"
 "lrwxrwxrwx 1 root root 10 23 jul. 08:58 wwn-0x5000c50015c4842f-part1 -&gt; ../../sda1\n"
 "[...]\n"
-"mirexpress:/dev/disk/by-id# </computeroutput>\n"
+"mirexpress:/dev/disk/by-id# </computeroutput>"
 msgstr ""
 "mirexpress:/dev/disk/by-id# <computeroutput></computeroutput><userinput>ls -l</userinput><computeroutput>\n"
 "total 0\n"
@@ -2168,7 +2168,7 @@ msgid "LILO configuration file"
 msgstr "LILO arquivo de configuração"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# The disk on which LILO should be installed.\n"
@@ -2195,7 +2195,7 @@ msgid ""
 "\n"
 "# only for Linux/Windows dual boot\n"
 "other=/dev/sda1\n"
-"  label=Windows\n"
+"  label=Windows"
 msgstr ""
 "\n"
 "# The disk on which LILO should be installed.\n"
@@ -2290,7 +2290,7 @@ msgid "Yaboot configuration file"
 msgstr "Arquivo de configuração Yaboot"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# bootstrap partition\n"
@@ -2324,7 +2324,7 @@ msgid ""
 "macosx=/dev/sda5\n"
 "\n"
 "# bsd=/dev/sdaX and macos=/dev/sdaX\n"
-"# are also possible\n"
+"# are also possible"
 msgstr ""
 "\n"
 "# partição bootstrap\n"
@@ -2816,7 +2816,7 @@ msgid "Example <filename>/etc/fstab</filename> file:"
 msgstr "Exemplo do arquivo <filename>/etc/fstab</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# /etc/fstab: static file system information.\n"
@@ -2829,7 +2829,7 @@ msgid ""
 "UUID=ee880013-0f63-4251-b5c6-b771f53bd90e none swap sw  0       0\n"
 "/dev/scd0       /media/cdrom0   udf,iso9660 user,noauto 0       0\n"
 "/dev/fd0        /media/floppy   auto    rw,user,noauto  0       0\n"
-"arrakis:/shared /shared         nfs     defaults        0       0\n"
+"arrakis:/shared /shared         nfs     defaults        0       0"
 msgstr ""
 "\n"
 "# /etc/fstab: static file system information.\n"
@@ -3040,11 +3040,11 @@ msgid "We assume the <emphasis role=\"pkg\">linux-source-3.2</emphasis> package 
 msgstr "Nós assumimos que o pacote <emphasis role=\"pkg\">linux-source-3.2</emphasis> foi instalado. ele contém o <filename>/usr/src/linux-source-3.2.tar.bz2</filename>, um arquivo compactado dos fontes do kernel. Você deve extrair esses arquivos em um novo diretório (não diretamente sob <filename>/usr/src/</filename>, já que não é necessario permissões especiais para compilar o kernel Linux): <filename>~/kernel/</filename> é o apropriado."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-3.2.tar.bz2</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>tar -xjf /usr/src/linux-source-3.2.tar.bz2</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>mkdir ~/kernel; cd ~/kernel</userinput>\n"
@@ -3091,10 +3091,10 @@ msgid "When recompiling a more recent version of the kernel (possibly with an ad
 msgstr "Quando recompilamos uma versão mais recente do núcleo (possivelmente com um patch adicional), a configuração, provavelmente, será mantida o mais próximo possível daquela proposta pelo Debian. Nesse caso, e ao invés de reconfigurar tudo a partir do zero, será suficiente copiar o arquivo <filename>/boot/config-<replaceable>versão</replaceable></filename> (a versão é aquela do núcleo atualmente usado, a qual pode ser encontrada com o comando <command>uname -r</command>) para o arquivo <filename>.config</filename> dentro do diretório contendo os fontes do núcleo."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 ~/kernel/linux-source-3.2/.config</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 ~/kernel/linux-source-3.2/.config</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cp /boot/config-3.2.0-4-amd64 ~/kernel/linux-source-3.2/.config</userinput>\n"
@@ -3160,7 +3160,7 @@ msgid "The <replaceable>version</replaceable> is defined by the concatenation of
 msgstr "A <replaceable>versão</replaceable> é definida pela concatenação da versão do upstream (como definido pelas variáveis <literal>VERSION</literal>, <literal>PATCHLEVEL</literal>, <literal>SUBLEVEL</literal> e <literal>EXTRAVERSION</literal> no <filename>Makefile</filename>), do parâmetro de configuração <literal>LOCALVERSION</literal>, e da variável de ambiente <literal>LOCALVERSION</literal>. A versão do pacote reusa a mesma cadeia de caracteres da versão com uma revisão adicionada, que é regularmente incrementada (e armazenada em <filename>.version</filename>), exceto se você sobrescrever ela com a variável de ambiente <literal>KDEB_PKGVERSION</literal>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-falcot KDEB_PKGVERSION=1</userinput>\n"
@@ -3171,7 +3171,7 @@ msgid ""
 "../linux-image-3.2.46-falcot_1_amd64.deb\n"
 "../linux-image-3.2.46-falcot-dbg_1_amd64.deb\n"
 "../linux-libc-dev_1_amd64.deb\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-falcot KDEB_PKGVERSION=1</userinput>\n"
@@ -3220,7 +3220,7 @@ msgid "For example, let's look at the <emphasis role=\"pkg\">virtualbox-source</
 msgstr "Por exemplo, vamos dar uma olhada no pacote <emphasis role=\"pkg\">virtualbox-source</emphasis>: após a instalação, um <filename>.tar.bz2</filename> dos fontes do módulo é armazenado em <filename>/usr/src/</filename>. Ainda que nós possamos manualmente extrair o tarball e construir o módulo, na prática nós preferimos automatizar tudo isso usando o DKMS. A maioria dos módulos oferecem a requerida integração DKMS em um pacote terminando com o sufixo <literal>-dkms</literal>. No nosso caso, instalar o <emphasis role=\"pkg\">virtualbox-dkms</emphasis> é tudo que é preciso para compilar o módulo do núcleo para o núcleo corrente, incluindo também o pacote <emphasis role=\"pkg\">linux-headers-*</emphasis> associado ao núcleo instalado. Por exemplo, se você usa o <emphasis role=\"pkg\">linux-image-amd64</emphasis>, você deve também instalar o <emphasis role=\"pkg\">linux-headers-amd64</emphasis>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>sudo apt-get install virtualbox-dkms</userinput>\n"
@@ -3249,7 +3249,7 @@ msgid ""
 "license:        GPL\n"
 "description:    Oracle VM VirtualBox Support Driver\n"
 "[...]\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>sudo apt-get install virtualbox-dkms</userinput>\n"
@@ -3326,13 +3326,13 @@ msgid "To apply one or more of these installed patches, use the <command>patch</
 msgstr "Para aplicar um ou mais desses patches instalados, use o comando <command>patch</command> no diretório dos fontes, e então, inicie a compilação do kernel como descrito acima."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-3.2</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>make clean</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/src/kernel-patches/diffs/grsecurity2/grsecurity-2.9.1-3.2.21-201206221855.patch.gz | patch -p1</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-grsec</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>make deb-pkg LOCALVERSION=-grsec</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd ~/kernel/linux-source-3.2</userinput>\n"

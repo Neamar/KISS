@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-11-16 00:20+0200\n"
 "Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/debian-handbook/13_workstation/de/>\n"
@@ -125,7 +125,7 @@ msgid "Note that if the detected video card is not handled by any of the availab
 msgstr "Beachten Sie, dass X.org versucht, den VESA-Treiber oder die fbdev-Treiber zu verwenden, falls die entdeckte Grafikkarte von keinem der verfügbaren Treiber unterstützt wird. Ersterer ist ein allgemeiner Treiber, der überall funktionieren sollte, jedoch mit eingeschränkten Fähigkeiten (weniger verfügbare Auflösungen, keine Hardwarebeschleunigung für Spiele und für visuelle Effekte des Desktops und so weiter). Letztere setzen dagegen auf dem Framebuffer-Device des Kernels auf. Der X-Server schreibt seine Mitteilungen in die Protokolldatei <filename>/var/log/Xorg.0.log</filename>, in der man nachsehen kann, wenn man wissen will, welcher Treiber gerade verwendet wird. Der folgende Ausschnitt zeigt zum Beispiel, was der <literal>intel</literal>-Treiber ausgibt, wenn er geladen wird:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -133,7 +133,7 @@ msgid ""
 "(==) Matched fbdev as autoconfigured driver 2\n"
 "(==) Assigned the driver to the xf86ConfigLayout\n"
 "(II) LoadModule: \"intel\"\n"
-"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
+"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so"
 msgstr ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -1324,10 +1324,10 @@ msgid "Now let's install the required packages:"
 msgstr "Jetzt werden alle benötigten Pakete installiert:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"

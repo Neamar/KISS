@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2015-02-26 12:33-0500\n"
 "Last-Translator: Muhammad Saied <msaied93@gmail.com>\n"
 "Language-Team: Arabic <debian-l10n-arabic@lists.debian.org>\n"
@@ -127,7 +127,7 @@ msgid "Note that if the detected video card is not handled by any of the availab
 msgstr "لاحظ أنه إذا لم يتعرف أي برنامج تعريف على بطاقة الفيديو المكتشفة، فسوف يحاول X.org استخدام تعريف VESA أو fbdev. الأول هو تعريف عام يجب أن يعمل في كل الظروف، لكن إمكانياته محدودة (خيارات أقل لدقة العرض، عدم وجود تسريع فيزيائي للألعاب والمؤثرات البصرية لسطح المكتب الرسومي، وهكذا) بينما يعمل الثاني اعتماداً على جهاز framebuffer الذي توفره النواة. يكتب مخدم X رسائله إلى الملف <filename dir=\"ltr\">/var/log/Xorg.0.log</filename>، وهو المكان الذي يقصده المرء عندما يحتاج معرفة التعريف المستخدم حاليًا. مثلاً، القصاصة التالية توافق مخرجات تعريف <literal>intel</literal> عند تحميله:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -135,7 +135,7 @@ msgid ""
 "(==) Matched fbdev as autoconfigured driver 2\n"
 "(==) Assigned the driver to the xf86ConfigLayout\n"
 "(II) LoadModule: \"intel\"\n"
-"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
+"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so"
 msgstr ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -1326,10 +1326,10 @@ msgid "Now let's install the required packages:"
 msgstr "دعنا نثبت الآن الحزم المطلوبة:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"

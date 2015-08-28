@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2015-03-31 14:12+0200\n"
 "Last-Translator: Herbert Parentes Fortes Neto <hpfn@ig.com.br>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/debian-handbook/11_network-services/pt_BR/>\n"
@@ -236,7 +236,7 @@ msgid "Initial <filename>/etc/postfix/main.cf</filename> file"
 msgstr "Arquivo inicial <filename>/etc/postfix/main.cf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# See /usr/share/postfix/main.cf.dist for a commented, more complete version\n"
@@ -279,7 +279,7 @@ msgid ""
 "mailbox_size_limit = 0\n"
 "recipient_delimiter = +\n"
 "inet_interfaces = all\n"
-"inet_protocols = all\n"
+"inet_protocols = all"
 msgstr ""
 "\n"
 "# See /usr/share/postfix/main.cf.dist for a commented, more complete version\n"
@@ -395,11 +395,11 @@ msgid "Directives to add in the <filename>/etc/postfix/main.cf</filename> file"
 msgstr "Diretivas para serem adicionadas no arquivo <filename>/etc/postfix/main.cf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "virtual_alias_domains = falcotsbrand.com\n"
-"virtual_alias_maps = hash:/etc/postfix/virtual\n"
+"virtual_alias_maps = hash:/etc/postfix/virtual"
 msgstr ""
 "\n"
 "virtual_alias_domains = falcotsbrand.com\n"
@@ -416,7 +416,7 @@ msgid "Example <filename>/etc/postfix/virtual</filename> file"
 msgstr "Arquivo de exemplo <filename>/etc/postfix/virtual</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "webmaster@falcotsbrand.com  jean@falcot.com\n"
@@ -425,7 +425,7 @@ msgid ""
 "# the falcotsbrand.com domain not otherwise covered by this file.\n"
 "# These addresses forward email to the same user name in the\n"
 "# falcot.com domain.\n"
-"@falcotsbrand.com           @falcot.com\n"
+"@falcotsbrand.com           @falcot.com"
 msgstr ""
 "\n"
 "webmaster@falcotsbrand.com  jean@falcot.com\n"
@@ -477,12 +477,12 @@ msgid "The <literal>virtual_uid_maps</literal> parameter (respectively <literal>
 msgstr "O parâmetro <literal>virtual_uid_maps</literal> (<literal>virtual_gid_maps</literal> respectivamente) faz referência ao arquivo que contém o mapeamento entre o endereço de e-mail e o usuário do sistema (grupo respectivamente) que \"possui\" a caixa correspondente. Para obter todas as caixas de correio de propriedade do mesmo dono/grupo, a sintaxe <literal>static:5000</literal> atribui um UID/GID fixo (de valor 5000 aqui)."
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "virtual_mailbox_domains = falcot.org\n"
 "virtual_mailbox_maps = hash:/etc/postfix/vmailbox\n"
-"virtual_mailbox_base = /var/mail/vhosts\n"
+"virtual_mailbox_base = /var/mail/vhosts"
 msgstr ""
 "\n"
 "virtual_mailbox_domains = falcot.org\n"
@@ -500,7 +500,7 @@ msgid "The <filename>/etc/postfix/vmailbox</filename> file"
 msgstr "O arquivo <filename>/etc/postfix/vmailbox</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Jean's email is stored as maildir, with\n"
@@ -508,7 +508,7 @@ msgid ""
 "jean@falcot.org falcot.org/jean/\n"
 "# Sophie's email is stored in a traditional \"mbox\" file,\n"
 "# with all mails concatenated into one single file\n"
-"sophie@falcot.org falcot.org/sophie\n"
+"sophie@falcot.org falcot.org/sophie"
 msgstr ""
 "\n"
 "# Os e-mails de Jean são armazenados como maildir, com\n"
@@ -564,14 +564,14 @@ msgid "Restrictions Based on Client Address"
 msgstr "Restrições Baseadas no Endereço do Cliente"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "smtpd_client_restrictions = permit_mynetworks,\n"
 "    warn_if_reject reject_unknown_client,\n"
 "    check_client_access hash:/etc/postfix/access_clientip,\n"
 "    reject_rbl_client sbl-xbl.spamhaus.org,\n"
-"    reject_rbl_client list.dsbl.org\n"
+"    reject_rbl_client list.dsbl.org"
 msgstr ""
 "\n"
 "smtpd_client_restrictions = permit_mynetworks,\n"
@@ -671,14 +671,14 @@ msgid "Restrictions on the name announced in <literal>EHLO</literal>"
 msgstr "Restrições no nome anunciado com <literal>EHLO</literal>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "smtpd_helo_restrictions = permit_mynetworks,\n"
 "    reject_invalid_hostname,\n"
 "    check_helo_access hash:/etc/postfix/access_helo,\n"
 "    reject_non_fqdn_hostname,\n"
-"    warn_if_reject reject_unknown_hostname\n"
+"    warn_if_reject reject_unknown_hostname"
 msgstr ""
 "\n"
 "smtpd_helo_restrictions = permit_mynetworks,\n"
@@ -728,13 +728,13 @@ msgid "Sender checks"
 msgstr "Verificações do Remetente"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "smtpd_sender_restrictions = \n"
 "    check_sender_access hash:/etc/postfix/access_sender,\n"
 "    reject_unknown_sender_domain, reject_unlisted_sender,\n"
-"    reject_non_fqdn_sender\n"
+"    reject_non_fqdn_sender"
 msgstr ""
 "\n"
 "smtpd_sender_restrictions = \n"
@@ -783,12 +783,12 @@ msgid "Recipient checks"
 msgstr "Verificações pelo Destinatário"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "smtpd_recipient_restrictions = permit_mynetworks, \n"
 "    reject_unauth_destination, reject_unlisted_recipient, \n"
-"    reject_non_fqdn_recipient\n"
+"    reject_non_fqdn_recipient"
 msgstr ""
 "\n"
 "smtpd_recipient_restrictions = permit_mynetworks, \n"
@@ -826,10 +826,10 @@ msgid "<literal>DATA</literal> checks"
 msgstr "Verificações pelo <literal>DATA</literal>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"smtpd_data_restrictions = reject_unauth_pipelining\n"
+"smtpd_data_restrictions = reject_unauth_pipelining"
 msgstr ""
 "\n"
 "smtpd_data_restrictions = reject_unauth_pipelining\n"
@@ -875,11 +875,11 @@ msgid "Enabling content-based filters"
 msgstr "Habilitação de filtros baseados em conteúdo"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "header_checks = regexp:/etc/postfix/header_checks\n"
-"body_checks = regexp:/etc/postfix/body_checks\n"
+"body_checks = regexp:/etc/postfix/body_checks"
 msgstr ""
 "\n"
 "header_checks = regexp:/etc/postfix/header_checks\n"
@@ -911,11 +911,11 @@ msgid "Example <filename>/etc/postfix/header_checks</filename> file"
 msgstr "Exemplos do arquivo <filename>/etc/postfix/header_checks</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "/^X-Mailer: GOTO Sarbacane/ REJECT I fight spam (GOTO Sarbacane)\n"
-"/^Subject: *Your email contains VIRUSES/ DISCARD virus notification\n"
+"/^Subject: *Your email contains VIRUSES/ DISCARD virus notification"
 msgstr ""
 "\n"
 "/^X-Mailer: GOTO Sarbacane/ REJECT I fight spam (GOTO Sarbacane)\n"
@@ -972,12 +972,12 @@ msgid "Once <emphasis role=\"pkg\">postgrey</emphasis> is installed, it runs as 
 msgstr "Uma vez o <emphasis role=\"pkg\">postgrey</emphasis> estando instalado, ele roda como um daemon e ouve na porta 10023. O Postfix pode então ser configurado para usá-lo. adicionando o parâmetro <literal>check_policy_service</literal> como uma restrição extra:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "smtpd_recipient_restrictions = permit_mynetworks,\n"
 "    [...]\n"
-"    check_policy_service inet:127.0.0.1:10023\n"
+"    check_policy_service inet:127.0.0.1:10023"
 msgstr ""
 "\n"
 "smtpd_recipient_restrictions = permit_mynetworks,\n"
@@ -1055,7 +1055,7 @@ msgid "Defining restriction classes in <filename>main.cf</filename>"
 msgstr "Definição de classes de restrição em <filename>main.cf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "smtpd_restriction_classes = greylisting, aggressive, permissive\n"
 "\n"
@@ -1066,7 +1066,7 @@ msgid ""
 "\n"
 "smtpd_recipient_restrictions = permit_mynetworks,\n"
 "        reject_unauth_destination,\n"
-"        check_recipient_access hash:/etc/postfix/recipient_access\n"
+"        check_recipient_access hash:/etc/postfix/recipient_access"
 msgstr ""
 "smtpd_restriction_classes = greylisting, aggressive, permissive\n"
 "\n"
@@ -1085,7 +1085,7 @@ msgid "The <filename>/etc/postfix/recipient_access</filename> file"
 msgstr "O arquivo <filename>/etc/postfix/recipient_access</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Unfiltered addresses\n"
@@ -1100,7 +1100,7 @@ msgid ""
 "sympa@falcot.com       reject_unverified_sender\n"
 "\n"
 "# Greylisting by default\n"
-"falcot.com             greylisting\n"
+"falcot.com             greylisting"
 msgstr ""
 "\n"
 "# Unfiltered addresses\n"
@@ -1193,11 +1193,11 @@ msgid "The last step involves telling Postfix to use the recently-configured fil
 msgstr "O último passo envolve informar ao Postfix para usar o filtro recém-configurado. Isso é uma simples questão de adicionar a seguinte diretiva ao <filename>/etc/postfix/main.cf</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Virus check with clamav-milter\n"
-"smtpd_milters = inet:[127.0.0.1]:10002\n"
+"smtpd_milters = inet:[127.0.0.1]:10002"
 msgstr ""
 "\n"
 "# Verificação de vírus com clamav-milter\n"
@@ -1270,7 +1270,7 @@ msgid "Enabling SASL in <filename>/etc/postfix/main.cf</filename>"
 msgstr "Ativando o SASL no <filename>/etc/postfix/main.cf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Enable SASL authentication\n"
@@ -1283,7 +1283,7 @@ msgid ""
 "smtpd_recipient_restrictions = permit_mynetworks,\n"
 "    permit_sasl_authenticated,\n"
 "    reject_unauth_destination,\n"
-"[...]\n"
+"[...]"
 msgstr ""
 "\n"
 "# Enable SASL authentication\n"
@@ -1309,12 +1309,12 @@ msgid "Most email clients are able to authenticate to an SMTP server before send
 msgstr "A maioria dos clientes de e-mail são capazes de fazer autenticação em um servidor de SMTP antes de enviar mensagens de saída e usar esse recurso é uma simples questão de configurar os parâmetros apropriados. Se o cliente em uso não oferece esse recurso a solução alternativa é usar um servidor Postfix local e configurá-lo para fazer o relay do email através de um servidor SMTP remoto. Neste caso, o próprio Postfix local será o cliente que autentica com o SASL. Aqui estão os parâmetros necessários:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "smtp_sasl_auth_enable = yes\n"
 "smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\n"
-"relay_host = [mail.falcot.com]\n"
+"relay_host = [mail.falcot.com]"
 msgstr ""
 "\n"
 "smtp_sasl_auth_enable = yes\n"
@@ -1327,10 +1327,10 @@ msgid "The <filename>/etc/postfix/sasl_passwd</filename> file needs to contain t
 msgstr "O arquivo <filename>/etc/postfix/sasl_passwd</filename> precisa conter o nome de usuário e senha para autenticar no servidor <literal>mail.falcot.com</literal>. Aqui está um exemplo:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"[mail.falcot.com]   joe:LyinIsji\n"
+"[mail.falcot.com]   joe:LyinIsji"
 msgstr ""
 "\n"
 "[mail.falcot.com]   joe:LyinIsji\n"
@@ -1566,13 +1566,13 @@ msgid "The Apache package provided in Debian is built with support for SNI; no p
 msgstr "O pacote Apache fornecido pelo Debian é construído com suporte a SNI; portanto nenhuma configuração em particular é necessária, apenas a habilitação de hosting virtual baseada em nome na porta 443 (SSL) assim como na habitual port 80. Isso é uma simples questão de editar o <filename>/etc/apache2/ports.conf</filename> para que seja incluído o seguinte:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "&lt;IfModule mod_ssl.c&gt;\n"
 "    NameVirtualHost *:443\n"
 "    Listen 443\n"
-"&lt;/IfModule&gt;\n"
+"&lt;/IfModule&gt;"
 msgstr ""
 "\n"
 "&lt;IfModule mod_ssl.c&gt;\n"
@@ -1596,14 +1596,14 @@ msgid "The <filename>/etc/apache2/sites-available/www.falcot.org</filename> file
 msgstr "o arquivo <filename>/etc/apache2/sites-available/www.falcot.org</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "&lt;VirtualHost *:80&gt;\n"
 "ServerName www.falcot.org\n"
 "ServerAlias falcot.org\n"
 "DocumentRoot /srv/www/www.falcot.org\n"
-"&lt;/VirtualHost&gt;\n"
+"&lt;/VirtualHost&gt;"
 msgstr ""
 "\n"
 "&lt;VirtualHost *:80&gt;\n"
@@ -1623,14 +1623,14 @@ msgid "The <filename>/etc/apache2/conf.d/customlog</filename> file"
 msgstr "O arquivo <filename>/etc/apache2/conf.d/customlog</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# New log format including (virtual) host name\n"
 "LogFormat \"%v %h %l %u %t \\\"%r\\\" %&gt;s %b \\\"%{Referer}i\\\" \\\"%{User-Agent}i\\\"\" vhost\n"
 "\n"
 "# Now let's use this \"vhost\" format by default\n"
-"CustomLog /var/log/apache2/access.log vhost\n"
+"CustomLog /var/log/apache2/access.log vhost"
 msgstr ""
 "\n"
 "# New log format including (virtual) host name\n"
@@ -1680,14 +1680,14 @@ msgid "Directory block"
 msgstr "Bloco Directory"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "&lt;Directory /var/www&gt;\n"
 "Options Includes FollowSymlinks\n"
 "AllowOverride All\n"
 "DirectoryIndex index.php index.html index.htm\n"
-"&lt;/Directory&gt;\n"
+"&lt;/Directory&gt;"
 msgstr ""
 "\n"
 "&lt;Directory /var/www&gt;\n"
@@ -1787,13 +1787,13 @@ msgid "<filename>.htaccess</filename> file requiring authentication"
 msgstr "Arquivo <filename>.htaccess</filename> para autenticação obrigatária"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "Require valid-user\n"
 "AuthName \"Private directory\"\n"
 "AuthType Basic\n"
-"AuthUserFile /etc/apache2/authfiles/htpasswd-private\n"
+"AuthUserFile /etc/apache2/authfiles/htpasswd-private"
 msgstr ""
 "\n"
 "Require valid-user\n"
@@ -1879,12 +1879,12 @@ msgid "Reject by default but allow from the local network"
 msgstr "Rejeita por padrão mas permite da rede local"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "Order deny,allow\n"
 "Allow from 192.168.0.0/16\n"
-"Deny from all\n"
+"Deny from all"
 msgstr ""
 "\n"
 "Order deny,allow\n"
@@ -1932,7 +1932,7 @@ msgid "The first configuration step is the customization of the <filename>/etc/a
 msgstr "O primeiro passo de configuração é a customização do arquivo <filename>/etc/awstats/awstats.conf</filename>. O administradores da Falcot o mantiveram inalterado, exceto os seguintes parâmetros:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "LogFile=\"/var/log/apache2/access.log\"\n"
@@ -1940,7 +1940,7 @@ msgid ""
 "SiteDomain=\"www.falcot.com\"\n"
 "HostAliases=\"falcot.com REGEX[^.*\\.falcot\\.com$]\"\n"
 "DNSLookup=1\n"
-"LoadPlugin=\"tooltips\"\n"
+"LoadPlugin=\"tooltips\""
 msgstr ""
 "\n"
 "LogFile=\"/var/log/apache2/access.log\"\n"
@@ -1981,12 +1981,12 @@ msgid "AWStats configuration file for a virtual host"
 msgstr "Arquivo de configuração dO AWStats para um servidor virtual"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "Include \"/etc/awstats/awstats.conf\"\n"
 "SiteDomain=\"www.falcot.org\"\n"
-"HostAliases=\"falcot.org\"\n"
+"HostAliases=\"falcot.org\""
 msgstr ""
 "\n"
 "Include \"/etc/awstats/awstats.conf\"\n"
@@ -1999,10 +1999,10 @@ msgid "AWStats uses many icons stored in the <filename>/usr/share/awstats/icon/<
 msgstr "O AWStats usa muitos ícones que estão armazenados no diretório <filename>/usr/share/awstats/icon/</filename>. Para que esses ícones fiquem disponíveis no site web, a configuração do Apache precisa ser adaptada para incluir as seguintes diretivas:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"Alias /awstats-icon/ /usr/share/awstats/icon/\n"
+"Alias /awstats-icon/ /usr/share/awstats/icon/"
 msgstr ""
 "\n"
 "Alias /awstats-icon/ /usr/share/awstats/icon/\n"
@@ -2023,7 +2023,7 @@ msgid "In order for the statistics to take all the logs into account, <emphasis>
 msgstr "Para que as estatísticas levem em consideração todos os logs, o <emphasis>AWStats</emphasis> precisa ser executado antes que os arquivos de log do Apache sejam rotacionados. Olhando a diretiva <literal>prerotate</literal> do arquivo <filename>/etc/logrotate.d/apache2</filename>, isso pode ser resolvido colocando um link simbólico em <filename>/usr/share/awstats/tools/update.sh</filename> no <filename>/etc/logrotate.d/httpd-prerotate</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "$ <userinput>cat /etc/logrotate.d/apache2</userinput>\n"
@@ -2047,7 +2047,7 @@ msgid ""
 "}\n"
 "$ <userinput>sudo mkdir -p /etc/logrotate.d/httpd-prerotate</userinput>\n"
 "$ <userinput>sudo ln -sf /usr/share/awstats/tools/update.sh \\\n"
-"  /etc/logrotate.d/httpd-prerotate/awstats</userinput>\n"
+"  /etc/logrotate.d/httpd-prerotate/awstats</userinput>"
 msgstr ""
 "\n"
 "$ <userinput>cat /etc/logrotate.d/apache2</userinput>\n"
@@ -2264,7 +2264,7 @@ msgid "The <filename>/etc/default/nfs-kernel-server</filename> file"
 msgstr "O arquivo <filename>/etc/default/nfs-kernel-server</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Number of servers to start up\n"
@@ -2285,7 +2285,7 @@ msgid ""
 "NEED_SVCGSSD=\n"
 "\n"
 "# Options for rpc.svcgssd.\n"
-"RPCSVCGSSDOPTS=\n"
+"RPCSVCGSSDOPTS="
 msgstr ""
 "\n"
 "# Number of servers to start up\n"
@@ -2314,7 +2314,7 @@ msgid "The <filename>/etc/default/nfs-common</filename> file"
 msgstr "O arquivo <filename>/etc/default/nfs-common</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# If you do not set values for the NEED_ options, they will be attempted\n"
@@ -2335,7 +2335,7 @@ msgid ""
 "NEED_IDMAPD=\n"
 "\n"
 "# Do you want to start the gssd daemon? It is required for Kerberos mounts.\n"
-"NEED_GSSD=\n"
+"NEED_GSSD="
 msgstr ""
 "\n"
 "# If you do not set values for the NEED_ options, they will be attempted\n"
@@ -2374,10 +2374,10 @@ msgid "The <filename>/etc/modprobe.d/lockd</filename> file"
 msgstr "O arquivo <filename>/etc/modprobe.d/lockd</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"options lockd nlm_udpport=2045 nlm_tcpport=2045\n"
+"options lockd nlm_udpport=2045 nlm_tcpport=2045"
 msgstr ""
 "\n"
 "options lockd nlm_udpport=2045 nlm_tcpport=2045\n"
@@ -2413,10 +2413,10 @@ msgid "<primary><filename>/etc/exports</filename></primary>"
 msgstr "<primary><filename>/etc/exports</filename></primary>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"/directory/to/share machine1(option1,option2,...) machine2(...) ...\n"
+"/directory/to/share machine1(option1,option2,...) machine2(...) ..."
 msgstr ""
 "\n"
 "/directory/to/share machine1(option1,option2,...) machine2(...) ...\n"
@@ -2462,10 +2462,10 @@ msgid "The <filename>/etc/init.d/nfs-kernel-server</filename> boot script only s
 msgstr "O script de inicialização <filename>/etc/init.d/nfs-kernel-server</filename> apenas inicia o servidor se o <filename>/etc/exports</filename> lista um ou mais compartilhamentos NFS válidos. Na configuração inicial, uma vez que esse arquivo tenha sido editado para conter entradas válidas, o servidor NFS já pode ser iniciado com o seguinte comando:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server start</userinput>\n"
+"<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server start</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>/etc/init.d/nfs-kernel-server start</userinput>\n"
@@ -2510,10 +2510,10 @@ msgid "NFS entry in the <filename>/etc/fstab</filename> file"
 msgstr "Entrada NFS no arquivo <filename>/etc/fstab</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"arrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
+"arrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0"
 msgstr ""
 "\n"
 "arrakis.internal.falcot.com:/srv/shared /shared nfs rw,nosuid 0 0\n"
@@ -2704,7 +2704,7 @@ msgid "The requirements at Falcot require other options to be modified in the <f
 msgstr "Os requerimentos na Falcot fazem necessário que outras opção sejam modificadas no arquivo de configuração <filename>/etc/samba/smb.conf</filename>. O trecho a seguir resumem as alterações que foram feitas na seção <literal>[global]</literal>."
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "[global]\n"
@@ -2755,7 +2755,7 @@ msgid ""
 "# CUPS printing.  See also the cupsaddsmb(8) manpage in the\n"
 "# cups-client package.\n"
 "   printing = cups <co id=\"smb.conf.printing\"></co>\n"
-"   printcap name = cups\n"
+"   printcap name = cups"
 msgstr ""
 "\n"
 "[global]\n"
@@ -2874,13 +2874,13 @@ msgid "They first added a few extra directives in the <literal>[global]</literal
 msgstr "Eles primeiro adicionaram algumas diretivas extras na seção <literal>[global]</literal> do arquivo de configuração:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "domain logons = yes              <co id=\"smb.conf.domainlogons\"></co>\n"
 "preferred master = yes           \n"
 "logon path = \\\\%L\\profiles\\%U    <co id=\"smb.conf.logonpath\"></co>\n"
-"logon script = scripts/logon.bat <co id=\"smb.conf.logonscript\"></co>\n"
+"logon script = scripts/logon.bat <co id=\"smb.conf.logonscript\"></co>"
 msgstr ""
 "\n"
 "domain logons = yes              <co id=\"smb.conf.domainlogons\"></co>\n"
@@ -2914,12 +2914,12 @@ msgid "The <filename>logon.bat</filename> file"
 msgstr "O arquivo <filename>logon.bat</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "net time \\\\ARRAKIS /set /yes\n"
 "net use H: /home\n"
-"net use U: \\\\ARRAKIS\\utils\n"
+"net use U: \\\\ARRAKIS\\utils"
 msgstr ""
 "\n"
 "net time \\\\ARRAKIS /set /yes\n"
@@ -2932,7 +2932,7 @@ msgid "Two extra shares, and their associated directories, were also created:"
 msgstr "Dois compartilhamentos extras, e seus diretórios associados, também foram criados:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "[netlogon]\n"
@@ -2946,7 +2946,7 @@ msgid ""
 "comment = Profile Share\n"
 "path = /var/lib/samba/profiles\n"
 "read only = No\n"
-"profile acls = Yes\n"
+"profile acls = Yes"
 msgstr ""
 "\n"
 "[netlogon]\n"
@@ -3023,11 +3023,11 @@ msgid "Mounting a Windows share"
 msgstr "Montando um compartilhamento Windows"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "mount -t cifs //arrakis/shared /shared \\\n"
-"      -o credentials=/etc/smb-credentials\n"
+"      -o credentials=/etc/smb-credentials"
 msgstr ""
 "\n"
 "mount -t cifs //arrakis/shared /shared \\\n"
@@ -3060,10 +3060,10 @@ msgid "A mount of a Windows share can also be configured in <filename>/etc/fstab
 msgstr "A montagem de um compartilhamento Windows também pode ser configurada em <filename>/etc/fstab</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"//<replaceable>server</replaceable>/shared /shared cifs credentials=/etc/smb-credentials\n"
+"//<replaceable>server</replaceable>/shared /shared cifs credentials=/etc/smb-credentials"
 msgstr ""
 "\n"
 "//<replaceable>servidor</replaceable>/shared /shared cifs credentials=/etc/smb-credentials\n"
@@ -3204,7 +3204,7 @@ msgid "The <filename>/etc/squid/squid.conf</filename> file (excerpts)"
 msgstr "O arquivo <filename>/etc/squid/squid.conf</filename> (trecho)"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS\n"
@@ -3216,7 +3216,7 @@ msgid ""
 "http_access allow our_networks\n"
 "http_access allow localhost\n"
 "# And finally deny all other access to this proxy\n"
-"http_access deny all\n"
+"http_access deny all"
 msgstr ""
 "\n"
 "# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS\n"
@@ -3246,10 +3246,10 @@ msgid "<primary><command>squidGuard</command></primary>"
 msgstr "<primary><command>squidGuard</command></primary>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"redirect_program /usr/bin/squidGuard -c /etc/squid/squidGuard.conf \n"
+"redirect_program /usr/bin/squidGuard -c /etc/squid/squidGuard.conf "
 msgstr ""
 "\n"
 "redirect_program /usr/bin/squidGuard -c /etc/squid/squidGuard.conf \n"
@@ -3400,7 +3400,7 @@ msgid "A minimal database is now configured, as demonstrated by the following qu
 msgstr "Um base de dados miníma está configurada agora, como demonstrado pela seguinte consulta:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>ldapsearch -x -b dc=falcot,dc=com</userinput>\n"
@@ -3433,7 +3433,7 @@ msgid ""
 "\n"
 "# numResponses: 3\n"
 "# numEntries: 2\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>ldapsearch -x -b dc=falcot,dc=com</userinput>\n"
@@ -3504,11 +3504,11 @@ msgid "The actual migration operation is handled by the <command>migrate_all_onl
 msgstr "A real operação de migração é feita pelo comando <command>migrate_all_online.sh</command>, como  a seguir:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput># </computeroutput><userinput>cd /usr/share/migrationtools</userinput>\n"
-"<computeroutput># </computeroutput><userinput>LDAPADD=\"/usr/bin/ldapadd -c\" ETC_ALIASES=/dev/null ./migrate_all_online.sh</userinput>\n"
+"<computeroutput># </computeroutput><userinput>LDAPADD=\"/usr/bin/ldapadd -c\" ETC_ALIASES=/dev/null ./migrate_all_online.sh</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>cd /usr/share/migrationtools</userinput>\n"
@@ -3705,7 +3705,7 @@ msgid "The <filename>/etc/nsswitch.conf</filename> file"
 msgstr "O arquivo <filename>/etc/nsswitch.conf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# /etc/nsswitch.conf\n"
@@ -3726,7 +3726,7 @@ msgid ""
 "ethers: ldap db files\n"
 "rpc: ldap db files\n"
 "\n"
-"netgroup: ldap files\n"
+"netgroup: ldap files"
 msgstr ""
 "\n"
 "# /etc/nsswitch.conf\n"
@@ -3915,7 +3915,7 @@ msgid "Now these keys have to be installed in their standard location, and we mu
 msgstr "Agora essas chaves tem que ser instaladas em seu local padrão, e nós temos que garantir que o arquivo privado pode ser lido pelo servidor LDAP, o qual roda sob a identidade do usuário <literal>openldap</literal>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# <userinput>adduser openldap ssl-cert</userinput>\n"
@@ -3925,7 +3925,7 @@ msgid ""
 "# <userinput>mv keys/ldap.falcot.com.key /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
 "# <userinput>chown root:ssl-cert /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
 "# <userinput>chmod 0640 /etc/ssl/private/ldap.falcot.com.key</userinput>\n"
-"# <userinput>mv newcert.pem /etc/ssl/certs/ldap.falcot.com.pem</userinput>\n"
+"# <userinput>mv newcert.pem /etc/ssl/certs/ldap.falcot.com.pem</userinput>"
 msgstr ""
 "\n"
 "# <userinput>adduser openldap ssl-cert</userinput>\n"
@@ -3948,7 +3948,7 @@ msgid "Configuring <command>slapd</command> for encryption"
 msgstr "Configurando <command>slapd</command> para criptografia"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# <userinput>cat &gt;ssl.ldif &lt;&lt;END\n"
@@ -3965,7 +3965,7 @@ msgid ""
 "SASL/EXTERNAL authentication started\n"
 "SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth\n"
 "SASL SSF: 0\n"
-"modifying entry \"cn=config\"\n"
+"modifying entry \"cn=config\""
 msgstr ""
 "\n"
 "# <userinput>cat &gt;ssl.ldif &lt;&lt;END\n"
@@ -4005,10 +4005,10 @@ msgid "It is thus a convenient way to update the configuration of the LDAP serve
 msgstr "Esta é, portanto, uma maneira coveniente de atualizar a configuração do servidor LDAP, simplesmente editando a hierarquia <literal>cn=config</literal>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>\n"
+"# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>"
 msgstr ""
 "\n"
 "# <userinput>ldapvi -Y EXTERNAL -h ldapi:/// -b cn=config</userinput>\n"
@@ -4024,7 +4024,7 @@ msgid "The <filename>/etc/default/slapd</filename> file"
 msgstr "O nome <filename>/etc/default/slapd</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Default location of the slapd.conf file or slapd.d cn=config directory. If\n"
@@ -4071,7 +4071,7 @@ msgid ""
 "#export KRB5_KTNAME=/etc/krb5.keytab\n"
 "\n"
 "# Additional options to pass to slapd\n"
-"SLAPD_OPTIONS=\"\"\n"
+"SLAPD_OPTIONS=\"\""
 msgstr ""
 "\n"
 "# Default location of the slapd.conf file or slapd.d cn=config directory. If\n"
@@ -4136,7 +4136,7 @@ msgid "LDAP clients also need to be able to authenticate the server. In a X.509 
 msgstr "Clientes LDAP também precisam ser capazes de autenticar o servidor. Em uma infraestrutura de chave pública X.509, certificados públicos são assinados pela chave da autoridade certificadora (CA, do inglês certificate authority). Com <emphasis>easy-rsa</emphasis>, os administradores da Falcot criaram seu próprio CA e agora eles precisam configurar o sistema para confiar nas assinaturas do CA da Falcot. Isso pode ser feito colocando o certificado CA em <filename>/usr/local/share/ca-certificates</filename> e executando <command>update-ca-certificates</command>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# <userinput>cp keys/ca.crt /usr/local/share/ca-certificates/falcot.crt</userinput>\n"
@@ -4145,7 +4145,7 @@ msgid ""
 "Running hooks in /etc/ca-certificates/update.d....\n"
 "Adding debian:falcot.pem\n"
 "done.\n"
-"done.\n"
+"done."
 msgstr ""
 "\n"
 "# <userinput>cp keys/ca.crt /usr/local/share/ca-certificates/falcot.crt</userinput>\n"
@@ -4167,7 +4167,7 @@ msgid "The <filename>/etc/ldap/ldap.conf</filename> file"
 msgstr "O arquivo <filename>/etc/ldap/ldap.conf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "#\n"
 "# LDAP Defaults\n"
@@ -4184,7 +4184,7 @@ msgid ""
 "#DEREF          never\n"
 "\n"
 "# TLS certificates (needed for GnuTLS)\n"
-"TLS_CACERT      /etc/ssl/certs/ca-certificates.crt\n"
+"TLS_CACERT      /etc/ssl/certs/ca-certificates.crt"
 msgstr ""
 "#\n"
 "# LDAP Defaults\n"

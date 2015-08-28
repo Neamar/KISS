@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-08-06 09:48+0200\n"
 "Last-Translator: Samsul Ma'arif <mail@samsul.web.id>\n"
 "Language-Team: Indonesian <https://debian.weblate.org/projects/debian-handbook/03_existing-setup/id/>\n"
@@ -53,7 +53,6 @@ msgstr "<primary>lingkungan</primary><secondary>lingkungan yang heterogen</secon
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Debian integrates very well in all types of existing environments and plays well with any other operating system. This near-perfect harmony comes from market pressure which demands that software publishers develop programs that follow standards. Compliance with standards allow administrators to switch out programs: clients or servers, whether free or not."
 msgid "Debian integrates very well in all types of existing environments and plays well with any other operating system. This near-perfect harmony comes from market pressure which demands that software publishers develop programs that follow standards. Compliance with standards allows administrators to switch out programs: clients or servers, whether free or not."
 msgstr "Debian sangat baik dalam mengintegrasikan berbagai lingkungan yang ada dan bermain dengan baik dengan beberapa sistem operasi lain. Harmoni yang mendekati sempurna ini datang dari tekanan pasar yang menuntut bahwa penerbit perangkat lunak mengembangkan program yang mengikuti standar. Penyesuaian dengan standar mengizinkan administrator untuk berganti program: klien atau server, entah itu bebas (free) atau tidak."
 
@@ -79,7 +78,6 @@ msgstr "<primary>Samba</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Samba version 2 behaves like a Windows NT server (authentication, files, print queues, downloading printer drivers, DFS, etc.) Version 3 works with Active Directory, brings interoperability with NT4 domain controllers, and supports RPCs (Remote Procedure Calls). Version 4 is a rewrite (still experimental), the purpose of which is to provide functionality of a domain controller compatible with Active Directory."
 msgid "Samba version 2 behaves like a Windows NT server (authentication, files, print queues, downloading printer drivers, DFS, etc.) Version 3 works with Active Directory, brings interoperability with NT4 domain controllers, and supports RPCs (Remote Procedure Calls). Version 4 is a rewrite that can provide a domain controller compatible with Active Directory."
 msgstr "Samba versi 2 berperilaku seperti server Windows NT (otentikasi, berkas, antrian cetak, mengunduh penggerak printer, DFS, dll.) Versi 3 bekerja dengan Active Directory, membawa interoperabilitas dengan domain kontroller NT4, dan mendukung RPC (Remote Procedure Calls), Versi 4 ialah penulisan ulang (masin eksperimental), tujuannya menyediakan fungsionalitas domain kontroler yang cocok dengan Active Directory."
 
@@ -160,7 +158,6 @@ msgstr "<primary>migrasi</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "In order to guarantee continuity of the services, each computer migration must be planned and executed according to the plan. Whatever the operating system used, this principle never changes."
 msgid "In order to guarantee continuity of the services, each computer migration must be planned and executed according to the plan. This principle applies whatever the operating system used."
 msgstr "Untuk menjamin keberlanjutan layanan, setiap migrasi komputer harus direncanakan dan dieksekusi berdasarkan rencana. Apapun sistem operasi yang digunakan, prinsip ini tak pernah berubah."
 
@@ -176,7 +173,6 @@ msgstr "Sesederhana seperti terlihat, langkah ini penting. Seorang administrator
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "For this purpose, it is wise to inform your users of the project before migrating the server. To involve them in the project, it may be useful to install the most common free software programs on their desktops prior to migration, which they will come across again after the migration to Debian; OpenOffice.org and the Mozilla suite are the best examples here."
 msgid "For this purpose, it is wise to inform your users of the project before migrating the server. To involve them in the project, it may be useful to install the most common free software programs on their desktops prior to migration, which they will come across again after the migration to Debian; Libre Office and the Mozilla suite are the best examples here."
 msgstr "Untuk tujuan ini, alangkah bijak menginformasikan pengguna proyek Anda sebelum memigrasikan server. Melibatkan mereka pada proyek, mungkin akan berguna untuk menginstall program perangkat lunak bebas pada desktop mereka sebelum migrasi, yang mana mereka akan kembali setelah migrasi ke Debian; OpenOffice.org dan Mozilla ialah contoh terbaik di sini."
 
@@ -202,7 +198,7 @@ msgid ""
 "PORT   STATE SERVICE\n"
 "22/tcp open  ssh\n"
 "\n"
-"Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds</computeroutput>\n"
+"Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>nmap mirwiz</userinput>\n"
@@ -232,13 +228,11 @@ msgstr "<emphasis>LEBIH JAUH</emphasis> IPv6"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Some network commands may work either with IPv4 (the default usually) or with IPv6. This is especially the case with the <command>nmap</command> and <command>netstat</command> commands, but also others, such as <command>route</command> or <command>ip</command>. The convention is that this behavior is enabled by the <parameter>-6</parameter> command-line option."
 msgid "Some network commands may work either with IPv4 (the default usually) or with IPv6. These include the <command>nmap</command> and <command>netstat</command> commands, but also others, such as <command>route</command> or <command>ip</command>. The convention is that this behavior is enabled by the <parameter>-6</parameter> command-line option."
 msgstr "Beberapa perintah jaringan mungkin bekerja baik itu IPv4 (biasanya sebagai bawaan) atau IPv6. Khususnya dalam hal perintah <command>nmap</command> dan <command>netstat</command>, tetapi juga yang lainnya, seperti <command>route</command> atau <command>ip</command>. Konvensi ini dapat diaktifkan dengan opsi baris perintah <parameter>-6</parameter>."
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "If the server is a Unix machine offering shell accounts to users, it is interesting to determine if processes are executed in the background in the absence of their owner. The command <command>ps auxw</command> displays a list of all processes with their user identity. By checking this information against the output of the <command>who</command> command, which gives a list of logged in users, it is possible to identify wild servers or programs running in the background. Looking at <filename>crontabs</filename> (tables listing automatic actions scheduled by users) will often provide interesting information on functions fulfilled by the server (a complete explanation of <command>cron</command> is available in <xref linkend=\"sect.task-scheduling-cron-atd\" />)."
 msgid "If the server is a Unix machine offering shell accounts to users, it is interesting to determine if processes are executed in the background in the absence of their owner. The command <command>ps auxw</command> displays a list of all processes with their user identity. By checking this information against the output of the <command>who</command> command, which gives a list of logged in users, it is possible to identify rogue or undeclared servers or programs running in the background. Looking at <filename>crontabs</filename> (tables listing automatic actions scheduled by users) will often provide interesting information on functions fulfilled by the server (a complete explanation of <command>cron</command> is available in <xref linkend=\"sect.task-scheduling-cron-atd\" />)."
 msgstr "Jika server adalah mesin Unix yang menawarkan akun shell ke pengguna, menarik untuk menentukan apakah proses dieksekusi di background tanpa pengguna. Perintah <command>ps auxw</command> menampilkan daftar semua proses dengan identitas penggunanya. Dengan memeriksa informasi ini trhadap keluaran perintah <command>who</command>, yang menampilkan daftar pengguna yang login, memungkinkan untuk mengidentifikasi server atau program yang berjalan di background secara liar. Lihat di <filename>crontabs</filename> (tabel daftar aksi otomatis terjadwal oleh pengguna) seringkali menyediakan informasi menarik pada fungsi penuh oleh server (penjelasan lengkap tentang <command>cron</command> tersedia di <xref linkend=\"sect.task-scheduling-cron-atd\" />)."
 
@@ -254,13 +248,11 @@ msgstr "Mem-back up Konfigurasi"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "It is wise to retain the configuration of every service identified in order to be able to install the equivalent on the updated server. The strict minimum is to print the configuration files and make a backup copy of them."
 msgid "It is wise to retain the configuration of every identified service in order to be able to install the equivalent on the updated server. The bare minimum is to make a backup copy of the configuration files."
 msgstr "Bijaksana untuk memertahankan konfigurasi setiap layanan teridentifikasi agar dapat menginstall yang sesuai pada server yang diperbarui. Setidaknya cetak berkas konfigurasi dan buat backup salinannya."
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "For Unix machines, the configuration files are usually found in <filename>/etc/</filename>, but they may be located in a sub-directory of <filename>/usr/local/</filename>. This is the case if a program has been installed from sources, rather than with a package. One may also find them, in some cases, under <filename>/opt/</filename>."
 msgid "For Unix machines, the configuration files are usually found in <filename>/etc/</filename>, but they may be located in a sub-directory of <filename>/usr/local/</filename>. This is the case if a program has been installed from sources, rather than with a package. In some cases, one may also find them under <filename>/opt/</filename>."
 msgstr "Untuk mesin Unix, berkas konfigurasi biasanya ditemukan di <filename>/etc/</filename>, tetap mungkin juga terletak di sub-direktori <filename>/usr/local/</filename>. Dalam hal ini program telah diinstall dari sumber, daripada dengan paket. Satu mungkin dapat ditemukan, dalam beberapa kasus, di bawah <filename>/opt/</filename>."
 

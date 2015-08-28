@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2015-02-26 12:22-0500\n"
 "Last-Translator: Muhammad Saied <msaied93@gmail.com>\n"
 "Language-Team: Arabic <debian-l10n-arabic@lists.debian.org>\n"
@@ -347,7 +347,7 @@ msgid "We're going to use these physical elements to build two volumes, one RAID
 msgstr "سوف نستخدم هذه العناصر الفيزيائية لبناء حيزين تخزينيين، أحدهما RAID-0، والآخر RAID-1 (مرآة). دعنا نبدأ ببناء حيز RAID-0:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
@@ -406,7 +406,7 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/raid-0</userinput>\n"
 "<computeroutput>Filesystem      Size  Used Avail Use% Mounted on\n"
 "/dev/md0        7.9G  146M  7.4G   2% /srv/raid-0\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
@@ -478,7 +478,7 @@ msgid "Creation of a RAID-1 follows a similar fashion, the differences only bein
 msgstr "يتم إنشاء RAID-1 بأسلوب مشابه، ولا تظهر الاختلافات إلا بعد عملية الإنشاء:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdd2 /dev/sde</userinput>\n"
 "<computeroutput>mdadm: Note: this array has metadata at the start and\n"
@@ -522,7 +522,7 @@ msgid ""
 "[...]\n"
 "          State : clean\n"
 "[...]\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdd2 /dev/sde</userinput>\n"
 "<computeroutput>mdadm: Note: this array has metadata at the start and\n"
@@ -624,7 +624,7 @@ msgid "Now let's see what happens when one of the elements of the RAID-1 array f
 msgstr "دعنا نرى ما سيحدث عندما يتعطل أحد عناصر مصفوفة RAID-1. يمكن محاكاة عطب قرص ما باستخدام الخيار <literal dir=\"ltr\">--fail</literal> مع الأمر <command>mdadm</command>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sde</userinput>\n"
 "<computeroutput>mdadm: set /dev/sde faulty in /dev/md1\n"
@@ -646,7 +646,7 @@ msgid ""
 "       0       8       50        0      active sync   /dev/sdd2\n"
 "       1       0        0        1      removed\n"
 "\n"
-"       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
+"       1       8       64        -      faulty spare   /dev/sde</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sde</userinput>\n"
 "<computeroutput>mdadm: set /dev/sde faulty in /dev/md1\n"
@@ -676,7 +676,7 @@ msgid "The contents of the volume are still accessible (and, if it is mounted, t
 msgstr "تبقى محتويات المصفوفة متاحة (وإذا كانت مرتبطة بشجرة الملفات، فلن تشعر التطبيقات بشيء)، لكن البيانات لم تعد بأمان: فإذا تعطل القرص <filename>sdd</filename> أيضًا، سوف تضيع البيانات. نحن لا نريد أن نخاطر بذلك، ولهذا سوف نستبدل القرص المعطوب بقرص جديد، <filename>sdf</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdf</userinput>\n"
 "<computeroutput>mdadm: added /dev/sdf\n"
@@ -725,7 +725,7 @@ msgid ""
 "       0       8       50        0      active sync   /dev/sdd2\n"
 "       2       8       80        1      active sync   /dev/sdf\n"
 "\n"
-"       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
+"       1       8       64        -      faulty spare   /dev/sde</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdf</userinput>\n"
 "<computeroutput>mdadm: added /dev/sdf\n"
@@ -782,7 +782,7 @@ msgid "Here again, the kernel automatically triggers a reconstruction phase duri
 msgstr "هنا أيضاً تبدأ النواة طور إعادة بناء تلقائيًا، وتبقى المصفوفة خلال هذا الطور في الوضع degraded أيضًا لكنها متاحة للوصول. ترجع مصفوفة RAID-1 إلى الحالة الطبيعية فور انتهاء إعادة البناء. يمكن عندها أن نخبر النظام أننا سوف نزيل القرص <filename>sde</filename> من المصفوفة، حتى تبقى كمرآة RAID كلاسيكية بقرصين فقط:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sde</userinput>\n"
 "<computeroutput>mdadm: hot removed /dev/sde from /dev/md1\n"
@@ -791,7 +791,7 @@ msgid ""
 "[...]\n"
 "    Number   Major   Minor   RaidDevice State\n"
 "       0       8       50        0      active sync   /dev/sdd2\n"
-"       2       8       80        1      active sync   /dev/sdf</computeroutput>\n"
+"       2       8       80        1      active sync   /dev/sdf</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sde</userinput>\n"
 "<computeroutput>mdadm: hot removed /dev/sde from /dev/md1\n"
@@ -828,7 +828,7 @@ msgid "<command>mdadm</command> configuration file"
 msgstr "ملف إعداد <command>mdadm</command>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# mdadm.conf\n"
 "#\n"
@@ -854,7 +854,7 @@ msgid ""
 "ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464\n"
 "\n"
 "# This configuration was auto-generated on Thu, 17 Jan 2013 16:21:01 +0100\n"
-"# by mkconf 3.2.5-3\n"
+"# by mkconf 3.2.5-3"
 msgstr ""
 "# mdadm.conf\n"
 "#\n"
@@ -898,11 +898,11 @@ msgid "Fortunately, these lines can be generated automatically:"
 msgstr "لحسن الحظ، يمكن توليد هذه الأسطر آليًا:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
-"ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464</computeroutput>\n"
+"ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
@@ -1009,7 +1009,7 @@ msgid "First, we prepare the physical volumes using <command>pvcreate</command>:
 msgstr "أولاً، نجهز الحيزات الفيزيائية باستخدام <command>pvcreate</command>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
@@ -1044,7 +1044,7 @@ msgid ""
 "  /dev/sdd        lvm2 a--  4.00g 4.00g\n"
 "  /dev/sdf1       lvm2 a--  4.10g 4.10g\n"
 "  /dev/sdf2       lvm2 a--  5.22g 5.22g\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
@@ -1092,7 +1092,7 @@ msgid "Now let's assemble these physical elements into VGs using <command>vgcrea
 msgstr "دعنا الآن نجمع هذه العناصر الفيزيائية في VG باستخدام <command>vgcreate</command>. سوف نجمع الحيزات الفيزيائية من الأقراص السريعة فقط في مجموعة اسمها <filename>vg_critical</filename>؛ أما المجموعة الأخرى، <filename>vg_normal</filename>، فسوف تحوي عناصر سريعة وأخرى بطيئة."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput>  No volume groups found\n"
@@ -1126,7 +1126,7 @@ msgid ""
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree \n"
 "  vg_critical   2   0   0 wz--n-  8.09g  8.09g\n"
 "  vg_normal     3   0   0 wz--n- 12.30g 12.30g\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput>  No volume groups found\n"
@@ -1173,7 +1173,7 @@ msgid "We now have two “virtual disks”, sized about 8 GB and 12 GB, respec
 msgstr "لدينا الآن ”قرصين ظاهريين“، أحجامهما تقريبًا 8 غ.ب و 12 غ.ب على التوالي. دعنا الآن نقطعهما إلى ”أقسم ظاهرية“ (LVs). نحتاج الأمر <command>lvcreate</command>، ونحتاج أيضًا تعليمة أكثر تعقيداً بقليل:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
@@ -1204,7 +1204,7 @@ msgid ""
 "<computeroutput>  LV         VG          Attr     LSize  Pool Origin Data%  Move Log Copy%  Convert\n"
 "  lv_base    vg_critical -wi-a---  1.00g                                           \n"
 "  lv_files   vg_critical -wi-a---  5.00g                                           \n"
-"  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>\n"
+"  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
@@ -1268,7 +1268,7 @@ msgid "Logical volumes, once created, end up as block device files in <filename>
 msgstr "ينتهي المطاف بالحيزات المنطقية بعد إنشائها كملفات أجهزة كتلية في <filename dir=\"ltr\">/dev/mapper/</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1280,7 +1280,7 @@ msgid ""
 "<computeroutput>brw-rw---T 1 root disk 253, 0 Jan 17 17:05 /dev/dm-0\n"
 "brw-rw---T 1 root disk 253, 1 Jan 17 17:05 /dev/dm-1\n"
 "brw-rw---T 1 root disk 253, 2 Jan 17 17:05 /dev/dm-2\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1315,7 +1315,7 @@ msgid "To make things easier, convenience symbolic links are also created in dir
 msgstr "لتسهيل الأمور، يتم إنشاء اختصارات رمزيّة أيضًا في مجلدات بأسماء VGs نفسها:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1323,7 +1323,7 @@ msgid ""
 "lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_files -&gt; ../dm-0\n"
 "# </computeroutput><userinput>ls -l /dev/vg_normal</userinput>\n"
 "<computeroutput>total 0\n"
-"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; ../dm-2</computeroutput>\n"
+"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; ../dm-2</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1339,7 +1339,7 @@ msgid "The LVs can then be used exactly like standard partitions:"
 msgstr "يمكن استخدام LVs عندها مثل أي قسم نظامي تماماً:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
 "<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
@@ -1360,7 +1360,7 @@ msgid ""
 "<computeroutput>[...]\n"
 "/dev/vg_critical/lv_base    /srv/base       ext4\n"
 "/dev/vg_critical/lv_files   /srv/files      ext4\n"
-"/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
+"/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
 "<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
@@ -1419,7 +1419,7 @@ msgid "Even though the ability to aggregate partitions or physical disks is conv
 msgstr "بالرغم من أن ميزة جمع الأقراص أو الأقسام الفيزيائية مفيدة، إلا أنها ليست الميزة الأساسية لاستخدام LVM. لا تبدو المرونة التي تحصل عليها من LVM واضحة إلا بعد مرور فترة من الزمن بشكل خاص، عندما تتغير الحاجات. في مثالنا السابق، دعنا نفترض أن هناك ملفات جديدة كبيرة يجب تخزينها، وأن الحيز المنطقي المخصص لمخدم الملفات صغير جداً عليها. بما أننا لم نستهلك كامل المساحة الحرة المتوفرة على <filename>vg_critical</filename>، يمكننا توسعة <filename>lv_files</filename>. سوف نستخدم الأمر <command>lvresize</command> لذلك الغرض، ثم نستخدم <command>resize2fs</command> لملائمة نظام الملفات مع الحجم الجديد:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 "<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
@@ -1445,7 +1445,7 @@ msgid ""
 "\n"
 "# </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 "<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
+"/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% /srv/files</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 "<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
@@ -1494,14 +1494,14 @@ msgid "We could proceed in a similar fashion to extend the volume hosting the da
 msgstr "يمكننا توسعة الحيز الذي يستضيف قاعدة البيانات بنفس الأسلوب، لولا أننا وصلنا لحدود المساحة المتاحة على المجموعة:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_base 1008M  854M  104M  90% /srv/base\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree \n"
-"  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>\n"
+"  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
@@ -1516,7 +1516,7 @@ msgid "No matter, since LVM allows adding physical volumes to existing volume gr
 msgstr "لا مشكلة، حيث يسمح LVM بإضافة حيزات فيزيائية إلى المجموعات القائمة مسبقًا. مثلاً، ربما لاحظنا أن القسم <filename>sdb1</filename> الذي كان يستخدم خارج نظام LVM حتى الآن، كان يحتوي على أرشيفات يمكن نقلها إلى <filename>lv_backups</filename>. يمكننا الآن إعادة استخدام القسم ودمجه في مجموعة الحيزات الحالية، واستثمار بعض المساحة الحرة. هذه هي وظيفة الأمر <command>vgextend</command>. طبعاً يجب تهيئة القسم كحيز فيزيائي قبل ذلك. بعد توسيع المجموعة، يمكننا استخدام أوامر مشابهة للسابقة لتمديد الحيز المنطقي وتوسعة نظام الملفات بعد ذلك:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
 "<computeroutput>  Writing physical volume data to disk \"/dev/sdb1\"\n"
@@ -1530,7 +1530,7 @@ msgid ""
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% /srv/base</computeroutput>\n"
+"/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% /srv/base</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
 "<computeroutput>  Writing physical volume data to disk \"/dev/sdb1\"\n"
@@ -1602,7 +1602,7 @@ msgid "RAID-1 and LVM are combined to satisfy these constraints. The disks are a
 msgstr "سوف نجمع RAID-1 و LVM معاً لإيفاء هذه الشروط. سوف نصل القرصين إلى متحكمي SATA مختلفين لتحسين الوصول المتوازي وتخفيف خطر الأعطال المتزامنة، بالتالي سوف يظهر القرصان باسمي <filename>sda</filename> و<filename>sdc</filename>. سوف نقطِّع القرصين وفق المخطط التالي:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
 "<computeroutput>\n"
@@ -1619,7 +1619,7 @@ msgid ""
 "/dev/sda3             249    36483   291057637+   5  Extended\n"
 "/dev/sda5             249    12697    99996561   fd  Linux raid autodetect\n"
 "/dev/sda6           12698    25146    99996561   fd  Linux raid autodetect\n"
-"/dev/sda7           25147    36483    91064421   8e  Linux LVM</computeroutput>\n"
+"/dev/sda7           25147    36483    91064421   8e  Linux LVM</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
 "<computeroutput>\n"
@@ -1834,11 +1834,11 @@ msgid "In order to avoid the hassle of selecting these components by hand, a few
 msgstr "لتفادي عناء اختيار هذه المكونات يدويًا، تم توفير عدد من الحزم المريحة للمستخدم (مثل <emphasis role=\"pkg\">xen-linux-system-686-pae</emphasis> و<emphasis role=\"pkg\">xen-linux-system-amd64</emphasis>)؛ كل من هذه الحزم تسحب تجميعة من حزم المشرف والنواة معروفة بتناسبها. يحضر المشرف معه أيضًا حزمة <emphasis role=\"pkg\">xen-utils-4.1</emphasis>، التي تحوي أدوات للتحكم بالمشرف من dom0. تحضر هذه الحزمة بدورها المكتبة القياسية المناسبة. خلال تثبيت كل هذا، تنشئ سكربتات الإعداد أيضًا مدخلة جديدة في قائمة محمل الإقلاع Grub، لبدء تشغيل النواة المختارة لنطاق dom0. لكن لاحظ أن هذه المدخلة لا تكون الأولى عادة في القائمة، ولذلك لن تحدد افتراضيًا. إذا لم يكن هذا السلوك مرغوبًا، يمكن تغييره بالأوامر التالي:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen\n"
 "</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
-"</userinput>\n"
+"</userinput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen\n"
 "</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
@@ -1905,7 +1905,7 @@ msgid "Once these choices are made, we can create the image for our future Xen d
 msgstr "بعد تحديد هذه الخيارات، يمكننا إنشاء صورة domU:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>xen-create-image --hostname testxen --dhcp --dir /srv/testxen --size=2G --dist=wheezy --role=udev</userinput>\n"
 "<computeroutput>\n"
@@ -1932,7 +1932,7 @@ msgid ""
 "IP-Address(es)  :  dynamic\n"
 "RSA Fingerprint :  0a:6e:71:98:95:46:64:ec:80:37:63:18:73:04:dd:2b\n"
 "Root Password   :  48su67EW\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>xen-create-image --hostname testxen --dhcp --dir /srv/testxen --size=2G --dist=wheezy --role=udev</userinput>\n"
 "<computeroutput>\n"
@@ -2017,7 +2017,7 @@ msgid "After rebooting to make sure the bridge is automatically created, we can 
 msgstr "بعد إعادة التشغيل للتأكد أن الجسر يُنشَأ آليَّاً، يمكننا الآن تشغيل domU باستخدام أدوات التحكم بـXen، بالأخص الأمر <command>xm</command>. يسمح هذا الأمر بإجراء العديد من التعديلات على النطاقات، مثل سردها أو تشغيلها وإيقافها."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                                        ID   Mem VCPUs      State   Time(s)\n"
@@ -2028,7 +2028,7 @@ msgid ""
 "# </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                                        ID   Mem VCPUs      State   Time(s)\n"
 "Domain-0                                     0   366     1     r-----     11.4\n"
-"testxen                                      1   128     1     -b----      1.1</computeroutput>\n"
+"testxen                                      1   128     1     -b----      1.1</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                                        ID   Mem VCPUs      State   Time(s)\n"
@@ -2062,14 +2062,14 @@ msgid "Voilà! Our virtual machine is starting up. We can access it in one of tw
 msgstr "ڤوالا! آلتنا الظاهرية قيد الإقلاع. يمكننا الوصول إليها بإحدى طريقتين. الطريقة المعتادة هي الاتصال بها ”عن بعد“ عبر الشبكة، كما كنا سنتصل بأي حاسب حقيقي؛ هذا يحتاج عادة مخدم DHCP أو بعض إعدادات DNS. الطريقة الأخرى، ولعلها الطريقة الوحيدة إذا كانت إعدادات الشبكة غير صحيحة، هي استخدام طرفية <filename>hvc0</filename>، باستخدام الأمر <command>xm console</command>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
 "<computeroutput>[...]\n"
 "\n"
 "Debian GNU/Linux 7.0 testxen hvc0\n"
 "\n"
-"testxen login: </computeroutput>\n"
+"testxen login: </computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
 "<computeroutput>[...]\n"
@@ -2194,11 +2194,11 @@ msgid "LXC also requires the <emphasis>control groups</emphasis> configuration s
 msgstr "يحتاج LXC أيضًا لنظام إعداد <emphasis>control groups</emphasis>، وهو نظام ملفات ظاهري يتم ربطه على <filename dir=\"ltr\">/sys/fs/cgroup</filename>. يجب إضافة المدخلة التالية إلى <filename dir=\"ltr\">/etc/fstab</filename> إذن:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# /etc/fstab: static file system information.\n"
 "[...]\n"
-"cgroup            /sys/fs/cgroup           cgroup    defaults        0       0\n"
+"cgroup            /sys/fs/cgroup           cgroup    defaults        0       0"
 msgstr ""
 "# /etc/fstab: static file system information.\n"
 "[...]\n"
@@ -2271,7 +2271,7 @@ msgid "In addition to <emphasis role=\"pkg\">bridge-utils</emphasis>, this “ri
 msgstr "هذا الإعداد ”الغني“ يحتاج –بالإضافة إلى حزمة <emphasis role=\"pkg\">bridge-utils</emphasis>– إلى الحزمة <emphasis role=\"pkg\">vde2</emphasis>؛ عندئذ يصبح ملف <filename dir=\"ltr\">/etc/network/interfaces</filename> كما يلي:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# Interface eth0 is unchanged\n"
 "auto eth0\n"
@@ -2287,7 +2287,7 @@ msgid ""
 "iface br0 inet static\n"
 "  bridge-ports tap0\n"
 "  address 10.0.0.1\n"
-"  netmask 255.255.255.0\n"
+"  netmask 255.255.255.0"
 msgstr ""
 "# Interface eth0 is unchanged\n"
 "auto eth0\n"
@@ -2373,12 +2373,12 @@ msgid "The newly-created filesystem now contains a minimal Debian system, and by
 msgstr "يحوي نظام الملفات المنشأ حديثاً نظام دبيان أصغري، وتشترك الحاوية افتراضيًا مع النظام المستضيف على جهاز الشبكة. بما أن هذا السلوك غير مرغوب، سوف نعدل ملف إعداد الحاوية (<filename dir=\"ltr\">/var/lib/lxc/testlxc/config</filename>) ونضيف بضعة مدخلات <literal dir=\"ltr\">lxc.network.*</literal>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "lxc.network.type = veth\n"
 "lxc.network.flags = up\n"
 "lxc.network.link = br0\n"
-"lxc.network.hwaddr = 4a:49:43:49:79:20\n"
+"lxc.network.hwaddr = 4a:49:43:49:79:20"
 msgstr ""
 "lxc.network.type = veth\n"
 "lxc.network.flags = up\n"
@@ -2396,8 +2396,8 @@ msgid "Another useful entry in that file is the setting of the hostname:"
 msgstr "من المدخلات المفيدة أيضًا التي يمكن إضافتها لهذا الملف هي تعيين اسم المستضيف hostname:"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "lxc.utsname = testlxc\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "lxc.utsname = testlxc"
 msgstr "lxc.utsname = testlxc\n"
 
 #. Tag: title
@@ -2625,7 +2625,7 @@ msgid "Let us now start the installation process for the virtual machine, and ha
 msgstr "دعنا نبدأ الآن عملية تثبيت الحاسب الظاهري، وإلقاء نظرة قريبة على أهم خيارات <command>virt-install</command>. هذا الأمر يسجل الجهاز الظاهري وبارامتراته عند libvirtd، ثم يشغله حتى نتابع عملية التثبيت."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
 "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
@@ -2645,7 +2645,7 @@ msgid ""
 "Run 'virt-viewer --help' to see a full list of available command line options.\n"
 "Domain installation still in progress. You can reconnect\n"
 "to the console to complete the installation process.\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
 "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
@@ -2718,11 +2718,11 @@ msgid "At this point, the virtual machine is running, and we need to connect to 
 msgstr "عند هذه النقطة، بدأ الجهاز الظاهري يعمل، ونحتاج الاتصال بالطرفية الرسومية  لمتابعة عملية التثبيت. إذا تم تنفيذ العملية السابقة من بيئة سطح مكتب رسومية، فيجب أن يبدأ هذا الاتصال آلياً. إذا لم يحدث هذا، أو إذا كنا نعمل عن بعد، يمكن تشغيل <command>virt-viewer</command> من أي بيئة رسومية لفتح الطرفية الرسومية (لاحظ أن كلمة سر الجذر للنظام البعيد ستطلب مرتين لأن العملية تحتاج لاتصالي SSH):"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@<replaceable>server</replaceable>/system testkvm\n"
 "</userinput><computeroutput>root@server's password: \n"
-"root@server's password: </computeroutput>\n"
+"root@server's password: </computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@<replaceable>server</replaceable>/system testkvm\n"
 "</userinput><computeroutput>root@server's password: \n"
@@ -2749,13 +2749,13 @@ msgid "Now that the installation is done, let us see how to handle the available
 msgstr "بعد أن انتهينا من التثبيت، دعنا نرى كيف ندير الأجهزة الظاهرية المتوفرة. أول شيئ سنجربه هو طلب قائمة بالأجهزة التي تديرها <command>libvirtd</command>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
 " Id Name                 State\n"
 "----------------------------------\n"
 "  - testkvm              shut off\n"
-"</userinput>\n"
+"</userinput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all</userinput>\n"
 " Id Name                 State\n"
@@ -2769,10 +2769,10 @@ msgid "Let's start our test virtual machine:"
 msgstr "دعنا نبدأ تشغيل جهازنا التجريبي:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
-"</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
+"</userinput><computeroutput>Domain testkvm started</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
 "</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
@@ -2783,10 +2783,10 @@ msgid "We can now get the connection instructions for the graphical console (the
 msgstr "يمكننا الآن الحصول على تعليمات الاتصال بالطرفية الرسومية (يمكن تمرير لوحة عرض VNC المعادة كمتغير للبرنامج <command>vncviewer</command>):"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm\n"
-"</userinput><computeroutput>:0</computeroutput>\n"
+"</userinput><computeroutput>:0</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm\n"
 "</userinput><computeroutput>:0</computeroutput>\n"
@@ -2896,7 +2896,7 @@ msgid "The <filename>/var/tmp/yum-bootstrap/repos.d</filename> directory should 
 msgstr "يجب أن يحوي المجلد <filename dir=\"ltr\">/var/tmp/yum-bootstrap/repos.d</filename> توصيف مستودعات RPM، تماماً كما هو مجلد <filename dir=\"ltr\">/etc/yum.repos.d</filename> في نظام RPM مثبت. هذا مثال عن تثبيت CentOS 6:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "[base]\n"
 "name=CentOS-6 - Base\n"
@@ -2924,7 +2924,7 @@ msgid ""
 "#baseurl=http://mirror.centos.org/centos/$releasever/centosplus/$basearch/\n"
 "mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=centosplus\n"
 "gpgcheck=1\n"
-"gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
+"gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6"
 msgstr ""
 "[base]\n"
 "name=CentOS-6 - Base\n"
@@ -2960,11 +2960,11 @@ msgid "Finally, <filename>pluginconf.d/installonlyn.conf</filename> file should 
 msgstr "أخيراً، يجب أن يحوي ملف <filename>pluginconf.d/installonlyn.conf</filename> ما يلي:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "[main]\n"
 "enabled=1\n"
-"tokeep=5\n"
+"tokeep=5"
 msgstr ""
 "[main]\n"
 "enabled=1\n"
@@ -3281,10 +3281,10 @@ msgid "syslinux.cfg file and preseeding parameters"
 msgstr "ملف syslinux.cfg وبارامترات التغذية"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "default vmlinuz\n"
-"append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap=us languagechooser/language-name=English countrychooser/shortlist=US vga=normal initrd=initrd.gz  --\n"
+"append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap=us languagechooser/language-name=English countrychooser/shortlist=US vga=normal initrd=initrd.gz  --"
 msgstr ""
 "default vmlinuz\n"
 "append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap=us languagechooser/language-name=English countrychooser/shortlist=US vga=normal initrd=initrd.gz  --\n"
@@ -3560,7 +3560,7 @@ msgid "When a plugin is invoked with the <literal>config</literal> parameter, it
 msgstr "عند استدعاء الملحق مع المتغير <literal>config</literal>، عليه توصيف نفسه عبر إعادة زمرة من الحقول:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\n"
 "</userinput><computeroutput>graph_title Load average\n"
@@ -3571,7 +3571,7 @@ msgid ""
 "load.label load\n"
 "graph_info The load average of the machine describes how many processes are in the run-queue (scheduled to run \"immediately\").\n"
 "load.info 5 minute load average\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\n"
 "</userinput><computeroutput>graph_title Load average\n"
@@ -3615,11 +3615,11 @@ msgid "All monitored machines must therefore be listed in the <filename>/etc/mun
 msgstr "يجب إذن ذكر جميع الأجهزة المراقبة في ملف الضبط <filename dir=\"ltr\">/etc/munin/munin.conf</filename>. كل جهاز يذكر في قسم كامل مع اسم يقابل الجهاز ومدخلة <literal>address</literal> واحدة على الأقل هي مدخلة العنوان التي تعطي عنوان IP المناسب."
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "[ftp.falcot.com]\n"
 "    address 192.168.0.12\n"
-"    use_node_name yes\n"
+"    use_node_name yes"
 msgstr ""
 "[ftp.falcot.com]\n"
 "    address 192.168.0.12\n"
@@ -3671,14 +3671,14 @@ msgid "As documented in <filename>/usr/share/doc/nagios3/README.Debian</filename
 msgstr "كما هو موثق في <filename dir=\"ltr\">/usr/share/doc/nagios3/README.Debian</filename>، لتفعيل بعض المزايا يجب تعديل <filename dir=\"ltr\">/etc/nagios3/nagios.cfg</filename> وتغيير  قيمة المتغير <literal>check_external_commands</literal> إلى ”1“. كما نحتاج ضبط صلاحيات الكتابة للمجلدات التي يستخدمها Nagios، بأوامر تشبه ما يلي:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 stop</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>dpkg-statoverride --update --add nagios www-data 2710 /var/lib/nagios3/rw\n"
 "</userinput><computeroutput># </computeroutput><userinput>dpkg-statoverride --update --add nagios nagios 751 /var/lib/nagios3\n"
 "</userinput><computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 start</userinput>\n"
-"<computeroutput>[...]</computeroutput>\n"
+"<computeroutput>[...]</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 stop</userinput>\n"
 "<computeroutput>[...]\n"
@@ -3768,7 +3768,7 @@ msgid "<filename>/etc/nagios3/conf.d/falcot.cfg</filename> file"
 msgstr "الملف <filename dir=\"ltr\">/etc/nagios3/conf.d/falcot.cfg</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "define contact{\n"
 "    name                            generic-contact\n"
@@ -3856,7 +3856,7 @@ msgid ""
 "    host_name             ftp-host\n"
 "    service_description   FTP\n"
 "    check_command         check_ftp2\n"
-"}\n"
+"}"
 msgstr ""
 "define contact{\n"
 "    name                            generic-contact\n"

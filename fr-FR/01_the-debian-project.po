@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-17 16:23+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-02-24 09:35+0100\n"
 "Last-Translator: Raphaël Hertzog <hertzog@debian.org>\n"
 "Language-Team: debian-handbook-translators@lists.alioth.debian.org\n"
@@ -1374,8 +1374,8 @@ msgid "The tool used for applying the modifications given in such a file is simp
 msgstr "On utilise indifféremment les termes « correctif » et « patch » car la plupart des corrections de bogues sont envoyées sous forme de patch. L'utilitaire appliquant les modifications données par un tel fichier s'appelle simplement <command>patch</command>. L'outil qui le crée s'appelle <command>diff</command> (autre synonyme de « correctif ») et s'utilise comme suit :"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>\n"
@@ -1386,8 +1386,8 @@ msgid "The <filename>file.patch</filename> file contains the instructions for ch
 msgstr "Le fichier <filename>file.patch</filename> contient les instructions permettant de transformer le contenu de <filename>file.old</filename> en celui de <filename>file.new</filename>. On pourra le transmettre à un correspondant pour qu'il recrée <filename>file.new</filename> à partir des deux autres comme ci-dessous :"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>\n"

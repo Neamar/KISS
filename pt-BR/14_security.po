@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-06-09 20:09+0200\n"
 "Last-Translator: Claudio F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://debian.weblate.org/projects/debian-handbook/14_security/pt_BR/>\n"
@@ -556,10 +556,10 @@ msgid "Versions of the <emphasis role=\"pkg\">fwbuilder</emphasis> package since
 msgstr "Versões do pacote <emphasis role=\"pkg\">fwbuilder</emphasis> desde <emphasis role=\"distribution\">Squeeze</emphasis> contém tanto a interface gráfica e os módulos de cada sistema de firewall (estes foram previamente divididos em vários pacotes, um para cada sistema de destino):"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
+"<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
@@ -585,7 +585,7 @@ msgid "<filename>interfaces</filename> file calling firewall script"
 msgstr "arquivo <filename>interfaces</filename> chamando script firewall"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "auto eth0\n"
 "iface eth0 inet static\n"
@@ -593,7 +593,7 @@ msgid ""
 "    network 192.168.0.0\n"
 "    netmask 255.255.255.0\n"
 "    broadcast 192.168.0.255\n"
-"    up /usr/local/etc/arrakis.fw\n"
+"    up /usr/local/etc/arrakis.fw"
 msgstr ""
 "auto eth0\n"
 "iface eth0 inet static\n"
@@ -1189,10 +1189,10 @@ msgid "To find the security context of a given process, you should use the <lite
 msgstr "Para encontrar o contexto de segurança de um determinado processo, você deve usar a opção <literal>Z</literal> do <command>ps</command>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</userinput>\n"
-"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
+"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</userinput>\n"
 "<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
@@ -1208,10 +1208,10 @@ msgid "To find the current security context in a shell, you should call <command
 msgstr "Para encontrar o contexto de segurança atual em um shell, você deve chamar <command>id-Z</command>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
-"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
+"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
 "<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
@@ -1222,11 +1222,11 @@ msgid "Finally, to find the type assigned to a file, you can use <command>ls -Z<
 msgstr "Finalmente, para encontrar o tipo atribuído a um arquivo, você pode usar o <command>ls -Z</command>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ls -Z test /usr/bin/ssh</userinput>\n"
 "<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
-"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
+"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>ls -Z test /usr/bin/ssh</userinput>\n"
 "<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
@@ -1328,7 +1328,7 @@ msgid "Removing a module from the current configuration is done with <command>se
 msgstr "A removecao de um módulo a partir da configuração atual é feita com <command>semodule -r <replaceable>module</replaceable></command>. Finalmente, o comando <command>semodule -l</command> listas os modulos que estao atualmente habilitados. Também mostra seus números de versão."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>semodule -i /usr/share/selinux/default/aide.pp</userinput>\n"
 "<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
@@ -1340,7 +1340,7 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
 "<computeroutput>apache  1.10.0\n"
 "apm     1.7.0\n"
-"[...]</computeroutput>\n"
+"[...]</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>semodule -i /usr/share/selinux/default/aide.pp</userinput>\n"
 "<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
@@ -1380,7 +1380,7 @@ msgid "<command>semanage login -l</command> lists the current mapping between us
 msgstr "<command>semanage login -l</command> lista o atual mapeamento entre identificadores de usuário e identidades SELinux. Os usuários que não têm entrada explícita obter a identidade indicado na entrada <literal>__default__</literal>. O comando <command>semanage login -a -s user_u <replaceable>user</replaceable></command> irá associar a identidade <emphasis>user_u</emphasis> ao determinado usuário. Finalmente,<command>semanage login -d <replaceable>user</replaceable></command> exclui a entrada de mapeamento atribuído a este usuário."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>semanage login -a -s user_u rhertzog</userinput>\n"
 "<computeroutput># </computeroutput><userinput>semanage login -l</userinput>\n"
@@ -1391,7 +1391,7 @@ msgid ""
 "rhertzog                  user_u                    None\n"
 "root                      unconfined_u              s0-s0:c0.c1023\n"
 "system_u                  system_u                  s0-s0:c0.c1023\n"
-"# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
+"# </computeroutput><userinput>semanage login -d rhertzog</userinput> "
 msgstr ""
 "<computeroutput># </computeroutput><userinput>semanage login -a -s user_u rhertzog</userinput>\n"
 "<computeroutput># </computeroutput><userinput>semanage login -l</userinput>\n"
@@ -1410,7 +1410,7 @@ msgid "<command>semanage user -l</command> lists the mapping between SELinux use
 msgstr "<command>semanage user -l</command> lista o mapeamento entre as identidades de usuários do SELinux e papéis permitidos. Adicionar uma nova identidade requer definir os papéis correspondentes e um prefixo de marcação que é usado para designar um tipo de arquivo pessoal (<filename>/home/<replaceable>usuário</replaceable>/*</filename>). O prefixo deve ser escolhido entre <literal>user</literal>, o <literal>staff</literal>, e o <literal>sysadm</literal>. O prefixo \"<literal>staff</literal>\" resulta em arquivos do tipo \"<literal>staff_home_dir_t</literal>\". Criar uma nova identidade de usuário SELinux é feita com <command>semanage usuário -a -R <replaceable>papéis</replaceable> -P <replaceable>prefixo</replaceable> <replaceable>identidade</replaceable></command>. Finalmente, você pode remover uma identidade de usuário SELinux com <command>semanage usuário -d <replaceable>identidade</replaceable></command>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_r user_r' -P staff test_u</userinput>\n"
 "<computeroutput># </computeroutput><userinput>semanage user -l</userinput>\n"
@@ -1425,7 +1425,7 @@ msgid ""
 "test_u          staff      s0         s0               staff_r user_r\n"
 "unconfined_u    unconfined s0         s0-s0:c0.c1023   system_r unconfined_r\n"
 "user_u          user       s0         s0               user_r\n"
-"# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
+"# </computeroutput><userinput>semanage user -d test_u</userinput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>semanage user -a -R 'staff_r user_r' -P staff test_u</userinput>\n"
 "<computeroutput># </computeroutput><userinput>semanage user -l</userinput>\n"
@@ -1463,13 +1463,13 @@ msgid "Some SELinux modules export boolean options that you can tweak to alter t
 msgstr "Alguns módulos do SELinux exportar opções booleanas que você pode alterar para alterar o comportamento das regras padrão. O utilitário <command>getsebool</command> pode ser usado para inspecionar as opções (<command>getsebool<replaceable>boolean</replaceable></command> exibe uma opção, e <command>getsebool -a</command> todas elas). O comando <command>setsebool <replaceable>boolean</replaceable> <replaceable>value</replaceable></command> muda o valor atual de uma opção booleana. A opcao <literal>-P</literal> faz a mudança permanente, isso significa que o novo valor passa a ser o padrão e será mantido entre as reinicializações. O exemplo abaixo servidores web concede acesso para diretórios home (isto é útil quando os usuários têm sites pessoais em <filename>~/public_html/</filename>)."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput>\n"
 "<computeroutput>httpd_enable_homedirs --&gt; off\n"
 "# </computeroutput><userinput>setsebool -P httpd_enable_homedirs on</userinput>\n"
 "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput> \n"
-"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
+"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput>\n"
 "<computeroutput>httpd_enable_homedirs --&gt; off\n"
@@ -1493,12 +1493,12 @@ msgid "To create new modules, the <emphasis role=\"pkg\">selinux-policy-dev</emp
 msgstr "Para criar novos módulos, o pacote <emphasis role=\"pkg\">selinux-policy-dev</emphasis> é necessário, bem como  <emphasis role=\"pkg\">selinux-policy-doc</emphasis>. Este último contém a documentação das regras padrão (<filename>/usr/share/doc/selinux-policy-doc/html/</filename>) da amostra e arquivos que podem ser usados como modelos para criar novos módulos. Instale estes arquivos e os estude mais de perto:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/Makefile.example.gz &gt;Makefile</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.fc.gz &gt;example.fc</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.if.gz &gt;example.if</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/Makefile.example.gz &gt;Makefile</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.fc.gz &gt;example.fc</userinput>\n"
@@ -1526,14 +1526,14 @@ msgid "<filename>example.fc</filename> file"
 msgstr "arquivo <filename>example.fc</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# myapp executable will have:\n"
 "# label: system_u:object_r:myapp_exec_t\n"
 "# MLS sensitivity: s0\n"
 "# MCS categories: &lt;none&gt;\n"
 "\n"
-"/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)\n"
+"/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)"
 msgstr ""
 "# myapp executavel tera:\n"
 "# label: system_u:object_r:myapp_exec_t\n"
@@ -1563,7 +1563,7 @@ msgid "<filename>example.if</filename> File"
 msgstr "Arquivo <filename>example.if</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "## &lt;summary&gt;Myapp example policy&lt;/summary&gt;\n"
 "## &lt;desc&gt;\n"
@@ -1614,7 +1614,7 @@ msgid ""
 "\n"
 "        logging_search_logs($1)\n"
 "        allow $1 myapp_log_t:file r_file_perms;\n"
-"')\n"
+"')"
 msgstr ""
 "## &lt;summary&gt;Myapp exemple de politica&lt;/summary&gt;\n"
 "## &lt;desc&gt;\n"
@@ -1708,7 +1708,7 @@ msgid "The SELinux “interfaces” are only macro functions which will be subst
 msgstr "As \"interfaces\" SELinux são apenas funções de macro que serão substituídas por uma série de regras no momento da compilação. Da mesma forma, alguns direitos são conjuntos de fatos de direitos que são substituídos por seus valores em tempo de compilação."
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "policy_module(myapp,1.0.0) <co id=\"example.te.module\"></co>\n"
 "\n"
@@ -1736,7 +1736,7 @@ msgid ""
 "allow myapp_t myapp_log_t:file { read_file_perms append_file_perms }; <co id=\"example.te.allow\"></co>\n"
 "\n"
 "allow myapp_t myapp_tmp_t:file manage_file_perms;\n"
-"files_tmp_filetrans(myapp_t,myapp_tmp_t,file)\n"
+"files_tmp_filetrans(myapp_t,myapp_tmp_t,file)"
 msgstr ""
 "policy_module(myapp,1.0.0) <co id=\"example.te.module\"></co>\n"
 "\n"
@@ -1812,8 +1812,8 @@ msgid "However, an empirical approach is possible. Once the relevant objects are
 msgstr "No entanto, uma abordagem empírica é possível. Uma vez que os objetos relevantes são rotuladas corretamente, você pode usar o aplicativo no modo permissivo: as operações que seriam proibidos são registrados, mas ainda tem sucesso. Ao analisar os logs, você pode agora identificar as operações de permissao. Aqui esta um exemplo de uma tal entrada de log:"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file"
 msgstr "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
 
 #. Tag: para
@@ -2421,7 +2421,7 @@ msgid "Some time later, this access was used to download, install and run an IRC
 msgstr "Algum tempo depois, esse acesso foi usado para fazer o download, instalar e executar um <emphasis>bot - robô</emphasis> de IRC, conectado a uma rede IRC subterrânea. O robô pode então ser controlado através deste protocolo e instruido realizar download de arquivos para compartilhamento. Este programa ainda tem o seu próprio arquivo de log:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "** 2004-11-29-19:50:15: NOTICE: :GAB!sex@Rizon-2EDFBC28.pool8250.interbusiness.it NOTICE ReV|DivXNeW|504 :DCC Chat (82.50.72.202)\n"
 "** 2004-11-29-19:50:15: DCC CHAT attempt authorized from GAB!SEX@RIZON-2EDFBC28.POOL8250.INTERBUSINESS.IT\n"
@@ -2435,7 +2435,7 @@ msgid ""
 "(...)\n"
 "** 2004-11-29-21:10:36: DCC Upload: Transfer Completed (666615 KB, 1 hr 24 sec, 183.9 KB/sec)\n"
 "(...)\n"
-"** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)\n"
+"** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)"
 msgstr ""
 "** 2004-11-29-19:50:15: NOTICE: :GAB!sex@Rizon-2EDFBC28.pool8250.interbusiness.it NOTICE ReV|DivXNeW|504 :DCC Chat (82.50.72.202)\n"
 "** 2004-11-29-19:50:15: DCC CHAT attempt authorized from GAB!SEX@RIZON-2EDFBC28.POOL8250.INTERBUSINESS.IT\n"

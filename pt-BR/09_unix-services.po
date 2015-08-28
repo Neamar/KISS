@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2015-06-16 17:49+0200\n"
 "Last-Translator: Fred Maranhão <fred.maranhao@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/debian-handbook/09_unix-services/pt_BR/>\n"
@@ -511,8 +511,8 @@ msgid "SSH also offers two file transfer services. <command>scp</command> is a c
 msgstr "SSH também oferece dois serviços de transferência de arquivo. <command>scp</command> é uma ferramenta de linha de comando que pode ser usada como <command>cp</command>, exceto que qualquer caminho a outra máquina é prefixado com o nome da máquina, seguido por dois-pontos."
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>scp file machine:/tmp/</userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>scp arquivo máquina:/tmp/</userinput>\n"
 
 #. Tag: para
@@ -849,8 +849,8 @@ msgid "VNC also works for mobile users, or company executives, who occasionally 
 msgstr "VNC também funciona para usuários móveis, ou executivos da empresa, os quais ocasionalmente precisam fazer o login a partir de suas casas para acessar um ambiente de trabalho remoto similar ao que eles usam no trabalho. A configuração desse tipo de serviço é mais complicada: você primeiro instala o pacote <emphasis role=\"pkg\">vnc4server</emphasis>, altera a configuração do gerenciador de tela para aceitar requisições do <literal>XDMCP Query</literal> (no <command>gdm3</command>, isso pode ser feito adicionando <literal>Enable=true</literal> na sessão “xdmcp” do <filename>/etc/gdm3/daemon.conf</filename>), e finalmente, iniciar o servidor VNC com <command>inetd</command> para que a sessão seja iniciada automaticamente quando o usuário tentar fazer o login. Por exemplo, você pode adicionar essa linha ao <filename>/etc/inetd.conf</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none"
 msgstr "5950  stream  tcp  nowait  nobody.tty  /usr/bin/Xvnc Xvnc -inetd -query localhost -once -geometry 1024x768 -depth 16 securitytypes=none\n"
 
 #. Tag: para
@@ -1674,11 +1674,11 @@ msgid "Excerpt from <filename>/etc/inetd.conf</filename>"
 msgstr "Excerto do <filename>/etc/inetd.conf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
 "finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd\n"
-"ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i\n"
+"ident  stream tcp nowait  nobody     /usr/sbin/identd   identd -i"
 msgstr ""
 "talk   dgram  udp wait    nobody.tty /usr/sbin/in.talkd in.talkd\n"
 "finger stream tcp nowait  nobody     /usr/sbin/tcpd     in.fingerd\n"
@@ -1950,7 +1950,7 @@ msgid "Sample <filename>crontab</filename> file"
 msgstr "Arquivo de exemplo <filename>crontab</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "#Format\n"
 "#min hour day mon dow  command\n"
@@ -1962,7 +1962,7 @@ msgid ""
 " 00  08   *   *   1-5  $HOME/bin/dosomething\n"
 "\n"
 "# Restart the IRC proxy after each reboot\n"
-"@reboot /usr/bin/dircproxy\n"
+"@reboot /usr/bin/dircproxy"
 msgstr ""
 "#Format\n"
 "#min hour day mon dow  command\n"
@@ -2002,7 +2002,7 @@ msgid "The <command>at</command> executes a command at a specified moment in the
 msgstr "O <command>at</command> executa um comando em um momento específico no futuro. Ele recebe o horário e data desejados como parâmetros de linha de comando, e o comando a ser executado em sua saída padrão. O comando será executado como se estivesse sido feito no shell corrente. O <command>at</command> até toma o cuidado de reter o ambiente corrente, para poder reproduzir as mesmas condições quando ele executa o comando. O horário é indicado pelas seguintes convenções usuais: <literal>16:12</literal> ou <literal>4:12pm</literal> representa 4:12 pm. A data pode ser especificada em vários formatos Europeus e Ocidentais, incluindo <literal>DD.MM.YY</literal> (<literal>27.07.12</literal> assim representando 27 July 2012), <literal>YYYY-MM-DD</literal> (essa mesma data sendo expressa como <literal>2012-07-27</literal>), <literal>MM/DD/[CC]YY</literal> (ie., <literal>12/25/12</literal> ou <literal>12/25/2012</literal> será Dezembro 25, 2012), ou simplesmente <literal>MMDD[CC]YY</literal> (logo <literal>122512</literal> ou <literal>12252012</literal> irá, do mesmo modo, representar Dezembro 25, 2012). Sem isso, o comando será executado assim que o relógio alcançar o horário indicado (no mesmo dia, ou amanhã se o horário já tiver passado no mesmo dia). Você também pode simplesmente escrever “today” ou “tomorrow”, o que é auto-explicativo."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.14 &lt;&lt;END</userinput>\n"
@@ -2010,7 +2010,7 @@ msgid ""
 "<computeroutput>&gt; </computeroutput><userinput>  | mail lolando@debian.org</userinput>\n"
 "<computeroutput>&gt; </computeroutput><userinput>END</userinput>\n"
 "<computeroutput>warning: commands will be executed using /bin/sh\n"
-"job 31 at Fri Jul 27 09:00:00 2012</computeroutput>\n"
+"job 31 at Fri Jul 27 09:00:00 2012</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>at 09:00 27.07.14 &lt;&lt;END</userinput>\n"
@@ -2316,7 +2316,7 @@ msgid "The <filename>/etc/dirvish/master.conf</filename> file"
 msgstr "O arquivo <filename>/etc/dirvish/master.conf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "bank:\n"
 "    /backup\n"
@@ -2331,7 +2331,7 @@ msgid ""
 "#   MIN HR    DOM MON       DOW  STRFTIME_FMT\n"
 "    *   *     *   *         1    +3 months\n"
 "    *   *     1-7 *         1    +1 year\n"
-"    *   *     1-7 1,4,7,10  1\n"
+"    *   *     1-7 1,4,7,10  1"
 msgstr ""
 "bank:\n"
 "    /backup\n"
@@ -2369,7 +2369,7 @@ msgid "The <filename>/backup/root/dirvish/default.conf</filename> file"
 msgstr "O arquivo <filename>/backup/root/dirvish/default.conf</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "client: rivendell.falcot.com\n"
 "tree: /\n"
@@ -2381,7 +2381,7 @@ msgid ""
 "    /var/cache/man/**\n"
 "    /tmp/**\n"
 "    /var/tmp/**\n"
-"    *.bak\n"
+"    *.bak"
 msgstr ""
 "client: rivendell.falcot.com\n"
 "tree: /\n"
@@ -2726,7 +2726,7 @@ msgid "Let us consider the case of a simple USB key and try to assign it a fixed
 msgstr "Vamos considerar o caso de uma simples chave USB e tentar atribuir um nome fixo para ela. Primeiro, você tem que encontrar os elementos que iram identificar ela de uma maneira única. Para isso, conecte ela e rode <command>udevadm info -a -n /dev/sdc</command> (substituindo <replaceable>/dev/sdc</replaceable> pelo real nome atribuído a chave)."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>udevadm info -a -n /dev/sdc</userinput>\n"
 "<computeroutput>[...]\n"
@@ -2776,7 +2776,7 @@ msgid ""
 "    ATTRS{product}==\"USB Mass Storage Device\"\n"
 "    ATTRS{serial}==\"M004021000001\"\n"
 "[...]\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>udevadm info -a -n /dev/sdc</userinput>\n"
 "<computeroutput>[...]\n"
@@ -2837,7 +2837,7 @@ msgstr "Para criar uma nova regra, você pode usar testes nas variáveis do disp
 #, fuzzy, no-c-format
 msgid ""
 "KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
-"KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\"\n"
+"KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\""
 msgstr ""
 "KERNEL==\"sd?\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/disk\"\n"
 "KERNEL==\"sd?[0-9]\", SUBSYSTEM==\"block\", ATTRS{serial}==\"M004021000001\", SYMLINK+=\"usb_key/part%n\"\n"

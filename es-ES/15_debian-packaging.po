@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-06-10 21:12+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <https://debian.weblate.org/projects/debian-handbook/15_debian-packaging/es-ES/>\n"
@@ -136,11 +136,11 @@ msgid "Rebuilding a package"
 msgstr "Recompilación del paquete"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg-buildpackage -us -uc</userinput>\n"
-"[...]\n"
+"[...]"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>dpkg-buildpackage -us -uc</userinput>\n"
@@ -227,7 +227,7 @@ msgid "Header file of the <emphasis>libxml-libxml-perl</emphasis> fake package"
 msgstr "Archivo de cabecera del paquete falso <emphasis>libxml-libxml-perl</emphasis>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "Section: perl\n"
@@ -245,7 +245,7 @@ msgid ""
 " .\n"
 " In fact, the package is not installed since a newer version\n"
 " of the module has been manually compiled &amp; installed in the\n"
-" site_perl directory.\n"
+" site_perl directory."
 msgstr ""
 "\n"
 "Section: perl\n"
@@ -286,7 +286,7 @@ msgid "The first step is creating a <filename>falcot-data-1.0</filename> directo
 msgstr "El primer paso es crear un directorio <filename>falcot-data-1.0</filename> que contendrá el paquete fuente objetivo. El paquete, lógicamente, se llamará <literal>falcot-data</literal> y tendrá el número de versión <literal>1.0</literal>. El administrador luego ubicará los archivos de documentos en un subdirectorio <filename>data</filename>. Luego ejecutará <command>dh_make</command> (del paquete <emphasis role=\"pkg\">dh-make</emphasis>) para agregar los archivos necesarios para el proceso de generación del paquete, que serán almacenados en un subdirectorio <filename>debian</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd falcot-data-1.0</userinput>\n"
@@ -307,7 +307,7 @@ msgid ""
 "Currently there is no top level Makefile. This may require additional tuning.\n"
 "Done. Please edit the files in the debian/ subdirectory now. You should also\n"
 "check that the falcot-data Makefiles install into $DESTDIR and not in / .\n"
-"$</computeroutput>\n"
+"$</computeroutput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd falcot-data-1.0</userinput>\n"
@@ -351,11 +351,11 @@ msgid "Most of the programs involved in package maintenance will look for your n
 msgstr "La mayoría de los programas involucrados al mantener paquetes buscarán su nombre y dirección de correo en las variables de entorno <varname>DEBFULLNAME</varname> y <varname>DEBEMAIL</varname> o <varname>EMAIL</varname>. Definirlas de una vez y para siempre le evitará tener que ingresarlas varias veces. Si su consola usual es <command>bash</command>, es simple cuestión de agregar las siguientes dos líneas a sus archivos <filename>~/.bashrc</filename> y <filename>~/.bash_profile</filename> (¡obviamente reemplazará los valores con unos más relevantes!):"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "export EMAIL=\"hertzog@debian.org\"\n"
-"export DEBFULLNAME=\"Raphael Hertzog\"\n"
+"export DEBFULLNAME=\"Raphael Hertzog\""
 msgstr ""
 "\n"
 "export EMAIL=\"hertzog@debian.org\"\n"
@@ -377,7 +377,7 @@ msgid "The <filename>control</filename> file"
 msgstr "El archivo <filename>control</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "Source: falcot-data\n"
@@ -397,7 +397,7 @@ msgid ""
 "  - contacts for each department.\n"
 " .\n"
 " These documents MUST NOT leave the company.\n"
-" Their use is INTERNAL ONLY.\n"
+" Their use is INTERNAL ONLY."
 msgstr ""
 "\n"
 "Source: falcot-data\n"
@@ -425,7 +425,7 @@ msgid "The <filename>changelog</filename> file"
 msgstr "El archivo <filename>changelog</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "falcot-data (1.0) internal; urgency=low\n"
@@ -435,7 +435,7 @@ msgid ""
 "    - internal company structure;\n"
 "    - contacts for each department.\n"
 "\n"
-" -- Raphael Hertzog &lt;hertzog@debian.org&gt;  Mon, 11 Apr 2011 20:46:33 +0200\n"
+" -- Raphael Hertzog &lt;hertzog@debian.org&gt;  Mon, 11 Apr 2011 20:46:33 +0200"
 msgstr ""
 "\n"
 "falcot-data (1.0) internal; urgency=low\n"
@@ -453,7 +453,7 @@ msgid "The <filename>copyright</filename> file"
 msgstr "El archivo <filename>copyright</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "This work was packaged for Debian by Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
@@ -465,7 +465,7 @@ msgid ""
 "\n"
 "License:\n"
 "\n"
-"    All rights reserved.\n"
+"    All rights reserved."
 msgstr ""
 "\n"
 "This work was packaged for Debian by Raphael Hertzog &lt;hertzog@debian.org&gt;\n"
@@ -495,12 +495,12 @@ msgid "A <filename>Makefile</filename> file is a script used by the <command>mak
 msgstr "Un archivo <filename>Makefile</filename> es un script utilizado por el programa <command>make</command>; describe las reglas para crear un conjunto de archivos desde otros en un árbol de dependencias (por ejemplo, podemos compilar un programa desde un conjunto de archivos fuente). El archivo <filename>Makefile</filename> describe estas reglas en el siguiente formato:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "target: source1 source2 ...\n"
 "        command1\n"
-"        command2\n"
+"        command2"
 msgstr ""
 "\n"
 "objetivo: fuente1 fuente 2 ...\n"
@@ -528,10 +528,10 @@ msgid "Although this file is the heart of the process, it increasingly contains 
 msgstr "Si bien este archivo es el corazón del proceso, cada vez más contiene sólo el mínimo indispensable para ejecutar un conjunto estándar de programas que provee la herramienta <command>debhelper</command>. Tal es el caso de los archivos generados por <command>dh_make</command>. Para instalar nuestros archivos simplemente configuraríamos el comportamiento de <command>dh_install</command> creando el siguiente archivo <filename>debian/falcot-data.install</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"data/* usr/share/falcot-data/\n"
+"data/* usr/share/falcot-data/"
 msgstr ""
 "\n"
 "data/* usr/share/falcot-data/\n"
@@ -547,7 +547,7 @@ msgid "The <filename>menu</filename> file"
 msgstr "El archivo <filename>menu</filename>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "?package(falcot-data):needs=X11|wm section=Help\\\n"
@@ -555,7 +555,7 @@ msgid ""
 "  command=\"/usr/bin/x-www-browser /usr/share/falcot-data/index.html\"\n"
 "?package(falcot-data):needs=text section=Help\\\n"
 "  title=\"Internal Falcot Corp Documentation\" \\\n"
-"  command=\"/usr/bin/www-browser /usr/share/falcot-data/index.html\"\n"
+"  command=\"/usr/bin/www-browser /usr/share/falcot-data/index.html\""
 msgstr ""
 "\n"
 "?package(falcot-data):needs=X11|wm section=Help\\\n"
@@ -626,11 +626,11 @@ msgid "To make deployment easier, they want to integrate these packages in a pac
 msgstr "Para facilitar su despliegue, desean integrarlos en un repositorio de paquetes que APT pueda utilizar directamente. Por razones de mantenimiento obvias, desean separar los paquetes internos de aquellos recompilados localmente. El objetivo es que los elementos correspondientes del archivo <filename>/etc/apt/sources.list</filename> sean los siguientes:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "deb http://packages.falcot.com/ updates/\n"
-"deb http://packages.falcot.com/ internal/\n"
+"deb http://packages.falcot.com/ internal/"
 msgstr ""
 "\n"
 "deb http://packages.falcot.com/ updates/\n"
@@ -662,14 +662,14 @@ msgid "If <command>mini-dinstall</command> seems too complex for your Debian arc
 msgstr "Si <command>mini-dinstall</command> le parece demasiado complejo para sus necesidades de repositorios Debian, también puede utilizar el programa <command>apt-ftparchive</command>. Esta herramienta explora el contenido de un directorio y muestra (por su salida estándar) el archivo <filename>Packages</filename> correspondiente. En el caso de Falcot Corp, los administradores pueden subir sus paquetes directamente a <filename>/srv/vhosts/packages/updates/</filename> o <filename>/srv/vhosts/packages/internal/</filename> y luego ejecutar lo siguiente para crear los archivos <filename>Pacakges.gz</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd /srv/vhosts/packages</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages updates &gt;updates/Packages</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>gzip updates/Packages</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>apt-ftparchive packages internal &gt;internal/Packages</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>gzip internal/Packages</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>gzip internal/Packages</userinput>"
 msgstr ""
 "\n"
 "<computeroutput>$ </computeroutput><userinput>cd /srv/vhosts/packages</userinput>\n"
@@ -689,7 +689,7 @@ msgid "Configuring <command>mini-dinstall</command> requires setting up a <filen
 msgstr "La configuración de <command>mini-dinstall</command> necesita definir un archivo <filename>~/.mini-dinstall.conf</filename>; en el caso de Falcot Corp, su contenido es el siguiente:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "[DEFAULT]\n"
@@ -707,7 +707,7 @@ msgid ""
 "release_label = Recompiled Debian Packages\n"
 "\n"
 "[internal]\n"
-"release_label = Internal Packages\n"
+"release_label = Internal Packages"
 msgstr ""
 "\n"
 "[DEFAULT]\n"

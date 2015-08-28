@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2014-01-09 08:27+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-10-14 16:01+0200\n"
 "Last-Translator: Claudio Filho F Filho <filhocf@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/debian-handbook/01_the-debian-project/pt_BR/>\n"
@@ -1376,8 +1376,8 @@ msgid "The tool used for applying the modifications given in such a file is simp
 msgstr "O instrumento utilizado para aplicar as modificações dadas em tal arquivo é simplesmente chamado de  <command> patch</command>. A ferramenta que o cria é chamado <command>diff</command>, e é utilizado como se segue:"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>diff -u file.old file.new &gt;file.patch</userinput>\n"
 
 #. Tag: para
@@ -1386,8 +1386,8 @@ msgid "The <filename>file.patch</filename> file contains the instructions for ch
 msgstr "O arquivo <filename> file.patch </filename> contém as instruções para alterar o conteúdo do <filename> file.old </filename> em <filename> File.new </filename>. Podemos enviá-lo para alguém, que pode usá-lo para recriar <filename> File.new </filename> a partir dos outros dois, como este:"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>patch -p0 file.old &lt;file.patch</userinput>\n"
 
 #. Tag: para

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-06-10 19:54+0200\n"
 "Last-Translator: Matías Bellone <matiasbellone+debian@gmail.com>\n"
 "Language-Team: Spanish <https://debian.weblate.org/projects/debian-handbook/06_apt/es-ES/>\n"
@@ -266,7 +266,7 @@ msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian Stabl
 msgstr "el archivo <filename>/etc/apt/sources.list</filename> para usuarios de Debian «stable»"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# Security updates\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
@@ -284,7 +284,7 @@ msgid ""
 "\n"
 "# Stable backports\n"
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
-"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free"
 msgstr ""
 "# Actualizaciones de seguridad\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
@@ -440,8 +440,8 @@ msgid "Anyone can use this repository to test those updates before their officia
 msgstr "Cualquiera puede utilizar este repositorio para probar esas actualizaciones antes de su publicación oficial. El extracto a continuación utiliza el alias <literal>wheezy-proposed-updates</literal> que es más explícito y más consistente ya que también existe <literal>squeeze-proposed-updates</literal> (para las actualizaciones de <emphasis role=\"distribution\">Oldstable</emphasis>):"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free"
 msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
 
 #. Tag: title
@@ -485,8 +485,8 @@ msgid "<primary><literal>backports.debian.org</literal></primary>"
 msgstr "<primary><literal>backports.debian.org</literal></primary>"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free"
 msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
 
 #. Tag: para
@@ -500,11 +500,11 @@ msgid "Even though this repository provides newer versions of packages, APT will
 msgstr "Aún cuando este repositorio provea versiones de paquetes más nuevas, APT no las instalará a menos que le indique explícitamente que lo haga (o si ya lo hizo con una versión anterior de dicha retroadaptación):"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
-"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>"
 msgstr ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
@@ -526,7 +526,7 @@ msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian <emph
 msgstr "Archivo <filename>sources.list</filename> para usuarios de Debian <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Unstable\n"
@@ -545,7 +545,7 @@ msgid ""
 "deb http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb http://security.debian.org/ testing/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
-"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free"
 msgstr ""
 "\n"
 "# Unstable\n"
@@ -602,8 +602,8 @@ msgid "<emphasis role=\"distribution\">Experimental</emphasis> is generally used
 msgstr "Los usuarios que usan <emphasis role=\"distribution\">Experimental</emphasis> generalmente no les importa romper su sistema y luego repararlo. Esta distribución les da la posibilidad de importar un paquete que el usuario desea probar o usar según lo necesita. Esto es exactamente el enfoque que toma Debian ya que agregarlo en el archivo <filename>sources.list</filename> de APT no conlleva el uso sistemático de sus paquetes. La línea a agregar es:"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://ftp.debian.org/debian experimental main contrib non-free"
 msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
 
 #. Tag: title
@@ -722,12 +722,12 @@ msgid "<emphasis role=\"pkg\">approx</emphasis>, on the other hand, acts like an
 msgstr "<emphasis role=\"pkg\">approx</emphasis>, por el otro lado, funciona como un servidor HTTP que «replica» cualquier cantidad de repositorios remotos en su URL más genérica. Se almacena el mapeo entre estos directorios y las URLs remotas de los repositorios en <filename>/etc/approx/approx.conf</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# &lt;name&gt; &lt;repository-base-url&gt;\n"
 "debian   http://ftp.debian.org/debian\n"
-"security http://security.debian.org\n"
+"security http://security.debian.org"
 msgstr ""
 "\n"
 "# &lt;nombre&gt; &lt;URL base del repositorio&gt;\n"
@@ -873,8 +873,8 @@ msgid "First, retrieve the list of packages installed on the computer which will
 msgstr "Primero, obtenga la lista de paquetes en el equipo que servirá como «modelo» a copiar."
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>"
 msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
 
 #. Tag: para
@@ -883,7 +883,7 @@ msgid "The <filename>pkg-list</filename> file then contains the list of installe
 msgstr "El archivo <filename>pkg-list</filename> contiene ahora la lista de paquetes instalados. Luego transfiera el archivo <filename>pkg-list</filename> a los equipos que desea actualizar y utilice las siguientes órdenes:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "## Update dpkg's database of known packages\n"
 "# <userinput>avail=`mktemp`</userinput>\n"
@@ -893,7 +893,7 @@ msgid ""
 "## Update dpkg's selections\n"
 "# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
 "## Ask apt-get to install the selected packages\n"
-"# <userinput>apt-get dselect-upgrade</userinput>\n"
+"# <userinput>apt-get dselect-upgrade</userinput>"
 msgstr ""
 "## Actualizar la base de datos de dpkg sobre paquetes conocidos\n"
 "# <userinput>avail=`mktemp`</userinput>\n"
@@ -926,12 +926,12 @@ msgid "The next example shows two different ways to install <replaceable>package
 msgstr "El siguiente ejemplo muetra dos formas distintas de instalar <replaceable>paquete1</replaceable> y eliminar <replaceable>paquete2</replaceable>."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
-"[...]\n"
+"[...]"
 msgstr ""
 "# <userinput>apt-get install <replaceable>paquete1</replaceable> <replaceable>paquete2-</replaceable></userinput>\n"
 "[...]\n"
@@ -959,8 +959,8 @@ msgid "The system can sometimes be damaged after the removal or modification of 
 msgstr "A veces el sistema puede dañarse después de eliminar o modificar los archivos de un paquete. La forma más sencilla de recuperar estos archivos es reinstalar los paquetes afectados. Desafortunadamente, el sistema de paquete encuentra que éste ya está instalado y amablemente rechaza el pedido; para evitarlo, utilice la opción <literal>--reinstall</literal> de <command>apt-get</command>. La siguiente orden reinstala <emphasis role=\"pkg\">postfix</emphasis> aún si ya está instalado:"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>"
 msgstr "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
 
 #. Tag: para
@@ -989,8 +989,8 @@ msgid "Installation of the <emphasis role=\"distribution\">unstable</emphasis> v
 msgstr "Instalación de la versión en <emphasis role=\"distribution\">Unstable</emphasis> de <emphasis role=\"pkg\">spamassassin</emphasis>"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>"
 msgstr "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
 
 #. Tag: title
@@ -1224,11 +1224,11 @@ msgid "If you listed <emphasis role=\"distribution\">Experimental</emphasis> in 
 msgstr "Si agregó <emphasis role=\"distribution\">Experimental</emphasis> en su archivo <filename>sources.list</filename>, los paquetes correspondientes casi nunca serán instalados porque su prioridad APT predeterminada es 1. Este es, por supuesto, un caso específico diseñado para evitar que los usuarios instalen paquetes de <emphasis role=\"distribution\">Experimental</emphasis> por error. Los paquetes sólo pueden instalarse ejecutando <command>aptitude install <replaceable>paquete</replaceable>/experimental</command> — solo los usuarios que ingresen esta orden saben los riesgos que están tomando. Es posible (aunque <emphasis>no</emphasis> recomendable) tratar los paquetes de <emphasis role=\"distribution\">Experimental</emphasis> como aquellos de otra distribución otorgándoles una prioridad de 500. Esto se logra con una entrada específica en <filename>/etc/apt/preferences</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 "Package: *\n"
 "Pin: release a=experimental\n"
@@ -1240,7 +1240,7 @@ msgid "Let's suppose that you only want to use packages from the stable version 
 msgstr "Supongamos que sólo desea utilizar paquetes de la versión estable de Debian. Aquellos provistos en otras versiones no serían instalados a menos que sean pedidos explícitamente. Puede escribir las siguientes entradas en el archivo <filename>/etc/apt/preferences</filename>:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=stable\n"
@@ -1248,7 +1248,7 @@ msgid ""
 "\n"
 "Package: *\n"
 "Pin: release o=Debian\n"
-"Pin-Priority: -10\n"
+"Pin-Priority: -10"
 msgstr ""
 "Package: *\n"
 "Pin: release a=stable\n"
@@ -1269,11 +1269,11 @@ msgid "Let's now assume that you have a server with several local programs depen
 msgstr "Asumamos ahora que tiene un servidor con varios programas locales que dependen de la versión 5.14 de Perl y que desea asegurarse que las actualizaciones no instalarán otra versión del mismo. Puede utilizar la siguiente entrada:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
-"Pin-Priority: 1001\n"
+"Pin-Priority: 1001"
 msgstr ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
@@ -1310,13 +1310,13 @@ msgid "There is no official syntax to put comments in the <filename>/etc/apt/pre
 msgstr "No existe una sintaxis oficial para agregar comentarions en el archivo <filename>/etc/apt/preferences</filename>, pero se pueden proveer algunas descripciones textuales agregando uno o más campos «<literal>Explanation</literal>» al principio de cada entrada:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Explanation: The package xserver-xorg-video-intel provided\n"
 "Explanation: in experimental can be used safely\n"
 "Package: xserver-xorg-video-intel\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 "Explanation: El paquete xserver-xorg-video-intel provisto\n"
 "Explanation: en experimental puede usarse de forma segura\n"
@@ -1375,11 +1375,11 @@ msgid "Let's take the example of another package whose version 2 has been insta
 msgstr "Tomemos como ejemplo otro paquete cuya versión 2 fue instalada de <emphasis role=\"distribution\">Testing</emphasis>. La versión 1 está disponible en <emphasis role=\"distribution\">Stable</emphasis> y la versión 3 en <emphasis role=\"distribution\">Unstable</emphasis>. La versión 1 (de prioridad 990 — por lo tanto menor a 1000) es descartada porque es menor que la versión instalada. Esto deja sólo las versiones 2 y 3, ambas de prioridad 500. Frente a esta alternativa, APT selecciona la versión más nueva: la de <emphasis role=\"distribution\">Unstable</emphasis>. Si no desea que un paquete de <emphasis role=\"distribution\">Testing</emphasis> actualice su versión a la de <emphasis role=\"distribution\">Unstable</emphasis>, debe asignar una prioridad menor a 500 (490 por ejemplo) a los paquetes que provengan de <emphasis role=\"distribution\">Unstable</emphasis>. Puede modificar <filename>/etc/apt/preferences</filename> de la siguiente forma:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "Package: *\n"
 "Pin: release a=unstable\n"
-"Pin-Priority: 490\n"
+"Pin-Priority: 490"
 msgstr ""
 "Package: *\n"
 "Pin: release a=unstable\n"
@@ -1709,8 +1709,8 @@ msgid "The advanced features of <command>aptitude</command> are also available o
 msgstr "Las características avanzadas de <command>aptitude</command> también están disponibles en la línea de órdenes.Puede utilizar los mismos patrones de búsqueda de paquetes que en la versión interactiva. Por ejemplo, si limpiar la lista de paquetes «instalados manualmente» y sabe que ninguno de los paquetes instalados localmente necesitan una biblioteca o módulo Perl particular puede marcar los paquetes correspondientes como automáticos con una sola orden:"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>"
 msgstr "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
 
 #. Tag: para
@@ -1854,7 +1854,7 @@ msgid "The trusted keys are managed with the <command>apt-key</command> command 
 msgstr "Las llaves confiables son administradas con el programa <command>apt-key</command> que se encuentra en el paquete <emphasis role=\"pkg\">apt</emphasis>. Este programa mantiene un conjunto de llaves públicas GnuPG que son utilizadas para verificar las firmas disponibles en los archivos <filename>Release.gpg</filename> disponibles en las réplicas. Puede utilizarse para agregar nuevas llaves de forma manual (cuando se necesitan réplicas no oficiales). Generalmente sin embargo, sólo necesitará las llaves oficiales de Debian. Estas llaves se mantienen actualizadas de forma automática por el paquete <emphasis role=\"pkg\">debian-archive-keyring</emphasis> (que crea los conjuntos de llaves correspondientes en <filename>/etc/apt/trusted.gpg.d</filename>). Sin embargo, la primera instalación de este paquete requiere cierto cuidado: aún si el paquete está firmado como cualquier otro, no se puede verificar dicha firma. Los administradores cautelosos deberían, por lo tanto, verificar las huellas de las llaves importadas antes de confiar en ellas para instalar nuevos paquetes:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# <userinput>apt-key fingerprint</userinput>\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
@@ -1879,7 +1879,7 @@ msgid ""
 "--------------------------------------------------------\n"
 "pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
 "      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
-"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;"
 msgstr ""
 "# <userinput>apt-key fingerprint</userinput>\n"
 "/etc/apt/trusted.gpg.d//debian-archive-squeeze-automatic.gpg\n"
@@ -1992,8 +1992,8 @@ msgid "Another good habit which makes the upgrade easier (and shorter) is to tid
 msgstr "Otro buen hábito que haría la actualización más sencilla (y más corta) es ordenar sus paquetes instalados y sólo mantener aquellos que son realmente necesarios. Las herramientas útiles para realizarlo incluyen <command>aptitude</command>, <command>deborphan</command> y <command>debfoster</command> (revise la <xref linkend=\"sect.automatic-tracking\" />). Por ejemplo, puede utilizar la siguiente orden y luego utilizar el modo interactivo de <command>aptitude</command> para revisar y retocar las eliminaciones programadas:"
 
 #. Tag: screen
-#, no-c-format
-msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>"
 msgstr "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
 
 #. Tag: para
@@ -2237,10 +2237,10 @@ msgid "Non-interactive upgrade script"
 msgstr "Script de actualización no-interactivo"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "export DEBIAN_FRONTEND=noninteractive\n"
-"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
+"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade"
 msgstr ""
 "export DEBIAN_FRONTEND=noninteractive\n"
 "yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
@@ -2306,7 +2306,7 @@ msgid "For more complex searches, a more powerful tool such as <command>aptitude
 msgstr "Para búsquedas más complejas necesita herramientas más poderosas como <command>aptitude</command>. <command>aptitude</command> le permite buscar según expresiones lógicas basadas en los campos de metadatos de los paquetes. Por ejemplo, la siguiente orden busca aquellos paquetes cuyo nombre contenga <literal>kino</literal>, cuya descripción contenga <literal>video</literal> y cuyo nombre de encargado contenga <literal>paul</literal>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "p   kino  - Non-linear editor for Digital Video data\n"
@@ -2340,7 +2340,7 @@ msgid ""
 "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-"      works-with::video, x11::application\n"
+"      works-with::video, x11::application"
 msgstr ""
 "$ <userinput>aptitude search kino~dvideo~mpaul</userinput>\n"
 "p   kino  - Non-linear editor for Digital Video data\n"

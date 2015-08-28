@@ -4,11 +4,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2015-03-20 01:53+0200\n"
 "Last-Translator: yingw <wyxiao15@gmail.com>\n"
-"Language-Team: Chinese (China) <https://hosted.weblate.org/projects/debian-"
-"handbook/06_apt/zh_CN/>\n"
+"Language-Team: Chinese (China) <https://hosted.weblate.org/projects/debian-handbook/06_apt/zh_CN/>\n"
 "Language: zh-CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: application/x-publican; charset=UTF-8\n"
@@ -54,17 +53,12 @@ msgstr "维护和更新：APT 工具"
 #. Tag: para
 #, no-c-format
 msgid "What makes Debian so popular with administrators is how easily software can be installed and how easily the whole system can be updated. This unique advantage is largely due to the <emphasis>APT</emphasis> program, that Falcot Corp administrators studied with enthusiasm."
-msgstr ""
-"Debian 之所以如此受系统管理员欢迎，是因为项目提供的软件极易安装，整个系统的更新也极为简单。这一独特的优点主要得归功于 "
-"<emphasis>APT</emphasis> 程序，其特性在 Falcot 公司得到系统管理员们热情的研究。"
+msgstr "Debian 之所以如此受系统管理员欢迎，是因为项目提供的软件极易安装，整个系统的更新也极为简单。这一独特的优点主要得归功于 <emphasis>APT</emphasis> 程序，其特性在 Falcot 公司得到系统管理员们热情的研究。"
 
 #. Tag: para
 #, no-c-format
 msgid "<indexterm><primary>APT</primary></indexterm> <indexterm><primary>Advanced Package Tool</primary></indexterm> APT is the abbreviation for Advanced Package Tool. What makes this program “advanced” is its approach to packages. It doesn't simply evaluate them individually, but it considers them as a whole and produces the best possible combination of packages depending on what is available and compatible (according to dependencies)."
-msgstr ""
-"<indexterm><primary>APT</primary></indexterm> 是高级软件包管理器 <indexterm><primary>"
-"Advanced Package Tool</primary></indexterm> 的缩写。它的‘高级’之处在于对软件包的管理方法不同。APT并不是简"
-"单地独立评估每个包，而是将包看做一个整体系统，根据现有的和兼容的已有包找到最佳组合（包括依赖于这个软件包的其他包）。"
+msgstr "<indexterm><primary>APT</primary></indexterm> 是高级软件包管理器 <indexterm><primary>Advanced Package Tool</primary></indexterm> 的缩写。它的‘高级’之处在于对软件包的管理方法不同。APT并不是简单地独立评估每个包，而是将包看做一个整体系统，根据现有的和兼容的已有包找到最佳组合（包括依赖于这个软件包的其他包）。"
 
 #. Tag: title
 #, no-c-format
@@ -74,19 +68,12 @@ msgstr "<emphasis>词汇</emphasis> 软件源和源代码软件包"
 #. Tag: para
 #, no-c-format
 msgid "The word <emphasis>source</emphasis> can be ambiguous. A source package — a package containing the source code of a program — should not be confused with a package source — a repository (website, FTP server, CD-ROM, local directory, etc.) which contains packages."
-msgstr ""
-"<emphasis>源</emphasis>这个词的意思会有一些模糊不清。一个源代码软件包- "
-"是一个包含有源程序代码的包，—不要和软件源相混淆—这是指一个包所在的仓库（网站，FTP服务器，CD-ROM光驱，本地磁盘等等）。"
+msgstr "<emphasis>源</emphasis>这个词的意思会有一些模糊不清。一个源代码软件包- 是一个包含有源程序代码的包，—不要和软件源相混淆—这是指一个包所在的仓库（网站，FTP服务器，CD-ROM光驱，本地磁盘等等）。"
 
 #. Tag: para
 #, no-c-format
 msgid "APT needs to be given a “list of package sources”: the file <filename>/etc/apt/sources.list</filename> will list the different repositories (or “sources”) that publish Debian packages. APT will then import the list of packages published by each of these sources. This operation is achieved by downloading <filename>Packages.{gz,bz2,lzma,xz}</filename> files (in case of a source of binary packages) and <filename>Sources.{gz,bz2,lzma,xz}</filename> (in case of a source of source packages) and by analyzing their contents. When an old copy of these files is already present, APT can update it by only downloading the differences (see sidebar <xref linkend=\"sidebar.apt-pdiff\" />)."
-msgstr ""
-"APT需要一个”软件源列表“：文件<filename>/etc/apt/sources.list</filename>会列出发布 Debian "
-"软件包不同的仓库（或软件源）。接下来APT会从每一个软件源导入所发布的软件包列表。这个过程是通过下载 <filename>Packages.{gz,bz2"
-",lzma,xz}</filename>这个文件（若是二进制包的仓库）和<filename>Sources.{gz,bz2,lzma,xz}</filen"
-"ame>文件（若是软件包源的仓库），并分析这两个文件内容完成的。如果文件的旧版本已经存在，APT仅下载更新的部分（参见：sidebar <xref "
-"linkend=\"sidebar.apt-pdiff\" />）。"
+msgstr "APT需要一个”软件源列表“：文件<filename>/etc/apt/sources.list</filename>会列出发布 Debian 软件包不同的仓库（或软件源）。接下来APT会从每一个软件源导入所发布的软件包列表。这个过程是通过下载 <filename>Packages.{gz,bz2,lzma,xz}</filename>这个文件（若是二进制包的仓库）和<filename>Sources.{gz,bz2,lzma,xz}</filename>文件（若是软件包源的仓库），并分析这两个文件内容完成的。如果文件的旧版本已经存在，APT仅下载更新的部分（参见：sidebar <xref linkend=\"sidebar.apt-pdiff\" />）。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -101,9 +88,7 @@ msgstr "<primary><filename>源.gz</filename></primary>"
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>BACK TO BASICS</emphasis> <command>gzip</command>, <command>bzip2</command>, <command>LZMA</command> and <command>XZ</command> Compression"
-msgstr ""
-"<emphasis>回到基础</emphasis> <command>gzip</command>, <command>bzip2</command>, "
-"<command>LZMA</command> 和<command>XZ</command> 压缩"
+msgstr "<emphasis>回到基础</emphasis> <command>gzip</command>, <command>bzip2</command>, <command>LZMA</command> 和<command>XZ</command> 压缩"
 
 #. Tag: indexterm
 #, no-c-format
@@ -128,12 +113,7 @@ msgstr "<primary><command>xz</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "A <filename>.gz</filename> extension refers to a file compressed with the <command>gzip</command> utility. <command>gzip</command> is the fast and efficient traditional Unix utility to compress files. Newer tools achieve better rates of compression but require more resources (computation time and memory) to compress and uncompress a file. Among them, and by order of appearance, there are <command>bzip2</command> (generating files with a <filename>.bz2</filename> extension), <command>lzma</command> (generating <filename>.lzma</filename> files) and <command>xz</command> (generating <filename>.xz</filename> files)."
-msgstr ""
-"文件名后缀<filename>.gz</filename> 表示文件经过gzip命令的压缩。<command>gzip</command> 是一个经典的U"
-"nix命令用于快速高效压缩文件。一些新的工具压缩更有效，但需要更多内存和时间来完成压缩和解压。按照出现的次序，这些工具有：<command>bzip2</"
-"command> （生成文件名后缀为<filename>.bz2</filename>），<command>lzma</command>（生成文件名后缀为"
-"<filename>.lzma</filename>）和<command>xz</command>（生成文件名后缀为<filename>.xz</file"
-"name>）。"
+msgstr "文件名后缀<filename>.gz</filename> 表示文件经过gzip命令的压缩。<command>gzip</command> 是一个经典的Unix命令用于快速高效压缩文件。一些新的工具压缩更有效，但需要更多内存和时间来完成压缩和解压。按照出现的次序，这些工具有：<command>bzip2</command> （生成文件名后缀为<filename>.bz2</filename>），<command>lzma</command>（生成文件名后缀为<filename>.lzma</filename>）和<command>xz</command>（生成文件名后缀为<filename>.xz</filename>）。"
 
 #. Tag: title
 #, no-c-format
@@ -168,8 +148,7 @@ msgstr "句法"
 #. Tag: para
 #, no-c-format
 msgid "Each active line of the <filename>/etc/apt/sources.list</filename> file contains the description of a source, made of 3 parts separated by spaces."
-msgstr ""
-"<filename>/etc/apt/sources.list</filename> 文件中每个有效的代码行包括对源的描述，由三个被空格分开的部分组成。"
+msgstr "<filename>/etc/apt/sources.list</filename> 文件中每个有效的代码行包括对源的描述，由三个被空格分开的部分组成。"
 
 #. Tag: para
 #, no-c-format
@@ -189,32 +168,17 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The second field gives the base URL of the source (combined with the filenames present in the <filename>Packages.gz</filename> files, it must give a full and valid URL): this can consist in a Debian mirror or in any other package archive set up by a third party. The URL can start with <literal>file://</literal> to indicate a local source installed in the system's file hierarchy, with <literal>http://</literal> to indicate a source accessible from a web server, or with <literal>ftp://</literal> for a source available on an FTP server. The URL can also start with <literal>cdrom://</literal> for CD-ROM/DVD-ROM/Blu-ray disc based installations, although this is less frequent, since network-based installation methods are more and more common."
-msgstr ""
-"第二个区域表示源的基本 URL （结合文件 <filename>Packages.gz</filename> 中给出的文件名，必须是有效URL的全称）："
-"此区域存在于一个 Debian 镜像或其他任何由第三方所建的软件源文档中。这个 URL 可以用 <literal>file://</literal>  "
-"起始来表示系统里安装了本地仓库，或以 <literal>http://</literal> 表示仓库可通过网络服务器来获取，或用 "
-"<literal>ftp://</literal> 表示软件源在一个 FTP 服务器上。URL 还可以用  起始表示从 "
-"<literal>cdrom://</literal> 开始安装。因基于网络的安装愈来愈流行，这个方法已不那么常用了。"
+msgstr "第二个区域表示源的基本 URL （结合文件 <filename>Packages.gz</filename> 中给出的文件名，必须是有效URL的全称）：此区域存在于一个 Debian 镜像或其他任何由第三方所建的软件源文档中。这个 URL 可以用 <literal>file://</literal>  起始来表示系统里安装了本地仓库，或以 <literal>http://</literal> 表示仓库可通过网络服务器来获取，或用 <literal>ftp://</literal> 表示软件源在一个 FTP 服务器上。URL 还可以用  起始表示从 <literal>cdrom://</literal> 开始安装。因基于网络的安装愈来愈流行，这个方法已不那么常用了。"
 
 #. Tag: para
 #, no-c-format
 msgid "The syntax of the last field depends on the structure of the repository. In the simplest cases, you can simply indicate a subdirectory (with a required trailing slash) of the desired source (this is often a simple “<filename>./</filename>” which refers to the absence of a subdirectory — the packages are then directly at the specified URL). But in the most common case, the repositories will be structured like a Debian mirror, with multiple distributions each having multiple components. In those cases, name the chosen distribution (by its “codename” — see the list in sidebar <xref linkend=\"sidebar.bruce-perens\" /> — or by the corresponding “suites” — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal>), then the components (or sections) to enable (chosen between <literal>main</literal>, <literal>contrib</literal>, and <literal>non-free</literal> in a typical Debian mirror)."
-msgstr ""
-"最后这一区域的句法取决于仓库的结构。从最简单的例子开始，你可以很简单地描述一个软件源的子目录 （必须用到结尾处的斜线）（通常用  "
-"“<filename>./</filename>”  表示子目录不存在 - 这个软件源就位于给定的 URL上）。 不过一般来讲，仓库的结构类似于一个 "
-"Debian 的镜像， 包括很多分支，每一分支有很多组成部分。通常命名选定的分支（由 “codename” 来命名 - 参看附栏中的目录<xref "
-"linkend=\"sidebar.bruce-perens\" /> 或是由对应的 “suites” — "
-"<literal>stable</literal>, <literal>testing</literal>, "
-"<literal>unstable</literal> ），然后命名下面的组成部分（或分区）（从<literal>main</literal>, "
-"<literal>contrib</literal> 和<literal>non-free</literal>中选择） 来激活一个典型的 Debian "
-"镜像。"
+msgstr "最后这一区域的句法取决于仓库的结构。从最简单的例子开始，你可以很简单地描述一个软件源的子目录 （必须用到结尾处的斜线）（通常用  “<filename>./</filename>”  表示子目录不存在 - 这个软件源就位于给定的 URL上）。 不过一般来讲，仓库的结构类似于一个 Debian 的镜像， 包括很多分支，每一分支有很多组成部分。通常命名选定的分支（由 “codename” 来命名 - 参看附栏中的目录<xref linkend=\"sidebar.bruce-perens\" /> 或是由对应的 “suites” — <literal>stable</literal>, <literal>testing</literal>, <literal>unstable</literal> ），然后命名下面的组成部分（或分区）（从<literal>main</literal>, <literal>contrib</literal> 和<literal>non-free</literal>中选择） 来激活一个典型的 Debian 镜像。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>VOCABULARY</emphasis> The <literal>main</literal>, <literal>contrib</literal> and <literal>non-free</literal> archives"
-msgstr ""
-"<emphasis>词汇</emphasis> <literal>主</literal>, <literal>contrib</literal> 和 "
-"<literal>非自由</literal> 文档"
+msgstr "<emphasis>词汇</emphasis> <literal>主</literal>, <literal>contrib</literal> 和 <literal>非自由</literal> 文档"
 
 #. Tag: indexterm
 #, no-c-format
@@ -254,42 +218,27 @@ msgstr "<primary>（仓库的）组成 </primary>"
 #. Tag: para
 #, no-c-format
 msgid "Debian uses three sections to differentiate packages according to the licenses chosen by the authors of each work. <literal>Main</literal> gathers all packages which fully comply with the Debian Free Software Guidelines."
-msgstr ""
-"Debian 根据开发者所选定的许可声明，使用这三部分来区分不同的软件包。<literal>Main</literal> 收集了完全遵守Debian "
-"免费软件指南的所有软件包。"
+msgstr "Debian 根据开发者所选定的许可声明，使用这三部分来区分不同的软件包。<literal>Main</literal> 收集了完全遵守Debian 免费软件指南的所有软件包。"
 
 #. Tag: para
 #, no-c-format
 msgid "The <literal>non-free</literal> archive is different because it contains software which does not (entirely) conform to these principles but which can nevertheless be distributed without restrictions. This archive, which is not officially part of Debian, is a service for users who could need some of those programs — however Debian always recommends giving priority to free software. The existence of this section represents a considerable problem for Richard M. Stallman and keeps the Free Software Foundation from recommending Debian to users."
-msgstr ""
-"<literal>non-free</literal>  文档有所不同，它包括没有（ "
-"完全）遵循上述原则，未受约束但仍然被发布的软件。这种文档为使用者提供服务，但不是 Debian 的官方组成部分- 不过 Debian "
-"从来都提倡优先使用自由软件。这类文档的存在代表了一个来自 Richard M. Stallman 的重要问题，也阻碍了自由软件基金会向用户推荐 "
-"Debian."
+msgstr "<literal>non-free</literal>  文档有所不同，它包括没有（ 完全）遵循上述原则，未受约束但仍然被发布的软件。这种文档为使用者提供服务，但不是 Debian 的官方组成部分- 不过 Debian 从来都提倡优先使用自由软件。这类文档的存在代表了一个来自 Richard M. Stallman 的重要问题，也阻碍了自由软件基金会向用户推荐 Debian."
 
 #. Tag: para
 #, no-c-format
 msgid "<literal>Contrib</literal> (contributions) is a set of open source software which cannot function without some non-free elements. These elements can be software from the <literal>non-free</literal> section, or non-free files such as game ROMs, BIOS of consoles, etc. <literal>Contrib</literal> also includes free software whose compilation requires proprietary elements. This was initially the case for the OpenOffice.org office suite, which used to require a proprietary Java environment."
-msgstr ""
-"<literal>Contrib</literal> (贡献)是一类没有一些非自由元件就不能正常运作的开源软件。这类元件会是来自非自由 <literal"
-">non-free</literal>  部分的软件， 或非自由文件如游戏 ROMs, "
-"控制台BIOS等。<literal>Contrib</literal> 也包括需要专利元件来编译的自由软件。早先的例子是OpenOffice.org "
-"办公软件套装，曾经需要带专利的 Java 环境来运行。"
+msgstr "<literal>Contrib</literal> (贡献)是一类没有一些非自由元件就不能正常运作的开源软件。这类元件会是来自非自由 <literal>non-free</literal>  部分的软件， 或非自由文件如游戏 ROMs, 控制台BIOS等。<literal>Contrib</literal> 也包括需要专利元件来编译的自由软件。早先的例子是OpenOffice.org 办公软件套装，曾经需要带专利的 Java 环境来运行。"
 
 #. Tag: title
 #, no-c-format
 msgid "<emphasis>TIP</emphasis> <filename>/etc/apt/sources.list.d/*.list</filename> files"
-msgstr ""
-"<emphasis>TIP</emphasis> <filename>/etc/apt/sources.list.d/*.list</filename> "
-"文件"
+msgstr "<emphasis>TIP</emphasis> <filename>/etc/apt/sources.list.d/*.list</filename> 文件"
 
 #. Tag: para
 #, no-c-format
 msgid "If many package sources are referenced, it can be useful to split them in multiple files. Each part is then stored in <filename>/etc/apt/sources.list.d/<replaceable>filename</replaceable>.list</filename> (see sidebar <xref linkend=\"sidebar.directory.d\" />)."
-msgstr ""
-"如果很多个软件包的源库在被引用，将它们分成多个文件会很实用。每一部分存在<filename>/etc/apt/sources.list.d/<replac"
-"eable>文件名</replaceable>.list</filename> （参见边栏<xref linkend=\""
-"sidebar.directory.d\" />)。"
+msgstr "如果很多个软件包的源库在被引用，将它们分成多个文件会很实用。每一部分存在<filename>/etc/apt/sources.list.d/<replaceable>文件名</replaceable>.list</filename> （参见边栏<xref linkend=\"sidebar.directory.d\" />)。"
 
 #. Tag: indexterm
 #, no-c-format
@@ -299,13 +248,7 @@ msgstr "<primary><command>apt-cdrom</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "The <literal>cdrom</literal> entries describe the CD/DVD-ROMs you have. Contrary to other entries, a CD-ROM is not always available since it has to be inserted into the drive and since only one disc can be read at a time. For those reasons, these sources are managed in a slightly different way, and need to be added with the <command>apt-cdrom</command> program, usually executed with the <literal>add</literal> parameter. The latter will then request the disc to be inserted in the drive and will browse its contents looking for <filename>Packages</filename> files. It will use these files to update its database of available packages (this operation is usually done by the <command>apt-get update</command> command). From then on, APT can require the disc to be inserted if it needs one of its packages."
-msgstr ""
-"<literal>cdrom</literal> 条目描述了你所有的CD/DVD光盘。 "
-"与其他条目不同，因为一个CD光盘需要插入光驱中，并且每次只能读一张，所以并不总是可用。因此这种仓库管理起来稍有不同，需要加在<command>apt-"
-"cdrom</command> 程序中，经常与<literal>add</literal> "
-"参数一起执行。后者会要求驱动中插入光盘，并会浏览内容，寻找<filename>Packages</filename> "
-"文件。这些文件会用于更新可用软件包的数据库（此过程由<command>apt-get update</command> 命令执行）。 自此， "
-"如果某软件包需要光盘，APT 可发出要求插入光驱。"
+msgstr "<literal>cdrom</literal> 条目描述了你所有的CD/DVD光盘。 与其他条目不同，因为一个CD光盘需要插入光驱中，并且每次只能读一张，所以并不总是可用。因此这种仓库管理起来稍有不同，需要加在<command>apt-cdrom</command> 程序中，经常与<literal>add</literal> 参数一起执行。后者会要求驱动中插入光盘，并会浏览内容，寻找<filename>Packages</filename> 文件。这些文件会用于更新可用软件包的数据库（此过程由<command>apt-get update</command> 命令执行）。 自此， 如果某软件包需要光盘，APT 可发出要求插入光驱。"
 
 #. Tag: title
 #, no-c-format
@@ -315,9 +258,7 @@ msgstr "给<emphasis role=\"distribution\">Stable</emphasis> 使用者的仓库"
 #. Tag: para
 #, no-c-format
 msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Stable</emphasis> version of Debian:"
-msgstr ""
-"下面是一个用来运行 <emphasis role=\"distribution\">Stable</emphasis>  版本Debian系统的标准 "
-"<filename>sources.list</filename>  文件："
+msgstr "下面是一个用来运行 <emphasis role=\"distribution\">Stable</emphasis>  版本Debian系统的标准 <filename>sources.list</filename>  文件："
 
 #. Tag: title
 #, no-c-format
@@ -325,7 +266,7 @@ msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian Stabl
 msgstr "<filename>/etc/apt/sources.list</filename> 给 Debian Stable 使用者的文件"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# Security updates\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free\n"
@@ -343,7 +284,7 @@ msgid ""
 "\n"
 "# Stable backports\n"
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
-"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free"
 msgstr ""
 "# Security updates↵\n"
 "deb http://security.debian.org/ wheezy/updates main contrib non-free↵\n"
@@ -361,18 +302,12 @@ msgstr ""
 "↵\n"
 "# Stable backports↵\n"
 "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free↵\n"
-"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free↵"
-"\n"
+"deb-src http://ftp.debian.org/debian wheezy-backports main contrib non-free↵\n"
 
 #. Tag: para
 #, no-c-format
 msgid "This file lists all sources of packages associated with the <emphasis role=\"distribution\">Wheezy</emphasis> version of Debian (the current <emphasis role=\"distribution\">Stable</emphasis> as of this writing). We opted to name “wheezy” explicitly instead of using the corresponding “stable“ alias (<literal>stable</literal>, <literal>stable-updates</literal>, <literal>stable-backports</literal>) because we don't want to have the underlying distribution changed outside of our control when the next stable release comes out."
-msgstr ""
-"此文件列出了 与Debian <emphasis role=\"distribution\">Wheezy</emphasis> "
-"版本相关软件包的所有来源（此手册写作当前<emphasis role=\"distribution\""
-">稳定</emphasis>版本）。我们不希望当下一个稳定版本发布时，所有基于它的分支在我们控制范围外被改变，因此决定用“wheezy” "
-"而不是用相对应的 “stable““ 稳定” 的别名（<literal>stable</literal>, <literal>stable-"
-"updates</literal>, <literal>stable-backports</literal>）来命名。"
+msgstr "此文件列出了 与Debian <emphasis role=\"distribution\">Wheezy</emphasis> 版本相关软件包的所有来源（此手册写作当前<emphasis role=\"distribution\">稳定</emphasis>版本）。我们不希望当下一个稳定版本发布时，所有基于它的分支在我们控制范围外被改变，因此决定用“wheezy” 而不是用相对应的 “stable““ 稳定” 的别名（<literal>stable</literal>, <literal>stable-updates</literal>, <literal>stable-backports</literal>）来命名。"
 
 #. Tag: title
 #, no-c-format
@@ -387,37 +322,27 @@ msgstr "<primary><command>apt-spy</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "This software tests the download speed from several Debian mirrors and generates a <filename>sources.list</filename> file which points to the fastest mirror."
-msgstr ""
-"这个软件从若干个 Debian 镜像来检测下载速度， 并生成一个指向最快镜像的<filename>sources.list</filename> 文件。"
+msgstr "这个软件从若干个 Debian 镜像来检测下载速度， 并生成一个指向最快镜像的<filename>sources.list</filename> 文件。"
 
 #. Tag: para
 #, no-c-format
 msgid "The mirror selected during installation is generally suitable since its selection is based on the country. However, if the download is a little slow, or after a move, you can try running the application available in the <emphasis role=\"pkg\">apt-spy</emphasis> package."
-msgstr ""
-"在安装中被选定的镜像通常可调。不过如果下载速度较慢，你也可试着运行在软件包<emphasis role=\"pkg\">apt-"
-"spy</emphasis>里的其他程序。"
+msgstr "在安装中被选定的镜像通常可调。不过如果下载速度较慢，你也可试着运行在软件包<emphasis role=\"pkg\">apt-spy</emphasis>里的其他程序。"
 
 #. Tag: para
 #, no-c-format
 msgid "Most packages will come from the “base repository” which contains all packages but is seldom updated (about once every 2 months for a “point release”). The other repositories are partial (they do not contain all packages) and can host updates (packages with newer version) that APT might install. The following sections will explain the purpose and the rules governing each of those repositories."
-msgstr ""
-"大多数软件包来源于“基础仓库”，它拥有所有的软件包，但极少更新（大概每两个月根据“点发布”更新）。其他仓库不完全（不包括所有软件包），不过可以支持更新（软"
-"件包是较新版本）。接下来的几章将会介绍这些仓库管理的目的和规则。"
+msgstr "大多数软件包来源于“基础仓库”，它拥有所有的软件包，但极少更新（大概每两个月根据“点发布”更新）。其他仓库不完全（不包括所有软件包），不过可以支持更新（软件包是较新版本）。接下来的几章将会介绍这些仓库管理的目的和规则。"
 
 #. Tag: para
 #, no-c-format
 msgid "Note that when the desired version of a package is available on several repositories, the first one listed in the <filename>sources.list</filename> file will be used. For this reason, non-official sources are usually added at the end of the file."
-msgstr ""
-"请注意，当你所需要的软件包版本存在于几个仓库中时，在文件<filename>sources.list</filename>中所列出的第一个会被使用。因此，"
-"非官方来源的包一般在此文件末尾处。"
+msgstr "请注意，当你所需要的软件包版本存在于几个仓库中时，在文件<filename>sources.list</filename>中所列出的第一个会被使用。因此，非官方来源的包一般在此文件末尾处。"
 
 #. Tag: para
 #, no-c-format
 msgid "As a side note, most of what this section says about <emphasis role=\"distribution\">Stable</emphasis> applies equally well to <emphasis role=\"distribution\">Oldstable</emphasis> since the latter is just an older <emphasis role=\"distribution\">Stable</emphasis> that is maintained in parallel."
-msgstr ""
-"本节提到的<emphasis role=\"distribution\">稳定Stable</emphasis> 对于<emphasis role=\""
-"distribution\">Oldstable</emphasis> 一样适用。后者只是同时维护的较旧<emphasis role=\""
-"distribution\">Stable</emphasis> 版本。"
+msgstr "本节提到的<emphasis role=\"distribution\">稳定Stable</emphasis> 对于<emphasis role=\"distribution\">Oldstable</emphasis> 一样适用。后者只是同时维护的较旧<emphasis role=\"distribution\">Stable</emphasis> 版本。"
 
 #. Tag: title
 #, no-c-format
@@ -442,19 +367,12 @@ msgstr "<primary>更新</primary><secondary>安全更新</secondary>"
 #. Tag: para
 #, no-c-format
 msgid "The security updates are not hosted on the usual network of Debian mirrors but on <literal>security.debian.org</literal> (on a small set of machines maintained by the <link linkend=\"dsa-team\">Debian System Administrators</link>). This archive contains security updates (prepared by the Debian Security Team and/or by package maintainers) for the <emphasis role=\"distribution\">Stable</emphasis> distribution."
-msgstr ""
-"安全更新一般不在 Debian 镜像通常所在的网络上，而是在<literal>security.debian.org</literal>（位于<link "
-"linkend=\"dsa-team\"> Debian 系统管理员Debian System "
-"Administrators</link>维护的小范围网络）。其上的文档包括为那些<emphasis role=\"distribution\""
-">稳定</emphasis>版本准备的安全更新（由 Debian 安全团队和/或软件包维护者预备）。"
+msgstr "安全更新一般不在 Debian 镜像通常所在的网络上，而是在<literal>security.debian.org</literal>（位于<link linkend=\"dsa-team\"> Debian 系统管理员Debian System Administrators</link>维护的小范围网络）。其上的文档包括为那些<emphasis role=\"distribution\">稳定</emphasis>版本准备的安全更新（由 Debian 安全团队和/或软件包维护者预备）。"
 
 #. Tag: para
 #, no-c-format
 msgid "The server can also host security updates for <emphasis role=\"distribution\">Testing</emphasis> but this doesn't happen very often since those updates tend to reach <emphasis role=\"distribution\">Testing</emphasis> via the regular flow of updates coming from <emphasis role=\"distribution\">Unstable</emphasis>."
-msgstr ""
-"服务器上也有针对<emphasis role=\"distribution\">测试版</emphasis>的安全更新。这类更新经常通过从<"
-"emphasis role=\"distribution\">非稳定版</emphasis>流入<emphasis role=\""
-"distribution\">测试版</emphasis>，因此单独存在于服务器上的更新不常见。"
+msgstr "服务器上也有针对<emphasis role=\"distribution\">测试版</emphasis>的安全更新。这类更新经常通过从<emphasis role=\"distribution\">非稳定版</emphasis>流入<emphasis role=\"distribution\">测试版</emphasis>，因此单独存在于服务器上的更新不常见。"
 
 #. Tag: title
 #, no-c-format
@@ -484,11 +402,7 @@ msgstr "稳定更新对安全性不敏感，在下一个稳定版本点发布前
 #. Tag: para
 #, no-c-format
 msgid "This repository will typically contain fixes for critical bugs which could not be fixed before release or which have been introduced by subsequent updates. Depending on the urgency, it can also contain updates for packages that have to evolve over time… like <emphasis role=\"pkg\">spamassassin</emphasis>'s spam detection rules, <emphasis role=\"pkg\">clamav</emphasis>'s virus database, or the daylight-saving rules of all timezones (<emphasis role=\"pkg\">tzdata</emphasis>)."
-msgstr ""
-"这个仓库的典型例子包括修复在发布前无法修复的严重漏洞和后续更新引入的漏洞。根据紧急性，它还包含长期的软件包更新，比如<emphasis role=\""
-"pkg\">spamassassin</emphasis> 的广告监测规则，<emphasis role=\"pkg\""
-">clamav</emphasis>病毒库，或是各个市区的日光节约时间规则（<emphasis role=\"pkg\""
-">tzdata</emphasis>）。"
+msgstr "这个仓库的典型例子包括修复在发布前无法修复的严重漏洞和后续更新引入的漏洞。根据紧急性，它还包含长期的软件包更新，比如<emphasis role=\"pkg\">spamassassin</emphasis> 的广告监测规则，<emphasis role=\"pkg\">clamav</emphasis>病毒库，或是各个市区的日光节约时间规则（<emphasis role=\"pkg\">tzdata</emphasis>）。"
 
 #. Tag: para
 #, no-c-format
@@ -513,9 +427,7 @@ msgstr "<primary><literal>被提议的稳定更新</literal></primary>"
 #. Tag: para
 #, no-c-format
 msgid "Once published, the <emphasis role=\"distribution\">Stable</emphasis> distribution is only updated about once every 2 months. The <literal>proposed-updates</literal> repository is where the expected updates are prepared (under the supervision of the Stable Release Managers)."
-msgstr ""
-"一旦发布，<emphasis role=\"distribution\""
-">稳定</emphasis>分布只每两个月更新一次。接下来的更新在<literal>计划更新</literal>仓库里准备（由稳定发布管理员监督）。"
+msgstr "一旦发布，<emphasis role=\"distribution\">稳定</emphasis>分布只每两个月更新一次。接下来的更新在<literal>计划更新</literal>仓库里准备（由稳定发布管理员监督）。"
 
 #. Tag: para
 #, no-c-format
@@ -525,17 +437,12 @@ msgstr "这个仓库中通常有安全更新和稳定更新的文档，还有更
 #. Tag: para
 #, no-c-format
 msgid "Anyone can use this repository to test those updates before their official publication. The extract below uses the <literal>wheezy-proposed-updates</literal> alias which is both more explicit and more consistent since <literal>squeeze-proposed-updates</literal> also exists (for the <emphasis role=\"distribution\">Oldstable</emphasis> updates):"
-msgstr ""
-"任何人都可以使用这个仓库在正式发布前来检测更新。下面的摘录使用<literal>wheezy-proposed-"
-"updates</literal>别名。因为<literal>squeeze-proposed-updates</literal> "
-"也存在，别名的使用更清楚更一致（对于<emphasis role=\"distribution\">Oldstable</emphasis>更新来讲）："
+msgstr "任何人都可以使用这个仓库在正式发布前来检测更新。下面的摘录使用<literal>wheezy-proposed-updates</literal>别名。因为<literal>squeeze-proposed-updates</literal> 也存在，别名的使用更清楚更一致（对于<emphasis role=\"distribution\">Oldstable</emphasis>更新来讲）："
 
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
-msgstr ""
-"deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-"
-"free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free"
+msgstr "deb http://ftp.debian.org/debian wheezy-proposed-updates main contrib non-free\n"
 
 #. Tag: title
 #, no-c-format
@@ -578,11 +485,9 @@ msgid "<primary><literal>backports.debian.org</literal></primary>"
 msgstr "<primary><literal>backports.debian.org</literal></primary>"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
-msgstr ""
-"deb http://backports.debian.org/debian-backports squeeze-backports main "
-"contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free"
+msgstr "deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free\n"
 
 #. Tag: para
 #, no-c-format
@@ -595,44 +500,34 @@ msgid "Even though this repository provides newer versions of packages, APT will
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>\n"
-"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>"
 msgstr ""
 "\n"
 "↵\n"
-"$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-"
-"backports</userinput>↵\n"
-"$ <userinput>sudo apt-get install -t wheezy-backports "
-"<replaceable>package</replaceable></userinput>↵\n"
+"$ <userinput>sudo apt-get install <replaceable>package</replaceable>/wheezy-backports</userinput>↵\n"
+"$ <userinput>sudo apt-get install -t wheezy-backports <replaceable>package</replaceable></userinput>↵\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Repositories for <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis> Users"
-msgstr ""
-"给<emphasis role=\"distribution\">测试</emphasis>/<emphasis role=\""
-"distribution\">非稳定</emphasis> 版本用户的仓库"
+msgstr "给<emphasis role=\"distribution\">测试</emphasis>/<emphasis role=\"distribution\">非稳定</emphasis> 版本用户的仓库"
 
 #. Tag: para
 #, no-c-format
 msgid "Here is a standard <filename>sources.list</filename> for a system running the <emphasis role=\"distribution\">Testing</emphasis> or <emphasis role=\"distribution\">Unstable</emphasis> version of Debian:"
-msgstr ""
-"下面是一个标准 <filename>sources.list</filename>文件，用于系统运行 Debian <emphasis role=\""
-"distribution\">测试</emphasis>或<emphasis role=\"distribution\">非稳定</emphasis> "
-"版本："
+msgstr "下面是一个标准 <filename>sources.list</filename>文件，用于系统运行 Debian <emphasis role=\"distribution\">测试</emphasis>或<emphasis role=\"distribution\">非稳定</emphasis> 版本："
 
 #. Tag: title
 #, no-c-format
 msgid "<filename>/etc/apt/sources.list</filename> file for users of Debian <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
-msgstr ""
-"<filename>/etc/apt/sources.list</filename> file for users of Debian <"
-"emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\""
-"distribution\">Unstable</emphasis>"
+msgstr "<filename>/etc/apt/sources.list</filename> file for users of Debian <emphasis role=\"distribution\">Testing</emphasis>/<emphasis role=\"distribution\">Unstable</emphasis>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# Unstable\n"
@@ -651,7 +546,7 @@ msgid ""
 "deb http://security.debian.org/ stable/updates main contrib non-free\n"
 "deb http://security.debian.org/ testing/updates main contrib non-free\n"
 "deb-src http://security.debian.org/ stable/updates main contrib non-free\n"
-"deb-src http://security.debian.org/ testing/updates main contrib non-free\n"
+"deb-src http://security.debian.org/ testing/updates main contrib non-free"
 msgstr ""
 "\n"
 "↵\n"
@@ -676,11 +571,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "With this <filename>sources.list</filename> file APT will install packages from <emphasis role=\"distribution\">Unstable</emphasis>. If that is not desired, use the <literal>APT::Default-Release</literal> setting (see <xref linkend=\"sect.apt-upgrade\" />) to instruct APT to pick packages from another distribution (most likely <emphasis role=\"distribution\">Testing</emphasis> in this case)."
-msgstr ""
-"APT 通过<filename>sources.list</filename> 文件来从<emphasis role=\"distribution\""
-">非稳定</emphasis>安装软件包。如果这不是你所需要的，用<literal>APT::Default-Release</literal> 设置（"
-"参见 <xref linkend=\"sect.apt-upgrade\" />）来指示 APT 从另一分布获取软件包（一般用 <emphasis "
-"role=\"distribution\">测试</emphasis>）。"
+msgstr "APT 通过<filename>sources.list</filename> 文件来从<emphasis role=\"distribution\">非稳定</emphasis>安装软件包。如果这不是你所需要的，用<literal>APT::Default-Release</literal> 设置（参见 <xref linkend=\"sect.apt-upgrade\" />）来指示 APT 从另一分布获取软件包（一般用 <emphasis role=\"distribution\">测试</emphasis>）。"
 
 #. Tag: para
 #, no-c-format
@@ -713,15 +604,14 @@ msgid "<emphasis role=\"distribution\">Experimental</emphasis> is generally used
 msgstr ""
 
 #. Tag: programlisting
-#, no-c-format
-msgid "deb http://ftp.debian.org/debian experimental main contrib non-free\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "deb http://ftp.debian.org/debian experimental main contrib non-free"
 msgstr "deb http://ftp.debian.org/debian experimental main contrib non-free↵\n"
 
 #. Tag: title
 #, no-c-format
 msgid "Non-Official Resources: <literal>apt-get.org</literal> and <literal>mentors.debian.net</literal>"
-msgstr ""
-"非官方来源： <literal>apt-get.org</literal> 和 <literal>mentors.debian.net</literal>"
+msgstr "非官方来源： <literal>apt-get.org</literal> 和 <literal>mentors.debian.net</literal>"
 
 #. Tag: indexterm
 #, no-c-format
@@ -834,12 +724,12 @@ msgid "<emphasis role=\"pkg\">approx</emphasis>, on the other hand, acts like an
 msgstr ""
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "# &lt;name&gt; &lt;repository-base-url&gt;\n"
 "debian   http://ftp.debian.org/debian\n"
-"security http://security.debian.org\n"
+"security http://security.debian.org"
 msgstr ""
 "\n"
 "↵\n"
@@ -850,10 +740,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "<emphasis role=\"pkg\">approx</emphasis> runs by default on port 9999 via inetd (see <xref linkend=\"sect.inetd\" />) and requires the users to adjust their <filename>sources.list</filename> file to point to the approx server:"
-msgstr ""
-"<emphasis role=\"pkg\">approx</emphasis> 通过inetd (参见<xref linkend=\"sect."
-"inetd\" />)默认在9999端口运行，并需要用户调整<filename>sources.list</filename> 文件来指向 approx "
-"服务器："
+msgstr "<emphasis role=\"pkg\">approx</emphasis> 通过inetd (参见<xref linkend=\"sect.inetd\" />)默认在9999端口运行，并需要用户调整<filename>sources.list</filename> 文件来指向 approx 服务器："
 
 #. Tag: programlisting
 #, no-c-format
@@ -864,8 +751,7 @@ msgid ""
 "      "
 msgstr ""
 "# 指向本地 approx 服务器的sources.list 范例 ↵\n"
-"deb http://apt.falcot.com:9999/security wheezy/updates main contrib non-free↵"
-"\n"
+"deb http://apt.falcot.com:9999/security wheezy/updates main contrib non-free↵\n"
 "deb http://apt.falcot.com:9999/debian wheezy main contrib non-free↵\n"
 "      "
 
@@ -887,9 +773,7 @@ msgstr "<primary><command>aptitude</command></primary>"
 #. Tag: para
 #, no-c-format
 msgid "APT is a vast project, whose original plans included a graphical interface. It is based on a library which contains the core application, and <command>apt-get</command> is the first front end — command-line based — which was developed within the project."
-msgstr ""
-"APT 是一个相当大的项目，起初计划包括一个图形界面。它是基于一个包括核心应用的库， <command>apt-get</command> "
-"是在这个项目中开发的第一个命令行基础的前端。"
+msgstr "APT 是一个相当大的项目，起初计划包括一个图形界面。它是基于一个包括核心应用的库， <command>apt-get</command> 是在这个项目中开发的第一个命令行基础的前端。"
 
 #. Tag: para
 #, no-c-format
@@ -992,21 +876,17 @@ msgid "First, retrieve the list of packages installed on the computer which will
 msgstr "首先，从电脑中取得所安装软件包的列表作为用于复制的“模板”。"
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>\n"
-msgstr ""
-"<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-"
-"list</userinput>↵\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>"
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>↵\n"
 
 #. Tag: para
 #, no-c-format
 msgid "The <filename>pkg-list</filename> file then contains the list of installed packages. Next, transfer the <filename>pkg-list</filename> file on the computers you want to update and use the following commands:"
-msgstr ""
-"<filename>pkg-list</filename>文件包括所安装软件包的列表。接下来，在你要更新的电脑上移植  <filename>pkg-"
-"list</filename> 文件，使用下面这些命令："
+msgstr "<filename>pkg-list</filename>文件包括所安装软件包的列表。接下来，在你要更新的电脑上移植  <filename>pkg-list</filename> 文件，使用下面这些命令："
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "## Update dpkg's database of known packages\n"
 "# <userinput>avail=`mktemp`</userinput>\n"
@@ -1016,7 +896,7 @@ msgid ""
 "## Update dpkg's selections\n"
 "# <userinput>dpkg --set-selections &lt; pkg-list</userinput>\n"
 "## Ask apt-get to install the selected packages\n"
-"# <userinput>apt-get dselect-upgrade</userinput>\n"
+"# <userinput>apt-get dselect-upgrade</userinput>"
 msgstr ""
 "## Update dpkg's database of known packages↵\n"
 "# <userinput>avail=`mktemp`</userinput>↵\n"
@@ -1031,10 +911,7 @@ msgstr ""
 #. Tag: para
 #, no-c-format
 msgid "The first commands records the list of available packages in the dpkg database, then <command>dpkg --set-selections</command> restores the selection of packages that you wish to install, and the <command>apt-get</command> invocation executes the required operations! <command>aptitude</command> does not have this command."
-msgstr ""
-"第一个命令记录在 dpkg 库中可用的软件包列表，然后 <command>dpkg --set-selections</command> "
-"恢复选中你想要安装的包，<command>apt-get</command> "
-"的激活执行所需要的操作！<command>aptitude</command> 没有这样的命令。"
+msgstr "第一个命令记录在 dpkg 库中可用的软件包列表，然后 <command>dpkg --set-selections</command> 恢复选中你想要安装的包，<command>apt-get</command> 的激活执行所需要的操作！<command>aptitude</command> 没有这样的命令。"
 
 #. Tag: title
 #, no-c-format
@@ -1044,40 +921,30 @@ msgstr "<emphasis>TIP</emphasis> 同时进行卸载和安装"
 #. Tag: para
 #, no-c-format
 msgid "It is possible to ask <command>apt-get</command> (or <command>aptitude</command>) to install certain packages and remove others on the same command line by adding a suffix. With an <command>apt-get install</command> command, add “<literal>-</literal>” to the names of the packages you wish to remove. With an <command>apt-get remove</command> command, add “<literal>+</literal>” to the names of the packages you wish to install."
-msgstr ""
-"可以询问<command>apt-get</command>（或<command>aptitude</command>）来安装指定的软件包并卸载在同一个命"
-"令行中的其他包，这通过加上后缀来实现。用一个<command>apt-get "
-"install</command>命令，在要卸载的软件包名字后面加上“<literal>-</literal>” 。用<command>apt-get "
-"remove</command>命令时，在想要安装的包名字后面加上“<literal>+</literal>” 。"
+msgstr "可以询问<command>apt-get</command>（或<command>aptitude</command>）来安装指定的软件包并卸载在同一个命令行中的其他包，这通过加上后缀来实现。用一个<command>apt-get install</command>命令，在要卸载的软件包名字后面加上“<literal>-</literal>” 。用<command>apt-get remove</command>命令时，在想要安装的包名字后面加上“<literal>+</literal>” 。"
 
 #. Tag: para
 #, no-c-format
 msgid "The next example shows two different ways to install <replaceable>package1</replaceable> and to remove <replaceable>package2</replaceable>."
-msgstr ""
-"下面的例子展示两种不同方法来安装<replaceable>package1</replaceable> "
-"和卸载<replaceable>package2</replaceable>。"
+msgstr "下面的例子展示两种不同方法来安装<replaceable>package1</replaceable> 和卸载<replaceable>package2</replaceable>。"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>\n"
 "[...]\n"
 "# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>\n"
-"[...]\n"
+"[...]"
 msgstr ""
-"# <userinput>apt-get install <replaceable>package1</replaceable> "
-"<replaceable>package2-</replaceable></userinput>↵\n"
+"# <userinput>apt-get install <replaceable>package1</replaceable> <replaceable>package2-</replaceable></userinput>↵\n"
 "[...]↵\n"
-"# <userinput>apt-get remove <replaceable>package1+</replaceable> "
-"<replaceable>package2</replaceable></userinput>↵\n"
+"# <userinput>apt-get remove <replaceable>package1+</replaceable> <replaceable>package2</replaceable></userinput>↵\n"
 "[...]↵\n"
 
 #. Tag: para
 #, no-c-format
 msgid "This can also be used to exclude packages which would otherwise be installed, for example due to a <literal>Recommends</literal>. In general, the dependency solver will use that information as a hint to look for alternative solutions."
-msgstr ""
-"此方法也可用于把不同的软件包排除在外，比如由于<literal>Recommends</literal>造成的。一般，依赖解决者会用此作为寻找其他办法的线"
-"索。"
+msgstr "此方法也可用于把不同的软件包排除在外，比如由于<literal>Recommends</literal>造成的。一般，依赖解决者会用此作为寻找其他办法的线索。"
 
 #. Tag: title
 #, no-c-format
@@ -1095,9 +962,9 @@ msgid "The system can sometimes be damaged after the removal or modification of 
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>\n"
-msgstr ""
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>apt-get --reinstall install postfix</userinput>"
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>↵\n"
 
 #. Tag: para
 #, no-c-format
@@ -1125,9 +992,9 @@ msgid "Installation of the <emphasis role=\"distribution\">unstable</emphasis> v
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>\n"
-msgstr ""
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>apt-get install spamassassin/unstable</userinput>"
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>↵\n"
 
 #. Tag: title
 #, no-c-format
@@ -1364,7 +1231,7 @@ msgstr ""
 msgid ""
 "Package: *\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 
 #. Tag: para
@@ -1381,7 +1248,7 @@ msgid ""
 "\n"
 "Package: *\n"
 "Pin: release o=Debian\n"
-"Pin-Priority: -10\n"
+"Pin-Priority: -10"
 msgstr ""
 
 #. Tag: para
@@ -1399,7 +1266,7 @@ msgstr ""
 msgid ""
 "Package: perl\n"
 "Pin: version 5.14*\n"
-"Pin-Priority: 1001\n"
+"Pin-Priority: 1001"
 msgstr ""
 
 #. Tag: para
@@ -1439,7 +1306,7 @@ msgid ""
 "Explanation: in experimental can be used safely\n"
 "Package: xserver-xorg-video-intel\n"
 "Pin: release a=experimental\n"
-"Pin-Priority: 500\n"
+"Pin-Priority: 500"
 msgstr ""
 
 #. Tag: title
@@ -1497,7 +1364,7 @@ msgstr ""
 msgid ""
 "Package: *\n"
 "Pin: release a=unstable\n"
-"Pin-Priority: 490\n"
+"Pin-Priority: 490"
 msgstr ""
 
 #. Tag: title
@@ -1805,9 +1672,9 @@ msgid "The advanced features of <command>aptitude</command> are also available o
 msgstr ""
 
 #. Tag: screen
-#, no-c-format
-msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>\n"
-msgstr ""
+#, msgstr-has-trailing-newline, no-c-format
+msgid "<computeroutput># </computeroutput><userinput>aptitude markauto '~slibs|~sperl'</userinput>"
+msgstr "<computeroutput>$ </computeroutput><userinput>dpkg --get-selections &gt;pkg-list</userinput>↵\n"
 
 #. Tag: para
 #, no-c-format
@@ -1975,7 +1842,7 @@ msgid ""
 "--------------------------------------------------------\n"
 "pub   4096R/65FFB764 2012-05-08 [expires: 2019-05-07]\n"
 "      Key fingerprint = ED6D 6527 1AAC F0FF 15D1  2303 6FB2 A1C2 65FF B764\n"
-"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;\n"
+"uid                  Wheezy Stable Release Key &lt;debian-release@lists.debian.org&gt;"
 msgstr ""
 
 #. Tag: title
@@ -2065,7 +1932,7 @@ msgstr ""
 
 #. Tag: screen
 #, no-c-format
-msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>\n"
+msgid "# <userinput>deborphan | xargs aptitude --schedule-only remove</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -2312,7 +2179,7 @@ msgstr ""
 #, no-c-format
 msgid ""
 "export DEBIAN_FRONTEND=noninteractive\n"
-"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade\n"
+"yes '' | apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" dist-upgrade"
 msgstr ""
 
 #. Tag: title
@@ -2410,7 +2277,7 @@ msgid ""
 "Tags: hardware::camera, implemented-in::c, implemented-in::c++,\n"
 "      interface::x11, role::program, scope::application,\n"
 "      suite::gnome, uitoolkit::gtk, use::editing, \n"
-"      works-with::video, x11::application\n"
+"      works-with::video, x11::application"
 msgstr ""
 
 #. Tag: para

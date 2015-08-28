@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2014-11-14 22:40+0200\n"
 "Last-Translator: Georg Korger <georg.korger@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/debian-handbook/12_advanced-administration/de/>\n"
@@ -345,7 +345,7 @@ msgid "We're going to use these physical elements to build two volumes, one RAID
 msgstr "Wir werden diese physischen Komponenten zur Einrichtung zweier Volumes verwenden, eines RAID-0 und eines Spiegels (RAID-1). Wir beginnen mit dem RAID-0-Volume:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
@@ -404,7 +404,7 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/raid-0</userinput>\n"
 "<computeroutput>Filesystem      Size  Used Avail Use% Mounted on\n"
 "/dev/md0        7.9G  146M  7.4G   2% /srv/raid-0\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc</userinput>\n"
 "<computeroutput>mdadm: Defaulting to version 1.2 metadata\n"
@@ -476,7 +476,7 @@ msgid "Creation of a RAID-1 follows a similar fashion, the differences only bein
 msgstr "Die Erstellung eines RAID-1 erfolgt auf ähnliche Weise; die Unterschiede machen sich erst nach der Erstellung bemerkbar:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdd2 /dev/sde</userinput>\n"
 "<computeroutput>mdadm: Note: this array has metadata at the start and\n"
@@ -520,7 +520,7 @@ msgid ""
 "[...]\n"
 "          State : clean\n"
 "[...]\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm --create /dev/md1 --level=1 --raid-devices=2 /dev/sdd2 /dev/sde</userinput>\n"
 "<computeroutput>mdadm: Note: this array has metadata at the start and\n"
@@ -622,7 +622,7 @@ msgid "Now let's see what happens when one of the elements of the RAID-1 array f
 msgstr "Nun wollen wir sehen, was passiert, wenn eine der Komponenten der RAID-1-Anordnung ausfällt. Mit <command>mdadm</command>, genauer gesagt mit seiner Option <literal>--fail</literal>, lässt sich ein derartiger Plattenausfall simulieren:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sde</userinput>\n"
 "<computeroutput>mdadm: set /dev/sde faulty in /dev/md1\n"
@@ -644,7 +644,7 @@ msgid ""
 "       0       8       50        0      active sync   /dev/sdd2\n"
 "       1       0        0        1      removed\n"
 "\n"
-"       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
+"       1       8       64        -      faulty spare   /dev/sde</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --fail /dev/sde</userinput>\n"
 "<computeroutput>mdadm: set /dev/sde faulty in /dev/md1\n"
@@ -674,7 +674,7 @@ msgid "The contents of the volume are still accessible (and, if it is mounted, t
 msgstr "Der Inhalt des Datenträgers ist weiterhin zugänglich (und falls er eingehängt ist, bemerken die Anwendungen nichts), aber die Sicherheit der Daten ist nicht mehr gewährleistet: sollte die Platte <filename>sdd</filename> ebenfalls ausfallen, wären die Daten verloren. Wir möchten dieses Risiko vermeiden und werden daher die ausgefallene Platte durch eine neue, <filename>sdf</filename>, ersetzen:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdf</userinput>\n"
 "<computeroutput>mdadm: added /dev/sdf\n"
@@ -723,7 +723,7 @@ msgid ""
 "       0       8       50        0      active sync   /dev/sdd2\n"
 "       2       8       80        1      active sync   /dev/sdf\n"
 "\n"
-"       1       8       64        -      faulty spare   /dev/sde</computeroutput>\n"
+"       1       8       64        -      faulty spare   /dev/sde</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --add /dev/sdf</userinput>\n"
 "<computeroutput>mdadm: added /dev/sdf\n"
@@ -780,7 +780,7 @@ msgid "Here again, the kernel automatically triggers a reconstruction phase duri
 msgstr "Auch in diesem Fall löst der Kernel automatisch eine Rekonstruktionsphase aus, während der sich der Datenträger in eingeschränktem Zustand befindet, auch wenn er weiterhin zugänglich ist. Sobald die Rekonstruktion vorüber ist, befindet sich die RAID-Anordnung wieder in normalem Zustand. Man kann dem System dann mitteilen, dass die Platte <filename>sde</filename> aus der Anordnung entfernt werden wird, um so zu einem typischen RAID-Spiegel auf zwei Platten zu gelangen:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sde</userinput>\n"
 "<computeroutput>mdadm: hot removed /dev/sde from /dev/md1\n"
@@ -789,7 +789,7 @@ msgid ""
 "[...]\n"
 "    Number   Major   Minor   RaidDevice State\n"
 "       0       8       50        0      active sync   /dev/sdd2\n"
-"       2       8       80        1      active sync   /dev/sdf</computeroutput>\n"
+"       2       8       80        1      active sync   /dev/sdf</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm /dev/md1 --remove /dev/sde</userinput>\n"
 "<computeroutput>mdadm: hot removed /dev/sde from /dev/md1\n"
@@ -826,7 +826,7 @@ msgid "<command>mdadm</command> configuration file"
 msgstr "Konfigurationsdatei <command>mdadm</command>"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# mdadm.conf\n"
 "#\n"
@@ -852,7 +852,7 @@ msgid ""
 "ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464\n"
 "\n"
 "# This configuration was auto-generated on Thu, 17 Jan 2013 16:21:01 +0100\n"
-"# by mkconf 3.2.5-3\n"
+"# by mkconf 3.2.5-3"
 msgstr ""
 "# mdadm.conf\n"
 "#\n"
@@ -896,11 +896,11 @@ msgid "Fortunately, these lines can be generated automatically:"
 msgstr "Glücklicherweise können diese Zeilen automatisch erstellt werden:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
-"ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464</computeroutput>\n"
+"ARRAY /dev/md1 metadata=1.2 name=mirwiz:1 UUID=6ec558ca:0c2c04a0:19bca283:95f67464</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mdadm --misc --detail --brief /dev/md?</userinput>\n"
 "<computeroutput>ARRAY /dev/md0 metadata=1.2 name=mirwiz:0 UUID=bb085b35:28e821bd:20d697c9:650152bb\n"
@@ -1007,7 +1007,7 @@ msgid "First, we prepare the physical volumes using <command>pvcreate</command>:
 msgstr "Zunächst erstellen wir mit <command>pvcreate</command> die physischen Volumes:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
@@ -1042,7 +1042,7 @@ msgid ""
 "  /dev/sdd        lvm2 a--  4.00g 4.00g\n"
 "  /dev/sdf1       lvm2 a--  4.10g 4.10g\n"
 "  /dev/sdf2       lvm2 a--  5.22g 5.22g\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>pvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb2</userinput>\n"
@@ -1090,7 +1090,7 @@ msgid "Now let's assemble these physical elements into VGs using <command>vgcrea
 msgstr "Wir wollen jetzt diese physischen Komponenten mit dem Befehl <command>vgcreate</command> zu VGs zusammenfügen. Dabei nehmen wir nur PVs von den schnellen Platten in eine VG namens <filename>vg_critical</filename> auf; die andere VG, <filename>vg_normal</filename>, enthält dagegen auch langsamere Komponenten."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput>  No volume groups found\n"
@@ -1124,7 +1124,7 @@ msgid ""
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize  VFree \n"
 "  vg_critical   2   0   0 wz--n-  8.09g  8.09g\n"
 "  vg_normal     3   0   0 wz--n- 12.30g 12.30g\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>vgdisplay</userinput>\n"
 "<computeroutput>  No volume groups found\n"
@@ -1171,7 +1171,7 @@ msgid "We now have two “virtual disks”, sized about 8 GB and 12 GB, respec
 msgstr "Wir haben jetzt zwei „virtuelle Platten“ mit einer Größe von etwa 8 GB und 12 GB. Wir wollen sie jetzt in „virtuelle Partitionen“ (LVs) unterteilen. Dies geschieht mit dem Befehl <command>lvcreate</command> und einer etwas komplizierteren Syntax:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
@@ -1202,7 +1202,7 @@ msgid ""
 "<computeroutput>  LV         VG          Attr     LSize  Pool Origin Data%  Move Log Copy%  Convert\n"
 "  lv_base    vg_critical -wi-a---  1.00g                                           \n"
 "  lv_files   vg_critical -wi-a---  5.00g                                           \n"
-"  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>\n"
+"  lv_backups vg_normal   -wi-a--- 12.00g</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>lvdisplay</userinput>\n"
 "<computeroutput># </computeroutput><userinput>lvcreate -n lv_files -L 5G vg_critical</userinput>\n"
@@ -1266,7 +1266,7 @@ msgid "Logical volumes, once created, end up as block device files in <filename>
 msgstr "Logische Volumes werden nach ihrer Erstellung zu Blockgerätedateien in <filename>/dev/mapper/</filename>:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1278,7 +1278,7 @@ msgid ""
 "<computeroutput>brw-rw---T 1 root disk 253, 0 Jan 17 17:05 /dev/dm-0\n"
 "brw-rw---T 1 root disk 253, 1 Jan 17 17:05 /dev/dm-1\n"
 "brw-rw---T 1 root disk 253, 2 Jan 17 17:05 /dev/dm-2\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/mapper</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1313,7 +1313,7 @@ msgid "To make things easier, convenience symbolic links are also created in dir
 msgstr "Zur Vereinfachung werden zudem bequeme symbolische Verknüpfungen in den Verzeichnissen angelegt, die den VGs entsprechen:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1321,7 +1321,7 @@ msgid ""
 "lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_files -&gt; ../dm-0\n"
 "# </computeroutput><userinput>ls -l /dev/vg_normal</userinput>\n"
 "<computeroutput>total 0\n"
-"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; ../dm-2</computeroutput>\n"
+"lrwxrwxrwx 1 root root 7 Jan 17 17:05 lv_backups -&gt; ../dm-2</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>ls -l /dev/vg_critical</userinput>\n"
 "<computeroutput>total 0\n"
@@ -1337,7 +1337,7 @@ msgid "The LVs can then be used exactly like standard partitions:"
 msgstr "Die LVs können genau wie Standard-Partitionen benutzt werden:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
 "<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
@@ -1358,7 +1358,7 @@ msgid ""
 "<computeroutput>[...]\n"
 "/dev/vg_critical/lv_base    /srv/base       ext4\n"
 "/dev/vg_critical/lv_files   /srv/files      ext4\n"
-"/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>\n"
+"/dev/vg_normal/lv_backups   /srv/backups    ext4</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mkfs.ext4 /dev/vg_normal/lv_backups</userinput>\n"
 "<computeroutput>mke2fs 1.42.5 (29-Jul-2012)\n"
@@ -1397,7 +1397,7 @@ msgid "Even though the ability to aggregate partitions or physical disks is conv
 msgstr "Wenn auch die Fähigkeit, Partitionen oder physische Platten zusammenzufassen, praktisch ist, so ist dies doch nicht der wichtigste Vorteil, den LVM bietet. Die Flexibilität, die er mit sich bringt, wird erst im Laufe der Zeit richtig deutlich, wenn sich die Anforderungen weiterentwickeln. In unserem Beispiel wollen wir annehmen, dass neue große Dateien gespeichert werden müssen, und dass das für den Dateiserver reservierte LV für sie zu klein ist. Da wir noch nicht allen in <filename>vg_critical</filename> verfügbaren Platz verwendet haben, können wir <filename>lv_files</filename> vergrößern. Zu diesem Zweck benutzen wir den Befehl <command>lvresize</command> und anschließend <command>resize2fs</command>, um das Dateisystem entsprechend anzupassen:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 "<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
@@ -1423,7 +1423,7 @@ msgid ""
 "\n"
 "# </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 "<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% /srv/files</computeroutput>\n"
+"/dev/mapper/vg_critical-lv_files  6.9G  4.6G  2.1G  70% /srv/files</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/files/</userinput>\n"
 "<computeroutput>Filesystem                        Size  Used Avail Use% Mounted on\n"
@@ -1472,14 +1472,14 @@ msgid "We could proceed in a similar fashion to extend the volume hosting the da
 msgstr "Wir könnten in ähnlicher Weise vorgehen, um den Datenträger zu erweitern, auf dem sich die Datenbank befindet. Nur haben wir hier die Grenze des für die VG verfügbaren Platzes erreicht:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
 "/dev/mapper/vg_critical-lv_base 1008M  854M  104M  90% /srv/base\n"
 "# </computeroutput><userinput>vgdisplay -C vg_critical</userinput>\n"
 "<computeroutput>  VG          #PV #LV #SN Attr   VSize VFree \n"
-"  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>\n"
+"  vg_critical   2   2   0 wz--n- 8.09g 92.00m</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
@@ -1494,7 +1494,7 @@ msgid "No matter, since LVM allows adding physical volumes to existing volume gr
 msgstr "Das macht nichts, da es mit LVM möglich ist, physische Datenträger zu bestehenden Volume-Gruppen hinzuzufügen. Wir könnten zum Beispiel festgestellt haben, dass die Partition <filename>sdb1</filename>, die bisher außerhalb des LVM verwendet wurde, nur Archivdateien enthält, die nach <filename>lv_backups</filename> verschoben werden könnten. Wir können sie dann neu verwenden und in die Volume-Gruppe integrieren und so zusätzlichen Platz gewinnen. Hierzu dient der Befehl <command>vgextend</command>. Natürlich muss die Partition zunächst als physischer Datenträger eingerichtet werden. Sobald die VG erweitert worden ist, können wir ähnliche Befehle wie zuvor verwenden, um zunächst das logische Volume und anschließend das Dateisystem zu vergrößern:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
 "<computeroutput>  Writing physical volume data to disk \"/dev/sdb1\"\n"
@@ -1508,7 +1508,7 @@ msgid ""
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>df -h /srv/base/</userinput>\n"
 "<computeroutput>Filesystem                       Size  Used Avail Use% Mounted on\n"
-"/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% /srv/base</computeroutput>\n"
+"/dev/mapper/vg_critical-lv_base  2.0G  854M  1.1G  45% /srv/base</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>pvcreate /dev/sdb1</userinput>\n"
 "<computeroutput>  Writing physical volume data to disk \"/dev/sdb1\"\n"
@@ -1580,7 +1580,7 @@ msgid "RAID-1 and LVM are combined to satisfy these constraints. The disks are a
 msgstr "RAID-1 und LVM werden kombiniert, um diese Ansprüche zu erfüllen. Die Platten werden an zwei verschiedene SATA-Controller angeschlossen, um den parallelen Zugriff zu optimieren und das Risiko eines gleichzeitigen Ausfalls zu verringern, und werden demnach als <filename>sda</filename> und <filename>sdc</filename> angezeigt. Sie werden beide in gleicher Weise wie folgt partitioniert:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
 "<computeroutput>\n"
@@ -1597,7 +1597,7 @@ msgid ""
 "/dev/sda3             249    36483   291057637+   5  Extended\n"
 "/dev/sda5             249    12697    99996561   fd  Linux raid autodetect\n"
 "/dev/sda6           12698    25146    99996561   fd  Linux raid autodetect\n"
-"/dev/sda7           25147    36483    91064421   8e  Linux LVM</computeroutput>\n"
+"/dev/sda7           25147    36483    91064421   8e  Linux LVM</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>fdisk -l /dev/sda</userinput>\n"
 "<computeroutput>\n"
@@ -1812,11 +1812,11 @@ msgid "In order to avoid the hassle of selecting these components by hand, a few
 msgstr "Um den Aufwand der manuellen Auswahl dieser Komponenten zu vermeiden, stehen komfortablerweise einige fertige Pakete bereit (wie zum Beispiel <emphasis role=\"pkg\">xen-linux-system-686-pae</emphasis> und <emphasis role=\"pkg\">xen-linux-system-amd64</emphasis>); sie alle installieren eine als gut bekannte Kombination aus passendem Hypervisor und Kernelpaketen. Der Hypervisor bringt zudem das Paket <emphasis role=\"pkg\">xen-utils-4.1</emphasis> mit sich, das Hilfsprogramme zur Steuerung des Hypervisors von dom0 aus enthält. Dieses wiederum bringt die passende Standardbibliothek mit sich. Während der Installation all dieser Komponenten erstellen Konfigurationsskripten außerdem einen neuen Eintrag im Menü des Grub Boot-Loaders, mit dem der ausgewählte Kernel in einer Xen dom0 gestartet wird. Man beachte jedoch, dass dieser Eintrag gewöhnlich nicht zuoberst in der Liste steht und deshalb nicht standardmäßig ausgewählt wird. Falls dies nicht das erwünschte Verhalten ist, kann es mit folgenden Befehlen verändert werden:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen\n"
 "</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
-"</userinput>\n"
+"</userinput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>mv /etc/grub.d/20_linux_xen /etc/grub.d/09_linux_xen\n"
 "</userinput><computeroutput># </computeroutput><userinput>update-grub\n"
@@ -1883,7 +1883,7 @@ msgid "Once these choices are made, we can create the image for our future Xen d
 msgstr "Nachdem diese Entscheidungen getroffen sind, können wir das Abbild der zukünftigen Xen-domU erstellen:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>xen-create-image --hostname testxen --dhcp --dir /srv/testxen --size=2G --dist=wheezy --role=udev</userinput>\n"
 "<computeroutput>\n"
@@ -1910,7 +1910,7 @@ msgid ""
 "IP-Address(es)  :  dynamic\n"
 "RSA Fingerprint :  0a:6e:71:98:95:46:64:ec:80:37:63:18:73:04:dd:2b\n"
 "Root Password   :  48su67EW\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>xen-create-image --hostname testxen --dhcp --dir /srv/testxen --size=2G --dist=wheezy --role=udev</userinput>\n"
 "<computeroutput>\n"
@@ -1995,7 +1995,7 @@ msgid "After rebooting to make sure the bridge is automatically created, we can 
 msgstr "Nach einem Neustart, um sicherzustellen, dass die Brücke automatisch erstellt wird, können wir jetzt die domU mit den Xen-Steuerprogrammen starten, insbesondere mit dem Befehl <command>xm</command>. Mit diesem Befehl ist es möglich, Verschiedenes mit den Domains zu machen, unter anderem sie aufzulisten und sie zu starten oder zu beenden."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                                        ID   Mem VCPUs      State   Time(s)\n"
@@ -2006,7 +2006,7 @@ msgid ""
 "# </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                                        ID   Mem VCPUs      State   Time(s)\n"
 "Domain-0                                     0   366     1     r-----     11.4\n"
-"testxen                                      1   128     1     -b----      1.1</computeroutput>\n"
+"testxen                                      1   128     1     -b----      1.1</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>xm list</userinput>\n"
 "<computeroutput>Name                                        ID   Mem VCPUs      State   Time(s)\n"
@@ -2040,14 +2040,14 @@ msgid "Voilà! Our virtual machine is starting up. We can access it in one of tw
 msgstr "Voilà! Unser virtueller Rechner startet. Wir können auf ihn auf zweifache Art zugreifen. Der normale Weg besteht darin, sich mit ihm „aus der Ferne“ über das Netzwerk zu verbinden, wie wir es auch bei einem wirklichen Rechner tun würden; hierzu ist es normalerweise erforderlich, entweder einen DHCP-Server oder eine DNS-Konfiguration einzurichten. Der andere Weg, der der einzige sein könnte, falsch die Netzwerk-Konfiguration nicht korrekt war, besteht darin, über den Befehl <command>xm console</command> die Konsole <filename>hvc0</filename> zu benutzen:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
 "<computeroutput>[...]\n"
 "\n"
 "Debian GNU/Linux 7.0 testxen hvc0\n"
 "\n"
-"testxen login: </computeroutput>\n"
+"testxen login: </computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>xm console testxen</userinput>\n"
 "<computeroutput>[...]\n"
@@ -2172,11 +2172,11 @@ msgid "LXC also requires the <emphasis>control groups</emphasis> configuration s
 msgstr "LXC benötigt außerdem das Konfigurationssystem für die <emphasis>Kontrollgruppen</emphasis>, das ein unter <filename>/sys/fs/cgroup</filename> einzuhängendes virtuelles Dateisystem ist. Die Datei <filename>/etc/fstab</filename> sollte daher unter anderem folgenden Eintrag enthalten:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# /etc/fstab: static file system information.\n"
 "[...]\n"
-"cgroup            /sys/fs/cgroup           cgroup    defaults        0       0\n"
+"cgroup            /sys/fs/cgroup           cgroup    defaults        0       0"
 msgstr ""
 "# /etc/fstab: static file system information.\n"
 "[...]\n"
@@ -2249,7 +2249,7 @@ msgid "In addition to <emphasis role=\"pkg\">bridge-utils</emphasis>, this “ri
 msgstr "Zusätzlich zu <emphasis role=\"pkg\">bridge-utils</emphasis> ist für diese „üppige“ Konfiguration das Paket <emphasis role=\"pkg\">vde2</emphasis> erforderlich; die Datei <filename>/etc/network/interfaces</filename> wird dann zu:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "# Interface eth0 is unchanged\n"
 "auto eth0\n"
@@ -2265,7 +2265,7 @@ msgid ""
 "iface br0 inet static\n"
 "  bridge-ports tap0\n"
 "  address 10.0.0.1\n"
-"  netmask 255.255.255.0\n"
+"  netmask 255.255.255.0"
 msgstr ""
 "# Schnittstelle eth0 bleibt unverändert\n"
 "auto eth0\n"
@@ -2351,12 +2351,12 @@ msgid "The newly-created filesystem now contains a minimal Debian system, and by
 msgstr "Das neu erstellte Dateisystem enthält jetzt ein minimales Debian-System, und per Voreinstellung teilt der Container die Netzwerkschnittstelle mit dem Wirtssystem. Da wir das nicht wollen, editieren wir die Konfigurationsdatei des Containers (<filename>/var/lib/lxc/testlxc/config</filename>) und fügen einige <literal>lxc.network.*</literal>-Einträge hinzu:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "lxc.network.type = veth\n"
 "lxc.network.flags = up\n"
 "lxc.network.link = br0\n"
-"lxc.network.hwaddr = 4a:49:43:49:79:20\n"
+"lxc.network.hwaddr = 4a:49:43:49:79:20"
 msgstr ""
 "lxc.network.type = veth\n"
 "lxc.network.flags = up\n"
@@ -2374,8 +2374,8 @@ msgid "Another useful entry in that file is the setting of the hostname:"
 msgstr "Ein anderer nützlicher Eintrag in dieser Datei ist die Angabe des Hostnamens:"
 
 #. Tag: programlisting
-#, no-c-format
-msgid "lxc.utsname = testlxc\n"
+#, msgstr-has-trailing-newline, no-c-format
+msgid "lxc.utsname = testlxc"
 msgstr "lxc.utsname = testlxc\n"
 
 #. Tag: title
@@ -2603,7 +2603,7 @@ msgid "Let us now start the installation process for the virtual machine, and ha
 msgstr "Wir wollen jetzt mit dem Installationsprozess für den virtuellen Rechner beginnen und uns die wichtigsten Optionen des Befehls <command>virt-install</command> ansehen. Der Befehl registriert den virtuellen Rechner und seine Parameter in libvirtd und startet ihn dann, so dass seine Installierung fortgesetzt werden kann."
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
 "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
@@ -2623,7 +2623,7 @@ msgid ""
 "Run 'virt-viewer --help' to see a full list of available command line options.\n"
 "Domain installation still in progress. You can reconnect\n"
 "to the console to complete the installation process.\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>virt-install --connect qemu:///system  <co id=\"virtinst.connect\"></co>\n"
 "               --virt-type kvm           <co id=\"virtinst.type\"></co>\n"
@@ -2696,11 +2696,11 @@ msgid "At this point, the virtual machine is running, and we need to connect to 
 msgstr "Jetzt läuft der virtuelle Rechner, und wir müssen uns mit der grafischen Konsole verbinden, um den Installationsprozess fortzusetzen. Falls die bisherigen Schritte in einer grafischen Arbeitsumgebung ausgeführt wurden, sollte diese Verbindung von sich aus starten. Anderenfalls, oder falls wir aus der Ferne arbeiten, kann <command>virt-viewer</command> von jeder beliebigen grafischen Umgebung aus aufgerufen werden, um die grafische Konsole zu öffnen (man beachte, dass zweimal nach dem Root-Passwort des entfernten Hosts gefragt wird, da dieser Arbeitsgang zwei SSH-Verbindungen erfordert):"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@<replaceable>server</replaceable>/system testkvm\n"
 "</userinput><computeroutput>root@server's password: \n"
-"root@server's password: </computeroutput>\n"
+"root@server's password: </computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>virt-viewer --connect qemu+ssh://root@<replaceable>server</replaceable>/system testkvm\n"
 "</userinput><computeroutput>root@server's password: \n"
@@ -2727,13 +2727,13 @@ msgid "Now that the installation is done, let us see how to handle the available
 msgstr "Nachdem die Installation nunmehr erledigt ist, wollen wir sehen, wie man mit den vorhandenen virtuellen Rechnern umgeht. Zunächst soll <command>libvirtd</command> nach einer Liste der virtuellen Rechner, die er verwaltet, gefragt werden:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
 " Id Name                 State\n"
 "----------------------------------\n"
 "  - testkvm              shut off\n"
-"</userinput>\n"
+"</userinput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system list --all\n"
 " Id Name                 State\n"
@@ -2747,10 +2747,10 @@ msgid "Let's start our test virtual machine:"
 msgstr "Lassen Sie uns unseren virtuellen Testrechner starten:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
-"</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
+"</userinput><computeroutput>Domain testkvm started</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system start testkvm\n"
 "</userinput><computeroutput>Domain testkvm started</computeroutput>\n"
@@ -2761,10 +2761,10 @@ msgid "We can now get the connection instructions for the graphical console (the
 msgstr "Wir können jetzt die Verbindungshinweise für die grafische Konsole bekommen (die angegebene VNC-Anzeige kann als Parameter an <command>vncviewer</command> übergeben werden):"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm\n"
-"</userinput><computeroutput>:0</computeroutput>\n"
+"</userinput><computeroutput>:0</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>virsh -c qemu:///system vncdisplay testkvm\n"
 "</userinput><computeroutput>:0</computeroutput>\n"
@@ -2874,7 +2874,7 @@ msgid "The <filename>/var/tmp/yum-bootstrap/repos.d</filename> directory should 
 msgstr "Das Verzeichnis <filename>/var/tmp/yum-bootstrap/repos.d</filename> sollte die Beschreibung der RPM-Quell-Repositorien enthalten, genauso wie in <filename>/etc/yum.repos.d</filename> in einem bereits installierten RPM-basierten System. Hier ein Beispiel für ein CentOS 6 installation:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "[base]\n"
 "name=CentOS-6 - Base\n"
@@ -2902,7 +2902,7 @@ msgid ""
 "#baseurl=http://mirror.centos.org/centos/$releasever/centosplus/$basearch/\n"
 "mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=centosplus\n"
 "gpgcheck=1\n"
-"gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6\n"
+"gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6"
 msgstr ""
 "[base]\n"
 "name=CentOS-6 - Base\n"
@@ -2938,11 +2938,11 @@ msgid "Finally, <filename>pluginconf.d/installonlyn.conf</filename> file should 
 msgstr "Und schlussendlich sollte <filename>pluginconf.d/installonlyn.conf</filename> folgendes enthalten:"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "[main]\n"
 "enabled=1\n"
-"tokeep=5\n"
+"tokeep=5"
 msgstr ""
 "[main]\n"
 "enabled=1\n"
@@ -3259,10 +3259,10 @@ msgid "syslinux.cfg file and preseeding parameters"
 msgstr "syslinux.cfg-Datei und Preseeding-Parameter"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "default vmlinuz\n"
-"append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap=us languagechooser/language-name=English countrychooser/shortlist=US vga=normal initrd=initrd.gz  --\n"
+"append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap=us languagechooser/language-name=English countrychooser/shortlist=US vga=normal initrd=initrd.gz  --"
 msgstr ""
 "default vmlinuz\n"
 "append preseed/file=/hd-media/preseed.cfg locale=en_US console-keymaps-at/keymap=us languagechooser/language-name=English countrychooser/shortlist=US vga=normal initrd=initrd.gz  --\n"
@@ -3538,7 +3538,7 @@ msgid "When a plugin is invoked with the <literal>config</literal> parameter, it
 msgstr "Wenn ein Plugin mit dem Parameter <literal>config</literal> aufgerufen wird, muss es sich selbst beschreiben, indem es einen Satz von Feldern wiedergibt:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\n"
 "</userinput><computeroutput>graph_title Load average\n"
@@ -3549,7 +3549,7 @@ msgid ""
 "load.label load\n"
 "graph_info The load average of the machine describes how many processes are in the run-queue (scheduled to run \"immediately\").\n"
 "load.info 5 minute load average\n"
-"</computeroutput>\n"
+"</computeroutput>"
 msgstr ""
 "<computeroutput>$ </computeroutput><userinput>sudo munin-run load config\n"
 "</userinput><computeroutput>graph_title Load average\n"
@@ -3593,11 +3593,11 @@ msgid "All monitored machines must therefore be listed in the <filename>/etc/mun
 msgstr "Alle überwachten Rechner müssen daher in der Konfigurationsdatei <filename>/etc/munin/munin.conf</filename> aufgeführt sein. Jeder Rechner ist als vollständiger Absatz aufgelistet mit einer Bezeichnung, die dem Rechner entspricht und wenigstens einem <literal>address</literal>-Eintrag, der die dazugehörige IP-Adresse angibt."
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "[ftp.falcot.com]\n"
 "    address 192.168.0.12\n"
-"    use_node_name yes\n"
+"    use_node_name yes"
 msgstr ""
 "[ftp.falcot.com]\n"
 "    address 192.168.0.12\n"
@@ -3649,14 +3649,14 @@ msgid "As documented in <filename>/usr/share/doc/nagios3/README.Debian</filename
 msgstr "Wie in <filename>/usr/share/doc/nagios3/README.Debian</filename> dargelegt, ist es zur Aktivierung einiger Funktionen erforderlich, <filename>/etc/nagios3/nagios.cfg</filename> zu editieren und ihren Parameter <literal>check_external_commands</literal> auf „1“ zu setzen. Wir müssen außerdem mit Befehlen wie den folgenden Schreibberechtigungen für das Verzeichnis einrichten, das Nagios benutzt:"
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "<computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 stop</userinput>\n"
 "<computeroutput>[...]\n"
 "# </computeroutput><userinput>dpkg-statoverride --update --add nagios www-data 2710 /var/lib/nagios3/rw\n"
 "</userinput><computeroutput># </computeroutput><userinput>dpkg-statoverride --update --add nagios nagios 751 /var/lib/nagios3\n"
 "</userinput><computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 start</userinput>\n"
-"<computeroutput>[...]</computeroutput>\n"
+"<computeroutput>[...]</computeroutput>"
 msgstr ""
 "<computeroutput># </computeroutput><userinput>/etc/init.d/nagios3 stop</userinput>\n"
 "<computeroutput>[...]\n"
@@ -3746,7 +3746,7 @@ msgid "<filename>/etc/nagios3/conf.d/falcot.cfg</filename> file"
 msgstr "<filename>/etc/nagios3/conf.d/falcot.cfg</filename> file"
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "define contact{\n"
 "    name                            generic-contact\n"
@@ -3834,7 +3834,7 @@ msgid ""
 "    host_name             ftp-host\n"
 "    service_description   FTP\n"
 "    check_command         check_ftp2\n"
-"}\n"
+"}"
 msgstr ""
 "define contact{\n"
 "    name                            generic-contact\n"

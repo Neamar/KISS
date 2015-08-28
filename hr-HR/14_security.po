@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2013-12-30 17:37+0100\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2012-10-31T14:54:18\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: None\n"
@@ -557,7 +557,7 @@ msgstr ""
 #, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>\n"
+"<computeroutput># </computeroutput><userinput>aptitude install fwbuilder</userinput>"
 msgstr ""
 
 #. Tag: title
@@ -589,7 +589,7 @@ msgid ""
 "    network 192.168.0.0\n"
 "    netmask 255.255.255.0\n"
 "    broadcast 192.168.0.255\n"
-"    up /usr/local/etc/arrakis.fw\n"
+"    up /usr/local/etc/arrakis.fw"
 msgstr ""
 
 #. Tag: title
@@ -1171,7 +1171,7 @@ msgstr ""
 #, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ps axZ | grep vstfpd</userinput>\n"
-"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>\n"
+"<computeroutput>system_u:system_r:ftpd_t:s0   2094 ?    Ss  0:00 /usr/sbin/vsftpd</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -1188,7 +1188,7 @@ msgstr ""
 #, no-c-format
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>id -Z</userinput>\n"
-"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>\n"
+"<computeroutput>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -1201,7 +1201,7 @@ msgstr ""
 msgid ""
 "<computeroutput>$ </computeroutput><userinput>ls -Z test /usr/bin/ssh</userinput>\n"
 "<computeroutput>unconfined_u:object_r:user_home_t:s0 test\n"
-"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>\n"
+"     system_u:object_r:ssh_exec_t:s0 /usr/bin/ssh</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -1312,7 +1312,7 @@ msgid ""
 "<computeroutput># </computeroutput><userinput>semodule -l</userinput>\n"
 "<computeroutput>apache  1.10.0\n"
 "apm     1.7.0\n"
-"[...]</computeroutput>\n"
+"[...]</computeroutput>"
 msgstr ""
 
 #. Tag: para
@@ -1352,7 +1352,7 @@ msgid ""
 "rhertzog                  user_u                    None\n"
 "root                      unconfined_u              s0-s0:c0.c1023\n"
 "system_u                  system_u                  s0-s0:c0.c1023\n"
-"# </computeroutput><userinput>semanage login -d rhertzog</userinput> \n"
+"# </computeroutput><userinput>semanage login -d rhertzog</userinput> "
 msgstr ""
 
 #. Tag: para
@@ -1376,7 +1376,7 @@ msgid ""
 "test_u          staff      s0         s0               staff_r user_r\n"
 "unconfined_u    unconfined s0         s0-s0:c0.c1023   system_r unconfined_r\n"
 "user_u          user       s0         s0               user_r\n"
-"# </computeroutput><userinput>semanage user -d test_u</userinput>\n"
+"# </computeroutput><userinput>semanage user -d test_u</userinput>"
 msgstr ""
 
 #. Tag: title
@@ -1406,7 +1406,7 @@ msgid ""
 "<computeroutput>httpd_enable_homedirs --&gt; off\n"
 "# </computeroutput><userinput>setsebool -P httpd_enable_homedirs on</userinput>\n"
 "<computeroutput># </computeroutput><userinput>getsebool httpd_enable_homedirs</userinput> \n"
-"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>\n"
+"<computeroutput>httpd_enable_homedirs --&gt; on</computeroutput>"
 msgstr ""
 
 #. Tag: title
@@ -1430,7 +1430,7 @@ msgid ""
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/Makefile.example.gz &gt;Makefile</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.fc.gz &gt;example.fc</userinput>\n"
 "<computeroutput>$ </computeroutput><userinput>zcat /usr/share/doc/selinux-policy-doc/example.if.gz &gt;example.if</userinput>\n"
-"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>\n"
+"<computeroutput>$ </computeroutput><userinput>cp /usr/share/doc/selinux-policy-doc/example.te ./</userinput>"
 msgstr ""
 
 #. Tag: para
@@ -1461,7 +1461,7 @@ msgid ""
 "# MLS sensitivity: s0\n"
 "# MCS categories: &lt;none&gt;\n"
 "\n"
-"/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)\n"
+"/usr/sbin/myapp         --      gen_context(system_u:object_r:myapp_exec_t,s0)"
 msgstr ""
 
 #. Tag: title
@@ -1536,7 +1536,7 @@ msgid ""
 "\n"
 "        logging_search_logs($1)\n"
 "        allow $1 myapp_log_t:file r_file_perms;\n"
-"')\n"
+"')"
 msgstr ""
 
 #. Tag: title
@@ -1608,7 +1608,7 @@ msgid ""
 "allow myapp_t myapp_log_t:file { read_file_perms append_file_perms }; <co id=\"example.te.allow\"></co>\n"
 "\n"
 "allow myapp_t myapp_tmp_t:file manage_file_perms;\n"
-"files_tmp_filetrans(myapp_t,myapp_tmp_t,file)\n"
+"files_tmp_filetrans(myapp_t,myapp_tmp_t,file)"
 msgstr ""
 
 #. Tag: para
@@ -1658,7 +1658,7 @@ msgstr ""
 
 #. Tag: programlisting
 #, no-c-format
-msgid "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file\n"
+msgid "avc:  denied  { read write } for  pid=1876 comm=\"syslogd\" name=\"xconsole\" dev=tmpfs ino=5510 scontext=system_u:system_r:syslogd_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=fifo_file"
 msgstr ""
 
 #. Tag: para
@@ -2273,7 +2273,7 @@ msgid ""
 "(...)\n"
 "** 2004-11-29-21:10:36: DCC Upload: Transfer Completed (666615 KB, 1 hr 24 sec, 183.9 KB/sec)\n"
 "(...)\n"
-"** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)\n"
+"** 2004-11-29-22:18:57: DCC Upload: Transfer Completed (713034 KB, 2 hr 28 min 7 sec, 80.2 KB/sec)"
 msgstr ""
 
 #. Tag: para

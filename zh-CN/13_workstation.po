@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0\n"
-"POT-Creation-Date: 2015-06-18T12:29:20\n"
+"POT-Creation-Date: 2015-08-28 11:29+0200\n"
 "PO-Revision-Date: 2013-12-30 18:17+0100\n"
 "Last-Translator: wing.W <dabouw@google.com>\n"
 "Language-Team: None\n"
@@ -70,7 +70,6 @@ msgstr "初次配置图形介面可能不太顺利，新上市的显卡通常不
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "A brief reminder: X.org is the software component that allows graphical applications to display windows on screen. It includes a driver that makes efficient use of the video card. The features offered to the graphical applications are exported through a standard interface, <emphasis>X11</emphasis> (<emphasis role=\"distribution\">Squeeze</emphasis> contains its <emphasis>X11R7.5</emphasis> version)."
 msgid "A brief reminder: X.org is the software component that allows graphical applications to display windows on screen. It includes a driver that makes efficient use of the video card. The features offered to the graphical applications are exported through a standard interface, <emphasis>X11</emphasis> (<emphasis role=\"distribution\">Wheezy</emphasis> contains its <emphasis>X11R7.7</emphasis> version)."
 msgstr "简要提醒：X.org 是支持图形程序在屏幕上显示窗口软件组件。它包含高效利用显卡的驱动程序。这些特性通过标准接口提供给应用程序， <emphasis>X11</emphasis> （<emphasis role=\"distribution\">Squeeze</emphasis> 包含 <emphasis>X11R7.5</emphasis> version）。"
 
@@ -86,7 +85,6 @@ msgstr "X11 是在类Unix系统上应用最为广泛的图形系统（还有Wind
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "X11 had a rough start, but the 1990's saw XFree86 emerge as the reference implementation because it was free software, portable, and maintained by a collaborative community. However, the rate of evolution slowed down near the end when the software only gained new drivers. That situation, along with a very controversial license change, led to the X.org fork in 2004. This is now the reference implementation, and Debian <emphasis role=\"distribution\">Squeeze</emphasis> uses X.org version 7.5."
 msgid "X11 had a rough start, but the 1990's saw XFree86 emerge as the reference implementation because it was free software, portable, and maintained by a collaborative community. However, the rate of evolution slowed down near the end when the software only gained new drivers. That situation, along with a very controversial license change, led to the X.org fork in 2004. This is now the reference implementation, and Debian <emphasis role=\"distribution\">Wheezy</emphasis> uses X.org version 7.7."
 msgstr "X11 开头并不顺，１９世纪９０年代融合XFree86 作为执行方式，因其是自由软件，可移植，并且有协作社区维护。然而到后来，除了加入新驱动，几乎没什么更新了。在这种情况下，又产生了许可争议，导致X.org在２００４年分岔。这就产生了如今的实施方法，Debian <emphasis role=\"distribution\">Squeeze</emphasis> 使用X.org ７.５。"
 
@@ -102,7 +100,6 @@ msgstr "<primary>解析度</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The keyboard configuration is currently set up in <filename>/etc/default/keyboard</filename>. This file is used both to configure the text console and the graphical interface, and it is handled by the <emphasis role=\"pkg\">keyboard-configuration</emphasis> package. Details on configuring the keyboard layout are available in <xref linkend=\"section.config-clavier\" />."
 msgid "The keyboard configuration is currently set up in <filename>/etc/default/keyboard</filename>. This file is used both to configure the text console and the graphical interface, and it is handled by the <emphasis role=\"pkg\">keyboard-configuration</emphasis> package. Details on configuring the keyboard layout are available in <xref linkend=\"sect.keyboard-config\" />."
 msgstr "键盘的配置保存在 <filename>/etc/default/keyboard</filename>。该文件用于配置文本控制台也用于图形界面，由<emphasis role=\"pkg\">keyboard-configuration</emphasis> 处理。配置键盘布局的细节在 <xref linkend=\"section.config-clavier\" />中。"
 
@@ -123,12 +120,11 @@ msgstr "<primary><emphasis role=\"pkg\">xserver-xorg</emphasis></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Note that if the detected video card is not handled by any of the available drivers, X.org tries using the VESA and fbdev drivers. The former is a generic driver that should work everywhere, but with limited capabilities (fewer available resolutions, no hardware acceleration for games, and so on) while the latter works on top of the kernel's framebuffer device. The X server writes its messages to the <filename>/var/log/Xorg.0.log</filename> log file, which is where one would look to know what driver is currently in use. For example, the following snippet matches what the <literal>intel</literal> driver outputs when it is loaded:"
 msgid "Note that if the detected video card is not handled by any of the available drivers, X.org tries using the VESA and fbdev drivers. The former is a generic driver that should work everywhere, but with limited capabilities (fewer available resolutions, no hardware acceleration for games and visual effects for the desktop, and so on) while the latter works on top of the kernel's framebuffer device. The X server writes its messages to the <filename>/var/log/Xorg.0.log</filename> log file, which is where one would look to know what driver is currently in use. For example, the following snippet matches what the <literal>intel</literal> driver outputs when it is loaded:"
 msgstr "请注意，如果侦测到的显卡不能被任何可用的驱动所支持， X.org 会尝试使用VESA 和fbdev 驱动。前者基本上是万能驱动，但是能力有限（分辨率小，不支持硬件加速，等），而后者则基于内核缓冲区（framebuffer）设备。X 服务将其消息写入<filename>/var/log/Xorg.0.log</filename> 日志文件，在其中可以找到正在使用中的驱动。如下的片段与加载 <literal>intel</literal> 驱动程序时的输出相似："
 
 #. Tag: programlisting
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -136,7 +132,7 @@ msgid ""
 "(==) Matched fbdev as autoconfigured driver 2\n"
 "(==) Assigned the driver to the xf86ConfigLayout\n"
 "(II) LoadModule: \"intel\"\n"
-"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so\n"
+"(II) Loading /usr/lib/xorg/modules/drivers/intel_drv.so"
 msgstr ""
 "\n"
 "(==) Matched intel as autoconfigured driver 0\n"
@@ -173,7 +169,6 @@ msgstr "如果你还是使用了这样的显卡，就需要使用 <emphasis>non-
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The “nouveau” project aims to develop a free software driver for nVidia cards. As of <emphasis role=\"distribution\">Squeeze</emphasis>, its feature set does not match the proprietary driver. In the developers' defense, we should mention that the required information can only be gathered by reverse engineering, which makes things difficult. The free driver for ATI video cards, called “radeon”, is much better in that regard although it often requires a non-free firmware."
 msgid "The “nouveau” project aims to develop a free software driver for nVidia cards. As of <emphasis role=\"distribution\">Wheezy</emphasis>, its feature set does not match the proprietary driver. In the developers' defense, we should mention that the required information can only be gathered by reverse engineering, which makes things difficult. The free driver for ATI video cards, called “radeon”, is much better in that regard although it often requires a non-free firmware."
 msgstr "“nouveau”项目的目的是为nVidia 显卡开发自由软件。在 <emphasis role=\"distribution\">Squeeze</emphasis>中，它的特性不比专有驱动。由于原始开发者的抵触，所需要的信息只能通过逆向工程来获取，这增加了难度。用于ATI 显卡的自由驱动，称为“radeon”，在这方面要好的多，虽然它需要非自由（non-free）固件的支持。"
 
@@ -219,7 +214,6 @@ msgstr "<primary><command>xdm</command></primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The graphical interface only provides display space. Running the X server by itself only leads to an empty screen, which is why most installations use a <emphasis>display manager</emphasis> to display a user authentication screen and start the graphical desktop once the user has authenticated. The three most popular display managers in current use are <emphasis role=\"pkg\">gdm3</emphasis> (<foreignphrase>GNOME Display Manager</foreignphrase>), <emphasis role=\"pkg\">kdm</emphasis> (<foreignphrase>KDE Display Manager</foreignphrase>) and <emphasis role=\"pkg\">xdm</emphasis> (<foreignphrase>X Display Manager</foreignphrase>). Since the Falcot Corp administrators have opted to use the GNOME desktop environment, they logically picked <command>gdm3</command> as a display manager too. The <filename>/etc/gdm3/daemon.conf</filename> configuration file has many options, some of which can also be set by <command>gdmsetup</command>, a graphical interface for <command>gdm3</command> configuration that can be run from the <menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu> <guimenuitem>Display screen</guimenuitem></menuchoice> menu in the GNOME desktop."
 msgid "The graphical interface only provides display space. Running the X server by itself only leads to an empty screen, which is why most installations use a <emphasis>display manager</emphasis> to display a user authentication screen and start the graphical desktop once the user has authenticated. The three most popular display managers in current use are <emphasis role=\"pkg\">gdm3</emphasis> (<foreignphrase>GNOME Display Manager</foreignphrase>), <emphasis role=\"pkg\">kdm</emphasis> (<foreignphrase>KDE Display Manager</foreignphrase>) and <emphasis role=\"pkg\">xdm</emphasis> (<foreignphrase>X Display Manager</foreignphrase>). Since the Falcot Corp administrators have opted to use the GNOME desktop environment, they logically picked <command>gdm3</command> as a display manager too. The <filename>/etc/gdm3/daemon.conf</filename> configuration file has many options (the list can be found in the <filename>/usr/share/gdm/gdm.schemas</filename> schema file) to control its behaviour while <filename>/etc/gdm3/greeter.gsettings</filename> contains settings for the greeter “session” (more than just a login window, it's a limited desktop with power management and accessibility related tools). Note that some of the most useful settings for end-users can be tweaked with GNOME's control center."
 msgstr "显示界面仅仅提供显示空间。运行X 服务器自身只产生空屏幕，这就需要安装 <emphasis>显示管理器</emphasis> 显示用户授权界面，并在用户登录之后启动图形桌面。现今使用最广泛的三种显示管理器是：<emphasis role=\"pkg\">gdm3</emphasis> （<foreignphrase>GNOME 显示管理器</foreignphrase>）, <emphasis role=\"pkg\">kdm</emphasis> （<foreignphrase>KDE 显示管理器</foreignphrase>） 和 <emphasis role=\"pkg\">xdm</emphasis> （<foreignphrase>X 显示管理器</foreignphrase>）。由于 Falcot Corp 公司的管理员选择了GNOME 桌面环境，自然就采用了 <command>gdm3</command> 作为显示管理器。<filename>/etc/gdm3/daemon.conf</filename> 配置文件有非常多选项，其中有些可以通过 <command>gdmsetup</command>命令设置，配置 <command>gdm3</command> 的图形界面可以在GNOME 桌面上的 <menuchoice><guimenu>System</guimenu><guisubmenu>Administration</guisubmenu> <guimenuitem>Display screen</guimenuitem></menuchoice> 菜单中找到。"
 
@@ -230,7 +224,6 @@ msgstr "选择窗口管理器"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Since each graphical desktop provides its own window manager, choosing the former usually implies software selections from the latter. GNOME uses the <command>metacity</command> window manager, KDE uses <command>kwin</command>, and Xfce (which we present later) has <command>xfwm</command>. The Unix philosophy always allows using one's window manager of choice, but following the recommendations allows an administrator to best take advantage of the integration efforts led by each project."
 msgid "Since each graphical desktop provides its own window manager, choosing the former usually implies software selections from the latter. GNOME uses the <command>mutter</command> window manager (or <command>metacity</command> when run in GNOME Classic mode), KDE uses <command>kwin</command>, and Xfce (which we present later) has <command>xfwm</command>. The Unix philosophy always allows using one's window manager of choice, but following the recommendations allows an administrator to best take advantage of the integration efforts led by each project."
 msgstr "既然每个图形桌面提供自己的窗口管理器，选择了前者也就意味着选择了后者。GNOME 使用 <command>metacity</command> 窗口管理器，KDE 使用<command>kwin</command>，而Xfce （随后会提到）是 <command>xfwm</command>。Unix 的哲学是允许自己选择窗口管理器，但是按照推荐配置，管理员能充分利用每个项目集成而带来的优势。"
 
@@ -241,7 +234,6 @@ msgstr "<primary><command>metacity</command></primary>"
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
-#| msgid "<primary><command>menu</command></primary>"
 msgid "<primary><command>mutter</command></primary>"
 msgstr "<primary><command>菜单</command></primary>"
 
@@ -272,7 +264,6 @@ msgstr "Unix 传统是做一件事情就要把它做好，窗口管理器装饰�
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Older computers may, however, have a hard time running heavyweight graphical desktop environments. In these cases, a lighter configuration should be used. \"Light\" (or small footprint) window managers include WindowMaker (in the <emphasis role=\"pkg\">wmaker</emphasis> package), Afterstep, fvwm, icewm, blackbox, fluxbox, or openbox. In these cases, the system should be configured so that the appropriate window manager gets precedence; the standard way is to change the <command>x-window-manager</command> alternative with the <command>update-alternatives --config x-window-manager</command> command."
 msgid "Older computers may, however, have a hard time running heavyweight graphical desktop environments. In these cases, a lighter configuration should be used. “Light” (or small footprint) window managers include WindowMaker (in the <emphasis role=\"pkg\">wmaker</emphasis> package), Afterstep, fvwm, icewm, blackbox, fluxbox, or openbox. In these cases, the system should be configured so that the appropriate window manager gets precedence; the standard way is to change the <command>x-window-manager</command> alternative with the <command>update-alternatives --config x-window-manager</command> command."
 msgstr "老式的计算机，运行重量级的图形桌面环境很吃力。这些情况下，可以使用轻量级的配置。 \"Light\"（或小型）窗口管理器包括WindowMaker （在 <emphasis role=\"pkg\">wmaker</emphasis> 软件包中）， Afterstep，fvwm，icewm， blackbox，fluxbox，或者 openbox。配置系统优化窗口管理器；标准的做法是将命令 <command>x-window-manager</command> 改为 <command>update-alternatives --config x-window-manager</command> 。"
 
@@ -418,13 +409,11 @@ msgstr "Debian 提供自有的菜单系统，但是 GNOME 和 KDE 也都开发�
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The Debian developers have kept a close eye on this project and <filename>.desktop</filename> files can be generated from the Debian menu system. However, neither GNOME nor KDE use the Debian menu. They both prefer keeping complete control over their menus. Still, it is possible to enable a “Debian” submenu containing the official menu as maintained by Debian: in GNOME, the menu editor (in the <emphasis role=\"pkg\">alacarte</emphasis> package) is available by right-clicking on the panel menu, then choosing “Edit menus”."
 msgid "The Debian developers have kept a close eye on this project and <filename>.desktop</filename> files can be generated from the Debian menu system (with the help of the <emphasis role=\"pkg\">menu-xdg</emphasis> package). However, neither GNOME nor KDE use the Debian menu. They both prefer keeping complete control over their menus. Note that only GNOME Classic has a proper menu, the default GNOME session uses GNOME Shell which got rid of the applications menu entirely. In GNOME Classic, the menu editor (in the <emphasis role=\"pkg\">alacarte</emphasis> package) is available by right-clicking on the panel menu, then choosing “Edit menus”."
 msgstr "Debian 开发者实时关注该项目和Debian 菜单系统产生的 <filename>.desktop</filename> 文件。然而，GNOME 和KDE 都不使用Debian 菜单。它们都喜欢对菜单保留完全控制。也可使能“Debian”子菜单来包含有Debian维护的官方菜单：在GNOME中，菜单编辑器（在 <emphasis role=\"pkg\">alacarte</emphasis> 软件包中）可以在控制板菜单击右键，然后选择“编辑菜单”。"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The administrator can also have a say in the process and in the resulting generated menus. First, they can delete a menu element even when the matching application is installed, by simply storing in <filename>/etc/menu/</filename> an empty file named according to the package providing the entries to be disabled. Second, the menu can be reorganized and sections renamed or grouped. The <filename>/etc/menu-methods/translate_menus</filename> file is where this reorganization is defined and contains commented examples. Last, new elements can be added to the menu, for example to start programs installed outside the packaging system, or to run a particular command such as starting a web browser on a particular page. These extra elements are specified in <filename>/etc/menu/local.<replaceable>element</replaceable></filename> files, which have the same format as other menu files available under <filename>/usr/share/menu/</filename>."
 msgid "The administrator can also have a say in the process and in the resulting generated menus. First, they can delete a menu element even when the matching application is installed, by simply storing in <filename>/etc/menu/</filename> an empty file named according to the package providing the entries to be disabled. Second, the menu can be reorganized and sections renamed or grouped. The <filename>/etc/menu-methods/translate_menus</filename> file is where this reorganization is defined and contains commented examples. Finally, new elements can be added to the menu, for example to start programs installed outside the packaging system, or to run a particular command such as starting a web browser on a particular page. These extra elements are specified in <filename>/etc/menu/local.<replaceable>element</replaceable></filename> files, which have the same format as other menu files available under <filename>/usr/share/menu/</filename>."
 msgstr "管理员也能影响这一过程和产生的菜单。首先，他们可以删除菜单元素，即使菜单匹配的应用程序已经安装，只需根据软件包提供的条目在<filename>/etc/menu/</filename> 存储空文件，就能禁用该条目。其次，菜单可以被重新组织和分区命名或分组。 <filename>/etc/menu-methods/translate_menus</filename> 文件定义了重组方式，并包含了示例。最后，新元素可以被加入菜单，例如要运行软件包系统之外的程序，或者特别的命令，例如对专门的网页开启网络浏览器。这些额外的元素在 <filename>/etc/menu/local指定。<replaceable>element</replaceable></filename> 文件的格式和<filename>/usr/share/menu/</filename>中其他的文件格式相同。"
 
@@ -490,7 +479,6 @@ msgstr "GNOME"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Debian <emphasis role=\"distribution\">Squeeze</emphasis> includes GNOME version 2.30, which can be installed by a simple <command>apt-get install gnome</command> (it can also be installed by selecting the “Graphical desktop environment” task)."
 msgid "Debian <emphasis role=\"distribution\">Wheezy</emphasis> includes GNOME version 3.4, which can be installed by a simple <command>apt-get install gnome</command> (it can also be installed by selecting the “Graphical desktop environment” task)."
 msgstr "Debian  <emphasis role=\"distribution\">Squeeze</emphasis> 包含了 GNOME 2.30版本，也可以通过运行 <command>apt-get install gnome</command> 命令安装（也可以通过安装时选择“图形桌面环境”）"
 
@@ -516,19 +504,16 @@ msgstr "GNOME 桌面"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "For administrators, GNOME seems to be better prepared for massive deployments. Application configuration is handled by GConf, a kind of registry that can be queried and edited with the <command>gconftool-2</command> command-line tool. The administrator can therefore change users' configuration with a simple script. The following website lists all information of interest to an administrator tasked to manage GNOME workstations: <ulink type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" /><ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-guide/\" />"
 msgid "For administrators, GNOME seems to be better prepared for massive deployments. Application configuration is handled by two registries, GSettings (the current standard, which stores its data in DConf) and GConf (the old system used in GNOME 2.x, and still used by a few GNOME 3.x applications). These registries can be queried and edited with the <command>gsettings</command>, <command>dconf</command> and <command>gconftool-2</command> command-line tools, or by the <command>dconf-editor</command> and <command>gconf-editor</command> graphical user interfaces. The administrator can therefore change users' configuration with a simple script. The following website lists all information of interest to an administrator tasked to manage GNOME workstations: <ulink type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" /><ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-guide/\" />"
 msgstr "对于管理员来说，GNOME 更适用于批量部署。应用程序有 GConf 配置，它是一种可以通过 <command>gconftool-2</command> 命令行工具查询和编辑的记录。因此管理员可以通过脚本改变用户配置。下面的网站列出了需要管理GNOME 工作站的管理员会感兴趣的所有信息：<ulink type=\"block\" url=\"http://library.gnome.org/admin/system-admin-guide/stable/\" /><ulink type=\"block\" url=\"http://library.gnome.org/admin/deployment-guide/\" />"
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
-#| msgid "<primary><command>kwin</command></primary>"
 msgid "<primary><command>gsettings</command></primary>"
 msgstr "<primary><command>kwin</command></primary>"
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
-#| msgid "<primary><command>gconf</command></primary>"
 msgid "<primary><command>dconf</command></primary>"
 msgstr "<primary><command>gconf</command></primary>"
 
@@ -549,7 +534,6 @@ msgstr "KDE"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Debian <emphasis role=\"distribution\">Squeeze</emphasis> includes version 4.4.5 of KDE, which can be installed with <command>apt-get install kde</command>."
 msgid "Debian <emphasis role=\"distribution\">Wheezy</emphasis> includes version 4.8.4 of KDE, which can be installed with <command>apt-get install kde-standard</command>."
 msgstr "Debian <emphasis role=\"distribution\">Squeeze</emphasis> 包含4.4.5版本的 KDE，可以用 <command>apt-get install kde</command>命令安装。"
 
@@ -600,7 +584,6 @@ msgstr ""
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
-#| msgid "<primary>KDE</primary>"
 msgid "<primary>LXDE</primary>"
 msgstr "<primary>KDE</primary>"
 
@@ -736,7 +719,6 @@ msgstr "Thunderbird 是最好的邮件客户端之一，并获得极大成功，
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Strictly speaking, Debian <emphasis role=\"distribution\">Squeeze</emphasis> contains Icedove, and not Thunderbird, for legal reasons we will detail in the “Iceweasel, Firefox and others” section later on; but apart from their names (and icons), there are no real differences between them."
 msgid "Strictly speaking, Debian <emphasis role=\"distribution\">Wheezy</emphasis> contains Icedove, and not Thunderbird, for legal reasons we will detail in the “Iceweasel, Firefox and others” section later on; but apart from their names (and icons), there are no real differences between them."
 msgstr "严格来说， Debian <emphasis role=\"distribution\">Squeeze</emphasis> 包含了 Icedove，但没有Thunderbird，由于法律原因，我们随后将细说“Iceweasel，Firefox 及其他”；除了名字（和图标），实际上它们之间并没有真正的区别。"
 
@@ -802,7 +784,6 @@ msgstr "<primary>Icedove</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Many users will no doubt be surprised by the absence of Mozilla Firefox in the Debian <emphasis role=\"distribution\">Squeeze</emphasis> menus. No need to panic: the <emphasis role=\"pkg\">iceweasel</emphasis> package contains Iceweasel, which is basically Firefox under another name."
 msgid "Many users will no doubt be surprised by the absence of Mozilla Firefox in the Debian <emphasis role=\"distribution\">Wheezy</emphasis> menus. No need to panic: the <emphasis role=\"pkg\">iceweasel</emphasis> package contains Iceweasel, which is basically Firefox under another name."
 msgstr "毋庸置疑，当许多用户发现 Debian <emphasis role=\"distribution\">Squeeze</emphasis> 菜单中没有火狐浏览器时会感到惊讶。不必惊慌： <emphasis role=\"pkg\">iceweasel</emphasis> 软件包含有 Iceweasel，它基本上是火狐的另一个名字。"
 
@@ -853,7 +834,6 @@ msgstr "<primary>Netscape（网景）</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "<emphasis role=\"distribution\">Squeeze</emphasis> also brings a relative newcomer on the web browser scene, Chromium (available in the <emphasis role=\"pkg\">chromium-browser</emphasis> package). This browser is developed by Google at such a fast pace that maintaining a single version of it across the whole lifespan of Debian <emphasis role=\"distribution\">Squeeze</emphasis> is unlikely to be possible. Its clear purpose is to make web services more attractive, both by optimizing the browser for performance and by increasing the user's security. The free code that powers Chromium is also used by its proprietary version called Google Chrome."
 msgid "<emphasis role=\"distribution\">Wheezy</emphasis> also brings a relative newcomer on the web browser scene, Chromium (available in the <emphasis role=\"pkg\">chromium-browser</emphasis> package). This browser is developed by Google at such a fast pace that maintaining a single version of it across the whole lifespan of Debian <emphasis role=\"distribution\">Wheezy</emphasis> is unlikely to be possible. Its clear purpose is to make web services more attractive, both by optimizing the browser for performance and by increasing the user's security. The free code that powers Chromium is also used by its proprietary version called Google Chrome."
 msgstr "<emphasis role=\"distribution\">Squeeze</emphasis> 也引入了相对较新的浏览器，Chromium （在 <emphasis role=\"pkg\">chromium-browser</emphasis> 软件包中）。由 Google 开发，由于更新较快，在整个 Debian <emphasis role=\"distribution\">Squeeze</emphasis> 生命周期中只维护一个版本几乎不可能。该浏览器目标是让网络服务更具吸引力，一方面优化浏览器的性能，一方面增加安全性。Chromium 所使用自由版本的代码也用于称为 Google Chrome的专有版本。"
 
@@ -894,7 +874,6 @@ msgstr "KDE上的 Qt 工具"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "The equivalent applications for KDE are KDevelop (in the <emphasis role=\"pkg\">kdevelop</emphasis> package) for the development environment, and Qt Designer (in the <emphasis role=\"pkg\">qt3-designer</emphasis> or <emphasis role=\"pkg\">qt4-designer</emphasis> packages) for the design of graphical interfaces for Qt applications on KDE."
 msgid "The equivalent applications for KDE are KDevelop (in the <emphasis role=\"pkg\">kdevelop</emphasis> package) for the development environment, and Qt Designer (in the <emphasis role=\"pkg\">qt4-designer</emphasis> package) for the design of graphical interfaces for Qt applications on KDE."
 msgstr "KDE 中与之等效的应用是 KDevelop （在 <emphasis role=\"pkg\">kdevelop</emphasis> 软件包中）开发环境，和 Qt Designer （在 <emphasis role=\"pkg\">qt3-designer</emphasis> 或 <emphasis role=\"pkg\">qt4-designer</emphasis> 软件包中）用于 KDE中设计 Qt 应用程序图形界面。"
 
@@ -955,7 +934,6 @@ msgstr "<primary>Kolab</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "All is not lost though. Many of the features traditionally provided by “groupware” software are increasingly integrated into “standard” software. This is reducing the requirement for specific, specialized groupware software. On the other hand, this usually requires a specific server. A good example for such a server is Kolab, that can integrate into KDE (Kontact, Kmail, and so on), the Horde webmail, Thunderbird (via a plugin) and even into Microsoft Outlook. Kolab is part of Debian <emphasis role=\"distribution\">Squeeze</emphasis> (<emphasis role=\"pkg\">kolab*</emphasis> packages). <ulink type=\"block\" url=\"http://www.kolab.org/\" />"
 msgid "All is not lost though. Many of the features traditionally provided by “groupware” software are increasingly integrated into “standard” software. This is reducing the requirement for specific, specialized groupware software. On the other hand, this usually requires a specific server. A good example for such a server is Kolab, that can integrate into KDE (Kontact, Kmail, and so on), the Horde webmail, Thunderbird (via a plugin) and even into Microsoft Outlook. More interestingly, Citadel (in the <emphasis role=\"pkg\">citadel-suite</emphasis> package) and Sogo (in the <emphasis role=\"pkg\">sogo</emphasis> package) are alternatives that are available in Debian <emphasis role=\"distribution\">Wheezy</emphasis>."
 msgstr "并不是所有的东西都消失了。原先由“群件（groupware）”软件提供的许多特性都被集成到了“标准”软件中。这就减少了对专门的群件软件的需求。另一方面，它需要专用的服务器。这种服务器一个很好的例子是 Kolab，它可以集成到 KDE （Kontact，Kmail等等），Horde 网页邮件， Thunderbird （通过插件）甚至是 Microsoft Outlook。Kolab 是 Debian <emphasis role=\"distribution\">Squeeze</emphasis> 的一部分（<emphasis role=\"pkg\">kolab*</emphasis> 软件包）。 <ulink type=\"block\" url=\"http://www.kolab.org/\" />"
 
@@ -1201,7 +1179,6 @@ msgstr "<primary>套件，办公</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Office software has long been seen as lacking in the free software world. Users have long asked for replacements for Microsoft tools such as Word and Excel, but these are so complex that replacements were hard to develop. The situation changed when the OpenOffice.org project started (following Sun's release of the StarOffice code under a free license). The GNOME and KDE projects are still working on their offerings (GNOME Office and KOffice), and the friendly competition leads to interesting results. For instance, the Gnumeric spreadsheet (part of GNOME Office) is even better than OpenOffice.org in some domains, notably the precision of its calculations. On the word processing front, the OpenOffice.org suite still leads the way."
 msgid "Office software has long been seen as lacking in the free software world. Users have long asked for replacements for Microsoft tools such as Word and Excel, but these are so complex that replacements were hard to develop. The situation changed when the OpenOffice.org project started (following Sun's release of the StarOffice code under a free license). Nowadays Debian contains Libre Office, a fork of OpenOffice.org. The GNOME and KDE projects are still working on their offerings (GNOME Office and Calligra Suite), and the friendly competition leads to interesting results. For instance, the Gnumeric spreadsheet (part of GNOME Office) is even better than OpenOffice.org/Libre Office in some domains, notably the precision of its calculations. On the word processing front, the OpenOffice.org and Libre Office suites still lead the way."
 msgstr "在自由软件领域里，办公软件一直以来都比较匮乏。用户长久以来都在寻找微软工具软件例如 Word 和 Excel的替代品，但是它们过于复杂以至于很难开发替代品。当 OpenOffice.org （追随 Sun在自由软件许可下发布的 StarOffice 代码）项目开始后，情况才有所改变。GNOME 和 KDE 项目仍然致力于它们自己的产品（GNOME Office 和 KOffice），良好的竞争导致了很有趣的结果。譬如， Gnumeric spreadsheet（GNOME Office软件的一部分）甚至在某些领域里比 OpenOffice.org 还要优秀，特别是计算的精准度。在文字处理方面，OpenOffice.org 仍然是领头羊。"
 
@@ -1227,7 +1204,6 @@ msgstr "<primary>GNOME Office</primary>"
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
-#| msgid "<primary>office suite</primary>"
 msgid "<primary>Calligra Suite</primary>"
 msgstr "<primary>办公套件</primary>"
 
@@ -1243,7 +1219,6 @@ msgstr "<primary>Gnumeric</primary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "Another important feature for users is the ability to import Word and Excel documents received from contacts or found in archives. Even though all office suites have filters which allow working on these formats, only the ones found in OpenOffice.org are functional enough for daily use."
 msgid "Another important feature for users is the ability to import Word and Excel documents received from contacts or found in archives. Even though all office suites have filters which allow working on these formats, only the ones found in OpenOffice.org and Libre Office are functional enough for daily use."
 msgstr "对用户来说，另一个重要的特性是能够导入别人发来的或者在档案中找到的 Word 和 Excel 文档。虽然所有的办公套装可以过滤这些格式，但是只有 OpenOffice.org 中的功能才足以应对日常应用。"
 
@@ -1254,7 +1229,6 @@ msgstr "<emphasis>更宽泛的观点</emphasis> Libre Office 取代 OpenOffice.o
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "OpenOffice.org contributors have set up a foundation (<emphasis>The Document Foundation</emphasis>) to foster project development. The idea had been discussed for some time, but the actual trigger was Oracle's acquisition of Sun. The new ownership made the future of OpenOffice under Oracle uncertain. Since Oracle declined to join the foundation, the developers had to give up on the OpenOffice.org name. The software is now known as <emphasis>Libre Office</emphasis>."
 msgid "OpenOffice.org contributors have set up a foundation (<emphasis>The Document Foundation</emphasis>) to foster project development. The idea had been discussed for some time, but the actual trigger was Oracle's acquisition of Sun. The new ownership made the future of OpenOffice under Oracle uncertain. Since Oracle declined to join the foundation, the developers had to give up on the OpenOffice.org name. The software is now known as <emphasis>Libre Office</emphasis>. After a period of relative stagnation on the OpenOffice.org front, Oracle decided to migrate the code and associated rights to the Apache Software Foundation, and OpenOffice is now an Apache project."
 msgstr "OpenOffice.org 贡献者建立了一个基金会（<emphasis>The Document Foundation</emphasis>）来巩固项目发展。之前就经常对该想法进行讨论，但实际上Oracle 收购 Sun之后才实施。"
 
@@ -1285,7 +1259,6 @@ msgstr "<primary>Microsoft</primary><secondary>Excel</secondary>"
 
 #. Tag: para
 #, fuzzy, no-c-format
-#| msgid "OpenOffice.org, KOffice and GNOME Office are, respectively, available in the <emphasis role=\"pkg\">openoffice.org</emphasis>, <emphasis role=\"pkg\">koffice</emphasis> and <emphasis role=\"pkg\">gnome-office</emphasis> Debian packages. Language-specific packs for OpenOffice.org are distributed in separate packages: <emphasis role=\"pkg\">openoffice.org-l10n-*</emphasis>, <emphasis role=\"pkg\">openoffice.org-help-*</emphasis>, and <emphasis role=\"pkg\">openoffice.org-spellcheck-*</emphasis> (which can be a virtual package provided by <emphasis role=\"pkg\">myspell-*</emphasis>)."
 msgid "Libre Office, Calligra Suite and GNOME Office are, respectively, available in the <emphasis role=\"pkg\">libreoffice</emphasis>, <emphasis role=\"pkg\">calligra</emphasis> and <emphasis role=\"pkg\">gnome-office</emphasis> Debian packages. Language-specific packs for Libre Office are distributed in separate packages: <emphasis role=\"pkg\">libreoffice-l10n-*</emphasis> and <emphasis role=\"pkg\">libreoffice-help-*</emphasis> most notably; some features such as spelling dictionaries, hyphenation patterns and thesauri are in separate packages, such as <emphasis role=\"pkg\">myspell-*</emphasis>, <emphasis role=\"pkg\">hyphen-*</emphasis> and <emphasis role=\"pkg\">mythes-*</emphasis>. Note that Calligra Suite used to be called KOffice, and the <emphasis role=\"pkg\">koffice</emphasis> package is a transitional package."
 msgstr "OpenOffice.org，KOffice 和 GNOME Office 相应的在 <emphasis role=\"pkg\">openoffice.org</emphasis>, <emphasis role=\"pkg\">koffice</emphasis> 和 <emphasis role=\"pkg\">gnome-office</emphasis> 软件包中。OpenOffice.org 的各种语言包分散在单独的软件包中：<emphasis role=\"pkg\">openoffice.org-l10n-*</emphasis>，<emphasis role=\"pkg\">openoffice.org-help-*</emphasis>，和 <emphasis role=\"pkg\">openoffice.org-spellcheck-*</emphasis> 也可能是有 <emphasis role=\"pkg\">myspell-*</emphasis>提供的虚拟包）。"
 
@@ -1350,17 +1323,16 @@ msgid "Now let's install the required packages:"
 msgstr "现在我们来安装需要的软件包："
 
 #. Tag: screen
-#, no-c-format
+#, msgstr-has-trailing-newline, no-c-format
 msgid ""
 "\n"
-"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"
+"<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>"
 msgstr ""
 "\n"
 "<computeroutput># </computeroutput><userinput>apt-get install wine ttf-mscorefonts-installer wine-doc</userinput>\n"
 
 #. Tag: indexterm
 #, fuzzy, no-c-format
-#| msgid "<primary><command>kwin</command></primary>"
 msgid "<primary><command>winecfg</command></primary>"
 msgstr "<primary><command>kwin</command></primary>"
 
