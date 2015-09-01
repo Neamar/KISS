@@ -109,8 +109,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-
         String theme = prefs.getString("theme", "light");
         if (theme.equals("dark")) {
             setTheme(R.style.AppThemeDark);
@@ -205,17 +203,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         // Apply effects depending on current Android version
         applyDesignTweaks();
-
-        Resources resources = this.getResources();
-        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
-        int navigationBarSize = 0;
-        if (resourceId > 0) {
-            navigationBarSize = resources.getDimensionPixelSize(resourceId);
-        }
-
-        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) findViewById(R.id.mainWrapper).getLayoutParams();
-        lp.setMargins(0, 0, 0, navigationBarSize);
-
     }
 
     /**
@@ -241,6 +228,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 findViewById(id).setBackgroundResource(outValue.resourceId);
             }
 
+            Resources resources = this.getResources();
+
+            // Add a margin above navigation bar
+            int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                int navigationBarSize = resources.getDimensionPixelSize(resourceId);
+                ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) findViewById(R.id.mainWrapper).getLayoutParams();
+                lp.setMargins(0, 0, 0, navigationBarSize);
+            }
         } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
