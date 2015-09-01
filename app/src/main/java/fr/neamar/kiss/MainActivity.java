@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -108,10 +110,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String theme = prefs.getString("theme", "light");
-        if(theme.equals("dark")) {
+        if (theme.equals("dark")) {
             setTheme(R.style.AppThemeDark);
         }
-        if(theme.equals("light-opaque")) {
+        if (theme.equals("light-opaque")) {
             setTheme(R.style.AppThemeLightTransparent);
         }
 
@@ -226,6 +228,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 findViewById(id).setBackgroundResource(outValue.resourceId);
             }
 
+            Resources resources = this.getResources();
+
+            // Add a margin above navigation bar
+            int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                int navigationBarSize = resources.getDimensionPixelSize(resourceId);
+                ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) findViewById(R.id.mainWrapper).getLayoutParams();
+                lp.setMargins(0, 0, 0, navigationBarSize);
+            }
         } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
