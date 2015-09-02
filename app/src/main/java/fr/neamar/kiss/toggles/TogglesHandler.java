@@ -10,6 +10,7 @@ import android.util.Log;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.TogglePojo;
 
 public class TogglesHandler {
@@ -48,6 +49,8 @@ public class TogglesHandler {
                     return getBluetoothState();
                 case "silent":
                     return getSilentState();
+                case "torch":
+                    return getTorchState();
                 default:
                     Log.e("wtf", "Unsupported toggle for reading: " + pojo.settingName);
                     return false;
@@ -73,6 +76,9 @@ public class TogglesHandler {
                     break;
                 case "silent":
                     setSilentState(state);
+                    break;
+                case "torch":
+                    setTorchState(state);
                     break;
                 default:
                     Log.e("wtf", "Unsupported toggle for update: " + pojo.settingName);
@@ -126,6 +132,16 @@ public class TogglesHandler {
         else
             bluetoothAdapter.disable();
     }
+    
+    private Boolean getTorchState() {
+    	return KissApplication.getCameraHandler().getTorchState();    	
+    }
+    
+    private void setTorchState(Boolean state) {
+    	KissApplication.getCameraHandler().setTorchState(state);    	
+    }
+    
+  
 
     private Boolean getSilentState() {
         int state = audioManager.getRingerMode();

@@ -10,12 +10,20 @@ public class KissApplication extends Application {
      */
     public static final int TOUCH_DELAY = 120;
     private static DataHandler dataHandler;
+    private static CameraHandler cameraHandler;
 
     public static DataHandler getDataHandler(Context ctx) {
         if (dataHandler == null) {
             dataHandler = new DataHandler(ctx);
         }
         return dataHandler;
+    }
+    
+    public static CameraHandler getCameraHandler() {
+        if (cameraHandler == null) {
+        	cameraHandler = new CameraHandler();
+        }
+        return cameraHandler;
     }
 
     public static void initDataHandler(Context ctx) {
