@@ -1,5 +1,6 @@
 package fr.neamar.kiss.loader;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -50,6 +51,14 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
                 app.packageName = info.activityInfo.applicationInfo.packageName;
                 app.activityName = info.activityInfo.name;
+
+                try {
+                    app.packageImage = manager.getActivityIcon(
+                            new ComponentName(info.activityInfo.applicationInfo.packageName,
+                                    info.activityInfo.name));
+                } catch (PackageManager.NameNotFoundException e) {
+                    app.packageImage = null;
+                }
 
                 apps.add(app);
             }
