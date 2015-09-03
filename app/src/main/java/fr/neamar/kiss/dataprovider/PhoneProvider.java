@@ -25,7 +25,7 @@ public class PhoneProvider extends Provider<PhonePojo> {
         ArrayList<Pojo> pojos = new ArrayList<>();
 
         // Append an item only if query looks like a phone number and device has phone capabilities
-        if (deviceIsPhone && query.matches("^[0-9+ .]{2,}$")) {
+        if (deviceIsPhone && query.matches("^[0-9+ .-]{2,}$")) {
             pojos.add(getResult(query));
         }
 
