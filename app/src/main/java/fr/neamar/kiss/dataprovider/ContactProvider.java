@@ -32,8 +32,9 @@ public class ContactProvider extends Provider<ContactPojo> {
             relevance = 0;
             contactNameNormalized = contact.nameNormalized;
 
-            matchPositionEnd = 0;
-            if ((matchPositionStart = contactNameNormalized.indexOf(query)) > -1) {
+            matchPositionStart = 0;
+            matchPositionEnd   = 0;
+            if (contactNameNormalized.startsWith(query)) {
                 relevance        = 50;
                 matchPositionEnd = matchPositionStart + query.length();
             } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
