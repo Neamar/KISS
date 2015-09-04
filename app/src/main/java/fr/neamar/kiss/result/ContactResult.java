@@ -157,7 +157,7 @@ public class ContactResult extends Result {
     }
 
     private void launchCall(final Context context) {
-        String url = "tel:" + contactPojo.phone;
+        String url = "tel:" + Uri.encode(contactPojo.phone);
         Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);

@@ -19,6 +19,10 @@ public class ContactProvider extends Provider<ContactPojo> {
     public ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> results = new ArrayList<>();
 
+        // Search people with composed names, e.g "jean-marie"
+        // (not part of the StringNormalizer class, since we want to keep dashes on other providers)
+        query = query.replaceAll("-", " ");
+
         int relevance;
         String contactNameLowerCased;
 

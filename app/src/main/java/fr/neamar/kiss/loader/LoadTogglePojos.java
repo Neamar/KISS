@@ -2,6 +2,7 @@ package fr.neamar.kiss.loader;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,9 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
             toggles.add(createPojo(context.getString(R.string.toggle_bluetooth), "bluetooth", R.drawable.toggle_bluetooth));
         }
         toggles.add(createPojo(context.getString(R.string.toggle_silent), "silent", R.drawable.toggle_silent));
-        if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+        if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY) && android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
+            // Not working after 4.4
+            // See http://stackoverflow.com/questions/26539445/the-setmobiledataenabled-method-is-no-longer-callable-as-of-android-l-and-later
             toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.drawable.toggle_data));
         }        
         if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA) && pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH) && 
