@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:layout_gravity="center_vertical"
               android:layout_marginBottom="10dp"
               android:layout_marginLeft="10dp"
               android:layout_marginRight="10dp"
-              android:background="#ffffff"
+              android:background="?attr/mainBackground"
               android:elevation="2dp"
-              android:layout_gravity="center_vertical"
               android:orientation="vertical">
 
     <LinearLayout
@@ -34,14 +34,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ui_empty_1"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/kiss_gray"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ui_empty_1_sub"
-                android:textColor="@color/kiss_gray_light"/>
+                android:textColor="?android:attr/textColorTertiary"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -49,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:contentDescription="@null"
-        android:src="@drawable/list_separator"
+        android:src="?attr/dividerDrawable"
         />
 
     <LinearLayout
@@ -76,14 +75,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ui_empty_2"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/kiss_gray"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ui_empty_2_sub"
-                android:textColor="@color/kiss_gray_light"/>
+                android:textColor="?android:attr/textColorTertiary"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -91,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:contentDescription="@null"
-        android:src="@drawable/list_separator"
+        android:src="?attr/dividerDrawable"
         />
 
     <LinearLayout
@@ -118,14 +116,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ui_empty_3"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/kiss_gray"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ui_empty_3_sub"
-                android:textColor="@color/kiss_gray_light"/>
+                android:textColor="?android:attr/textColorTertiary"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

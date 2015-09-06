@@ -22,9 +22,9 @@ public class AppProvider extends Provider<AppPojo> {
         String appNameLowerCased;
 
         final String highlightRegexp = "(?i)(" + StringNormalizer.unNormalize(query) + ")";
-        for (int i = 0; i < pojos.size(); i++) {
+        for (Pojo pojo : pojos) {
             relevance = 0;
-            appNameLowerCased = pojos.get(i).nameLowerCased;
+            appNameLowerCased = pojo.nameLowerCased;
             if (appNameLowerCased.startsWith(query))
                 relevance = 100;
             else if (appNameLowerCased.contains(" " + query))
@@ -33,10 +33,10 @@ public class AppProvider extends Provider<AppPojo> {
                 relevance = 1;
 
             if (relevance > 0) {
-                pojos.get(i).displayName = pojos.get(i).name.replaceFirst(
+                pojo.displayName = pojo.name.replaceFirst(
                         highlightRegexp, "{$1}");
-                pojos.get(i).relevance = relevance;
-                records.add(pojos.get(i));
+                pojo.relevance = relevance;
+                records.add(pojo);
             }
         }
 
@@ -51,13 +51,13 @@ public class AppProvider extends Provider<AppPojo> {
      * @return an apppojo, or null
      */
     public Pojo findById(String id, Boolean allowSideEffect) {
-        for (int i = 0; i < pojos.size(); i++) {
-            if (pojos.get(i).id.equals(id)) {
+        for (Pojo pojo : pojos) {
+            if (pojo.id.equals(id)) {
                 // Reset displayName to default value
                 if (allowSideEffect) {
-                    pojos.get(i).displayName = pojos.get(i).name;
+                    pojo.displayName = pojo.name;
                 }
-                return pojos.get(i);
+                return pojo;
             }
 
         }
@@ -73,9 +73,9 @@ public class AppProvider extends Provider<AppPojo> {
         ArrayList<Pojo> records = new ArrayList<>(pojos.size());
         records.trimToSize();
 
-        for (int i = 0; i < pojos.size(); i++) {
-            pojos.get(i).displayName = pojos.get(i).name;
-            records.add(pojos.get(i));
+        for (Pojo pojo : pojos) {
+            pojo.displayName = pojo.name;
+            records.add(pojo);
         }
         return records;
     }

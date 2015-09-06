@@ -13,7 +13,6 @@ import java.lang.reflect.Method;
 import fr.neamar.kiss.pojo.TogglePojo;
 
 public class TogglesHandler {
-    private final Context context;
     private final ConnectivityManager connectivityManager;
     private final WifiManager wifiManager;
     private final BluetoothAdapter bluetoothAdapter;
@@ -25,7 +24,6 @@ public class TogglesHandler {
      * @param context android context
      */
     public TogglesHandler(Context context) {
-        this.context = context;
         this.connectivityManager = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         this.wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);

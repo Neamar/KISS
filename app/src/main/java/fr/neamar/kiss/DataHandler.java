@@ -32,7 +32,7 @@ public class DataHandler extends BroadcastReceiver {
     private final ArrayList<Provider<? extends Pojo>> providers = new ArrayList<>();
     private final AppProvider appProvider;
     private final ContactProvider contactProvider;
-    public String currentQuery;
+    private String currentQuery;
     private int providersLoaded = 0;
 
     /**
@@ -53,8 +53,7 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-contacts", true)) {
             contactProvider = new ContactProvider(context);
             providers.add(contactProvider);
-        }
-        else {
+        } else {
             contactProvider = null;
         }
 
@@ -91,24 +90,24 @@ public class DataHandler extends BroadcastReceiver {
         ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
                 context, query);
         HashMap<String, Integer> knownIds = new HashMap<>();
-        for (int k = 0; k < lastIdsForQuery.size(); k++) {
-            knownIds.put(lastIdsForQuery.get(k).record, lastIdsForQuery.get(k).value);
+        for (ValuedHistoryRecord id : lastIdsForQuery) {
+            knownIds.put(id.record, id.value);
         }
 
         // Ask all providers for data
         ArrayList<Pojo> allPojos = new ArrayList<>();
 
-        for (int i = 0; i < providers.size(); i++) {
+        for (Provider<? extends Pojo> provider : providers) {
             // Retrieve results for query:
-            ArrayList<Pojo> pojos = providers.get(i).getResults(query);
+            ArrayList<Pojo> pojos = provider.getResults(query);
 
             // Add results to list
-            for (int j = 0; j < pojos.size(); j++) {
+            for (Pojo pojo : pojos) {
                 // Give a boost if item was previously selected for this query
-                if (knownIds.containsKey(pojos.get(j).id)) {
-                    pojos.get(j).relevance += 25 * Math.min(5, knownIds.get(pojos.get(j).id));
+                if (knownIds.containsKey(pojo.id)) {
+                    pojo.relevance += 25 * Math.min(5, knownIds.get(pojo.id));
                 }
-                allPojos.add(pojos.get(j));
+                allPojos.add(pojo);
             }
         }
 
@@ -217,9 +216,9 @@ public class DataHandler extends BroadcastReceiver {
 
     private Pojo getPojo(String id) {
         // Ask all providers if they know this id
-        for (int i = 0; i < providers.size(); i++) {
-            if (providers.get(i).mayFindById(id)) {
-                return providers.get(i).findById(id);
+        for (Provider provider : providers) {
+            if (provider.mayFindById(id)) {
+                return provider.findById(id);
             }
         }
 

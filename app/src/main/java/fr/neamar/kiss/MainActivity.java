@@ -90,28 +90,24 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * View for the Search text
      */
     private EditText searchEditText;
-
-    /**
-     * Menu button
-     */
-    private View menuButton;
-
-    /**
-     * Kiss bar
-     */
-    private View kissBar;
-
-    /**
-     * Task launched on text change
-     */
-    private Searcher searcher;
-
-    private Runnable displayKeyboardRunnable = new Runnable() {
+    private final Runnable displayKeyboardRunnable = new Runnable() {
         @Override
         public void run() {
             showKeyboard();
         }
     };
+    /**
+     * Menu button
+     */
+    private View menuButton;
+    /**
+     * Kiss bar
+     */
+    private View kissBar;
+    /**
+     * Task launched on text change
+     */
+    private Searcher searcher;
 
     /**
      * Called when the activity is first created.
@@ -121,6 +117,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public void onCreate(Bundle savedInstanceState) {
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        String theme = prefs.getString("theme", "light");
+        if(theme.equals("dark")) {
+            setTheme(R.style.AppThemeDark);
+        }
+        if(theme.equals("light-opaque")) {
+            setTheme(R.style.AppThemeLightTransparent);
+        }
 
         super.onCreate(savedInstanceState);
 
@@ -204,8 +208,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
         getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View arg1, int pos, long id) {
-                ((RecordAdapter) parent.getAdapter()).onLongClick(pos);
+            public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
+                ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
                 return true;
             }
         });
@@ -272,15 +276,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Empty text field on resume and show keyboard
      */
     protected void onResume() {
-        if (prefs.getBoolean("layout-updated", false)) {
+        if (prefs.getBoolean("require-layout-update", false)) {
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
-            prefs.edit().putBoolean("layout-updated", false).apply();
-            Intent i = getApplicationContext().getPackageManager().getLaunchIntentForPackage(
-                    getApplicationContext().getPackageName());
+            prefs.edit().putBoolean("require-layout-update", false).apply();
+            Intent i = new Intent(this, getClass());
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            finish();
+            overridePendingTransition(0, 0);
             startActivity(i);
+            overridePendingTransition(0, 0);
         }
 
         if (kissBar.getVisibility() != View.VISIBLE) {
@@ -510,9 +516,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             if (favoritesPojo.size() == 0) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
-                // Hide the green bar
-                displayKissBar(false);
-                return;
             }
 
             // Don't look for items after favIds length, we won't be able to display them

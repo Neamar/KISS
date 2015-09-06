@@ -49,7 +49,7 @@ public class SearchResult extends Result {
             context.startActivity(search);
         } catch (ActivityNotFoundException e) {
             // This exception gets thrown if Google Search has been deactivated:
-            Uri uri = Uri.parse("http://www.google.com/#q=" + searchPojo.query);
+            Uri uri = Uri.parse("https://encrypted.google.com/search?q=" + searchPojo.query);
             search = new Intent(Intent.ACTION_VIEW, uri);
             search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(search);

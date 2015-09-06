@@ -15,9 +15,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#ffffff"
+        android:background="?attr/mainBackground"
         android:cacheColorHint="@android:color/transparent"
-        android:divider="@drawable/list_separator"
+        android:divider="?attr/dividerDrawable"
         android:dividerHeight="1dp"
         android:elevation="2dp"
         android:stackFromBottom="true"
@@ -31,7 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_margin="10dp"
-        android:background="@android:color/white"
+        android:background="?attr/mainBackgroundSecondary"
         android:clipToPadding="false"
         android:elevation="2dp"
         android:padding="4dp">
@@ -42,11 +42,11 @@
             android:layout_height="32dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:paddingLeft="6dp"
-            android:paddingRight="10dp"
             android:contentDescription="@string/main_kiss"
             android:focusable="true"
             android:onClick="onLauncherButtonClicked"
+            android:paddingLeft="6dp"
+            android:paddingRight="10dp"
             android:src="@drawable/ic_launcher"
             android:tag="showMenu"/>
 
@@ -69,11 +69,13 @@
             android:layout_toLeftOf="@+id/clearButton"
             android:layout_toRightOf="@+id/launcherButton"
             android:layout_toStartOf="@+id/launcherButton"
-            android:background="@android:color/white"
+            android:background="?attr/mainBackgroundSecondary"
             android:hint="@string/ui_search_hint"
             android:imeOptions="flagNoExtractUi|actionSearch"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:singleLine="true"
+            android:textColor="?android:attr/textColor"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:textCursorDrawable="@drawable/cursor"
             android:textSize="16sp"/>
 
@@ -84,6 +86,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:tint="?android:attr/textColor"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
             android:onClick="onMenuButtonClicked"
@@ -109,6 +112,7 @@
             android:paddingRight="1dp"
             android:paddingTop="4dp"
             android:src="@drawable/clear_dark"
+            android:tint="?android:attr/textColor"
             android:visibility="visible"/>
     </RelativeLayout>
 
