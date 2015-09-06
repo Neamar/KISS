@@ -108,6 +108,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+        String theme = prefs.getString("theme", "light");
+        if(theme.equals("dark")) {
+            setTheme(R.style.AppThemeDark);
+        }
+        if(theme.equals("light-opaque")) {
+            setTheme(R.style.AppThemeLightTransparent);
+        }
+
         super.onCreate(savedInstanceState);
 
         IntentFilter intentFilter = new IntentFilter(START_LOAD);
@@ -251,15 +259,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Empty text field on resume and show keyboard
      */
     protected void onResume() {
-        if (prefs.getBoolean("layout-updated", false)) {
+        if (prefs.getBoolean("require-layout-update", false)) {
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
-            prefs.edit().putBoolean("layout-updated", false).apply();
-            Intent i = getApplicationContext().getPackageManager().getLaunchIntentForPackage(
-                    getApplicationContext().getPackageName());
+            prefs.edit().putBoolean("require-layout-update", false).apply();
+            Intent i = new Intent(this, getClass());
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            finish();
+            overridePendingTransition(0, 0);
             startActivity(i);
+            overridePendingTransition(0, 0);
         }
 
         if (kissBar.getVisibility() != View.VISIBLE) {

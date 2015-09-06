@@ -17,7 +17,7 @@ public class StringNormalizer {
     public static String normalize(String input) {
         return input.toLowerCase().replaceAll("[èéêë]", "e")
                 .replaceAll("[ûù]", "u").replaceAll("[ïî]", "i")
-                .replaceAll("[àâ]", "a").replaceAll("ô", "o").replaceAll("-", " ");
+                .replaceAll("[àâ]", "a").replaceAll("ô", "o");
     }
 
     /**

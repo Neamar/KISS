@@ -1,6 +1,8 @@
 package fr.neamar.kiss.adapter;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,11 +63,17 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         return results.get(position).display(getContext(), results.size() - position, convertView);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onLongClick(final int pos, View v) {
-        PopupMenu menu = results.get(pos).getPopupMenu(getContext(), this, v);
-        if (menu != null) {
-            menu.show();
+        // Popup menu is not available before Honeycomb.
+        // We simply remove the item from history
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+            removeResult(results.get(pos));
+            return;
         }
+
+        PopupMenu menu = results.get(pos).getPopupMenu(getContext(), this, v);
+        menu.show();
     }
 
     public void onClick(final int position, View v) {

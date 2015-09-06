@@ -1,15 +1,20 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -55,13 +60,59 @@ public abstract class Result {
 
     /**
      * How to display the popup menu
-     * If null is returned, no menu should be displayed
      *
      * @return a PopupMenu object
      */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public PopupMenu getPopupMenu(final Context context, final RecordAdapter parent, View parentView) {
+        PopupMenu menu = buildPopupMenu(context, parent, parentView);
+
+        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                return popupMenuClickHandler(context, parent, item);
+            }
+        });
+
+        return menu;
+    }
+
+    /**
+     * Default popup menu implementation, can be overridden by children class to display a more specific menu
+     *
+     * @return an inflated, listener-free PopupMenu
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
+        PopupMenu menu = new PopupMenu(context, parentView);
+        menu.getMenuInflater().inflate(R.menu.menu_item_default, menu.getMenu());
+
+        return menu;
+    }
+
+    /**
+     * Handler for popup menu action.
+     * Default implementation only handle remove from history action.
+     *
+     * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
+     */
+    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_remove:
+                removeItem(context, parent);
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * Remove the current result from the list
+     *
+     * @param context
+     * @param parent
+     */
+    protected void removeItem(Context context, RecordAdapter parent) {
+        Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();
         parent.removeResult(this);
-        return null;
     }
 
     public final void launch(Context context, View v) {

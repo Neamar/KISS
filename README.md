@@ -11,9 +11,9 @@ What is it?
 ------------
 KISS is a fast launcher for your Android.
 
-Search through you app, contacts and settings lightning fast.
-No more time spent trying to find the app you need to launch : enter a few characters from the name and press enter.
-Need to phone someone ? Don't meddle with the call log, just give three letters of their name and push the "phone" button.
+Search through your apps, contacts and settings lightning fast.
+No more time spent trying to find the app you want to launch: enter a few characters of the name and hit enter.
+Need to call someone? Don't meddle with the call log, just give three letters of their name and push the "phone" button.
 
 KISS becomes smarter and smarter as you use it, pushing forward results you're more likely to select.
 
@@ -26,12 +26,16 @@ Previews
 ![Preview](https://lh3.googleusercontent.com/ADlhgu6JBVOJRn_XS-BbFbw6HtGopVABpBSdBMfANXpGpicFY3jxVLcuBhnJ9QkSshTp)
 ![Preview](https://lh3.googleusercontent.com/17JTZKi0wh8ReNTMmhEzoR1Iu_mirK867_H2GbMwDhFf8QwpqhxzccpBLAFo5DbFdg)
 
+Translation <img src="https://hosted.weblate.org/widgets/kiss/-/shields-badge.svg" alt="Translation status" />
+-------------------
+Want to help with the translation? Use https://hosted.weblate.org/projects/kiss/strings/ to collaborate on strings translation!
+
 
 How does it work?
 -------------------
-Different data types can be aggregated via KISS' simple interface : apps, contacts, settings...
+Different data types can be aggregated via KISS' simple interface: apps, contacts, settings...
 
-Each data types uses four classes :
+Each data types uses four classes:
 
 * A *loader*, which retrieves all available items at startup
 * A *provider*, which knows all of its items (e.g. all contacts), and is responsible for filtering those records according to the query
