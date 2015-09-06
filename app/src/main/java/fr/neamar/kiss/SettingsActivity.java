@@ -62,6 +62,6 @@ public class SettingsActivity extends PreferenceActivity implements
 
         findPreference("auto-spellcheck").setSummary(
             String.format(getString(R.string.autospellcheck_desc),
-                prefs.getInt("auto-spellcheck", 5)));
+                Integer.parseInt(prefs.getString("auto-spellcheck", "5"))));
     }
 }

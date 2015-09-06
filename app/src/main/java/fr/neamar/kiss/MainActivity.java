@@ -315,7 +315,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             hideKeyboard();
         }
 
-        autoSpellcheck = prefs.getInt("auto-spellcheck", 5);
+        autoSpellcheck = Integer.parseInt(prefs.getString("auto-spellcheck", "5"));
 
         super.onResume();
     }
