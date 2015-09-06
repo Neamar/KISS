@@ -45,6 +45,8 @@ public class SettingsActivity extends PreferenceActivity implements
             // Reload the DataHandler since Providers preferences have changed
             KissApplication.resetDataHandler(this);
         }
+
+        fixSummaries(sharedPreferences);
     }
 
     @Override
