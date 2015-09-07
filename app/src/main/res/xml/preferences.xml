@@ -10,6 +10,13 @@
         </fr.neamar.kiss.ResetPreference>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_ui">
+        <ListPreference
+            android:defaultValue="light"
+            android:entries="@array/themesEntries"
+            android:entryValues="@array/themesValues"
+            android:key="theme"
+            android:summary="@string/theme_desc"
+            android:title="@string/theme_name"/>
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="display-keyboard"
@@ -29,13 +36,6 @@
             android:numeric="integer"
             android:inputType="number">
         </EditTextPreference>
-        <ListPreference
-            android:defaultValue="light"
-            android:entries="@array/themesEntries"
-            android:entryValues="@array/themesValues"
-            android:key="theme"
-            android:summary="@string/theme_desc"
-            android:title="@string/theme_name"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_providers">
         <CheckBoxPreference
