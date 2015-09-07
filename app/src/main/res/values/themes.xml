@@ -12,32 +12,36 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textColorSecondary">#d3d3d3</item>
+        <item name="android:textColorTertiary">#d3d3d3</item>
 
-        <item name="mainBackground">@android:color/white</item>
-        <item name="mainBackgroundSecondary">@android:color/white</item>
+        <item name="searchColor">@android:color/black</item>
+        <item name="resultColor">@android:color/black</item>
+        <item name="listBackgroundColor">@android:color/white</item>
+        <item name="searchBackgroundColor">@android:color/white</item>
         <item name="dividerDrawable">@drawable/list_separator_light</item>
     </style>
 
     <style name="AppThemeDark" parent="BaseThemeDark">
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:textColor">#b3b3b3</item>
+        <item name="android:textColor">@color/kiss_text_dark</item>
         <item name="android:textColorSecondary">#7f7f7f</item>
-        <item name="android:textColorTertiary">#7f7f7f</item>
 
-        <item name="mainBackground">@color/kiss_list_background_inverse</item>
-        <item name="mainBackgroundSecondary">@color/kiss_list_background_inverse</item>
+        <item name="searchColor">@color/kiss_text_dark</item>
+        <item name="resultColor">@color/kiss_text_dark</item>
+        <item name="listBackgroundColor">@color/kiss_list_background_inverse</item>
+        <item name="searchBackgroundColor">@color/kiss_list_background_inverse</item>
         <item name="dividerDrawable">@drawable/list_separator_dark</item>
     </style>
 
-    <style name="AppThemeLightTransparent" parent="AppThemeLight">
-        <item name="mainBackground">@color/kiss_background_light_opaque</item>
+    <style name="AppThemeTransparent" parent="AppThemeLight">
+        <item name="resultColor">#f8f8f8</item>
+        <item name="listBackgroundColor">@android:color/transparent</item>
     </style>
 
 
     <style name="SettingTheme" parent="AppThemeLight">
         <item name="android:windowBackground">@color/kiss_background</item>
-        <item name="android:textColorSecondary">?android:attr/textColorTertiary</item>
     </style>
 
     <style name="SettingThemeDark" parent="AppThemeDark">
