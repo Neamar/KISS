@@ -80,7 +80,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Spellcheck related fields
      */
-    private int autoSpellcheck;
     private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
                                               InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
 
@@ -180,16 +179,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 updateRecords(s.toString());
                 displayClearOnInput();
-
-                if (s.length() >= autoSpellcheck) {
-                    searchEditText.setInputType(spellcheckEnabledType);
-                }
-                else {
-                    searchEditText.setInputType(spellcheckDisabledType);
-                    // Setting TYPE_TEXT_VARIATION_VISIBLE_PASSWORD changes the font to a monospace
-                    // one, so we have to reset it to the default one
-                    searchEditText.setTypeface(Typeface.DEFAULT);
-                }
             }
         });
 
@@ -321,7 +310,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
             hideKeyboard();
         }
 
-        autoSpellcheck = Integer.parseInt(prefs.getString("auto-spellcheck", "5"));
+        if (prefs.getBoolean("enable-spellcheck", true)) {
+            searchEditText.setInputType(spellcheckEnabledType);
+        }
+        else {
+            searchEditText.setInputType(spellcheckDisabledType);
+            // Setting TYPE_TEXT_VARIATION_VISIBLE_PASSWORD changes the font to a monospace
+            // one, so we have to reset it to the default one
+            searchEditText.setTypeface(Typeface.DEFAULT);
+        }
 
         super.onResume();
     }

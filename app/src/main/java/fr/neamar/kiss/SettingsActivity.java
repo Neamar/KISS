@@ -61,9 +61,5 @@ public class SettingsActivity extends PreferenceActivity implements
         if (historyLength > 5) {
             findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
         }
-
-        findPreference("auto-spellcheck").setSummary(
-            String.format(getString(R.string.autospellcheck_desc),
-                Integer.parseInt(prefs.getString("auto-spellcheck", "5"))));
     }
 }
