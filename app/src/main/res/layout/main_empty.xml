@@ -6,7 +6,7 @@
               android:layout_marginBottom="10dp"
               android:layout_marginLeft="10dp"
               android:layout_marginRight="10dp"
-              android:background="?attr/mainBackground"
+              android:background="?attr/listBackgroundColor"
               android:elevation="2dp"
               android:orientation="vertical">
 
@@ -22,6 +22,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:contentDescription="@null"
+            android:tint="?attr/resultColor"
             android:src="@drawable/zerostate_search"/>
 
         <LinearLayout
@@ -34,7 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ui_empty_1"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?attr/resultColor"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -63,6 +65,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:contentDescription="@null"
+            android:tint="?attr/resultColor"
             android:src="@drawable/zerostate_burger"/>
 
         <LinearLayout
@@ -75,7 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ui_empty_2"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?attr/resultColor"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,6 +108,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:contentDescription="@null"
+            android:tint="?attr/resultColor"
             android:src="@drawable/zerostate_kiss"/>
 
         <LinearLayout
@@ -116,7 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ui_empty_3"
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="?attr/resultColor"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -25,7 +25,7 @@
         android:layout_marginTop="@dimen/icon_margin_top"
         android:scaleType="centerInside"
         android:src="@android:drawable/ic_menu_manage"
-        android:tint="?android:attr/textColor"
+        android:tint="?attr/resultColor"
         tools:ignore="ContentDescription"/>
 
     <TextView
@@ -38,6 +38,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:text="@string/stub_toggle"
+        android:textColor="?attr/resultColor"
         android:textSize="@dimen/result_title_size"/>
 
     <include
