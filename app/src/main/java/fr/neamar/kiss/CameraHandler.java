@@ -3,7 +3,9 @@ package fr.neamar.kiss;
 import java.util.List;
 
 import android.hardware.Camera;
+import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.Parameters;
+import android.util.Log;
 
 public class CameraHandler {
 
@@ -19,7 +21,7 @@ public class CameraHandler {
 			if (camera != null)
 				camera.release();
 		} catch (Exception ex) {
-			// nothing to do
+			Log.e("wtf", "unable to release camera " + ex );
 		} finally {
 			camera = null;
 		}
@@ -31,6 +33,7 @@ public class CameraHandler {
 			Parameters parms = camera.getParameters();
 			return parms.getFlashMode().equals(Parameters.FLASH_MODE_TORCH);
 		} catch (Exception ex) {
+			Log.e("wtf", "unable to get torch states " + ex );
 			releaseCamera();
 			return false;
 		}
@@ -42,7 +45,7 @@ public class CameraHandler {
 			List<String> torchModes = camera.getParameters().getSupportedFlashModes();
 			return torchModes.contains(Camera.Parameters.FLASH_MODE_TORCH);
 		}catch (Exception ex) {
-			releaseCamera();
+			Log.e("wtf", "unable to check if torch is available " + ex );
 		}
 		return false;
 	}
@@ -57,13 +60,19 @@ public class CameraHandler {
 				parms.setFlashMode(Parameters.FLASH_MODE_OFF);
 
 			camera.setParameters(parms);
-			if (state) //enable torch but retain camera
+			if (state) {//enable torch but retain camera
 				camera.startPreview();
+				camera.autoFocus(new AutoFocusCallback() {
+	                public void onAutoFocus(boolean success, Camera camera) {
+	                }
+	            });
+			}
 			else { //disable torch and release camera
 				camera.stopPreview();
 				releaseCamera();
 			}
 		} catch (Exception ex) {
+			Log.e("wtf", "unable to set torch state "+state+" " + ex );
 			releaseCamera();
 		}
 	}
