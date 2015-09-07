@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -83,8 +84,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
     private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
                                               InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
 
+    // Use TYPE_TEXT_VARIATION_VISIBLE_PASSWORD because of Swiftkey
     private final int spellcheckDisabledType = InputType.TYPE_CLASS_TEXT |
-                                               InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
+                                               InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS |
+                                               InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
 
     /**
      * View for the Search text
@@ -183,6 +186,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 }
                 else {
                     searchEditText.setInputType(spellcheckDisabledType);
+                    // Setting TYPE_TEXT_VARIATION_VISIBLE_PASSWORD changes the font to a monospace
+                    // one, so we have to reset it to the default one
+                    searchEditText.setTypeface(Typeface.DEFAULT);
                 }
             }
         });
