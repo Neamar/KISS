@@ -137,7 +137,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         this.registerReceiver(mReceiver, intentFilter);
         this.registerReceiver(mReceiver, intentFilterBis);
         this.registerReceiver(mReceiver, intentFilterTer);
-        KissApplication.initDataHandler(this);        
+        KissApplication.initDataHandler(this);
 
         // Initialize preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
