@@ -42,7 +42,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
         // with distinct name share same number, they both get displayed)
         HashMap<String, ArrayList<ContactPojo>> mapContacts = new HashMap<>();
 
-        if (cur.getCount() > 0) {
+        if (cur != null && cur.getCount() > 0) {
             while (cur.moveToNext()) {
                 ContactPojo contact = new ContactPojo();
 
