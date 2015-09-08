@@ -25,7 +25,7 @@ public class SettingProvider extends Provider<SettingPojo> {
         String settingNameLowerCased;
         for (SettingPojo setting : pojos) {
             relevance = 0;
-            settingNameLowerCased = setting.nameLowerCased;
+            settingNameLowerCased = setting.nameNormalized;
             if (settingNameLowerCased.startsWith(query))
                 relevance = 10;
             else if (settingNameLowerCased.contains(" " + query))

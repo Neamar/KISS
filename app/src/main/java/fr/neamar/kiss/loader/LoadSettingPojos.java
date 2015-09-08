@@ -35,7 +35,7 @@ public class LoadSettingPojos extends LoadPojos<SettingPojo> {
         SettingPojo pojo = new SettingPojo();
         pojo.id = pojoScheme + settingName.toLowerCase(Locale.ENGLISH);
         pojo.name = name;
-        pojo.nameLowerCased = pojo.name.toLowerCase(Locale.ENGLISH);
+        pojo.nameNormalized = pojo.name.toLowerCase(Locale.ENGLISH);
         pojo.settingName = settingName;
         pojo.icon = resId;
 
