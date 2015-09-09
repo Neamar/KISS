@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
@@ -42,11 +41,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
                 app.id = pojoScheme + info.activityInfo.applicationInfo.packageName + "/"
                         + info.activityInfo.name;
-                app.name = info.loadLabel(manager).toString();
-
-                //Ugly hack to remove accented characters.
-                //Note Java 5 provides a Normalizer method, unavailable for Android :\
-                app.nameLowerCased = StringNormalizer.normalize(app.name);
+                app.setName(info.loadLabel(manager).toString());
 
                 app.packageName = info.activityInfo.applicationInfo.packageName;
                 app.activityName = info.activityInfo.name;

@@ -26,7 +26,7 @@ public class AliasProvider extends Provider<AliasPojo> {
                 // (default behavior is to alter displayName, which is not what we want)
                 Pojo appPojo = appProvider.findById(entry.app, false);
                 // Only add if default AppProvider is not already displaying it
-                if (appPojo != null && !appPojo.nameLowerCased.contains(query)) {
+                if (appPojo != null && !appPojo.nameNormalized.contains(query)) {
                     appPojo.displayName = appPojo.name
                             + " <small>("
                             + entry.alias.replaceFirst(
