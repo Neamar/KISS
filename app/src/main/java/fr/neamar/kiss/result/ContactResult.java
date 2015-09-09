@@ -1,15 +1,19 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.provider.ContactsContract;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.io.FileNotFoundException;
@@ -18,6 +22,7 @@ import java.io.InputStream;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
@@ -100,6 +105,42 @@ public class ContactResult extends Result {
         return v;
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
+        PopupMenu menu = new PopupMenu(context, parentView);
+        menu.getMenuInflater().inflate(R.menu.menu_item_contact, menu.getMenu());
+
+        return menu;
+    }
+
+    @Override
+    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_contact_copy_phone:
+                copyPhone(context, contactPojo);
+                return true;
+        }
+
+        return super.popupMenuClickHandler(context, parent, item);
+    }
+
+    @SuppressWarnings("deprecation")
+    void copyPhone(Context context, ContactPojo contactPojo) {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+            android.text.ClipboardManager clipboard =
+                (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(contactPojo.phone);
+        } else {
+            android.content.ClipboardManager clipboard =
+                (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText(
+                "Phone number for " + contactPojo.displayName,
+                contactPojo.phone);
+            clipboard.setPrimaryClip(clip);
+        }
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
@@ -157,7 +198,7 @@ public class ContactResult extends Result {
     }
 
     private void launchCall(final Context context) {
-        String url = "tel:" + contactPojo.phone;
+        String url = "tel:" + Uri.encode(contactPojo.phone);
         Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
