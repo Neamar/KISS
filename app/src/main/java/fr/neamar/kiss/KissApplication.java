@@ -19,14 +19,14 @@ public class KissApplication extends Application {
         return dataHandler;
     }
     
-    public static RootHandler getRootHander(Context ctx) {
+    public static RootHandler getRootHandler(Context ctx) {
     	if (rootHandler == null) {
     		rootHandler = new RootHandler(ctx);
     	}
     	return rootHandler;
     }
     
-    public static void resetRootHander(Context ctx) {
+    public static void resetRootHandler(Context ctx) {
     	rootHandler.resetRootHander(ctx);    	
     }
 

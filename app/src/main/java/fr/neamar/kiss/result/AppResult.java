@@ -65,7 +65,7 @@ public class AppResult extends Result {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
         //append root menu if available
-        if (KissApplication.getRootHander(context).isRootActivated() && KissApplication.getRootHander(context).isRootAvailable()) {
+        if (KissApplication.getRootHandler(context).isRootActivated() && KissApplication.getRootHandler(context).isRootAvailable()) {
         	menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
         }        	
 
@@ -102,11 +102,11 @@ public class AppResult extends Result {
     
     private void hibernate(Context context, AppPojo app) {
     	String msg = context.getResources().getString(R.string.toast_hibernate_completed);
-        if (!KissApplication.getRootHander(context).hibernateApp(appPojo.packageName)) {
+        if (!KissApplication.getRootHandler(context).hibernateApp(appPojo.packageName)) {
         	msg = context.getResources().getString(R.string.toast_hibernate_error);	
         }
         
-        Toast.makeText(context, app.name+" "+msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 
     /**
