@@ -32,7 +32,7 @@ public class PhoneResult extends Result {
     @Override
     public void doLaunch(Context context, View v) {
         Intent phone = new Intent(Intent.ACTION_CALL);
-        phone.setData(Uri.parse("tel:" + phonePojo.phone));
+        phone.setData(Uri.parse("tel:" + Uri.encode(phonePojo.phone)));
 
         phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
