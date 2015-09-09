@@ -1,5 +1,8 @@
-package fr.neamar.kiss;
+package fr.neamar.kiss.preference;
 
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.R;
+import fr.neamar.kiss.R.string;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,7 +18,7 @@ public class RootModePreference extends CheckBoxPreference {
 
 	@Override
 	protected void onClick() {
-		if (!isChecked() && !KissApplication.getRootHander(getContext()).isRootAvailable()) { 
+		if (!isChecked() && !KissApplication.getRootHandler(getContext()).isRootAvailable()) { 
     				//show error dialog
     				new AlertDialog.Builder(getContext()).setMessage(R.string.root_mode_error)    													 
     													 .setPositiveButton(android.R.string.ok, new OnClickListener() {
@@ -28,6 +31,6 @@ public class RootModePreference extends CheckBoxPreference {
     	} else {
     		super.onClick();
     	}
-		KissApplication.resetRootHander(getContext());
+		KissApplication.resetRootHandler(getContext());
     }	
 }
