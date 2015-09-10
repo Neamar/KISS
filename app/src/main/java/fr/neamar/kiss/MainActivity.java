@@ -307,16 +307,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
         this.unregisterReceiver(this.mReceiver);
         KissApplication.getCameraHandler().releaseCamera();
     }
-    
-    
 
     @Override
-	protected void onPause() {		
-		super.onPause();
-		KissApplication.getCameraHandler().releaseCamera();
-	}
+    protected void onPause() {
+        super.onPause();
+        KissApplication.getCameraHandler().releaseCamera();
+    }
 
-	@Override
+    @Override
     protected void onNewIntent(Intent intent) {
         // Empty method,
         // This is called when the user press Home again while already browsing MainActivity
