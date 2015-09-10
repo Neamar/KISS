@@ -1,13 +1,14 @@
 package fr.neamar.kiss;
 
-import java.io.IOException;
-import java.util.List;
-
+import android.annotation.TargetApi;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.os.Build;
 import android.util.Log;
+
+import java.io.IOException;
+import java.util.List;
 
 public class CameraHandler {
 
@@ -28,6 +29,7 @@ public class CameraHandler {
 		}		
 	}	
 
+	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	public void releaseCamera() {
 		try {
 			if (camera != null) {
@@ -35,11 +37,12 @@ public class CameraHandler {
 				camera.release();
 				if (surfaceTexture != null) {
 					Log.d("releaseCamera", "Release dummy surface texture");
+					// Call only available for ICS+, but we've already made the check on openCamera
 					surfaceTexture.release();
 				}
 			}
 		} catch (Exception ex) {
-			Log.e("wtf", "unable to release camera " + ex );
+			Log.e("releaseCamera", "unable to release camera " + ex );
 		} finally {
 			camera = null;
 			surfaceTexture = null;
@@ -56,7 +59,7 @@ public class CameraHandler {
 			}
 			Log.d("getTorchState", "Current torch state "+torchState);
 		} catch (Exception ex) {
-			Log.e("wtf", "unable to get torch states " + ex );
+			Log.e("getTorchState", "unable to get torch states " + ex );
 			releaseCamera();
 			torchState = false;
 		} finally {
@@ -73,7 +76,6 @@ public class CameraHandler {
 				List<String> torchModes = camera.getParameters().getSupportedFlashModes();
 				releaseCamera();
 				for (String mode : torchModes) {
-					Log.d("isTorchAvailable", "Phone torch mode "+mode);
 					if (mode.equalsIgnoreCase(Camera.Parameters.FLASH_MODE_TORCH))
 						torchAvailable = true;
 				}
@@ -82,7 +84,7 @@ public class CameraHandler {
 				Log.d("isTorchAvailable", "Torch mode not available");
 			
 		}catch (Exception ex) {
-			Log.e("wtf", "unable to check if torch is available " + ex );
+			Log.e("isTorchAvailable", "unable to check if torch is available " + ex );
 			torchAvailable = false;
 		}finally {
 			return torchAvailable;
