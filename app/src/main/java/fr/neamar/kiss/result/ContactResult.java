@@ -126,7 +126,7 @@ public class ContactResult extends Result {
     }
 
     @SuppressWarnings("deprecation")
-    void copyPhone(Context context, ContactPojo contactPojo) {
+    private void copyPhone(Context context, ContactPojo contactPojo) {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
             android.text.ClipboardManager clipboard =
                 (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);

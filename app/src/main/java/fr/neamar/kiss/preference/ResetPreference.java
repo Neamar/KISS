@@ -8,7 +8,6 @@ import android.util.AttributeSet;
 import android.widget.Toast;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.R.string;
 import fr.neamar.kiss.db.DB;
 
 public class ResetPreference extends DialogPreference {

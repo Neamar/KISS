@@ -2,7 +2,7 @@ package fr.neamar.kiss.preference;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.R.string;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
