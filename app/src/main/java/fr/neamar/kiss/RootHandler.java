@@ -11,14 +11,14 @@ public class RootHandler {
 	 private Boolean isRootActivated = null;
 	 	  
 	 public RootHandler(Context ctx) {
-		 resetRootHander(ctx);
+		 resetRootHandler(ctx);
 	 }	
 	 
 	 public boolean isRootActivated() {
 		 return this.isRootActivated;
 	 }	 
 	  
-	 public void resetRootHander(Context ctx) {
+	 public void resetRootHandler(Context ctx) {
 		 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
 		 isRootActivated = prefs.getBoolean("root-mode", false);
 	 }
