@@ -6,7 +6,7 @@ package fr.neamar.kiss.normalizer;
  *
  * Created by Alexander Schlarb on 17.08.15.
  */
-public class IntSequenceBuilder {
+class IntSequenceBuilder {
     private int[] data;
     private int   size;
 

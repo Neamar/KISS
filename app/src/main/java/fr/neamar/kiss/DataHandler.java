@@ -192,7 +192,7 @@ public class DataHandler extends BroadcastReceiver {
     /**
      * Insert specified ID (probably a pojo.id) into history
      *
-     * @param context
+     * @param context android context
      * @param id      pojo.id of item to record
      */
     public void addToHistory(Context context, String id) {

@@ -42,51 +42,54 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
         // with distinct name share same number, they both get displayed)
         HashMap<String, ArrayList<ContactPojo>> mapContacts = new HashMap<>();
 
-        if (cur != null && cur.getCount() > 0) {
-            while (cur.moveToNext()) {
-                ContactPojo contact = new ContactPojo();
+        if (cur != null) {
+            if (cur.getCount() > 0) {
+                while (cur.moveToNext()) {
+                    ContactPojo contact = new ContactPojo();
 
-                contact.lookupKey = cur.getString(cur
-                        .getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
-                contact.timesContacted = Integer.parseInt(cur.getString(cur
-                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
-                contact.setName(cur.getString(cur
-                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
-                contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
-                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
-                if (contact.phone == null) {
-                    contact.phone = "";
-                }
+                    contact.lookupKey = cur.getString(cur
+                            .getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
+                    contact.timesContacted = Integer.parseInt(cur.getString(cur
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
+                    contact.setName(cur.getString(cur
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
+                    contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
+                    if (contact.phone == null) {
+                        contact.phone = "";
+                    }
 
-                contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
+                    contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
 
-                contact.starred = cur.getInt(cur
-                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
-                contact.primary = cur.getInt(cur
-                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_SUPER_PRIMARY)) != 0;
-                String photoId = cur.getString(cur
-                        .getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
-                if (photoId != null) {
-                    contact.icon = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI,
-                            Long.parseLong(photoId));
-                }
+                    contact.starred = cur.getInt(cur
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
+                    contact.primary = cur.getInt(cur
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_SUPER_PRIMARY)) != 0;
+                    String photoId = cur.getString(cur
+                            .getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
+                    if (photoId != null) {
+                        contact.icon = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI,
+                                Long.parseLong(photoId));
+                    }
 
-                contact.id = pojoScheme + contact.lookupKey + contact.phone;
+                    contact.id = pojoScheme + contact.lookupKey + contact.phone;
 
-                if (contact.name != null) {
-                    contact.nameNormalized = StringNormalizer.normalize(contact.name);
+                    if (contact.name != null) {
+                        contact.nameNormalized = StringNormalizer.normalize(contact.name);
 
-                    if (mapContacts.containsKey(contact.lookupKey))
-                        mapContacts.get(contact.lookupKey).add(contact);
-                    else {
-                        ArrayList<ContactPojo> phones = new ArrayList<>();
-                        phones.add(contact);
-                        mapContacts.put(contact.lookupKey, phones);
+                        if (mapContacts.containsKey(contact.lookupKey))
+                            mapContacts.get(contact.lookupKey).add(contact);
+                        else {
+                            ArrayList<ContactPojo> phones = new ArrayList<>();
+                            phones.add(contact);
+                            mapContacts.put(contact.lookupKey, phones);
+                        }
                     }
                 }
             }
+            cur.close();
         }
-        cur.close();
+
 
         ArrayList<ContactPojo> contacts = new ArrayList<>();
 

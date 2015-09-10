@@ -82,7 +82,7 @@ public abstract class Result {
      * @return an inflated, listener-free PopupMenu
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
+    PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_default, menu.getMenu());
 
@@ -95,7 +95,7 @@ public abstract class Result {
      *
      * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
      */
-    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
+    Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_remove:
                 removeItem(context, parent);
@@ -107,10 +107,10 @@ public abstract class Result {
     /**
      * Remove the current result from the list
      *
-     * @param context
-     * @param parent
+     * @param context android context
+     * @param parent adapter on which to remove the item
      */
-    protected void removeItem(Context context, RecordAdapter parent) {
+    private void removeItem(Context context, RecordAdapter parent) {
         Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();
         parent.removeResult(this);
     }
