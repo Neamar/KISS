@@ -44,7 +44,7 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
         TogglePojo pojo = new TogglePojo();
         pojo.id = pojoScheme + name.toLowerCase();
         pojo.name = name;
-        pojo.nameLowerCased = pojo.name.toLowerCase();
+        pojo.nameNormalized = pojo.name.toLowerCase();
         pojo.settingName = settingName;
         pojo.icon = resId;
 
