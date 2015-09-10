@@ -137,7 +137,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         this.registerReceiver(mReceiver, intentFilter);
         this.registerReceiver(mReceiver, intentFilterBis);
         this.registerReceiver(mReceiver, intentFilterTer);
-        KissApplication.initDataHandler(this);        
+        KissApplication.initDataHandler(this);
 
         // Initialize preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -307,16 +307,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
         this.unregisterReceiver(this.mReceiver);
         KissApplication.getCameraHandler().releaseCamera();
     }
-    
-    
 
     @Override
-	protected void onPause() {		
-		super.onPause();
-		KissApplication.getCameraHandler().releaseCamera();
-	}
+    protected void onPause() {
+        super.onPause();
+        KissApplication.getCameraHandler().releaseCamera();
+    }
 
-	@Override
+    @Override
     protected void onNewIntent(Intent intent) {
         // Empty method,
         // This is called when the user press Home again while already browsing MainActivity
@@ -524,6 +522,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
             for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
                 findViewById(favsIds[i]).setVisibility(View.GONE);
             }
+
+            hideKeyboard();
         } else {
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

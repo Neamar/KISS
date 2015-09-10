@@ -42,7 +42,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
         // with distinct name share same number, they both get displayed)
         HashMap<String, ArrayList<ContactPojo>> mapContacts = new HashMap<>();
 
-        if (cur.getCount() > 0) {
+        if (cur != null && cur.getCount() > 0) {
             while (cur.moveToNext()) {
                 ContactPojo contact = new ContactPojo();
 
@@ -50,8 +50,8 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
                         .getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
                 contact.timesContacted = Integer.parseInt(cur.getString(cur
                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
-                contact.name = cur.getString(cur
-                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                contact.setName(cur.getString(cur
+                        .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
                 contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
                 if (contact.phone == null) {
@@ -74,7 +74,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
                 contact.id = pojoScheme + contact.lookupKey + contact.phone;
 
                 if (contact.name != null) {
-                    contact.nameLowerCased = StringNormalizer.normalize(contact.name);
+                    contact.nameNormalized = StringNormalizer.normalize(contact.name);
 
                     if (mapContacts.containsKey(contact.lookupKey))
                         mapContacts.get(contact.lookupKey).add(contact);

@@ -5,7 +5,6 @@ import android.content.Context;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -19,22 +18,30 @@ public class AppProvider extends Provider<AppPojo> {
         ArrayList<Pojo> records = new ArrayList<>();
 
         int relevance;
-        String appNameLowerCased;
+        int matchPositionStart;
+        int matchPositionEnd;
+        String appNameNormalized;
 
-        final String highlightRegexp = "(?i)(" + StringNormalizer.unNormalize(query) + ")";
+        final String queryWithSpace = " " + query;
         for (Pojo pojo : pojos) {
             relevance = 0;
-            appNameLowerCased = pojo.nameLowerCased;
-            if (appNameLowerCased.startsWith(query))
-                relevance = 100;
-            else if (appNameLowerCased.contains(" " + query))
-                relevance = 50;
-            else if (appNameLowerCased.contains(query))
-                relevance = 1;
+            appNameNormalized = pojo.nameNormalized;
+
+            matchPositionEnd = 0;
+            if (appNameNormalized.startsWith(query)) {
+                relevance          = 100;
+                matchPositionStart = 0;
+                matchPositionEnd   = query.length();
+            } else if ((matchPositionStart = appNameNormalized.indexOf(queryWithSpace)) > -1) {
+                relevance        = 50;
+                matchPositionEnd = matchPositionStart + queryWithSpace.length();
+            } else if ((matchPositionStart = appNameNormalized.indexOf(query)) > -1) {
+                relevance        = 1;
+                matchPositionEnd = matchPositionStart + query.length();
+            }
 
             if (relevance > 0) {
-                pojo.displayName = pojo.name.replaceFirst(
-                        highlightRegexp, "{$1}");
+                pojo.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 pojo.relevance = relevance;
                 records.add(pojo);
             }
