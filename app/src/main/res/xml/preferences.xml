@@ -2,12 +2,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   android:title="Settings">
     <PreferenceCategory android:title="@string/title_history">
-        <fr.neamar.kiss.ResetPreference
+        <fr.neamar.kiss.preference.ResetPreference
             android:dialogMessage="Do you really want to reset your history?"
             android:key="reset"
             android:summary="@string/reset_desc"
             android:title="@string/reset_name">
-        </fr.neamar.kiss.ResetPreference>
+        </fr.neamar.kiss.preference.ResetPreference>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_ui">
         <CheckBoxPreference
@@ -62,5 +62,12 @@
             android:title="@string/phone_name">
         </CheckBoxPreference>
     </PreferenceCategory>
-
+    <PreferenceCategory android:title="@string/title_advanced">
+        <fr.neamar.kiss.preference.RootModePreference
+            android:defaultValue="false"
+            android:key="root-mode"
+            android:summary="@string/root_mode_desc"
+            android:title="@string/root_mode_name">
+        </fr.neamar.kiss.preference.RootModePreference>
+    </PreferenceCategory>
 </PreferenceScreen>
