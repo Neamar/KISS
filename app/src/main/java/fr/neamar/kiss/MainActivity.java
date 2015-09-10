@@ -179,7 +179,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 RecordAdapter adapter = ((RecordAdapter) getListView().getAdapter());
 
-                adapter.onClick(adapter.getCount() - 1, v);
+                adapter.onClick(adapter.getCount() - 1, null);
 
                 return true;
             }
