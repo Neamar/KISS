@@ -308,6 +308,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
         super.onDestroy();
         // unregister our receiver
         this.unregisterReceiver(this.mReceiver);
+        KissApplication.getCameraHandler().releaseCamera();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        KissApplication.getCameraHandler().releaseCamera();
     }
 
     @Override
