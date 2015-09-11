@@ -111,8 +111,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
         if(theme.equals("dark")) {
             setTheme(R.style.AppThemeDark);
         }
-        if(theme.equals("transparent")) {
+        else if(theme.equals("transparent")) {
             setTheme(R.style.AppThemeTransparent);
+        }
+        else if(theme.equals("semi-transparent")) {
+            setTheme(R.style.AppThemeSemiTransparent);
         }
 
         super.onCreate(savedInstanceState);
@@ -176,7 +179,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 RecordAdapter adapter = ((RecordAdapter) getListView().getAdapter());
 
-                adapter.onClick(adapter.getCount() - 1, v);
+                adapter.onClick(adapter.getCount() - 1, null);
 
                 return true;
             }
@@ -305,6 +308,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
         super.onDestroy();
         // unregister our receiver
         this.unregisterReceiver(this.mReceiver);
+        KissApplication.getCameraHandler().releaseCamera();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        KissApplication.getCameraHandler().releaseCamera();
     }
 
     @Override

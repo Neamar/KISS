@@ -18,7 +18,7 @@ public abstract class Pojo {
 
     // Array that contains the non-normalized positions for every normalized
     // character entry
-    public int[] namePositionMap = null;
+    private int[] namePositionMap = null;
 
     // Name displayed on the screen, may contain HTML (for instance, to put
     // query text in blue)
@@ -35,7 +35,7 @@ public abstract class Pojo {
      * @param position Position in normalized name
      * @return Position in non-normalized string
      */
-    public int mapPosition(int position) {
+    private int mapPosition(int position) {
         if(this.namePositionMap != null) {
             if(position < this.namePositionMap.length) {
                 return this.namePositionMap[position];

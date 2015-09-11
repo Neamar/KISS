@@ -135,9 +135,9 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
                 {"com.asus.deskclock", "com.asus.deskclock.DeskClock"}
         };
 
-        for (int i = 0; i < clockImpls.length; i++) {
-            String packageName = clockImpls[i][0];
-            String className = clockImpls[i][1];
+        for (String[] clockImpl : clockImpls) {
+            String packageName = clockImpl[0];
+            String className = clockImpl[1];
             try {
                 ComponentName cn = new ComponentName(packageName, className);
 

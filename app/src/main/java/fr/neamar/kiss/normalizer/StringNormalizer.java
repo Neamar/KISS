@@ -70,8 +70,8 @@ public class StringNormalizer {
 
 
     /**
-     * @see StringNormalizer.normalizeWithMap(String)
-     *
+     * Normalize input string
+     * 
      * @param input string input, with accents and anything else you can think of
      * @return normalized string
      */
