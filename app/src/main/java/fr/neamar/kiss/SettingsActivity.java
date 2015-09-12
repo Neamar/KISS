@@ -27,7 +27,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equalsIgnoreCase("theme")) {
+        if (key.equalsIgnoreCase("theme") || key.equalsIgnoreCase("enable-spellcheck")) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).commit();
 

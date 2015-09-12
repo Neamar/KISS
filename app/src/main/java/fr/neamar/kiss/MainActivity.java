@@ -209,6 +209,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        if (prefs.getBoolean("enable-spellcheck", true)) {
+            searchEditText.setInputType(spellcheckEnabledType);
+        }
+
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
