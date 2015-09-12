@@ -46,6 +46,7 @@ public class CameraHandler {
 		} finally {
 			camera = null;
 			surfaceTexture = null;
+			torchState = false;
 		}
 	}
 
