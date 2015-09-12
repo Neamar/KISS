@@ -86,8 +86,6 @@ public class DBHelper {
      * @return total number of use for the application
      */
     public static int getHistoryLength(Context context) {
-        ArrayList<ValuedHistoryRecord> records;
-
         SQLiteDatabase db = getDatabase(context);
 
         // Cursor query (boolean distinct, String table, String[] columns,

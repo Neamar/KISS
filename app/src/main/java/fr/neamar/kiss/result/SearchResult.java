@@ -27,8 +27,8 @@ public class SearchResult extends Result {
             v = inflateFromId(context, R.layout.item_search);
 
         TextView appName = (TextView) v.findViewById(R.id.item_search_text);
-        appName.setText(enrichText(context.getString(R.string.ui_item_search) + " \"{"
-                + searchPojo.query + "}\""));
+        String text = context.getString(R.string.ui_item_search);
+        appName.setText(enrichText(String.format(text, "{" + searchPojo.query + "}")));
 
         return v;
     }

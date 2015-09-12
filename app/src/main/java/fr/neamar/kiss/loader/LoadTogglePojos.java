@@ -6,6 +6,7 @@ import android.os.Build;
 
 import java.util.ArrayList;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.TogglePojo;
 
@@ -30,6 +31,10 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
             // Not working after 4.4
             // See http://stackoverflow.com/questions/26539445/the-setmobiledataenabled-method-is-no-longer-callable-as-of-android-l-and-later
             toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.drawable.toggle_data));
+        }        
+        if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA) && pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH) && 
+        		KissApplication.getCameraHandler().isTorchAvailable()) {
+            toggles.add(createPojo(context.getString(R.string.toggle_torch), "torch", R.drawable.toggle_torch));
         }
 
         return toggles;
@@ -39,7 +44,7 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
         TogglePojo pojo = new TogglePojo();
         pojo.id = pojoScheme + name.toLowerCase();
         pojo.name = name;
-        pojo.nameLowerCased = pojo.name.toLowerCase();
+        pojo.nameNormalized = pojo.name.toLowerCase();
         pojo.settingName = settingName;
         pojo.icon = resId;
 

@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -64,6 +64,10 @@ public class AppResult extends Result {
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
+        //append root menu if available
+        if (KissApplication.getRootHandler(context).isRootActivated() && KissApplication.getRootHandler(context).isRootAvailable()) {
+        	menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
+        }        	
 
         return menu;
     }
@@ -79,6 +83,9 @@ public class AppResult extends Result {
                 // Also remove item, since it will be uninstalled
                 parent.removeResult(this);
                 return true;
+            case R.id.item_app_hibernate:
+                hibernate(context, appPojo);
+                return true;
         }
 
         return super.popupMenuClickHandler(context, parent, item);
@@ -91,6 +98,15 @@ public class AppResult extends Result {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.fromParts("package", app.packageName, null));
         context.startActivity(intent);
+    }
+    
+    private void hibernate(Context context, AppPojo app) {
+    	String msg = context.getResources().getString(R.string.toast_hibernate_completed);
+        if (!KissApplication.getRootHandler(context).hibernateApp(appPojo.packageName)) {
+        	msg = context.getResources().getString(R.string.toast_hibernate_error);	
+        }
+        
+        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 
     /**
