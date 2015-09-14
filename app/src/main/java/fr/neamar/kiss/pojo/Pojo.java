@@ -66,6 +66,7 @@ public abstract class Pojo {
         this.name = name;
 
         if(name != null) {
+            this.name = this.name.replaceAll("<", "&lt;");
             // Normalize name for faster searching
             Pair<String, int[]> normalized = StringNormalizer.normalizeWithMap(this.name);
             this.nameNormalized  = normalized.first;
