@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -78,16 +77,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
     private BroadcastReceiver mReceiver;
 
     /**
-     * Spellcheck related fields
+     * InputType with spellecheck and swiping
      */
     private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
                                               InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
-
-    // Use TYPE_TEXT_VARIATION_VISIBLE_PASSWORD because of Swiftkey
-    private final int spellcheckDisabledType = InputType.TYPE_CLASS_TEXT |
-                                               InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS |
-                                               InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
-
     /**
      * View for the Search text
      */
@@ -212,7 +205,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
-        if (prefs.getBoolean("enable-spellcheck", true)) {
+        // Enable swiping
+        if (prefs.getBoolean("enable-spellcheck", false)) {
             searchEditText.setInputType(spellcheckEnabledType);
         }
 
@@ -281,7 +275,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         if (prefs.getBoolean("require-layout-update", false)) {
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
-            prefs.edit().putBoolean("require-layout-update", false).apply();
+            prefs.edit().putBoolean("require-layout-update", false).commit();
             Intent i = new Intent(this, getClass());
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -315,16 +309,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
-        }
-
-        if (prefs.getBoolean("enable-spellcheck", true)) {
-            searchEditText.setInputType(spellcheckEnabledType);
-        }
-        else {
-            searchEditText.setInputType(spellcheckDisabledType);
-            // Setting TYPE_TEXT_VARIATION_VISIBLE_PASSWORD changes the font to a monospace
-            // one, so we have to reset it to the default one
-            searchEditText.setTypeface(Typeface.DEFAULT);
         }
 
         super.onResume();
