@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -74,6 +76,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
      */
     private SharedPreferences prefs;
     private BroadcastReceiver mReceiver;
+
+    /**
+     * Spellcheck related fields
+     */
+    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
+                                              InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+
+    // Use TYPE_TEXT_VARIATION_VISIBLE_PASSWORD because of Swiftkey
+    private final int spellcheckDisabledType = InputType.TYPE_CLASS_TEXT |
+                                               InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS |
+                                               InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
 
     /**
      * View for the Search text
@@ -199,6 +212,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        if (prefs.getBoolean("enable-spellcheck", true)) {
+            searchEditText.setInputType(spellcheckEnabledType);
+        }
+
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
@@ -298,6 +315,16 @@ public class MainActivity extends ListActivity implements QueryInterface {
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
+        }
+
+        if (prefs.getBoolean("enable-spellcheck", true)) {
+            searchEditText.setInputType(spellcheckEnabledType);
+        }
+        else {
+            searchEditText.setInputType(spellcheckDisabledType);
+            // Setting TYPE_TEXT_VARIATION_VISIBLE_PASSWORD changes the font to a monospace
+            // one, so we have to reset it to the default one
+            searchEditText.setTypeface(Typeface.DEFAULT);
         }
 
         super.onResume();
