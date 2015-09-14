@@ -64,10 +64,20 @@ public class AppResult extends Result {
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
+
+        try {
+            // app installed under /system can't be uninstalled
+            if(!context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0).sourceDir.contains("/system/")) {
+                menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
+            }
+        } catch (NameNotFoundException e) {
+            // should not happen
+        }
+
         //append root menu if available
         if (KissApplication.getRootHandler(context).isRootActivated() && KissApplication.getRootHandler(context).isRootAvailable()) {
-        	menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
-        }        	
+            menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
+        }
 
         return menu;
     }
