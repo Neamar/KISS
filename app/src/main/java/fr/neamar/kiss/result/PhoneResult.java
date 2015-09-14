@@ -2,6 +2,7 @@ package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
@@ -39,4 +40,8 @@ public class PhoneResult extends Result {
         context.startActivity(phone);
     }
 
+    @Override
+    public Drawable getDrawable(Context context) {
+        return context.getResources().getDrawable(android.R.drawable.ic_menu_call);
+    }
 }

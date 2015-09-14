@@ -17,6 +17,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -75,6 +76,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
     private SharedPreferences prefs;
     private BroadcastReceiver mReceiver;
 
+    /**
+     * InputType with spellecheck and swiping
+     */
+    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
+                                              InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     /**
      * View for the Search text
      */
@@ -199,6 +205,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        // Enable swiping
+        if (prefs.getBoolean("enable-spellcheck", false)) {
+            searchEditText.setInputType(spellcheckEnabledType);
+        }
+
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
@@ -264,7 +275,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         if (prefs.getBoolean("require-layout-update", false)) {
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
-            prefs.edit().putBoolean("require-layout-update", false).apply();
+            prefs.edit().putBoolean("require-layout-update", false).commit();
             Intent i = new Intent(this, getClass());
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
                     | Intent.FLAG_ACTIVITY_NO_ANIMATION);

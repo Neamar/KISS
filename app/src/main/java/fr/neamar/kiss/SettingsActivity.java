@@ -22,15 +22,12 @@ public class SettingsActivity extends PreferenceActivity implements
 
         prefs.registerOnSharedPreferenceChangeListener(this);
 
-        int historyLength = KissApplication.getDataHandler(this).getHistoryLength(this);
-        if (historyLength > 5) {
-            findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
-        }
+        fixSummaries(prefs);
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equalsIgnoreCase("theme")) {
+        if (key.equalsIgnoreCase("theme") || key.equalsIgnoreCase("enable-spellcheck")) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).commit();
 
@@ -48,6 +45,8 @@ public class SettingsActivity extends PreferenceActivity implements
             // Reload the DataHandler since Providers preferences have changed
             KissApplication.resetDataHandler(this);
         }
+
+        fixSummaries(sharedPreferences);
     }
 
     @Override
@@ -55,5 +54,12 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onPause();
         // We need to finish the Activity now, else the user may get back to the settings screen the next time he'll press home.
         finish();
+    }
+
+    private void fixSummaries(SharedPreferences prefs) {
+        int historyLength = KissApplication.getDataHandler(this).getHistoryLength(this);
+        if (historyLength > 5) {
+            findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
+        }
     }
 }

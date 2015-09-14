@@ -2,8 +2,8 @@
 <manifest
     package="fr.neamar.kiss"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="57"
-    android:versionName="2.8.0">
+    android:versionCode="60"
+    android:versionName="2.9.2">
 
     <!-- Self explanatory -->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -72,6 +72,11 @@
                 <category android:name="android.intent.category.HOME"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.ASSIST"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="com.android.systemui.action_assist_icon" android:resource="@drawable/ic_launcher" />
         </activity>
         <activity
             android:name="fr.neamar.kiss.SettingsActivity"

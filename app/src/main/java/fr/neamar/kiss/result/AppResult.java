@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -64,10 +66,22 @@ public class AppResult extends Result {
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
+
+        try {
+            // app installed under /system can't be uninstalled
+            ApplicationInfo ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
+            // Need to AND the flags with SYSTEM:
+            if((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
+            }
+        } catch (NameNotFoundException e) {
+            // should not happen
+        }
+
         //append root menu if available
         if (KissApplication.getRootHandler(context).isRootActivated() && KissApplication.getRootHandler(context).isRootAvailable()) {
-        	menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
-        }        	
+            menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
+        }
 
         return menu;
     }
