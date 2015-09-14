@@ -18,6 +18,11 @@ public class NewAppInstalledHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
+        if(intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)) {
+            // This is an upgrade, and we'll receive a new app install soon.
+            // No need to reset the datahandler twice.
+            return;
+        }
         KissApplication.resetDataHandler(ctx);
     }
 
