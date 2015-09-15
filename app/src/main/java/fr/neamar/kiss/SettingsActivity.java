@@ -41,12 +41,10 @@ public class SettingsActivity extends PreferenceActivity implements
             overridePendingTransition(0, 0);
             startActivity(intent);
             overridePendingTransition(0, 0);
-        } else if(!key.equalsIgnoreCase("require-layout-update")) {
+        } else {
             // Reload the DataHandler since Providers preferences have changed
             KissApplication.resetDataHandler(this);
         }
-
-        fixSummaries(sharedPreferences);
     }
 
     @Override
