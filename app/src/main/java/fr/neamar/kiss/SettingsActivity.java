@@ -8,10 +8,17 @@ import android.preference.PreferenceManager;
 
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
+
+    // Those settings can be set without resetting the DataHandler
+    private String safeSettings = "theme enable-spellcheck display-keyboard root-mode require-layout-update";
+    // Those settings require the app to restart
+    private String requireRestartSettings = "theme enable-spellcheck";
+    private SharedPreferences prefs;
+
     @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String theme = prefs.getString("theme", "light");
         if(theme.contains("dark")) {
             setTheme(R.style.SettingThemeDark);
@@ -20,14 +27,19 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
-        prefs.registerOnSharedPreferenceChangeListener(this);
-
         fixSummaries(prefs);
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        prefs.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equalsIgnoreCase("theme") || key.equalsIgnoreCase("enable-spellcheck")) {
+
+        if (requireRestartSettings.contains(key)) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).commit();
 
@@ -41,17 +53,20 @@ public class SettingsActivity extends PreferenceActivity implements
             overridePendingTransition(0, 0);
             startActivity(intent);
             overridePendingTransition(0, 0);
-        } else if(!key.equalsIgnoreCase("require-layout-update")) {
+            return;
+        }
+
+        if(!safeSettings.contains(key)){
             // Reload the DataHandler since Providers preferences have changed
             KissApplication.resetDataHandler(this);
         }
-
-        fixSummaries(sharedPreferences);
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        prefs.unregisterOnSharedPreferenceChangeListener(this);
+
         // We need to finish the Activity now, else the user may get back to the settings screen the next time he'll press home.
         finish();
     }
