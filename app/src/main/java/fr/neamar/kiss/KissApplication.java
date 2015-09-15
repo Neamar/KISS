@@ -2,6 +2,7 @@ package fr.neamar.kiss;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 public class KissApplication extends Application {
     /**
