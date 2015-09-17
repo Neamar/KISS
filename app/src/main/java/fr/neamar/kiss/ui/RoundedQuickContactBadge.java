@@ -75,8 +75,16 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
 
-        //Erase everything out of our little circle in clipPath and hence create the real rounded QuickContactBadge
-        canvas.clipPath(clipPath);
+        try {
+            //Erase everything out of our little circle in clipPath and hence create the real rounded QuickContactBadge
+            canvas.clipPath(clipPath);
+        }
+        catch(UnsupportedOperationException e) {
+            // clipPath() not supported on this device
+            // (often a bug with hardware acceleration on API18)
+            // http://stackoverflow.com/questions/8895677/work-around-canvas-clippath-that-is-not-supported-in-android-any-more/8895894#8895894
+
+        }
 
         //Do everything else that original badge does. Drawing of the overlay is also handled there
         super.onDraw(canvas);
