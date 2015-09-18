@@ -36,6 +36,9 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
         		KissApplication.getCameraHandler().isTorchAvailable()) {
             toggles.add(createPojo(context.getString(R.string.toggle_torch), "torch", R.drawable.toggle_torch));
         }
+        
+        //toggle for synchronization
+        toggles.add(createPojo(context.getString(R.string.toggle_sync), "sync", android.R.drawable.ic_popup_sync));
 
         return toggles;
     }
