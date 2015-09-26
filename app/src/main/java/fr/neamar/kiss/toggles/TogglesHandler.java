@@ -1,6 +1,7 @@
 package fr.neamar.kiss.toggles;
 
 import android.bluetooth.BluetoothAdapter;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
@@ -51,6 +52,8 @@ public class TogglesHandler {
                     return getSilentState();
                 case "torch":
                     return getTorchState();
+                case "sync":
+                    return getSyncState();
                 default:
                     Log.e("wtf", "Unsupported toggle for reading: " + pojo.settingName);
                     return false;
@@ -80,6 +83,8 @@ public class TogglesHandler {
                 case "torch":
                     setTorchState(state);
                     break;
+                case "sync":
+                    setSyncState(state);
                 default:
                     Log.e("wtf", "Unsupported toggle for update: " + pojo.settingName);
                     break;
@@ -158,5 +163,13 @@ public class TogglesHandler {
             audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
             audioManager.setStreamVolume(AudioManager.STREAM_RING, 0, AudioManager.FLAG_VIBRATE);
         }
+    }
+    
+    private Boolean getSyncState() {
+        return ContentResolver.getMasterSyncAutomatically();
+    }
+    
+    private void setSyncState(Boolean state) {
+        ContentResolver.setMasterSyncAutomatically(state);
     }
 }
