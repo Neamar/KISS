@@ -39,7 +39,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -573,7 +572,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         if (query.length() == 0) {
             searcher = new HistorySearcher(this);
         } else {
-            searcher = new QuerySearcher(this, StringNormalizer.normalize(query));
+            searcher = new QuerySearcher(this, query);
         }
         searcher.execute();
     }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadContactPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -16,6 +17,7 @@ public class ContactProvider extends Provider<ContactPojo> {
     }
 
     public ArrayList<Pojo> getResults(String query) {
+        query = StringNormalizer.normalize(query);
         ArrayList<Pojo> results = new ArrayList<>();
 
         // Search people with composed names, e.g "jean-marie"

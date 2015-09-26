@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadAliasPojos;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AliasPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -18,6 +19,8 @@ public class AliasProvider extends Provider<AliasPojo> {
     }
 
     public ArrayList<Pojo> getResults(String query) {
+        query = StringNormalizer.normalize(query);
+
         ArrayList<Pojo> results = new ArrayList<>();
 
         for (AliasPojo entry : pojos) {

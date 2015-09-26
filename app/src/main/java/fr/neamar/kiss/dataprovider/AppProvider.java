@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -15,6 +16,7 @@ public class AppProvider extends Provider<AppPojo> {
     }
 
     public ArrayList<Pojo> getResults(String query) {
+        query = StringNormalizer.normalize(query);
         ArrayList<Pojo> records = new ArrayList<>();
 
         int relevance;
