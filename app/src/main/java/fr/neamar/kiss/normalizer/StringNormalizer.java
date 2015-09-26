@@ -9,9 +9,20 @@ import java.text.Normalizer;
  */
 public class StringNormalizer {
     /**
-     * Return the input string, lower-cased, with all combining characters parts stripped
-     * (i.e. `ë` → `e`) and combination characters, consisting of one or more basic characters
-     * (i.e. `Ⅱ` → `II`), decomposed into their respective parts
+     * Make the given string easier to compare by performing a number of simplifications on it
+     *
+     *  1. Decompose combination characters into their respective parts (see below)
+     *  2. Strip all combining character marks (see below)
+     *  3. Strip some other common-but-not-very-useful characters (such as dashes)
+     *  4. Lower-case the string
+     *
+     * Combination characters are characters that (essentially) have the same meaning as one or
+     * more other, more common, characters. Examples for these include:
+     * Roman numerals (`Ⅱ` → `II`) and half-width katakana (`ﾐ` → `ミ`)
+     *
+     * Combining character marks are diacritics and other extra strokes that are often found as
+     * part of many characters in non-English roman scripts. Examples for these include:
+     * Diaereses (`ë` → `e`), acutes (`á` → `a`) and macrons (`ō` → `o`)
      *
      * @param input string input, with accents and anything else you can think of
      * @return normalized string and list that maps each result string position to its source
@@ -19,7 +30,7 @@ public class StringNormalizer {
      */
     public static Pair<String, int[]> normalizeWithMap(String input) {
         StringBuilder    resultString = new StringBuilder();
-        IntSequenceBuilder resultMap    = new IntSequenceBuilder(input.length() * 3 / 2);
+        IntSequenceBuilder resultMap  = new IntSequenceBuilder(input.length() * 3 / 2);
 
         StringBuilder charBuffer = new StringBuilder(2);
 
@@ -37,15 +48,18 @@ public class StringNormalizer {
             while(decomposedCharOffset < decomposedCharString.length()) {
                 int resultChar = decomposedCharString.codePointAt(decomposedCharOffset);
 
-                // Only process characters that are not combining Unicode
-                // characters. This way all the decomposed diacritical marks
-                // (and some other not-that-important modifiers), that were
-                // part of the original string or produced by the NFKD
-                // normalizer above, disappear.
+                // Skip characters for some unicode character classes, including:
+                //  * combining characters produced by the NFKD normalizer above
+                //  * dashes
+                // See the method's description for more information
                 switch(Character.getType(resultChar)) {
                     case Character.NON_SPACING_MARK:
                     case Character.COMBINING_SPACING_MARK:
                         // Some combining character found
+                        break;
+
+                    case Character.DASH_PUNCTUATION:
+                        // Some other unwanted character found
                         break;
 
                     default:
@@ -70,8 +84,10 @@ public class StringNormalizer {
 
 
     /**
-     * Normalize input string
-     * 
+     * Make the given string easier to compare by performing a number of simplifications on it
+     *
+     * @see StringNormalizer#normalizeWithMap(String)
+     *
      * @param input string input, with accents and anything else you can think of
      * @return normalized string
      */
