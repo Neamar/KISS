@@ -12,7 +12,7 @@ public class SettingsActivity extends PreferenceActivity implements
     // Those settings can be set without resetting the DataHandler
     private String safeSettings = "theme enable-spellcheck display-keyboard root-mode require-layout-update";
     // Those settings require the app to restart
-    private String requireRestartSettings = "theme enable-spellcheck";
+    private String requireRestartSettings = "theme enable-spellcheck force-portrait";
     private SharedPreferences prefs;
 
     @SuppressWarnings("deprecation")
