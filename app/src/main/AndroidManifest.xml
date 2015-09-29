@@ -4,6 +4,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:versionCode="62"
     android:versionName="2.9.4">
+    
+    <permission
+        android:name="com.android.launcher.permission.INSTALL_SHORTCUT"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
 
     <!-- Self explanatory -->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -28,6 +33,8 @@
     <!-- To read/write master sync status -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    
+    
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -107,6 +114,15 @@
         <receiver android:name=".broadcast.IncomingCallHandler">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>
+        </receiver>
+        
+        <!-- Intent received used to install shortcuts from other applications -->
+        <receiver
+            android:name=".broadcast.InstallShortcutHandler"
+            android:permission="com.android.launcher.permission.INSTALL_SHORTCUT">
+            <intent-filter>
+                <action android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
             </intent-filter>
         </receiver>
     </application>

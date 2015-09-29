@@ -18,11 +18,14 @@ import fr.neamar.kiss.dataprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.SettingProvider;
+import fr.neamar.kiss.dataprovider.ShortcutProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class DataHandler extends BroadcastReceiver {
 
@@ -32,6 +35,7 @@ public class DataHandler extends BroadcastReceiver {
     private final ArrayList<Provider<? extends Pojo>> providers = new ArrayList<>();
     private final AppProvider appProvider;
     private final ContactProvider contactProvider;
+    private final ShortcutProvider shortcutProvider;
     private String currentQuery;
     private int providersLoaded = 0;
 
@@ -72,6 +76,13 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-alias", true)) {
             providers.add(new AliasProvider(context, appProvider));
         }
+
+        if (prefs.getBoolean("enable-shortcuts", true)) {
+            shortcutProvider = (new ShortcutProvider(context));
+            providers.add(shortcutProvider);
+        } else {
+            shortcutProvider = null;
+        }
     }
 
     /**
@@ -87,8 +98,7 @@ public class DataHandler extends BroadcastReceiver {
         currentQuery = query;
 
         // Have we ever made the same query and selected something ?
-        ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
-                context, query);
+        ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(context, query);
         HashMap<String, Integer> knownIds = new HashMap<>();
         for (ValuedHistoryRecord id : lastIdsForQuery) {
             knownIds.put(id.record, id.value);
@@ -162,6 +172,10 @@ public class DataHandler extends BroadcastReceiver {
         return contactProvider;
     }
 
+    public ShortcutProvider getShortcutProvider() {
+        return shortcutProvider;
+    }
+
     /**
      * Return most used items.<br />
      * May return null if no items were ever selected (app first use)
@@ -176,7 +190,6 @@ public class DataHandler extends BroadcastReceiver {
         // Read history
         ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, limit);
 
-
         // Find associated items
         for (int i = 0; i < ids.size(); i++) {
             Pojo pojo = getPojo(ids.get(i).record);
@@ -184,7 +197,6 @@ public class DataHandler extends BroadcastReceiver {
                 favorites.add(pojo);
             }
         }
-
 
         return favorites;
     }
@@ -197,6 +209,30 @@ public class DataHandler extends BroadcastReceiver {
      */
     public void addToHistory(Context context, String id) {
         DBHelper.insertHistory(context, currentQuery, id);
+    }
+
+    public void addShortcut(Context context, ShortcutPojo pojo) {
+        ShortcutRecord record = new ShortcutRecord();
+        record.name = pojo.name;
+        record.iconResource = pojo.resourceName;
+        record.packageName = pojo.packageName;
+        record.intentUri = pojo.intentUri;
+
+        DBHelper.insertShortcut(context, record);
+    }
+
+    public ArrayList<ShortcutPojo> getShortcuts(Context context) {
+        ArrayList<ShortcutRecord> records = DBHelper.getShortcuts(context);
+        ArrayList<ShortcutPojo> pojos = new ArrayList<>();
+        for (ShortcutRecord shortcutRecord : records) {
+            ShortcutPojo pojo = getShortcutProvider().createPojo(shortcutRecord.name);
+            pojo.packageName = shortcutRecord.packageName;
+            pojo.resourceName = shortcutRecord.iconResource;
+            pojo.intentUri = shortcutRecord.intentUri;
+            pojos.add(pojo);
+        }
+
+        return pojos;
     }
 
     @Override

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DB extends SQLiteOpenHelper {
 
     public final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 1;
+    private final static int DB_VERSION = 2;
 
     public DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -16,11 +16,22 @@ public class DB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         database.execSQL("CREATE TABLE history ( _id INTEGER PRIMARY KEY AUTOINCREMENT, query TEXT, record TEXT NOT NULL)");
+        database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT NOT NULL,"
+        		+ "icon TEXT NOT NULL, intent_uri TEXT NOT NULL)");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         // See
         // http://www.drdobbs.com/database/using-sqlite-on-android/232900584
+    	if (oldVersion < newVersion) {
+    		switch (oldVersion) {
+			case 1:				
+				database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT NOT NULL,"
+		        		+ "icon TEXT NOT NULL, intent_uri TEXT NOT NULL)");
+			default:
+				break;
+			}
+    	}
     }
 }
