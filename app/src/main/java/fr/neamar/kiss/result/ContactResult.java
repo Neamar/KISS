@@ -129,14 +129,14 @@ public class ContactResult extends Result {
     private void copyPhone(Context context, ContactPojo contactPojo) {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
             android.text.ClipboardManager clipboard =
-                (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                    (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             clipboard.setText(contactPojo.phone);
         } else {
             android.content.ClipboardManager clipboard =
-                (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                    (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             android.content.ClipData clip = android.content.ClipData.newPlainText(
-                "Phone number for " + contactPojo.displayName,
-                contactPojo.phone);
+                    "Phone number for " + contactPojo.displayName,
+                    contactPojo.phone);
             clipboard.setPrimaryClip(clip);
         }
     }

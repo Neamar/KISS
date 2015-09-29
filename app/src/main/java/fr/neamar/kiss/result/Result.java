@@ -108,7 +108,7 @@ public abstract class Result {
      * Remove the current result from the list
      *
      * @param context android context
-     * @param parent adapter on which to remove the item
+     * @param parent  adapter on which to remove the item
      */
     private void removeItem(Context context, RecordAdapter parent) {
         Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();

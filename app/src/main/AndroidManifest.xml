@@ -38,11 +38,11 @@
     <uses-feature
         android:name="android.hardware.wifi"
         android:required="false"/>
-    <uses-feature 
-        android:name="android.hardware.camera" 
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="false"/>
-    <uses-feature 
-        android:name="android.hardware.camera.flash" 
+    <uses-feature
+        android:name="android.hardware.camera.flash"
         android:required="false"/>
 
     <application
@@ -78,7 +78,10 @@
                 <action android:name="android.intent.action.ASSIST"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
-            <meta-data android:name="com.android.systemui.action_assist_icon" android:resource="@drawable/ic_launcher" />
+
+            <meta-data
+                android:name="com.android.systemui.action_assist_icon"
+                android:resource="@drawable/ic_launcher"/>
         </activity>
         <activity
             android:name="fr.neamar.kiss.SettingsActivity"
