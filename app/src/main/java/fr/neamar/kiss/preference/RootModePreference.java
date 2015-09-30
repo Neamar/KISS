@@ -34,8 +34,7 @@ public class RootModePreference extends CheckBoxPreference {
 
         try {
             KissApplication.resetRootHandler(getContext());
-        }
-        catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             // uninitialized roothandler.
         }
     }

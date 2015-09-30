@@ -20,7 +20,7 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String theme = prefs.getString("theme", "light");
-        if(theme.contains("dark")) {
+        if (theme.contains("dark")) {
             setTheme(R.style.SettingThemeDark);
         }
 
@@ -56,7 +56,7 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if(!safeSettings.contains(key)){
+        if (!safeSettings.contains(key)) {
             // Reload the DataHandler since Providers preferences have changed
             KissApplication.resetDataHandler(this);
         }

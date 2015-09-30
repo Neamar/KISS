@@ -71,7 +71,7 @@ public class AppResult extends Result {
             // app installed under /system can't be uninstalled
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
             // Need to AND the flags with SYSTEM:
-            if((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+            if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
                 menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
             }
         } catch (NameNotFoundException e) {
@@ -113,13 +113,13 @@ public class AppResult extends Result {
                 Uri.fromParts("package", app.packageName, null));
         context.startActivity(intent);
     }
-    
+
     private void hibernate(Context context, AppPojo app) {
-    	String msg = context.getResources().getString(R.string.toast_hibernate_completed);
+        String msg = context.getResources().getString(R.string.toast_hibernate_completed);
         if (!KissApplication.getRootHandler(context).hibernateApp(appPojo.packageName)) {
-        	msg = context.getResources().getString(R.string.toast_hibernate_error);	
+            msg = context.getResources().getString(R.string.toast_hibernate_error);
         }
-        
+
         Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 

@@ -35,12 +35,12 @@ public class ContactProvider extends Provider<ContactPojo> {
             contactNameNormalized = contact.nameNormalized;
 
             matchPositionStart = 0;
-            matchPositionEnd   = 0;
+            matchPositionEnd = 0;
             if (contactNameNormalized.startsWith(query)) {
-                relevance        = 50;
+                relevance = 50;
                 matchPositionEnd = matchPositionStart + query.length();
             } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
-                relevance        = 40;
+                relevance = 40;
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
             }
 

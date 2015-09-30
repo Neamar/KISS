@@ -63,23 +63,20 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * We need to pad this number to account for removed items still in history
      */
     private final int tryToRetrieve = favsIds.length + 2;
-
+    /**
+     * InputType with spellecheck and swiping
+     */
+    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
+            InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     /**
      * Adapter to display records
      */
     public RecordAdapter adapter;
-
     /**
      * Store user preferences
      */
     private SharedPreferences prefs;
     private BroadcastReceiver mReceiver;
-
-    /**
-     * InputType with spellecheck and swiping
-     */
-    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
-                                              InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     /**
      * View for the Search text
      */
@@ -113,13 +110,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String theme = prefs.getString("theme", "light");
-        if(theme.equals("dark")) {
+        if (theme.equals("dark")) {
             setTheme(R.style.AppThemeDark);
-        }
-        else if(theme.equals("transparent")) {
+        } else if (theme.equals("transparent")) {
             setTheme(R.style.AppThemeTransparent);
-        }
-        else if(theme.equals("semi-transparent")) {
+        } else if (theme.equals("semi-transparent")) {
             setTheme(R.style.AppThemeSemiTransparent);
         }
 

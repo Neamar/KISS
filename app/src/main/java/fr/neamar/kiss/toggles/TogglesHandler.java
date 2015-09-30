@@ -137,16 +137,15 @@ public class TogglesHandler {
         else
             bluetoothAdapter.disable();
     }
-    
+
     private Boolean getTorchState() {
-    	return KissApplication.getCameraHandler().getTorchState();    	
+        return KissApplication.getCameraHandler().getTorchState();
     }
-    
+
     private void setTorchState(Boolean state) {
-    	KissApplication.getCameraHandler().setTorchState(state);    	
+        KissApplication.getCameraHandler().setTorchState(state);
     }
-    
-  
+
 
     private Boolean getSilentState() {
         int state = audioManager.getRingerMode();
@@ -164,11 +163,11 @@ public class TogglesHandler {
             audioManager.setStreamVolume(AudioManager.STREAM_RING, 0, AudioManager.FLAG_VIBRATE);
         }
     }
-    
+
     private Boolean getSyncState() {
         return ContentResolver.getMasterSyncAutomatically();
     }
-    
+
     private void setSyncState(Boolean state) {
         ContentResolver.setMasterSyncAutomatically(state);
     }

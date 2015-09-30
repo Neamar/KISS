@@ -3,12 +3,12 @@ package fr.neamar.kiss.normalizer;
 /**
  * Simple integer sequence class that allows adding individual elements and exporting those
  * elements to an integer array.
- *
+ * <p/>
  * Created by Alexander Schlarb on 17.08.15.
  */
 class IntSequenceBuilder {
     private int[] data;
-    private int   size;
+    private int size;
 
 
     /**
@@ -28,7 +28,7 @@ class IntSequenceBuilder {
      */
     public void add(int element) {
         // Resize storage array larger if required
-        if((this.size + 1) >= this.data.length) {
+        if ((this.size + 1) >= this.data.length) {
             int[] data = this.data;
             this.data = new int[(this.data.length * 3) / 2 + 1];
             System.arraycopy(data, 0, this.data, 0, this.size);
