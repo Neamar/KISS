@@ -2,24 +2,30 @@ package fr.neamar.kiss.loader;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
     private static String KISS_PACKAGE_NAME;
+    private static SharedPreferences prefs;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
 
         KISS_PACKAGE_NAME = context.getPackageName();
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
     }
 
     @Override
@@ -32,7 +38,12 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
         final List<ResolveInfo> appsInfo = manager.queryIntentActivities(mainIntent, 0);
-        Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
+        if (prefs.getString("sort-apps", "invertedAlphabetical").equals("invertedAlphabetical")) {
+            Collections.sort(appsInfo, Collections.reverseOrder(new ResolveInfo.DisplayNameComparator(manager)));
+        }
+        else {
+            Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
+        }
 
         ArrayList<AppPojo> apps = new ArrayList<>();
         for (ResolveInfo info : appsInfo) {
