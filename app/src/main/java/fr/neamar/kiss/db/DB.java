@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DB extends SQLiteOpenHelper {
 
     public final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 1;
+    private final static int DB_VERSION = 3;
 
     public DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

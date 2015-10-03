@@ -1,11 +1,4 @@
 test:
-  pre:
-    - emulator -avd circleci-android22 -no-audio -no-window:
-        background: true
-        parallel: true
   override:
     - ./gradlew assembleDebug
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
-    - circle-android wait-for-boot
-    - adb install app/build/outputs/apk/app-debug.apk
-    - adb shell monkey -p fr.neamar.kiss -v 1000
