@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
@@ -38,7 +37,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
         final List<ResolveInfo> appsInfo = manager.queryIntentActivities(mainIntent, 0);
-        if (prefs.getString("sort-apps", "invertedAlphabetical").equals("invertedAlphabetical")) {
+        if (prefs.getString("sort-apps", "alphabetical").equals("invertedAlphabetical")) {
             Collections.sort(appsInfo, Collections.reverseOrder(new ResolveInfo.DisplayNameComparator(manager)));
         }
         else {
