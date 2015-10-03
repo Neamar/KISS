@@ -10,7 +10,7 @@ public class PhoneNormalizer {
         if(phoneNumber == null) {
             return "";
         }
-        
+
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return PhoneNumberUtils.formatNumber(phoneNumber, Locale.getDefault().getCountry());
         } else {
