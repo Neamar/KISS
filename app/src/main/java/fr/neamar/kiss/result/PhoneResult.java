@@ -1,13 +1,19 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.ContactsContract;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.PhonePojo;
 
 public class PhoneResult extends Result {
@@ -28,6 +34,37 @@ public class PhoneResult extends Result {
         appName.setText(enrichText(String.format(text, "{" + phonePojo.phone + "}")));
 
         return v;
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
+        PopupMenu menu = new PopupMenu(context, parentView);
+        menu.getMenuInflater().inflate(R.menu.menu_item_phone, menu.getMenu());
+
+        return menu;
+    }
+
+    @Override
+    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_phone_createcontact:
+                // Create a new contact with this phone number
+                Intent createIntent = new Intent(Intent.ACTION_INSERT);
+                createIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+                createIntent.putExtra(ContactsContract.Intents.Insert.PHONE, phonePojo.phone);
+                createIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(createIntent);
+                return true;
+            case R.id.item_phone_sendmessage:
+                String url = "sms:" + phonePojo.phone;
+                Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+                messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(messageIntent);
+                return true;
+        }
+
+        return super.popupMenuClickHandler(context, parent, item);
     }
 
     @Override

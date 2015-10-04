@@ -1,0 +1,4 @@
+test:
+  override:
+    - ./gradlew assembleDebug
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
