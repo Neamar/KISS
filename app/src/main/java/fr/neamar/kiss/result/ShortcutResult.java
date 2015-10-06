@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,20 +30,8 @@ public class ShortcutResult extends Result {
         appName.setText(enrichText(shortcutPojo.displayName));
 
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
-        if (position < 15) {
-            appIcon.setImageDrawable(this.getDrawable(context));
-        } else {
-            // Do actions on a message queue to avoid performance issues on main
-            // thread
-            Handler handler = new Handler();
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    appIcon.setImageDrawable(getDrawable(context));
-                }
-            });
-        }
-
+        appIcon.setImageDrawable(this.getDrawable(context));
+        
         return v;
     }
 
