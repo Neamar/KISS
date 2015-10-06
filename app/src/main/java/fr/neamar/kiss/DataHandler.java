@@ -77,11 +77,9 @@ public class DataHandler extends BroadcastReceiver {
             providers.add(new AliasProvider(context, appProvider));
         }
 
-        if (prefs.getBoolean("enable-shortcuts", true)) {
-            shortcutProvider = (new ShortcutProvider(context));
+        shortcutProvider = (new ShortcutProvider(context));
+        if (prefs.getBoolean("enable-shortcuts", true)) {            
             providers.add(shortcutProvider);
-        } else {
-            shortcutProvider = null;
         }
     }
 
