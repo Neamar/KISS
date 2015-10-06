@@ -19,23 +19,32 @@ public class ShortcutProvider extends Provider<ShortcutPojo> {
         ArrayList<Pojo> results = new ArrayList<>();
 
         int relevance;
+        int matchPositionStart;
+        int matchPositionEnd;
         String shortcutNameLowerCased;
+        
+        final String queryWithSpace = " " + query;
         for (ShortcutPojo shortcut : pojos) {
             relevance = 0;
             shortcutNameLowerCased = shortcut.nameNormalized;
-            if (shortcutNameLowerCased.startsWith(query))
+            
+            matchPositionEnd = 0;
+            if (shortcutNameLowerCased.startsWith(query)) {
                 relevance = 75;
-            else if (shortcutNameLowerCased.contains(" " + query))
-                relevance = 30;
-            else if (shortcutNameLowerCased.contains(query))
-                relevance = 1;
-            else if (shortcutNameLowerCased.startsWith(query)) {
-                // Also display for a search on "settings" for instance
-                relevance = 4;
+                matchPositionStart = 0;
+                matchPositionEnd   = query.length();
             }
-
+            else if ((matchPositionStart = shortcutNameLowerCased.indexOf(queryWithSpace)) > -1) {
+                relevance = 50;
+                matchPositionEnd = matchPositionStart + queryWithSpace.length();
+            }
+            else if ((matchPositionStart = shortcutNameLowerCased.indexOf(query)) > -1) {
+                relevance = 1;
+                matchPositionEnd = matchPositionStart + query.length();
+            }
+            
             if (relevance > 0) {
-                shortcut.displayName = shortcut.name.replaceFirst("(?i)(" + Pattern.quote(query) + ")", "{$1}");
+                shortcut.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 shortcut.relevance = relevance;
                 results.add(shortcut);
             }
@@ -58,6 +67,7 @@ public class ShortcutProvider extends Provider<ShortcutPojo> {
     }
 
     public Pojo findById(String id) {
+        
         for (Pojo pojo : pojos) {
             if (pojo.id.equals(id)) {
                 pojo.displayName = pojo.name;
