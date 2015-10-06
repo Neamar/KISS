@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Intent.ShortcutIconResource;
+import android.graphics.Bitmap;
 import android.util.Log;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
@@ -25,30 +26,45 @@ public class InstallShortcutHandler extends BroadcastReceiver {
         Log.d("onReceive", "Received shortcut " + name);
         
         //avoid duplicates
-        if (sp.findByName(name) != null)
+        if (sp.findByName(name) != null) {
+            Log.d("onReceive", "Duplicated shortcut " + name + ", ignoring");
             return;
+        }
         
         Intent target = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_INTENT);
         if (target.getAction() == null) {
             target.setAction(Intent.ACTION_VIEW);
         }
 
-        ShortcutIconResource sir = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE);
-
-        if (sir != null) {
-            Log.d("onReceive", "Received icon package name " + sir.packageName);
-            Log.d("onReceive", "Received icon resource name " + sir.resourceName);
-
-            ShortcutPojo pojo = sp.createPojo(name);
-
-            pojo.packageName = sir.packageName;
-            pojo.resourceName = sir.resourceName;
-            // convert target intent to parsable uri
-            pojo.intentUri = target.toUri(0);
-
-            dh.addShortcut(context, pojo);
-            dh.getShortcutProvider().addShortcut(pojo);
+        ShortcutPojo pojo = sp.createPojo(name);
+        
+        // convert target intent to parsable uri
+        pojo.intentUri = target.toUri(0);
+        
+        //get embedded icon
+        Bitmap icon = (Bitmap) data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON);
+        if (icon != null) {
+            Log.d("onReceive", "Shortcut " + name + " has embedded icon");
+            pojo.icon = icon;
+        } else {        
+            ShortcutIconResource sir = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE);
+    
+            if (sir != null) {
+                Log.d("onReceive", "Received icon package name " + sir.packageName);
+                Log.d("onReceive", "Received icon resource name " + sir.resourceName);
+    
+                
+    
+                pojo.packageName = sir.packageName;
+                pojo.resourceName = sir.resourceName;                
+            } else { //invalid sourtcut
+                Log.d("onReceive", "Invalid shortcut " + name + ", ignoring");
+                return;
+            }
         }
+        
+        dh.addShortcut(context, pojo);
+        dh.getShortcutProvider().addShortcut(pojo);
 
     }
 

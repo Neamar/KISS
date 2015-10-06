@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
 
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -215,6 +217,12 @@ public class DataHandler extends BroadcastReceiver {
         record.iconResource = pojo.resourceName;
         record.packageName = pojo.packageName;
         record.intentUri = pojo.intentUri;
+        
+        if (pojo.icon != null) {
+            ByteBuffer bb = ByteBuffer.allocate(pojo.icon.getRowBytes() * pojo.icon.getHeight());        
+            pojo.icon.copyPixelsToBuffer(bb);        
+            record.icon_blob = bb.array();
+        }
 
         DBHelper.insertShortcut(context, record);
     }
@@ -227,6 +235,9 @@ public class DataHandler extends BroadcastReceiver {
             pojo.packageName = shortcutRecord.packageName;
             pojo.resourceName = shortcutRecord.iconResource;
             pojo.intentUri = shortcutRecord.intentUri;
+            if (shortcutRecord.icon_blob != null)
+                pojo.icon = BitmapFactory.decodeByteArray(shortcutRecord.icon_blob, 0, shortcutRecord.icon_blob.length);
+            
             pojos.add(pojo);
         }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
@@ -53,6 +54,11 @@ public class ShortcutResult extends Result {
         final PackageManager packageManager = context.getPackageManager();
         Resources resources;
         try {
+            
+            if (shortcutPojo.icon != null) {
+                return new BitmapDrawable(shortcutPojo.icon);
+            }
+            
             resources = packageManager.getResourcesForApplication(shortcutPojo.packageName);
             final int id = resources.getIdentifier(shortcutPojo.resourceName, null, null);
             return resources.getDrawable(id);

@@ -155,6 +155,7 @@ public class DBHelper {
         values.put("package", shortcut.packageName);
         values.put("icon", shortcut.iconResource);
         values.put("intent_uri", shortcut.intentUri);
+        values.put("icon_blob", shortcut.icon_blob);
         
         db.insert("shortcuts", null, values);
         db.close();
@@ -167,7 +168,7 @@ public class DBHelper {
         // Cursor query (String table, String[] columns, String selection,
         // String[] selectionArgs, String groupBy, String having, String
         // orderBy)
-        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri"},
+        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
                 null, null, null, null, null);
 
         cursor.moveToFirst();
@@ -178,6 +179,7 @@ public class DBHelper {
             entry.packageName = cursor.getString(1);
             entry.iconResource = cursor.getString(2);
             entry.intentUri = cursor.getString(3);
+            entry.icon_blob = cursor.getBlob(4);
 
             records.add(entry);
             cursor.moveToNext();

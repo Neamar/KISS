@@ -9,5 +9,7 @@ public class ShortcutRecord {
 	public String iconResource;
 	
 	public String intentUri;
+	
+	public byte[] icon_blob;
 
 }
