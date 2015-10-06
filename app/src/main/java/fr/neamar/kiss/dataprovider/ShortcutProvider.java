@@ -1,7 +1,6 @@
 package fr.neamar.kiss.dataprovider;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 import android.content.Context;
 import fr.neamar.kiss.loader.LoadShortcutPojos;
@@ -77,5 +76,14 @@ public class ShortcutProvider extends Provider<ShortcutPojo> {
 
         return null;
     }
+    
+    public Pojo findByName(String name) {
+        for (Pojo pojo : pojos) {
+            if (pojo.name.equals(name))
+                return pojo;
+        }
+        return null;
+    }
+
 
 }
