@@ -32,8 +32,7 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
             // See http://stackoverflow.com/questions/26539445/the-setmobiledataenabled-method-is-no-longer-callable-as-of-android-l-and-later
             toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.drawable.toggle_data));
         }
-        if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA) && pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH) &&
-                KissApplication.getCameraHandler().isTorchAvailable()) {
+        if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA) && KissApplication.getCameraHandler().isTorchAvailable()) {
             toggles.add(createPojo(context.getString(R.string.toggle_torch), "torch", R.drawable.toggle_torch));
         }
 

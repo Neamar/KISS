@@ -103,6 +103,11 @@ public class CameraHandler {
                 openCamera();
                 List<String> torchModes = camera.getParameters().getSupportedFlashModes();
                 releaseCamera();
+                
+                //no flash
+                if (torchModes == null)
+                    return false;
+                
                 for (String mode : torchModes) {
                     if (mode.equalsIgnoreCase(Camera.Parameters.FLASH_MODE_TORCH))
                         torchAvailable = true;
