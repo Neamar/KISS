@@ -66,10 +66,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/clearButton"
-            android:layout_toStartOf="@+id/clearButton"
-            android:layout_toRightOf="@+id/launcherButton"
             android:layout_toEndOf="@+id/launcherButton"
+            android:layout_toLeftOf="@+id/clearButton"
+            android:layout_toRightOf="@+id/launcherButton"
+            android:layout_toStartOf="@+id/clearButton"
             android:background="?attr/searchBackgroundColor"
             android:hint="@string/ui_search_hint"
             android:imeOptions="flagNoExtractUi|actionSearch"
@@ -87,7 +87,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:tint="?attr/searchColor"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
             android:onClick="onMenuButtonClicked"
@@ -96,6 +95,7 @@
             android:paddingRight="1dp"
             android:paddingTop="4dp"
             android:src="@drawable/dots"
+            android:tint="?attr/searchColor"
             />
 
         <ImageView

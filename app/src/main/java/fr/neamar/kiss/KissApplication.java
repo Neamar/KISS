@@ -2,7 +2,6 @@ package fr.neamar.kiss;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 public class KissApplication extends Application {
     /**
@@ -20,7 +19,7 @@ public class KissApplication extends Application {
         }
         return dataHandler;
     }
-    
+
     public static CameraHandler getCameraHandler() {
         if (cameraHandler == null) {
             cameraHandler = new CameraHandler();
@@ -29,14 +28,14 @@ public class KissApplication extends Application {
     }
 
     public static RootHandler getRootHandler(Context ctx) {
-    	if (rootHandler == null) {
-    		rootHandler = new RootHandler(ctx);
-    	}
-    	return rootHandler;
+        if (rootHandler == null) {
+            rootHandler = new RootHandler(ctx);
+        }
+        return rootHandler;
     }
-    
+
     public static void resetRootHandler(Context ctx) {
-    	rootHandler.resetRootHandler(ctx);
+        rootHandler.resetRootHandler(ctx);
     }
 
     public static void initDataHandler(Context ctx) {

@@ -78,8 +78,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         try {
             //Erase everything out of our little circle in clipPath and hence create the real rounded QuickContactBadge
             canvas.clipPath(clipPath);
-        }
-        catch(UnsupportedOperationException e) {
+        } catch (UnsupportedOperationException e) {
             // clipPath() not supported on this device
             // (often a bug with hardware acceleration on API18)
             // http://stackoverflow.com/questions/8895677/work-around-canvas-clippath-that-is-not-supported-in-android-any-more/8895894#8895894

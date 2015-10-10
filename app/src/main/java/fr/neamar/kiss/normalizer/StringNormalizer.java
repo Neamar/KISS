@@ -9,22 +9,33 @@ import java.text.Normalizer;
  */
 public class StringNormalizer {
     /**
-     * Return the input string, lower-cased, with all combining characters parts stripped
-     * (i.e. `ë` → `e`) and combination characters, consisting of one or more basic characters
-     * (i.e. `Ⅱ` → `II`), decomposed into their respective parts
+     * Make the given string easier to compare by performing a number of simplifications on it
+     * <p/>
+     * 1. Decompose combination characters into their respective parts (see below)
+     * 2. Strip all combining character marks (see below)
+     * 3. Strip some other common-but-not-very-useful characters (such as dashes)
+     * 4. Lower-case the string
+     * <p/>
+     * Combination characters are characters that (essentially) have the same meaning as one or
+     * more other, more common, characters. Examples for these include:
+     * Roman numerals (`Ⅱ` → `II`) and half-width katakana (`ﾐ` → `ミ`)
+     * <p/>
+     * Combining character marks are diacritics and other extra strokes that are often found as
+     * part of many characters in non-English roman scripts. Examples for these include:
+     * Diaereses (`ë` → `e`), acutes (`á` → `a`) and macrons (`ō` → `o`)
      *
      * @param input string input, with accents and anything else you can think of
      * @return normalized string and list that maps each result string position to its source
-     *         string position
+     * string position
      */
     public static Pair<String, int[]> normalizeWithMap(String input) {
-        StringBuilder    resultString = new StringBuilder();
-        IntSequenceBuilder resultMap    = new IntSequenceBuilder(input.length() * 3 / 2);
+        StringBuilder resultString = new StringBuilder();
+        IntSequenceBuilder resultMap = new IntSequenceBuilder(input.length() * 3 / 2);
 
         StringBuilder charBuffer = new StringBuilder(2);
 
         int inputOffset = 0, inputLength = input.length();
-        while(inputOffset < inputLength) {
+        while (inputOffset < inputLength) {
             int inputChar = input.codePointAt(inputOffset);
 
             // Decompose codepoint at given position
@@ -34,18 +45,21 @@ public class StringNormalizer {
 
             // `inputChar` codepoint may be decomposed to four (or maybe even more) new code points
             int decomposedCharOffset = 0;
-            while(decomposedCharOffset < decomposedCharString.length()) {
+            while (decomposedCharOffset < decomposedCharString.length()) {
                 int resultChar = decomposedCharString.codePointAt(decomposedCharOffset);
 
-                // Only process characters that are not combining Unicode
-                // characters. This way all the decomposed diacritical marks
-                // (and some other not-that-important modifiers), that were
-                // part of the original string or produced by the NFKD
-                // normalizer above, disappear.
-                switch(Character.getType(resultChar)) {
+                // Skip characters for some unicode character classes, including:
+                //  * combining characters produced by the NFKD normalizer above
+                //  * dashes
+                // See the method's description for more information
+                switch (Character.getType(resultChar)) {
                     case Character.NON_SPACING_MARK:
                     case Character.COMBINING_SPACING_MARK:
                         // Some combining character found
+                        break;
+
+                    case Character.DASH_PUNCTUATION:
+                        // Some other unwanted character found
                         break;
 
                     default:
@@ -70,10 +84,11 @@ public class StringNormalizer {
 
 
     /**
-     * Normalize input string
-     * 
+     * Make the given string easier to compare by performing a number of simplifications on it
+     *
      * @param input string input, with accents and anything else you can think of
      * @return normalized string
+     * @see StringNormalizer#normalizeWithMap(String)
      */
     public static String normalize(String input) {
         return StringNormalizer.normalizeWithMap(input).first;

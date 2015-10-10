@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -63,23 +64,20 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * We need to pad this number to account for removed items still in history
      */
     private final int tryToRetrieve = favsIds.length + 2;
-
+    /**
+     * InputType with spellecheck and swiping
+     */
+    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
+            InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     /**
      * Adapter to display records
      */
     public RecordAdapter adapter;
-
     /**
      * Store user preferences
      */
     private SharedPreferences prefs;
     private BroadcastReceiver mReceiver;
-
-    /**
-     * InputType with spellecheck and swiping
-     */
-    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
-                                              InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     /**
      * View for the Search text
      */
@@ -113,13 +111,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String theme = prefs.getString("theme", "light");
-        if(theme.equals("dark")) {
+        if (theme.equals("dark")) {
             setTheme(R.style.AppThemeDark);
-        }
-        else if(theme.equals("transparent")) {
+        } else if (theme.equals("transparent")) {
             setTheme(R.style.AppThemeTransparent);
-        }
-        else if(theme.equals("semi-transparent")) {
+        } else if (theme.equals("semi-transparent")) {
             setTheme(R.style.AppThemeSemiTransparent);
         }
 
@@ -150,6 +146,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // Initialize preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // Lock launcher into portrait mode
+        // Do it here (before initializing the view) to make the transition as smooth as possible
+        if (prefs.getBoolean("force-portrait", true)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+        }
 
         setContentView(R.layout.main);
 

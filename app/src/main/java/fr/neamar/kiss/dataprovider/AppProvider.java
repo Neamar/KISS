@@ -31,14 +31,14 @@ public class AppProvider extends Provider<AppPojo> {
 
             matchPositionEnd = 0;
             if (appNameNormalized.startsWith(query)) {
-                relevance          = 100;
+                relevance = 100;
                 matchPositionStart = 0;
-                matchPositionEnd   = query.length();
+                matchPositionEnd = query.length();
             } else if ((matchPositionStart = appNameNormalized.indexOf(queryWithSpace)) > -1) {
-                relevance        = 50;
+                relevance = 50;
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
             } else if ((matchPositionStart = appNameNormalized.indexOf(query)) > -1) {
-                relevance        = 1;
+                relevance = 1;
                 matchPositionEnd = matchPositionStart + query.length();
             }
 
