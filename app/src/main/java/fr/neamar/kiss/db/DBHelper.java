@@ -190,4 +190,10 @@ public class DBHelper {
         return records;
     }
     
+    public static void removeShortcut(Context context, String name) {
+        SQLiteDatabase db = getDatabase(context);
+        db.delete("shortcuts", "name = ?", new String[]{name});
+        db.close();
+    }
+    
 }

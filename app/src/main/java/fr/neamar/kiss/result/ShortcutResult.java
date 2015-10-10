@@ -7,11 +7,17 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class ShortcutResult extends Result {
@@ -66,6 +72,37 @@ public class ShortcutResult extends Result {
 
         }
         return null;
+    }
+    
+    @Override
+    PopupMenu buildPopupMenu(Context context, RecordAdapter parent, View parentView) {
+        PopupMenu menu = super.buildPopupMenu(context, parent, parentView);
+        
+        //add uninstall menu
+        menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
+        
+        return menu;
+    }
+    
+    @Override
+    Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.item_app_uninstall:
+            launchUninstall(context, shortcutPojo);
+            // Also remove item, since it will be uninstalled
+            parent.removeResult(this);
+            return true;
+        
+        }
+        return super.popupMenuClickHandler(context, parent, item);
+    }
+    
+    private void launchUninstall(Context context, ShortcutPojo shortcutPojo) {
+        DataHandler dh = KissApplication.getDataHandler(context);
+        if (dh != null) {
+            dh.getShortcutProvider().removeShortcut(shortcutPojo);
+            dh.removeShortcut(context, shortcutPojo.name);
+        } 
     }
 
 }

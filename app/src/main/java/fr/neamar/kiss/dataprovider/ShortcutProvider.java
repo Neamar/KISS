@@ -55,6 +55,10 @@ public class ShortcutProvider extends Provider<ShortcutPojo> {
     public void addShortcut(ShortcutPojo shortcut) {
         this.pojos.add(shortcut);
     }
+    
+    public void removeShortcut(ShortcutPojo shortcut) {
+        this.pojos.remove(shortcut);
+    }
 
     public ShortcutPojo createPojo(String name) {
         ShortcutPojo pojo = new ShortcutPojo();

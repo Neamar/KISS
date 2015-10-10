@@ -243,6 +243,10 @@ public class DataHandler extends BroadcastReceiver {
 
         return pojos;
     }
+    
+    public void removeShortcut(Context context, String name) {
+        DBHelper.removeShortcut(context, name);
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
