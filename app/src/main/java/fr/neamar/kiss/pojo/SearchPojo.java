@@ -1,5 +1,5 @@
 package fr.neamar.kiss.pojo;
 
-public class SearchPojo extends Pojo {
+public class SearchPojo extends AppPojo {
     public String query = "";
 }
