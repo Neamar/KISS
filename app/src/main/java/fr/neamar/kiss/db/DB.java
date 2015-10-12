@@ -16,11 +16,22 @@ public class DB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         database.execSQL("CREATE TABLE history ( _id INTEGER PRIMARY KEY AUTOINCREMENT, query TEXT, record TEXT NOT NULL)");
+        database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
+        		+ "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         // See
         // http://www.drdobbs.com/database/using-sqlite-on-android/232900584
+    	if (oldVersion < newVersion) {
+    		switch (oldVersion) {
+			case 1:				
+				database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
+		        		+ "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
+			default:
+				break;
+			}
+    	}
     }
 }

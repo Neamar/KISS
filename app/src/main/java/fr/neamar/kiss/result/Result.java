@@ -23,6 +23,7 @@ import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.pojo.TogglePojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 
@@ -45,6 +46,8 @@ public abstract class Result {
             return new ToggleResult((TogglePojo) pojo);
         else if (pojo instanceof PhonePojo)
             return new PhoneResult((PhonePojo) pojo);
+        else if (pojo instanceof ShortcutPojo)
+            return new ShortcutResult((ShortcutPojo) pojo);
 
         throw new RuntimeException("Unable to create a result from POJO");
     }

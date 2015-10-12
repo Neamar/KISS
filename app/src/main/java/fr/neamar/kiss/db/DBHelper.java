@@ -146,4 +146,54 @@ public class DBHelper {
         db.close();
         return records;
     }
+    
+    public static void insertShortcut(Context context, ShortcutRecord shortcut) {
+        SQLiteDatabase db = getDatabase(context);
+
+        ContentValues values = new ContentValues();
+        values.put("name", shortcut.name);
+        values.put("package", shortcut.packageName);
+        values.put("icon", shortcut.iconResource);
+        values.put("intent_uri", shortcut.intentUri);
+        values.put("icon_blob", shortcut.icon_blob);
+        
+        db.insert("shortcuts", null, values);
+        db.close();
+    }
+    
+    public static ArrayList<ShortcutRecord> getShortcuts(Context context) {
+        ArrayList<ShortcutRecord> records = new ArrayList<>();
+        SQLiteDatabase db = getDatabase(context);
+
+        // Cursor query (String table, String[] columns, String selection,
+        // String[] selectionArgs, String groupBy, String having, String
+        // orderBy)
+        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
+                null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+        	ShortcutRecord entry = new ShortcutRecord();
+
+            entry.name = cursor.getString(0);
+            entry.packageName = cursor.getString(1);
+            entry.iconResource = cursor.getString(2);
+            entry.intentUri = cursor.getString(3);
+            entry.icon_blob = cursor.getBlob(4);
+
+            records.add(entry);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        
+        db.close();
+        return records;
+    }
+    
+    public static void removeShortcut(Context context, String name) {
+        SQLiteDatabase db = getDatabase(context);
+        db.delete("shortcuts", "name = ?", new String[]{name});
+        db.close();
+    }
+    
 }
