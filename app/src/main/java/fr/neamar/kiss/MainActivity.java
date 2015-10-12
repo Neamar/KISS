@@ -150,7 +150,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // Lock launcher into portrait mode
         // Do it here (before initializing the view) to make the transition as smooth as possible
         if (prefs.getBoolean("force-portrait", true)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
         }
 
         setContentView(R.layout.main);
