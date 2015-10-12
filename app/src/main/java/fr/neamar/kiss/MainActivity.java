@@ -578,13 +578,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
             {
                 searcher = new NullSearcher(this);
                 //Hide default scrollview
-                ((LinearLayout)findViewById(R.id.main_empty)).setVisibility(View.INVISIBLE);
+                findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
 
             }
             else {
                 searcher = new HistorySearcher(this);
                 //Show default scrollview
-                ((LinearLayout)findViewById(R.id.main_empty)).setVisibility(View.VISIBLE);
+                findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         } else {
             searcher = new QuerySearcher(this, query);
