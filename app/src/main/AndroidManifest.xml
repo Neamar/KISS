@@ -4,6 +4,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:versionCode="64"
     android:versionName="2.10.1">
+    
+    <permission
+        android:name="com.android.launcher.permission.INSTALL_SHORTCUT"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
+    
+    <permission
+        android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
 
     <!-- Self explanatory -->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
@@ -117,6 +127,23 @@
         <receiver android:name=".broadcast.IncomingCallHandler">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>
+        </receiver>
+        
+        <!-- Intents received used to install/uninstall shortcuts from other applications -->
+        <receiver
+            android:name=".broadcast.InstallShortcutHandler"
+            android:permission="com.android.launcher.permission.INSTALL_SHORTCUT">
+            <intent-filter>
+                <action android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver
+            android:name=".broadcast.UninstallShortcutHandler"
+            android:permission="com.android.launcher.permission.UNINSTALL_SHORTCUT">
+            <intent-filter>
+                <action android:name="com.android.launcher.action.UNINSTALL_SHORTCUT" />
             </intent-filter>
         </receiver>
     </application>

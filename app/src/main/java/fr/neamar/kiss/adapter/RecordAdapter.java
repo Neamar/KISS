@@ -18,6 +18,7 @@ import fr.neamar.kiss.result.PhoneResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.SearchResult;
 import fr.neamar.kiss.result.SettingResult;
+import fr.neamar.kiss.result.ShortcutResult;
 import fr.neamar.kiss.result.ToggleResult;
 import fr.neamar.kiss.searcher.QueryInterface;
 
@@ -38,7 +39,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     public int getViewTypeCount() {
-        return 6;
+        return 7;
     }
 
     public int getItemViewType(int position) {
@@ -54,6 +55,8 @@ public class RecordAdapter extends ArrayAdapter<Result> {
             return 4;
         else if (results.get(position) instanceof PhoneResult)
             return 5;
+        else if (results.get(position) instanceof ShortcutResult)
+            return 6;
         else
             return -1;
     }

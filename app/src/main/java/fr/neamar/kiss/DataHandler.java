@@ -1,16 +1,17 @@
 package fr.neamar.kiss;
 
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactProvider;
@@ -18,11 +19,14 @@ import fr.neamar.kiss.dataprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.SettingProvider;
+import fr.neamar.kiss.dataprovider.ShortcutProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class DataHandler extends BroadcastReceiver {
 
@@ -32,6 +36,7 @@ public class DataHandler extends BroadcastReceiver {
     private final ArrayList<Provider<? extends Pojo>> providers = new ArrayList<>();
     private final AppProvider appProvider;
     private final ContactProvider contactProvider;
+    private final ShortcutProvider shortcutProvider;
     private String currentQuery;
     private int providersLoaded = 0;
 
@@ -72,6 +77,11 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-alias", true)) {
             providers.add(new AliasProvider(context, appProvider));
         }
+        shortcutProvider = (new ShortcutProvider(context));
+        if (prefs.getBoolean("enable-shortcuts", true)) {            
+            providers.add(shortcutProvider);
+        } 
+
     }
 
     /**
@@ -161,6 +171,11 @@ public class DataHandler extends BroadcastReceiver {
     public ContactProvider getContactProvider() {
         return contactProvider;
     }
+    
+    public ShortcutProvider getShortcutProvider() {
+        return shortcutProvider;
+    }
+
 
     /**
      * Return most used items.<br />
@@ -199,6 +214,46 @@ public class DataHandler extends BroadcastReceiver {
         DBHelper.insertHistory(context, currentQuery, id);
     }
 
+    public void addShortcut(Context context, ShortcutPojo pojo) {
+        ShortcutRecord record = new ShortcutRecord();
+        record.name = pojo.name;
+        record.iconResource = pojo.resourceName;
+        record.packageName = pojo.packageName;
+        record.intentUri = pojo.intentUri;
+        
+        if (pojo.icon != null) {
+            ByteBuffer bb = ByteBuffer.allocate(pojo.icon.getRowBytes() * pojo.icon.getHeight());        
+            pojo.icon.copyPixelsToBuffer(bb);        
+            record.icon_blob = bb.array();
+        }
+
+
+        DBHelper.insertShortcut(context, record);
+    }
+
+    public ArrayList<ShortcutPojo> getShortcuts(Context context) {
+        ArrayList<ShortcutRecord> records = DBHelper.getShortcuts(context);
+        ArrayList<ShortcutPojo> pojos = new ArrayList<>();
+        for (ShortcutRecord shortcutRecord : records) {
+            ShortcutPojo pojo = getShortcutProvider().createPojo(shortcutRecord.name);
+            pojo.packageName = shortcutRecord.packageName;
+            pojo.resourceName = shortcutRecord.iconResource;
+            pojo.intentUri = shortcutRecord.intentUri;
+            if (shortcutRecord.icon_blob != null)
+                pojo.icon = BitmapFactory.decodeByteArray(shortcutRecord.icon_blob, 0, shortcutRecord.icon_blob.length);
+            
+
+            pojos.add(pojo);
+        }
+
+        return pojos;
+    }
+    
+    public void removeShortcut(Context context, String name) {
+            DBHelper.removeShortcut(context, name);
+    }
+
+    
     @Override
     public void onReceive(Context context, Intent intent) {
         providersLoaded++;
