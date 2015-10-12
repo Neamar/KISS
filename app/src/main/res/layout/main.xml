@@ -124,14 +124,14 @@
         android:layout_above="@id/searchEditLayout"
         android:visibility="gone">
 
-        <include layout="@layout/main_empty"/>
+        <include android:id="@+id/main_empty" layout="@layout/main_empty"/>
     </ScrollView>
 
     <include
         android:id="@+id/main_kissbar"
         layout="@layout/main_kissbar"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@android:id/list"
