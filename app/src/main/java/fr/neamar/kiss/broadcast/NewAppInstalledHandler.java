@@ -18,6 +18,16 @@ public class NewAppInstalledHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
+
+        if ("android.intent.action.PACKAGE_ADDED".equals(intent.getAction())) {
+            // Add new package to history
+            String packageName = intent.getData().getSchemeSpecificPart();
+            String className = ctx.getPackageManager().getLaunchIntentForPackage(packageName).getComponent().getClassName();
+            if (className != null) {
+                KissApplication.getDataHandler(ctx).addToHistory(ctx, "app://" + packageName + "/" + className);
+            }
+        }
+
         KissApplication.resetDataHandler(ctx);
     }
 
