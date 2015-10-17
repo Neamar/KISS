@@ -20,6 +20,7 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.TextKeyListener;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -195,6 +196,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 adapter.onClick(adapter.getCount() - 1, null);
 
                 return true;
+            }
+        });
+
+        searchEditText.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (prefs.getBoolean("history-hide", false)) {
+                    searcher = new HistorySearcher(MainActivity.this);
+                    searcher.execute();
+                }
             }
         });
 
