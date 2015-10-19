@@ -32,6 +32,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -44,6 +45,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
+import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
@@ -150,7 +152,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // Lock launcher into portrait mode
         // Do it here (before initializing the view) to make the transition as smooth as possible
         if (prefs.getBoolean("force-portrait", true)) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
         }
 
         setContentView(R.layout.main);
@@ -572,7 +578,18 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
 
         if (query.length() == 0) {
-            searcher = new HistorySearcher(this);
+            if (prefs.getBoolean("history-hide", false))
+            {
+                searcher = new NullSearcher(this);
+                //Hide default scrollview
+                findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
+
+            }
+            else {
+                searcher = new HistorySearcher(this);
+                //Show default scrollview
+                findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
+            }
         } else {
             searcher = new QuerySearcher(this, query);
         }
