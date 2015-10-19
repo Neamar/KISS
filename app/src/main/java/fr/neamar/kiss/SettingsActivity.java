@@ -28,6 +28,7 @@ public class SettingsActivity extends PreferenceActivity implements
         addPreferencesFromResource(R.xml.preferences);
 
         fixSummaries(prefs);
+        fixMenus(prefs);
     }
 
     @Override
@@ -36,8 +37,14 @@ public class SettingsActivity extends PreferenceActivity implements
         prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+        if (key.equals("history-hide")) {
+            findPreference("history-onclick").setEnabled(prefs.getBoolean(key, true));
+        }
+
 
         if (requireRestartSettings.contains(key)) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -76,5 +83,10 @@ public class SettingsActivity extends PreferenceActivity implements
         if (historyLength > 5) {
             findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void fixMenus(SharedPreferences prefs) {
+        findPreference("history-onclick").setEnabled(prefs.getBoolean("history-hide", false));
     }
 }

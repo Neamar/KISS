@@ -203,7 +203,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
             @Override
             public void onClick(View v) {
-                if (prefs.getBoolean("history-hide", false)) {
+                if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
                     searcher = new HistorySearcher(MainActivity.this);
                     searcher.execute();
                 }
