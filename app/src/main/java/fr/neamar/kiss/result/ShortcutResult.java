@@ -19,7 +19,6 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class ShortcutResult extends Result {
@@ -61,12 +60,12 @@ public class ShortcutResult extends Result {
     public Drawable getDrawable(Context context) {
         final PackageManager packageManager = context.getPackageManager();
         Resources resources;
-        try {
-            
-            if (shortcutPojo.icon != null) {
-                return new BitmapDrawable(shortcutPojo.icon);
-            }
-            
+        
+        if (shortcutPojo.icon != null) {
+            return new BitmapDrawable(shortcutPojo.icon);
+        }
+        
+        try {           
             resources = packageManager.getResourcesForApplication(shortcutPojo.packageName);
             final int id = resources.getIdentifier(shortcutPojo.resourceName, null, null);
             return resources.getDrawable(id);
@@ -103,8 +102,7 @@ public class ShortcutResult extends Result {
     private void launchUninstall(Context context, ShortcutPojo shortcutPojo) {
         DataHandler dh = KissApplication.getDataHandler(context);
         if (dh != null) {
-            dh.getShortcutProvider().removeShortcut(shortcutPojo);
-            dh.removeShortcut(context, shortcutPojo.name);
+            dh.getShortcutProvider().removeShortcut(shortcutPojo);            
         } 
     }
 

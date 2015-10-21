@@ -1,16 +1,23 @@
 package fr.neamar.kiss.dataprovider;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Bitmap.CompressFormat;
+import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.loader.LoadShortcutPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class ShortcutProvider extends Provider<ShortcutPojo> {
+    
+    Context context = null;
 
-    public ShortcutProvider(Context context) {
+    public ShortcutProvider(Context context) {        
         super(new LoadShortcutPojos(context));
+        this.context = context;
     }
 
     @Override
@@ -53,21 +60,28 @@ public class ShortcutProvider extends Provider<ShortcutPojo> {
     }
 
     public void addShortcut(ShortcutPojo shortcut) {
+        ShortcutRecord record = new ShortcutRecord();
+        record.name = shortcut.name;
+        record.iconResource = shortcut.resourceName;
+        record.packageName = shortcut.packageName;
+        record.intentUri = shortcut.intentUri;
+        
+        if (shortcut.icon != null) {            
+               ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+               shortcut.icon.compress(CompressFormat.PNG,100,baos);               
+               record.icon_blob = baos.toByteArray();            
+        }        
+        
+        DBHelper.insertShortcut(this.context, record);
         this.pojos.add(shortcut);
     }
     
     public void removeShortcut(ShortcutPojo shortcut) {
+        DBHelper.removeShortcut(context, shortcut.name);
         this.pojos.remove(shortcut);
     }
 
-    public ShortcutPojo createPojo(String name) {
-        ShortcutPojo pojo = new ShortcutPojo();
-
-        pojo.id = ShortcutPojo.SCHEME + name.toLowerCase();
-        pojo.setName(name);
-
-        return pojo;
-    }
+    
 
     public Pojo findById(String id) {
         

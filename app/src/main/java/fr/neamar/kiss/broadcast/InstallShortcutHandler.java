@@ -26,7 +26,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
         Log.d("onReceive", "Received shortcut " + name);
         
         //avoid duplicates
-        if (sp.findByName(name) != null) {
+        if (sp.findByName(name) != null || dh.getContactProvider().findByName(name) != null || dh.getAppProvider().findByName(name) != null ) {
             Log.d("onReceive", "Duplicated shortcut " + name + ", ignoring");
             return;
         }
@@ -36,7 +36,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
             target.setAction(Intent.ACTION_VIEW);
         }
 
-        ShortcutPojo pojo = sp.createPojo(name);
+        ShortcutPojo pojo = createPojo(name);
         
         // convert target intent to parsable uri
         pojo.intentUri = target.toUri(0);
@@ -53,8 +53,6 @@ public class InstallShortcutHandler extends BroadcastReceiver {
                 Log.d("onReceive", "Received icon package name " + sir.packageName);
                 Log.d("onReceive", "Received icon resource name " + sir.resourceName);
     
-                
-    
                 pojo.packageName = sir.packageName;
                 pojo.resourceName = sir.resourceName;                
             } else { //invalid sourtcut
@@ -62,10 +60,18 @@ public class InstallShortcutHandler extends BroadcastReceiver {
                 return;
             }
         }
-        
-        dh.addShortcut(context, pojo);
+                
         dh.getShortcutProvider().addShortcut(pojo);
 
     }
+    
+    public ShortcutPojo createPojo(String name) {
+        ShortcutPojo pojo = new ShortcutPojo();
+
+        pojo.id = ShortcutPojo.SCHEME + name.toLowerCase();
+        pojo.setName(name);
+
+        return pojo;
+    }   
 
 }

@@ -16,6 +16,9 @@ public class UninstallShortcutHandler extends BroadcastReceiver {
 
         DataHandler dh = KissApplication.getDataHandler(context);
         ShortcutProvider sp = dh.getShortcutProvider();
+        
+        if (sp == null)
+            return;
       
         String name = data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME);
         Log.d("onReceive", "Uninstall shortcut " + name);
@@ -26,8 +29,7 @@ public class UninstallShortcutHandler extends BroadcastReceiver {
             return;
         }
         
-        dh.getShortcutProvider().removeShortcut(pojo);
-        dh.removeShortcut(context, pojo.name);
+        dh.getShortcutProvider().removeShortcut(pojo);        
 
     }
 
