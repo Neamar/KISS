@@ -30,6 +30,8 @@ public class AppResult extends Result {
 
     private final ComponentName className;
 
+    private Drawable icon = null;
+
     public AppResult(AppPojo appPojo) {
         super();
         this.pojo = this.appPojo = appPojo;
@@ -139,7 +141,9 @@ public class AppResult extends Result {
     @Override
     public Drawable getDrawable(Context context) {
         try {
-            return context.getPackageManager().getActivityIcon(className);
+            if (icon == null)
+                icon = context.getPackageManager().getActivityIcon(className);
+            return icon;
         } catch (NameNotFoundException e) {
             return null;
         }
