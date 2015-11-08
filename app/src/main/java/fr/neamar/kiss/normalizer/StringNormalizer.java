@@ -91,6 +91,6 @@ public class StringNormalizer {
      * @see StringNormalizer#normalizeWithMap(String)
      */
     public static String normalize(String input) {
-        return StringNormalizer.normalizeWithMap(input.trim()).first;
+        return StringNormalizer.normalizeWithMap(input).first;
     }
 }
