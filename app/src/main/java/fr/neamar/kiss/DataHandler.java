@@ -82,7 +82,7 @@ public class DataHandler extends BroadcastReceiver {
      * @return ordered list of records
      */
     public ArrayList<Pojo> getResults(Context context, String query) {
-        query = query.toLowerCase().replaceAll("<", "&lt;");
+        query = query.toLowerCase().trim().replaceAll("<", "&lt;");
 
         currentQuery = query;
 
