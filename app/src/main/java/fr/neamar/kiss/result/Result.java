@@ -19,6 +19,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactPojo;
+import fr.neamar.kiss.pojo.EventPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
@@ -45,6 +46,8 @@ public abstract class Result {
             return new ToggleResult((TogglePojo) pojo);
         else if (pojo instanceof PhonePojo)
             return new PhoneResult((PhonePojo) pojo);
+        else if (pojo instanceof EventPojo)
+            return new EventResult((EventPojo) pojo);
 
         throw new RuntimeException("Unable to create a result from POJO");
     }

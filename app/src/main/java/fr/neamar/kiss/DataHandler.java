@@ -14,6 +14,7 @@ import java.util.HashMap;
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactProvider;
+import fr.neamar.kiss.dataprovider.EventProvider;
 import fr.neamar.kiss.dataprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
@@ -72,6 +73,10 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-alias", true)) {
             providers.add(new AliasProvider(context, appProvider));
         }
+        if (prefs.getBoolean("enable-events", true)) {
+            providers.add(new EventProvider(context));
+        }
+
     }
 
     /**
