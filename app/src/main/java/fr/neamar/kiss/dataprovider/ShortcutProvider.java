@@ -2,6 +2,7 @@ package fr.neamar.kiss.dataprovider;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import android.content.Context;
 import android.graphics.Bitmap.CompressFormat;
@@ -81,7 +82,18 @@ public class ShortcutProvider extends Provider<ShortcutPojo> {
         this.pojos.remove(shortcut);
     }
 
-    
+    public void removeShortcuts(String packageName) {
+        Iterator<ShortcutPojo> iter = this.pojos.iterator();
+        
+        while (iter.hasNext()) {
+            ShortcutPojo current = iter.next();
+            if (current.intentUri.contains(packageName)) {
+                DBHelper.removeShortcut(context, current.name);
+                DBHelper.removeFromHistory(context, current.id);
+                iter.remove();
+            }
+        }
+    }
 
     public Pojo findById(String id) {
         

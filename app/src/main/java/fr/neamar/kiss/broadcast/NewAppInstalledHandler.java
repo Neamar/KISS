@@ -28,6 +28,12 @@ public class NewAppInstalledHandler extends BroadcastReceiver {
                 KissApplication.getDataHandler(ctx).addToHistory(ctx, "app://" + packageName + "/" + className);
             }
         }
+        
+        if ("android.intent.action.PACKAGE_REMOVED".equals(intent.getAction())) {
+            // Removed all installed shortcuts
+            String packageName = intent.getData().getSchemeSpecificPart();
+            KissApplication.getDataHandler(ctx).getShortcutProvider().removeShortcuts(packageName);
+        }        
 
         KissApplication.resetDataHandler(ctx);
     }
