@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,8 @@ public class AppResult extends Result {
 
     private final ComponentName className;
 
+    private Drawable icon = null;
+
     public AppResult(AppPojo appPojo) {
         super();
         this.pojo = this.appPojo = appPojo;
@@ -44,20 +47,23 @@ public class AppResult extends Result {
         TextView appName = (TextView) v.findViewById(R.id.item_app_name);
         appName.setText(enrichText(appPojo.displayName));
 
-        final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
-        if (position < 15) {
-            appIcon.setImageDrawable(this.getDrawable(context));
-        } else {
-            // Do actions on a message queue to avoid performance issues on main thread
-            Handler handler = new Handler();
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    appIcon.setImageDrawable(getDrawable(context));
-                }
-            });
-        }
 
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
+
+            final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
+            if (position < 15) {
+                appIcon.setImageDrawable(this.getDrawable(context));
+            } else {
+                // Do actions on a message queue to avoid performance issues on main thread
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        appIcon.setImageDrawable(getDrawable(context));
+                    }
+                });
+            }
+        }
         return v;
     }
 
@@ -135,7 +141,9 @@ public class AppResult extends Result {
     @Override
     public Drawable getDrawable(Context context) {
         try {
-            return context.getPackageManager().getActivityIcon(className);
+            if (icon == null)
+                icon = context.getPackageManager().getActivityIcon(className);
+            return icon;
         } catch (NameNotFoundException e) {
             return null;
         }

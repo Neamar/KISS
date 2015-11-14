@@ -10,7 +10,7 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings can be set without resetting the DataHandler
-    private String safeSettings = "theme enable-spellcheck display-keyboard root-mode require-layout-update";
+    private String safeSettings = "theme enable-spellcheck display-keyboard root-mode require-layout-update icons-hide";
     // Those settings require the app to restart
     private String requireRestartSettings = "theme enable-spellcheck force-portrait";
     private SharedPreferences prefs;
@@ -36,9 +36,9 @@ public class SettingsActivity extends PreferenceActivity implements
         prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
         if (requireRestartSettings.contains(key)) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).commit();
