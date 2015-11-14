@@ -1,0 +1,84 @@
+package fr.neamar.kiss.result;
+
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.CalendarContract;
+import android.provider.ContactsContract;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+
+import fr.neamar.kiss.R;
+import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.pojo.EventPojo;
+import fr.neamar.kiss.pojo.PhonePojo;
+
+/**
+ * Created by nmitsou on 09.11.15.
+ */
+public class EventResult extends Result {
+    private final EventPojo eventPojo;
+
+    public EventResult(EventPojo eventPojo) {
+        super();
+        this.pojo = this.eventPojo = eventPojo;
+    }
+
+    @Override
+    public View display(Context context, int position, View v) {
+        if (v == null)
+            v = inflateFromId(context, R.layout.item_event);
+
+        TextView appName = (TextView) v.findViewById(R.id.item_event_text);
+        String text = context.getString(R.string.ui_item_event);
+        //appName.setText(eventPojo.startDate + " " + eventPojo.title);
+        appName.setText(enrichText(eventPojo.displayName));
+
+        return v;
+    }
+
+
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    @Override
+    public void doLaunch(Context context, View v) {
+        Intent calendar = new Intent(Intent.ACTION_VIEW);
+        Uri.Builder uri = CalendarContract.Events.CONTENT_URI.buildUpon();
+        uri.appendPath(eventPojo.id);
+        calendar.setData(uri.build());
+        context.startActivity(calendar);
+    }
+
+    @Override
+    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
+        /*switch (item.getItemId()) {
+            case R.id.item_phone_createcontact:
+                // Create a new contact with this phone number
+                Intent createIntent = new Intent(Intent.ACTION_INSERT);
+                createIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+                createIntent.putExtra(ContactsContract.Intents.Insert.PHONE, phonePojo.phone);
+                createIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(createIntent);
+                return true;
+            case R.id.item_phone_sendmessage:
+                String url = "sms:" + phonePojo.phone;
+                Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+                messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(messageIntent);
+                return true;
+        }*/
+
+        return super.popupMenuClickHandler(context, parent, item);
+    }
+
+
+    @Override
+    public Drawable getDrawable(Context context) {
+        return context.getResources().getDrawable(android.R.drawable.ic_menu_call);
+    }
+}
