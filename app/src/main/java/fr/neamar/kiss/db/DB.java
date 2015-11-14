@@ -3,6 +3,7 @@ package fr.neamar.kiss.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DB extends SQLiteOpenHelper {
 
@@ -23,6 +24,7 @@ public class DB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+        Log.d("onUpgrade", "Updating database from version " + oldVersion + " to version " + newVersion);
         // See
         // http://www.drdobbs.com/database/using-sqlite-on-android/232900584
         if (oldVersion < newVersion) {
@@ -30,8 +32,6 @@ public class DB extends SQLiteOpenHelper {
             case 1:             
             case 2:
             case 3:
-               database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT NOT NULL,"
-                       + "icon TEXT NOT NULL, intent_uri TEXT NOT NULL)");
                database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
                        + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
             default:
