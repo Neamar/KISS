@@ -76,7 +76,7 @@ public class DataHandler extends BroadcastReceiver {
         }
         if (prefs.getBoolean("enable-events", true)) {
             providers.add(new EventProvider(context));
-        
+        }
         if (prefs.getBoolean("enable-shortcuts", true)) {
             shortcutProvider = new ShortcutProvider(context);
             providers.add(shortcutProvider);
