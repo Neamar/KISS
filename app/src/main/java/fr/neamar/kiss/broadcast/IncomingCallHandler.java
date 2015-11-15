@@ -26,7 +26,14 @@ public class IncomingCallHandler extends BroadcastReceiver {
             }
 
             if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
-                ContactPojo contactPojo = contactProvider.findByPhone(intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER));
+                String phoneNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+
+                if(phoneNumber == null) {
+                    // Skipping (private call)
+                    return;
+                }
+
+                ContactPojo contactPojo = contactProvider.findByPhone(phoneNumber);
                 if (contactPojo != null) {
                     dataHandler.addToHistory(context, contactPojo.id);
                 }
