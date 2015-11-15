@@ -84,6 +84,14 @@ public class ContactProvider extends Provider<ContactPojo> {
 
         return null;
     }
+    
+    public Pojo findByName(String name) {
+        for (Pojo pojo : pojos) {
+            if (pojo.name.equals(name))
+                return pojo;
+        }
+        return null;
+    }
 
 
     /**
