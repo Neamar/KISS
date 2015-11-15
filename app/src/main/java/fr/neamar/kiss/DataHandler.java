@@ -1,16 +1,15 @@
 package fr.neamar.kiss;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactProvider;
@@ -19,6 +18,7 @@ import fr.neamar.kiss.dataprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.SettingProvider;
+import fr.neamar.kiss.dataprovider.ShortcutProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
@@ -33,6 +33,7 @@ public class DataHandler extends BroadcastReceiver {
     private final ArrayList<Provider<? extends Pojo>> providers = new ArrayList<>();
     private final AppProvider appProvider;
     private final ContactProvider contactProvider;
+    private final ShortcutProvider shortcutProvider;
     private String currentQuery;
     private int providersLoaded = 0;
 
@@ -75,6 +76,12 @@ public class DataHandler extends BroadcastReceiver {
         }
         if (prefs.getBoolean("enable-events", true)) {
             providers.add(new EventProvider(context));
+        
+        if (prefs.getBoolean("enable-shortcuts", true)) {
+            shortcutProvider = new ShortcutProvider(context);
+            providers.add(shortcutProvider);
+        } else {
+            shortcutProvider = null;
         }
 
     }
@@ -166,6 +173,15 @@ public class DataHandler extends BroadcastReceiver {
     public ContactProvider getContactProvider() {
         return contactProvider;
     }
+    
+    public ShortcutProvider getShortcutProvider() {
+        return shortcutProvider;
+    }
+    
+    public AppProvider getAppProvider() {
+        return appProvider;
+    }
+
 
     /**
      * Return most used items.<br />
@@ -203,7 +219,7 @@ public class DataHandler extends BroadcastReceiver {
     public void addToHistory(Context context, String id) {
         DBHelper.insertHistory(context, currentQuery, id);
     }
-
+    
     @Override
     public void onReceive(Context context, Intent intent) {
         providersLoaded++;

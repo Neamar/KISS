@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -24,6 +23,7 @@ import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.pojo.TogglePojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 
@@ -48,6 +48,8 @@ public abstract class Result {
             return new PhoneResult((PhonePojo) pojo);
         else if (pojo instanceof EventPojo)
             return new EventResult((EventPojo) pojo);
+        else if (pojo instanceof ShortcutPojo)
+            return new ShortcutResult((ShortcutPojo) pojo);
 
         throw new RuntimeException("Unable to create a result from POJO");
     }

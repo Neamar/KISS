@@ -77,6 +77,14 @@ public class AppProvider extends Provider<AppPojo> {
     public Pojo findById(String id) {
         return findById(id, true);
     }
+    
+    public Pojo findByName(String name) {
+        for (Pojo pojo : pojos) {
+            if (pojo.name.equals(name))
+                return pojo;
+        }
+        return null;
+    }
 
     public ArrayList<Pojo> getAllApps() {
         ArrayList<Pojo> records = new ArrayList<>(pojos.size());

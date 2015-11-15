@@ -3,7 +3,7 @@
                   android:title="Settings">
     <PreferenceCategory android:title="@string/title_history">
         <fr.neamar.kiss.preference.ResetPreference
-            android:dialogMessage="Do you really want to reset your history?"
+            android:dialogMessage="@string/reset_warn"
             android:key="reset"
             android:summary="@string/reset_desc"
             android:title="@string/reset_name">
@@ -105,6 +105,12 @@
             android:summary="@string/phone_desc"
             android:title="@string/phone_name">
         </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable-shortcuts"
+            android:summary="@string/shortcuts_desc"
+            android:title="@string/shortcuts_name">
+        </CheckBoxPreference>        
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_advanced">
         <fr.neamar.kiss.preference.RootModePreference
