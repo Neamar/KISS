@@ -8,5 +8,6 @@ public class EventPojo extends Pojo {
     public String id;
     public String startDate;
     public String stopDate;
+    public String title;
     public String description;
 }
