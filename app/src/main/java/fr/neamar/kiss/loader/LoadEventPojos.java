@@ -53,10 +53,11 @@ public class LoadEventPojos extends LoadPojos<EventPojo> {
 
             EventPojo event = new EventPojo();
             event.description = cursor.getString(4);
-            event.name = cursor.getString(3);
+            event.title = cursor.getString(3);
             event.id = cursor.getString(0);
             event.startDate = getDate(Long.parseLong(cursor.getString(1)));
             event.stopDate = getDate(Long.parseLong(cursor.getString(2)));
+            event.setName(event.startDate+" "+event.title);
             event.nameNormalized = StringNormalizer.normalize(event.name);
             events.add(event);
             cursor.moveToNext();

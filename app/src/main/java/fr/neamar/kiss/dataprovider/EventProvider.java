@@ -27,33 +27,27 @@ public class EventProvider extends Provider<EventPojo> {
         ArrayList<Pojo> results = new ArrayList<>();
 
         int relevance;
-        int matchPositionStart;
-        int matchPositionEnd;
-
         String eventNameLowerCased;
         for (EventPojo event : pojos) {
-            matchPositionStart = 0;
-            matchPositionEnd = 0;
             relevance = 0;
             eventNameLowerCased = event.nameNormalized;
             if (eventNameLowerCased.startsWith(query)) {
                 relevance = 10;
-                matchPositionEnd = matchPositionStart + query.length();
             }
-            else if ((matchPositionStart = eventNameLowerCased.indexOf(query)) > -1) {
+            else if (eventNameLowerCased.contains(query)) {
                 relevance = 5;
-                matchPositionEnd = matchPositionStart + query.length();
             }
             else if (eventsName.startsWith(query)) {
-                // Also display for a search on "settings" for instance
+                // Also display for a search on "events" for instance
                 relevance = 4;
             }
 
-            if (relevance > 0) {
-                //event.displayName = event.name.replaceFirst(
-                //        "(?i)(" + Pattern.quote(query) + ")", "{$1}");
+            if (relevance>0)
+            {
+                event.displayName = event.name.replaceFirst(
+                        "(?i)(" + Pattern.quote(query) + ")", "{$1}");
 
-                event.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
+                //event.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 event.relevance = relevance;
                 results.add(event);
             }
