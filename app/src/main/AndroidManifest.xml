@@ -57,6 +57,9 @@
         android:name="android.hardware.camera.flash"
         android:required="false" />
 
+    <uses-sdk android:minSdkVersion="10" 
+        android:targetSdkVersion="22"/>
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -112,7 +115,7 @@
                 <action android:name="android.intent.action.ACTION_MEDIA_MOUNTED" />
                 <action android:name="android.intent.action.ACTION_MEDIA_REMOVED" />
 
-
+                <data android:scheme="file" />
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
