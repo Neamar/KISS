@@ -206,8 +206,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
             @Override
             public void onClick(View v) {
                 if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
-                    searcher = new HistorySearcher(MainActivity.this);
-                    searcher.execute();
+                    //show history only if no search text is added
+                    if (((EditText)v).getText().toString().length()==0) {
+                        searcher = new HistorySearcher(MainActivity.this);
+                        searcher.execute();
+                    }
                 }
             }
         });
