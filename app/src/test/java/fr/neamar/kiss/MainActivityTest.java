@@ -18,5 +18,7 @@ public class MainActivityTest {
     public void testSomething() throws Exception {
         // TODO-add more tests...
         assertTrue(Robolectric.setupActivity(MainActivity.class) != null);
+        // Purposely break the test to make sure the test is run
+        assertTrue(false);
     }
 }
