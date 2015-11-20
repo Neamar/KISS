@@ -1,6 +1,6 @@
 test:
   override:
-    - ./gradlew test assembleDebug --stacktrace
+    - ./gradlew test assembleDebug
   post:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
