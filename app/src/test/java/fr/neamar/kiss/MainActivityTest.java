@@ -1,6 +1,6 @@
 package fr.neamar.kiss;
 
-import fr.neamar.BuildConfig;
+import fr.neamar.kiss.BuildConfig;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
