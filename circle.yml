@@ -4,4 +4,4 @@ test:
   post:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
-    - find . -type f -regex "app/build/test-results/*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - find app/build/test-results -name "*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
