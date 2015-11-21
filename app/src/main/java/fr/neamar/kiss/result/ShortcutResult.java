@@ -103,7 +103,7 @@ public class ShortcutResult extends Result {
     private void launchUninstall(Context context, ShortcutPojo shortcutPojo) {
         DataHandler dh = KissApplication.getDataHandler(context);
         if (dh != null) {
-            dh.removeShortcut(context, shortcutPojo);            
+            dh.removeShortcut(shortcutPojo);
         } 
     }
 

@@ -22,7 +22,7 @@ public class ResetPreference extends DialogPreference {
         super.onClick(dialog, which);
         if (which == DialogInterface.BUTTON_POSITIVE) {
             getContext().deleteDatabase(DB.DB_NAME);
-            KissApplication.resetDataHandler(getContext());
+            KissApplication.getDataHandler(getContext()).reload();
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
                     .putBoolean("layout-updated", true).commit();
 

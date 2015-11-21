@@ -1,7 +1,5 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -11,11 +9,13 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SettingPojo;
 
 public class SettingProvider extends Provider<SettingPojo> {
-    private final String settingName;
+    private String settingName;
 
-    public SettingProvider(Context context) {
-        super(new LoadSettingPojos(context));
-        settingName = context.getString(R.string.settings_prefix).toLowerCase();
+    @Override
+    public void reload() {
+        this.initialize(new LoadSettingPojos(this));
+
+        settingName = this.getString(R.string.settings_prefix).toLowerCase();
     }
 
     public ArrayList<Pojo> getResults(String query) {

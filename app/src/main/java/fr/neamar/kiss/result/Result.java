@@ -198,7 +198,7 @@ public abstract class Result {
      */
     void recordLaunch(Context context) {
         // Save in history
-        KissApplication.getDataHandler(context).addToHistory(context, pojo.id);
+        KissApplication.getDataHandler(context).addToHistory(pojo.id);
     }
 
     public void deleteRecord(Context context) {

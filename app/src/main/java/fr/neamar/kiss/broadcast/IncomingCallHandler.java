@@ -35,7 +35,7 @@ public class IncomingCallHandler extends BroadcastReceiver {
 
                 ContactPojo contactPojo = contactProvider.findByPhone(phoneNumber);
                 if (contactPojo != null) {
-                    dataHandler.addToHistory(context, contactPojo.id);
+                    dataHandler.addToHistory(contactPojo.id);
                 }
             }
         } catch (Exception e) {

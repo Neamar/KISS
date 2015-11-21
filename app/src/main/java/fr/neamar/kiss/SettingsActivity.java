@@ -65,7 +65,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
         if (!Arrays.asList(safeSettings.split(" ")).contains(key)) {
             // Reload the DataHandler since Providers preferences have changed
-            KissApplication.resetDataHandler(this);
+            KissApplication.getDataHandler(this).reload();
         }
 
         if("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
@@ -95,7 +95,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void fixSummaries(SharedPreferences prefs) {
-        int historyLength = KissApplication.getDataHandler(this).getHistoryLength(this);
+        int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
             findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
         }

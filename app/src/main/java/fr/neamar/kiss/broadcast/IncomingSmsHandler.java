@@ -43,7 +43,7 @@ public class IncomingSmsHandler extends BroadcastReceiver {
         ContactPojo contactPojo = contactProvider.findByPhone(msg.getOriginatingAddress());
         if (contactPojo != null) {
             // We have a match!
-            dataHandler.addToHistory(context, contactPojo.id);
+            dataHandler.addToHistory(contactPojo.id);
         }
     }
 }

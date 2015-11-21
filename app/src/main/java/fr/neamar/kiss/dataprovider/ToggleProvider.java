@@ -1,7 +1,5 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -11,11 +9,13 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.TogglePojo;
 
 public class ToggleProvider extends Provider<TogglePojo> {
-    private final String toggleName;
+    private String toggleName;
 
-    public ToggleProvider(Context context) {
-        super(new LoadTogglePojos(context));
-        toggleName = context.getString(R.string.toggles_prefix).toLowerCase();
+    @Override
+    public void reload() {
+        this.initialize(new LoadTogglePojos(this));
+
+        toggleName = this.getString(R.string.toggles_prefix).toLowerCase();
     }
 
     public ArrayList<Pojo> getResults(String query) {

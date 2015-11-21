@@ -43,8 +43,4 @@ public class KissApplication extends Application {
             dataHandler = new DataHandler(ctx);
         }
     }
-
-    public static void resetDataHandler(Context ctx) {
-        dataHandler = new DataHandler(ctx);
-    }
 }

@@ -29,7 +29,7 @@ public class UninstallShortcutHandler extends BroadcastReceiver {
             return;
         }
         
-        dh.removeShortcut(context, pojo);        
+        dh.removeShortcut(pojo);
 
     }
 

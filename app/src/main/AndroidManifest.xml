@@ -154,6 +154,15 @@
                 <action android:name="com.android.launcher.action.UNINSTALL_SHORTCUT" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".dataprovider.AliasProvider"/>
+        <service android:name=".dataprovider.AppProvider"/>
+        <service android:name=".dataprovider.ContactProvider"/>
+        <service android:name=".dataprovider.PhoneProvider"/>
+        <service android:name=".dataprovider.SearchProvider"/>
+        <service android:name=".dataprovider.SettingProvider"/>
+        <service android:name=".dataprovider.ShortcutProvider"/>
+        <service android:name=".dataprovider.ToggleProvider"/>
     </application>
 
 </manifest>

@@ -1,7 +1,5 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadContactPojos;
@@ -12,8 +10,9 @@ import fr.neamar.kiss.pojo.Pojo;
 
 public class ContactProvider extends Provider<ContactPojo> {
 
-    public ContactProvider(final Context context) {
-        super(new LoadContactPojos(context));
+    @Override
+    public void reload() {
+        this.initialize(new LoadContactPojos(this));
     }
 
     public ArrayList<Pojo> getResults(String query) {

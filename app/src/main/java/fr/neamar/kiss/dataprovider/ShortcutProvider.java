@@ -1,24 +1,16 @@
 package fr.neamar.kiss.dataprovider;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import android.content.Context;
-import android.graphics.Bitmap.CompressFormat;
-import fr.neamar.kiss.db.DBHelper;
-import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.loader.LoadShortcutPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class ShortcutProvider extends Provider<ShortcutPojo> {
-    
-    Context context = null;
 
-    public ShortcutProvider(Context context) {        
-        super(new LoadShortcutPojos(context));
-        this.context = context;
+    @Override
+    public void reload() {
+        this.initialize(new LoadShortcutPojos(this));
     }
 
     @Override
@@ -59,7 +51,6 @@ public class ShortcutProvider extends Provider<ShortcutPojo> {
 
         return results;
     }
-    
 
     public Pojo findById(String id) {
         

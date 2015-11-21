@@ -23,7 +23,7 @@ public class ResetFavoritesPreference extends DialogPreference {
         if (which == DialogInterface.BUTTON_POSITIVE) {
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
                     .putString("favorite-apps-list", "").commit();
-            KissApplication.resetDataHandler(getContext());
+            KissApplication.getDataHandler(getContext()).getAppProvider().reload();
             Toast.makeText(getContext(), R.string.favorites_erased, Toast.LENGTH_LONG).show();
         }
 
