@@ -10,18 +10,18 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="enable-sms"
-            android:summary="Add sender's incoming messages to history"
-            android:title="Populate history from text messages" />
+            android:summary="@string/enable_sms_desc"
+            android:title="@string/enable_sms" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="enable-phone"
-            android:summary="Add incoming calls to history"
-            android:title="Populate history from phone calls" />
+            android:summary="@string/enable_phone_desc"
+            android:title="@string/enable_phone" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-app"
-            android:summary="Add new apps to history"
-            android:title="Populate history from app install" />
+            android:summary="@string/enable_app_desc"
+            android:title="@string/enable_app" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_ui">
         <ListPreference
