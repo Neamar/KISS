@@ -20,7 +20,6 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.text.method.TextKeyListener;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -33,7 +32,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -207,7 +205,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             public void onClick(View v) {
                 if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
                     //show history only if no search text is added
-                    if (((EditText)v).getText().toString().length()==0) {
+                    if (((EditText) v).getText().toString().isEmpty()) {
                         searcher = new HistorySearcher(MainActivity.this);
                         searcher.execute();
                     }
@@ -595,14 +593,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
 
         if (query.length() == 0) {
-            if (prefs.getBoolean("history-hide", false))
-            {
+            if (prefs.getBoolean("history-hide", false)) {
                 searcher = new NullSearcher(this);
                 //Hide default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
 
-            }
-            else {
+            } else {
                 searcher = new HistorySearcher(this);
                 //Show default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
