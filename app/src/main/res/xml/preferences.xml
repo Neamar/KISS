@@ -18,6 +18,13 @@
             android:summary="@string/theme_desc"
             android:title="@string/theme_name"/>
         <ListPreference
+            android:defaultValue="default"
+            android:entries="@array/iconsPackEntries"
+            android:entryValues="@array/iconsPackValues"
+            android:key="icons-pack"
+            android:summary="@string/icons_pack_desc"
+            android:title="@string/icons_pack_name"/>
+        <ListPreference
             android:defaultValue="invertedAlphabetical"
             android:entries="@array/sortAppListEntries"
             android:entryValues="@array/sortAppListValues"

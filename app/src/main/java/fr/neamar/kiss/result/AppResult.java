@@ -140,13 +140,13 @@ public class AppResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-        try {
-            if (icon == null)
-                icon = context.getPackageManager().getActivityIcon(className);
-            return icon;
-        } catch (NameNotFoundException e) {
-            return null;
+        
+        if (icon == null) {
+             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className);             
         }
+                
+        return icon;
+        
     }
 
     @Override

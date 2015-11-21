@@ -42,6 +42,7 @@ public class NewAppInstalledHandler extends BroadcastReceiver {
         }        
 
         KissApplication.resetDataHandler(ctx);
+        KissApplication.resetIconsHandler(ctx);
     }
 
 }
