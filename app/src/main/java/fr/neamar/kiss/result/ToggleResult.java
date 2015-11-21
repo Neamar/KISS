@@ -48,6 +48,10 @@ public class ToggleResult extends Result {
         final CompoundButton toggleButton = (CompoundButton) v
                 .findViewById(R.id.item_toggle_action_toggle);
 
+        //set listener to null to avoid calling the listener of the older toggle item
+        //(due to recycling)
+        toggleButton.setOnCheckedChangeListener(null);
+
         Boolean state = togglesHandler.getState(togglePojo);
         if (state != null)
             toggleButton.setChecked(togglesHandler.getState(togglePojo));
