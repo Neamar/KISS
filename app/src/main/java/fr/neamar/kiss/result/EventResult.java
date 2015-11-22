@@ -36,7 +36,6 @@ public class EventResult extends Result {
 
         TextView appName = (TextView) v.findViewById(R.id.item_event_text);
         String text = context.getString(R.string.ui_item_event);
-        //appName.setText(eventPojo.startDate + " " + eventPojo.title);
         appName.setText(enrichText(eventPojo.displayName));
 
         return v;
@@ -56,23 +55,6 @@ public class EventResult extends Result {
 
     @Override
     protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
-        /*switch (item.getItemId()) {
-            case R.id.item_phone_createcontact:
-                // Create a new contact with this phone number
-                Intent createIntent = new Intent(Intent.ACTION_INSERT);
-                createIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
-                createIntent.putExtra(ContactsContract.Intents.Insert.PHONE, phonePojo.phone);
-                createIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(createIntent);
-                return true;
-            case R.id.item_phone_sendmessage:
-                String url = "sms:" + phonePojo.phone;
-                Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-                messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(messageIntent);
-                return true;
-        }*/
-
         return super.popupMenuClickHandler(context, parent, item);
     }
 
