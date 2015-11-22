@@ -28,11 +28,13 @@ public class ContactProvider extends Provider<ContactPojo> {
         int matchPositionStart;
         int matchPositionEnd;
         String contactNameNormalized;
+        String phoneNormalized;
 
         final String queryWithSpace = " " + query;
         for (ContactPojo contact : pojos) {
             relevance = 0;
             contactNameNormalized = contact.nameNormalized;
+            phoneNormalized = contact.phone.replaceAll("[-.(): ]","");;
 
             matchPositionStart = 0;
             matchPositionEnd = 0;
@@ -42,6 +44,14 @@ public class ContactProvider extends Provider<ContactPojo> {
             } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
                 relevance = 40;
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
+            } else if (query.length()>2) {
+                matchPositionStart = 0;
+                matchPositionEnd = 0;
+                if (phoneNormalized.startsWith(query)) {
+                    relevance = 10;
+                } else if (phoneNormalized.indexOf(query) > -1) {
+                    relevance = 5;
+                }
             }
 
             if (relevance > 0) {
