@@ -2,8 +2,8 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.neamar.kiss"
-    android:versionCode="66"
-    android:versionName="2.12.0">
+    android:versionCode="68"
+    android:versionName="2.13.1">
 
     <permission
         android:name="com.android.launcher.permission.INSTALL_SHORTCUT"
@@ -58,6 +58,9 @@
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="false" />
+
+    <uses-sdk android:minSdkVersion="10" 
+        android:targetSdkVersion="22"/>
 
     <application
         android:allowBackup="true"
@@ -114,7 +117,7 @@
                 <action android:name="android.intent.action.ACTION_MEDIA_MOUNTED" />
                 <action android:name="android.intent.action.ACTION_MEDIA_REMOVED" />
 
-
+                <data android:scheme="file" />
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
