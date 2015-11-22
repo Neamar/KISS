@@ -47,7 +47,6 @@ public class EventProvider extends Provider<EventPojo> {
                 event.displayName = event.name.replaceFirst(
                         "(?i)(" + Pattern.quote(query) + ")", "{$1}");
 
-                //event.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 event.relevance = relevance;
                 results.add(event);
             }
