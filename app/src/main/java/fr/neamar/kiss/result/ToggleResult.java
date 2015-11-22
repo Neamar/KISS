@@ -1,6 +1,7 @@
 package fr.neamar.kiss.result;
 
 import android.content.Context;
+import android.graphics.PorterDuff.Mode;
 import android.os.AsyncTask;
 import android.text.Html;
 import android.text.TextUtils;
@@ -44,6 +45,8 @@ public class ToggleResult extends Result {
 
         ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
         toggleIcon.setImageDrawable(context.getResources().getDrawable(togglePojo.icon));
+        toggleIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
+        
         // Use the handler to check or un-check button
         final CompoundButton toggleButton = (CompoundButton) v
                 .findViewById(R.id.item_toggle_action_toggle);
