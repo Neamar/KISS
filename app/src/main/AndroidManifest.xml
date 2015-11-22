@@ -105,7 +105,15 @@
             android:label="@string/activity_setting"
             android:theme="@style/SettingTheme"></activity>
 
-        <!-- On new app installed or sdcard mount / unmount refresh the list -->
+        <receiver android:name=".broadcast.NewCalendarEventHandler">
+            <intent-filter>
+            	<action android:name="android.intent.action.PROVIDER_CHANGED"/>
+                <data android:scheme="content"/>
+                <data android:host="com.android.calendar"/>
+            </intent-filter>
+	</receiver>
+	
+	<!-- On new app installed or sdcard mount / unmount refresh the list -->
         <receiver android:name=".broadcast.NewAppInstalledHandler">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
