@@ -58,6 +58,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
                     if (contact.phone == null) {
                         contact.phone = "";
                     }
+                    contact.phoneSimplified = contact.phone.replaceAll("[-.(): ]","");
 
                     contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
 

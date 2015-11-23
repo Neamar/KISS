@@ -48,7 +48,7 @@ public class ContactResult extends Result {
 
         // Contact phone
         TextView contactPhone = (TextView) v.findViewById(R.id.item_contact_phone);
-        contactPhone.setText(contactPojo.phone);
+        contactPhone.setText(enrichText(contactPojo.displayPhone));
 
         // Contact photo
         ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) v
