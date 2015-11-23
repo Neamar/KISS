@@ -1,7 +1,16 @@
 test:
+  pre:
+    # start the emulator
+    - emulator -avd circleci-android22 -no-audio -no-window:
+        background: true
+        parallel: true
+    # wait for it to have booted
+    - circle-android wait-for-boot
   override:
-    - ./gradlew test assembleDebug
+    - ./gradlew test connectedAndroidTest assembleDebug
   post:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
+    # copy the test results to the test results directory.
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find app/build/test-results -name "*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - cp -r my-project/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
