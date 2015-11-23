@@ -1,13 +1,15 @@
 package fr.neamar.kiss;
 
-import java.io.IOException;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -19,6 +21,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -56,6 +60,8 @@ public class IconsHandler {
     private PackageManager pm;
     private Context ctx;
 
+    private static final String TAG = "IconsHandler";
+
     public IconsHandler(Context ctx) {
         super();
         this.ctx = ctx;
@@ -77,8 +83,8 @@ public class IconsHandler {
         iconsPackPackageName = packageName;
         packagesDrawables.clear();
         backImages.clear();
+        cacheClear();
 
-        Log.d("loadIconsPack", "Loading icons pack " + iconsPackPackageName);
         if (iconsPackPackageName.equalsIgnoreCase("default")) {
             return ;
         }
@@ -144,15 +150,8 @@ public class IconsHandler {
                     eventType = xpp.next();
                 }
             }
-        } catch (NameNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (XmlPullParserException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (Exception e) {
+            Log.e(TAG, "Error parsing appfilter.xml " + e);
         }
 
     }
@@ -170,24 +169,34 @@ public class IconsHandler {
 
     public Drawable getDrawableIconForPackage(ComponentName componentName) {
         try {
-            if (!iconsPackPackageName.equalsIgnoreCase("default")) { //search for custom icons pack        
+            if (!iconsPackPackageName.equalsIgnoreCase("default")) { //search for custom icons pack
+
                 String drawable = packagesDrawables.get(componentName.toString());
-                if (drawable != null) {
+                if (drawable != null) { //there is a custom icon
                     int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
                     if (id > 0) {
                         Drawable bitmap = iconPackres.getDrawable(id);
                         return bitmap;
                     }
                 }
-                //generate drawable
-                Drawable systemIcon = pm.getActivityIcon(componentName);
+
+                //search first in cache
+                Drawable systemIcon = cacheGetDrawable(componentName.toString());
+                if (systemIcon != null)
+                    return systemIcon;
+
+                systemIcon= pm.getActivityIcon(componentName);
                 if (systemIcon instanceof BitmapDrawable) {
-                    return generateBitmap(componentName.toString(), systemIcon);
+                    Drawable generated = generateBitmap(componentName.toString(), systemIcon);
+                    cacheStoreDrawable(componentName.toString(), generated);
+                    return generated;
                 }
+                return systemIcon;
             }
 
             return pm.getActivityIcon(componentName);
         } catch (NameNotFoundException e) {
+            Log.e(TAG, "Unable to found component " + componentName.toString()+ e);
             return null;
         }
     }
@@ -213,13 +222,7 @@ public class IconsHandler {
         canvas.drawBitmap(backImage, 0, 0, null);
 
         // create a mutable mask bitmap with the same mask
-        Bitmap scaledBitmap;
-        if (defaultBitmap != null && (((BitmapDrawable)defaultBitmap).getBitmap().getWidth() > w || 
-                                     ((BitmapDrawable)defaultBitmap).getBitmap().getHeight()> h)) {
-            scaledBitmap = Bitmap.createScaledBitmap(((BitmapDrawable)defaultBitmap).getBitmap(), (int)(w * factor), (int)(h * factor), false);
-        } else { 
-            scaledBitmap = Bitmap.createBitmap(((BitmapDrawable)defaultBitmap).getBitmap());
-        }
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(((BitmapDrawable)defaultBitmap).getBitmap(), (int)(w * factor), (int)(h * factor), false);
 
         if (maskImage != null) {
             // draw the scaled bitmap with mask
@@ -259,17 +262,80 @@ public class IconsHandler {
             try {
                 ai = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
                 String name  = pm.getApplicationLabel(ai).toString();
-                Log.d("loadAvailableIconsPacks", "Detected "+ name + " icons pack");
                 iconsPacks.put(packageName, name);
             } catch (PackageManager.NameNotFoundException e) {
                 // shouldn't happen
-                e.printStackTrace();
+                Log.e(TAG, "Unable to found package " + packageName + e);
             }
         }
     }
 
     public HashMap<String, String> getIconsPacks() {
         return iconsPacks;
-    }    
+    }
+
+    private boolean cacheStoreDrawable(String key, Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            File drawableFile = cacheGetFileName(key);
+            FileOutputStream fos;
+            try {
+                fos = new FileOutputStream(drawableFile);
+                ((BitmapDrawable)drawable).getBitmap().compress(CompressFormat.PNG, 100, fos);
+                fos.flush();
+                fos.close();
+                return true;
+            } catch (Exception e) {
+                Log.e(TAG, "Unable to store drawable in cache " + e);
+            } 
+        }
+        return false;
+    }
+
+
+    private Drawable cacheGetDrawable(String key) {
+
+        File drawableFile = cacheGetFileName(key);
+        if (!drawableFile.isFile()) {
+            return null;
+        }
+
+        FileInputStream fis;
+        try {
+            fis = new FileInputStream(drawableFile);
+            BitmapDrawable drawable = new BitmapDrawable(BitmapFactory.decodeStream(fis));
+            fis.close();
+            return drawable;
+        } catch (Exception e) {
+            Log.e(TAG, "Unable to get drawable from cache " + e);
+        }
+
+        return null;
+    }
+
+    private File cacheGetFileName(String key) {
+        File cacheDir = this.ctx.getCacheDir();
+        File drawableFile = new File (cacheDir.getPath()+"/icon_" + iconsPackPackageName+ "_"+ key.hashCode() + ".png");
+
+        return drawableFile;
+    }
+
+    private void cacheClear() {
+        File cacheDir = this.ctx.getCacheDir();
+        File[] icons = cacheDir.listFiles(new FileFilter() {
+
+            @Override
+            public boolean accept(File pathname) {
+                if (pathname.getName().startsWith("icon_")) {
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        for (File file : icons) { //delete cached icons
+            file.delete();
+        }
+    }
 
 }
