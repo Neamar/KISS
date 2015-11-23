@@ -1,7 +1,7 @@
 
 package fr.neamar.kiss;
 
-import fr.neamar.R;
+import fr.neamar.kiss.R;
 
 import android.support.test.rule.ActivityTestRule;
 import android.test.ActivityInstrumentationTestCase2;
