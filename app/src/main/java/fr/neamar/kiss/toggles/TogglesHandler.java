@@ -144,11 +144,13 @@ public class TogglesHandler {
     }
 
     private Boolean getTorchState() {
-        return KissApplication.getCameraHandler().getTorchState();
+        return KissApplication.getCameraHandler().isTorchAvailable() && KissApplication.getCameraHandler().getTorchState();
     }
 
     private void setTorchState(Boolean state) {
-        KissApplication.getCameraHandler().setTorchState(state);
+        if(KissApplication.getCameraHandler().isTorchAvailable()) {
+            KissApplication.getCameraHandler().setTorchState(state);
+        }
     }
 
 

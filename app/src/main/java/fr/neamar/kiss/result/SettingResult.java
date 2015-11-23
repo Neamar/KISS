@@ -2,13 +2,13 @@ package fr.neamar.kiss.result;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
 
@@ -31,6 +31,7 @@ public class SettingResult extends Result {
 
         ImageView settingIcon = (ImageView) v.findViewById(R.id.item_setting_icon);
         settingIcon.setImageDrawable(getDrawable(context));
+        settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
 
         return v;
     }

@@ -32,15 +32,15 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
             // See http://stackoverflow.com/questions/26539445/the-setmobiledataenabled-method-is-no-longer-callable-as-of-android-l-and-later
             toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.drawable.toggle_data));
         }
-        if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA) && KissApplication.getCameraHandler().isTorchAvailable()) {
+        if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
             toggles.add(createPojo(context.getString(R.string.toggle_torch), "torch", R.drawable.toggle_torch));
         }
 
         //toggle for synchronization
-        toggles.add(createPojo(context.getString(R.string.toggle_sync), "sync", android.R.drawable.ic_popup_sync));
+        toggles.add(createPojo(context.getString(R.string.toggle_sync), "sync", R.drawable.toggle_sync));
         
         //toggle for autorotation
-        toggles.add(createPojo(context.getString(R.string.toggle_autorotate), "autorotate", android.R.drawable.ic_menu_always_landscape_portrait));
+        toggles.add(createPojo(context.getString(R.string.toggle_autorotate), "autorotate", R.drawable.toggle_rotation));
 
         return toggles;
     }
