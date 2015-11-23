@@ -53,58 +53,57 @@ public class IconsHandler {
     // scale factor of an icons pack
     private float factor = 1.0f;
 
-    
     private PackageManager pm;
     private Context ctx;
-    
+
     public IconsHandler(Context ctx) {
         super();
         this.ctx = ctx;
         this.pm = ctx.getPackageManager();
-        loadAvailableIconsPacks();        
+        loadAvailableIconsPacks();
         loadIconsPack();
     }
-    
+
     public void loadIconsPack() {
-        
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         loadIconsPack(prefs.getString("icons-pack", "default"));
-        
+
     }
-    
-    public void loadIconsPack(String packageName) {        
-        
+
+    public void loadIconsPack(String packageName) {
+
         //clear icons pack
         iconsPackPackageName = packageName;
         packagesDrawables.clear();
         backImages.clear();
-        
-        Log.d("loadIconsPack", "Loading icons pack " + iconsPackPackageName);        
-        if (iconsPackPackageName.equalsIgnoreCase("default")) {            
-            return ; 
+
+        Log.d("loadIconsPack", "Loading icons pack " + iconsPackPackageName);
+        if (iconsPackPackageName.equalsIgnoreCase("default")) {
+            return ;
         }
-        
+
         XmlPullParser xpp = null;
-                
+
         try {
             iconPackres = pm.getResourcesForApplication(iconsPackPackageName);
             int appfilterid = iconPackres.getIdentifier("appfilter", "xml", iconsPackPackageName);
             if (appfilterid > 0) {
                 xpp = iconPackres.getXml(appfilterid);
             }
-            
+
             if (xpp != null) {
                 int eventType = xpp.getEventType();
                 while (eventType != XmlPullParser.END_DOCUMENT) {
-                    if(eventType == XmlPullParser.START_TAG) {
-                        if (xpp.getName().equals("iconback"))
-                        {
+                    if (eventType == XmlPullParser.START_TAG) {
+                        if (xpp.getName().equals("iconback")) {
                             for(int i=0; i<xpp.getAttributeCount(); i++) {
                                 if (xpp.getAttributeName(i).startsWith("img")) {
                                     String drawableName = xpp.getAttributeValue(i);
                                     Bitmap iconback = loadBitmap(drawableName);
-                                    if (iconback != null)
+                                    if (iconback != null) {
                                         backImages.add(iconback);
+                                    }
                                 }
                             }
                         }
@@ -130,17 +129,16 @@ public class IconsHandler {
                             String drawableName = null;
 
                             for(int i=0; i<xpp.getAttributeCount(); i++) {
-                                if (xpp.getAttributeName(i).equals("component"))
-                                {
+                                if (xpp.getAttributeName(i).equals("component")) {
                                     componentName = xpp.getAttributeValue(i);
                                 }
-                                else if (xpp.getAttributeName(i).equals("drawable"))
-                                {
+                                else if (xpp.getAttributeName(i).equals("drawable")) {
                                     drawableName = xpp.getAttributeValue(i);
                                 }
                             }
-                            if (!packagesDrawables.containsKey(componentName))
+                            if (!packagesDrawables.containsKey(componentName)) {
                                 packagesDrawables.put(componentName, drawableName);
+                            }
                         }
                     }
                     eventType = xpp.next();
@@ -155,22 +153,23 @@ public class IconsHandler {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }        
-        
+        }
+
     }
-    
+
     private Bitmap loadBitmap(String drawableName) {
         int id = iconPackres.getIdentifier(drawableName, "drawable", iconsPackPackageName);
         if (id > 0) {
             Drawable bitmap = iconPackres.getDrawable(id);
-            if (bitmap instanceof BitmapDrawable)
+            if (bitmap instanceof BitmapDrawable) {
                 return ((BitmapDrawable)bitmap).getBitmap();
+            }
         }
         return null;
     }
-    
+
     public Drawable getDrawableIconForPackage(ComponentName componentName) {
-        try {            
+        try {
             if (!iconsPackPackageName.equalsIgnoreCase("default")) { //search for custom icons pack        
                 String drawable = packagesDrawables.get(componentName.toString());
                 if (drawable != null) {
@@ -186,19 +185,19 @@ public class IconsHandler {
                     return generateBitmap(componentName.toString(), systemIcon);
                 }
             }
-        
+
             return pm.getActivityIcon(componentName);
         } catch (NameNotFoundException e) {
             return null;
         }
     }
-    
-    private Drawable generateBitmap(String appPackageName, Drawable defaultBitmap)
-    {
+
+    private Drawable generateBitmap(String appPackageName, Drawable defaultBitmap) {
 
         // if no support images in the icon pack return the bitmap itself
-        if (backImages.size() == 0)
+        if (backImages.size() == 0) {
             return defaultBitmap;
+        }
 
         Random r = new Random();
         int backImageInd = r.nextInt(backImages.size());
@@ -218,10 +217,11 @@ public class IconsHandler {
         if (defaultBitmap != null && (((BitmapDrawable)defaultBitmap).getBitmap().getWidth() > w || 
                                      ((BitmapDrawable)defaultBitmap).getBitmap().getHeight()> h)) {
             scaledBitmap = Bitmap.createScaledBitmap(((BitmapDrawable)defaultBitmap).getBitmap(), (int)(w * factor), (int)(h * factor), false);
-        } else 
+        } else { 
             scaledBitmap = Bitmap.createBitmap(((BitmapDrawable)defaultBitmap).getBitmap());
-        if (maskImage != null)
-        {
+        }
+
+        if (maskImage != null) {
             // draw the scaled bitmap with mask
             Bitmap mutableMask = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
             Canvas maskCanvas = new Canvas(mutableMask);
@@ -233,47 +233,39 @@ public class IconsHandler {
             canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth())/2, (h - scaledBitmap.getHeight())/2, null);
             canvas.drawBitmap(mutableMask, 0, 0, paint);
             paint.setXfermode(null);
-        }
-        else // draw the scaled bitmap without mask
-        {
+        } else { // draw the scaled bitmap without mask        
             canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth())/2, (h - scaledBitmap.getHeight())/2, null);
         }
 
         // paint the front
-        if (frontImage != null)
-        {
+        if (frontImage != null) {
             canvas.drawBitmap(frontImage, 0, 0, null);
         }
 
         return new BitmapDrawable(iconPackres, result);
     }
 
-    
+
     private void loadAvailableIconsPacks() {
-        
+
         List<ResolveInfo> launcherthemes = pm.queryIntentActivities(new Intent("fr.neamar.kiss.THEMES"), PackageManager.GET_META_DATA);
         List<ResolveInfo> adwlauncherthemes = pm.queryIntentActivities(new Intent("org.adw.launcher.THEMES"), PackageManager.GET_META_DATA);
-        
+
         launcherthemes.addAll(adwlauncherthemes);
-        
-        for(ResolveInfo ri  : launcherthemes)
-        {
+
+        for(ResolveInfo ri  : launcherthemes) {
             String packageName = ri.activityInfo.packageName;
             ApplicationInfo ai = null;
-            try
-            {
+            try {
                 ai = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
                 String name  = pm.getApplicationLabel(ai).toString();
                 Log.d("loadAvailableIconsPacks", "Detected "+ name + " icons pack");
                 iconsPacks.put(packageName, name);
-            }
-            catch (PackageManager.NameNotFoundException e)
-            {
+            } catch (PackageManager.NameNotFoundException e) {
                 // shouldn't happen
                 e.printStackTrace();
             }
         }
-        
     }
 
     public HashMap<String, String> getIconsPacks() {
