@@ -17,7 +17,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 
 @LargeTest
-public class DeckardEspressoTest  {
+public class MainActivityTest  {
 
 
     @Rule
