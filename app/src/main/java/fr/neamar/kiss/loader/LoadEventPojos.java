@@ -36,7 +36,8 @@ public class LoadEventPojos extends LoadPojos<EventPojo> {
 
 
         String selectionClause = "(dtstart >= ? and dtend <=?)";
-        String[] selectionsArgs = new String[]{"" + new Date().getTime(), ""+ getDateInFuture(new Date()).getTime()};
+        String[] selectionsArgs = new String[]{"" + new Date().getTime(),
+                "" + getDateInFuture(new Date()).getTime()};
 
         Cursor cursor = context.getContentResolver()
                 .query(
@@ -57,29 +58,32 @@ public class LoadEventPojos extends LoadPojos<EventPojo> {
             event.id = cursor.getString(0);
             event.startDate = getDate(Long.parseLong(cursor.getString(1)));
             event.stopDate = getDate(Long.parseLong(cursor.getString(2)));
-            event.setName(event.startDate+" "+event.title);
+            event.setName(formatDate(event.startDate)+" "+event.title);
             event.nameNormalized = StringNormalizer.normalize(event.name);
             events.add(event);
             cursor.moveToNext();
 
         }
         return events;
-
     }
-    public static String getDate(long milliSeconds) {
-        SimpleDateFormat formatter = new SimpleDateFormat(
-                "dd/MM/yy hh:mm a");
+
+    public Date getDate(long milliSeconds) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(milliSeconds);
-        return formatter.format(calendar.getTime());
+        return calendar.getTime();
     }
 
     //method created for demonstration purposes
     public Date getDateInFuture(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(Calendar.DATE, 30); //1 month
+        calendar.add(Calendar.DATE, 30 * 6); //6 months
         return calendar.getTime();
     }
 
+    public String formatDate(Date date)
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mm a");
+        return formatter.format(date);
+    }
 }
