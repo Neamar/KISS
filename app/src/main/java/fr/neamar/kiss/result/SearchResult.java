@@ -5,9 +5,11 @@ import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import fr.neamar.kiss.R;
@@ -30,6 +32,7 @@ public class SearchResult extends Result {
         String text = context.getString(R.string.ui_item_search);
         appName.setText(enrichText(String.format(text, "{" + searchPojo.query + "}")));
 
+        ((ImageView) v.findViewById(R.id.item_search_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;
     }
 
