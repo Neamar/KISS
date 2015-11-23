@@ -3,6 +3,7 @@ package fr.neamar.kiss.dataprovider;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
@@ -28,6 +29,19 @@ public class EventProvider extends Provider<EventPojo> {
 
         int relevance;
         String eventNameLowerCased;
+        if (query.length()<2)
+            return results;
+        if (query.equals("today"))
+        {
+            return getTodaysEvents();
+        } else if (query.equals("week")) {
+            return getWeeksEvents();
+        }
+        else if (query.equals("month")) {
+            return getMonthsEvents();
+        }
+
+
         for (EventPojo event : pojos) {
             relevance = 0;
             eventNameLowerCased = event.nameNormalized;
@@ -44,6 +58,8 @@ public class EventProvider extends Provider<EventPojo> {
 
             if (relevance>0)
             {
+                //event.startDate;
+
                 event.displayName = event.name.replaceFirst(
                         "(?i)(" + Pattern.quote(query) + ")", "{$1}");
 
@@ -53,6 +69,34 @@ public class EventProvider extends Provider<EventPojo> {
         }
 
         return results;
+    }
+
+    private ArrayList<Pojo> getEvents(int hours)
+    {
+        ArrayList<Pojo> results = new ArrayList<>();
+        for (EventPojo event : pojos) {
+            if (diffDatesInHours(new Date(), event.startDate) < hours) {
+                event.displayName = event.name;
+                event.relevance = 10;
+                results.add(event);
+            }
+        }
+        return results;
+    }
+
+    private ArrayList<Pojo> getTodaysEvents()
+    {
+        return getEvents(24);
+    }
+
+
+    private ArrayList<Pojo> getWeeksEvents() {
+        return getEvents(24 * 7);
+    }
+
+
+    private ArrayList<Pojo> getMonthsEvents() {
+        return getEvents(24 * 31);
     }
 
     /**
@@ -90,5 +134,10 @@ public class EventProvider extends Provider<EventPojo> {
             records.add(pojo);
         }
         return records;
+    }
+
+    public int diffDatesInHours(Date d1, Date d2)
+    {
+        return Math.round((d2.getTime()-d1.getTime())/1000/60/60);
     }
 }
