@@ -48,9 +48,9 @@ public class AppResult extends Result {
         appName.setText(enrichText(appPojo.displayName));
 
 
-        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
+        final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 
-            final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
             if (position < 15) {
                 appIcon.setImageDrawable(this.getDrawable(context));
             } else {
@@ -63,6 +63,9 @@ public class AppResult extends Result {
                     }
                 });
             }
+        }
+        else {
+            appIcon.setVisibility(View.INVISIBLE);
         }
         return v;
     }
