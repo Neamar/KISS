@@ -59,41 +59,7 @@ public class ShortcutProvider extends Provider<ShortcutPojo> {
 
         return results;
     }
-
-    public void addShortcut(ShortcutPojo shortcut) {
-        ShortcutRecord record = new ShortcutRecord();
-        record.name = shortcut.name;
-        record.iconResource = shortcut.resourceName;
-        record.packageName = shortcut.packageName;
-        record.intentUri = shortcut.intentUri;
-        
-        if (shortcut.icon != null) {            
-               ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
-               shortcut.icon.compress(CompressFormat.PNG,100,baos);               
-               record.icon_blob = baos.toByteArray();            
-        }        
-        
-        DBHelper.insertShortcut(this.context, record);
-        this.pojos.add(shortcut);
-    }
     
-    public void removeShortcut(ShortcutPojo shortcut) {
-        DBHelper.removeShortcut(context, shortcut.name);
-        this.pojos.remove(shortcut);
-    }
-
-    public void removeShortcuts(String packageName) {
-        Iterator<ShortcutPojo> iter = this.pojos.iterator();
-        
-        while (iter.hasNext()) {
-            ShortcutPojo current = iter.next();
-            if (current.intentUri.contains(packageName)) {
-                DBHelper.removeShortcut(context, current.name);
-                DBHelper.removeFromHistory(context, current.id);
-                iter.remove();
-            }
-        }
-    }
 
     public Pojo findById(String id) {
         

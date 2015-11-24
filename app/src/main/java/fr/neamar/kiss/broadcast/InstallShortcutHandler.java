@@ -61,7 +61,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
             }
         }
                 
-        dh.getShortcutProvider().addShortcut(pojo);
+        dh.addShortcut(context, pojo);        
 
     }
     

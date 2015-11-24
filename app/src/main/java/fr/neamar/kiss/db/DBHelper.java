@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 
 import java.util.ArrayList;
 
@@ -157,7 +158,7 @@ public class DBHelper {
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-           ShortcutRecord entry = new ShortcutRecord();
+            ShortcutRecord entry = new ShortcutRecord();
 
             entry.name = cursor.getString(0);
             entry.packageName = cursor.getString(1);
@@ -172,6 +173,28 @@ public class DBHelper {
         
         db.close();
         return records;
+    }
+    
+    public static void removeShortcuts(Context context, String packageName) {
+        SQLiteDatabase db = getDatabase(context);
+
+        // Cursor query (String table, String[] columns, String selection,
+        // String[] selectionArgs, String groupBy, String having, String
+        // orderBy)
+        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
+                "intent_uri LIKE ?", new String[]{"%"+packageName+"%"}, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) { // remove from history
+            db.delete("history", "record = ?", new String[]{ShortcutPojo.SCHEME + cursor.getString(0).toLowerCase()});
+            cursor.moveToNext();
+        }
+        cursor.close();
+        
+        //remove shortcuts
+        db.delete("shortcuts", "intent_uri LIKE ?", new String[]{"%" + packageName + "%"});
+        
+        db.close();        
     }
     
 }

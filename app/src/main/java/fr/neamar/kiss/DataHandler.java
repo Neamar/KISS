@@ -1,10 +1,17 @@
 package fr.neamar.kiss;
 
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap.CompressFormat;
 import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
@@ -23,9 +30,11 @@ import fr.neamar.kiss.dataprovider.SettingProvider;
 import fr.neamar.kiss.dataprovider.ShortcutProvider;
 import fr.neamar.kiss.dataprovider.ToggleProvider;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class DataHandler extends BroadcastReceiver {
 
@@ -159,6 +168,30 @@ public class DataHandler extends BroadcastReceiver {
 
     public int getHistoryLength(Context context) {
         return DBHelper.getHistoryLength(context);
+    }
+    
+    public void addShortcut(Context ctx, ShortcutPojo shortcut) {
+        ShortcutRecord record = new ShortcutRecord();
+        record.name = shortcut.name;
+        record.iconResource = shortcut.resourceName;
+        record.packageName = shortcut.packageName;
+        record.intentUri = shortcut.intentUri;
+        
+        if (shortcut.icon != null) {            
+               ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+               shortcut.icon.compress(CompressFormat.PNG,100,baos);               
+               record.icon_blob = baos.toByteArray();            
+        }        
+        
+        DBHelper.insertShortcut(ctx, record);        
+    }
+    
+    public void removeShortcut(Context ctx, ShortcutPojo shortcut) {
+        DBHelper.removeShortcut(ctx, shortcut.name);        
+    }
+
+    public void removeShortcuts(Context ctx, String packageName) {
+        DBHelper.removeShortcuts(ctx, packageName);
     }
 
     /**
