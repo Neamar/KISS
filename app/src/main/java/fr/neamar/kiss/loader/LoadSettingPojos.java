@@ -21,9 +21,9 @@ public class LoadSettingPojos extends LoadPojos<SettingPojo> {
         settings.add(createPojo(context.getString(R.string.settings_airplane),
                 android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS, R.drawable.setting_airplane));
         settings.add(createPojo(context.getString(R.string.settings_device_info),
-                android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS, android.R.drawable.ic_menu_manage));
+                android.provider.Settings.ACTION_DEVICE_INFO_SETTINGS, R.drawable.setting_info));
         settings.add(createPojo(context.getString(R.string.settings_applications),
-                android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, android.R.drawable.sym_def_app_icon));
+                android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, R.drawable.setting_apps));
         settings.add(createPojo(context.getString(R.string.settings_connectivity),
                 android.provider.Settings.ACTION_WIRELESS_SETTINGS, R.drawable.toggle_wifi));
         settings.add(createPojo(context.getString(R.string.settings_battery),

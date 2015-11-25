@@ -2,6 +2,8 @@ package fr.neamar.kiss.result;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Html;
@@ -189,5 +191,15 @@ public abstract class Result {
 
     public void deleteRecord(Context context) {
         DBHelper.removeFromHistory(context, pojo.id);
+    }
+    
+    /*
+     * Get fill color from theme 
+     * 
+     */
+    public int getThemeFillColor(Context context) {
+        int[] attrs = new int[] { R.attr.resultColor /* index 0 */};
+        TypedArray ta = context.obtainStyledAttributes(attrs);
+        return ta.getColor(0, Color.WHITE);
     }
 }
