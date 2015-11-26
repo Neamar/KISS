@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.neamar.kiss"
-    android:versionCode="68"
-    android:versionName="2.13.1">
+    android:versionCode="69"
+    android:versionName="2.14.0">
 
     <permission
         android:name="com.android.launcher.permission.INSTALL_SHORTCUT"
@@ -39,7 +38,7 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <!-- To autorotation toggle -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <uses-permission android:name="android.permission.READ_CALENDAR"/>
     
@@ -59,8 +58,9 @@
         android:name="android.hardware.camera.flash"
         android:required="false" />
 
-    <uses-sdk android:minSdkVersion="10" 
-        android:targetSdkVersion="22"/>
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="22" />
 
     <application
         android:allowBackup="true"
@@ -103,7 +103,7 @@
         <activity
             android:name="fr.neamar.kiss.SettingsActivity"
             android:label="@string/activity_setting"
-            android:theme="@style/SettingTheme"></activity>
+            android:theme="@style/SettingTheme" />
 
         <receiver android:name=".broadcast.NewCalendarEventHandler">
             <intent-filter>
@@ -131,14 +131,18 @@
         </receiver>
 
         <!-- On incoming messages, add user to history -->
-        <receiver android:name=".broadcast.IncomingSmsHandler" android:enabled="false">
+        <receiver
+            android:name=".broadcast.IncomingSmsHandler"
+            android:enabled="false">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
         <!-- On incoming calls, add user to history -->
-        <receiver android:name=".broadcast.IncomingCallHandler" android:enabled="false">
+        <receiver
+            android:name=".broadcast.IncomingCallHandler"
+            android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
