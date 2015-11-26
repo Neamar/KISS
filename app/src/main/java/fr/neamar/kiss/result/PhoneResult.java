@@ -3,12 +3,14 @@ package fr.neamar.kiss.result;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -32,6 +34,8 @@ public class PhoneResult extends Result {
         TextView appName = (TextView) v.findViewById(R.id.item_phone_text);
         String text = context.getString(R.string.ui_item_phone);
         appName.setText(enrichText(String.format(text, "{" + phonePojo.phone + "}")));
+
+        ((ImageView) v.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
 
         return v;
     }
