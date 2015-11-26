@@ -20,7 +20,7 @@ public class NewAppInstalledHandler extends BroadcastReceiver {
     @Override
     public void onReceive(Context ctx, Intent intent) {
 
-        if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app", true))
+        if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true))
             // Insert into history new packages (not updated ones)
             if ("android.intent.action.PACKAGE_ADDED".equals(intent.getAction()) && !intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)) {
                 // Add new package to history
