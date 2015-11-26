@@ -109,9 +109,26 @@ public class AppResult extends Result {
             case R.id.item_app_hibernate:
                 hibernate(context, appPojo);
                 return true;
+            case R.id.item_exclude:
+                // remove item since it will be hiddden
+                parent.removeResult(this);
+                excludeFromSettings(context, appPojo);
+                return true;
         }
 
         return super.popupMenuClickHandler(context, parent, item);
+    }
+
+    private void excludeFromSettings(Context context, AppPojo appPojo)
+    {
+
+        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("excluded-apps-list", context.getPackageName() + ";");
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("excluded-apps-list", excludedAppList + appPojo.packageName+";").commit();
+        //remove app pojo from appProvider results - no need to reset handler
+        KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
+        Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 
     /**

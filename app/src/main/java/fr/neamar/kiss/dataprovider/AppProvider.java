@@ -96,4 +96,8 @@ public class AppProvider extends Provider<AppPojo> {
         }
         return records;
     }
+
+    public void removeApp(AppPojo appPojo) {
+        pojos.remove(appPojo);
+    }
 }
