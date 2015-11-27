@@ -17,15 +17,11 @@ import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
-    private static String KISS_PACKAGE_NAME;
     private static SharedPreferences prefs;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
-
-        KISS_PACKAGE_NAME = context.getPackageName();
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
     }
 
     @Override
