@@ -8,8 +8,8 @@ import android.telephony.SmsMessage;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.dataprovider.ContactProvider;
-import fr.neamar.kiss.pojo.ContactPojo;
+import fr.neamar.kiss.dataprovider.ContactsProvider;
+import fr.neamar.kiss.pojo.ContactsPojo;
 
 public class IncomingSmsHandler extends BroadcastReceiver {
     @Override
@@ -21,8 +21,8 @@ public class IncomingSmsHandler extends BroadcastReceiver {
 
         // Stop if contacts are not enabled
         DataHandler dataHandler = KissApplication.getDataHandler(context);
-        ContactProvider contactProvider = dataHandler.getContactProvider();
-        if (contactProvider == null) {
+        ContactsProvider contactsProvider = dataHandler.getContactsProvider();
+        if (contactsProvider == null) {
             // Contacts have been disabled from settings
             return;
         }
@@ -39,8 +39,8 @@ public class IncomingSmsHandler extends BroadcastReceiver {
         Object[] pdus = (Object[]) bundle.get("pdus");
         SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdus[0]);
 
-        // Now, retrieve the contact by its lookup key on our contactProvider
-        ContactPojo contactPojo = contactProvider.findByPhone(msg.getOriginatingAddress());
+        // Now, retrieve the contact by its lookup key on our contactsProvider
+        ContactsPojo contactPojo = contactsProvider.findByPhone(msg.getOriginatingAddress());
         if (contactPojo != null) {
             // We have a match!
             dataHandler.addToHistory(contactPojo.id);

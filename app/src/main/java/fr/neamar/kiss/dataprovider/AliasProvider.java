@@ -46,6 +46,14 @@ public class AliasProvider extends Provider<AliasPojo> {
     }
 
     @Override
+    public void onDestroy() {
+        // Disconnect from application provider
+        this.unbindService(this.appConnection);
+
+        super.onDestroy();
+    }
+
+    @Override
     public void reload() {
         this.initialize(new LoadAliasPojos(this));
     }

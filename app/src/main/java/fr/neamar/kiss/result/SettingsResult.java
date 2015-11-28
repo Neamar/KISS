@@ -14,12 +14,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.pojo.SettingsPojo;
 
-public class SettingResult extends Result {
-    private final SettingPojo settingPojo;
+public class SettingsResult extends Result {
+    private final SettingsPojo settingPojo;
 
-    public SettingResult(SettingPojo settingPojo) {
+    public SettingsResult(SettingsPojo settingPojo) {
         super();
         this.pojo = this.settingPojo = settingPojo;
     }

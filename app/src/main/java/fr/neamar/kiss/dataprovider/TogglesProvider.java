@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.loader.LoadTogglePojos;
+import fr.neamar.kiss.loader.LoadTogglesPojos;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.TogglePojo;
+import fr.neamar.kiss.pojo.TogglesPojo;
 
-public class ToggleProvider extends Provider<TogglePojo> {
+public class TogglesProvider extends Provider<TogglesPojo> {
     private String toggleName;
 
     @Override
     public void reload() {
-        this.initialize(new LoadTogglePojos(this));
+        this.initialize(new LoadTogglesPojos(this));
 
         toggleName = this.getString(R.string.toggles_prefix).toLowerCase();
     }
@@ -23,7 +23,7 @@ public class ToggleProvider extends Provider<TogglePojo> {
 
         int relevance;
         String toggleNameLowerCased;
-        for (TogglePojo toggle : pojos) {
+        for (TogglesPojo toggle : pojos) {
             relevance = 0;
             toggleNameLowerCased = toggle.nameNormalized;
             if (toggleNameLowerCased.startsWith(query))

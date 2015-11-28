@@ -2,9 +2,10 @@ package fr.neamar.kiss;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import android.content.BroadcastReceiver;
@@ -18,43 +19,39 @@ import android.graphics.Bitmap.CompressFormat;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
-import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
-import fr.neamar.kiss.dataprovider.ContactProvider;
+import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
-import fr.neamar.kiss.dataprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.Provider;
-import fr.neamar.kiss.dataprovider.SearchProvider;
-import fr.neamar.kiss.dataprovider.SettingProvider;
-import fr.neamar.kiss.dataprovider.ShortcutProvider;
-import fr.neamar.kiss.dataprovider.ToggleProvider;
+import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
-import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.pojo.ShortcutsPojo;
 
-public class DataHandler extends BroadcastReceiver {
-
+public class DataHandler extends BroadcastReceiver
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
     /**
      * List all known providers
      */
-    private Map<IProvider, ServiceConnection> providers = new HashMap<>();
-    private AppProvider appProvider           = null;
-    private ContactProvider contactProvider   = null;
-    private ShortcutProvider shortcutProvider = null;
-    private String currentQuery;
-    private final Context context;
+    final static private List<String> PROVIDER_NAMES = Arrays.asList(
+            "alias", "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
+    );
 
-    private Map<IProvider, ServiceConnection> providersNew;
-    private int                               providersNewCount;
+    final private SharedPreferences prefs;
+    final private Context context;
+    private String currentQuery;
+
+    private Map<String, ProviderEntry> providers = new HashMap<>();
+    private boolean providersReady = false;
+
+
+    protected class ProviderEntry {
+        public IProvider         provider   = null;
+        public ServiceConnection connection = null;
+    }
 
 
     /**
@@ -72,54 +69,77 @@ public class DataHandler extends BroadcastReceiver {
         Intent i = new Intent(MainActivity.START_LOAD);
         this.context.sendBroadcast(i);
 
-        this.reload();
+        // Monitor changes for service preferences (to automatically start and stop services)
+        this.prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        this.prefs.registerOnSharedPreferenceChangeListener(this);
+
+        // Connect to initial providers
+        for(String providerName : PROVIDER_NAMES) {
+            if(this.prefs.getBoolean("enable-" + providerName, true)) {
+                this.connectToProvider(providerName);
+            }
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if(key.startsWith("enable-")) {
+            String providerName = key.substring(7);
+            if(PROVIDER_NAMES.contains(providerName)) {
+                if(sharedPreferences.getBoolean(key, true)) {
+                    this.connectToProvider(providerName);
+                } else {
+                    this.disconnectFromProvider(providerName);
+                }
+            }
+        }
     }
 
     /**
-     * Reconnect to all provider services
+     * Generate an intent that can be used to start or stop the given provider
+     *
+     * @param name The name of the provider
+     * @return Android intent for this provider
      */
-    public void reload() {
-        this.providersNew      = new HashMap<>();
-        this.providersNewCount = 0;
+    protected Intent providerName2Intent(String name) {
+        // Build expected fully-qualified provider class name
+        StringBuilder className = new StringBuilder(50);
+        className.append("fr.neamar.kiss.dataprovider.");
+        className.append(Character.toUpperCase(name.charAt(0)));
+        className.append(name.substring(1).toLowerCase());
+        className.append("Provider");
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
-
-        // Initialize providers
-        this.connect(new Intent(this.context, AppProvider.class));
-
-        if (prefs.getBoolean("enable-contacts", true)) {
-            this.connect(new Intent(this.context, ContactProvider.class));
-        }
-
-        if (prefs.getBoolean("enable-search", true)) {
-            this.connect(new Intent(this.context, SearchProvider.class));
-        }
-        if (prefs.getBoolean("enable-phone", true)) {
-            this.connect(new Intent(this.context, PhoneProvider.class));
-        }
-        if (prefs.getBoolean("enable-toggles", true)) {
-            this.connect(new Intent(this.context, ToggleProvider.class));
-        }
-        if (prefs.getBoolean("enable-settings", true)) {
-            this.connect(new Intent(this.context, SettingProvider.class));
-        }
-        if (prefs.getBoolean("enable-alias", true)) {
-            this.connect(new Intent(this.context, AliasProvider.class));
-        }
-        if (prefs.getBoolean("enable-shortcuts", true)) {
-            this.connect(new Intent(this.context, ShortcutProvider.class));
+        // Try to create reflection class instance for class name
+        try {
+            return new Intent(this.context, Class.forName(className.toString()));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
-    private void connect(Intent intent) {
-        // Count the number of providers that we expect to be initialized to make sure that
-        // `handleProviderLoaded(Context)` will not emit a `FULL_LOAD_OVER` event before all
-        // providers have been actually added to the `providers` list
-        this.providersNewCount++;
+    /**
+     * Require the data handler to be connected to the data provider with the given name
+     *
+     * @param name Data provider name (i.e.: `AliasProvider` → `"alias"`)
+     */
+    protected void connectToProvider(final String name) {
+        // Do not continue if this provider has already been connected to
+        if(this.providers.containsKey(name)) {
+            return;
+        }
+
+        // Find provider class for the given service name
+        Intent intent = this.providerName2Intent(name);
+        if(intent == null) {
+            return;
+        }
 
         // Send "start service" command first so that the service can run independently
         // of the activity
         this.context.startService(intent);
+
+        final ProviderEntry entry = new ProviderEntry();
 
         // Connect and bind to provider service
         this.context.bindService(intent, new ServiceConnection() {
@@ -128,7 +148,10 @@ public class DataHandler extends BroadcastReceiver {
                 // We've bound to LocalService, cast the IBinder and get LocalService instance
                 Provider.LocalBinder binder = (Provider.LocalBinder) service;
                 IProvider provider = binder.getService();
-                providersNew.put(provider, this);
+
+                // Update provider info so that it contains something useful
+                entry.provider = provider;
+                entry.connection = this;
 
                 if (provider.isLoaded()) {
                     handleProviderLoaded();
@@ -136,9 +159,83 @@ public class DataHandler extends BroadcastReceiver {
             }
 
             @Override
-            public void onServiceDisconnected(ComponentName arg0) {}
+            public void onServiceDisconnected(ComponentName arg0) {
+            }
         }, Context.BIND_AUTO_CREATE);
+
+        // Add empty provider object to list of providers
+        this.providers.put(name, entry);
     }
+
+    /**
+     * Terminate any connection between the data handler and the data provider with the given name
+     *
+     * @param name Data provider name (i.e.: `AppProvider` → `"app"`)
+     */
+    protected void disconnectFromProvider(String name) {
+        // Skip already disconnected services
+        ProviderEntry entry = this.providers.get(name);
+        if(entry == null) {
+            return;
+        }
+
+        // Disconnect from provider service
+        this.context.unbindService(entry.connection);
+
+        // Stop provider service
+        this.context.stopService(new Intent(this.context, entry.provider.getClass()));
+
+        // Remove provider from list
+        this.providers.remove(name);
+    }
+
+
+    /**
+     * Called when some event occurred that makes us believe that all data providers
+     * might be ready now
+     */
+    private void handleProviderLoaded() {
+        if(this.providersReady) {
+            return;
+        }
+
+        // Make sure that all providers are fully connected
+        for (ProviderEntry entry : this.providers.values()) {
+            if(entry.provider == null || !entry.provider.isLoaded()) {
+                return;
+            }
+        }
+
+        // Broadcast the fact that the new providers list is ready
+        try {
+            this.context.unregisterReceiver(this);
+            Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
+            this.context.sendBroadcast(i);
+        } catch (IllegalArgumentException e) {
+            // Nothing
+        }
+
+        this.providersReady = true;
+    }
+
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        this.handleProviderLoaded();
+    }
+
+
+    /**
+     * Reload all currently used data providers
+     */
+    public void reloadAll() {
+        for(ProviderEntry entry : this.providers.values()) {
+            if(entry.provider != null && entry.provider.isLoaded()) {
+                entry.provider.reload();
+            }
+        }
+    }
+
 
     /**
      * Get records for this query.
@@ -163,9 +260,9 @@ public class DataHandler extends BroadcastReceiver {
         // Ask all providers for data
         ArrayList<Pojo> allPojos = new ArrayList<>();
 
-        for (IProvider provider : providers.keySet()) {
+        for (ProviderEntry entry : this.providers.values()) {
             // Retrieve results for query:
-            ArrayList<Pojo> pojos = provider.getResults(query);
+            ArrayList<Pojo> pojos = entry.provider.getResults(query);
 
             // Add results to list
             for (Pojo pojo : pojos) {
@@ -215,7 +312,7 @@ public class DataHandler extends BroadcastReceiver {
         return DBHelper.getHistoryLength(this.context);
     }
     
-    public void addShortcut(ShortcutPojo shortcut) {
+    public void addShortcut(ShortcutsPojo shortcut) {
         ShortcutRecord record = new ShortcutRecord();
         record.name = shortcut.name;
         record.iconResource = shortcut.resourceName;
@@ -230,24 +327,24 @@ public class DataHandler extends BroadcastReceiver {
         
         DBHelper.insertShortcut(this.context, record);
 
-        if(this.shortcutProvider != null) {
-            this.shortcutProvider.reload();
+        if(this.getShortcutsProvider() != null) {
+            this.getShortcutsProvider().reload();
         }
     }
     
-    public void removeShortcut(ShortcutPojo shortcut) {
+    public void removeShortcut(ShortcutsPojo shortcut) {
         DBHelper.removeShortcut(this.context, shortcut.name);
 
-        if(this.shortcutProvider != null) {
-            this.shortcutProvider.reload();
+        if(this.getShortcutsProvider() != null) {
+            this.getShortcutsProvider().reload();
         }
     }
 
     public void removeShortcuts(String packageName) {
         DBHelper.removeShortcuts(this.context, packageName);
 
-        if(this.shortcutProvider != null) {
-            this.shortcutProvider.reload();
+        if(this.getShortcutsProvider() != null) {
+            this.getShortcutsProvider().reload();
         }
     }
 
@@ -257,19 +354,22 @@ public class DataHandler extends BroadcastReceiver {
      * @return pojos for all applications
      */
     public ArrayList<Pojo> getApplications() {
-        return appProvider.getAllApps();
+        return this.getAppProvider().getAllApps();
     }
 
-    public ContactProvider getContactProvider() {
-        return contactProvider;
+    public ContactsProvider getContactsProvider() {
+        ProviderEntry entry = this.providers.get("contacts");
+        return (entry != null) ? ((ContactsProvider) entry.provider) : null;
     }
-
-    public ShortcutProvider getShortcutProvider() {
-        return shortcutProvider;
+    
+    public ShortcutsProvider getShortcutsProvider() {
+        ProviderEntry entry = this.providers.get("shortcuts");
+        return (entry != null) ? ((ShortcutsProvider) entry.provider) : null;
     }
 
     public AppProvider getAppProvider() {
-        return appProvider;
+        ProviderEntry entry = this.providers.get("app");
+        return (entry != null) ? ((AppProvider) entry.provider) : null;
     }
 
 
@@ -277,8 +377,7 @@ public class DataHandler extends BroadcastReceiver {
      * Return most used items.<br />
      * May return null if no items were ever selected (app first use)
      *
-     * @param context android context
-     * @param limit   max number of items to retrieve. You may end with less items if favorites contains non existing items.
+     * @param limit max number of items to retrieve. You may end with less items if favorites contains non existing items.
      * @return favorites' pojo
      */
     public ArrayList<Pojo> getFavorites(int limit) {
@@ -326,91 +425,17 @@ public class DataHandler extends BroadcastReceiver {
     /**
      * Insert specified ID (probably a pojo.id) into history
      *
-     * @param context android context
-     * @param id      pojo.id of item to record
+     * @param id pojo.id of item to record
      */
     public void addToHistory(String id) {
         DBHelper.insertHistory(this.context, currentQuery, id);
     }
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        this.handleProviderLoaded();
-    }
-
-    private void handleProviderLoaded() {
-        // Do not continue if not all providers are connected yet
-        if(this.providersNewCount != this.providersNew.size()) {
-            return;
-        }
-
-        // Make sure all providers have completely loaded
-        for(IProvider provider : this.providersNew.keySet()) {
-            if(!provider.isLoaded()) {
-                return;
-            }
-        }
-
-        // Obtain reference to old and new providers list
-        final Map<IProvider, ServiceConnection> providersOld = this.providers;
-        final Map<IProvider, ServiceConnection> providersNew = this.providersNew;
-
-        // Store references to important services
-        for(IProvider provider : this.providersNew.keySet()) {
-            final String providerName = provider.getClass().getName();
-            if(providerName.equals(AppProvider.class.getName())) {
-                this.appProvider      = (AppProvider) provider;
-            } else if(providerName.equals(ContactProvider.class.getName())) {
-                this.contactProvider  = (ContactProvider) provider;
-            } else if(providerName.equals(ShortcutProvider.class.getName())) {
-                this.shortcutProvider = (ShortcutProvider) provider;
-            }
-        }
-
-        // Switch to the new providers list
-        this.providers = this.providersNew;
-
-        // Broadcast the fact that the new providers list is ready
-        try {
-            this.context.unregisterReceiver(this);
-            Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
-            this.context.sendBroadcast(i);
-        } catch (IllegalArgumentException e) {
-            // Nothing
-        }
-
-        // Stop all providers that were previously used but are not used anymore
-        for(Map.Entry<IProvider, ServiceConnection> entryOld : providersOld.entrySet()) {
-            final IProvider         providerOld   = entryOld.getKey();
-            final ServiceConnection connectionOld = entryOld.getValue();
-
-            boolean used = false;
-            for(IProvider providerNew : providersNew.keySet()) {
-                if(providerOld.getClass().getName() == providerNew.getClass().getName()) {
-                    used = true;
-                    break;
-                }
-            }
-
-            if(!used) {
-                // Disconnect from provider service
-                this.context.unbindService(connectionOld);
-
-                // Stop provider service
-                this.context.stopService(new Intent(this.context, providerOld.getClass()));
-            }
-        }
-
-        // Clean up
-        this.providersNew      = null;
-        this.providersNewCount = 0;
-    }
-
     private Pojo getPojo(String id) {
         // Ask all providers if they know this id
-        for (IProvider provider : providers.keySet()) {
-            if (provider.mayFindById(id)) {
-                return provider.findById(id);
+        for (ProviderEntry entry : this.providers.values()) {
+            if (entry.provider != null && entry.provider.mayFindById(id)) {
+                return entry.provider.findById(id);
             }
         }
 

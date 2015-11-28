@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 import java.util.ArrayList;
 
@@ -186,7 +186,7 @@ public class DBHelper {
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) { // remove from history
-            db.delete("history", "record = ?", new String[]{ShortcutPojo.SCHEME + cursor.getString(0).toLowerCase()});
+            db.delete("history", "record = ?", new String[]{ShortcutsPojo.SCHEME + cursor.getString(0).toLowerCase()});
             cursor.moveToNext();
         }
         cursor.close();

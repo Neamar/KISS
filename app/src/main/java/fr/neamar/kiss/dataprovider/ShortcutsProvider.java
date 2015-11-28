@@ -2,15 +2,15 @@ package fr.neamar.kiss.dataprovider;
 
 import java.util.ArrayList;
 
-import fr.neamar.kiss.loader.LoadShortcutPojos;
+import fr.neamar.kiss.loader.LoadShortcutsPojos;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.pojo.ShortcutsPojo;
 
-public class ShortcutProvider extends Provider<ShortcutPojo> {
+public class ShortcutsProvider extends Provider<ShortcutsPojo> {
 
     @Override
     public void reload() {
-        this.initialize(new LoadShortcutPojos(this));
+        this.initialize(new LoadShortcutsPojos(this));
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ShortcutProvider extends Provider<ShortcutPojo> {
         String shortcutNameLowerCased;
         
         final String queryWithSpace = " " + query;
-        for (ShortcutPojo shortcut : pojos) {
+        for (ShortcutsPojo shortcut : pojos) {
             relevance = 0;
             shortcutNameLowerCased = shortcut.nameNormalized;
             

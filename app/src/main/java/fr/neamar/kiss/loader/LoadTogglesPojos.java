@@ -6,19 +6,18 @@ import android.os.Build;
 
 import java.util.ArrayList;
 
-import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.TogglePojo;
+import fr.neamar.kiss.pojo.TogglesPojo;
 
-public class LoadTogglePojos extends LoadPojos<TogglePojo> {
+public class LoadTogglesPojos extends LoadPojos<TogglesPojo> {
 
-    public LoadTogglePojos(Context context) {
+    public LoadTogglesPojos(Context context) {
         super(context, "toggle://");
     }
 
     @Override
-    protected ArrayList<TogglePojo> doInBackground(Void... params) {
-        ArrayList<TogglePojo> toggles = new ArrayList<>();
+    protected ArrayList<TogglesPojo> doInBackground(Void... params) {
+        ArrayList<TogglesPojo> toggles = new ArrayList<>();
         PackageManager pm = context.getPackageManager();
         if (pm.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
             toggles.add(createPojo(context.getString(R.string.toggle_wifi), "wifi", R.drawable.toggle_wifi));
@@ -45,8 +44,8 @@ public class LoadTogglePojos extends LoadPojos<TogglePojo> {
         return toggles;
     }
 
-    private TogglePojo createPojo(String name, String settingName, int resId) {
-        TogglePojo pojo = new TogglePojo();
+    private TogglesPojo createPojo(String name, String settingName, int resId) {
+        TogglesPojo pojo = new TogglesPojo();
         pojo.id = pojoScheme + name.toLowerCase();
         pojo.name = name;
         pojo.nameNormalized = pojo.name.toLowerCase();

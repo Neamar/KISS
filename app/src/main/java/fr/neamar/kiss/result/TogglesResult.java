@@ -19,18 +19,18 @@ import android.widget.Toast;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.pojo.TogglePojo;
+import fr.neamar.kiss.pojo.TogglesPojo;
 import fr.neamar.kiss.toggles.TogglesHandler;
 
-public class ToggleResult extends Result {
-    private final TogglePojo togglePojo;
+public class TogglesResult extends Result {
+    private final TogglesPojo togglePojo;
 
     /**
      * Handler for all toggle-related queries
      */
     private TogglesHandler togglesHandler = null;
 
-    public ToggleResult(TogglePojo togglePojo) {
+    public TogglesResult(TogglesPojo togglePojo) {
         super();
         this.pojo = this.togglePojo = togglePojo;
     }
