@@ -31,13 +31,13 @@ public class EventProvider extends Provider<EventPojo> {
         String eventNameLowerCased;
         if (query.length()<2)
             return results;
-        if (query.equals("today"))
+        if (query.equals("!day"))
         {
             return getTodaysEvents();
-        } else if (query.equals("week")) {
+        } else if (query.equals("!week")) {
             return getWeeksEvents();
         }
-        else if (query.equals("month")) {
+        else if (query.equals("!month")) {
             return getMonthsEvents();
         }
 
