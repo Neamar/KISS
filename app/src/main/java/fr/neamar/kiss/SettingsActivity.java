@@ -106,8 +106,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private void fixMenus(SharedPreferences prefs)
     {
-        final int sdkVersion = Integer.parseInt(Build.VERSION.SDK);
-        if (sdkVersion<14)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
         {
             //hide calendar
             findPreference("enable-events").setEnabled(false);
