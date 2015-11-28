@@ -35,7 +35,6 @@ public class EventResult extends Result {
             v = inflateFromId(context, R.layout.item_event);
 
         TextView appName = (TextView) v.findViewById(R.id.item_event_text);
-        String text = context.getString(R.string.ui_item_event);
         appName.setText(enrichText(eventPojo.displayName));
 
         return v;
@@ -46,6 +45,13 @@ public class EventResult extends Result {
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
     public void doLaunch(Context context, View v) {
+        //sanity check, this should never be the case
+        // since calendar events are not enabled on older devices
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+        {
+            return;
+        }
+        recordLaunch(context);
         Intent calendar = new Intent(Intent.ACTION_VIEW);
         Uri.Builder uri = CalendarContract.Events.CONTENT_URI.buildUpon();
         uri.appendPath(eventPojo.id);

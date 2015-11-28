@@ -18,7 +18,7 @@ import fr.neamar.kiss.pojo.EventPojo;
  */
 public class LoadEventPojos extends LoadPojos<EventPojo> {
     public LoadEventPojos(Context context) {
-        super(context, "none://");
+        super(context, "event://");
     }
 
     @Override
@@ -73,7 +73,6 @@ public class LoadEventPojos extends LoadPojos<EventPojo> {
         return calendar.getTime();
     }
 
-    //method created for demonstration purposes
     public Date getDateInFuture(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
