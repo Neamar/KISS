@@ -48,7 +48,7 @@ public class ContactResult extends Result {
 
         // Contact phone
         TextView contactPhone = (TextView) v.findViewById(R.id.item_contact_phone);
-        contactPhone.setText(enrichText(contactPojo.displayPhone));
+        contactPhone.setText(contactPojo.phone);
 
         // Contact photo
         ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) v
@@ -213,4 +213,5 @@ public class ContactResult extends Result {
         }, KissApplication.TOUCH_DELAY);
 
     }
+
 }

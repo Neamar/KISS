@@ -27,7 +27,6 @@ public class ContactProvider extends Provider<ContactPojo> {
         int relevance;
         int matchPositionStart;
         int matchPositionEnd;
-        boolean hightlightPhone = false;
         String contactNameNormalized;
 
         final String queryWithSpace = " " + query;
@@ -37,7 +36,6 @@ public class ContactProvider extends Provider<ContactPojo> {
 
             matchPositionStart = 0;
             matchPositionEnd = 0;
-            hightlightPhone = false;
             if (contactNameNormalized.startsWith(query)) {
                 relevance = 50;
                 matchPositionEnd = matchPositionStart + query.length();
@@ -46,14 +44,11 @@ public class ContactProvider extends Provider<ContactPojo> {
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
             } else if (query.length()>2) {
                 matchPositionStart = 0;
+                matchPositionEnd = 0;
                 if (contact.phoneSimplified.startsWith(query)) {
                     relevance = 10;
-                    matchPositionEnd = matchPositionStart + query.length();
-                    hightlightPhone = true;
-                } else if ((matchPositionStart = contact.phoneSimplified.indexOf(query)) > -1) {
+                } else if (contact.phoneSimplified.indexOf(query) > -1) {
                     relevance = 5;
-                    matchPositionEnd = matchPositionStart + query.length();
-                    hightlightPhone = true;
                 }
             }
 
@@ -68,18 +63,7 @@ public class ContactProvider extends Provider<ContactPojo> {
                 if (contact.homeNumber)
                     relevance -= 1;
 
-                //highlight either name or phone
-                if (!hightlightPhone) {
-                    //display normalized phone
-                    contact.displayPhone = contact.phone;
-                    contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
-                }
-                else {
-                    //set display name
-                    contact.displayName = contact.name;
-                    //display stripped phone
-                    contact.setDisplayPhoneHighlightRegion(matchPositionStart, matchPositionEnd);
-                }
+                contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 contact.relevance = relevance;
                 results.add(contact);
 

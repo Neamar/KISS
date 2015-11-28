@@ -8,8 +8,6 @@ public class ContactPojo extends Pojo {
     public String phone = "";
     //phone without special characters
     public String phoneSimplified = "";
-    //the phone number to display (might contain styling)
-    public String displayPhone ="";
     public Uri icon = null;
 
     // Is this a primary phone?
@@ -24,11 +22,4 @@ public class ContactPojo extends Pojo {
     // Is this number a home (local) number ?
     public Boolean homeNumber = false;
 
-
-    public void setDisplayPhoneHighlightRegion(int positionNormalizedStart, int positionNormalizedEnd) {
-
-        this.displayPhone = this.phoneSimplified.substring(0, positionNormalizedStart)
-                + '{' + this.phoneSimplified.substring(positionNormalizedStart, positionNormalizedEnd) + '}'
-                + this.phoneSimplified.substring(positionNormalizedEnd);
-    }
 }
