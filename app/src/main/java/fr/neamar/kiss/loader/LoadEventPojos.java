@@ -58,7 +58,7 @@ public class LoadEventPojos extends LoadPojos<EventPojo> {
             event.id = cursor.getString(0);
             event.startDate = getDate(Long.parseLong(cursor.getString(1)));
             event.stopDate = getDate(Long.parseLong(cursor.getString(2)));
-            event.setName(formatDateShort(event.startDate) + ": " + event.title);
+            event.setName(formatDateShort(event.startDate) + " " + event.title);
             event.displayDate = formatDate(event.startDate);
             event.nameNormalized = StringNormalizer.normalize(event.name);
             events.add(event);
