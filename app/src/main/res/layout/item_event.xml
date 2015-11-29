@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center_vertical"
-              android:orientation="horizontal"
-              android:paddingBottom="@dimen/result_margin_bottom"
-              android:paddingLeft="@dimen/result_margin_left"
-              android:paddingRight="@dimen/result_margin_right"
-              android:paddingTop="@dimen/result_margin_top">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/result_margin_bottom"
+    android:paddingLeft="@dimen/result_margin_left"
+    android:paddingRight="@dimen/result_margin_right"
+    android:paddingTop="@dimen/result_margin_top">
 
     <ImageView
         android:id="@+id/item_event_icon"
@@ -24,8 +25,20 @@
         android:id="@+id/item_event_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ui_item_event"
+        android:layout_alignTop="@+id/item_event_icon"
+        android:layout_toRightOf="@+id/item_event_icon"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="Event title"
         android:textColor="?attr/resultColor"
         android:textSize="@dimen/result_title_size"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/item_event_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_event_icon"
+        android:layout_alignLeft="@+id/item_event_text"
+        android:textColor="?android:attr/textColorSecondary"/>
+
+</RelativeLayout>
