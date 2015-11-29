@@ -7,16 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.CalendarContract;
-import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.EventPojo;
-import fr.neamar.kiss.pojo.PhonePojo;
 
 /**
  * Created by nmitsou on 09.11.15.
@@ -34,8 +31,11 @@ public class EventResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_event);
 
-        TextView appName = (TextView) v.findViewById(R.id.item_event_text);
-        appName.setText(enrichText(eventPojo.displayName));
+        TextView eventTitle = (TextView) v.findViewById(R.id.item_event_text);
+        eventTitle.setText(enrichText(eventPojo.displayName));
+
+        TextView eventDate = (TextView) v.findViewById(R.id.item_event_date);
+        eventDate.setText(enrichText(eventPojo.displayDate));
 
         return v;
     }
@@ -62,11 +62,5 @@ public class EventResult extends Result {
     @Override
     protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
         return super.popupMenuClickHandler(context, parent, item);
-    }
-
-
-    @Override
-    public Drawable getDrawable(Context context) {
-        return context.getResources().getDrawable(android.R.drawable.ic_menu_call);
     }
 }

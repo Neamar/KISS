@@ -58,7 +58,8 @@ public class LoadEventPojos extends LoadPojos<EventPojo> {
             event.id = cursor.getString(0);
             event.startDate = getDate(Long.parseLong(cursor.getString(1)));
             event.stopDate = getDate(Long.parseLong(cursor.getString(2)));
-            event.setName(formatDate(event.startDate)+" "+event.title);
+            event.setName(formatDateShort(event.startDate) + ": " + event.title);
+            event.displayDate = formatDate(event.startDate);
             event.nameNormalized = StringNormalizer.normalize(event.name);
             events.add(event);
             cursor.moveToNext();
@@ -80,9 +81,15 @@ public class LoadEventPojos extends LoadPojos<EventPojo> {
         return calendar.getTime();
     }
 
+    public String formatDateShort(Date date)
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM");
+        return formatter.format(date);
+    }
+
     public String formatDate(Date date)
     {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mm a");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy, hh:mm a");
         return formatter.format(date);
     }
 }

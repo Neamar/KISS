@@ -12,4 +12,5 @@ public class EventPojo extends Pojo {
     public Date stopDate;
     public String title;
     public String description;
+    public String displayDate;
 }
