@@ -129,7 +129,9 @@ public class AppResult extends Result {
                 .putString("excluded-apps-list", excludedAppList + appPojo.packageName + ";").commit();
         //remove app pojo from appProvider results - no need to reset handler
         KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
-        ((MainActivity)context).retrieveFavorites();
+        if(context instanceof MainActivity) {
+            ((MainActivity) context).retrieveFavorites();
+        }
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 
