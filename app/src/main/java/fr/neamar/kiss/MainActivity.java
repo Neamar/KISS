@@ -43,6 +43,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
+import fr.neamar.kiss.searcher.FavoritesSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -206,7 +207,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
                     //show history only if no search text is added
                     if (((EditText) v).getText().toString().isEmpty()) {
-                        searcher = new HistorySearcher(MainActivity.this);
+                        searcher = getHistoryOrFavSearcher(MainActivity.this);
                         searcher.execute();
                     }
                 }
@@ -599,7 +600,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
 
             } else {
-                searcher = new HistorySearcher(this);
+                searcher = getHistoryOrFavSearcher(this);
                 //Show default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
@@ -607,6 +608,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
             searcher = new QuerySearcher(this, query);
         }
         searcher.execute();
+    }
+
+    private Searcher getHistoryOrFavSearcher(Context context)
+    {
+        if (prefs.getBoolean("replace-app-history-with-favs", false)) {
+            return new FavoritesSearcher(this);
+        }
+        else {
+            return new HistorySearcher(this);
+        }
+
     }
 
     public void resetTask() {

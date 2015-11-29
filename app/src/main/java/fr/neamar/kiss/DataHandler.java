@@ -158,6 +158,26 @@ public class DataHandler extends BroadcastReceiver {
         return DBHelper.getHistoryLength(context);
     }
 
+
+    public ArrayList<Pojo> getFavorites(Context context) {
+        ArrayList<Pojo> history = new ArrayList<>();
+
+
+        // Read history
+        ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, 4);
+
+// Find associated items
+        for (int i = 0; i < ids.size(); i++) {
+            // Ask all providers if they know this id
+            Pojo pojo = getPojo(ids.get(i).record);
+            if (pojo != null) {
+                history.add(pojo);
+            }
+        }
+
+        return history;
+    }
+
     /**
      * Return all applications
      *
