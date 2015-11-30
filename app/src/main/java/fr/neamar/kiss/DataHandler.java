@@ -179,17 +179,35 @@ public class DataHandler extends BroadcastReceiver {
         return favorites;
     }
 
-    public boolean addToFavorites(Context context, String packageName) {
+    public boolean addToFavorites(Context context, String id) {
 
-        String favAppList = PreferenceManager.getDefaultSharedPreferences(context).
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
-        if (favAppList.contains(packageName))
+        if (favApps.contains(id+";"))
         {
             return false;
         }
 
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps + id + ";").commit();
+
         return true;
     }
+
+    public boolean removeFromFavorites(Context context, String id) {
+
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (favApps.contains(id+";"))
+        {
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                    .putString("favorite-apps-list", favApps.replace(id+";","") + ";").commit();
+            return true;
+        }
+
+        return false;
+    }
+
 
     /**
      * Return all applications
