@@ -7,9 +7,11 @@ test:
     # wait for it to have booted
     - circle-android wait-for-boot
   override:
+    - adb start-server
     - ./gradlew test assembleDebug
     # Unlock the lockscreen on the emulator
     - adb shell input keyevent 82
+    - adb shell input keyevent 92
     - ./gradlew connectedAndroidTest
     # Capture screenshot of emulator
     - adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > $CIRCLE_ARTIFACTS/screen.png
