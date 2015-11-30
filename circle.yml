@@ -20,4 +20,4 @@ test:
     # copy the test results to the test results directory.
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find app/build/test-results -name "*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-    - cp -r my-project/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+    - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
