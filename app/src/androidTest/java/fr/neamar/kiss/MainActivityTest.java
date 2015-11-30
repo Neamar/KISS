@@ -33,7 +33,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     }
 
     @Test
-    public void testActivityShouldHaveText() {
+    public void testCanTypeTextIntoSearchBox() {
         onView(withId(R.id.searchEditText)).perform(typeText("Test"));
         onView(withId(R.id.searchEditText)).check(matches(withText("Test")));
     }
