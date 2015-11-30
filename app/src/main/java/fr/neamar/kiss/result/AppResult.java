@@ -98,6 +98,9 @@ public class AppResult extends Result {
     @Override
     protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.item_favorites_add:
+                launchAppToFavorites(context, appPojo);
+                break;
             case R.id.item_app_details:
                 launchAppDetails(context, appPojo);
                 return true;
@@ -112,6 +115,15 @@ public class AppResult extends Result {
         }
 
         return super.popupMenuClickHandler(context, parent, item);
+    }
+
+    private void launchAppToFavorites(Context context, AppPojo app) {
+
+        String msg = context.getResources().getString(R.string.toast_favorites_added);
+        if (!KissApplication.getDataHandler(context).addToFavorites(context, appPojo.packageName)) {
+            msg = context.getResources().getString(R.string.toast_favorites_already);
+        }
+        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 
     /**

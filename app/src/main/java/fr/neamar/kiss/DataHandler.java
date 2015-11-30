@@ -1,8 +1,10 @@
 package fr.neamar.kiss;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -137,7 +139,7 @@ public class DataHandler extends BroadcastReceiver {
      * @return pojos in recent history
      */
     public ArrayList<Pojo> getHistory(Context context, int itemCount) {
-        ArrayList<Pojo> history = new ArrayList<>(itemCount);
+        ArrayList<Pojo> history = new ArrayList<>();
 
         // Read history
         ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount);
@@ -158,24 +160,35 @@ public class DataHandler extends BroadcastReceiver {
         return DBHelper.getHistoryLength(context);
     }
 
-
     public ArrayList<Pojo> getFavorites(Context context) {
-        ArrayList<Pojo> history = new ArrayList<>();
+        ArrayList<Pojo> favorites = new ArrayList<>();
 
+        String favAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        List<String> favApps = Arrays.asList(favAppList.split(";"));
 
-        // Read history
-        ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, 4);
-
-// Find associated items
-        for (int i = 0; i < ids.size(); i++) {
-            // Ask all providers if they know this id
-            Pojo pojo = getPojo(ids.get(i).record);
+        // Find associated items
+        for (int i = 0; i < favApps.size(); i++) {
+            // Ask appProvider if it knows this id
+            Pojo pojo = getAppProvider().findById(favApps.get(i));
             if (pojo != null) {
-                history.add(pojo);
+                favorites.add(pojo);
             }
         }
 
-        return history;
+        return favorites;
+    }
+
+    public boolean addToFavorites(Context context, String packageName) {
+
+        String favAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (favAppList.contains(packageName))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     /**
