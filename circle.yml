@@ -10,9 +10,7 @@ test:
     - ./gradlew test assembleDebug
     - ./gradlew connectedAndroidTest
     # Capture screenshot of emulator
-    - adb shell screencap -p /sdcard/screen.png
-    - adb pull /sdcard/screen.png $CIRCLE_ARTIFACTS
-    - adb shell rm /sdcard/screen.png
+    - adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > $CIRCLE_ARTIFACTS/screen.png
   post:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
