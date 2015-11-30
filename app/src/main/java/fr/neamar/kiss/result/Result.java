@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -98,12 +99,15 @@ public abstract class Result {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     protected void inflateBaseMenu(Context context, PopupMenu menu) {
-        if (context instanceof MainActivity) {
-            if (((MainActivity) context).getCurrentView() == MainActivity.KISS_VIEW.FAVORITES) {
-                menu.getMenuInflater().inflate(R.menu.menu_item_fav_remove, menu.getMenu());
+        //if you have selected to use favorites instead of history then show additional menus
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("replace-app-history-with-favs", false)) {
+            if (context instanceof MainActivity) {
+                if (((MainActivity) context).getCurrentView() == MainActivity.KISS_VIEW.FAVORITES) {
+                    menu.getMenuInflater().inflate(R.menu.menu_item_fav_remove, menu.getMenu());
 
-            } else {
-                menu.getMenuInflater().inflate(R.menu.menu_item_fav_add, menu.getMenu());
+                } else {
+                    menu.getMenuInflater().inflate(R.menu.menu_item_fav_add, menu.getMenu());
+                }
             }
         }
     }
