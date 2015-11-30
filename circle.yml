@@ -8,8 +8,11 @@ test:
     - circle-android wait-for-boot
   override:
     - ./gradlew test assembleDebug
-    # Try to run espresso tests multiple times until they pass
-    - for i in `seq 1 3`; do ./gradlew connectedAndroidTest; if [ "$?" -eq 0 ]; then break; fi; done
+    - ./gradlew connectedAndroidTest
+    # Capture screenshot of emulator
+    - adb shell screencap -p /sdcard/screen.png
+    - adb pull /sdcard/screen.png $CIRCLE_ARTIFACTS
+    - adb shell rm /sdcard/screen.png
   post:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
