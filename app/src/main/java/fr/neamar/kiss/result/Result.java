@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
@@ -91,7 +92,20 @@ public abstract class Result {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_default, menu.getMenu());
 
+        inflateBaseMenu(context, menu);
         return menu;
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    protected void inflateBaseMenu(Context context, PopupMenu menu) {
+        if (context instanceof MainActivity) {
+            if (((MainActivity) context).getCurrentView() == MainActivity.KISS_VIEW.FAVORITES) {
+                menu.getMenuInflater().inflate(R.menu.menu_item_fav_remove, menu.getMenu());
+
+            } else {
+                menu.getMenuInflater().inflate(R.menu.menu_item_fav_add, menu.getMenu());
+            }
+        }
     }
 
     /**
@@ -105,8 +119,31 @@ public abstract class Result {
             case R.id.item_remove:
                 removeItem(context, parent);
                 return true;
+            case R.id.item_favorites_remove:
+                launchRemoveFromFavorites(context, pojo);
+                parent.removeResult(this);
+                break;
+            case R.id.item_favorites_add:
+                launchAddToFavorites(context, pojo);
+                break;
         }
         return false;
+    }
+
+    private void launchAddToFavorites(Context context, Pojo app) {
+        String msg = context.getResources().getString(R.string.toast_favorites_added);
+        if (!KissApplication.getDataHandler(context).addToFavorites(context, app.id)) {
+            msg = context.getResources().getString(R.string.toast_favorites_already);
+        }
+        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+    }
+
+    private void launchRemoveFromFavorites(Context context, Pojo app) {
+        String msg = context.getResources().getString(R.string.toast_favorites_removed);
+        if (!KissApplication.getDataHandler(context).removeFromFavorites(context, app.id)) {
+            msg = context.getResources().getString(R.string.toast_favorites_not_in);
+        }
+        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 
     /**

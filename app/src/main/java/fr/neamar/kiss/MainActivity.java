@@ -56,6 +56,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
 
+    public static enum KISS_VIEW {
+        FAVORITES, APPS, HISTORY, OTHER
+    }
+
     /**
      * IDS for the favorites buttons
      */
@@ -102,6 +106,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Task launched on text change
      */
     private Searcher searcher;
+
+    private KISS_VIEW currentView;
 
     /**
      * Called when the activity is first created.
@@ -622,6 +628,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     public void resetTask() {
+        currentView = calculateCurrentView();
         searcher = null;
     }
 
@@ -651,5 +658,23 @@ public class MainActivity extends ListActivity implements QueryInterface {
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    private KISS_VIEW calculateCurrentView() {
+        if (searcher instanceof HistorySearcher) {
+            return KISS_VIEW.HISTORY;
+        }
+        if (searcher instanceof FavoritesSearcher) {
+            return KISS_VIEW.FAVORITES;
+        }
+        if (searcher instanceof ApplicationsSearcher) {
+            return KISS_VIEW.APPS;
+        }
+        return KISS_VIEW.OTHER;
+    }
+
+    public KISS_VIEW getCurrentView()
+    {
+        return currentView;
     }
 }

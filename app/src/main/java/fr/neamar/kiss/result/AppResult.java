@@ -92,18 +92,13 @@ public class AppResult extends Result {
             menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
         }
 
+        inflateBaseMenu(context, menu);
         return menu;
     }
 
     @Override
     protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.item_favorites_remove:
-                launchAppRemoveFromFavorites(context, appPojo);
-                break;
-            case R.id.item_favorites_add:
-                launchAppAddToFavorites(context, appPojo);
-                break;
             case R.id.item_app_details:
                 launchAppDetails(context, appPojo);
                 return true;
@@ -118,24 +113,6 @@ public class AppResult extends Result {
         }
 
         return super.popupMenuClickHandler(context, parent, item);
-    }
-
-    private void launchAppAddToFavorites(Context context, AppPojo app) {
-
-        String msg = context.getResources().getString(R.string.toast_favorites_added);
-        if (!KissApplication.getDataHandler(context).addToFavorites(context, app.id)) {
-            msg = context.getResources().getString(R.string.toast_favorites_already);
-        }
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
-    }
-
-    private void launchAppRemoveFromFavorites(Context context, AppPojo app) {
-
-        String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        if (!KissApplication.getDataHandler(context).removeFromFavorites(context, app.id)) {
-            msg = context.getResources().getString(R.string.toast_favorites_not_in);
-        }
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 
     /**

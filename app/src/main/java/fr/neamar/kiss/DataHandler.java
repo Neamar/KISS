@@ -169,8 +169,8 @@ public class DataHandler extends BroadcastReceiver {
 
         // Find associated items
         for (int i = 0; i < favApps.size(); i++) {
-            // Ask appProvider if it knows this id
-            Pojo pojo = getAppProvider().findById(favApps.get(i));
+            // Ask all providers if they know this id
+            Pojo pojo = getPojo(favApps.get(i));
             if (pojo != null) {
                 favorites.add(pojo);
             }
