@@ -4,12 +4,14 @@ test:
     - emulator -avd circleci-android22 -no-audio -no-window:
         background: true
         parallel: true
-    # wait for it to have booted
-    - circle-android wait-for-boot
   override:
     - adb start-server:
         background: true
     - ./gradlew test assembleDebug
+    # wait for the emulator to have booted (we wait at this point so that
+    # gradle commands not needing the emulator can be run while the
+    # emulator is starting up)
+    - circle-android wait-for-boot
     # Unlock the lockscreen on the emulator
     - adb shell input keyevent 82
     - adb shell input keyevent 92
