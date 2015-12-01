@@ -139,7 +139,7 @@ public class DataHandler extends BroadcastReceiver {
      * @return pojos in recent history
      */
     public ArrayList<Pojo> getHistory(Context context, int itemCount) {
-        ArrayList<Pojo> history = new ArrayList<>();
+        ArrayList<Pojo> history = new ArrayList<>(itemCount);
 
         // Read history
         ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount);

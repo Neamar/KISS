@@ -628,7 +628,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     public void resetTask() {
-        currentView = calculateCurrentView();
+        currentView = saveCurrentView();
         searcher = null;
     }
 
@@ -660,7 +660,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
     }
 
-    private KISS_VIEW calculateCurrentView() {
+    private KISS_VIEW saveCurrentView() {
         if (searcher instanceof HistorySearcher) {
             return KISS_VIEW.HISTORY;
         }
