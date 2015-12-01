@@ -1,16 +1,23 @@
 package fr.neamar.kiss;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+
+import java.util.Arrays;
+
+import fr.neamar.kiss.broadcast.IncomingCallHandler;
+import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings can be set without resetting the DataHandler
-    private String safeSettings = "theme enable-spellcheck display-keyboard root-mode require-layout-update icons-hide";
+    private String safeSettings = "theme enable-spellcheck display-keyboard root-mode require-layout-update icons-hide enable-sms-history enable-phone-history enable-app-history";
     // Those settings require the app to restart
     private String requireRestartSettings = "theme enable-spellcheck force-portrait";
     private SharedPreferences prefs;
@@ -41,7 +48,7 @@ public class SettingsActivity extends PreferenceActivity implements
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (requireRestartSettings.contains(key)) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            prefs.edit().putBoolean("require-layout-update", true).commit();
+            prefs.edit().putBoolean("require-layout-update", true).apply();
 
             // Restart current activity to refresh view, since some
             // preferences
@@ -56,9 +63,25 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if (!safeSettings.contains(key)) {
+        if (!Arrays.asList(safeSettings.split(" ")).contains(key)) {
             // Reload the DataHandler since Providers preferences have changed
             KissApplication.resetDataHandler(this);
+        }
+
+        if("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
+            ComponentName receiver;
+
+            if("enable-sms-history".equals(key)) {
+                receiver = new ComponentName(this, IncomingSmsHandler.class);
+            }
+            else {
+                receiver = new ComponentName(this, IncomingCallHandler.class);
+            }
+
+            PackageManager pm = getPackageManager();
+            pm.setComponentEnabledSetting(receiver,
+                    sharedPreferences.getBoolean(key, false) ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP);
         }
     }
 

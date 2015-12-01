@@ -213,4 +213,5 @@ public class ContactResult extends Result {
         }, KissApplication.TOUCH_DELAY);
 
     }
+
 }
