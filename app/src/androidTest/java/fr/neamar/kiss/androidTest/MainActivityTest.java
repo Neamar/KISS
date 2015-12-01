@@ -1,7 +1,8 @@
 
-package fr.neamar.kiss;
+package fr.neamar.kiss.androidTest;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.MainActivity;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.InstrumentationRegistry;
