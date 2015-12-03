@@ -21,5 +21,4 @@ public class ContactPojo extends Pojo {
 
     // Is this number a home (local) number ?
     public Boolean homeNumber = false;
-
 }
