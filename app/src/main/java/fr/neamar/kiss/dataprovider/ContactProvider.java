@@ -42,7 +42,7 @@ public class ContactProvider extends Provider<ContactPojo> {
             } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
                 relevance = 40;
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
-            } else if (query.length()>2) {
+            } else if (query.length() > 2) {
                 matchPositionStart = 0;
                 matchPositionEnd = 0;
                 if (contact.phoneSimplified.startsWith(query)) {
@@ -92,7 +92,7 @@ public class ContactProvider extends Provider<ContactPojo> {
 
         return null;
     }
-    
+
     public Pojo findByName(String name) {
         for (Pojo pojo : pojos) {
             if (pojo.name.equals(name))
