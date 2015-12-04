@@ -52,7 +52,7 @@ public class EventResult extends Result {
         TextView eventDate = (TextView) v.findViewById(R.id.item_event_date);
         eventTitle.setText(enrichText(eventPojo.displayName));
         eventDate.setText(enrichText(eventPojo.displayDate));
-        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons", false)) {
 
             final ImageView appIcon = (ImageView) v.findViewById(R.id.item_event_icon);
             if (position < 15) {
