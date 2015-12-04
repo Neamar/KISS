@@ -113,14 +113,14 @@ public class AppResult extends Result {
             case R.id.item_exclude:
                 // remove item since it will be hiddden
                 parent.removeResult(this);
-                excludeFromSettings(context, appPojo);
+                excludeFromAppList(context, appPojo);
                 return true;
         }
 
         return super.popupMenuClickHandler(context, parent, item);
     }
 
-    private void excludeFromSettings(Context context, AppPojo appPojo)
+    private void excludeFromAppList(Context context, AppPojo appPojo)
     {
 
         String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
@@ -129,6 +129,7 @@ public class AppResult extends Result {
                 .putString("excluded-apps-list", excludedAppList + appPojo.packageName + ";").commit();
         //remove app pojo from appProvider results - no need to reset handler
         KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
+        //refresh favorites to remove this app from the fav.list (in case it was there)
         if(context instanceof MainActivity) {
             ((MainActivity) context).retrieveFavorites();
         }
