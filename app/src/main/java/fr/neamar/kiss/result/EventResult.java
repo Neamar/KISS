@@ -12,6 +12,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
 import android.view.MenuItem;
@@ -47,17 +48,13 @@ public class EventResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_event);
 
-        TextView eventTitle = (TextView) v.findViewById(R.id.item_event_text);
+        final TextView eventTitle = (TextView) v.findViewById(R.id.item_event_text);
         TextView eventDate = (TextView) v.findViewById(R.id.item_event_date);
         eventTitle.setText(enrichText(eventPojo.displayName));
         eventDate.setText(enrichText(eventPojo.displayDate));
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
-
-            if (position < 15) {
-
-                final ImageView appIcon = (ImageView) v.findViewById(R.id.item_event_icon);
-                appIcon.setImageDrawable(getDrawable(eventTitle.getCurrentTextColor()));
-            }
+            final ImageView appIcon = (ImageView) v.findViewById(R.id.item_event_icon);
+            appIcon.setImageDrawable(getDrawable(eventTitle.getCurrentTextColor()));
         }
         return v;
     }
