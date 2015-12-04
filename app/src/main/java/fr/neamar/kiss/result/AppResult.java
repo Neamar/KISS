@@ -92,6 +92,7 @@ public class AppResult extends Result {
             menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
         }
 
+        inflateBaseMenu(context, menu);
         return menu;
     }
 

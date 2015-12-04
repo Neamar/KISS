@@ -23,6 +23,18 @@
             android:summary="@string/enable_app_desc"
             android:title="@string/enable_app" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_favorites">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="replace-app-history-with-favs"
+            android:summary="@string/replace_history_with_favs_desc"
+            android:title="@string/replace_history_with_favs" />
+        <fr.neamar.kiss.preference.ResetFavoritesPreference
+            android:dialogMessage="@string/reset_favorites_warn"
+            android:key="reset"
+            android:summary="@string/reset_favorites_desc"
+            android:title="@string/reset_favorites_name" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"

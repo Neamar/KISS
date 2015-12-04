@@ -1,8 +1,10 @@
 package fr.neamar.kiss;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -157,6 +159,55 @@ public class DataHandler extends BroadcastReceiver {
     public int getHistoryLength(Context context) {
         return DBHelper.getHistoryLength(context);
     }
+
+    public ArrayList<Pojo> getFavorites(Context context) {
+        ArrayList<Pojo> favorites = new ArrayList<>();
+
+        String favAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        List<String> favApps = Arrays.asList(favAppList.split(";"));
+
+        // Find associated items
+        for (int i = 0; i < favApps.size(); i++) {
+            // Ask all providers if they know this id
+            Pojo pojo = getPojo(favApps.get(i));
+            if (pojo != null) {
+                favorites.add(pojo);
+            }
+        }
+
+        return favorites;
+    }
+
+    public boolean addToFavorites(Context context, String id) {
+
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (favApps.contains(id+";"))
+        {
+            return false;
+        }
+
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps + id + ";").commit();
+
+        return true;
+    }
+
+    public boolean removeFromFavorites(Context context, String id) {
+
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (favApps.contains(id+";"))
+        {
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                    .putString("favorite-apps-list", favApps.replace(id+";","") + ";").commit();
+            return true;
+        }
+
+        return false;
+    }
+
 
     /**
      * Return all applications

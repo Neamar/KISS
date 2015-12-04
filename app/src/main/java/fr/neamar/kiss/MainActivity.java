@@ -43,6 +43,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
+import fr.neamar.kiss.searcher.FavoritesSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -54,6 +55,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
+
+    public static enum KISS_VIEW {
+        FAVORITES, APPS, HISTORY, OTHER
+    }
 
     /**
      * IDS for the favorites buttons
@@ -101,6 +106,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
      * Task launched on text change
      */
     private Searcher searcher;
+
+    private KISS_VIEW currentView;
 
     /**
      * Called when the activity is first created.
@@ -206,7 +213,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
                     //show history only if no search text is added
                     if (((EditText) v).getText().toString().isEmpty()) {
-                        searcher = new HistorySearcher(MainActivity.this);
+                        searcher = getHistoryOrFavSearcher(MainActivity.this);
                         searcher.execute();
                     }
                 }
@@ -599,7 +606,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
 
             } else {
-                searcher = new HistorySearcher(this);
+                searcher = getHistoryOrFavSearcher(this);
                 //Show default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
@@ -609,7 +616,19 @@ public class MainActivity extends ListActivity implements QueryInterface {
         searcher.execute();
     }
 
+    private Searcher getHistoryOrFavSearcher(Context context)
+    {
+        if (prefs.getBoolean("replace-app-history-with-favs", false)) {
+            return new FavoritesSearcher(this);
+        }
+        else {
+            return new HistorySearcher(this);
+        }
+
+    }
+
     public void resetTask() {
+        currentView = saveCurrentView();
         searcher = null;
     }
 
@@ -639,5 +658,23 @@ public class MainActivity extends ListActivity implements QueryInterface {
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    private KISS_VIEW saveCurrentView() {
+        if (searcher instanceof HistorySearcher) {
+            return KISS_VIEW.HISTORY;
+        }
+        if (searcher instanceof FavoritesSearcher) {
+            return KISS_VIEW.FAVORITES;
+        }
+        if (searcher instanceof ApplicationsSearcher) {
+            return KISS_VIEW.APPS;
+        }
+        return KISS_VIEW.OTHER;
+    }
+
+    public KISS_VIEW getCurrentView()
+    {
+        return currentView;
     }
 }
