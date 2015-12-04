@@ -1,6 +1,8 @@
 package fr.neamar.kiss.dataprovider;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,10 +19,12 @@ import fr.neamar.kiss.pojo.SettingPojo;
 
 public class EventProvider extends Provider<EventPojo> {
     private final String eventsName;
+    private SharedPreferences prefs;
 
     public EventProvider(Context context) {
         super(new LoadEventPojos(context));
         eventsName="Events: ".toLowerCase();
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public ArrayList<Pojo> getResults(String query) {
@@ -41,7 +45,9 @@ public class EventProvider extends Provider<EventPojo> {
             return getMonthsEvents();
         }
 
-
+        if (prefs.getBoolean("enable-events-special-search-only", false)) {
+            return results;
+        }
         for (EventPojo event : pojos) {
             relevance = 0;
             eventNameLowerCased = event.nameNormalized;

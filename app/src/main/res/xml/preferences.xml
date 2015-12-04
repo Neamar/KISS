@@ -93,12 +93,6 @@
             android:title="@string/aliases_name" />
         <CheckBoxPreference
             android:defaultValue="true"
-            android:key="enable-events"
-            android:summary="@string/events_desc"
-            android:title="@string/events_name">
-        </CheckBoxPreference>
-        <CheckBoxPreference
-            android:defaultValue="true"
             android:key="enable-search"
             android:summary="@string/search_desc"
             android:title="@string/search_name" />
@@ -112,6 +106,20 @@
             android:key="enable-shortcuts"
             android:summary="@string/shortcuts_desc"
             android:title="@string/shortcuts_name" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_providers_events">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable-events"
+            android:summary="@string/events_desc"
+            android:title="@string/events_name" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:dependency="enable-events"
+            android:key="enable-events-special-search-only"
+            android:summary="@string/events_search_desc"
+            android:title="@string/events_search_name">
+        </CheckBoxPreference>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_advanced">
         <fr.neamar.kiss.preference.RootModePreference
