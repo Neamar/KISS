@@ -53,8 +53,20 @@ public class EventResult extends Result {
         eventTitle.setText(enrichText(eventPojo.displayName));
         eventDate.setText(enrichText(eventPojo.displayDate));
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
+
             final ImageView appIcon = (ImageView) v.findViewById(R.id.item_event_icon);
-            appIcon.setImageDrawable(getDrawable(eventTitle.getCurrentTextColor()));
+            if (position < 15) {
+                appIcon.setImageDrawable(getDrawable(eventTitle.getCurrentTextColor()));
+            } else {
+                // Do actions on a message queue to avoid performance issues on main thread
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        appIcon.setImageDrawable(getDrawable(eventTitle.getCurrentTextColor()));
+                    }
+                });
+            }
         }
         return v;
     }
