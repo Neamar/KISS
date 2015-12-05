@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion '23.0.2'
     defaultConfig {
         applicationId 'fr.neamar.kiss'
         minSdkVersion 10
         targetSdkVersion 22
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -19,5 +20,14 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-annotations:22.2.1'
+    repositories {
+        jcenter()
+    }
+    androidTestCompile 'com.android.support:support-annotations:23.0.1'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
+    compile 'com.android.support:support-annotations:23.0.1'
+    testCompile "org.robolectric:robolectric:3.0"
 }

@@ -26,7 +26,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
         Log.d("onReceive", "Received shortcut " + name);
         
         //avoid duplicates
-        if (sp.findByName(name) != null || dh.getContactProvider().findByName(name) != null || dh.getAppProvider().findByName(name) != null ) {
+        if (sp != null && sp.findByName(name) != null || dh.getContactProvider().findByName(name) != null || dh.getAppProvider().findByName(name) != null ) {
             Log.d("onReceive", "Duplicated shortcut " + name + ", ignoring");
             return;
         }

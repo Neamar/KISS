@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.preference.PreferenceManager;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.dataprovider.ShortcutProvider;
 
 /**
  * This class gets called when an application is created or removed on the
@@ -40,7 +41,10 @@ public class NewAppInstalledHandler extends BroadcastReceiver {
         if ("android.intent.action.PACKAGE_REMOVED".equals(intent.getAction())) {
             // Removed all installed shortcuts
             String packageName = intent.getData().getSchemeSpecificPart();
-            KissApplication.getDataHandler(ctx).getShortcutProvider().removeShortcuts(packageName);
+            ShortcutProvider shortcutProvider = KissApplication.getDataHandler(ctx).getShortcutProvider();
+            if(shortcutProvider != null) {
+                shortcutProvider.removeShortcuts(packageName);
+            }
         }
 
         KissApplication.resetDataHandler(ctx);
