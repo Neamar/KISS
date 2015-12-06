@@ -19,7 +19,7 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings can be set without resetting the DataHandler
-    private String safeSettings = "theme enable-spellcheck display-keyboard root-mode require-layout-update icons-hide enable-sms-history enable-phone-history enable-app-history";
+    private String safeSettings = "theme enable-spellcheck display-keyboard root-mode require-layout-update icons-hide enable-sms-history enable-phone-history enable-app-history enable-events-special-search-only";
     // Those settings require the app to restart
     private String requireRestartSettings = "theme enable-spellcheck force-portrait";
     private SharedPreferences prefs;
