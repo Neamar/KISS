@@ -124,29 +124,6 @@ public class DBHelper {
         return records;
     }
 
-    /**
-     * Retrieve most used records. Warning : filter through applications only
-     *
-     * @param context android context
-     * @param limit   number of item to return
-     * @return records with number of use
-     */
-    public static ArrayList<ValuedHistoryRecord> getFavorites(Context context, int limit) {
-        ArrayList<ValuedHistoryRecord> records;
-        SQLiteDatabase db = getDatabase(context);
-
-        // Cursor query (String table, String[] columns, String selection,
-        // String[] selectionArgs, String groupBy, String having, String
-        // orderBy)
-        Cursor cursor = db.query("history", new String[]{"record", "COUNT(*) AS count"},
-                null, null, "record", null, "COUNT(*) DESC", Integer.toString(limit));
-
-        records = readCursor(cursor);
-        cursor.close();
-        db.close();
-        return records;
-    }
-    
     public static void insertShortcut(Context context, ShortcutRecord shortcut) {
         SQLiteDatabase db = getDatabase(context);
 

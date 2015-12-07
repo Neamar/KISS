@@ -82,7 +82,8 @@ public class ShortcutResult extends Result {
         
         //add uninstall menu
         menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
-        
+
+        inflateBaseMenu(context, menu);
         return menu;
     }
     

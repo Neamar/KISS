@@ -1,8 +1,10 @@
 package fr.neamar.kiss;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -191,20 +193,48 @@ public class DataHandler extends BroadcastReceiver {
     ArrayList<Pojo> getFavorites(Context context, int limit) {
         ArrayList<Pojo> favorites = new ArrayList<>();
 
-        // Read history
-        ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, limit);
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        List<String> favAppsList = Arrays.asList(favApps.split(";"));
 
 
         // Find associated items
-        for (int i = 0; i < ids.size(); i++) {
-            Pojo pojo = getPojo(ids.get(i).record);
+        for (int i = 0; i < favAppsList.size(); i++) {
+            Pojo pojo = getPojo(favAppsList.get(i));
             if (pojo != null) {
                 favorites.add(pojo);
             }
         }
 
-
         return favorites;
+    }
+
+    public boolean addToFavorites(Context context, String id) {
+
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        List<String> favAppsList = Arrays.asList(favApps.split(";"));
+        if (favAppsList.contains(id))
+        {
+            return false;
+        }
+
+        if (context instanceof MainActivity) {
+            if (favAppsList.size() >= ((MainActivity)context).getFavIconsSize()) {
+                favApps = "";
+                //replace first one
+                for (int i = 1; i < favAppsList.size(); i++) {
+                    favApps += favAppsList.get(i) + ";";
+                }
+
+            }
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                    .putString("favorite-apps-list", favApps + id + ";").commit();
+
+            ((MainActivity) context).retrieveFavorites();
+        }
+
+        return true;
     }
 
     /**

@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
@@ -91,6 +93,7 @@ public abstract class Result {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_default, menu.getMenu());
 
+        inflateBaseMenu(context, menu);
         return menu;
     }
 
@@ -105,8 +108,19 @@ public abstract class Result {
             case R.id.item_remove:
                 removeItem(context, parent);
                 return true;
+            case R.id.item_favorites_add:
+                launchAddToFavorites(context, pojo);
+                break;
         }
         return false;
+    }
+
+    private void launchAddToFavorites(Context context, Pojo app) {
+        String msg = context.getResources().getString(R.string.toast_favorites_added);
+        if (!KissApplication.getDataHandler(context).addToFavorites(context, app.id)) {
+            msg = context.getResources().getString(R.string.toast_favorites_already);
+        }
+        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -201,5 +215,15 @@ public abstract class Result {
         int[] attrs = new int[] { R.attr.resultColor /* index 0 */};
         TypedArray ta = context.obtainStyledAttributes(attrs);
         return ta.getColor(0, Color.WHITE);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    protected void inflateBaseMenu(Context context, PopupMenu menu) {
+        //if you have selected to use favorites instead of history then show additional menus
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("replace-app-history-with-favs", false)) {
+            if (context instanceof MainActivity) {
+                menu.getMenuInflater().inflate(R.menu.menu_item_favorite_add, menu.getMenu());
+            }
+        }
     }
 }

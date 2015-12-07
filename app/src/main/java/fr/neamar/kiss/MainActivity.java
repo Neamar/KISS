@@ -533,31 +533,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
 
             // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
-            ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
-                    .getFavorites(MainActivity.this, tryToRetrieve);
-
-            if (favoritesPojo.size() == 0) {
-                Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
-                toast.show();
-            }
-
-            // Don't look for items after favIds length, we won't be able to display them
-            for (int i = 0; i < Math.min(favsIds.length, favoritesPojo.size()); i++) {
-                Pojo pojo = favoritesPojo.get(i);
-                ImageView image = (ImageView) findViewById(favsIds[i]);
-
-                Result result = Result.fromPojo(MainActivity.this, pojo);
-                Drawable drawable = result.getDrawable(MainActivity.this);
-                if (drawable != null)
-                    image.setImageDrawable(drawable);
-                image.setVisibility(View.VISIBLE);
-                image.setContentDescription(pojo.displayName);
-            }
-
-            // Hide empty favorites (not enough favorites yet)
-            for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
-                findViewById(favsIds[i]).setVisibility(View.GONE);
-            }
+            retrieveFavorites();
 
             hideKeyboard();
         } else {
@@ -580,6 +556,33 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
     }
 
+    public void retrieveFavorites() {
+        ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
+                .getFavorites(MainActivity.this, tryToRetrieve);
+
+        if (favoritesPojo.size() == 0) {
+            Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        // Don't look for items after favIds length, we won't be able to display them
+        for (int i = 0; i < Math.min(favsIds.length, favoritesPojo.size()); i++) {
+            Pojo pojo = favoritesPojo.get(i);
+            ImageView image = (ImageView) findViewById(favsIds[i]);
+
+            Result result = Result.fromPojo(MainActivity.this, pojo);
+            Drawable drawable = result.getDrawable(MainActivity.this);
+            if (drawable != null)
+                image.setImageDrawable(drawable);
+            image.setVisibility(View.VISIBLE);
+            image.setContentDescription(pojo.displayName);
+        }
+
+        // Hide empty favorites (not enough favorites yet)
+        for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
+            findViewById(favsIds[i]).setVisibility(View.GONE);
+        }
+    }
     /**
      * This function gets called on changes. It will ask all the providers for
      * data
@@ -639,5 +642,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    public int getFavIconsSize() {
+        return favsIds.length;
     }
 }
