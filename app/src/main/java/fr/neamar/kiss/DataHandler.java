@@ -58,6 +58,7 @@ public class DataHandler extends BroadcastReceiver {
         } else {
             contactProvider = null;
         }
+
         if (prefs.getBoolean("enable-search", true)) {
             providers.add(new SearchProvider(context));
         }
