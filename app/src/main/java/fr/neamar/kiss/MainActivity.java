@@ -583,6 +583,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             findViewById(favsIds[i]).setVisibility(View.GONE);
         }
     }
+
     /**
      * This function gets called on changes. It will ask all the providers for
      * data
