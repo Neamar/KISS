@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,15 +17,11 @@ import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
-    private static String KISS_PACKAGE_NAME;
     private static SharedPreferences prefs;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
-
-        KISS_PACKAGE_NAME = context.getPackageName();
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
     }
 
     @Override
@@ -45,8 +42,12 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         }
 
         ArrayList<AppPojo> apps = new ArrayList<>();
+        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("excluded-apps-list", context.getPackageName() + ";");
+        List excludedApps = Arrays.asList(excludedAppList.split(";"));
+
         for (ResolveInfo info : appsInfo) {
-            if (!KISS_PACKAGE_NAME.equals(info.activityInfo.applicationInfo.packageName)) {
+            if (!excludedApps.contains(info.activityInfo.applicationInfo.packageName)) {
                 AppPojo app = new AppPojo();
 
                 app.id = pojoScheme + info.activityInfo.applicationInfo.packageName + "/"
