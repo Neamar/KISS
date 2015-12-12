@@ -219,11 +219,8 @@ public abstract class Result {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     protected void inflateBaseMenu(Context context, PopupMenu menu) {
-        //if you have selected to use favorites instead of history then show additional menus
-        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("replace-app-history-with-favs", false)) {
-            if (context instanceof MainActivity) {
-                menu.getMenuInflater().inflate(R.menu.menu_item_favorite_add, menu.getMenu());
-            }
+        if (context instanceof MainActivity) {
+            menu.getMenuInflater().inflate(R.menu.menu_item_favorite_add, menu.getMenu());
         }
     }
 }
