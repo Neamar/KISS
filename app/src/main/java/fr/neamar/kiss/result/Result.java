@@ -117,9 +117,7 @@ public abstract class Result {
 
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        if (!KissApplication.getDataHandler(context).addToFavorites(context, app.id)) {
-            msg = context.getResources().getString(R.string.toast_favorites_already);
-        }
+        KissApplication.getDataHandler(context).addToFavorites(context, app.id);
         Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 
@@ -219,7 +217,9 @@ public abstract class Result {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     protected void inflateBaseMenu(Context context, PopupMenu menu) {
-        if (context instanceof MainActivity) {
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (!favApps.contains(this.pojo.id + ";")) {
             menu.getMenuInflater().inflate(R.menu.menu_item_favorite_add, menu.getMenu());
         }
     }

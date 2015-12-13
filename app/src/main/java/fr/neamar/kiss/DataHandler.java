@@ -216,20 +216,15 @@ public class DataHandler extends BroadcastReceiver {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
-        List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        if (favAppsList.contains(id))
-        {
+        if (favApps.contains(id + ";")) {
+            //shouldn't happen
             return false;
         }
 
+        List<String> favAppsList = Arrays.asList(favApps.split(";"));
         if (context instanceof MainActivity) {
-            if (favAppsList.size() >= ((MainActivity)context).getFavIconsSize()) {
-                favApps = "";
-                //replace first one
-                for (int i = 1; i < favAppsList.size(); i++) {
-                    favApps += favAppsList.get(i) + ";";
-                }
-
+            if (favAppsList.size() >= ((MainActivity) context).getFavIconsSize()) {
+                favApps = favApps.substring(favApps.indexOf(";") + 1);
             }
             PreferenceManager.getDefaultSharedPreferences(context).edit()
                     .putString("favorite-apps-list", favApps + id + ";").commit();
