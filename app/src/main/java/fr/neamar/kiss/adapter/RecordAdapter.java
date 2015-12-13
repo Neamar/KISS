@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactResult;
+import fr.neamar.kiss.result.EventResult;
 import fr.neamar.kiss.result.PhoneResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.SearchResult;
@@ -39,7 +40,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     public int getViewTypeCount() {
-        return 7;
+        return 8;
     }
 
     public int getItemViewType(int position) {
@@ -57,6 +58,8 @@ public class RecordAdapter extends ArrayAdapter<Result> {
             return 5;
         else if (results.get(position) instanceof ShortcutResult)
             return 6;
+        else if (results.get(position) instanceof EventResult)
+            return 7;
         else
             return -1;
     }
