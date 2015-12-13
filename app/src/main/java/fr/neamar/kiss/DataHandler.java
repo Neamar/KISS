@@ -1,17 +1,18 @@
 package fr.neamar.kiss;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactProvider;
@@ -212,7 +213,7 @@ public class DataHandler extends BroadcastReceiver {
         return favorites;
     }
 
-    public boolean addToFavorites(Context context, String id) {
+    public boolean addToFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
@@ -222,15 +223,13 @@ public class DataHandler extends BroadcastReceiver {
         }
 
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        if (context instanceof MainActivity) {
-            if (favAppsList.size() >= ((MainActivity) context).getFavIconsSize()) {
-                favApps = favApps.substring(favApps.indexOf(";") + 1);
-            }
-            PreferenceManager.getDefaultSharedPreferences(context).edit()
-                    .putString("favorite-apps-list", favApps + id + ";").commit();
-
-            ((MainActivity) context).retrieveFavorites();
+        if (favAppsList.size() >= ((MainActivity) context).getFavIconsSize()) {
+            favApps = favApps.substring(favApps.indexOf(";") + 1);
         }
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps + id + ";").commit();
+
+        context.retrieveFavorites();
 
         return true;
     }

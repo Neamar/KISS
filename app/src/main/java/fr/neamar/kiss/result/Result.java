@@ -117,7 +117,7 @@ public abstract class Result {
 
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getDataHandler(context).addToFavorites(context, app.id);
+        KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
         Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 
