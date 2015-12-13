@@ -14,7 +14,9 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.TogglePojo;
@@ -125,8 +127,16 @@ public class ToggleResult extends Result {
             if (togglesHandler == null) {
                 togglesHandler = new TogglesHandler(context);
             }
+
+            //get message based on current state of toggle
+            String msg = context.getResources().getString(togglesHandler.getState(togglePojo) ? R.string.toggles_off : R.string.toggles_on);
+
             //toggle state
             togglesHandler.setState(togglePojo, !togglesHandler.getState(togglePojo));
+
+            //show toast to inform user what the state is
+            Toast.makeText(((MainActivity) context), String.format(msg, " " + this.pojo.displayName), Toast.LENGTH_SHORT).show();
+
         }
         else {
             // Use the handler to check or un-check button
