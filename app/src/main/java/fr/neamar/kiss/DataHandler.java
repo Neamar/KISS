@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -285,19 +284,5 @@ public class DataHandler extends BroadcastReceiver {
         ((MainActivity)context).retrieveFavorites();
 
     }
-
-    public void excludeFromAppList(Context context, AppPojo appPojo)
-    {
-
-        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("excluded-apps-list", context.getPackageName() + ";");
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("excluded-apps-list", excludedAppList + appPojo.packageName + ";").commit();
-        //remove app pojo from appProvider results - no need to reset handler
-        KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
-
-        removeFromFavorites(appPojo, context);
-    }
-
 
 }

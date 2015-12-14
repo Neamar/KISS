@@ -124,7 +124,14 @@ public class AppResult extends Result {
     }
 
     private void excludeFromAppList(Context context, AppPojo appPojo) {
-        KissApplication.getDataHandler(context).excludeFromAppList(context, appPojo);
+            String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                    getString("excluded-apps-list", context.getPackageName() + ";");
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("excluded-apps-list", excludedAppList + appPojo.packageName + ";").commit();
+        //remove app pojo from appProvider results - no need to reset handler
+        KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
+
+        KissApplication.getDataHandler(context).removeFromFavorites(appPojo, context);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
 
     }
