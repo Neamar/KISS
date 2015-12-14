@@ -76,7 +76,7 @@ public class AppResult extends Result {
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
-
+        removeMenuItemFavoritesIfPinned(menu, context);
         try {
             // app installed under /system can't be uninstalled
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
@@ -92,8 +92,6 @@ public class AppResult extends Result {
         if (KissApplication.getRootHandler(context).isRootActivated() && KissApplication.getRootHandler(context).isRootAvailable()) {
             menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
         }
-
-        inflateBaseMenu(context, menu);
         return menu;
     }
 
@@ -130,14 +128,26 @@ public class AppResult extends Result {
                 .putString("excluded-apps-list", excludedAppList + appPojo.packageName + ";").commit();
         //remove app pojo from appProvider results - no need to reset handler
         KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
-        //refresh favorites to remove this app from the fav.list (in case it was there)
-        if(context instanceof MainActivity) {
-            ((MainActivity) context).retrieveFavorites();
-        }
+
+        removeFromFavorites(context);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 
-    /**
+    private void removeFromFavorites(Context context)
+    {
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (favApps.contains(this.pojo.id + ";")) {
+            KissApplication.getDataHandler(context).removeFromFavorites(this.pojo, context);
+        }
+        //refresh favorites to remove this app from the fav.list (in case it was there)
+        if (context instanceof MainActivity) {
+            ((MainActivity) context).retrieveFavorites();
+        }
+
+    }
+
+    /**+
      * Open an activity displaying details regarding the current package
      */
     private void launchAppDetails(Context context, AppPojo app) {
