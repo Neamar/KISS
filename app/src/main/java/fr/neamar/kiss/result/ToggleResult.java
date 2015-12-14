@@ -1,17 +1,24 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.TogglePojo;
 import fr.neamar.kiss.toggles.TogglesHandler;
 
@@ -98,24 +105,47 @@ public class ToggleResult extends Result {
         return v;
     }
 
+    @SuppressWarnings("deprecation")
+    @Override
+    public Drawable getDrawable(Context context) {
+        return context.getResources().getDrawable(togglePojo.icon);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
+        PopupMenu menu = new PopupMenu(context, parentView);
+
+        inflateBaseMenu(context, menu);
+        return menu;
+    }
+
     @Override
     public void doLaunch(Context context, View v) {
         if (v == null) {
-            return;
-        }
+            //in case it is pinned on kissbar
+            if (togglesHandler == null) {
+                togglesHandler = new TogglesHandler(context);
+            }
 
-        // Use the handler to check or un-check button
-        final CompoundButton toggleButton = (CompoundButton) v
-                .findViewById(R.id.item_toggle_action_toggle);
-        if (toggleButton.isEnabled()) {
-            toggleButton.performClick();
+            //get message based on current state of toggle
+            String msg = context.getResources().getString(togglesHandler.getState(togglePojo) ? R.string.toggles_off : R.string.toggles_on);
+
+            //toggle state
+            togglesHandler.setState(togglePojo, !togglesHandler.getState(togglePojo));
+
+            //show toast to inform user what the state is
+            Toast.makeText(((MainActivity) context), String.format(msg, " " + this.pojo.displayName), Toast.LENGTH_SHORT).show();
+
+        }
+        else {
+            // Use the handler to check or un-check button
+            final CompoundButton toggleButton = (CompoundButton) v
+                    .findViewById(R.id.item_toggle_action_toggle);
+            if (toggleButton.isEnabled()) {
+                toggleButton.performClick();
+            }
         }
     }
 
-    @Override
-    public void fastLaunch(Context context) {
-        // Can't fast launch a toggle.
-        // (should only happen when the user has a toggle in its favorite)
-        return;
-    }
 }

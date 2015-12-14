@@ -10,9 +10,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchResult extends Result {
@@ -59,4 +61,12 @@ public class SearchResult extends Result {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
+
+        //empty menu so that you don't add on favorites
+        PopupMenu menu = new PopupMenu(context, parentView);
+        return menu;
+    }
 }

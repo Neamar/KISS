@@ -1,15 +1,18 @@
 package fr.neamar.kiss;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactProvider;
@@ -189,22 +192,46 @@ public class DataHandler extends BroadcastReceiver {
      * @return favorites' pojo
      */
     ArrayList<Pojo> getFavorites(Context context, int limit) {
-        ArrayList<Pojo> favorites = new ArrayList<>();
+        ArrayList<Pojo> favorites = new ArrayList<>(limit);
 
-        // Read history
-        ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, limit);
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        List<String> favAppsList = Arrays.asList(favApps.split(";"));
 
 
         // Find associated items
-        for (int i = 0; i < ids.size(); i++) {
-            Pojo pojo = getPojo(ids.get(i).record);
+        for (int i = 0; i < favAppsList.size(); i++) {
+            Pojo pojo = getPojo(favAppsList.get(i));
             if (pojo != null) {
                 favorites.add(pojo);
             }
+            if (favorites.size()>=limit) {
+                break;
+            }
         }
 
-
         return favorites;
+    }
+
+    public boolean addToFavorites(MainActivity context, String id) {
+
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (favApps.contains(id + ";")) {
+            //shouldn't happen
+            return false;
+        }
+
+        List<String> favAppsList = Arrays.asList(favApps.split(";"));
+        if (favAppsList.size() >= ((MainActivity) context).getFavIconsSize()) {
+            favApps = favApps.substring(favApps.indexOf(";") + 1);
+        }
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps + id + ";").commit();
+
+        context.retrieveFavorites();
+
+        return true;
     }
 
     /**
