@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.CalendarContract;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,16 +53,26 @@ public class LoadEventPojos extends LoadPojos<EventPojo> {
 
         for (int i = 0; i < eventsCount; i++) {
 
-            EventPojo event = new EventPojo();
-            event.description = cursor.getString(4);
-            event.title = cursor.getString(3);
-            event.id = cursor.getString(0);
-            event.startDate = getDate(Long.parseLong(cursor.getString(1)));
-            event.stopDate = getDate(Long.parseLong(cursor.getString(2)));
-            event.setName(event.title);
-            event.displayDate = formatDate(event.startDate);
-            event.nameNormalized = StringNormalizer.normalize(event.name);
-            events.add(event);
+            try {
+                EventPojo event = new EventPojo();
+                event.description = cursor.getString(4);
+                event.title = cursor.getString(3);
+                if (event.title == null) {
+                    Log.w("log", "LoadEventPojos: Event skipped since title is null");
+                    //dont create a result, just skip this
+                    continue;
+                }
+                event.id = cursor.getString(0);
+                event.startDate = getDate(Long.parseLong(cursor.getString(1)));
+                event.stopDate = getDate(Long.parseLong(cursor.getString(2)));
+                event.setName(event.title);
+                event.displayDate = formatDate(event.startDate);
+                event.nameNormalized = StringNormalizer.normalize(event.name);
+                events.add(event);
+            }
+            catch (Exception e) {
+                Log.w("log", "LoadEventPojos: Event skipped with error: " + e.getMessage());
+            }
             cursor.moveToNext();
 
         }
