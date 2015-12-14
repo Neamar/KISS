@@ -80,7 +80,7 @@ public class AppResult extends Result {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
 
-        //removeMenuItemFavoritesIfPinned(menu, context);
+        removeMenuItemFavoritesIfPinned(menu, context);
         try {
             // app installed under /system can't be uninstalled
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
@@ -130,13 +130,12 @@ public class AppResult extends Result {
                 .putString("excluded-apps-list", excludedAppList + appPojo.packageName + ";").commit();
         //remove app pojo from appProvider results - no need to reset handler
         KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
-
         KissApplication.getDataHandler(context).removeFromFavorites(appPojo, context);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
 
     }
 
-    /**+
+    /**
      * Open an activity displaying details regarding the current package
      */
     private void launchAppDetails(Context context, AppPojo app) {
