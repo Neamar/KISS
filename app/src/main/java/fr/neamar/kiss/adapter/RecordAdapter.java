@@ -79,7 +79,11 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         }
 
         PopupMenu menu = results.get(pos).getPopupMenu(getContext(), this, v);
-        menu.show();
+
+        //check if menu contains elements and if yes show it
+        if (menu.getMenu().size() > 0) {
+            menu.show();
+        }
     }
 
     public void onClick(final int position, View v) {

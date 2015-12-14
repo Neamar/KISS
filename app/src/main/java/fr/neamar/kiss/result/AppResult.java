@@ -52,7 +52,10 @@ public class AppResult extends Result {
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
-            if (position < 15) {
+            // Display icon directy for first icons, and also for phones above lollipop
+            // (fix a weird recycling issue with ListView on Marshmallow,
+            // where the recycling occurs synchronously, before the handler)
+            if (position < 15 || Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
                 appIcon.setImageDrawable(this.getDrawable(context));
             } else {
                 // Do actions on a message queue to avoid performance issues on main thread
@@ -93,6 +96,7 @@ public class AppResult extends Result {
             menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
         }
 
+        inflateBaseMenu(context, menu);
         return menu;
     }
 

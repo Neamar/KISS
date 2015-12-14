@@ -111,6 +111,7 @@ public class ContactResult extends Result {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_contact, menu.getMenu());
 
+        inflateBaseMenu(context, menu);
         return menu;
     }
 
@@ -173,11 +174,6 @@ public class ContactResult extends Result {
         viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         context.startActivity(viewContact);
-    }
-
-    @Override
-    public void fastLaunch(Context context) {
-        launchMessaging(context);
     }
 
     private void launchMessaging(final Context context) {

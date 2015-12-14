@@ -1,15 +1,18 @@
 package fr.neamar.kiss;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 import fr.neamar.kiss.dataprovider.AliasProvider;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactProvider;
@@ -73,6 +76,7 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-alias", true)) {
             providers.add(new AliasProvider(context, appProvider));
         }
+
         if (prefs.getBoolean("enable-shortcuts", true)) {
             shortcutProvider = new ShortcutProvider(context);
             providers.add(shortcutProvider);
@@ -172,11 +176,11 @@ public class DataHandler extends BroadcastReceiver {
     public ContactProvider getContactProvider() {
         return contactProvider;
     }
-    
+
     public ShortcutProvider getShortcutProvider() {
         return shortcutProvider;
     }
-    
+
     public AppProvider getAppProvider() {
         return appProvider;
     }
@@ -191,22 +195,46 @@ public class DataHandler extends BroadcastReceiver {
      * @return favorites' pojo
      */
     ArrayList<Pojo> getFavorites(Context context, int limit) {
-        ArrayList<Pojo> favorites = new ArrayList<>();
+        ArrayList<Pojo> favorites = new ArrayList<>(limit);
 
-        // Read history
-        ArrayList<ValuedHistoryRecord> ids = DBHelper.getFavorites(context, limit);
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        List<String> favAppsList = Arrays.asList(favApps.split(";"));
 
 
         // Find associated items
-        for (int i = 0; i < ids.size(); i++) {
-            Pojo pojo = getPojo(ids.get(i).record);
+        for (int i = 0; i < favAppsList.size(); i++) {
+            Pojo pojo = getPojo(favAppsList.get(i));
             if (pojo != null) {
                 favorites.add(pojo);
             }
+            if (favorites.size() >= limit) {
+                break;
+            }
         }
 
-
         return favorites;
+    }
+
+    public boolean addToFavorites(MainActivity context, String id) {
+
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (favApps.contains(id + ";")) {
+            //shouldn't happen
+            return false;
+        }
+
+        List<String> favAppsList = Arrays.asList(favApps.split(";"));
+        if (favAppsList.size() >= context.getFavIconsSize()) {
+            favApps = favApps.substring(favApps.indexOf(";") + 1);
+        }
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps + id + ";").commit();
+
+        context.retrieveFavorites();
+
+        return true;
     }
 
     /**
@@ -218,7 +246,7 @@ public class DataHandler extends BroadcastReceiver {
     public void addToHistory(Context context, String id) {
         DBHelper.insertHistory(context, currentQuery, id);
     }
-    
+
     @Override
     public void onReceive(Context context, Intent intent) {
         providersLoaded++;
