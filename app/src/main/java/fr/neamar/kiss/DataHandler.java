@@ -76,7 +76,7 @@ public class DataHandler extends BroadcastReceiver {
         if (prefs.getBoolean("enable-alias", true)) {
             providers.add(new AliasProvider(context, appProvider));
         }
-        
+
         if (prefs.getBoolean("enable-shortcuts", true)) {
             shortcutProvider = new ShortcutProvider(context);
             providers.add(shortcutProvider);
@@ -173,11 +173,11 @@ public class DataHandler extends BroadcastReceiver {
     public ContactProvider getContactProvider() {
         return contactProvider;
     }
-    
+
     public ShortcutProvider getShortcutProvider() {
         return shortcutProvider;
     }
-    
+
     public AppProvider getAppProvider() {
         return appProvider;
     }
@@ -205,7 +205,7 @@ public class DataHandler extends BroadcastReceiver {
             if (pojo != null) {
                 favorites.add(pojo);
             }
-            if (favorites.size()>=limit) {
+            if (favorites.size() >= limit) {
                 break;
             }
         }
@@ -223,7 +223,7 @@ public class DataHandler extends BroadcastReceiver {
         }
 
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        if (favAppsList.size() >= ((MainActivity) context).getFavIconsSize()) {
+        if (favAppsList.size() >= context.getFavIconsSize()) {
             favApps = favApps.substring(favApps.indexOf(";") + 1);
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit()
@@ -243,7 +243,7 @@ public class DataHandler extends BroadcastReceiver {
     public void addToHistory(Context context, String id) {
         DBHelper.insertHistory(context, currentQuery, id);
     }
-    
+
     @Override
     public void onReceive(Context context, Intent intent) {
         providersLoaded++;
