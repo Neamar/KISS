@@ -1,7 +1,5 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
@@ -11,8 +9,9 @@ import fr.neamar.kiss.pojo.Pojo;
 
 public class AppProvider extends Provider<AppPojo> {
 
-    public AppProvider(Context context) {
-        super(new LoadAppPojos(context));
+    @Override
+    public void reload() {
+        this.initialize(new LoadAppPojos(this));
     }
 
     public ArrayList<Pojo> getResults(String query) {

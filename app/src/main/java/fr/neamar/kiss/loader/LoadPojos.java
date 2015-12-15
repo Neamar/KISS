@@ -34,8 +34,6 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Ar
     protected void onPostExecute(ArrayList<T> result) {
         super.onPostExecute(result);
         provider.loadOver(result);
-        Intent i = new Intent(MainActivity.LOAD_OVER);
-        context.sendBroadcast(i);
     }
 
 }

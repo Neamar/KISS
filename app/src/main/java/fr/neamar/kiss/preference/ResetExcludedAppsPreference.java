@@ -23,7 +23,7 @@ public class ResetExcludedAppsPreference extends DialogPreference {
         if (which == DialogInterface.BUTTON_POSITIVE) {
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
                     .putString("excluded-apps-list", getContext().getPackageName() + ";").commit();
-            KissApplication.resetDataHandler(getContext());
+            KissApplication.getDataHandler(getContext()).getAppProvider().reload();
             Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
         }
 

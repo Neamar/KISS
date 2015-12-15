@@ -6,20 +6,20 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
-import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.pojo.ShortcutsPojo;
 
-public class LoadShortcutPojos extends LoadPojos<ShortcutPojo> {
+public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
 
-    public LoadShortcutPojos(Context context) {
-        super(context, ShortcutPojo.SCHEME);
+    public LoadShortcutsPojos(Context context) {
+        super(context, ShortcutsPojo.SCHEME);
     }
 
     @Override
-    protected ArrayList<ShortcutPojo> doInBackground(Void... arg0) {
+    protected ArrayList<ShortcutsPojo> doInBackground(Void... arg0) {
         ArrayList<ShortcutRecord> records = DBHelper.getShortcuts(context);
-        ArrayList<ShortcutPojo> pojos = new ArrayList<>();
+        ArrayList<ShortcutsPojo> pojos = new ArrayList<>();
         for (ShortcutRecord shortcutRecord : records) {
-            ShortcutPojo pojo = createPojo(shortcutRecord.name);
+            ShortcutsPojo pojo = createPojo(shortcutRecord.name);
             pojo.packageName = shortcutRecord.packageName;
             pojo.resourceName = shortcutRecord.iconResource;
             pojo.intentUri = shortcutRecord.intentUri;
@@ -33,10 +33,10 @@ public class LoadShortcutPojos extends LoadPojos<ShortcutPojo> {
         return pojos;
     }
     
-    public ShortcutPojo createPojo(String name) {
-        ShortcutPojo pojo = new ShortcutPojo();
+    public ShortcutsPojo createPojo(String name) {
+        ShortcutsPojo pojo = new ShortcutsPojo();
 
-        pojo.id = ShortcutPojo.SCHEME + name.toLowerCase();
+        pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase();
         pojo.setName(name);
 
         return pojo;
