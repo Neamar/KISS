@@ -7,6 +7,11 @@
             android:key="reset"
             android:summary="@string/reset_desc"
             android:title="@string/reset_name" />
+        <fr.neamar.kiss.preference.ResetFavoritesPreference
+            android:dialogMessage="@string/reset_favorites_warn"
+            android:key="reset"
+            android:summary="@string/reset_favorites_desc"
+            android:title="@string/reset_favorites_name" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="enable-sms-history"
@@ -22,6 +27,11 @@
             android:key="enable-app-history"
             android:summary="@string/enable_app_desc"
             android:title="@string/enable_app" />
+        <fr.neamar.kiss.preference.ResetExcludedAppsPreference
+            android:dialogMessage="@string/reset_excluded_apps_warn"
+            android:key="reset-excluded-apps"
+            android:summary="@string/reset_excluded_apps_desc"
+            android:title="@string/reset_excluded_apps_name" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_ui">
         <ListPreference

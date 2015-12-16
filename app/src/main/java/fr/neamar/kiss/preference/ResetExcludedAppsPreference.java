@@ -11,22 +11,20 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DB;
 
-public class ResetPreference extends DialogPreference {
+public class ResetExcludedAppsPreference extends DialogPreference {
 
-    public ResetPreference(Context context, AttributeSet attrs) {
+    public ResetExcludedAppsPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-
+    
     @Override
     public void onClick(DialogInterface dialog, int which) {
         super.onClick(dialog, which);
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            getContext().deleteDatabase(DB.DB_NAME);
-            KissApplication.getDataHandler(getContext()).reloadAll();
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
-                    .putBoolean("layout-updated", true).commit();
-
-            Toast.makeText(getContext(), R.string.history_erased, Toast.LENGTH_LONG).show();
+                    .putString("excluded-apps-list", getContext().getPackageName() + ";").commit();
+            KissApplication.getDataHandler(getContext()).getAppProvider().reload();
+            Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
         }
 
     }

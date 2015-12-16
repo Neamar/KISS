@@ -8,8 +8,8 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.dataprovider.ShortcutProvider;
-import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.dataprovider.ShortcutsProvider;
+import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class InstallShortcutHandler extends BroadcastReceiver {
 
@@ -17,7 +17,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
     public void onReceive(Context context, Intent data) {
 
         DataHandler dh = KissApplication.getDataHandler(context);
-        ShortcutProvider sp = dh.getShortcutProvider();
+        ShortcutsProvider sp = dh.getShortcutsProvider();
 
         if (sp == null)
             return;
@@ -26,7 +26,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
         Log.d("onReceive", "Received shortcut " + name);
         
         //avoid duplicates
-        if (sp.findByName(name) != null || dh.getContactProvider().findByName(name) != null || dh.getAppProvider().findByName(name) != null ) {
+        if (sp != null && sp.findByName(name) != null || dh.getContactsProvider().findByName(name) != null || dh.getAppProvider().findByName(name) != null ) {
             Log.d("onReceive", "Duplicated shortcut " + name + ", ignoring");
             return;
         }
@@ -36,7 +36,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
             target.setAction(Intent.ACTION_VIEW);
         }
 
-        ShortcutPojo pojo = createPojo(name);
+        ShortcutsPojo pojo = createPojo(name);
         
         // convert target intent to parsable uri
         pojo.intentUri = target.toUri(0);
@@ -61,14 +61,14 @@ public class InstallShortcutHandler extends BroadcastReceiver {
             }
         }
                 
-        dh.getShortcutProvider().addShortcut(pojo);
+        dh.addShortcut(pojo);
 
     }
     
-    public ShortcutPojo createPojo(String name) {
-        ShortcutPojo pojo = new ShortcutPojo();
+    public ShortcutsPojo createPojo(String name) {
+        ShortcutsPojo pojo = new ShortcutsPojo();
 
-        pojo.id = ShortcutPojo.SCHEME + name.toLowerCase();
+        pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase();
         pojo.setName(name);
 
         return pojo;

@@ -1,6 +1,5 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.Context;
 import android.content.pm.PackageManager;
 
 import java.util.ArrayList;
@@ -14,10 +13,11 @@ public class PhoneProvider extends Provider<PhonePojo> {
     public static final String PHONE_SCHEME = "phone://";
     private boolean deviceIsPhone = false;
 
-    public PhoneProvider(Context context) {
-        super(new LoadPhonePojos(context));
+    @Override
+    public void reload() {
+        this.initialize(new LoadPhonePojos(this));
 
-        PackageManager pm = context.getPackageManager();
+        PackageManager pm = this.getPackageManager();
         deviceIsPhone = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
     }
 

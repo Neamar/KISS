@@ -11,7 +11,7 @@ import android.util.Log;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.pojo.TogglePojo;
+import fr.neamar.kiss.pojo.TogglesPojo;
 
 public class TogglesHandler {
     private final ConnectivityManager connectivityManager;
@@ -40,7 +40,7 @@ public class TogglesHandler {
      * @param pojo item to look for
      * @return item state
      */
-    public Boolean getState(TogglePojo pojo) {
+    public Boolean getState(TogglesPojo pojo) {
         try {
             switch (pojo.settingName) {
                 case "wifi":
@@ -68,7 +68,7 @@ public class TogglesHandler {
         }
     }
 
-    public void setState(TogglePojo pojo, Boolean state) {
+    public void setState(TogglesPojo pojo, Boolean state) {
         try {
             switch (pojo.settingName) {
                 case "wifi":

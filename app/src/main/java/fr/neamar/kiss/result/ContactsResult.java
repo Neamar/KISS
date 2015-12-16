@@ -23,15 +23,15 @@ import java.io.InputStream;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.pojo.ContactPojo;
+import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 
-public class ContactResult extends Result {
-    private final ContactPojo contactPojo;
+public class ContactsResult extends Result {
+    private final ContactsPojo contactPojo;
     private final QueryInterface queryInterface;
 
-    public ContactResult(QueryInterface queryInterface, ContactPojo contactPojo) {
+    public ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
         super();
         this.pojo = this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
@@ -63,7 +63,7 @@ public class ContactResult extends Result {
             @Override
             public void onClick(View v) {
                 recordLaunch(v.getContext());
-                queryInterface.launchOccurred(-1, ContactResult.this);
+                queryInterface.launchOccurred(-1, ContactsResult.this);
             }
         });
 
@@ -111,6 +111,7 @@ public class ContactResult extends Result {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_contact, menu.getMenu());
 
+        inflateBaseMenu(context, menu);
         return menu;
     }
 
@@ -126,7 +127,7 @@ public class ContactResult extends Result {
     }
 
     @SuppressWarnings("deprecation")
-    private void copyPhone(Context context, ContactPojo contactPojo) {
+    private void copyPhone(Context context, ContactsPojo contactPojo) {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
             android.text.ClipboardManager clipboard =
                     (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -175,11 +176,6 @@ public class ContactResult extends Result {
         context.startActivity(viewContact);
     }
 
-    @Override
-    public void fastLaunch(Context context) {
-        launchMessaging(context);
-    }
-
     private void launchMessaging(final Context context) {
         String url = "sms:" + contactPojo.phone;
         Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
@@ -191,7 +187,7 @@ public class ContactResult extends Result {
             @Override
             public void run() {
                 recordLaunch(context);
-                queryInterface.launchOccurred(-1, ContactResult.this);
+                queryInterface.launchOccurred(-1, ContactsResult.this);
             }
         }, KissApplication.TOUCH_DELAY);
 
@@ -208,10 +204,9 @@ public class ContactResult extends Result {
             @Override
             public void run() {
                 recordLaunch(context);
-                queryInterface.launchOccurred(-1, ContactResult.this);
+                queryInterface.launchOccurred(-1, ContactsResult.this);
             }
         }, KissApplication.TOUCH_DELAY);
 
     }
-
 }
