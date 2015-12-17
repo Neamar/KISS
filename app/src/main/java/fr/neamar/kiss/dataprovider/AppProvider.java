@@ -37,8 +37,25 @@ public class AppProvider extends Provider<AppPojo> {
                 relevance = 50;
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
             } else if ((matchPositionStart = appNameNormalized.indexOf(query)) > -1) {
-                relevance = 1;
+                relevance = 4;
                 matchPositionEnd = matchPositionStart + query.length();
+            } else {
+                int fuzzy = 0;
+                // calculate the max number of operations allowed to assume that query matches to pojo name
+                // use appNameNormalized / 2 + 1 as limit
+                // e.g. if appName contains 10 chars then allow max 5 operations to convert query to appName
+                int limit = (int) Math.floor(appNameNormalized.length() / 2.0) + 1;
+                // optimization, before calculating the actual distance make sure that it is possible to be less than limit
+                if (Math.abs(appNameNormalized.length() - query.length()) < limit) {
+                    //if difference in lengths is less than limit then calculate fuzzy distance
+                    if ((fuzzy = StringNormalizer.fuzzyDistance(appNameNormalized, query)) <= limit) {
+                        //better matchings --> smaller fuzzy distances
+                        relevance = limit - fuzzy;
+                        //set matchPositions to zero --> no highlight available
+                        matchPositionEnd = 0;
+                        matchPositionStart = 0;
+                    }
+                }
             }
 
             if (relevance > 0) {
@@ -47,7 +64,6 @@ public class AppProvider extends Provider<AppPojo> {
                 records.add(pojo);
             }
         }
-
         return records;
     }
 
