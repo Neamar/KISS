@@ -42,9 +42,9 @@ public class AppProvider extends Provider<AppPojo> {
             } else {
                 int fuzzy = 0;
                 // calculate the max number of operations allowed to assume that query matches to pojo name
-                // use appNameNormalized / 2 + 1 as limit
+                // use appNameNormalized / 2 as limit
                 // e.g. if appName contains 10 chars then allow max 5 operations to convert query to appName
-                int limit = (int) Math.floor(appNameNormalized.length() / 2.0) + 1;
+                int limit = Math.min((int) Math.round(appNameNormalized.length() / 2.0), 4);
                 // optimization, before calculating the actual distance make sure that it is possible to be less than limit
                 if (Math.abs(appNameNormalized.length() - query.length()) < limit) {
                     //if difference in lengths is less than limit then calculate fuzzy distance
