@@ -1,7 +1,6 @@
 package fr.neamar.kiss;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -70,6 +69,11 @@ public class IconsHandler {
         loadIconsPack();
     }
 
+    /**
+     * 
+     * Load configured icons pack
+     * 
+     */
     public void loadIconsPack() {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -77,6 +81,12 @@ public class IconsHandler {
 
     }
 
+    /**
+     * 
+     * Parse icons pack metadata
+     * 
+     * @param packageName
+     */
     public void loadIconsPack(String packageName) {
 
         //clear icons pack
@@ -85,6 +95,7 @@ public class IconsHandler {
         backImages.clear();
         cacheClear();
 
+        // system icons, nothing to do
         if (iconsPackPackageName.equalsIgnoreCase("default")) {
             return ;
         }
@@ -92,6 +103,7 @@ public class IconsHandler {
         XmlPullParser xpp = null;
 
         try {
+            // search appfilter.xml into icons pack apk resource folder
             iconPackres = pm.getResourcesForApplication(iconsPackPackageName);
             int appfilterid = iconPackres.getIdentifier("appfilter", "xml", iconsPackPackageName);
             if (appfilterid > 0) {
@@ -102,6 +114,7 @@ public class IconsHandler {
                 int eventType = xpp.getEventType();
                 while (eventType != XmlPullParser.END_DOCUMENT) {
                     if (eventType == XmlPullParser.START_TAG) {
+                        //parse <iconback> xml tags used as backgroud of generated icons
                         if (xpp.getName().equals("iconback")) {
                             for(int i=0; i<xpp.getAttributeCount(); i++) {
                                 if (xpp.getAttributeName(i).startsWith("img")) {
@@ -113,23 +126,27 @@ public class IconsHandler {
                                 }
                             }
                         }
+                        //parse <iconmask> xml tags used as mask of generated icons
                         else if (xpp.getName().equals("iconmask")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
                                 maskImage = loadBitmap(drawableName);
                             }
                         }
+                        //parse <iconupon> xml tags used as front image of generated icons
                         else if (xpp.getName().equals("iconupon")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
                                 frontImage = loadBitmap(drawableName);
                             }
                         }
+                        //parse <scale> xml tags used as scale factor of original bitmap icon
                         else if (xpp.getName().equals("scale")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
                                 factor = Float.valueOf(xpp.getAttributeValue(0));
                             }
                         }
+                        //parse <item> xml tags for custom icons
                         if (xpp.getName().equals("item")) {
                             String componentName = null;
                             String drawableName = null;
@@ -167,47 +184,56 @@ public class IconsHandler {
         return null;
     }
 
+    /**
+     *
+     * Get or generate icon for an app
+     *
+     * @param componentName
+     * @return
+     */
     public Drawable getDrawableIconForPackage(ComponentName componentName) {
         try {
-            if (!iconsPackPackageName.equalsIgnoreCase("default")) { //search for custom icons pack
-
-                String drawable = packagesDrawables.get(componentName.toString());
-                if (drawable != null) { //there is a custom icon
-                    int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
-                    if (id > 0) {
-                        Drawable bitmap = iconPackres.getDrawable(id);
-                        return bitmap;
-                    }
-                }
-
-                //search first in cache
-                Drawable systemIcon = cacheGetDrawable(componentName.toString());
-                if (systemIcon != null)
-                    return systemIcon;
-
-                systemIcon= pm.getActivityIcon(componentName);
-                if (systemIcon instanceof BitmapDrawable) {
-                    Drawable generated = generateBitmap(componentName.toString(), systemIcon);
-                    cacheStoreDrawable(componentName.toString(), generated);
-                    return generated;
-                }
-                return systemIcon;
+            // system icons, nothing to do
+            if (iconsPackPackageName.equalsIgnoreCase("default")) {
+                return pm.getActivityIcon(componentName);
             }
 
-            return pm.getActivityIcon(componentName);
+            String drawable = packagesDrawables.get(componentName.toString());
+            if (drawable != null) { //there is a custom icon
+                int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
+                if (id > 0) {
+                    Drawable bitmap = iconPackres.getDrawable(id);
+                    return bitmap;
+                }
+            }
+
+            //search first in cache
+            Drawable systemIcon = cacheGetDrawable(componentName.toString());
+            if (systemIcon != null)
+                return systemIcon;
+
+            systemIcon= pm.getActivityIcon(componentName);
+            if (systemIcon instanceof BitmapDrawable) {
+                Drawable generated = generateBitmap(componentName.toString(), systemIcon);
+                cacheStoreDrawable(componentName.toString(), generated);
+                return generated;
+            }
+            return systemIcon;
+
         } catch (NameNotFoundException e) {
             Log.e(TAG, "Unable to found component " + componentName.toString()+ e);
             return null;
         }
     }
 
-    private Drawable generateBitmap(String appPackageName, Drawable defaultBitmap) {
+    private Drawable generateBitmap(String cacheKey, Drawable defaultBitmap) {
 
         // if no support images in the icon pack return the bitmap itself
         if (backImages.size() == 0) {
             return defaultBitmap;
         }
 
+        // select a random background image
         Random r = new Random();
         int backImageInd = r.nextInt(backImages.size());
         Bitmap backImage = backImages.get(backImageInd);
@@ -221,7 +247,7 @@ public class IconsHandler {
         // draw the background first
         canvas.drawBitmap(backImage, 0, 0, null);
 
-        // create a mutable mask bitmap with the same mask
+        // scale original icon
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(((BitmapDrawable)defaultBitmap).getBitmap(), (int)(w * factor), (int)(h * factor), false);
 
         if (maskImage != null) {
@@ -248,7 +274,11 @@ public class IconsHandler {
         return new BitmapDrawable(iconPackres, result);
     }
 
-
+    /**
+     *
+     * Scan for installed icons packs
+     *
+     */
     private void loadAvailableIconsPacks() {
 
         List<ResolveInfo> launcherthemes = pm.queryIntentActivities(new Intent("fr.neamar.kiss.THEMES"), PackageManager.GET_META_DATA);
@@ -274,6 +304,11 @@ public class IconsHandler {
         return iconsPacks;
     }
 
+    private boolean isDrawableInCache(String key) {
+        File drawableFile = cacheGetFileName(key);
+        return drawableFile.isFile();
+    }
+
     private boolean cacheStoreDrawable(String key, Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             File drawableFile = cacheGetFileName(key);
@@ -291,17 +326,15 @@ public class IconsHandler {
         return false;
     }
 
-
     private Drawable cacheGetDrawable(String key) {
 
-        File drawableFile = cacheGetFileName(key);
-        if (!drawableFile.isFile()) {
+        if (!isDrawableInCache(key)) {
             return null;
         }
 
         FileInputStream fis;
         try {
-            fis = new FileInputStream(drawableFile);
+            fis = new FileInputStream(cacheGetFileName(key));
             BitmapDrawable drawable = new BitmapDrawable(BitmapFactory.decodeStream(fis));
             fis.close();
             return drawable;
@@ -312,29 +345,37 @@ public class IconsHandler {
         return null;
     }
 
+    /**
+     *
+     * create path for icons cache like this
+     * {cacheDir}/icons/{icons_pack_package_name}_{key_hash}.png
+     *
+     * @param key 
+     * @return
+     */
     private File cacheGetFileName(String key) {
-        File cacheDir = this.ctx.getCacheDir();
-        File drawableFile = new File (cacheDir.getPath()+"/icon_" + iconsPackPackageName+ "_"+ key.hashCode() + ".png");
+        File drawableFile = new File (getIconsCacheDir() + iconsPackPackageName+ "_"+ key.hashCode() + ".png");
 
         return drawableFile;
     }
 
+    private File getIconsCacheDir() {
+        return new File (this.ctx.getCacheDir().getPath()+"/icons/");
+    }
+
+    /**
+     *
+     * Clear cache
+     *
+     */
     private void cacheClear() {
-        File cacheDir = this.ctx.getCacheDir();
-        File[] icons = cacheDir.listFiles(new FileFilter() {
+        File cacheDir = this.getIconsCacheDir();
 
-            @Override
-            public boolean accept(File pathname) {
-                if (pathname.getName().startsWith("icon_")) {
-                    return true;
-                }
+        if (!cacheDir.isDirectory())
+            return ;
 
-                return false;
-            }
-        });
-
-        for (File file : icons) { //delete cached icons
-            file.delete();
+        for (File item : cacheDir.listFiles()) {
+            item.delete();
         }
     }
 
