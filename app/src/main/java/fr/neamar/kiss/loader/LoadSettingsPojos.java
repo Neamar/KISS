@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.pojo.SettingsPojo;
 
-public class LoadSettingPojos extends LoadPojos<SettingPojo> {
+public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
 
-    public LoadSettingPojos(Context context) {
+    public LoadSettingsPojos(Context context) {
         super(context, "setting://");
     }
 
     @Override
-    protected ArrayList<SettingPojo> doInBackground(Void... params) {
-        ArrayList<SettingPojo> settings = new ArrayList<>();
+    protected ArrayList<SettingsPojo> doInBackground(Void... params) {
+        ArrayList<SettingsPojo> settings = new ArrayList<>();
         settings.add(createPojo(context.getString(R.string.settings_airplane),
                 android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS, R.drawable.setting_airplane));
         settings.add(createPojo(context.getString(R.string.settings_device_info),
@@ -31,8 +31,8 @@ public class LoadSettingPojos extends LoadPojos<SettingPojo> {
         return settings;
     }
 
-    private SettingPojo createPojo(String name, String settingName, int resId) {
-        SettingPojo pojo = new SettingPojo();
+    private SettingsPojo createPojo(String name, String settingName, int resId) {
+        SettingsPojo pojo = new SettingsPojo();
         pojo.id = pojoScheme + settingName.toLowerCase(Locale.ENGLISH);
         pojo.name = name;
         pojo.nameNormalized = pojo.name.toLowerCase(Locale.ENGLISH);

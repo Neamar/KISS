@@ -44,10 +44,6 @@ public class KissApplication extends Application {
             dataHandler = new DataHandler(ctx);
         }
     }
-
-    public static void resetDataHandler(Context ctx) {
-        dataHandler = new DataHandler(ctx);
-    }
     
     public static IconsHandler getIconsHandler(Context ctx) {
         if (iconsPackHandler == null) {
@@ -60,4 +56,5 @@ public class KissApplication extends Application {
     public static void resetIconsHandler(Context ctx) {
         iconsPackHandler = new IconsHandler(ctx);
     }
+
 }

@@ -11,9 +11,9 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DB;
 
-public class ResetPreference extends DialogPreference {
+public class ResetFavoritesPreference extends DialogPreference {
 
-    public ResetPreference(Context context, AttributeSet attrs) {
+    public ResetFavoritesPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -21,12 +21,10 @@ public class ResetPreference extends DialogPreference {
     public void onClick(DialogInterface dialog, int which) {
         super.onClick(dialog, which);
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            getContext().deleteDatabase(DB.DB_NAME);
-            KissApplication.getDataHandler(getContext()).reloadAll();
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
-                    .putBoolean("layout-updated", true).commit();
-
-            Toast.makeText(getContext(), R.string.history_erased, Toast.LENGTH_LONG).show();
+                    .putString("favorite-apps-list", "").commit();
+            KissApplication.getDataHandler(getContext()).getAppProvider().reload();
+            Toast.makeText(getContext(), R.string.favorites_erased, Toast.LENGTH_LONG).show();
         }
 
     }

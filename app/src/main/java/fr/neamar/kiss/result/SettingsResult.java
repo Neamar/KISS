@@ -1,21 +1,25 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.pojo.SettingsPojo;
 
-public class SettingResult extends Result {
-    private final SettingPojo settingPojo;
+public class SettingsResult extends Result {
+    private final SettingsPojo settingPojo;
 
-    public SettingResult(SettingPojo settingPojo) {
+    public SettingsResult(SettingsPojo settingPojo) {
         super();
         this.pojo = this.settingPojo = settingPojo;
     }
@@ -34,6 +38,15 @@ public class SettingResult extends Result {
         settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
 
         return v;
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
+        PopupMenu menu = new PopupMenu(context, parentView);
+
+        inflateBaseMenu(context, menu);
+        return menu;
     }
 
     @SuppressWarnings("deprecation")

@@ -19,12 +19,12 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.pojo.ShortcutPojo;
+import fr.neamar.kiss.pojo.ShortcutsPojo;
 
-public class ShortcutResult extends Result {
-    private final ShortcutPojo shortcutPojo;
+public class ShortcutsResult extends Result {
+    private final ShortcutsPojo shortcutPojo;
 
-    public ShortcutResult(ShortcutPojo shortcutPojo) {
+    public ShortcutsResult(ShortcutsPojo shortcutPojo) {
         super();
         this.pojo = this.shortcutPojo = shortcutPojo;
     }
@@ -82,7 +82,8 @@ public class ShortcutResult extends Result {
         
         //add uninstall menu
         menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
-        
+
+        inflateBaseMenu(context, menu);
         return menu;
     }
     
@@ -99,10 +100,10 @@ public class ShortcutResult extends Result {
         return super.popupMenuClickHandler(context, parent, item);
     }
     
-    private void launchUninstall(Context context, ShortcutPojo shortcutPojo) {
+    private void launchUninstall(Context context, ShortcutsPojo shortcutPojo) {
         DataHandler dh = KissApplication.getDataHandler(context);
         if (dh != null) {
-            dh.getShortcutProvider().removeShortcut(shortcutPojo);            
+            dh.removeShortcut(shortcutPojo);
         } 
     }
 

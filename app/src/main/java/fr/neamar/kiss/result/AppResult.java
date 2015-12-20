@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -51,7 +52,10 @@ public class AppResult extends Result {
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
-            if (position < 15) {
+            // Display icon directy for first icons, and also for phones above lollipop
+            // (fix a weird recycling issue with ListView on Marshmallow,
+            // where the recycling occurs synchronously, before the handler)
+            if (position < 15 || Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
                 appIcon.setImageDrawable(this.getDrawable(context));
             } else {
                 // Do actions on a message queue to avoid performance issues on main thread
@@ -92,6 +96,7 @@ public class AppResult extends Result {
             menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
         }
 
+        inflateBaseMenu(context, menu);
         return menu;
     }
 
@@ -109,9 +114,30 @@ public class AppResult extends Result {
             case R.id.item_app_hibernate:
                 hibernate(context, appPojo);
                 return true;
+            case R.id.item_exclude:
+                // remove item since it will be hiddden
+                parent.removeResult(this);
+                excludeFromAppList(context, appPojo);
+                return true;
         }
 
         return super.popupMenuClickHandler(context, parent, item);
+    }
+
+    private void excludeFromAppList(Context context, AppPojo appPojo)
+    {
+
+        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("excluded-apps-list", context.getPackageName() + ";");
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("excluded-apps-list", excludedAppList + appPojo.packageName + ";").commit();
+        //remove app pojo from appProvider results - no need to reset handler
+        KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
+        //refresh favorites to remove this app from the fav.list (in case it was there)
+        if(context instanceof MainActivity) {
+            ((MainActivity) context).retrieveFavorites();
+        }
+        Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 
     /**

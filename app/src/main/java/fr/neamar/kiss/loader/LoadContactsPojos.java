@@ -12,16 +12,16 @@ import java.util.regex.Pattern;
 
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
-import fr.neamar.kiss.pojo.ContactPojo;
+import fr.neamar.kiss.pojo.ContactsPojo;
 
-public class LoadContactPojos extends LoadPojos<ContactPojo> {
+public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
-    public LoadContactPojos(Context context) {
+    public LoadContactsPojos(Context context) {
         super(context, "contact://");
     }
 
     @Override
-    protected ArrayList<ContactPojo> doInBackground(Void... params) {
+    protected ArrayList<ContactsPojo> doInBackground(Void... params) {
         Pattern homePattern = Pattern.compile("^\\+33\\s?[1-5]");
 
         long start = System.nanoTime();
@@ -40,12 +40,12 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
         // Prevent duplicates by keeping in memory encountered phones.
         // The string key is "phone" + "|" + "name" (so if two contacts
         // with distinct name share same number, they both get displayed)
-        HashMap<String, ArrayList<ContactPojo>> mapContacts = new HashMap<>();
+        HashMap<String, ArrayList<ContactsPojo>> mapContacts = new HashMap<>();
 
         if (cur != null) {
             if (cur.getCount() > 0) {
                 while (cur.moveToNext()) {
-                    ContactPojo contact = new ContactPojo();
+                    ContactsPojo contact = new ContactsPojo();
 
                     contact.lookupKey = cur.getString(cur
                             .getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
@@ -58,6 +58,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
                     if (contact.phone == null) {
                         contact.phone = "";
                     }
+                    contact.phoneSimplified = contact.phone.replaceAll("[-.(): ]","");
 
                     contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
 
@@ -80,7 +81,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
                         if (mapContacts.containsKey(contact.lookupKey))
                             mapContacts.get(contact.lookupKey).add(contact);
                         else {
-                            ArrayList<ContactPojo> phones = new ArrayList<>();
+                            ArrayList<ContactsPojo> phones = new ArrayList<>();
                             phones.add(contact);
                             mapContacts.put(contact.lookupKey, phones);
                         }
@@ -91,13 +92,13 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
         }
 
 
-        ArrayList<ContactPojo> contacts = new ArrayList<>();
+        ArrayList<ContactsPojo> contacts = new ArrayList<>();
 
         Pattern phoneFormatter = Pattern.compile("[ \\.\\(\\)]");
-        for (ArrayList<ContactPojo> phones : mapContacts.values()) {
+        for (ArrayList<ContactsPojo> phones : mapContacts.values()) {
             // Find primary phone and add this one.
             Boolean hasPrimary = false;
-            for (ContactPojo contact : phones) {
+            for (ContactsPojo contact : phones) {
                 if (contact.primary) {
                     contacts.add(contact);
                     hasPrimary = true;
@@ -108,7 +109,7 @@ public class LoadContactPojos extends LoadPojos<ContactPojo> {
             // If not available, add all (excluding duplicates).
             if (!hasPrimary) {
                 HashMap<String, Boolean> added = new HashMap<>();
-                for (ContactPojo contact : phones) {
+                for (ContactsPojo contact : phones) {
                     String uniqueKey = phoneFormatter.matcher(contact.phone).replaceAll("");
                     uniqueKey = uniqueKey.replaceAll("^\\+33", "0");
                     uniqueKey = uniqueKey.replaceAll("^\\+1", "0");
