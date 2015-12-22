@@ -2,7 +2,7 @@ package fr.neamar.kiss.pojo;
 
 import android.net.Uri;
 
-public class ContactPojo extends Pojo {
+public class ContactsPojo extends Pojo {
     public String lookupKey = "";
 
     public String phone = "";

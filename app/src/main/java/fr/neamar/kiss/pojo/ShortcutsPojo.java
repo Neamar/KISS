@@ -2,7 +2,7 @@ package fr.neamar.kiss.pojo;
 
 import android.graphics.Bitmap;
 
-public class ShortcutPojo extends Pojo {
+public class ShortcutsPojo extends Pojo {
 
     public static final String SCHEME = "shortcut://";
 
