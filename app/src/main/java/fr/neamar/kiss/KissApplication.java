@@ -20,6 +20,10 @@ public class KissApplication extends Application {
         return dataHandler;
     }
 
+    public static void setDataHandler(DataHandler newDataHandler) {
+        dataHandler = newDataHandler;
+    }
+
     public static CameraHandler getCameraHandler() {
         if (cameraHandler == null) {
             cameraHandler = new CameraHandler();
