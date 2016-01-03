@@ -443,7 +443,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     public void onFavoriteButtonClicked(View favorite) {
 
         // Favorites handling
-        Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MainActivity.this, tryToRetrieve)
+        Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve)
                 .get(Integer.parseInt((String) favorite.getTag()));
         final Result result = Result.fromPojo(MainActivity.this, pojo);
 
@@ -558,7 +558,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     public void retrieveFavorites() {
         ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
-                .getFavorites(MainActivity.this, tryToRetrieve);
+                .getFavorites(tryToRetrieve);
 
         if (favoritesPojo.size() == 0) {
             Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);

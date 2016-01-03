@@ -18,10 +18,9 @@ import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
-    // Those settings can be set without resetting the DataHandler
-    private String safeSettings = "theme enable-spellcheck display-keyboard root-mode require-layout-update icons-hide enable-sms-history enable-phone-history enable-app-history enable-events-special-search-only";
     // Those settings require the app to restart
-    private String requireRestartSettings = "theme enable-spellcheck force-portrait";
+    final static private String requireRestartSettings = "theme enable-spellcheck force-portrait";
+
     private SharedPreferences prefs;
 
     @SuppressWarnings("deprecation")
@@ -66,12 +65,7 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if (!Arrays.asList(safeSettings.split(" ")).contains(key)) {
-            // Reload the DataHandler since Providers preferences have changed
-            KissApplication.resetDataHandler(this);
-        }
-
-        if("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
+        if("enable-sms".equals(key) || "enable-phone".equals(key)) {
             ComponentName receiver;
 
             if("enable-sms-history".equals(key)) {
@@ -98,7 +92,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void fixSummaries(SharedPreferences prefs) {
-        int historyLength = KissApplication.getDataHandler(this).getHistoryLength(this);
+        int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
             findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
         }

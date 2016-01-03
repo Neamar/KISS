@@ -1,21 +1,21 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.loader.LoadSettingPojos;
+import fr.neamar.kiss.loader.LoadSettingsPojos;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.pojo.SettingsPojo;
 
-public class SettingProvider extends Provider<SettingPojo> {
-    private final String settingName;
+public class SettingsProvider extends Provider<SettingsPojo> {
+    private String settingName;
 
-    public SettingProvider(Context context) {
-        super(new LoadSettingPojos(context));
-        settingName = context.getString(R.string.settings_prefix).toLowerCase();
+    @Override
+    public void reload() {
+        this.initialize(new LoadSettingsPojos(this));
+
+        settingName = this.getString(R.string.settings_prefix).toLowerCase();
     }
 
     public ArrayList<Pojo> getResults(String query) {
@@ -23,7 +23,7 @@ public class SettingProvider extends Provider<SettingPojo> {
 
         int relevance;
         String settingNameLowerCased;
-        for (SettingPojo setting : pojos) {
+        for (SettingsPojo setting : pojos) {
             relevance = 0;
             settingNameLowerCased = setting.nameNormalized;
             if (settingNameLowerCased.startsWith(query))

@@ -42,8 +42,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         }
 
         ArrayList<AppPojo> apps = new ArrayList<>();
-        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("excluded-apps-list", context.getPackageName() + ";");
+        String excludedAppList = prefs.getString("excluded-apps-list", context.getPackageName() + ";");
         List excludedApps = Arrays.asList(excludedAppList.split(";"));
 
         for (ResolveInfo info : appsInfo) {

@@ -13,6 +13,6 @@ public class NewCalendarEventHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        KissApplication.resetDataHandler(context);
+        KissApplication.getDataHandler(context).refreshEvents();
     }
 }

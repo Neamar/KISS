@@ -8,23 +8,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Pattern;
 
-import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.loader.LoadEventPojos;
+import fr.neamar.kiss.loader.LoadShortcutsPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
-import fr.neamar.kiss.pojo.AliasPojo;
-import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.EventPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.SettingPojo;
 
 public class EventProvider extends Provider<EventPojo> {
-    private final String eventsName;
+    private String eventsName;
     private SharedPreferences prefs;
 
-    public EventProvider(Context context) {
-        super(new LoadEventPojos(context));
-        eventsName="Events: ".toLowerCase();
-        prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    @Override
+    public void reload() {
+        this.initialize(new LoadEventPojos(this));
+        eventsName = "Events: ".toLowerCase();
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
     public ArrayList<Pojo> getResults(String query) {

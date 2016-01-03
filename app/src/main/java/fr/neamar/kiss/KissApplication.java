@@ -20,6 +20,10 @@ public class KissApplication extends Application {
         return dataHandler;
     }
 
+    public static void setDataHandler(DataHandler newDataHandler) {
+        dataHandler = newDataHandler;
+    }
+
     public static CameraHandler getCameraHandler() {
         if (cameraHandler == null) {
             cameraHandler = new CameraHandler();
@@ -42,9 +46,5 @@ public class KissApplication extends Application {
         if (dataHandler == null) {
             dataHandler = new DataHandler(ctx);
         }
-    }
-
-    public static void resetDataHandler(Context ctx) {
-        dataHandler = new DataHandler(ctx);
     }
 }
