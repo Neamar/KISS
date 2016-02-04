@@ -175,14 +175,13 @@ public class MainActivity extends ListActivity implements QueryInterface {
         searchEditText.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 // Auto left-trim text and delete special chars.
-                final String[] reservedChars = {"|", "\\", "?", "*", "<", "\"", ":", ">"};
+		        final String[] reservedChars = { "|", "\\", "?", "*", "<", "\"", ":", ".", ",", "-", ">" };
                 if (s.length() > 0){
-                    for(String c : reservedChars){
-                        if(s.charAt(0) == c.charAt(0){
+                    for (String c : reservedChars) {
+                        if (s.charAt(0) == c.charAt(0)) {
                             s.delete(0, 1);
                         }
                     }
-                    //s.delete(0, 1);
                 }
             }
 
