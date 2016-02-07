@@ -444,4 +444,19 @@ public class DataHandler extends BroadcastReceiver
 
         return null;
     }
+
+    public void removeFromFavorites(Pojo pojo, Context context) {
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (!favApps.contains(pojo.id + ";")) {
+            return;
+        }
+
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps.replace(pojo.id+";", "")).commit();
+
+        ((MainActivity)context).retrieveFavorites();
+
+    }
+
 }
