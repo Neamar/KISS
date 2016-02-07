@@ -42,6 +42,7 @@ public class PhoneProvider extends Provider<PhonePojo> {
         pojo.id = PHONE_SCHEME + phoneNumber;
         pojo.phone = phoneNumber;
         pojo.relevance = 20;
+        pojo.name = phoneNumber;
         return pojo;
     }
 }

@@ -80,6 +80,7 @@ public class AppResult extends Result {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
 
+        removeMenuItemFavoritesIfPinned(menu, context);
         try {
             // app installed under /system can't be uninstalled
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
@@ -95,8 +96,6 @@ public class AppResult extends Result {
         if (KissApplication.getRootHandler(context).isRootActivated() && KissApplication.getRootHandler(context).isRootAvailable()) {
             menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
         }
-
-        inflateBaseMenu(context, menu);
         return menu;
     }
 
@@ -124,20 +123,16 @@ public class AppResult extends Result {
         return super.popupMenuClickHandler(context, parent, item);
     }
 
-    private void excludeFromAppList(Context context, AppPojo appPojo)
-    {
-
-        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("excluded-apps-list", context.getPackageName() + ";");
+    private void excludeFromAppList(Context context, AppPojo appPojo) {
+            String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                    getString("excluded-apps-list", context.getPackageName() + ";");
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("excluded-apps-list", excludedAppList + appPojo.packageName + ";").commit();
         //remove app pojo from appProvider results - no need to reset handler
         KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
-        //refresh favorites to remove this app from the fav.list (in case it was there)
-        if(context instanceof MainActivity) {
-            ((MainActivity) context).retrieveFavorites();
-        }
+        KissApplication.getDataHandler(context).removeFromFavorites(appPojo, context);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
+
     }
 
     /**

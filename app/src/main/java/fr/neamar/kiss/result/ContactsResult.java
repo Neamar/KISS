@@ -110,8 +110,8 @@ public class ContactsResult extends Result {
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_contact, menu.getMenu());
+        removeMenuItemFavoritesIfPinned(menu, context);
 
-        inflateBaseMenu(context, menu);
         return menu;
     }
 

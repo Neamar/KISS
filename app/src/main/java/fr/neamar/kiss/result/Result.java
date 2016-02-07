@@ -93,8 +93,17 @@ public abstract class Result {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(R.menu.menu_item_default, menu.getMenu());
 
-        inflateBaseMenu(context, menu);
+        removeMenuItemFavoritesIfPinned(menu, context);
         return menu;
+    }
+
+    protected void removeMenuItemFavoritesIfPinned(PopupMenu menu, Context context) {
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (favApps.contains(this.pojo.id + ";")) {
+            menu.getMenu().removeItem(R.id.item_favorites_add);
+        }
+
     }
 
     /**
@@ -213,14 +222,5 @@ public abstract class Result {
         int[] attrs = new int[] { R.attr.resultColor /* index 0 */};
         TypedArray ta = context.obtainStyledAttributes(attrs);
         return ta.getColor(0, Color.WHITE);
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    protected void inflateBaseMenu(Context context, PopupMenu menu) {
-        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
-        if (!favApps.contains(this.pojo.id + ";")) {
-            menu.getMenuInflater().inflate(R.menu.menu_item_favorite_add, menu.getMenu());
-        }
     }
 }
