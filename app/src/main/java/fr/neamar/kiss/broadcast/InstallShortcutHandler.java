@@ -7,6 +7,8 @@ import android.content.Intent.ShortcutIconResource;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import java.net.URISyntaxException;
+
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
@@ -61,6 +63,21 @@ public class InstallShortcutHandler extends BroadcastReceiver {
                 Log.d("onReceive", "Invalid shortcut " + name + ", ignoring");
                 return;
             }
+        }
+
+        try {
+            Intent intent = Intent.parseUri(pojo.intentUri, 0);
+            if(intent.getCategories().contains(Intent.CATEGORY_LAUNCHER) && intent.getAction().equals(Intent.ACTION_MAIN)) {
+                // The Play Store has an option to create shortcut for new apps,
+                // However, KISS already displays all apps, so we discard the shortcut to avoid duplicates.
+                Log.d("onReceive", "Shortcut for launcher app, discarded.");
+                return;
+            }
+        } catch (URISyntaxException e) {
+            // Invalid intentUri: skip
+            // (should logically not happen)
+            e.printStackTrace();
+            return;
         }
 
         dh.addShortcut(pojo);

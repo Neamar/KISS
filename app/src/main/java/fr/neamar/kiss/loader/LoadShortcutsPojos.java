@@ -28,7 +28,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
             if (shortcutRecord.icon_blob != null) {
                 pojo.icon = BitmapFactory.decodeByteArray(shortcutRecord.icon_blob, 0, shortcutRecord.icon_blob.length);
             }
-            
+
             pojos.add(pojo);
         }
 
