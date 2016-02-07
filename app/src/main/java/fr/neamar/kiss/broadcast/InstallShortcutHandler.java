@@ -27,7 +27,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
 
         String name = data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME);
         Log.d("onReceive", "Received shortcut " + name);
-        
+
         Intent target = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_INTENT);
         if (target.getAction() == null) {
             target.setAction(Intent.ACTION_VIEW);
@@ -61,7 +61,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
 
         try {
             Intent intent = Intent.parseUri(pojo.intentUri, 0);
-            if(intent.getCategories().contains(Intent.CATEGORY_LAUNCHER) && intent.getAction().equals(Intent.ACTION_MAIN)) {
+            if (intent.getCategories() != null && intent.getCategories().contains(Intent.CATEGORY_LAUNCHER) && intent.getAction().equals(Intent.ACTION_MAIN)) {
                 // The Play Store has an option to create shortcut for new apps,
                 // However, KISS already displays all apps, so we discard the shortcut to avoid duplicates.
                 Log.d("onReceive", "Shortcut for launcher app, discarded.");
