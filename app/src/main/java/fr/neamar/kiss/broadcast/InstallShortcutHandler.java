@@ -27,13 +27,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
 
         String name = data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME);
         Log.d("onReceive", "Received shortcut " + name);
-
-        // avoid duplicates
-        if (sp != null && sp.findByName(name) != null || dh.getContactsProvider().findByName(name) != null || dh.getAppProvider().findByName(name) != null) {
-            Log.d("onReceive", "Duplicated shortcut " + name + ", ignoring");
-            return;
-        }
-
+        
         Intent target = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_INTENT);
         if (target.getAction() == null) {
             target.setAction(Intent.ACTION_VIEW);

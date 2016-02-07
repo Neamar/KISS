@@ -10,7 +10,6 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,7 +40,7 @@ public class ShortcutsResult extends Result {
             v = inflateFromId(context, R.layout.item_shortcut);
 
         TextView appName = (TextView) v.findViewById(R.id.item_app_name);
-        appName.setText(enrichText("➲ " + shortcutPojo.displayName));
+        appName.setText(enrichText(shortcutPojo.displayName));
 
         final ImageView shortcutIcon = (ImageView) v.findViewById(R.id.item_shortcut_icon);
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
