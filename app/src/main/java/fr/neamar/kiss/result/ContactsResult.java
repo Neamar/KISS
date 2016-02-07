@@ -108,11 +108,7 @@ public class ContactsResult extends Result {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        PopupMenu menu = new PopupMenu(context, parentView);
-        menu.getMenuInflater().inflate(R.menu.menu_item_contact, menu.getMenu());
-
-        inflateBaseMenu(context, menu);
-        return menu;
+        return inflatePopupMenu(R.menu.menu_item_contact, context, parentView);
     }
 
     @Override
