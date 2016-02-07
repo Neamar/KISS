@@ -77,10 +77,8 @@ public class AppResult extends Result {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        PopupMenu menu = new PopupMenu(context, parentView);
-        menu.getMenuInflater().inflate(R.menu.menu_item_app, menu.getMenu());
+        PopupMenu menu = inflatePopupMenu(R.menu.menu_item_app, context, parentView);
 
-        removeMenuItemFavoritesIfPinned(menu, context);
         try {
             // app installed under /system can't be uninstalled
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);

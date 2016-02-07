@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.MenuRes;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -90,20 +92,22 @@ public abstract class Result {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        PopupMenu menu = new PopupMenu(context, parentView);
-        menu.getMenuInflater().inflate(R.menu.menu_item_default, menu.getMenu());
-
-        removeMenuItemFavoritesIfPinned(menu, context);
-        return menu;
+        return inflatePopupMenu(R.menu.menu_item_default, context, parentView);
     }
 
-    protected void removeMenuItemFavoritesIfPinned(PopupMenu menu, Context context) {
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    protected PopupMenu inflatePopupMenu(@MenuRes int menuId, Context context, View parentView) {
+        PopupMenu menu = new PopupMenu(context, parentView);
+        menu.getMenuInflater().inflate(menuId, menu.getMenu());
+
+        // If app already pinned, do not display the "add to favorite" option
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
         if (favApps.contains(this.pojo.id + ";")) {
             menu.getMenu().removeItem(R.id.item_favorites_add);
         }
 
+        return menu;
     }
 
     /**
@@ -213,13 +217,13 @@ public abstract class Result {
     public void deleteRecord(Context context) {
         DBHelper.removeFromHistory(context, pojo.id);
     }
-    
+
     /*
      * Get fill color from theme 
      * 
      */
     public int getThemeFillColor(Context context) {
-        int[] attrs = new int[] { R.attr.resultColor /* index 0 */};
+        int[] attrs = new int[]{R.attr.resultColor /* index 0 */};
         TypedArray ta = context.obtainStyledAttributes(attrs);
         return ta.getColor(0, Color.WHITE);
     }

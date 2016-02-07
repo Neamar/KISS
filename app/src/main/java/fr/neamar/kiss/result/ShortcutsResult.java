@@ -78,13 +78,7 @@ public class ShortcutsResult extends Result {
     @Override
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     PopupMenu buildPopupMenu(Context context, RecordAdapter parent, View parentView) {
-        PopupMenu menu = super.buildPopupMenu(context, parent, parentView);
-        
-        //add uninstall menu
-        menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
-        removeMenuItemFavoritesIfPinned(menu, context);
-
-        return menu;
+        return inflatePopupMenu(R.menu.menu_item_app_uninstall, context, parentView);
     }
     
     @Override
