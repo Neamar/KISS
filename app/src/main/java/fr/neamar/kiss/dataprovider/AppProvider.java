@@ -21,12 +21,12 @@ public class AppProvider extends Provider<AppPojo> {
 
         int relevance;
         String appNameNormalized;
+        ArrayList<Pair<Integer, Integer>> matchPositions;
 
         for (Pojo pojo : pojos) {
             relevance = 0;
             appNameNormalized = pojo.nameNormalized;
-
-            ArrayList<Pair<Integer, Integer>> matchPositions = new ArrayList<>();
+            matchPositions = null;
 
             int queryPos = 0;
             int appPos = 0;
@@ -51,6 +51,8 @@ public class AppProvider extends Provider<AppPojo> {
                     queryPos++;
                 }
                 else if (match) {
+                    if (matchPositions == null)
+                        matchPositions = new ArrayList<>();
                     matchPositions.add(Pair.create(beginMatch, appPos));
                     match = false;
                 }
@@ -63,10 +65,12 @@ public class AppProvider extends Provider<AppPojo> {
             }
 
             if (match) {
+                if (matchPositions == null)
+                    matchPositions = new ArrayList<>();
                 matchPositions.add(Pair.create(beginMatch, appPos));
             }
 
-            if (queryPos == query.length()) {
+            if (queryPos == query.length() && matchPositions != null) {
                 // Base score for all matching apps of 20%
                 relevance += 20;
 
