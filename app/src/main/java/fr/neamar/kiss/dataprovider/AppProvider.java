@@ -71,14 +71,11 @@ public class AppProvider extends Provider<AppPojo> {
             }
 
             if (queryPos == query.length() && matchPositions != null) {
-                // Base score for all matching apps of 20
-                relevance += 20;
+                // Add percentage of matched letters, but at a weight of 40
+                relevance += (int)(((double)queryPos / appNameNormalized.length()) * 40);
 
-                // Add percentage of matched letters, but at a weight of 30
-                relevance += (int)(((double)queryPos / appNameNormalized.length()) * 30);
-
-                // Add percentage of matched upper case letters (start of word), but at a weight of 50
-                relevance += (int)(((double)matchedWordStarts / totalWordStarts) * 50);
+                // Add percentage of matched upper case letters (start of word), but at a weight of 60
+                relevance += (int)(((double)matchedWordStarts / totalWordStarts) * 60);
 
                 // The more fragmented the matches are, the less the result is important
                 relevance *= (0.2 + 0.8 * (1.0 / matchPositions.size()));
