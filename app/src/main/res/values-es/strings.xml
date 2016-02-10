@@ -3,7 +3,7 @@
 
     <string name="app_name">KISS launcher</string>
     <string name="activity_setting">Ajustes de KISS</string>
-    <string name="ui_search_hint">Buscar apps, contactos, …</string>
+    <string name="ui_search_hint">Buscar aplicaciones, contactos, …</string>
     <string name="ui_item_search">Buscar “%s”</string>
     <string name="ui_item_phone">Llamar “%s”</string>
     <string name="ui_item_contact_hint_message">Mensaje</string>
@@ -12,22 +12,24 @@
     <string name="title_ui">Ajustes de la Interfaz</string>
     <string name="title_history">Historial</string>
     <string name="title_providers">Seleccionar proveedores</string>
+    <string name="title_advanced">Ajustes avanzados</string>
     <string name="menu_settings">Ajustes del dispositivo</string>
     <string name="menu_preferences">Ajustes de KISS</string>
-    <string name="no_favorites">Sin Favoritos. Arranque una app y se añadirá a Favoritos.</string>
+    <string name="no_favorites">Sin Favoritos. Arranque una aplicación y se añadirá a Favoritos.</string>
 
     <string name="ui_empty_1">Empiece a buscar cualquier cosa</string>
-    <string name="ui_empty_1_sub">Apps, contactos, ajustes, …</string>
     <string name="ui_empty_2">Siempre ver su historial</string>
     <string name="ui_empty_2_sub">Para acceder más rápidamente</string>
-    <string name="ui_empty_3">Acceso directo a las apps más usadas</string>
+    <string name="ui_empty_3">Acceso directo a las aplicaciones más usadas</string>
     <string name="ui_empty_3_sub">KISS launcher aprende de sus hábitos</string>
 
     <string name="toggles_desc">Permitir cambios de estado (Wi-Fi, Bluetooth)</string>
     <string name="toggles_name">Cambiar estado</string>
+    <string name="toggles_on">%s activados</string>
+    <string name="toggles_off">%s desactivados</string>
 
-    <string name="aliases_desc">Permitir aliases (enlaces directos)</string>
-    <string name="aliases_name">Aliases</string>
+    <string name="aliases_desc">Permitir alias (bueno para enlaces directos)</string>
+    <string name="aliases_name">Alias</string>
 
     <string name="contacts_desc">Buscar en contactos</string>
     <string name="contacts_name">Contactos</string>
@@ -40,8 +42,11 @@
 
     <string name="phone_desc">Marcador de números de teléfono</string>
     <string name="phone_name">Teléfono</string>
-
-    <string name="stub_application">Nombre de la App</string>
+    
+    <string name="shortcuts_desc">Buscar en los atajos instalados</string>
+    <string name="shortcuts_name">Atajos</string>
+    
+    <string name="stub_application">Nombre de la Aplicación</string>
     <string name="stub_contact">Contacto</string>
     <string name="stub_contact_phone">+330 12 34 56 78</string>
     <string name="stub_setting">Nombre del ajuste</string>
@@ -49,18 +54,38 @@
     <string name="stub_phone">Llamar al +330 12 34 56 78</string>
     <string name="main_menu">Menú</string>
     <string name="main_clear">Borrar texto</string>
-    <string name="main_kiss">Mostrar favoritos y lista de apps</string>
+    <string name="main_kiss">Mostrar favoritos y lista de aplicaciones</string>
     <string name="main_kiss_back">Mostrar historial</string>
-    <string name="reset_desc">Reiniciar el historial de KISS</string>
-    <string name="reset_name">Reiniciar el historial</string>
+    <string name="reset_desc">Resetear el historial de KISS</string>
+    <string name="reset_name">Resetear el historial</string>
+    <string name="reset_excluded_apps_desc">Resetear la lista de aplicaciones excluidas de KISS</string>
+    <string name="reset_excluded_apps_name">Resetear la lista de aplicaciones</string>
+    <string name="reset_excluded_apps_warn">¿Seguro que quieres resetear tu lista de aplicaciones excluidas?</string>
+    <string name="reset_warn">¿Seguro que quieres resetear tu historial?</string>
+    <string name="reset_favorites_desc">Resetear la lista de favoritos</string>
+    <string name="reset_favorites_name">Resetear favoritos</string>
+    <string name="reset_favorites_warn">¿Seguro que quieres resetear tus favoritos?</string>
     <string name="keyboard_desc">Mostrar siempre el teclado al inicio</string>
     <string name="keyboard_name">Mostrar teclado</string>
+    <string name="spellcheck_name">Activar corrector</string>
+    <string name="spellcheck_desc">Mostrar sugerencias cuando escribas</string>
+    <string name="history_hide_desc">Ocultar historial y la pantalla de inicio</string>
+    <string name="history_hide_name">Interfaz minimalista</string>
+    <string name="history_onclick_desc">Pulsa sobre el buscador para mostrar el historial</string>
+    <string name="history_onclick_name">Interfaz minimalista: Mostrar historial al tocar</string>
+    <string name="portrait_title">Forzar modo vertical</string>
+    <string name="portrait_summary">Siempre rotar la pantalla al modo vertical cuando se muestre el lanzador</string>
+    <string name="icons_hide_main">Ocultar iconos de las aplicaciones</string>
+    <string name="icons_hide_desc">Activar en dispositivos lentos</string>
+    <string name="root_mode_desc">Activar características de súper-usuario si están disponibles (para hibernar aplicaciones)</string>
+    <string name="root_mode_name">Modo súper-usuario</string>
+    <string name="root_mode_error">Activar para conseguir privilegios de súper-usuario.</string>
 
     <string name="alias_phone">marcar,escribir,teléfono</string>
     <string name="alias_contacts">contactos,personas,relaciones</string>
     <string name="alias_web">internet,web,navegador</string>
-    <string name="alias_mail">mail,email</string>
-    <string name="alias_market">market,store,centro de aplicaciones</string>
+    <string name="alias_mail">correo, correo electrónico</string>
+    <string name="alias_market">tienda,centro de aplicaciones</string>
     <string name="alias_clock">reloj,alarma,temporizador,cronómetro</string>
     <string name="alias_messaging">mensaje de texto,componer,sms,mms,mensajería</string>
     <string name="settings_prefix">"Ajuste: "</string>
@@ -74,23 +99,22 @@
     <string name="toggle_bluetooth">Bluetooth</string>
     <string name="toggle_silent">Silenciar</string>
     <string name="toggle_data">Datos móviles</string>
+    <string name="toggle_torch">Linterna</string>
+    <string name="toggle_sync">Sincronización</string>
+    <string name="toggle_autorotate">Rotación automática</string>
     <string name="menu_wallpaper">Cambiar fondo de pantalla</string>
     <string name="application_not_found">Oops…No se pudo arrancar la aplicación.</string>
     <string name="history_erased">Historial borrado.</string>
+    <string name="favorites_erased">Favoritos borrados.</string>
+    <string name="menu_favorites_add">Alñadir a favoritos</string>
+    <string name="excluded_app_list_erased">Lista de aplicaciones excluídas borrada.</string>
+    <string name="excluded_app_list_added">Aplicaciones excluídas de KISS. Resetear a través de los ajustes de KISS</string>
 
     <string name="removed_item">Eliminado</string>
     <string name="menu_remove">Eliminar del historial</string>
-    <string name="menu_app_details">Información sobre la app</string>
+    <string name="menu_exclude">Excluir aplicación de KISS</string>
+    <string name="menu_app_details">Información sobre la aplicación</string>
     <string name="menu_app_uninstall">Desinstalar</string>
-
-    <string name="toggle_torch">Linterna</string>
-    <string name="title_advanced">Ajustes Avanzados</string>
-    <string name="spellcheck_name">Habilitar autocorrector</string>
-    <string name="spellcheck_desc">Sugerir correcciones mientras escribe</string>
-    <string name="root_mode_desc">Habilitar características root si está disponible (para hibernar aplicaciones)</string>
-    <string name="root_mode_name">Modo root</string>
-    <string name="root_mode_error">No ha sido posible obtener privilegios root.</string>
-
     <string name="menu_app_hibernate">Hibernar</string>
 
     <string name="toast_hibernate_completed">%s hibernado con éxito, inicie manualmente para despertar.</string>
@@ -98,6 +122,17 @@
     <string name="menu_contact_copy_phone">Copiar número de teléfono</string>
     <string name="theme_name">Tema</string>
     <string name="theme_desc">Actualizar tema de KISS</string>
+    <string name="menu_phone_create">Crear contacto</string>
 
-<string name="toggle_sync">Sincornización</string>
+    <string name="toast_favorites_added">%s ha sido añadido a favoritos</string>
+
+    <string name="order_apps_name">Orden de la lista de aplicacions</string>
+    <string name="order_apps_desc">De A a Z o de Z a A</string>
+    <string name="enable_sms_desc">Añadir mensajes entrantes al historial</string>
+    <string name="enable_sms">Incluir datos de los mensajes de texto en el historial</string>
+    <string name="enable_phone_desc">Añadir llamadas entrantes en el historial</string>
+    <string name="enable_phone">Incluir datos de las llamadas en el historial</string>
+    <string name="enable_app_desc">Añadir nuevas aplicaciones al historial</string>
+    <string name="enable_app">Incluir datos de aplicaciones instaladas en el historial</string>
+
     </resources>
