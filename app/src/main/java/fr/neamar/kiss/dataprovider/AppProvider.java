@@ -1,5 +1,6 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.util.Pair;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
@@ -19,30 +20,69 @@ public class AppProvider extends Provider<AppPojo> {
         ArrayList<Pojo> records = new ArrayList<>();
 
         int relevance;
-        int matchPositionStart;
-        int matchPositionEnd;
         String appNameNormalized;
+        ArrayList<Pair<Integer, Integer>> matchPositions;
 
-        final String queryWithSpace = " " + query;
         for (Pojo pojo : pojos) {
             relevance = 0;
             appNameNormalized = pojo.nameNormalized;
+            matchPositions = null;
 
-            matchPositionEnd = 0;
-            if (appNameNormalized.startsWith(query)) {
-                relevance = 100;
-                matchPositionStart = 0;
-                matchPositionEnd = query.length();
-            } else if ((matchPositionStart = appNameNormalized.indexOf(queryWithSpace)) > -1) {
-                relevance = 50;
-                matchPositionEnd = matchPositionStart + queryWithSpace.length();
-            } else if ((matchPositionStart = appNameNormalized.indexOf(query)) > -1) {
-                relevance = 1;
-                matchPositionEnd = matchPositionStart + query.length();
+            int queryPos = 0;
+            int appPos = 0;
+            int beginMatch = 0;
+            int matchedWordStarts = 0;
+            int totalWordStarts = 0;
+
+            boolean match = false;
+            for (char cApp : appNameNormalized.toCharArray()) {
+                if (queryPos < query.length() && query.charAt(queryPos) == cApp) {
+                    // If we aren't already matching something, let's save the beginning of the match
+                    if (!match) {
+                        beginMatch = appPos;
+                        match = true;
+                    }
+
+                    // If we are at the beginning of a word, add it to matchedWordStarts
+                    if (Character.isUpperCase(pojo.name.charAt(appPos)) || appPos == 0 || Character.isWhitespace(pojo.name.charAt(appPos - 1)))
+                        matchedWordStarts += 1;
+
+                    // Increment the position in the query
+                    queryPos++;
+                }
+                else if (match) {
+                    if (matchPositions == null)
+                        matchPositions = new ArrayList<>();
+                    matchPositions.add(Pair.create(beginMatch, appPos));
+                    match = false;
+                }
+
+                // If we are at the beginning of a word, add it to totalWordsStarts
+                if (Character.isUpperCase(pojo.name.charAt(appPos)) || appPos == 0 || Character.isWhitespace(pojo.name.charAt(appPos - 1)))
+                    totalWordStarts += 1;
+
+                appPos++;
+            }
+
+            if (match) {
+                if (matchPositions == null)
+                    matchPositions = new ArrayList<>();
+                matchPositions.add(Pair.create(beginMatch, appPos));
+            }
+
+            if (queryPos == query.length() && matchPositions != null) {
+                // Add percentage of matched letters, but at a weight of 40
+                relevance += (int)(((double)queryPos / appNameNormalized.length()) * 40);
+
+                // Add percentage of matched upper case letters (start of word), but at a weight of 60
+                relevance += (int)(((double)matchedWordStarts / totalWordStarts) * 60);
+
+                // The more fragmented the matches are, the less the result is important
+                relevance *= (0.2 + 0.8 * (1.0 / matchPositions.size()));
             }
 
             if (relevance > 0) {
-                pojo.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
+                pojo.setDisplayNameHighlightRegion(matchPositions);
                 pojo.relevance = relevance;
                 records.add(pojo);
             }
