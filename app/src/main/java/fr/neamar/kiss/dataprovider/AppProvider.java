@@ -20,31 +20,36 @@ public class AppProvider extends Provider<AppPojo> {
         ArrayList<Pojo> records = new ArrayList<>();
 
         int relevance;
-        String appNameNormalized;
+        int queryPos;           // The position inside the query
+        int normalizedAppPos;   // The position inside pojo.nameNormalized
+        int appPos;             // The position inside pojo.name, updated after we increment normalizedAppPos
+        int beginMatch ;
+        int matchedWordStarts;
+        int totalWordStarts;
         ArrayList<Pair<Integer, Integer>> matchPositions;
 
         for (Pojo pojo : pojos) {
             relevance = 0;
-            appNameNormalized = pojo.nameNormalized;
+            queryPos = 0;
+            normalizedAppPos = 0;
+            appPos = pojo.mapPosition(normalizedAppPos);
+            beginMatch = 0;
+            matchedWordStarts = 0;
+            totalWordStarts = 0;
             matchPositions = null;
 
-            int queryPos = 0;
-            int appPos = 0;
-            int beginMatch = 0;
-            int matchedWordStarts = 0;
-            int totalWordStarts = 0;
-
             boolean match = false;
-            for (char cApp : appNameNormalized.toCharArray()) {
+            for (char cApp : pojo.nameNormalized.toCharArray()) {
                 if (queryPos < query.length() && query.charAt(queryPos) == cApp) {
                     // If we aren't already matching something, let's save the beginning of the match
                     if (!match) {
-                        beginMatch = appPos;
+                        beginMatch = normalizedAppPos;
                         match = true;
                     }
 
                     // If we are at the beginning of a word, add it to matchedWordStarts
-                    if (Character.isUpperCase(pojo.name.charAt(appPos)) || appPos == 0 || Character.isWhitespace(pojo.name.charAt(appPos - 1)))
+                    if (normalizedAppPos == 0 || Character.isUpperCase(pojo.name.charAt(appPos))
+                            || Character.isWhitespace(pojo.name.charAt(appPos - 1)))
                         matchedWordStarts += 1;
 
                     // Increment the position in the query
@@ -53,26 +58,28 @@ public class AppProvider extends Provider<AppPojo> {
                 else if (match) {
                     if (matchPositions == null)
                         matchPositions = new ArrayList<>();
-                    matchPositions.add(Pair.create(beginMatch, appPos));
+                    matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
                     match = false;
                 }
 
                 // If we are at the beginning of a word, add it to totalWordsStarts
-                if (Character.isUpperCase(pojo.name.charAt(appPos)) || appPos == 0 || Character.isWhitespace(pojo.name.charAt(appPos - 1)))
+                if (normalizedAppPos == 0 || Character.isUpperCase(pojo.name.charAt(appPos))
+                        || Character.isWhitespace(pojo.name.charAt(appPos - 1)))
                     totalWordStarts += 1;
 
-                appPos++;
+                normalizedAppPos++;
+                appPos = pojo.mapPosition(normalizedAppPos);
             }
 
             if (match) {
                 if (matchPositions == null)
                     matchPositions = new ArrayList<>();
-                matchPositions.add(Pair.create(beginMatch, appPos));
+                matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
             }
 
             if (queryPos == query.length() && matchPositions != null) {
                 // Add percentage of matched letters, but at a weight of 40
-                relevance += (int)(((double)queryPos / appNameNormalized.length()) * 40);
+                relevance += (int)(((double)queryPos / pojo.nameNormalized.length()) * 40);
 
                 // Add percentage of matched upper case letters (start of word), but at a weight of 60
                 relevance += (int)(((double)matchedWordStarts / totalWordStarts) * 60);
@@ -96,7 +103,7 @@ public class AppProvider extends Provider<AppPojo> {
      *
      * @param id              we're looking for
      * @param allowSideEffect do we allow this function to have potential side effect? Set to false to ensure none.
-     * @return an apppojo, or null
+     * @return an AppPojo, or null
      */
     public Pojo findById(String id, Boolean allowSideEffect) {
         for (Pojo pojo : pojos) {
