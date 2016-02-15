@@ -39,8 +39,10 @@ public class AppProvider extends Provider<AppPojo> {
             matchPositions = null;
 
             boolean match = false;
-            for (char cApp : pojo.nameNormalized.toCharArray()) {
-                if (queryPos < query.length() && query.charAt(queryPos) == cApp) {
+            int inputLength = pojo.nameNormalized.length();
+            while (normalizedAppPos < inputLength) {
+                int cApp = pojo.nameNormalized.codePointAt(normalizedAppPos);
+                if (queryPos < query.length() && query.codePointAt(queryPos) == cApp) {
                     // If we aren't already matching something, let's save the beginning of the match
                     if (!match) {
                         beginMatch = normalizedAppPos;
@@ -48,12 +50,12 @@ public class AppProvider extends Provider<AppPojo> {
                     }
 
                     // If we are at the beginning of a word, add it to matchedWordStarts
-                    if (normalizedAppPos == 0 || Character.isUpperCase(pojo.name.charAt(appPos))
-                            || Character.isWhitespace(pojo.name.charAt(appPos - 1)))
+                    if (normalizedAppPos == 0 || Character.isUpperCase(pojo.name.codePointAt(appPos))
+                            || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
                         matchedWordStarts += 1;
 
                     // Increment the position in the query
-                    queryPos++;
+                    queryPos += Character.charCount(query.codePointAt(queryPos));
                 }
                 else if (match) {
                     if (matchPositions == null)
@@ -63,11 +65,11 @@ public class AppProvider extends Provider<AppPojo> {
                 }
 
                 // If we are at the beginning of a word, add it to totalWordsStarts
-                if (normalizedAppPos == 0 || Character.isUpperCase(pojo.name.charAt(appPos))
-                        || Character.isWhitespace(pojo.name.charAt(appPos - 1)))
+                if (normalizedAppPos == 0 || Character.isUpperCase(pojo.name.codePointAt(appPos))
+                        || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
                     totalWordStarts += 1;
 
-                normalizedAppPos++;
+                normalizedAppPos += Character.charCount(cApp);
                 appPos = pojo.mapPosition(normalizedAppPos);
             }
 
