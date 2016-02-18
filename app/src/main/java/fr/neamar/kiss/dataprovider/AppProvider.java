@@ -50,7 +50,8 @@ public class AppProvider extends Provider<AppPojo> {
                     }
 
                     // If we are at the beginning of a word, add it to matchedWordStarts
-                    if (normalizedAppPos == 0 || Character.isUpperCase(pojo.name.codePointAt(appPos))
+                    if (appPos == 0 || normalizedAppPos == 0
+                            || Character.isUpperCase(pojo.name.codePointAt(appPos))
                             || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
                         matchedWordStarts += 1;
 
@@ -65,7 +66,8 @@ public class AppProvider extends Provider<AppPojo> {
                 }
 
                 // If we are at the beginning of a word, add it to totalWordsStarts
-                if (normalizedAppPos == 0 || Character.isUpperCase(pojo.name.codePointAt(appPos))
+                if (appPos == 0 || normalizedAppPos == 0
+                        || Character.isUpperCase(pojo.name.codePointAt(appPos))
                         || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
                     totalWordStarts += 1;
 
