@@ -32,7 +32,7 @@ public abstract class Pojo {
      * @param position Position in normalized name
      * @return Position in non-normalized string
      */
-    private int mapPosition(int position) {
+    public int mapPosition(int position) {
         if (this.namePositionMap != null) {
             if (position < this.namePositionMap.length) {
                 return this.namePositionMap[position];
