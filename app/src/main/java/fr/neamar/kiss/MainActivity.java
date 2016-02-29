@@ -20,12 +20,14 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -199,20 +201,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 adapter.onClick(adapter.getCount() - 1, null);
 
                 return true;
-            }
-        });
-
-        searchEditText.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
-                    //show history only if no search text is added
-                    if (((EditText) v).getText().toString().isEmpty()) {
-                        searcher = new HistorySearcher(MainActivity.this);
-                        searcher.execute();
-                    }
-                }
             }
         });
 
@@ -424,6 +412,22 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // To fix this, we discard any click event occurring when the kissbar is displayed
         if (kissBar.getVisibility() != View.VISIBLE)
             menuButton.showContextMenu();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        //if motion movement ends
+        if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
+            //if history is hidden
+            if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
+                //if not on the application list and not searching for something
+                if ((kissBar.getVisibility() != View.VISIBLE) && (searchEditText.getText().toString().isEmpty())) {
+                    searcher = new HistorySearcher(MainActivity.this);
+                    searcher.execute();
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
     }
 
     /**
