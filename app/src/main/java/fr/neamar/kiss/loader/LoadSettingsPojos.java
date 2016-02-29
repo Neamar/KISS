@@ -2,6 +2,7 @@ package fr.neamar.kiss.loader;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -17,6 +18,7 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
 
     @Override
     protected ArrayList<SettingsPojo> doInBackground(Void... params) {
+        PackageManager pm = context.getPackageManager();
         ArrayList<SettingsPojo> settings = new ArrayList<>();
         settings.add(createPojo(context.getString(R.string.settings_airplane),
                 android.provider.Settings.ACTION_AIRPLANE_MODE_SETTINGS, R.drawable.setting_airplane));
@@ -28,7 +30,20 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
                 android.provider.Settings.ACTION_WIRELESS_SETTINGS, R.drawable.toggle_wifi));
         settings.add(createPojo(context.getString(R.string.settings_battery),
                 Intent.ACTION_POWER_USAGE_SUMMARY, R.drawable.setting_battery));
+        settings.add(createPojo(context.getString(R.string.settings_tethering), "com.android.settings",
+                "com.android.settings.TetherSettings", R.drawable.setting_tethering));
+        if ((android.os.Build.VERSION.SDK_INT >= 16) && (pm.hasSystemFeature(PackageManager.FEATURE_NFC))) {
+            settings.add(createPojo(context.getString(R.string.settings_nfc),
+                    android.provider.Settings.ACTION_NFC_SETTINGS, R.drawable.setting_nfc));
+        }
         return settings;
+    }
+
+    private SettingsPojo createPojo(String name, String packageName, String settingName, int resId)
+    {
+        SettingsPojo pojo = this.createPojo(name, settingName, resId);
+        pojo.packageName = packageName;
+        return pojo;
     }
 
     private SettingsPojo createPojo(String name, String settingName, int resId) {
