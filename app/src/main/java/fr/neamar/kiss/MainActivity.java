@@ -422,8 +422,11 @@ public class MainActivity extends ListActivity implements QueryInterface {
             if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
                 //if not on the application list and not searching for something
                 if ((kissBar.getVisibility() != View.VISIBLE) && (searchEditText.getText().toString().isEmpty())) {
-                    searcher = new HistorySearcher(MainActivity.this);
-                    searcher.execute();
+                    //if list is empty
+                    if ((this.getListAdapter() == null) || (this.getListAdapter().getCount() == 0)) {
+                        searcher = new HistorySearcher(MainActivity.this);
+                        searcher.execute();
+                    }
                 }
             }
         }
