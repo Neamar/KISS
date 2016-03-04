@@ -39,7 +39,9 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <!-- To autorotation toggle -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
+    <!-- To access (readonly) calendar events -->
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -106,7 +108,15 @@
             android:label="@string/activity_setting"
             android:theme="@style/SettingTheme" />
 
-        <!-- On new app installed or sdcard mount / unmount refresh the list -->
+        <receiver android:name=".broadcast.NewCalendarEventHandler">
+            <intent-filter>
+            	<action android:name="android.intent.action.PROVIDER_CHANGED"/>
+                <data android:scheme="content"/>
+                <data android:host="com.android.calendar"/>
+            </intent-filter>
+	</receiver>
+	
+	<!-- On new app installed or sdcard mount / unmount refresh the list -->
         <receiver android:name=".broadcast.NewAppInstalledHandler">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
@@ -166,6 +176,7 @@
         <service android:name=".dataprovider.SettingsProvider"/>
         <service android:name=".dataprovider.ShortcutsProvider"/>
         <service android:name=".dataprovider.TogglesProvider"/>
+        <service android:name=".dataprovider.EventProvider"/>
     </application>
 
 </manifest>

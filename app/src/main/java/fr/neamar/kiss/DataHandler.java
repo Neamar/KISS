@@ -22,6 +22,7 @@ import java.util.Map;
 
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
+import fr.neamar.kiss.dataprovider.EventProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
@@ -38,7 +39,7 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "alias", "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
+            "alias", "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles", "event"
     );
 
     final private SharedPreferences prefs;
@@ -312,20 +313,20 @@ public class DataHandler extends BroadcastReceiver
     public int getHistoryLength() {
         return DBHelper.getHistoryLength(this.context);
     }
-    
+
     public void addShortcut(ShortcutsPojo shortcut) {
         ShortcutRecord record = new ShortcutRecord();
         record.name = shortcut.name;
         record.iconResource = shortcut.resourceName;
         record.packageName = shortcut.packageName;
         record.intentUri = shortcut.intentUri;
-        
-        if (shortcut.icon != null) {            
-               ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
-               shortcut.icon.compress(CompressFormat.PNG,100,baos);               
-               record.icon_blob = baos.toByteArray();            
-        }        
-        
+
+        if (shortcut.icon != null) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            shortcut.icon.compress(CompressFormat.PNG,100,baos);
+            record.icon_blob = baos.toByteArray();
+        }
+
         DBHelper.insertShortcut(this.context, record);
 
         if(this.getShortcutsProvider() != null) {
@@ -334,7 +335,7 @@ public class DataHandler extends BroadcastReceiver
 
         Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
     }
-    
+
     public void removeShortcut(ShortcutsPojo shortcut) {
         DBHelper.removeShortcut(this.context, shortcut.name);
 
@@ -351,6 +352,13 @@ public class DataHandler extends BroadcastReceiver
         }
     }
 
+    public void refreshEvents() {
+        if (this.getEventProvider()!= null) {
+            this.getEventProvider().reload();
+        }
+    }
+
+
     /**
      * Return all applications
      *
@@ -364,10 +372,15 @@ public class DataHandler extends BroadcastReceiver
         ProviderEntry entry = this.providers.get("contacts");
         return (entry != null) ? ((ContactsProvider) entry.provider) : null;
     }
-    
+
     public ShortcutsProvider getShortcutsProvider() {
         ProviderEntry entry = this.providers.get("shortcuts");
         return (entry != null) ? ((ShortcutsProvider) entry.provider) : null;
+    }
+
+    public EventProvider getEventProvider() {
+        ProviderEntry entry = this.providers.get("events");
+        return (entry != null) ? ((EventProvider) entry.provider) : null;
     }
 
     public AppProvider getAppProvider() {

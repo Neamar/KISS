@@ -4,7 +4,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
@@ -34,6 +36,7 @@ public class SettingsActivity extends PreferenceActivity implements
         addPreferencesFromResource(R.xml.preferences);
 
         fixSummaries(prefs);
+        fixMenus(prefs);
     }
 
     @Override
@@ -92,6 +95,16 @@ public class SettingsActivity extends PreferenceActivity implements
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
             findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
+        }
+    }
+
+    private void fixMenus(SharedPreferences prefs)
+    {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+        {
+            //hide calendar
+            findPreference("enable-events").setEnabled(false);
+            ((CheckBoxPreference)findPreference("enable-events")).setChecked(false);
         }
     }
 }
