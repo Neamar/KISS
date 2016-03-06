@@ -98,7 +98,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private void fixSummaries(SharedPreferences prefs) {
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
-            findPreference("reset").setSummary(getString(R.string.reset_name) + " (" + historyLength + " items)");
+            findPreference("reset").setSummary(historyLength + " " + getString(R.string.items_title));
         }
     }
     
