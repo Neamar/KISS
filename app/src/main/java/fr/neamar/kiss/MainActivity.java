@@ -4,13 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,7 +51,7 @@ import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
 
-public class MainActivity extends ListActivity implements QueryInterface {
+public class MainActivity extends Activity implements QueryInterface {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -90,6 +91,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
             showKeyboard();
         }
     };
+    /**
+     * Main list view
+     */
+    private ListView list;
+    private View     listContainer;
+    /**
+     * View to display when list is empty
+     */
+    private View listEmpty;
     /**
      * Menu button
      */
@@ -166,9 +176,34 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         setContentView(R.layout.main);
 
+        this.list          = (ListView) this.findViewById(android.R.id.list);
+        this.listContainer = (View) this.list.getParent();
+        this.listEmpty     = this.findViewById(android.R.id.empty);
+
         // Create adapter for records
-        adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
-        setListAdapter(adapter);
+        this.adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
+        this.list.setAdapter(this.adapter);
+
+        this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+            {
+                adapter.onClick(position, v);
+            }
+        });
+        this.adapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+
+                if(adapter.isEmpty()) {
+                    listContainer.setVisibility(View.GONE);
+                    listEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    listContainer.setVisibility(View.VISIBLE);
+                    listEmpty.setVisibility(View.GONE);
+                }
+            }
+        });
 
         searchEditText = (EditText) findViewById(R.id.searchEditText);
 
@@ -180,9 +215,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                     s.delete(0, 1);
             }
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 updateRecords(s.toString());
@@ -195,7 +228,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                RecordAdapter adapter = ((RecordAdapter) getListView().getAdapter());
+                RecordAdapter adapter = ((RecordAdapter) list.getAdapter());
 
                 adapter.onClick(adapter.getCount() - 1, null);
 
@@ -207,8 +240,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
 
-        getListView().setLongClickable(true);
-        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        this.list.setLongClickable(true);
+        this.list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
@@ -260,12 +293,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 findViewById(id).setBackgroundResource(outValue.resourceId);
             }
         }
-    }
-
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        adapter.onClick(position, v);
     }
 
     @Override
@@ -422,7 +449,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 //if not on the application list and not searching for something
                 if ((kissBar.getVisibility() != View.VISIBLE) && (searchEditText.getText().toString().isEmpty())) {
                     //if list is empty
-                    if ((this.getListAdapter() == null) || (this.getListAdapter().getCount() == 0)) {
+                    if ((this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0)) {
                         searcher = new HistorySearcher(MainActivity.this);
                         searcher.execute();
                     }
