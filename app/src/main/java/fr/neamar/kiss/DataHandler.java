@@ -1,5 +1,17 @@
 package fr.neamar.kiss;
 
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap.CompressFormat;
+import android.os.IBinder;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,17 +19,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.ServiceConnection;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap.CompressFormat;
-import android.os.IBinder;
-import android.preference.PreferenceManager;
 
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
@@ -330,6 +331,8 @@ public class DataHandler extends BroadcastReceiver
         if(this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
+
+        Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
     }
     
     public void removeShortcut(ShortcutsPojo shortcut) {
@@ -441,4 +444,19 @@ public class DataHandler extends BroadcastReceiver
 
         return null;
     }
+
+    public void removeFromFavorites(Pojo pojo, Context context) {
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+        if (!favApps.contains(pojo.id + ";")) {
+            return;
+        }
+
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps.replace(pojo.id+";", "")).commit();
+
+        ((MainActivity)context).retrieveFavorites();
+
+    }
+
 }

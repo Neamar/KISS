@@ -5,15 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.SettingsPojo;
 
 public class SettingsResult extends Result {
@@ -40,15 +37,6 @@ public class SettingsResult extends Result {
         return v;
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    @Override
-    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        PopupMenu menu = new PopupMenu(context, parentView);
-
-        inflateBaseMenu(context, menu);
-        return menu;
-    }
-
     @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
@@ -62,6 +50,9 @@ public class SettingsResult extends Result {
     @Override
     public void doLaunch(Context context, View v) {
         Intent intent = new Intent(settingPojo.settingName);
+        if (!settingPojo.packageName.isEmpty()) {
+            intent.setClassName(settingPojo.packageName, settingPojo.settingName);
+        }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

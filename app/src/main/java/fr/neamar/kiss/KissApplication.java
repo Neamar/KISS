@@ -12,12 +12,17 @@ public class KissApplication extends Application {
     private static DataHandler dataHandler;
     private static CameraHandler cameraHandler;
     private static RootHandler rootHandler;
+    private static IconsHandler iconsPackHandler;
 
     public static DataHandler getDataHandler(Context ctx) {
         if (dataHandler == null) {
             dataHandler = new DataHandler(ctx);
         }
         return dataHandler;
+    }
+
+    public static void setDataHandler(DataHandler newDataHandler) {
+        dataHandler = newDataHandler;
     }
 
     public static CameraHandler getCameraHandler() {
@@ -43,4 +48,17 @@ public class KissApplication extends Application {
             dataHandler = new DataHandler(ctx);
         }
     }
+    
+    public static IconsHandler getIconsHandler(Context ctx) {
+        if (iconsPackHandler == null) {
+            iconsPackHandler = new IconsHandler(ctx);
+        }    
+        
+        return iconsPackHandler;
+    }
+    
+    public static void resetIconsHandler(Context ctx) {
+        iconsPackHandler = new IconsHandler(ctx);
+    }
+
 }

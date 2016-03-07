@@ -5,10 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-
-import java.util.Arrays;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
@@ -32,6 +31,9 @@ public class SettingsActivity extends PreferenceActivity implements
 
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
+        
+        ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
+        setListPreferenceIconsPacksData(iconsPack);
 
         fixSummaries(prefs);
     }
@@ -45,6 +47,11 @@ public class SettingsActivity extends PreferenceActivity implements
     @SuppressWarnings("deprecation")
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        
+        if (key.equalsIgnoreCase("icons-pack")) {            
+            KissApplication.getIconsHandler(this).loadIconsPack(sharedPreferences.getString(key, "default"));
+        }
+        
         if (requireRestartSettings.contains(key)) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();
@@ -94,4 +101,24 @@ public class SettingsActivity extends PreferenceActivity implements
             findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
         }
     }
+    
+    protected void setListPreferenceIconsPacksData(ListPreference lp) {
+        IconsHandler iph = KissApplication.getIconsHandler(this);
+        
+        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size()+1];
+        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size()+1];
+        
+        int i = 0;
+        entries[0] = this.getString(R.string.icons_pack_default_name);
+        entryValues[0] = "default";
+        for (String packageIconsPack : iph.getIconsPacks().keySet()) {
+            entries[++i] = iph.getIconsPacks().get(packageIconsPack);
+            entryValues[i] = packageIconsPack;
+        }
+        
+        lp.setEntries(entries);
+        lp.setDefaultValue("default");
+        lp.setEntryValues(entryValues);
+    }
+    
 }

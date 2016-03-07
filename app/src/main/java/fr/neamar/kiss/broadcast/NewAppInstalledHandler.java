@@ -44,12 +44,15 @@ public class NewAppInstalledHandler extends BroadcastReceiver {
             String packageName = intent.getData().getSchemeSpecificPart();
             KissApplication.getDataHandler(ctx).removeShortcuts(packageName);
         }
-
+        
+        KissApplication.resetIconsHandler(ctx);
+        
         // Reload application list
         final AppProvider provider = KissApplication.getDataHandler(ctx).getAppProvider();
         if(provider != null) {
             provider.reload();
         }
+
     }
 
 }
