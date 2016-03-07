@@ -50,8 +50,11 @@ import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.ui.KeyboardScrollHider;
+import fr.neamar.kiss.ui.BlockableListView;
+import fr.neamar.kiss.ui.BottomPullEffectView;
 
-public class MainActivity extends Activity implements QueryInterface {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -68,7 +71,7 @@ public class MainActivity extends Activity implements QueryInterface {
      */
     private final int tryToRetrieve = favsIds.length + 2;
     /**
-     * InputType with spellecheck and swiping
+     * InputType with spellcheck and swiping
      */
     private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
             InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
@@ -100,6 +103,10 @@ public class MainActivity extends Activity implements QueryInterface {
      * View to display when list is empty
      */
     private View listEmpty;
+    /**
+     * Utility for automatically hiding the keyboard when scrolling down
+     */
+    private KeyboardScrollHider hider;
     /**
      * Menu button
      */
@@ -242,13 +249,18 @@ public class MainActivity extends Activity implements QueryInterface {
 
         this.list.setLongClickable(true);
         this.list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
                 ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
                 return true;
             }
         });
+
+        this.hider = new KeyboardScrollHider(this,
+                (BlockableListView)    this.list,
+                (BottomPullEffectView) this.findViewById(R.id.listEdgeEffect)
+        );
+        this.hider.start();
 
         // Enable swiping
         if (prefs.getBoolean("enable-spellcheck", false)) {
@@ -666,19 +678,21 @@ public class MainActivity extends Activity implements QueryInterface {
         }
     }
 
-    private void hideKeyboard() {
+    @Override
+    public void showKeyboard() {
+        searchEditText.requestFocus();
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    @Override
+    public void hideKeyboard() {
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
-    }
-
-    private void showKeyboard() {
-        searchEditText.requestFocus();
-        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
     }
 
     public int getFavIconsSize() {
