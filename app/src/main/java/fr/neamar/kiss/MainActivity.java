@@ -73,7 +73,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * InputType with spellcheck and swiping
      */
-    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
+    private final static int SPELLCHECK_ENABLED_TYPE = InputType.TYPE_CLASS_TEXT |
             InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     /**
      * Adapter to display records
@@ -123,23 +123,28 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Called when the activity is first created.
      */
-    @SuppressLint("NewApi")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String theme = prefs.getString("theme", "light");
-        if (theme.equals("dark")) {
-            setTheme(R.style.AppThemeDark);
-        } else if (theme.equals("transparent")) {
-            setTheme(R.style.AppThemeTransparent);
-        } else if (theme.equals("semi-transparent")) {
-            setTheme(R.style.AppThemeSemiTransparent);
-        } else if (theme.equals("semi-transparent-dark")) {
-            setTheme(R.style.AppThemeSemiTransparentDark);
-        } else if (theme.equals("transparent-dark")) {
-            setTheme(R.style.AppThemeTransparentDark);
+        switch (theme) {
+            case "dark":
+                setTheme(R.style.AppThemeDark);
+                break;
+            case "transparent":
+                setTheme(R.style.AppThemeTransparent);
+                break;
+            case "semi-transparent":
+                setTheme(R.style.AppThemeSemiTransparent);
+                break;
+            case "semi-transparent-dark":
+                setTheme(R.style.AppThemeSemiTransparentDark);
+                break;
+            case "transparent-dark":
+                setTheme(R.style.AppThemeTransparentDark);
+                break;
         }
 
 
@@ -264,7 +269,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Enable swiping
         if (prefs.getBoolean("enable-spellcheck", false)) {
-            searchEditText.setInputType(spellcheckEnabledType);
+            searchEditText.setInputType(SPELLCHECK_ENABLED_TYPE);
         }
 
         // Hide the "X" after the text field, instead displaying the menu button
@@ -322,6 +327,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Empty text field on resume and show keyboard
      */
+    @SuppressLint("CommitPrefEdits")
     protected void onResume() {
         if (prefs.getBoolean("require-layout-update", false)) {
             // Restart current activity to refresh view, since some preferences

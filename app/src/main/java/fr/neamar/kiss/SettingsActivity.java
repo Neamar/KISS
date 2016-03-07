@@ -35,7 +35,7 @@ public class SettingsActivity extends PreferenceActivity implements
         ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
         setListPreferenceIconsPacksData(iconsPack);
 
-        fixSummaries(prefs);
+        fixSummaries();
     }
 
     @Override
@@ -44,7 +44,6 @@ public class SettingsActivity extends PreferenceActivity implements
         prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         
@@ -95,7 +94,8 @@ public class SettingsActivity extends PreferenceActivity implements
         finish();
     }
 
-    private void fixSummaries(SharedPreferences prefs) {
+    @SuppressWarnings("deprecation")
+    private void fixSummaries() {
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
             findPreference("reset").setSummary(historyLength + " " + getString(R.string.items_title));

@@ -65,8 +65,7 @@ public class SearchResult extends Result {
     @Override
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
 
-        //empty menu so that you don't add on favorites
-        PopupMenu menu = new PopupMenu(context, parentView);
-        return menu;
+        // Empty menu so that you don't add on favorites
+        return new PopupMenu(context, parentView);
     }
 }

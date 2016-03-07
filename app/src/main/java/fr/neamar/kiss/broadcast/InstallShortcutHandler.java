@@ -39,7 +39,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
         pojo.intentUri = target.toUri(0);
 
         //get embedded icon
-        Bitmap icon = (Bitmap) data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON);
+        Bitmap icon = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON);
         if (icon != null) {
             Log.d("onReceive", "Shortcut " + name + " has embedded icon");
             pojo.icon = icon;

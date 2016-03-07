@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="fr.neamar.kiss"
     android:versionCode="79"
     android:versionName="2.21.0">
@@ -59,16 +60,13 @@
         android:name="android.hardware.nfc"
         android:required="false" />
 
-    <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="22" />
-
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppThemeLight">
+        android:theme="@style/AppThemeLight"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <!--
         clearTaskOnLaunch: when viewing kiss settings, display the main activity when pressing home https://github.com/Neamar/KISS/issues/117
@@ -126,7 +124,8 @@
         <!-- On incoming messages, add user to history -->
         <receiver
             android:name=".broadcast.IncomingSmsHandler"
-            android:enabled="false">
+            android:enabled="false"
+            tools:ignore="UnprotectedSMSBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
