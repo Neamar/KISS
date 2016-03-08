@@ -39,12 +39,13 @@ public abstract class Result {
     Pojo pojo = null;
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
-        if (pojo instanceof AppPojo)
+        // Note: SearchPojo _must_ be before AppPojo because it extends AppPojo
+        if (pojo instanceof SearchPojo)
+            return new SearchResult((SearchPojo) pojo);
+        else if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
         else if (pojo instanceof ContactsPojo)
             return new ContactsResult(parent, (ContactsPojo) pojo);
-        else if (pojo instanceof SearchPojo)
-            return new SearchResult((SearchPojo) pojo);
         else if (pojo instanceof SettingsPojo)
             return new SettingsResult((SettingsPojo) pojo);
         else if (pojo instanceof TogglesPojo)
