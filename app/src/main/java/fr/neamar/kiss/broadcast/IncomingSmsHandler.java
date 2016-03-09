@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.util.Log;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
@@ -26,6 +27,8 @@ public class IncomingSmsHandler extends BroadcastReceiver {
             // Contacts have been disabled from settings
             return;
         }
+
+        dataHandler.getContactsProvider().reload();
 
         // Get the SMS message passed in, if any
         Bundle bundle = intent.getExtras();
