@@ -69,7 +69,7 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if("enable-sms".equals(key) || "enable-phone".equals(key)) {
+        if("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
             ComponentName receiver;
 
             if("enable-sms-history".equals(key)) {
