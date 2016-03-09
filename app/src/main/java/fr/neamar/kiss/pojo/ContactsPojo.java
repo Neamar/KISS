@@ -21,4 +21,6 @@ public class ContactsPojo extends Pojo {
 
     // Is this number a home (local) number ?
     public Boolean homeNumber = false;
+
+    public String lastTimeContacted = "";
 }

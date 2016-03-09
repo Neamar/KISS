@@ -50,6 +50,10 @@ public class ContactsResult extends Result {
         TextView contactPhone = (TextView) v.findViewById(R.id.item_contact_phone);
         contactPhone.setText(contactPojo.phone);
 
+        // Contact phone
+        TextView contactLastSeen = (TextView) v.findViewById(R.id.item_contact_last_seen);
+        contactLastSeen.setText(contactPojo.lastTimeContacted);
+
         // Contact photo
         ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) v
                 .findViewById(R.id.item_contact_icon);
