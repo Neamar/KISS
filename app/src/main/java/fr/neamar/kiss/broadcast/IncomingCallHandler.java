@@ -25,7 +25,7 @@ public class IncomingCallHandler extends BroadcastReceiver {
                 return;
             }
 
-            dataHandler.getContactsProvider().reload();
+            contactsProvider.reload();
 
             if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
                 String phoneNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
