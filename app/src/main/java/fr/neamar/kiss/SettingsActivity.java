@@ -102,6 +102,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
@@ -115,6 +116,7 @@ public class SettingsActivity extends PreferenceActivity implements
         if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getIconsHandler(this).loadIconsPack(sharedPreferences.getString(key, "default"));
         }
+
         if (requireRestartSettings.contains(key)) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();
@@ -132,10 +134,10 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if ("enable-sms".equals(key) || "enable-phone".equals(key)) {
+        if("enable-sms".equals(key) || "enable-phone".equals(key)) {
             ComponentName receiver;
 
-            if ("enable-sms-history".equals(key)) {
+            if("enable-sms-history".equals(key)) {
                 receiver = new ComponentName(this, IncomingSmsHandler.class);
             }
             else {
@@ -168,8 +170,8 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void setListPreferenceIconsPacksData(ListPreference lp) {
         IconsHandler iph = KissApplication.getIconsHandler(this);
 
-        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size() + 1];
-        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size() + 1];
+        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size()+1];
+        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size()+1];
 
         int i = 0;
         entries[0] = this.getString(R.string.icons_pack_default_name);
@@ -185,4 +187,3 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
 }
-
