@@ -1,13 +1,20 @@
 package fr.neamar.kiss;
 
+import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.MultiSelectListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
@@ -31,11 +38,68 @@ public class SettingsActivity extends PreferenceActivity implements
 
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
-        
+
         ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
         setListPreferenceIconsPacksData(iconsPack);
 
         fixSummaries(prefs);
+
+        addExcludedAppSettings(prefs);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void loadExcludedAppsToPreference() {
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+
+            MultiSelectListPreference multiSelectList = (MultiSelectListPreference) findPreference("excluded_apps_ui");
+            String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
+            String[] apps = excludedAppList.split(";");
+
+            multiSelectList.setEntries(apps);
+            multiSelectList.setEntryValues(apps);
+            multiSelectList.setValues(new HashSet<String>(Arrays.asList(apps)));
+        }
+    }
+
+    private boolean hasExcludedApps(final SharedPreferences prefs) {
+        String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
+        if (excludedAppList.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    @SuppressWarnings("deprecation")
+    private void addExcludedAppSettings(final SharedPreferences prefs) {
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            addPreferencesFromResource(R.xml.preference_excluded_apps);
+
+            loadExcludedAppsToPreference();
+
+            MultiSelectListPreference multiSelectList = (MultiSelectListPreference) findPreference("excluded_apps_ui");
+            multiSelectList.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    HashSet<String> appListToBeExcluded = (HashSet<String>) newValue;
+
+                    StringBuilder builder = new StringBuilder();
+                    for (String s : appListToBeExcluded) {
+                        builder.append(s + ";");
+                    }
+
+                    prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").commit();
+                    loadExcludedAppsToPreference();
+                    if (!hasExcludedApps(prefs)) {
+                        MultiSelectListPreference multiSelectList = (MultiSelectListPreference) findPreference("excluded_apps_ui");
+                        multiSelectList.setEnabled(false);
+                    }
+                    return false;
+                }
+            });
+            if (!hasExcludedApps(prefs)) {
+                multiSelectList.setEnabled(false);
+            }
+        }
     }
 
     @Override
@@ -47,11 +111,10 @@ public class SettingsActivity extends PreferenceActivity implements
     @SuppressWarnings("deprecation")
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        
-        if (key.equalsIgnoreCase("icons-pack")) {            
+
+        if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getIconsHandler(this).loadIconsPack(sharedPreferences.getString(key, "default"));
         }
-        
         if (requireRestartSettings.contains(key)) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();
@@ -69,10 +132,10 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if("enable-sms".equals(key) || "enable-phone".equals(key)) {
+        if ("enable-sms".equals(key) || "enable-phone".equals(key)) {
             ComponentName receiver;
 
-            if("enable-sms-history".equals(key)) {
+            if ("enable-sms-history".equals(key)) {
                 receiver = new ComponentName(this, IncomingSmsHandler.class);
             }
             else {
@@ -101,13 +164,13 @@ public class SettingsActivity extends PreferenceActivity implements
             findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
         }
     }
-    
+
     protected void setListPreferenceIconsPacksData(ListPreference lp) {
         IconsHandler iph = KissApplication.getIconsHandler(this);
-        
-        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size()+1];
-        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size()+1];
-        
+
+        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size() + 1];
+        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size() + 1];
+
         int i = 0;
         entries[0] = this.getString(R.string.icons_pack_default_name);
         entryValues[0] = "default";
@@ -115,10 +178,11 @@ public class SettingsActivity extends PreferenceActivity implements
             entries[++i] = iph.getIconsPacks().get(packageIconsPack);
             entryValues[i] = packageIconsPack;
         }
-        
+
         lp.setEntries(entries);
         lp.setDefaultValue("default");
         lp.setEntryValues(entryValues);
     }
-    
+
 }
+
