@@ -48,12 +48,6 @@ public class DataHandler extends BroadcastReceiver
 
     private Map<String, ProviderEntry> providers = new HashMap<>();
     private boolean providersReady = false;
-    private SearchProvider searchProvider;
-
-    public SearchProvider getSearchProvider() {
-        return searchProvider;
-    }
-
 
     protected class ProviderEntry {
         public IProvider         provider   = null;
@@ -381,6 +375,10 @@ public class DataHandler extends BroadcastReceiver
         return (entry != null) ? ((AppProvider) entry.provider) : null;
     }
 
+    public SearchProvider getSearchProvider() {
+        ProviderEntry entry = this.providers.get("search");
+        return (entry != null) ? ((SearchProvider) entry.provider) : null;
+    }
 
     /**
      * Return most used items.<br />
