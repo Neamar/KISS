@@ -21,8 +21,10 @@ public class SearchProvider extends Provider<SearchPojo> {
         searchProviderUrls.put("Bing", "https://www.bing.com/search?q=");
         searchProviderUrls.put("DuckDuckGo", "https://duckduckgo.com/?q=");
         searchProviderUrls.put("Google", "https://encrypted.google.com/search?q=");
+        searchProviderUrls.put("Qwant", "https://www.qwant.com/?q=");
+        searchProviderUrls.put("StartPage", "https://startpage.com/do/search?language=cat=web&query=");
         searchProviderUrls.put("Wikipedia", "https://en.wikipedia.org/wiki/");
-        searchProviderUrls.put("Yahoo", "http://search.yahoo.com/search?p=");
+        searchProviderUrls.put("Yahoo", "https://search.yahoo.com/search?p=");
     }
 
     @Override
