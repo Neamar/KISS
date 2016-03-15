@@ -15,7 +15,7 @@ import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchProvider extends Provider<SearchPojo> {
     private SharedPreferences prefs;
-    public static final Hashtable<String,String> searchProviderUrls = new Hashtable<>();
+    private static final Hashtable<String,String> searchProviderUrls = new Hashtable<>();
 
     static {
         searchProviderUrls.put("Google", "https://encrypted.google.com/search?q=");
