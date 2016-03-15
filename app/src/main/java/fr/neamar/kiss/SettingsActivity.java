@@ -21,6 +21,7 @@ import java.util.Set;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.dataprovider.SearchProvider;
 
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -54,7 +55,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private void addSearchProvidersSelector(SharedPreferences prefs) {
         if (android.os.Build.VERSION.SDK_INT >= 11) {
             MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
-            String[] searchProviders = KissApplication.getDataHandler(this).getSearchProvider().getSearchProviders();
+            String[] searchProviders = SearchProvider.getSearchProviders();
             multiPreference.setTitle("Select available search providers");
             multiPreference.setDialogTitle("Select the search providers you would like to enable");
             multiPreference.setKey("search-providers");

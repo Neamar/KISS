@@ -15,13 +15,11 @@ import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchProvider extends Provider<SearchPojo> {
     private SharedPreferences prefs;
-    private Hashtable<String,String> searchProviderUrls;
+    public static final Hashtable<String,String> searchProviderUrls = new Hashtable<>();
 
-    public SearchProvider() {
-        super();
-        searchProviderUrls = new Hashtable<>();
+    static {
         searchProviderUrls.put("Google", "https://encrypted.google.com/search?q=");
-        searchProviderUrls.put("Duck Duck Go", "https://duckduckgo.com/?q=");
+        searchProviderUrls.put("DuckDuckGo", "https://duckduckgo.com/?q=");
         searchProviderUrls.put("Bing", "https://www.bing.com/search?q=");
         searchProviderUrls.put("Yahoo", "http://search.yahoo.com/search?p=");
         searchProviderUrls.put("Wikipedia", "https://en.wikipedia.org/wiki/");
@@ -58,7 +56,7 @@ public class SearchProvider extends Provider<SearchPojo> {
         return pojos;
     }
 
-    public String[] getSearchProviders() {
+    public static String[] getSearchProviders() {
         return searchProviderUrls.keySet().toArray(new String[searchProviderUrls.size()]);
     }
 }
