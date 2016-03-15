@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 import fr.neamar.kiss.loader.LoadSearchPojos;
@@ -15,14 +15,14 @@ import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchProvider extends Provider<SearchPojo> {
     private SharedPreferences prefs;
-    private static final Hashtable<String,String> searchProviderUrls = new Hashtable<>();
+    private static final LinkedHashMap<String,String> searchProviderUrls = new LinkedHashMap<>();
 
     static {
-        searchProviderUrls.put("Google", "https://encrypted.google.com/search?q=");
-        searchProviderUrls.put("DuckDuckGo", "https://duckduckgo.com/?q=");
         searchProviderUrls.put("Bing", "https://www.bing.com/search?q=");
-        searchProviderUrls.put("Yahoo", "http://search.yahoo.com/search?p=");
+        searchProviderUrls.put("DuckDuckGo", "https://duckduckgo.com/?q=");
+        searchProviderUrls.put("Google", "https://encrypted.google.com/search?q=");
         searchProviderUrls.put("Wikipedia", "https://en.wikipedia.org/wiki/");
+        searchProviderUrls.put("Yahoo", "http://search.yahoo.com/search?p=");
     }
 
     @Override
