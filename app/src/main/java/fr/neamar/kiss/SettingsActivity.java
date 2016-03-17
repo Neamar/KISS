@@ -16,7 +16,7 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "theme enable-spellcheck force-portrait";
+    final static private String requireRestartSettings = "theme enable-spellcheck force-portrait search_bar_height";
 
     private SharedPreferences prefs;
 

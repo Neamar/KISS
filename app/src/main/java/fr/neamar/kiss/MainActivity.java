@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -29,11 +30,13 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -227,6 +230,24 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         // Apply effects depending on current Android version
         applyDesignTweaks();
+
+        // Tune search bar size
+        tuneSearchBarHeight();
+    }
+
+    private void tuneSearchBarHeight() {
+
+        int selectedHeight = Integer.parseInt(prefs.getString("search_bar_height", "52"));
+        ViewGroup.LayoutParams p = searchEditText.getLayoutParams();
+        p.height = selectedHeight;
+        // new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, selectedHeight);
+        searchEditText.setLayoutParams(p);
+        searchEditText.invalidate();
+
+        View v = findViewById(R.id.kissBarLayout);
+        p = v.getLayoutParams();
+        p.height = selectedHeight + 12;
+        v.setLayoutParams(p);
     }
 
     /**
