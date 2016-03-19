@@ -1,16 +1,24 @@
 package fr.neamar.kiss;
 
+import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.MultiSelectListPreference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.dataprovider.SearchProvider;
 
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -36,6 +44,24 @@ public class SettingsActivity extends PreferenceActivity implements
         setListPreferenceIconsPacksData(iconsPack);
 
         fixSummaries(prefs);
+
+        addSearchProvidersSelector(prefs);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void addSearchProvidersSelector(SharedPreferences prefs) {
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+            String[] searchProviders = SearchProvider.getSearchProviders();
+            multiPreference.setTitle("Select available search providers");
+            multiPreference.setDialogTitle("Select the search providers you would like to enable");
+            multiPreference.setKey("search-providers");
+            multiPreference.setEntries(searchProviders);
+            multiPreference.setEntryValues(searchProviders);
+            multiPreference.setDefaultValue(new HashSet<String>(Arrays.asList("Google")));
+            PreferenceCategory category = (PreferenceCategory) findPreference("user_interface_category");
+            category.addPreference(multiPreference);
+        }
     }
 
     @Override
@@ -69,7 +95,7 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if("enable-sms".equals(key) || "enable-phone".equals(key)) {
+        if("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
             ComponentName receiver;
 
             if("enable-sms-history".equals(key)) {

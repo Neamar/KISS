@@ -27,7 +27,7 @@
             android:key="reset-excluded-apps"
             android:title="@string/reset_excluded_apps_name" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_ui">
+    <PreferenceCategory android:key="user_interface_category" android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
@@ -108,5 +108,10 @@
             android:key="root-mode"
             android:summary="@string/root_mode_desc"
             android:title="@string/root_mode_name" />
+        <fr.neamar.kiss.preference.RestartPreference
+            android:dialogMessage="@string/restart_warn"
+            android:key="restart"
+            android:summary="@string/restart_desc"
+            android:title="@string/restart_name" />
     </PreferenceCategory>
 </PreferenceScreen>
