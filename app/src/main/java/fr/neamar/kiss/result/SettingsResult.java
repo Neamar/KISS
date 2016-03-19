@@ -50,6 +50,9 @@ public class SettingsResult extends Result {
     @Override
     public void doLaunch(Context context, View v) {
         Intent intent = new Intent(settingPojo.settingName);
+        if (!settingPojo.packageName.isEmpty()) {
+            intent.setClassName(settingPojo.packageName, settingPojo.settingName);
+        }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

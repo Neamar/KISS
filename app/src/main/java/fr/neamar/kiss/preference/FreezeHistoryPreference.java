@@ -20,8 +20,25 @@ public class FreezeHistoryPreference extends CheckBoxPreference {
     @Override
     protected void onClick() {
         if (!isChecked()) {
-            Toast.makeText(super.getContext(), super.getContext().getString(R.string.freeze_history_warn), Toast.LENGTH_SHORT).show();
+            //show dialog
+            new AlertDialog.Builder(getContext()).setMessage(R.string.freeze_history_warn)
+                    .setPositiveButton(android.R.string.ok, new OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            FreezeHistoryPreference.super.onClick();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel, new OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // does nothing
+                        }
+                    }).show();
         }
-        super.onClick();
+        else {
+            super.onClick();
+        }
     }
 }

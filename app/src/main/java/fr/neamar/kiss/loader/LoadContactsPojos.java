@@ -34,7 +34,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                         ContactsContract.CommonDataKinds.Phone.NUMBER,
                         ContactsContract.CommonDataKinds.Phone.STARRED,
-                        ContactsContract.CommonDataKinds.Phone.IS_SUPER_PRIMARY,
+                        ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
                         ContactsContract.Contacts.PHOTO_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
 
         // Prevent duplicates by keeping in memory encountered phones.
@@ -58,14 +58,14 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     if (contact.phone == null) {
                         contact.phone = "";
                     }
-                    contact.phoneSimplified = contact.phone.replaceAll("[-.(): ]","");
+                    contact.phoneSimplified = contact.phone.replaceAll("[-.(): ]", "");
 
                     contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
 
                     contact.starred = cur.getInt(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
                     contact.primary = cur.getInt(cur
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_SUPER_PRIMARY)) != 0;
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY)) != 0;
                     String photoId = cur.getString(cur
                             .getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
                     if (photoId != null) {
