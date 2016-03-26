@@ -39,6 +39,13 @@
             android:key="icons-pack"
             android:title="@string/icons_pack_name"/>
         <ListPreference
+            android:defaultValue="52"
+            android:entries="@array/searchBarHeight"
+            android:entryValues="@array/searchBarHeightEntries"
+            android:key="search_bar_height"
+            android:summary="@string/searchbar_height_desc"
+            android:title="@string/searchbar_height_name" />
+        <ListPreference
             android:defaultValue="invertedAlphabetical"
             android:entries="@array/sortAppListEntries"
             android:entryValues="@array/sortAppListValues"
