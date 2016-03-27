@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Set;
+import java.util.TreeSet;
 
 import fr.neamar.kiss.loader.LoadSearchPojos;
 import fr.neamar.kiss.pojo.Pojo;
@@ -36,7 +37,8 @@ public class SearchProvider extends Provider<SearchPojo> {
 
         ArrayList<Pojo> pojos = new ArrayList<>();
         if (android.os.Build.VERSION.SDK_INT >= 11) {
-            Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(this).getStringSet("search-providers", new HashSet<String>(Arrays.asList("Google")));
+            Set<String> selectedProviders = new TreeSet<>();
+            selectedProviders.addAll(PreferenceManager.getDefaultSharedPreferences(this).getStringSet("search-providers", new HashSet<>(Arrays.asList("Google"))));
             for (String searchProvider : selectedProviders) {
                 SearchPojo pojo = new SearchPojo();
                 pojo.query = query;
