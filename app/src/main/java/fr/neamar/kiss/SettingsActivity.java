@@ -11,13 +11,16 @@ import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.dataprovider.SearchProvider;
 
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -45,13 +48,13 @@ public class SettingsActivity extends PreferenceActivity implements
         fixSummaries(prefs);
 
         addExcludedAppSettings(prefs);
+
+        addSearchProvidersSelector(prefs);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void loadExcludedAppsToPreference() {
+    private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
         if (android.os.Build.VERSION.SDK_INT >= 11) {
-
-            MultiSelectListPreference multiSelectList = (MultiSelectListPreference) findPreference("excluded_apps_ui");
             String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
             String[] apps = excludedAppList.split(";");
 
@@ -72,12 +75,16 @@ public class SettingsActivity extends PreferenceActivity implements
     @SuppressWarnings("deprecation")
     private void addExcludedAppSettings(final SharedPreferences prefs) {
         if (android.os.Build.VERSION.SDK_INT >= 11) {
-            addPreferencesFromResource(R.xml.preference_excluded_apps);
 
-            loadExcludedAppsToPreference();
+            final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+            multiPreference.setTitle(R.string.ui_excluded_apps);
+            multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
+            multiPreference.setKey("excluded_apps_ui");
+            PreferenceCategory category = (PreferenceCategory) findPreference("history_category");
+            category.addPreference(multiPreference);
 
-            MultiSelectListPreference multiSelectList = (MultiSelectListPreference) findPreference("excluded_apps_ui");
-            multiSelectList.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            loadExcludedAppsToPreference(multiPreference);
+            multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     HashSet<String> appListToBeExcluded = (HashSet<String>) newValue;
@@ -88,17 +95,33 @@ public class SettingsActivity extends PreferenceActivity implements
                     }
 
                     prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").commit();
-                    loadExcludedAppsToPreference();
+                    loadExcludedAppsToPreference(multiPreference);
                     if (!hasExcludedApps(prefs)) {
-                        MultiSelectListPreference multiSelectList = (MultiSelectListPreference) findPreference("excluded_apps_ui");
-                        multiSelectList.setEnabled(false);
+                        multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
                     }
+                    KissApplication.getDataHandler(SettingsActivity.this).getAppProvider().reload();
                     return false;
                 }
             });
             if (!hasExcludedApps(prefs)) {
-                multiSelectList.setEnabled(false);
+                multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
             }
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void addSearchProvidersSelector(SharedPreferences prefs) {
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+            String[] searchProviders = SearchProvider.getSearchProviders();
+            multiPreference.setTitle("Select available search providers");
+            multiPreference.setDialogTitle("Select the search providers you would like to enable");
+            multiPreference.setKey("search-providers");
+            multiPreference.setEntries(searchProviders);
+            multiPreference.setEntryValues(searchProviders);
+            multiPreference.setDefaultValue(new HashSet<String>(Arrays.asList("Google")));
+            PreferenceCategory category = (PreferenceCategory) findPreference("user_interface_category");
+            category.addPreference(multiPreference);
         }
     }
 
@@ -134,7 +157,7 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if("enable-sms".equals(key) || "enable-phone".equals(key)) {
+        if("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
             ComponentName receiver;
 
             if("enable-sms-history".equals(key)) {
@@ -163,7 +186,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private void fixSummaries(SharedPreferences prefs) {
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
-            findPreference("reset").setSummary(getString(R.string.reset_desc) + " (" + historyLength + " items)");
+            findPreference("reset").setSummary(historyLength + " " + getString(R.string.items_title));
         }
     }
 
