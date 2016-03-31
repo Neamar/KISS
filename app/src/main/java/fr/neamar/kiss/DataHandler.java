@@ -435,7 +435,12 @@ public class DataHandler extends BroadcastReceiver
      * @param id pojo.id of item to record
      */
     public void addToHistory(String id) {
-        DBHelper.insertHistory(this.context, currentQuery, id);
+        boolean frozen = PreferenceManager.getDefaultSharedPreferences(context).
+                getBoolean("freeze-history", false);
+
+        if (!frozen) {
+            DBHelper.insertHistory(this.context, currentQuery, id);
+        }
     }
 
     private Pojo getPojo(String id) {
