@@ -4,13 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -49,8 +50,11 @@ import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.ui.KeyboardScrollHider;
+import fr.neamar.kiss.ui.BlockableListView;
+import fr.neamar.kiss.ui.BottomPullEffectView;
 
-public class MainActivity extends ListActivity implements QueryInterface {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -67,9 +71,9 @@ public class MainActivity extends ListActivity implements QueryInterface {
      */
     private final int tryToRetrieve = favsIds.length + 2;
     /**
-     * InputType with spellecheck and swiping
+     * InputType with spellcheck and swiping
      */
-    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
+    private final static int SPELLCHECK_ENABLED_TYPE = InputType.TYPE_CLASS_TEXT |
             InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     /**
      * Adapter to display records
@@ -91,6 +95,19 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
     };
     /**
+     * Main list view
+     */
+    private ListView list;
+    private View     listContainer;
+    /**
+     * View to display when list is empty
+     */
+    private View listEmpty;
+    /**
+     * Utility for automatically hiding the keyboard when scrolling down
+     */
+    private KeyboardScrollHider hider;
+    /**
      * Menu button
      */
     private View menuButton;
@@ -106,23 +123,28 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Called when the activity is first created.
      */
-    @SuppressLint("NewApi")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String theme = prefs.getString("theme", "light");
-        if (theme.equals("dark")) {
-            setTheme(R.style.AppThemeDark);
-        } else if (theme.equals("transparent")) {
-            setTheme(R.style.AppThemeTransparent);
-        } else if (theme.equals("semi-transparent")) {
-            setTheme(R.style.AppThemeSemiTransparent);
-        } else if (theme.equals("semi-transparent-dark")) {
-            setTheme(R.style.AppThemeSemiTransparentDark);
-        } else if (theme.equals("transparent-dark")) {
-            setTheme(R.style.AppThemeTransparentDark);
+        switch (theme) {
+            case "dark":
+                setTheme(R.style.AppThemeDark);
+                break;
+            case "transparent":
+                setTheme(R.style.AppThemeTransparent);
+                break;
+            case "semi-transparent":
+                setTheme(R.style.AppThemeSemiTransparent);
+                break;
+            case "semi-transparent-dark":
+                setTheme(R.style.AppThemeSemiTransparentDark);
+                break;
+            case "transparent-dark":
+                setTheme(R.style.AppThemeTransparentDark);
+                break;
         }
 
 
@@ -166,9 +188,34 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         setContentView(R.layout.main);
 
+        this.list          = (ListView) this.findViewById(android.R.id.list);
+        this.listContainer = (View) this.list.getParent();
+        this.listEmpty     = this.findViewById(android.R.id.empty);
+
         // Create adapter for records
-        adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
-        setListAdapter(adapter);
+        this.adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
+        this.list.setAdapter(this.adapter);
+
+        this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+            {
+                adapter.onClick(position, v);
+            }
+        });
+        this.adapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+
+                if(adapter.isEmpty()) {
+                    listContainer.setVisibility(View.GONE);
+                    listEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    listContainer.setVisibility(View.VISIBLE);
+                    listEmpty.setVisibility(View.GONE);
+                }
+            }
+        });
 
         searchEditText = (EditText) findViewById(R.id.searchEditText);
 
@@ -180,9 +227,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                     s.delete(0, 1);
             }
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 updateRecords(s.toString());
@@ -195,7 +240,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                RecordAdapter adapter = ((RecordAdapter) getListView().getAdapter());
+                RecordAdapter adapter = ((RecordAdapter) list.getAdapter());
 
                 adapter.onClick(adapter.getCount() - 1, null);
 
@@ -207,9 +252,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
 
-        getListView().setLongClickable(true);
-        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
+        this.list.setLongClickable(true);
+        this.list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
                 ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
@@ -217,9 +261,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
+        this.hider = new KeyboardScrollHider(this,
+                (BlockableListView)    this.list,
+                (BottomPullEffectView) this.findViewById(R.id.listEdgeEffect)
+        );
+        this.hider.start();
+
         // Enable swiping
         if (prefs.getBoolean("enable-spellcheck", false)) {
-            searchEditText.setInputType(spellcheckEnabledType);
+            searchEditText.setInputType(SPELLCHECK_ENABLED_TYPE);
         }
 
         // Hide the "X" after the text field, instead displaying the menu button
@@ -263,12 +313,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        adapter.onClick(position, v);
-    }
-
-    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
@@ -283,6 +327,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Empty text field on resume and show keyboard
      */
+    @SuppressLint("CommitPrefEdits")
     protected void onResume() {
         if (prefs.getBoolean("require-layout-update", false)) {
             // Restart current activity to refresh view, since some preferences
@@ -422,7 +467,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 //if not on the application list and not searching for something
                 if ((kissBar.getVisibility() != View.VISIBLE) && (searchEditText.getText().toString().isEmpty())) {
                     //if list is empty
-                    if ((this.getListAdapter() == null) || (this.getListAdapter().getCount() == 0)) {
+                    if ((this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0)) {
                         searcher = new HistorySearcher(MainActivity.this);
                         searcher.execute();
                     }
@@ -639,19 +684,21 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
     }
 
-    private void hideKeyboard() {
+    @Override
+    public void showKeyboard() {
+        searchEditText.requestFocus();
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    @Override
+    public void hideKeyboard() {
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
-    }
-
-    private void showKeyboard() {
-        searchEditText.requestFocus();
-        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
     }
 
     public int getFavIconsSize() {

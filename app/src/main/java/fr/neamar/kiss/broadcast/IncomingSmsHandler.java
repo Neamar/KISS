@@ -37,6 +37,9 @@ public class IncomingSmsHandler extends BroadcastReceiver {
         // Since we're not interested in content, we can safely discard
         // all records but the first one
         Object[] pdus = (Object[]) bundle.get("pdus");
+        if (pdus == null) {
+            return;
+        }
         SmsMessage msg = SmsMessage.createFromPdu((byte[]) pdus[0]);
 
         // Now, retrieve the contact by its lookup key on our contactsProvider

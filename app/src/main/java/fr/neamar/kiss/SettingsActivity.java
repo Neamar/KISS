@@ -43,7 +43,7 @@ public class SettingsActivity extends PreferenceActivity implements
         ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
         setListPreferenceIconsPacksData(iconsPack);
 
-        fixSummaries(prefs);
+        fixSummaries();
 
         addSearchProvidersSelector(prefs);
     }
@@ -58,7 +58,7 @@ public class SettingsActivity extends PreferenceActivity implements
             multiPreference.setKey("search-providers");
             multiPreference.setEntries(searchProviders);
             multiPreference.setEntryValues(searchProviders);
-            multiPreference.setDefaultValue(new HashSet<String>(Arrays.asList("Google")));
+            multiPreference.setDefaultValue(new HashSet<>(Arrays.asList("Google")));
             PreferenceCategory category = (PreferenceCategory) findPreference("user_interface_category");
             category.addPreference(multiPreference);
         }
@@ -70,7 +70,6 @@ public class SettingsActivity extends PreferenceActivity implements
         prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         
@@ -121,10 +120,11 @@ public class SettingsActivity extends PreferenceActivity implements
         finish();
     }
 
-    private void fixSummaries(SharedPreferences prefs) {
+    @SuppressWarnings("deprecation")
+    private void fixSummaries() {
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
-            findPreference("reset").setSummary(historyLength + " " + getString(R.string.items_title));
+            findPreference("reset").setSummary(String.format(getString(R.string.items_title), historyLength));
         }
     }
     

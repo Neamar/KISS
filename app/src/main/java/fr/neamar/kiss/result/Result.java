@@ -225,6 +225,8 @@ public abstract class Result {
     public int getThemeFillColor(Context context) {
         int[] attrs = new int[]{R.attr.resultColor /* index 0 */};
         TypedArray ta = context.obtainStyledAttributes(attrs);
-        return ta.getColor(0, Color.WHITE);
+        int color = ta.getColor(0, Color.WHITE);
+        ta.recycle();
+        return color;
     }
 }
