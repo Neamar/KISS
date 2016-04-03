@@ -9,9 +9,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -39,13 +41,72 @@ public class SettingsActivity extends PreferenceActivity implements
 
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
-        
+
         ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
         setListPreferenceIconsPacksData(iconsPack);
 
         fixSummaries(prefs);
 
+        addExcludedAppSettings(prefs);
+
         addSearchProvidersSelector(prefs);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
+            String[] apps = excludedAppList.split(";");
+
+            multiSelectList.setEntries(apps);
+            multiSelectList.setEntryValues(apps);
+            multiSelectList.setValues(new HashSet<String>(Arrays.asList(apps)));
+        }
+    }
+
+    private boolean hasExcludedApps(final SharedPreferences prefs) {
+        String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
+        if (excludedAppList.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    @SuppressWarnings("deprecation")
+    private void addExcludedAppSettings(final SharedPreferences prefs) {
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+
+            final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+            multiPreference.setTitle(R.string.ui_excluded_apps);
+            multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
+            multiPreference.setKey("excluded_apps_ui");
+            PreferenceCategory category = (PreferenceCategory) findPreference("history_category");
+            category.addPreference(multiPreference);
+
+            loadExcludedAppsToPreference(multiPreference);
+            multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    HashSet<String> appListToBeExcluded = (HashSet<String>) newValue;
+
+                    StringBuilder builder = new StringBuilder();
+                    for (String s : appListToBeExcluded) {
+                        builder.append(s + ";");
+                    }
+
+                    prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").commit();
+                    loadExcludedAppsToPreference(multiPreference);
+                    if (!hasExcludedApps(prefs)) {
+                        multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
+                    }
+                    KissApplication.getDataHandler(SettingsActivity.this).getAppProvider().reload();
+                    return false;
+                }
+            });
+            if (!hasExcludedApps(prefs)) {
+                multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
+            }
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -58,11 +119,12 @@ public class SettingsActivity extends PreferenceActivity implements
             multiPreference.setKey("search-providers");
             multiPreference.setEntries(searchProviders);
             multiPreference.setEntryValues(searchProviders);
-            multiPreference.setDefaultValue(new HashSet<String>(Arrays.asList("Google")));
+            multiPreference.setDefaultValue(new HashSet<>(Arrays.asList("Google")));
             PreferenceCategory category = (PreferenceCategory) findPreference("user_interface_category");
             category.addPreference(multiPreference);
         }
     }
+
 
     @Override
     public void onResume() {
@@ -73,11 +135,11 @@ public class SettingsActivity extends PreferenceActivity implements
     @SuppressWarnings("deprecation")
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        
-        if (key.equalsIgnoreCase("icons-pack")) {            
+
+        if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getIconsHandler(this).loadIconsPack(sharedPreferences.getString(key, "default"));
         }
-        
+
         if (requireRestartSettings.contains(key)) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();
@@ -127,13 +189,13 @@ public class SettingsActivity extends PreferenceActivity implements
             findPreference("reset").setSummary(historyLength + " " + getString(R.string.items_title));
         }
     }
-    
+
     protected void setListPreferenceIconsPacksData(ListPreference lp) {
         IconsHandler iph = KissApplication.getIconsHandler(this);
-        
+
         CharSequence[] entries = new CharSequence[iph.getIconsPacks().size()+1];
         CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size()+1];
-        
+
         int i = 0;
         entries[0] = this.getString(R.string.icons_pack_default_name);
         entryValues[0] = "default";
@@ -141,10 +203,10 @@ public class SettingsActivity extends PreferenceActivity implements
             entries[++i] = iph.getIconsPacks().get(packageIconsPack);
             entryValues[i] = packageIconsPack;
         }
-        
+
         lp.setEntries(entries);
         lp.setDefaultValue("default");
         lp.setEntryValues(entryValues);
     }
-    
+
 }
