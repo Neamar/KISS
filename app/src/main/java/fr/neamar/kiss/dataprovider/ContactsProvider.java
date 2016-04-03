@@ -46,7 +46,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 matchPositionEnd = 0;
                 if (contact.phoneSimplified.startsWith(query)) {
                     relevance = 10;
-                } else if (contact.phoneSimplified.indexOf(query) > -1) {
+                } else if (contact.phoneSimplified.contains(query)) {
                     relevance = 5;
                 }
             }

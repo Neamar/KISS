@@ -42,7 +42,6 @@ public class DataHandler extends BroadcastReceiver
             "alias", "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
     );
 
-    final private SharedPreferences prefs;
     final private Context context;
     private String currentQuery;
 
@@ -71,12 +70,12 @@ public class DataHandler extends BroadcastReceiver
         this.context.sendBroadcast(i);
 
         // Monitor changes for service preferences (to automatically start and stop services)
-        this.prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        this.prefs.registerOnSharedPreferenceChangeListener(this);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
         // Connect to initial providers
         for(String providerName : PROVIDER_NAMES) {
-            if(this.prefs.getBoolean("enable-" + providerName, true)) {
+            if(prefs.getBoolean("enable-" + providerName, true)) {
                 this.connectToProvider(providerName);
             }
         }

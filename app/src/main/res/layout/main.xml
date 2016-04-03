@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/RelativeLayout1"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@android:id/list"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/searchEditLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:background="?attr/listBackgroundColor"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="?attr/listBackgroundColor"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="?attr/dividerDrawable"
-        android:dividerHeight="1dp"
-        android:elevation="2dp"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll">
-    </ListView>
+        android:elevation="2dp">
+
+        <fr.neamar.kiss.ui.BlockableListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="?attr/dividerDrawable"
+            android:dividerHeight="1dp"
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll"
+            android:layout_gravity="top|center_horizontal">
+        </fr.neamar.kiss.ui.BlockableListView>
+
+        <fr.neamar.kiss.ui.BottomPullEffectView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listEdgeEffect"
+            android:layout_gravity="center_horizontal|bottom" />
+
+    </FrameLayout>
+
 
     <RelativeLayout
         android:id="@+id/searchEditLayout"

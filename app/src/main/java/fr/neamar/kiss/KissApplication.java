@@ -1,9 +1,8 @@
 package fr.neamar.kiss;
 
-import android.app.Application;
 import android.content.Context;
 
-public class KissApplication extends Application {
+public class KissApplication {
     /**
      * Number of ms to wait, after a click occurred, to record a launch
      * Setting this value to 0 removes all animations

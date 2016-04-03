@@ -1,13 +1,11 @@
 package fr.neamar.kiss.dataprovider;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.MainActivity;

@@ -14,6 +14,7 @@ public class PhoneNormalizer {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return PhoneNumberUtils.formatNumber(phoneNumber, Locale.getDefault().getCountry());
         } else {
+            //noinspection deprecation
             return PhoneNumberUtils.formatNumber(phoneNumber);
         }
     }

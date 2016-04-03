@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.db.DB;
 
 public class ResetFavoritesPreference extends DialogPreference {
 

@@ -67,7 +67,8 @@ public class ShortcutsResult extends Result {
         }
 
         if (shortcutPojo.icon != null) {
-            shortcutIcon.setImageDrawable(new BitmapDrawable(shortcutPojo.icon));
+            BitmapDrawable drawable = new BitmapDrawable(context.getResources(), shortcutPojo.icon);
+            shortcutIcon.setImageDrawable(drawable);
             appIcon.setImageDrawable(appDrawable);
         } else {
             // No icon for this shortcut, use app icon
