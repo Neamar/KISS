@@ -55,6 +55,15 @@ public class DBHelper {
         db.close();
     }
 
+    private static Cursor getSmartHistoryCursor(SQLiteDatabase db, int limit) {
+        return db.query(false, "history", new String[]{"record", "count(*)", "max(_id)", "count(*) "}, null, null,
+                "record", null, "count(*) * 1.0 / (select count(*) from history) + 1.5 / ((select max(_id) from history) - max(_id) + 1)/((select max(_id) from history) - max(_id) + 1) DESC", Integer.toString(limit));
+    }
+
+    private static Cursor getHistoryCursor(SQLiteDatabase db, int limit) {
+        return db.query(true, "history", new String[]{"record", "1"}, null, null,
+                null, null, "_id DESC", Integer.toString(limit));
+    }
     /**
      * Retrieve previous query history
      *
@@ -62,7 +71,7 @@ public class DBHelper {
      * @param limit   max number of items to retrieve
      * @return records with number of use
      */
-    public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit) {
+    public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit, boolean smartHistory) {
         ArrayList<ValuedHistoryRecord> records;
 
         SQLiteDatabase db = getDatabase(context);
@@ -70,8 +79,9 @@ public class DBHelper {
         // Cursor query (boolean distinct, String table, String[] columns,
         // String selection, String[] selectionArgs, String groupBy, String
         // having, String orderBy, String limit)
-        Cursor cursor = db.query(true, "history", new String[]{"record", "1"}, null, null,
-                null, null, "_id DESC", Integer.toString(limit));
+        Cursor cursor = (smartHistory)?getSmartHistoryCursor(db, limit):getHistoryCursor(db, limit);
+        //db.query(true, "history", new String[]{"record", "1"}, null, null,
+        //        null, null, "_id DESC", Integer.toString(limit));
 
         records = readCursor(cursor);
         cursor.close();
@@ -196,5 +206,5 @@ public class DBHelper {
         
         db.close();        
     }
-    
+
 }

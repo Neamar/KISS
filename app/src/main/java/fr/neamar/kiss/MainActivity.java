@@ -693,6 +693,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void hideKeyboard() {
+
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
