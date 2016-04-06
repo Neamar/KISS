@@ -13,6 +13,9 @@ public class KissApplication {
     private static RootHandler rootHandler;
     private static IconsHandler iconsPackHandler;
 
+    private KissApplication() {
+    }
+
     public static DataHandler getDataHandler(Context ctx) {
         if (dataHandler == null) {
             dataHandler = new DataHandler(ctx);
