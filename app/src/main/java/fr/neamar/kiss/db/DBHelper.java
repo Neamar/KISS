@@ -57,7 +57,7 @@ public class DBHelper {
 
     private static Cursor getSmartHistoryCursor(SQLiteDatabase db, int limit) {
         return db.query(false, "history", new String[]{"record", "count(*)", "max(_id)", "count(*) "}, null, null,
-                "record", null, "count(*) * 1.0 / (select count(*) from history) + 1.5 / ((select max(_id) from history) - max(_id) + 1)/((select max(_id) from history) - max(_id) + 1) DESC", Integer.toString(limit));
+                "record", null, "count(*) * 1.0 / (select count(*) from history) * 1.0 / ((select max(_id) from history) - max(_id) + 0.01) DESC", Integer.toString(limit));
     }
 
     private static Cursor getHistoryCursor(SQLiteDatabase db, int limit) {
