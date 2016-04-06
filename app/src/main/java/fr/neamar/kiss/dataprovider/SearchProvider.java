@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Set;
@@ -16,7 +17,7 @@ import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchProvider extends Provider<SearchPojo> {
     private SharedPreferences prefs;
-    private static final LinkedHashMap<String,String> searchProviderUrls = new LinkedHashMap<>();
+    private static final HashMap<String,String> searchProviderUrls = new LinkedHashMap<>();
 
     static {
         searchProviderUrls.put("Bing", "https://www.bing.com/search?q=");

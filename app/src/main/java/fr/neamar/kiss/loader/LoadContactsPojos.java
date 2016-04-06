@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
 
+import java.util.List;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
@@ -40,7 +42,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         // Prevent duplicates by keeping in memory encountered phones.
         // The string key is "phone" + "|" + "name" (so if two contacts
         // with distinct name share same number, they both get displayed)
-        HashMap<String, ArrayList<ContactsPojo>> mapContacts = new HashMap<>();
+        Map<String, ArrayList<ContactsPojo>> mapContacts = new HashMap<>();
 
         if (cur != null) {
             if (cur.getCount() > 0) {
@@ -95,7 +97,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
 
         Pattern phoneFormatter = Pattern.compile("[ \\.\\(\\)]");
-        for (ArrayList<ContactsPojo> phones : mapContacts.values()) {
+        for (List<ContactsPojo> phones : mapContacts.values()) {
             // Find primary phone and add this one.
             Boolean hasPrimary = false;
             for (ContactsPojo contact : phones) {
@@ -108,7 +110,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
             // If not available, add all (excluding duplicates).
             if (!hasPrimary) {
-                HashMap<String, Boolean> added = new HashMap<>();
+                Map<String, Boolean> added = new HashMap<>();
                 for (ContactsPojo contact : phones) {
                     String uniqueKey = phoneFormatter.matcher(contact.phone).replaceAll("");
                     uniqueKey = uniqueKey.replaceAll("^\\+33", "0");
