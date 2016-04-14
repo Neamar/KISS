@@ -19,6 +19,7 @@ import java.util.HashSet;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 
 public class SettingsActivity extends PreferenceActivity implements
@@ -136,6 +137,14 @@ public class SettingsActivity extends PreferenceActivity implements
 
         if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getIconsHandler(this).loadIconsPack(sharedPreferences.getString(key, "default"));
+        }
+
+        if(key.equalsIgnoreCase("sort-apps")) {
+            // Reload application list
+            final AppProvider provider = KissApplication.getDataHandler(this).getAppProvider();
+            if(provider != null) {
+                provider.reload();
+            }
         }
 
         if (requireRestartSettings.contains(key)) {
