@@ -103,10 +103,6 @@
             android:title="@string/shortcuts_name" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_advanced">
-        <fr.neamar.kiss.preference.FreezeHistoryPreference
-            android:defaultValue="false"
-            android:key="freeze-history"
-            android:title="@string/freeze_history_name" />
         <ListPreference
             android:defaultValue="recency"
             android:entries="@array/historyModeEntries"
@@ -114,6 +110,10 @@
             android:key="history-mode"
             android:summary="@string/history_mode_desc"
             android:title="@string/history_mode_name" />
+        <fr.neamar.kiss.preference.FreezeHistoryPreference
+            android:defaultValue="false"
+            android:key="freeze-history"
+            android:title="@string/freeze_history_name" />
         <fr.neamar.kiss.preference.RootModePreference
             android:defaultValue="false"
             android:key="root-mode"
