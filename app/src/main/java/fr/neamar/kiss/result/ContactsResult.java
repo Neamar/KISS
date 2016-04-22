@@ -174,41 +174,34 @@ public class ContactsResult extends Result {
         context.startActivity(viewContact);
     }
 
-    private void launchDefaultMessaging(final Context context) {
+    private void launchActivityForMessaging(final Context context, String... params) {
         String url = "sms:" + contactPojo.phone;
         Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (params.length > 0) {
+            i.setClassName(params[0], params[1]);
+        }
         context.startActivity(i);
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                recordLaunch(context);
-                queryInterface.launchOccurred(-1, ContactsResult.this);
-            }
-        }, KissApplication.TOUCH_DELAY);
     }
 
     private void launchMessaging(final Context context) {
 
         String selectedSmsActivity = PreferenceManager.getDefaultSharedPreferences(context).getString("sms-apps", "defaultSmsApp");
         if (selectedSmsActivity.equals("defaultSmsApp")) {
-            launchDefaultMessaging(context);
+            launchActivityForMessaging(context);
         }
         else {
             try {
-                String url = "sms:" + contactPojo.phone;
-                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
                 String[] packageAndActivity = selectedSmsActivity.split("\\|");
-                intent.setClassName(packageAndActivity[0], packageAndActivity[1]);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                launchActivityForMessaging(context, packageAndActivity[0], packageAndActivity[1]);
             }
             catch (ActivityNotFoundException e) {
-                launchDefaultMessaging(context);
+                //if fail (maybe uninstalled) launch the default app
+                launchActivityForMessaging(context);
             }
         }
+
+        updateHistory(context);
 
     }
 
@@ -218,6 +211,11 @@ public class ContactsResult extends Result {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
 
+        updateHistory(context);
+
+    }
+
+    private void updateHistory(final Context context) {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -226,6 +224,5 @@ public class ContactsResult extends Result {
                 queryInterface.launchOccurred(-1, ContactsResult.this);
             }
         }, KissApplication.TOUCH_DELAY);
-
     }
 }
