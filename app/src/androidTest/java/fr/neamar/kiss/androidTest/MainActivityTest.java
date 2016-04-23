@@ -38,7 +38,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public void testSearchResultAppears() {
         onView(withId(R.id.searchEditText)).perform(typeText("blahblah"));
         onView(withId(R.id.item_search_icon)).check(matches(isDisplayed()));
-        onView(withId(R.id.item_search_text)).check(matches(withText("Google Search for “blahblah”")));
+        onView(withId(R.id.item_search_text)).check(matches(withText("Search Google for “blahblah”")));
     }
 
     public void testTorchToggleAppears() {
