@@ -1,6 +1,7 @@
 package fr.neamar.kiss.result;
 
 import android.annotation.TargetApi;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -8,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
@@ -172,20 +174,34 @@ public class ContactsResult extends Result {
         context.startActivity(viewContact);
     }
 
-    private void launchMessaging(final Context context) {
+    private void launchActivityForMessaging(final Context context, String... params) {
         String url = "sms:" + contactPojo.phone;
         Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (params.length > 0) {
+            i.setClassName(params[0], params[1]);
+        }
         context.startActivity(i);
+    }
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                recordLaunch(context);
-                queryInterface.launchOccurred(-1, ContactsResult.this);
+    private void launchMessaging(final Context context) {
+
+        String selectedSmsActivity = PreferenceManager.getDefaultSharedPreferences(context).getString("sms-apps", "defaultSmsApp");
+        if (selectedSmsActivity.equals("defaultSmsApp")) {
+            launchActivityForMessaging(context);
+        }
+        else {
+            try {
+                String[] packageAndActivity = selectedSmsActivity.split("\\|");
+                launchActivityForMessaging(context, packageAndActivity[0], packageAndActivity[1]);
             }
-        }, KissApplication.TOUCH_DELAY);
+            catch (ActivityNotFoundException e) {
+                //if fail (maybe uninstalled) launch the default app
+                launchActivityForMessaging(context);
+            }
+        }
+
+        updateHistory(context);
 
     }
 
@@ -195,6 +211,11 @@ public class ContactsResult extends Result {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
 
+        updateHistory(context);
+
+    }
+
+    private void updateHistory(final Context context) {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -203,6 +224,5 @@ public class ContactsResult extends Result {
                 queryInterface.launchOccurred(-1, ContactsResult.this);
             }
         }, KissApplication.TOUCH_DELAY);
-
     }
 }

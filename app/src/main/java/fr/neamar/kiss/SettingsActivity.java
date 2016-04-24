@@ -5,6 +5,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -16,6 +18,7 @@ import android.preference.PreferenceManager;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
@@ -50,6 +53,34 @@ public class SettingsActivity extends PreferenceActivity implements
         addExcludedAppSettings(prefs);
 
         addSearchProvidersSelector(prefs);
+
+        addSmsApplicationsSelector(prefs);
+    }
+
+    private void addSmsApplicationsSelector(SharedPreferences prefs) {
+        ListPreference smsAppList = (ListPreference) findPreference("sms-apps");
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setType("text/plain");
+        intent.setData(Uri.parse("sms:"));
+        final PackageManager pm = getPackageManager();
+        List<ResolveInfo> availableSmsApps = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        CharSequence[] entries = new CharSequence[availableSmsApps.size() + 1];
+        CharSequence[] entryValues = new CharSequence[availableSmsApps.size() + 1];
+
+        entries[0] = this.getString(R.string.sms_apps_default);
+        entryValues[0] = "defaultSmsApp";
+        int i = 1;
+        for (ResolveInfo info : availableSmsApps) {
+            String appName = (String) (info.activityInfo.applicationInfo != null ? pm.getApplicationLabel(info.activityInfo.applicationInfo) : getString(R.string.sms_apps_unknown));
+
+            entries[i] = appName;
+            entryValues[i++] =  info.activityInfo.packageName+"|"+info.activityInfo.name;
+        }
+
+        smsAppList.setEntries(entries);
+        smsAppList.setEntryValues(entryValues);
+
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
