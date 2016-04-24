@@ -72,7 +72,7 @@ public class SettingsActivity extends PreferenceActivity implements
         entryValues[0] = "defaultSmsApp";
         int i = 1;
         for (ResolveInfo info : availableSmsApps) {
-            String appName = (String) (info.activityInfo.applicationInfo != null ? pm.getApplicationLabel(info.activityInfo.applicationInfo) : "(unknown)");
+            String appName = (String) (info.activityInfo.applicationInfo != null ? pm.getApplicationLabel(info.activityInfo.applicationInfo) : getString(R.string.sms_apps_unknown));
 
             entries[i] = appName;
             entryValues[i++] =  info.activityInfo.packageName+"|"+info.activityInfo.name;
