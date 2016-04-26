@@ -113,9 +113,11 @@ public class SettingsActivity extends PreferenceActivity implements
     private void addSearchProvidersSelector(SharedPreferences prefs) {
         if (android.os.Build.VERSION.SDK_INT >= 11) {
             MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             String[] searchProviders = SearchProvider.getSearchProviders();
-            multiPreference.setTitle("Select available search providers");
-            multiPreference.setDialogTitle("Select the search providers you would like to enable");
+            String search_providers_title = prefs.getString("search_providers_title");
+            multiPreference.setTitle(search_providers_title);
+            multiPreference.setDialogTitle(search_providers_title);
             multiPreference.setKey("search-providers");
             multiPreference.setEntries(searchProviders);
             multiPreference.setEntryValues(searchProviders);
