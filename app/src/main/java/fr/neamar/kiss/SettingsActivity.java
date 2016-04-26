@@ -114,8 +114,9 @@ public class SettingsActivity extends PreferenceActivity implements
         if (android.os.Build.VERSION.SDK_INT >= 11) {
             MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
             String[] searchProviders = SearchProvider.getSearchProviders();
-            multiPreference.setTitle("Select available search providers");
-            multiPreference.setDialogTitle("Select the search providers you would like to enable");
+            String search_providers_title = this.getString(R.string.search_providers_title);
+            multiPreference.setTitle(search_providers_title);
+            multiPreference.setDialogTitle(search_providers_title);
             multiPreference.setKey("search-providers");
             multiPreference.setEntries(searchProviders);
             multiPreference.setEntryValues(searchProviders);
