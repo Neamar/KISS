@@ -31,8 +31,8 @@ public class SearchResult extends Result {
             v = inflateFromId(context, R.layout.item_search);
 
         TextView appName = (TextView) v.findViewById(R.id.item_search_text);
-        String text = this.pojo.name + " " + context.getString(R.string.ui_item_search);
-        appName.setText(enrichText(String.format(text, "{" + searchPojo.query + "}")));
+        String text = context.getString(R.string.ui_item_search);
+        appName.setText(enrichText(String.format(text, this.pojo.name, "{" + searchPojo.query + "}")));
 
         ((ImageView) v.findViewById(R.id.item_search_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;
