@@ -15,8 +15,8 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -68,10 +68,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private boolean hasExcludedApps(final SharedPreferences prefs) {
         String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
-        if (excludedAppList.isEmpty()) {
-            return false;
-        }
-        return true;
+        return !excludedAppList.isEmpty();
     }
 
     @SuppressWarnings("deprecation")
@@ -88,15 +85,16 @@ public class SettingsActivity extends PreferenceActivity implements
             loadExcludedAppsToPreference(multiPreference);
             multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
+                @SuppressWarnings("unchecked")
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     Set<String> appListToBeExcluded = (HashSet<String>) newValue;
 
                     StringBuilder builder = new StringBuilder();
                     for (String s : appListToBeExcluded) {
-                        builder.append(s + ";");
+                        builder.append(s).append(";");
                     }
 
-                    prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").commit();
+                    prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").apply();
                     loadExcludedAppsToPreference(multiPreference);
                     if (!hasExcludedApps(prefs)) {
                         multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
@@ -121,7 +119,7 @@ public class SettingsActivity extends PreferenceActivity implements
             multiPreference.setKey("search-providers");
             multiPreference.setEntries(searchProviders);
             multiPreference.setEntryValues(searchProviders);
-            multiPreference.setDefaultValue(new HashSet<>(Arrays.asList("Google")));
+            multiPreference.setDefaultValue(new HashSet<>(Collections.singletonList("Google")));
             PreferenceCategory category = (PreferenceCategory) findPreference("user_interface_category");
             category.addPreference(multiPreference);
         }
@@ -141,10 +139,10 @@ public class SettingsActivity extends PreferenceActivity implements
             KissApplication.getIconsHandler(this).loadIconsPack(sharedPreferences.getString(key, "default"));
         }
 
-        if(key.equalsIgnoreCase("sort-apps")) {
+        if (key.equalsIgnoreCase("sort-apps")) {
             // Reload application list
             final AppProvider provider = KissApplication.getDataHandler(this).getAppProvider();
-            if(provider != null) {
+            if (provider != null) {
                 provider.reload();
             }
         }
@@ -166,13 +164,12 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
+        if ("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
             ComponentName receiver;
 
-            if("enable-sms-history".equals(key)) {
+            if ("enable-sms-history".equals(key)) {
                 receiver = new ComponentName(this, IncomingSmsHandler.class);
-            }
-            else {
+            } else {
                 receiver = new ComponentName(this, IncomingCallHandler.class);
             }
 
@@ -203,8 +200,8 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void setListPreferenceIconsPacksData(ListPreference lp) {
         IconsHandler iph = KissApplication.getIconsHandler(this);
 
-        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size()+1];
-        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size()+1];
+        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size() + 1];
+        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size() + 1];
 
         int i = 0;
         entries[0] = this.getString(R.string.icons_pack_default_name);
