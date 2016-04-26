@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
@@ -17,7 +18,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
 
     @Override
     protected ArrayList<ShortcutsPojo> doInBackground(Void... arg0) {
-        ArrayList<ShortcutRecord> records = DBHelper.getShortcuts(context);
+        List<ShortcutRecord> records = DBHelper.getShortcuts(context);
         ArrayList<ShortcutsPojo> pojos = new ArrayList<>();
         for (ShortcutRecord shortcutRecord : records) {
             ShortcutsPojo pojo = createPojo(shortcutRecord.name);

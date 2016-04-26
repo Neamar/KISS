@@ -7,6 +7,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.loader.LoadPojos;
@@ -16,7 +17,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     /**
      * Storage for search items used by this provider
      */
-    protected ArrayList<T> pojos = new ArrayList<>();
+    protected List<T> pojos = new ArrayList<>();
     private boolean loaded = false;
 
     /**

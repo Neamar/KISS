@@ -16,6 +16,8 @@ import android.preference.PreferenceManager;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
@@ -87,7 +89,7 @@ public class SettingsActivity extends PreferenceActivity implements
             multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    HashSet<String> appListToBeExcluded = (HashSet<String>) newValue;
+                    Set<String> appListToBeExcluded = (HashSet<String>) newValue;
 
                     StringBuilder builder = new StringBuilder();
                     for (String s : appListToBeExcluded) {

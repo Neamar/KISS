@@ -26,7 +26,7 @@ public class QuerySearcher extends Searcher {
     @Override
     protected List<Pojo> doInBackground(Void... voids) {
         // Ask for records
-        final ArrayList<Pojo> pojos = KissApplication.getDataHandler(activity).getResults(
+        final List<Pojo> pojos = KissApplication.getDataHandler(activity).getResults(
                 activity, query);
 
         // Trim items
