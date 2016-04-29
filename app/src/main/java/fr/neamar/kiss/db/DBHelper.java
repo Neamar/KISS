@@ -9,6 +9,9 @@ import fr.neamar.kiss.pojo.ShortcutsPojo;
 import java.util.ArrayList;
 
 public class DBHelper {
+    private DBHelper() {
+    }
+
     private static SQLiteDatabase getDatabase(Context context) {
         DB db = new DB(context);
         return db.getReadableDatabase();

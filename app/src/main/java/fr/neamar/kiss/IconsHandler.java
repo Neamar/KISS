@@ -26,6 +26,7 @@ import org.xmlpull.v1.XmlPullParser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +41,7 @@ public class IconsHandler {
     // map with available icons packs
     private HashMap<String, String> iconsPacks = new HashMap<>();
     // map with available drawable for an icons pack
-    private HashMap<String, String> packagesDrawables = new HashMap<>();
+    private Map<String, String> packagesDrawables = new HashMap<>();
     // instance of a resource object of an icon pack
     private Resources iconPackres;
     // package name of the icons pack

@@ -13,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -250,7 +251,7 @@ public class DataHandler extends BroadcastReceiver
         currentQuery = query;
 
         // Have we ever made the same query and selected something ?
-        ArrayList<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
+        List<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
                 context, query);
         HashMap<String, Integer> knownIds = new HashMap<>();
         for (ValuedHistoryRecord id : lastIdsForQuery) {
@@ -262,7 +263,7 @@ public class DataHandler extends BroadcastReceiver
 
         for (ProviderEntry entry : this.providers.values()) {
             // Retrieve results for query:
-            ArrayList<Pojo> pojos = entry.provider.getResults(query);
+            List<Pojo> pojos = entry.provider.getResults(query);
 
             // Add results to list
             for (Pojo pojo : pojos) {
@@ -294,7 +295,7 @@ public class DataHandler extends BroadcastReceiver
         ArrayList<Pojo> history = new ArrayList<>(itemCount);
 
         // Read history
-        ArrayList<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount);
+        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount);
 
         // Find associated items
         for (int i = 0; i < ids.size(); i++) {

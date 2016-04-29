@@ -2,6 +2,7 @@ package fr.neamar.kiss.pojo;
 
 import android.util.Pair;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
@@ -90,7 +91,7 @@ public abstract class Pojo {
                 + this.name.substring(positionEnd);
     }
 
-    public void setDisplayNameHighlightRegion(ArrayList<Pair<Integer, Integer>> positions) {
+    public void setDisplayNameHighlightRegion(List<Pair<Integer, Integer>> positions) {
         this.displayName = "";
         int lastPositionEnd = 0;
         for (Pair<Integer, Integer> position : positions) {
