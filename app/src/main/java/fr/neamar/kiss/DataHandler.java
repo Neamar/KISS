@@ -262,16 +262,18 @@ public class DataHandler extends BroadcastReceiver
         ArrayList<Pojo> allPojos = new ArrayList<>();
 
         for (ProviderEntry entry : this.providers.values()) {
-            // Retrieve results for query:
-            List<Pojo> pojos = entry.provider.getResults(query);
-
-            // Add results to list
-            for (Pojo pojo : pojos) {
-                // Give a boost if item was previously selected for this query
-                if (knownIds.containsKey(pojo.id)) {
-                    pojo.relevance += 25 * Math.min(5, knownIds.get(pojo.id));
+            if(entry.provider != null) {
+                // Retrieve results for query:
+                List<Pojo> pojos = entry.provider.getResults(query);
+    
+                // Add results to list
+                for (Pojo pojo : pojos) {
+                    // Give a boost if item was previously selected for this query
+                    if (knownIds.containsKey(pojo.id)) {
+                        pojo.relevance += 25 * Math.min(5, knownIds.get(pojo.id));
+                    }
+                    allPojos.add(pojo);
                 }
-                allPojos.add(pojo);
             }
         }
 
