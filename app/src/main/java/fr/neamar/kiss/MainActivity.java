@@ -61,7 +61,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
 
     /**
-     * IDS for the favorites buttons
+     * IDs for the favorites buttons
      */
     private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
 
@@ -159,6 +159,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
+                    // Run GC once to free all the garbage accumulated during provider initialization
+                    System.gc();
+
                     displayLoader(false);
 
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
