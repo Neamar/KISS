@@ -610,6 +610,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 kissBar.setVisibility(View.GONE);
             }
             searchEditText.setText("");
+
+            if (prefs.getBoolean("display-keyboard", false)) {
+                // Display keyboard
+                showKeyboard();
+            }
         }
     }
 
