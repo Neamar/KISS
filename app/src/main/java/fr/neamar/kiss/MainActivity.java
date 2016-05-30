@@ -618,8 +618,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 .getFavorites(tryToRetrieve);
 
         if (favoritesPojo.size() == 0) {
-            Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
-            toast.show();
+            int noFavCnt = prefs.getInt("no-favorites-tip", 0);
+            if (noFavCnt<3) {
+                Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
+                toast.show();
+                prefs.edit().putInt("no-favorites-tip", ++noFavCnt).commit();
+
+            }
         }
 
         // Don't look for items after favIds length, we won't be able to display them
