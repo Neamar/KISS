@@ -660,11 +660,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         if (query.length() == 0) {
             if (prefs.getBoolean("history-hide", false)) {
+                searchEditText.setHint("");
                 searcher = new NullSearcher(this);
                 //Hide default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
 
             } else {
+                searchEditText.setHint(R.string.ui_search_hint);
                 searcher = new HistorySearcher(this);
                 //Show default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
