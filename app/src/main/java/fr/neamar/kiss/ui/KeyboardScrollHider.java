@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +29,8 @@ public class KeyboardScrollHider implements View.OnTouchListener {
     private MotionEvent lastMotionEvent;
     private int initialWindowPadding = 0;
     private boolean resizeDone = false;
+
+    private boolean scrollBarEnabled = true;
 
     public interface KeyboardHandler {
         void showKeyboard();
@@ -89,7 +90,7 @@ public class KeyboardScrollHider implements View.OnTouchListener {
         this.pullEffect.releasePull();
 
         // Make sure list uses the height of it's parent
-        this.list.setVerticalScrollBarEnabled(true);
+        this.list.setVerticalScrollBarEnabled(this.scrollBarEnabled);
         this.setListLayoutHeight(ViewGroup.LayoutParams.MATCH_PARENT);
 
         this.resizeDone = true;
@@ -138,6 +139,7 @@ public class KeyboardScrollHider implements View.OnTouchListener {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        this.scrollBarEnabled = this.list.isVerticalScrollBarEnabled();
         switch(event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 this.offsetYStart   = event.getY();
