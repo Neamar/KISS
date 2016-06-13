@@ -37,7 +37,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         ContactsContract.CommonDataKinds.Phone.NUMBER,
                         ContactsContract.CommonDataKinds.Phone.STARRED,
                         ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
-                        ContactsContract.Contacts.PHOTO_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
+                        ContactsContract.Contacts.PHOTO_ID,
+                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
 
         // Prevent duplicates by keeping in memory encountered phones.
         // The string key is "phone" + "|" + "name" (so if two contacts
@@ -53,8 +54,24 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                             .getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
                     contact.timesContacted = Integer.parseInt(cur.getString(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
-                    contact.setName(cur.getString(cur
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
+                    contact.setName(cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
+
+                    String contactID = cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
+
+                    Cursor cur2 = context.getContentResolver().query(
+                            ContactsContract.Data.CONTENT_URI,
+                            new String[]{ContactsContract.CommonDataKinds.Nickname.NAME},
+                            ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + "= ?",
+                            new String[]{contactID, ContactsContract.CommonDataKinds.Nickname.CONTENT_ITEM_TYPE},
+                            null);
+                    if (cur2.getCount() > 0){
+                        cur2.moveToNext();
+                        String nick = cur2.getString(cur2.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME));
+                        if (nick != null)
+                            contact.setNickname(nick);
+                    }
+                    cur2.close();
+
                     contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
                     if (contact.phone == null) {

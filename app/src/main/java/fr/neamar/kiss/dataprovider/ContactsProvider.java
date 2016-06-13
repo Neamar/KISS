@@ -1,6 +1,7 @@
 package fr.neamar.kiss.dataprovider;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
@@ -27,6 +28,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         int matchPositionStart;
         int matchPositionEnd;
         String contactNameNormalized;
+        boolean alias = false;
 
         final String queryWithSpace = " " + query;
         for (ContactsPojo contact : pojos) {
@@ -41,6 +43,14 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
                 relevance = 40;
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
+            } else if (contact.nickname.contains(query)) {
+                alias = true;
+                contact.displayName = contact.name
+                        + " <small>("
+                        + contact.nickname.replaceFirst(
+                        "(?i)(" + Pattern.quote(query) + ")", "{$1}")
+                        + ")</small>";
+                relevance = 30;
             } else if (query.length() > 2) {
                 matchPositionStart = 0;
                 matchPositionEnd = 0;
@@ -62,7 +72,8 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 if (contact.homeNumber)
                     relevance -= 1;
 
-                contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
+                if (! alias)
+                    contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 contact.relevance = relevance;
                 results.add(contact);
 

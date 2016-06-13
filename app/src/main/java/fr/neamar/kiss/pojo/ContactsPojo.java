@@ -1,6 +1,7 @@
 package fr.neamar.kiss.pojo;
 
 import android.net.Uri;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public class ContactsPojo extends Pojo {
     public String lookupKey = "";
@@ -21,4 +22,10 @@ public class ContactsPojo extends Pojo {
 
     // Is this number a home (local) number ?
     public Boolean homeNumber = false;
+
+    public String nickname = "";
+
+    public void setNickname(String nickname) {
+        this.nickname = StringNormalizer.normalize(nickname);
+    }
 }
