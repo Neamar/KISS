@@ -28,12 +28,12 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         int matchPositionStart;
         int matchPositionEnd;
         String contactNameNormalized;
-        boolean alias = false;
 
         final String queryWithSpace = " " + query;
         for (ContactsPojo contact : pojos) {
             relevance = 0;
             contactNameNormalized = contact.nameNormalized;
+            boolean alias = false;
 
             matchPositionStart = 0;
             matchPositionEnd = 0;
