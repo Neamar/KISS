@@ -42,6 +42,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.broadcast.IncomingCallHandler;
+import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -51,6 +53,7 @@ import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.ui.BlockableListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 
@@ -274,6 +277,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (prefs.getBoolean("enable-spellcheck", false)) {
             searchEditText.setInputType(SPELLCHECK_ENABLED_TYPE);
         }
+
+        //enable/disable phone/sms broadcast receiver
+        PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
+        PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
 
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
@@ -665,12 +672,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         if (query.length() == 0) {
             if (prefs.getBoolean("history-hide", false)) {
+                list.setVerticalScrollBarEnabled(false);
                 searchEditText.setHint("");
                 searcher = new NullSearcher(this);
                 //Hide default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
 
             } else {
+                list.setVerticalScrollBarEnabled(true);
                 searchEditText.setHint(R.string.ui_search_hint);
                 searcher = new HistorySearcher(this);
                 //Show default scrollview

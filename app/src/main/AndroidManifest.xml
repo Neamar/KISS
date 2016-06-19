@@ -105,7 +105,7 @@
             android:theme="@style/SettingTheme" />
 
         <!-- On new app installed or sdcard mount / unmount refresh the list -->
-        <receiver android:name=".broadcast.NewAppInstalledHandler">
+        <receiver android:name=".broadcast.PackageAddedRemovedHandler">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />

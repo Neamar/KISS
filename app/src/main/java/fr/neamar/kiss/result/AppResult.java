@@ -104,8 +104,6 @@ public class AppResult extends Result {
                 return true;
             case R.id.item_app_uninstall:
                 launchUninstall(context, appPojo);
-                // Also remove item, since it will be uninstalled
-                parent.removeResult(this);
                 return true;
             case R.id.item_app_hibernate:
                 hibernate(context, appPojo);
