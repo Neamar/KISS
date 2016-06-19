@@ -291,13 +291,14 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context   android context
      * @param itemCount max number of items to retrieve, total number may be less (search or calls are not returned for instance)
+     * @param smartHistory Recency vs Frecency
      * @return pojos in recent history
      */
-    public ArrayList<Pojo> getHistory(Context context, int itemCount) {
+    public ArrayList<Pojo> getHistory(Context context, int itemCount, boolean smartHistory) {
         ArrayList<Pojo> history = new ArrayList<>(itemCount);
 
         // Read history
-        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount);
+        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount, smartHistory);
 
         // Find associated items
         for (int i = 0; i < ids.size(); i++) {

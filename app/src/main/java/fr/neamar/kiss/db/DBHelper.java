@@ -58,6 +58,30 @@ public class DBHelper {
         db.close();
     }
 
+    private static Cursor getSmartHistoryCursor(SQLiteDatabase db, int limit) {
+        //Since smart history sql uses a group by we don't use the whole history but a limit of recent apps
+        int historyWindowSize =  limit *30;
+
+        //order history based on frequency * recency
+        //frequency = #launches_for_app / #all_launches
+        //recency = 1 / position_of_app_in_normal_history
+        String sql ="SELECT record, count(*) FROM " +
+                " (" +
+                "   SELECT * FROM history ORDER BY _id DESC " +
+                "   LIMIT " + historyWindowSize +"" +
+                " ) small_history " +
+                " GROUP BY record " +
+                " ORDER BY " +
+                "   count(*) * 1.0 / (select count(*) from history LIMIT " + historyWindowSize +") / ((SELECT _id FROM history ORDER BY _id DESC LIMIT 1) - max(_id) + 0.001) " +
+                " DESC " +
+                " LIMIT " + limit;
+        return db.rawQuery(sql, null);
+    }
+
+    private static Cursor getHistoryCursor(SQLiteDatabase db, int limit) {
+        return db.query(true, "history", new String[]{"record", "1"}, null, null,
+                null, null, "_id DESC", Integer.toString(limit));
+    }
     /**
      * Retrieve previous query history
      *
@@ -65,7 +89,7 @@ public class DBHelper {
      * @param limit   max number of items to retrieve
      * @return records with number of use
      */
-    public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit) {
+    public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit, boolean smartHistory) {
         ArrayList<ValuedHistoryRecord> records;
 
         SQLiteDatabase db = getDatabase(context);
@@ -73,8 +97,9 @@ public class DBHelper {
         // Cursor query (boolean distinct, String table, String[] columns,
         // String selection, String[] selectionArgs, String groupBy, String
         // having, String orderBy, String limit)
-        Cursor cursor = db.query(true, "history", new String[]{"record", "1"}, null, null,
-                null, null, "_id DESC", Integer.toString(limit));
+        Cursor cursor = (smartHistory)?getSmartHistoryCursor(db, limit):getHistoryCursor(db, limit);
+        //db.query(true, "history", new String[]{"record", "1"}, null, null,
+        //        null, null, "_id DESC", Integer.toString(limit));
 
         records = readCursor(cursor);
         cursor.close();
@@ -199,5 +224,5 @@ public class DBHelper {
         
         db.close();        
     }
-    
+
 }
