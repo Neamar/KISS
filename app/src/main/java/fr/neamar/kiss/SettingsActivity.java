@@ -1,10 +1,13 @@
 package fr.neamar.kiss;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import android.annotation.TargetApi;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -13,16 +16,11 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -166,18 +164,11 @@ public class SettingsActivity extends PreferenceActivity implements
         }
 
         if ("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
-            ComponentName receiver;
-
             if ("enable-sms-history".equals(key)) {
-                receiver = new ComponentName(this, IncomingSmsHandler.class);
+                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, sharedPreferences.getBoolean(key, false));
             } else {
-                receiver = new ComponentName(this, IncomingCallHandler.class);
+                PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
             }
-
-            PackageManager pm = getPackageManager();
-            pm.setComponentEnabledSetting(receiver,
-                    sharedPreferences.getBoolean(key, false) ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                    PackageManager.DONT_KILL_APP);
         }
     }
 
