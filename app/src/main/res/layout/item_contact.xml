@@ -48,6 +48,18 @@
         android:text="@string/stub_contact_phone"
         android:textColor="?android:attr/textColorSecondary"/>
 
+    <TextView
+        android:id="@+id/item_contact_last_seen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_contact_icon"
+        android:layout_toRightOf="@+id/item_contact_phone"
+        android:layout_toEndOf="@+id/item_contact_phone"
+        android:text=""
+        android:paddingLeft="10dp"
+        android:paddingRight="0dp"
+        android:textColor="@color/kiss_green"/>
+
     <ImageButton
         android:id="@+id/item_contact_action_message"
         android:layout_width="48dp"

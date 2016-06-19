@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.normalizer.DateNormalizer;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
@@ -37,6 +38,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         ContactsContract.CommonDataKinds.Phone.NUMBER,
                         ContactsContract.CommonDataKinds.Phone.STARRED,
                         ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
+                        ContactsContract.CommonDataKinds.Phone.LAST_TIME_CONTACTED,
                         ContactsContract.Contacts.PHOTO_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
 
         // Prevent duplicates by keeping in memory encountered phones.
@@ -55,6 +57,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
                     contact.setName(cur.getString(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
+                    contact.lastTimeContacted = DateNormalizer.normalizeDate(Long.parseLong(cur.getString(cur
+                            .getColumnIndex(ContactsContract.Contacts.LAST_TIME_CONTACTED))));
                     contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
                     if (contact.phone == null) {

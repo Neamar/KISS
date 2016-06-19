@@ -27,6 +27,8 @@ public class IncomingSmsHandler extends BroadcastReceiver {
             return;
         }
 
+        contactsProvider.reload();
+
         // Get the SMS message passed in, if any
         Bundle bundle = intent.getExtras();
         if (bundle == null) {
