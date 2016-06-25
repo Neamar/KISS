@@ -40,6 +40,7 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -52,10 +53,10 @@ import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
-import fr.neamar.kiss.ui.KeyboardScrollHider;
-import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.ui.BlockableListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
+import fr.neamar.kiss.ui.KeyboardScrollHider;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler {
 
@@ -76,8 +77,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * InputType with spellcheck and swiping
      */
-    private final static int SPELLCHECK_ENABLED_TYPE = InputType.TYPE_CLASS_TEXT |
+    private final static int SPELLCHECK_ENABLED_INPUT_TYPE = InputType.TYPE_CLASS_TEXT |
             InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+    /**
+     * default InputType
+     */
+    private final static int DEFAULT_INPUT_TYPE = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD |
+            InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
     /**
      * Adapter to display records
      */
@@ -91,6 +97,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * View for the Search text
      */
     private EditText searchEditText;
+    /**
+     * Whether or not Search text should be spell checked (affects inputType)
+     */
+    private boolean searchEditTextSpellcheck;
     private final Runnable displayKeyboardRunnable = new Runnable() {
         @Override
         public void run() {
@@ -203,8 +213,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.list.setAdapter(this.adapter);
 
         this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-            {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 adapter.onClick(position, v);
             }
         });
@@ -213,7 +222,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onChanged() {
                 super.onChanged();
 
-                if(adapter.isEmpty()) {
+                if (adapter.isEmpty()) {
                     listContainer.setVisibility(View.GONE);
                     listEmpty.setVisibility(View.VISIBLE);
                 } else {
@@ -233,10 +242,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     s.delete(0, 1);
             }
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                updateRecords(s.toString());
+                String text = s.toString();
+                adjustInputType(text);
+                updateRecords(text);
                 displayClearOnInput();
             }
         });
@@ -273,10 +285,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         );
         this.hider.start();
 
-        // Enable swiping
-        if (prefs.getBoolean("enable-spellcheck", false)) {
-            searchEditText.setInputType(SPELLCHECK_ENABLED_TYPE);
-        }
+        // Check whether user enabled spell check and adjust input type accordingly
+        searchEditTextSpellcheck = prefs.getBoolean("enable-spellcheck", false);
+        adjustInputType(null);
 
         //enable/disable phone/sms broadcast receiver
         PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
@@ -287,6 +298,22 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Apply effects depending on current Android version
         applyDesignTweaks();
+    }
+
+    private void adjustInputType(String currentText) {
+        int currentInputType = searchEditText.getInputType();
+        int requiredInputType;
+
+        if (currentText != null && Pattern.matches("[+]\\d+", currentText)) {
+            requiredInputType = InputType.TYPE_CLASS_PHONE;
+        } else if (searchEditTextSpellcheck) {
+            requiredInputType = SPELLCHECK_ENABLED_INPUT_TYPE;
+        } else {
+            requiredInputType = DEFAULT_INPUT_TYPE;
+        }
+        if (currentInputType != requiredInputType) {
+            searchEditText.setInputType(requiredInputType);
+        }
     }
 
     /**
@@ -631,7 +658,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         if (favoritesPojo.size() == 0) {
             int noFavCnt = prefs.getInt("no-favorites-tip", 0);
-            if (noFavCnt<3) {
+            if (noFavCnt < 3) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
                 prefs.edit().putInt("no-favorites-tip", ++noFavCnt).commit();
