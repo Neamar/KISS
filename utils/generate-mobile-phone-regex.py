@@ -33,7 +33,7 @@ class PhoneNumberContentHandler(xml.sax.handler.ContentHandler):
 			
 			# Create RegExps storage for country code
 			if self._country not in self._regexps:
-				self._regexps[self._country] = []
+				self._regexps[self._country] = set()
 	
 	def characters(self, content):
 		# Store number pattern content (but skip land-line numbers)
@@ -48,7 +48,7 @@ class PhoneNumberContentHandler(xml.sax.handler.ContentHandler):
 		
 		# Add complete number pattern content to regexp list
 		if len(self._path) == 4 and self._next_regexp:
-			self._regexps[self._country].append(self._next_regexp)
+			self._regexps[self._country].add(self._next_regexp)
 			
 			self._next_regexp = ""
 	
