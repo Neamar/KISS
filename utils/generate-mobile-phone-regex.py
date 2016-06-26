@@ -36,10 +36,9 @@ class PhoneNumberContentHandler(xml.sax.handler.ContentHandler):
 				self._regexps[self._country] = set()
 	
 	def characters(self, content):
-		# Store number pattern content (but skip land-line numbers)
-		if  len(self._path) == 5           \
-		and self._path[3] != 'generalDesc' \
-		and self._path[3] != 'fixedLine'   \
+		# Store number pattern content for mobile phone numbers
+		if  len(self._path) == 5      \
+		and self._path[3] == 'mobile' \
 		and self._path[4] == 'nationalNumberPattern':
 			self._next_regexp += content.strip(' \t\n')
 	
