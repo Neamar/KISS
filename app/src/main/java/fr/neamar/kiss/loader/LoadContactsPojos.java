@@ -22,12 +22,17 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
+    private static Pattern mobileNumberPattern;
 
     public LoadContactsPojos(Context context) {
         super(context, "contact://");
     }
 
-    private Pattern getMobileNumberPattern() {
+    private void ensureMobileNumberPattern() {
+        if (mobileNumberPattern != null) {
+            return;
+        }
+
         InputStream inputStream = context.getResources().openRawResource(R.raw.phone_number_textable);
         StringBuilder mobileDetectionRegex = new StringBuilder();
 
@@ -38,15 +43,15 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             while ((line = reader.readLine()) != null)
                 mobileDetectionRegex.append(line);
 
-            return Pattern.compile(mobileDetectionRegex.toString());
+            mobileNumberPattern = Pattern.compile(mobileDetectionRegex.toString());
         } catch (IOException ioex) {
-            return null;
+            mobileNumberPattern = null;
         }
     }
 
     @Override
     protected ArrayList<ContactsPojo> doInBackground(Void... params) {
-        Pattern mobileNumberPattern = getMobileNumberPattern();
+        ensureMobileNumberPattern();
 
         long start = System.nanoTime();
 
@@ -90,7 +95,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                             !mobileNumberPattern.matcher(contact.phoneSimplified).lookingAt();
                     Log.d("issue-480", contact.name + " --- " + contact.phone +
                             " --- " + contact.phoneSimplified +
-                            " --- " + (contact.homeNumber ? "land line": "mobile"));
+                            " --- " + (contact.homeNumber ? "land line" : "mobile"));
 
                     contact.starred = cur.getInt(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
