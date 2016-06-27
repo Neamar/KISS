@@ -6,12 +6,17 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import java.util.List;
-import java.util.Map;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
@@ -22,9 +27,26 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         super(context, "contact://");
     }
 
+    private Pattern getMobileNumberPattern() {
+        InputStream inputStream = context.getResources().openRawResource(R.raw.phone_number_textable);
+        StringBuilder mobileDetectionRegex = new StringBuilder();
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+        try {
+            String line;
+            while ((line = reader.readLine()) != null)
+                mobileDetectionRegex.append(line);
+
+            return Pattern.compile(mobileDetectionRegex.toString());
+        } catch (IOException ioex) {
+            return null;
+        }
+    }
+
     @Override
     protected ArrayList<ContactsPojo> doInBackground(Void... params) {
-        Pattern homePattern = Pattern.compile("^\\+33\\s?[1-5]");
+        Pattern mobileNumberPattern = getMobileNumberPattern();
 
         long start = System.nanoTime();
 
@@ -64,7 +86,11 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     }
                     contact.phoneSimplified = contact.phone.replaceAll("[-.(): ]", "");
 
-                    contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
+                    contact.homeNumber = mobileNumberPattern == null ||
+                            !mobileNumberPattern.matcher(contact.phoneSimplified).lookingAt();
+                    Log.d("issue-480", contact.name + " --- " + contact.phone +
+                            " --- " + contact.phoneSimplified +
+                            " --- " + (contact.homeNumber ? "land line": "mobile"));
 
                     contact.starred = cur.getInt(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;

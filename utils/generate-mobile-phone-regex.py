@@ -1,11 +1,11 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import os.path
 import sys
 import xml.sax
 
 
 FILEPATH_INPUT  = "libphonenumber/resources/PhoneNumberMetadata.xml"
-FILEPATH_OUTPUT = "../app/src/main/res/raw/PhoneNumberTextable.re"
+FILEPATH_OUTPUT = "../app/src/main/res/raw/phone_number_textable.re"
 
 class PhoneNumberContentHandler(xml.sax.handler.ContentHandler):
 	def __init__(self):
@@ -51,13 +51,12 @@ class PhoneNumberContentHandler(xml.sax.handler.ContentHandler):
 			
 			self._next_regexp = ""
 	
-	
 	def get_regexps(self):
 		return self._regexps
 
 
 def main(argv=sys.argv[1:], program=sys.argv[0]):
-	# Debug output (instead of concatinating the final regular expression)
+	# Debug output (instead of concatenating the final regular expression)
 	if len(argv) > 0 and argv[0] == '-d':
 		debugging = True
 		argv = argv[1:]
