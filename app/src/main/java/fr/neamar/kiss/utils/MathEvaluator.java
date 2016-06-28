@@ -1,4 +1,4 @@
-package fr.neamar.kiss;
+package fr.neamar.kiss.utils;
 
 /*
  * Copyright 2012 Udo Klimaschewski
