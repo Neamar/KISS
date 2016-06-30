@@ -257,6 +257,8 @@ public class DataHandler extends BroadcastReceiver
             knownIds.put(id.record, id.value);
         }
 
+        //TODO intelligent search. eg. results order based on time, location, network state, ...
+
         // Ask all providers for data
         ArrayList<Pojo> allPojos = new ArrayList<>();
 
