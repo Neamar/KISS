@@ -4,7 +4,7 @@
 
 Usage:
     generate-mobile-phone-regex.py -d [-i INPUT]
-    generate-mobile-phone-regex.py [-i INPUT [-o OUTPUT -O OUTPUT2]]
+    generate-mobile-phone-regex.py [-i INPUT [-o OUTPUT] [-O OUTPUT2]]
 
 Options:
     -i --input INPUT             Input XML file path with phone information for all regions (from `libphonenumber`)
@@ -53,7 +53,7 @@ class PhoneNumberContentHandler(xml.sax.handler.ContentHandler):
             # Create RegExps storage for country code
             if self._country not in self._regexps:
                 self._regexps[self._country] = set()
-            
+
             # Remember country parameters for normalization
             if len(attrs['countryCode']) == 2:
                 self._normdata[attrs['id']] = (
@@ -79,10 +79,10 @@ class PhoneNumberContentHandler(xml.sax.handler.ContentHandler):
             self._next_regexp = ""
 
     def get_regexps(self):
-        return self._regexps
-    
+        return sorted(self._regexps.items())
+
     def get_normdata(self):
-        return self._normdata
+        return sorted(self._normdata.items())
 
 
 def main(debug, input, textable, normdata):
@@ -100,20 +100,20 @@ def main(debug, input, textable, normdata):
 
     if debug:
         from pprint import pprint
-        
+
         print(" • Textable phone number regular expression:")
         pprint(handler.get_regexps())
         print()
-        
+
         print(" • Country number prefixes:")
         pprint(handler.get_normdata())
         print()
-        
+
         return 0
 
     with open(filepath_textable, 'w') as file:
         file.write('\\+(?:')
-        for idx, (country, regexps) in enumerate(handler.get_regexps().items()):
+        for idx, (country, regexps) in enumerate(handler.get_regexps()):
             if idx > 0:
                 file.write('|')
 
@@ -128,10 +128,10 @@ def main(debug, input, textable, normdata):
                 file.write(regexp)
             file.write(')')
         file.write(')')
-    
+
     with open(filepath_normdata, 'w') as file:
         writer = csv.writer(file)
-        for country, data in handler.get_normdata().items():
+        for country, data in handler.get_normdata():
             writer.writerow((country,) + data)
 
 

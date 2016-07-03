@@ -1,7 +1,7 @@
 package fr.neamar.kiss.dataprovider;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
+import java.util.Locale;
 
 import android.database.ContentObserver;
 import android.provider.ContactsContract;
@@ -150,7 +150,8 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         // Contacts are stored with formatting and sometimes without code
         // Thus, normalizing them allow for simpler comparison
         // (contact phone number are already normalized at build time)
-        String normalizedPhoneNumber = PhoneNormalizer.normalizePhone(phoneNumber);
+        String defaultCountryIso = Locale.getDefault().getCountry();
+        String normalizedPhoneNumber = PhoneNormalizer.normalizePhone(phoneNumber, defaultCountryIso);
 
         for (ContactsPojo pojo : pojos) {
             if (pojo.phone.equals(normalizedPhoneNumber)) {

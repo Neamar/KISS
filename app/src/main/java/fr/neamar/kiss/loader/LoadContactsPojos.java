@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -26,17 +27,16 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
     public LoadContactsPojos(Context context) {
         super(context, "contact://");
+        PhoneNormalizer.initialize(context);
     }
 
     private void ensureMobileNumberPattern() {
-        if (mobileNumberPattern != null) {
-            return;
-        }
+        if (mobileNumberPattern != null) return;
 
         InputStream inputStream = context.getResources().openRawResource(R.raw.phone_number_textable);
-        StringBuilder mobileDetectionRegex = new StringBuilder();
-
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+        StringBuilder mobileDetectionRegex = new StringBuilder();
 
         try {
             String line;
@@ -54,6 +54,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         ensureMobileNumberPattern();
 
         long start = System.nanoTime();
+        String defaultCountryIso = Locale.getDefault().getCountry();
 
         // Run query
         Cursor cur = context.getContentResolver().query(
@@ -85,18 +86,14 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     contact.setName(cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
 
                     contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
+                                    .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)),
+                            defaultCountryIso);
                     if (contact.phone == null) {
                         contact.phone = "";
                     }
                     contact.phoneSimplified = contact.phone.replaceAll("[-.(): ]", "");
-
                     contact.homeNumber = mobileNumberPattern == null ||
                             !mobileNumberPattern.matcher(contact.phoneSimplified).lookingAt();
-                    Log.d("issue-480", contact.name + " --- " + contact.phone +
-                            " --- " + contact.phoneSimplified +
-                            " --- " + (contact.homeNumber ? "land line" : "mobile"));
-
                     contact.starred = cur.getInt(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
                     contact.primary = cur.getInt(cur
