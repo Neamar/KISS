@@ -150,8 +150,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         // Contacts are stored with formatting and sometimes without code
         // Thus, normalizing them allow for simpler comparison
         // (contact phone number are already normalized at build time)
-        String defaultCountryIso = Locale.getDefault().getCountry();
-        String normalizedPhoneNumber = PhoneNormalizer.normalizePhone(phoneNumber, defaultCountryIso);
+        String normalizedPhoneNumber = PhoneNormalizer.normalizePhone(phoneNumber);
 
         for (ContactsPojo pojo : pojos) {
             if (pojo.phone.equals(normalizedPhoneNumber)) {

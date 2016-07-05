@@ -86,12 +86,11 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     contact.setName(cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
 
                     contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
-                                    .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)),
-                            defaultCountryIso);
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
                     if (contact.phone == null) {
                         contact.phone = "";
                     }
-                    contact.phoneSimplified = contact.phone.replaceAll("[-.(): ]", "");
+                    contact.phoneSimplified = contact.phone.replaceAll("[-.():/ ]", "");
                     contact.homeNumber = mobileNumberPattern == null ||
                             !mobileNumberPattern.matcher(contact.phoneSimplified).lookingAt();
                     contact.starred = cur.getInt(cur
