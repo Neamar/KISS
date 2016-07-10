@@ -40,6 +40,9 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <!-- To autorotation toggle -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- To allow app switching - for apps that do not resume properly -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
 
     <uses-feature
         android:name="android.hardware.telephony"

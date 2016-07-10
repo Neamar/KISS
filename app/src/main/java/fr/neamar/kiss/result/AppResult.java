@@ -1,6 +1,7 @@
 package fr.neamar.kiss.result;
 
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -174,12 +175,32 @@ public class AppResult extends Result {
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.setComponent(className);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-
-        try {
-            context.startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            // Application was just removed?
-            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+        Integer taskId = -1;
+        ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+        
+        //only use alternative switch mode if user it turned on in preferences
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("app-switcher-mode", false)) {
+            //get all running tasks and loop through looking for the one user requested
+            for(ActivityManager.RunningTaskInfo t: am.getRunningTasks(15)){
+                if(t.topActivity.getPackageName().contains(appPojo.packageName)){
+                    taskId = t.id;
+                    break;
+                }
+            }
+        }
+		
+        //if taskId is set there is a running instance and app-switch-mode is on
+        if (taskId >= 0 ) {
+            //bring the running task to the front
+            am.moveTaskToFront(taskId, ActivityManager.MOVE_TASK_WITH_HOME | ActivityManager.MOVE_TASK_NO_USER_ACTION);
+        } else {
+            //otherwise it is not running or app-switch-mode is off so launch like usual
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                // Application was just removed?
+                Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
