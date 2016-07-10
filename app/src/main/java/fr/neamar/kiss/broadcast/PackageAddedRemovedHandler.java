@@ -45,6 +45,8 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
             String packageName = intent.getData().getSchemeSpecificPart();
 
             KissApplication.getDataHandler(ctx).removeShortcuts(packageName);
+
+            KissApplication.getDataHandler(ctx).removeFromExcluded(packageName);
         }
 
         KissApplication.resetIconsHandler(ctx);
