@@ -68,6 +68,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * IDs for the favorites buttons
      */
     private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
+    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3};
 
     /**
      * Number of favorites to retrieve.
@@ -293,7 +294,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
         PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
 
-        View favoritesBar = findViewById(R.id.favoriteLayout);
+        View favoritesBar = findViewById(R.id.favoritesBar);
         if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", true)){
             favoritesBar.setVisibility(View.VISIBLE);
             retrieveFavorites();
@@ -685,18 +686,26 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         for (int i = 0; i < Math.min(favsIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
             ImageView image = (ImageView) findViewById(favsIds[i]);
+            ImageView imageFavBar = (ImageView) findViewById(favBarIds[i]);
 
             Result result = Result.fromPojo(MainActivity.this, pojo);
             Drawable drawable = result.getDrawable(MainActivity.this);
-            if (drawable != null)
+            if (drawable != null){
                 image.setImageDrawable(drawable);
+                imageFavBar.setImageDrawable(drawable);
+            }
+
             image.setVisibility(View.VISIBLE);
             image.setContentDescription(pojo.displayName);
+
+            imageFavBar.setVisibility(View.VISIBLE);
+            imageFavBar.setContentDescription(pojo.displayName);
         }
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
             findViewById(favsIds[i]).setVisibility(View.GONE);
+            findViewById(favBarIds[i]).setVisibility(View.GONE);
         }
     }
 

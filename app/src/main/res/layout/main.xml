@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/favoriteLayout"
+        android:layout_above="@+id/favoritesBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="?attr/listBackgroundColor"
@@ -37,7 +37,7 @@
     </FrameLayout>
 
     <RelativeLayout
-        android:id="@+id/favoriteLayout"
+        android:id="@+id/favoritesBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/searchEditLayout"
@@ -58,7 +58,7 @@
             android:padding="5dp">
 
             <ImageView
-                android:id="@+id/favorite0"
+                android:id="@+id/favoriteBar0"
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -69,7 +69,7 @@
                 />
 
             <ImageView
-                android:id="@+id/favorite1"
+                android:id="@+id/favoriteBar1"
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -79,7 +79,7 @@
                 android:tag="1"/>
 
             <ImageView
-                android:id="@+id/favorite2"
+                android:id="@+id/favoriteBar2"
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -89,7 +89,7 @@
                 android:tag="2"/>
 
             <ImageView
-                android:id="@+id/favorite3"
+                android:id="@+id/favoriteBar3"
                 android:layout_width="0px"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -199,7 +199,7 @@
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/favoriteLayout"
+        android:layout_above="@id/favoritesBar"
         android:visibility="gone">
 
         <include android:id="@+id/main_empty" layout="@layout/main_empty"/>
