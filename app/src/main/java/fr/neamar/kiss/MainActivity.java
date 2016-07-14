@@ -293,6 +293,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
         PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
 
+        View favoritesBar = findViewById(R.id.favoriteLayout);
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", true)){
+            favoritesBar.setVisibility(View.VISIBLE);
+            retrieveFavorites();
+        }else{
+            favoritesBar.setVisibility(View.GONE);
+        }
+
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
@@ -597,6 +605,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private void displayKissBar(Boolean display) {
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+        final View favoritesKissBar = findViewById(R.id.favoritesKissBar);
 
         // get the center for the clipping circle
         int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
@@ -649,6 +658,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 // Display keyboard
                 showKeyboard();
             }
+        }
+
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", true)){
+            favoritesKissBar.setVisibility(View.INVISIBLE);
+        }else{
+            favoritesKissBar.setVisibility(View.VISIBLE);
         }
     }
 
