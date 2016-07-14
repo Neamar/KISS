@@ -73,7 +73,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Number of favorites to retrieve.
      * We need to pad this number to account for removed items still in history
      */
-    private final int tryToRetrieve = favsIds.length + 2;
+    public final int tryToRetrieve = favsIds.length + 2;
     /**
      * InputType with spellcheck and swiping
      */
@@ -706,6 +706,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      *
      * @param query the query on which to search
      */
+
+    public void updateRecords(){
+        updateRecords(searchEditText.getText().toString());
+    }
 
     private void updateRecords(String query) {
         if (searcher != null) {

@@ -3,6 +3,7 @@ package fr.neamar.kiss.searcher;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
@@ -25,6 +26,14 @@ public class HistorySearcher extends Searcher {
     protected List<Pojo> doInBackground(Void... voids) {
         // Ask for records
         boolean smartHistory = !prefs.getString("history-mode", "recency").equals("recency");
-        return KissApplication.getDataHandler(activity).getHistory(activity, MAX_RECORDS, smartHistory);
+        boolean excludeFavorites = prefs.getBoolean("exclude-favorites", true);
+
+        //Gather favorites
+        ArrayList<Pojo> favoritesPojo = new ArrayList<Pojo>(0);
+        if(excludeFavorites){
+            favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(activity.tryToRetrieve);
+        }
+
+        return KissApplication.getDataHandler(activity).getHistory(activity, MAX_RECORDS, smartHistory, favoritesPojo);
     }
 }
