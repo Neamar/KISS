@@ -177,7 +177,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
 
-                    checkShowFavoritesBar();
+                    checkShowFavoritesBar(false);
                     displayLoader(false);
 
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
@@ -352,9 +352,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    private void checkShowFavoritesBar(){
+    private void checkShowFavoritesBar(boolean touched){
         View favoritesBar = findViewById(R.id.favoritesBar);
-        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", false)){
+        if(prefs.getBoolean("enable-favorites-bar", false) && (!prefs.getBoolean("favorites-hide", false) || touched)){
             favoritesBar.setVisibility(View.VISIBLE);
             retrieveFavorites();
         }else{
@@ -403,7 +403,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
         AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
         if(appProvider != null && appProvider.isLoaded())
-            checkShowFavoritesBar();
+            checkShowFavoritesBar(false);
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -459,6 +459,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searchEditText.setText("");
         }
 
+        checkShowFavoritesBar(false);
         // No call to super.onBackPressed, since this would quit the launcher.
     }
 
@@ -528,6 +529,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                         searcher.execute();
                     }
                 }
+            }
+            if(prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)){
+                checkShowFavoritesBar(true);
             }
         }
         return super.dispatchTouchEvent(event);
