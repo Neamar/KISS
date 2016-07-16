@@ -717,17 +717,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+    public void updateRecords(){
+        updateRecords(searchEditText.getText().toString());
+    }
+
     /**
      * This function gets called on changes. It will ask all the providers for
      * data
      *
      * @param query the query on which to search
      */
-
-    public void updateRecords(){
-        updateRecords(searchEditText.getText().toString());
-    }
-
     private void updateRecords(String query) {
         if (searcher != null) {
             searcher.cancel(true);
