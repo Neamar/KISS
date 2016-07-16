@@ -45,6 +45,7 @@ import java.util.regex.Pattern;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -176,6 +177,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
 
+                    checkShowFavoritesBar();
                     displayLoader(false);
 
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
@@ -294,9 +296,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
         PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
 
-        //Show favorites above search field
-        checkShowFavoritesBar();
-
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
@@ -400,8 +399,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             displayKissBar(false);
         }
 
-        //Show favorites above search field
-        checkShowFavoritesBar();
+        //Show favorites above search field ONLY if AppProvider is already loaded
+        //Otherwise this will get triggered by the broadcastreceiver in the onCreate
+        AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
+        if(appProvider != null && appProvider.isLoaded())
+            checkShowFavoritesBar();
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
