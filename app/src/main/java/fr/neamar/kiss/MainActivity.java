@@ -355,7 +355,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private void checkShowFavoritesBar(){
         View favoritesBar = findViewById(R.id.favoritesBar);
-        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", true)){
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", false)){
             favoritesBar.setVisibility(View.VISIBLE);
             retrieveFavorites();
         }else{

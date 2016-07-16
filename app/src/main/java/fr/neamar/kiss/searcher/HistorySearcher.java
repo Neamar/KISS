@@ -26,7 +26,7 @@ public class HistorySearcher extends Searcher {
     protected List<Pojo> doInBackground(Void... voids) {
         // Ask for records
         boolean smartHistory = !prefs.getString("history-mode", "recency").equals("recency");
-        boolean excludeFavorites = prefs.getBoolean("exclude-favorites", true);
+        boolean excludeFavorites = prefs.getBoolean("exclude-favorites", false);
 
         //Gather favorites
         ArrayList<Pojo> favoritesPojo = new ArrayList<Pojo>(0);
