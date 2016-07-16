@@ -294,13 +294,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
         PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
 
-        View favoritesBar = findViewById(R.id.favoritesBar);
-        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", true)){
-            favoritesBar.setVisibility(View.VISIBLE);
-            retrieveFavorites();
-        }else{
-            favoritesBar.setVisibility(View.GONE);
-        }
+        //Show favorites above search field
+        checkShowFavoritesBar();
 
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
@@ -358,6 +353,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+    private void checkShowFavoritesBar(){
+        View favoritesBar = findViewById(R.id.favoritesBar);
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", true)){
+            favoritesBar.setVisibility(View.VISIBLE);
+            retrieveFavorites();
+        }else{
+            favoritesBar.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -394,6 +399,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             displayKissBar(false);
         }
+
+        //Show favorites above search field
+        checkShowFavoritesBar();
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
