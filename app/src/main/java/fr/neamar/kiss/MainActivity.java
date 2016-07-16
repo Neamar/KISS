@@ -458,7 +458,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // If no kissmenu, empty the search bar
             searchEditText.setText("");
         }
-
         checkShowFavoritesBar(false);
         // No call to super.onBackPressed, since this would quit the launcher.
     }
