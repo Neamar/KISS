@@ -669,7 +669,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         }
 
-        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", true)){
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", false)){
             favoritesKissBar.setVisibility(View.INVISIBLE);
         }else{
             favoritesKissBar.setVisibility(View.VISIBLE);
