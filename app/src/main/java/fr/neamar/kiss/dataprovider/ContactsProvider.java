@@ -2,6 +2,8 @@ package fr.neamar.kiss.dataprovider;
 
 import java.util.ArrayList;
 
+import android.database.ContentObserver;
+import android.provider.ContactsContract;
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -9,10 +11,34 @@ import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
+    
+    private ContentObserver cObserver = new ContentObserver(null) {
+
+        @Override
+        public void onChange(boolean selfChange) {
+            //reload contacts
+            reload();
+        }        
+        
+    };
 
     @Override
     public void reload() {
         this.initialize(new LoadContactsPojos(this));
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        //register content observer
+        getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+    }    
+
+    @Override
+    public void onDestroy() {        
+        super.onDestroy();
+        //deregister content observer
+        getContentResolver().unregisterContentObserver(cObserver);
     }
 
     public ArrayList<Pojo> getResults(String query) {
