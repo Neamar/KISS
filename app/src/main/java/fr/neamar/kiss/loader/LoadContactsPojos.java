@@ -113,9 +113,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     String nick = nickCursor.getString(
                             nickCursor.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME));
 
-                    if (nick != null && lookupKey != null) {
+                    if (nick != null && lookupKey != null && mapContacts.containsKey(lookupKey)) {
                         for (ContactsPojo contact : mapContacts.get(lookupKey)) {
-                            contact.nickname = nick;
+                            contact.setNickname(nick);
                         }
                     }
                 }
