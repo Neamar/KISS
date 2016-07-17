@@ -37,7 +37,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         ContactsContract.CommonDataKinds.Phone.NUMBER,
                         ContactsContract.CommonDataKinds.Phone.STARRED,
                         ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
-                        ContactsContract.Contacts.PHOTO_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
+                        ContactsContract.Contacts.PHOTO_ID,
+                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
 
         // Prevent duplicates by keeping in memory encountered phones.
         // The string key is "phone" + "|" + "name" (so if two contacts
@@ -51,10 +52,11 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                     contact.lookupKey = cur.getString(cur
                             .getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
+
                     contact.timesContacted = Integer.parseInt(cur.getString(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
-                    contact.setName(cur.getString(cur
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
+                    contact.setName(cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
+
                     contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
                     if (contact.phone == null) {
@@ -93,6 +95,33 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             cur.close();
         }
 
+        // Retrieve contacts' nicknames
+        Cursor nickCursor = context.getContentResolver().query(
+                ContactsContract.Data.CONTENT_URI,
+                new String[]{
+                        ContactsContract.CommonDataKinds.Nickname.NAME,
+                        ContactsContract.Data.LOOKUP_KEY},
+                ContactsContract.Data.MIMETYPE + "= ?",
+                new String[]{ContactsContract.CommonDataKinds.Nickname.CONTENT_ITEM_TYPE},
+                null);
+
+        if (nickCursor != null) {
+            if (nickCursor.getCount() > 0) {
+                while (nickCursor.moveToNext()) {
+                    String lookupKey = nickCursor.getString(
+                            nickCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY));
+                    String nick = nickCursor.getString(
+                            nickCursor.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME));
+
+                    if (nick != null && lookupKey != null) {
+                        for (ContactsPojo contact : mapContacts.get(lookupKey)) {
+                            contact.nickname = nick;
+                        }
+                    }
+                }
+            }
+            nickCursor.close();
+        }
 
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
 
