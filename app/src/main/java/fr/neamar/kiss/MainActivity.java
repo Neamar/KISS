@@ -354,7 +354,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private void checkShowFavoritesBar(boolean touched){
         View favoritesBar = findViewById(R.id.favoritesBar);
-        if(prefs.getBoolean("enable-favorites-bar", false) && (!prefs.getBoolean("favorites-hide", false) || touched)){
+        if(searchEditText.getText().toString().length() == 0
+                && prefs.getBoolean("enable-favorites-bar", false)
+                && (!prefs.getBoolean("favorites-hide", false) || touched)){
             favoritesBar.setVisibility(View.VISIBLE);
             retrieveFavorites();
         }else{
@@ -458,7 +460,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // If no kissmenu, empty the search bar
             searchEditText.setText("");
         }
-        checkShowFavoritesBar(false);
         // No call to super.onBackPressed, since this would quit the launcher.
     }
 
@@ -540,10 +541,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Clear text content when touching the cross button
      */
     @SuppressWarnings("UnusedParameters")
-    public void onClearButtonClicked(View clearButton) {
-        searchEditText.setText("");
-        checkShowFavoritesBar(false);
-    }
+    public void onClearButtonClicked(View clearButton) { searchEditText.setText(""); }
 
     /**
      * Display KISS menu
@@ -757,6 +755,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searcher = new QuerySearcher(this, query);
         }
         searcher.execute();
+        checkShowFavoritesBar(false);
     }
 
     public void resetTask() {
