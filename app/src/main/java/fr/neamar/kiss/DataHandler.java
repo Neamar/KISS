@@ -366,6 +366,13 @@ public class DataHandler extends BroadcastReceiver
         }
     }
 
+
+    public void removeFromExcluded(String packageName) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
+        String excluded = prefs.getString("excluded-apps-list", "");
+        prefs.edit().putString("excluded-apps-list", excluded.replaceAll(packageName + ";", "")).apply();
+    }
+
     /**
      * Return all applications
      *
