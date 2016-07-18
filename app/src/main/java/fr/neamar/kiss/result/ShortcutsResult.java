@@ -79,6 +79,11 @@ public class ShortcutsResult extends Result {
         return v;
     }
 
+    public Drawable getDrawable(Context context) {
+        return new BitmapDrawable(context.getResources(), shortcutPojo.icon);
+    }
+
+
     @Override
     protected void doLaunch(Context context, View v) {
 
@@ -95,7 +100,7 @@ public class ShortcutsResult extends Result {
     @Override
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     PopupMenu buildPopupMenu(Context context, RecordAdapter parent, View parentView) {
-        return inflatePopupMenu(R.menu.menu_item_app_uninstall, context, parentView);
+        return inflatePopupMenu(R.menu.menu_item_shortcut, context, parentView);
     }
 
     @Override
