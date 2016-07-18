@@ -15,7 +15,12 @@ Options:
                                  international phone number prefixes (for normalizing numbers)
                                  [default: ../app/src/main/res/raw/phone_number_prefixes.csv]
     -d --debug                   Debug output (instead of concatenating the final regular expression)
-    -h --help
+    -h --help                    Show this screen
+
+Remarks:
+    This script uses data from googles libphonenumber. Please download
+    PhoneNumberMetadata.xml and pass its path to the --input parameter.
+    See: https://github.com/googlei18n/libphonenumber
 """
 
 import csv

@@ -24,6 +24,7 @@ import fr.neamar.kiss.pojo.ContactsPojo;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
     private static Pattern mobileNumberPattern;
+    private static Pattern ignorePattern = Pattern.compile("[-.():/ ]");
 
     public LoadContactsPojos(Context context) {
         super(context, "contact://");
@@ -90,7 +91,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     if (contact.phone == null) {
                         contact.phone = "";
                     }
-                    contact.phoneSimplified = contact.phone.replaceAll("[-.():/ ]", "");
+                    contact.phoneSimplified = ignorePattern.matcher(contact.phone).replaceAll("");
                     contact.homeNumber = mobileNumberPattern == null ||
                             !mobileNumberPattern.matcher(contact.phoneSimplified).lookingAt();
                     contact.starred = cur.getInt(cur
