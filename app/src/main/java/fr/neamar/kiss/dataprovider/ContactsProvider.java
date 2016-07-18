@@ -1,7 +1,10 @@
 package fr.neamar.kiss.dataprovider;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
+import android.database.ContentObserver;
+import android.provider.ContactsContract;
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -9,10 +12,34 @@ import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
+    
+    private ContentObserver cObserver = new ContentObserver(null) {
+
+        @Override
+        public void onChange(boolean selfChange) {
+            //reload contacts
+            reload();
+        }        
+        
+    };
 
     @Override
     public void reload() {
         this.initialize(new LoadContactsPojos(this));
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        //register content observer
+        getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+    }    
+
+    @Override
+    public void onDestroy() {        
+        super.onDestroy();
+        //deregister content observer
+        getContentResolver().unregisterContentObserver(cObserver);
     }
 
     public ArrayList<Pojo> getResults(String query) {
@@ -32,6 +59,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         for (ContactsPojo contact : pojos) {
             relevance = 0;
             contactNameNormalized = contact.nameNormalized;
+            boolean alias = false;
 
             matchPositionStart = 0;
             matchPositionEnd = 0;
@@ -41,6 +69,14 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
                 relevance = 40;
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
+            } else if (contact.nickname.contains(query)) {
+                alias = true;
+                contact.displayName = contact.name
+                        + " <small>("
+                        + contact.nickname.replaceFirst(
+                        "(?i)(" + Pattern.quote(query) + ")", "{$1}")
+                        + ")</small>";
+                relevance = 30;
             } else if (query.length() > 2) {
                 matchPositionStart = 0;
                 matchPositionEnd = 0;
@@ -62,7 +98,8 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 if (contact.homeNumber)
                     relevance -= 1;
 
-                contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
+                if (! alias)
+                    contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 contact.relevance = relevance;
                 results.add(contact);
 
