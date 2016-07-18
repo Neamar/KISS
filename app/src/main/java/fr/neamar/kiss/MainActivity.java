@@ -403,7 +403,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
         AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
         if(appProvider != null && appProvider.isLoaded())
-            checkShowFavoritesBar(false);
+            checkShowFavoritesBar(searchEditText.getText().toString().length() > 0);
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -542,6 +542,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @SuppressWarnings("UnusedParameters")
     public void onClearButtonClicked(View clearButton) {
         searchEditText.setText("");
+        checkShowFavoritesBar(false);
     }
 
     /**
