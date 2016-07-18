@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -40,6 +42,7 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -111,7 +114,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Main list view
      */
     private ListView list;
-    private View     listContainer;
+    private View listContainer;
     /**
      * View to display when list is empty
      */
@@ -204,9 +207,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         setContentView(R.layout.main);
 
-        this.list          = (ListView) this.findViewById(android.R.id.list);
+        this.list = (ListView) this.findViewById(android.R.id.list);
         this.listContainer = (View) this.list.getParent();
-        this.listEmpty     = this.findViewById(android.R.id.empty);
+        this.listEmpty = this.findViewById(android.R.id.empty);
 
         // Create adapter for records
         this.adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
@@ -280,7 +283,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         });
 
         this.hider = new KeyboardScrollHider(this,
-                (BlockableListView)    this.list,
+                (BlockableListView) this.list,
                 (BottomPullEffectView) this.findViewById(R.id.listEdgeEffect)
         );
         this.hider.start();
@@ -495,6 +498,25 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             menuButton.showContextMenu();
     }
 
+    public void onShareButtonClicked(View shareButton) {
+        Editable editable = searchEditText.getText();
+        if (editable.length() == 0) return;
+
+        String toShare = editable.toString();
+
+        Intent shareTextIntent = new Intent(Intent.ACTION_SEND);
+        shareTextIntent.setType("text/plain");
+        shareTextIntent.putExtra(Intent.EXTRA_TEXT, toShare);
+        PackageManager pm = getPackageManager();
+        List<ResolveInfo> resolveInfoList = pm.queryIntentActivities(shareTextIntent, 0);
+        if (resolveInfoList.size() > 1) {
+            Intent chooser = Intent.createChooser(shareTextIntent, "Share with");
+            startActivity(chooser);
+        } else if (resolveInfoList.size() == 1) {
+            startActivity(shareTextIntent);
+        }
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         //if motion movement ends
@@ -549,11 +571,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private void displayClearOnInput() {
         final View clearButton = findViewById(R.id.clearButton);
+        final View shareButton = findViewById(R.id.shareButton);
         if (searchEditText.getText().length() > 0) {
             clearButton.setVisibility(View.VISIBLE);
+            shareButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
         } else {
             clearButton.setVisibility(View.INVISIBLE);
+            shareButton.setVisibility(View.INVISIBLE);
             menuButton.setVisibility(View.VISIBLE);
         }
     }
