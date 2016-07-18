@@ -17,12 +17,12 @@ import fr.neamar.kiss.R;
 
 public class PhoneNormalizer {
     static PhoneNormalizer instance;
-    private final PrefixEntry entry;
+    private final PrefixEntry prefixEntry;
     private final String countryIso;
 
     private PhoneNormalizer(Context context) {
         countryIso = determineCountryIso(context);
-        entry = loadPrefixEntry(context, countryIso);
+        prefixEntry = loadPrefixEntry(context, countryIso);
     }
 
     public static void initialize(Context context) {
@@ -34,7 +34,9 @@ public class PhoneNormalizer {
         if (phoneNumber == null) return "";
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return PhoneNumberUtils.formatNumberToE164(phoneNumber, instance.countryIso);
+            return PhoneNumberUtils.formatNumber(
+                    PhoneNumberUtils.formatNumberToE164(phoneNumber, instance.countryIso),
+                    instance.countryIso);
         } else {
             //noinspection deprecation
             return PhoneNumberUtils.formatNumber(instance.toE164(phoneNumber));
@@ -45,13 +47,13 @@ public class PhoneNormalizer {
         if (input.startsWith("+"))
             return input;
 
-        if (entry != null) {
-            if (entry.international_prefix_pattern.length() > 0 &&
-                    input.matches(entry.international_prefix_pattern)) {
-                return "+" + input.replaceFirst(entry.international_prefix_pattern, "");
+        if (prefixEntry != null) {
+            if (prefixEntry.international_prefix_pattern.length() > 0 &&
+                    input.matches(prefixEntry.international_prefix_pattern)) {
+                return "+" + input.replaceFirst(prefixEntry.international_prefix_pattern, "");
             }
-            if (entry.national_prefix.length() > 0 && input.startsWith(entry.national_prefix)) {
-                return "+" + entry.ptsn_country_code + input.substring(entry.national_prefix.length());
+            if (prefixEntry.national_prefix.length() > 0 && input.startsWith(prefixEntry.national_prefix)) {
+                return "+" + prefixEntry.ptsn_country_code + input.substring(prefixEntry.national_prefix.length());
             }
         }
 
@@ -67,11 +69,12 @@ public class PhoneNormalizer {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",", -1);
-                if (parts.length == 4 && parts[0].equals(countryIso)) {
-                    return new PrefixEntry(parts[0], parts[1], parts[2], parts[3]);
-                } else {
+                if (parts.length != 4) {
                     Log.w("PREFIX", "invalid csv record! " + line);
+                    continue;
                 }
+                if (parts[0].equals(countryIso))
+                    return new PrefixEntry(parts[0], parts[1], parts[2], parts[3]);
             }
         } catch (IOException ioex) {
             ioex.printStackTrace();
