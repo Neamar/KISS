@@ -3,6 +3,7 @@ package fr.neamar.kiss;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -11,6 +12,9 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -145,6 +149,13 @@ public class SettingsActivity extends PreferenceActivity implements
             if (provider != null) {
                 provider.reload();
             }
+        }
+
+        if (key.equalsIgnoreCase("primary-color") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor(sharedPreferences.getString("primary-color", "#4caf50")));
         }
 
         if (requireRestartSettings.contains(key)) {

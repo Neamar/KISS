@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/kiss_green"
-                android:clipToPadding="false"
-                android:elevation="2dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/kiss_green"
+    android:clipToPadding="false"
+    android:elevation="2dp">
 
     <ImageView
         android:id="@+id/whiteLauncherButton"
@@ -21,7 +21,7 @@
         android:paddingRight="4dp"
         android:paddingTop="4dp"
         android:src="@drawable/ic_launcher_white"
-        android:tag="hideMenu"/>
+        android:tag="hideMenu" />
 
     <LinearLayout
         android:id="@+id/favoritesKissBar"
@@ -40,8 +40,7 @@
             android:contentDescription="@null"
             android:onClick="onFavoriteButtonClicked"
             android:src="@drawable/ic_contact"
-            android:tag="0"
-            />
+            android:tag="0" />
 
         <ImageView
             android:id="@+id/favorite1"
@@ -51,7 +50,7 @@
             android:contentDescription="@null"
             android:onClick="onFavoriteButtonClicked"
             android:src="@drawable/ic_contact"
-            android:tag="1"/>
+            android:tag="1" />
 
         <ImageView
             android:id="@+id/favorite2"
@@ -61,7 +60,7 @@
             android:contentDescription="@null"
             android:onClick="onFavoriteButtonClicked"
             android:src="@drawable/ic_contact"
-            android:tag="2"/>
+            android:tag="2" />
 
         <ImageView
             android:id="@+id/favorite3"
@@ -71,6 +70,6 @@
             android:contentDescription="@null"
             android:onClick="onFavoriteButtonClicked"
             android:src="@drawable/ic_contact"
-            android:tag="3"/>
+            android:tag="3" />
     </LinearLayout>
 </RelativeLayout>

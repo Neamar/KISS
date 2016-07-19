@@ -12,6 +12,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +31,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -161,7 +164,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 setTheme(R.style.AppThemeTransparentDark);
                 break;
         }
-
 
         super.onCreate(savedInstanceState);
 
@@ -340,6 +342,25 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
             for (int id : tweakableIds) {
                 findViewById(id).setBackgroundResource(outValue.resourceId);
+            }
+
+            // Apply color tweaks
+            String primaryColorOverride = prefs.getString("primary-color", "");
+            if(primaryColorOverride.length() > 0) {
+                int mainColor = Color.parseColor(primaryColorOverride);
+                Window window = getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+                // Update status bar color
+                window.setStatusBarColor(mainColor);
+
+                // Launcher button should have the main color
+                ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+                launcherButton.setColorFilter(mainColor);
+
+                // Kissbar background
+                findViewById(R.id.main_kissbar).setBackgroundColor(mainColor);
             }
 
         } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
