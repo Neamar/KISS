@@ -125,6 +125,10 @@ public abstract class Result {
                 launchAddToFavorites(context, pojo);
                 break;
         }
+
+        //Update Search to reflect favorite add, if the "exclude favorites" option is active
+        ((MainActivity) context).updateRecords();
+
         return false;
     }
 

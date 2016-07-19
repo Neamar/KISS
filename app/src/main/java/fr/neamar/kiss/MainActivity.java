@@ -45,6 +45,7 @@ import java.util.regex.Pattern;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -68,12 +69,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * IDs for the favorites buttons
      */
     private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
+    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3};
 
     /**
      * Number of favorites to retrieve.
      * We need to pad this number to account for removed items still in history
      */
-    private final int tryToRetrieve = favsIds.length + 2;
+    public final int tryToRetrieve = favsIds.length + 2;
     /**
      * InputType with spellcheck and swiping
      */
@@ -175,6 +177,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
 
+                    checkShowFavoritesBar(false);
                     displayLoader(false);
 
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
@@ -349,6 +352,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+    private void checkShowFavoritesBar(boolean touched){
+        View favoritesBar = findViewById(R.id.favoritesBar);
+        if(searchEditText.getText().toString().length() == 0
+                && prefs.getBoolean("enable-favorites-bar", false)
+                && (!prefs.getBoolean("favorites-hide", false) || touched)){
+            favoritesBar.setVisibility(View.VISIBLE);
+            retrieveFavorites();
+        }else{
+            favoritesBar.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -385,6 +400,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             displayKissBar(false);
         }
+
+        //Show favorites above search field ONLY if AppProvider is already loaded
+        //Otherwise this will get triggered by the broadcastreceiver in the onCreate
+        AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
+        if(appProvider != null && appProvider.isLoaded())
+            checkShowFavoritesBar(searchEditText.getText().toString().length() > 0);
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -439,7 +460,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // If no kissmenu, empty the search bar
             searchEditText.setText("");
         }
-
         // No call to super.onBackPressed, since this would quit the launcher.
     }
 
@@ -510,6 +530,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     }
                 }
             }
+            if(prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)){
+                checkShowFavoritesBar(true);
+            }
         }
         return super.dispatchTouchEvent(event);
     }
@@ -518,9 +541,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Clear text content when touching the cross button
      */
     @SuppressWarnings("UnusedParameters")
-    public void onClearButtonClicked(View clearButton) {
-        searchEditText.setText("");
-    }
+    public void onClearButtonClicked(View clearButton) { searchEditText.setText(""); }
 
     /**
      * Display KISS menu
@@ -597,6 +618,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private void displayKissBar(Boolean display) {
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+        final View favoritesKissBar = findViewById(R.id.favoritesKissBar);
 
         // get the center for the clipping circle
         int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
@@ -650,6 +672,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 showKeyboard();
             }
         }
+
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", false)){
+            favoritesKissBar.setVisibility(View.INVISIBLE);
+        }else{
+            favoritesKissBar.setVisibility(View.VISIBLE);
+        }
     }
 
     public void retrieveFavorites() {
@@ -670,19 +698,31 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         for (int i = 0; i < Math.min(favsIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
             ImageView image = (ImageView) findViewById(favsIds[i]);
+            ImageView imageFavBar = (ImageView) findViewById(favBarIds[i]);
 
             Result result = Result.fromPojo(MainActivity.this, pojo);
             Drawable drawable = result.getDrawable(MainActivity.this);
-            if (drawable != null)
+            if (drawable != null){
                 image.setImageDrawable(drawable);
+                imageFavBar.setImageDrawable(drawable);
+            }
+
             image.setVisibility(View.VISIBLE);
             image.setContentDescription(pojo.displayName);
+
+            imageFavBar.setVisibility(View.VISIBLE);
+            imageFavBar.setContentDescription(pojo.displayName);
         }
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
             findViewById(favsIds[i]).setVisibility(View.GONE);
+            findViewById(favBarIds[i]).setVisibility(View.GONE);
         }
+    }
+
+    public void updateRecords(){
+        updateRecords(searchEditText.getText().toString());
     }
 
     /**
@@ -691,7 +731,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      *
      * @param query the query on which to search
      */
-
     private void updateRecords(String query) {
         if (searcher != null) {
             searcher.cancel(true);
@@ -716,6 +755,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searcher = new QuerySearcher(this, query);
         }
         searcher.execute();
+        checkShowFavoritesBar(false);
     }
 
     public void resetTask() {
