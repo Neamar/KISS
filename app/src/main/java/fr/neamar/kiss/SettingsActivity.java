@@ -1,10 +1,5 @@
 package fr.neamar.kiss;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,8 +9,14 @@ import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
@@ -77,7 +78,7 @@ public class SettingsActivity extends PreferenceActivity implements
             multiPreference.setTitle(R.string.ui_excluded_apps);
             multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
             multiPreference.setKey("excluded_apps_ui");
-            PreferenceCategory category = (PreferenceCategory) findPreference("history_category");
+            PreferenceScreen category = (PreferenceScreen) findPreference("history_category");
             category.addPreference(multiPreference);
 
             loadExcludedAppsToPreference(multiPreference);
@@ -119,7 +120,7 @@ public class SettingsActivity extends PreferenceActivity implements
             multiPreference.setEntries(searchProviders);
             multiPreference.setEntryValues(searchProviders);
             multiPreference.setDefaultValue(new HashSet<>(Collections.singletonList("Google")));
-            PreferenceCategory category = (PreferenceCategory) findPreference("user_interface_category");
+            PreferenceScreen category = (PreferenceScreen) findPreference("providers");
             category.addPreference(multiPreference);
         }
     }

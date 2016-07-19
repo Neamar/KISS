@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="Settings">
-    <PreferenceCategory android:key="history_category" android:title="@string/title_history">
+    <PreferenceScreen android:key="history_category" android:title="@string/title_history">
         <fr.neamar.kiss.preference.ResetPreference
             android:dialogMessage="@string/reset_warn"
             android:key="reset"
@@ -24,18 +24,14 @@
             android:title="@string/enable_app" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="enable-favorites-bar"
-            android:title="@string/enable_favorites_bar" />
-        <CheckBoxPreference
-            android:defaultValue="false"
             android:key="exclude-favorites"
             android:title="@string/exclude_favorites" />
         <fr.neamar.kiss.preference.ResetExcludedAppsPreference
             android:dialogMessage="@string/reset_excluded_apps_warn"
             android:key="reset-excluded-apps"
             android:title="@string/reset_excluded_apps_name" />
-    </PreferenceCategory>
-    <PreferenceCategory android:key="user_interface_category" android:title="@string/title_ui">
+    </PreferenceScreen>
+    <PreferenceScreen android:key="user_interface_category" android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
@@ -76,6 +72,10 @@
             android:dependency="history-hide"
             android:title="@string/favorites_hide" />
         <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="enable-favorites-bar"
+            android:title="@string/enable_favorites_bar" />
+        <CheckBoxPreference
             android:defaultValue="true"
             android:key="force-portrait"
             android:title="@string/portrait_title" />
@@ -84,8 +84,8 @@
             android:key="icons-hide"
             android:summary="@string/icons_hide_desc"
             android:title="@string/icons_hide_main" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_providers">
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/title_providers" android:key="providers">
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-contacts"
@@ -114,8 +114,8 @@
             android:defaultValue="true"
             android:key="enable-shortcuts"
             android:title="@string/shortcuts_name" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_advanced">
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/title_advanced">
         <ListPreference
             android:defaultValue="recency"
             android:entries="@array/historyModeEntries"
@@ -137,5 +137,5 @@
             android:key="restart"
             android:summary="@string/restart_desc"
             android:title="@string/restart_name" />
-    </PreferenceCategory>
+    </PreferenceScreen>
 </PreferenceScreen>
