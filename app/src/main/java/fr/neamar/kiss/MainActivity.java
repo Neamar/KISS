@@ -355,12 +355,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 // Update status bar color
                 window.setStatusBarColor(mainColor);
 
-                // Launcher button should have the main color
-                ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
-                launcherButton.setColorFilter(mainColor);
+                // Don't do anything else for white and transparent
+                if(!primaryColorOverride.equals("#FFFFFF") && !primaryColorOverride.equals("#00000000")) {
+                    // Launcher button should have the main color
+                    ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+                    launcherButton.setColorFilter(mainColor);
 
-                // Kissbar background
-                findViewById(R.id.main_kissbar).setBackgroundColor(mainColor);
+                    // Kissbar background
+                    findViewById(R.id.main_kissbar).setBackgroundColor(mainColor);
+                }
+
             }
 
         } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
