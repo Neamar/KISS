@@ -9,8 +9,8 @@ import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -78,7 +78,7 @@ public class SettingsActivity extends PreferenceActivity implements
             multiPreference.setTitle(R.string.ui_excluded_apps);
             multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
             multiPreference.setKey("excluded_apps_ui");
-            PreferenceScreen category = (PreferenceScreen) findPreference("history_category");
+            PreferenceGroup category = (PreferenceGroup) findPreference("history_category");
             category.addPreference(multiPreference);
 
             loadExcludedAppsToPreference(multiPreference);
@@ -120,7 +120,7 @@ public class SettingsActivity extends PreferenceActivity implements
             multiPreference.setEntries(searchProviders);
             multiPreference.setEntryValues(searchProviders);
             multiPreference.setDefaultValue(new HashSet<>(Collections.singletonList("Google")));
-            PreferenceScreen category = (PreferenceScreen) findPreference("providers");
+            PreferenceGroup category = (PreferenceGroup) findPreference("providers");
             category.addPreference(multiPreference);
         }
     }

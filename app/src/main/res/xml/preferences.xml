@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="Settings">
-    <PreferenceScreen android:key="history_category" android:title="@string/title_history">
+    <PreferenceCategory android:key="history_category" android:title="@string/title_history">
         <fr.neamar.kiss.preference.ResetPreference
             android:dialogMessage="@string/reset_warn"
             android:key="reset"
@@ -30,8 +30,8 @@
             android:dialogMessage="@string/reset_excluded_apps_warn"
             android:key="reset-excluded-apps"
             android:title="@string/reset_excluded_apps_name" />
-    </PreferenceScreen>
-    <PreferenceScreen android:key="user_interface_category" android:title="@string/title_ui">
+    </PreferenceCategory>
+    <PreferenceCategory android:key="user_interface_category" android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
@@ -84,8 +84,8 @@
             android:key="icons-hide"
             android:summary="@string/icons_hide_desc"
             android:title="@string/icons_hide_main" />
-    </PreferenceScreen>
-    <PreferenceScreen android:title="@string/title_providers" android:key="providers">
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_providers" android:key="providers">
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-contacts"
@@ -114,8 +114,8 @@
             android:defaultValue="true"
             android:key="enable-shortcuts"
             android:title="@string/shortcuts_name" />
-    </PreferenceScreen>
-    <PreferenceScreen android:title="@string/title_advanced">
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/title_advanced">
         <ListPreference
             android:defaultValue="recency"
             android:entries="@array/historyModeEntries"
@@ -137,5 +137,5 @@
             android:key="restart"
             android:summary="@string/restart_desc"
             android:title="@string/restart_name" />
-    </PreferenceScreen>
+    </PreferenceCategory>
 </PreferenceScreen>
