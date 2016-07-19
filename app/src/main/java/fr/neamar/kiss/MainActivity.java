@@ -658,7 +658,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         if (favoritesPojo.size() == 0) {
             int noFavCnt = prefs.getInt("no-favorites-tip", 0);
-            if (noFavCnt < 3) {
+            if (noFavCnt < 3 && !prefs.getBoolean("enable-favorites-bar", false)) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
                 prefs.edit().putInt("no-favorites-tip", ++noFavCnt).commit();
