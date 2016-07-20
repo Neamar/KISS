@@ -292,9 +292,10 @@ public class DataHandler extends BroadcastReceiver
      * @param context   android context
      * @param itemCount max number of items to retrieve, total number may be less (search or calls are not returned for instance)
      * @param smartHistory Recency vs Frecency
+     * @param itemsToExclude Items to exclude from history
      * @return pojos in recent history
      */
-    public ArrayList<Pojo> getHistory(Context context, int itemCount, boolean smartHistory) {
+    public ArrayList<Pojo> getHistory(Context context, int itemCount, boolean smartHistory, ArrayList<Pojo> itemsToExclude) {
         ArrayList<Pojo> history = new ArrayList<>(itemCount);
 
         // Read history
@@ -305,7 +306,18 @@ public class DataHandler extends BroadcastReceiver
             // Ask all providers if they know this id
             Pojo pojo = getPojo(ids.get(i).record);
             if (pojo != null) {
-                history.add(pojo);
+                //Look if the pojo should get excluded
+                boolean exclude = false;
+                for(int j = 0; j < itemsToExclude.size(); j++){
+                    if(itemsToExclude.get(j).id == pojo.id) {
+                        exclude = true;
+                        break;
+                    }
+                }
+
+                if(!exclude){
+                    history.add(pojo);
+                }
             }
         }
 
