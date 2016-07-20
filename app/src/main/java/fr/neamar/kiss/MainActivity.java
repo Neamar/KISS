@@ -325,8 +325,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private void applyDesignTweaks() {
         final int[] tweakableIds = new int[]{
                 R.id.menuButton,
-                // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
+                // Barely visible on the clearbutton & sharebutton, since they disappear instant.
+                // Can be seen on long click though
                 R.id.clearButton,
+                R.id.shareButton,
                 R.id.launcherButton,
                 R.id.favorite0,
                 R.id.favorite1,
