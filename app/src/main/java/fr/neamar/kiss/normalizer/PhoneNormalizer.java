@@ -34,9 +34,13 @@ public class PhoneNormalizer {
         if (phoneNumber == null) return "";
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return PhoneNumberUtils.formatNumber(
-                    PhoneNumberUtils.formatNumberToE164(phoneNumber, instance.countryIso),
-                    instance.countryIso);
+            String e164 = PhoneNumberUtils.formatNumberToE164(phoneNumber, instance.countryIso);
+            if (e164 == null) {
+                Log.w("E164", "formatNumberToE164 returned (null) for \"" + phoneNumber + "\"");
+                return phoneNumber;
+            }
+
+            return PhoneNumberUtils.formatNumber(e164, instance.countryIso);
         } else {
             //noinspection deprecation
             return PhoneNumberUtils.formatNumber(instance.toE164(phoneNumber));
@@ -44,8 +48,7 @@ public class PhoneNormalizer {
     }
 
     private String toE164(String input) {
-        if (input.startsWith("+"))
-            return input;
+        if (input.startsWith("+")) return input;
 
         if (prefixEntry != null) {
             if (prefixEntry.international_prefix_pattern.length() > 0 &&
