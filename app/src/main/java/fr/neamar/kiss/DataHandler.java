@@ -13,7 +13,6 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,7 +39,7 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "alias", "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
+            "alias", "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles", "math"
     );
 
     final private Context context;
@@ -277,6 +276,8 @@ public class DataHandler extends BroadcastReceiver
             }
         }
 
+        //TODO intelligent search order, eg. results order based on time, location, network state, ...
+        //TODO input: ValuedHistoryRecords and the query out: set the pojo relevance
         // Sort records according to relevance
         Collections.sort(allPojos, new PojoComparator());
 
