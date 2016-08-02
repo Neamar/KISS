@@ -1,6 +1,11 @@
 package fr.neamar.kiss;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class KissApplication {
     /**
@@ -63,4 +68,15 @@ public class KissApplication {
         iconsPackHandler = new IconsHandler(ctx);
     }
 
+    public static void applyColorOverride(Activity activity, SharedPreferences prefs) {
+        String primaryColorOverride = prefs.getString("primary-color", "");
+        if(primaryColorOverride.length() > 0) {
+            int mainColor = Color.parseColor(primaryColorOverride);
+            Window window = activity.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+            // Update status bar color
+            window.setStatusBarColor(mainColor);
+    }
 }
