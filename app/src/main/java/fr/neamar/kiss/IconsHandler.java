@@ -26,10 +26,10 @@ import org.xmlpull.v1.XmlPullParser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -38,6 +38,7 @@ import java.util.Random;
 
 public class IconsHandler {
 
+    private static final String TAG = "IconsHandler";
     // map with available icons packs
     private HashMap<String, String> iconsPacks = new HashMap<>();
     // map with available drawable for an icons pack
@@ -54,11 +55,8 @@ public class IconsHandler {
     private Bitmap frontImage = null;
     // scale factor of an icons pack
     private float factor = 1.0f;
-
     private PackageManager pm;
     private Context ctx;
-
-    private static final String TAG = "IconsHandler";
 
     public IconsHandler(Context ctx) {
         super();

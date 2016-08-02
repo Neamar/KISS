@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="Settings">
-    <PreferenceCategory android:key="history_category" android:title="@string/title_history">
+    <PreferenceCategory
+        android:key="history_category"
+        android:title="@string/title_history">
         <fr.neamar.kiss.preference.ResetPreference
             android:dialogMessage="@string/reset_warn"
             android:key="reset"
@@ -35,7 +37,9 @@
             android:key="reset-excluded-apps"
             android:title="@string/reset_excluded_apps_name" />
     </PreferenceCategory>
-    <PreferenceCategory android:key="user_interface_category" android:title="@string/title_ui">
+    <PreferenceCategory
+        android:key="user_interface_category"
+        android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
@@ -45,7 +49,7 @@
         <ListPreference
             android:defaultValue="default"
             android:key="icons-pack"
-            android:title="@string/icons_pack_name"/>
+            android:title="@string/icons_pack_name" />
         <ListPreference
             android:defaultValue="invertedAlphabetical"
             android:entries="@array/sortAppListEntries"
@@ -67,13 +71,13 @@
             android:title="@string/history_hide_name" />
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="false"
-            android:key="history-onclick"
             android:dependency="history-hide"
+            android:key="history-onclick"
             android:title="@string/history_onclick_name" />
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="false"
-            android:key="favorites-hide"
             android:dependency="history-hide"
+            android:key="favorites-hide"
             android:title="@string/favorites_hide" />
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="true"

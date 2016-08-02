@@ -50,15 +50,15 @@ public class KissApplication {
             dataHandler = new DataHandler(ctx);
         }
     }
-    
+
     public static IconsHandler getIconsHandler(Context ctx) {
         if (iconsPackHandler == null) {
             iconsPackHandler = new IconsHandler(ctx);
-        }    
-        
+        }
+
         return iconsPackHandler;
     }
-    
+
     public static void resetIconsHandler(Context ctx) {
         iconsPackHandler = new IconsHandler(ctx);
     }

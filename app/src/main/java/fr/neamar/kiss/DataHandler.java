@@ -13,7 +13,6 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -49,12 +48,6 @@ public class DataHandler extends BroadcastReceiver
     private Map<String, ProviderEntry> providers = new HashMap<>();
     private boolean providersReady = false;
 
-    protected class ProviderEntry {
-        public IProvider         provider   = null;
-        public ServiceConnection connection = null;
-    }
-
-
     /**
      * Initialize all providers
      */
@@ -75,8 +68,8 @@ public class DataHandler extends BroadcastReceiver
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         // Connect to initial providers
-        for(String providerName : PROVIDER_NAMES) {
-            if(prefs.getBoolean("enable-" + providerName, true)) {
+        for (String providerName : PROVIDER_NAMES) {
+            if (prefs.getBoolean("enable-" + providerName, true)) {
                 this.connectToProvider(providerName);
             }
         }
@@ -84,10 +77,10 @@ public class DataHandler extends BroadcastReceiver
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if(key.startsWith("enable-")) {
+        if (key.startsWith("enable-")) {
             String providerName = key.substring(7);
-            if(PROVIDER_NAMES.contains(providerName)) {
-                if(sharedPreferences.getBoolean(key, true)) {
+            if (PROVIDER_NAMES.contains(providerName)) {
+                if (sharedPreferences.getBoolean(key, true)) {
                     this.connectToProvider(providerName);
                 } else {
                     this.disconnectFromProvider(providerName);
@@ -126,13 +119,13 @@ public class DataHandler extends BroadcastReceiver
      */
     protected void connectToProvider(final String name) {
         // Do not continue if this provider has already been connected to
-        if(this.providers.containsKey(name)) {
+        if (this.providers.containsKey(name)) {
             return;
         }
 
         // Find provider class for the given service name
         Intent intent = this.providerName2Intent(name);
-        if(intent == null) {
+        if (intent == null) {
             return;
         }
 
@@ -176,7 +169,7 @@ public class DataHandler extends BroadcastReceiver
     protected void disconnectFromProvider(String name) {
         // Skip already disconnected services
         ProviderEntry entry = this.providers.get(name);
-        if(entry == null) {
+        if (entry == null) {
             return;
         }
 
@@ -190,19 +183,18 @@ public class DataHandler extends BroadcastReceiver
         this.providers.remove(name);
     }
 
-
     /**
      * Called when some event occurred that makes us believe that all data providers
      * might be ready now
      */
     private void handleProviderLoaded() {
-        if(this.providersReady) {
+        if (this.providersReady) {
             return;
         }
 
         // Make sure that all providers are fully connected
         for (ProviderEntry entry : this.providers.values()) {
-            if(entry.provider == null || !entry.provider.isLoaded()) {
+            if (entry.provider == null || !entry.provider.isLoaded()) {
                 return;
             }
         }
@@ -219,24 +211,21 @@ public class DataHandler extends BroadcastReceiver
         this.providersReady = true;
     }
 
-
     @Override
     public void onReceive(Context context, Intent intent) {
         this.handleProviderLoaded();
     }
 
-
     /**
      * Reload all currently used data providers
      */
     public void reloadAll() {
-        for(ProviderEntry entry : this.providers.values()) {
-            if(entry.provider != null && entry.provider.isLoaded()) {
+        for (ProviderEntry entry : this.providers.values()) {
+            if (entry.provider != null && entry.provider.isLoaded()) {
                 entry.provider.reload();
             }
         }
     }
-
 
     /**
      * Get records for this query.
@@ -262,10 +251,10 @@ public class DataHandler extends BroadcastReceiver
         ArrayList<Pojo> allPojos = new ArrayList<>();
 
         for (ProviderEntry entry : this.providers.values()) {
-            if(entry.provider != null) {
+            if (entry.provider != null) {
                 // Retrieve results for query:
                 List<Pojo> pojos = entry.provider.getResults(query);
-    
+
                 // Add results to list
                 for (Pojo pojo : pojos) {
                     // Give a boost if item was previously selected for this query
@@ -289,9 +278,9 @@ public class DataHandler extends BroadcastReceiver
      * May return an empty set if the providers are not done building records,
      * in this case it is probably a good idea to call this function 500ms after
      *
-     * @param context   android context
-     * @param itemCount max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @param smartHistory Recency vs Frecency
+     * @param context        android context
+     * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
+     * @param smartHistory   Recency vs Frecency
      * @param itemsToExclude Items to exclude from history
      * @return pojos in recent history
      */
@@ -308,14 +297,14 @@ public class DataHandler extends BroadcastReceiver
             if (pojo != null) {
                 //Look if the pojo should get excluded
                 boolean exclude = false;
-                for(int j = 0; j < itemsToExclude.size(); j++){
-                    if(itemsToExclude.get(j).id == pojo.id) {
+                for (int j = 0; j < itemsToExclude.size(); j++) {
+                    if (itemsToExclude.get(j).id == pojo.id) {
                         exclude = true;
                         break;
                     }
                 }
 
-                if(!exclude){
+                if (!exclude) {
                     history.add(pojo);
                 }
             }
@@ -327,33 +316,33 @@ public class DataHandler extends BroadcastReceiver
     public int getHistoryLength() {
         return DBHelper.getHistoryLength(this.context);
     }
-    
+
     public void addShortcut(ShortcutsPojo shortcut) {
         ShortcutRecord record = new ShortcutRecord();
         record.name = shortcut.name;
         record.iconResource = shortcut.resourceName;
         record.packageName = shortcut.packageName;
         record.intentUri = shortcut.intentUri;
-        
-        if (shortcut.icon != null) {            
-               ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
-               shortcut.icon.compress(CompressFormat.PNG,100,baos);               
-               record.icon_blob = baos.toByteArray();            
-        }        
-        
+
+        if (shortcut.icon != null) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            shortcut.icon.compress(CompressFormat.PNG, 100, baos);
+            record.icon_blob = baos.toByteArray();
+        }
+
         DBHelper.insertShortcut(this.context, record);
 
-        if(this.getShortcutsProvider() != null) {
+        if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
 
         Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
     }
-    
+
     public void removeShortcut(ShortcutsPojo shortcut) {
         DBHelper.removeShortcut(this.context, shortcut.name);
 
-        if(this.getShortcutsProvider() != null) {
+        if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
     }
@@ -361,11 +350,10 @@ public class DataHandler extends BroadcastReceiver
     public void removeShortcuts(String packageName) {
         DBHelper.removeShortcuts(this.context, packageName);
 
-        if(this.getShortcutsProvider() != null) {
+        if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
     }
-
 
     public void removeFromExcluded(String packageName) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
@@ -386,7 +374,7 @@ public class DataHandler extends BroadcastReceiver
         ProviderEntry entry = this.providers.get("contacts");
         return (entry != null) ? ((ContactsProvider) entry.provider) : null;
     }
-    
+
     public ShortcutsProvider getShortcutsProvider() {
         ProviderEntry entry = this.providers.get("shortcuts");
         return (entry != null) ? ((ShortcutsProvider) entry.provider) : null;
@@ -484,10 +472,15 @@ public class DataHandler extends BroadcastReceiver
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps.replace(pojo.id+";", "")).commit();
+                .putString("favorite-apps-list", favApps.replace(pojo.id + ";", "")).commit();
 
-        ((MainActivity)context).retrieveFavorites();
+        ((MainActivity) context).retrieveFavorites();
 
+    }
+
+    protected class ProviderEntry {
+        public IProvider provider = null;
+        public ServiceConnection connection = null;
     }
 
 }
