@@ -43,7 +43,8 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     }
 
     public ArrayList<Pojo> getResults(String query) {
-        query = StringNormalizer.normalize(query);
+        return AppProvider.fuzzySearch(query, pojos);
+        /*
         ArrayList<Pojo> results = new ArrayList<>();
 
         // Search people with composed names, e.g "jean-marie"
@@ -115,7 +116,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             }
         }
 
-        return results;
+        return results;*/
     }
 
     public Pojo findById(String id) {

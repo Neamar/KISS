@@ -1,7 +1,9 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.util.Log;
 import android.util.Pair;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -15,7 +17,7 @@ public class AppProvider extends Provider<AppPojo> {
         this.initialize(new LoadAppPojos(this));
     }
 
-    public ArrayList<Pojo> getResults(String query) {
+    protected static ArrayList<Pojo> fuzzySearch(String query, List<? extends Pojo> pojos) {
         query = StringNormalizer.normalize(query);
         ArrayList<Pojo> records = new ArrayList<>();
 
@@ -40,7 +42,8 @@ public class AppProvider extends Provider<AppPojo> {
 
             boolean match = false;
             int inputLength = pojo.nameNormalized.length();
-            while (normalizedAppPos < inputLength) {
+            int nInputLength = pojo.name.length();
+            while (normalizedAppPos < inputLength && appPos < nInputLength ) {
                 int cApp = pojo.nameNormalized.codePointAt(normalizedAppPos);
                 if (queryPos < query.length() && query.codePointAt(queryPos) == cApp) {
                     // If we aren't already matching something, let's save the beginning of the match
@@ -100,6 +103,10 @@ public class AppProvider extends Provider<AppPojo> {
         }
 
         return records;
+    }
+
+    public ArrayList<Pojo> getResults(String query) {
+        return fuzzySearch(query, pojos);
     }
 
     /**
