@@ -9,7 +9,13 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
 
 public class FuzzySearch {
+    public interface CallBack {
+        Pojo notRelevant(String query, Pojo pojo);
+    }
     protected static ArrayList<Pojo> fuzzySearch(String query, List<? extends Pojo> pojos) {
+        return  fuzzySearch(query, pojos, null);
+    }
+    protected static ArrayList<Pojo> fuzzySearch(String query, List<? extends Pojo> pojos, CallBack cb) {
         query = StringNormalizer.normalize(query);
         ArrayList<Pojo> records = new ArrayList<>();
 
@@ -24,6 +30,7 @@ public class FuzzySearch {
 
         for (Pojo pojo : pojos) {
             relevance = 0;
+            pojo.relevance = 0;
             queryPos = 0;
             normalizedAppPos = 0;
             appPos = pojo.mapPosition(normalizedAppPos);
@@ -87,9 +94,14 @@ public class FuzzySearch {
                 relevance *= (0.2 + 0.8 * (1.0 / matchPositions.size()));
             }
 
-            if (relevance > 0) {
-                pojo.setDisplayNameHighlightRegion(matchPositions);
-                pojo.relevance = relevance;
+            /*if (relevance <= 0 && cb != null ) {
+                pojo = cb.notRelevant(query, pojo);
+            }*/
+
+            if (relevance > 0 || pojo.relevance > 0) {
+                if (relevance > 0)
+                    pojo.setDisplayNameHighlightRegion(matchPositions);
+                pojo.relevance = Math.max(relevance, pojo.relevance);
                 records.add(pojo);
             }
         }
