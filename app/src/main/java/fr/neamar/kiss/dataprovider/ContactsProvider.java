@@ -3,8 +3,12 @@ package fr.neamar.kiss.dataprovider;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import android.content.SharedPreferences;
 import android.database.ContentObserver;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.util.Log;
+
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -43,8 +47,12 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     }
 
     public ArrayList<Pojo> getResults(String query) {
-        return AppProvider.fuzzySearch(query, pojos);
-        /*
+        boolean fuzzy = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("contacts-fuzzy", false);
+        if (fuzzy) {
+            Log.d("gR", "fuzzy");
+            return AppProvider.fuzzySearch(query, pojos);
+        }
+        Log.d("gR", "!fuzzy");
         ArrayList<Pojo> results = new ArrayList<>();
 
         // Search people with composed names, e.g "jean-marie"
@@ -116,7 +124,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             }
         }
 
-        return results;*/
+        return results;
     }
 
     public Pojo findById(String id) {
