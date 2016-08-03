@@ -47,12 +47,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     }
 
     public ArrayList<Pojo> getResults(String query) {
-        boolean fuzzy = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("contacts-fuzzy", false);
+        boolean fuzzy = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                .getBoolean("contacts-fuzzy", false);
         if (fuzzy) {
-            Log.d("gR", "fuzzy");
-            return AppProvider.fuzzySearch(query, pojos);
+            return FuzzySearch.fuzzySearch(query, pojos);
         }
-        Log.d("gR", "!fuzzy");
         ArrayList<Pojo> results = new ArrayList<>();
 
         // Search people with composed names, e.g "jean-marie"
