@@ -94,9 +94,9 @@ public class FuzzySearch {
                 relevance *= (0.2 + 0.8 * (1.0 / matchPositions.size()));
             }
 
-            /*if (relevance <= 0 && cb != null ) {
+            if (relevance <= 0 && cb != null ) {
                 pojo = cb.notRelevant(query, pojo);
-            }*/
+            }
 
             if (relevance > 0 || pojo.relevance > 0) {
                 if (relevance > 0)
