@@ -3,15 +3,12 @@ package fr.neamar.kiss.dataprovider;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
-import android.util.Log;
 
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -50,9 +47,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         @Override
         public Pojo notRelevant(String query, Pojo pojo) {
             ContactsPojo contact = (ContactsPojo) pojo;
-            boolean alias = false;
             if (contact.nickname.contains(query)) {
-                alias = true;
                 contact.displayName = contact.name
                         + " <small>("
                         + contact.nickname.replaceFirst(
@@ -96,11 +91,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
             matchPositionStart = 0;
             matchPositionEnd = 0;
-            if (!fuzzy && contactNameNormalized.startsWith(query)) {
+            if (contactNameNormalized.startsWith(query)) {
                 contact.relevance = 50;
                 matchPositionEnd = matchPositionStart + query.length();
-            } else if (!fuzzy &&
-                    (matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
+            } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
                 contact.relevance = 40;
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
             } else {

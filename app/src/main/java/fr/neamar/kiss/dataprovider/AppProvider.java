@@ -1,12 +1,9 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.util.Log;
-import android.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
