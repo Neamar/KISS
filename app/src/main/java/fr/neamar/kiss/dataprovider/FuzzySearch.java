@@ -9,6 +9,13 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
 
 public class FuzzySearch {
+
+    /**
+     * Classes implementing this interface may be passed as optional parameter of fuzzySearch.
+     * The only method in the interface is "notRelevant" and it's called avery time fuzzySearch
+     * assigns 0 relevance to a Pojo. This allows to assign relevance in different ways, e.g.
+     * nicknames, that are not a part of fuzzySearch.
+     */
     public interface CallBack {
         Pojo notRelevant(String query, Pojo pojo);
     }

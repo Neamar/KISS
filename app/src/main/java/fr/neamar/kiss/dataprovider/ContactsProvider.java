@@ -87,7 +87,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         for (ContactsPojo contact : pojos) {
             contact.relevance = 0;
             contactNameNormalized = contact.nameNormalized;
-            boolean alias = false;
+            boolean isAlreadyHighlighted = false; // for nicknames and phones
 
             matchPositionStart = 0;
             matchPositionEnd = 0;
@@ -99,7 +99,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
             } else {
                 contact = (ContactsPojo) cb.notRelevant(query, contact);
-                alias = true;
+                isAlreadyHighlighted = true;
             }
 
             if (contact.relevance > 0) {
@@ -113,7 +113,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 if (contact.homeNumber)
                     contact.relevance -= 1;
 
-                if (! alias)
+                if (! isAlreadyHighlighted)
                     contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 results.add(contact);
 
