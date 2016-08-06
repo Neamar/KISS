@@ -40,6 +40,8 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <!-- To autorotation toggle -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- To read docs -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -160,6 +162,7 @@
         <service android:name=".dataprovider.AliasProvider" />
         <service android:name=".dataprovider.AppProvider" />
         <service android:name=".dataprovider.ContactsProvider" />
+        <service android:name=".dataprovider.DocsProvider" />
         <service android:name=".dataprovider.PhoneProvider" />
         <service android:name=".dataprovider.SearchProvider" />
         <service android:name=".dataprovider.SettingsProvider" />

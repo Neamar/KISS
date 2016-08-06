@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.TogglesPojo;
 import fr.neamar.kiss.toggles.TogglesHandler;
@@ -121,7 +123,7 @@ public class TogglesResult extends Result {
             togglesHandler.setState(togglePojo, !togglesHandler.getState(togglePojo));
 
             //show toast to inform user what the state is
-            Toast.makeText(context, String.format(msg, " " + this.pojo.displayName), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, String.format(msg + " " + this.pojo.displayName, Locale.getDefault()), Toast.LENGTH_SHORT).show();
 
         }
         else {
