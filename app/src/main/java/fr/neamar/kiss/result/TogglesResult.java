@@ -48,7 +48,7 @@ public class TogglesResult extends Result {
         ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
         toggleIcon.setImageDrawable(context.getResources().getDrawable(togglePojo.icon));
         toggleIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
-        
+
         // Use the handler to check or un-check button
         final CompoundButton toggleButton = (CompoundButton) v
                 .findViewById(R.id.item_toggle_action_toggle);

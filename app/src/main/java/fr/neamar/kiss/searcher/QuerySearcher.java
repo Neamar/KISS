@@ -1,6 +1,5 @@
 package fr.neamar.kiss.searcher;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
