@@ -44,13 +44,8 @@ public class DocsResult extends Result {
 
     @Override
     public void doLaunch(Context context, View v) {
-        if (v == null) {
-
-            //show toast to inform user what the state is
-            Toast.makeText(context, ("MSG: " + this.pojo.displayName), Toast.LENGTH_SHORT).show();
-
-        } else {
-            Toast.makeText(context, "Uh-oh something went wrong!!" + this.pojo.displayName, Toast.LENGTH_SHORT).show();
+        if (v != null) {
+            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
 
         }
     }

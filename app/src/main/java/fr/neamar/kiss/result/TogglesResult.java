@@ -13,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
-
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.TogglesPojo;
 import fr.neamar.kiss.toggles.TogglesHandler;
@@ -50,7 +48,7 @@ public class TogglesResult extends Result {
         ImageView toggleIcon = (ImageView) v.findViewById(R.id.item_toggle_icon);
         toggleIcon.setImageDrawable(context.getResources().getDrawable(togglePojo.icon));
         toggleIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
-        
+
         // Use the handler to check or un-check button
         final CompoundButton toggleButton = (CompoundButton) v
                 .findViewById(R.id.item_toggle_action_toggle);
@@ -123,7 +121,7 @@ public class TogglesResult extends Result {
             togglesHandler.setState(togglePojo, !togglesHandler.getState(togglePojo));
 
             //show toast to inform user what the state is
-            Toast.makeText(context, String.format(msg + " " + this.pojo.displayName, Locale.getDefault()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, String.format(msg, " " + this.pojo.displayName), Toast.LENGTH_SHORT).show();
 
         }
         else {
