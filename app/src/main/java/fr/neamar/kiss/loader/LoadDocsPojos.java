@@ -4,17 +4,24 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.DocsPojo;
 
 import static android.provider.MediaStore.MediaColumns.DATA;
 import static android.provider.MediaStore.MediaColumns.MIME_TYPE;
+import static android.provider.MediaStore.MediaColumns.SIZE;
+import static android.provider.MediaStore.MediaColumns.TITLE;
 
 public class LoadDocsPojos extends LoadPojos<DocsPojo> {
+    HashMap<String, String> mimeTypeMap;
 
     public LoadDocsPojos(Context context) {
         super(context, "file://");
@@ -23,7 +30,8 @@ public class LoadDocsPojos extends LoadPojos<DocsPojo> {
     @Override
     protected ArrayList<DocsPojo> doInBackground(Void... params) {
         ArrayList<DocsPojo> docs = new ArrayList<>();
-      if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
+        if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
+            mimeTypeMap = getMimeTypeMap();
 
             final String[] DOC_PROJECTION = {
                     MediaStore.Images.Media._ID,
@@ -34,7 +42,6 @@ public class LoadDocsPojos extends LoadPojos<DocsPojo> {
                     MediaStore.Files.FileColumns.TITLE
             };
 
-            String[] selectionArgs = new String[]{".pdf", ".ppt", ".pptx", ".xlsx", ".xls", ".doc", ".docx", ".txt"};
             Cursor cursor = null;
             try {
                 cursor = context.getContentResolver().query(MediaStore.Files.getContentUri("external"),
@@ -47,40 +54,15 @@ public class LoadDocsPojos extends LoadPojos<DocsPojo> {
                     if (cursor.getCount() > 0) {
                         while (cursor.moveToNext()) {
                             String path = cursor.getString(cursor.getColumnIndexOrThrow(DATA));
-                            String title = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.TITLE));
-                            Log.d("doInBackground", title+": " + cursor.getString(cursor.getColumnIndexOrThrow(MIME_TYPE)));
-
-                            if (path != null && contains(selectionArgs, path)) {
-                                if (path.lastIndexOf(".") != -1) {
-                                    switch (path.substring(path.lastIndexOf(".") + 1, path.length())) {
-                                        case "pdf":
-                                            docs.add(createPojo(title, path, R.drawable.ic_pdf));
-                                            break;
-                                        case "ppt":
-                                            docs.add(createPojo(title, path, R.drawable.ic_ppt));
-                                            break;
-                                        case "pptx":
-                                            docs.add(createPojo(title, path, R.drawable.ic_ppt));
-                                            break;
-                                        case "xls":
-                                            docs.add(createPojo(title, path, R.drawable.ic_xls));
-                                            break;
-                                        case "xlsx":
-                                            docs.add(createPojo(title, path, R.drawable.ic_xls));
-                                            break;
-                                        case "doc":
-                                            docs.add(createPojo(title, path, R.drawable.ic_doc));
-                                            break;
-                                        case "docx":
-                                            docs.add(createPojo(title, path, R.drawable.ic_doc));
-                                            break;
-                                        case "txt":
-                                            docs.add(createPojo(title, path, R.drawable.ic_txt));
-                                            break;
-                                    }
-
-
-                                }
+                            String title = cursor.getString(cursor.getColumnIndexOrThrow(TITLE));
+                            String mimeType = cursor.getString(cursor.getColumnIndexOrThrow(MIME_TYPE));
+                            if (isKnownMimeType(mimeType)) {
+                                docs.add(createPojo(title, path, mimeType, R.drawable.ic_doc));
+                            } else {
+                                String extension = path.substring(path.lastIndexOf(".") + 1, path.length());//.doc .pdf
+                                String extractedMimeType = getMimeType(extension);
+                                if (extractedMimeType != null)
+                                    docs.add(createPojo(title, path, extractedMimeType, R.drawable.ic_doc));
                             }
 
                         }
@@ -97,21 +79,59 @@ public class LoadDocsPojos extends LoadPojos<DocsPojo> {
         return docs;
     }
 
-    private DocsPojo createPojo(String name, String path, int resId) {
+    private String getMimeType(String extension) {
+        if (mimeTypeMap != null) {
+            for (String key : mimeTypeMap.keySet()) {
+                if (key.equals(extension))
+                    return mimeTypeMap.get(extension);
+            }
+        }
+        return null;
+    }
+
+    private boolean isKnownMimeType(String mimeType) {
+
+        return (mimeTypeMap != null && mimeTypeMap.values().contains(mimeType));
+
+    }
+
+    private HashMap<String, String> getMimeTypeMap() {
+        if (context == null)
+            return null;
+        HashMap<String, String> map = new HashMap<>();
+        BufferedReader reader;
+        try {
+
+            InputStream is = context.getAssets().open("general_doc_types.txt");
+
+            reader = new BufferedReader(new InputStreamReader(is));
+            String line = reader.readLine();
+            while (line != null) {
+                String[] words = line.split(" ");
+                for (String part : words) {
+                    if (!part.equals(words[0]))
+                        map.put(part, words[0]);
+                }
+                line = reader.readLine();
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return map;
+    }
+
+    private DocsPojo createPojo(String name, String path, String mimeType, int resId) {
         DocsPojo pojo = new DocsPojo();
         pojo.id = pojoScheme + path.toLowerCase();
         pojo.name = name;
         pojo.nameNormalized = pojo.name.toLowerCase();
         pojo.docPath = path;
+        pojo.mimeType = mimeType;
         pojo.icon = resId;
 
         return pojo;
     }
 
-    boolean contains(String[] types, String path) {
-        for (String string : types) {
-            if (path.endsWith(string)) return true;
-        }
-        return false;
-    }
 }

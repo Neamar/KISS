@@ -25,7 +25,7 @@ import fr.neamar.kiss.searcher.QueryInterface;
 
 public class RecordAdapter extends ArrayAdapter<Result> {
 
-    public static final int COUNT_OF_RESULT = 8;
+    private static final int COUNT_OF_RESULT = 8;
     private final QueryInterface parent;
     /**
      * Array list containing all the results currently displayed

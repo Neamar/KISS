@@ -157,25 +157,12 @@ public abstract class Result {
     }
 
     public final void launch(Context context, View v) {
-//{".pdf", ".ppt",".pptx",".xlsx",".xls",".doc",".docx",".txt"};
 
-        String postFix = "";
         recordLaunch(context);
         if (pojo instanceof DocsPojo) {
-            if (pojo.id.contains(".pdf")) {//pdf
-                postFix = "application/pdf";
-            } else if (pojo.id.contains(".ppt")) {//ppt and pptx
-                postFix = "application/vnd.ms-powerpoint";
-            } else if (pojo.id.contains(".xls")) {//xls and xlsx
-                postFix = "application/vnd.ms-excel";
-            } else if (pojo.id.contains(".doc")) {//doc and docx
-                postFix = "application/msword";
-            } else if (pojo.id.contains(".txt")) {//txt
-                postFix = "text/plain";
-            }
             File file = new File(((DocsPojo) pojo).docPath);
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.fromFile(file), postFix);
+            intent.setDataAndType(Uri.fromFile(file), ((DocsPojo) pojo).mimeType);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
             Intent target = Intent.createChooser(intent, "Open File");

@@ -45,7 +45,7 @@ public class DocsProvider extends Provider<DocsPojo> {
                 relevance = 40;
             else if (docNameLowerCased.contains(" " + query))
                 relevance = 20;
-            else if (docName.startsWith(query)) {
+            else if (StringNormalizer.normalize(docName).startsWith(query)) {
                 // Also display for a search on "docs" for instance
                 relevance = 16;
             }
