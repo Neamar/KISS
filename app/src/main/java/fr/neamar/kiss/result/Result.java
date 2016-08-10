@@ -1,21 +1,25 @@
 package fr.neamar.kiss.result;
 
 import android.annotation.TargetApi;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.MenuRes;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import java.io.File;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -24,6 +28,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.pojo.DocsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
@@ -53,6 +58,8 @@ public abstract class Result {
             return new PhoneResult((PhonePojo) pojo);
         else if (pojo instanceof ShortcutsPojo)
             return new ShortcutsResult((ShortcutsPojo) pojo);
+        else if (pojo instanceof DocsPojo)
+            return new DocsResult((DocsPojo) pojo);
 
 
         throw new RuntimeException("Unable to create a result from POJO");
@@ -150,12 +157,26 @@ public abstract class Result {
     }
 
     public final void launch(Context context, View v) {
-        Log.i("log", "Launching " + pojo.id);
 
         recordLaunch(context);
+        if (pojo instanceof DocsPojo) {
+            File file = new File(((DocsPojo) pojo).docPath);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.fromFile(file), ((DocsPojo) pojo).mimeType);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-        // Launch
-        doLaunch(context, v);
+            Intent target = Intent.createChooser(intent, "Open File");
+            try {
+                context.startActivity(target);
+            } catch (ActivityNotFoundException e) {
+                // Instruct the user to install a PDF reader here, or something
+            }
+        } else {
+            // Launch
+            doLaunch(context, v);
+        }
+
+
     }
 
     /**
