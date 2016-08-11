@@ -17,11 +17,10 @@ import fr.neamar.kiss.pojo.DocsPojo;
 
 import static android.provider.MediaStore.MediaColumns.DATA;
 import static android.provider.MediaStore.MediaColumns.MIME_TYPE;
-import static android.provider.MediaStore.MediaColumns.SIZE;
 import static android.provider.MediaStore.MediaColumns.TITLE;
 
 public class LoadDocsPojos extends LoadPojos<DocsPojo> {
-    HashMap<String, String> mimeTypeMap;
+    private HashMap<String, String> mimeTypeMap;
 
     public LoadDocsPojos(Context context) {
         super(context, "file://");
