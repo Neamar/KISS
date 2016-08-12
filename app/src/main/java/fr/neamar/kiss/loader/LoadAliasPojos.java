@@ -10,8 +10,6 @@ import android.os.Build;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.List;
-
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.AliasPojo;
 

@@ -39,7 +39,7 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "alias", "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
+            "alias", "app", "contacts", "docs", "phone", "search", "settings", "shortcuts", "toggles"
     );
 
     final private Context context;
@@ -77,7 +77,7 @@ public class DataHandler extends BroadcastReceiver
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.startsWith("enable-")) {
+        if (key.startsWith("enable-" )) {
             String providerName = key.substring(7);
             if (PROVIDER_NAMES.contains(providerName)) {
                 if (sharedPreferences.getBoolean(key, true)) {
@@ -98,10 +98,10 @@ public class DataHandler extends BroadcastReceiver
     protected Intent providerName2Intent(String name) {
         // Build expected fully-qualified provider class name
         StringBuilder className = new StringBuilder(50);
-        className.append("fr.neamar.kiss.dataprovider.");
+        className.append("fr.neamar.kiss.dataprovider." );
         className.append(Character.toUpperCase(name.charAt(0)));
         className.append(name.substring(1).toLowerCase());
-        className.append("Provider");
+        className.append("Provider" );
 
         // Try to create reflection class instance for class name
         try {
@@ -235,7 +235,7 @@ public class DataHandler extends BroadcastReceiver
      * @return ordered list of records
      */
     public ArrayList<Pojo> getResults(Context context, String query) {
-        query = query.toLowerCase().trim().replaceAll("<", "&lt;");
+        query = query.toLowerCase().trim().replaceAll("<", "&lt;" );
 
         currentQuery = query;
 
@@ -357,8 +357,8 @@ public class DataHandler extends BroadcastReceiver
 
     public void removeFromExcluded(String packageName) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
-        String excluded = prefs.getString("excluded-apps-list", context.getPackageName() + ";");
-        prefs.edit().putString("excluded-apps-list", excluded.replaceAll(packageName + ";", "")).apply();
+        String excluded = prefs.getString("excluded-apps-list", context.getPackageName() + ";" );
+        prefs.edit().putString("excluded-apps-list", excluded.replaceAll(packageName + ";", "" )).apply();
     }
 
     /**
@@ -371,22 +371,22 @@ public class DataHandler extends BroadcastReceiver
     }
 
     public ContactsProvider getContactsProvider() {
-        ProviderEntry entry = this.providers.get("contacts");
+        ProviderEntry entry = this.providers.get("contacts" );
         return (entry != null) ? ((ContactsProvider) entry.provider) : null;
     }
 
     public ShortcutsProvider getShortcutsProvider() {
-        ProviderEntry entry = this.providers.get("shortcuts");
+        ProviderEntry entry = this.providers.get("shortcuts" );
         return (entry != null) ? ((ShortcutsProvider) entry.provider) : null;
     }
 
     public AppProvider getAppProvider() {
-        ProviderEntry entry = this.providers.get("app");
+        ProviderEntry entry = this.providers.get("app" );
         return (entry != null) ? ((AppProvider) entry.provider) : null;
     }
 
     public SearchProvider getSearchProvider() {
-        ProviderEntry entry = this.providers.get("search");
+        ProviderEntry entry = this.providers.get("search" );
         return (entry != null) ? ((SearchProvider) entry.provider) : null;
     }
 
@@ -401,8 +401,8 @@ public class DataHandler extends BroadcastReceiver
         ArrayList<Pojo> favorites = new ArrayList<>(limit);
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
-                getString("favorite-apps-list", "");
-        List<String> favAppsList = Arrays.asList(favApps.split(";"));
+                getString("favorite-apps-list", "" );
+        List<String> favAppsList = Arrays.asList(favApps.split(";" ));
 
         // Find associated items
         for (int i = 0; i < favAppsList.size(); i++) {
@@ -421,18 +421,18 @@ public class DataHandler extends BroadcastReceiver
     public boolean addToFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
-        if (favApps.contains(id + ";")) {
+                getString("favorite-apps-list", "" );
+        if (favApps.contains(id + ";" )) {
             //shouldn't happen
             return false;
         }
 
-        List<String> favAppsList = Arrays.asList(favApps.split(";"));
+        List<String> favAppsList = Arrays.asList(favApps.split(";" ));
         if (favAppsList.size() >= context.getFavIconsSize()) {
-            favApps = favApps.substring(favApps.indexOf(";") + 1);
+            favApps = favApps.substring(favApps.indexOf(";" ) + 1);
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps + id + ";").commit();
+                .putString("favorite-apps-list", favApps + id + ";" ).commit();
 
         context.retrieveFavorites();
 
@@ -466,13 +466,13 @@ public class DataHandler extends BroadcastReceiver
 
     public void removeFromFavorites(Pojo pojo, Context context) {
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
-        if (!favApps.contains(pojo.id + ";")) {
+                getString("favorite-apps-list", "" );
+        if (!favApps.contains(pojo.id + ";" )) {
             return;
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps.replace(pojo.id + ";", "")).commit();
+                .putString("favorite-apps-list", favApps.replace(pojo.id + ";", "" )).commit();
 
         ((MainActivity) context).retrieveFavorites();
 
