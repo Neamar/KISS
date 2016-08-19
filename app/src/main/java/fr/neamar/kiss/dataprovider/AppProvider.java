@@ -1,6 +1,7 @@
 package fr.neamar.kiss.dataprovider;
 
 import android.util.Pair;
+
 import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
@@ -23,7 +24,7 @@ public class AppProvider extends Provider<AppPojo> {
         int queryPos;           // The position inside the query
         int normalizedAppPos;   // The position inside pojo.nameNormalized
         int appPos;             // The position inside pojo.name, updated after we increment normalizedAppPos
-        int beginMatch ;
+        int beginMatch;
         int matchedWordStarts;
         int totalWordStarts;
         ArrayList<Pair<Integer, Integer>> matchPositions;
@@ -57,8 +58,7 @@ public class AppProvider extends Provider<AppPojo> {
 
                     // Increment the position in the query
                     queryPos += Character.charCount(query.codePointAt(queryPos));
-                }
-                else if (match) {
+                } else if (match) {
                     if (matchPositions == null)
                         matchPositions = new ArrayList<>();
                     matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
@@ -83,10 +83,10 @@ public class AppProvider extends Provider<AppPojo> {
 
             if (queryPos == query.length() && matchPositions != null) {
                 // Add percentage of matched letters, but at a weight of 40
-                relevance += (int)(((double)queryPos / pojo.nameNormalized.length()) * 40);
+                relevance += (int) (((double) queryPos / pojo.nameNormalized.length()) * 40);
 
                 // Add percentage of matched upper case letters (start of word), but at a weight of 60
-                relevance += (int)(((double)matchedWordStarts / totalWordStarts) * 60);
+                relevance += (int) (((double) matchedWordStarts / totalWordStarts) * 60);
 
                 // The more fragmented the matches are, the less the result is important
                 relevance *= (0.2 + 0.8 * (1.0 / matchPositions.size()));
@@ -127,7 +127,7 @@ public class AppProvider extends Provider<AppPojo> {
     public Pojo findById(String id) {
         return findById(id, true);
     }
-    
+
     public Pojo findByName(String name) {
         for (Pojo pojo : pojos) {
             if (pojo.name.equals(name))
