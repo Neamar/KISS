@@ -5,24 +5,24 @@
     <string name="activity_setting">Ajustes de KISS</string>
     <string name="ui_search_hint">Buscar aplicaciones, contactos, …</string>
     <string name="ui_item_search">%1$s Buscar “%2$s”</string>
-    <string name="ui_item_phone">Llamar “%s”</string>
+    <string name="ui_item_phone">Llamar a “%s”</string>
     <string name="ui_item_contact_hint_message">Mensaje</string>
     <string name="ui_item_contact_hint_call">Llamar</string>
 
     <string name="title_ui">Ajustes de la Interfaz</string>
     <string name="title_history">Historial</string>
-    <string name="title_providers">Seleccionar proveedores</string>
+    <string name="title_providers">Seleccionar Proveedores</string>
     <string name="title_advanced">Ajustes avanzados</string>
-    <string name="menu_settings">Ajustes del dispositivo</string>
+    <string name="menu_settings">Ajustes del Dispositivo</string>
     <string name="no_favorites">Sin Favoritos. Arranque una aplicación y se añadirá a Favoritos.</string>
 
-    <string name="ui_empty_1">Empiece a buscar cualquier cosa</string>
+    <string name="ui_empty_1">Busque cualquier cosa</string>
     <string name="ui_empty_2">Siempre ver su historial</string>
-    <string name="ui_empty_2_sub">Para acceder más rápidamente</string>
+    <string name="ui_empty_2_sub">Para acceso rápido</string>
     <string name="ui_empty_3">Acceso directo a las aplicaciones más usadas</string>
     <string name="ui_empty_3_sub">KISS launcher aprende de sus hábitos</string>
 
-    <string name="toggles_name">Cambiar estado</string>
+    <string name="toggles_name">Activar/Desactivar (Wi-Fi, Bluetooth, …)</string>
     <string name="toggles_on">%s activados</string>
     <string name="toggles_off">%s desactivados</string>
 
@@ -30,11 +30,11 @@
 
     <string name="contacts_name">Contactos</string>
 
-    <string name="search_name">Buscar en Google</string>
+    <string name="search_name">Buscar Web</string>
 
-    <string name="settings_name">Ajustes</string>
+    <string name="settings_name">Ajustes de Dispositivo</string>
 
-    <string name="phone_name">Teléfono</string>
+    <string name="phone_name">Números de teléfono</string>
 
     <string name="shortcuts_name">Atajos</string>
 
@@ -45,24 +45,24 @@
     <string name="stub_toggle">Ajuste a cambiar</string>
     <string name="stub_phone">Llamar al +330 12 34 56 78</string>
     <string name="main_menu">Menú</string>
-    <string name="main_clear">Borrar texto</string>
+    <string name="main_clear">Borrar búsqueda</string>
     <string name="main_kiss">Mostrar favoritos y lista de aplicaciones</string>
     <string name="main_kiss_back">Mostrar historial</string>
-    <string name="reset_name">Resetear el historial</string>
+    <string name="reset_name">Restablecer el historial</string>
     <string name="reset_excluded_apps_name">Resetear la lista de aplicaciones</string>
     <string name="reset_excluded_apps_warn">¿Seguro que quieres resetear tu lista de aplicaciones excluidas?</string>
     <string name="reset_warn">¿Seguro que quieres resetear tu historial?</string>
-    <string name="reset_favorites_name">Resetear favoritos</string>
+    <string name="reset_favorites_name">Restablecer la lista de favoritos</string>
     <string name="reset_favorites_warn">¿Seguro que quieres resetear tus favoritos?</string>
-    <string name="keyboard_name">Mostrar teclado</string>
+    <string name="keyboard_name">Mostrar teclado al iniciar</string>
     <string name="spellcheck_name">Activar corrector</string>
     <string name="history_hide_desc">Ocultar historial y la pantalla de inicio</string>
     <string name="history_hide_name">Interfaz minimalista</string>
     <string name="history_onclick_name">Interfaz minimalista: Mostrar historial al tocar</string>
     <string name="portrait_title">Forzar modo vertical</string>
     <string name="icons_hide_main">Ocultar iconos de las aplicaciones</string>
-    <string name="icons_hide_desc">Activar en dispositivos lentos</string>
-    <string name="root_mode_desc">Activar características de súper-usuario si están disponibles (para hibernar aplicaciones)</string>
+    <string name="icons_hide_desc">Útil en dispositivos lentos</string>
+    <string name="root_mode_desc">Si está disponible, usarlo para hibernar aplicaciones</string>
     <string name="root_mode_name">Modo súper-usuario</string>
     <string name="root_mode_error">Activar para conseguir privilegios de súper-usuario.</string>
 
@@ -105,14 +105,43 @@
     <string name="toast_hibernate_completed">%s hibernado con éxito, inicie manualmente para despertar.</string>
     <string name="toast_hibernate_error">%s no ha podido ser hibernado.</string>
     <string name="menu_contact_copy_phone">Copiar número de teléfono</string>
-    <string name="theme_name">Tema</string>
+    <string name="theme_name">Tema de la interfaz</string>
     <string name="menu_phone_create">Crear contacto</string>
 
     <string name="toast_favorites_added">%s ha sido añadido a favoritos</string>
 
-    <string name="order_apps_name">Orden de la lista de aplicacions</string>
-    <string name="enable_sms">Incluir datos de los mensajes de texto en el historial</string>
-    <string name="enable_phone">Incluir datos de las llamadas en el historial</string>
-    <string name="enable_app">Incluir datos de aplicaciones instaladas en el historial</string>
+    <string name="order_apps_name">Orden de la lista de apps</string>
+    <string name="enable_sms">Incluir SMS entrantes en el historial</string>
+    <string name="enable_phone">Incluir llamadas entrantes en el historial</string>
+    <string name="enable_app">Incluir apps instaladas recientemente en el historial</string>
+
+<string name="ui_empty_1_sub">Aplicaciones, contactos, ajustes, …</string>
+    <string name="search_desc">Activar búsqueda usando Google, DuckDuckGo, Bing, etc.</string>
+    <string name="ui_excluded_apps">Ver / editar las apps excluidas</string>
+    <string name="ui_excluded_apps_dialog_title">Deseleccione las apps que quiere incluir</string>
+    <string name="ui_excluded_apps_not_found">No se han excluido apps</string>
+    <string name="search_providers_title">Seleccionar proveedores de búsqueda web</string>
+    <string name="history_mode_name">Modo del historial</string>
+    <string name="history_mode_desc">Seleccionar el modo en que se llena el historial</string>
+    <string name="freeze_history_name">Congelar el historial</string>
+    <string name="freeze_history_warn">¿Está seguro que quiere congelar el historial y deshabilitar futuras actualizaciones? No va a haber más cambios en el historial.</string>
+
+    <string name="icons_pack_name">Íconos de tema (tema ADW.Launcher)</string>
+    <string name="icons_pack_default_name">Íconos del sistema</string>
+
+    <string name="settings_nfc">NFC</string>
+    <string name="settings_tethering">Anclaje a la red</string>
+    <string name="menu_shortcut_remove">Eliminar acceso directo</string>
+
+    <string name="enable_favorites_bar">Mostrar favoritos sobre la barra de búsqueda</string>
+    <string name="exclude_favorites">Excluir favoritos del historial</string>
+    <string name="favorites_hide">Interfaz minimalista: Ocultar barra de favoritos</string>
+    <string name="shortcut_added">Acceso directo añadido a KISS.</string>
+
+    <string name="restart_desc">Corregir problemas con el tema / nuevos contactos no mostrados</string>
+    <string name="restart_name">Reiniciar KISS</string>
+    <string name="restart_warn">"¿Realmente quiere reiniciar KISS?  Si KISS no es su launcher por defecto, la app no volverá a iniciar automáticamente."</string>
+
+    <string name="items_title">%d elementos</string>
 
 </resources>
