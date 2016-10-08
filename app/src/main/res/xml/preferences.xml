@@ -120,6 +120,10 @@
             android:title="@string/shortcuts_name" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_advanced">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="contacts-fuzzy"
+            android:title="@string/contacts_fuzzy"/>
         <ListPreference
             android:defaultValue="recency"
             android:entries="@array/historyModeEntries"

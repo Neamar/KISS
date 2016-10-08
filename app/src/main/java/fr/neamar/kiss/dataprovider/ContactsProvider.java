@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import android.database.ContentObserver;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -42,65 +43,78 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         getContentResolver().unregisterContentObserver(cObserver);
     }
 
-    public ArrayList<Pojo> getResults(String query) {
-        query = StringNormalizer.normalize(query);
-        ArrayList<Pojo> results = new ArrayList<>();
+    private FuzzySearch.CallBack cb = new FuzzySearch.CallBack() {
+        @Override
+        public Pojo notRelevant(String query, Pojo pojo) {
+            ContactsPojo contact = (ContactsPojo) pojo;
+            if (contact.nickname.contains(query)) {
+                contact.displayName = contact.name
+                        + " <small>("
+                        + contact.nickname.replaceFirst(
+                        "(?i)(" + Pattern.quote(query) + ")", "{$1}")
+                        + ")</small>";
+                contact.relevance = 30;
+            } else if (query.length() > 2) {
+                if (contact.phoneSimplified.startsWith(query)) {
+                    contact.relevance = 10;
+                } else if (contact.phoneSimplified.contains(query)) {
+                    contact.relevance = 5;
+                }
+            }
+            return contact;
+        }
+    };
 
+    public ArrayList<Pojo> getResults(String query) {
         // Search people with composed names, e.g "jean-marie"
         // (not part of the StringNormalizer class, since we want to keep dashes on other providers)
         query = query.replaceAll("-", " ");
 
-        int relevance;
+        boolean fuzzy = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                .getBoolean("contacts-fuzzy", false);
+        ArrayList<Pojo> fsResult;
+        if (fuzzy) {
+            fsResult = FuzzySearch.fuzzySearch(query, pojos, cb);
+            return fsResult;
+        }
+        ArrayList<Pojo> results = new ArrayList<>();
+
         int matchPositionStart;
         int matchPositionEnd;
         String contactNameNormalized;
 
         final String queryWithSpace = " " + query;
         for (ContactsPojo contact : pojos) {
-            relevance = 0;
+            contact.relevance = 0;
             contactNameNormalized = contact.nameNormalized;
-            boolean alias = false;
+            boolean isAlreadyHighlighted = false; // for nicknames and phones
 
             matchPositionStart = 0;
             matchPositionEnd = 0;
             if (contactNameNormalized.startsWith(query)) {
-                relevance = 50;
+                contact.relevance = 50;
                 matchPositionEnd = matchPositionStart + query.length();
             } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
-                relevance = 40;
+                contact.relevance = 40;
                 matchPositionEnd = matchPositionStart + queryWithSpace.length();
-            } else if (contact.nickname.contains(query)) {
-                alias = true;
-                contact.displayName = contact.name
-                        + " <small>("
-                        + contact.nickname.replaceFirst(
-                        "(?i)(" + Pattern.quote(query) + ")", "{$1}")
-                        + ")</small>";
-                relevance = 30;
-            } else if (query.length() > 2) {
-                matchPositionStart = 0;
-                matchPositionEnd = 0;
-                if (contact.phoneSimplified.startsWith(query)) {
-                    relevance = 10;
-                } else if (contact.phoneSimplified.contains(query)) {
-                    relevance = 5;
-                }
+            } else {
+                contact = (ContactsPojo) cb.notRelevant(query, contact);
+                isAlreadyHighlighted = true;
             }
 
-            if (relevance > 0) {
+            if (contact.relevance > 0) {
                 // Increase relevance according to number of times the contacts
                 // was phoned :
-                relevance += contact.timesContacted;
+                contact.relevance += contact.timesContacted;
                 // Increase relevance for starred contacts:
                 if (contact.starred)
-                    relevance += 30;
+                    contact.relevance += 30;
                 // Decrease for home numbers:
                 if (contact.homeNumber)
-                    relevance -= 1;
+                    contact.relevance -= 1;
 
-                if (! alias)
+                if (! isAlreadyHighlighted)
                     contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
-                contact.relevance = relevance;
                 results.add(contact);
 
                 // Circuit-breaker to avoid spending too much time
