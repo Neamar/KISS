@@ -1,7 +1,9 @@
 package fr.neamar.kiss.result;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -9,11 +11,14 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.MenuRes;
 import android.text.Html;
+import android.text.InputType;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 

@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DBHelper {
     private DBHelper() {
@@ -225,4 +228,55 @@ public class DBHelper {
         db.close();        
     }
 
+    /**
+     * Insert new item into history
+     *
+     * @param context android context
+     * @param tag   query to insert
+     * @param record  record to insert
+     */
+    public static void insertTagsToId(Context context, String tag, String record) {
+        SQLiteDatabase db = getDatabase(context);
+
+        ContentValues values = new ContentValues();
+        values.put("tag", tag);
+        values.put("record", record);
+        db.insert("tags", null, values);
+        db.close();
+    }
+
+
+    /* Delete
+     * Insert new item into history
+     *
+     * @param context android context
+     * @param tag   query to insert
+     * @param record  record to insert
+     */
+    public static void deleteTagsForId(Context context, String record) {
+        SQLiteDatabase db = getDatabase(context);
+
+        db.delete("tags", "record = '"+record+"'", null);
+        db.close();
+    }
+
+    public static Map<String, String> loadTags(Context context) {
+        Map<String, String> records = new HashMap<>();
+        SQLiteDatabase db = getDatabase(context);
+
+        Cursor cursor = db.query("tags", new String[]{"record", "tag"}, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String id = cursor.getString(0);
+            String tags = cursor.getString(1);
+            records.put(id, tags);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        db.close();
+        return records;
+
+    }
 }

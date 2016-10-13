@@ -48,6 +48,7 @@ public class DataHandler extends BroadcastReceiver
     private Map<String, ProviderEntry> providers = new HashMap<>();
     private boolean providersReady = false;
 
+    private TagsHandler tagsHandler;
     /**
      * Initialize all providers
      */
@@ -66,6 +67,8 @@ public class DataHandler extends BroadcastReceiver
         // Monitor changes for service preferences (to automatically start and stop services)
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         prefs.registerOnSharedPreferenceChangeListener(this);
+        //create a tags handler
+        tagsHandler = new TagsHandler(context);
 
         // Connect to initial providers
         for (String providerName : PROVIDER_NAMES) {
@@ -355,6 +358,15 @@ public class DataHandler extends BroadcastReceiver
         }
     }
 
+
+    public void addToExcluded(String packageName) {
+        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("excluded-apps-list", context.getPackageName() + ";");
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("excluded-apps-list", excludedAppList + packageName + ";").commit();
+
+    }
+
     public void removeFromExcluded(String packageName) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
         String excluded = prefs.getString("excluded-apps-list", context.getPackageName() + ";");
@@ -476,6 +488,10 @@ public class DataHandler extends BroadcastReceiver
 
         ((MainActivity) context).retrieveFavorites();
 
+    }
+
+    public TagsHandler getTagsHandler() {
+        return tagsHandler;
     }
 
     protected class ProviderEntry {

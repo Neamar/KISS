@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.AppPojo;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
@@ -57,6 +58,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 app.packageName = info.activityInfo.applicationInfo.packageName;
                 app.activityName = info.activityInfo.name;
 
+                app.tags = KissApplication.getDataHandler(context).getTagsHandler().getTags(app.id);
                 apps.add(app);
             }
         }

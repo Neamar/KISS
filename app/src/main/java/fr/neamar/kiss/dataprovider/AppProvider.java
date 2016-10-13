@@ -29,6 +29,8 @@ public class AppProvider extends Provider<AppPojo> {
         ArrayList<Pair<Integer, Integer>> matchPositions;
 
         for (Pojo pojo : pojos) {
+            pojo.displayName = pojo.name;
+            pojo.displayTags = pojo.tags;
             relevance = 0;
             queryPos = 0;
             normalizedAppPos = 0;
@@ -75,12 +77,15 @@ public class AppProvider extends Provider<AppPojo> {
                 appPos = pojo.mapPosition(normalizedAppPos);
             }
 
+            boolean matchedTags = false;
             if (match) {
                 if (matchPositions == null)
                     matchPositions = new ArrayList<>();
                 matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
             }
 
+            int tagStart = 0;
+            int tagEnd = 0;
             if (queryPos == query.length() && matchPositions != null) {
                 // Add percentage of matched letters, but at a weight of 40
                 relevance += (int)(((double)queryPos / pojo.nameNormalized.length()) * 40);
@@ -91,9 +96,22 @@ public class AppProvider extends Provider<AppPojo> {
                 // The more fragmented the matches are, the less the result is important
                 relevance *= (0.2 + 0.8 * (1.0 / matchPositions.size()));
             }
+            else {
+                if (pojo.tags.contains(query)) {
+                    relevance = 4 + query.length();
+                    matchedTags = true;
+                    tagStart = pojo.tags.indexOf(query);
+                    tagEnd = tagStart + query.length();
+                }
+            }
 
             if (relevance > 0) {
-                pojo.setDisplayNameHighlightRegion(matchPositions);
+                if (!matchedTags) {
+                    pojo.setDisplayNameHighlightRegion(matchPositions);
+                }
+                else {
+                    pojo.setTagHighligh(tagStart, tagEnd);
+                }
                 pojo.relevance = relevance;
                 records.add(pojo);
             }
@@ -115,6 +133,7 @@ public class AppProvider extends Provider<AppPojo> {
                 // Reset displayName to default value
                 if (allowSideEffect) {
                     pojo.displayName = pojo.name;
+                    pojo.displayTags = pojo.tags;
                 }
                 return pojo;
             }
@@ -142,6 +161,7 @@ public class AppProvider extends Provider<AppPojo> {
 
         for (Pojo pojo : pojos) {
             pojo.displayName = pojo.name;
+            pojo.displayTags = pojo.tags;
             records.add(pojo);
         }
         return records;

@@ -299,6 +299,19 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Apply effects depending on current Android version
         applyDesignTweaks();
+
+        //check if kiss is not in excluded-app-list string and add it
+        //checkAndExcludeKiss();
+    }
+
+    private void checkAndExcludeKiss() {
+        String kissPackageName = this.getPackageName() + ";";
+        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(this).
+                getString("excluded-apps-list", kissPackageName);
+        if (!excludedAppList.contains(kissPackageName)) {
+            KissApplication.getDataHandler(this).addToExcluded(kissPackageName);
+        }
+
     }
 
     private void adjustInputType(String currentText) {
