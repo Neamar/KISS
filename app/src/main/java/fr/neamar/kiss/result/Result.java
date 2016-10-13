@@ -24,6 +24,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.pojo.DocsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
@@ -43,6 +44,8 @@ public abstract class Result {
             return new AppResult((AppPojo) pojo);
         else if (pojo instanceof ContactsPojo)
             return new ContactsResult(parent, (ContactsPojo) pojo);
+        else if (pojo instanceof DocsPojo)
+            return new DocsResult((DocsPojo) pojo);
         else if (pojo instanceof SearchPojo)
             return new SearchResult((SearchPojo) pojo);
         else if (pojo instanceof SettingsPojo)
@@ -153,9 +156,13 @@ public abstract class Result {
         Log.i("log", "Launching " + pojo.id);
 
         recordLaunch(context);
-
-        // Launch
-        doLaunch(context, v);
+        if (pojo instanceof DocsPojo) {
+            // Launch related app
+            ((DocsPojo) pojo).doLaunch(context);
+        } else {
+            // Launch
+            doLaunch(context, v);
+        }
     }
 
     /**
