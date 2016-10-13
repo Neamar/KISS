@@ -299,7 +299,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Apply effects depending on current Android version
         applyDesignTweaks();
-
     }
 
     private void adjustInputType(String currentText) {
