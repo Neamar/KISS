@@ -6,27 +6,56 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import java.util.List;
-import java.util.Map;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
+    private static Pattern mobileNumberPattern;
+    private static Pattern ignorePattern = Pattern.compile("[-.():/ ]");
 
     public LoadContactsPojos(Context context) {
         super(context, "contact://");
+        PhoneNormalizer.initialize(context);
+    }
+
+    private void ensureMobileNumberPattern() {
+        if (mobileNumberPattern != null) return;
+
+        InputStream inputStream = context.getResources().openRawResource(R.raw.phone_number_textable);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+        StringBuilder mobileDetectionRegex = new StringBuilder();
+
+        try {
+            String line;
+            while ((line = reader.readLine()) != null)
+                mobileDetectionRegex.append(line);
+
+            mobileNumberPattern = Pattern.compile(mobileDetectionRegex.toString());
+        } catch (IOException ioex) {
+            mobileNumberPattern = null;
+        }
     }
 
     @Override
     protected ArrayList<ContactsPojo> doInBackground(Void... params) {
-        Pattern homePattern = Pattern.compile("^\\+33\\s?[1-5]");
+        ensureMobileNumberPattern();
 
         long start = System.nanoTime();
+        String defaultCountryIso = Locale.getDefault().getCountry();
 
         // Run query
         Cursor cur = context.getContentResolver().query(
@@ -62,10 +91,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     if (contact.phone == null) {
                         contact.phone = "";
                     }
-                    contact.phoneSimplified = contact.phone.replaceAll("[-.(): ]", "");
-
-                    contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
-
+                    contact.phoneSimplified = ignorePattern.matcher(contact.phone).replaceAll("");
+                    contact.homeNumber = mobileNumberPattern == null ||
+                            !mobileNumberPattern.matcher(contact.phoneSimplified).lookingAt();
                     contact.starred = cur.getInt(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
                     contact.primary = cur.getInt(cur
