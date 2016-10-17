@@ -12,6 +12,7 @@ public class KissApplication {
     private static CameraHandler cameraHandler;
     private static RootHandler rootHandler;
     private static IconsHandler iconsPackHandler;
+    private static TagsHandler tagsHandler;
 
     private KissApplication() {
     }
@@ -63,4 +64,14 @@ public class KissApplication {
         iconsPackHandler = new IconsHandler(ctx);
     }
 
+    public static TagsHandler getTagsHandler(Context ctx) {
+        if (tagsHandler == null) {
+            tagsHandler = new TagsHandler(ctx);
+        }
+        return tagsHandler;
+    }
+
+    public static void resetTagsHandler(Context ctx) {
+        tagsHandler = new TagsHandler(ctx);
+    }
 }

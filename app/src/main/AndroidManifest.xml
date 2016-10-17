@@ -121,6 +121,14 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".broadcast.LocaleChangedReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
         <!-- On incoming messages, add user to history -->
         <receiver
             android:name=".broadcast.IncomingSmsHandler"
@@ -157,7 +165,6 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".dataprovider.AliasProvider" />
         <service android:name=".dataprovider.AppProvider" />
         <service android:name=".dataprovider.ContactsProvider" />
         <service android:name=".dataprovider.PhoneProvider" />

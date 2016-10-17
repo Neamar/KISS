@@ -147,23 +147,18 @@ public class AppResult extends Result {
         final EditText tag = new EditText(context);
         tag.setInputType(InputType.TYPE_CLASS_TEXT);
         //load existing tags
-        tag.setText(KissApplication.getDataHandler(context).getTagsHandler().getTags(app.id));
+        tag.setText(app.tags);
         builder.setView(tag);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                boolean inserted = KissApplication.getDataHandler(context).getTagsHandler().setTags(app.id, tag.getText().toString());
+                KissApplication.getTagsHandler(context).setTags(app.id, tag.getText().toString());
                 //refresh tags for given app
                 app.tags = tag.getText().toString();
                 app.displayTags = app.tags;
-                String msg;
-                if (inserted) {
-                    msg = context.getResources().getString(R.string.tags_confirmation_added);
-                }
-                else {
-                    msg = context.getResources().getString(R.string.tags_confirmation_notadded);
-                }
+                //show toast message
+                String msg = context.getResources().getString(R.string.tags_confirmation_added);
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 
             }

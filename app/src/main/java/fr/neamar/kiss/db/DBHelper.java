@@ -229,13 +229,13 @@ public class DBHelper {
     }
 
     /**
-     * Insert new item into history
+     * Insert new tags for given id
      *
      * @param context android context
-     * @param tag   query to insert
+     * @param tag   tag to insert
      * @param record  record to insert
      */
-    public static void insertTagsToId(Context context, String tag, String record) {
+    public static void insertTagsForId(Context context, String tag, String record) {
         SQLiteDatabase db = getDatabase(context);
 
         ContentValues values = new ContentValues();
