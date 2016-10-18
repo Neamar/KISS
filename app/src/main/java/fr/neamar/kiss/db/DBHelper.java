@@ -256,7 +256,7 @@ public class DBHelper {
     public static void deleteTagsForId(Context context, String record) {
         SQLiteDatabase db = getDatabase(context);
 
-        db.delete("tags", "record = '"+record+"'", null);
+        db.delete("tags", "record = ?", new String[] {record});
         db.close();
     }
 
