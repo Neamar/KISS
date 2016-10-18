@@ -146,24 +146,23 @@ public class AppResult extends Result {
         // Create the tag dialog
         final EditText tag = new EditText(context);
         tag.setInputType(InputType.TYPE_CLASS_TEXT);
-        //load existing tags
+        // Load existing tags
         tag.setText(app.tags);
         builder.setView(tag);
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 KissApplication.getTagsHandler(context).setTags(app.id, tag.getText().toString());
-                //refresh tags for given app
+                // Refresh tags for given app
                 app.tags = tag.getText().toString();
                 app.displayTags = app.tags;
-                //show toast message
+                // Show toast message
                 String msg = context.getResources().getString(R.string.tags_confirmation_added);
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
