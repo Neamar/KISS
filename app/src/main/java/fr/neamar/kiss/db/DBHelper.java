@@ -274,7 +274,6 @@ public class DBHelper {
             cursor.moveToNext();
         }
         cursor.close();
-
         db.close();
         return records;
 

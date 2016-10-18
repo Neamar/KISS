@@ -25,7 +25,7 @@ public abstract class Pojo {
     // Array that contains the non-normalized positions for every normalized
     // character entry
     private int[] namePositionMap = null;
-    //tags assigned to this pojo
+    // Tags assigned to this pojo
     public String tags;
     // Variable to store the formated (user selection in bold) tag
     public String displayTags = "";
@@ -109,7 +109,6 @@ public abstract class Pojo {
     }
 
     public void setTagHighligh(int positionStart, int positionEnd) {
-
         this.displayTags = this.tags.substring(0, positionStart)
                 + '{' + this.tags.substring(positionStart, positionEnd) + '}'
                 + this.tags.substring(positionEnd);

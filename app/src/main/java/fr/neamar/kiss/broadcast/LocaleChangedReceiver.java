@@ -15,7 +15,7 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
-        //if new locale, then reset tags to load the correct aliases
+        // If new locale, then reset tags to load the correct aliases
         KissApplication.resetTagsHandler(ctx);
 
         // Reload application list
