@@ -65,15 +65,23 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
     /**
-     * InputType with spellcheck and swiping
+     * InputType that behaves as if the consuming IME is a standard-obeying
+     * soft-keyboard
+     *
+     * *Auto Complete* means "we're handling auto-completion ourselves". Then
+     * we ignore whatever the IME thinks we should display.
      */
-    private final static int SPELLCHECK_ENABLED_INPUT_TYPE = InputType.TYPE_CLASS_TEXT |
-            InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+    private final static int INPUT_TYPE_STANDARD = InputType.TYPE_CLASS_TEXT
+            | InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE
+            | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
     /**
-     * default InputType
+     * InputType that behaves as if the consuming IME is SwiftKey
+     *
+     * *Visible Password* fields will break many non-Latin IMEs and may show
+     * unexpected behaviour in numerous ways. (#454, #517)
      */
-    private final static int DEFAULT_INPUT_TYPE = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD |
-            InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
+    private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     /**
      * IDs for the favorites buttons
      */
@@ -106,7 +114,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Whether or not Search text should be spell checked (affects inputType)
      */
-    private boolean searchEditTextSpellcheck;
+    private boolean searchEditTextWorkaround;
     /**
      * Main list view
      */
@@ -287,7 +295,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.hider.start();
 
         // Check whether user enabled spell check and adjust input type accordingly
-        searchEditTextSpellcheck = prefs.getBoolean("enable-spellcheck", false);
+        searchEditTextWorkaround = prefs.getBoolean("enable-keyboard-workaround", false);
         adjustInputType(null);
 
         //enable/disable phone/sms broadcast receiver
@@ -307,10 +315,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         if (currentText != null && Pattern.matches("[+]\\d+", currentText)) {
             requiredInputType = InputType.TYPE_CLASS_PHONE;
-        } else if (searchEditTextSpellcheck) {
-            requiredInputType = SPELLCHECK_ENABLED_INPUT_TYPE;
+        } else if (searchEditTextWorkaround) {
+            requiredInputType = INPUT_TYPE_WORKAROUND;
         } else {
-            requiredInputType = DEFAULT_INPUT_TYPE;
+            requiredInputType = INPUT_TYPE_STANDARD;
         }
         if (currentInputType != requiredInputType) {
             searchEditText.setInputType(requiredInputType);
