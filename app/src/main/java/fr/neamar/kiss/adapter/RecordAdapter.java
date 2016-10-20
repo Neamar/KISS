@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
+import fr.neamar.kiss.result.DocsResult;
 import fr.neamar.kiss.result.PhoneResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.SearchResult;
@@ -25,6 +27,7 @@ import fr.neamar.kiss.searcher.QueryInterface;
 public class RecordAdapter extends ArrayAdapter<Result> {
 
     private final QueryInterface parent;
+    private static final int COUNT_OF_RESULT = 8;
     /**
      * Array list containing all the results currently displayed
      */
@@ -39,7 +42,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     public int getViewTypeCount() {
-        return 7;
+        return COUNT_OF_RESULT;
     }
 
     public int getItemViewType(int position) {
@@ -57,12 +60,14 @@ public class RecordAdapter extends ArrayAdapter<Result> {
             return 5;
         else if (results.get(position) instanceof ShortcutsResult)
             return 6;
+        else if (results.get(position) instanceof DocsResult)
+            return 7;
         else
             return -1;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         return results.get(position).display(getContext(), results.size() - position, convertView);
     }
 
