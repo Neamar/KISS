@@ -73,11 +73,11 @@ public class SettingsActivity extends PreferenceActivity implements
     @SuppressWarnings("deprecation")
     private void addExcludedAppSettings(final SharedPreferences prefs) {
         if (android.os.Build.VERSION.SDK_INT >= 11) {
-
             final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
             multiPreference.setTitle(R.string.ui_excluded_apps);
             multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
             multiPreference.setKey("excluded_apps_ui");
+            multiPreference.setOrder(15);
             PreferenceGroup category = (PreferenceGroup) findPreference("history_category");
             category.addPreference(multiPreference);
 
