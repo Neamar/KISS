@@ -11,6 +11,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,7 +28,9 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "theme enable-keyboard-workaround force-portrait";
+    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait";
+
+    private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
 
@@ -147,21 +150,14 @@ public class SettingsActivity extends PreferenceActivity implements
             }
         }
 
-        if (requireRestartSettings.contains(key)) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            prefs.edit().putBoolean("require-layout-update", true).apply();
-
-            // Restart current activity to refresh view, since some
-            // preferences
-            // require using a new UI
-            Intent intent = new Intent(this, getClass());
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                    | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        if(key.equalsIgnoreCase("theme")) {
+            requireFullRestart = true;
             finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
             return;
+        }
+
+        if (requireRestartSettings.contains(key)) {
+            requireFullRestart = true;
         }
 
         if ("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
@@ -178,8 +174,28 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onPause();
         prefs.unregisterOnSharedPreferenceChangeListener(this);
 
-        // We need to finish the Activity now, else the user may get back to the settings screen the next time he'll press home.
-        finish();
+        if(!requireFullRestart) {
+            // We need to finish the Activity now, else the user may get back to the settings screen the next time he'll press home.
+            finish();
+        }
+        else {
+            Toast.makeText(this, "You've changed some important settings, the app will restart.", Toast.LENGTH_SHORT).show();
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            prefs.edit().putBoolean("require-layout-update", true).apply();
+
+            // Restart current activity to refresh view, since some
+            // preferences
+            // require using a new UI
+            Intent intent = new Intent(this, getClass());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                    | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            return;
+        }
+
     }
 
     @SuppressWarnings("deprecation")
