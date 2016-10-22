@@ -30,21 +30,28 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
                 Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, R.drawable.setting_apps));
         settings.add(createPojo(context.getString(R.string.settings_connectivity),
                 Settings.ACTION_WIRELESS_SETTINGS, R.drawable.toggle_wifi));
+        settings.add(createPojo(context.getString(R.string.settings_storage),
+                Settings.ACTION_INTERNAL_STORAGE_SETTINGS, R.drawable.setting_storage));
+        settings.add(createPojo(context.getString(R.string.settings_accessibility),
+                Settings.ACTION_ACCESSIBILITY_SETTINGS, R.drawable.setting_accessibility));
         settings.add(createPojo(context.getString(R.string.settings_battery),
                 Intent.ACTION_POWER_USAGE_SUMMARY, R.drawable.setting_battery));
         settings.add(createPojo(context.getString(R.string.settings_tethering), "com.android.settings",
                 "com.android.settings.TetherSettings", R.drawable.setting_tethering));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if(pm.hasSystemFeature(PackageManager.FEATURE_NFC)) {
+            if (pm.hasSystemFeature(PackageManager.FEATURE_NFC)) {
                 settings.add(createPojo(context.getString(R.string.settings_nfc),
                         Settings.ACTION_NFC_SETTINGS, R.drawable.setting_nfc));
             }
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            settings.add(createPojo(context.getString(R.string.settings_dev),
+                    Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS, R.drawable.setting_dev));
+        }
         return settings;
     }
 
-    private SettingsPojo createPojo(String name, String packageName, String settingName, int resId)
-    {
+    private SettingsPojo createPojo(String name, String packageName, String settingName, int resId) {
         SettingsPojo pojo = this.createPojo(name, settingName, resId);
         pojo.packageName = packageName;
         return pojo;

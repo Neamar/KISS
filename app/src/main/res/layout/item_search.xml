@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="center_vertical"
-              android:orientation="horizontal"
-              android:paddingBottom="@dimen/result_margin_bottom"
-              android:paddingLeft="@dimen/result_margin_left"
-              android:paddingRight="@dimen/result_margin_right"
-              android:paddingTop="@dimen/result_margin_top">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/result_margin_bottom"
+    android:paddingLeft="@dimen/result_margin_left"
+    android:paddingRight="@dimen/result_margin_right"
+    android:paddingTop="@dimen/result_margin_top">
 
     <ImageView
         android:id="@+id/item_search_icon"
@@ -18,7 +18,7 @@
         android:layout_marginRight="@dimen/icon_margin_right"
         android:layout_marginTop="@dimen/icon_margin_top"
         android:contentDescription="@null"
-        android:src="@drawable/search"/>
+        android:src="@drawable/search" />
 
     <TextView
         android:id="@+id/item_search_text"
@@ -26,6 +26,6 @@
         android:layout_height="wrap_content"
         android:text="@string/ui_item_search"
         android:textColor="?attr/resultColor"
-        android:textSize="@dimen/result_title_size"/>
+        android:textSize="@dimen/result_title_size" />
 
 </LinearLayout>
