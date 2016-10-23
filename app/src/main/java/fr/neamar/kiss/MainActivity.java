@@ -210,6 +210,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
         }
+        else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        }
 
         setContentView(R.layout.main);
 
@@ -398,6 +401,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             overridePendingTransition(0, 0);
             startActivity(i);
             overridePendingTransition(0, 0);
+            super.onResume();
+            return;
         }
 
         if (kissBar.getVisibility() != View.VISIBLE) {
