@@ -178,7 +178,7 @@ public class SettingsActivity extends PreferenceActivity implements
             finish();
         }
         else {
-            Toast.makeText(this, "You've changed some important settings, the app will restart.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.app_wil_restart, Toast.LENGTH_SHORT).show();
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();
 

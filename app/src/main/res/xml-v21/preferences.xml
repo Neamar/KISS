@@ -21,7 +21,7 @@
             android:title="@string/reset_excluded_apps_name" />
         <PreferenceCategory
             android:order="50"
-            android:title="Alternate history inputs">
+            android:title="@string/alternate_history_inputs">
 
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
@@ -41,22 +41,18 @@
                 android:title="@string/exclude_favorites" />
         </PreferenceCategory>
     </PreferenceScreen>
-    <PreferenceScreen
-        android:key="user_interface_category"
-        android:title="@string/title_ui">
-        <PreferenceCategory android:title="Theming">
-            <ListPreference
-                android:defaultValue="light"
-                android:entries="@array/themesEntries"
-                android:entryValues="@array/themesValues"
-                android:key="theme"
-                android:title="@string/theme_name" />
-            <ListPreference
-                android:defaultValue="default"
-                android:key="icons-pack"
-                android:title="@string/icons_pack_name" />
-        </PreferenceCategory>
-        <PreferenceCategory android:title="Keyboard options">
+    <PreferenceScreen android:title="@string/title_ui">
+        <ListPreference
+            android:defaultValue="light"
+            android:entries="@array/themesEntries"
+            android:entryValues="@array/themesValues"
+            android:key="theme"
+            android:title="@string/theme_name" />
+        <ListPreference
+            android:defaultValue="default"
+            android:key="icons-pack"
+            android:title="@string/icons_pack_name" />
+        <PreferenceCategory android:title="@string/keyboard_options">
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
                 android:key="display-keyboard"
@@ -84,7 +80,7 @@
                 android:key="favorites-hide"
                 android:title="@string/favorites_hide" />
         </PreferenceCategory>
-        <PreferenceCategory android:title="Misc">
+        <PreferenceCategory android:title="@string/misc">
             <ListPreference
                 android:defaultValue="invertedAlphabetical"
                 android:entries="@array/sortAppListEntries"
