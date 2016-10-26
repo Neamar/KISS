@@ -150,14 +150,13 @@ public class SettingsActivity extends PreferenceActivity implements
             }
         }
 
-        if(key.equalsIgnoreCase("theme")) {
-            requireFullRestart = true;
-            finish();
-            return;
-        }
-
         if (requireRestartSettings.contains(key)) {
             requireFullRestart = true;
+
+            if(key.equalsIgnoreCase("theme")) {
+                finish();
+                return;
+            }
         }
 
         if ("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
