@@ -28,7 +28,7 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait";
+    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait theme";
 
     private boolean requireFullRestart = false;
 
