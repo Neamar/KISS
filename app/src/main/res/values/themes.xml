@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="BaseThemeLight" parent="@android:style/Theme.NoTitleBar">
-    </style>
+    <style name="BaseThemeLight" parent="@android:style/Theme.NoTitleBar"></style>
 
-    <style name="BaseThemeDark" parent="@android:style/Theme.NoTitleBar">
-    </style>
+    <style name="BaseThemeDark" parent="@android:style/Theme.NoTitleBar"></style>
 
     <style name="AppThemeLight" parent="BaseThemeLight">
         <item name="android:windowShowWallpaper">true</item>
@@ -54,11 +52,13 @@
     </style>
 
     <style name="SettingTheme" parent="AppThemeLight">
+        <item name="android:windowNoTitle">false</item>
         <item name="android:windowBackground">@color/kiss_background</item>
         <item name="android:textColorSecondary">#7f7f7f</item>
     </style>
 
     <style name="SettingThemeDark" parent="AppThemeDark">
+        <item name="android:windowNoTitle">false</item>
         <item name="android:windowBackground">@color/kiss_list_background_inverse</item>
     </style>
 </resources>

@@ -1,10 +1,5 @@
 package fr.neamar.kiss;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,8 +9,15 @@ import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
+import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
@@ -26,7 +28,9 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "theme enable-spellcheck force-portrait";
+    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait theme";
+
+    private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
 
@@ -72,12 +76,12 @@ public class SettingsActivity extends PreferenceActivity implements
     @SuppressWarnings("deprecation")
     private void addExcludedAppSettings(final SharedPreferences prefs) {
         if (android.os.Build.VERSION.SDK_INT >= 11) {
-
             final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
             multiPreference.setTitle(R.string.ui_excluded_apps);
             multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
             multiPreference.setKey("excluded_apps_ui");
-            PreferenceCategory category = (PreferenceCategory) findPreference("history_category");
+            multiPreference.setOrder(15);
+            PreferenceGroup category = (PreferenceGroup) findPreference("history_category");
             category.addPreference(multiPreference);
 
             loadExcludedAppsToPreference(multiPreference);
@@ -119,7 +123,7 @@ public class SettingsActivity extends PreferenceActivity implements
             multiPreference.setEntries(searchProviders);
             multiPreference.setEntryValues(searchProviders);
             multiPreference.setDefaultValue(new HashSet<>(Collections.singletonList("Google")));
-            PreferenceCategory category = (PreferenceCategory) findPreference("user_interface_category");
+            PreferenceGroup category = (PreferenceGroup) findPreference("providers");
             category.addPreference(multiPreference);
         }
     }
@@ -147,20 +151,12 @@ public class SettingsActivity extends PreferenceActivity implements
         }
 
         if (requireRestartSettings.contains(key)) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            prefs.edit().putBoolean("require-layout-update", true).apply();
+            requireFullRestart = true;
 
-            // Restart current activity to refresh view, since some
-            // preferences
-            // require using a new UI
-            Intent intent = new Intent(this, getClass());
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                    | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
-            return;
+            if(key.equalsIgnoreCase("theme")) {
+                finish();
+                return;
+            }
         }
 
         if ("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
@@ -177,8 +173,28 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onPause();
         prefs.unregisterOnSharedPreferenceChangeListener(this);
 
-        // We need to finish the Activity now, else the user may get back to the settings screen the next time he'll press home.
-        finish();
+        if(!requireFullRestart) {
+            // We need to finish the Activity now, else the user may get back to the settings screen the next time he'll press home.
+            finish();
+        }
+        else {
+            Toast.makeText(this, R.string.app_wil_restart, Toast.LENGTH_SHORT).show();
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            prefs.edit().putBoolean("require-layout-update", true).apply();
+
+            // Restart current activity to refresh view, since some
+            // preferences
+            // require using a new UI
+            Intent intent = new Intent(this, getClass());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                    | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            return;
+        }
+
     }
 
     @SuppressWarnings("deprecation")

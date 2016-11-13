@@ -10,28 +10,27 @@
         android:layout_above="@+id/favoritesBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="?attr/listBackgroundColor"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:background="?attr/listBackgroundColor"
         android:elevation="2dp">
 
         <fr.neamar.kiss.ui.BlockableListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="top|center_horizontal"
             android:cacheColorHint="@android:color/transparent"
             android:divider="?attr/dividerDrawable"
             android:dividerHeight="1dp"
             android:stackFromBottom="true"
-            android:transcriptMode="alwaysScroll"
-            android:layout_gravity="top|center_horizontal">
-        </fr.neamar.kiss.ui.BlockableListView>
+            android:transcriptMode="alwaysScroll"></fr.neamar.kiss.ui.BlockableListView>
 
         <fr.neamar.kiss.ui.BottomPullEffectView
+            android:id="@+id/listEdgeEffect"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listEdgeEffect"
             android:layout_gravity="center_horizontal|bottom" />
 
     </FrameLayout>
@@ -65,8 +64,7 @@
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
                 android:src="@drawable/ic_contact"
-                android:tag="0"
-                />
+                android:tag="0" />
 
             <ImageView
                 android:id="@+id/favoriteBar1"
@@ -76,7 +74,7 @@
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
                 android:src="@drawable/ic_contact"
-                android:tag="1"/>
+                android:tag="1" />
 
             <ImageView
                 android:id="@+id/favoriteBar2"
@@ -86,7 +84,7 @@
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
                 android:src="@drawable/ic_contact"
-                android:tag="2"/>
+                android:tag="2" />
 
             <ImageView
                 android:id="@+id/favoriteBar3"
@@ -96,7 +94,7 @@
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
                 android:src="@drawable/ic_contact"
-                android:tag="3"/>
+                android:tag="3" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -126,7 +124,7 @@
             android:paddingLeft="6dp"
             android:paddingRight="10dp"
             android:src="@drawable/ic_launcher"
-            android:tag="showMenu"/>
+            android:tag="showMenu" />
 
         <ProgressBar
             android:id="@+id/loaderBar"
@@ -137,7 +135,7 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="10dp"
             android:indeterminate="true"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/searchEditText"
@@ -156,7 +154,7 @@
             android:textColor="?attr/searchColor"
             android:textColorHint="?android:attr/textColorSecondary"
             android:textCursorDrawable="@drawable/cursor"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/menuButton"
@@ -173,8 +171,7 @@
             android:paddingRight="1dp"
             android:paddingTop="4dp"
             android:src="@drawable/dots"
-            android:tint="?attr/searchColor"
-            />
+            android:tint="?attr/searchColor" />
 
         <ImageView
             android:id="@+id/clearButton"
@@ -192,7 +189,7 @@
             android:paddingTop="4dp"
             android:src="@drawable/clear_dark"
             android:tint="?attr/searchColor"
-            android:visibility="visible"/>
+            android:visibility="visible" />
     </RelativeLayout>
 
     <ScrollView
@@ -202,7 +199,9 @@
         android:layout_above="@id/favoritesBar"
         android:visibility="gone">
 
-        <include android:id="@+id/main_empty" layout="@layout/main_empty"/>
+        <include
+            android:id="@+id/main_empty"
+            layout="@layout/main_empty" />
     </ScrollView>
 
     <include
@@ -214,6 +213,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@android:id/list"
         android:layout_margin="10dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

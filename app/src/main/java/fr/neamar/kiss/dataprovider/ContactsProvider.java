@@ -1,10 +1,11 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.database.ContentObserver;
+import android.provider.ContactsContract;
+
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import android.database.ContentObserver;
-import android.provider.ContactsContract;
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -12,15 +13,15 @@ import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
-    
+
     private ContentObserver cObserver = new ContentObserver(null) {
 
         @Override
         public void onChange(boolean selfChange) {
             //reload contacts
             reload();
-        }        
-        
+        }
+
     };
 
     @Override
@@ -33,10 +34,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         super.onCreate();
         //register content observer
         getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
-    }    
+    }
 
     @Override
-    public void onDestroy() {        
+    public void onDestroy() {
         super.onDestroy();
         //deregister content observer
         getContentResolver().unregisterContentObserver(cObserver);
@@ -98,7 +99,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 if (contact.homeNumber)
                     relevance -= 1;
 
-                if (! alias)
+                if (!alias)
                     contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 contact.relevance = relevance;
                 results.add(contact);

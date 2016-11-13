@@ -173,7 +173,7 @@ public class ContactsResult extends Result {
     }
 
     private void launchMessaging(final Context context) {
-        String url = "sms:" + contactPojo.phone;
+        String url = "sms:" + Uri.encode(contactPojo.phone);
         Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);

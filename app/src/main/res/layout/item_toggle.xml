@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/RelativeLayout1"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants"
@@ -26,7 +25,7 @@
         android:scaleType="centerInside"
         android:src="@android:drawable/ic_menu_manage"
         android:tint="?attr/resultColor"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/item_toggle_name"
@@ -39,9 +38,9 @@
         android:singleLine="true"
         android:text="@string/stub_toggle"
         android:textColor="?attr/resultColor"
-        android:textSize="@dimen/result_title_size"/>
+        android:textSize="@dimen/result_title_size" />
 
     <include
         android:id="@+id/item_toggle_action_toggle"
-        layout="@layout/ui_togglebutton"/>
+        layout="@layout/ui_togglebutton" />
 </RelativeLayout>
