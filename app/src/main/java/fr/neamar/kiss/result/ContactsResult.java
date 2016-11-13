@@ -92,9 +92,12 @@ public class ContactsResult extends Result {
                 }
             });
 
+            /*
+            Temporary disabled, see https://github.com/Neamar/KISS/issues/540
             if (contactPojo.homeNumber)
                 messageButton.setVisibility(View.INVISIBLE);
             else
+            */
                 messageButton.setVisibility(View.VISIBLE);
 
         } else {
