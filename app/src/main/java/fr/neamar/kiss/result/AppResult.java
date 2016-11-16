@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.LauncherActivityInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -104,7 +105,8 @@ public class AppResult extends Result {
 			ApplicationInfo ai;
 			if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 				LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-				ai = launcher.getActivityList(this.appPojo.packageName, this.appPojo.userHandle.getRealHandle()).get(0).getApplicationInfo();
+				LauncherActivityInfo info = launcher.getActivityList(this.appPojo.packageName, this.appPojo.userHandle.getRealHandle()).get(0);
+				ai = info.getApplicationInfo();
 			} else {
 				ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
 			}
@@ -231,13 +233,13 @@ public class AppResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-
+        
         if (icon == null) {
-             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className);
+             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className, this.appPojo.userHandle);
         }
-
+                
         return icon;
-
+        
     }
 
 	@Override
