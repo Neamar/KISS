@@ -252,6 +252,10 @@ public class AppResult extends Result {
 				intent.setComponent(className);
 				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 				
+				if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+					intent.setSourceBounds(v.getClipBounds());
+				}
+				
 				context.startActivity(intent);
 			}
 		 } catch (ActivityNotFoundException e) {

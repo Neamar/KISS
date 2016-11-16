@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.Build;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -48,6 +49,9 @@ public class SearchResult extends Result {
     public void doLaunch(Context context, View v) {
         boolean exceptionThrown = false;
         Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            search.setSourceBounds(v.getClipBounds());
+        }
         search.putExtra(SearchManager.QUERY, searchPojo.query);
         if (pojo.name.equals("Google")) {
             // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.
