@@ -101,12 +101,19 @@ public class AppResult extends Result {
         }
         try {
             // app installed under /system can't be uninstalled
-            ApplicationInfo ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
+			ApplicationInfo ai;
+			if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+				ai = launcher.getActivityList(this.appPojo.packageName, this.appPojo.userHandle.getRealHandle()).get(0).getApplicationInfo();
+			} else {
+				ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
+			}
+            
             // Need to AND the flags with SYSTEM:
             if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
                 menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
             }
-        } catch (NameNotFoundException e) {
+        } catch (NameNotFoundException | IndexOutOfBoundsException e) {
             // should not happen
         }
 
@@ -194,9 +201,14 @@ public class AppResult extends Result {
      * Open an activity displaying details regarding the current package
      */
     private void launchAppDetails(Context context, AppPojo app) {
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.fromParts("package", app.packageName, null));
-        context.startActivity(intent);
+		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+			launcher.startAppDetailsActivity(className, appPojo.userHandle.getRealHandle(), null, null);
+		} else {
+			Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+					Uri.fromParts("package", app.packageName, null));
+			context.startActivity(intent);
+			}
     }
 
     private void hibernate(Context context, AppPojo app) {
