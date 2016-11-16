@@ -47,7 +47,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 			UserManager  manager  = (UserManager)  context.getSystemService(Context.USER_SERVICE);
 			LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 			
-			// Handle the work profile introduced in Android 5 (#542)
+			// Handle multi-profile support introduced in Android 5 (#542)
 			for (android.os.UserHandle profile : manager.getUserProfiles()) {
 				android.util.Log.w("KISS Apps", "Found profile: " + profile);
 				for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
@@ -77,15 +77,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-            final List<ResolveInfo> appsInfo = manager.queryIntentActivities(mainIntent, 0);
-            if (prefs.getString("sort-apps", "alphabetical").equals("invertedAlphabetical")) {
-                Collections.sort(appsInfo, Collections.reverseOrder(new ResolveInfo.DisplayNameComparator(manager)));
-            }
-            else {
-                Collections.sort(appsInfo, new ResolveInfo.DisplayNameComparator(manager));
-            }
-
-            for (ResolveInfo info : appsInfo) {
+            for (ResolveInfo info : manager.queryIntentActivities(mainIntent, 0)) {
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
                 if (!excludedApps.contains(appInfo.packageName)) {
                     AppPojo app = new AppPojo();
@@ -102,6 +94,13 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     apps.add(app);
                 }
             }
+        }
+        
+        // Apply app sorting preference
+        if (prefs.getString("sort-apps", "alphabetical").equals("invertedAlphabetical")) {
+            Collections.sort(apps, Collections.reverseOrder(new AppPojo.NameComparator()));
+        } else {
+            Collections.sort(apps, new AppPojo.NameComparator());
         }
         
         long end = System.nanoTime();
