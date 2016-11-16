@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -227,18 +228,23 @@ public class AppResult extends Result {
 
     }
 
-    @Override
-    public void doLaunch(Context context, View v) {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        intent.setComponent(className);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-
-        try {
-            context.startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            // Application was just removed?
-            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
-        }
-    }
+	@Override
+	public void doLaunch(Context context, View v) {
+		try {
+			if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+				launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), v.getClipBounds(), null);
+			} else {
+				Intent intent = new Intent(Intent.ACTION_MAIN);
+				intent.addCategory(Intent.CATEGORY_LAUNCHER);
+				intent.setComponent(className);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+				
+				context.startActivity(intent);
+			}
+		 } catch (ActivityNotFoundException e) {
+			// Application was just removed?
+			Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+		}
+	}
 }

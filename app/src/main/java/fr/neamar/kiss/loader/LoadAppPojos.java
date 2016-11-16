@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.preference.PreferenceManager;
 import android.os.Build;
-import android.os.UserHandle;
 import android.os.UserManager;
 import android.util.Log;
 
@@ -22,6 +21,7 @@ import java.util.List;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.utils.UserHandle;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
@@ -46,22 +46,26 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			UserManager  manager  = (UserManager)  context.getSystemService(Context.USER_SERVICE);
 			LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-
+			
 			// Handle the work profile introduced in Android 5 (#542)
-			for (UserHandle profile : manager.getUserProfiles()) {
+			for (android.os.UserHandle profile : manager.getUserProfiles()) {
 				android.util.Log.w("KISS Apps", "Found profile: " + profile);
 				for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
 					ApplicationInfo appInfo = activityInfo.getApplicationInfo();
 					android.util.Log.w("KISS Apps", "Found app: " + appInfo);
 					if (!excludedApps.contains(appInfo.packageName)) {
 						AppPojo app = new AppPojo();
-
+						
 						app.id = pojoScheme + appInfo.packageName + "/" + activityInfo.getName();
 						app.setName(activityInfo.getLabel().toString());
-
+						
 						app.packageName  = appInfo.packageName;
 						app.activityName = activityInfo.getName();
-
+						
+						// Wrap Android user handle in opaque container that will work across
+						// all Android versions
+						app.userHandle = new UserHandle(profile);
+						
 						app.setTags(tagsHandler.getTags(app.id));
 						apps.add(app);
 					}
@@ -91,6 +95,8 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
                     app.packageName  = appInfo.packageName;
                     app.activityName = info.activityInfo.name;
+                    
+                    app.userHandle = new UserHandle();
 
                     app.setTags(tagsHandler.getTags(app.id));
                     apps.add(app);
