@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +32,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -288,6 +290,30 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
                 ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
                 return true;
+            }
+        });
+
+        this.list.setOnScrollListener(new ListView.OnScrollListener() {
+            private float lastPercentage = -1;
+
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {}
+
+            @Override
+            public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (absListView.getWindowToken() != null) {
+                    float percentage = 0;
+                    float div = totalItemCount;
+                    if (totalItemCount > 0) {
+                        if (div > visibleItemCount)
+                            div -= visibleItemCount;
+                        percentage = (float) firstVisibleItem / div;
+                    }
+                    if (Math.abs(lastPercentage - percentage) > .01f) {
+                        WallpaperManager.getInstance(MainActivity.this).setWallpaperOffsets(absListView.getWindowToken(), 1f - percentage, 0);
+                    }
+                    lastPercentage = percentage;
+                }
             }
         });
 
