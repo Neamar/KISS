@@ -39,4 +39,9 @@ public class UserHandle {
 			return Process.myUserHandle();
 		}
 	}
+	
+	
+	public boolean isCurrentUser() {
+		return (this.handle == null);
+	}
 }

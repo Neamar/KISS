@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Process;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -102,17 +103,20 @@ public class AppResult extends Result {
         }
         try {
             // app installed under /system can't be uninstalled
+			boolean isSameProfile = true;
 			ApplicationInfo ai;
 			if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 				LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 				LauncherActivityInfo info = launcher.getActivityList(this.appPojo.packageName, this.appPojo.userHandle.getRealHandle()).get(0);
 				ai = info.getApplicationInfo();
+				
+				isSameProfile = this.appPojo.userHandle.isCurrentUser();
 			} else {
 				ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
 			}
             
             // Need to AND the flags with SYSTEM:
-            if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+            if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && isSameProfile) {
                 menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
             }
         } catch (NameNotFoundException | IndexOutOfBoundsException e) {
