@@ -10,6 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadSearchPojos;
 import fr.neamar.kiss.pojo.Pojo;
@@ -17,6 +19,8 @@ import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchProvider extends Provider<SearchPojo> {
     private SharedPreferences prefs;
+    public static final String URL_REGEX = "^((https?|ftp)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?].*)?$";
+
     private static final Map<String,String> searchProviderUrls = new LinkedHashMap<>();
 
     static {
@@ -56,6 +60,17 @@ public class SearchProvider extends Provider<SearchPojo> {
             pojo.relevance = 10;
             pojo.name="Google";
             pojo.url = searchProviderUrls.get("Google");
+            pojos.add(pojo);
+        }
+
+        Pattern p = Pattern.compile(URL_REGEX);
+        Matcher m = p.matcher("example.com");//replace with string to compare
+        if(m.find()) {
+            SearchPojo pojo = new SearchPojo();
+            pojo.relevance = 11;
+            pojo.name = query;
+            pojo.url = query;
+            pojo.direct = true;
             pojos.add(pojo);
         }
         return pojos;
