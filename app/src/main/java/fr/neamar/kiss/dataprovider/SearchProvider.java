@@ -4,8 +4,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.webkit.URLUtil;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -67,22 +65,18 @@ public class SearchProvider extends Provider<SearchPojo> {
         }
 
         Pattern p = Pattern.compile(URL_REGEX);
-        Matcher m = p.matcher(query);//replace with string to compare
-        try {
-            if(m.find()) {
-                String url = new URL ("https://" + query).toString();
-                if(URLUtil.isValidUrl (url)) {
-                    SearchPojo pojo = new SearchPojo();
-                    pojo.query = "";
-                    pojo.relevance = 50;
-                    pojo.name = query;
-                    pojo.url = url;
-                    pojo.direct = true;
-                    pojos.add(pojo);
-                }
+        Matcher m = p.matcher(query);
+        if(m.find()) {
+            String guessedUrl = URLUtil.guessUrl(query).toString();
+            if(URLUtil.isValidUrl (guessedUrl)) {
+                SearchPojo pojo = new SearchPojo();
+                pojo.query = "";
+                pojo.relevance = 50;
+                pojo.name = guessedUrl;
+                pojo.url = guessedUrl;
+                pojo.direct = true;
+                pojos.add(pojo);
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         }
         return pojos;
     }
