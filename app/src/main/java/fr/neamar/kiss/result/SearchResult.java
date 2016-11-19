@@ -32,14 +32,16 @@ public class SearchResult extends Result {
 
         TextView appName = (TextView) v.findViewById(R.id.item_search_text);
         String text = context.getString(R.string.ui_item_search);
+        ImageView image = (ImageView) v.findViewById(R.id.item_search_icon);
         if(searchPojo.direct) {
             text = "Visit “%1$s”";
             appName.setText(enrichText(String.format(text, "{" + this.pojo.name + "}")));
+            image.setImageResource(R.drawable.ic_public);
         } else {
             appName.setText(enrichText(String.format(text, this.pojo.name, "{" + searchPojo.query + "}")));
+            image.setImageResource(R.drawable.search);
         }
-
-        ((ImageView) v.findViewById(R.id.item_search_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
+        image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;
     }
 
