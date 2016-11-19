@@ -74,7 +74,7 @@ public class SearchProvider extends Provider<SearchPojo> {
                 if(URLUtil.isValidUrl (url)) {
                     SearchPojo pojo = new SearchPojo();
                     pojo.query = "";
-                    pojo.relevance = 10;
+                    pojo.relevance = 50;
                     pojo.name = query;
                     pojo.url = url;
                     pojo.direct = true;
