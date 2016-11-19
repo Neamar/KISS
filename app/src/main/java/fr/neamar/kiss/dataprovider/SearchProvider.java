@@ -2,6 +2,7 @@ package fr.neamar.kiss.dataprovider;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.webkit.URLUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -68,14 +69,17 @@ public class SearchProvider extends Provider<SearchPojo> {
         Pattern p = Pattern.compile(URL_REGEX);
         Matcher m = p.matcher(query);//replace with string to compare
         try {
-        if(m.find()) {
-            SearchPojo pojo = new SearchPojo();
-            pojo.query = "";
-            pojo.relevance = 10;
-            pojo.name = query;
-            pojo.url = new URL ("https://" + query).toString();
-            pojo.direct = true;
-            pojos.add(pojo);
+            if(m.find()) {
+                String url = new URL ("https://" + query).toString();
+                if(URLUtil.isValidUrl (url)) {
+                    SearchPojo pojo = new SearchPojo();
+                    pojo.query = "";
+                    pojo.relevance = 10;
+                    pojo.name = query;
+                    pojo.url = url;
+                    pojo.direct = true;
+                    pojos.add(pojo);
+                }
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
