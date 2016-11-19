@@ -64,7 +64,7 @@ public class SearchProvider extends Provider<SearchPojo> {
         }
 
         Pattern p = Pattern.compile(URL_REGEX);
-        Matcher m = p.matcher("example.com");//replace with string to compare
+        Matcher m = p.matcher(query);//replace with string to compare
         if(m.find()) {
             SearchPojo pojo = new SearchPojo();
             pojo.relevance = 11;
