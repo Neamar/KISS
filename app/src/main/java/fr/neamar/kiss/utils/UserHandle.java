@@ -1,6 +1,7 @@
 package fr.neamar.kiss.utils;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.os.Process;
 
@@ -9,24 +10,27 @@ import android.os.Process;
  * Wrapper class for `android.os.UserHandle` that works with all Android versions
  */
 public class UserHandle {
+	private long   serial;
 	private Object handle; // android.os.UserHandle on Android 4.2 and newer
 	
 	public UserHandle() {
-		this(null);
+		this(0, null);
 	}
 	
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-	public UserHandle(Object user) {
+	public UserHandle(long serial, android.os.UserHandle user) {
 		if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
 			// OS does not provide any APIs for multi-user support
+			this.serial = 0;
 			this.handle = null;
 		} else if(user != null && Process.myUserHandle().equals(user)) {
 			// For easier processing the current user is also stored as `null`, even
 			// if there is multi-user support
+			this.serial = 0;
 			this.handle = null;
 		} else {
 			// Store the given user handle
-			assert (user instanceof android.os.UserHandle);
+			this.serial = serial;
 			this.handle = user;
 		}
 	}
@@ -43,5 +47,17 @@ public class UserHandle {
 	
 	public boolean isCurrentUser() {
 		return (this.handle == null);
+	}
+	
+	
+	public String addUserSuffixToString(String base, char separator) {
+		if(this.handle == null) {
+			return base;
+		} else {
+			StringBuilder result = new StringBuilder(base);
+			result.append(separator);
+			result.append(this.serial);
+			return result.toString();
+		}
 	}
 }

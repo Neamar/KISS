@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.preference.PreferenceManager;
 import android.os.Build;
+import android.os.Process;
 import android.os.UserManager;
 import android.util.Log;
 
@@ -50,13 +51,17 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 			// Handle multi-profile support introduced in Android 5 (#542)
 			for (android.os.UserHandle profile : manager.getUserProfiles()) {
 				android.util.Log.w("KISS Apps", "Found profile: " + profile);
+				UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
 				for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
 					ApplicationInfo appInfo = activityInfo.getApplicationInfo();
 					android.util.Log.w("KISS Apps", "Found app: " + appInfo);
-					if (!excludedApps.contains(appInfo.packageName)) {
+					
+					String fullPackageName = user.addUserSuffixToString(appInfo.packageName, '#');
+					if(!excludedApps.contains(fullPackageName)) {
 						AppPojo app = new AppPojo();
 						
-						app.id = pojoScheme + appInfo.packageName + "/" + activityInfo.getName();
+						app.id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
+						
 						app.setName(activityInfo.getLabel().toString());
 						
 						app.packageName  = appInfo.packageName;
@@ -64,7 +69,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 						
 						// Wrap Android user handle in opaque container that will work across
 						// all Android versions
-						app.userHandle = new UserHandle(profile);
+						app.userHandle = user;
 						
 						app.setTags(tagsHandler.getTags(app.id));
 						apps.add(app);

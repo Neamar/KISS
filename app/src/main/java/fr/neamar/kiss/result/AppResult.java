@@ -156,7 +156,7 @@ public class AppResult extends Result {
     }
 
     private void excludeFromAppList(Context context, AppPojo appPojo) {
-        KissApplication.getDataHandler(context).addToExcluded(appPojo.packageName);
+        KissApplication.getDataHandler(context).addToExcluded(appPojo.packageName, appPojo.userHandle);
         //remove app pojo from appProvider results - no need to reset handler
         KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
         KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, appPojo.id);

@@ -1,5 +1,10 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.content.Context;
+import android.content.pm.LauncherApps;
+import android.os.Build;
+import android.os.Process;
+import android.os.UserManager;
 import android.util.Pair;
 
 import java.util.ArrayList;
@@ -8,8 +13,72 @@ import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
+import fr.neamar.kiss.utils.UserHandle;
 
 public class AppProvider extends Provider<AppPojo> {
+
+	@Override
+	public void onCreate() {
+		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			final UserManager  manager  = (UserManager)  this.getSystemService(Context.USER_SERVICE);
+			final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+			
+			launcher.registerCallback(new LauncherApps.Callback() {
+				@Override
+				public void onPackageAdded(String packageName, android.os.UserHandle user) {
+					if(!Process.myUserHandle().equals(user)) {
+						PackageAddedRemovedHandler.handleEvent(AppProvider.this,
+								"android.intent.action.PACKAGE_ADDED",
+								packageName, new UserHandle(manager.getSerialNumberForUser(user), user), false
+						);
+					}
+				}
+				
+				@Override
+				public void onPackageChanged(String packageName, android.os.UserHandle user) {
+					if(!Process.myUserHandle().equals(user)) {
+						PackageAddedRemovedHandler.handleEvent(AppProvider.this,
+								"android.intent.action.PACKAGE_ADDED",
+								packageName, new UserHandle(manager.getSerialNumberForUser(user), user), true
+						);
+					}
+				}
+				
+				@Override
+				public void onPackageRemoved(String packageName, android.os.UserHandle user) {
+					if(!Process.myUserHandle().equals(user)) {
+						PackageAddedRemovedHandler.handleEvent(AppProvider.this,
+								"android.intent.action.PACKAGE_REMOVED",
+								packageName, new UserHandle(manager.getSerialNumberForUser(user), user), false
+						);
+					}
+				}
+				
+				@Override
+				public void onPackagesAvailable(String[] packageNames, android.os.UserHandle user, boolean replacing) {
+					if(!Process.myUserHandle().equals(user)) {
+						PackageAddedRemovedHandler.handleEvent(AppProvider.this,
+								"android.intent.action.MEDIA_MOUNTED",
+								null, new UserHandle(manager.getSerialNumberForUser(user), user), false
+						);
+					}
+				}
+				
+				@Override
+				public void onPackagesUnavailable(String[] packageNames, android.os.UserHandle user, boolean replacing) {
+					if(!Process.myUserHandle().equals(user)) {
+						PackageAddedRemovedHandler.handleEvent(AppProvider.this,
+								"android.intent.action.MEDIA_UNMOUNTED",
+								null, new UserHandle(manager.getSerialNumberForUser(user), user), false
+						);
+					}
+				}
+			});
+    	}
+		
+		super.onCreate();
+	}
 
     @Override
     public void reload() {

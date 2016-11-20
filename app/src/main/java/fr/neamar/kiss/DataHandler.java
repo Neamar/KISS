@@ -31,6 +31,7 @@ import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.utils.UserHandle;
 
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -357,14 +358,18 @@ public class DataHandler extends BroadcastReceiver
     }
 
 
-    public void addToExcluded(String packageName) {
+    public void addToExcluded(String packageName, UserHandle user) {
+		packageName = user.addUserSuffixToString(packageName, '#');
+		
         String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("excluded-apps-list", context.getPackageName() + ";");
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("excluded-apps-list", excludedAppList + packageName + ";").apply();
     }
 
-    public void removeFromExcluded(String packageName) {
+    public void removeFromExcluded(String packageName, UserHandle user) {
+		packageName = user.addUserSuffixToString(packageName, '#');
+		
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
         String excluded = prefs.getString("excluded-apps-list", context.getPackageName() + ";");
         prefs.edit().putString("excluded-apps-list", excluded.replaceAll(packageName + ";", "")).apply();
