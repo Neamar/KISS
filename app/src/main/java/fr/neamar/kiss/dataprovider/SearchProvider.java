@@ -27,6 +27,7 @@ public class SearchProvider extends Provider<SearchPojo> {
         searchProviderUrls.put("StartPage", "https://startpage.com/do/search?language=cat=web&query=");
         searchProviderUrls.put("Wikipedia", "https://en.wikipedia.org/wiki/");
         searchProviderUrls.put("Yahoo", "https://search.yahoo.com/search?p=");
+        searchProviderUrls.put("searX", "https://searx.me/q=");
     }
 
     @Override
