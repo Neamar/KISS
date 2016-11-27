@@ -38,6 +38,10 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
                 Intent.ACTION_POWER_USAGE_SUMMARY, R.drawable.setting_battery));
         settings.add(createPojo(context.getString(R.string.settings_tethering), "com.android.settings",
                 "com.android.settings.TetherSettings", R.drawable.setting_tethering));
+        settings.add(createPojo(context.getString(R.string.settings_sound),
+                Settings.ACTION_SOUND_SETTINGS, R.drawable.setting_dev));
+        settings.add(createPojo(context.getString(R.string.settings_display),
+                Settings.ACTION_DISPLAY_SETTINGS, R.drawable.setting_dev));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             if (pm.hasSystemFeature(PackageManager.FEATURE_NFC)) {
                 settings.add(createPojo(context.getString(R.string.settings_nfc),
