@@ -23,6 +23,7 @@ public class SearchProvider extends Provider<SearchPojo> {
     public static final String URL_REGEX = "^((https?|ftp)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?].*)?$";
 
     private static final Map<String,String> searchProviderUrls = new LinkedHashMap<>();
+    private static final Pattern p = Pattern.compile(URL_REGEX);
 
     static {
         searchProviderUrls.put("Bing", "https://www.bing.com/search?q=");
@@ -64,7 +65,6 @@ public class SearchProvider extends Provider<SearchPojo> {
             pojos.add(pojo);
         }
 
-        Pattern p = Pattern.compile(URL_REGEX);
         Matcher m = p.matcher(query);
         if(m.find()) {
             String guessedUrl = URLUtil.guessUrl(query);
