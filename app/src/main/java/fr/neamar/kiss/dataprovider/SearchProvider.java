@@ -67,7 +67,7 @@ public class SearchProvider extends Provider<SearchPojo> {
         Pattern p = Pattern.compile(URL_REGEX);
         Matcher m = p.matcher(query);
         if(m.find()) {
-            String guessedUrl = URLUtil.guessUrl(query).toString();
+            String guessedUrl = URLUtil.guessUrl(query);
             if(URLUtil.isValidUrl (guessedUrl)) {
                 SearchPojo pojo = new SearchPojo();
                 pojo.query = "";
