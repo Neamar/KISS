@@ -2,6 +2,7 @@ package fr.neamar.kiss.dataprovider;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.webkit.URLUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +11,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadSearchPojos;
 import fr.neamar.kiss.pojo.Pojo;
@@ -17,7 +20,10 @@ import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchProvider extends Provider<SearchPojo> {
     private SharedPreferences prefs;
+    public static final String URL_REGEX = "^(?:[a-z]+://)?(?:[a-z0-9-]|[^\\x00-\\x7F])+(?:[.](?:[a-z0-9-]|[^\\x00-\\x7F])+)+.*$";
+
     private static final Map<String,String> searchProviderUrls = new LinkedHashMap<>();
+    private static final Pattern p = Pattern.compile(URL_REGEX);
 
     static {
         searchProviderUrls.put("Bing", "https://www.bing.com/search?q=");
@@ -57,6 +63,20 @@ public class SearchProvider extends Provider<SearchPojo> {
             pojo.name="Google";
             pojo.url = searchProviderUrls.get("Google");
             pojos.add(pojo);
+        }
+
+        Matcher m = p.matcher(query);
+        if(m.find()) {
+            String guessedUrl = URLUtil.guessUrl(query);
+            if(URLUtil.isValidUrl (guessedUrl)) {
+                SearchPojo pojo = new SearchPojo();
+                pojo.query = "";
+                pojo.relevance = 50;
+                pojo.name = guessedUrl;
+                pojo.url = guessedUrl;
+                pojo.direct = true;
+                pojos.add(pojo);
+            }
         }
         return pojos;
     }
