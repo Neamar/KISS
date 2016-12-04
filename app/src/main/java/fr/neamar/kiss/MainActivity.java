@@ -460,6 +460,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // This is called when the user press Home again while already browsing MainActivity
         // onResume() will be called right after, hiding the kissbar if any.
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
+        onBackPressed();
+        hideKeyboard(); // Hiding the keyboard depends on the value from the setting "display keyboard on app open"
     }
 
     @Override
