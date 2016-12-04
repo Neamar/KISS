@@ -591,8 +591,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
     private void displayLoader(Boolean display) {
-        final View loaderBar = findViewById(loaderBar);
-        final View launcherButton = findViewById(launcherButton);
+        final View loaderBar = findViewById(R.id.loaderBar);
+        final View launcherButton = findViewById(R.id.launcherButton);
 
         int animationDuration = getResources().getInteger(
                 android.R.integer.config_longAnimTime);
@@ -623,7 +623,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     private void displayKissBar(Boolean display) {
-        final ImageView launcherButton = (ImageView) findViewById(launcherButton);
+        final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
         final View favoritesKissBar = findViewById(R.id.favoritesKissBar);
 
         // get the center for the clipping circle
