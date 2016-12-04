@@ -660,8 +660,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
             // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
             retrieveFavorites();
-
-            hideKeyboard();
         } else {
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
