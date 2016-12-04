@@ -8,6 +8,7 @@ public class KissApplication {
      * Setting this value to 0 removes all animations
      */
     public static final int TOUCH_DELAY = 120;
+    public static final int AUTOSTART_DELAY = 1500;
     private static DataHandler dataHandler;
     private static CameraHandler cameraHandler;
     private static RootHandler rootHandler;

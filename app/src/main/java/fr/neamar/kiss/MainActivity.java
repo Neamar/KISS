@@ -773,6 +773,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public void resetTask() {
         searcher = null;
+        // check if one result only, then execute it
+        if ((this.adapter.getCount() == 1) && (prefs.getBoolean("autostart-single-result", false))) {
+            //launch
+            final Result result = this.adapter.getItem(0);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    list.performItemClick(list.getAdapter().getView(0, null, null), 0, 0);
+                }
+            }, KissApplication.AUTOSTART_DELAY);
+
+
+        }
     }
 
     /**
