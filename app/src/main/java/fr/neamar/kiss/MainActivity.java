@@ -566,19 +566,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public void onFavoriteButtonClicked(View favorite) {
-
+        // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
+        displayKissBar(false);
+        
         // Favorites handling
         Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve)
                 .get(Integer.parseInt((String) favorite.getTag()));
         final Result result = Result.fromPojo(MainActivity.this, pojo);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                result.fastLaunch(MainActivity.this);
-            }
-        }, KissApplication.TOUCH_DELAY);
+        result.fastLaunch(MainActivity.this);
     }
 
     private void displayClearOnInput() {
