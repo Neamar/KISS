@@ -32,7 +32,7 @@ public class SearchResult extends Result {
 
         TextView appName = (TextView) v.findViewById(R.id.item_search_text);
         ImageView image = (ImageView) v.findViewById(R.id.item_search_icon);
-        if(searchPojo.direct) {
+        if (searchPojo.direct) {
             String text = context.getString(R.string.ui_item_visit);
             appName.setText(enrichText(String.format(text, "{" + this.pojo.name + "}")));
             image.setImageResource(R.drawable.ic_public);
@@ -52,11 +52,9 @@ public class SearchResult extends Result {
         Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
         search.putExtra(SearchManager.QUERY, searchPojo.query);
         if (pojo.name.equals("Google")) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.
-                // Adding FLAG_ACTIVITY_CLEAR_TASK seems to fix the problem.
-                search.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            }
+            // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.
+            // Adding FLAG_ACTIVITY_CLEAR_TASK seems to fix the problem.
+            search.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             try {

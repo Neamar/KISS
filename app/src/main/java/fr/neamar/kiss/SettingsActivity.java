@@ -52,8 +52,7 @@ public class SettingsActivity extends PreferenceActivity implements
             } else {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
-        }
-        else {
+        } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
 
@@ -72,14 +71,12 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
-        if (android.os.Build.VERSION.SDK_INT >= 11) {
-            String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
-            String[] apps = excludedAppList.split(";");
+        String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
+        String[] apps = excludedAppList.split(";");
 
-            multiSelectList.setEntries(apps);
-            multiSelectList.setEntryValues(apps);
-            multiSelectList.setValues(new HashSet<String>(Arrays.asList(apps)));
-        }
+        multiSelectList.setEntries(apps);
+        multiSelectList.setEntryValues(apps);
+        multiSelectList.setValues(new HashSet<String>(Arrays.asList(apps)));
     }
 
     private boolean hasExcludedApps(final SharedPreferences prefs) {
@@ -89,57 +86,53 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @SuppressWarnings("deprecation")
     private void addExcludedAppSettings(final SharedPreferences prefs) {
-        if (android.os.Build.VERSION.SDK_INT >= 11) {
-            final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
-            multiPreference.setTitle(R.string.ui_excluded_apps);
-            multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
-            multiPreference.setKey("excluded_apps_ui");
-            multiPreference.setOrder(15);
-            PreferenceGroup category = (PreferenceGroup) findPreference("history_category");
-            category.addPreference(multiPreference);
+        final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+        multiPreference.setTitle(R.string.ui_excluded_apps);
+        multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
+        multiPreference.setKey("excluded_apps_ui");
+        multiPreference.setOrder(15);
+        PreferenceGroup category = (PreferenceGroup) findPreference("history_category");
+        category.addPreference(multiPreference);
 
-            loadExcludedAppsToPreference(multiPreference);
-            multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                @SuppressWarnings("unchecked")
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-                    Set<String> appListToBeExcluded = (HashSet<String>) newValue;
+        loadExcludedAppsToPreference(multiPreference);
+        multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            @SuppressWarnings("unchecked")
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                Set<String> appListToBeExcluded = (HashSet<String>) newValue;
 
-                    StringBuilder builder = new StringBuilder();
-                    for (String s : appListToBeExcluded) {
-                        builder.append(s).append(";");
-                    }
-
-                    prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").apply();
-                    loadExcludedAppsToPreference(multiPreference);
-                    if (!hasExcludedApps(prefs)) {
-                        multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
-                    }
-                    KissApplication.getDataHandler(SettingsActivity.this).getAppProvider().reload();
-                    return false;
+                StringBuilder builder = new StringBuilder();
+                for (String s : appListToBeExcluded) {
+                    builder.append(s).append(";");
                 }
-            });
-            if (!hasExcludedApps(prefs)) {
-                multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
+
+                prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").apply();
+                loadExcludedAppsToPreference(multiPreference);
+                if (!hasExcludedApps(prefs)) {
+                    multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
+                }
+                KissApplication.getDataHandler(SettingsActivity.this).getAppProvider().reload();
+                return false;
             }
+        });
+        if (!hasExcludedApps(prefs)) {
+            multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
         }
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void addSearchProvidersSelector(SharedPreferences prefs) {
-        if (android.os.Build.VERSION.SDK_INT >= 11) {
-            MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
-            String[] searchProviders = SearchProvider.getSearchProviders();
-            String search_providers_title = this.getString(R.string.search_providers_title);
-            multiPreference.setTitle(search_providers_title);
-            multiPreference.setDialogTitle(search_providers_title);
-            multiPreference.setKey("search-providers");
-            multiPreference.setEntries(searchProviders);
-            multiPreference.setEntryValues(searchProviders);
-            multiPreference.setDefaultValue(new HashSet<>(Collections.singletonList("Google")));
-            PreferenceGroup category = (PreferenceGroup) findPreference("providers");
-            category.addPreference(multiPreference);
-        }
+        MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+        String[] searchProviders = SearchProvider.getSearchProviders();
+        String search_providers_title = this.getString(R.string.search_providers_title);
+        multiPreference.setTitle(search_providers_title);
+        multiPreference.setDialogTitle(search_providers_title);
+        multiPreference.setKey("search-providers");
+        multiPreference.setEntries(searchProviders);
+        multiPreference.setEntryValues(searchProviders);
+        multiPreference.setDefaultValue(new HashSet<>(Collections.singletonList("Google")));
+        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        category.addPreference(multiPreference);
     }
 
 
@@ -167,7 +160,7 @@ public class SettingsActivity extends PreferenceActivity implements
         if (requireRestartSettings.contains(key)) {
             requireFullRestart = true;
 
-            if(key.equalsIgnoreCase("theme")) {
+            if (key.equalsIgnoreCase("theme")) {
                 finish();
                 return;
             }
@@ -187,7 +180,7 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onPause();
         prefs.unregisterOnSharedPreferenceChangeListener(this);
 
-        if(requireFullRestart) {
+        if (requireFullRestart) {
             Toast.makeText(this, R.string.app_wil_restart, Toast.LENGTH_SHORT).show();
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();

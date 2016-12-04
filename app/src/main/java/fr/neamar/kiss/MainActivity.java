@@ -59,6 +59,8 @@ import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
+import static fr.neamar.kiss.R.id.launcherButton;
+
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
@@ -67,7 +69,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * InputType that behaves as if the consuming IME is a standard-obeying
      * soft-keyboard
-     *
+     * <p>
      * *Auto Complete* means "we're handling auto-completion ourselves". Then
      * we ignore whatever the IME thinks we should display.
      */
@@ -76,7 +78,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
     /**
      * InputType that behaves as if the consuming IME is SwiftKey
-     *
+     * <p>
      * *Visible Password* fields will break many non-Latin IMEs and may show
      * unexpected behaviour in numerous ways. (#454, #517)
      */
@@ -209,8 +211,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             } else {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
-        }
-        else {
+        } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
 
@@ -336,7 +337,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 R.id.menuButton,
                 // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
                 R.id.clearButton,
-                R.id.launcherButton,
+                launcherButton,
                 R.id.favorite0,
                 R.id.favorite1,
                 R.id.favorite2,
@@ -351,7 +352,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 findViewById(id).setBackgroundResource(outValue.resourceId);
             }
 
-        } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        } else {
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
 
@@ -568,7 +569,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onFavoriteButtonClicked(View favorite) {
         // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
         displayKissBar(false);
-        
+
         // Favorites handling
         Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve)
                 .get(Integer.parseInt((String) favorite.getTag()));
@@ -590,8 +591,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
     private void displayLoader(Boolean display) {
-        final View loaderBar = findViewById(R.id.loaderBar);
-        final View launcherButton = findViewById(R.id.launcherButton);
+        final View loaderBar = findViewById(loaderBar);
+        final View launcherButton = findViewById(launcherButton);
 
         int animationDuration = getResources().getInteger(
                 android.R.integer.config_longAnimTime);
@@ -599,26 +600,22 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (!display) {
             launcherButton.setVisibility(View.VISIBLE);
 
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                // Animate transition from loader to launch button
-                launcherButton.setAlpha(0);
-                launcherButton.animate()
-                        .alpha(1f)
-                        .setDuration(animationDuration)
-                        .setListener(null);
-                loaderBar.animate()
-                        .alpha(0f)
-                        .setDuration(animationDuration)
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                loaderBar.setVisibility(View.GONE);
-                                loaderBar.setAlpha(1);
-                            }
-                        });
-            } else {
-                loaderBar.setVisibility(View.GONE);
-            }
+            // Animate transition from loader to launch button
+            launcherButton.setAlpha(0);
+            launcherButton.animate()
+                    .alpha(1f)
+                    .setDuration(animationDuration)
+                    .setListener(null);
+            loaderBar.animate()
+                    .alpha(0f)
+                    .setDuration(animationDuration)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            loaderBar.setVisibility(View.GONE);
+                            loaderBar.setAlpha(1);
+                        }
+                    });
         } else {
             launcherButton.setVisibility(View.INVISIBLE);
             loaderBar.setVisibility(View.VISIBLE);
@@ -626,7 +623,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     private void displayKissBar(Boolean display) {
-        final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+        final ImageView launcherButton = (ImageView) findViewById(launcherButton);
         final View favoritesKissBar = findViewById(R.id.favoritesKissBar);
 
         // get the center for the clipping circle

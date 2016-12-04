@@ -68,13 +68,6 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onLongClick(final int pos, View v) {
-        // Popup menu is not available before Honeycomb.
-        // We simply remove the item from history
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            removeResult(results.get(pos));
-            return;
-        }
-
         PopupMenu menu = results.get(pos).getPopupMenu(getContext(), this, v);
 
         //check if menu contains elements and if yes show it

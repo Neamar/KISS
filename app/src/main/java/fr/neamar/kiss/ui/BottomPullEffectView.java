@@ -44,11 +44,6 @@ public class BottomPullEffectView extends View {
      * @param animated     Should this pull eventually fade away?
      */
     public void setPull(float distance, float displacement, boolean animated) {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            // Don't draw anything if the platform does not support it
-            return;
-        }
-
         // Reset internal effect state by creating a new instance
         //XXX: This may cause unnecessary GC runs!
         this.effect = new EdgeEffect(this.getContext());
