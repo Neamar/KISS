@@ -3,6 +3,7 @@ package fr.neamar.kiss;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -41,6 +42,19 @@ public class SettingsActivity extends PreferenceActivity implements
         String theme = prefs.getString("theme", "light");
         if (theme.contains("dark")) {
             setTheme(R.style.SettingThemeDark);
+        }
+
+        // Lock launcher into portrait mode
+        // Do it here to make the transition as smooth as possible
+        if (prefs.getBoolean("force-portrait", true)) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
+        }
+        else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
 
         super.onCreate(savedInstanceState);
@@ -173,11 +187,7 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onPause();
         prefs.unregisterOnSharedPreferenceChangeListener(this);
 
-        if(!requireFullRestart) {
-            // We need to finish the Activity now, else the user may get back to the settings screen the next time he'll press home.
-            finish();
-        }
-        else {
+        if(requireFullRestart) {
             Toast.makeText(this, R.string.app_wil_restart, Toast.LENGTH_SHORT).show();
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();

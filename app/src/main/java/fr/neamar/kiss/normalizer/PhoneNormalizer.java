@@ -89,7 +89,7 @@ public class PhoneNormalizer {
                 String simCountryIso = manager.getSimCountryIso();
                 //Log.d("COUNTRY", "SIM: " + simCountryIso);
                 if (!TextUtils.isEmpty(simCountryIso))
-                    return simCountryIso;
+                    return simCountryIso.toUpperCase();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -97,7 +97,7 @@ public class PhoneNormalizer {
                 String networkCountryIso = manager.getNetworkCountryIso();
                 //Log.d("COUNTRY", "NET: " + networkCountryIso);
                 if (!TextUtils.isEmpty(networkCountryIso))
-                    return networkCountryIso;
+                    return networkCountryIso.toUpperCase();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
