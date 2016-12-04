@@ -59,8 +59,6 @@ import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
-import static fr.neamar.kiss.R.id.launcherButton;
-
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
@@ -333,18 +331,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Apply some tweaks to the design, depending on the current SDK version
      */
     private void applyDesignTweaks() {
-        final int[] tweakableIds = new int[]{
-                R.id.menuButton,
-                // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
-                R.id.clearButton,
-                launcherButton,
-                R.id.favorite0,
-                R.id.favorite1,
-                R.id.favorite2,
-                R.id.favorite3,
-        };
-
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            final int[] tweakableIds = new int[]{
+                    R.id.menuButton,
+                    // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
+                    R.id.clearButton,
+                    R.id.launcherButton,
+                    R.id.favorite0,
+                    R.id.favorite1,
+                    R.id.favorite2,
+                    R.id.favorite3,
+            };
+
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
 
@@ -352,13 +350,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 findViewById(id).setBackgroundResource(outValue.resourceId);
             }
 
-        } else {
-            TypedValue outValue = new TypedValue();
-            getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-
-            for (int id : tweakableIds) {
-                findViewById(id).setBackgroundResource(outValue.resourceId);
-            }
         }
     }
 
