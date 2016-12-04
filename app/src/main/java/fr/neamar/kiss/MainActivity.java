@@ -461,7 +461,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // onResume() will be called right after, hiding the kissbar if any.
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
         onBackPressed();
-        hideKeyboard(); // Doesn't actually seem to work right now, but if it every does lets leave it ere
+        hideKeyboard(); // Hiding the keyboard depends on the value from the setting "display keyboard on app open"
     }
 
     @Override
