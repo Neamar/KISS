@@ -1,6 +1,5 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
@@ -14,10 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.TogglesPojo;
-import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.TogglesPojo;
 import fr.neamar.kiss.toggles.TogglesHandler;
 
@@ -125,7 +121,7 @@ public class TogglesResult extends Result {
             togglesHandler.setState(togglePojo, !togglesHandler.getState(togglePojo));
 
             //show toast to inform user what the state is
-            Toast.makeText(((MainActivity) context), String.format(msg, " " + this.pojo.displayName), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, String.format(msg, " " + this.pojo.displayName), Toast.LENGTH_SHORT).show();
 
         }
         else {

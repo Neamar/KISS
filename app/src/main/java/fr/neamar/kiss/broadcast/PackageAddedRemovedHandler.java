@@ -16,12 +16,12 @@ import fr.neamar.kiss.dataprovider.AppProvider;
  *
  * @author dorvaryn
  */
-public class NewAppInstalledHandler extends BroadcastReceiver {
+public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
 
-        if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true))
+        if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
             // Insert into history new packages (not updated ones)
             if ("android.intent.action.PACKAGE_ADDED".equals(intent.getAction()) && !intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)) {
                 // Add new package to history
@@ -38,18 +38,22 @@ public class NewAppInstalledHandler extends BroadcastReceiver {
                             .addToHistory("app://" + packageName + "/" + className);
                 }
             }
+        }
 
         if ("android.intent.action.PACKAGE_REMOVED".equals(intent.getAction())) {
             // Removed all installed shortcuts
             String packageName = intent.getData().getSchemeSpecificPart();
+
             KissApplication.getDataHandler(ctx).removeShortcuts(packageName);
+
+            KissApplication.getDataHandler(ctx).removeFromExcluded(packageName);
         }
-        
+
         KissApplication.resetIconsHandler(ctx);
-        
+
         // Reload application list
         final AppProvider provider = KissApplication.getDataHandler(ctx).getAppProvider();
-        if(provider != null) {
+        if (provider != null) {
             provider.reload();
         }
 

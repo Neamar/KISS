@@ -1,28 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/RelativeLayout1"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@android:id/list"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/searchEditLayout"
+        android:layout_above="@+id/favoritesBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="?attr/listBackgroundColor"
-        android:cacheColorHint="@android:color/transparent"
-        android:divider="?attr/dividerDrawable"
-        android:dividerHeight="1dp"
+        android:elevation="2dp">
+
+        <fr.neamar.kiss.ui.BlockableListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_horizontal"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="?attr/dividerDrawable"
+            android:dividerHeight="1dp"
+            android:stackFromBottom="true"
+            android:transcriptMode="alwaysScroll"></fr.neamar.kiss.ui.BlockableListView>
+
+        <fr.neamar.kiss.ui.BottomPullEffectView
+            android:id="@+id/listEdgeEffect"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|bottom" />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/favoritesBar"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_above="@+id/searchEditLayout"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="?attr/searchBackgroundColor"
+        android:clipToPadding="false"
         android:elevation="2dp"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll">
-    </ListView>
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/whiteLauncherButton"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/favoriteBar0"
+                android:layout_width="0px"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:contentDescription="@null"
+                android:onClick="onFavoriteButtonClicked"
+                android:src="@drawable/ic_contact"
+                android:tag="0" />
+
+            <ImageView
+                android:id="@+id/favoriteBar1"
+                android:layout_width="0px"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:contentDescription="@null"
+                android:onClick="onFavoriteButtonClicked"
+                android:src="@drawable/ic_contact"
+                android:tag="1" />
+
+            <ImageView
+                android:id="@+id/favoriteBar2"
+                android:layout_width="0px"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:contentDescription="@null"
+                android:onClick="onFavoriteButtonClicked"
+                android:src="@drawable/ic_contact"
+                android:tag="2" />
+
+            <ImageView
+                android:id="@+id/favoriteBar3"
+                android:layout_width="0px"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:contentDescription="@null"
+                android:onClick="onFavoriteButtonClicked"
+                android:src="@drawable/ic_contact"
+                android:tag="3" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/searchEditLayout"
@@ -30,7 +104,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
         android:elevation="2dp"
@@ -48,7 +124,7 @@
             android:paddingLeft="6dp"
             android:paddingRight="10dp"
             android:src="@drawable/ic_launcher"
-            android:tag="showMenu"/>
+            android:tag="showMenu" />
 
         <ProgressBar
             android:id="@+id/loaderBar"
@@ -59,7 +135,7 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="10dp"
             android:indeterminate="true"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/searchEditText"
@@ -78,7 +154,7 @@
             android:textColor="?attr/searchColor"
             android:textColorHint="?android:attr/textColorSecondary"
             android:textCursorDrawable="@drawable/cursor"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/menuButton"
@@ -95,8 +171,7 @@
             android:paddingRight="1dp"
             android:paddingTop="4dp"
             android:src="@drawable/dots"
-            android:tint="?attr/searchColor"
-            />
+            android:tint="?attr/searchColor" />
 
         <ImageView
             android:id="@+id/clearButton"
@@ -114,17 +189,19 @@
             android:paddingTop="4dp"
             android:src="@drawable/clear_dark"
             android:tint="?attr/searchColor"
-            android:visibility="visible"/>
+            android:visibility="visible" />
     </RelativeLayout>
 
     <ScrollView
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/searchEditLayout"
+        android:layout_above="@id/favoritesBar"
         android:visibility="gone">
 
-        <include android:id="@+id/main_empty" layout="@layout/main_empty"/>
+        <include
+            android:id="@+id/main_empty"
+            layout="@layout/main_empty" />
     </ScrollView>
 
     <include
@@ -136,6 +213,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@android:id/list"
         android:layout_margin="10dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

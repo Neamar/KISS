@@ -6,25 +6,56 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
+    private static Pattern mobileNumberPattern;
+    private static Pattern ignorePattern = Pattern.compile("[-.():/ ]");
 
     public LoadContactsPojos(Context context) {
         super(context, "contact://");
+        PhoneNormalizer.initialize(context);
+    }
+
+    private void ensureMobileNumberPattern() {
+        if (mobileNumberPattern != null) return;
+
+        InputStream inputStream = context.getResources().openRawResource(R.raw.phone_number_textable);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+        StringBuilder mobileDetectionRegex = new StringBuilder();
+
+        try {
+            String line;
+            while ((line = reader.readLine()) != null)
+                mobileDetectionRegex.append(line);
+
+            mobileNumberPattern = Pattern.compile(mobileDetectionRegex.toString());
+        } catch (IOException ioex) {
+            mobileNumberPattern = null;
+        }
     }
 
     @Override
     protected ArrayList<ContactsPojo> doInBackground(Void... params) {
-        Pattern homePattern = Pattern.compile("^\\+33\\s?[1-5]");
+        ensureMobileNumberPattern();
 
         long start = System.nanoTime();
+        String defaultCountryIso = Locale.getDefault().getCountry();
 
         // Run query
         Cursor cur = context.getContentResolver().query(
@@ -35,12 +66,13 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         ContactsContract.CommonDataKinds.Phone.NUMBER,
                         ContactsContract.CommonDataKinds.Phone.STARRED,
                         ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
-                        ContactsContract.Contacts.PHOTO_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
+                        ContactsContract.Contacts.PHOTO_ID,
+                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
 
         // Prevent duplicates by keeping in memory encountered phones.
         // The string key is "phone" + "|" + "name" (so if two contacts
         // with distinct name share same number, they both get displayed)
-        HashMap<String, ArrayList<ContactsPojo>> mapContacts = new HashMap<>();
+        Map<String, ArrayList<ContactsPojo>> mapContacts = new HashMap<>();
 
         if (cur != null) {
             if (cur.getCount() > 0) {
@@ -49,19 +81,19 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                     contact.lookupKey = cur.getString(cur
                             .getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
+
                     contact.timesContacted = Integer.parseInt(cur.getString(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
-                    contact.setName(cur.getString(cur
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
+                    contact.setName(cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
+
                     contact.phone = PhoneNormalizer.normalizePhone(cur.getString(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
                     if (contact.phone == null) {
                         contact.phone = "";
                     }
-                    contact.phoneSimplified = contact.phone.replaceAll("[-.(): ]", "");
-
-                    contact.homeNumber = homePattern.matcher(contact.phone).lookingAt();
-
+                    contact.phoneSimplified = ignorePattern.matcher(contact.phone).replaceAll("");
+                    contact.homeNumber = mobileNumberPattern == null ||
+                            !mobileNumberPattern.matcher(contact.phoneSimplified).lookingAt();
                     contact.starred = cur.getInt(cur
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
                     contact.primary = cur.getInt(cur
@@ -91,11 +123,38 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             cur.close();
         }
 
+        // Retrieve contacts' nicknames
+        Cursor nickCursor = context.getContentResolver().query(
+                ContactsContract.Data.CONTENT_URI,
+                new String[]{
+                        ContactsContract.CommonDataKinds.Nickname.NAME,
+                        ContactsContract.Data.LOOKUP_KEY},
+                ContactsContract.Data.MIMETYPE + "= ?",
+                new String[]{ContactsContract.CommonDataKinds.Nickname.CONTENT_ITEM_TYPE},
+                null);
+
+        if (nickCursor != null) {
+            if (nickCursor.getCount() > 0) {
+                while (nickCursor.moveToNext()) {
+                    String lookupKey = nickCursor.getString(
+                            nickCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY));
+                    String nick = nickCursor.getString(
+                            nickCursor.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME));
+
+                    if (nick != null && lookupKey != null && mapContacts.containsKey(lookupKey)) {
+                        for (ContactsPojo contact : mapContacts.get(lookupKey)) {
+                            contact.setNickname(nick);
+                        }
+                    }
+                }
+            }
+            nickCursor.close();
+        }
 
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
 
         Pattern phoneFormatter = Pattern.compile("[ \\.\\(\\)]");
-        for (ArrayList<ContactsPojo> phones : mapContacts.values()) {
+        for (List<ContactsPojo> phones : mapContacts.values()) {
             // Find primary phone and add this one.
             Boolean hasPrimary = false;
             for (ContactsPojo contact : phones) {
@@ -108,7 +167,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
             // If not available, add all (excluding duplicates).
             if (!hasPrimary) {
-                HashMap<String, Boolean> added = new HashMap<>();
+                Map<String, Boolean> added = new HashMap<>();
                 for (ContactsPojo contact : phones) {
                     String uniqueKey = phoneFormatter.matcher(contact.phone).replaceAll("");
                     uniqueKey = uniqueKey.replaceAll("^\\+33", "0");

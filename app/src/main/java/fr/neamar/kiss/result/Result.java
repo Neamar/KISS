@@ -125,6 +125,10 @@ public abstract class Result {
                 launchAddToFavorites(context, pojo);
                 break;
         }
+
+        //Update Search to reflect favorite add, if the "exclude favorites" option is active
+        ((MainActivity) context).updateRecords();
+
         return false;
     }
 
@@ -225,6 +229,8 @@ public abstract class Result {
     public int getThemeFillColor(Context context) {
         int[] attrs = new int[]{R.attr.resultColor /* index 0 */};
         TypedArray ta = context.obtainStyledAttributes(attrs);
-        return ta.getColor(0, Color.WHITE);
+        int color = ta.getColor(0, Color.WHITE);
+        ta.recycle();
+        return color;
     }
 }

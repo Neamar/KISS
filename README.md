@@ -2,8 +2,8 @@ KISS
 ======
 KISS is a *blazingly* fast launcher for android requiring nearly no memory to run.
 
-[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdid=fr.neamar.kiss)
-[![Play Store](https://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=fr.neamar.kiss)
+[<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="60">](https://f-droid.org/app/fr.neamar.kiss)
+<a href="https://play.google.com/store/apps/details?id=fr.neamar.kiss"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="60"></a>
 
 Join the [G+ community](https://plus.google.com/communities/116489528310489783081) to get download instruction for the beta version.
 

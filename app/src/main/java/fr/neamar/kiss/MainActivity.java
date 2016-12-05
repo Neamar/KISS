@@ -4,13 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,8 +40,12 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.broadcast.IncomingCallHandler;
+import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -49,28 +54,44 @@ import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.ui.BlockableListView;
+import fr.neamar.kiss.ui.BottomPullEffectView;
+import fr.neamar.kiss.ui.KeyboardScrollHider;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 
-public class MainActivity extends ListActivity implements QueryInterface {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
-
     /**
-     * IDS for the favorites buttons
+     * InputType that behaves as if the consuming IME is a standard-obeying
+     * soft-keyboard
+     *
+     * *Auto Complete* means "we're handling auto-completion ourselves". Then
+     * we ignore whatever the IME thinks we should display.
+     */
+    private final static int INPUT_TYPE_STANDARD = InputType.TYPE_CLASS_TEXT
+            | InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE
+            | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
+    /**
+     * InputType that behaves as if the consuming IME is SwiftKey
+     *
+     * *Visible Password* fields will break many non-Latin IMEs and may show
+     * unexpected behaviour in numerous ways. (#454, #517)
+     */
+    private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+    /**
+     * IDs for the favorites buttons
      */
     private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
-
     /**
      * Number of favorites to retrieve.
      * We need to pad this number to account for removed items still in history
      */
-    private final int tryToRetrieve = favsIds.length + 2;
-    /**
-     * InputType with spellecheck and swiping
-     */
-    private final int spellcheckEnabledType = InputType.TYPE_CLASS_TEXT |
-            InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+    public final int tryToRetrieve = favsIds.length + 2;
+    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3};
     /**
      * Adapter to display records
      */
@@ -91,6 +112,23 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
     };
     /**
+     * Whether or not Search text should be spell checked (affects inputType)
+     */
+    private boolean searchEditTextWorkaround;
+    /**
+     * Main list view
+     */
+    private ListView list;
+    private View listContainer;
+    /**
+     * View to display when list is empty
+     */
+    private View listEmpty;
+    /**
+     * Utility for automatically hiding the keyboard when scrolling down
+     */
+    private KeyboardScrollHider hider;
+    /**
      * Menu button
      */
     private View menuButton;
@@ -106,23 +144,28 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Called when the activity is first created.
      */
-    @SuppressLint("NewApi")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String theme = prefs.getString("theme", "light");
-        if (theme.equals("dark")) {
-            setTheme(R.style.AppThemeDark);
-        } else if (theme.equals("transparent")) {
-            setTheme(R.style.AppThemeTransparent);
-        } else if (theme.equals("semi-transparent")) {
-            setTheme(R.style.AppThemeSemiTransparent);
-        } else if (theme.equals("semi-transparent-dark")) {
-            setTheme(R.style.AppThemeSemiTransparentDark);
-        } else if (theme.equals("transparent-dark")) {
-            setTheme(R.style.AppThemeTransparentDark);
+        switch (theme) {
+            case "dark":
+                setTheme(R.style.AppThemeDark);
+                break;
+            case "transparent":
+                setTheme(R.style.AppThemeTransparent);
+                break;
+            case "semi-transparent":
+                setTheme(R.style.AppThemeSemiTransparent);
+                break;
+            case "semi-transparent-dark":
+                setTheme(R.style.AppThemeSemiTransparentDark);
+                break;
+            case "transparent-dark":
+                setTheme(R.style.AppThemeTransparentDark);
+                break;
         }
 
 
@@ -137,6 +180,10 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
+                    // Run GC once to free all the garbage accumulated during provider initialization
+                    System.gc();
+
+                    checkShowFavoritesBar(false);
                     displayLoader(false);
 
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
@@ -163,12 +210,39 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
         }
+        else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        }
 
         setContentView(R.layout.main);
 
+        this.list = (ListView) this.findViewById(android.R.id.list);
+        this.listContainer = (View) this.list.getParent();
+        this.listEmpty = this.findViewById(android.R.id.empty);
+
         // Create adapter for records
-        adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
-        setListAdapter(adapter);
+        this.adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
+        this.list.setAdapter(this.adapter);
+
+        this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                adapter.onClick(position, v);
+            }
+        });
+        this.adapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+
+                if (adapter.isEmpty()) {
+                    listContainer.setVisibility(View.GONE);
+                    listEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    listContainer.setVisibility(View.VISIBLE);
+                    listEmpty.setVisibility(View.GONE);
+                }
+            }
+        });
 
         searchEditText = (EditText) findViewById(R.id.searchEditText);
 
@@ -181,11 +255,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                updateRecords(s.toString());
+                String text = s.toString();
+                adjustInputType(text);
+                updateRecords(text);
                 displayClearOnInput();
             }
         });
@@ -195,7 +270,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                RecordAdapter adapter = ((RecordAdapter) getListView().getAdapter());
+                RecordAdapter adapter = ((RecordAdapter) list.getAdapter());
 
                 adapter.onClick(adapter.getCount() - 1, null);
 
@@ -207,9 +282,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
 
-        getListView().setLongClickable(true);
-        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
+        this.list.setLongClickable(true);
+        this.list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
                 ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
@@ -217,16 +291,41 @@ public class MainActivity extends ListActivity implements QueryInterface {
             }
         });
 
-        // Enable swiping
-        if (prefs.getBoolean("enable-spellcheck", false)) {
-            searchEditText.setInputType(spellcheckEnabledType);
-        }
+        this.hider = new KeyboardScrollHider(this,
+                (BlockableListView) this.list,
+                (BottomPullEffectView) this.findViewById(R.id.listEdgeEffect)
+        );
+        this.hider.start();
+
+        // Check whether user enabled spell check and adjust input type accordingly
+        searchEditTextWorkaround = prefs.getBoolean("enable-keyboard-workaround", false);
+        adjustInputType(null);
+
+        //enable/disable phone/sms broadcast receiver
+        PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
+        PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
 
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
         // Apply effects depending on current Android version
         applyDesignTweaks();
+    }
+
+    private void adjustInputType(String currentText) {
+        int currentInputType = searchEditText.getInputType();
+        int requiredInputType;
+
+        if (currentText != null && Pattern.matches("[+]\\d+", currentText)) {
+            requiredInputType = InputType.TYPE_CLASS_PHONE;
+        } else if (searchEditTextWorkaround) {
+            requiredInputType = INPUT_TYPE_WORKAROUND;
+        } else {
+            requiredInputType = INPUT_TYPE_STANDARD;
+        }
+        if (currentInputType != requiredInputType) {
+            searchEditText.setInputType(requiredInputType);
+        }
     }
 
     /**
@@ -262,10 +361,16 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        adapter.onClick(position, v);
+    private void checkShowFavoritesBar(boolean touched) {
+        View favoritesBar = findViewById(R.id.favoritesBar);
+        if (searchEditText.getText().toString().length() == 0
+                && prefs.getBoolean("enable-favorites-bar", false)
+                && (!prefs.getBoolean("favorites-hide", false) || touched)) {
+            favoritesBar.setVisibility(View.VISIBLE);
+            retrieveFavorites();
+        } else {
+            favoritesBar.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -283,6 +388,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
     /**
      * Empty text field on resume and show keyboard
      */
+    @SuppressLint("CommitPrefEdits")
     protected void onResume() {
         if (prefs.getBoolean("require-layout-update", false)) {
             // Restart current activity to refresh view, since some preferences
@@ -295,6 +401,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
             overridePendingTransition(0, 0);
             startActivity(i);
             overridePendingTransition(0, 0);
+            super.onResume();
+            return;
         }
 
         if (kissBar.getVisibility() != View.VISIBLE) {
@@ -303,6 +411,12 @@ public class MainActivity extends ListActivity implements QueryInterface {
         } else {
             displayKissBar(false);
         }
+
+        //Show favorites above search field ONLY if AppProvider is already loaded
+        //Otherwise this will get triggered by the broadcastreceiver in the onCreate
+        AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
+        if (appProvider != null && appProvider.isLoaded())
+            checkShowFavoritesBar(searchEditText.getText().toString().length() > 0);
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -346,6 +460,8 @@ public class MainActivity extends ListActivity implements QueryInterface {
         // This is called when the user press Home again while already browsing MainActivity
         // onResume() will be called right after, hiding the kissbar if any.
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
+        onBackPressed();
+        hideKeyboard(); // Hiding the keyboard depends on the value from the setting "display keyboard on app open"
     }
 
     @Override
@@ -357,7 +473,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
             // If no kissmenu, empty the search bar
             searchEditText.setText("");
         }
-
         // No call to super.onBackPressed, since this would quit the launcher.
     }
 
@@ -422,11 +537,14 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 //if not on the application list and not searching for something
                 if ((kissBar.getVisibility() != View.VISIBLE) && (searchEditText.getText().toString().isEmpty())) {
                     //if list is empty
-                    if ((this.getListAdapter() == null) || (this.getListAdapter().getCount() == 0)) {
+                    if ((this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0)) {
                         searcher = new HistorySearcher(MainActivity.this);
                         searcher.execute();
                     }
                 }
+            }
+            if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)) {
+                checkShowFavoritesBar(true);
             }
         }
         return super.dispatchTouchEvent(event);
@@ -450,19 +568,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
     }
 
     public void onFavoriteButtonClicked(View favorite) {
-
+        // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
+        displayKissBar(false);
+        
         // Favorites handling
         Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve)
                 .get(Integer.parseInt((String) favorite.getTag()));
         final Result result = Result.fromPojo(MainActivity.this, pojo);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                result.fastLaunch(MainActivity.this);
-            }
-        }, KissApplication.TOUCH_DELAY);
+        result.fastLaunch(MainActivity.this);
     }
 
     private void displayClearOnInput() {
@@ -515,6 +629,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
     private void displayKissBar(Boolean display) {
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+        final View favoritesKissBar = findViewById(R.id.favoritesKissBar);
 
         // get the center for the clipping circle
         int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
@@ -543,8 +658,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
             // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
             retrieveFavorites();
-
-            hideKeyboard();
         } else {
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -562,6 +675,17 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 kissBar.setVisibility(View.GONE);
             }
             searchEditText.setText("");
+
+            if (prefs.getBoolean("display-keyboard", false)) {
+                // Display keyboard
+                showKeyboard();
+            }
+        }
+
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", false)) {
+            favoritesKissBar.setVisibility(View.INVISIBLE);
+        } else {
+            favoritesKissBar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -570,27 +694,44 @@ public class MainActivity extends ListActivity implements QueryInterface {
                 .getFavorites(tryToRetrieve);
 
         if (favoritesPojo.size() == 0) {
-            Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
-            toast.show();
+            int noFavCnt = prefs.getInt("no-favorites-tip", 0);
+            if (noFavCnt < 3 && !prefs.getBoolean("enable-favorites-bar", false)) {
+                Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
+                toast.show();
+                prefs.edit().putInt("no-favorites-tip", ++noFavCnt).commit();
+
+            }
         }
 
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < Math.min(favsIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
             ImageView image = (ImageView) findViewById(favsIds[i]);
+            ImageView imageFavBar = (ImageView) findViewById(favBarIds[i]);
 
             Result result = Result.fromPojo(MainActivity.this, pojo);
             Drawable drawable = result.getDrawable(MainActivity.this);
-            if (drawable != null)
+            if (drawable != null) {
                 image.setImageDrawable(drawable);
+                imageFavBar.setImageDrawable(drawable);
+            }
+
             image.setVisibility(View.VISIBLE);
             image.setContentDescription(pojo.displayName);
+
+            imageFavBar.setVisibility(View.VISIBLE);
+            imageFavBar.setContentDescription(pojo.displayName);
         }
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
             findViewById(favsIds[i]).setVisibility(View.GONE);
+            findViewById(favBarIds[i]).setVisibility(View.GONE);
         }
+    }
+
+    public void updateRecords() {
+        updateRecords(searchEditText.getText().toString());
     }
 
     /**
@@ -599,7 +740,6 @@ public class MainActivity extends ListActivity implements QueryInterface {
      *
      * @param query the query on which to search
      */
-
     private void updateRecords(String query) {
         if (searcher != null) {
             searcher.cancel(true);
@@ -607,11 +747,15 @@ public class MainActivity extends ListActivity implements QueryInterface {
 
         if (query.length() == 0) {
             if (prefs.getBoolean("history-hide", false)) {
+                list.setVerticalScrollBarEnabled(false);
+                searchEditText.setHint("");
                 searcher = new NullSearcher(this);
                 //Hide default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
 
             } else {
+                list.setVerticalScrollBarEnabled(true);
+                searchEditText.setHint(R.string.ui_search_hint);
                 searcher = new HistorySearcher(this);
                 //Show default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
@@ -620,6 +764,7 @@ public class MainActivity extends ListActivity implements QueryInterface {
             searcher = new QuerySearcher(this, query);
         }
         searcher.execute();
+        checkShowFavoritesBar(false);
     }
 
     public void resetTask() {
@@ -639,19 +784,22 @@ public class MainActivity extends ListActivity implements QueryInterface {
         }
     }
 
-    private void hideKeyboard() {
+    @Override
+    public void showKeyboard() {
+        searchEditText.requestFocus();
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    @Override
+    public void hideKeyboard() {
+
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
-    }
-
-    private void showKeyboard() {
-        searchEditText.requestFocus();
-        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
     }
 
     public int getFavIconsSize() {

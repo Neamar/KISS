@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class LoadAliasPojos extends LoadPojos<AliasPojo> {
 
     }
 
-    private void addAliasesPojo(ArrayList<AliasPojo> alias, String[] aliases, String appInfo) {
+    private void addAliasesPojo(List<AliasPojo> alias, String[] aliases, String appInfo) {
         for (String a : aliases) {
             alias.add(makeAliasPojo(a, appInfo));
         }

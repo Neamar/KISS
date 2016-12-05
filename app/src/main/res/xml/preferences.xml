@@ -1,83 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="Settings">
-    <PreferenceCategory android:title="@string/title_history">
+    android:title="@string/activity_setting">
+    <PreferenceCategory
+        android:key="history_category"
+        android:title="@string/title_history">
         <fr.neamar.kiss.preference.ResetPreference
             android:dialogMessage="@string/reset_warn"
             android:key="reset"
-            android:summary="@string/reset_desc"
+            android:order="10"
             android:title="@string/reset_name" />
         <fr.neamar.kiss.preference.ResetFavoritesPreference
             android:dialogMessage="@string/reset_favorites_warn"
             android:key="reset"
-            android:summary="@string/reset_favorites_desc"
+            android:order="11"
             android:title="@string/reset_favorites_name" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="enable-sms-history"
-            android:summary="@string/enable_sms_desc"
+            android:order="50"
             android:title="@string/enable_sms" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="enable-phone-history"
-            android:summary="@string/enable_phone_desc"
+            android:order="50"
             android:title="@string/enable_phone" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-app-history"
-            android:summary="@string/enable_app_desc"
+            android:order="50"
             android:title="@string/enable_app" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="exclude-favorites"
+            android:order="50"
+            android:title="@string/exclude_favorites" />
         <fr.neamar.kiss.preference.ResetExcludedAppsPreference
             android:dialogMessage="@string/reset_excluded_apps_warn"
             android:key="reset-excluded-apps"
-            android:summary="@string/reset_excluded_apps_desc"
+            android:order="12"
             android:title="@string/reset_excluded_apps_name" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_ui">
+    <PreferenceCategory
+        android:key="user_interface_category"
+        android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
             android:entryValues="@array/themesValues"
             android:key="theme"
-            android:summary="@string/theme_desc"
             android:title="@string/theme_name" />
         <ListPreference
             android:defaultValue="default"
             android:key="icons-pack"
-            android:summary="@string/icons_pack_desc"
-            android:title="@string/icons_pack_name"/>
+            android:title="@string/icons_pack_name" />
         <ListPreference
             android:defaultValue="invertedAlphabetical"
             android:entries="@array/sortAppListEntries"
             android:entryValues="@array/sortAppListValues"
             android:key="sort-apps"
-            android:summary="@string/order_apps_desc"
             android:title="@string/order_apps_name" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="display-keyboard"
-            android:summary="@string/keyboard_desc"
             android:title="@string/keyboard_name" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="enable-spellcheck"
-            android:summary="@string/spellcheck_desc"
-            android:title="@string/spellcheck_name" />
+            android:key="enable-keyboard-workaround"
+            android:summary="@string/keyboard_workaround_desc"
+            android:title="@string/keyboard_workaround_name" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="history-hide"
-            android:summary="@string/history_hide_desc"
-            android:title="@string/history_hide_name" />
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="history-onclick"
-            android:dependency="history-hide"
-            android:summary="@string/history_onclick_desc"
-            android:title="@string/history_onclick_name" />
+            android:key="enable-favorites-bar"
+            android:title="@string/enable_favorites_bar" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="force-portrait"
-            android:summary="@string/portrait_summary"
             android:title="@string/portrait_title" />
         <CheckBoxPreference
             android:defaultValue="false"
@@ -85,48 +82,78 @@
             android:summary="@string/icons_hide_desc"
             android:title="@string/icons_hide_main" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_providers">
+    <PreferenceCategory
+        android:key="minimalist"
+        android:title="@string/history_hide_name">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="history-hide"
+            android:summary="@string/history_hide_desc"
+            android:title="@string/history_hide_name" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="history-hide"
+            android:key="history-onclick"
+            android:title="@string/history_onclick_name" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="history-hide"
+            android:key="favorites-hide"
+            android:title="@string/favorites_hide" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="providers"
+        android:title="@string/title_providers">
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-contacts"
-            android:summary="@string/contacts_desc"
             android:title="@string/contacts_name" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-settings"
-            android:summary="@string/settings_desc"
             android:title="@string/settings_name" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-toggles"
-            android:summary="@string/toggles_desc"
             android:title="@string/toggles_name" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-alias"
-            android:summary="@string/aliases_desc"
             android:title="@string/aliases_name" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-search"
-            android:summary="@string/search_desc"
             android:title="@string/search_name" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-phone"
-            android:summary="@string/phone_desc"
             android:title="@string/phone_name" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable-shortcuts"
-            android:summary="@string/shortcuts_desc"
             android:title="@string/shortcuts_name" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_advanced">
+        <ListPreference
+            android:defaultValue="recency"
+            android:entries="@array/historyModeEntries"
+            android:entryValues="@array/historyModeValues"
+            android:key="history-mode"
+            android:summary="@string/history_mode_desc"
+            android:title="@string/history_mode_name" />
+        <fr.neamar.kiss.preference.FreezeHistoryPreference
+            android:defaultValue="false"
+            android:key="freeze-history"
+            android:title="@string/freeze_history_name" />
         <fr.neamar.kiss.preference.RootModePreference
             android:defaultValue="false"
             android:key="root-mode"
             android:summary="@string/root_mode_desc"
             android:title="@string/root_mode_name" />
+        <fr.neamar.kiss.preference.RestartPreference
+            android:dialogMessage="@string/restart_warn"
+            android:key="restart"
+            android:summary="@string/restart_desc"
+            android:title="@string/restart_name" />
     </PreferenceCategory>
 </PreferenceScreen>

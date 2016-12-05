@@ -1,20 +1,20 @@
-<?xml version='1.0' encoding='utf-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string name="app_name">KISS launcher</string>
     <string name="activity_setting">KISS settings</string>
     <string name="ui_search_hint">Search apps, contacts, …</string>
-    <string name="ui_item_search">Search for “%s”</string>
+    <string name="ui_item_search">Search %1$s for “%2$s”</string>
+    <string name="ui_item_visit">Visit “%1$s”</string>
     <string name="ui_item_phone">Call “%s”</string>
     <string name="ui_item_contact_hint_message">Message</string>
     <string name="ui_item_contact_hint_call">Call</string>
 
+	<string name="title_settings">Settings</string>
     <string name="title_ui">User Interface</string>
-    <string name="title_history">History</string>
+    <string name="title_history">History Settings</string>
     <string name="title_providers">Providers Selection</string>
     <string name="title_advanced">Advanced Settings</string>
     <string name="menu_settings">Device Settings</string>
-    <string name="menu_preferences">KISS settings</string>
     <string name="no_favorites">No favorites yet. Add them through long click.</string>
 
     <string name="ui_empty_1">Start searching for anything</string>
@@ -24,66 +24,61 @@
     <string name="ui_empty_3">Quick access to most used apps</string>
     <string name="ui_empty_3_sub">KISS launcher learns from your habits</string>
 
-    <string name="toggles_desc">Enable toggles (Wi-Fi, Bluetooth, …)</string>
-    <string name="toggles_name">Toggles</string>
+    <string name="toggles_name">Toggles (Wi-Fi, Bluetooth, …)</string>
     <string name="toggles_on">%s activated</string>
     <string name="toggles_off">%s deactivated</string>
 
-    <string name="aliases_desc">Enable aliases (convenience shortcuts)</string>
     <string name="aliases_name">Aliases</string>
 
-    <string name="contacts_desc">Search in my contacts</string>
     <string name="contacts_name">Contacts</string>
 
-    <string name="search_desc">Enable Google Web Search</string>
-    <string name="search_name">Google search</string>
+    <string name="search_desc">Enable search through Google, DuckDuckGo, Bing etc.</string>
+    <string name="search_name">Web Search</string>
 
-    <string name="settings_desc">Search in my device Settings</string>
-    <string name="settings_name">Settings</string>
+    <string name="settings_name">Device Settings</string>
 
-    <string name="phone_desc">Direct dialer for phone numbers</string>
-    <string name="phone_name">Phone</string>
+    <string name="phone_name">Phone numbers</string>
 
-    <string name="shortcuts_desc">Search in installed shortcuts</string>
     <string name="shortcuts_name">Shortcuts</string>
 
-    <string name="stub_application">Application name</string>
-    <string name="stub_contact">Contact name</string>
-    <string name="stub_contact_phone">+330 12 34 56 78</string>
-    <string name="stub_setting">Setting name</string>
-    <string name="stub_toggle">Setting to toggle</string>
-    <string name="stub_phone">Call +330 12 34 56 78</string>
+    <string name="stub_application" translatable="false">Application name</string>
+    <string name="stub_contact" translatable="false">Contact name</string>
+    <string name="stub_contact_phone" translatable="false">+330 12 34 56 78</string>
+    <string name="stub_setting" translatable="false">Setting name</string>
+    <string name="stub_toggle" translatable="false">Setting to toggle</string>
+    <string name="stub_phone" translatable="false">Call +330 12 34 56 78</string>
     <string name="main_menu">Menu</string>
     <string name="main_clear">Clear search field</string>
     <string name="main_kiss">Display favorites and app list</string>
     <string name="main_kiss_back">Display history</string>
-    <string name="reset_desc">Reset your KISS history</string>
-    <string name="reset_name">Reset history</string>
-    <string name="reset_excluded_apps_desc">Reset the list of excluded from KISS apps</string>
+    <string name="reset_name">Reset your KISS history</string>
     <string name="reset_excluded_apps_name">Reset excluded app list</string>
     <string name="reset_excluded_apps_warn">Do you really want to reset your excluded app list?</string>
+    <string name="ui_excluded_apps">View / edit your excluded apps</string>
+    <string name="ui_excluded_apps_dialog_title">Deselect the apps you would like to include</string>
+    <string name="ui_excluded_apps_not_found">No apps have been excluded</string>
     <string name="reset_warn">Do you really want to reset your history?</string>
-    <string name="reset_favorites_desc">Reset your list of favorites</string>
-    <string name="reset_favorites_name">Reset favorites</string>
+    <string name="reset_favorites_name">Reset your list of favorites</string>
     <string name="reset_favorites_warn">Do you really want to reset your favorites?</string>
-    <string name="keyboard_desc">Always display keyboard at startup</string>
-    <string name="keyboard_name">Display keyboard</string>
-    <string name="spellcheck_name">Enable spellcheck</string>
-    <string name="spellcheck_desc">Provide suggestions when typing</string>
+    <string name="keyboard_name">Display keyboard on start</string>
+    <string name="keyboard_workaround_name">Keyboard suggestions workaround</string>
+    <string name="keyboard_workaround_desc">Prevent broken soft-keyboards (like SwiftKey™) from showing suggestions</string>
     <string name="history_hide_desc">Hide history and intro screen</string>
     <string name="history_hide_name">Minimalistic UI</string>
-    <string name="history_onclick_desc">Touch anywhere to show history</string>
-    <string name="history_onclick_name">Minimalistic UI: Show history on touch</string>
+    <string name="history_onclick_name">Show history on touch</string>
     <string name="portrait_title">Force portrait mode</string>
-    <string name="portrait_summary">Always rotate screen to portrait mode when showing the launcher</string>
     <string name="icons_hide_main">Hide application icons</string>
-    <string name="icons_hide_desc">Enable on slow devices</string>
-    <string name="root_mode_desc">Enable root features if available (to hibernate applications)</string>
+    <string name="icons_hide_desc">Useful on slow devices</string>
+    <string name="search_providers_title">Select web search providers</string>
+    <string name="history_mode_name">History mode</string>
+    <string name="history_mode_desc">Select the way that the history is populated</string>
+    <string name="root_mode_desc">If available use it to hibernate applications</string>
     <string name="root_mode_name">Root mode</string>
     <string name="root_mode_error">Unable to gain root privileges.</string>
-    
-    <string name="icons_pack_desc">Choose an icon theme (ADW.Launcher theme)</string>
-    <string name="icons_pack_name">Icons Themes</string>    
+    <string name="freeze_history_name">Freeze history</string>
+    <string name="freeze_history_warn">Are you sure you want to freeze history and disable all further updates? Your history will not change anymore.</string>
+
+    <string name="icons_pack_name">Theme icons (ADW.Launcher theme)</string>
     <string name="icons_pack_default_name">System icons</string>
 
     <string name="alias_phone">dial,call,phone</string>
@@ -102,6 +97,11 @@
     <string name="settings_battery">Battery</string>
     <string name="settings_nfc">NFC</string>
     <string name="settings_tethering">Tethering</string>
+    <string name="settings_storage">Storage</string>
+    <string name="settings_dev">Developer settings</string>
+    <string name="settings_accessibility">Accessibility</string>
+    <string name="settings_sound">Sound and volume</string>
+    <string name="settings_display">Display</string>
     <string name="toggle_wifi">Wifi</string>
     <string name="toggle_bluetooth">Bluetooth</string>
     <string name="toggle_silent">Silent</string>
@@ -123,24 +123,33 @@
     <string name="menu_app_details">App info</string>
     <string name="menu_app_uninstall">Uninstall</string>
     <string name="menu_app_hibernate">Hibernate</string>
+    <string name="menu_shortcut_remove">Remove shortcut</string>
 
     <string name="toast_hibernate_completed">%s hibernated successfully, relaunch to awake.</string>
     <string name="toast_hibernate_error">%s not hibernated successfully.</string>
     <string name="menu_contact_copy_phone">Copy phone number</string>
-    <string name="theme_name">Theme</string>
-    <string name="theme_desc">Update KISS theme</string>
+    <string name="theme_name">Theme interface</string>
     <string name="menu_phone_create">Create contact</string>
 
     <string name="toast_favorites_added">%s was added to favorites</string>
 
-    <string name="order_apps_name">App list order</string>
-    <string name="order_apps_desc">A to Z or Z to A</string>
-    <string name="enable_sms_desc">Add sender\'s incoming messages to history</string>
-    <string name="enable_sms">Populate history from text messages</string>
-    <string name="enable_phone_desc">Add incoming calls to history</string>
-    <string name="enable_phone">Populate history from phone calls</string>
-    <string name="enable_app_desc">Add new apps to history</string>
-    <string name="enable_app">Populate history from app install</string>
+    <string name="order_apps_name">App list sort order</string>
+    <string name="enable_sms">Show incoming SMS in history</string>
+    <string name="enable_phone">Show incoming calls in history</string>
+    <string name="enable_app">Show newly installed apps in history</string>
+    <string name="enable_favorites_bar">Show favorites above search field</string>
+    <string name="exclude_favorites">Exclude favorites from history</string>
+    <string name="favorites_hide">Hide Favorites Bar</string>
     <string name="shortcut_added">Shortcut added to KISS.</string>
+
+    <string name="restart_desc">Fix theme issues / new contacts not displaying</string>
+    <string name="restart_name">Restart KISS</string>
+    <string name="restart_warn">Do you really want to restart KISS? If KISS is not your default launcher the app will simply quit.</string>
+
+    <string name="items_title">%d items</string>
+    <string name="app_wil_restart">You\'ve changed some important settings, the app will restart.</string>
+    <string name="alternate_history_inputs">Alternate history inputs</string>
+    <string name="keyboard_options">Keyboard options</string>
+    <string name="misc">Misc</string>
 
 </resources>

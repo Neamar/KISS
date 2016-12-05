@@ -3,7 +3,7 @@
     <string name="app_name">KISS лаунчер</string>
     <string name="activity_setting">Настройки KISS</string>
     <string name="ui_search_hint">Искать приложения, контакты, …</string>
-    <string name="ui_item_search">Поиск по “%s”</string>
+    <string name="ui_item_search">%1$s Поиск по “%2$s”</string>
     <string name="ui_item_phone">Звонки “%s”</string>
     <string name="ui_item_contact_hint_message">Сообщение</string>
     <string name="ui_item_contact_hint_call">Звонки</string>
@@ -12,7 +12,6 @@
     <string name="title_history">История</string>
     <string name="title_providers">Выбор службы поиска</string>
     <string name="menu_settings">Настройки Устройства</string>
-    <string name="menu_preferences">Настройки KISS</string>
     <string name="no_favorites">Нет избранных. Добавить их можно долгим зажатием.</string>
 
     <string name="ui_empty_1">Начните поиск чего-либо</string>
@@ -22,38 +21,24 @@
     <string name="ui_empty_3">Быстрый доступ к часто используемым приложениям</string>
     <string name="ui_empty_3_sub">KISS launcher учится с помощью ваших привычек</string>
 
-    <string name="toggles_desc">Включить переключатели (Wi-Fi, Bluetooth, ...)</string>
-    <string name="toggles_name">Переключатели</string>
+    <string name="toggles_name">Переключатели (Wi-Fi, Bluetooth, …)</string>
 
-    <string name="aliases_desc">Включить привязки (быстрые сочетания)</string>
     <string name="aliases_name">Привязка</string>
 
-    <string name="contacts_desc">Поиск в моих контактах</string>
     <string name="contacts_name">Контакты</string>
 
-    <string name="search_desc">Включить поиск Google</string>
-    <string name="search_name">Поиск Google</string>
+    <string name="search_name">Поиск в Web</string>
 
-    <string name="settings_desc">Поиск в настройках моего устройства</string>
-    <string name="settings_name">Настройки</string>
+    <string name="settings_name">Настройки устройства</string>
 
-    <string name="phone_desc">Прямой вызов по номеру телефона</string>
-    <string name="phone_name">Телефон</string>
+    <string name="phone_name">Телефонные номера</string>
 
-    <string name="stub_application">Название приложения</string>
-    <string name="stub_contact">Имя контакта</string>
-    <string name="stub_contact_phone">+330 12 34 56 78</string>
-    <string name="stub_setting">Настроить имя</string>
-    <string name="stub_toggle">Настроить переключатели</string>
-    <string name="stub_phone">Позвонить +330 12 34 56 78</string>
     <string name="main_menu">Меню</string>
     <string name="main_clear">Очистить поле ввода</string>
     <string name="main_kiss">Показывает список избранного и список приложений</string>
     <string name="main_kiss_back">Показать историю</string>
-    <string name="reset_desc">Сбростить историю KISS</string>
-    <string name="reset_name">Сбросить историю</string>
-    <string name="keyboard_desc">Всегда показывать клавиатуру при запуске</string>
-    <string name="keyboard_name">Отображать клавиатуру</string>
+    <string name="reset_name">Сбросить историю KISS</string>
+    <string name="keyboard_name">Отображать клавиатуру при запуске</string>
 
     <string name="alias_phone">набрать,позвонить,телефон</string>
     <string name="alias_contacts">контакты,люди,отношения</string>
@@ -74,19 +59,18 @@
     <string name="toggle_silent">Беззвучный</string>
     <string name="toggle_data">Сетевые данные</string>
     <string name="menu_wallpaper">Обновить обои</string>
-    <string name="application_not_found">Ууупс ... невозможно запустить это приложение.</string>
+    <string name="application_not_found">Ууупс… невозможно запустить это приложение.</string>
     <string name="history_erased">История стёрта.</string>
 
     <string name="removed_item">Удалено</string>
     <string name="menu_remove">Удалить из истории</string>
     <string name="menu_app_details">Информация о приложении</string>
     <string name="menu_app_uninstall">Удаление</string>
-    <string name="theme_name">Темы</string>
-    <string name="theme_desc">Выбрать тему KISS</string>
+    <string name="theme_name">Тема интерфейса</string>
 
     <string name="menu_contact_copy_phone">Скопировать номер телефона</string>
     <string name="title_advanced">Продвинутые настройки</string>
-    <string name="root_mode_desc">Включить режим суперпользователя (для гибернации приложений)</string>
+    <string name="root_mode_desc">Если доступно используйте это для гибернации приложений</string>
     <string name="root_mode_name">Режим суперпользователя</string>
     <string name="root_mode_error">Невозможно получить права суперпользователя.</string>
 
@@ -95,34 +79,25 @@
 
     <string name="toast_hibernate_completed">%s гибернация успешна, перезапустите приложение для пробуждения.</string>
     <string name="toast_hibernate_error">%s гибернация не успешна.</string>
-    <string name="spellcheck_name">Включить проверку орфографии</string>
-    <string name="spellcheck_desc">Показывать подсказки при вводе</string>
     <string name="toggle_sync">Синхронизация</string>
-<string name="portrait_title">Использовать портретный режим</string>
-    <string name="portrait_summary">Всегда переворачивать экран в портретный режим когда появляется лаунчер</string>
+    <string name="portrait_title">Использовать портретный режим</string>
     <string name="menu_phone_create">Создать контакт</string>
 
     <string name="order_apps_name">Порядок сортировки приложений</string>
-    <string name="order_apps_desc">От A к Z или От Z к A</string>
 
-<string name="history_hide_desc">Скрыть историю и экран приветствия</string>
+    <string name="history_hide_desc">Скрыть историю и экран приветствия</string>
     <string name="history_hide_name">Минималистичный UI</string>
     <string name="history_onclick_name">Минималистичный UI: Показать историю по нажатию</string>
     <string name="icons_hide_main">Скрыть иконки приложений</string>
-    <string name="icons_hide_desc">Включить на медленных устройствах</string>
-    <string name="shortcuts_desc">Поиск в установленных ярлыках</string>
-    <string name="shortcuts_name">Ярлыки</string>    
+    <string name="icons_hide_desc">Полезно на медленных устройствах</string>
+    <string name="shortcuts_name">Ярлыки</string>
 
-    <string name="reset_warn">Вы действительно хотите сбросить историю?</string>    
+    <string name="reset_warn">Вы действительно хотите сбросить историю?</string>
     <string name="toggle_autorotate">Автопереворот</string>
-    <string name="enable_sms_desc">Добавить входящие сообщения отправителя в историю</string>
-    <string name="enable_sms">Дополнить историю из текстовых сообщений</string>
-    <string name="enable_phone_desc">Добавить входящие звонки в историю</string>
-    <string name="enable_phone">Пополнить историю из звонков</string>
-    <string name="enable_app_desc">Добавить новые приложения в историю</string>
-    <string name="enable_app">Пополнить историю установленных приложений</string>
+    <string name="enable_sms">Показывать входящие смс в истории</string>
+    <string name="enable_phone">Показывать входящие звонки в истории</string>
+    <string name="enable_app">Показывать недавно установленные приложения в истории</string>
 
-<string name="reset_excluded_apps_desc">Сбросить список исключенных приложений из KISS</string>
     <string name="reset_excluded_apps_name">Сбросить список исключённых приложений</string>
     <string name="reset_excluded_apps_warn">Вы действительно хотите сбросить список исключённых приложений?</string>
     <string name="excluded_app_list_erased">Список исключённых приложений очищен.</string>
@@ -132,8 +107,7 @@
     <string name="toggles_on">%s активировано</string>
     <string name="toggles_off">%s деактивировано</string>
 
-    <string name="reset_favorites_desc">Сбросить список избранных</string>
-    <string name="reset_favorites_name">Сбросить избранные</string>
+    <string name="reset_favorites_name">Сбросить список избранных</string>
     <string name="reset_favorites_warn">Вы действительно хотите сбросить свои избранные?</string>
     <string name="favorites_erased">Избранные сброшены.</string>
     <string name="menu_favorites_add">Добавить в избранные</string>
@@ -141,4 +115,33 @@
 
     <string name="shortcut_added">Ярлык добавлен в KISS.</string>
 
-</resources>
+    <string name="icons_pack_name">Темы иконок (ADW.Launcher тема)</string>
+    <string name="icons_pack_default_name">Системные иконки</string>
+
+    <string name="settings_nfc">NFC</string>
+    <string name="settings_tethering">Тетеринг</string>
+    <string name="search_desc">Включить поиск в Google, DuckDuckGo, Bing и т.д.</string>
+    <string name="restart_desc">Исправляет проблемы тем / и не отображения новых контактов</string>
+    <string name="restart_name">Перезапустить KISS</string>
+    <string name="restart_warn">Вы действительно хотите перезапустить KISS? Если KISS не дефолтный лаунчер, то приложение просто закроется.</string>
+
+    <string name="items_title">%d пункты</string>
+
+    <string name="freeze_history_name">Заморозить историю</string>
+    <string name="freeze_history_warn">Вы действительно хотите заморозить историю? Ваша история больше не будет обновляться.</string>
+
+    <string name="ui_excluded_apps">Просмотр / редактирование ваших исключённых приложений</string>
+    <string name="ui_excluded_apps_dialog_title">Перевыбрать приложения которые вы хотите передобавить</string>
+    <string name="ui_excluded_apps_not_found">Исключённых приложений нет</string>
+    <string name="search_providers_title">Выбор поставщиков веб-поиска</string>
+    <string name="history_mode_name">Режим истории</string>
+    <string name="history_mode_desc">Выбор режима отображения истории</string>
+    <string name="menu_shortcut_remove">Удалить ярлык</string>
+
+    <string name="enable_favorites_bar">Показать избранное над полем поиска</string>
+    <string name="exclude_favorites">Исключить избранное из истории</string>
+    <string name="favorites_hide">Минималистичный интерфейс: Скрыть панель с избранным</string>
+<string name="settings_storage">Хранилище</string>
+    <string name="settings_dev">Настройки разработчика</string>
+    <string name="settings_accessibility">Для пользователей с ограниченными возможностями</string>
+    </resources>

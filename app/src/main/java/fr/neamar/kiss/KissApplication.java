@@ -1,9 +1,8 @@
 package fr.neamar.kiss;
 
-import android.app.Application;
 import android.content.Context;
 
-public class KissApplication extends Application {
+public class KissApplication {
     /**
      * Number of ms to wait, after a click occurred, to record a launch
      * Setting this value to 0 removes all animations
@@ -13,6 +12,9 @@ public class KissApplication extends Application {
     private static CameraHandler cameraHandler;
     private static RootHandler rootHandler;
     private static IconsHandler iconsPackHandler;
+
+    private KissApplication() {
+    }
 
     public static DataHandler getDataHandler(Context ctx) {
         if (dataHandler == null) {
@@ -48,15 +50,15 @@ public class KissApplication extends Application {
             dataHandler = new DataHandler(ctx);
         }
     }
-    
+
     public static IconsHandler getIconsHandler(Context ctx) {
         if (iconsPackHandler == null) {
             iconsPackHandler = new IconsHandler(ctx);
-        }    
-        
+        }
+
         return iconsPackHandler;
     }
-    
+
     public static void resetIconsHandler(Context ctx) {
         iconsPackHandler = new IconsHandler(ctx);
     }
