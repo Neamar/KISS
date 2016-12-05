@@ -31,10 +31,17 @@ public class SearchResult extends Result {
             v = inflateFromId(context, R.layout.item_search);
 
         TextView appName = (TextView) v.findViewById(R.id.item_search_text);
-        String text = context.getString(R.string.ui_item_search);
-        appName.setText(enrichText(String.format(text, this.pojo.name, "{" + searchPojo.query + "}")));
-
-        ((ImageView) v.findViewById(R.id.item_search_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
+        ImageView image = (ImageView) v.findViewById(R.id.item_search_icon);
+        if(searchPojo.direct) {
+            String text = context.getString(R.string.ui_item_visit);
+            appName.setText(enrichText(String.format(text, "{" + this.pojo.name + "}")));
+            image.setImageResource(R.drawable.ic_public);
+        } else {
+            String text = context.getString(R.string.ui_item_search);
+            appName.setText(enrichText(String.format(text, this.pojo.name, "{" + searchPojo.query + "}")));
+            image.setImageResource(R.drawable.search);
+        }
+        image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;
     }
 

@@ -460,6 +460,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // This is called when the user press Home again while already browsing MainActivity
         // onResume() will be called right after, hiding the kissbar if any.
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
+        onBackPressed();
+        hideKeyboard(); // Hiding the keyboard depends on the value from the setting "display keyboard on app open"
     }
 
     @Override
@@ -566,19 +568,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public void onFavoriteButtonClicked(View favorite) {
-
+        // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
+        displayKissBar(false);
+        
         // Favorites handling
         Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve)
                 .get(Integer.parseInt((String) favorite.getTag()));
         final Result result = Result.fromPojo(MainActivity.this, pojo);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                result.fastLaunch(MainActivity.this);
-            }
-        }, KissApplication.TOUCH_DELAY);
+        result.fastLaunch(MainActivity.this);
     }
 
     private void displayClearOnInput() {
@@ -660,8 +658,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
             // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
             retrieveFavorites();
-
-            hideKeyboard();
         } else {
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
