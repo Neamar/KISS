@@ -11,15 +11,15 @@ test:
     - emulator -avd circleci-android22 -no-audio -no-window:
         background: true
         parallel: true
-    # wait for it to have booted
-    - circle-android wait-for-boot
   override:
     - fb-adb start-server:
         background: true
-    - ./gradlew test assembleDebug --console=plain
-    # Unlock the lockscreen on the emulator
-    - fb-adb shell input keyevent 82
-    - fb-adb shell input keyevent 92
+    # Run robolectric tests, build the apk, and build the test apk for running
+    # the espresso tests
+    - ./gradlew test assembleDebug assembleDebugAndroidTest --console=plain
+    # wait for the emulator to have booted
+    - circle-android wait-for-boot
+    # Run espresso tests
     - ./gradlew connectedAndroidTest --console=plain
   post:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
