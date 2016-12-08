@@ -1,19 +1,19 @@
 package fr.neamar.kiss.test;
 
-import fr.neamar.kiss.BuildConfig;
-import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.DataHandler;
-
-import static org.mockito.Mockito.mock;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
+import fr.neamar.kiss.BuildConfig;
+import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
+
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)

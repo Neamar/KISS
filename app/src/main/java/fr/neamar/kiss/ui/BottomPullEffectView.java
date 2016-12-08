@@ -1,6 +1,5 @@
 package fr.neamar.kiss.ui;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Build;
