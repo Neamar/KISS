@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.R;
 
@@ -48,9 +50,10 @@ public class PhoneNormalizer {
         if (input.startsWith("+")) return input;
 
         if (prefixEntry != null) {
-            if (prefixEntry.international_prefix_pattern.length() > 0 &&
-                    input.matches(prefixEntry.international_prefix_pattern)) {
-                return "+" + input.replaceFirst(prefixEntry.international_prefix_pattern, "");
+            if (prefixEntry.international_prefix_pattern.length() > 0) {
+                Matcher m = Pattern.compile(prefixEntry.international_prefix_pattern).matcher(input);
+                if (m.lookingAt())
+                    return "+" + m.replaceFirst("");
             }
             if (prefixEntry.national_prefix.length() > 0 && input.startsWith(prefixEntry.national_prefix)) {
                 return "+" + prefixEntry.ptsn_country_code + input.substring(prefixEntry.national_prefix.length());
