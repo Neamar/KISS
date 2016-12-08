@@ -101,10 +101,13 @@ public abstract class Result {
         menu.getMenuInflater().inflate(menuId, menu.getMenu());
 
         // If app already pinned, do not display the "add to favorite" option
+        // otherwise don't show the "remove favorite button"
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
         if (favApps.contains(this.pojo.id + ";")) {
             menu.getMenu().removeItem(R.id.item_favorites_add);
+        } else {
+            menu.getMenu().removeItem(R.id.item_favorites_remove);
         }
 
         return menu;
@@ -124,6 +127,9 @@ public abstract class Result {
             case R.id.item_favorites_add:
                 launchAddToFavorites(context, pojo);
                 break;
+            case R.id.item_favorites_remove:
+                launchRemoveFromFavorites(context, pojo);
+                break;
         }
 
         //Update Search to reflect favorite add, if the "exclude favorites" option is active
@@ -135,6 +141,12 @@ public abstract class Result {
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
         KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
+        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+    }
+
+    private void launchRemoveFromFavorites(Context context, Pojo app) {
+        String msg = context.getResources().getString(R.string.toast_favorites_removed);
+        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, app.id);
         Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
     }
 
