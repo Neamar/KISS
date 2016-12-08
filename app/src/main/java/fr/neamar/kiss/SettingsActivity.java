@@ -1,6 +1,5 @@
 package fr.neamar.kiss;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -69,7 +68,6 @@ public class SettingsActivity extends PreferenceActivity implements
         addSearchProvidersSelector(prefs);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
         String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
         String[] apps = excludedAppList.split(";");
@@ -120,7 +118,6 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void addSearchProvidersSelector(SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
         String[] searchProviders = SearchProvider.getSearchProviders();

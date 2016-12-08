@@ -1,11 +1,9 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.MenuRes;
 import android.text.Html;
@@ -72,7 +70,6 @@ public abstract class Result {
      *
      * @return a PopupMenu object
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public PopupMenu getPopupMenu(final Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = buildPopupMenu(context, parent, parentView);
 
@@ -90,12 +87,10 @@ public abstract class Result {
      *
      * @return an inflated, listener-free PopupMenu
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         return inflatePopupMenu(R.menu.menu_item_default, context, parentView);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     protected PopupMenu inflatePopupMenu(@MenuRes int menuId, Context context, View parentView) {
         PopupMenu menu = new PopupMenu(context, parentView);
         menu.getMenuInflater().inflate(menuId, menu.getMenu());

@@ -2,8 +2,6 @@ package fr.neamar.kiss.ui;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -175,7 +173,6 @@ public class KeyboardScrollHider implements View.OnTouchListener {
                     animator.setDuration(250);
                     animator.setInterpolator(new AccelerateInterpolator());
                     animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
                         @Override
                         public void onAnimationUpdate(ValueAnimator animator) {
                             int height = (int) (animator.getAnimatedValue());

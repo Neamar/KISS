@@ -66,7 +66,6 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         return results.get(position).display(getContext(), results.size() - position, convertView);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onLongClick(final int pos, View v) {
         PopupMenu menu = results.get(pos).getPopupMenu(getContext(), this, v);
 

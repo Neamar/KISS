@@ -3,7 +3,6 @@ package fr.neamar.kiss;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -582,7 +581,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
     private void displayLoader(Boolean display) {
         final View loaderBar = findViewById(R.id.loaderBar);
         final View launcherButton = findViewById(R.id.launcherButton);

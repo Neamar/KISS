@@ -14,7 +14,6 @@ import android.widget.EdgeEffect;
  * Parts (or even all) of the given effect parameters may be discarded with the underlying Android
  * platform does not support them.
  */
-@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class BottomPullEffectView extends View {
     private EdgeEffect effect;
     private float   lastPullDistance;

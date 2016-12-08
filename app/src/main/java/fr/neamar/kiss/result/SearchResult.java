@@ -1,13 +1,11 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.TargetApi;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
-import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -45,7 +43,6 @@ public class SearchResult extends Result {
         return v;
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void doLaunch(Context context, View v) {
         boolean exceptionThrown = false;
@@ -72,7 +69,6 @@ public class SearchResult extends Result {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
 
