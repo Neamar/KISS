@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -133,7 +134,7 @@ public class AppResult extends Result {
         KissApplication.getDataHandler(context).addToExcluded(appPojo.packageName);
         //remove app pojo from appProvider results - no need to reset handler
         KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
-        KissApplication.getDataHandler(context).removeFromFavorites(appPojo, context);
+        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, appPojo.id);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
 
     }

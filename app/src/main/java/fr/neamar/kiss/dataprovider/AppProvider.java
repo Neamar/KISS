@@ -110,7 +110,7 @@ public class AppProvider extends Provider<AppPojo> {
                     pojo.setDisplayNameHighlightRegion(matchPositions);
                 }
                 else {
-                    pojo.setTagHighligh(tagStart, tagEnd);
+                    pojo.setTagHighlight(tagStart, tagEnd);
                 }
                 pojo.relevance = relevance;
                 records.add(pojo);

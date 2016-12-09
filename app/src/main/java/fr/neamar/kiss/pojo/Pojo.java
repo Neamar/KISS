@@ -108,7 +108,7 @@ public abstract class Pojo {
         this.displayName += this.name.substring(lastPositionEnd);
     }
 
-    public void setTagHighligh(int positionStart, int positionEnd) {
+    public void setTagHighlight(int positionStart, int positionEnd) {
         this.displayTags = this.tags.substring(0, positionStart)
                 + '{' + this.tags.substring(positionStart, positionEnd) + '}'
                 + this.tags.substring(positionEnd);

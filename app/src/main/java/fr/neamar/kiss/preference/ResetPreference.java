@@ -24,7 +24,7 @@ public class ResetPreference extends DialogPreference {
             getContext().deleteDatabase(DB.DB_NAME);
             KissApplication.getDataHandler(getContext()).reloadAll();
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
-                    .putBoolean("layout-updated", true).commit();
+                    .putBoolean("layout-updated", true).apply();
 
             Toast.makeText(getContext(), R.string.history_erased, Toast.LENGTH_LONG).show();
         }

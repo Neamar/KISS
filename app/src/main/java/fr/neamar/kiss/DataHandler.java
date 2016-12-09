@@ -429,6 +429,8 @@ public class DataHandler extends BroadcastReceiver
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
+
+        // Check if we are already a fav icon
         if (favApps.contains(id + ";")) {
             //shouldn't happen
             return false;
@@ -440,6 +442,25 @@ public class DataHandler extends BroadcastReceiver
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps + id + ";").commit();
+
+        context.retrieveFavorites();
+
+        return true;
+    }
+
+    public boolean removeFromFavorites(MainActivity context, String id) {
+
+        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("favorite-apps-list", "");
+
+        // Check if we are not already a fav icon
+        if (!favApps.contains(id + ";")) {
+            //shouldn't happen
+            return false;
+        }
+
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps.replace(id + ";", "")).commit();
 
         context.retrieveFavorites();
 
@@ -469,20 +490,6 @@ public class DataHandler extends BroadcastReceiver
         }
 
         return null;
-    }
-
-    public void removeFromFavorites(Pojo pojo, Context context) {
-        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
-        if (!favApps.contains(pojo.id + ";")) {
-            return;
-        }
-
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps.replace(pojo.id + ";", "")).commit();
-
-        ((MainActivity) context).retrieveFavorites();
-
     }
 
     protected class ProviderEntry {

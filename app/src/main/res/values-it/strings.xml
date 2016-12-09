@@ -5,13 +5,14 @@
     <string name="activity_setting">Impostazioni di KISS</string>
     <string name="ui_search_hint">Cerca applicazioni, contatti, …</string>
     <string name="ui_item_search">Cerca con %1$s: “%2$s”</string>
+    <string name="ui_item_visit">Visita “%1$s”</string>
     <string name="ui_item_phone">Chiama “%s”</string>
-    <string name="ui_item_contact_hint_message">Messaggio</string>
+    <string name="ui_item_contact_hint_message">Manda messaggio a</string>
     <string name="ui_item_contact_hint_call">Chiama</string>
 
     <string name="title_ui">Interfaccia utente</string>
     <string name="title_history">Cronologia</string>
-    <string name="title_providers">Seleziona provider</string>
+    <string name="title_providers">Provider di ricerca</string>
     <string name="title_advanced">Impostazioni avanzate</string>
     <string name="menu_settings">Impostazioni dispositivo</string>
     <string name="no_favorites">Ancora nessun preferito. Aggiungine tenendo premuto su un\'app.</string>
@@ -20,13 +21,16 @@
     <string name="ui_empty_1_sub">Applicazioni, contatti, impostazioni, …</string>
     <string name="ui_empty_2">Mostra sempre la cronologia</string>
     <string name="ui_empty_2_sub">Per un accesso rapido</string>
-    <string name="ui_empty_3">Accesso rapido per le applicazioni più usate</string>
-    <string name="ui_empty_3_sub">KISS Launcher apprende dalle tue abitudini</string>
+    <string name="ui_empty_3">Accedi rapidamente alle applicazioni più usate</string>
+    <string name="ui_empty_3_sub">KISS apprende dalle tue abitudini</string>
 
-    <string name="toggles_name">Interruttori (Wi-Fi, Bluetooth, …)\n</string>
+    <string name="toggles_name">Interruttori (Wi-Fi, Bluetooth, …)</string>
+    <string name="toggles_on">%s attivo</string>
+    <string name="toggles_off">%s disattivo</string>
 
     <string name="contacts_name">Contatti</string>
 
+    <string name="search_desc">Abilita le ricerche mediante Google, DuckDuckGo, Bing, …</string>
     <string name="search_name">Ricerca web</string>
 
     <string name="settings_name">Impostazioni dispositivo</string>
@@ -35,29 +39,47 @@
 
     <string name="shortcuts_name">Collegamenti</string>
 
-    <string name="stub_application">Nome dell\'applicazione</string>
-    <string name="stub_contact">Nome del contatto</string>
-    <string name="stub_contact_phone">+330 12 34 56 78</string>
-    <string name="stub_setting">Nome dell\'impostazione</string>
-    <string name="stub_toggle">Impostazione da attivare/disattivare</string>
-    <string name="stub_phone">Chiama +330 12 34 56 78</string>
     <string name="main_menu">Menu</string>
-    <string name="main_clear">Cancella i dati di ricerca</string>
+    <string name="main_clear">Elimina i dati di ricerca</string>
     <string name="main_kiss">Mostra preferiti e lista applicazioni</string>
-    <string name="main_kiss_back">Mostra storia</string>
-    <string name="reset_name">Cancella la cronologia di KISS</string>
-    <string name="reset_warn">Sei sicuro di voler cancellare la cronologia?</string>
-    <string name="keyboard_name">Mostra tastiera all\'avvio</string>
-    <string name="root_mode_desc">Abilità funzionalità root se disponibili (usate per ibernare le app)</string>
+    <string name="main_kiss_back">Mostra la cronologia</string>
+    <string name="reset_name">Elimina la cronologia</string>
+    <string name="reset_excluded_apps_name">Azzera l\'elenco delle applicazioni escluse</string>
+    <string name="reset_excluded_apps_warn">Sei sicuro di voler azzerare l\'elenco delle applicazioni escluse?</string>
+    <string name="ui_excluded_apps">Visualizza o modifica le applicazioni escluse</string>
+    <string name="ui_excluded_apps_dialog_title">Deseleziona le applicazioni che intendi includere</string>
+    <string name="ui_excluded_apps_not_found">Non vi sono applicazioni escluse.</string>
+    <string name="reset_warn">Sei sicuro di voler eliminare la cronologia?</string>
+    <string name="reset_favorites_name">Azzera l\'elenco dei preferiti</string>
+    <string name="reset_favorites_warn">Sei sicuro di voler azzerare l\'elenco dei preferiti?</string>
+    <string name="keyboard_name">Visualizza la tastiera all\'avvio</string>
+    <string name="keyboard_workaround_name">Forza disabilitazione dei suggerimenti</string>
+    <string name="keyboard_workaround_desc">Disabilita la visualizzazione dei suggerimenti nelle tastiere con bug (come SwiftKey™).</string>
+    <string name="history_hide_desc">Cronologia e schermata introduttiva saranno nascoste.</string>
+    <string name="history_hide_name">Interfaccia minimale</string>
+    <string name="history_onclick_name">Visualizza la cronologia al tocco</string>
+    <string name="portrait_title">Forza la modalità verticale</string>
+    <string name="icons_hide_main">Nascondi le icone delle applicazioni</string>
+    <string name="icons_hide_desc">Utile per i dispositivi lenti.</string>
+    <string name="search_providers_title">Motore di ricerca</string>
+    <string name="history_mode_name">Generazione della cronologia</string>
+    <string name="history_mode_desc">Il criterio secondo cui la cronologia è generata.</string>
+    <string name="root_mode_desc">Permette l\'ibernazione delle applicazioni.</string>
     <string name="root_mode_name">Modalità root</string>
+    <string name="root_mode_error">Richiesta di root fallita.</string>
+    <string name="freeze_history_name">Congela la cronologia</string>
+    <string name="freeze_history_warn">Sei sicuro di voler congelare la cronologia e mantenerla inalterata?</string>
 
-    <string name="alias_phone">componi,chiama,telefono</string>
+    <string name="icons_pack_name">Pacchetti icone (progettati per ADW.Launcher)</string>
+    <string name="icons_pack_default_name">Icone di sistema</string>
+
+    <string name="alias_phone">componi,chiama,telefona</string>
     <string name="alias_contacts">contatti,persone,relazioni</string>
     <string name="alias_web">internet,web,browser</string>
     <string name="alias_mail">mail,email</string>
     <string name="alias_market">market,store,centro applicazioni</string>
-    <string name="alias_clock">orologio,allarme,timer,cronometro</string>
-    <string name="alias_messaging">messaggio di testo,componi,sms,mms,messaggistica</string>
+    <string name="alias_clock">orologio,sveglia,timer,cronometro</string>
+    <string name="alias_messaging">messaggio,componi,sms,mms,messaggistica</string>
     <string name="settings_prefix">"Impostazione: "</string>
     <string name="toggles_prefix">"Interruttore: "</string>
     <string name="settings_airplane">Modalità aereo</string>
@@ -67,85 +89,57 @@
     <string name="settings_battery">Batteria</string>
     <string name="settings_nfc">NFC</string>
     <string name="settings_tethering">Tethering</string>
-    <string name="toggle_wifi">Wifi</string>
+    <string name="settings_storage">Archiviazione</string>
+    <string name="settings_dev">Opzioni sviluppatore</string>
+    <string name="settings_accessibility">Accessibilità</string>
+    <string name="toggle_wifi">Wi-Fi</string>
     <string name="toggle_bluetooth">Bluetooth</string>
     <string name="toggle_silent">Silenzioso</string>
     <string name="toggle_data">Connessione dati</string>
     <string name="toggle_torch">Torcia</string>
     <string name="toggle_sync">Sincronizzazione</string>
     <string name="toggle_autorotate">Rotazione automatica</string>
-    <string name="menu_wallpaper">Aggiorna sfondo</string>
+    <string name="menu_wallpaper">Imposta sfondo</string>
     <string name="application_not_found">Impossibile avviare l\'applicazione.</string>
-    <string name="history_erased">Cronologia cancellata.</string>
+    <string name="history_erased">Cronologia eliminata.</string>
+    <string name="favorites_erased">Preferiti azzerati.</string>
+    <string name="menu_favorites_add">Aggiungi ai preferiti</string>
+    <string name="excluded_app_list_erased">Elenco delle applicazioni escluse azzerato.</string>
+    <string name="excluded_app_list_added">L\'applicazione è stata esclusa da KISS. Per annullare, controlla le impostazioni del launcher.</string>
 
-    <string name="removed_item">Rimosso</string>
+    <string name="removed_item">Elemento rimosso.</string>
     <string name="menu_remove">Rimuovi dalla cronologia</string>
+    <string name="menu_exclude">Escludi da KISS</string>
     <string name="menu_app_details">Informazioni applicazione</string>
     <string name="menu_app_uninstall">Disinstalla</string>
     <string name="menu_app_hibernate">Iberna</string>
+    <string name="menu_shortcut_remove">Rimuovi collegamento</string>
 
-    <string name="toast_hibernate_completed">Ibernazione di %s riuscita. Rilancia l\'app per risvegliarla.</string>
+    <string name="toast_hibernate_completed">Ibernazione di %s completata. Riavvia l\'applicazione per risvegliarla.</string>
     <string name="toast_hibernate_error">Ibernazione di %s fallita.</string>
     <string name="menu_contact_copy_phone">Copia numero di telefono</string>
     <string name="theme_name">Tema</string>
     <string name="menu_phone_create">Crea contatto</string>
 
-    <string name="spellcheck_name">Abilita correttore ortografico</string>
-    <string name="history_hide_desc">Nascondi la cronologia e la schermata introduttiva</string>
-    <string name="history_hide_name">Interfaccia minimale</string>
-    <string name="history_onclick_name">Interfaccia minimale: mostra la cronologia al tocco</string>
-    <string name="icons_hide_main">Nascondi le icone delle applicazioni</string>
-    <string name="icons_hide_desc">Utile per i dispositivi lenti</string>
-    <string name="root_mode_error">Impossibile ottenere privilegi root.</string>
+    <string name="toast_favorites_added">L\'elemento %s è stato aggiunto ai preferiti.</string>
 
-    <string name="icons_pack_name">Temi icone (ADW.Launcher theme)</string>
-    <string name="icons_pack_default_name">Icone di sistema</string>
-
-    <string name="order_apps_name">Ordinamento lista applicazioni</string>
-
-    <string name="toggles_on">%s attivato</string>
-    <string name="toggles_off">%s disattivato</string>
-
-    <string name="reset_excluded_apps_name">Azzera la lista delle applicazioni escluse</string>
-    <string name="reset_excluded_apps_warn">Vuoi davvero azzerare la lista di applicazioni escluse?</string>
-    <string name="reset_favorites_name">Azzera la lista dei preferiti</string>
-    <string name="reset_favorites_warn">Vuoi davvero azzerare i preferiti?</string>
-    <string name="portrait_title">Forza la modalità verticale</string>
-    <string name="favorites_erased">Preferiti cancellati.</string>
-    <string name="menu_favorites_add">Aggiungi ai preferiti</string>
-    <string name="excluded_app_list_erased">Lista delle applicazioni escluse cancellata.</string>
-    <string name="excluded_app_list_added">Applicazione esclusa da KISS. Per annullare, controlla le impostazioni</string>
-
-    <string name="menu_exclude">Escludi applicazione da KISS</string>
-    <string name="toast_favorites_added">Aggiunta di %s ai preferiti</string>
-
-    <string name="enable_sms">Mostra gli SMS ricevuti nella cronologia</string>
-    <string name="enable_phone">Mostra le chiamate ricevute nella cronologia</string>
-    <string name="enable_app">Mostra le applicazioni appena installate nella cronologia</string>
+    <string name="order_apps_name">Ordine dell\'elenco delle applicazioni</string>
+    <string name="enable_sms">Visualizza gli SMS ricevuti</string>
+    <string name="enable_phone">Visualizza le chiamate ricevute</string>
+    <string name="enable_app">Visualizza le applicazioni appena installate</string>
+    <string name="enable_favorites_bar">Visualizza i preferiti sopra la barra di ricerca</string>
+    <string name="exclude_favorites">Escludi i preferiti</string>
+    <string name="favorites_hide">Nascondi la barra dei preferiti</string>
     <string name="shortcut_added">Collegamento aggiunto a KISS.</string>
 
-    <string name="restart_desc">Risolve i problemi del tema o dei nuovi contatti non correttamente elencati</string>
+    <string name="restart_desc">Risolve i problemi di temi non correttamente applicati o contatti non visualizzati.</string>
     <string name="restart_name">Riavvia KISS</string>
-    <string name="restart_warn">Vuoi davvero riavviare KISS? Se KISS non è il tuo launcher predefinito, si terminerà soltanto.</string>
+    <string name="restart_warn">Sei sicuro di voler riavviare KISS? Se KISS non è il tuo launcher predefinito, verrà solamente terminato.</string>
 
-    <string name="items_title">%d elementi</string>
+    <string name="items_title">%d elementi.</string>
+    <string name="app_wil_restart">Hai modificato delle impostazioni importanti, pertanto KISS verrà riavviato.</string>
+    <string name="alternate_history_inputs">Elementi aggiuntivi</string>
+    <string name="keyboard_options">Tastiera e opzioni d\'immissione</string>
+    <string name="misc">Altro</string>
 
-    <string name="search_desc">Abilita la ricerca tramite Google, DuckDuckGo, Bing, etc.</string>
-    <string name="ui_excluded_apps">Elenca o modifica le app escluse</string>
-    <string name="ui_excluded_apps_dialog_title">Deseleziona le app che intendi includere</string>
-    <string name="ui_excluded_apps_not_found">Nessuna app è stata esclusa</string>
-    <string name="freeze_history_name">Congela la cronologia</string>
-    <string name="freeze_history_warn">Sei sicuro di voler congelare la cronologia? Non verranno apportate modifiche alla cronologia corrente.</string>
-
-    <string name="search_providers_title">Seleziona il motore di ricerca</string>
-    <string name="history_mode_name">Cronologia</string>
-    <string name="history_mode_desc">Scegli la metodologia di creazione della cronologia</string>
-    <string name="menu_shortcut_remove">Elimina collegamento</string>
-
-    <string name="enable_favorites_bar">Mostra i preferiti sopra la barra di ricerca</string>
-    <string name="exclude_favorites">Escludi i preferiti dalla cronologia</string>
-    <string name="favorites_hide">Interfaccia minimale: nascondi preferiti</string>
-<string name="settings_accessibility">Accessibilità</string>
-    <string name="settings_storage">Archiviazione</string>
-    <string name="settings_dev">Opzioni sviluppatore</string>
-    </resources>
+</resources>
