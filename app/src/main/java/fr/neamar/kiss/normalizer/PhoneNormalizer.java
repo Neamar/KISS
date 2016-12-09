@@ -18,13 +18,16 @@ import java.util.regex.Pattern;
 import fr.neamar.kiss.R;
 
 public class PhoneNormalizer {
-    static PhoneNormalizer instance;
-    private final PrefixEntry prefixEntry;
+    private static PhoneNormalizer instance;
     private final String countryIso;
+    private final Pattern internationalPrefixPattern;
+    private final PrefixEntry prefixEntry;
 
     private PhoneNormalizer(Context context) {
         countryIso = determineCountryIso(context);
         prefixEntry = loadPrefixEntry(context, countryIso);
+        internationalPrefixPattern = prefixEntry != null && !prefixEntry.international_prefix_pattern.isEmpty() ?
+                Pattern.compile(prefixEntry.international_prefix_pattern) : null;
     }
 
     public static void initialize(Context context) {
@@ -50,8 +53,8 @@ public class PhoneNormalizer {
         if (input.startsWith("+")) return input;
 
         if (prefixEntry != null) {
-            if (prefixEntry.international_prefix_pattern.length() > 0) {
-                Matcher m = Pattern.compile(prefixEntry.international_prefix_pattern).matcher(input);
+            if (internationalPrefixPattern != null) {
+                Matcher m = internationalPrefixPattern.matcher(input);
                 if (m.lookingAt())
                     return "+" + m.replaceFirst("");
             }
@@ -110,10 +113,10 @@ public class PhoneNormalizer {
     }
 
     private class PrefixEntry {
-        public String iso_country_code;
-        public String ptsn_country_code;
         public String international_prefix_pattern;
+        public String iso_country_code;
         public String national_prefix;
+        public String ptsn_country_code;
 
         public PrefixEntry(String iso_country_code, String ptsn_country_code,
                            String international_prefix_pattern, String national_prefix) {
