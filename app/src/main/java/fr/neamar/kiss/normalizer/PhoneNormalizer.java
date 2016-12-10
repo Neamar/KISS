@@ -12,17 +12,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.R;
 
 public class PhoneNormalizer {
-    static PhoneNormalizer instance;
-    private final PrefixEntry prefixEntry;
+    private static PhoneNormalizer instance;
     private final String countryIso;
+    private final Pattern internationalPrefixPattern;
+    private final PrefixEntry prefixEntry;
 
     private PhoneNormalizer(Context context) {
         countryIso = determineCountryIso(context);
         prefixEntry = loadPrefixEntry(context, countryIso);
+        internationalPrefixPattern = prefixEntry != null && !prefixEntry.international_prefix_pattern.isEmpty() ?
+                Pattern.compile(prefixEntry.international_prefix_pattern) : null;
     }
 
     public static void initialize(Context context) {
@@ -48,9 +53,10 @@ public class PhoneNormalizer {
         if (input.startsWith("+")) return input;
 
         if (prefixEntry != null) {
-            if (prefixEntry.international_prefix_pattern.length() > 0 &&
-                    input.matches(prefixEntry.international_prefix_pattern)) {
-                return "+" + input.replaceFirst(prefixEntry.international_prefix_pattern, "");
+            if (internationalPrefixPattern != null) {
+                Matcher m = internationalPrefixPattern.matcher(input);
+                if (m.lookingAt())
+                    return "+" + m.replaceFirst("");
             }
             if (prefixEntry.national_prefix.length() > 0 && input.startsWith(prefixEntry.national_prefix)) {
                 return "+" + prefixEntry.ptsn_country_code + input.substring(prefixEntry.national_prefix.length());
@@ -89,7 +95,7 @@ public class PhoneNormalizer {
                 String simCountryIso = manager.getSimCountryIso();
                 //Log.d("COUNTRY", "SIM: " + simCountryIso);
                 if (!TextUtils.isEmpty(simCountryIso))
-                    return simCountryIso;
+                    return simCountryIso.toUpperCase();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -97,7 +103,7 @@ public class PhoneNormalizer {
                 String networkCountryIso = manager.getNetworkCountryIso();
                 //Log.d("COUNTRY", "NET: " + networkCountryIso);
                 if (!TextUtils.isEmpty(networkCountryIso))
-                    return networkCountryIso;
+                    return networkCountryIso.toUpperCase();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -107,10 +113,10 @@ public class PhoneNormalizer {
     }
 
     private class PrefixEntry {
-        public String iso_country_code;
-        public String ptsn_country_code;
         public String international_prefix_pattern;
+        public String iso_country_code;
         public String national_prefix;
+        public String ptsn_country_code;
 
         public PrefixEntry(String iso_country_code, String ptsn_country_code,
                            String international_prefix_pattern, String national_prefix) {
