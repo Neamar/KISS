@@ -1,6 +1,7 @@
 package fr.neamar.kiss.dataprovider;
 
 import android.util.Pair;
+
 import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
