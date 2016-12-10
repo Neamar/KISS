@@ -1,6 +1,5 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -98,7 +96,6 @@ public class ShortcutsResult extends Result {
     }
 
     @Override
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     PopupMenu buildPopupMenu(Context context, RecordAdapter parent, View parentView) {
         return inflatePopupMenu(R.menu.menu_item_shortcut, context, parentView);
     }

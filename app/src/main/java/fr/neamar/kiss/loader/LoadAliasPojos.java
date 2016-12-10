@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 

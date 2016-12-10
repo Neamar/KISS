@@ -1,6 +1,5 @@
 package fr.neamar.kiss.ui;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Build;
@@ -14,7 +13,6 @@ import android.widget.EdgeEffect;
  * Parts (or even all) of the given effect parameters may be discarded with the underlying Android
  * platform does not support them.
  */
-@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class BottomPullEffectView extends View {
     private EdgeEffect effect;
     private float   lastPullDistance;
@@ -44,11 +42,6 @@ public class BottomPullEffectView extends View {
      * @param animated     Should this pull eventually fade away?
      */
     public void setPull(float distance, float displacement, boolean animated) {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            // Don't draw anything if the platform does not support it
-            return;
-        }
-
         // Reset internal effect state by creating a new instance
         //XXX: This may cause unnecessary GC runs!
         this.effect = new EdgeEffect(this.getContext());

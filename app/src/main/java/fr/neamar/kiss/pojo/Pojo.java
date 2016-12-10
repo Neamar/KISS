@@ -1,7 +1,7 @@
 package fr.neamar.kiss.pojo;
 
 import android.util.Pair;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
