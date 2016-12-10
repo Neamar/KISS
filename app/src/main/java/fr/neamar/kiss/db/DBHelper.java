@@ -4,9 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 import java.util.ArrayList;
+
+import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class DBHelper {
     private DBHelper() {

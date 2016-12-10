@@ -1,12 +1,10 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.view.MenuItem;
@@ -105,7 +103,6 @@ public class ContactsResult extends Result {
         return v;
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         return inflatePopupMenu(R.menu.menu_item_contact, context, parentView);
@@ -124,18 +121,12 @@ public class ContactsResult extends Result {
 
     @SuppressWarnings("deprecation")
     private void copyPhone(Context context, ContactsPojo contactPojo) {
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
-            android.text.ClipboardManager clipboard =
-                    (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setText(contactPojo.phone);
-        } else {
-            android.content.ClipboardManager clipboard =
-                    (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-            android.content.ClipData clip = android.content.ClipData.newPlainText(
-                    "Phone number for " + contactPojo.displayName,
-                    contactPojo.phone);
-            clipboard.setPrimaryClip(clip);
-        }
+        android.content.ClipboardManager clipboard =
+                (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        android.content.ClipData clip = android.content.ClipData.newPlainText(
+                "Phone number for " + contactPojo.displayName,
+                contactPojo.phone);
+        clipboard.setPrimaryClip(clip);
     }
 
     @SuppressWarnings("deprecation")

@@ -1,10 +1,8 @@
 package fr.neamar.kiss;
 
-import android.annotation.TargetApi;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
-import android.os.Build;
 import android.util.Log;
 
 import java.io.IOException;
@@ -21,14 +19,13 @@ public class CameraHandler {
     private void openCamera() throws IOException {
         if (camera == null) {
             camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
-            if (surfaceTexture == null && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            if (surfaceTexture == null) {
                 surfaceTexture = new SurfaceTexture(0);
                 camera.setPreviewTexture(surfaceTexture);
             }
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void releaseCamera() {
         try {
             if (camera != null) {
