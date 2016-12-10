@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
@@ -21,6 +21,18 @@
         android:src="@drawable/ic_launcher" />
 
     <TextView
+        android:id="@+id/item_app_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stub_app_tag"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="?android:attr/textColorSecondary"
+        android:layout_alignBottom="@+id/item_app_icon"
+        android:layout_toRightOf="@+id/item_app_icon"
+        android:layout_toEndOf="@+id/item_app_icon" />
+
+    <TextView
         android:id="@+id/item_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +40,9 @@
         android:singleLine="true"
         android:text="@string/stub_application"
         android:textColor="?attr/resultColor"
-        android:textSize="@dimen/result_title_size" />
+        android:textSize="@dimen/result_title_size"
+        android:layout_above="@+id/item_app_tag"
+        android:layout_toRightOf="@+id/item_app_icon"
+        android:layout_toEndOf="@+id/item_app_icon" />
 
-</LinearLayout>
+</RelativeLayout>

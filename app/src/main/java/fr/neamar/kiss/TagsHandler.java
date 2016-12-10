@@ -1,6 +1,5 @@
-package fr.neamar.kiss.loader;
+package fr.neamar.kiss;
 
-import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -9,83 +8,99 @@ import android.content.pm.ResolveInfo;
 import android.os.Build;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.AliasPojo;
+import fr.neamar.kiss.db.DBHelper;
 
-public class LoadAliasPojos extends LoadPojos<AliasPojo> {
+/**
+ * Created by nmitsou on 13.10.16.
+ */
 
-    public LoadAliasPojos(Context context) {
-        super(context, "none://");
+public class TagsHandler {
+    Context context;
+    //cached tags
+    private Map<String, String> tagsCache;
+
+    public TagsHandler(Context context) {
+        this.context = context;
+        tagsCache = DBHelper.loadTags(this.context);
+        addDefaultAliases();
     }
 
-    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
-    @Override
-    protected ArrayList<AliasPojo> doInBackground(Void... params) {
+    public void setTags(String id, String tags) {
+        //remove existing tags for id
+        DBHelper.deleteTagsForId(this.context, id);
+        //add to db
+        DBHelper.insertTagsForId(this.context, tags, id);
+        //add to cache
+        tagsCache.put(id, tags);
+    }
+
+    public String getTags(String id) {
+        String tag = tagsCache.get(id);
+        if (tag == null) {
+            return "";
+        }
+        return tag;
+    }
+
+    private void addDefaultAliases() {
         final PackageManager pm = context.getPackageManager();
-        ArrayList<AliasPojo> alias = new ArrayList<>();
+        ArrayList alias = new ArrayList<>();
 
         String phoneApp = getApp(pm, Intent.ACTION_DIAL);
         if (phoneApp != null) {
             String phoneAlias = context.getResources().getString(R.string.alias_phone);
-            addAliasesPojo(alias, phoneAlias.split(","), phoneApp);
+            addAliasesPojo(phoneAlias, phoneApp);
         }
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
             String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
             if (contactApp != null) {
                 String contactAlias = context.getResources().getString(R.string.alias_contacts);
-                addAliasesPojo(alias, contactAlias.split(","), contactApp);
+                addAliasesPojo(contactAlias, contactApp);
             }
 
             String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
             if (browserApp != null) {
                 String webAlias = context.getResources().getString(R.string.alias_web);
-                addAliasesPojo(alias, webAlias.split(","), browserApp);
+                addAliasesPojo(webAlias, browserApp);
             }
 
             String mailApp = getAppByCategory(pm, Intent.CATEGORY_APP_EMAIL);
             if (mailApp != null) {
                 String mailAlias = context.getResources().getString(R.string.alias_mail);
-                addAliasesPojo(alias, mailAlias.split(","), mailApp);
+                addAliasesPojo(mailAlias, mailApp);
             }
 
             String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
             if (marketApp != null) {
                 String marketAlias = context.getResources().getString(R.string.alias_market);
-                addAliasesPojo(alias, marketAlias.split(","), marketApp);
+                addAliasesPojo(marketAlias, marketApp);
             }
 
             String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
             if (messagingApp != null) {
                 String messagingAlias = context.getResources().getString(R.string.alias_messaging);
-                addAliasesPojo(alias, messagingAlias.split(","), messagingApp);
+                addAliasesPojo(messagingAlias, messagingApp);
             }
 
             String clockApp = getClockApp(pm);
             if (clockApp != null) {
                 String clockAlias = context.getResources().getString(R.string.alias_clock);
-                addAliasesPojo(alias, clockAlias.split(","), clockApp);
+                addAliasesPojo(clockAlias, clockApp);
             }
         }
 
-        return alias;
-
     }
 
-    private void addAliasesPojo(List<AliasPojo> alias, String[] aliases, String appInfo) {
-        for (String a : aliases) {
-            alias.add(makeAliasPojo(a, appInfo));
+    private void addAliasesPojo(String aliases, String app) {
+        //add aliases only if they haven't overridden by the user (not in db)
+        if (!tagsCache.containsKey(app)) {
+            tagsCache.put(app, aliases.replace(",", " "));
         }
-    }
-
-    private AliasPojo makeAliasPojo(String alias, String appInfo) {
-        AliasPojo aliasPojo = new AliasPojo();
-        aliasPojo.alias = alias;
-        aliasPojo.app = appInfo;
-
-        return aliasPojo;
     }
 
     private String getApp(PackageManager pm, String action) {

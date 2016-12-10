@@ -39,7 +39,7 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "alias", "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
+            "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
     );
 
     final private Context context;
@@ -47,6 +47,8 @@ public class DataHandler extends BroadcastReceiver
 
     private Map<String, ProviderEntry> providers = new HashMap<>();
     private boolean providersReady = false;
+
+    private static TagsHandler tagsHandler;
 
     /**
      * Initialize all providers
@@ -115,7 +117,7 @@ public class DataHandler extends BroadcastReceiver
     /**
      * Require the data handler to be connected to the data provider with the given name
      *
-     * @param name Data provider name (i.e.: `AliasProvider` → `"alias"`)
+     * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
      */
     protected void connectToProvider(final String name) {
         // Do not continue if this provider has already been connected to
@@ -355,6 +357,14 @@ public class DataHandler extends BroadcastReceiver
         }
     }
 
+
+    public void addToExcluded(String packageName) {
+        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("excluded-apps-list", context.getPackageName() + ";");
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("excluded-apps-list", excludedAppList + packageName + ";").commit();
+    }
+
     public void removeFromExcluded(String packageName) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
         String excluded = prefs.getString("excluded-apps-list", context.getPackageName() + ";");
@@ -490,4 +500,14 @@ public class DataHandler extends BroadcastReceiver
         public ServiceConnection connection = null;
     }
 
+    public TagsHandler getTagsHandler() {
+        if (tagsHandler == null) {
+            tagsHandler = new TagsHandler(context);
+        }
+        return tagsHandler;
+    }
+
+    public void resetTagsHandler() {
+        tagsHandler = new TagsHandler(this.context);
+    }
 }
