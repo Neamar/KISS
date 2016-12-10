@@ -47,6 +47,9 @@ public class DataHandler extends BroadcastReceiver
 
     private Map<String, ProviderEntry> providers = new HashMap<>();
     private boolean providersReady = false;
+
+    private static TagsHandler tagsHandler;
+
     /**
      * Initialize all providers
      */
@@ -497,4 +500,14 @@ public class DataHandler extends BroadcastReceiver
         public ServiceConnection connection = null;
     }
 
+    public TagsHandler getTagsHandler() {
+        if (tagsHandler == null) {
+            tagsHandler = new TagsHandler(context);
+        }
+        return tagsHandler;
+    }
+
+    public void resetTagsHandler() {
+        tagsHandler = new TagsHandler(this.context);
+    }
 }

@@ -25,7 +25,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     public LoadAppPojos(Context context) {
         super(context, "app://");
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        tagsHandler = KissApplication.getTagsHandler(context);
+        tagsHandler = KissApplication.getDataHandler(context).getTagsHandler();
     }
 
     @Override

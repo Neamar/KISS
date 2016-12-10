@@ -154,7 +154,7 @@ public class AppResult extends Result {
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                KissApplication.getTagsHandler(context).setTags(app.id, tag.getText().toString());
+                KissApplication.getDataHandler(context).getTagsHandler().setTags(app.id, tag.getText().toString());
                 // Refresh tags for given app
                 app.tags = tag.getText().toString();
                 app.displayTags = app.tags;
