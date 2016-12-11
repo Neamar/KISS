@@ -11,7 +11,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -67,21 +66,7 @@ public class AppResult extends Result {
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
-            // Display icon directy for first icons, and also for phones above lollipop
-            // (fix a weird recycling issue with ListView on Marshmallow,
-            // where the recycling occurs synchronously, before the handler)
-            if (position < 15 || Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-                appIcon.setImageDrawable(this.getDrawable(context));
-            } else {
-                // Do actions on a message queue to avoid performance issues on main thread
-                Handler handler = new Handler();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        appIcon.setImageDrawable(getDrawable(context));
-                    }
-                });
-            }
+            KissApplication.getIconsHandler(context).setIconToView(context, appIcon, className);
         }
         else {
             appIcon.setVisibility(View.INVISIBLE);
@@ -209,17 +194,6 @@ public class AppResult extends Result {
         Intent intent = new Intent(Intent.ACTION_DELETE,
                 Uri.fromParts("package", app.packageName, null));
         context.startActivity(intent);
-    }
-
-    @Override
-    public Drawable getDrawable(Context context) {
-        
-        if (icon == null) {
-             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className);             
-        }
-                
-        return icon;
-        
     }
 
     @Override
