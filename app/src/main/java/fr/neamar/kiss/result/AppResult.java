@@ -46,14 +46,19 @@ public class AppResult extends Result {
 
     @Override
     public View display(final Context context, int position, View v) {
-        if (v == null)
-            v = inflateFromId(context, R.layout.item_app);
+        if (v == null) {
+            if (appPojo.displayTags.isEmpty()) {
+                v = inflateFromId(context, R.layout.item_app);
+            }
+            else {
+                v = inflateFromId(context, R.layout.item_app_with_tags);
+                TextView tagsView = (TextView) v.findViewById(R.id.item_app_tag);
+                tagsView.setText(enrichText(appPojo.displayTags));
+            }
+        }
 
         TextView appName = (TextView) v.findViewById(R.id.item_app_name);
         appName.setText(enrichText(appPojo.displayName));
-
-        TextView tagsView = (TextView) v.findViewById(R.id.item_app_tag);
-        tagsView.setText(enrichText(appPojo.displayTags));
 
 
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
