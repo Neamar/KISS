@@ -20,6 +20,7 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -81,6 +82,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+    private static final String TAG = "MainActivity";
     /**
      * IDs for the favorites buttons
      */
@@ -377,11 +379,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     /**
-     * Empty text field on resume and show keyboard
+     * Restart if required,
+     * Hide the kissbar by default
      */
     @SuppressLint("CommitPrefEdits")
     protected void onResume() {
+        Log.i(TAG, "Resuming");
+
         if (prefs.getBoolean("require-layout-update", false)) {
+            Log.i(TAG, "Restarting app after setting changes");
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
             prefs.edit().putBoolean("require-layout-update", false).commit();
@@ -447,20 +453,23 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     protected void onNewIntent(Intent intent) {
-        // Empty method,
         // This is called when the user press Home again while already browsing MainActivity
         // onResume() will be called right after, hiding the kissbar if any.
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
-        onBackPressed();
-        hideKeyboard(); // Hiding the keyboard depends on the value from the setting "display keyboard on app open"
+        // Animation can't happen in this method, since the activity is not resumed yet, so they'll happen in the onResume()
+        // https://github.com/Neamar/KISS/issues/569
+        if(!searchEditText.getText().toString().isEmpty()) {
+            Log.i(TAG, "Clearing search field");
+            searchEditText.setText("");
+        }
     }
 
     @Override
     public void onBackPressed() {
-        // Is the kiss menu visible?
-        if (menuButton.getVisibility() == View.VISIBLE) {
+        // Is the kiss bar visible?
+        if (kissBar.getVisibility() == View.VISIBLE) {
             displayKissBar(false);
-        } else {
+        } else if(!searchEditText.getText().toString().isEmpty()){
             // If no kissmenu, empty the search bar
             searchEditText.setText("");
         }
