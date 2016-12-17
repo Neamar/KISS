@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
-import android.widget.Toast;
 
 import fr.neamar.kiss.DummyActivity;
 
