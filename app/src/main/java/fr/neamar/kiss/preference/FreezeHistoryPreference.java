@@ -6,9 +6,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.preference.CheckBoxPreference;
 import android.util.AttributeSet;
-import android.widget.Toast;
 
-import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 
 public class FreezeHistoryPreference extends CheckBoxPreference {

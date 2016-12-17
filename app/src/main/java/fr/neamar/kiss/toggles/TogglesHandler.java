@@ -8,8 +8,10 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.util.Log;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.TogglesPojo;
 

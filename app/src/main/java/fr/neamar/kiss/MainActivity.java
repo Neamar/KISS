@@ -3,7 +3,6 @@ package fr.neamar.kiss;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,6 +20,7 @@ import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -67,7 +67,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * InputType that behaves as if the consuming IME is a standard-obeying
      * soft-keyboard
-     *
+     * <p>
      * *Auto Complete* means "we're handling auto-completion ourselves". Then
      * we ignore whatever the IME thinks we should display.
      */
@@ -76,12 +76,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
     /**
      * InputType that behaves as if the consuming IME is SwiftKey
-     *
+     * <p>
      * *Visible Password* fields will break many non-Latin IMEs and may show
      * unexpected behaviour in numerous ways. (#454, #517)
      */
     private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+    private static final String TAG = "MainActivity";
     /**
      * IDs for the favorites buttons
      */
@@ -209,8 +210,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             } else {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
-        }
-        else {
+        } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
 
@@ -332,18 +332,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Apply some tweaks to the design, depending on the current SDK version
      */
     private void applyDesignTweaks() {
-        final int[] tweakableIds = new int[]{
-                R.id.menuButton,
-                // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
-                R.id.clearButton,
-                R.id.launcherButton,
-                R.id.favorite0,
-                R.id.favorite1,
-                R.id.favorite2,
-                R.id.favorite3,
-        };
-
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            final int[] tweakableIds = new int[]{
+                    R.id.menuButton,
+                    // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
+                    R.id.clearButton,
+                    R.id.launcherButton,
+                    R.id.favorite0,
+                    R.id.favorite1,
+                    R.id.favorite2,
+                    R.id.favorite3,
+            };
+
             TypedValue outValue = new TypedValue();
             getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
 
@@ -351,13 +351,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 findViewById(id).setBackgroundResource(outValue.resourceId);
             }
 
-        } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            TypedValue outValue = new TypedValue();
-            getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-
-            for (int id : tweakableIds) {
-                findViewById(id).setBackgroundResource(outValue.resourceId);
-            }
         }
     }
 
@@ -386,11 +379,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     /**
-     * Empty text field on resume and show keyboard
+     * Restart if required,
+     * Hide the kissbar by default
      */
     @SuppressLint("CommitPrefEdits")
     protected void onResume() {
+        Log.i(TAG, "Resuming");
+
         if (prefs.getBoolean("require-layout-update", false)) {
+            Log.i(TAG, "Restarting app after setting changes");
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
             prefs.edit().putBoolean("require-layout-update", false).commit();
@@ -456,20 +453,23 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     protected void onNewIntent(Intent intent) {
-        // Empty method,
         // This is called when the user press Home again while already browsing MainActivity
         // onResume() will be called right after, hiding the kissbar if any.
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
-        onBackPressed();
-        hideKeyboard(); // Hiding the keyboard depends on the value from the setting "display keyboard on app open"
+        // Animation can't happen in this method, since the activity is not resumed yet, so they'll happen in the onResume()
+        // https://github.com/Neamar/KISS/issues/569
+        if(!searchEditText.getText().toString().isEmpty()) {
+            Log.i(TAG, "Clearing search field");
+            searchEditText.setText("");
+        }
     }
 
     @Override
     public void onBackPressed() {
-        // Is the kiss menu visible?
-        if (menuButton.getVisibility() == View.VISIBLE) {
+        // Is the kiss bar visible?
+        if (kissBar.getVisibility() == View.VISIBLE) {
             displayKissBar(false);
-        } else {
+        } else if(!searchEditText.getText().toString().isEmpty()){
             // If no kissmenu, empty the search bar
             searchEditText.setText("");
         }
@@ -570,7 +570,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onFavoriteButtonClicked(View favorite) {
         // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
         displayKissBar(false);
-        
+
         // Favorites handling
         Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve)
                 .get(Integer.parseInt((String) favorite.getTag()));
@@ -590,7 +590,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
     private void displayLoader(Boolean display) {
         final View loaderBar = findViewById(R.id.loaderBar);
         final View launcherButton = findViewById(R.id.launcherButton);
@@ -601,26 +600,22 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (!display) {
             launcherButton.setVisibility(View.VISIBLE);
 
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                // Animate transition from loader to launch button
-                launcherButton.setAlpha(0);
-                launcherButton.animate()
-                        .alpha(1f)
-                        .setDuration(animationDuration)
-                        .setListener(null);
-                loaderBar.animate()
-                        .alpha(0f)
-                        .setDuration(animationDuration)
-                        .setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                loaderBar.setVisibility(View.GONE);
-                                loaderBar.setAlpha(1);
-                            }
-                        });
-            } else {
-                loaderBar.setVisibility(View.GONE);
-            }
+            // Animate transition from loader to launch button
+            launcherButton.setAlpha(0);
+            launcherButton.animate()
+                    .alpha(1f)
+                    .setDuration(animationDuration)
+                    .setListener(null);
+            loaderBar.animate()
+                    .alpha(0f)
+                    .setDuration(animationDuration)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            loaderBar.setVisibility(View.GONE);
+                            loaderBar.setAlpha(1);
+                        }
+                    });
         } else {
             launcherButton.setVisibility(View.INVISIBLE);
             loaderBar.setVisibility(View.VISIBLE);
