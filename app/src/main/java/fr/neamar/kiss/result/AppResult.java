@@ -14,11 +14,12 @@ import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
     private final AppPojo appPojo;
@@ -149,18 +151,23 @@ public class AppResult extends Result {
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
         // Create the tag dialog
-        final EditText tag = new EditText(context);
-        tag.setInputType(InputType.TYPE_CLASS_TEXT);
-        // Load existing tags
-        tag.setText(app.tags);
-        builder.setView(tag);
+
+        final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
+        final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
+                android.R.layout.simple_dropdown_item_1line, KissApplication.getDataHandler(context).getTagsHandler().getAllTagsAsArray());
+        tagInput.setTokenizer(new SpaceTokenizer());
+        tagInput.setText(app.tags);
+
+        tagInput.setAdapter(adapter);
+        builder.setView(v);
 
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                KissApplication.getDataHandler(context).getTagsHandler().setTags(app.id, tag.getText().toString());
+                KissApplication.getDataHandler(context).getTagsHandler().setTags(app.id, tagInput.getText().toString());
                 // Refresh tags for given app
-                app.tags = tag.getText().toString();
+                app.tags = tagInput.getText().toString();
                 app.displayTags = app.tags;
                 // Show toast message
                 String msg = context.getResources().getString(R.string.tags_confirmation_added);
