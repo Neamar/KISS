@@ -25,7 +25,7 @@
             android:divider="?attr/dividerDrawable"
             android:dividerHeight="1dp"
             android:stackFromBottom="true"
-            android:transcriptMode="alwaysScroll"></fr.neamar.kiss.ui.BlockableListView>
+            android:transcriptMode="alwaysScroll" />
 
         <fr.neamar.kiss.ui.BottomPullEffectView
             android:id="@+id/listEdgeEffect"
@@ -52,7 +52,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/whiteLauncherButton"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -120,6 +119,7 @@
             android:layout_centerVertical="true"
             android:contentDescription="@string/main_kiss"
             android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
             android:onClick="onLauncherButtonClicked"
             android:paddingLeft="6dp"
             android:paddingRight="10dp"
@@ -165,6 +165,7 @@
             android:layout_marginLeft="10dp"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
             android:onClick="onMenuButtonClicked"
             android:paddingBottom="4dp"
             android:paddingLeft="1dp"
@@ -186,6 +187,7 @@
             android:paddingBottom="4dp"
             android:paddingLeft="1dp"
             android:paddingRight="1dp"
+            android:background="?android:attr/selectableItemBackground"
             android:paddingTop="4dp"
             android:src="@drawable/clear_dark"
             android:tint="?attr/searchColor"

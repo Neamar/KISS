@@ -4,7 +4,7 @@ android {
     buildToolsVersion '23.0.2'
     defaultConfig {
         applicationId 'fr.neamar.kiss'
-        minSdkVersion 10
+        minSdkVersion 14
         targetSdkVersion 22
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -12,7 +12,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     productFlavors {

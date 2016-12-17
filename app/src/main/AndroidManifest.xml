@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="fr.neamar.kiss"
-    android:versionCode="87"
-    android:versionName="2.27.0">
+    android:versionCode="88"
+    android:versionName="2.28.0">
 
     <permission
         android:name="com.android.launcher.permission.INSTALL_SHORTCUT"
@@ -121,6 +121,14 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".broadcast.LocaleChangedReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
         <!-- On incoming messages, add user to history -->
         <receiver
             android:name=".broadcast.IncomingSmsHandler"
@@ -157,7 +165,6 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".dataprovider.AliasProvider" />
         <service android:name=".dataprovider.AppProvider" />
         <service android:name=".dataprovider.ContactsProvider" />
         <service android:name=".dataprovider.PhoneProvider" />
