@@ -59,8 +59,8 @@ public class AppResult extends Result {
         }
         else {
             tagsView.setVisibility(View.VISIBLE);
+            tagsView.setText(enrichText(appPojo.displayTags));
         }
-        tagsView.setText(enrichText(appPojo.displayTags));
 
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 
