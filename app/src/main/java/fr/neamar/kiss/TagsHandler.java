@@ -8,9 +8,11 @@ import android.content.pm.ResolveInfo;
 import android.os.Build;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import fr.neamar.kiss.db.DBHelper;
 
@@ -44,6 +46,16 @@ public class TagsHandler {
             return "";
         }
         return tag;
+    }
+
+    public String[] getAllTagsAsArray() {
+        Set<String> tags = new HashSet<>();
+        String[] tagsNew;
+        for (Map.Entry<String, String> entry : tagsCache.entrySet()) {
+            tags.addAll(Arrays.asList(entry.getValue().split("\\s+")));
+        }
+
+        return tags.toArray(new String[tags.size()]);
     }
 
     private void addDefaultAliases() {
