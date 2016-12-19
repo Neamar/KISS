@@ -381,7 +381,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 && (!prefs.getBoolean("favorites-hide", false) || touched)) {
             quickFavoritesBar.setVisibility(View.VISIBLE);
 
-            if(initialize) {
+            if (initialize) {
                 Log.i(TAG, "Using quick favorites bar, filling content.");
                 favoritesKissBar.setVisibility(View.INVISIBLE);
                 displayFavorites();
@@ -599,9 +599,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
         displayKissBar(false);
 
+        int favNumber = Integer.parseInt((String) favorite.getTag());
+        ArrayList<Pojo> favorites = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve);
+        if (favNumber >= favorites.size()) {
+            // Clicking on a favorite before everything is loaded.
+            Log.i(TAG, "Clicking on an unitialized favorite.");
+            return;
+        }
         // Favorites handling
-        Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve)
-                .get(Integer.parseInt((String) favorite.getTag()));
+        Pojo pojo = favorites.get(favNumber);
         final Result result = Result.fromPojo(MainActivity.this, pojo);
 
         result.fastLaunch(MainActivity.this);
@@ -741,8 +747,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             Drawable drawable = result.getDrawable(MainActivity.this);
             if (drawable != null) {
                 image.setImageDrawable(drawable);
-            }
-            else {
+            } else {
                 Log.e(TAG, "Falling back to default image for favorite.");
                 // Use the default contact image otherwise
                 image.setImageResource(R.drawable.ic_contact);
