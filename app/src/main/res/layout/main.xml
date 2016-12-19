@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -47,7 +48,8 @@
         android:clipToPadding="false"
         android:elevation="2dp"
         android:padding="5dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,7 +64,8 @@
                 android:layout_weight="1"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:tag="0" />
+                android:tag="0"
+                tools:src="@drawable/ic_contact" />
 
             <ImageView
                 android:id="@+id/favoriteBar1"
@@ -71,7 +74,8 @@
                 android:layout_weight="1"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:tag="1" />
+                android:tag="1"
+                tools:src="@drawable/ic_contact" />
 
             <ImageView
                 android:id="@+id/favoriteBar2"
@@ -80,7 +84,8 @@
                 android:layout_weight="1"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:tag="2" />
+                android:tag="2"
+                tools:src="@drawable/ic_contact" />
 
             <ImageView
                 android:id="@+id/favoriteBar3"
@@ -89,7 +94,8 @@
                 android:layout_weight="1"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:tag="3" />
+                android:tag="3"
+                tools:src="@drawable/ic_contact" />
 
             <ImageView
                 android:id="@+id/favoriteBar4"
@@ -98,7 +104,8 @@
                 android:layout_weight="1"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:tag="4" />
+                android:tag="4"
+                tools:src="@drawable/ic_contact" />
 
             <ImageView
                 android:id="@+id/favoriteBar5"
@@ -107,7 +114,8 @@
                 android:layout_weight="1"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:tag="5" />
+                android:tag="5"
+                tools:src="@drawable/ic_contact" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -131,9 +139,9 @@
             android:layout_height="32dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:background="?android:attr/selectableItemBackground"
             android:contentDescription="@string/main_kiss"
             android:focusable="true"
-            android:background="?android:attr/selectableItemBackground"
             android:onClick="onLauncherButtonClicked"
             android:paddingLeft="6dp"
             android:paddingRight="10dp"
@@ -177,9 +185,9 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:background="?android:attr/selectableItemBackground"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
-            android:background="?android:attr/selectableItemBackground"
             android:onClick="onMenuButtonClicked"
             android:paddingBottom="4dp"
             android:paddingLeft="1dp"
@@ -195,13 +203,13 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:background="?android:attr/selectableItemBackground"
             android:contentDescription="@string/main_clear"
             android:focusable="true"
             android:onClick="onClearButtonClicked"
             android:paddingBottom="4dp"
             android:paddingLeft="1dp"
             android:paddingRight="1dp"
-            android:background="?android:attr/selectableItemBackground"
             android:paddingTop="4dp"
             android:src="@drawable/clear_dark"
             android:tint="?attr/searchColor"

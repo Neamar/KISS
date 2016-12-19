@@ -409,7 +409,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     @SuppressLint("CommitPrefEdits")
     protected void onResume() {
-        Log.i(TAG, "Resuming");
+        Log.i(TAG, "Resuming KISS");
 
         if (prefs.getBoolean("require-layout-update", false)) {
             Log.i(TAG, "Restarting app after setting changes");
@@ -438,7 +438,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
         AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
         if (appProvider != null && appProvider.isLoaded())
-            displayQuickFavoritesBar(false, searchEditText.getText().toString().length() > 0);
+            // Favorites needs to be displayed again if the quickfavorite bar is active,
+            // Not sure why exactly, but without the "true" the favorites drawable will disappear
+            // (not their intent) after moving to another activity and switching back to KISS.
+            displayQuickFavoritesBar(true, searchEditText.getText().toString().length() > 0);
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -740,6 +743,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 image.setImageDrawable(drawable);
             }
             else {
+                Log.e(TAG, "Falling back to default image for favorite.");
                 // Use the default contact image otherwise
                 image.setImageResource(R.drawable.ic_contact);
             }
