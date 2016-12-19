@@ -86,13 +86,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * IDs for the favorites buttons
      */
-    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
+    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
     /**
      * Number of favorites to retrieve.
      * We need to pad this number to account for removed items still in history
      */
     public final int tryToRetrieve = favsIds.length + 2;
-    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3};
+    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
     /**
      * Adapter to display records
      */
@@ -342,6 +342,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     R.id.favorite1,
                     R.id.favorite2,
                     R.id.favorite3,
+                    R.id.favorite4,
+                    R.id.favorite5,
+                    R.id.favoriteBar0,
+                    R.id.favoriteBar1,
+                    R.id.favoriteBar2,
+                    R.id.favoriteBar3,
+                    R.id.favoriteBar4,
+                    R.id.favoriteBar5,
             };
 
             TypedValue outValue = new TypedValue();
@@ -698,9 +706,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         }
 
+        Log.e(TAG, "Got favo:" + favoritesPojo.size());
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < Math.min(favsIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
+            Log.e(TAG, "DN:" + pojo.displayName);
+
             ImageView image = (ImageView) findViewById(favsIds[i]);
             ImageView imageFavBar = (ImageView) findViewById(favBarIds[i]);
 
@@ -720,6 +731,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
+            Log.e(TAG, "Hiding #" + i);
             findViewById(favsIds[i]).setVisibility(View.GONE);
             findViewById(favBarIds[i]).setVisibility(View.GONE);
         }

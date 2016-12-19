@@ -408,7 +408,7 @@ public class DataHandler extends BroadcastReceiver
      * @return favorites' pojo
      */
     public ArrayList<Pojo> getFavorites(int limit) {
-        ArrayList<Pojo> favorites = new ArrayList<>(limit);
+        ArrayList<Pojo> favorites = new ArrayList<>();
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
@@ -443,8 +443,9 @@ public class DataHandler extends BroadcastReceiver
         if (favAppsList.size() >= context.getFavIconsSize()) {
             favApps = favApps.substring(favApps.indexOf(";") + 1);
         }
+
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps + id + ";").commit();
+                .putString("favorite-apps-list", favApps + id + ";").apply();
 
         context.retrieveFavorites();
 
