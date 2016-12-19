@@ -194,7 +194,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
 
-                    checkShowFavoritesBar(false);
+                    checkShowFavoritesBar(true, false);
                     displayLoader(false);
 
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
@@ -374,15 +374,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    private void checkShowFavoritesBar(boolean touched) {
-        View favoritesBar = findViewById(R.id.favoritesBar);
+    private void checkShowFavoritesBar(boolean initialize, boolean touched) {
+        View quickFavoritesBar = findViewById(R.id.favoritesBar);
         if (searchEditText.getText().toString().length() == 0
                 && prefs.getBoolean("enable-favorites-bar", false)
                 && (!prefs.getBoolean("favorites-hide", false) || touched)) {
-            favoritesBar.setVisibility(View.VISIBLE);
-            retrieveFavorites();
+            quickFavoritesBar.setVisibility(View.VISIBLE);
+
+            if(initialize) {
+                Log.i(TAG, "Using quick favorites bar, filling content.");
+                favoritesKissBar.setVisibility(View.INVISIBLE);
+                retrieveFavorites();
+            }
         } else {
-            favoritesBar.setVisibility(View.GONE);
+            quickFavoritesBar.setVisibility(View.GONE);
         }
     }
 
@@ -433,7 +438,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
         AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
         if (appProvider != null && appProvider.isLoaded())
-            checkShowFavoritesBar(searchEditText.getText().toString().length() > 0);
+            checkShowFavoritesBar(false, searchEditText.getText().toString().length() > 0);
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -564,7 +569,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 }
             }
             if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)) {
-                checkShowFavoritesBar(true);
+                checkShowFavoritesBar(false, true);
             }
         }
         return super.dispatchTouchEvent(event);
@@ -699,6 +704,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         }
 
+        // Hide the favorite bar in the kiss bar if the quick bar is enabled
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", false)) {
             favoritesKissBar.setVisibility(View.INVISIBLE);
         } else {
@@ -740,7 +746,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
-            Log.e(TAG, "Hiding #" + i);
             findViewById(favoritesIds[i]).setVisibility(View.GONE);
         }
     }
@@ -779,7 +784,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searcher = new QuerySearcher(this, query);
         }
         searcher.execute();
-        checkShowFavoritesBar(false);
+        checkShowFavoritesBar(false, false);
     }
 
     public void resetTask() {
