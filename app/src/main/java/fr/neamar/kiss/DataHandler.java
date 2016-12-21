@@ -24,7 +24,6 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
-import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
@@ -300,7 +299,7 @@ public class DataHandler extends BroadcastReceiver
                 //Look if the pojo should get excluded
                 boolean exclude = false;
                 for (int j = 0; j < itemsToExclude.size(); j++) {
-                    if (itemsToExclude.get(j).id == pojo.id) {
+                    if (itemsToExclude.get(j).id.equals(pojo.id)) {
                         exclude = true;
                         break;
                     }
@@ -362,7 +361,7 @@ public class DataHandler extends BroadcastReceiver
         String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("excluded-apps-list", context.getPackageName() + ";");
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("excluded-apps-list", excludedAppList + packageName + ";").commit();
+                .putString("excluded-apps-list", excludedAppList + packageName + ";").apply();
     }
 
     public void removeFromExcluded(String packageName) {
@@ -393,11 +392,6 @@ public class DataHandler extends BroadcastReceiver
     public AppProvider getAppProvider() {
         ProviderEntry entry = this.providers.get("app");
         return (entry != null) ? ((AppProvider) entry.provider) : null;
-    }
-
-    public SearchProvider getSearchProvider() {
-        ProviderEntry entry = this.providers.get("search");
-        return (entry != null) ? ((SearchProvider) entry.provider) : null;
     }
 
     /**
@@ -443,10 +437,11 @@ public class DataHandler extends BroadcastReceiver
         if (favAppsList.size() >= context.getFavIconsSize()) {
             favApps = favApps.substring(favApps.indexOf(";") + 1);
         }
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps + id + ";").commit();
 
-        context.retrieveFavorites();
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps + id + ";").apply();
+
+        context.displayFavorites();
 
         return true;
     }
@@ -463,9 +458,9 @@ public class DataHandler extends BroadcastReceiver
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps.replace(id + ";", "")).commit();
+                .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
 
-        context.retrieveFavorites();
+        context.displayFavorites();
 
         return true;
     }
