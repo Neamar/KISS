@@ -21,7 +21,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -86,13 +85,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * IDs for the favorites buttons
      */
-    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3};
+    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
+    /**
+     * IDs for the favorites buttons on the quickbar
+     */
+
+    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
+
     /**
      * Number of favorites to retrieve.
      * We need to pad this number to account for removed items still in history
      */
     public final int tryToRetrieve = favsIds.length + 2;
-    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3};
     /**
      * Adapter to display records
      */
@@ -137,6 +141,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Kiss bar
      */
     private View kissBar;
+    /**
+     * Favorites bar, in the KISS bar (not the quick favorites bar from minimal UI)
+     */
+    private View favoritesKissBar;
+
     /**
      * Task launched on text change
      */
@@ -184,7 +193,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
 
-                    checkShowFavoritesBar(false);
+                    displayQuickFavoritesBar(true, false);
                     displayLoader(false);
 
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
@@ -279,6 +288,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         });
 
         kissBar = findViewById(R.id.main_kissbar);
+        favoritesKissBar = findViewById(R.id.favoritesKissBar);
+
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
 
@@ -307,9 +318,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
-
-        // Apply effects depending on current Android version
-        applyDesignTweaks();
     }
 
     private void adjustInputType(String currentText) {
@@ -328,41 +336,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    /**
-     * Apply some tweaks to the design, depending on the current SDK version
-     */
-    private void applyDesignTweaks() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            final int[] tweakableIds = new int[]{
-                    R.id.menuButton,
-                    // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
-                    R.id.clearButton,
-                    R.id.launcherButton,
-                    R.id.favorite0,
-                    R.id.favorite1,
-                    R.id.favorite2,
-                    R.id.favorite3,
-            };
-
-            TypedValue outValue = new TypedValue();
-            getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
-
-            for (int id : tweakableIds) {
-                findViewById(id).setBackgroundResource(outValue.resourceId);
-            }
-
-        }
-    }
-
-    private void checkShowFavoritesBar(boolean touched) {
-        View favoritesBar = findViewById(R.id.favoritesBar);
+    private void displayQuickFavoritesBar(boolean initialize, boolean touched) {
+        View quickFavoritesBar = findViewById(R.id.favoritesBar);
         if (searchEditText.getText().toString().length() == 0
                 && prefs.getBoolean("enable-favorites-bar", false)
                 && (!prefs.getBoolean("favorites-hide", false) || touched)) {
-            favoritesBar.setVisibility(View.VISIBLE);
-            retrieveFavorites();
+            quickFavoritesBar.setVisibility(View.VISIBLE);
+
+            if (initialize) {
+                Log.i(TAG, "Using quick favorites bar, filling content.");
+                favoritesKissBar.setVisibility(View.INVISIBLE);
+                displayFavorites();
+            }
         } else {
-            favoritesBar.setVisibility(View.GONE);
+            quickFavoritesBar.setVisibility(View.GONE);
         }
     }
 
@@ -384,7 +371,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     @SuppressLint("CommitPrefEdits")
     protected void onResume() {
-        Log.i(TAG, "Resuming");
+        Log.i(TAG, "Resuming KISS");
 
         if (prefs.getBoolean("require-layout-update", false)) {
             Log.i(TAG, "Restarting app after setting changes");
@@ -413,7 +400,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
         AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
         if (appProvider != null && appProvider.isLoaded())
-            checkShowFavoritesBar(searchEditText.getText().toString().length() > 0);
+            // Favorites needs to be displayed again if the quickfavorite bar is active,
+            // Not sure why exactly, but without the "true" the favorites drawable will disappear
+            // (not their intent) after moving to another activity and switching back to KISS.
+            displayQuickFavoritesBar(true, searchEditText.getText().toString().length() > 0);
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -458,7 +448,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
         // Animation can't happen in this method, since the activity is not resumed yet, so they'll happen in the onResume()
         // https://github.com/Neamar/KISS/issues/569
-        if(!searchEditText.getText().toString().isEmpty()) {
+        if (!searchEditText.getText().toString().isEmpty()) {
             Log.i(TAG, "Clearing search field");
             searchEditText.setText("");
         }
@@ -469,7 +459,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Is the kiss bar visible?
         if (kissBar.getVisibility() == View.VISIBLE) {
             displayKissBar(false);
-        } else if(!searchEditText.getText().toString().isEmpty()){
+        } else if (!searchEditText.getText().toString().isEmpty()) {
             // If no kissmenu, empty the search bar
             searchEditText.setText("");
         }
@@ -544,7 +534,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 }
             }
             if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)) {
-                checkShowFavoritesBar(true);
+                displayQuickFavoritesBar(false, true);
             }
         }
         return super.dispatchTouchEvent(event);
@@ -571,9 +561,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
         displayKissBar(false);
 
+        int favNumber = Integer.parseInt((String) favorite.getTag());
+        ArrayList<Pojo> favorites = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve);
+        if (favNumber >= favorites.size()) {
+            // Clicking on a favorite before everything is loaded.
+            Log.i(TAG, "Clicking on an unitialized favorite.");
+            return;
+        }
         // Favorites handling
-        Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve)
-                .get(Integer.parseInt((String) favorite.getTag()));
+        Pojo pojo = favorites.get(favNumber);
         final Result result = Result.fromPojo(MainActivity.this, pojo);
 
         result.fastLaunch(MainActivity.this);
@@ -624,7 +620,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private void displayKissBar(Boolean display) {
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
-        final View favoritesKissBar = findViewById(R.id.favoritesKissBar);
 
         // get the center for the clipping circle
         int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
@@ -651,8 +646,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 kissBar.setVisibility(View.VISIBLE);
             }
 
-            // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
-            retrieveFavorites();
+            // Only display favorites if we're not using the quick bar
+            if (favoritesKissBar.getVisibility() == View.VISIBLE) {
+                // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
+                displayFavorites();
+            }
         } else {
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -677,6 +675,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         }
 
+        // Hide the favorite bar in the kiss bar if the quick bar is enabled
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", false)) {
             favoritesKissBar.setVisibility(View.INVISIBLE);
         } else {
@@ -684,7 +683,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    public void retrieveFavorites() {
+    public void displayFavorites() {
+        int[] favoritesIds = favoritesKissBar.getVisibility() == View.VISIBLE ? favsIds : favBarIds;
+
         ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
                 .getFavorites(tryToRetrieve);
 
@@ -693,35 +694,34 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (noFavCnt < 3 && !prefs.getBoolean("enable-favorites-bar", false)) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
-                prefs.edit().putInt("no-favorites-tip", ++noFavCnt).commit();
+                prefs.edit().putInt("no-favorites-tip", ++noFavCnt).apply();
 
             }
         }
 
         // Don't look for items after favIds length, we won't be able to display them
-        for (int i = 0; i < Math.min(favsIds.length, favoritesPojo.size()); i++) {
+        for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
-            ImageView image = (ImageView) findViewById(favsIds[i]);
-            ImageView imageFavBar = (ImageView) findViewById(favBarIds[i]);
+
+            ImageView image = (ImageView) findViewById(favoritesIds[i]);
 
             Result result = Result.fromPojo(MainActivity.this, pojo);
             Drawable drawable = result.getDrawable(MainActivity.this);
             if (drawable != null) {
                 image.setImageDrawable(drawable);
-                imageFavBar.setImageDrawable(drawable);
+            } else {
+                Log.e(TAG, "Falling back to default image for favorite.");
+                // Use the default contact image otherwise
+                image.setImageResource(R.drawable.ic_contact);
             }
 
             image.setVisibility(View.VISIBLE);
             image.setContentDescription(pojo.displayName);
-
-            imageFavBar.setVisibility(View.VISIBLE);
-            imageFavBar.setContentDescription(pojo.displayName);
         }
 
         // Hide empty favorites (not enough favorites yet)
-        for (int i = favoritesPojo.size(); i < favsIds.length; i++) {
-            findViewById(favsIds[i]).setVisibility(View.GONE);
-            findViewById(favBarIds[i]).setVisibility(View.GONE);
+        for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
+            findViewById(favoritesIds[i]).setVisibility(View.GONE);
         }
     }
 
@@ -759,7 +759,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searcher = new QuerySearcher(this, query);
         }
         searcher.execute();
-        checkShowFavoritesBar(false);
+        displayQuickFavoritesBar(false, false);
     }
 
     public void resetTask() {
