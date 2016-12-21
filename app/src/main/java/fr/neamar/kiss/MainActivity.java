@@ -21,7 +21,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -319,9 +318,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
-
-        // Apply effects depending on current Android version
-        applyDesignTweaks();
     }
 
     private void adjustInputType(String currentText) {
@@ -337,40 +333,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
         if (currentInputType != requiredInputType) {
             searchEditText.setInputType(requiredInputType);
-        }
-    }
-
-    /**
-     * Apply some tweaks to the design, depending on the current SDK version
-     */
-    private void applyDesignTweaks() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            final int[] tweakableIds = new int[]{
-                    R.id.menuButton,
-                    // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
-                    R.id.clearButton,
-                    R.id.launcherButton,
-                    R.id.favorite0,
-                    R.id.favorite1,
-                    R.id.favorite2,
-                    R.id.favorite3,
-                    R.id.favorite4,
-                    R.id.favorite5,
-                    R.id.favoriteBar0,
-                    R.id.favoriteBar1,
-                    R.id.favoriteBar2,
-                    R.id.favoriteBar3,
-                    R.id.favoriteBar4,
-                    R.id.favoriteBar5,
-            };
-
-            TypedValue outValue = new TypedValue();
-            getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
-
-            for (int id : tweakableIds) {
-                findViewById(id).setBackgroundResource(outValue.resourceId);
-            }
-
         }
     }
 
