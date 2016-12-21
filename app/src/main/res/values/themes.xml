@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="BaseThemeLight" parent="@android:style/Theme.Holo.Light.NoActionBar" />
+    <style name="BaseThemeLight" parent="@android:style/Theme.Holo.Light.NoActionBar">
+        <item name="appSelectableItemBackground">?android:attr/selectableItemBackground</item>
+    </style>
 
-    <style name="BaseThemeDark" parent="@android:style/Theme.Holo.NoActionBar" />
+    <style name="BaseThemeDark" parent="@android:style/Theme.Holo.NoActionBar">
+        <item name="appSelectableItemBackground">?android:attr/selectableItemBackground</item>
+    </style>
 
     <style name="AppThemeLight" parent="BaseThemeLight">
         <item name="android:windowShowWallpaper">true</item>
