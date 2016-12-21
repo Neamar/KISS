@@ -131,6 +131,10 @@
             android:title="@string/shortcuts_name" />
     </PreferenceScreen>
     <PreferenceScreen android:title="@string/title_advanced">
+        <fr.neamar.kiss.preference.DefaultLauncherPreference
+            android:dialogMessage="@string/default_launcher_warn"
+            android:key="default-launcher"
+            android:title="@string/default_launcher_title"/>
         <ListPreference
             android:defaultValue="recency"
             android:entries="@array/historyModeEntries"
