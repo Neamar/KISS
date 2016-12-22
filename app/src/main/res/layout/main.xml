@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -25,7 +26,7 @@
             android:divider="?attr/dividerDrawable"
             android:dividerHeight="1dp"
             android:stackFromBottom="true"
-            android:transcriptMode="alwaysScroll"></fr.neamar.kiss.ui.BlockableListView>
+            android:transcriptMode="alwaysScroll" />
 
         <fr.neamar.kiss.ui.BottomPullEffectView
             android:id="@+id/listEdgeEffect"
@@ -47,12 +48,12 @@
         android:clipToPadding="false"
         android:elevation="2dp"
         android:padding="5dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/whiteLauncherButton"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -61,40 +62,66 @@
                 android:layout_width="0px"
                 android:layout_height="48dp"
                 android:layout_weight="1"
+                android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:src="@drawable/ic_contact"
-                android:tag="0" />
+                android:tag="0"
+                tools:src="@drawable/ic_contact" />
 
             <ImageView
                 android:id="@+id/favoriteBar1"
                 android:layout_width="0px"
                 android:layout_height="48dp"
                 android:layout_weight="1"
+                android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:src="@drawable/ic_contact"
-                android:tag="1" />
+                android:tag="1"
+                tools:src="@drawable/ic_contact" />
 
             <ImageView
                 android:id="@+id/favoriteBar2"
                 android:layout_width="0px"
                 android:layout_height="48dp"
                 android:layout_weight="1"
+                android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:src="@drawable/ic_contact"
-                android:tag="2" />
+                android:tag="2"
+                tools:src="@drawable/ic_contact" />
 
             <ImageView
                 android:id="@+id/favoriteBar3"
                 android:layout_width="0px"
                 android:layout_height="48dp"
                 android:layout_weight="1"
+                android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
-                android:src="@drawable/ic_contact"
-                android:tag="3" />
+                android:tag="3"
+                tools:src="@drawable/ic_contact" />
+
+            <ImageView
+                android:id="@+id/favoriteBar4"
+                android:layout_width="0px"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="?attr/appSelectableItemBackground"
+                android:contentDescription="@null"
+                android:onClick="onFavoriteButtonClicked"
+                android:tag="4"
+                tools:src="@drawable/ic_contact" />
+
+            <ImageView
+                android:id="@+id/favoriteBar5"
+                android:layout_width="0px"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="?attr/appSelectableItemBackground"
+                android:contentDescription="@null"
+                android:onClick="onFavoriteButtonClicked"
+                android:tag="5"
+                tools:src="@drawable/ic_contact" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -118,6 +145,7 @@
             android:layout_height="32dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_kiss"
             android:focusable="true"
             android:onClick="onLauncherButtonClicked"
@@ -163,6 +191,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
             android:onClick="onMenuButtonClicked"
@@ -180,6 +209,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_clear"
             android:focusable="true"
             android:onClick="onClearButtonClicked"

@@ -23,7 +23,7 @@
         android:layout_marginRight="@dimen/icon_margin_right"
         android:layout_marginTop="@dimen/icon_margin_top"
         android:scaleType="centerInside"
-        android:src="@android:drawable/ic_menu_manage"
+        tools:src="@android:drawable/ic_menu_manage"
         android:tint="?attr/resultColor"
         tools:ignore="ContentDescription" />
 
@@ -40,7 +40,10 @@
         android:textColor="?attr/resultColor"
         android:textSize="@dimen/result_title_size" />
 
-    <include
+    <Switch
         android:id="@+id/item_toggle_action_toggle"
-        layout="@layout/ui_togglebutton" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
 </RelativeLayout>

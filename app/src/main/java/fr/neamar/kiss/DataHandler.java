@@ -24,7 +24,6 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
-import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
@@ -39,7 +38,7 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "alias", "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
+            "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
     );
 
     final private Context context;
@@ -47,6 +46,8 @@ public class DataHandler extends BroadcastReceiver
 
     private Map<String, ProviderEntry> providers = new HashMap<>();
     private boolean providersReady = false;
+
+    private static TagsHandler tagsHandler;
 
     /**
      * Initialize all providers
@@ -115,7 +116,7 @@ public class DataHandler extends BroadcastReceiver
     /**
      * Require the data handler to be connected to the data provider with the given name
      *
-     * @param name Data provider name (i.e.: `AliasProvider` → `"alias"`)
+     * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
      */
     protected void connectToProvider(final String name) {
         // Do not continue if this provider has already been connected to
@@ -298,7 +299,7 @@ public class DataHandler extends BroadcastReceiver
                 //Look if the pojo should get excluded
                 boolean exclude = false;
                 for (int j = 0; j < itemsToExclude.size(); j++) {
-                    if (itemsToExclude.get(j).id == pojo.id) {
+                    if (itemsToExclude.get(j).id.equals(pojo.id)) {
                         exclude = true;
                         break;
                     }
@@ -355,6 +356,14 @@ public class DataHandler extends BroadcastReceiver
         }
     }
 
+
+    public void addToExcluded(String packageName) {
+        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
+                getString("excluded-apps-list", context.getPackageName() + ";");
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("excluded-apps-list", excludedAppList + packageName + ";").apply();
+    }
+
     public void removeFromExcluded(String packageName) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
         String excluded = prefs.getString("excluded-apps-list", context.getPackageName() + ";");
@@ -383,11 +392,6 @@ public class DataHandler extends BroadcastReceiver
     public AppProvider getAppProvider() {
         ProviderEntry entry = this.providers.get("app");
         return (entry != null) ? ((AppProvider) entry.provider) : null;
-    }
-
-    public SearchProvider getSearchProvider() {
-        ProviderEntry entry = this.providers.get("search");
-        return (entry != null) ? ((SearchProvider) entry.provider) : null;
     }
 
     /**
@@ -433,10 +437,11 @@ public class DataHandler extends BroadcastReceiver
         if (favAppsList.size() >= context.getFavIconsSize()) {
             favApps = favApps.substring(favApps.indexOf(";") + 1);
         }
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps + id + ";").commit();
 
-        context.retrieveFavorites();
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favApps + id + ";").apply();
+
+        context.displayFavorites();
 
         return true;
     }
@@ -453,9 +458,9 @@ public class DataHandler extends BroadcastReceiver
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps.replace(id + ";", "")).commit();
+                .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
 
-        context.retrieveFavorites();
+        context.displayFavorites();
 
         return true;
     }
@@ -490,4 +495,14 @@ public class DataHandler extends BroadcastReceiver
         public ServiceConnection connection = null;
     }
 
+    public TagsHandler getTagsHandler() {
+        if (tagsHandler == null) {
+            tagsHandler = new TagsHandler(context);
+        }
+        return tagsHandler;
+    }
+
+    public void resetTagsHandler() {
+        tagsHandler = new TagsHandler(this.context);
+    }
 }
