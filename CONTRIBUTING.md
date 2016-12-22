@@ -1,4 +1,4 @@
-# Contributing to KISS 
+# Contributing to KISS
 Contributions are very welcome, feel free to open new issues or PR.
 
 Project maintainers are @Neamar, @Dorvaryn, @saveman71 and @Pluggi.

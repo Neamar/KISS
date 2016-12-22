@@ -37,7 +37,7 @@ public class LoadTogglesPojos extends LoadPojos<TogglesPojo> {
 
         //toggle for synchronization
         toggles.add(createPojo(context.getString(R.string.toggle_sync), "sync", R.drawable.toggle_sync));
-        
+
         //toggle for autorotation
         toggles.add(createPojo(context.getString(R.string.toggle_autorotate), "autorotate", R.drawable.toggle_rotation));
 
