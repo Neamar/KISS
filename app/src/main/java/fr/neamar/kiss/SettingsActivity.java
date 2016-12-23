@@ -28,7 +28,7 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait theme";
+    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait dark-theme transparency";
 
     private boolean requireFullRestart = false;
 
@@ -38,8 +38,8 @@ public class SettingsActivity extends PreferenceActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String theme = prefs.getString("theme", "light");
-        if (theme.contains("dark")) {
+        Boolean darkTheme = prefs.getBoolean("dark-theme", false);
+        if (darkTheme) {
             setTheme(R.style.SettingThemeDark);
         }
 
@@ -157,7 +157,7 @@ public class SettingsActivity extends PreferenceActivity implements
         if (requireRestartSettings.contains(key)) {
             requireFullRestart = true;
 
-            if (key.equalsIgnoreCase("theme")) {
+            if (key.equalsIgnoreCase("dark-theme") || key.equalsIgnoreCase("transparency")) {
                 finish();
                 return;
             }
