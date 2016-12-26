@@ -129,7 +129,7 @@ public class AppResult extends Result {
                 excludeFromAppList(context, appPojo);
                 return true;
             case R.id.item_tags_edit:
-                launchEditTagsDialog(context, pojo);
+                launchEditTagsDialog(context, appPojo);
                 break;
         }
 
@@ -146,7 +146,7 @@ public class AppResult extends Result {
     }
 
 
-    private void launchEditTagsDialog(final Context context, final Pojo app) {
+    private void launchEditTagsDialog(final Context context, final AppPojo app) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
@@ -157,7 +157,7 @@ public class AppResult extends Result {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getDataHandler(context).getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
-        tagInput.setText(app.tags);
+        tagInput.setText(appPojo.tags);
 
         tagInput.setAdapter(adapter);
         builder.setView(v);

@@ -3,6 +3,7 @@ package fr.neamar.kiss.dataprovider;
 import android.util.Pair;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -29,7 +30,7 @@ public class AppProvider extends Provider<AppPojo> {
         int totalWordStarts;
         ArrayList<Pair<Integer, Integer>> matchPositions;
 
-        for (Pojo pojo : pojos) {
+        for (AppPojo pojo : pojos) {
             pojo.displayName = pojo.name;
             pojo.displayTags = pojo.tags;
             relevance = 0;
@@ -98,12 +99,17 @@ public class AppProvider extends Provider<AppPojo> {
                 relevance *= (0.2 + 0.8 * (1.0 / matchPositions.size()));
             }
             else {
-                if (pojo.tags.contains(query)) {
+                if (pojo.tagsNormalized.startsWith(query)) {
                     relevance = 4 + query.length();
-                    matchedTags = true;
-                    tagStart = pojo.tags.indexOf(query);
-                    tagEnd = tagStart + query.length();
                 }
+                else if (pojo.tagsNormalized.indexOf(query) >= 0) {
+                    relevance = 3 + query.length();
+                }
+                if (relevance > 0) {
+                    matchedTags = true;
+                }
+                tagStart = pojo.tagsNormalized.indexOf(query);
+                tagEnd = tagStart + query.length();
             }
 
             if (relevance > 0) {
@@ -134,7 +140,10 @@ public class AppProvider extends Provider<AppPojo> {
                 // Reset displayName to default value
                 if (allowSideEffect) {
                     pojo.displayName = pojo.name;
-                    pojo.displayTags = pojo.tags;
+                    if (pojo instanceof AppPojo) {
+                        AppPojo appPojo = (AppPojo)pojo;
+                        appPojo.displayTags = appPojo.tags;
+                    }
                 }
                 return pojo;
             }
@@ -160,7 +169,7 @@ public class AppProvider extends Provider<AppPojo> {
         ArrayList<Pojo> records = new ArrayList<>(pojos.size());
         records.trimToSize();
 
-        for (Pojo pojo : pojos) {
+        for (AppPojo pojo : pojos) {
             pojo.displayName = pojo.name;
             pojo.displayTags = pojo.tags;
             records.add(pojo);
