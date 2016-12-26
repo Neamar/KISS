@@ -797,6 +797,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+    public boolean isOnSearchView() {
+        return kissBar.getVisibility() != View.VISIBLE;
+    }
     public int getFavIconsSize() {
         return favsIds.length;
     }
