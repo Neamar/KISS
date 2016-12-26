@@ -797,9 +797,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+    /**
+     * Check if history / search or app list is visible
+     * @return true of history, false on app list
+     */
     public boolean isOnSearchView() {
         return kissBar.getVisibility() != View.VISIBLE;
     }
+
     public int getFavIconsSize() {
         return favsIds.length;
     }
