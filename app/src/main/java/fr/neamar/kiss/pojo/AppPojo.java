@@ -2,8 +2,6 @@ package fr.neamar.kiss.pojo;
 
 import android.util.Pair;
 
-import java.util.List;
-
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public class AppPojo extends Pojo {

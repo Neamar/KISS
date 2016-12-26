@@ -3,7 +3,6 @@ package fr.neamar.kiss.dataprovider;
 import android.util.Pair;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
