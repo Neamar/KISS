@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.pojo.Pojo;
 
-public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, ArrayList<T>> {
+public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Integer, ArrayList<T>> {
 
     final Context context;
     String pojoScheme = "(none)://";
@@ -32,6 +32,10 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Ar
     protected void onPostExecute(ArrayList<T> result) {
         super.onPostExecute(result);
         provider.loadOver(result);
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
     }
 
 }

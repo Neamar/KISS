@@ -11,7 +11,8 @@ public class KissApplication {
     private static DataHandler dataHandler;
     private static CameraHandler cameraHandler;
     private static RootHandler rootHandler;
-    private static IconsHandler iconsPackHandler;
+    private static IconHandler iconHandler;
+    private static IconPack iconPack;
 
     private KissApplication() {
     }
@@ -51,16 +52,24 @@ public class KissApplication {
         }
     }
 
-    public static IconsHandler getIconsHandler(Context ctx) {
-        if (iconsPackHandler == null) {
-            iconsPackHandler = new IconsHandler(ctx);
+    public static IconHandler getIconsHandler(Context ctx) {
+        if (iconHandler == null) {
+            iconHandler = new IconHandler(ctx);
         }
 
-        return iconsPackHandler;
+        return iconHandler;
     }
 
-    public static void resetIconsHandler(Context ctx) {
-        iconsPackHandler = new IconsHandler(ctx);
+    public static void resetIconsHandler() {
+        iconHandler.reset();
     }
 
+    public static IconPack getIconPack() {
+        return iconPack;
+    }
+
+    public static void setIconPack(IconPack pack) {
+        iconPack = pack;
+        iconHandler.reset();
+    }
 }
