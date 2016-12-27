@@ -93,6 +93,9 @@ public class AppResult extends Result {
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = inflatePopupMenu(R.menu.menu_item_app, context, parentView);
 
+        if ((context instanceof MainActivity) && (!((MainActivity)context).isOnSearchView())) {
+            menu.getMenu().removeItem(R.id.item_remove);
+        }
         try {
             // app installed under /system can't be uninstalled
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
