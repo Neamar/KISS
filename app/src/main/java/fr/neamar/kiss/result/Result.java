@@ -230,8 +230,8 @@ public abstract class Result {
     }
 
     /*
-     * Get fill color from theme 
-     * 
+     * Get fill color from theme
+     *
      */
     public int getThemeFillColor(Context context) {
         int[] attrs = new int[]{R.attr.resultColor /* index 0 */};

@@ -216,13 +216,13 @@ public class AppResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-        
+
         if (icon == null) {
-             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className);             
+             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className);
         }
-                
+
         return icon;
-        
+
     }
 
     @Override
