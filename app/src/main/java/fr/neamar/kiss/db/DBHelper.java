@@ -166,18 +166,18 @@ public class DBHelper {
         values.put("icon", shortcut.iconResource);
         values.put("intent_uri", shortcut.intentUri);
         values.put("icon_blob", shortcut.icon_blob);
-        
+
         db.insert("shortcuts", null, values);
         db.close();
     }
-    
+
     public static void removeShortcut(Context context, String name) {
         SQLiteDatabase db = getDatabase(context);
         db.delete("shortcuts", "name = ?", new String[]{name});
         db.close();
     }
 
-    
+
     public static ArrayList<ShortcutRecord> getShortcuts(Context context) {
         ArrayList<ShortcutRecord> records = new ArrayList<>();
         SQLiteDatabase db = getDatabase(context);
@@ -202,11 +202,11 @@ public class DBHelper {
             cursor.moveToNext();
         }
         cursor.close();
-        
+
         db.close();
         return records;
     }
-    
+
     public static void removeShortcuts(Context context, String packageName) {
         SQLiteDatabase db = getDatabase(context);
 
@@ -222,11 +222,11 @@ public class DBHelper {
             cursor.moveToNext();
         }
         cursor.close();
-        
+
         //remove shortcuts
         db.delete("shortcuts", "intent_uri LIKE ?", new String[]{"%" + packageName + "%"});
-        
-        db.close();        
+
+        db.close();
     }
 
     /**

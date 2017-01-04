@@ -21,12 +21,12 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
         int matchPositionStart;
         int matchPositionEnd;
         String shortcutNameLowerCased;
-        
+
         final String queryWithSpace = " " + query;
         for (ShortcutsPojo shortcut : pojos) {
             relevance = 0;
             shortcutNameLowerCased = shortcut.nameNormalized;
-            
+
             matchPositionEnd = 0;
             if (shortcutNameLowerCased.startsWith(query)) {
                 relevance = 75;
@@ -41,7 +41,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
                 relevance = 1;
                 matchPositionEnd = matchPositionStart + query.length();
             }
-            
+
             if (relevance > 0) {
                 shortcut.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
                 shortcut.relevance = relevance;
@@ -53,7 +53,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
     }
 
     public Pojo findById(String id) {
-        
+
         for (Pojo pojo : pojos) {
             if (pojo.id.equals(id)) {
                 pojo.displayName = pojo.name;
@@ -63,7 +63,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
 
         return null;
     }
-    
+
     public Pojo findByName(String name) {
         for (Pojo pojo : pojos) {
             if (pojo.name.equals(name))

@@ -180,7 +180,7 @@ public class TogglesHandler {
     private void setSyncState(Boolean state) {
         ContentResolver.setMasterSyncAutomatically(state);
     }
-    
+
     private Boolean getAutorotationState() {
         return android.provider.Settings.System.getInt(this.contentResolver,Settings.System.ACCELEROMETER_ROTATION, 0) == 1;
     }
