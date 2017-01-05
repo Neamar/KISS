@@ -14,7 +14,7 @@ import fr.neamar.kiss.pojo.Pojo;
  * Retrieve pojos from history
  */
 public class HistorySearcher extends Searcher {
-    private static final int MAX_RECORDS = 25;
+    private static final int DEFAULT_MAX_RESULTS = 25;
     private SharedPreferences prefs;
 
     public HistorySearcher(MainActivity activity) {
@@ -27,6 +27,13 @@ public class HistorySearcher extends Searcher {
         // Ask for records
         boolean smartHistory = !prefs.getString("history-mode", "recency").equals("recency");
         boolean excludeFavorites = prefs.getBoolean("exclude-favorites", false);
+        int max_records = DEFAULT_MAX_RESULTS;
+        try {
+            max_records = Integer.parseInt(prefs.getString("number-of-history-items", DEFAULT_MAX_RESULTS+""));
+        }
+        catch(Exception e) {
+            //catch exception in case the value is not an int (shouldn't happen)
+        }
 
         //Gather favorites
         ArrayList<Pojo> favoritesPojo = new ArrayList<Pojo>(0);
@@ -34,6 +41,6 @@ public class HistorySearcher extends Searcher {
             favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(activity.tryToRetrieve);
         }
 
-        return KissApplication.getDataHandler(activity).getHistory(activity, MAX_RECORDS, smartHistory, favoritesPojo);
+        return KissApplication.getDataHandler(activity).getHistory(activity, max_records, smartHistory, favoritesPojo);
     }
 }
