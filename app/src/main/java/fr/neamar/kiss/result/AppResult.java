@@ -56,7 +56,9 @@ public class AppResult extends Result {
         appName.setText(enrichText(appPojo.displayName));
 
         TextView tagsView = (TextView) v.findViewById(R.id.item_app_tag);
-        if (appPojo.displayTags.isEmpty()) {
+        //Hide tags view if tags are empty or if user has selected to hide them and the query doesnt match tags
+        if (appPojo.displayTags.isEmpty() ||
+                ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (appPojo.displayTags.equals(appPojo.tags)))) {
             tagsView.setVisibility(View.GONE);
         }
         else {

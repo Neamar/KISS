@@ -15,6 +15,8 @@ public class AppPojo extends Pojo {
     // Array that contains the non-normalized positions for every normalized
     // character entry
     private int[] tagsPositionMap = null;
+    // Variable to store the formated (user selection in bold) tag
+    public String displayTags = "";
 
 
     public void setTags(String tags) {
