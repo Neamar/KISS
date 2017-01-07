@@ -21,7 +21,6 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             //reload contacts
             reload();
         }
-
     };
 
     @Override
@@ -138,7 +137,6 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         return null;
     }
 
-
     /**
      * Find a ContactsPojo from a phoneNumber
      * If many contacts match, the one most often contacted will be returned
@@ -147,14 +145,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
      * @return a contactpojo, or null.
      */
     public ContactsPojo findByPhone(String phoneNumber) {
-        // We need to normalize, since the phone can be without any formatting and with international code,
-        // Contacts are stored with formatting and sometimes without code
-        // Thus, normalizing them allow for simpler comparison
-        // (contact phone number are already normalized at build time)
-        String normalizedPhoneNumber = PhoneNormalizer.normalizePhone(phoneNumber);
+        String simplifiedPhoneNumber = PhoneNormalizer.simplifyPhoneNumber(phoneNumber);
 
         for (ContactsPojo pojo : pojos) {
-            if (pojo.phone.equals(normalizedPhoneNumber)) {
+            if (pojo.phoneSimplified.equals(simplifiedPhoneNumber)) {
                 return pojo;
             }
         }
