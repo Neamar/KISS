@@ -45,27 +45,29 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
         if (cur != null) {
             if (cur.getCount() > 0) {
+                int lookupIndex = cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
+                int timesContactedIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED);
+                int displayNameIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                int numberIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                int starredIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED);
+                int isPrimaryIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY);
+                int photoIdIndex = cur.getColumnIndex(ContactsContract.Contacts.PHOTO_ID);
+
                 while (cur.moveToNext()) {
                     ContactsPojo contact = new ContactsPojo();
 
-                    contact.lookupKey = cur.getString(cur
-                            .getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
+                    contact.lookupKey = cur.getString(lookupIndex);
+                    contact.timesContacted = cur.getInt(timesContactedIndex);
+                    contact.setName(cur.getString(displayNameIndex));
 
-                    contact.timesContacted = Integer.parseInt(cur.getString(cur
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED)));
-                    contact.setName(cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
-
-                    contact.phone = cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    contact.phone = cur.getString(numberIndex);
                     if (contact.phone == null) {
                         contact.phone = "";
                     }
                     contact.phoneSimplified = PhoneNormalizer.simplifyPhoneNumber(contact.phone);
-                    contact.starred = cur.getInt(cur
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED)) != 0;
-                    contact.primary = cur.getInt(cur
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY)) != 0;
-                    String photoId = cur.getString(cur
-                            .getColumnIndex(ContactsContract.Contacts.PHOTO_ID));
+                    contact.starred = cur.getInt(starredIndex) != 0;
+                    contact.primary = cur.getInt(isPrimaryIndex) != 0;
+                    String photoId = cur.getString(photoIdIndex);
                     if (photoId != null) {
                         contact.icon = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI,
                                 Long.parseLong(photoId));
@@ -101,11 +103,11 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
         if (nickCursor != null) {
             if (nickCursor.getCount() > 0) {
+                int lookupKeyIndex = nickCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY);
+                int nickNameIndex = nickCursor.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME);
                 while (nickCursor.moveToNext()) {
-                    String lookupKey = nickCursor.getString(
-                            nickCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY));
-                    String nick = nickCursor.getString(
-                            nickCursor.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME));
+                    String lookupKey = nickCursor.getString(lookupKeyIndex);
+                    String nick = nickCursor.getString(nickNameIndex);
 
                     if (nick != null && lookupKey != null && mapContacts.containsKey(lookupKey)) {
                         for (ContactsPojo contact : mapContacts.get(lookupKey)) {
