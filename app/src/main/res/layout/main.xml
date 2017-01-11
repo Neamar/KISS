@@ -49,56 +49,31 @@
         android:padding="5dp"
         android:visibility="gone">
 
+
         <LinearLayout
+            android:id="@+id/favoritesBarList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/whiteLauncherButton"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/favoriteBar0"
-                android:layout_width="0px"
-                android:layout_height="48dp"
+            <HorizontalScrollView
                 android:layout_weight="1"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:src="@drawable/ic_contact"
-                android:tag="0" />
-
-            <ImageView
-                android:id="@+id/favoriteBar1"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:src="@drawable/ic_contact"
-                android:tag="1" />
-
-            <ImageView
-                android:id="@+id/favoriteBar2"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:src="@drawable/ic_contact"
-                android:tag="2" />
-
-            <ImageView
-                android:id="@+id/favoriteBar3"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:src="@drawable/ic_contact"
-                android:tag="3" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scrollbarSize="4dip"
+                android:scrollbarStyle="outsideOverlay">
+                <LinearLayout
+                    android:id="@+id/favoritesBarListItems"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </LinearLayout>
+            </HorizontalScrollView>
         </LinearLayout>
     </RelativeLayout>
 
-    <RelativeLayout
+<RelativeLayout
         android:id="@+id/searchEditLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
