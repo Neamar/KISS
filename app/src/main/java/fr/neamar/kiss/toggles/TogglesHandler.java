@@ -8,8 +8,10 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.util.Log;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.TogglesPojo;
 
@@ -178,7 +180,7 @@ public class TogglesHandler {
     private void setSyncState(Boolean state) {
         ContentResolver.setMasterSyncAutomatically(state);
     }
-    
+
     private Boolean getAutorotationState() {
         return android.provider.Settings.System.getInt(this.contentResolver,Settings.System.ACCELEROMETER_ROTATION, 0) == 1;
     }

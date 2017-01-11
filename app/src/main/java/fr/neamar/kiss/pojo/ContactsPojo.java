@@ -1,6 +1,7 @@
 package fr.neamar.kiss.pojo;
 
 import android.net.Uri;
+
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public class ContactsPojo extends Pojo {

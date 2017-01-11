@@ -1,12 +1,10 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +38,6 @@ public class PhoneResult extends Result {
         return v;
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         return inflatePopupMenu(R.menu.menu_item_phone, context, parentView);

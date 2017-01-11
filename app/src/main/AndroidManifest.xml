@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="fr.neamar.kiss"
-    android:versionCode="87"
-    android:versionName="2.27.0">
+    package="fr.neamar.kiss">
 
     <permission
         android:name="com.android.launcher.permission.INSTALL_SHORTCUT"
@@ -99,6 +97,14 @@
                 android:name="com.android.systemui.action_assist_icon"
                 android:resource="@drawable/ic_launcher" />
         </activity>
+        <activity android:name=".DummyActivity"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="fr.neamar.kiss.SettingsActivity"
             android:label="@string/activity_setting"
@@ -118,6 +124,14 @@
 
                 <data android:scheme="file" />
                 <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".broadcast.LocaleChangedReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
             </intent-filter>
         </receiver>
 
@@ -157,7 +171,6 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".dataprovider.AliasProvider" />
         <service android:name=".dataprovider.AppProvider" />
         <service android:name=".dataprovider.ContactsProvider" />
         <service android:name=".dataprovider.PhoneProvider" />

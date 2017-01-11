@@ -15,7 +15,7 @@ public class ResetExcludedAppsPreference extends DialogPreference {
     public ResetExcludedAppsPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-    
+
     @Override
     public void onClick(DialogInterface dialog, int which) {
         super.onClick(dialog, which);

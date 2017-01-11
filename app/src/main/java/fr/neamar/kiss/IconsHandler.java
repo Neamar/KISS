@@ -252,7 +252,7 @@ public class IconsHandler {
             canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth()) / 2, (h - scaledBitmap.getHeight()) / 2, null);
             canvas.drawBitmap(mutableMask, 0, 0, paint);
             paint.setXfermode(null);
-        } else { // draw the scaled bitmap without mask        
+        } else { // draw the scaled bitmap without mask
             canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth()) / 2, (h - scaledBitmap.getHeight()) / 2, null);
         }
 

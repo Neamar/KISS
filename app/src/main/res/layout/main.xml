@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -25,7 +26,7 @@
             android:divider="?attr/dividerDrawable"
             android:dividerHeight="1dp"
             android:stackFromBottom="true"
-            android:transcriptMode="alwaysScroll"></fr.neamar.kiss.ui.BlockableListView>
+            android:transcriptMode="alwaysScroll" />
 
         <fr.neamar.kiss.ui.BottomPullEffectView
             android:id="@+id/listEdgeEffect"
@@ -47,14 +48,14 @@
         android:clipToPadding="false"
         android:elevation="2dp"
         android:padding="5dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
 
         <LinearLayout
             android:id="@+id/favoritesBarList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/whiteLauncherButton"
             android:gravity="center_vertical"
             android:orientation="horizontal">
             <HorizontalScrollView
@@ -93,6 +94,7 @@
             android:layout_height="32dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_kiss"
             android:focusable="true"
             android:onClick="onLauncherButtonClicked"
@@ -138,6 +140,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
             android:onClick="onMenuButtonClicked"
@@ -155,6 +158,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_clear"
             android:focusable="true"
             android:onClick="onClearButtonClicked"
