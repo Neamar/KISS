@@ -51,81 +51,30 @@
         android:visibility="gone"
         tools:visibility="visible">
 
+
         <LinearLayout
+            android:id="@+id/favoritesBarList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/favoriteBar0"
-                android:layout_width="0px"
-                android:layout_height="48dp"
+            <HorizontalScrollView
                 android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="0"
-                tools:src="@drawable/ic_contact" />
-
-            <ImageView
-                android:id="@+id/favoriteBar1"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="1"
-                tools:src="@drawable/ic_contact" />
-
-            <ImageView
-                android:id="@+id/favoriteBar2"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="2"
-                tools:src="@drawable/ic_contact" />
-
-            <ImageView
-                android:id="@+id/favoriteBar3"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="3"
-                tools:src="@drawable/ic_contact" />
-
-            <ImageView
-                android:id="@+id/favoriteBar4"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="4"
-                tools:src="@drawable/ic_contact" />
-
-            <ImageView
-                android:id="@+id/favoriteBar5"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="5"
-                tools:src="@drawable/ic_contact" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scrollbarSize="4dip"
+                android:scrollbarStyle="outsideOverlay">
+                <LinearLayout
+                    android:id="@+id/favoritesBarListItems"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </LinearLayout>
+            </HorizontalScrollView>
         </LinearLayout>
     </RelativeLayout>
 
-    <RelativeLayout
+<RelativeLayout
         android:id="@+id/searchEditLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
