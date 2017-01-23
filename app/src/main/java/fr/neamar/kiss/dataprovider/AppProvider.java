@@ -1,6 +1,9 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.Process;
@@ -9,6 +12,7 @@ import android.util.Pair;
 
 import java.util.ArrayList;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -21,6 +25,8 @@ public class AppProvider extends Provider<AppPojo> {
 	@Override
 	public void onCreate() {
 		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			// Package installation/uninstallation events for the main
+			// profile are still handled using PackageAddedRemovedHandler itself
 			final UserManager  manager  = (UserManager)  this.getSystemService(Context.USER_SERVICE);
 			final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 			
@@ -75,7 +81,28 @@ public class AppProvider extends Provider<AppPojo> {
 					}
 				}
 			});
-    	}
+			
+			// Try to clean up app-related data when profile is removed
+			IntentFilter filter = new IntentFilter();
+			filter.addAction(Intent.ACTION_MANAGED_PROFILE_ADDED);
+			filter.addAction(Intent.ACTION_MANAGED_PROFILE_REMOVED);
+			this.registerReceiver(new BroadcastReceiver() {
+				@Override
+				public void onReceive(Context context, Intent intent) {
+					if(intent.getAction().equals(Intent.ACTION_MANAGED_PROFILE_ADDED)) {
+						AppProvider.this.reload();
+					} else if(intent.getAction().equals(Intent.ACTION_MANAGED_PROFILE_REMOVED)) {
+						android.os.UserHandle profile = (android.os.UserHandle) intent.getParcelableExtra(Intent.EXTRA_USER);
+						
+						UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
+						
+						KissApplication.getDataHandler(context).removeFromExcluded(user);
+						KissApplication.getDataHandler(context).removeFromFavorites(user);
+						AppProvider.this.reload();
+					}
+				}
+			}, filter);
+		}
 		
 		super.onCreate();
 	}

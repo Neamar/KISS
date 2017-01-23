@@ -50,11 +50,9 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 			
 			// Handle multi-profile support introduced in Android 5 (#542)
 			for (android.os.UserHandle profile : manager.getUserProfiles()) {
-				android.util.Log.w("KISS Apps", "Found profile: " + profile);
 				UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
 				for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
 					ApplicationInfo appInfo = activityInfo.getApplicationInfo();
-					android.util.Log.w("KISS Apps", "Found app: " + appInfo);
 					
 					String fullPackageName = user.addUserSuffixToString(appInfo.packageName, '#');
 					if(!excludedApps.contains(fullPackageName)) {

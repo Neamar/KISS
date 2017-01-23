@@ -60,4 +60,18 @@ public class UserHandle {
 			return result.toString();
 		}
 	}
+	
+	public boolean hasStringUserSuffix(String string, char separator) {
+		long serial = 0;
+		
+		int index = string.lastIndexOf((int) separator);
+		if(index > -1) {
+			String serialText = string.substring(index);
+			try {
+				serial = Long.parseLong(serialText);
+			} catch(NumberFormatException e) {}
+		}
+		
+		return (serial == this.serial);
+	}
 }

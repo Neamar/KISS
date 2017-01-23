@@ -375,6 +375,25 @@ public class DataHandler extends BroadcastReceiver
         prefs.edit().putString("excluded-apps-list", excluded.replaceAll(packageName + ";", "")).apply();
     }
 
+	public void removeFromExcluded(UserHandle user) {
+		// This is only intended for apps from foreign-profiles
+		if(user.isCurrentUser()) {
+			return;
+		}
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
+		String[] excludedList = prefs.getString("excluded-apps-list", context.getPackageName() + ";").split(";");
+		
+		StringBuilder excluded = new StringBuilder();
+		for(String excludedItem : excludedList) {
+			if(!user.hasStringUserSuffix(excludedItem, '#')) {
+				excluded.append(excludedItem + ";");
+			}
+		}
+		
+		prefs.edit().putString("excluded-apps-list", excluded.toString()).apply();
+	}
+
     /**
      * Return all applications
      *
@@ -469,6 +488,26 @@ public class DataHandler extends BroadcastReceiver
 
         return true;
     }
+    
+	public void removeFromFavorites(UserHandle user) {
+		// This is only intended for apps from foreign-profiles
+		if(user.isCurrentUser()) {
+			return;
+		}
+		
+		String[] favAppList = PreferenceManager.getDefaultSharedPreferences(this.context)
+		                                       .getString("favorite-apps-list", "").split(";");
+		
+		StringBuilder favApps = new StringBuilder();
+		for(String favAppID : favAppList) {
+			if(!favAppID.startsWith("app://") || !user.hasStringUserSuffix(favAppID, '/')) {
+				favApps.append(favAppID + ";");
+			}
+		}
+		
+		PreferenceManager.getDefaultSharedPreferences(this.context).edit()
+		                 .putString("favorite-apps-list", favApps.toString()).apply();
+	}
 
     /**
      * Insert specified ID (probably a pojo.id) into history
