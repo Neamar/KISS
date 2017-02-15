@@ -48,7 +48,7 @@ public class RootHandler {
         Process p = null;
         try {
             p = Runtime.getRuntime().exec("su");
-            //put command 
+            //put command
             if (command != null && !command.trim().equals("")) {
                 p.getOutputStream().write((command + "\n").getBytes());
             }
