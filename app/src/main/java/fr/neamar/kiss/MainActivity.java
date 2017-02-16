@@ -340,7 +340,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         View quickFavoritesBar = findViewById(R.id.favoritesBar);
         if (searchEditText.getText().toString().length() == 0
                 && prefs.getBoolean("enable-favorites-bar", false)) {
-            if ((!prefs.getBoolean("favorites-hide", false) || touched)) {
+            if((!prefs.getBoolean("favorites-hide", false) || touched)) {
                 quickFavoritesBar.setVisibility(View.VISIBLE);
             }
 
@@ -800,7 +800,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     /**
      * Check if history / search or app list is visible
-     *
      * @return true of history, false on app list
      */
     public boolean isOnSearchView() {
