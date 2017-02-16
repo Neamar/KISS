@@ -20,10 +20,10 @@ public class AppPojo extends Pojo {
 
 
     public void setTags(String tags) {
-// Set the actual user-friendly name
+    // Set the actual user-friendly name
         this.tags = tags;
 
-        if (tags != null) {
+        if (this.tags != null) {
             this.tags = this.tags.replaceAll("<", "&lt;");
             // Normalize name for faster searching
             Pair<String, int[]> normalized = StringNormalizer.normalizeWithMap(this.tags);
@@ -37,10 +37,8 @@ public class AppPojo extends Pojo {
         int posEnd = this.mapTagsPosition(positionEnd);
 
         this.displayTags = this.tags.substring(0, posStart)
-                + '{' + this.tags.substring(posStart, posEnd) + '}'+this.tags.substring(posEnd, this.tags.length());
+                + '{' + this.tags.substring(posStart, posEnd) + '}' + this.tags.substring(posEnd, this.tags.length());
     }
-
-
 
     /**
      * Map a position in the normalized name to a position in the standard name string
@@ -52,16 +50,14 @@ public class AppPojo extends Pojo {
         if (this.tagsPositionMap != null) {
             if (position < this.tagsPositionMap.length) {
                 return this.tagsPositionMap[position];
-            } else {
-                return this.tags.length();
             }
+            return this.tags.length();
         } else {
             // No mapping defined
             if (position < this.tags.length()) {
                 return position;
-            } else {
-                return this.tags.length();
             }
+            return this.tags.length();
         }
     }
 
