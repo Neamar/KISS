@@ -339,9 +339,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private void displayQuickFavoritesBar(boolean initialize, boolean touched) {
         View quickFavoritesBar = findViewById(R.id.favoritesBar);
         if (searchEditText.getText().toString().length() == 0
-                && prefs.getBoolean("enable-favorites-bar", false)
-                && (!prefs.getBoolean("favorites-hide", false) || touched)) {
-            quickFavoritesBar.setVisibility(View.VISIBLE);
+                && prefs.getBoolean("enable-favorites-bar", false)) {
+            if ((!prefs.getBoolean("favorites-hide", false) || touched)) {
+                quickFavoritesBar.setVisibility(View.VISIBLE);
+            }
 
             if (initialize) {
                 Log.i(TAG, "Using quick favorites bar, filling content.");
@@ -799,6 +800,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     /**
      * Check if history / search or app list is visible
+     *
      * @return true of history, false on app list
      */
     public boolean isOnSearchView() {
