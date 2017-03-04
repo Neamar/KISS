@@ -1,143 +1,180 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string-array name="themesEntries">
+        <item>?viesi tema (numatytoji)</item>
+        <item>Pusiau permatoma tema</item>
+        <item>Permatoma tema</item>
+        <item>Tamsi tema</item>
+        <item>Tamsi pusiau permatoma tema</item>
+        <item>Tamsi permatoma tema</item>
+    </string-array>
+    <string-array name="sortAppListEntries">
+        <item>Nuo A iki Z</item>
+        <item>Nuo Z iki A</item>
+    </string-array>
+    <string-array name="historyModeEntries">
+        <item>Paskiausias pirma</item>
+        <item>Da?niausias pirma (da?numas)</item>
+    </string-array>
 
-    <string name="app_name">KISS paleidimo priemonė</string>
+</resources>
+
+<!-- File "strings.xml" -->
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="app_name">KISS paleidimo priemon?</string>
     <string name="activity_setting">KISS nustatymai</string>
-    <string name="ui_search_hint">Ieškoti programėlių, kontaktų, …</string>
-    <string name="ui_item_search">Ieškoti %1$s for “%2$s”</string>
-    <string name="ui_item_phone">Skambinti “%s”</string>
-    <string name="ui_item_contact_hint_message">Žinutė</string>
+    <string name="ui_search_hint">Ie?koti program?li?, kontakt?, ­</string>
+    <string name="ui_item_search">Ie?koti %1$s for °%2$s±</string>
+    <string name="ui_item_visit">Aplankykite °%1$s±</string>
+    <string name="ui_item_phone">Skambinti °%s±</string>
+    <string name="ui_item_contact_hint_message">?inut?</string>
     <string name="ui_item_contact_hint_call">Skambutis</string>
 
-    <string name="title_ui">Vartotojo sąsaja</string>
+	<string name="title_settings">Nustatymai</string>
+    <string name="title_ui">Vartotojo s?saja</string>
     <string name="title_history">Istorijos nustatymai</string>
-    <string name="title_providers">Tiekėjų pasirinkimas</string>
-    <string name="title_advanced">Išplėstiniai nustatymai</string>
-    <string name="menu_settings">Įrenginio nustatymai</string>
-    <string name="no_favorites">Dar nėra mėgiamaiausių. Įtraukti juos ilgu paspaudimu.</string>
+    <string name="title_providers">Tiek?j? pasirinkimas</string>
+    <string name="title_advanced">I?pl?stiniai nustatymai</string>
+    <string name="menu_settings">?renginio nustatymai</string>
+    <string name="no_favorites">Dar n?ra m?giamaiausi?. ?traukti juos ilgu paspaudimu.</string>
 
-    <string name="ui_empty_1">Pradėti ieškoti bet ko</string>
-    <string name="ui_empty_1_sub">Programėlės, kontaktai, nustatymai, …</string>
-    <string name="ui_empty_2">Visada rodyti istoriją</string>
+    <string name="ui_empty_1">Prad?ti ie?koti bet ko</string>
+    <string name="ui_empty_1_sub">Program?l?s, kontaktai, nustatymai, ­</string>
+    <string name="ui_empty_2">Visada rodyti istorij?</string>
     <string name="ui_empty_2_sub">Greitam pasiekimui</string>
-    <string name="ui_empty_3">Greitai pasiekti dažniausiai naudojamas programėles</string>
-    <string name="ui_empty_3_sub">KISS paleidimo priemonė prisiderina prie Jūsų įpročių</string>
+    <string name="ui_empty_3">Greitai pasiekti da?niausiai naudojamas program?les</string>
+    <string name="ui_empty_3_sub">KISS paleidimo priemon? prisiderina prie JØ±s? ?pro?i?</string>
 
-    <string name="toggles_name">Įjungia/išjungia (Wi-Fi, Bluetooth, …)</string>
+    <string name="toggles_name">?jungia/i?jungia (Wi-Fi, Bluetooth, ­)</string>
     <string name="toggles_on">%s aktyvuota</string>
     <string name="toggles_off">%s deaktyvuota</string>
 
     <string name="contacts_name">Kontaktai</string>
 
-    <string name="search_desc">Įgalinti paiešką per Google, DuckDuckGo, Bing ir kt.</string>
-    <string name="search_name">Interneto paieška</string>
+    <string name="search_desc">?galinti paie?k? per Google, DuckDuckGo, Bing ir kt.</string>
+    <string name="search_name">Interneto paie?ka</string>
 
-    <string name="settings_name">Įrenginio nustatymai</string>
+    <string name="settings_name">?renginio nustatymai</string>
 
-    <string name="phone_name">Telefonų numeriai</string>
+    <string name="phone_name">Telefon? numeriai</string>
 
     <string name="shortcuts_name">Nuorodos</string>
 
+    <string name="stub_app_tag">?ymos pavyzdys</string>
     <string name="main_menu">Meniu</string>
-    <string name="main_clear">Išvalyti paiešks laukelį</string>
-    <string name="main_kiss">Rodyti mėgiamiausius ir programėlių sąrašą</string>
-    <string name="main_kiss_back">Rodyti istoriją</string>
-    <string name="reset_name">Iš naujo nustatyti KISS istoriją</string>
-    <string name="reset_excluded_apps_name">Iš naujo nustatyti neįtrauktų programėliųų sąrašą</string>
-    <string name="reset_excluded_apps_warn">Ar Jūs tikrai norite iš naujo nustatyti neįtrauktų programėlių sąrašą?</string>
-    <string name="ui_excluded_apps">Žiūrėti / redaguoti neįtrauktas programėles</string>
-    <string name="ui_excluded_apps_dialog_title">Nepažymėkite programėlių, kurias norite įtraukti</string>
-    <string name="ui_excluded_apps_not_found">Nėra neįtrauktų programėlių</string>
-    <string name="reset_warn">Ar Jūs tikrai norite nustatyti iš naujo istoriją?</string>
-    <string name="reset_favorites_name">Nustatykite iš naujo mėgiamiausiųjų sąrašą</string>
-    <string name="reset_favorites_warn">Ar Jūs tikrai norite nustatyti iš naujo mėgiamiausiuosius?</string>
-    <string name="keyboard_name">Rodyti klaviatūrą pradžios ekrane</string>
-    <string name="keyboard_workaround_name">Klaviatūros nuspėjamųjų problemos</string>
-    <string name="keyboard_workaround_desc">Neleisti neveikiančioms programinėms klaviatūroms (kaip SwiftKey™) rodyti nuspėjimus</string>
-    <string name="history_hide_desc">Paslėpti istorijos ir intro ekraną</string>
-    <string name="history_hide_name">Minimalistinė vartotojo sąsaja</string>
-    <string name="history_onclick_name">Rodyti istoriją palietus</string>
-    <string name="portrait_title">Priversti rodyti vertikaliu rėžimu</string>
-    <string name="icons_hide_main">Slėpti programėlių paveikslėlius</string>
-    <string name="icons_hide_desc">Naudinga lėtuose įrenginiuose</string>
-    <string name="search_providers_title">Pasirinkti interneto paieškos tiekėjus</string>
-    <string name="history_mode_name">Istorijos rėžimas</string>
-    <string name="history_mode_desc">pasirinkti istorijos rodymo būdą</string>
-    <string name="root_mode_desc">Jei įmanoma naudoti tai, kad užmigdyti programėles</string>
-    <string name="root_mode_name">Šakninis rėžimas</string>
-    <string name="root_mode_error">Negalima gauti šakninio rėžimo privilegijų.</string>
-    <string name="freeze_history_name">Užšaldyti istoriją</string>
-    <string name="freeze_history_warn">Ar Jūs esate įsitikinęs, kad norite išjungti visus ateities atnaujinimus? Jūsų istorija daugiau nebesikeis.</string>
+    <string name="main_clear">I?valyti paie?ks laukel?</string>
+    <string name="main_kiss">Rodyti m?giamiausius ir program?li? s?ra??</string>
+    <string name="main_kiss_back">Rodyti istorij?</string>
+    <string name="reset_name">I? naujo nustatyti KISS istorij?</string>
+    <string name="reset_excluded_apps_name">I? naujo nustatyti ne?traukt? program?li?? s?ra??</string>
+    <string name="reset_excluded_apps_warn">Ar JØ±s tikrai norite i? naujo nustatyti ne?traukt? program?li? s?ra???</string>
+    <string name="ui_excluded_apps">?iØ±r?ti / redaguoti ne?trauktas program?les</string>
+    <string name="ui_excluded_apps_dialog_title">Nepa?ym?kite program?li?, kurias norite ?traukti</string>
+    <string name="ui_excluded_apps_not_found">N?ra ne?traukt? program?li?</string>
+    <string name="reset_warn">Ar JØ±s tikrai norite nustatyti i? naujo istorij??</string>
+    <string name="reset_favorites_name">Nustatykite i? naujo m?giamiausi?j? s?ra??</string>
+    <string name="reset_favorites_warn">Ar JØ±s tikrai norite nustatyti i? naujo m?giamiausiuosius?</string>
+    <string name="keyboard_name">Rodyti klaviatØ±r? prad?ios ekrane</string>
+    <string name="keyboard_workaround_name">KlaviatØ±ros nusp?jam?j? problemos</string>
+    <string name="keyboard_workaround_desc">Neleisti neveikian?ioms programin?ms klaviatØ±roms (kaip SwiftKey?) rodyti nusp?jimus</string>
+    <string name="history_hide_desc">Pasl?pti istorijos ir intro ekran?</string>
+    <string name="history_hide_name">Minimalistin? vartotojo s?saja</string>
+    <string name="history_onclick_name">Rodyti istorij? palietus</string>
+    <string name="portrait_title">Priversti rodyti vertikaliu r??imu</string>
+    <string name="icons_hide_main">Sl?pti program?li? paveiksl?lius</string>
+    <string name="icons_hide_desc">Naudinga l?tuose ?renginiuose</string>
+    <string name="search_providers_title">Pasirinkti interneto paie?kos tiek?jus</string>
+    <string name="history_mode_name">Istorijos r??imas</string>
+    <string name="history_mode_desc">pasirinkti istorijos rodymo bØ±d?</string>
+    <string name="root_mode_desc">Jei ?manoma naudoti tai, kad u?migdyti program?les</string>
+    <string name="root_mode_name">?akninis r??imas</string>
+    <string name="root_mode_error">Negalima gauti ?akninio r??imo privilegij?.</string>
+    <string name="freeze_history_name">U??aldyti istorij?</string>
+    <string name="freeze_history_warn">Ar JØ±s esate ?sitikin?s, kad norite i?jungti visus ateities atnaujinimus? JØ±s? istorija daugiau nebesikeis.</string>
 
-    <string name="icons_pack_name">Teminiai programėlių paveikslėliai (ADW.Launcher tema)</string>
-    <string name="icons_pack_default_name">Sisteminių programėlių paveikslėliai</string>
+    <string name="icons_pack_name">Teminiai program?li? paveiksl?liai (ADW.Launcher tema)</string>
+    <string name="icons_pack_default_name">Sistemini? program?li? paveiksl?liai</string>
 
     <string name="alias_phone">rinkti,skambinti,telefonas</string>
-    <string name="alias_contacts">kontaktai,žmonės,giminės</string>
-    <string name="alias_web">internetas,žiniatinklis,naršyklė</string>
-    <string name="alias_mail">paštas,el-paštas</string>
-    <string name="alias_market">turgus,parduotuvė,programėlių centras</string>
+    <string name="alias_contacts">kontaktai,?mon?s,gimin?s</string>
+    <string name="alias_web">internetas,?iniatinklis,nar?ykl?</string>
+    <string name="alias_mail">pa?tas,el-pa?tas</string>
+    <string name="alias_market">turgus,parduotuv?,program?li? centras</string>
     <string name="alias_clock">laikrodis,aliarmas,laikmatis,atbulinis laikmatis</string>
-    <string name="alias_messaging">tekstinė žinutė,rašyti,sms,mms,žinutės</string>
+    <string name="alias_messaging">tekstin? ?inut?,ra?yti,sms,mms,?inut?s</string>
     <string name="settings_prefix">"Nustytmas: "</string>
-    <string name="toggles_prefix">"Įjungti/išjungti: "</string>
-    <string name="settings_airplane">Lėktuvo rėžimas</string>
-    <string name="settings_device_info">Įrenginio informacija</string>
-    <string name="settings_applications">Programėlės</string>
+    <string name="toggles_prefix">"?jungti/i?jungti: "</string>
+    <string name="settings_airplane">L?ktuvo r??imas</string>
+    <string name="settings_device_info">?renginio informacija</string>
+    <string name="settings_applications">Program?l?s</string>
     <string name="settings_connectivity">Sujungiamumas</string>
     <string name="settings_battery">Baterija</string>
     <string name="settings_nfc">NFC</string>
     <string name="settings_tethering">Perdavimas</string>
-    <string name="settings_storage">Atmintinė</string>
-    <string name="settings_dev">Kūrėjo nustatymai</string>
+    <string name="settings_storage">Atmintin?</string>
+    <string name="settings_dev">KØ±r?jo nustatymai</string>
     <string name="settings_accessibility">Prieinamumas</string>
+    <string name="settings_sound">Garsas</string>
+    <string name="settings_display">Ekranas</string>
     <string name="toggle_wifi">Wifi</string>
     <string name="toggle_bluetooth">Bluetooth</string>
     <string name="toggle_silent">Tylus</string>
     <string name="toggle_data">Mobiliojo tinklo duomenys</string>
-    <string name="toggle_torch">Žibintuvėlis</string>
+    <string name="toggle_torch">?ibintuv?lis</string>
     <string name="toggle_sync">Sinchronizacija</string>
-    <string name="toggle_autorotate">Automatiškai sukti</string>
-    <string name="menu_wallpaper">Atnaujinti paveikslėlį</string>
-    <string name="application_not_found">Oi… Negalima paleisti šios programėlės.</string>
-    <string name="history_erased">Istorija ištrinta.</string>
-    <string name="favorites_erased">Megiamiausieji ištrinti.</string>
-    <string name="menu_favorites_add">Pridėti į mėgiamiausiuosius</string>
-    <string name="excluded_app_list_erased">Neįtrauktų programėlių sąrašas ištrintas.</string>
-    <string name="excluded_app_list_added">Programėlė neįtraukta į KISS. Nustatyti iš naujo per KISS nustatymus</string>
+    <string name="toggle_autorotate">Automati?kai sukti</string>
+    <string name="menu_wallpaper">Atnaujinti paveiksl?l?</string>
+    <string name="application_not_found">Oi­ Negalima paleisti ?ios program?l?s.</string>
+    <string name="history_erased">Istorija i?trinta.</string>
+    <string name="favorites_erased">Megiamiausieji i?trinti.</string>
+    <string name="menu_favorites_add">Prid?ti ? m?giamiausiuosius</string>
+    <string name="menu_tags_edit">Prid?ti / redaguoti ?ymas</string>
+    <string name="tags_add_title">Prid?ti tarpu atskirtas ?ymas</string>
+    <string name="tags_confirmation_added">?yma buvo prid?ta</string>
+    <string name="tags_visible">Rodyti program?li? ?ymas</string>
+    <string name="excluded_app_list_erased">Ne?traukt? program?li? s?ra?as i?trintas.</string>
+    <string name="excluded_app_list_added">Program?l? ne?traukta ? KISS. Nustatyti i? naujo per KISS nustatymus</string>
 
-    <string name="removed_item">Pašalinta</string>
-    <string name="menu_remove">Pašalinti iš istorijos</string>
-    <string name="menu_exclude">Neįtraukti programkėlės į KISS</string>
-    <string name="menu_app_details">Programėlės informacija</string>
-    <string name="menu_app_uninstall">Pašalinti</string>
-    <string name="menu_app_hibernate">Užmigdyti</string>
-    <string name="menu_shortcut_remove">pašalinti nuorodą</string>
+    <string name="removed_item">Pa?alinta</string>
+    <string name="menu_remove">Pa?alinti i? istorijos</string>
+    <string name="menu_exclude">Ne?traukti programk?l?s ? KISS</string>
+    <string name="menu_app_details">Program?l?s informacija</string>
+    <string name="menu_app_uninstall">Pa?alinti</string>
+    <string name="menu_app_hibernate">U?migdyti</string>
+    <string name="menu_shortcut_remove">pa?alinti nuorod?</string>
 
-    <string name="toast_hibernate_completed">%s užmigdyta sėkmingai, paleisti iš naujo, kad pažadinti.</string>
-    <string name="toast_hibernate_error">%s nepavyko užmigdyti.</string>
-    <string name="menu_contact_copy_phone">Kopijuoti telefono numerį</string>
-    <string name="theme_name">Temos sąsaja</string>
+    <string name="toast_hibernate_completed">%s u?migdyta s?kmingai, paleisti i? naujo, kad pa?adinti.</string>
+    <string name="toast_hibernate_error">%s nepavyko u?migdyti.</string>
+    <string name="menu_contact_copy_phone">Kopijuoti telefono numer?</string>
+    <string name="theme_name">Temos s?saja</string>
     <string name="menu_phone_create">Create contact</string>
 
-    <string name="toast_favorites_added">%s buvo įtraukta į megiamiausiuosius</string>
+    <string name="toast_favorites_added">%s buvo ?traukta ? megiamiausiuosius</string>
 
-    <string name="order_apps_name">Programėlių sąrašo rūšiavimo tvarka</string>
-    <string name="enable_sms">Rodyti įeinančias teksto žinutes istorijoje</string>
-    <string name="enable_phone">Rodyti įeinančius skambučius istorijoje</string>
-    <string name="enable_app">Rodyti neseniai instaliuotas programėles istorijoje</string>
-    <string name="enable_favorites_bar">Rodyti mėgiamiausiuoisius virš paieško laukelio</string>
-    <string name="exclude_favorites">Neįtraukti mėgiamisuiųjų į istoriją</string>
-    <string name="favorites_hide">Slėpti mėgiamisuiųjų skydelį</string>
-    <string name="shortcut_added">Nuoroda įtraukta į KISS.</string>
+    <string name="order_apps_name">Program?li? s?ra?o rØ±?iavimo tvarka</string>
+    <string name="enable_sms">Rodyti ?einan?ias teksto ?inutes istorijoje</string>
+    <string name="enable_phone">Rodyti ?einan?ius skambu?ius istorijoje</string>
+    <string name="enable_app">Rodyti neseniai instaliuotas program?les istorijoje</string>
+    <string name="enable_favorites_bar">Rodyti m?giamiausiuoisius vir? paie?ko laukelio</string>
+    <string name="exclude_favorites">Ne?traukti m?giamisui?j? ? istorij?</string>
+    <string name="favorites_hide">Sl?pti m?giamisui?j? skydel?</string>
+    <string name="shortcut_added">Nuoroda ?traukta ? KISS.</string>
 
     <string name="restart_desc">Sutvarkyti temos klaidas / nauji kontaktai nerodomi</string>
-    <string name="restart_name">Paleisti iš naujo KISS</string>
-    <string name="restart_warn">Ar tikrai norite iš naujo paleisti KISS? Jei KISS nėra Jūsų numatytoji paleidimo priemonė tai programėlė paprasčiausiai išsijungs.</string>
+    <string name="restart_name">Paleisti i? naujo KISS</string>
+    <string name="restart_warn">Ar tikrai norite i? naujo paleisti KISS? Jei KISS n?ra JØ±s? numatytoji paleidimo priemon? tai program?l? papras?iausiai i?sijungs.</string>
+
+    <string name="default_launcher_title">Pakeisti numatyt?j? paleidimo priemon?</string>
+    <string name="default_launcher_warn">Po to kai pasirinksite numatyt?j? paleidimo priemon?, JØ±s atsidursite nam? ekrane. Ar JØ±s ?sitikin?s, kad norite prad?ti?\n\nPastaba: jei nematote pasirinkimo ?Visada\", paspauskite nam? mygtuk? po to kai pasirinksite numatyt?j? paleidimo priemon?.</string>
 
     <string name="items_title">%d elementai</string>
-    <string name="app_wil_restart">Jūs pakeitėte svarbius nustatymus, programėlė persikraus.</string>
-    <string name="alternate_history_inputs">Alternatyvūs istorijos įvedimai</string>
-    <string name="keyboard_options">Klaviatūros nustatymai</string>
-    <string name="misc">Įvairūs</string>
+    <string name="app_wil_restart">JØ±s pakeit?te svarbius nustatymus, program?l? persikraus.</string>
+    <string name="alternate_history_inputs">AlternatyvØ±s istorijos ?vedimai</string>
+    <string name="keyboard_options">KlaviatØ±ros nustatymai</string>
+    <string name="misc">?vairØ±s</string>
+    <string name="toast_favorites_removed">%s buvo pa?alinta i? m?giam?</string>
+    <string name="menu_favorites_remove">Pa?alinti m?giam?</string>
+    <string name="share">Pasidalinti su...</string>
 
 </resources>
