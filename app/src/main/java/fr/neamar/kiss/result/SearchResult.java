@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -70,9 +71,23 @@ public class SearchResult extends Result {
     }
 
     @Override
-    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
+    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_share:
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, searchPojo.query);
+                shareIntent.setType("text/plain");
+                shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(shareIntent);
+                return true;
+        }
 
-        // Empty menu so that you don't add on favorites
-        return new PopupMenu(context, parentView);
+        return super.popupMenuClickHandler(context, parent, item);
+    }
+
+    @Override
+    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
+        return inflatePopupMenu(R.menu.menu_item_search, context, parentView);
     }
 }

@@ -61,7 +61,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 app.packageName = info.activityInfo.applicationInfo.packageName;
                 app.activityName = info.activityInfo.name;
 
-                app.tags = tagsHandler.getTags(app.id);
+                app.setTags(tagsHandler.getTags(app.id));
                 apps.add(app);
             }
         }
