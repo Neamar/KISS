@@ -37,7 +37,7 @@ public class QuerySearcher extends Searcher {
                 activity, query);
 
         // Trim items
-        int max_records = prefs.getInt("number-of-search-results", DEFAULT_MAX_RESULTS);
+        int max_records = Integer.parseInt(prefs.getString("number-of-search-results", String.valueOf(DEFAULT_MAX_RESULTS)));
 
         if (pojos.size() > max_records) {
             return pojos.subList(0, max_records);
