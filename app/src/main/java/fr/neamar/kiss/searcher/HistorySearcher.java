@@ -27,13 +27,7 @@ public class HistorySearcher extends Searcher {
         // Ask for records
         boolean smartHistory = !prefs.getString("history-mode", "recency").equals("recency");
         boolean excludeFavorites = prefs.getBoolean("exclude-favorites", false);
-        int max_records = DEFAULT_MAX_RESULTS;
-        try {
-            max_records = Integer.parseInt(prefs.getString("number-of-history-items", DEFAULT_MAX_RESULTS+""));
-        }
-        catch(Exception e) {
-            //catch exception in case the value is not an int (shouldn't happen)
-        }
+        int max_records = prefs.getInt("number-of-history-items", DEFAULT_MAX_RESULTS);
 
         //Gather favorites
         ArrayList<Pojo> favoritesPojo = new ArrayList<Pojo>(0);
