@@ -40,23 +40,6 @@
                 android:key="exclude-favorites"
                 android:title="@string/exclude_favorites" />
         </PreferenceCategory>
-
-        <PreferenceCategory
-            android:order="50"
-            android:title="@string/max_number_ofitems">
-            <EditTextPreference
-                android:defaultValue="25"
-                android:key="number-of-history-items"
-                android:inputType="number"
-                android:title="@string/number_ofhistory_items"
-                />
-            <EditTextPreference
-                android:defaultValue="15"
-                android:key="number-of-search-results"
-                android:inputType="number"
-                android:title="@string/number_ofsearch_items"
-                />
-        </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen android:title="@string/title_ui">
         <ListPreference
@@ -121,6 +104,12 @@
                 android:key="icons-hide"
                 android:summary="@string/icons_hide_desc"
                 android:title="@string/icons_hide_main" />
+            <EditTextPreference
+                android:defaultValue="25"
+                android:key="number-of-display-elements"
+                android:inputType="number"
+                android:title="@string/number_ofsearch_items"
+                />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen

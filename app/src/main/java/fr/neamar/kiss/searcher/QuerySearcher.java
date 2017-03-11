@@ -17,7 +17,6 @@ import fr.neamar.kiss.pojo.Pojo;
 public class QuerySearcher extends Searcher {
 
     private final String query;
-    private static final int DEFAULT_MAX_RESULTS = 15;
     /**
      * Store user preferences
      */
@@ -37,7 +36,7 @@ public class QuerySearcher extends Searcher {
                 activity, query);
 
         // Trim items
-        int max_records = Integer.parseInt(prefs.getString("number-of-search-results", String.valueOf(DEFAULT_MAX_RESULTS)));
+        int max_records = Integer.parseInt(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)));
 
         if (pojos.size() > max_records) {
             return pojos.subList(0, max_records);
