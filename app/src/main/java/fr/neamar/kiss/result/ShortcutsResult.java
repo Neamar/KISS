@@ -8,6 +8,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -87,6 +88,10 @@ public class ShortcutsResult extends Result {
 
         try {
             Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
+            if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                intent.setSourceBounds(v.getClipBounds());
+            }
+
             context.startActivity(intent);
         } catch (Exception e) {
             // Application was just removed?

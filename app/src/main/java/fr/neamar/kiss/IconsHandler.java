@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.LauncherApps;
+import android.content.pm.LauncherActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
@@ -19,6 +21,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
+import android.os.Build;
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -31,6 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import fr.neamar.kiss.utils.UserHandle;
 
 /**
  * Inspired from http://stackoverflow.com/questions/31490630/how-to-load-icon-from-icon-pack
@@ -178,42 +183,53 @@ public class IconsHandler {
         return null;
     }
 
+
+	public Drawable getDefaultAppDrawable(ComponentName componentName, UserHandle userHandle) {
+		try {
+			if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+				LauncherActivityInfo info = launcher.getActivityList(componentName.getPackageName(), userHandle.getRealHandle()).get(0);
+				return info.getBadgedIcon(0);
+			} else {
+				return pm.getActivityIcon(componentName);
+			}
+		} catch (NameNotFoundException | IndexOutOfBoundsException e) {
+			Log.e(TAG, "Unable to found component " + componentName.toString() + e);
+			return null;
+		}
+	}
+
+
     /**
      * Get or generate icon for an app
      */
-    public Drawable getDrawableIconForPackage(ComponentName componentName) {
-        try {
-            // system icons, nothing to do
-            if (iconsPackPackageName.equalsIgnoreCase("default")) {
-                return pm.getActivityIcon(componentName);
-            }
+    public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
+        // system icons, nothing to do
+        if (iconsPackPackageName.equalsIgnoreCase("default")) {
+            return this.getDefaultAppDrawable(componentName, userHandle);
+        }
 
-            String drawable = packagesDrawables.get(componentName.toString());
-            if (drawable != null) { //there is a custom icon
-                int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
-                if (id > 0) {
-                    //noinspection deprecation: Resources.getDrawable(int, Theme) requires SDK 21+
-                    return iconPackres.getDrawable(id);
-                }
+        String drawable = packagesDrawables.get(componentName.toString());
+        if (drawable != null) { //there is a custom icon
+            int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
+            if (id > 0) {
+                //noinspection deprecation: Resources.getDrawable(int, Theme) requires SDK 21+
+                return iconPackres.getDrawable(id);
             }
+        }
 
-            //search first in cache
-            Drawable systemIcon = cacheGetDrawable(componentName.toString());
-            if (systemIcon != null)
-                return systemIcon;
-
-            systemIcon = pm.getActivityIcon(componentName);
-            if (systemIcon instanceof BitmapDrawable) {
-                Drawable generated = generateBitmap(systemIcon);
-                cacheStoreDrawable(componentName.toString(), generated);
-                return generated;
-            }
+        //search first in cache
+        Drawable systemIcon = cacheGetDrawable(componentName.toString());
+        if (systemIcon != null)
             return systemIcon;
 
-        } catch (NameNotFoundException e) {
-            Log.e(TAG, "Unable to found component " + componentName.toString() + e);
-            return null;
+        systemIcon = this.getDefaultAppDrawable(componentName, userHandle);
+        if (systemIcon instanceof BitmapDrawable) {
+            Drawable generated = generateBitmap(systemIcon);
+            cacheStoreDrawable(componentName.toString(), generated);
+            return generated;
         }
+        return systemIcon;
     }
 
     private Drawable generateBitmap(Drawable defaultBitmap) {

@@ -281,7 +281,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 RecordAdapter adapter = ((RecordAdapter) list.getAdapter());
 
-                adapter.onClick(adapter.getCount() - 1, null);
+                adapter.onClick(adapter.getCount() - 1, v);
 
                 return true;
             }
@@ -573,7 +573,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         Pojo pojo = favorites.get(favNumber);
         final Result result = Result.fromPojo(MainActivity.this, pojo);
 
-        result.fastLaunch(MainActivity.this);
+        result.fastLaunch(MainActivity.this, favorite);
     }
 
     private void displayClearOnInput() {

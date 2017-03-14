@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,6 +70,9 @@ public class PhoneResult extends Result {
     public void doLaunch(Context context, View v) {
         Intent phone = new Intent(Intent.ACTION_CALL);
         phone.setData(Uri.parse("tel:" + Uri.encode(phonePojo.phone)));
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            phone.setSourceBounds(v.getClipBounds());
+        }
 
         phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

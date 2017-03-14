@@ -179,8 +179,8 @@ public abstract class Result {
      *
      * @param context android context
      */
-    public void fastLaunch(Context context) {
-        this.launch(context, null);
+    public void fastLaunch(Context context, View v) {
+        this.launch(context, v);
     }
 
     /**
