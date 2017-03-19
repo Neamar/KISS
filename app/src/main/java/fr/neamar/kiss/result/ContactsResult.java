@@ -43,7 +43,7 @@ public class ContactsResult extends Result {
 
         // Contact name
         TextView contactName = (TextView) v.findViewById(R.id.item_contact_name);
-        contactName.setText(enrichText(contactPojo.displayName));
+        contactName.setText(enrichText(contactPojo.displayName, context));
 
         // Contact phone
         TextView contactPhone = (TextView) v.findViewById(R.id.item_contact_phone);

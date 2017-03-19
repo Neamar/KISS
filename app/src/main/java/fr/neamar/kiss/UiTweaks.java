@@ -2,7 +2,7 @@ package fr.neamar.kiss;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.SharedPreferences;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -16,11 +16,10 @@ import android.view.WindowManager;
 
 public class UiTweaks {
     static void updateThemePrimaryColor(Activity activity) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        String primaryColorOverride = prefs.getString("primary-color", "");
+        String primaryColorOverride = getPrimaryColor(activity);
 
         // Circuit breaker, keep default behavior.
-        if (primaryColorOverride.isEmpty()) {
+        if (primaryColorOverride.equals("#4caf50")) {
             return;
         }
 
@@ -40,5 +39,9 @@ public class UiTweaks {
         if(actionBar != null) {
             actionBar.setBackgroundDrawable(new ColorDrawable(primaryColor));
         }
+    }
+
+    public static String getPrimaryColor(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", "#4caf50");
     }
 }
