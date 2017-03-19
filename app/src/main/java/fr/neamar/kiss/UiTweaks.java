@@ -1,8 +1,10 @@
 package fr.neamar.kiss;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.view.Window;
@@ -22,15 +24,21 @@ public class UiTweaks {
             return;
         }
 
+        int primaryColor = Color.parseColor(primaryColorOverride);
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            int mainColor = Color.parseColor(primaryColorOverride);
             Window window = activity.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
             // Update status bar color
-            window.setStatusBarColor(mainColor);
+            window.setStatusBarColor(primaryColor);
+        }
 
+        ActionBar actionBar = activity.getActionBar();
+        if(actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(primaryColor));
         }
     }
 }
