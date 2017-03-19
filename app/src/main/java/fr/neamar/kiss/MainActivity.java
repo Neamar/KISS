@@ -318,6 +318,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
+
+        UiTweaks.updateThemePrimaryColor(this);
     }
 
     private void adjustInputType(String currentText) {

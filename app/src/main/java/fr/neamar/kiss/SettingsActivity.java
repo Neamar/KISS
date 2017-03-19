@@ -66,6 +66,8 @@ public class SettingsActivity extends PreferenceActivity implements
         addExcludedAppSettings(prefs);
 
         addSearchProvidersSelector(prefs);
+
+        UiTweaks.updateThemePrimaryColor(this);
     }
 
     private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
@@ -152,6 +154,10 @@ public class SettingsActivity extends PreferenceActivity implements
             if (provider != null) {
                 provider.reload();
             }
+        }
+
+        if(key.equalsIgnoreCase("primary-color")) {
+            UiTweaks.updateThemePrimaryColor(this);
         }
 
         if (requireRestartSettings.contains(key)) {
