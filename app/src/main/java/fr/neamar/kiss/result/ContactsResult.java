@@ -3,6 +3,7 @@ package fr.neamar.kiss.result;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -21,6 +22,7 @@ import java.io.InputStream;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UiTweaks;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -66,10 +68,13 @@ public class ContactsResult extends Result {
             }
         });
 
+        int primaryColor = Color.parseColor(UiTweaks.getPrimaryColorForDisplay(context));
         // Phone action
         ImageButton phoneButton = (ImageButton) v.findViewById(R.id.item_contact_action_phone);
+        phoneButton.setColorFilter(primaryColor);
         // Message action
         ImageButton messageButton = (ImageButton) v.findViewById(R.id.item_contact_action_message);
+        messageButton.setColorFilter(primaryColor);
 
         PackageManager pm = context.getPackageManager();
 
