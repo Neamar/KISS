@@ -6,7 +6,7 @@ machine:
 dependencies:
   pre:
     - echo y | android update sdk --no-ui --all --filter tools,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository,android-23
-    - echo y | android update sdk --no-ui --all --filter build-tools-23.0.2
+    - echo y | android update sdk --no-ui --all --filter build-tools-25.0.0
     # Start the gradle daemon
     - ./gradlew:
         background: true
