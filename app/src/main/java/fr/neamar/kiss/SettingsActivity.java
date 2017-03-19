@@ -28,7 +28,8 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait theme";
+    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait";
+    final static private String requireInstantRestart = "theme primary-color";
 
     private boolean requireFullRestart = false;
 
@@ -156,17 +157,14 @@ public class SettingsActivity extends PreferenceActivity implements
             }
         }
 
-        if(key.equalsIgnoreCase("primary-color")) {
-            UiTweaks.updateThemePrimaryColor(this);
-        }
-
         if (requireRestartSettings.contains(key)) {
             requireFullRestart = true;
+        }
 
-            if (key.equalsIgnoreCase("theme")) {
-                finish();
-                return;
-            }
+        if (requireInstantRestart.contains(key)) {
+            requireFullRestart = true;
+            finish();
+            return;
         }
 
         if ("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
@@ -184,7 +182,7 @@ public class SettingsActivity extends PreferenceActivity implements
         prefs.unregisterOnSharedPreferenceChangeListener(this);
 
         if (requireFullRestart) {
-            Toast.makeText(this, R.string.app_wil_restart, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.app_will_restart, Toast.LENGTH_SHORT).show();
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();
 

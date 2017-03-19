@@ -9,10 +9,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.view.Window;
 import android.view.WindowManager;
-
-/**
- * Created by neamar on 19/03/17.
- */
+import android.widget.ImageView;
 
 public class UiTweaks {
     static void updateThemePrimaryColor(Activity activity) {
@@ -36,12 +33,39 @@ public class UiTweaks {
         }
 
         ActionBar actionBar = activity.getActionBar();
-        if(actionBar != null) {
+        if (actionBar != null) {
             actionBar.setBackgroundDrawable(new ColorDrawable(primaryColor));
         }
     }
 
+    static void tintResources(MainActivity mainActivity) {
+        String primaryColorOverride = getPrimaryColorForDisplay(mainActivity);
+
+        // Circuit breaker, keep default behavior.
+        if (primaryColorOverride.equals("#4caf50")) {
+            return;
+        }
+
+        int primaryColor = Color.parseColor(primaryColorOverride);
+
+        // Launcher button should have the main color
+        ImageView launcherButton = (ImageView) mainActivity.findViewById(R.id.launcherButton);
+        launcherButton.setColorFilter(primaryColor);
+
+        // Kissbar background
+        mainActivity.findViewById(R.id.main_kissbar).setBackgroundColor(primaryColor);
+    }
+
     public static String getPrimaryColor(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", "#4caf50");
+    }
+
+    public static String getPrimaryColorForDisplay(Context context) {
+        String primaryColor = getPrimaryColor(context);
+        if(primaryColor.equals("#00000000")) {
+            return "#BDBDBD";
+        }
+
+        return primaryColor;
     }
 }

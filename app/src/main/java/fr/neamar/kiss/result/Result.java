@@ -213,7 +213,7 @@ public abstract class Result {
      * @return text displayable on a textview
      */
     Spanned enrichText(String text, Context context) {
-        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
+        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColorForDisplay(context) + ">").replaceAll("\\}", "</font>"));
     }
 
     /**

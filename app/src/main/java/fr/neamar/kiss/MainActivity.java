@@ -320,6 +320,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         displayClearOnInput();
 
         UiTweaks.updateThemePrimaryColor(this);
+        UiTweaks.tintResources(this);
     }
 
     private void adjustInputType(String currentText) {
@@ -377,6 +378,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         Log.i(TAG, "Resuming KISS");
 
         if (prefs.getBoolean("require-layout-update", false)) {
+            super.onResume();
             Log.i(TAG, "Restarting app after setting changes");
             // Restart current activity to refresh view, since some preferences
             // may require using a new UI
@@ -388,7 +390,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             overridePendingTransition(0, 0);
             startActivity(i);
             overridePendingTransition(0, 0);
-            super.onResume();
             return;
         }
 
