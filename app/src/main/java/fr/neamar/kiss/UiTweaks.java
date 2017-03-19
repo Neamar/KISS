@@ -12,11 +12,13 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class UiTweaks {
+    static String DEFAULT_GREEN = "#4caf50";
+
     static void updateThemePrimaryColor(Activity activity) {
         String primaryColorOverride = getPrimaryColor(activity);
 
         // Circuit breaker, keep default behavior.
-        if (primaryColorOverride.equals("#4caf50")) {
+        if (primaryColorOverride.equals(DEFAULT_GREEN)) {
             return;
         }
 
@@ -42,7 +44,7 @@ public class UiTweaks {
         String primaryColorOverride = getPrimaryColorForDisplay(mainActivity);
 
         // Circuit breaker, keep default behavior.
-        if (primaryColorOverride.equals("#4caf50")) {
+        if (primaryColorOverride.equals(DEFAULT_GREEN)) {
             return;
         }
 
@@ -57,11 +59,13 @@ public class UiTweaks {
     }
 
     public static String getPrimaryColor(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", "#4caf50");
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", DEFAULT_GREEN);
     }
 
     public static String getPrimaryColorForDisplay(Context context) {
         String primaryColor = getPrimaryColor(context);
+
+        // Transparent can't be displayed for text color, replace with light gray.
         if(primaryColor.equals("#00000000")) {
             return "#BDBDBD";
         }
