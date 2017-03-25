@@ -68,7 +68,7 @@ public class ContactsResult extends Result {
             }
         });
 
-        int primaryColor = Color.parseColor(UiTweaks.getPrimaryColorForDisplay(context));
+        int primaryColor = Color.parseColor(UiTweaks.getPrimaryColor(context));
         // Phone action
         ImageButton phoneButton = (ImageButton) v.findViewById(R.id.item_contact_action_phone);
         phoneButton.setColorFilter(primaryColor);

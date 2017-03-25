@@ -41,7 +41,7 @@
                 android:title="@string/exclude_favorites" />
         </PreferenceCategory>
     </PreferenceScreen>
-    <PreferenceScreen android:title="@string/title_ui">
+    <PreferenceScreen android:title="@string/title_ui" android:key="ui-holder">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
@@ -52,6 +52,12 @@
             android:defaultValue="default"
             android:key="icons-pack"
             android:title="@string/icons_pack_name" />
+        <ListPreference
+            android:defaultValue="#4caf50"
+            android:entries="@array/colorEntries"
+            android:entryValues="@array/colorValues"
+            android:key="notification-bar-color"
+            android:title="@string/notification_bar_color" />
         <ListPreference
             android:defaultValue="#4caf50"
             android:entries="@array/colorEntries"

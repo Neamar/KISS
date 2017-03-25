@@ -15,15 +15,14 @@ public class UiTweaks {
     static String DEFAULT_GREEN = "#4caf50";
 
     static void updateThemePrimaryColor(Activity activity) {
-        String primaryColorOverride = getPrimaryColor(activity);
+        String notificationBarColorOverride = getNotificationBarColor(activity);
 
         // Circuit breaker, keep default behavior.
-        if (primaryColorOverride.equals(DEFAULT_GREEN)) {
+        if (notificationBarColorOverride.equals(DEFAULT_GREEN)) {
             return;
         }
 
-        int primaryColor = Color.parseColor(primaryColorOverride);
-
+        int notificationBarColor = Color.parseColor(notificationBarColorOverride);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
@@ -31,17 +30,17 @@ public class UiTweaks {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
             // Update status bar color
-            window.setStatusBarColor(primaryColor);
+            window.setStatusBarColor(notificationBarColor);
         }
 
         ActionBar actionBar = activity.getActionBar();
         if (actionBar != null) {
-            actionBar.setBackgroundDrawable(new ColorDrawable(primaryColor));
+            actionBar.setBackgroundDrawable(new ColorDrawable(notificationBarColor));
         }
     }
 
     static void tintResources(MainActivity mainActivity) {
-        String primaryColorOverride = getPrimaryColorForDisplay(mainActivity);
+        String primaryColorOverride = getPrimaryColor(mainActivity);
 
         // Circuit breaker, keep default behavior.
         if (primaryColorOverride.equals(DEFAULT_GREEN)) {
@@ -58,15 +57,15 @@ public class UiTweaks {
         mainActivity.findViewById(R.id.main_kissbar).setBackgroundColor(primaryColor);
     }
 
-    public static String getPrimaryColor(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", DEFAULT_GREEN);
+    private static String getNotificationBarColor(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("notification-bar-color", DEFAULT_GREEN);
     }
 
-    public static String getPrimaryColorForDisplay(Context context) {
-        String primaryColor = getPrimaryColor(context);
+    public static String getPrimaryColor(Context context) {
+        String primaryColor = PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", DEFAULT_GREEN);
 
         // Transparent can't be displayed for text color, replace with light gray.
-        if(primaryColor.equals("#00000000")) {
+        if(primaryColor.equals("#00000000") || primaryColor.equals(("#AAFFFFFF"))) {
             return "#BDBDBD";
         }
 
