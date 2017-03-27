@@ -42,16 +42,22 @@
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen android:title="@string/title_ui">
+      <PreferenceCategory android:title="@string/theme_name">
+        <fr.neamar.kiss.SwitchPreference
+            android:defaultValue="false"
+            android:key="dark-theme"
+            android:title="@string/dark_theme_name" />
         <ListPreference
-            android:defaultValue="light"
-            android:entries="@array/themesEntries"
-            android:entryValues="@array/themesValues"
-            android:key="theme"
-            android:title="@string/theme_name" />
+            android:defaultValue="opaque"
+            android:entries="@array/transparencyEntries"
+            android:entryValues="@array/transparencyValues"
+            android:key="transparency"
+            android:title="@string/transparency_name" />
         <ListPreference
             android:defaultValue="default"
             android:key="icons-pack"
             android:title="@string/icons_pack_name" />
+        </PreferenceCategory>
         <PreferenceCategory android:title="@string/keyboard_options">
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"

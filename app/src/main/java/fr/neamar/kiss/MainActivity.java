@@ -159,25 +159,31 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        String theme = prefs.getString("theme", "light");
-        switch (theme) {
-            case "dark":
-                setTheme(R.style.AppThemeDark);
-                break;
-            case "transparent":
-                setTheme(R.style.AppThemeTransparent);
-                break;
-            case "semi-transparent":
-                setTheme(R.style.AppThemeSemiTransparent);
-                break;
-            case "semi-transparent-dark":
-                setTheme(R.style.AppThemeSemiTransparentDark);
-                break;
-            case "transparent-dark":
-                setTheme(R.style.AppThemeTransparentDark);
-                break;
-        }
+        Boolean darkTheme = prefs.getBoolean("dark-theme", false);
+        String transparency = prefs.getString("transparency", "opaque");
 
+        if(!darkTheme){
+            if(transparency.equalsIgnoreCase("transparent"))
+            {
+                setTheme(R.style.AppThemeTransparent);
+            } else if (transparency.equalsIgnoreCase("semi-transparent")) {
+                setTheme(R.style.AppThemeSemiTransparent);
+            }
+        }
+        else
+        {
+            switch (transparency) {
+                case "opaque":
+                    setTheme(R.style.AppThemeDark);
+                    break;
+                case "semi-transparent":
+                    setTheme(R.style.AppThemeSemiTransparentDark);
+                    break;
+                case "transparent":
+                    setTheme(R.style.AppThemeTransparentDark);
+                    break;
+            }
+        }
 
         super.onCreate(savedInstanceState);
 
