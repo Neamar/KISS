@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.LauncherActivityInfo;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -29,7 +31,6 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
@@ -53,7 +54,7 @@ public class AppResult extends Result {
         }
 
         TextView appName = (TextView) v.findViewById(R.id.item_app_name);
-        appName.setText(enrichText(appPojo.displayName));
+        appName.setText(enrichText(appPojo.displayName, context));
 
         TextView tagsView = (TextView) v.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them and the query doesnt match tags
@@ -63,7 +64,7 @@ public class AppResult extends Result {
         }
         else {
             tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(enrichText(appPojo.displayTags));
+            tagsView.setText(enrichText(appPojo.displayTags, context));
         }
 
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
@@ -100,12 +101,23 @@ public class AppResult extends Result {
         }
         try {
             // app installed under /system can't be uninstalled
-            ApplicationInfo ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
+			boolean isSameProfile = true;
+			ApplicationInfo ai;
+			if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+				LauncherActivityInfo info = launcher.getActivityList(this.appPojo.packageName, this.appPojo.userHandle.getRealHandle()).get(0);
+				ai = info.getApplicationInfo();
+				
+				isSameProfile = this.appPojo.userHandle.isCurrentUser();
+			} else {
+				ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
+			}
+            
             // Need to AND the flags with SYSTEM:
-            if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+            if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && isSameProfile) {
                 menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
             }
-        } catch (NameNotFoundException e) {
+        } catch (NameNotFoundException | IndexOutOfBoundsException e) {
             // should not happen
         }
 
@@ -142,7 +154,7 @@ public class AppResult extends Result {
     }
 
     private void excludeFromAppList(Context context, AppPojo appPojo) {
-        KissApplication.getDataHandler(context).addToExcluded(appPojo.packageName);
+        KissApplication.getDataHandler(context).addToExcluded(appPojo.packageName, appPojo.userHandle);
         //remove app pojo from appProvider results - no need to reset handler
         KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
         KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, appPojo.id);
@@ -193,9 +205,14 @@ public class AppResult extends Result {
      * Open an activity displaying details regarding the current package
      */
     private void launchAppDetails(Context context, AppPojo app) {
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                Uri.fromParts("package", app.packageName, null));
-        context.startActivity(intent);
+		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+			launcher.startAppDetailsActivity(className, appPojo.userHandle.getRealHandle(), null, null);
+		} else {
+			Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+					Uri.fromParts("package", app.packageName, null));
+			context.startActivity(intent);
+			}
     }
 
     private void hibernate(Context context, AppPojo app) {
@@ -218,27 +235,36 @@ public class AppResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-
+        
         if (icon == null) {
-             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className);
+             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className, this.appPojo.userHandle);
         }
-
+                
         return icon;
-
+        
     }
 
-    @Override
-    public void doLaunch(Context context, View v) {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        intent.setComponent(className);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-
-        try {
-            context.startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            // Application was just removed?
-            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
-        }
-    }
+	@Override
+	public void doLaunch(Context context, View v) {
+		try {
+			if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+				LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+				launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), v.getClipBounds(), null);
+			} else {
+				Intent intent = new Intent(Intent.ACTION_MAIN);
+				intent.addCategory(Intent.CATEGORY_LAUNCHER);
+				intent.setComponent(className);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+				
+				if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+					intent.setSourceBounds(v.getClipBounds());
+				}
+				
+				context.startActivity(intent);
+			}
+		 } catch (ActivityNotFoundException e) {
+			// Application was just removed?
+			Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+		}
+	}
 }

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UiTweaks;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -179,8 +180,8 @@ public abstract class Result {
      *
      * @param context android context
      */
-    public void fastLaunch(Context context) {
-        this.launch(context, null);
+    public void fastLaunch(Context context, View v) {
+        this.launch(context, v);
     }
 
     /**
@@ -211,8 +212,8 @@ public abstract class Result {
      * @param text to highlight
      * @return text displayable on a textview
      */
-    Spanned enrichText(String text) {
-        return Html.fromHtml(text.replaceAll("\\{", "<font color=#4caf50>").replaceAll("\\}", "</font>"));
+    Spanned enrichText(String text, Context context) {
+        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
     /**

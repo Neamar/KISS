@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.Build;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,11 +34,11 @@ public class SearchResult extends Result {
         ImageView image = (ImageView) v.findViewById(R.id.item_search_icon);
         if (searchPojo.direct) {
             String text = context.getString(R.string.ui_item_visit);
-            appName.setText(enrichText(String.format(text, "{" + this.pojo.name + "}")));
+            appName.setText(enrichText(String.format(text, "{" + this.pojo.name + "}"), context));
             image.setImageResource(R.drawable.ic_public);
         } else {
             String text = context.getString(R.string.ui_item_search);
-            appName.setText(enrichText(String.format(text, this.pojo.name, "{" + searchPojo.query + "}")));
+            appName.setText(enrichText(String.format(text, this.pojo.name, "{" + searchPojo.query + "}"), context));
             image.setImageResource(R.drawable.search);
         }
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
@@ -48,6 +49,9 @@ public class SearchResult extends Result {
     public void doLaunch(Context context, View v) {
         boolean exceptionThrown = false;
         Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            search.setSourceBounds(v.getClipBounds());
+        }
         search.putExtra(SearchManager.QUERY, searchPojo.query);
         if (pojo.name.equals("Google")) {
             // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.

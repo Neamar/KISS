@@ -9,8 +9,15 @@ Want to help with the translation? Use https://hosted.weblate.org/projects/kiss/
 
 
 ## Before contributing...
-Keep in mind the goal of KISS is to be fast and small.
-So before you add new features, ask yourself what you're trying to achieve and if you can make it with fewer dependencies (for instance, that's why we're not using RecyclerView :()
+If you submit a pull request, thanks! There are a couple rules to follow though to make it manageable:
+
+* The pull request should be atomic, i.e. contain only one feature. If it contains more, please submit multiple pull requests. Reviewing massive, 1000 loc+ pull requests is extremely hard.
+* Likewise, if for one unique feature the pull request grows too large (more than 200 loc), please get in touch first.
+* Please stick to the current coding style. It's important that the code uses a coherent style for readability.
+* Do not include sylistic improvements ("housekeeping"). If you think one part deserves lots of housekeeping, use a separate pull request so as not to pollute the code.
+* KISS has no automated tests, sadly. Ensure your changes works on all supported Android version!
+* Update the readme accordingly.
+* Last but not least: keep in mind what KISS mindset is! Is your feature really needed for more than 10% of the users? Ask yourself what you're trying to achieve and if you can make it with fewer dependencies (for instance, that's why we're not using RecyclerView :()
 
 
 ## How does it work?

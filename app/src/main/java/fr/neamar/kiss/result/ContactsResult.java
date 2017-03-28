@@ -3,8 +3,10 @@ package fr.neamar.kiss.result;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.view.MenuItem;
@@ -20,6 +22,7 @@ import java.io.InputStream;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UiTweaks;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -42,7 +45,7 @@ public class ContactsResult extends Result {
 
         // Contact name
         TextView contactName = (TextView) v.findViewById(R.id.item_contact_name);
-        contactName.setText(enrichText(contactPojo.displayName));
+        contactName.setText(enrichText(contactPojo.displayName, context));
 
         // Contact phone
         TextView contactPhone = (TextView) v.findViewById(R.id.item_contact_phone);
@@ -65,10 +68,13 @@ public class ContactsResult extends Result {
             }
         });
 
+        int primaryColor = Color.parseColor(UiTweaks.getPrimaryColor(context));
         // Phone action
         ImageButton phoneButton = (ImageButton) v.findViewById(R.id.item_contact_action_phone);
+        phoneButton.setColorFilter(primaryColor);
         // Message action
         ImageButton messageButton = (ImageButton) v.findViewById(R.id.item_contact_action_message);
+        messageButton.setColorFilter(primaryColor);
 
         PackageManager pm = context.getPackageManager();
 
@@ -158,6 +164,10 @@ public class ContactsResult extends Result {
 
         viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
                 String.valueOf(contactPojo.lookupKey)));
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            viewContact.setSourceBounds(v.getClipBounds());
+        }
+
         viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         context.startActivity(viewContact);

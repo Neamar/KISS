@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.dataprovider.AppProvider;
+import fr.neamar.kiss.utils.UserHandle;
 
 /**
  * This class gets called when an application is created or removed on the
@@ -18,35 +19,28 @@ import fr.neamar.kiss.dataprovider.AppProvider;
  */
 public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
-    @Override
-    public void onReceive(Context ctx, Intent intent) {
-
-        if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
+	public static void handleEvent(Context ctx, String action, String packageName, UserHandle user, boolean replacing) {
+		if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
             // Insert into history new packages (not updated ones)
-            if ("android.intent.action.PACKAGE_ADDED".equals(intent.getAction()) && !intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)) {
+            if ("android.intent.action.PACKAGE_ADDED".equals(action) && !replacing) {
                 // Add new package to history
-                String packageName = intent.getData().getSchemeSpecificPart();
-
                 Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(packageName);
                 if (launchIntent == null) {//for some plugin app
                     return;
                 }
 
-                String className = launchIntent.getComponent().getClassName();
-                if (className != null) {
-                    KissApplication.getDataHandler(ctx)
-                            .addToHistory("app://" + packageName + "/" + className);
+				String className = launchIntent.getComponent().getClassName();
+				if (className != null) {
+					String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
+                    KissApplication.getDataHandler(ctx).addToHistory(pojoID);
                 }
             }
         }
 
-        if ("android.intent.action.PACKAGE_REMOVED".equals(intent.getAction())) {
+        if ("android.intent.action.PACKAGE_REMOVED".equals(action) && !replacing) {
             // Removed all installed shortcuts
-            String packageName = intent.getData().getSchemeSpecificPart();
-
             KissApplication.getDataHandler(ctx).removeShortcuts(packageName);
-
-            KissApplication.getDataHandler(ctx).removeFromExcluded(packageName);
+            KissApplication.getDataHandler(ctx).removeFromExcluded(packageName, user);
         }
 
         KissApplication.resetIconsHandler(ctx);
@@ -56,6 +50,15 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
         if (provider != null) {
             provider.reload();
         }
+	}
+
+    @Override
+    public void onReceive(Context ctx, Intent intent) {
+		handleEvent(ctx,
+				intent.getAction(),
+				intent.getData().getSchemeSpecificPart(), new UserHandle(),
+				intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
+		);
 
     }
 
