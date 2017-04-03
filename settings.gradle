@@ -1,1 +1,4 @@
 include ':app'
+
+include ':colorpicker'
+project(':colorpicker').projectDir = new File(settingsDir, 'app/deps/colorpicker')
