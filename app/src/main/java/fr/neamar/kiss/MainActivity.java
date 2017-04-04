@@ -34,6 +34,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -253,6 +254,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
+        registerLongClickOnFavorites();
         searchEditText = (EditText) findViewById(R.id.searchEditText);
 
         // Listen to changes
@@ -318,6 +320,34 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
+    }
+
+    private void registerLongClickOnFavorites() {
+        View.OnLongClickListener listener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                int favNumber = Integer.parseInt((String) view.getTag());
+                ArrayList<Pojo> favorites = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve);
+                if (favNumber >= favorites.size()) {
+                    // Clicking on a favorite before everything is loaded.
+                    Log.i(TAG, "Clicking on an unitialized favorite.");
+                    return false;
+                }
+                // Favorites handling
+                Pojo pojo = favorites.get(favNumber);
+                final Result result = Result.fromPojo(MainActivity.this, pojo);
+                result.getPopupMenu(MainActivity.this, adapter, view).show();
+                return true;
+            }
+        };
+        findViewById(R.id.favoriteBar0).setOnLongClickListener(listener);
+        findViewById(R.id.favoriteBar1).setOnLongClickListener(listener);
+        findViewById(R.id.favoriteBar2).setOnLongClickListener(listener);
+        findViewById(R.id.favoriteBar3).setOnLongClickListener(listener);
+        findViewById(R.id.favoriteBar4).setOnLongClickListener(listener);
+        findViewById(R.id.favoriteBar5).setOnLongClickListener(listener);
+
     }
 
     private void adjustInputType(String currentText) {
