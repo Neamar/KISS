@@ -7,14 +7,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.LauncherApps;
 import android.content.pm.LauncherActivityInfo;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.os.Process;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -32,7 +31,6 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
@@ -56,7 +54,7 @@ public class AppResult extends Result {
         }
 
         TextView appName = (TextView) v.findViewById(R.id.item_app_name);
-        appName.setText(enrichText(appPojo.displayName));
+        appName.setText(enrichText(appPojo.displayName, context));
 
         TextView tagsView = (TextView) v.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them and the query doesnt match tags
@@ -66,7 +64,7 @@ public class AppResult extends Result {
         }
         else {
             tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(enrichText(appPojo.displayTags));
+            tagsView.setText(enrichText(appPojo.displayTags, context));
         }
 
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
