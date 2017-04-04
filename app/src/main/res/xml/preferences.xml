@@ -60,16 +60,12 @@
             android:defaultValue="default"
             android:key="icons-pack"
             android:title="@string/icons_pack_name" />
-        <ListPreference
+        <fr.neamar.kiss.preference.ColorPreference
             android:defaultValue="#4caf50"
-            android:entries="@array/colorEntries"
-            android:entryValues="@array/colorValues"
             android:key="notification-bar-color"
             android:title="@string/notification_bar_color" />
-        <ListPreference
+        <fr.neamar.kiss.preference.ColorPreference
             android:defaultValue="#4caf50"
-            android:entries="@array/colorEntries"
-            android:entryValues="@array/colorValues"
             android:key="primary-color"
             android:title="@string/main_color" />
         <PreferenceCategory android:title="@string/keyboard_options">
