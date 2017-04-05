@@ -184,8 +184,7 @@ public class AppResult extends Result {
             public void onClick(DialogInterface dialog, int which) {
                 KissApplication.getDataHandler(context).getTagsHandler().setTags(app.id, tagInput.getText().toString());
                 // Refresh tags for given app
-                app.tags = tagInput.getText().toString();
-                app.displayTags = app.tags;
+                app.setTags(tagInput.getText().toString());
                 // Show toast message
                 String msg = context.getResources().getString(R.string.tags_confirmation_added);
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
