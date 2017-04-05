@@ -15,13 +15,14 @@ import com.android.colorpicker.ColorPickerPalette;
 import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UiTweaks;
 
 
 public class ColorPreference extends DialogPreference implements OnColorSelectedListener {
 	private ColorPickerPalette palette;
 	
-	private int   selectedColor;
-	private int[] availableColors;
+	private int selectedColor;
+	
 	
 	
 	public ColorPreference(Context context) {
@@ -33,17 +34,8 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 		
 		this.setDialogLayoutResource(R.layout.pref_color);
 		
-		this.availableColors = new int[] {
-				0xFF4CAF50, 0xFFD32F2F, 0xFFC2185B, 0xFF7B1FA2,
-				0xFF512DA8, 0xFF303F9F, 0xFF1976D2, 0xFF0288D1,
-				0xFF0097A7, 0xFF00796B, 0xFF388E3C, 0xFF689F38,
-				0xFFAFB42B, 0xFFFBC02D, 0xFFFFA000, 0xFFF57C00,
-				0xFFE64A19, 0xFF5D4037, 0xFF616161, 0xFF455A64,
-				0xFF000000
-		};
-		this.selectedColor = this.availableColors[0];
-		
-		// Override default selected color value with value from preference XML
+		// Optianlly override default color value with value from preference XML
+		this.selectedColor = Color.parseColor(UiTweaks.COLOR_DEFAULT);
 		if(attrs != null) {
 			String value = attrs.getAttributeValue("http://schemas.android.com/apk/res/android", "defaultValue");
 			if(value != null) {
@@ -54,7 +46,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 	
 	protected void drawPalette() {
 		if(this.palette != null) {
-			this.palette.drawPalette(this.availableColors, this.selectedColor);
+			this.palette.drawPalette(UiTweaks.COLOR_LIST, this.selectedColor);
 		}
 	}
 	

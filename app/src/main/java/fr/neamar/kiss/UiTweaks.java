@@ -12,13 +12,21 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class UiTweaks {
-    static String DEFAULT_GREEN = "#4caf50";
+    public static String COLOR_DEFAULT = "#4caf50";
+    public static int[]  COLOR_LIST    = new int[] {
+			0xFF4CAF50, 0xFFD32F2F, 0xFFC2185B, 0xFF7B1FA2,
+			0xFF512DA8, 0xFF303F9F, 0xFF1976D2, 0xFF0288D1,
+			0xFF0097A7, 0xFF00796B, 0xFF388E3C, 0xFF689F38,
+			0xFFAFB42B, 0xFFFBC02D, 0xFFFFA000, 0xFFF57C00,
+			0xFFE64A19, 0xFF5D4037, 0xFF616161, 0xFF455A64,
+			0xFF000000
+	};
 
     static void updateThemePrimaryColor(Activity activity) {
         String notificationBarColorOverride = getNotificationBarColor(activity);
 
         // Circuit breaker, keep default behavior.
-        if (notificationBarColorOverride.equals(DEFAULT_GREEN)) {
+        if (notificationBarColorOverride.equals(COLOR_DEFAULT)) {
             return;
         }
 
@@ -43,7 +51,7 @@ public class UiTweaks {
         String primaryColorOverride = getPrimaryColor(mainActivity);
 
         // Circuit breaker, keep default behavior.
-        if (primaryColorOverride.equals(DEFAULT_GREEN)) {
+        if (primaryColorOverride.equals(COLOR_DEFAULT)) {
             return;
         }
 
@@ -58,11 +66,11 @@ public class UiTweaks {
     }
 
     private static String getNotificationBarColor(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString("notification-bar-color", DEFAULT_GREEN);
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("notification-bar-color", COLOR_DEFAULT);
     }
 
     public static String getPrimaryColor(Context context) {
-        String primaryColor = PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", DEFAULT_GREEN);
+        String primaryColor = PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", COLOR_DEFAULT);
 
         // Transparent can't be displayed for text color, replace with light gray.
         if(primaryColor.equals("#00000000") || primaryColor.equals(("#AAFFFFFF"))) {
