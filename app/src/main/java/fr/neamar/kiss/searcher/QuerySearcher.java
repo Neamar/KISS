@@ -1,5 +1,8 @@
 package fr.neamar.kiss.searcher;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
@@ -12,15 +15,19 @@ import fr.neamar.kiss.pojo.Pojo;
  * @author dorvaryn
  */
 public class QuerySearcher extends Searcher {
-    private static final int MAX_RECORDS = 15;
 
     private final String query;
+    /**
+     * Store user preferences
+     */
+    private SharedPreferences prefs;
 
     public QuerySearcher(MainActivity activity, String query) {
         super(activity);
         this.query = query;
-    }
+        prefs = PreferenceManager.getDefaultSharedPreferences(activity);
 
+    }
 
     @Override
     protected List<Pojo> doInBackground(Void... voids) {
@@ -29,8 +36,10 @@ public class QuerySearcher extends Searcher {
                 activity, query);
 
         // Trim items
-        if (pojos.size() > MAX_RECORDS) {
-            return pojos.subList(0, MAX_RECORDS);
+        int max_records = Integer.parseInt(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)));
+
+        if (pojos.size() > max_records) {
+            return pojos.subList(0, max_records);
         }
 
         return pojos;
