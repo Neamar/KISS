@@ -19,6 +19,14 @@
             android:key="reset-excluded-apps"
             android:order="12"
             android:title="@string/reset_excluded_apps_name" />
+        <EditTextPreference
+            android:defaultValue="25"
+            android:key="number-of-display-elements"
+            android:inputType="number"
+            android:order="45"
+            android:title="@string/number_ofdisplay_items"
+            android:textColor="?attr/searchColor"
+            />
         <PreferenceCategory
             android:order="50"
             android:title="@string/alternate_history_inputs">
@@ -116,13 +124,6 @@
                 android:key="icons-hide"
                 android:summary="@string/icons_hide_desc"
                 android:title="@string/icons_hide_main" />
-            <EditTextPreference
-                android:defaultValue="25"
-                android:key="number-of-display-elements"
-                android:inputType="number"
-                android:title="@string/number_ofdisplay_items"
-                android:textColor="?attr/searchColor"
-                />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
