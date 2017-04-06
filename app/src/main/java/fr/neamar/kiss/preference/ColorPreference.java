@@ -89,7 +89,8 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 				
 				// Calculate number of swatches to display
 				int swatchSize = ColorPreference.this.palette.getResources().getDimensionPixelSize(com.android.colorpicker.R.dimen.color_swatch_small);
-				ColorPreference.this.palette.init(ColorPickerDialog.SIZE_SMALL, (view.getWidth() - 10) / swatchSize, ColorPreference.this);
+				ColorPreference.this.palette.init(ColorPickerDialog.SIZE_SMALL, (view.getWidth() - (swatchSize * 2 / 3)) / swatchSize, ColorPreference.this);
+				
 				
 				// Cause redraw and (by extension) also a layout recalculation
 				this.ignoreNextUpdate = true;
