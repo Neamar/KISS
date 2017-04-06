@@ -12,6 +12,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 
 public abstract class Searcher extends AsyncTask<Void, Void, List<Pojo>> {
+    protected static final int DEFAULT_MAX_RESULTS = 25;
 
     final MainActivity activity;
 
