@@ -77,6 +77,6 @@ public class UiTweaks {
             return "#BDBDBD";
         }
 
-        return primaryColor;
+        return String.format("#%06X", Color.parseColor(primaryColor) & 0xFFFFFF);
     }
 }
