@@ -331,7 +331,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 ArrayList<Pojo> favorites = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve);
                 if (favNumber >= favorites.size()) {
                     // Clicking on a favorite before everything is loaded.
-                    Log.i(TAG, "Clicking on an unitialized favorite.");
+                    Log.i(TAG, "Long clicking on an unitialized favorite.");
                     return false;
                 }
                 // Favorites handling
@@ -341,13 +341,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 return true;
             }
         };
-        findViewById(R.id.favoriteBar0).setOnLongClickListener(listener);
-        findViewById(R.id.favoriteBar1).setOnLongClickListener(listener);
-        findViewById(R.id.favoriteBar2).setOnLongClickListener(listener);
-        findViewById(R.id.favoriteBar3).setOnLongClickListener(listener);
-        findViewById(R.id.favoriteBar4).setOnLongClickListener(listener);
-        findViewById(R.id.favoriteBar5).setOnLongClickListener(listener);
-
+        for (int id : favBarIds) {
+            findViewById(id).setOnLongClickListener(listener);
+        }
+        for (int id : favsIds) {
+            findViewById(id).setOnLongClickListener(listener);
+        }
     }
 
     private void adjustInputType(String currentText) {
