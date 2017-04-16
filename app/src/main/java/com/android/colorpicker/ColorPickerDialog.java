@@ -25,6 +25,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import fr.neamar.kiss.R;
+
 import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
 
 /**

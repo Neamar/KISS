@@ -25,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import fr.neamar.kiss.R;
+
 import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
 
 /**

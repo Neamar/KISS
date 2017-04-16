@@ -20,6 +20,8 @@ import android.graphics.Color;
 
 import java.util.Comparator;
 
+import fr.neamar.kiss.R;
+
 /**
  * A color comparator which compares based on hue, saturation, and value.
  */

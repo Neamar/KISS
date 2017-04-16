@@ -21,6 +21,8 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 
+import fr.neamar.kiss.R;
+
 /**
  * A drawable which sets its color filter to a color specified by the user, and changes to a
  * slightly darker color when pressed or focused.
