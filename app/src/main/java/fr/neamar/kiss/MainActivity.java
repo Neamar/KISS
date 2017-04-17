@@ -34,6 +34,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -253,6 +254,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
+        registerLongClickOnFavorites();
         searchEditText = (EditText) findViewById(R.id.searchEditText);
 
         // Listen to changes
@@ -321,6 +323,33 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         UiTweaks.updateThemePrimaryColor(this);
         UiTweaks.tintResources(this);
+    }
+
+    private void registerLongClickOnFavorites() {
+        View.OnLongClickListener listener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                int favNumber = Integer.parseInt((String) view.getTag());
+                ArrayList<Pojo> favorites = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve);
+                if (favNumber >= favorites.size()) {
+                    // Clicking on a favorite before everything is loaded.
+                    Log.i(TAG, "Long clicking on an unitialized favorite.");
+                    return false;
+                }
+                // Favorites handling
+                Pojo pojo = favorites.get(favNumber);
+                final Result result = Result.fromPojo(MainActivity.this, pojo);
+                result.getPopupMenu(MainActivity.this, adapter, view).show();
+                return true;
+            }
+        };
+        for (int id : favBarIds) {
+            findViewById(id).setOnLongClickListener(listener);
+        }
+        for (int id : favsIds) {
+            findViewById(id).setOnLongClickListener(listener);
+        }
     }
 
     private void adjustInputType(String currentText) {
