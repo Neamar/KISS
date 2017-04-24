@@ -260,9 +260,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Listen to changes
         searchEditText.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
-                // Auto left-trim text.
-                if (s.length() > 0 && s.charAt(0) == ' ')
-                    s.delete(0, 1);
+                // Auto left-trim text and delete special chars.
+		        final String[] reservedChars = { "|", "\\", "?", "*", "<", "\"", ":", ".", ",", "-", ">" };
+                if (s.length() > 0){
+                    for (String c : reservedChars) {
+                        if (s.charAt(0) == c.charAt(0)) {
+                            s.delete(0, 1);
+                        }
+                    }
+                }
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
