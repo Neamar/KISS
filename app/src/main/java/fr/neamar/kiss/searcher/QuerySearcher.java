@@ -35,11 +35,13 @@ public class QuerySearcher extends Searcher {
         final List<Pojo> pojos = KissApplication.getDataHandler(activity).getResults(
                 activity, query);
 
-        // Trim items
-        int max_records = Integer.parseInt(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)));
+        // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
+        // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
+        int maxRecords = (new Double(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
 
-        if (pojos.size() > max_records) {
-            return pojos.subList(0, max_records);
+        // Possibly limit number of results post-mortem
+        if (pojos.size() > maxRecords) {
+            return pojos.subList(0, maxRecords);
         }
 
         return pojos;
