@@ -65,6 +65,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppThemeLight"
         tools:ignore="GoogleAppIndexingWarning">
+        
+        <!-- Can be removed once we target SDK 24+ -->
+        <meta-data android:name="android.max_aspect" android:value="3.0" />
 
         <!--
         clearTaskOnLaunch: when viewing kiss settings, display the main activity when pressing home https://github.com/Neamar/KISS/issues/117
