@@ -34,7 +34,7 @@ public class HistorySearcher extends Searcher {
         //Gather favorites
         ArrayList<Pojo> favoritesPojo = new ArrayList<Pojo>(0);
         if(excludeFavorites){
-            favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(activity.tryToRetrieve);
+            favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(MainActivity.MAX_FAVORITES);
         }
 
         return KissApplication.getDataHandler(activity).getHistory(activity, maxRecords, smartHistory, favoritesPojo);

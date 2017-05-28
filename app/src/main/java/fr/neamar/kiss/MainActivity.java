@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -84,20 +85,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     private static final String TAG = "MainActivity";
     /**
-     * IDs for the favorites buttons
+     * Max allowed favorites
      */
-    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
-    /**
-     * IDs for the favorites buttons on the quickbar
-     */
-
-    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
-
-    /**
-     * Number of favorites to retrieve.
-     * We need to pad this number to account for removed items still in history
-     */
-    public final int tryToRetrieve = favsIds.length + 2;
+    public static final int MAX_FAVORITES = 15;
     /**
      * Adapter to display records
      */
@@ -368,8 +358,54 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+<<<<<<< HEAD
+    /**
+     * Apply some tweaks to the design, depending on the current SDK version
+     */
+    private void applyDesignTweaks() {
+        int[] tweakableIds = new int[]{
+                R.id.menuButton,
+                // Barely visible on the clearbutton, since it disappears instant. Can be seen on long click though
+                R.id.clearButton,
+                R.id.launcherButton,
+        };
+        View[] favoriteChilds = new View[]{};
+
+        ViewGroup favItems = (ViewGroup) findViewById(R.id.favoritesListItems);
+        for(int i = 0; i < favItems.getChildCount(); i++) {
+            favoriteChilds[i] = favItems.getChildAt(i);
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TypedValue outValue = new TypedValue();
+            getTheme().resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true);
+
+            for (int id : tweakableIds) {
+                findViewById(id).setBackgroundResource(outValue.resourceId);
+            }
+            for (View view : favoriteChilds) {
+                view.setBackgroundResource(outValue.resourceId);
+            }
+
+        } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            TypedValue outValue = new TypedValue();
+            getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+
+            for (int id : tweakableIds) {
+                findViewById(id).setBackgroundResource(outValue.resourceId);
+            }
+            for (View view : favoriteChilds) {
+                view.setBackgroundResource(outValue.resourceId);
+            }
+        }
+    }
+
+    private void checkShowFavoritesBar(boolean touched) {
+        View favoritesBar = findViewById(R.id.favoritesBar);
+=======
     private void displayQuickFavoritesBar(boolean initialize, boolean touched) {
         View quickFavoritesBar = findViewById(R.id.favoritesBar);
+>>>>>>> 51135411d94d5ae8de32f448e5602f3776b4a235
         if (searchEditText.getText().toString().length() == 0
                 && prefs.getBoolean("enable-favorites-bar", false)) {
             if((!prefs.getBoolean("favorites-hide", false) || touched)) {
@@ -588,6 +624,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
         displayKissBar(false);
 
+<<<<<<< HEAD
+        // Favorites handling
+        Pojo pojo = KissApplication.getDataHandler(MainActivity.this).getFavorites(MAX_FAVORITES)
+                .get(Integer.parseInt((String) favorite.getTag()));
+=======
         int favNumber = Integer.parseInt((String) favorite.getTag());
         ArrayList<Pojo> favorites = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve);
         if (favNumber >= favorites.size()) {
@@ -597,6 +638,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
         // Favorites handling
         Pojo pojo = favorites.get(favNumber);
+>>>>>>> 51135411d94d5ae8de32f448e5602f3776b4a235
         final Result result = Result.fromPojo(MainActivity.this, pojo);
 
         result.fastLaunch(MainActivity.this, favorite);
@@ -710,17 +752,60 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+<<<<<<< HEAD
+    public void retrieveFavorites() {
+        retrieveFavorites(false);
+    }
+
+    public void retrieveFavorites(boolean forceUpdate) {
+=======
     public void displayFavorites() {
         int[] favoritesIds = favoritesKissBar.getVisibility() == View.VISIBLE ? favsIds : favBarIds;
 
+>>>>>>> 51135411d94d5ae8de32f448e5602f3776b4a235
         ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
-                .getFavorites(tryToRetrieve);
+                .getFavorites(MAX_FAVORITES);
 
         if (favoritesPojo.size() == 0) {
             int noFavCnt = prefs.getInt("no-favorites-tip", 0);
             if (noFavCnt < 3 && !prefs.getBoolean("enable-favorites-bar", false)) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
+<<<<<<< HEAD
+                prefs.edit().putInt("no-favorites-tip", ++noFavCnt).commit();
+            }
+        }
+
+        ViewGroup favoritesList = (ViewGroup) findViewById(R.id.favoritesListItems);
+        ViewGroup favoritesBarList = (ViewGroup) findViewById(R.id.favoritesBarListItems);
+        if(favoritesList.getChildCount() == favoritesPojo.size() && !forceUpdate) {
+            return;
+        }
+        favoritesList.removeAllViews();
+        favoritesBarList.removeAllViews();
+
+        // We need to rebuild the fav items.
+        for (int i = 0; i < favoritesPojo.size(); i++) {
+            Pojo pojo = favoritesPojo.get(i);
+
+            ImageView imageFav = new ImageView(MainActivity.this);
+            ImageView imageFavBar = new ImageView(MainActivity.this);
+
+            // Setup the tags
+            imageFav.setTag(String.valueOf(i));
+            imageFavBar.setTag(String.valueOf(i));
+
+            // Setup the click handler
+            ImageView.OnClickListener l = new ImageView.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onFavoriteButtonClicked(view);
+                }
+            };
+
+            imageFav.setOnClickListener(l);
+            imageFavBar.setOnClickListener(l);
+=======
                 prefs.edit().putInt("no-favorites-tip", ++noFavCnt).apply();
 
             }
@@ -731,10 +816,26 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             Pojo pojo = favoritesPojo.get(i);
 
             ImageView image = (ImageView) findViewById(favoritesIds[i]);
+>>>>>>> 51135411d94d5ae8de32f448e5602f3776b4a235
 
             Result result = Result.fromPojo(MainActivity.this, pojo);
             Drawable drawable = result.getDrawable(MainActivity.this);
             if (drawable != null) {
+<<<<<<< HEAD
+                imageFav.setImageDrawable(drawable);
+                imageFavBar.setImageDrawable(drawable);
+            }
+
+            favoritesList.addView(imageFav);
+            favoritesBarList.addView(imageFavBar);
+
+            imageFav.setVisibility(View.VISIBLE);
+            imageFav.setContentDescription(pojo.displayName);
+
+            imageFavBar.setVisibility(View.VISIBLE);
+            imageFavBar.setContentDescription(pojo.displayName);
+        }
+=======
                 image.setImageDrawable(drawable);
             } else {
                 Log.e(TAG, "Falling back to default image for favorite.");
@@ -750,6 +851,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
             findViewById(favoritesIds[i]).setVisibility(View.GONE);
         }
+>>>>>>> 51135411d94d5ae8de32f448e5602f3776b4a235
     }
 
     public void updateRecords() {
@@ -833,6 +935,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public int getFavIconsSize() {
-        return favsIds.length;
+        // this is actually the total number of favs we are "allowed"
+        return MAX_FAVORITES;
     }
 }
