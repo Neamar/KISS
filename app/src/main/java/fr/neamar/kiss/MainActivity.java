@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -84,20 +85,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
     private static final String TAG = "MainActivity";
     /**
-     * IDs for the favorites buttons
+     * Max allowed favorites
      */
-    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
-    /**
-     * IDs for the favorites buttons on the quickbar
-     */
-
-    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
-
-    /**
-     * Number of favorites to retrieve.
-     * We need to pad this number to account for removed items still in history
-     */
-    public final int tryToRetrieve = favsIds.length + 2;
+    public static final int MAX_FAVORITES = 15;
     /**
      * Adapter to display records
      */
@@ -589,7 +579,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         displayKissBar(false);
 
         int favNumber = Integer.parseInt((String) favorite.getTag());
-        ArrayList<Pojo> favorites = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve);
+        ArrayList<Pojo> favorites = KissApplication.getDataHandler(MainActivity.this).getFavorites(MAX_FAVORITES);
         if (favNumber >= favorites.size()) {
             // Clicking on a favorite before everything is loaded.
             Log.i(TAG, "Clicking on an unitialized favorite.");
@@ -711,10 +701,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public void displayFavorites() {
-        int[] favoritesIds = favoritesKissBar.getVisibility() == View.VISIBLE ? favsIds : favBarIds;
+        displayFavorites(false);
+    }
 
+    public void displayFavorites(boolean forceUpdate) {
+        int favBar = (favoritesKissBar.getVisibility() == View.VISIBLE)? R.id.favoritesListItems : R.id.favoritesBarListItems;
         ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
-                .getFavorites(tryToRetrieve);
+                .getFavorites(MAX_FAVORITES);
 
         if (favoritesPojo.size() == 0) {
             int noFavCnt = prefs.getInt("no-favorites-tip", 0);
@@ -722,15 +715,31 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
                 prefs.edit().putInt("no-favorites-tip", ++noFavCnt).apply();
-
             }
         }
 
-        // Don't look for items after favIds length, we won't be able to display them
-        for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
+        ViewGroup favoritesList = (ViewGroup) findViewById(favBar);
+        if(favoritesList.getChildCount() == favoritesPojo.size() && !forceUpdate) {
+            return;
+        }
+        favoritesList.removeAllViews();
+
+        // We need to rebuild the fav items.
+        for (int i = 0; i < favoritesPojo.size(); i++) {
             Pojo pojo = favoritesPojo.get(i);
 
-            ImageView image = (ImageView) findViewById(favoritesIds[i]);
+            ImageView image = new ImageView(MainActivity.this);
+
+            // Setup the tags, kinda duplicate here, converting int to string to convert back to int.
+            image.setTag(String.valueOf(i));
+
+            // Setup the click handler
+            image.setOnClickListener(new ImageView.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onFavoriteButtonClicked(view);
+                }
+            });
 
             Result result = Result.fromPojo(MainActivity.this, pojo);
             Drawable drawable = result.getDrawable(MainActivity.this);
@@ -742,13 +751,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 image.setImageResource(R.drawable.ic_contact);
             }
 
+            favoritesList.addView(image);
+
             image.setVisibility(View.VISIBLE);
             image.setContentDescription(pojo.displayName);
-        }
-
-        // Hide empty favorites (not enough favorites yet)
-        for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
-            findViewById(favoritesIds[i]).setVisibility(View.GONE);
         }
     }
 
@@ -833,6 +839,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public int getFavIconsSize() {
-        return favsIds.length;
+        // this is actually the total number of favs we are "allowed"
+        return MAX_FAVORITES;
     }
 }
