@@ -47,6 +47,7 @@ import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
@@ -151,6 +152,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Task launched on text change
      */
     private Searcher searcher;
+
+    /**
+     * Handler to start an application if it is the only result returned
+     */
+    private Handler autoRunHandler;
 
     /**
      * Called when the activity is first created.
@@ -273,6 +279,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 adjustInputType(text);
                 updateRecords(text);
                 displayClearOnInput();
+
+                cancelAutoRunHandler();
             }
         });
 
@@ -483,6 +491,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void onBackPressed() {
+
+        cancelAutoRunHandler();
+
         // Is the kiss bar visible?
         if (kissBar.getVisibility() == View.VISIBLE) {
             displayKissBar(false);
@@ -545,8 +556,22 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             menuButton.showContextMenu();
     }
 
+    /**
+     * Cancel autorunHandler (handler to start app if one result in memory)
+     */
+    private void cancelAutoRunHandler() {
+        if (autoRunHandler == null) {
+            return;
+        }
+        autoRunHandler.removeCallbacksAndMessages(null);
+        autoRunHandler = null;
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
+
+        cancelAutoRunHandler();
+
         //if motion movement ends
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
             //if history is hidden
@@ -791,6 +816,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public void resetTask() {
         searcher = null;
+        // check if one result only, then execute it
+        if ((this.adapter.getCount() == 1) && (prefs.getBoolean("autostart-single-result", false))) {
+            //launch
+            final Result result = this.adapter.getItem(0);
+            if (result instanceof AppResult) {
+                autoRunHandler = new Handler();
+                autoRunHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        list.performItemClick(list.getAdapter().getView(0, null, null), 0, 0);
+                    }
+                }, KissApplication.AUTOSTART_DELAY);
+            }
+        }
     }
 
     /**
