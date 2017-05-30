@@ -39,8 +39,8 @@ public class AddSearchProviderPreference extends DialogPreference {
     //Create the Dialog view
     @Override
     protected View onCreateDialogView() {
-        providerName.setHint(R.string.custom_provider_name);
-        providerUrl.setHint(R.string.custom_provider_url);
+        providerName.setHint(R.string.search_provider_name);
+        providerUrl.setHint(R.string.search_provider_url);
         layout.addView(providerName);
         layout.addView(providerUrl);
 
@@ -124,7 +124,7 @@ public class AddSearchProviderPreference extends DialogPreference {
             prefs.edit().putStringSet("available-search-providers", availableProviders).commit();
             prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).commit();
 
-            Toast.makeText(getContext(), R.string.custom_provider_added, Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.search_provider_added, Toast.LENGTH_LONG).show();
         }
 
         ((ViewGroup) providerName.getParent()).removeView(providerName);

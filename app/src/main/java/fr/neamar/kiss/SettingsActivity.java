@@ -198,10 +198,10 @@ public class SettingsActivity extends PreferenceActivity implements
 
                 Set<String> updatedProviders = new HashSet<String>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders()));
 
-                for (String customSearchProvider : availableSearchProviders) {
-                    for (String customProviderToDelete : searchProvidersToDelete) {
-                        if (customSearchProvider.startsWith(customProviderToDelete+"|")) {
-                            updatedProviders.remove(customSearchProvider);
+                for (String searchProvider : availableSearchProviders) {
+                    for (String providerToDelete : searchProvidersToDelete) {
+                        if (searchProvider.startsWith(providerToDelete+"|")) {
+                            updatedProviders.remove(searchProvider);
                             continue;
                         }
                     }
@@ -210,7 +210,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).edit().putStringSet("deleting-search-providers-names", updatedProviders).commit();
 
                 if (searchProvidersToDelete.size() > 0) {
-                    Toast.makeText(SettingsActivity.this, R.string.custom_provider_deleted, Toast.LENGTH_LONG).show();
+                    Toast.makeText(SettingsActivity.this, R.string.search_provider_deleted, Toast.LENGTH_LONG).show();
                 }
                 return true;
             }
