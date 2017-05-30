@@ -1,5 +1,6 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.webkit.URLUtil;
@@ -14,25 +15,22 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.loader.LoadSearchPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 
 public class SearchProvider extends Provider<SearchPojo> {
-    private SharedPreferences prefs;
     public static final String URL_REGEX = "^(?:[a-z]+://)?(?:[a-z0-9-]|[^\\x00-\\x7F])+(?:[.](?:[a-z0-9-]|[^\\x00-\\x7F])+)+.*$";
 
-    private static final Map<String, String> searchProviderUrls = new LinkedHashMap<>();
+    private static final Set<String> defaultSearchProviders = new HashSet<>();
     private static final Pattern p = Pattern.compile(URL_REGEX);
 
     static {
-        searchProviderUrls.put("Bing", "https://www.bing.com/search?q=");
-        searchProviderUrls.put("DuckDuckGo", "https://duckduckgo.com/?q=");
-        searchProviderUrls.put("Google", "https://encrypted.google.com/search?q=");
-        searchProviderUrls.put("Qwant", "https://www.qwant.com/?q=");
-        searchProviderUrls.put("StartPage", "https://startpage.com/do/search?language=cat=web&query=");
-        searchProviderUrls.put("Wikipedia", "https://en.wikipedia.org/wiki/");
-        searchProviderUrls.put("Yahoo", "https://search.yahoo.com/search?p=");
+        defaultSearchProviders.add("Bing|https://www.bing.com/search?q=");
+        defaultSearchProviders.add("DuckDuckGo|https://duckduckgo.com/?q=");
+        defaultSearchProviders.add("Google|https://encrypted.google.com/search?q=");
+        defaultSearchProviders.add("Yahoo|https://search.yahoo.com/search?p=");
     }
 
     @Override
@@ -40,18 +38,30 @@ public class SearchProvider extends Provider<SearchPojo> {
         this.initialize(new LoadSearchPojos(this));
     }
 
+    private String getProviderUrl(Set<String> searchProviders, String searchProviderName) {
+        for (String nameAndUrl : searchProviders) {
+            if (nameAndUrl.contains(searchProviderName+"|")) {
+                return nameAndUrl.split("\\|")[1];
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Pojo> getResults(String query) {
 
         ArrayList<Pojo> pojos = new ArrayList<>();
-        Set<String> selectedProviders = new TreeSet<>();
-        selectedProviders.addAll(PreferenceManager.getDefaultSharedPreferences(this).getStringSet("search-providers", new HashSet<>(Arrays.asList("Google"))));
+        Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(this).getStringSet("selected-search-provider-names", new HashSet<>(Arrays.asList("Google")));
+        Set<String> availableProviders = PreferenceManager.getDefaultSharedPreferences(this).getStringSet("available-search-providers", getSearchProviders());
+
         for (String searchProvider : selectedProviders) {
             SearchPojo pojo = new SearchPojo();
             pojo.query = query;
             pojo.relevance = 10;
-            pojo.url = searchProviderUrls.get(searchProvider);
+            pojo.url = getProviderUrl(availableProviders, searchProvider);
             pojo.name = searchProvider;
-            pojos.add(pojo);
+            if (pojo.url != null) {
+                pojos.add(pojo);
+            }
         }
 
         Matcher m = p.matcher(query);
@@ -70,7 +80,7 @@ public class SearchProvider extends Provider<SearchPojo> {
         return pojos;
     }
 
-    public static String[] getSearchProviders() {
-        return searchProviderUrls.keySet().toArray(new String[searchProviderUrls.size()]);
+    public static Set<String> getSearchProviders() {
+        return defaultSearchProviders;
     }
 }

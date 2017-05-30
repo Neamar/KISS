@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -70,7 +72,12 @@ public class SearchResult extends Result {
             Uri uri = Uri.parse(searchPojo.url + searchPojo.query);
             search = new Intent(Intent.ACTION_VIEW, uri);
             search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(search);
+            try {
+                context.startActivity(search);
+            }
+            catch (android.content.ActivityNotFoundException e) {
+                Log.w("SearchResult","Unable to run search for url: "+searchPojo.url);
+            }
         }
     }
 
