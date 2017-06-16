@@ -4,6 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.appwidget.AppWidgetHost;
+import android.appwidget.AppWidgetHostView;
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProviderInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,17 +33,18 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -82,6 +87,23 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+
+    /**
+     * Widget constants
+     */
+    private static final String WIDGET_PREFERENCE_ID = "fr.neamar.kiss.widgetprefs";
+    private static final int REQUEST_CREATE_APPWIDGET = 5;
+    private static final int REQUEST_PICK_APPWIDGET = 9;
+    private static final int APPWIDGET_HOST_ID = 442;
+
+    /**
+     * Widget fields
+     */
+    private AppWidgetManager mAppWidgetManager;
+    private AppWidgetHost mAppWidgetHost;
+    private SharedPreferences widgetPrefs;
+    private boolean widgetUsed = false;
+
     private static final String TAG = "MainActivity";
     /**
      * IDs for the favorites buttons
@@ -146,7 +168,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Favorites bar, in the KISS bar (not the quick favorites bar from minimal UI)
      */
     private View favoritesKissBar;
-
+    /**
+     * View widgets are added to
+     */
+    private ViewGroup widgetArea;
     /**
      * Task launched on text change
      */
@@ -246,7 +271,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
                 if (adapter.isEmpty()) {
                     listContainer.setVisibility(View.GONE);
-                    listEmpty.setVisibility(View.VISIBLE);
+                    if(!widgetUsed){
+                        // when a widget is displayed this would prevent touches on the widget
+                        listEmpty.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     listContainer.setVisibility(View.VISIBLE);
                     listEmpty.setVisibility(View.GONE);
@@ -288,6 +316,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 return true;
             }
         });
+
+        // Initialize widget manager and host, restore widgets
+        widgetPrefs = this.getSharedPreferences(WIDGET_PREFERENCE_ID, Context.MODE_PRIVATE);
+        mAppWidgetManager = AppWidgetManager.getInstance(this);
+        mAppWidgetHost = new AppWidgetHost(this, APPWIDGET_HOST_ID);
+        widgetArea = (ViewGroup) findViewById(R.id.widgetLayout);
+        restoreWidgets();
 
         kissBar = findViewById(R.id.main_kissbar);
         favoritesKissBar = findViewById(R.id.favoritesKissBar);
@@ -391,11 +426,23 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_settings, menu);
+        if(widgetUsed){
+            menu.findItem(R.id.widget).setTitle(R.string.menu_widget_remove);
+        } else {
+            menu.findItem(R.id.widget).setTitle(R.string.menu_widget_add);
+        }
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         return onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //start Listening for widget update
+        mAppWidgetHost.startListening();
     }
 
     /**
@@ -469,6 +516,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        // stop listening for widget updates
+        mAppWidgetHost.stopListening();
+    }
+
+    @Override
     protected void onNewIntent(Intent intent) {
         // This is called when the user press Home again while already browsing MainActivity
         // onResume() will be called right after, hiding the kissbar if any.
@@ -516,6 +570,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
                 startActivity(Intent.createChooser(intent, getString(R.string.menu_wallpaper)));
                 return true;
+            case R.id.widget:
+                if(!widgetUsed) {
+                    // request widget picker, a selection will lead to a call of onActivityResult
+                    int appWidgetId = MainActivity.this.mAppWidgetHost.allocateAppWidgetId();
+                    Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+                    pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+                    startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
+                } else {
+                    // if we already have a widget we remove it
+                    removeAllWidgets();
+                }
+                return true;
             case R.id.preferences:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
@@ -543,6 +609,26 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // To fix this, we discard any click event occurring when the kissbar is displayed
         if (kissBar.getVisibility() != View.VISIBLE)
             menuButton.showContextMenu();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            switch (requestCode) {
+                case REQUEST_CREATE_APPWIDGET:
+                    addAppWidget(data);
+                    break;
+                case REQUEST_PICK_APPWIDGET:
+                    configureAppWidget(data);
+                    break;
+            }
+        } else if (resultCode == RESULT_CANCELED && data != null){
+            //if widget was not selected, delete id
+            int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
+            if (appWidgetId != -1) {
+                mAppWidgetHost.deleteAppWidgetId(appWidgetId);
+            }
+        }
     }
 
     @Override
@@ -834,5 +920,93 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public int getFavIconsSize() {
         return favsIds.length;
+    }
+
+    /**
+     * Check if widget needs configuration and display configuration view if necessary,
+     * otherwise just add the widget
+     * @param data Intent holding widget id to configure
+     */
+    private void configureAppWidget(Intent data){
+        int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
+
+        AppWidgetProviderInfo appWidget =
+                mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+
+        if (appWidget.configure != null) {
+            // Launch over to configure widget, if needed.
+            Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
+            intent.setComponent(appWidget.configure);
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            startActivityForResult(intent, REQUEST_CREATE_APPWIDGET);
+        } else {
+            // Otherwise, finish adding the widget.
+            addAppWidget(data);
+        }
+    }
+
+    /**
+     * Adds widget to Activity and persists it in prefs to be able to restore it
+     * @param data Intent holding widget id to add
+     */
+    private void addAppWidget(Intent data){
+        int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
+        //add widget
+        addWidgetToLauncher(appWidgetId);
+        // Save widget in preferences
+        SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
+        widgetPrefsEditor.putInt(String.valueOf(appWidgetId), appWidgetId);
+        widgetPrefsEditor.apply();
+    }
+
+    /**
+     * Adds a widget to the widget area on the MainActivity
+     * @param appWidgetId id of widget to add
+     */
+    private void addWidgetToLauncher(int appWidgetId) {
+        //add widget to view
+        AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+        AppWidgetHostView hostView = mAppWidgetHost.createView(this, appWidgetId, appWidgetInfo);
+        hostView.setAppWidget(appWidgetId, appWidgetInfo);
+        widgetArea.addView(hostView);
+        // only one widget allowed so widgetUsed is true now
+        widgetUsed = true;
+    }
+
+    /**
+     * Removes a single widget and deletes it from persistent prefs
+     * @param hostView instance of a displayed widget
+     */
+    private void removeAppWidget(AppWidgetHostView hostView) {
+        // remove widget from view
+        int appWidgetId = hostView.getAppWidgetId();
+        mAppWidgetHost.deleteAppWidgetId(appWidgetId);
+        widgetArea.removeView(hostView);
+        // remove widget id from persistent prefs
+        SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
+        widgetPrefsEditor.remove(String.valueOf(appWidgetId));
+        widgetPrefsEditor.apply();
+        // only one widget allowed so widgetUsed is false now
+        widgetUsed = false;
+    }
+
+    /**
+     * Removes all widgets from the launcher
+     */
+    private void removeAllWidgets(){
+        while(widgetArea.getChildCount()>0){
+            AppWidgetHostView widget = (AppWidgetHostView) widgetArea.getChildAt(0);
+            removeAppWidget(widget);
+        }
+    }
+
+    /**
+     * Restores all previously added widgets
+     */
+    private void restoreWidgets(){
+        HashMap<String, Integer> widgetIds = (HashMap<String, Integer>) widgetPrefs.getAll();
+        for (int appWidgetId : widgetIds.values()){
+            addWidgetToLauncher(appWidgetId);
+        }
     }
 }
