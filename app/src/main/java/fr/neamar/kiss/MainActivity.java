@@ -426,11 +426,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_settings, menu);
-        if(widgetUsed){
-            menu.findItem(R.id.widget).setTitle(R.string.menu_widget_remove);
+        if(prefs.getBoolean("history-hide", true)){
+            if(widgetUsed){
+                menu.findItem(R.id.widget).setTitle(R.string.menu_widget_remove);
+            } else {
+                menu.findItem(R.id.widget).setTitle(R.string.menu_widget_add);
+            }
         } else {
-            menu.findItem(R.id.widget).setTitle(R.string.menu_widget_add);
+            menu.findItem(R.id.widget).setVisible(false);
         }
+
     }
 
     @Override
@@ -972,12 +977,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @param appWidgetId id of widget to add
      */
     private void addWidgetToLauncher(int appWidgetId) {
-        //add widget to view
-        AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
-        AppWidgetHostView hostView = mAppWidgetHost.createView(this, appWidgetId, appWidgetInfo);
-        hostView.setAppWidget(appWidgetId, appWidgetInfo);
-        widgetArea.addView(hostView);
-        // only one widget allowed so widgetUsed is true now
+        // only add widgets if in minimal mode (may need launcher restart when turned on)
+        if(prefs.getBoolean("history-hide", true)){
+            //add widget to view
+            AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+            AppWidgetHostView hostView = mAppWidgetHost.createView(this, appWidgetId, appWidgetInfo);
+            hostView.setAppWidget(appWidgetId, appWidgetInfo);
+            widgetArea.addView(hostView);
+        }
+        // only one widget allowed so widgetUsed is true now, even if not added to view
         widgetUsed = true;
     }
 
