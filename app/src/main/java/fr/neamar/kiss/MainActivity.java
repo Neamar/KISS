@@ -21,6 +21,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -35,6 +36,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -215,7 +217,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Lock launcher into portrait mode
         // Do it here (before initializing the view) to make the transition as smooth as possible
         if (prefs.getBoolean("force-portrait", true)) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
             } else {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -323,6 +325,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         UiTweaks.updateThemePrimaryColor(this);
         UiTweaks.tintResources(this);
+
+        // Transparent Search and Favorites bar
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            TypedValue typedValue = new  TypedValue();
+            getTheme().resolveAttribute(R.attr.listBackgroundColor, typedValue, true);
+            final  int color = typedValue.data;
+            if(prefs.getBoolean("transparent-favorites", false)) this.findViewById(R.id.favoritesBar).setBackgroundColor(color);
+            if(prefs.getBoolean("transparent-search", false)){
+                this.findViewById(R.id.searchEditLayout).setBackgroundColor(color);
+                this.findViewById(R.id.searchEditText).setBackgroundColor(color);
+            }
+        }
     }
 
     private void registerLongClickOnFavorites() {
