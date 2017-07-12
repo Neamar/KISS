@@ -41,6 +41,8 @@ public class DataHandler extends BroadcastReceiver
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
             "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
     );
+    public static final String EXCLUDED_APP_LIST_KEY = "excluded-apps-list";
+    public static final String FAVORITES_LIST_KEY = "favorite-apps-list";
 
     final private Context context;
     private String currentQuery;
@@ -359,22 +361,37 @@ public class DataHandler extends BroadcastReceiver
         }
     }
 
+    /**
+     * Add a {@link fr.neamar.kiss.result.ShortcutsResult} or {@link fr.neamar.kiss.result.AppResult}
+     * to the excluded list. When sending user=null, it is assumed that the name if of ShortcutsResult type.
+     * @param name
+     * @param user
+     */
+    public void addToExcluded(String name, UserHandle user) {
+        if(null == name && null == user) {
+            throw new IllegalStateException("Expecting a name and a user here!");
+        }
 
-    public void addToExcluded(String packageName, UserHandle user) {
-		packageName = user.addUserSuffixToString(packageName, '#');
-		
+        if(null == user) {
+            // If user is null, we are dealing with a shortcut
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                    .putString(EXCLUDED_APP_LIST_KEY, name).apply();
+            return;
+        }
+
+		name = user.addUserSuffixToString(name, '#');
         String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("excluded-apps-list", context.getPackageName() + ";");
+                getString(EXCLUDED_APP_LIST_KEY, context.getPackageName() + ";");
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("excluded-apps-list", excludedAppList + packageName + ";").apply();
+                .putString(EXCLUDED_APP_LIST_KEY, excludedAppList + name + ";").apply();
     }
 
     public void removeFromExcluded(String packageName, UserHandle user) {
 		packageName = user.addUserSuffixToString(packageName, '#');
 		
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
-        String excluded = prefs.getString("excluded-apps-list", context.getPackageName() + ";");
-        prefs.edit().putString("excluded-apps-list", excluded.replaceAll(packageName + ";", "")).apply();
+        String excluded = prefs.getString(EXCLUDED_APP_LIST_KEY, context.getPackageName() + ";");
+        prefs.edit().putString(EXCLUDED_APP_LIST_KEY, excluded.replaceAll(packageName + ";", "")).apply();
     }
 
 	public void removeFromExcluded(UserHandle user) {
@@ -384,7 +401,7 @@ public class DataHandler extends BroadcastReceiver
 		}
 		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
-		String[] excludedList = prefs.getString("excluded-apps-list", context.getPackageName() + ";").split(";");
+		String[] excludedList = prefs.getString(EXCLUDED_APP_LIST_KEY, context.getPackageName() + ";").split(";");
 		
 		StringBuilder excluded = new StringBuilder();
 		for(String excludedItem : excludedList) {
@@ -393,7 +410,7 @@ public class DataHandler extends BroadcastReceiver
 			}
 		}
 		
-		prefs.edit().putString("excluded-apps-list", excluded.toString()).apply();
+		prefs.edit().putString(EXCLUDED_APP_LIST_KEY, excluded.toString()).apply();
 	}
 
     /**
@@ -401,8 +418,11 @@ public class DataHandler extends BroadcastReceiver
      *
      * @return pojos for all applications
      */
-    public ArrayList<Pojo> getApplications() {
-        return this.getAppProvider().getAllApps();
+    public List<Pojo> getApplications() {
+        List<Pojo> pojoList = new ArrayList<>();
+        pojoList.addAll(this.getAppProvider().getAllApps());
+        pojoList.addAll(this.getShortcutsProvider().getAllShortcuts());
+        return pojoList;
     }
 
     public ContactsProvider getContactsProvider() {
@@ -431,7 +451,7 @@ public class DataHandler extends BroadcastReceiver
         ArrayList<Pojo> favorites = new ArrayList<>(limit);
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
-                getString("favorite-apps-list", "");
+                getString(FAVORITES_LIST_KEY, "");
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
 
         // Find associated items
@@ -451,7 +471,7 @@ public class DataHandler extends BroadcastReceiver
     public boolean addToFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
+                getString(FAVORITES_LIST_KEY, "");
 
         // Check if we are already a fav icon
         if (favApps.contains(id + ";")) {
@@ -465,7 +485,7 @@ public class DataHandler extends BroadcastReceiver
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps + id + ";").apply();
+                .putString(FAVORITES_LIST_KEY, favApps + id + ";").apply();
 
         context.displayFavorites();
 
@@ -475,7 +495,7 @@ public class DataHandler extends BroadcastReceiver
     public boolean removeFromFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
+                getString(FAVORITES_LIST_KEY, "");
 
         // Check if we are not already a fav icon
         if (!favApps.contains(id + ";")) {
@@ -484,7 +504,7 @@ public class DataHandler extends BroadcastReceiver
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
+                .putString(FAVORITES_LIST_KEY, favApps.replace(id + ";", "")).apply();
 
         context.displayFavorites();
 
@@ -498,7 +518,7 @@ public class DataHandler extends BroadcastReceiver
 		}
 		
 		String[] favAppList = PreferenceManager.getDefaultSharedPreferences(this.context)
-		                                       .getString("favorite-apps-list", "").split(";");
+		                                       .getString(FAVORITES_LIST_KEY, "").split(";");
 		
 		StringBuilder favApps = new StringBuilder();
 		for(String favAppID : favAppList) {
@@ -508,7 +528,7 @@ public class DataHandler extends BroadcastReceiver
 		}
 		
 		PreferenceManager.getDefaultSharedPreferences(this.context).edit()
-		                 .putString("favorite-apps-list", favApps.toString()).apply();
+		                 .putString(FAVORITES_LIST_KEY, favApps.toString()).apply();
 	}
 
     /**
@@ -538,7 +558,7 @@ public class DataHandler extends BroadcastReceiver
 
     protected class ProviderEntry {
         public IProvider provider = null;
-        public ServiceConnection connection = null;
+        ServiceConnection connection = null;
     }
 
     public TagsHandler getTagsHandler() {

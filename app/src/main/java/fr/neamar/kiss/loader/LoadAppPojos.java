@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.preference.PreferenceManager;
 import android.os.Build;
-import android.os.Process;
 import android.os.UserManager;
 import android.util.Log;
 
@@ -19,6 +18,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -41,7 +41,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
         ArrayList<AppPojo> apps = new ArrayList<>();
         String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("excluded-apps-list", context.getPackageName() + ";");
+                getString(DataHandler.EXCLUDED_APP_LIST_KEY, context.getPackageName() + ";");
         List excludedApps = Arrays.asList(excludedAppList.split(";"));
 
 		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

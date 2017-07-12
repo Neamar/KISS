@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -99,7 +100,7 @@ public abstract class Result {
         // If app already pinned, do not display the "add to favorite" option
         // otherwise don't show the "remove favorite button"
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
+                getString(DataHandler.FAVORITES_LIST_KEY, "");
         if (favApps.contains(this.pojo.id + ";")) {
             menu.getMenu().removeItem(R.id.item_favorites_add);
         } else {

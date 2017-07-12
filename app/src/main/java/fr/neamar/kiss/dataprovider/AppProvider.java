@@ -18,6 +18,7 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
+import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class AppProvider extends Provider<AppPojo> {
@@ -236,7 +237,7 @@ public class AppProvider extends Provider<AppPojo> {
                 if (allowSideEffect) {
                     pojo.displayName = pojo.name;
                     if (pojo instanceof AppPojo) {
-                        AppPojo appPojo = (AppPojo)pojo;
+                        AppPojo appPojo = (AppPojo) pojo;
                         appPojo.displayTags = appPojo.tags;
                     }
                 }

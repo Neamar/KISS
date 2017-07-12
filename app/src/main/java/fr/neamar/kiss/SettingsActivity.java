@@ -29,6 +29,8 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private static final String EXCLUDED_APP_LIST_KEY = DataHandler.EXCLUDED_APP_LIST_KEY;
+
     // Those settings require the app to restart
     final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait primary-color";
     final static private String requireInstantRestart = "theme notification-bar-color";
@@ -81,7 +83,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
-        String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
+        String excludedAppList = prefs.getString(EXCLUDED_APP_LIST_KEY, "").replace(this.getPackageName() + ";", "");
         String[] apps = excludedAppList.split(";");
 
         multiSelectList.setEntries(apps);
@@ -90,7 +92,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private boolean hasExcludedApps(final SharedPreferences prefs) {
-        String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
+        String excludedAppList = prefs.getString(EXCLUDED_APP_LIST_KEY, "").replace(this.getPackageName() + ";", "");
         return !excludedAppList.isEmpty();
     }
 
@@ -116,7 +118,7 @@ public class SettingsActivity extends PreferenceActivity implements
                     builder.append(s).append(";");
                 }
 
-                prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").apply();
+                prefs.edit().putString(DataHandler.EXCLUDED_APP_LIST_KEY, builder.toString() + SettingsActivity.this.getPackageName() + ";").apply();
                 loadExcludedAppsToPreference(multiPreference);
                 if (!hasExcludedApps(prefs)) {
                     multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
