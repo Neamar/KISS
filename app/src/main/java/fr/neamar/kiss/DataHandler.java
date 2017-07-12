@@ -363,7 +363,7 @@ public class DataHandler extends BroadcastReceiver
 
     /**
      * Add a {@link fr.neamar.kiss.result.ShortcutsResult} or {@link fr.neamar.kiss.result.AppResult}
-     * to the excluded list. When sending user=null, it is assumed that the name if of ShortcutsResult type.
+     * to the excluded list. When sending user=null, it is assumed that the name is of ShortcutsResult type.
      * @param name
      * @param user
      */
