@@ -33,3 +33,26 @@ dependencies {
     testCompile 'org.robolectric:robolectric:3.1.4'
     testCompile 'org.mockito:mockito-core:1.10.19'
 }
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.ltgt.gradle:gradle-errorprone-plugin:0.0.11"
+    }
+}
+
+apply plugin: "net.ltgt.errorprone"
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += [
+        '-Xep:MissingOverride:OFF',
+    ]
+}
+
+configurations.errorprone {
+    resolutionStrategy.force 'com.google.errorprone:error_prone_core:2.0.21'
+}
