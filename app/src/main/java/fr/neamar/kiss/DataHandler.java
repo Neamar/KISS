@@ -536,7 +536,7 @@ public class DataHandler extends BroadcastReceiver
         return null;
     }
 
-    protected class ProviderEntry {
+    protected static final class ProviderEntry {
         public IProvider provider = null;
         public ServiceConnection connection = null;
     }

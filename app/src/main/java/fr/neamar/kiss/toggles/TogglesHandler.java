@@ -90,8 +90,10 @@ public class TogglesHandler {
                     break;
                 case "sync":
                     setSyncState(state);
+                    break;
                 case "autorotate":
                     setAutorotationState(state);
+                    break;
                 default:
                     Log.e("wtf", "Unsupported toggle for update: " + pojo.settingName);
                     break;
