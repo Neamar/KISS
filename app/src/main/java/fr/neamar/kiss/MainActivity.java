@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -372,7 +373,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         View quickFavoritesBar = findViewById(R.id.favoritesBar);
         if (searchEditText.getText().toString().length() == 0
                 && prefs.getBoolean("enable-favorites-bar", false)) {
-            if((!prefs.getBoolean("favorites-hide", false) || touched)) {
+            if ((!prefs.getBoolean("favorites-hide", false) || touched)) {
                 quickFavoritesBar.setVisibility(View.VISIBLE);
             }
 
@@ -422,6 +423,17 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             displayKissBar(false);
         }
+
+        boolean largeSearchBar = prefs.getBoolean("large-search-bar", false);
+        Resources res = getResources();
+        int searchHeight;
+        if (largeSearchBar) {
+            searchHeight = res.getDimensionPixelSize(R.dimen.large_search_bar);
+        } else {
+            searchHeight = res.getDimensionPixelSize(R.dimen.small_search_bar);
+        }
+        searchEditText.setHeight(searchHeight);
+        kissBar.getLayoutParams().height = searchHeight + res.getDimensionPixelSize(R.dimen.main_container_margin);
 
         //Show favorites above search field ONLY if AppProvider is already loaded
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
@@ -826,6 +838,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     /**
      * Check if history / search or app list is visible
+     *
      * @return true of history, false on app list
      */
     public boolean isOnSearchView() {

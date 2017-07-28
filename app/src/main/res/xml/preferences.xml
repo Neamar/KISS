@@ -21,12 +21,11 @@
             android:title="@string/reset_excluded_apps_name" />
         <EditTextPreference
             android:defaultValue="25"
-            android:key="number-of-display-elements"
             android:inputType="number"
+            android:key="number-of-display-elements"
             android:order="45"
-            android:title="@string/number_ofdisplay_items"
             android:textColor="?attr/searchColor"
-            />
+            android:title="@string/number_ofdisplay_items" />
         <PreferenceCategory
             android:order="50"
             android:title="@string/alternate_history_inputs">
@@ -49,7 +48,9 @@
                 android:title="@string/exclude_favorites" />
         </PreferenceCategory>
     </PreferenceScreen>
-    <PreferenceScreen android:title="@string/title_ui" android:key="ui-holder">
+    <PreferenceScreen
+        android:key="ui-holder"
+        android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
@@ -118,6 +119,11 @@
                 android:key="icons-hide"
                 android:summary="@string/icons_hide_desc"
                 android:title="@string/icons_hide_main" />
+
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="large-search-bar"
+                android:title="@string/large_search_bar" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
@@ -177,6 +183,5 @@
     </PreferenceScreen>
     <Preference
         android:key="rate-app"
-        android:title="Rate the app">
-    </Preference>
+        android:title="Rate the app"></Preference>
 </PreferenceScreen>
