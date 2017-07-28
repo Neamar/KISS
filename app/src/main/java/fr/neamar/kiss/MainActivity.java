@@ -434,6 +434,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
         searchEditText.setHeight(searchHeight);
         kissBar.getLayoutParams().height = searchHeight + res.getDimensionPixelSize(R.dimen.main_container_margin);
+        searchEditText.setHeight(searchHeight);
 
         //Show favorites above search field ONLY if AppProvider is already loaded
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
