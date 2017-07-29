@@ -62,6 +62,12 @@ public class DBHelper {
         db.close();
     }
 
+    public static void clearHistory(Context context) {
+        SQLiteDatabase db = getDatabase(context);
+        db.delete("history", "", null);
+        db.close();
+    }
+
     private static Cursor getSmartHistoryCursor(SQLiteDatabase db, int limit) {
         //Since smart history sql uses a group by we don't use the whole history but a limit of recent apps
         int historyWindowSize =  limit *30;
