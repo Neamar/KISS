@@ -8,6 +8,7 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 public class AppPojo extends Pojo {
     public String packageName;
     public String activityName;
+    public int badgeCount;
     public UserHandle userHandle;
 
     // Tags assigned to this pojo
@@ -20,6 +21,16 @@ public class AppPojo extends Pojo {
     // Variable to store the formated (user selection in bold) tag
     public String displayTags = "";
 
+    public String displayBadge = "";
+
+    public void setBadgeCount(int badgeCount){
+        this.badgeCount = badgeCount;
+        if (badgeCount > 99){
+            displayBadge = "99";
+        }else{
+            displayBadge = String.valueOf(badgeCount);
+        }
+    }
 
     public void setTags(String tags) {
     // Set the actual user-friendly name

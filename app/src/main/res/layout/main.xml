@@ -57,71 +57,185 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/favoriteBar0"
+            <RelativeLayout
                 android:layout_width="0px"
                 android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="0"
-                tools:src="@drawable/ic_contact" />
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/favoriteBar1"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="1"
-                tools:src="@drawable/ic_contact" />
+                <ImageView
+                    android:id="@+id/favoriteBar0"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="?attr/appSelectableItemBackground"
+                    android:contentDescription="@null"
+                    android:onClick="onFavoriteButtonClicked"
+                    android:tag="0"
+                    tools:src="@drawable/ic_contact" />
 
-            <ImageView
-                android:id="@+id/favoriteBar2"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="2"
-                tools:src="@drawable/ic_contact" />
+                <TextView
+                    android:id="@+id/favoriteBadge0"
+                    android:layout_alignBottom="@id/favoriteBar0"
+                    android:layout_alignEnd="@id/favoriteBar0"
+                    android:layout_alignRight="@id/favoriteBar0"
+                    android:background="@drawable/badge_background"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:textSize="10sp" />
+            </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/favoriteBar3"
+            <RelativeLayout
                 android:layout_width="0px"
                 android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="3"
-                tools:src="@drawable/ic_contact" />
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/favoriteBar4"
-                android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="4"
-                tools:src="@drawable/ic_contact" />
+                <ImageView
+                    android:id="@+id/favoriteBar1"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="?attr/appSelectableItemBackground"
+                    android:contentDescription="@null"
+                    android:onClick="onFavoriteButtonClicked"
+                    android:tag="1"
+                    tools:src="@drawable/ic_contact" />
 
-            <ImageView
-                android:id="@+id/favoriteBar5"
+                <TextView
+                    android:id="@+id/favoriteBadge1"
+                    android:layout_alignBottom="@id/favoriteBar1"
+                    android:layout_alignEnd="@id/favoriteBar1"
+                    android:layout_alignRight="@id/favoriteBar1"
+                    android:background="@drawable/badge_background"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="0px"
                 android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:onClick="onFavoriteButtonClicked"
-                android:tag="5"
-                tools:src="@drawable/ic_contact" />
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/favoriteBar2"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="?attr/appSelectableItemBackground"
+                    android:contentDescription="@null"
+                    android:onClick="onFavoriteButtonClicked"
+                    android:tag="2"
+                    tools:src="@drawable/ic_contact" />
+
+                <TextView
+                    android:id="@+id/favoriteBadge2"
+                    android:layout_alignBottom="@id/favoriteBar2"
+                    android:layout_alignEnd="@id/favoriteBar2"
+                    android:layout_alignRight="@id/favoriteBar2"
+                    android:background="@drawable/badge_background"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="48dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/favoriteBar3"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="?attr/appSelectableItemBackground"
+                    android:contentDescription="@null"
+                    android:onClick="onFavoriteButtonClicked"
+                    android:tag="3"
+                    tools:src="@drawable/ic_contact" />
+
+                <TextView
+                    android:id="@+id/favoriteBadge3"
+                    android:layout_alignBottom="@id/favoriteBar3"
+                    android:layout_alignEnd="@id/favoriteBar3"
+                    android:layout_alignRight="@id/favoriteBar3"
+                    android:background="@drawable/badge_background"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="48dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/favoriteBar4"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="?attr/appSelectableItemBackground"
+                    android:contentDescription="@null"
+                    android:onClick="onFavoriteButtonClicked"
+                    android:tag="4"
+                    tools:src="@drawable/ic_contact" />
+
+                <TextView
+                    android:id="@+id/favoriteBadge4"
+                    android:layout_alignBottom="@id/favoriteBar4"
+                    android:layout_alignEnd="@id/favoriteBar4"
+                    android:layout_alignRight="@id/favoriteBar4"
+                    android:background="@drawable/badge_background"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="48dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/favoriteBar5"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="?attr/appSelectableItemBackground"
+                    android:contentDescription="@null"
+                    android:onClick="onFavoriteButtonClicked"
+                    android:tag="5"
+                    tools:src="@drawable/ic_contact" />
+
+                <TextView
+                    android:id="@+id/favoriteBadge5"
+                    android:layout_alignBottom="@id/favoriteBar5"
+                    android:layout_alignEnd="@id/favoriteBar5"
+                    android:layout_alignRight="@id/favoriteBar5"
+                    android:background="@drawable/badge_background"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:textSize="10sp" />
+            </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 

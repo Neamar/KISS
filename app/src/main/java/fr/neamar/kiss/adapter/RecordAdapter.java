@@ -9,7 +9,9 @@ import android.widget.PopupMenu;
 
 import java.util.ArrayList;
 
+import fr.neamar.kiss.BadgeHandler;
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.PhoneResult;
@@ -101,5 +103,45 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         results.remove(result);
         result.deleteRecord(getContext());
         notifyDataSetChanged();
+    }
+
+    public void reloadBadges() {
+        for (Result result : results) {
+            if (result instanceof AppResult) {
+                AppResult appResult = (AppResult) result;
+                appResult.reloadBadgeCount(getContext());
+            }
+        }
+
+        ((MainActivity) getContext()).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                RecordAdapter.this.notifyDataSetChanged();
+            }
+        });
+    }
+
+    public void reloadBadge(String packageName) {
+        boolean found = false;
+        for (Result result : results) {
+            if (result instanceof AppResult) {
+                AppResult appResult = (AppResult) result;
+                if (appResult.getPackageName().equals(packageName)) {
+                    appResult.reloadBadgeCount(getContext());
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (found) {
+            ((MainActivity) getContext()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    RecordAdapter.this.notifyDataSetChanged();
+                }
+            });
+        }
+
     }
 }

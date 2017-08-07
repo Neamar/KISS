@@ -49,6 +49,7 @@ public class DataHandler extends BroadcastReceiver
     private boolean providersReady = false;
 
     private static TagsHandler tagsHandler;
+    private static BadgeHandler badgeHandler;
 
     /**
      * Initialize all providers
@@ -546,6 +547,13 @@ public class DataHandler extends BroadcastReceiver
             tagsHandler = new TagsHandler(context);
         }
         return tagsHandler;
+    }
+
+    public BadgeHandler getBadgeHandler() {
+        if (badgeHandler == null) {
+            badgeHandler = new BadgeHandler(context);
+        }
+        return badgeHandler;
     }
 
     public void resetTagsHandler() {

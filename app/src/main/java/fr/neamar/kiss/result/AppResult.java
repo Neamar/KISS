@@ -26,6 +26,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fr.neamar.kiss.BadgeHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -47,6 +48,12 @@ public class AppResult extends Result {
         className = new ComponentName(appPojo.packageName, appPojo.activityName);
     }
 
+    public void reloadBadgeCount(Context context) {
+        BadgeHandler badgeHandler = KissApplication.getDataHandler(context).getBadgeHandler();
+        int count = badgeHandler.getBadgeCount(appPojo.packageName);
+        appPojo.setBadgeCount(count);
+    }
+
     @Override
     public View display(final Context context, int position, View v) {
         if (v == null) {
@@ -61,11 +68,19 @@ public class AppResult extends Result {
         if (appPojo.displayTags.isEmpty() ||
                 ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (appPojo.displayTags.equals(appPojo.tags)))) {
             tagsView.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             tagsView.setVisibility(View.VISIBLE);
             tagsView.setText(enrichText(appPojo.displayTags, context));
         }
+
+        TextView badgeView = (TextView) v.findViewById(R.id.item_badge_count);
+        if (appPojo.badgeCount > 0) {
+            badgeView.setText(String.valueOf(appPojo.displayBadge));
+            badgeView.setVisibility(View.VISIBLE);
+        } else {
+            badgeView.setVisibility(View.GONE);
+        }
+
 
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 
@@ -85,8 +100,7 @@ public class AppResult extends Result {
                     }
                 });
             }
-        }
-        else {
+        } else {
             appIcon.setVisibility(View.INVISIBLE);
         }
         return v;
@@ -96,23 +110,23 @@ public class AppResult extends Result {
     protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
         PopupMenu menu = inflatePopupMenu(R.menu.menu_item_app, context, parentView);
 
-        if ((context instanceof MainActivity) && (!((MainActivity)context).isOnSearchView())) {
+        if ((context instanceof MainActivity) && (!((MainActivity) context).isOnSearchView())) {
             menu.getMenu().removeItem(R.id.item_remove);
         }
         try {
             // app installed under /system can't be uninstalled
-			boolean isSameProfile = true;
-			ApplicationInfo ai;
-			if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-				LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-				LauncherActivityInfo info = launcher.getActivityList(this.appPojo.packageName, this.appPojo.userHandle.getRealHandle()).get(0);
-				ai = info.getApplicationInfo();
-				
-				isSameProfile = this.appPojo.userHandle.isCurrentUser();
-			} else {
-				ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
-			}
-            
+            boolean isSameProfile = true;
+            ApplicationInfo ai;
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                LauncherActivityInfo info = launcher.getActivityList(this.appPojo.packageName, this.appPojo.userHandle.getRealHandle()).get(0);
+                ai = info.getApplicationInfo();
+
+                isSameProfile = this.appPojo.userHandle.isCurrentUser();
+            } else {
+                ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
+            }
+
             // Need to AND the flags with SYSTEM:
             if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && isSameProfile) {
                 menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
@@ -204,14 +218,14 @@ public class AppResult extends Result {
      * Open an activity displaying details regarding the current package
      */
     private void launchAppDetails(Context context, AppPojo app) {
-		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-			launcher.startAppDetailsActivity(className, appPojo.userHandle.getRealHandle(), null, null);
-		} else {
-			Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-					Uri.fromParts("package", app.packageName, null));
-			context.startActivity(intent);
-			}
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            launcher.startAppDetailsActivity(className, appPojo.userHandle.getRealHandle(), null, null);
+        } else {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.fromParts("package", app.packageName, null));
+            context.startActivity(intent);
+        }
     }
 
     private void hibernate(Context context, AppPojo app) {
@@ -234,36 +248,40 @@ public class AppResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-        
+
         if (icon == null) {
-             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className, this.appPojo.userHandle);
+            icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className, this.appPojo.userHandle);
         }
-                
+
         return icon;
-        
+
     }
 
-	@Override
-	public void doLaunch(Context context, View v) {
-		try {
-			if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-				LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-				launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), v.getClipBounds(), null);
-			} else {
-				Intent intent = new Intent(Intent.ACTION_MAIN);
-				intent.addCategory(Intent.CATEGORY_LAUNCHER);
-				intent.setComponent(className);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-				
-				if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-					intent.setSourceBounds(v.getClipBounds());
-				}
-				
-				context.startActivity(intent);
-			}
-		 } catch (ActivityNotFoundException e) {
-			// Application was just removed?
-			Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
-		}
-	}
+    @Override
+    public void doLaunch(Context context, View v) {
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), v.getClipBounds(), null);
+            } else {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.setComponent(className);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                    intent.setSourceBounds(v.getClipBounds());
+                }
+
+                context.startActivity(intent);
+            }
+        } catch (ActivityNotFoundException e) {
+            // Application was just removed?
+            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public String getPackageName() {
+        return appPojo.packageName;
+    }
 }

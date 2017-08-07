@@ -8,7 +8,7 @@ import android.util.Log;
 public class DB extends SQLiteOpenHelper {
 
     public final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 5;
+    private final static int DB_VERSION = 6;
 
     public DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -27,6 +27,10 @@ public class DB extends SQLiteOpenHelper {
         database.execSQL("CREATE INDEX idx_tags_record ON tags(record);");
     }
 
+    private void createBadges(SQLiteDatabase database) {
+        database.execSQL("CREATE TABLE badges ( _id INTEGER PRIMARY KEY AUTOINCREMENT, package INT NOT NULL, badge_count INT NOT NULL)");
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         Log.d("onUpgrade", "Updating database from version " + oldVersion + " to version " + newVersion);
@@ -34,16 +38,17 @@ public class DB extends SQLiteOpenHelper {
         // http://www.drdobbs.com/database/using-sqlite-on-android/232900584
         if (oldVersion < newVersion) {
             switch (oldVersion) {
-            case 1:
-            case 2:
-            case 3:
-               database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
-                       + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
-            case 4:
-                createTags(database);
-
-            default:
-                break;
+                case 1:
+                case 2:
+                case 3:
+                    database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
+                            + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
+                case 4:
+                    createTags(database);
+                case 5:
+                    createBadges(database);
+                default:
+                    break;
             }
         }
     }
