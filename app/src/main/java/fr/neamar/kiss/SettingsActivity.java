@@ -70,8 +70,6 @@ public class SettingsActivity extends PreferenceActivity implements
 
         addSearchProvidersSelector(prefs);
 
-        UiTweaks.updateThemePrimaryColor(this);
-
         // Notification color can't be updated before Lollipop
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             PreferenceScreen screen = (PreferenceScreen) findPreference("ui-holder");
