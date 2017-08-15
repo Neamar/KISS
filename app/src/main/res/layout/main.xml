@@ -47,7 +47,6 @@
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
         android:elevation="2dp"
-        android:padding="5dp"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -60,7 +59,8 @@
             <ImageView
                 android:id="@+id/favoriteBar0"
                 android:layout_width="0px"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
@@ -71,7 +71,8 @@
             <ImageView
                 android:id="@+id/favoriteBar1"
                 android:layout_width="0px"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
@@ -82,7 +83,8 @@
             <ImageView
                 android:id="@+id/favoriteBar2"
                 android:layout_width="0px"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
@@ -93,7 +95,8 @@
             <ImageView
                 android:id="@+id/favoriteBar3"
                 android:layout_width="0px"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
@@ -104,7 +107,8 @@
             <ImageView
                 android:id="@+id/favoriteBar4"
                 android:layout_width="0px"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
@@ -115,7 +119,8 @@
             <ImageView
                 android:id="@+id/favoriteBar5"
                 android:layout_width="0px"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
@@ -128,7 +133,7 @@
     <RelativeLayout
         android:id="@+id/searchEditLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/bar_height"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="10dp"
@@ -136,28 +141,27 @@
         android:layout_marginRight="10dp"
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
-        android:elevation="2dp"
-        android:padding="4dp">
+        android:elevation="2dp">
 
         <ImageView
             android:id="@+id/launcherButton"
-            android:layout_width="41dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/launcher_button_width"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_kiss"
             android:focusable="true"
             android:onClick="onLauncherButtonClicked"
-            android:paddingLeft="6dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="@dimen/launcher_button_padding"
+            android:paddingRight="@dimen/launcher_button_padding"
             android:src="@drawable/ic_launcher"
             android:tag="showMenu" />
 
         <ProgressBar
             android:id="@+id/loaderBar"
             android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="6dp"
@@ -168,7 +172,7 @@
         <EditText
             android:id="@+id/searchEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/launcherButton"
             android:layout_toLeftOf="@+id/clearButton"
@@ -186,37 +190,31 @@
 
         <ImageView
             android:id="@+id/menuButton"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/launcher_button_width"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
             android:onClick="onMenuButtonClicked"
-            android:paddingBottom="4dp"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
-            android:paddingTop="4dp"
+            android:paddingLeft="@dimen/launcher_button_padding"
+            android:paddingRight="@dimen/launcher_button_padding"
             android:src="@drawable/dots"
             android:tint="?attr/searchColor" />
 
         <ImageView
             android:id="@+id/clearButton"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/launcher_button_width"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_clear"
             android:focusable="true"
             android:onClick="onClearButtonClicked"
-            android:paddingBottom="4dp"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
-            android:paddingTop="4dp"
+            android:paddingLeft="@dimen/launcher_button_padding"
+            android:paddingRight="@dimen/launcher_button_padding"
             android:src="@drawable/clear_dark"
             android:tint="?attr/searchColor"
             android:visibility="visible" />
