@@ -982,7 +982,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             //add widget to view
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
             AppWidgetHostView hostView = mAppWidgetHost.createView(this, appWidgetId, appWidgetInfo);
+            hostView.setMinimumHeight(appWidgetInfo.minHeight);
             hostView.setAppWidget(appWidgetId, appWidgetInfo);
+            if (Build.VERSION.SDK_INT > 15) {
+                hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
+            }
             widgetArea.addView(hostView);
         }
         // only one widget allowed so widgetUsed is true now, even if not added to view
