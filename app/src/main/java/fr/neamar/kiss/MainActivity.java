@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +22,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -35,8 +35,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -328,13 +326,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Transparent Search and Favorites bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            TypedValue typedValue = new  TypedValue();
-            getTheme().resolveAttribute(R.attr.listBackgroundColor, typedValue, true);
-            final  int color = typedValue.data;
-            if(prefs.getBoolean("transparent-favorites", false)) this.findViewById(R.id.favoritesBar).setBackgroundColor(color);
+            if(prefs.getBoolean("transparent-favorites", false)) {
+                this.findViewById(R.id.favoritesBar).setBackgroundColor(Color.TRANSPARENT);
+            }
             if(prefs.getBoolean("transparent-search", false)){
-                this.findViewById(R.id.searchEditLayout).setBackgroundColor(color);
-                this.findViewById(R.id.searchEditText).setBackgroundColor(color);
+                this.findViewById(R.id.searchEditLayout).setBackgroundColor(Color.TRANSPARENT);
+                this.findViewById(R.id.searchEditText).setBackgroundColor(Color.TRANSPARENT);
             }
         }
     }
