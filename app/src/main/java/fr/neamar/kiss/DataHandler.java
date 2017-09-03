@@ -343,6 +343,11 @@ public class DataHandler extends BroadcastReceiver
         Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
     }
 
+    public void clearHistory()
+    {
+        DBHelper.clearHistory(this.context);
+    }
+
     public void removeShortcut(ShortcutsPojo shortcut) {
         DBHelper.removeShortcut(this.context, shortcut.name);
 
@@ -536,7 +541,7 @@ public class DataHandler extends BroadcastReceiver
         return null;
     }
 
-    protected class ProviderEntry {
+    protected static final class ProviderEntry {
         public IProvider provider = null;
         public ServiceConnection connection = null;
     }

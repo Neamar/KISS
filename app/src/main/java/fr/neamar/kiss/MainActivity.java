@@ -665,8 +665,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
             // Reveal the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                int animationDuration = getResources().getInteger(
+                        android.R.integer.config_shortAnimTime);
+
                 Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
                 kissBar.setVisibility(View.VISIBLE);
+                anim.setDuration(animationDuration);
                 anim.start();
             } else {
                 // No animation before Lollipop
@@ -681,6 +685,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                int animationDuration = getResources().getInteger(
+                        android.R.integer.config_shortAnimTime);
+
                 Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, finalRadius, 0);
                 anim.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -689,6 +696,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                         super.onAnimationEnd(animation);
                     }
                 });
+                anim.setDuration(animationDuration);
                 anim.start();
             } else {
                 // No animation before Lollipop
