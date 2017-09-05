@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -176,6 +177,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Task launched on text change
      */
     private Searcher searcher;
+    /**
+     * Search edit layout
+     */
+    private View searchEditLayout;
 
     /**
      * Called when the activity is first created.
@@ -290,6 +295,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         registerLongClickOnFavorites();
         searchEditText = (EditText) findViewById(R.id.searchEditText);
+        searchEditLayout = findViewById(R.id.searchEditLayout);
 
         // Listen to changes
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -483,6 +489,17 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             displayKissBar(false);
         }
+
+        boolean largeSearchBar = prefs.getBoolean("large-search-bar", false);
+        Resources res = getResources();
+        int searchHeight;
+        if (largeSearchBar) {
+            searchHeight = res.getDimensionPixelSize(R.dimen.large_bar_height);
+        } else {
+            searchHeight = res.getDimensionPixelSize(R.dimen.bar_height);
+        }
+        searchEditLayout.getLayoutParams().height = searchHeight;
+        kissBar.getLayoutParams().height = searchHeight;
 
         //Show favorites above search field ONLY if AppProvider is already loaded
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
