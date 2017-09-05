@@ -251,6 +251,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         setContentView(R.layout.main);
 
+        // Add touch listener for history popup to root view
+        findViewById(android.R.id.content).setOnTouchListener(this);
+
         this.list = (ListView) this.findViewById(android.R.id.list);
         this.listContainer = (View) this.list.getParent();
         this.listEmpty = this.findViewById(android.R.id.empty);
