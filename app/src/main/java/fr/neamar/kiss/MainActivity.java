@@ -64,7 +64,7 @@ import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
-public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -316,6 +316,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 return true;
             }
         });
+
+        // Add touch listener for history popup to text field
+        searchEditText.setOnTouchListener(this);
 
         // Initialize widget manager and host, restore widgets
         widgetPrefs = this.getSharedPreferences(WIDGET_PREFERENCE_ID, Context.MODE_PRIVATE);
@@ -637,7 +640,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
+    public boolean onTouch(View view, MotionEvent event) {
         //if motion movement ends
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
             //if history is hidden
@@ -655,7 +658,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 displayQuickFavoritesBar(false, true);
             }
         }
-        return super.dispatchTouchEvent(event);
+        return true;
     }
 
     /**
