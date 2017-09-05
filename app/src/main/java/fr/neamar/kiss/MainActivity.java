@@ -263,6 +263,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.listContainer = (View) this.list.getParent();
         this.listEmpty = this.findViewById(android.R.id.empty);
 
+        // add history popup touch listener to empty view (prevents on not working there)
+        this.listEmpty.setOnTouchListener(this);
+
         // Create adapter for records
         this.adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
         this.list.setAdapter(this.adapter);
