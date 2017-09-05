@@ -996,6 +996,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private void addWidgetToLauncher(int appWidgetId) {
         // only add widgets if in minimal mode (may need launcher restart when turned on)
         if(prefs.getBoolean("history-hide", true)){
+            // remove empty list view when using widgets, this would block touches on the widget
+            listEmpty.setVisibility(View.GONE);
             //add widget to view
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
             AppWidgetHostView hostView = mAppWidgetHost.createView(this, appWidgetId, appWidgetInfo);
