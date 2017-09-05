@@ -675,6 +675,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 displayQuickFavoritesBar(false, true);
             }
         }
+        if(view.getId() == searchEditText.getId()) {
+            showKeyboard();
+        }
         return true;
     }
 
