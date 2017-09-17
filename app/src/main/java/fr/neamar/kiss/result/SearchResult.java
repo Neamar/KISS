@@ -69,7 +69,8 @@ public class SearchResult extends Result {
             }
         }
         if (exceptionThrown || !pojo.name.equals("Google")) {
-            Uri uri = Uri.parse(searchPojo.url + searchPojo.query);
+            String urlWithQuery = searchPojo.url.replace("{q}", searchPojo.query);
+            Uri uri = Uri.parse(urlWithQuery);
             search = new Intent(Intent.ACTION_VIEW, uri);
             search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             try {

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.SearchProvider;
@@ -61,44 +62,86 @@ public class AddSearchProviderPreference extends DialogPreference {
 
     }
 
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        boolean invalidData = false;
-        boolean invalidName = false;
+    private boolean validatePipes() {
+        if (providerName.getText().toString().contains("|") || providerUrl.getText().toString().contains("|")) {
+            return false;
+        }
+        return true;
+    }
 
-        if (which == DialogInterface.BUTTON_POSITIVE) {
-            // check input
-            if (providerName.getText().toString().contains("|") || providerUrl.getText().toString().contains("|")) {
-                invalidData = true;
-            }
+    private boolean validateQueryPlaceholder() {
+        if (!providerUrl.getText().toString().contains("{q}")) {
+            return false;
+        }
+        return true;
+    }
 
-            //check if custom provider
-            Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders());
-            for (String searchProvider : availableSearchProviders) {
-                String[] nameAndUrl = searchProvider.split("\\|");
-                if (nameAndUrl.length == 2) {
-                    if (nameAndUrl[0].equals(providerName.getText().toString())) {
-                        invalidName = true;
-                    }
+    private boolean validateNameExists() {
+        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders());
+        for (String searchProvider : availableSearchProviders) {
+            String[] nameAndUrl = searchProvider.split("\\|");
+            if (nameAndUrl.length == 2) {
+                if (nameAndUrl[0].equals(providerName.getText().toString())) {
+                    return false;
                 }
             }
-            if (invalidData) {
-                //cancel close dialog
-                closeDialog(dialog, false, which);
-                //show tip
-                Toast.makeText(this.getContext(), R.string.search_provider_error_char, Toast.LENGTH_SHORT).show();
-            } else if (invalidName) {
-                //cancel close dialog
-                closeDialog(dialog, false, which);
-                //show tip
-                Toast.makeText(this.getContext(), R.string.search_provider_error_exists, Toast.LENGTH_SHORT).show();
-            } else if ((providerName.getText().toString().isEmpty()) || (providerUrl.getText().toString().isEmpty())) {
+        }
+        return true;
+    }
+
+    private boolean validateEmpty() {
+        return (!providerName.getText().toString().isEmpty()) && (!providerUrl.getText().toString().isEmpty());
+    }
+
+    private boolean validateUrl() {
+        Matcher m = SearchProvider.urlPattern.matcher(providerUrl.getText().toString());
+        return m.find();
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+        if (which == DialogInterface.BUTTON_POSITIVE) {
+            //check if empty name / url
+            if (!validateEmpty()) {
                 // do not close - empty strings
                 closeDialog(dialog, false, which);
+                return;
             }
-            else {
-                closeDialog(dialog, true, which);
+            // check if input contains |
+            if (!validatePipes()) {
+                //show tip
+                Toast.makeText(this.getContext(), R.string.search_provider_error_char, Toast.LENGTH_SHORT).show();
+                //cancel close dialog
+                closeDialog(dialog, false, which);
+                return;
             }
+            //check if custom provider
+            if (!validateNameExists()) {
+                //show tip
+                Toast.makeText(this.getContext(), R.string.search_provider_error_exists, Toast.LENGTH_SHORT).show();
+                //cancel close dialog
+                closeDialog(dialog, false, which);
+                return;
+            }
+            // check input
+            if (!validateQueryPlaceholder()) {
+                //show tip
+                Toast.makeText(this.getContext(), R.string.search_provider_error_placeholder, Toast.LENGTH_SHORT).show();
+                //cancel close dialog
+                closeDialog(dialog, false, which);
+                return;
+            }
+            //check if a valid url is given
+            if (!validateUrl()) {
+                Toast.makeText(this.getContext(), R.string.search_provider_error_url, Toast.LENGTH_SHORT).show();
+                //not a url
+                closeDialog(dialog, false, which);
+                return;
+            }
+            //if all validates are correct, then close dialog with close flag = true
+            closeDialog(dialog, true, which);
+
         } else if (which == DialogInterface.BUTTON_NEGATIVE) {
             // now close
             closeDialog(dialog, true, which);

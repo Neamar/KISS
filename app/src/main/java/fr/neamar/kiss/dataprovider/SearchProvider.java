@@ -1,21 +1,15 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.webkit.URLUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.loader.LoadSearchPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
@@ -24,13 +18,13 @@ public class SearchProvider extends Provider<SearchPojo> {
     public static final String URL_REGEX = "^(?:[a-z]+://)?(?:[a-z0-9-]|[^\\x00-\\x7F])+(?:[.](?:[a-z0-9-]|[^\\x00-\\x7F])+)+.*$";
 
     private static final Set<String> defaultSearchProviders = new HashSet<>();
-    private static final Pattern p = Pattern.compile(URL_REGEX);
+    public static final Pattern urlPattern = Pattern.compile(URL_REGEX);
 
     static {
-        defaultSearchProviders.add("Bing|https://www.bing.com/search?q=");
-        defaultSearchProviders.add("DuckDuckGo|https://duckduckgo.com/?q=");
-        defaultSearchProviders.add("Google|https://encrypted.google.com/search?q=");
-        defaultSearchProviders.add("Yahoo|https://search.yahoo.com/search?p=");
+        defaultSearchProviders.add("Bing|https://www.bing.com/search?q={q}");
+        defaultSearchProviders.add("DuckDuckGo|https://duckduckgo.com/?q={q}");
+        defaultSearchProviders.add("Google|https://encrypted.google.com/search?q={q}");
+        defaultSearchProviders.add("Yahoo|https://search.yahoo.com/search?urlPattern={q}");
     }
 
     @Override
@@ -64,7 +58,7 @@ public class SearchProvider extends Provider<SearchPojo> {
             }
         }
 
-        Matcher m = p.matcher(query);
+        Matcher m = urlPattern.matcher(query);
         if (m.find()) {
             String guessedUrl = URLUtil.guessUrl(query);
             if (URLUtil.isValidUrl(guessedUrl)) {
