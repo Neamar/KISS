@@ -3,6 +3,8 @@ package fr.neamar.kiss.preference;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
@@ -17,6 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 
@@ -45,6 +48,8 @@ public class AddSearchProviderPreference extends DialogPreference {
         layout.addView(providerName);
         layout.addView(providerUrl);
 
+//        providerName.setTextColor(this.getLayoutResource().getColor(R.color.kiss_text_dark));
+//        providerUrl.setTextColor(Color.RED);
         return layout;
     }
 
@@ -77,7 +82,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     }
 
     private boolean validateNameExists() {
-        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders());
+        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext()));
         for (String searchProvider : availableSearchProviders) {
             String[] nameAndUrl = searchProvider.split("\\|");
             if (nameAndUrl.length == 2) {
@@ -162,7 +167,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         super.onDialogClosed(positiveresult);
         if (positiveresult && shouldPersist()) {
             //persistString(providerName.getText().toString());
-            Set<String> availableProviders = new HashSet<String>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders()));
+            Set<String> availableProviders = new HashSet<String>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
             availableProviders.add(providerName.getText().toString()+"|"+providerUrl.getText().toString().toLowerCase());
             prefs.edit().putStringSet("available-search-providers", availableProviders).commit();
             prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).commit();

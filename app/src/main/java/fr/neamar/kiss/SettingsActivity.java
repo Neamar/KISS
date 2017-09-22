@@ -119,7 +119,12 @@ public class SettingsActivity extends PreferenceActivity implements
                 if (!hasExcludedApps(prefs)) {
                     multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
                 }
-                KissApplication.getDataHandler(SettingsActivity.this).getAppProvider().reload();
+
+                final AppProvider provider = KissApplication.getDataHandler(SettingsActivity.this).getAppProvider();
+                if (provider != null) {
+                    provider.reload();
+                }
+
                 return false;
             }
         });
@@ -154,7 +159,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private void addCustomSearchProvidersSelect(SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
         //get stored search providers or default hard-coded values
-        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders());
+        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this));
         String[] searchProvidersArray = new String[availableSearchProviders.size()];
         int pos = 0;
         //get names of search providers
@@ -167,6 +172,19 @@ public class SettingsActivity extends PreferenceActivity implements
         multiPreference.setKey("selected-search-provider-names");
         multiPreference.setEntries(searchProvidersArray);
         multiPreference.setEntryValues(searchProvidersArray);
+        multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            @SuppressWarnings("unchecked")
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+                final SearchProvider provider = KissApplication.getDataHandler(SettingsActivity.this).getSearchProvider();
+                if (provider != null) {
+                    provider.reload();
+                }
+                return true;
+            }
+        });
+
         PreferenceGroup category = (PreferenceGroup) findPreference("providers");
         category.addPreference(multiPreference);
     }
@@ -174,7 +192,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private void addCustomSearchProvidersDelete(SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
 
-        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders());
+        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this));
         String[] searchProvidersArray = new String[availableSearchProviders.size()];
         int pos = 0;
         //get names of search providers
@@ -194,9 +212,9 @@ public class SettingsActivity extends PreferenceActivity implements
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 Set<String> searchProvidersToDelete = (Set<String>) newValue;//PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("deleting-search-providers-names", new HashSet<String>());
-                Set<String> availableSearchProviders = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders());
+                Set<String> availableSearchProviders = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders(SettingsActivity.this));
 
-                Set<String> updatedProviders = new HashSet<String>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders()));
+                Set<String> updatedProviders = new HashSet<String>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders(SettingsActivity.this)));
 
                 for (String searchProvider : availableSearchProviders) {
                     for (String providerToDelete : searchProvidersToDelete) {
@@ -211,6 +229,12 @@ public class SettingsActivity extends PreferenceActivity implements
 
                 if (searchProvidersToDelete.size() > 0) {
                     Toast.makeText(SettingsActivity.this, R.string.search_provider_deleted, Toast.LENGTH_LONG).show();
+                }
+
+                // Reload search list
+                final SearchProvider provider = KissApplication.getDataHandler(SettingsActivity.this).getSearchProvider();
+                if (provider != null) {
+                    provider.reload();
                 }
                 return true;
             }
