@@ -378,9 +378,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     private void configureFirstRun() {
-        if (prefs.getBoolean("firstRun", true) || true) {
+        if (prefs.getBoolean("firstRun", true)) {
             // It is the first run. Make sure this is not an update by checking if history is empty
-            if (DBHelper.getHistoryLength(this) != -1) {
+            if (DBHelper.getHistoryLength(this) == 0) {
                 addDefaultAppsToFavs();
             }
             // set flag to false
