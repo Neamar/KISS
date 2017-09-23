@@ -10,13 +10,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.InputType;
@@ -47,6 +51,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -327,8 +332,60 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
+        configureFirstRun();
+
         UiTweaks.updateThemePrimaryColor(this);
         UiTweaks.tintResources(this);
+    }
+
+    private void addDefaultAppsToFavs() {
+        {
+            //Default phone call app
+            Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
+            phoneIntent.setData(Uri.parse("tel:0000"));
+            ResolveInfo resolveInfo = getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfo != null) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                if (resolveInfo.activityInfo.name != null) {
+                    KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                }
+            }
+        }
+        {
+            //Default contacts app
+            Intent contactsIntent = new Intent(Intent.ACTION_DEFAULT, ContactsContract.Contacts.CONTENT_URI);
+            ResolveInfo resolveInfo = getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfo != null) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                if (resolveInfo.activityInfo.name != null) {
+                    KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                }
+            }
+
+        }
+        {
+            //Default browser
+            Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
+            ResolveInfo resolveInfo = getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfo != null) {
+                String packageName = resolveInfo.activityInfo.packageName;
+
+                if (resolveInfo.activityInfo.name != null) {
+                    KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                }
+            }
+        }
+    }
+
+    private void configureFirstRun() {
+        if (prefs.getBoolean("firstRun", true) || true) {
+            // It is the first run. Make sure this is not an update by checking if history is empty
+            if (DBHelper.getHistoryLength(this) != -1) {
+                addDefaultAppsToFavs();
+            }
+            // set flag to false
+            prefs.edit().putBoolean("firstRun", false).commit();
+        }
     }
 
     private void registerLongClickOnFavorites() {
@@ -377,7 +434,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private void displayQuickFavoritesBar(boolean initialize, boolean touched) {
         View quickFavoritesBar = findViewById(R.id.favoritesBar);
         if (searchEditText.getText().toString().length() == 0
-                && prefs.getBoolean("enable-favorites-bar", false)) {
+                && prefs.getBoolean("enable-favorites-bar", true)) {
             if((!prefs.getBoolean("favorites-hide", false) || touched)) {
                 quickFavoritesBar.setVisibility(View.VISIBLE);
             }
@@ -728,7 +785,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         // Hide the favorite bar in the kiss bar if the quick bar is enabled
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", false)) {
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", true)) {
             favoritesKissBar.setVisibility(View.INVISIBLE);
         } else {
             favoritesKissBar.setVisibility(View.VISIBLE);
@@ -743,7 +800,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         if (favoritesPojo.size() == 0) {
             int noFavCnt = prefs.getInt("no-favorites-tip", 0);
-            if (noFavCnt < 3 && !prefs.getBoolean("enable-favorites-bar", false)) {
+            if (noFavCnt < 3 && !prefs.getBoolean("enable-favorites-bar", true)) {
                 Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
                 toast.show();
                 prefs.edit().putInt("no-favorites-tip", ++noFavCnt).apply();
