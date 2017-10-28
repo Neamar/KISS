@@ -5,12 +5,27 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/widgetLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/resultLayout"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+
+    </RelativeLayout>
+
     <FrameLayout
+        android:id="@+id/resultLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/favoritesBar"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentTop="false"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"

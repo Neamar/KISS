@@ -30,7 +30,9 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait primary-color transparent-search transparent-favorites";
+
+    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait primary-color transparent-search transparent-favorites history-hide";
+
     final static private String requireInstantRestart = "theme notification-bar-color";
 
     private boolean requireFullRestart = false;
