@@ -3,6 +3,9 @@ machine:
     version: openjdk8
   environment:
     GRADLE_OPTS: -Dorg.gradle.daemon=true -Dorg.gradle.jvmargs=-Xmx2048M
+checkout:
+  post:
+    - cp -r licenses/. $ANDROID_HOME/licenses
 dependencies:
   pre:
     - echo y | android update sdk --no-ui --all --filter tools,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository,android-23
