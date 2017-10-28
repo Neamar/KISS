@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -250,7 +251,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Lock launcher into portrait mode
         // Do it here (before initializing the view) to make the transition as smooth as possible
         if (prefs.getBoolean("force-portrait", true)) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
             } else {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -380,6 +381,17 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         UiTweaks.updateThemePrimaryColor(this);
         UiTweaks.tintResources(this);
+
+        // Transparent Search and Favorites bar
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            if(prefs.getBoolean("transparent-favorites", false)) {
+                this.findViewById(R.id.favoritesBar).setBackgroundColor(Color.TRANSPARENT);
+            }
+            if(prefs.getBoolean("transparent-search", false)){
+                this.findViewById(R.id.searchEditLayout).setBackgroundColor(Color.TRANSPARENT);
+                this.findViewById(R.id.searchEditText).setBackgroundColor(Color.TRANSPARENT);
+            }
+        }
     }
 
     private void addDefaultAppsToFavs() {

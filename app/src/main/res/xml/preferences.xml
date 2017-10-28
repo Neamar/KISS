@@ -120,10 +120,15 @@
                 android:title="@string/icons_hide_main" />
 
             <fr.neamar.kiss.SwitchPreference
+                android:key="transparent-search"
+                android:title="@string/transparent_search_bar"/>
+            <fr.neamar.kiss.SwitchPreference
+                android:key="transparent-favorites"
+                android:title="@string/transparent_favorites_bar"/>
+            <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
                 android:key="large-search-bar"
                 android:title="@string/large_search_bar" />
-
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
