@@ -21,7 +21,7 @@ test:
         background: true
     # Run robolectric tests, build the apk, and build the test apk for running
     # the espresso tests
-    - ./gradlew test assembleDebug assembleDebugAndroidTest --console=plain
+    - ./gradlew test assembleDebug assembleDebugAndroidTest --console=plain --stacktrace
     # wait for the emulator to have booted
     - circle-android wait-for-boot
     # Run espresso tests
