@@ -191,7 +191,7 @@ public class AppProvider extends Provider<AppPojo> {
                 relevance += (int)(((double)matchedWordStarts / totalWordStarts) * 60);
 
                 // The more fragmented the matches are, the less the result is important
-                relevance *= (int)(0.2 + 0.8 * (1.0 / matchPositions.size()));
+                relevance = (int)(relevance * (0.2 + 0.8 * (1.0 / matchPositions.size())));
             }
             else {
                 if (pojo.tagsNormalized.startsWith(query)) {
