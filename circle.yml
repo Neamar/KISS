@@ -22,12 +22,13 @@ test:
     # Run robolectric tests, build the apk, and build the test apk for running
     # the espresso tests
     - ./gradlew test assembleDebug assembleDebugAndroidTest --console=plain --stacktrace
+    - cp -r app/build/reports $CIRCLE_ARTIFACTS
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # wait for the emulator to have booted
     - circle-android wait-for-boot
     # Run espresso tests
     - ./gradlew connectedAndroidTest --console=plain
   post:
-    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
     - find app/build/test-results -name "*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/ \;
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
