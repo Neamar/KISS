@@ -19,6 +19,7 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
@@ -197,7 +198,10 @@ public class AppResult extends Result {
             }
         });
 
-        builder.show();
+		AlertDialog dialog = builder.create();
+		dialog.getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE );
+
+		dialog.show();
     }
 
     /**
