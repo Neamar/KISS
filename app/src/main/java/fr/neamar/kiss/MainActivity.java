@@ -315,6 +315,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Is the kiss bar visible?
+                if (kissBar.getVisibility() == View.VISIBLE)
+                {
+                    displayKissBar(false, false);
+                }
                 String text = s.toString();
                 adjustInputType(text);
                 updateRecords(text);
@@ -834,7 +839,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    private void displayKissBar(Boolean display) {
+    private void displayKissBar(Boolean display)
+    {
+        this.displayKissBar( display, true );
+    }
+
+    private void displayKissBar(boolean display, boolean emptyText) {
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
 
         // get the center for the clipping circle
@@ -891,11 +901,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 // No animation before Lollipop
                 kissBar.setVisibility(View.GONE);
             }
-            searchEditText.setText("");
+            if ( emptyText )
+            {
+                searchEditText.setText( "" );
 
-            if (prefs.getBoolean("display-keyboard", false)) {
-                // Display keyboard
-                showKeyboard();
+                if( prefs.getBoolean( "display-keyboard", false ) )
+                {
+                    // Display keyboard
+                    showKeyboard();
+                }
             }
         }
 
