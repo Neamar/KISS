@@ -31,6 +31,7 @@ import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class DataHandler extends BroadcastReceiver
@@ -238,10 +239,27 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context android context
      * @param query   query to run
+     * @param searcher
+     */
+    public void requestResults( Context context, String query, Searcher searcher )
+    {
+        for (ProviderEntry entry : this.providers.values()) {
+            if (entry.provider != null) {
+                // Retrieve results for query:
+                entry.provider.requestResults(query, searcher);
+            }
+        }
+    }
+
+    /**
+     * Get records for this query.
+     *
+     * @param context android context
+     * @param query   query to run
      * @return ordered list of records
      */
-    public ArrayList<Pojo> getResults(Context context, String query) {
-        query = query.toLowerCase().trim().replaceAll("<", "&lt;");
+    public ArrayList<Pojo> getResults( Context context, String query ) {
+        query = query.trim().replaceAll("<", "&lt;");
 
         currentQuery = query;
 

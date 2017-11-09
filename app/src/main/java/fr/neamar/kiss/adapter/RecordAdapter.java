@@ -26,7 +26,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     /**
      * Array list containing all the results currently displayed
      */
-    private ArrayList<Result> results = new ArrayList<>();
+    private final ArrayList<Result> results;
 
     public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
                          ArrayList<Result> results) {
@@ -36,10 +36,12 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         this.results = results;
     }
 
+    @Override
     public int getViewTypeCount() {
         return 7;
     }
 
+    @Override
     public int getItemViewType(int position) {
         if (results.get(position) instanceof AppResult)
             return 0;
@@ -57,6 +59,18 @@ public class RecordAdapter extends ArrayAdapter<Result> {
             return 6;
         else
             return -1;
+    }
+
+    @Override
+    public boolean hasStableIds()
+    {
+        return true;
+    }
+
+    @Override
+    public long getItemId( int position )
+    {
+        return results.get(position).getUniqueId();
     }
 
     @Override

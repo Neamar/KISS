@@ -18,6 +18,8 @@ import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.DamerauLevenshteinAlgorithm;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class AppProvider extends Provider<AppPojo> {
@@ -136,8 +138,39 @@ public class AppProvider extends Provider<AppPojo> {
         return distance[str1.length()][str2.length()];
     }
 
-    public ArrayList<Pojo> getResults(String query) {
-        query = StringNormalizer.normalize(query);
+    /**
+     *
+     * @param query The string to search for
+     * @param searcher The receiver of results
+     */
+
+    @Override
+    public void requestResults( String query, Searcher searcher )
+    {
+        String queryNormalized = StringNormalizer.normalize(query);
+        DamerauLevenshteinAlgorithm algorithm = new DamerauLevenshteinAlgorithm(15, 9, 20, 13);
+
+        for (AppPojo pojo : pojos) {
+            pojo.displayName = pojo.name;
+            pojo.displayTags = pojo.tags;
+
+            double distance = algorithm.execute( queryNormalized, pojo.nameNormalized );
+            double q = queryNormalized.length() * 15/*delete cost*/;
+            double n = pojo.nameNormalized.length() * 9/*insert cost*/;
+            double normalizedDistance = distance / Math.sqrt(Math.max(q, n) * Math.sqrt(q * n));
+            //TODO: normalize distance eg: 1 - ( distance / Math.sqrt(Math.max(d.length, e.length) * Math.sqrt(d.length * e.length)) )
+            //int maxDistance = queryNormalized.length() * 15/*delete cost*/ + pojo.nameNormalized.length() * 9/*insertCost*/;
+            pojo.relevance = 50 - (int)(normalizedDistance * 50d);
+            if ( pojo.relevance > 0 )
+            {
+                //pojo.displayTags = "(" + pojo.relevance + ") " + pojo.tags;
+                searcher.addResult( pojo );
+            }
+        }
+    }
+
+    @Override
+    public ArrayList<Pojo> getResults( String query) {
         ArrayList<Pojo> records = new ArrayList<>();
 
         int nameRelevance;
@@ -147,11 +180,12 @@ public class AppProvider extends Provider<AppPojo> {
         int beginMatch;
         int matchedWordStarts;
         int totalWordStarts;
-        ArrayList<Pair<Integer, Integer>> matchPositions;
+        ArrayList<Pair<Integer, Integer>> matchPositions = new ArrayList<>( 0 );
 
         for (AppPojo pojo : pojos) {
             pojo.displayName = pojo.name;
             pojo.displayTags = pojo.tags;
+
             nameRelevance = 0;
             queryPos = 0;
             normalizedAppPos = 0;
@@ -159,7 +193,7 @@ public class AppProvider extends Provider<AppPojo> {
             beginMatch = 0;
             matchedWordStarts = 0;
             totalWordStarts = 0;
-            matchPositions = null;
+            matchPositions.clear();
 
             boolean match = false;
             while (normalizedAppPos < pojo.nameNormalized.length()) {
@@ -181,8 +215,6 @@ public class AppProvider extends Provider<AppPojo> {
                     queryPos += Character.charCount(query.codePointAt(queryPos));
                 }
                 else if (match) {
-                    if (matchPositions == null)
-                        matchPositions = new ArrayList<>();
                     matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
                     match = false;
                 }
@@ -198,13 +230,11 @@ public class AppProvider extends Provider<AppPojo> {
             }
 
             if (match) {
-
-                if (matchPositions == null) {matchPositions = new ArrayList<>();}
                 matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
                 pojo.setDisplayNameHighlightRegion(matchPositions);
             }
 
-            if (queryPos == query.length() && matchPositions != null) {
+            if (queryPos == query.length()) {
                 // Add percentage of matched letters, but at a weight of 40
                 nameRelevance += (int) (((double) queryPos / pojo.nameNormalized.length()) * 40);
 
