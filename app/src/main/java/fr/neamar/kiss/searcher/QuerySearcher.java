@@ -31,6 +31,10 @@ public class QuerySearcher extends Searcher {
 
     @Override
     protected List<Pojo> doInBackground(Void... voids) {
+        // Request records
+        KissApplication.getDataHandler(activity).requestResults( activity, query, this );
+        return null;
+/*
         // Ask for records
         final List<Pojo> pojos = KissApplication.getDataHandler(activity).getResults(
                 activity, query);
@@ -45,5 +49,6 @@ public class QuerySearcher extends Searcher {
         }
 
         return pojos;
+*/
     }
 }

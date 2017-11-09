@@ -7,6 +7,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadTogglesPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.TogglesPojo;
+import fr.neamar.kiss.searcher.Searcher;
 
 public class TogglesProvider extends Provider<TogglesPojo> {
     private String toggleName;
@@ -16,6 +17,12 @@ public class TogglesProvider extends Provider<TogglesPojo> {
         this.initialize(new LoadTogglesPojos(this));
 
         toggleName = this.getString(R.string.toggles_prefix).toLowerCase();
+    }
+
+    @Override
+    public void requestResults( String s, Searcher searcher )
+    {
+        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
     }
 
     public ArrayList<Pojo> getResults(String query) {
