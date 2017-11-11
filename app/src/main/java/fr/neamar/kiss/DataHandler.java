@@ -36,6 +36,10 @@ import fr.neamar.kiss.utils.UserHandle;
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     /**
+     * Package the providers reside in
+     */
+    final static private String PROVIDER_PREFIX = IProvider.class.getPackage().getName() + ".";
+    /**
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
@@ -100,7 +104,7 @@ public class DataHandler extends BroadcastReceiver
     protected Intent providerName2Intent(String name) {
         // Build expected fully-qualified provider class name
         StringBuilder className = new StringBuilder(50);
-        className.append("fr.neamar.kiss.dataprovider.");
+        className.append(PROVIDER_PREFIX);
         className.append(Character.toUpperCase(name.charAt(0)));
         className.append(name.substring(1).toLowerCase());
         className.append("Provider");
