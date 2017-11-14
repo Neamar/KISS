@@ -144,27 +144,72 @@ public class AppProvider extends Provider<AppPojo> {
      * @param searcher The receiver of results
      */
 
+    private static int DLA_DELETE_COST = 15;
+    private static int DLA_INSERT_COST = 9;
+    private static int DLA_REPLACE_COST = DLA_DELETE_COST + DLA_INSERT_COST;
+    private static int DLA_SWAP_COST = 13;
+
     @Override
     public void requestResults( String query, Searcher searcher )
     {
-        String queryNormalized = StringNormalizer.normalize(query);
-        DamerauLevenshteinAlgorithm algorithm = new DamerauLevenshteinAlgorithm(15, 9, 20, 13);
+        String queryNormalized = StringNormalizer.normalize( query );
 
-        for (AppPojo pojo : pojos) {
+        DamerauLevenshteinAlgorithm algorithm = new DamerauLevenshteinAlgorithm( DLA_DELETE_COST, DLA_INSERT_COST, DLA_REPLACE_COST, DLA_SWAP_COST );
+
+        for( AppPojo pojo : pojos )
+        {
             pojo.displayName = pojo.name;
             pojo.displayTags = pojo.tags;
 
-            double distance = algorithm.execute( queryNormalized, pojo.nameNormalized );
-            double q = queryNormalized.length() * 15/*delete cost*/;
-            double n = pojo.nameNormalized.length() * 9/*insert cost*/;
-            double normalizedDistance = distance / Math.sqrt(Math.max(q, n) * Math.sqrt(q * n));
-            //TODO: normalize distance eg: 1 - ( distance / Math.sqrt(Math.max(d.length, e.length) * Math.sqrt(d.length * e.length)) )
-            //int maxDistance = queryNormalized.length() * 15/*delete cost*/ + pojo.nameNormalized.length() * 9/*insertCost*/;
-            pojo.relevance = 50 - (int)(normalizedDistance * 50d);
-            if ( pojo.relevance > 0 )
+            // check relevance for normalized name
             {
-                //pojo.displayTags = "(" + pojo.relevance + ") " + pojo.tags;
-                searcher.addResult( pojo );
+                double distance           = algorithm.execute( queryNormalized, pojo.nameNormalized );
+                double q                  = queryNormalized.length() * DLA_DELETE_COST;
+                double n                  = pojo.nameNormalized.length() * DLA_INSERT_COST;
+                double normalizedDistance = distance / Math.sqrt( Math.max( q, n ) * Math.sqrt( q * n ) );
+                pojo.relevance = 50 - (int)(normalizedDistance * 50d);
+                if( distance > 0 )
+                    pojo.relevance += 1;
+            }
+
+            // check relevance for tags
+            if( !pojo.tagsNormalized.isEmpty() )
+            {
+                int    tagRelevance  = 0;
+                String tagList[]     = pojo.tagsNormalized.split( "\\s+" );
+                int    matchedTagIdx = -1;
+                for( int tagIdx = 0; tagIdx < tagList.length; tagIdx++ )
+                {
+                    String tag               = tagList[tagIdx];
+                    int    distance          = computeLevenshteinDistance( tag, query );
+                    int    maxEditOperations = tag.length() < query.length() ? query.length() : tag.length();
+                    int    relevance         = maxEditOperations - distance;
+                    if( tagRelevance < relevance )
+                    {
+                        tagRelevance = relevance;
+                        matchedTagIdx = tagIdx;
+                    }
+                }
+
+                if( matchedTagIdx > -1 )
+                {
+                    String tag      = tagList[matchedTagIdx];
+                    int    tagStart = pojo.tagsNormalized.indexOf( tag );
+                    int    tagEnd   = tagStart + tag.length();
+                    pojo.setTagHighlight( tagStart, tagEnd );
+
+                    if( pojo.relevance <= 0 )
+                    {
+                        pojo.relevance = tagRelevance;
+                    }
+                }
+
+            }
+
+            if( pojo.relevance > 0 )
+            {
+                if( !searcher.addResult( pojo ) )
+                    return;
             }
         }
     }

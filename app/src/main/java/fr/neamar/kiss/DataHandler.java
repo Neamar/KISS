@@ -244,10 +244,12 @@ public class DataHandler extends BroadcastReceiver
     public void requestResults( Context context, String query, Searcher searcher )
     {
         for (ProviderEntry entry : this.providers.values()) {
-            if (entry.provider != null) {
-                // Retrieve results for query:
-                entry.provider.requestResults(query, searcher);
-            }
+            if ( searcher.isCancelled() )
+                break;
+            if (entry.provider == null)
+                continue;
+            // Retrieve results for query:
+            entry.provider.requestResults(query, searcher);
         }
     }
 
