@@ -8,9 +8,14 @@ import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.Process;
 import android.os.UserManager;
+import android.util.Log;
 import android.util.Pair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
@@ -168,8 +173,8 @@ public class AppProvider extends Provider<AppPojo> {
                 double n                  = pojo.nameNormalized.length() * DLA_INSERT_COST;
                 double normalizedDistance = distance / Math.sqrt( Math.max( q, n ) * Math.sqrt( q * n ) );
                 pojo.relevance = 50 - (int)(normalizedDistance * 50d);
-                if( distance > 0 )
-                    pojo.relevance += 1;
+                if( distance < (q + n) )
+                    pojo.relevance = Math.max( 1, pojo.relevance );
             }
 
             // check relevance for tags
@@ -208,6 +213,49 @@ public class AppProvider extends Provider<AppPojo> {
 
             if( pojo.relevance > 0 )
             {
+                // quick and dirty name highlight
+                List<Pair<Integer, Integer>> positions = new ArrayList<>( queryNormalized.length() );
+                for ( int i = 0; i < queryNormalized.length(); i+= 1 )
+                {
+                    int normalizedAppPos = 0;
+                    while ( (normalizedAppPos = pojo.nameNormalized.indexOf( queryNormalized.codePointAt( i ), normalizedAppPos)) != -1 )
+                    {
+                        int appPos = pojo.mapPosition(normalizedAppPos++);
+                        positions.add( new Pair<>( appPos, appPos + 1 ) );
+                    }
+                }
+                Collections.sort( positions, new Comparator<Pair<Integer, Integer>>()
+                {
+                    @Override
+                    public int compare( Pair<Integer, Integer> lhs, Pair<Integer, Integer> rhs )
+                    {
+                        return lhs.first - rhs.first;
+                    }
+                } );
+                // merge positions and remove duplicates
+                for( int i = 1; i < positions.size(); i++ )
+                {
+                    Pair<Integer, Integer> prev = positions.get( i - 1 );
+                    Pair<Integer, Integer> curr = positions.get( i );
+                    if ( prev.second >= curr.first )
+                    {
+                        positions.remove( i-- );
+                        positions.set( i, new Pair<>( prev.first, Math.max(prev.second, curr.second) ) );
+                    }
+                }
+                try
+                {
+                    pojo.setDisplayNameHighlightRegion( positions );
+                } catch( Exception e )
+                {
+                    StringBuilder sb = new StringBuilder();
+                    for ( Pair p : positions )
+                        sb.append( "<" ).append( p.first ).append( "," ).append( p.second ).append( ">" );
+                    Log.e("TBog", sb.toString(), e);
+                    pojo.displayName = pojo.name;
+                    pojo.setDisplayNameHighlightRegion( 0, pojo.name.length() );
+                }
+
                 if( !searcher.addResult( pojo ) )
                     return;
             }
@@ -215,30 +263,30 @@ public class AppProvider extends Provider<AppPojo> {
     }
 
     @Override
-    public ArrayList<Pojo> getResults( String query) {
+    public ArrayList<Pojo> getResults(String query) {
+        query = StringNormalizer.normalize(query);
         ArrayList<Pojo> records = new ArrayList<>();
 
-        int nameRelevance;
+        int relevance;
         int queryPos;           // The position inside the query
         int normalizedAppPos;   // The position inside pojo.nameNormalized
         int appPos;             // The position inside pojo.name, updated after we increment normalizedAppPos
         int beginMatch;
         int matchedWordStarts;
         int totalWordStarts;
-        ArrayList<Pair<Integer, Integer>> matchPositions = new ArrayList<>( 0 );
+        ArrayList<Pair<Integer, Integer>> matchPositions;
 
         for (AppPojo pojo : pojos) {
             pojo.displayName = pojo.name;
             pojo.displayTags = pojo.tags;
-
-            nameRelevance = 0;
+            relevance = 0;
             queryPos = 0;
             normalizedAppPos = 0;
             appPos = pojo.mapPosition(normalizedAppPos);
             beginMatch = 0;
             matchedWordStarts = 0;
             totalWordStarts = 0;
-            matchPositions.clear();
+            matchPositions = null;
 
             boolean match = false;
             while (normalizedAppPos < pojo.nameNormalized.length()) {
@@ -252,22 +300,24 @@ public class AppProvider extends Provider<AppPojo> {
 
                     // If we are at the beginning of a word, add it to matchedWordStarts
                     if (appPos == 0 || normalizedAppPos == 0
-                            || Character.isUpperCase(pojo.name.codePointAt(appPos))
-                            || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
+                        || Character.isUpperCase(pojo.name.codePointAt(appPos))
+                        || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
                         matchedWordStarts += 1;
 
                     // Increment the position in the query
                     queryPos += Character.charCount(query.codePointAt(queryPos));
                 }
                 else if (match) {
+                    if (matchPositions == null)
+                        matchPositions = new ArrayList<>();
                     matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
                     match = false;
                 }
 
                 // If we are at the beginning of a word, add it to totalWordsStarts
                 if (appPos == 0 || normalizedAppPos == 0
-                        || Character.isUpperCase(pojo.name.codePointAt(appPos))
-                        || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
+                    || Character.isUpperCase(pojo.name.codePointAt(appPos))
+                    || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
                     totalWordStarts += 1;
 
                 normalizedAppPos += Character.charCount(cApp);
@@ -275,49 +325,47 @@ public class AppProvider extends Provider<AppPojo> {
             }
 
             if (match) {
+
+                if (matchPositions == null) {matchPositions = new ArrayList<>();}
                 matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
-                pojo.setDisplayNameHighlightRegion(matchPositions);
             }
 
-            if (queryPos == query.length()) {
+            boolean matchedTags = false;
+            int tagStart = 0;
+            int tagEnd = 0;
+
+            if (queryPos == query.length() && matchPositions != null) {
                 // Add percentage of matched letters, but at a weight of 40
-                nameRelevance += (int) (((double) queryPos / pojo.nameNormalized.length()) * 40);
+                relevance += (int) (((double) queryPos / pojo.nameNormalized.length()) * 40);
 
                 // Add percentage of matched upper case letters (start of word), but at a weight of 60
-                nameRelevance += (int) (((double) matchedWordStarts / totalWordStarts) * 60);
+                relevance += (int) (((double) matchedWordStarts / totalWordStarts) * 60);
 
                 // The more fragmented the matches are, the less the result is important
-                nameRelevance = (int) (nameRelevance * (0.2 + 0.8 * (1.0 / matchPositions.size())));
+                relevance = (int) (relevance * (0.2 + 0.8 * (1.0 / matchPositions.size())));
             }
-
-            int tagRelevance = 0;
-            if ( !pojo.tagsNormalized.isEmpty() )
-            {
-                String tagList[] = pojo.tagsNormalized.split( "\\s+" );
-                int matchedTagIdx = -1;
-                for( int tagIdx = 0; tagIdx < tagList.length; tagIdx++ )
-                {
-                    String tag       = tagList[tagIdx];
-                    int    relevance = tag.length() < query.length() ? query.length() : tag.length();
-                    relevance -= computeLevenshteinDistance( tag, query );
-                    if( tagRelevance < relevance )
-                    {
-                        tagRelevance = relevance;
-                        matchedTagIdx = tagIdx;
-                    }
+            else {
+                if (pojo.tagsNormalized.startsWith(query)) {
+                    relevance = 4 + query.length();
                 }
-
-				if( matchedTagIdx > -1 )
-				{
-					String tag = tagList[matchedTagIdx];
-					int tagStart = pojo.tagsNormalized.indexOf(tag);
-					int tagEnd = tagStart + tag.length();
-					pojo.setTagHighlight(tagStart, tagEnd);
-				}
+                else if (pojo.tagsNormalized.contains(query)) {
+                    relevance = 3 + query.length();
+                }
+                if (relevance > 0) {
+                    matchedTags = true;
+                }
+                tagStart = pojo.tagsNormalized.indexOf(query);
+                tagEnd = tagStart + query.length();
             }
 
-            if (nameRelevance > 0 || tagRelevance > 0) {
-                pojo.relevance = nameRelevance > tagRelevance ? nameRelevance : tagRelevance;
+            if (relevance > 0) {
+                if (!matchedTags) {
+                    pojo.setDisplayNameHighlightRegion(matchPositions);
+                }
+                else {
+                    pojo.setTagHighlight(tagStart, tagEnd);
+                }
+                pojo.relevance = relevance;
                 records.add(pojo);
             }
         }
