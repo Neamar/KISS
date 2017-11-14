@@ -8,9 +8,14 @@ import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.Process;
 import android.os.UserManager;
+import android.util.Log;
 import android.util.Pair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
@@ -208,6 +213,47 @@ public class AppProvider extends Provider<AppPojo> {
 
             if( pojo.relevance > 0 )
             {
+                // quick and dirty highlight
+                List<Pair<Integer, Integer>> positions = new ArrayList<>( queryNormalized.length() );
+                for ( int i = 0; i < queryNormalized.length(); i+= 1 )
+                {
+                    int normalizedAppPos = pojo.nameNormalized.indexOf( queryNormalized.codePointAt( i ));
+                    if ( normalizedAppPos != -1 )
+                    {
+                        int appPos = pojo.mapPosition(normalizedAppPos);
+                        positions.add( new Pair<>( appPos, appPos + 1 ) );
+                    }
+                }
+                Collections.sort( positions, new Comparator<Pair<Integer, Integer>>()
+                {
+                    @Override
+                    public int compare( Pair<Integer, Integer> lhs, Pair<Integer, Integer> rhs )
+                    {
+                        return lhs.first - rhs.first;
+                    }
+                } );
+                // merge positions and remove duplicates
+                for( int i = 1; i < positions.size(); i++ )
+                {
+                    Pair<Integer, Integer> prev = positions.get( i - 1 );
+                    Pair<Integer, Integer> curr = positions.get( i );
+                    if ( curr.first < prev.second )
+                    {
+                        positions.remove( i-- );
+                        positions.set( i, new Pair<>( prev.first, curr.second ) );
+                    }
+                }
+                try
+                {
+                    pojo.setDisplayNameHighlightRegion( positions );
+                } catch( Exception e )
+                {
+                    StringBuilder sb = new StringBuilder();
+                    for ( Pair p : positions )
+                        sb.append( "<" ).append( p.first ).append( "," ).append( p.second ).append( ">" );
+                    Log.e("TBog", sb.toString(), e);
+                }
+
                 if( !searcher.addResult( pojo ) )
                     return;
             }
