@@ -4,6 +4,7 @@ import android.database.ContentObserver;
 import android.provider.ContactsContract;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadContactsPojos;
@@ -11,6 +12,7 @@ import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.searcher.Searcher;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
 
@@ -42,7 +44,13 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         getContentResolver().unregisterContentObserver(cObserver);
     }
 
-    public ArrayList<Pojo> getResults(String query) {
+    @Override
+    public void requestResults( String s, Searcher searcher )
+    {
+        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+    }
+
+    public ArrayList<Pojo> getResults( String query) {
         query = StringNormalizer.normalize(query);
         ArrayList<Pojo> results = new ArrayList<>();
 

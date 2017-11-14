@@ -5,12 +5,19 @@ import java.util.ArrayList;
 import fr.neamar.kiss.loader.LoadShortcutsPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.searcher.Searcher;
 
 public class ShortcutsProvider extends Provider<ShortcutsPojo> {
 
     @Override
     public void reload() {
         this.initialize(new LoadShortcutsPojos(this));
+    }
+
+    @Override
+    public void requestResults( String s, Searcher searcher )
+    {
+        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
     }
 
     @Override

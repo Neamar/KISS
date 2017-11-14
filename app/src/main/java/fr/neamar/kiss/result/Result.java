@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -38,6 +40,17 @@ public abstract class Result {
     Pojo pojo = null;
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
+        int relevance;
+        try
+        {
+            relevance = NumberFormat.getIntegerInstance().parse( pojo.displayTags.substring( 1 ) ).intValue();
+        } catch( Exception ignore )
+        {
+            relevance = -1;
+        }
+        if ( relevance != pojo.relevance )
+            pojo.displayTags = "(" + pojo.relevance + ") " + pojo.displayTags;
+
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
         else if (pojo instanceof ContactsPojo)
@@ -240,5 +253,10 @@ public abstract class Result {
         int color = ta.getColor(0, Color.WHITE);
         ta.recycle();
         return color;
+    }
+
+    public long getUniqueId()
+    {
+        return this.pojo.id.hashCode();
     }
 }

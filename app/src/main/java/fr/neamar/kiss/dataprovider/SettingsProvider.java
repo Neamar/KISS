@@ -7,6 +7,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadSettingsPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
+import fr.neamar.kiss.searcher.Searcher;
 
 public class SettingsProvider extends Provider<SettingsPojo> {
     private String settingName;
@@ -16,6 +17,12 @@ public class SettingsProvider extends Provider<SettingsPojo> {
         this.initialize(new LoadSettingsPojos(this));
 
         settingName = this.getString(R.string.settings_prefix).toLowerCase();
+    }
+
+    @Override
+    public void requestResults( String s, Searcher searcher )
+    {
+        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
     }
 
     public ArrayList<Pojo> getResults(String query) {

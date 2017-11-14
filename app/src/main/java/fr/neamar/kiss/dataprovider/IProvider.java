@@ -3,11 +3,21 @@ package fr.neamar.kiss.dataprovider;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.searcher.Searcher;
 
 /**
  * Public interface exposed by every KISS data provider
  */
 public interface IProvider {
+
+    /**
+     * Post search results for the given query string to the searcher
+     *
+     * @param s Some string query (usually provided by an user)
+     * @param searcher The receiver of results
+     */
+    void requestResults( String s, Searcher searcher );
+
     /**
      * Synchronously retrieve list of search results for the given query string
      *

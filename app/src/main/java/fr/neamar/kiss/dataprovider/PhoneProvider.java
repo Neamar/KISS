@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import fr.neamar.kiss.loader.LoadPhonePojos;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.searcher.Searcher;
 
 public class PhoneProvider extends Provider<PhonePojo> {
     public static final String PHONE_SCHEME = "phone://";
@@ -19,6 +20,12 @@ public class PhoneProvider extends Provider<PhonePojo> {
 
         PackageManager pm = this.getPackageManager();
         deviceIsPhone = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+    }
+
+    @Override
+    public void requestResults( String s, Searcher searcher )
+    {
+        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
     }
 
     public ArrayList<Pojo> getResults(String query) {

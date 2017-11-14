@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 import fr.neamar.kiss.loader.LoadSearchPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.searcher.Searcher;
 
 public class SearchProvider extends Provider<SearchPojo> {
     private SharedPreferences prefs;
@@ -38,6 +39,12 @@ public class SearchProvider extends Provider<SearchPojo> {
     @Override
     public void reload() {
         this.initialize(new LoadSearchPojos(this));
+    }
+
+    @Override
+    public void requestResults( String s, Searcher searcher )
+    {
+        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
     }
 
     public ArrayList<Pojo> getResults(String query) {
