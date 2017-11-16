@@ -8,7 +8,6 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,8 +17,9 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.result.Result;
 
-public abstract class Searcher extends AsyncTask<Void, Result, Void> {
-    static final int DEFAULT_MAX_RESULTS = 25;
+public abstract class Searcher extends AsyncTask<Void, Result, Void>
+{
+	static final int DEFAULT_MAX_RESULTS   = 25;
 	static final int DEFAULT_REFRESH_TIMER = 150;
 
 	private long start;
@@ -29,6 +29,12 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 	private final RefreshTask         refreshTask;
 	private       int                 refreshCounter;
 	private final Timer               timer;
+
+	public interface DataObserver
+	{
+		void beforeChange();
+		void afterChange();
+	}
 
 	class RefreshTask extends TimerTask
 	{
@@ -93,10 +99,12 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 	@Override
 	protected void onProgressUpdate( Result... results )
 	{
-		activity.adapter.setNotifyOnChange( false );
+		this.activity.beforeChange();
+
 		activity.adapter.clear();
 		activity.adapter.addAll( results );
-		activity.adapter.notifyDataSetChanged();
+
+		this.activity.afterChange();
 	}
 
 	@Override
@@ -118,10 +126,12 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 			{
 				results.add( Result.fromPojo( activity, queue.poll() ) );
 			}
-			activity.adapter.setNotifyOnChange( false );
+			this.activity.beforeChange();
+
 			activity.adapter.clear();
 			activity.adapter.addAll( results );
-			activity.adapter.notifyDataSetChanged();
+
+			this.activity.afterChange();
 		}
 
 		activity.resetTask();

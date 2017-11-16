@@ -257,6 +257,7 @@ public abstract class Result {
 
     public long getUniqueId()
     {
+        //TODO: this must be changed! hash codes are not unique! This was used just for fast development of a feature
         return this.pojo.id.hashCode();
     }
 }
