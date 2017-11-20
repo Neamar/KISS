@@ -407,7 +407,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             ResolveInfo resolveInfo = getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
-                if (resolveInfo.activityInfo.name != null) {
+                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
                     KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
@@ -418,7 +418,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             ResolveInfo resolveInfo = getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
-                if (resolveInfo.activityInfo.name != null) {
+                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
                     KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
@@ -431,7 +431,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
 
-                if (resolveInfo.activityInfo.name != null) {
+                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
                     KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
