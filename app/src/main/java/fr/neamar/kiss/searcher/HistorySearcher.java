@@ -32,8 +32,12 @@ public class HistorySearcher extends Searcher {
         // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
         int maxRecords = (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
 
+        MainActivity activity = activityWeakReference.get();
+        if( activity == null )
+            return null;
+
         //Gather favorites
-        ArrayList<Pojo> favoritesPojo = new ArrayList<Pojo>(0);
+        ArrayList<Pojo> favoritesPojo = new ArrayList<>( 0 );
         if(excludeFavorites){
             favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(activity.tryToRetrieve);
         }

@@ -35,6 +35,10 @@ public class QuerySearcher extends Searcher {
     @Override
     protected Void doInBackground( Void... voids )
     {
+        MainActivity activity = activityWeakReference.get();
+        if( activity == null )
+            return null;
+
         // Request results via "addResult"
         KissApplication.getDataHandler(activity).requestResults( activity, query, this );
         return null;

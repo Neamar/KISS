@@ -70,6 +70,14 @@ public abstract class Result {
         throw new RuntimeException("Unable to create a result from POJO");
     }
 
+    @Override
+    public String toString()
+    {
+        if ( pojo != null )
+            return pojo.name;
+        return super.toString();
+    }
+
     /**
      * How to display this record ?
      *
@@ -225,7 +233,7 @@ public abstract class Result {
      * @param text to highlight
      * @return text displayable on a textview
      */
-    Spanned enrichText(String text, Context context) {
+    static Spanned enrichText(String text, Context context) {
         return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
