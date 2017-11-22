@@ -19,9 +19,8 @@ public class PojoComparator implements Comparator<Pojo> {
     @Override
     public int compare(Pojo lhs, Pojo rhs)
     {
-        if ( bIncreasing )
-            return lhs.relevance - rhs.relevance;
-        else
-            return rhs.relevance - lhs.relevance;
+        if ( lhs.relevance == rhs.relevance )
+            return bIncreasing ? lhs.nameNormalized.compareTo( rhs.nameNormalized ) : rhs.nameNormalized.compareTo( lhs.nameNormalized );
+        return bIncreasing ? lhs.relevance - rhs.relevance : rhs.relevance - lhs.relevance;
     }
 }
