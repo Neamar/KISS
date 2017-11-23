@@ -27,6 +27,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -38,35 +40,6 @@ public class AppResult extends Result {
     private final AppPojo appPojo;
     private final ComponentName className;
     private Drawable icon = null;
-
-    class AsyncSetImage extends AsyncTask<Void, Void, Drawable>
-	{
-		final private View view;
-		final private ImageView image;
-		AsyncSetImage( View view, ImageView image )
-		{
-			super();
-			this.view = view;
-			this.image = image;
-		}
-
-		@Override
-		protected Drawable doInBackground( Void... voids )
-		{
-			if ( isCancelled() || view.getTag() != this )
-				return null;
-			return getDrawable( view.getContext() );
-		}
-
-		@Override
-		protected void onPostExecute( Drawable drawable )
-		{
-			if ( isCancelled() || drawable == null )
-				return;
-			image.setImageDrawable( drawable );
-			view.setTag( null );
-		}
-	}
 
     public AppResult(AppPojo appPojo) {
         super();
@@ -86,7 +59,7 @@ public class AppResult extends Result {
         appName.setText(enrichText(appPojo.displayName, context));
 
         TextView tagsView = (TextView) view.findViewById(R.id.item_app_tag);
-        //Hide tags view if tags are empty or if user has selected to hide them and the query doesnt match tags
+        //Hide tags view if tags are empty or if user has selected to hide them and the query doesn't match tags
         if (appPojo.displayTags.isEmpty() ||
                 ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (appPojo.displayTags.equals(appPojo.tags)))) {
             tagsView.setVisibility(View.GONE);
@@ -98,22 +71,9 @@ public class AppResult extends Result {
 
         final ImageView appIcon = (ImageView) view.findViewById(R.id.item_app_icon);
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
-			if ( view.getTag() instanceof AsyncSetImage )
-			{
-				((AsyncSetImage)view.getTag()).cancel( true );
-				view.setTag( null );
-			}
-			if( isDrawableCached() )
-			{
-				appIcon.setImageDrawable(getDrawable(appIcon.getContext()));
-			}
-			else
-			{
-				view.setTag( new AsyncSetImage( view, appIcon ).execute() );
-			}
+        	this.setAsyncDrawable( appIcon );
 		}
         else {
-			//appIcon.setImageResource(android.R.color.transparent);
             appIcon.setVisibility(View.INVISIBLE);
         }
         return view;
@@ -262,6 +222,7 @@ public class AppResult extends Result {
         context.startActivity(intent);
     }
 
+    @Override
     boolean isDrawableCached()
 	{
 		return icon != null;
@@ -269,13 +230,16 @@ public class AppResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-        
-        if (icon == null) {
-             icon = KissApplication.getIconsHandler(context).getDrawableIconForPackage(className, this.appPojo.userHandle);
-        }
-                
-        return icon;
-        
+        synchronized( this )
+		{
+			if( icon == null )
+			{
+				icon = KissApplication.getIconsHandler( context )
+									  .getDrawableIconForPackage( className, this.appPojo.userHandle );
+			}
+
+			return icon;
+		}
     }
 
 	@Override

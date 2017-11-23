@@ -21,6 +21,7 @@ import android.widget.TextView;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -34,35 +35,6 @@ public class ContactsResult extends Result {
     private final ContactsPojo contactPojo;
     private final QueryInterface queryInterface;
     private Drawable icon = null;
-
-    class AsyncSetImage extends AsyncTask<Void, Void, Drawable>
-    {
-        final private View      view;
-        final private ImageView image;
-        AsyncSetImage( View view, ImageView image )
-        {
-            super();
-            this.view = view;
-            this.image = image;
-        }
-
-        @Override
-        protected Drawable doInBackground( Void... voids )
-        {
-            if ( isCancelled() || view.getTag() != this )
-                return null;
-            return getDrawable( view.getContext() );
-        }
-
-        @Override
-        protected void onPostExecute( Drawable drawable )
-        {
-            if ( isCancelled() || drawable == null )
-                return;
-            image.setImageDrawable( drawable );
-            view.setTag( null );
-        }
-    }
 
     public ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
         super();
@@ -89,19 +61,7 @@ public class ContactsResult extends Result {
                 .findViewById(R.id.item_contact_icon);
 
         //contactIcon.setImageDrawable(getDrawable(context));
-        if ( view.getTag() instanceof AsyncSetImage )
-        {
-            ((AsyncSetImage)view.getTag()).cancel( true );
-            view.setTag( null );
-        }
-        if( isDrawableCached() )
-        {
-            contactIcon.setImageDrawable(getDrawable(contactIcon.getContext()));
-        }
-        else
-        {
-            view.setTag( new AsyncSetImage( view, contactIcon ).execute() );
-        }
+        this.setAsyncDrawable( contactIcon );
 
         contactIcon.assignContactUri(Uri.withAppendedPath(
                 ContactsContract.Contacts.CONTENT_LOOKUP_URI,
@@ -182,6 +142,7 @@ public class ContactsResult extends Result {
         clipboard.setPrimaryClip(clip);
     }
 
+    @Override
     boolean isDrawableCached()
     {
         return icon != null;
@@ -190,26 +151,38 @@ public class ContactsResult extends Result {
     @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
-        if ( isDrawableCached() )
-            return icon;
-        if (contactPojo.icon != null) {
-            InputStream inputStream = null;
-            try {
-                inputStream = context.getContentResolver().openInputStream(contactPojo.icon);
-                return icon = Drawable.createFromStream(inputStream, null);
-            } catch (FileNotFoundException ignored) {
-            } finally {
-                if (inputStream != null) {
-                    try {
-                        inputStream.close();
-                    } catch (IOException ignored) {
+        synchronized( this )
+        {
+            if( isDrawableCached() )
+                return icon;
+            if( contactPojo.icon != null )
+            {
+                InputStream inputStream = null;
+                try
+                {
+                    inputStream = context.getContentResolver()
+                                         .openInputStream( contactPojo.icon );
+                    return icon = Drawable.createFromStream( inputStream, null );
+                } catch( FileNotFoundException ignored )
+                {
+                } finally
+                {
+                    if( inputStream != null )
+                    {
+                        try
+                        {
+                            inputStream.close();
+                        } catch( IOException ignored )
+                        {
+                        }
                     }
                 }
             }
-        }
 
-        // Default icon
-        return icon = context.getResources().getDrawable(R.drawable.ic_contact);
+            // Default icon
+            return icon = context.getResources()
+                                 .getDrawable( R.drawable.ic_contact );
+        }
     }
 
     @Override

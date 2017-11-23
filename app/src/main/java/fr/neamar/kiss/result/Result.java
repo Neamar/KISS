@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.MenuRes;
 import android.text.Html;
@@ -12,9 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
 import java.text.NumberFormat;
 
 import fr.neamar.kiss.KissApplication;
@@ -68,6 +71,41 @@ public abstract class Result {
 
 
         throw new RuntimeException("Unable to create a result from POJO");
+    }
+
+    static class AsyncSetImage extends AsyncTask<Void, Void, Drawable>
+    {
+        final private WeakReference<ImageView> imageViewWeakReference;
+        final private WeakReference<Result>    appResultWeakReference;
+        AsyncSetImage( ImageView image, Result result )
+        {
+            super();
+            image.setTag( this );
+            this.imageViewWeakReference = new WeakReference<>( image );
+            this.appResultWeakReference = new WeakReference<>( result );
+        }
+
+        @Override
+        protected Drawable doInBackground( Void... voids )
+        {
+            ImageView image = imageViewWeakReference.get();
+            if ( isCancelled() || image == null || image.getTag() != this )
+                return null;
+            Result result = appResultWeakReference.get();
+            if ( result == null )
+                return null;
+            return result.getDrawable( image.getContext() );
+        }
+
+        @Override
+        protected void onPostExecute( Drawable drawable )
+        {
+            ImageView image = imageViewWeakReference.get();
+            if ( isCancelled() || image == null || drawable == null )
+                return;
+            image.setImageDrawable( drawable );
+            image.setTag( null );
+        }
     }
 
     @Override
@@ -212,6 +250,29 @@ public abstract class Result {
      */
     public Drawable getDrawable(Context context) {
         return null;
+    }
+
+    boolean isDrawableCached()
+    {
+        return false;
+    }
+
+    void setAsyncDrawable( ImageView view )
+    {
+        if ( view.getTag() instanceof AsyncSetImage )
+        {
+            ((AsyncSetImage)view.getTag()).cancel( true );
+            view.setTag( null );
+        }
+        if( isDrawableCached() )
+        {
+            view.setImageDrawable(getDrawable(view.getContext()));
+        }
+        else
+        {
+            view.setImageResource(android.R.color.transparent);
+            view.setTag( new AsyncSetImage( view, this ).execute() );
+        }
     }
 
     /**
