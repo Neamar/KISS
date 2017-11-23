@@ -2,7 +2,6 @@ package fr.neamar.kiss.pojo;
 
 import android.util.Pair;
 import java.text.Collator;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -72,7 +71,7 @@ public abstract class Pojo {
         if (name != null) {
             this.name = this.name.replaceAll("<", "&lt;");
             // Normalize name for faster searching
-            Pair<String, int[]> normalized = StringNormalizer.normalizeWithMap(this.name);
+            Pair<String, int[]> normalized = StringNormalizer.normalizeWithMap(this.name, false );
             this.nameNormalized = normalized.first;
             this.namePositionMap = normalized.second;
         }

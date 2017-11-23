@@ -2,9 +2,12 @@ package fr.neamar.kiss.dataprovider;
 
 import android.database.ContentObserver;
 import android.provider.ContactsContract;
+import android.util.Log;
+import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadContactsPojos;
@@ -13,6 +16,7 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
 
@@ -45,9 +49,73 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     }
 
     @Override
-    public void requestResults( String s, Searcher searcher )
+    public void requestResults( String query, Searcher searcher )
     {
-        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+        String queryNormalized = StringNormalizer.normalize( query );
+        // Search people with composed names, e.g "jean-marie"
+        // (not part of the StringNormalizer class, since we want to keep dashes on other providers)
+        queryNormalized = queryNormalized.replaceAll("-", " ");
+        //searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+        FuzzyScore   fuzzyScore = new FuzzyScore();
+        FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
+        for (ContactsPojo pojo : pojos)
+        {
+            boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
+            pojo.relevance = matchInfo.score;
+
+            if ( match && !matchInfo.matchedIndices.isEmpty() )
+            {
+                List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
+                try
+                {
+                    pojo.setDisplayNameHighlightRegion( positions );
+                } catch( Exception e )
+                {
+                    StringBuilder sb = new StringBuilder();
+                    for( Pair p : positions )
+                        sb.append( "<" )
+                          .append( p.first )
+                          .append( "," )
+                          .append( p.second )
+                          .append( ">" );
+                    Log.e( "TBog", sb.toString(), e );
+                    pojo.setDisplayNameHighlightRegion( 0, pojo.nameNormalized.length() );
+                }
+            }
+
+            if ( !pojo.nickname.isEmpty() )
+            {
+                if( fuzzyScore.match( queryNormalized, pojo.nickname, matchInfo ) )
+                {
+                    if( !match || (matchInfo.score > pojo.relevance) )
+                    {
+                        match = true;
+                        pojo.relevance = matchInfo.score;
+                        pojo.displayName = pojo.name
+                                           + " <small>({"
+                                           + pojo.nickname
+                                           + "})</small>";
+                    }
+                }
+            }
+
+            if ( !match && queryNormalized.length() > 2 )
+            {
+                // search for the phone number
+                if( fuzzyScore.match( queryNormalized, pojo.phoneSimplified, matchInfo ) )
+                {
+                    match = true;
+                    pojo.relevance = matchInfo.score;
+                    pojo.setDisplayNameHighlightRegion(0, 0);
+                }
+            }
+
+            if( match )
+            {
+                if( !searcher.addResult( pojo ) )
+                    return;
+            }
+        }
     }
 
     public ArrayList<Pojo> getResults( String query) {

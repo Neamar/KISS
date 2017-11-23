@@ -3,6 +3,8 @@ import fr.neamar.kiss.utils.UserHandle;
 
 import android.util.Pair;
 
+import java.util.List;
+
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public class AppPojo extends Pojo {
@@ -23,7 +25,7 @@ public class AppPojo extends Pojo {
         if (this.tags != null) {
             this.tags = this.tags.replaceAll("<", "&lt;");
             // Normalize name for faster searching
-            Pair<String, int[]> normalized = StringNormalizer.normalizeWithMap(this.tags);
+            Pair<String, int[]> normalized = StringNormalizer.normalizeWithMap(this.tags, false );
             this.tagsNormalized = normalized.first;
             this.tagsPositionMap = normalized.second;
         }
@@ -35,6 +37,42 @@ public class AppPojo extends Pojo {
 
         this.displayTags = this.tags.substring(0, posStart)
                 + '{' + this.tags.substring(posStart, posEnd) + '}' + this.tags.substring(posEnd, this.tags.length());
+    }
+
+    public void setTagHighlight( List<Integer> matchPositions )
+    {
+        int startPos = matchPositions.get( 0 );
+        int endPos = startPos + 1;
+        StringBuilder sb = new StringBuilder( this.tags.length() + matchPositions.size() );
+        int lastInsert = 0;
+        for ( int i = 1; i < matchPositions.size(); i += 1 )
+        {
+            if ( (endPos == matchPositions.get( i )) )
+            {
+                endPos+= 1;
+            }
+            else
+            {
+                int mappedStartPos = mapTagsPosition( startPos );
+                int mappedEndPos = mapTagsPosition( endPos );
+                sb.append( this.tags.substring( lastInsert, mappedStartPos ) )
+                  .append( "{" )
+                  .append( this.tags.substring( mappedStartPos, mappedEndPos ) )
+                  .append( "}" );
+                lastInsert = mappedEndPos;
+                startPos = matchPositions.get( i );
+                endPos = startPos + 1;
+            }
+        }
+        int mappedStartPos = mapTagsPosition( startPos );
+        int mappedEndPos = mapTagsPosition( endPos );
+        sb.append( this.tags.substring( lastInsert, mappedStartPos ) )
+          .append( "{" )
+          .append( this.tags.substring( mappedStartPos, mappedEndPos ) )
+          .append( "}" );
+        lastInsert = mappedEndPos;
+        sb.append( this.tags.substring( lastInsert ) );
+        this.displayTags = sb.toString();
     }
 
     /**

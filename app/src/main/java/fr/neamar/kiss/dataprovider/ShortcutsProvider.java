@@ -3,9 +3,11 @@ package fr.neamar.kiss.dataprovider;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.loader.LoadShortcutsPojos;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ShortcutsProvider extends Provider<ShortcutsPojo> {
 
@@ -15,9 +17,25 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
     }
 
     @Override
-    public void requestResults( String s, Searcher searcher )
+    public void requestResults( String query, Searcher searcher )
     {
-        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+        String queryNormalized = StringNormalizer.normalize( query );
+
+        FuzzyScore           fuzzyScore = new FuzzyScore();
+        FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
+
+        for( ShortcutsPojo pojo : pojos )
+        {
+            boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
+            pojo.relevance = matchInfo.score;
+
+            if ( match )
+            {
+                pojo.setDisplayNameHighlightRegion( matchInfo.getMatchedSequences() );
+                if( !searcher.addResult( pojo ) )
+                    return;
+            }
+        }
     }
 
     @Override

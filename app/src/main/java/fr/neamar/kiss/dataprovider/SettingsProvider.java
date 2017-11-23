@@ -1,13 +1,18 @@
 package fr.neamar.kiss.dataprovider;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadSettingsPojos;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public class SettingsProvider extends Provider<SettingsPojo> {
     private String settingName;
@@ -20,9 +25,35 @@ public class SettingsProvider extends Provider<SettingsPojo> {
     }
 
     @Override
-    public void requestResults( String s, Searcher searcher )
+    public void requestResults( String query, Searcher searcher )
     {
-        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+        String queryNormalized = StringNormalizer.normalize( query );
+
+        FuzzyScore           fuzzyScore = new FuzzyScore();
+        FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
+
+        for (SettingsPojo pojo : pojos)
+        {
+            boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
+            pojo.relevance = matchInfo.score;
+
+            if ( match )
+            {
+                pojo.setDisplayNameHighlightRegion( matchInfo.getMatchedSequences() );
+            }
+            else if( fuzzyScore.match( queryNormalized, settingName, matchInfo ) )
+            {
+                match = true;
+                pojo.relevance = matchInfo.score;
+                pojo.setDisplayNameHighlightRegion(0, 0);
+            }
+
+            if( match )
+            {
+                if( !searcher.addResult( pojo ) )
+                    return;
+            }
+        }
     }
 
     public ArrayList<Pojo> getResults(String query) {

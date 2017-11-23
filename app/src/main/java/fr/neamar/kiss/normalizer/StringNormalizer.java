@@ -28,10 +28,11 @@ public class StringNormalizer {
      * Diaereses (`ë` → `e`), acutes (`á` → `a`) and macrons (`ō` → `o`)
      *
      * @param input string input, with accents and anything else you can think of
+     * @param makeLowercase
      * @return normalized string and list that maps each result string position to its source
      * string position
      */
-    public static Pair<String, int[]> normalizeWithMap(String input) {
+    public static Pair<String, int[]> normalizeWithMap( String input, boolean makeLowercase ) {
         StringBuilder resultString = new StringBuilder();
         IntSequenceBuilder resultMap = new IntSequenceBuilder(input.length() * 3 / 2);
 
@@ -63,10 +64,12 @@ public class StringNormalizer {
 
                     case Character.DASH_PUNCTUATION:
                         // Some other unwanted character found
+                        resultString.appendCodePoint( 0x20 ); // space character
+                        resultMap.add(inputOffset);
                         break;
 
                     default:
-                        resultString.appendCodePoint(Character.toLowerCase(resultChar));
+                        resultString.appendCodePoint( makeLowercase ? Character.toLowerCase( resultChar ) : resultChar );
                         resultMap.add(inputOffset);
                 }
 
@@ -91,9 +94,9 @@ public class StringNormalizer {
      *
      * @param input string input, with accents and anything else you can think of
      * @return normalized string
-     * @see StringNormalizer#normalizeWithMap(String)
+     * @see StringNormalizer#normalizeWithMap(String, boolean)
      */
     public static String normalize(String input) {
-        return StringNormalizer.normalizeWithMap(input).first;
+        return StringNormalizer.normalizeWithMap(input, false ).first;
     }
 }
