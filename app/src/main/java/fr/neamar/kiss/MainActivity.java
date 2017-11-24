@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.WallpaperInfo;
+import android.app.WallpaperManager;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
@@ -40,6 +42,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -70,6 +73,7 @@ import fr.neamar.kiss.ui.BlockableListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.WallpaperUtils;
 
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
 
@@ -187,6 +191,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Search edit layout
      */
     private View searchEditLayout;
+    /**
+     * Wallpaper scroll
+     */
+    private WallpaperUtils mWallpaperUtils;
 
     /**
      * Called when the activity is first created.
@@ -397,6 +405,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 this.findViewById(R.id.searchEditText).setBackgroundColor(Color.TRANSPARENT);
             }
         }
+        mWallpaperUtils = new WallpaperUtils( this );
     }
 
     private void addDefaultAppsToFavs() {
@@ -739,6 +748,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
+        if ( mWallpaperUtils.onTouch( view, event ) )
+            return true;
         //if motion movement ends
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
             //if history is hidden
@@ -1023,6 +1034,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+
+        int visibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility( visibility );
     }
 
     @Override
@@ -1034,6 +1049,23 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
+        int visibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
+        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
+        {
+            visibility = visibility
+                         //| View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                         | View.SYSTEM_UI_FLAG_FULLSCREEN; // hide status bar
+        }
+        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
+        {
+            visibility = visibility
+                         | View.SYSTEM_UI_FLAG_IMMERSIVE
+                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        }
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility( visibility );
     }
 
     /**
