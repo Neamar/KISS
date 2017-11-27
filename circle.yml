@@ -6,7 +6,7 @@ machine:
 dependencies:
   pre:
     - echo y | android update sdk --no-ui --all --filter tools,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository,android-23
-    - echo y | android update sdk --no-ui --all --filter build-tools-25.0.0
+    - echo y | android update sdk --no-ui --all --filter build-tools-26.0.2
     # Start the gradle daemon
     - ./gradlew:
         background: true
@@ -21,13 +21,14 @@ test:
         background: true
     # Run robolectric tests, build the apk, and build the test apk for running
     # the espresso tests
-    - ./gradlew test assembleDebug assembleDebugAndroidTest --console=plain
+    - ./gradlew test assembleDebug assembleDebugAndroidTest --console=plain --stacktrace
+    - cp -r app/build/reports $CIRCLE_ARTIFACTS
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # wait for the emulator to have booted
     - circle-android wait-for-boot
     # Run espresso tests
     - ./gradlew connectedAndroidTest --console=plain
   post:
-    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
     - find app/build/test-results -name "*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/ \;
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
