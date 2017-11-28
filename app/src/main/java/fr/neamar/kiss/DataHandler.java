@@ -418,7 +418,8 @@ public class DataHandler extends BroadcastReceiver
 		StringBuilder excluded = new StringBuilder();
 		for(String excludedItem : excludedList) {
 			if(!user.hasStringUserSuffix(excludedItem, '#')) {
-				excluded.append(excludedItem + ";");
+				excluded.append( excludedItem )
+                        .append( ";" );
 			}
 		}
 		

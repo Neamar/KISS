@@ -70,6 +70,11 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void>
 		this.handler = new Handler( Looper.getMainLooper() );
 	}
 
+	protected int getMaxResultCount()
+	{
+		return DEFAULT_MAX_RESULTS;
+	}
+
 	/**
 	 * This is called from the background thread by the providers
 	 */
@@ -83,7 +88,8 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void>
 			return false;
 
 		this.processedPojos.addAll( Arrays.asList( pojos ) );
-		while( this.processedPojos.size() > DEFAULT_MAX_RESULTS )
+		int maxResults = getMaxResultCount();
+		while( this.processedPojos.size() > maxResults )
 			this.processedPojos.poll();
 
 		int counter = this.refreshTask.runCounter;
