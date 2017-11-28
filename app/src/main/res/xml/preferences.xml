@@ -95,8 +95,12 @@
                 android:title="@string/favorites_hide" />
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
-                android:key="fullscreen-immersive"
-                android:title="@string/fullscreen_immersive" />
+                android:key="pref-fullscreen"
+                android:title="@string/pref_fullscreen" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-immersive"
+                android:title="@string/pref_immersive" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <ListPreference

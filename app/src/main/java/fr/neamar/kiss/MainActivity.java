@@ -4,8 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.WallpaperInfo;
-import android.app.WallpaperManager;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
@@ -42,7 +40,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -1029,9 +1026,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    private boolean isPreferenceFullscreenImmersive()
+    private boolean isPreferenceFullscreen()
     {
-        return prefs.getBoolean("fullscreen-immersive", false);
+        return prefs.getBoolean("pref-fullscreen", false);
+    }
+
+    private boolean isPreferenceImmersive()
+    {
+        return prefs.getBoolean("pref-immersive", false);
     }
 
     private boolean isPreferenceKeyboardOnStart()
@@ -1047,8 +1049,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         {
             if ( isPreferenceKeyboardOnStart() )
                 showKeyboard();
-            if ( isPreferenceFullscreenImmersive() )
-                makeFullscreen( true );
+            applySystemUi( isPreferenceFullscreen(), isPreferenceImmersive() );
         }
     }
 
@@ -1058,7 +1059,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
 
-        makeFullscreen( false );
+        applySystemUi( false, false );
     }
 
     @Override
@@ -1071,15 +1072,19 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
 
-        if ( isPreferenceFullscreenImmersive() )
-            makeFullscreen( true );
+        applySystemUi( isPreferenceFullscreen(), isPreferenceImmersive() );
     }
 
-    protected void makeFullscreen( boolean fullscreen )
+    protected void applySystemUi( boolean fullscreen, boolean immersive )
     {
+        int visibility = 0;
+        if ( fullscreen || immersive )
+        {
+            visibility = visibility
+                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
+        }
         if ( fullscreen )
         {
-            int visibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
             if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
             {
                 visibility = visibility
@@ -1088,21 +1093,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                              | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                              | View.SYSTEM_UI_FLAG_FULLSCREEN; // hide status bar
             }
+        }
+        if ( immersive )
+        {
             if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
             {
                 visibility = visibility
                              | View.SYSTEM_UI_FLAG_IMMERSIVE
                              | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             }
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility( visibility );
         }
-        else
-        {
-            int visibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility( visibility );
-        }
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility( visibility );
     }
 
     /**
