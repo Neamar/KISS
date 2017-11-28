@@ -93,6 +93,10 @@
                 android:dependency="history-hide"
                 android:key="favorites-hide"
                 android:title="@string/favorites_hide" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="fullscreen-immersive"
+                android:title="@string/fullscreen_immersive" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <ListPreference
@@ -109,6 +113,20 @@
                 android:defaultValue="true"
                 android:key="force-portrait"
                 android:title="@string/portrait_title" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="true"
+                android:key="lwp-touch"
+                android:title="@string/lwp_touch" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="lwp-drag"
+                android:summary="@string/lwp_drag_desc"
+                android:title="@string/lwp_drag" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="wp-drag-animate"
+                android:summary="@string/wp_drag_animate_desc"
+                android:title="@string/wp_drag_animate" />
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="true"
                 android:key="tags-visible"

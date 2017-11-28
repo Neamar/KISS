@@ -597,7 +597,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
-        if (prefs.getBoolean("display-keyboard", false)) {
+        if ( isPreferenceKeyboardOnStart() ) {
             // Display keyboard
             showKeyboard();
 
@@ -917,7 +917,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             {
                 searchEditText.setText( "" );
 
-                if( prefs.getBoolean( "display-keyboard", false ) )
+                if( isPreferenceKeyboardOnStart() )
                 {
                     // Display keyboard
                     showKeyboard();
@@ -1029,15 +1029,36 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+    private boolean isPreferenceFullscreenImmersive()
+    {
+        return prefs.getBoolean("fullscreen-immersive", false);
+    }
+
+    private boolean isPreferenceKeyboardOnStart()
+    {
+        return prefs.getBoolean("display-keyboard", false);
+    }
+
+    @Override
+    public void onWindowFocusChanged( boolean hasFocus )
+    {
+        super.onWindowFocusChanged( hasFocus );
+        if ( hasFocus )
+        {
+            if ( isPreferenceKeyboardOnStart() )
+                showKeyboard();
+            if ( isPreferenceFullscreenImmersive() )
+                makeFullscreen( true );
+        }
+    }
+
     @Override
     public void showKeyboard() {
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
 
-        int visibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility( visibility );
+        makeFullscreen( false );
     }
 
     @Override
@@ -1049,23 +1070,39 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
-        int visibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
-        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
+
+        if ( isPreferenceFullscreenImmersive() )
+            makeFullscreen( true );
+    }
+
+    protected void makeFullscreen( boolean fullscreen )
+    {
+        if ( fullscreen )
         {
-            visibility = visibility
-                         //| View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                         | View.SYSTEM_UI_FLAG_FULLSCREEN; // hide status bar
+            int visibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
+            if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
+            {
+                visibility = visibility
+                             //| View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                             | View.SYSTEM_UI_FLAG_FULLSCREEN; // hide status bar
+            }
+            if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
+            {
+                visibility = visibility
+                             | View.SYSTEM_UI_FLAG_IMMERSIVE
+                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            }
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility( visibility );
         }
-        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
+        else
         {
-            visibility = visibility
-                         | View.SYSTEM_UI_FLAG_IMMERSIVE
-                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            int visibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility( visibility );
         }
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility( visibility );
     }
 
     /**

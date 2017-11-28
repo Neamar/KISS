@@ -3,6 +3,7 @@ package fr.neamar.kiss.utils;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Point;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -78,6 +79,21 @@ public class WallpaperUtils implements View.OnTouchListener
 		mWindowSize = new Point( 1, 1 );
 	}
 
+	private boolean isPreferenceLWPTouch()
+	{
+		return PreferenceManager.getDefaultSharedPreferences(mMainActivity).getBoolean("lwp-touch", true);
+	}
+
+	private boolean isPreferenceLWPDrag()
+	{
+		return PreferenceManager.getDefaultSharedPreferences(mMainActivity).getBoolean("lwp-drag", false);
+	}
+
+	private boolean isPreferenceWPDragAnimate()
+	{
+		return PreferenceManager.getDefaultSharedPreferences(mMainActivity).getBoolean("wp-drag-animate", false);
+	}
+
 	private android.os.IBinder getWindowToken()
 	{
 		return mWindowToken != null ? mWindowToken : (mWindowToken = mContentView.getWindowToken());
@@ -134,27 +150,37 @@ public class WallpaperUtils implements View.OnTouchListener
 		switch( actionMasked )
 		{
 			case MotionEvent.ACTION_DOWN:
-				mContentView.clearAnimation();
+				if ( isPreferenceWPDragAnimate() )
+				{
+					mContentView.clearAnimation();
 
-				mVelocityTracker = VelocityTracker.obtain();
-				mVelocityTracker.addMovement( event );
+					mVelocityTracker = VelocityTracker.obtain();
+					mVelocityTracker.addMovement( event );
 
-				mLastTouchPos = event.getRawX();
-				mMainActivity.getWindowManager()
-							 .getDefaultDisplay()
-							 .getSize( mWindowSize );
-
+					mLastTouchPos = event.getRawX();
+					mMainActivity.getWindowManager()
+								 .getDefaultDisplay()
+								 .getSize( mWindowSize );
+				}
 				//send touch event to the LWP
-				sendTouchEvent( view, event );
+				if ( isPreferenceLWPTouch() )
+					sendTouchEvent( view, event );
 				break;
 			case MotionEvent.ACTION_MOVE:
-				mVelocityTracker.addMovement( event );
+				if ( mVelocityTracker != null )
+				{
+					mVelocityTracker.addMovement( event );
 
-				float fTouchPos = event.getRawX();
-				float fOffset = (mLastTouchPos - fTouchPos) * 1.1f / mWindowSize.x;
-				fOffset += mWallpaperOffset;
-				updateWallpaperOffset( fOffset );
-				mLastTouchPos = fTouchPos;
+					float fTouchPos = event.getRawX();
+					float fOffset   = (mLastTouchPos - fTouchPos) * 1.1f / mWindowSize.x;
+					fOffset += mWallpaperOffset;
+					updateWallpaperOffset( fOffset );
+					mLastTouchPos = fTouchPos;
+				}
+
+				//send move/drag event to the LWP
+				if ( isPreferenceLWPDrag() )
+					sendTouchEvent( view, event );
 				break;
 			case MotionEvent.ACTION_UP:
 			case MotionEvent.ACTION_CANCEL:
