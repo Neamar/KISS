@@ -1009,6 +1009,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Call this function when we're leaving the activity We can't use
      * onPause(), since it may be called for a configuration change
      */
+    @Override
     public void launchOccurred(int index, Result result) {
         // We selected an item on the list,
         // now we can cleanup the filter:
@@ -1016,6 +1017,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searchEditText.setText("");
             hideKeyboard();
         }
+    }
+
+    @Override
+    public boolean showRelevance()
+    {
+        return true;
     }
 
     @Override

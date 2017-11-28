@@ -43,16 +43,26 @@ public abstract class Result {
     Pojo pojo = null;
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
-        int relevance;
-        try
+        if ( parent.showRelevance() )
         {
-            relevance = NumberFormat.getIntegerInstance().parse( pojo.displayTags.substring( 1 ) ).intValue();
-        } catch( Exception ignore )
-        {
-            relevance = -1;
+            int relevance;
+            try
+            {
+                relevance = NumberFormat.getIntegerInstance()
+                                        .parse( pojo.displayTags.substring( 1 ) )
+                                        .intValue();
+            } catch( Exception ignore )
+            {
+                relevance = -1;
+            }
+            if( relevance != pojo.relevance )
+            {
+                if( pojo.tags == null || pojo.tags.isEmpty() )
+                    pojo.displayTags = "<small>(" + pojo.relevance + ")</small> ";
+                else
+                    pojo.displayTags = "<small>(" + pojo.relevance + ")</small> " + pojo.displayTags;
+            }
         }
-        if ( relevance != pojo.relevance )
-            pojo.displayTags = "(" + pojo.relevance + ") " + pojo.displayTags;
 
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
