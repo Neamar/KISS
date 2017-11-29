@@ -4,7 +4,7 @@ import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Point;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -28,6 +28,7 @@ public class WallpaperUtils implements View.OnTouchListener
 	private       Anim               mAnimation;
 	private final Point              mWindowSize;
 	private       VelocityTracker    mVelocityTracker;
+	GestureDetector mGestureDetector;
 
 	class Anim extends Animation
 	{
@@ -116,7 +117,6 @@ public class WallpaperUtils implements View.OnTouchListener
 		if( iBinder != null )
 		{
 			String command = index == 0 ? WallpaperManager.COMMAND_TAP : WallpaperManager.COMMAND_SECONDARY_TAP;
-			Log.d( "TBog", "sendTouchEvent + `" + command + "` x:" + x + " y:" + y );
 			mWallpaperManager.sendWallpaperCommand( iBinder, command, x, y, 0, null );
 		}
 	}

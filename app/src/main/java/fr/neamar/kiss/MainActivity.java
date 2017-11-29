@@ -608,6 +608,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
+            applySystemUi();
         }
 
         super.onResume();
@@ -765,7 +766,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         }
         if(view.getId() == searchEditText.getId()) {
-            showKeyboard();
+            if ( event.getActionMasked() == MotionEvent.ACTION_DOWN )
+                showKeyboard();
         }
         return true;
     }
@@ -1049,7 +1051,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         {
             if ( isPreferenceKeyboardOnStart() )
                 showKeyboard();
-            applySystemUi( isPreferenceFullscreen(), isPreferenceImmersive() );
+            applySystemUi();
         }
     }
 
@@ -1071,7 +1073,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
 
+    @Override
+    public void applyScrollSystemUi()
+    {
+        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
+        {
+            if ( isPreferenceImmersive() )
+                applySystemUi( isPreferenceFullscreen(), true );
+        }
+    }
+
+    protected void applySystemUi()
+    {
         applySystemUi( isPreferenceFullscreen(), isPreferenceImmersive() );
     }
 
@@ -1081,6 +1096,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if ( fullscreen || immersive )
         {
             visibility = visibility
+                         | View.SYSTEM_UI_FLAG_LOW_PROFILE
                          | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
         }
         if ( fullscreen )
@@ -1097,8 +1113,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         {
             if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
             {
+                // if I enable only immersive and set SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION on HTC One M8 Android 4.4.3 the status bar will overlap listview
                 visibility = visibility
-                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                             //| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                              | View.SYSTEM_UI_FLAG_IMMERSIVE
                              | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             }
@@ -1113,6 +1130,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     public boolean isOnSearchView() {
         return kissBar.getVisibility() != View.VISIBLE;
+    }
+
+    public boolean isListVisible()
+    {
+        boolean bListEmpty = (this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0);
+        return bListEmpty;
     }
 
     public int getFavIconsSize() {
