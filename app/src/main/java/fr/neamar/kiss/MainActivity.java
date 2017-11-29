@@ -1088,8 +1088,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
             {
                 visibility = visibility
-                             //| View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                             //| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                              | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                              | View.SYSTEM_UI_FLAG_FULLSCREEN; // hide status bar
             }
@@ -1099,6 +1098,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
             {
                 visibility = visibility
+                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                              | View.SYSTEM_UI_FLAG_IMMERSIVE
                              | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             }
