@@ -5,14 +5,14 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
-import android.support.annotation.MenuRes;
+import android.support.annotation.StringRes;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.PopupMenu;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import fr.neamar.kiss.KissApplication;
@@ -30,6 +30,7 @@ import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.pojo.TogglesPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
+import fr.neamar.kiss.ui.ListPopup;
 
 public abstract class Result {
     /**
@@ -71,12 +72,16 @@ public abstract class Result {
      *
      * @return a PopupMenu object
      */
-    public PopupMenu getPopupMenu(final Context context, final RecordAdapter parent, View parentView) {
-        PopupMenu menu = buildPopupMenu(context, parent, parentView);
+    public ListPopup getPopupMenu( final Context context, final RecordAdapter parent, View parentView) {
+        ArrayAdapter<ListPopup.Item> adapter = new ArrayAdapter<>( context, R.layout.popup_list_item );
+        ListPopup menu = buildPopupMenu(context, adapter, parent, parentView);
 
-        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem item) {
-                return popupMenuClickHandler(context, parent, item);
+        menu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
+            @Override
+            public void onItemClick( ListAdapter adapter, View view, int position )
+            {
+                @StringRes int stringId = ((ListPopup.Item)adapter.getItem( position )).stringId;
+                popupMenuClickHandler( view.getContext(), parent, stringId );
             }
         });
 
@@ -88,22 +93,35 @@ public abstract class Result {
      *
      * @return an inflated, listener-free PopupMenu
      */
-    PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        return inflatePopupMenu(R.menu.menu_item_default, context, parentView);
+    ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
+        adapter.add( new ListPopup.Item( context, R.string.menu_remove ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
+        return inflatePopupMenu(adapter, context );
     }
 
-    protected PopupMenu inflatePopupMenu(@MenuRes int menuId, Context context, View parentView) {
-        PopupMenu menu = new PopupMenu(context, parentView);
-        menu.getMenuInflater().inflate(menuId, menu.getMenu());
+    protected ListPopup inflatePopupMenu( ArrayAdapter<ListPopup.Item> adapter, Context context ) {
+        ListPopup menu = new ListPopup( context );
+        menu.setAdapter( adapter );
 
         // If app already pinned, do not display the "add to favorite" option
         // otherwise don't show the "remove favorite button"
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
         if (favApps.contains(this.pojo.id + ";")) {
-            menu.getMenu().removeItem(R.id.item_favorites_add);
+            for ( int i = 0; i < adapter.getCount(); i += 1 )
+            {
+                ListPopup.Item item = adapter.getItem( i );
+                if( item.stringId == R.string.menu_favorites_add )
+                    adapter.remove( item );
+            }
         } else {
-            menu.getMenu().removeItem(R.id.item_favorites_remove);
+            for ( int i = 0; i < adapter.getCount(); i += 1 )
+            {
+                ListPopup.Item item = adapter.getItem( i );
+                if( item.stringId == R.string.menu_favorites_remove )
+                    adapter.remove( item );
+            }
         }
 
         return menu;
@@ -115,15 +133,15 @@ public abstract class Result {
      *
      * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
      */
-    Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_remove:
+    Boolean popupMenuClickHandler( Context context, RecordAdapter parent, @StringRes int stringId ) {
+        switch ( stringId ) {
+            case R.string.menu_remove:
                 removeItem(context, parent);
                 return true;
-            case R.id.item_favorites_add:
+            case R.string.menu_favorites_add:
                 launchAddToFavorites(context, pojo);
                 break;
-            case R.id.item_favorites_remove:
+            case R.string.menu_favorites_remove:
                 launchRemoveFromFavorites(context, pojo);
                 break;
         }

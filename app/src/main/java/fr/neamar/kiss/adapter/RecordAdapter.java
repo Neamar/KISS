@@ -4,12 +4,14 @@ import android.content.Context;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.PhoneResult;
@@ -19,6 +21,7 @@ import fr.neamar.kiss.result.SettingsResult;
 import fr.neamar.kiss.result.ShortcutsResult;
 import fr.neamar.kiss.result.TogglesResult;
 import fr.neamar.kiss.searcher.QueryInterface;
+import fr.neamar.kiss.ui.ListPopup;
 
 public class RecordAdapter extends ArrayAdapter<Result> {
 
@@ -65,11 +68,12 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     public void onLongClick(final int pos, View v) {
-        PopupMenu menu = results.get(pos).getPopupMenu(getContext(), this, v);
+        ListPopup menu = results.get(pos).getPopupMenu(getContext(), this, v);
 
         //check if menu contains elements and if yes show it
-        if (menu.getMenu().size() > 0) {
-            menu.show();
+        if (menu.getAdapter().getCount() > 0) {
+            parent.registerPopup( menu );
+            menu.show( v );
         }
     }
 

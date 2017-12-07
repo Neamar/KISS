@@ -10,12 +10,11 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.ContactsContract;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.io.FileNotFoundException;
@@ -29,6 +28,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
+import fr.neamar.kiss.ui.ListPopup;
 
 public class ContactsResult extends Result {
     private final ContactsPojo contactPojo;
@@ -157,19 +157,24 @@ public class ContactsResult extends Result {
     }
 
     @Override
-    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        return inflatePopupMenu(R.menu.menu_item_contact, context, parentView);
+    protected ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
+        adapter.add( new ListPopup.Item( context, R.string.menu_remove ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_contact_copy_phone ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
+
+        return inflatePopupMenu(adapter, context );
     }
 
     @Override
-    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_contact_copy_phone:
+    protected Boolean popupMenuClickHandler( Context context, RecordAdapter parent, int stringId ) {
+        switch ( stringId ) {
+            case R.string.menu_contact_copy_phone:
                 copyPhone(context, contactPojo);
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, item);
+        return super.popupMenuClickHandler(context, parent, stringId );
     }
 
     @SuppressWarnings("deprecation")

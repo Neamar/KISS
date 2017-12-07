@@ -7,15 +7,15 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.PhonePojo;
+import fr.neamar.kiss.ui.ListPopup;
 
 public class PhoneResult extends Result {
     private final PhonePojo phonePojo;
@@ -40,14 +40,20 @@ public class PhoneResult extends Result {
     }
 
     @Override
-    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        return inflatePopupMenu(R.menu.menu_item_phone, context, parentView);
+    protected ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
+        adapter.add( new ListPopup.Item( context, R.string.menu_remove ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_phone_create ) );
+        adapter.add( new ListPopup.Item( context, R.string.ui_item_contact_hint_message ) );
+
+        return inflatePopupMenu(adapter, context );
     }
 
     @Override
-    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_phone_createcontact:
+    protected Boolean popupMenuClickHandler( Context context, RecordAdapter parent, int stringId ) {
+        switch ( stringId ) {
+            case R.string.menu_phone_create:
                 // Create a new contact with this phone number
                 Intent createIntent = new Intent(Intent.ACTION_INSERT);
                 createIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
@@ -55,7 +61,7 @@ public class PhoneResult extends Result {
                 createIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(createIntent);
                 return true;
-            case R.id.item_phone_sendmessage:
+            case R.string.ui_item_contact_hint_message:
                 String url = "sms:" + phonePojo.phone;
                 Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
                 messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -63,7 +69,7 @@ public class PhoneResult extends Result {
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, item);
+        return super.popupMenuClickHandler(context, parent, stringId );
     }
 
     @Override
