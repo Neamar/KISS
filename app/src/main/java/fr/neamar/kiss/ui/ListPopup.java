@@ -89,6 +89,7 @@ public class ListPopup extends PopupWindow
 			@Override
 			public void onClick( View v )
 			{
+				dismiss();
 				if( mItemClickListener != null )
 				{
 					LinearLayout layout   = (LinearLayout)getContentView();
