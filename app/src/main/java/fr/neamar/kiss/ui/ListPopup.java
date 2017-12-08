@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
 /**
@@ -203,11 +204,13 @@ public class ListPopup extends PopupWindow
 		{
 			// show below anchor
 			yOffset = anchorPos[1] + anchor.getHeight() / 2;
+			setAnimationStyle( R.style.PopupAnimationTop );
 		}
 		else
 		{
 			// show above anchor
 			yOffset = anchorPos[1] + anchor.getHeight() / 2 - getContentView().getMeasuredHeight();
+			setAnimationStyle( R.style.PopupAnimationBottom );
 		}
 
 		showAtLocation( anchor, Gravity.START | Gravity.TOP, xOffset, yOffset );
