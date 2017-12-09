@@ -78,12 +78,17 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                         + ")</small>";
                 relevance = 30;
             } else if (query.length() > 2) {
-                matchPositionStart = 0;
-                matchPositionEnd = 0;
-                if (contact.phoneSimplified.startsWith(query)) {
-                    relevance = 10;
-                } else if (contact.phoneSimplified.contains(query)) {
-                    relevance = 5;
+                if ((matchPositionStart = contactNameNormalized.indexOf(query)) > -1) {
+                    relevance = 15;
+                    matchPositionEnd = matchPositionStart + query.length();
+                } else {
+                    matchPositionStart = 0;
+                    matchPositionEnd = 0;
+                    if (contact.phoneSimplified.startsWith(query)) {
+                        relevance = 10;
+                    } else if (contact.phoneSimplified.contains(query)) {
+                        relevance = 5;
+                    }
                 }
             }
 

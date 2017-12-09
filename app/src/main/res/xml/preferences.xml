@@ -102,7 +102,7 @@
                 android:key="sort-apps"
                 android:title="@string/order_apps_name" />
             <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="enable-favorites-bar"
                 android:title="@string/enable_favorites_bar" />
             <fr.neamar.kiss.SwitchPreference
@@ -118,6 +118,17 @@
                 android:key="icons-hide"
                 android:summary="@string/icons_hide_desc"
                 android:title="@string/icons_hide_main" />
+
+            <fr.neamar.kiss.SwitchPreference
+                android:key="transparent-search"
+                android:title="@string/transparent_search_bar"/>
+            <fr.neamar.kiss.SwitchPreference
+                android:key="transparent-favorites"
+                android:title="@string/transparent_favorites_bar"/>
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="large-search-bar"
+                android:title="@string/large_search_bar" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen

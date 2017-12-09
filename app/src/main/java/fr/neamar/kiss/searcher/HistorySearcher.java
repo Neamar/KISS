@@ -17,7 +17,7 @@ public class HistorySearcher extends Searcher {
     private SharedPreferences prefs;
 
     public HistorySearcher(MainActivity activity) {
-        super(activity);
+        super(activity, "<history>");
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
@@ -29,7 +29,7 @@ public class HistorySearcher extends Searcher {
         
         // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
         // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
-        int maxRecords = (new Double(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
+        int maxRecords = (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
 
         //Gather favorites
         ArrayList<Pojo> favoritesPojo = new ArrayList<Pojo>(0);

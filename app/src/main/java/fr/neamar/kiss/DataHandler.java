@@ -36,6 +36,10 @@ import fr.neamar.kiss.utils.UserHandle;
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     /**
+     * Package the providers reside in
+     */
+    final static private String PROVIDER_PREFIX = IProvider.class.getPackage().getName() + ".";
+    /**
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
@@ -102,7 +106,7 @@ public class DataHandler extends BroadcastReceiver
     protected Intent providerName2Intent(String name) {
         // Build expected fully-qualified provider class name
         StringBuilder className = new StringBuilder(50);
-        className.append("fr.neamar.kiss.dataprovider.");
+        className.append(PROVIDER_PREFIX);
         className.append(Character.toUpperCase(name.charAt(0)));
         className.append(name.substring(1).toLowerCase());
         className.append("Provider");
@@ -345,6 +349,11 @@ public class DataHandler extends BroadcastReceiver
         Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
     }
 
+    public void clearHistory()
+    {
+        DBHelper.clearHistory(this.context);
+    }
+
     public void removeShortcut(ShortcutsPojo shortcut) {
         DBHelper.removeShortcut(this.context, shortcut.name);
 
@@ -556,7 +565,7 @@ public class DataHandler extends BroadcastReceiver
         return null;
     }
 
-    protected class ProviderEntry {
+    protected static final class ProviderEntry {
         public IProvider provider = null;
         ServiceConnection connection = null;
     }

@@ -32,7 +32,9 @@ public class SettingsActivity extends PreferenceActivity implements
     private static final String EXCLUDED_APP_LIST_KEY = DataHandler.EXCLUDED_APP_LIST_KEY;
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait primary-color";
+
+    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait primary-color transparent-search transparent-favorites history-hide";
+
     final static private String requireInstantRestart = "theme notification-bar-color";
 
     private boolean requireFullRestart = false;

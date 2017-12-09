@@ -11,7 +11,7 @@ import fr.neamar.kiss.pojo.Pojo;
  */
 public class ApplicationsSearcher extends Searcher {
     public ApplicationsSearcher(MainActivity activity) {
-        super(activity);
+        super(activity, "<application>");
     }
 
     @Override
