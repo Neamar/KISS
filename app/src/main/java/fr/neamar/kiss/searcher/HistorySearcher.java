@@ -17,7 +17,7 @@ public class HistorySearcher extends Searcher {
     private SharedPreferences prefs;
 
     public HistorySearcher(MainActivity activity) {
-        super(activity);
+        super(activity, "<history>");
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
