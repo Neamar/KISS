@@ -39,11 +39,9 @@ public class SearchEditText extends EditText
 	@Override
 	public boolean onKeyPreIme( int keyCode, KeyEvent event )
 	{
-		if ( event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP )
-			if ( mEditorListener != null )
-			{
-				mEditorListener.onEditorAction(this, android.R.id.closeButton, event);
-			}
+		if( event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP )
+			if( mEditorListener != null && mEditorListener.onEditorAction( this, android.R.id.closeButton, event ) )
+				return true;
 		return super.onKeyPreIme( keyCode, event );
 	}
 }

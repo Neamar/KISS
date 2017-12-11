@@ -350,6 +350,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 {
                     mSystemUiVisibility.onKeyboardVisibilityChanged( false );
                     mSystemUiVisibility.applySystemUi();
+                    if( mPopup != null )
+                    {
+                        mPopup.dismiss();
+                        return true;
+                    }
+                    hider.stop();
+                    hider.start();
                     return false;
                 }
                 RecordAdapter adapter = ((RecordAdapter) list.getAdapter());
@@ -581,10 +588,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             return;
         }
         if ( mPopup != null )
-        {
             mPopup.dismiss();
-            mPopup = null;
-        }
+
         if (kissBar.getVisibility() != View.VISIBLE) {
             updateRecords(searchEditText.getText().toString());
             displayClearOnInput();
@@ -673,10 +678,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onBackPressed() {
         if ( mPopup != null )
-        {
             mPopup.dismiss();
-            mPopup = null;
-        }
+
         // Is the kiss bar visible?
         else if (kissBar.getVisibility() == View.VISIBLE) {
             displayKissBar(false);
@@ -1129,6 +1132,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         mSystemUiVisibility.onKeyboardVisibilityChanged( false );
+        if( mPopup != null )
+            mPopup.dismiss();
     }
 
     @Override

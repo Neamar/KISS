@@ -26,7 +26,8 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 	private final Runnable autoApplySystemUiRunnable = new Runnable() {
 		@Override
 		public void run() {
-			applySystemUi();
+			if ( !mKeyboardVisible )
+				applySystemUi();
 		}
 	};
 
