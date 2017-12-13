@@ -39,9 +39,10 @@ public class DB extends SQLiteOpenHelper {
             case 3:
                database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
                        + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
+                // fall through
             case 4:
                 createTags(database);
-
+                // fall through
             default:
                 break;
             }

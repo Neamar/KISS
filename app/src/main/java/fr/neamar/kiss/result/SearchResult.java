@@ -19,6 +19,8 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.SearchPojo;
 
+import static fr.neamar.kiss.R.drawable.search;
+
 public class SearchResult extends Result {
     private final SearchPojo searchPojo;
 
@@ -41,7 +43,7 @@ public class SearchResult extends Result {
         } else {
             String text = context.getString(R.string.ui_item_search);
             appName.setText(enrichText(String.format(text, this.pojo.name, "{" + searchPojo.query + "}"), context));
-            image.setImageResource(R.drawable.search);
+            image.setImageResource(search);
         }
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;
@@ -49,29 +51,9 @@ public class SearchResult extends Result {
 
     @Override
     public void doLaunch(Context context, View v) {
-        boolean exceptionThrown = false;
-        Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            search.setSourceBounds(v.getClipBounds());
-        }
-        search.putExtra(SearchManager.QUERY, searchPojo.query);
-        if (pojo.name.equals("Google")) {
-            // In the latest Google Now version, ACTION_WEB_SEARCH is broken when used with FLAG_ACTIVITY_NEW_TASK.
-            // Adding FLAG_ACTIVITY_CLEAR_TASK seems to fix the problem.
-            search.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            try {
-                context.startActivity(search);
-            } catch (ActivityNotFoundException e) {
-                // This exception gets thrown if Google Search has been deactivated:
-                exceptionThrown = true;
-            }
-        }
-        if (exceptionThrown || !pojo.name.equals("Google")) {
-            String urlWithQuery = searchPojo.url.replace("{q}", searchPojo.query);
+        String urlWithQuery = searchPojo.url.replace("{q}", searchPojo.query);
             Uri uri = Uri.parse(urlWithQuery);
-            search = new Intent(Intent.ACTION_VIEW, uri);
+            Intent search = new Intent(Intent.ACTION_VIEW, uri);
             search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             try {
                 context.startActivity(search);
@@ -79,7 +61,6 @@ public class SearchResult extends Result {
             catch (android.content.ActivityNotFoundException e) {
                 Log.w("SearchResult","Unable to run search for url: "+searchPojo.url);
             }
-        }
     }
 
     @Override

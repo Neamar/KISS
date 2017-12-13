@@ -10,16 +10,11 @@ public class AppPojo extends Pojo {
     public String activityName;
     public UserHandle userHandle;
 
-    // Tags assigned to this pojo
-    public String tags;
     // Tags normalized
     public String tagsNormalized;
     // Array that contains the non-normalized positions for every normalized
     // character entry
     private int[] tagsPositionMap = null;
-    // Variable to store the formated (user selection in bold) tag
-    public String displayTags = "";
-
 
     public void setTags(String tags) {
     // Set the actual user-friendly name

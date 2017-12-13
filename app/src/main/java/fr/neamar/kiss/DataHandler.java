@@ -288,7 +288,9 @@ public class DataHandler extends BroadcastReceiver
      * @return pojos in recent history
      */
     public ArrayList<Pojo> getHistory(Context context, int itemCount, boolean smartHistory, ArrayList<Pojo> itemsToExclude) {
-        ArrayList<Pojo> history = new ArrayList<>(itemCount);
+        // Pre-allocate array slots that are likely to be used based on the current maximum item
+        // count
+        ArrayList<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
 
         // Read history
         List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount, smartHistory);
@@ -340,6 +342,11 @@ public class DataHandler extends BroadcastReceiver
         }
 
         Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
+    }
+
+    public void clearHistory()
+    {
+        DBHelper.clearHistory(this.context);
     }
 
     public void removeShortcut(ShortcutsPojo shortcut) {
@@ -540,7 +547,7 @@ public class DataHandler extends BroadcastReceiver
         return null;
     }
 
-    protected class ProviderEntry {
+    protected static final class ProviderEntry {
         public IProvider provider = null;
         public ServiceConnection connection = null;
     }

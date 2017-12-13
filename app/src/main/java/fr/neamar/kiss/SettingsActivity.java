@@ -3,6 +3,7 @@ package fr.neamar.kiss;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -28,7 +29,9 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait primary-color";
+
+    final static private String requireRestartSettings = "enable-keyboard-workaround force-portrait primary-color transparent-search transparent-favorites history-hide";
+
     final static private String requireInstantRestart = "theme notification-bar-color";
 
     private boolean requireFullRestart = false;
@@ -317,6 +320,24 @@ public class SettingsActivity extends PreferenceActivity implements
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
             findPreference("reset").setSummary(String.format(getString(R.string.items_title), historyLength));
+        }
+
+
+        // Only display the "rate the app" preference if the user has been using KISS long enough to enjoy it ;)
+        Preference rateApp = findPreference("rate-app");
+        if (historyLength < 300) {
+            getPreferenceScreen().removePreference(rateApp);
+        } else {
+            rateApp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("market://details?id=" + getApplicationContext().getPackageName()));
+                    startActivity(intent);
+
+                    return true;
+                }
+            });
         }
     }
 
