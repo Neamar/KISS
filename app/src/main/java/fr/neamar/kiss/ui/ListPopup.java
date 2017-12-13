@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
-import android.widget.ScrollView;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
@@ -52,12 +51,11 @@ public class ListPopup extends PopupWindow
 		void onItemClick( ListAdapter adapter, View view, int position );
 	}
 
-	protected class LayoutVertical extends LinearLayout
+	protected class ScrollView extends android.widget.ScrollView
 	{
-		public LayoutVertical( Context context )
+		public ScrollView( Context context )
 		{
 			super( context );
-			setOrientation( VERTICAL );
 		}
 
 		@Override
@@ -76,8 +74,6 @@ public class ListPopup extends PopupWindow
 			}
 			return super.dispatchTouchEvent( event );
 		}
-
-
 	}
 
 	private class PopupDataSetObserver extends DataSetObserver
@@ -103,7 +99,8 @@ public class ListPopup extends PopupWindow
 	public ListPopup( Context context )
 	{
 		super( context, null, android.R.attr.popupMenuStyle );
-		LayoutVertical layout     = new LayoutVertical( context );
+		LinearLayout layout     = new LinearLayout( context );
+		layout.setOrientation( LinearLayout.VERTICAL );
 		ScrollView     scrollView = new ScrollView( context );
 		scrollView.addView( layout );
 		setContentView( scrollView );
