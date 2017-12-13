@@ -353,7 +353,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                         mPopup.dismiss();
                         return true;
                     }
-                    mSystemUiVisibility.applySystemUi();
+                    mSystemUiVisibility.onKeyboardVisibilityChanged( false );
                     hider.fixScroll();
                     return false;
                 }
@@ -633,7 +633,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
-            mSystemUiVisibility.applySystemUi();
+            mSystemUiVisibility.onKeyboardVisibilityChanged( false );
         }
 
         super.onResume();
@@ -1120,7 +1120,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
 
         mSystemUiVisibility.onKeyboardVisibilityChanged( true );
-        mSystemUiVisibility.applySystemUi( false, false );
     }
 
     @Override

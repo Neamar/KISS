@@ -64,18 +64,23 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 		if( isVisible )
 		{
 			mHandler.removeCallbacks( autoApplySystemUiRunnable );
+			applySystemUi( false, false );
+		}
+		else
+		{
+			autoApplySystemUiRunnable.run();
 		}
 	}
 
-	public void applySystemUi()
+	private void applySystemUi()
 	{
-		applySystemUi( isPreferenceFullscreen(), isPreferenceImmersive() );
+		applySystemUi( isPreferenceHideNavBar(), isPreferenceHideStatusBar() );
 	}
 
-	public void applySystemUi( boolean fullscreen, boolean immersive )
+	private void applySystemUi( boolean hideNavBar, boolean hideStatusBar )
 	{
 		int visibility = 0;
-		if( fullscreen || immersive )
+		if( hideNavBar )
 		{
 			if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
 			{
@@ -89,7 +94,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 							 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
 			}
 		}
-		if( fullscreen )
+		if( hideStatusBar )
 		{
 			if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
 			{
@@ -97,7 +102,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 							 | View.SYSTEM_UI_FLAG_FULLSCREEN; // hide status bar
 			}
 		}
-		if( immersive )
+		if ( hideNavBar || hideStatusBar )
 		{
 			if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
 			{
@@ -115,8 +120,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 		mIsScrolling = true;
 		if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
 		{
-			if( isPreferenceImmersive() )
-				applySystemUi( isPreferenceFullscreen(), true );
+			applySystemUi();
 		}
 	}
 
@@ -127,14 +131,14 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 			mHandler.post( autoApplySystemUiRunnable );
 	}
 
-	private boolean isPreferenceFullscreen()
+	private boolean isPreferenceHideNavBar()
 	{
-		return prefs.getBoolean( "pref-fullscreen", false );
+		return prefs.getBoolean( "pref-hide-navbar", false );
 	}
 
-	private boolean isPreferenceImmersive()
+	private boolean isPreferenceHideStatusBar()
 	{
-		return prefs.getBoolean( "pref-immersive", false );
+		return prefs.getBoolean( "pref-hide-statusbar", false );
 	}
 
 	@Override
@@ -163,7 +167,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 			applySystemUi();
 		}
 
-		if( !mKeyboardVisible && !mIsScrolling && visibility == 0 )
+		if( visibility == 0 )
 		{
 			mHandler.postDelayed( autoApplySystemUiRunnable, 1500 );
 		}
