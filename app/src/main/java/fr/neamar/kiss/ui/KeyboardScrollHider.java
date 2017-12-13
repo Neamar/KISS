@@ -220,4 +220,17 @@ public class KeyboardScrollHider implements View.OnTouchListener {
 
         return false;
     }
+
+    public void fixScroll()
+    {
+        this.list.post( new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                resizeDone = false;
+                handleResizeDone();
+            }
+        } );
+    }
 }

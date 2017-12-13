@@ -19,14 +19,17 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 	private final MainActivity      mMainActivity;
 	private final Handler           mHandler;
 	private       SharedPreferences prefs;
-	private boolean                 mKeyboardVisible;
-	private boolean                 mIsScrolling;
+	private       boolean           mKeyboardVisible;
+	private       boolean           mIsScrolling;
+	private       int               mPopupCount;
 
 	// This is used to emulate SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-	private final Runnable autoApplySystemUiRunnable = new Runnable() {
+	private final Runnable autoApplySystemUiRunnable = new Runnable()
+	{
 		@Override
-		public void run() {
-			if ( !mKeyboardVisible )
+		public void run()
+		{
+			if( !mKeyboardVisible && !mIsScrolling && mPopupCount == 0 )
 				applySystemUi();
 		}
 	};
@@ -36,17 +39,19 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 		mMainActivity = activity;
 		mHandler = new Handler( Looper.getMainLooper() );
 		prefs = PreferenceManager.getDefaultSharedPreferences( activity );
-		View decorView = mMainActivity.getWindow().getDecorView();
+		View decorView = mMainActivity.getWindow()
+									  .getDecorView();
 		decorView.setOnSystemUiVisibilityChangeListener( this );
 		mKeyboardVisible = false;
 		mIsScrolling = false;
+		mPopupCount = 0;
 	}
 
 	public void onWindowFocusChanged( boolean hasFocus )
 	{
-		if ( hasFocus )
+		if( hasFocus )
 		{
-			if ( mIsScrolling )
+			if( mIsScrolling )
 				applyScrollSystemUi();
 			else
 				applySystemUi();
@@ -56,7 +61,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 	public void onKeyboardVisibilityChanged( boolean isVisible )
 	{
 		mKeyboardVisible = isVisible;
-		if ( isVisible )
+		if( isVisible )
 		{
 			mHandler.removeCallbacks( autoApplySystemUiRunnable );
 		}
@@ -70,7 +75,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 	public void applySystemUi( boolean fullscreen, boolean immersive )
 	{
 		int visibility = 0;
-		if ( fullscreen || immersive )
+		if( fullscreen || immersive )
 		{
 			if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
 			{
@@ -84,17 +89,15 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 							 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
 			}
 		}
-		if ( fullscreen )
+		if( fullscreen )
 		{
 			if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN )
 			{
 				visibility = visibility
-							 //| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-							 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 							 | View.SYSTEM_UI_FLAG_FULLSCREEN; // hide status bar
 			}
 		}
-		if ( immersive )
+		if( immersive )
 		{
 			if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
 			{
@@ -102,9 +105,9 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 							 | View.SYSTEM_UI_FLAG_IMMERSIVE;
 			}
 		}
-		View decorView = mMainActivity.getWindow().getDecorView();
+		View decorView = mMainActivity.getWindow()
+									  .getDecorView();
 		decorView.setSystemUiVisibility( visibility );
-		//decorView.setFitsSystemWindows( true );
 	}
 
 	public void applyScrollSystemUi()
@@ -112,7 +115,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 		mIsScrolling = true;
 		if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT )
 		{
-			if ( isPreferenceImmersive() )
+			if( isPreferenceImmersive() )
 				applySystemUi( isPreferenceFullscreen(), true );
 		}
 	}
@@ -120,18 +123,18 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 	public void resetScroll()
 	{
 		mIsScrolling = false;
-		if ( !mKeyboardVisible )
+		if( !mKeyboardVisible )
 			mHandler.post( autoApplySystemUiRunnable );
 	}
 
 	private boolean isPreferenceFullscreen()
 	{
-		return prefs.getBoolean("pref-fullscreen", false);
+		return prefs.getBoolean( "pref-fullscreen", false );
 	}
 
 	private boolean isPreferenceImmersive()
 	{
-		return prefs.getBoolean("pref-immersive", false);
+		return prefs.getBoolean( "pref-immersive", false );
 	}
 
 	@Override
@@ -140,27 +143,27 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 		StringBuilder sb = new StringBuilder();
 		sb.append( String.format( "onSystemUiVisibilityChange %x", visibility ) );
 
-		if ( (visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0 )
+		if( (visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0 )
 			sb.append( "\n SYSTEM_UI_FLAG_HIDE_NAVIGATION" );
 
-		if ( (visibility & View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN) != 0 )
+		if( (visibility & View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN) != 0 )
 			sb.append( "\n SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN" );
-		if ( (visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0 )
+		if( (visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0 )
 			sb.append( "\n SYSTEM_UI_FLAG_FULLSCREEN" );
 
-		if ( (visibility & View.SYSTEM_UI_FLAG_IMMERSIVE) != 0 )
+		if( (visibility & View.SYSTEM_UI_FLAG_IMMERSIVE) != 0 )
 			sb.append( "\n SYSTEM_UI_FLAG_IMMERSIVE" );
-		if ( (visibility & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY) != 0 )
+		if( (visibility & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY) != 0 )
 			sb.append( "\n SYSTEM_UI_FLAG_IMMERSIVE_STICKY" );
 
-		Log.d("TBog", sb.toString() );
+		Log.d( "TBog", sb.toString() );
 
-		if ( (visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0 )
+		if( (visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0 )
 		{
 			applySystemUi();
 		}
 
-		if ( !mKeyboardVisible && !mIsScrolling && visibility == 0 )
+		if( !mKeyboardVisible && !mIsScrolling && visibility == 0 )
 		{
 			mHandler.postDelayed( autoApplySystemUiRunnable, 1500 );
 		}
@@ -168,8 +171,28 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 
 	public void copyVisibility( View contentView )
 	{
-		View decorView = mMainActivity.getWindow().getDecorView();
+		View decorView = mMainActivity.getWindow()
+									  .getDecorView();
 		int visibility = decorView.getSystemUiVisibility();
 		contentView.setSystemUiVisibility( visibility );
+	}
+
+	public void addPopup()
+	{
+		mPopupCount += 1;
+		if( Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT )
+		{
+			applySystemUi( false, false );
+		}
+	}
+
+	public void popPopup()
+	{
+		mPopupCount -= 1;
+		if( mPopupCount < 0 )
+		{
+			Log.e( "TBog", "popup count negative!" );
+			mPopupCount = 0;
+		}
 	}
 }

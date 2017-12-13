@@ -27,7 +27,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -349,14 +348,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 if ( actionId == android.R.id.closeButton )
                 {
                     mSystemUiVisibility.onKeyboardVisibilityChanged( false );
-                    mSystemUiVisibility.applySystemUi();
                     if( mPopup != null )
                     {
                         mPopup.dismiss();
                         return true;
                     }
-                    hider.stop();
-                    hider.start();
+                    mSystemUiVisibility.applySystemUi();
+                    hider.fixScroll();
                     return false;
                 }
                 RecordAdapter adapter = ((RecordAdapter) list.getAdapter());
@@ -1037,6 +1035,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searcher.cancel(true);
         }
 
+        if ( mPopup != null )
+            mPopup.dismiss();
+
         if (query.length() == 0) {
             mSystemUiVisibility.resetScroll();
             if (prefs.getBoolean("history-hide", false)) {
@@ -1095,6 +1096,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 MainActivity.this.mPopup = null;
             }
         } );
+        hider.fixScroll();
     }
 
     private boolean isPreferenceKeyboardOnStart()
