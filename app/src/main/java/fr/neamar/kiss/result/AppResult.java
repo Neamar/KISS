@@ -12,8 +12,8 @@ import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -36,10 +36,44 @@ import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
     private final AppPojo appPojo;
-
     private final ComponentName className;
-
     private Drawable icon = null;
+
+    class AsyncSetImage extends AsyncTask<Void, Void, Drawable>
+	{
+		final private View view;
+		final private ImageView image;
+		AsyncSetImage( View view, ImageView image )
+		{
+			super();
+			this.view = view;
+			this.image = image;
+		}
+
+		@Override
+		protected void onPreExecute()
+		{
+			super.onPreExecute();
+			image.setImageResource(android.R.color.transparent);
+		}
+
+		@Override
+		protected Drawable doInBackground( Void... voids )
+		{
+			if ( isCancelled() || view.getTag() != this )
+				return null;
+			return getDrawable( view.getContext() );
+		}
+
+		@Override
+		protected void onPostExecute( Drawable drawable )
+		{
+			if ( isCancelled() || drawable == null )
+				return;
+			image.setImageDrawable( drawable );
+			view.setTag( null );
+		}
+	}
 
     public AppResult(AppPojo appPojo) {
         super();
@@ -49,15 +83,16 @@ public class AppResult extends Result {
     }
 
     @Override
-    public View display(final Context context, int position, View v) {
-        if (v == null) {
-            v = inflateFromId(context, R.layout.item_app);
+    public View display(final Context context, int position, View convertView) {
+    	View view = convertView;
+        if (convertView == null) {
+            view = inflateFromId(context, R.layout.item_app);
         }
 
-        TextView appName = (TextView) v.findViewById(R.id.item_app_name);
+        TextView appName = (TextView) view.findViewById(R.id.item_app_name);
         appName.setText(enrichText(appPojo.displayName, context));
 
-        TextView tagsView = (TextView) v.findViewById(R.id.item_app_tag);
+        TextView tagsView = (TextView) view.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them and the query doesnt match tags
         if (appPojo.displayTags.isEmpty() ||
                 ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (appPojo.displayTags.equals(appPojo.tags)))) {
@@ -68,29 +103,26 @@ public class AppResult extends Result {
             tagsView.setText(enrichText(appPojo.displayTags, context));
         }
 
-        final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
-
+        final ImageView appIcon = (ImageView) view.findViewById(R.id.item_app_icon);
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
-            // Display icon directy for first icons, and also for phones above lollipop
-            // (fix a weird recycling issue with ListView on Marshmallow,
-            // where the recycling occurs synchronously, before the handler)
-            if (position < 15 || Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1) {
-                appIcon.setImageDrawable(this.getDrawable(context));
-            } else {
-                // Do actions on a message queue to avoid performance issues on main thread
-                Handler handler = new Handler();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        appIcon.setImageDrawable(getDrawable(context));
-                    }
-                });
-            }
-        }
+			if ( view.getTag() instanceof AsyncSetImage )
+			{
+				((AsyncSetImage)view.getTag()).cancel( true );
+				view.setTag( null );
+			}
+			if( isDrawableCached() )
+			{
+				appIcon.setImageDrawable(getDrawable(appIcon.getContext()));
+			}
+			else
+			{
+				view.setTag( new AsyncSetImage( view, appIcon ).execute() );
+			}
+		}
         else {
             appIcon.setVisibility(View.INVISIBLE);
         }
-        return v;
+        return view;
     }
 
     @Override
@@ -235,6 +267,11 @@ public class AppResult extends Result {
                 Uri.fromParts("package", app.packageName, null));
         context.startActivity(intent);
     }
+
+    boolean isDrawableCached()
+	{
+		return icon != null;
+	}
 
     @Override
     public Drawable getDrawable(Context context) {
