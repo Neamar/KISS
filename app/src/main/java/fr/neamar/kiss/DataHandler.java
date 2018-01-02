@@ -24,6 +24,7 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
+import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
@@ -427,6 +428,11 @@ public class DataHandler extends BroadcastReceiver
     public AppProvider getAppProvider() {
         ProviderEntry entry = this.providers.get("app");
         return (entry != null) ? ((AppProvider) entry.provider) : null;
+    }
+
+    public SearchProvider getSearchProvider() {
+        ProviderEntry entry = this.providers.get("search");
+        return (entry != null) ? ((SearchProvider) entry.provider) : null;
     }
 
     /**

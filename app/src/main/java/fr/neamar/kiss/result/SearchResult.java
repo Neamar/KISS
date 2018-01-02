@@ -1,14 +1,19 @@
 package fr.neamar.kiss.result;
 
+import android.app.SearchManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.Build;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -46,10 +51,16 @@ public class SearchResult extends Result {
 
     @Override
     public void doLaunch(Context context, View v) {
-        Uri uri = Uri.parse(searchPojo.url + searchPojo.query);
-        Intent search = new Intent(Intent.ACTION_VIEW, uri);
-        search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(search);
+        String urlWithQuery = searchPojo.url.replace("{q}", searchPojo.query);
+            Uri uri = Uri.parse(urlWithQuery);
+            Intent search = new Intent(Intent.ACTION_VIEW, uri);
+            search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            try {
+                context.startActivity(search);
+            }
+            catch (android.content.ActivityNotFoundException e) {
+                Log.w("SearchResult","Unable to run search for url: "+searchPojo.url);
+            }
     }
 
     @Override

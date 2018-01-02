@@ -148,16 +148,29 @@
             android:title="@string/toggles_name" />
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="true"
-            android:key="enable-search"
-            android:title="@string/search_name" />
-        <fr.neamar.kiss.SwitchPreference
-            android:defaultValue="true"
             android:key="enable-phone"
             android:title="@string/phone_name" />
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="true"
             android:key="enable-shortcuts"
             android:title="@string/shortcuts_name" />
+        <fr.neamar.kiss.SwitchPreference
+            android:defaultValue="true"
+            android:key="enable-search"
+            android:title="@string/search_name" />
+        <PreferenceCategory android:title="@string/search_name">
+            <fr.neamar.kiss.preference.AddSearchProviderPreference
+                android:key="custom-search-provider-add"
+                android:title="@string/custom_search_provider"
+                android:textColor="?attr/searchColor"
+                />
+            <fr.neamar.kiss.preference.ResetSearchProvidersPreference
+                android:dialogMessage="@string/search_provider_reset_desc"
+                android:key="reset"
+                android:order="11"
+                android:title="@string/search_provider_reset" />
+
+        </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen android:title="@string/title_advanced">
         <fr.neamar.kiss.preference.DefaultLauncherPreference
