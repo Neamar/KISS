@@ -574,6 +574,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
         searchEditLayout.getLayoutParams().height = searchHeight;
         kissBar.getLayoutParams().height = searchHeight;
+        favoritesKissBar.getLayoutParams().height = searchHeight;
 
         //Show favorites above search field ONLY if AppProvider is already loaded
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
