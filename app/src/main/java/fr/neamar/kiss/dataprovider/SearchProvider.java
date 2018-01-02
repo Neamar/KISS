@@ -1,7 +1,6 @@
 package fr.neamar.kiss.dataprovider;
 
 import android.content.Context;
-import android.preference.PreferenceManager;
 import android.webkit.URLUtil;
 
 import java.util.ArrayList;
@@ -30,10 +29,13 @@ public class SearchProvider extends Provider<SearchPojo> {
         ArrayList<Pojo> records = new ArrayList<>();
 
         for (SearchPojo pojo : pojos) {
+            // Set the id, otherwise the result will be boosted since KISS will assume "we've selected this search provider multiple times before"
+            pojo.id = "search://" + query;
             pojo.query = query;
             records.add(pojo);
         }
 
+        // Open URLs directly
         Matcher m = urlPattern.matcher(query);
         if (m.find()) {
             String guessedUrl = URLUtil.guessUrl(query);
