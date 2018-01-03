@@ -3,8 +3,8 @@ package fr.neamar.kiss.preference;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
@@ -19,7 +19,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 
-import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 
@@ -48,8 +47,18 @@ public class AddSearchProviderPreference extends DialogPreference {
         layout.addView(providerName);
         layout.addView(providerUrl);
 
-//        providerName.setTextColor(this.getLayoutResource().getColor(R.color.kiss_text_dark));
-//        providerUrl.setTextColor(Color.RED);
+        // default text color is white that doesnt work well on the light themes
+        String theme = prefs.getString("theme", "light");
+        //if theme is light, change the text color
+        if (!theme.contains("dark")) {
+
+            int[] attrs = {android.R.attr.textColor};
+            TypedArray ta = getContext().obtainStyledAttributes(R.style.AppThemeLight, attrs);
+
+            providerName.setTextColor(ta.getColor(0, Color.TRANSPARENT));
+            providerUrl.setTextColor(ta.getColor(0, Color.TRANSPARENT));
+        }
+
         return layout;
     }
 
