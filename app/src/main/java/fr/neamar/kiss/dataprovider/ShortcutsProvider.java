@@ -1,8 +1,10 @@
 package fr.neamar.kiss.dataprovider;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.loader.LoadShortcutsPojos;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 
@@ -11,6 +13,16 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
     @Override
     public void reload() {
         this.initialize(new LoadShortcutsPojos(this));
+    }
+
+    public List<ShortcutsPojo> getAllShortcuts() {
+        List<ShortcutsPojo> shortcutsPojoList = new ArrayList<>();
+        for(ShortcutsPojo pojo : pojos) {
+            pojo.displayName = pojo.name;
+            pojo.displayTags = pojo.tags;
+            shortcutsPojoList.add(pojo);
+        }
+        return shortcutsPojoList;
     }
 
     @Override
@@ -57,6 +69,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
         for (Pojo pojo : pojos) {
             if (pojo.id.equals(id)) {
                 pojo.displayName = pojo.name;
+                pojo.displayTags = pojo.tags;
                 return pojo;
             }
         }
@@ -72,5 +85,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
         return null;
     }
 
-
+    public void removeShortcut(ShortcutsPojo shortcutsPojo) {
+        pojos.remove(shortcutsPojo);
+    }
 }

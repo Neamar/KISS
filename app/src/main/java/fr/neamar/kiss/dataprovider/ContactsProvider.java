@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
-import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.ContactsPojo;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
 

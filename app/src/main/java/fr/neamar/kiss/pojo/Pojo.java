@@ -2,7 +2,6 @@ package fr.neamar.kiss.pojo;
 
 import android.util.Pair;
 import java.text.Collator;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 

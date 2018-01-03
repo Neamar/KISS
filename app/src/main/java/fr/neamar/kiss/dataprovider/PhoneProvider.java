@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.loader.LoadPhonePojos;
-import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PhonePojo;
 
 public class PhoneProvider extends Provider<PhonePojo> {
     public static final String PHONE_SCHEME = "phone://";
