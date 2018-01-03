@@ -20,6 +20,7 @@ public class DB extends SQLiteOpenHelper {
         database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
                 + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
         createTags(database);
+        createBadges(database);
     }
 
     private void createTags(SQLiteDatabase database) {
@@ -43,10 +44,13 @@ public class DB extends SQLiteOpenHelper {
                 case 3:
                     database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
                             + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
+                    // fall through
                 case 4:
                     createTags(database);
+                    // fall through
                 case 5:
                     createBadges(database);
+                    // fall through
                 default:
                     break;
             }

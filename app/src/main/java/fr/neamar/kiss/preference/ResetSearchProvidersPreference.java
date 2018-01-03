@@ -9,10 +9,11 @@ import android.widget.Toast;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.SettingsActivity;
 
-public class ResetPreference extends DialogPreference {
+public class ResetSearchProvidersPreference extends DialogPreference {
 
-    public ResetPreference(Context context, AttributeSet attrs) {
+    public ResetSearchProvidersPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -20,10 +21,11 @@ public class ResetPreference extends DialogPreference {
     public void onClick(DialogInterface dialog, int which) {
         super.onClick(dialog, which);
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            KissApplication.getDataHandler(getContext()).clearHistory();
-            PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putBoolean("require-layout-update", true).apply();
+            PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
+                    .remove("available-search-providers").commit();
+            Toast.makeText(getContext(), R.string.search_provider_reset_done_desc, Toast.LENGTH_LONG).show();
+            KissApplication.getDataHandler(this.getContext()).getSearchProvider().reload();
 
-            Toast.makeText(getContext(), R.string.history_erased, Toast.LENGTH_LONG).show();
         }
 
     }

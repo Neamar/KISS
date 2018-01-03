@@ -5,15 +5,30 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/widgetLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/resultLayout"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal">
+
+    </RelativeLayout>
+
     <FrameLayout
+        android:id="@+id/resultLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/favoritesBar"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentTop="false"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:background="?attr/listBackgroundColor"
         android:elevation="2dp">
 
@@ -47,7 +62,6 @@
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
         android:elevation="2dp"
-        android:padding="5dp"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -59,14 +73,14 @@
 
             <RelativeLayout
                 android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/favorite_padding">
 
                 <ImageView
                     android:id="@+id/favoriteBar0"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="?attr/appSelectableItemBackground"
                     android:contentDescription="@null"
                     android:onClick="onFavoriteButtonClicked"
@@ -75,166 +89,167 @@
 
                 <TextView
                     android:id="@+id/favoriteBadge0"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_alignBottom="@id/favoriteBar0"
                     android:layout_alignEnd="@id/favoriteBar0"
                     android:layout_alignRight="@id/favoriteBar0"
                     android:background="@drawable/badge_background"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:textColor="@android:color/white"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
             </RelativeLayout>
+
 
             <RelativeLayout
                 android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/favorite_padding">
 
                 <ImageView
                     android:id="@+id/favoriteBar1"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="?attr/appSelectableItemBackground"
                     android:contentDescription="@null"
                     android:onClick="onFavoriteButtonClicked"
-                    android:tag="1"
+                    android:tag="0"
                     tools:src="@drawable/ic_contact" />
 
                 <TextView
                     android:id="@+id/favoriteBadge1"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_alignBottom="@id/favoriteBar1"
                     android:layout_alignEnd="@id/favoriteBar1"
                     android:layout_alignRight="@id/favoriteBar1"
                     android:background="@drawable/badge_background"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:textColor="@android:color/white"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/favorite_padding">
 
                 <ImageView
                     android:id="@+id/favoriteBar2"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="?attr/appSelectableItemBackground"
                     android:contentDescription="@null"
                     android:onClick="onFavoriteButtonClicked"
-                    android:tag="2"
+                    android:tag="0"
                     tools:src="@drawable/ic_contact" />
 
                 <TextView
                     android:id="@+id/favoriteBadge2"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_alignBottom="@id/favoriteBar2"
                     android:layout_alignEnd="@id/favoriteBar2"
                     android:layout_alignRight="@id/favoriteBar2"
                     android:background="@drawable/badge_background"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:textColor="@android:color/white"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/favorite_padding">
 
                 <ImageView
                     android:id="@+id/favoriteBar3"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="?attr/appSelectableItemBackground"
                     android:contentDescription="@null"
                     android:onClick="onFavoriteButtonClicked"
-                    android:tag="3"
+                    android:tag="0"
                     tools:src="@drawable/ic_contact" />
 
                 <TextView
                     android:id="@+id/favoriteBadge3"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_alignBottom="@id/favoriteBar3"
                     android:layout_alignEnd="@id/favoriteBar3"
                     android:layout_alignRight="@id/favoriteBar3"
                     android:background="@drawable/badge_background"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:textColor="@android:color/white"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/favorite_padding">
 
                 <ImageView
                     android:id="@+id/favoriteBar4"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="?attr/appSelectableItemBackground"
                     android:contentDescription="@null"
                     android:onClick="onFavoriteButtonClicked"
-                    android:tag="4"
+                    android:tag="0"
                     tools:src="@drawable/ic_contact" />
 
                 <TextView
                     android:id="@+id/favoriteBadge4"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_alignBottom="@id/favoriteBar4"
                     android:layout_alignEnd="@id/favoriteBar4"
                     android:layout_alignRight="@id/favoriteBar4"
                     android:background="@drawable/badge_background"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:textColor="@android:color/white"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="0px"
-                android:layout_height="48dp"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/favorite_padding">
 
                 <ImageView
                     android:id="@+id/favoriteBar5"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:background="?attr/appSelectableItemBackground"
                     android:contentDescription="@null"
                     android:onClick="onFavoriteButtonClicked"
-                    android:tag="5"
+                    android:tag="0"
                     tools:src="@drawable/ic_contact" />
 
                 <TextView
                     android:id="@+id/favoriteBadge5"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_alignBottom="@id/favoriteBar5"
                     android:layout_alignEnd="@id/favoriteBar5"
                     android:layout_alignRight="@id/favoriteBar5"
                     android:background="@drawable/badge_background"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:textColor="@android:color/white"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -242,7 +257,7 @@
     <RelativeLayout
         android:id="@+id/searchEditLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/bar_height"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="10dp"
@@ -250,28 +265,27 @@
         android:layout_marginRight="10dp"
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
-        android:elevation="2dp"
-        android:padding="4dp">
+        android:elevation="2dp">
 
         <ImageView
             android:id="@+id/launcherButton"
-            android:layout_width="41dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/launcher_button_width"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_kiss"
             android:focusable="true"
             android:onClick="onLauncherButtonClicked"
-            android:paddingLeft="6dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="@dimen/launcher_button_padding"
+            android:paddingRight="@dimen/launcher_button_padding"
             android:src="@drawable/ic_launcher"
             android:tag="showMenu" />
 
         <ProgressBar
             android:id="@+id/loaderBar"
             android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="6dp"
@@ -282,7 +296,7 @@
         <EditText
             android:id="@+id/searchEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/launcherButton"
             android:layout_toLeftOf="@+id/clearButton"
@@ -295,42 +309,36 @@
             android:singleLine="true"
             android:textColor="?attr/searchColor"
             android:textColorHint="?android:attr/textColorSecondary"
-            android:textCursorDrawable="@drawable/cursor"
+            android:textCursorDrawable="@null"
             android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/menuButton"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/launcher_button_width"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_menu"
             android:focusable="true"
             android:onClick="onMenuButtonClicked"
-            android:paddingBottom="4dp"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
-            android:paddingTop="4dp"
+            android:paddingLeft="@dimen/launcher_button_padding"
+            android:paddingRight="@dimen/launcher_button_padding"
             android:src="@drawable/dots"
             android:tint="?attr/searchColor" />
 
         <ImageView
             android:id="@+id/clearButton"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/launcher_button_width"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_clear"
             android:focusable="true"
             android:onClick="onClearButtonClicked"
-            android:paddingBottom="4dp"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
-            android:paddingTop="4dp"
+            android:paddingLeft="@dimen/launcher_button_padding"
+            android:paddingRight="@dimen/launcher_button_padding"
             android:src="@drawable/clear_dark"
             android:tint="?attr/searchColor"
             android:visibility="visible" />
