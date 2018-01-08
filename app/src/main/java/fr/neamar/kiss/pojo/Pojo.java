@@ -59,12 +59,7 @@ public abstract class Pojo {
         this.displayTags = this.tags.substring(0, posStart)
                 + '{' + this.tags.substring(posStart, posEnd) + '}' + this.tags.substring(posEnd, this.tags.length());
     }
-//
-//    public void setTagHighlight(int positionStart, int positionEnd) {
-//        this.displayTags = this.tags.substring(0, positionStart)
-//                + '{' + this.tags.substring(positionStart, positionEnd) + '}'
-//                + this.tags.substring(positionEnd);
-//    }
+    
     /**
      * Map a position in the normalized name to a position in the standard name string
      *
