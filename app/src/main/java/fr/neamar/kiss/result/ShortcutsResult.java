@@ -44,6 +44,8 @@ public class ShortcutsResult extends Result {
         final ImageView shortcutIcon = (ImageView) v.findViewById(R.id.item_shortcut_icon);
         final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
 
+        displayTags(context, v, shortcutPojo);
+
         // Retrieve package icon for this shortcut
         final PackageManager packageManager = context.getPackageManager();
         Drawable appDrawable = null;

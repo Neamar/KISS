@@ -25,9 +25,18 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
         final String queryWithSpace = " " + query;
         for (ShortcutsPojo shortcut : pojos) {
             relevance = 0;
+
+            shortcut.displayName = shortcut.name;
+            shortcut.displayTags = shortcut.tags;
+
             shortcutNameLowerCased = shortcut.nameNormalized;
 
             matchPositionEnd = 0;
+
+            boolean matchedTags = false;
+            int tagStart = 0;
+            int tagEnd = 0;
+
             if (shortcutNameLowerCased.startsWith(query)) {
                 relevance = 75;
                 matchPositionStart = 0;
@@ -41,9 +50,28 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
                 relevance = 1;
                 matchPositionEnd = matchPositionStart + query.length();
             }
+            else {
+                if (shortcut.tagsNormalized.startsWith(query)) {
+                    relevance = 4 + query.length();
+                }
+                else if (shortcut.tagsNormalized.contains(query)) {
+                    relevance = 3 + query.length();
+                }
+                if (relevance > 0) {
+                    matchedTags = true;
+                }
+                tagStart = shortcut.tagsNormalized.indexOf(query);
+                tagEnd = tagStart + query.length();
+
+            }
 
             if (relevance > 0) {
-                shortcut.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
+                if (!matchedTags) {
+                    shortcut.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
+                }
+                else {
+                    shortcut.setTagHighlight(tagStart, tagEnd);
+                }
                 shortcut.relevance = relevance;
                 results.add(shortcut);
             }
@@ -57,6 +85,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
         for (Pojo pojo : pojos) {
             if (pojo.id.equals(id)) {
                 pojo.displayName = pojo.name;
+                pojo.displayTags = pojo.tags;
                 return pojo;
             }
         }

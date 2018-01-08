@@ -92,16 +92,7 @@ public class AppResult extends Result {
         TextView appName = (TextView) view.findViewById(R.id.item_app_name);
         appName.setText(enrichText(appPojo.displayName, context));
 
-        TextView tagsView = (TextView) view.findViewById(R.id.item_app_tag);
-        //Hide tags view if tags are empty or if user has selected to hide them and the query doesnt match tags
-        if (appPojo.displayTags.isEmpty() ||
-                ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (appPojo.displayTags.equals(appPojo.tags)))) {
-            tagsView.setVisibility(View.GONE);
-        }
-        else {
-            tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(enrichText(appPojo.displayTags, context));
-        }
+        displayTags(context, view, appPojo);
 
         final ImageView appIcon = (ImageView) view.findViewById(R.id.item_app_icon);
         if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
@@ -178,9 +169,6 @@ public class AppResult extends Result {
                 parent.removeResult(this);
                 excludeFromAppList(context, appPojo);
                 return true;
-            case R.id.item_tags_edit:
-                launchEditTagsDialog(context, appPojo);
-                break;
         }
 
         return super.popupMenuClickHandler(context, parent, item);
@@ -192,48 +180,6 @@ public class AppResult extends Result {
         KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
         KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, appPojo.id);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
-
-    }
-
-
-    private void launchEditTagsDialog(final Context context, final AppPojo app) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(context.getResources().getString(R.string.tags_add_title));
-
-        // Create the tag dialog
-
-        final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
-        final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
-                android.R.layout.simple_dropdown_item_1line, KissApplication.getDataHandler(context).getTagsHandler().getAllTagsAsArray());
-        tagInput.setTokenizer(new SpaceTokenizer());
-        tagInput.setText(appPojo.tags);
-
-        tagInput.setAdapter(adapter);
-        builder.setView(v);
-
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                KissApplication.getDataHandler(context).getTagsHandler().setTags(app.id, tagInput.getText().toString());
-                // Refresh tags for given app
-                app.setTags(tagInput.getText().toString());
-                // Show toast message
-                String msg = context.getResources().getString(R.string.tags_confirmation_added);
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-		AlertDialog dialog = builder.create();
-		dialog.getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE );
-
-		dialog.show();
     }
 
     /**
