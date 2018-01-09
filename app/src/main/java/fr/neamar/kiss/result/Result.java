@@ -280,7 +280,6 @@ public abstract class Result {
         }
         else
         {
-            view.setImageResource(android.R.color.transparent);
             view.setTag( new AsyncSetImage( view, this ).execute() );
         }
     }

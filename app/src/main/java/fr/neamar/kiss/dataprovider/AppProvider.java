@@ -126,14 +126,14 @@ public class AppProvider extends Provider<AppPojo> {
 	{
 		String queryNormalized = StringNormalizer.normalize( query );
 
-		FuzzyScore           fuzzyScore = new FuzzyScore();
+		FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized );
 		FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
 
 		for( AppPojo pojo : pojos )
 		{
 		    boolean bDisplayNameSet = false;
 		    boolean bDisplayTagsSet = false;
-			boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
+			boolean match = fuzzyScore.match( pojo.nameNormalized, matchInfo );
 			pojo.relevance = matchInfo.score;
 
 			if ( match )
@@ -152,7 +152,7 @@ public class AppProvider extends Provider<AppPojo> {
 			// check relevance for tags
 			if( !pojo.tagsNormalized.isEmpty() )
 			{
-				if( fuzzyScore.match( queryNormalized, pojo.tagsNormalized, matchInfo ) )
+				if( fuzzyScore.match( pojo.tagsNormalized, matchInfo ) )
 				{
 					if( !match || (matchInfo.score > pojo.relevance) )
 					{

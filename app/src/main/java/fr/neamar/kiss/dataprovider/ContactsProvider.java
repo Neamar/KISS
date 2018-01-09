@@ -56,11 +56,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         // (not part of the StringNormalizer class, since we want to keep dashes on other providers)
         queryNormalized = queryNormalized.replaceAll("-", " ");
 
-        FuzzyScore   fuzzyScore = new FuzzyScore();
+        FuzzyScore   fuzzyScore = new FuzzyScore( queryNormalized );
         FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
         for (ContactsPojo pojo : pojos)
         {
-            boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
+            boolean match = fuzzyScore.match( pojo.nameNormalized, matchInfo );
             pojo.relevance = matchInfo.score;
 
             if ( match )
@@ -77,7 +77,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
             if ( !pojo.nickname.isEmpty() )
             {
-                if( fuzzyScore.match( queryNormalized, pojo.nickname, matchInfo ) )
+                if( fuzzyScore.match( pojo.nickname, matchInfo ) )
                 {
                     if( !match || (matchInfo.score > pojo.relevance) )
                     {
@@ -94,7 +94,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             if ( !match && queryNormalized.length() > 2 )
             {
                 // search for the phone number
-                if( fuzzyScore.match( queryNormalized, pojo.phoneSimplified, matchInfo ) )
+                if( fuzzyScore.match( pojo.phoneSimplified, matchInfo ) )
                 {
                     match = true;
                     pojo.relevance = matchInfo.score;

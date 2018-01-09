@@ -21,12 +21,12 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
     {
         String queryNormalized = StringNormalizer.normalize( query );
 
-        FuzzyScore           fuzzyScore = new FuzzyScore();
+        FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized );
         FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
 
         for( ShortcutsPojo pojo : pojos )
         {
-            boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
+            boolean match = fuzzyScore.match( pojo.nameNormalized, matchInfo );
             pojo.relevance = matchInfo.score;
 
             if ( match )

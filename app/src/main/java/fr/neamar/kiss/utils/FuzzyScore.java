@@ -19,6 +19,9 @@ import java.util.List;
  */
 public class FuzzyScore
 {
+	private final int patternLength;
+	private final int[] patternChar;
+	private final int[] patternLower;
 	/**
 	 * bonus for adjacent matches
 	 */
@@ -44,9 +47,18 @@ public class FuzzyScore
 	 */
 	private int unmatched_letter_penalty;
 
-	public FuzzyScore()
+	public FuzzyScore( String pattern )
 	{
 		super();
+		patternLength = pattern.length();
+		patternChar = new int[patternLength];
+		patternLower = new int[patternLength];
+		for( int i = 0; i < patternLower.length; i += 1 )
+		{
+			int codePoint = pattern.codePointAt( i );
+			patternChar[i] = codePoint;
+			patternLower[i] = Character.toLowerCase( codePoint );
+		}
 		adjacency_bonus = 5;
 		separator_bonus = 10;
 		camel_bonus = 10;
@@ -92,10 +104,6 @@ public class FuzzyScore
 		 * Can only compare scores with same search pattern.
 		 */
 		public int    score;
-		//		/**
-//		 * input str with matched characters marked between {}
-//		 */
-//		public String formattedString;
 		public ArrayList<Integer> matchedIndices;
 
 		public List<Pair<Integer, Integer>> getMatchedSequences()
@@ -125,22 +133,19 @@ public class FuzzyScore
 	/**
 	 * Returns true if each character in pattern is found sequentially within str
 	 *
-	 * @param pattern
-	 * @param str
+	 * @param str where to search
 	 * @return true if each character in pattern is found sequentially within str
 	 */
-	public boolean match( String pattern, String str )
+	public boolean match( String str )
 	{
 		int patternIdx    = 0;
 		int strIdx        = 0;
-		int patternLength = pattern.length();
 		int strLength     = str.length();
 
 		while( patternIdx != patternLength && strIdx != strLength )
 		{
-			int patternChar = Character.toLowerCase( pattern.codePointAt( patternIdx ) );
-			int strChar     = Character.toLowerCase( str.codePointAt( strIdx ) );
-			if( patternChar == strChar )
+			int strChar = Character.toLowerCase( str.codePointAt( strIdx ) );
+			if( patternLower[patternIdx] == strChar )
 				++patternIdx;
 			++strIdx;
 		}
@@ -149,19 +154,18 @@ public class FuzzyScore
 	}
 
 	/**
-	 * @param pattern
-	 * @param text
+	 * @param text where to search
+	 * @param info will hold matching results
 	 * @return true if each character in pattern is found sequentially within text
 	 */
-	public boolean match( String pattern, String text, MatchInfo info )
+	public boolean match( String text, MatchInfo info )
 	{
 		if( info == null )
-			return match( pattern, text );
+			return match( text );
 
 		// Loop variables
 		int     score         = 0;
 		int     patternIdx    = 0;
-		int     patternLength = pattern.length();
 		int     strIdx        = 0;
 		int     strLength     = text.length();
 		boolean prevMatched   = false;
@@ -174,17 +178,21 @@ public class FuzzyScore
 		Integer bestLetterIdx   = null;
 		int     bestLetterScore = 0;
 
-		ArrayList<Integer> matchedIndices = new ArrayList<>( pattern.length() );
+		ArrayList<Integer> matchedIndices = new ArrayList<>( patternLength );
 
 		// Loop over strings
 		while( strIdx != strLength )
 		{
-			Integer patternChar = patternIdx != patternLength ? pattern.codePointAt( patternIdx ) : null;
-			int     strChar     = text.codePointAt( strIdx );
-
-			Integer patternLower = patternChar != null ? Character.toLowerCase( patternChar ) : null;
-			int     strLower     = Character.toLowerCase( strChar );
-			int     strUpper     = Character.toUpperCase( strChar );
+			Integer patternChar  = null;
+			Integer patternLower = null;
+			if( patternIdx != patternLength )
+			{
+				patternChar = this.patternChar[patternIdx];
+				patternLower = this.patternLower[patternIdx];
+			}
+			int strChar  = text.codePointAt( strIdx );
+			int strLower = Character.toLowerCase( strChar );
+			int strUpper = Character.toUpperCase( strChar );
 
 			boolean nextMatch = patternChar != null && patternLower == strLower;
 			boolean rematch   = bestLetter != null && bestLower == strLower;
@@ -225,7 +233,7 @@ public class FuzzyScore
 				if( prevLower && strChar == strUpper && strLower != strUpper )
 					newScore += camel_bonus;
 
-				// Update patter index IFF the next pattern letter was matched
+				// Update pattern index IF the next pattern letter was matched
 				if( nextMatch )
 					++patternIdx;
 
@@ -267,25 +275,6 @@ public class FuzzyScore
 
 		info.score = score;
 		info.matchedIndices = matchedIndices;
-//		if( patternIdx == patternLength )
-//		{
-//			// Finish out formatted string after last pattern matched
-//			// Build formatted string based on matched letters
-//			StringBuilder formattedStrBuilder = new StringBuilder( text.length() + matchedIndices.size() );
-//			int           lastIdx             = 0;
-//			for( int i = 0; i < matchedIndices.size(); ++i )
-//			{
-//				int idx = matchedIndices.get( i );
-//				formattedStrBuilder.append( text.substring( lastIdx, idx - lastIdx ) )
-//								   .append( "{" )
-//								   .append( text.codePointAt( idx ) )
-//								   .append( "}" );
-//				lastIdx = idx + 1;
-//			}
-//			formattedStrBuilder.append( text.substring( lastIdx, text.length() - lastIdx ) );
-//			info.formattedString = formattedStrBuilder.toString();
-//			return true;
-//		}
 		return patternIdx == patternLength;
 	}
 }

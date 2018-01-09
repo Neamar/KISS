@@ -26,19 +26,19 @@ public class TogglesProvider extends Provider<TogglesPojo> {
     {
         String queryNormalized = StringNormalizer.normalize( query );
 
-        FuzzyScore           fuzzyScore = new FuzzyScore();
+        FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized );
         FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
 
         for (TogglesPojo pojo : pojos)
         {
-            boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
+            boolean match = fuzzyScore.match( pojo.nameNormalized, matchInfo );
             pojo.relevance = matchInfo.score;
 
             if ( match )
             {
                 pojo.setDisplayNameHighlightRegion( matchInfo.getMatchedSequences() );
             }
-            else if( fuzzyScore.match( queryNormalized, toggleName, matchInfo ) )
+            else if( fuzzyScore.match( toggleName, matchInfo ) )
             {
                 match = true;
                 pojo.relevance = matchInfo.score;

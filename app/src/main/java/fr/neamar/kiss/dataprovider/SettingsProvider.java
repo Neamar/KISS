@@ -1,9 +1,6 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.util.Pair;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.R;
@@ -29,19 +26,19 @@ public class SettingsProvider extends Provider<SettingsPojo> {
     {
         String queryNormalized = StringNormalizer.normalize( query );
 
-        FuzzyScore           fuzzyScore = new FuzzyScore();
+        FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized );
         FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
 
         for (SettingsPojo pojo : pojos)
         {
-            boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
+            boolean match = fuzzyScore.match( pojo.nameNormalized, matchInfo );
             pojo.relevance = matchInfo.score;
 
             if ( match )
             {
                 pojo.setDisplayNameHighlightRegion( matchInfo.getMatchedSequences() );
             }
-            else if( fuzzyScore.match( queryNormalized, settingName, matchInfo ) )
+            else if( fuzzyScore.match( settingName, matchInfo ) )
             {
                 match = true;
                 pojo.relevance = matchInfo.score;
