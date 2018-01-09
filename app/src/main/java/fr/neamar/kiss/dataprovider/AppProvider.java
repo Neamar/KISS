@@ -8,7 +8,6 @@ import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.Process;
 import android.os.UserManager;
-import android.util.Log;
 import android.util.Pair;
 
 import java.util.ArrayList;
@@ -132,9 +131,8 @@ public class AppProvider extends Provider<AppPojo> {
 
 		for( AppPojo pojo : pojos )
 		{
-			pojo.displayName = pojo.name;
-			pojo.displayTags = pojo.tags;
-
+		    boolean bDisplayNameSet = false;
+		    boolean bDisplayTagsSet = false;
 			boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
 			pojo.relevance = matchInfo.score;
 
@@ -146,16 +144,9 @@ public class AppProvider extends Provider<AppPojo> {
 					pojo.setDisplayNameHighlightRegion( positions );
 				} catch( Exception e )
 				{
-					StringBuilder sb = new StringBuilder();
-					for( Pair p : positions )
-						sb.append( "<" )
-						  .append( p.first )
-						  .append( "," )
-						  .append( p.second )
-						  .append( ">" );
-					Log.e( "TBog", sb.toString(), e );
 					pojo.setDisplayNameHighlightRegion( 0, pojo.nameNormalized.length() );
 				}
+                bDisplayNameSet = true;
 			}
 
 			// check relevance for tags
@@ -168,12 +159,17 @@ public class AppProvider extends Provider<AppPojo> {
 						match = true;
 						pojo.relevance = matchInfo.score;
 						pojo.setTagHighlight( matchInfo.matchedIndices );
+						bDisplayTagsSet = true;
 					}
 				}
 			}
 
 			if( match )
 			{
+			    if ( !bDisplayNameSet )
+                    pojo.displayName = pojo.name;
+			    if ( !bDisplayTagsSet )
+                    pojo.displayTags = pojo.tags;
 				if( !searcher.addResult( pojo ) )
 					return;
 			}

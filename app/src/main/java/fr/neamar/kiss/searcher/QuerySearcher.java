@@ -75,7 +75,7 @@ public class QuerySearcher extends Searcher {
         }
 
         // Request results via "addResult"
-        KissApplication.getDataHandler(activity).requestResults( activity, query, this );
+        KissApplication.getDataHandler(activity).requestResults( query, this );
         return null;
     }
 }

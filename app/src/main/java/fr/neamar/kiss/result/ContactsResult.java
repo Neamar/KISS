@@ -60,7 +60,6 @@ public class ContactsResult extends Result {
         ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) view
                 .findViewById(R.id.item_contact_icon);
 
-        //contactIcon.setImageDrawable(getDrawable(context));
         this.setAsyncDrawable( contactIcon );
 
         contactIcon.assignContactUri(Uri.withAppendedPath(

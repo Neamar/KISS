@@ -15,7 +15,6 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +28,6 @@ import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.UserHandle;
@@ -237,12 +235,12 @@ public class DataHandler extends BroadcastReceiver
     /**
      * Get records for this query.
      *
-     * @param context android context
      * @param query   query to run
      * @param searcher
      */
-    public void requestResults( Context context, String query, Searcher searcher )
+    public void requestResults( String query, Searcher searcher )
     {
+        currentQuery = query;
         for (ProviderEntry entry : this.providers.values()) {
             if ( searcher.isCancelled() )
                 break;
@@ -251,51 +249,6 @@ public class DataHandler extends BroadcastReceiver
             // Retrieve results for query:
             entry.provider.requestResults(query, searcher);
         }
-    }
-
-    /**
-     * Get records for this query.
-     *
-     * @param context android context
-     * @param query   query to run
-     * @return ordered list of records
-     */
-    public ArrayList<Pojo> getResults( Context context, String query ) {
-        query = query.trim().replaceAll("<", "&lt;");
-
-        currentQuery = query;
-
-        // Have we ever made the same query and selected something ?
-        List<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(
-                context, query);
-        HashMap<String, Integer> knownIds = new HashMap<>();
-        for (ValuedHistoryRecord id : lastIdsForQuery) {
-            knownIds.put(id.record, id.value);
-        }
-
-        // Ask all providers for data
-        ArrayList<Pojo> allPojos = new ArrayList<>();
-
-        for (ProviderEntry entry : this.providers.values()) {
-            if (entry.provider != null) {
-                // Retrieve results for query:
-                List<Pojo> pojos = entry.provider.getResults(query);
-
-                // Add results to list
-                for (Pojo pojo : pojos) {
-                    // Give a boost if item was previously selected for this query
-                    if (knownIds.containsKey(pojo.id)) {
-                        pojo.relevance += 25 * Math.min(5, knownIds.get(pojo.id));
-                    }
-                    allPojos.add(pojo);
-                }
-            }
-        }
-
-        // Sort records according to relevance
-        Collections.sort(allPojos, new PojoComparator());
-
-        return allPojos;
     }
 
     /**

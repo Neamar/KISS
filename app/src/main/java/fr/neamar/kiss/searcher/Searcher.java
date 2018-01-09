@@ -63,7 +63,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void>
 		super();
 		this.query = query;
 		this.activityWeakReference = new WeakReference<>( activity );
-		this.processedPojos = new PriorityQueue<>( DEFAULT_MAX_RESULTS, new PojoComparator( true ) );
+		this.processedPojos = new PriorityQueue<>( DEFAULT_MAX_RESULTS, new PojoComparator() );
 		this.refreshTask = new RefreshTask();
 		this.refreshCounter = 0;
 		// This handler should run on the Ui thread. That's the only thread that can't be blocked.

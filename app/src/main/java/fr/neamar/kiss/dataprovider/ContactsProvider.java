@@ -55,7 +55,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         // Search people with composed names, e.g "jean-marie"
         // (not part of the StringNormalizer class, since we want to keep dashes on other providers)
         queryNormalized = queryNormalized.replaceAll("-", " ");
-        //searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+
         FuzzyScore   fuzzyScore = new FuzzyScore();
         FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
         for (ContactsPojo pojo : pojos)
@@ -63,7 +63,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             boolean match = fuzzyScore.match( queryNormalized, pojo.nameNormalized, matchInfo );
             pojo.relevance = matchInfo.score;
 
-            if ( match && !matchInfo.matchedIndices.isEmpty() )
+            if ( match )
             {
                 List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
                 try
@@ -71,14 +71,6 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                     pojo.setDisplayNameHighlightRegion( positions );
                 } catch( Exception e )
                 {
-                    StringBuilder sb = new StringBuilder();
-                    for( Pair p : positions )
-                        sb.append( "<" )
-                          .append( p.first )
-                          .append( "," )
-                          .append( p.second )
-                          .append( ">" );
-                    Log.e( "TBog", sb.toString(), e );
                     pojo.setDisplayNameHighlightRegion( 0, pojo.nameNormalized.length() );
                 }
             }

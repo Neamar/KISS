@@ -1022,7 +1022,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public boolean showRelevance()
     {
-        return true;
+        return BuildConfig.DEBUG;
     }
 
     @Override
