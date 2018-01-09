@@ -16,7 +16,6 @@ import android.preference.PreferenceScreen;
 import android.widget.Toast;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -70,7 +69,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
         addExcludedAppSettings(prefs);
 
-        addSearchProvidersSelector(prefs);
+        addCustomSearchProvidersPreferences(prefs);
 
         UiTweaks.updateThemePrimaryColor(this);
 
@@ -123,7 +122,12 @@ public class SettingsActivity extends PreferenceActivity implements
                 if (!hasExcludedApps(prefs)) {
                     multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
                 }
-                KissApplication.getDataHandler(SettingsActivity.this).getAppProvider().reload();
+
+                final AppProvider provider = KissApplication.getDataHandler(SettingsActivity.this).getAppProvider();
+                if (provider != null) {
+                    provider.reload();
+                }
+
                 return false;
             }
         });
@@ -132,20 +136,115 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    private void addSearchProvidersSelector(SharedPreferences prefs) {
+    private void addCustomSearchProvidersPreferences(SharedPreferences prefs) {
+        removeSearchProviderSelect(prefs);
+        removeSearchProviderDelete(prefs);
+        addCustomSearchProvidersSelect(prefs);
+        addCustomSearchProvidersDelete(prefs);
+    }
+
+    private void removeSearchProviderSelect(SharedPreferences prefs) {
+        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        Preference pref = findPreference("selected-search-provider-names");
+        if (pref != null) {
+            category.removePreference(pref);
+        }
+    }
+
+    private void removeSearchProviderDelete(SharedPreferences prefs) {
+        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        Preference pref = findPreference("deleting-search-providers-names");
+        if (pref != null) {
+            category.removePreference(pref);
+        }
+    }
+
+    private void addCustomSearchProvidersSelect(SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
-        String[] searchProviders = SearchProvider.getSearchProviders();
+        //get stored search providers or default hard-coded values
+        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this));
+        String[] searchProvidersArray = new String[availableSearchProviders.size()];
+        int pos = 0;
+        //get names of search providers
+        for (String searchProvider : availableSearchProviders) {
+            searchProvidersArray[pos++] = searchProvider.split("\\|")[0];
+        }
         String search_providers_title = this.getString(R.string.search_providers_title);
         multiPreference.setTitle(search_providers_title);
         multiPreference.setDialogTitle(search_providers_title);
-        multiPreference.setKey("search-providers");
-        multiPreference.setEntries(searchProviders);
-        multiPreference.setEntryValues(searchProviders);
-        multiPreference.setDefaultValue(new HashSet<>(Collections.singletonList("Google")));
+        multiPreference.setKey("selected-search-provider-names");
+        multiPreference.setEntries(searchProvidersArray);
+        multiPreference.setEntryValues(searchProvidersArray);
+        multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            @SuppressWarnings("unchecked")
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+                final SearchProvider provider = KissApplication.getDataHandler(SettingsActivity.this).getSearchProvider();
+                if (provider != null) {
+                    provider.reload();
+                }
+                return true;
+            }
+        });
+
         PreferenceGroup category = (PreferenceGroup) findPreference("providers");
         category.addPreference(multiPreference);
     }
 
+    private void addCustomSearchProvidersDelete(SharedPreferences prefs) {
+        MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+
+        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this));
+        String[] searchProvidersArray = new String[availableSearchProviders.size()];
+        int pos = 0;
+        //get names of search providers
+        for (String searchProvider : availableSearchProviders) {
+            searchProvidersArray[pos++] = searchProvider.split("\\|")[0];
+        }
+        multiPreference.setEnabled(availableSearchProviders.size() > 0);
+        String search_providers_title = this.getString(R.string.search_providers_delete);
+        multiPreference.setTitle(search_providers_title);
+        multiPreference.setDialogTitle(search_providers_title);
+        multiPreference.setKey("deleting-search-providers-names");
+        multiPreference.setEntries(searchProvidersArray);
+        multiPreference.setEntryValues(searchProvidersArray);
+        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+
+        multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                Set<String> searchProvidersToDelete = (Set<String>) newValue;//PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("deleting-search-providers-names", new HashSet<String>());
+                Set<String> availableSearchProviders = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders(SettingsActivity.this));
+
+                Set<String> updatedProviders = new HashSet<String>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders(SettingsActivity.this)));
+
+                for (String searchProvider : availableSearchProviders) {
+                    for (String providerToDelete : searchProvidersToDelete) {
+                        if (searchProvider.startsWith(providerToDelete+"|")) {
+                            updatedProviders.remove(searchProvider);
+                            continue;
+                        }
+                    }
+                }
+                PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).edit().putStringSet("available-search-providers", updatedProviders).commit();
+                PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).edit().putStringSet("deleting-search-providers-names", updatedProviders).commit();
+
+                if (searchProvidersToDelete.size() > 0) {
+                    Toast.makeText(SettingsActivity.this, R.string.search_provider_deleted, Toast.LENGTH_LONG).show();
+                }
+
+                // Reload search list
+                final SearchProvider provider = KissApplication.getDataHandler(SettingsActivity.this).getSearchProvider();
+                if (provider != null) {
+                    provider.reload();
+                }
+                return true;
+            }
+        });
+
+        category.addPreference(multiPreference);
+    }
 
     @Override
     public void onResume() {
@@ -155,6 +254,10 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+        if (key.equalsIgnoreCase("available-search-providers")) {
+            addCustomSearchProvidersPreferences(prefs);
+        }
 
         if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getIconsHandler(this).loadIconsPack(sharedPreferences.getString(key, "default"));
