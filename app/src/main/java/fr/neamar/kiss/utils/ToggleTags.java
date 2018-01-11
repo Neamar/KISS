@@ -22,6 +22,7 @@ public class ToggleTags
 	private final View              toggleBarView;
 	private final ViewGroup         toggleContainer;
 	private final ArrayList<String> hiddenTagsList;
+	private final ToggleUpdatedListener toggleUpdatedListener;
 	private final CompoundButton.OnCheckedChangeListener checkedChangeListener = new CompoundButton.OnCheckedChangeListener()
 	{
 		@Override
@@ -34,22 +35,30 @@ public class ToggleTags
 				if( !hiddenTagsList.contains( tag ) )
 				{
 					hiddenTagsList.add( tag );
+					toggleUpdatedListener.OnToggleUpdated();
 				}
 			}
 			else
 			{
 				hiddenTagsList.remove( tag );
+				toggleUpdatedListener.OnToggleUpdated();
 			}
 		}
 	};
 
-	public ToggleTags( View toggleBar )
+	public interface ToggleUpdatedListener
+	{
+		void OnToggleUpdated();
+	}
+
+	public ToggleTags( View toggleBar, ToggleUpdatedListener listener )
 	{
 		super();
 
 		toggleBarView = toggleBar;
 		toggleContainer = (ViewGroup)toggleBar.findViewById( R.id.tags_toggle_list );
 		hiddenTagsList = new ArrayList<>( 5 );
+		toggleUpdatedListener = listener;
 		RefreshContainer();
 	}
 

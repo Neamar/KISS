@@ -51,7 +51,7 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 import fr.neamar.kiss.utils.ToggleTags;
 
-public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver, ToggleTags.ToggleUpdatedListener {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -302,7 +302,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
-        toggleTags = new ToggleTags( findViewById( R.id.tagsToggleBar ) );
+        toggleTags = new ToggleTags( findViewById( R.id.tagsToggleBar ), this );
 
         registerForContextMenu(menuButton);
 
@@ -802,5 +802,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public ArrayList<String> getHiddenTags()
     {
         return toggleTags.getHiddenTags();
+    }
+
+    @Override
+    public void OnToggleUpdated()
+    {
+        updateRecords();
     }
 }
