@@ -144,16 +144,16 @@ public abstract class Result {
         return false;
     }
 
-    private void launchAddToFavorites(Context context, Pojo app) {
+    private void launchAddToFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, pojo.id);
+        Toast.makeText(context, String.format(msg, pojo.name), Toast.LENGTH_SHORT).show();
     }
 
-    private void launchRemoveFromFavorites(Context context, Pojo app) {
+    private void launchRemoveFromFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, pojo.id);
+        Toast.makeText(context, String.format(msg, pojo.name), Toast.LENGTH_SHORT).show();
     }
 
     private void launchEditTagsDialog(final Context context, final Pojo pojo) {
@@ -167,20 +167,24 @@ public abstract class Result {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getDataHandler(context).getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
-        tagInput.setText(this.pojo.tags);
+        tagInput.setText(pojo.tags);
 
         tagInput.setAdapter(adapter);
         builder.setView(v);
 
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                KissApplication.getDataHandler(context).getTagsHandler().setTags(pojo.id, tagInput.getText().toString());
+            public void onClick( DialogInterface dialog, int which )
+            {
+                dialog.dismiss();
                 // Refresh tags for given app
-                pojo.setTags(tagInput.getText().toString());
+                pojo.setTags( tagInput.getText().toString() );
+                KissApplication.getDataHandler( context ).getTagsHandler().setTags( pojo.id, pojo.tags );
+                // TODO: update the displayTags with proper highlight
+                pojo.displayTags = pojo.tags;
                 // Show toast message
-                String msg = context.getResources().getString(R.string.tags_confirmation_added);
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                String msg = context.getResources().getString( R.string.tags_confirmation_added );
+                Toast.makeText( context, msg, Toast.LENGTH_SHORT ).show();
             }
         });
         builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

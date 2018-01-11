@@ -165,7 +165,7 @@ public class AppResult extends Result {
                 hibernate(context, appPojo);
                 return true;
             case R.id.item_exclude:
-                // remove item since it will be hiddden
+                // remove item since it will be hidden
                 parent.removeResult(this);
                 excludeFromAppList(context, appPojo);
                 return true;
