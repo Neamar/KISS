@@ -74,6 +74,7 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
+import fr.neamar.kiss.utils.ToggleTags;
 import fr.neamar.kiss.utils.WallpaperUtils;
 
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
@@ -183,6 +184,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Search edit layout
      */
     private View searchEditLayout;
+    /**
+     * A helper class used to manage all tags toggles
+     */
+    private ToggleTags toggleTags;
     /**
      * Wallpaper scroll
      */
@@ -369,6 +374,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         kissBar = findViewById(R.id.main_kissbar);
         favoritesKissBar = findViewById(R.id.favoritesKissBar);
+
+        toggleTags = new ToggleTags( findViewById( R.id.tagsToggleBar ) );
 
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
@@ -1026,6 +1033,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
 
         if (query.length() == 0) {
+            toggleTags.hideBar();
             mSystemUiVisibility.resetScroll();
             if (prefs.getBoolean("history-hide", false)) {
                 list.setVerticalScrollBarEnabled(false);
@@ -1042,6 +1050,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         } else {
+            toggleTags.showBar();
+
             searcher = new QuerySearcher(this, query);
         }
         searcher.executeOnExecutor(Searcher.SEARCH_THREAD);
@@ -1104,6 +1114,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+        toggleTags.showBar();
 
         mSystemUiVisibility.onKeyboardVisibilityChanged(true);
     }
@@ -1257,5 +1268,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void afterChange() {
         AnimatedListView listView = (AnimatedListView) this.list;
         listView.animateChange();
+    }
+
+    public ArrayList<String> getHiddenTags()
+    {
+        return toggleTags.getHiddenTags();
     }
 }
