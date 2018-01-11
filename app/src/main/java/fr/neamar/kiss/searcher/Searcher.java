@@ -15,11 +15,13 @@ import java.util.Collection;
 import java.util.PriorityQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.result.Result;
 
 public abstract class Searcher extends AsyncTask<Void, Result, Void> {
@@ -132,13 +134,30 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         // Loader should still be displayed until all the providers have finished loading
         activity.displayLoader(!KissApplication.getApplication(activity).getDataHandler().allProvidersHaveLoaded);
 
+        Pattern pattern = Pattern.compile("\\s+");
         if (this.processedPojos.isEmpty()) {
             activity.adapter.clear();
         } else {
             PriorityQueue<Pojo> queue = this.processedPojos;
             Collection<Result> results = new ArrayList<>(queue.size());
             while (queue.peek() != null) {
-                results.add(Result.fromPojo(activity, queue.poll()));
+                Pojo pojo = queue.poll();
+                boolean addPojo = true;
+                if ( pojo instanceof PojoWithTags) {
+                    PojoWithTags pojoWithTags = (PojoWithTags) pojo;
+                    if (pojoWithTags.getTags() != null && !pojoWithTags.getTags().isEmpty()) {
+                        // do not add pojos that contain tags that should be hidden
+                        for (String tag : pattern.split(pojoWithTags.getTags())) {
+                            if (activity.getHiddenTags()
+                                    .contains(tag)) {
+                                addPojo = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if ( addPojo )
+                    results.add(Result.fromPojo(activity, pojo));
             }
             activity.beforeListChange();
 

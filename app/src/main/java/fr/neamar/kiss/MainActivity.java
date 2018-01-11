@@ -49,6 +49,7 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
+import fr.neamar.kiss.utils.ToggleTags;
 
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
 
@@ -121,6 +122,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Task launched on text change
      */
     private Searcher searchTask;
+
+    /**
+     * A helper class used to manage all tags toggles
+     */
+    private ToggleTags toggleTags;
 
     /**
      * SystemUiVisibility helper
@@ -295,6 +301,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 return true;
             }
         });
+
+        toggleTags = new ToggleTags( findViewById( R.id.tagsToggleBar ) );
 
         registerForContextMenu(menuButton);
 
@@ -668,8 +676,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.updateSearchRecords(query);
 
         if (query.isEmpty()) {
+            toggleTags.hideBar();
             systemUiVisibilityHelper.resetScroll();
         } else {
+            toggleTags.showBar();
             runTask(new QuerySearcher(this, query));
         }
     }
@@ -734,12 +744,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
 
+    @Override
     public void showKeyboard() {
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         assert mgr != null;
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
 
+        toggleTags.showBar();
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
     }
 
@@ -785,5 +797,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void afterListChange() {
         list.animateChange();
+    }
+
+    public ArrayList<String> getHiddenTags()
+    {
+        return toggleTags.getHiddenTags();
     }
 }
