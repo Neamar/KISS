@@ -45,7 +45,7 @@
     <string name="alias_phone">ダイヤル,通話,電話</string>
     <string name="alias_contacts">連絡先,人,関係</string>
     <string name="alias_web">インターネット,web,ブラウザー</string>
-    <string name="alias_mail">メール,電子メール</string>
+    <string name="alias_mail">メール,電子メール,eメール</string>
     <string name="alias_market">マーケット,ストア,アプリ センター</string>
     <string name="alias_clock">時計,アラーム,タイマー,ストップウォッチ</string>
     <string name="alias_messaging">テキスト メッセージ,作成,sms,mms、メッセージング</string>
@@ -53,10 +53,10 @@
     <string name="toggles_prefix">"切り替え: "</string>
     <string name="settings_airplane">機内モード</string>
     <string name="settings_device_info">デバイス情報</string>
-    <string name="settings_applications">アプリケーション</string>
+    <string name="settings_applications">アプリ</string>
     <string name="settings_connectivity">接続</string>
     <string name="settings_battery">バッテリー</string>
-    <string name="toggle_wifi">Wifi</string>
+    <string name="toggle_wifi">Wi-Fi</string>
     <string name="toggle_bluetooth">Bluetooth</string>
     <string name="toggle_silent">サイレント</string>
     <string name="toggle_data">ネットワーク データ</string>
@@ -71,7 +71,7 @@
     <string name="menu_app_uninstall">アンインストール</string>
     <string name="menu_app_hibernate">休止状態</string>
 
-    <string name="toast_hibernate_completed">%s を正常に休止状態にしました。目を覚ますには再起動してください。</string>
+    <string name="toast_hibernate_completed">%s を休止状態にしました。再開するには再起動してください。</string>
     <string name="toast_hibernate_error">%s は休止状態になりませんでした。</string>
     <string name="menu_contact_copy_phone">電話番号をコピー</string>
     <string name="theme_name">テーマインターフェイス</string>
@@ -82,7 +82,7 @@
 
     <string name="order_apps_name">アプリ一覧の並び順</string>
 
-    <string name="history_hide_desc">履歴と導入画面を非表示にします</string>
+    <string name="history_hide_desc">履歴と導入画面を非表示にして、ウィジェットを有効にします</string>
     <string name="history_hide_name">最小限の UI</string>
     <string name="history_onclick_name">タッチして履歴を表示</string>
     <string name="icons_hide_main">アプリケーションのアイコンを非表示</string>
@@ -120,14 +120,14 @@
     <string name="items_title">%dアイテム</string>
 
     <string name="search_desc">Google, DuckDuckGo, Bing などからの検索を有効にします。</string>
-    <string name="restart_desc">テーマの問題 / 新しい連絡先が表示されないを修正します</string>
+    <string name="restart_desc">テーマの問題と新しい連絡先が表示されないのを修正します</string>
     <string name="restart_name">KISS を再起動</string>
     <string name="restart_warn">KISS を再起動してもよろしいですか? KISS がデフォルトのランチャーではない場合、アプリは終了します。</string>
 
     <string name="freeze_history_name">履歴を凍結</string>
     <string name="freeze_history_warn">履歴を凍結して、すべての更新を無効にしてよろしいですか? 履歴はもう変更されません。</string>
 
-    <string name="ui_excluded_apps">除外したアプリの表示 / 編集</string>
+    <string name="ui_excluded_apps">除外したアプリの表示または編集</string>
     <string name="ui_excluded_apps_dialog_title">含めたいアプリを選択解除してください</string>
     <string name="ui_excluded_apps_not_found">アプリは除外されていません</string>
     <string name="search_providers_title">Web 検索プロバイダーを選択</string>
@@ -153,19 +153,19 @@
     <string name="settings_display">ディスプレイ</string>
     <string name="ui_item_visit">“%1$s” を訪問</string>
     <string name="stub_app_tag">タグの例</string>
-    <string name="menu_tags_edit">タグを追加 / 編集</string>
+    <string name="menu_tags_edit">タグを追加または編集</string>
     <string name="tags_add_title">スペースで区切ってタグを追加</string>
     <string name="tags_confirmation_added">タグを設定しました</string>
     <string name="toast_favorites_removed">%s がお気に入りから削除されました</string>
     <string name="menu_favorites_remove">お気に入りを削除</string>
 
 <string name="default_launcher_title">デフォルトのランチャーを変更</string>
-    <string name="default_launcher_warn">デフォルトのランチャーを選択した後、そのホーム画面に移動します。続行してもよろしいですか?
+    <string name="default_launcher_warn">デフォルトのランチャーを選択した後、そのホーム画面に移動します。続行してもよろしいですか? 
+\n
+\n注: \'常に\' オプションが表示されない場合は、目的のランチャーを選択した後にホーム ボタンを押してください。</string>
 
-注: \'常に\' オプションが表示されない場合は、目的のランチャーを選択した後にホーム ボタンを押してください。</string>
-
-    <string name="tags_visible">アプリケーション タグを表示</string>
-    <string name="share">共有...</string>
+    <string name="tags_visible">アプリ タグを表示</string>
+    <string name="share">共有…</string>
 
 <string name="main_color">プライマリー色</string>
     <string name="notification_bar_color">通知バーの色</string>
@@ -182,4 +182,26 @@
 
 
     <string name="large_search_bar">大きな検索バー</string>
-</resources>
+<string name="transparent_search_bar">透明な検索バー</string>
+    <string name="transparent_favorites_bar">透明なお気に入りバー</string>
+
+    <string name="menu_widget_add">(ベータ版) ウィジェットを追加</string>
+    <string name="menu_widget_remove">ウィジェットを削除</string>
+
+<string name="rate_the_app">アプリを評価</string>
+
+<string name="search_providers_delete">検索プロバイダーを削除</string>
+    <string name="custom_search_provider">検索プロバイダーを追加</string>
+    <string name="search_provider_reset">検索プロバイダーをリセット</string>
+    <string name="search_provider_reset_desc">検索プロバイダーの一覧をリセットしますか?</string>
+    <string name="search_provider_reset_done_desc">検索プロバイダーをリセットしました</string>
+    <string name="search_provider_name">プロバイダー名</string>
+    <string name="search_provider_added">検索プロバイダーを追加しました。</string>
+    <string name="search_provider_deleted">検索プロバイダーを削除しました。</string>
+    <string name="search_provider_error_char">文字 | を使用しないでください</string>
+    <string name="search_provider_error_placeholder">クエリのプレースホルダー {q} を使用してください</string>
+    <string name="search_provider_error_url">有効な URL を使用してください</string>
+    <string name="search_provider_error_exists">この名前のプロバイダーが既に存在します</string>
+
+
+    </resources>

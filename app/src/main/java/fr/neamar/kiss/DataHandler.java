@@ -24,6 +24,7 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
+import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
@@ -35,6 +36,10 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
+    /**
+     * Package the providers reside in
+     */
+    final static private String PROVIDER_PREFIX = IProvider.class.getPackage().getName() + ".";
     /**
      * List all known providers
      */
@@ -100,7 +105,7 @@ public class DataHandler extends BroadcastReceiver
     protected Intent providerName2Intent(String name) {
         // Build expected fully-qualified provider class name
         StringBuilder className = new StringBuilder(50);
-        className.append("fr.neamar.kiss.dataprovider.");
+        className.append(PROVIDER_PREFIX);
         className.append(Character.toUpperCase(name.charAt(0)));
         className.append(name.substring(1).toLowerCase());
         className.append("Provider");
@@ -423,6 +428,11 @@ public class DataHandler extends BroadcastReceiver
     public AppProvider getAppProvider() {
         ProviderEntry entry = this.providers.get("app");
         return (entry != null) ? ((AppProvider) entry.provider) : null;
+    }
+
+    public SearchProvider getSearchProvider() {
+        ProviderEntry entry = this.providers.get("search");
+        return (entry != null) ? ((SearchProvider) entry.provider) : null;
     }
 
     /**

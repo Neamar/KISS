@@ -40,7 +40,7 @@
 
     <string name="shortcuts_name">Shortcuts</string>
 
-    <string name="stub_application" translatable="false">Application name</string>
+    <string name="stub_application" translatable="false">App name</string>
     <string name="stub_contact" translatable="false">Contact name</string>
     <string name="stub_contact_phone" translatable="false">+330 12 34 56 78</string>
     <string name="stub_setting" translatable="false">Setting name</string>
@@ -54,7 +54,7 @@
     <string name="reset_name">Reset your KISS history</string>
     <string name="reset_excluded_apps_name">Reset excluded app list</string>
     <string name="reset_excluded_apps_warn">Do you really want to reset your excluded app list?</string>
-    <string name="ui_excluded_apps">View / edit your excluded apps</string>
+    <string name="ui_excluded_apps">View or edit your excluded apps</string>
     <string name="ui_excluded_apps_dialog_title">Deselect the apps you would like to include</string>
     <string name="ui_excluded_apps_not_found">No apps have been excluded</string>
     <string name="reset_warn">Do you really want to reset your history?</string>
@@ -70,6 +70,21 @@
     <string name="icons_hide_main">Hide application icons</string>
     <string name="icons_hide_desc">Useful on slow devices</string>
     <string name="search_providers_title">Select web search providers</string>
+    <string name="search_providers_delete">Delete search providers</string>
+    <string name="custom_search_provider">Add search provider</string>
+    <string name="search_provider_reset">Reset search providers</string>
+    <string name="search_provider_reset_desc">Would you like to reset the list of search providers?</string>
+    <string name="search_provider_reset_done_desc">The search providers have been reset</string>
+    <string name="search_provider_name">Provider name</string>
+    <string name="search_provider_url" translatable="false">https://p.com/?q={q}</string>
+    <string name="search_provider_added">The search provider was added.</string>
+    <string name="search_provider_deleted">The search provider(s) was deleted.</string>
+    <string name="search_provider_error_char">Please, do not use the character |</string>
+    <string name="search_provider_error_placeholder">Please, use {q} for the query placeholder</string>
+    <string name="search_provider_error_url">Please, use a valid URL</string>
+    <string name="search_provider_error_exists">A provider with this name already exists</string>
+
+
     <string name="history_mode_name">History mode</string>
     <string name="history_mode_desc">Select the way that the history is populated</string>
     <string name="root_mode_desc">If available use it to hibernate applications</string>
@@ -84,7 +99,7 @@
     <string name="alias_phone">dial,call,phone</string>
     <string name="alias_contacts">contacts,people,relations</string>
     <string name="alias_web">internet,web,browser</string>
-    <string name="alias_mail">mail,email</string>
+    <string name="alias_mail">mail,email,e-mail</string>
     <string name="alias_market">market,store,app center</string>
     <string name="alias_clock">clock,alarm,timer,stopwatch</string>
     <string name="alias_messaging">text message,compose,sms,mms,messaging</string>
@@ -92,7 +107,7 @@
     <string name="toggles_prefix">"Toggle: "</string>
     <string name="settings_airplane">Airplane mode</string>
     <string name="settings_device_info">Device info</string>
-    <string name="settings_applications">Applications</string>
+    <string name="settings_applications">Apps</string>
     <string name="settings_connectivity">Connectivity</string>
     <string name="settings_battery">Battery</string>
     <string name="settings_nfc">NFC</string>
@@ -102,7 +117,7 @@
     <string name="settings_accessibility">Accessibility</string>
     <string name="settings_sound">Sound and volume</string>
     <string name="settings_display">Display</string>
-    <string name="toggle_wifi">Wifi</string>
+    <string name="toggle_wifi">Wi-Fi</string>
     <string name="toggle_bluetooth">Bluetooth</string>
     <string name="toggle_silent">Silent</string>
     <string name="toggle_data">Network data</string>
@@ -114,11 +129,11 @@
     <string name="history_erased">History erased.</string>
     <string name="favorites_erased">Favorites erased.</string>
     <string name="menu_favorites_add">Add to favorites</string>
-    <string name="menu_tags_edit">Add / edit tags</string>
+    <string name="menu_tags_edit">Add or edit tags</string>
     <string name="tags_add_title">Add space separated tags</string>
-    <string name="tags_confirmation_added">Tag was set</string>
-    <string name="tags_visible">Show application tags</string>
-    <string name="excluded_app_list_erased">Excluded apps list erased.</string>
+    <string name="tags_confirmation_added">Tag set</string>
+    <string name="tags_visible">Show app tags</string>
+    <string name="excluded_app_list_erased">List of excluded apps erased.</string>
     <string name="excluded_app_list_added">App excluded from KISS. Reset through the KISS settings</string>
 
     <string name="removed_item">Removed</string>
@@ -129,8 +144,8 @@
     <string name="menu_app_hibernate">Hibernate</string>
     <string name="menu_shortcut_remove">Remove shortcut</string>
 
-    <string name="toast_hibernate_completed">%s hibernated successfully, relaunch to awake.</string>
-    <string name="toast_hibernate_error">%s not hibernated successfully.</string>
+    <string name="toast_hibernate_completed">%s hibernated, relaunch to awake.</string>
+    <string name="toast_hibernate_error">%s not hibernated.</string>
     <string name="menu_contact_copy_phone">Copy phone number</string>
     <string name="theme_name">Theme interface</string>
     <string name="menu_phone_create">Create contact</string>
@@ -138,7 +153,7 @@
     <string name="toast_favorites_added">%s was added to favorites</string>
 
     <string name="order_apps_name">App list sort order</string>
-    <string name="enable_sms">Show incoming SMS in history</string>
+    <string name="enable_sms">Show incoming SMSes in history</string>
     <string name="enable_phone">Show incoming calls in history</string>
     <string name="enable_app">Show newly installed apps in history</string>
     <string name="enable_favorites_bar">Show favorites above search bar</string>
@@ -146,12 +161,12 @@
     <string name="favorites_hide">Hide Favorites Bar</string>
     <string name="shortcut_added">Shortcut added to KISS.</string>
 
-    <string name="restart_desc">Fix theme issues / new contacts not displaying</string>
+    <string name="restart_desc">Fix theme issues and new contacts not displaying</string>
     <string name="restart_name">Restart KISS</string>
     <string name="restart_warn">Do you really want to restart KISS? If KISS is not your default launcher the app will simply quit.</string>
 
     <string name="default_launcher_title">Change Default Launcher</string>
-    <string name="default_launcher_warn">After selecting the Default Launcher, you\'ll be sent to its Home Screen. Are you sure you\'d like to proceed?\n\nNote: If you don\'t see the \'Always\' option, press the Home Button after selecting your desired Launcher.</string>
+    <string name="default_launcher_warn">After selecting the Default Launcher, you\'ll be sent to its Home Screen. Are you sure you\'d like to proceed?\n\nNote: If you don\'t see the \'Always\' option, press the Home Button after selecting your desired launcher.</string>
 
     <string name="items_title">%d items</string>
     <string name="app_will_restart">You\'ve changed some important settings, the app will restart.</string>
@@ -160,7 +175,7 @@
     <string name="misc">Misc</string>
     <string name="toast_favorites_removed">%s was removed from favorites</string>
     <string name="menu_favorites_remove">Remove favorite</string>
-    <string name="share">Share to...</string>
+    <string name="share">Share to…</string>
     <string name="number_ofdisplay_items">Max number of results in search and history</string>
 
     <string name="main_color">Primary color</string>
@@ -178,8 +193,14 @@
     <string name="color_swatch_description">Color <xliff:g id="color_index" example="14">%1$d</xliff:g></string>
     <!-- Content description for a selected color square. -->
     <string name="color_swatch_description_selected">Color <xliff:g id="color_index" example="14">%1$d</xliff:g> selected</string>
+
+    <string name="transparent_search_bar">Transparent search bar</string>
+    <string name="transparent_favorites_bar">Transparent favorites bar</string>
+
     <string name="large_search_bar">Large search bar</string>
     <!-- Widget strings, preference id should not be translated -->
     <string name="menu_widget_add">(BETA) Add widget</string>
     <string name="menu_widget_remove">Remove widget</string>
+    <string name="rate_the_app">Rate the app</string>
+
 </resources>

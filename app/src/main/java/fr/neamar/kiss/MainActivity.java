@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -250,7 +251,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Lock launcher into portrait mode
         // Do it here (before initializing the view) to make the transition as smooth as possible
         if (prefs.getBoolean("force-portrait", true)) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
             } else {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -314,6 +315,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Is the kiss bar visible?
+                if (kissBar.getVisibility() == View.VISIBLE)
+                {
+                    displayKissBar(false, false);
+                }
                 String text = s.toString();
                 adjustInputType(text);
                 updateRecords(text);
@@ -380,6 +386,17 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         UiTweaks.updateThemePrimaryColor(this);
         UiTweaks.tintResources(this);
+
+        // Transparent Search and Favorites bar
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            if(prefs.getBoolean("transparent-favorites", false)) {
+                this.findViewById(R.id.favoritesBar).setBackgroundColor(Color.TRANSPARENT);
+            }
+            if(prefs.getBoolean("transparent-search", false)){
+                this.findViewById(R.id.searchEditLayout).setBackgroundColor(Color.TRANSPARENT);
+                this.findViewById(R.id.searchEditText).setBackgroundColor(Color.TRANSPARENT);
+            }
+        }
     }
 
     private void addDefaultAppsToFavs() {
@@ -390,7 +407,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             ResolveInfo resolveInfo = getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
-                if (resolveInfo.activityInfo.name != null) {
+                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
                     KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
@@ -401,7 +418,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             ResolveInfo resolveInfo = getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
-                if (resolveInfo.activityInfo.name != null) {
+                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
                     KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
@@ -414,7 +431,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
 
-                if (resolveInfo.activityInfo.name != null) {
+                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
                     KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
@@ -557,6 +574,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
         searchEditLayout.getLayoutParams().height = searchHeight;
         kissBar.getLayoutParams().height = searchHeight;
+        favoritesKissBar.getLayoutParams().height = searchHeight;
 
         //Show favorites above search field ONLY if AppProvider is already loaded
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
@@ -730,7 +748,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     //if list is empty
                     if ((this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0)) {
                         searcher = new HistorySearcher(MainActivity.this);
-                        searcher.execute();
+                        searcher.executeOnExecutor( Searcher.SEARCH_THREAD );
                     }
                 }
             }
@@ -822,7 +840,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    private void displayKissBar(Boolean display) {
+    private void displayKissBar(Boolean display)
+    {
+        this.displayKissBar( display, true );
+    }
+
+    private void displayKissBar(boolean display, boolean emptyText) {
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
 
         // get the center for the clipping circle
@@ -838,7 +861,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 searcher.cancel(true);
             }
             searcher = new ApplicationsSearcher(MainActivity.this);
-            searcher.execute();
+            searcher.executeOnExecutor( Searcher.SEARCH_THREAD );
 
             // Reveal the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -879,11 +902,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 // No animation before Lollipop
                 kissBar.setVisibility(View.GONE);
             }
-            searchEditText.setText("");
+            if ( emptyText )
+            {
+                searchEditText.setText( "" );
 
-            if (prefs.getBoolean("display-keyboard", false)) {
-                // Display keyboard
-                showKeyboard();
+                if( prefs.getBoolean( "display-keyboard", false ) )
+                {
+                    // Display keyboard
+                    showKeyboard();
+                }
             }
         }
 
@@ -970,7 +997,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             searcher = new QuerySearcher(this, query);
         }
-        searcher.execute();
+        searcher.executeOnExecutor( Searcher.SEARCH_THREAD );
         displayQuickFavoritesBar(false, false);
     }
 

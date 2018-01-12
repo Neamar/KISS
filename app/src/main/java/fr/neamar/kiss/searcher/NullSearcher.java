@@ -12,7 +12,7 @@ import fr.neamar.kiss.pojo.Pojo;
 public class NullSearcher extends Searcher {
 
     public NullSearcher(MainActivity activity) {
-        super(activity);
+        super(activity, "<null>");
     }
 
     @Override
