@@ -1,3 +1,10 @@
+dependencies:
+  override:
+    - echo "Override dependencies download"
+test:
+  override:
+    - echo "TESTS DISABLED. IF YOU CAN FIX THEM, FEEL FREE TO DO SO."
+
 # machine:
 #   java:
 #     version: openjdk8
@@ -13,25 +20,24 @@
 #     # Start the gradle daemon
 #     - ./gradlew:
 #         background: true
-test:
-  # pre:
-  #   # start the emulator
-  #   - emulator -avd circleci-android22 -no-audio -no-window:
-  #       background: true
-  #       parallel: true
-  override:
-    - echo "TESTS DISABLED. IF YOU CAN FIX THEM, FEEL FREE TO DO SO."
-  #   - fb-adb start-server:
-  #       background: true
-  #   # Run robolectric tests, build the apk, and build the test apk for running
-  #   # the espresso tests
-  #   - ./gradlew test assembleDebug assembleDebugAndroidTest --console=plain --stacktrace
-  #   # wait for the emulator to have booted
-  #   - circle-android wait-for-boot
-  #   # Run espresso tests
-  #   - ./gradlew connectedAndroidTest --console=plain
-  # post:
-  #   - cp -r app/build/outputs $CIRCLE_ARTIFACTS
-  #   # copy the test results to the test results directory.
-  #   - find app/build/test-results -name "*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/ \;
-  #   - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+# test:
+#   pre:
+#     # start the emulator
+#     - emulator -avd circleci-android22 -no-audio -no-window:
+#         background: true
+#         parallel: true
+#   override:
+#     - fb-adb start-server:
+#         background: true
+#     # Run robolectric tests, build the apk, and build the test apk for running
+#     # the espresso tests
+#     - ./gradlew test assembleDebug assembleDebugAndroidTest --console=plain --stacktrace
+#     # wait for the emulator to have booted
+#     - circle-android wait-for-boot
+#     # Run espresso tests
+#     - ./gradlew connectedAndroidTest --console=plain
+#   post:
+#     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
+#     # copy the test results to the test results directory.
+#     - find app/build/test-results -name "*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/ \;
+#     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
