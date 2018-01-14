@@ -42,9 +42,9 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -70,7 +70,11 @@ import fr.neamar.kiss.ui.AnimatedListView;
 import fr.neamar.kiss.ui.BlockableListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
+import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
+import fr.neamar.kiss.utils.WallpaperUtils;
 
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
 
@@ -140,7 +144,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * View for the Search text
      */
-    private EditText searchEditText;
+    private SearchEditText searchEditText;
     private final Runnable displayKeyboardRunnable = new Runnable() {
         @Override
         public void run() {
@@ -188,6 +192,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Search edit layout
      */
     private View searchEditLayout;
+    /**
+     * Wallpaper scroll
+     */
+    private WallpaperUtils mWallpaperUtils;
+    /**
+     * SystemUiVisibility helper
+     */
+    private SystemUiVisibilityHelper mSystemUiVisibility;
+    private PopupWindow mPopup;
 
     /**
      * Called when the activity is first created.
@@ -301,7 +314,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         });
 
         registerLongClickOnFavorites();
-        searchEditText = (EditText) findViewById(R.id.searchEditText);
+        searchEditText = (SearchEditText) findViewById(R.id.searchEditText);
         searchEditLayout = findViewById(R.id.searchEditLayout);
 
         // Listen to changes
@@ -333,6 +346,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ( actionId == android.R.id.closeButton )
+                {
+                    mSystemUiVisibility.onKeyboardVisibilityChanged( false );
+                    if( mPopup != null )
+                    {
+                        mPopup.dismiss();
+                        return true;
+                    }
+                    mSystemUiVisibility.onKeyboardVisibilityChanged( false );
+                    hider.fixScroll();
+                    return false;
+                }
                 RecordAdapter adapter = ((RecordAdapter) list.getAdapter());
 
                 adapter.onClick(adapter.getCount() - 1, v);
@@ -340,9 +365,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 return true;
             }
         });
-
-        // Add touch listener for history popup to text field
-        searchEditText.setOnTouchListener(this);
 
         // Initialize widget manager and host, restore widgets
         widgetPrefs = this.getSharedPreferences(WIDGET_PREFERENCE_ID, Context.MODE_PRIVATE);
@@ -398,6 +420,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 this.findViewById(R.id.searchEditText).setBackgroundColor(Color.TRANSPARENT);
             }
         }
+        mWallpaperUtils = new WallpaperUtils( this );
+        mSystemUiVisibility = new SystemUiVisibilityHelper( this );
     }
 
     private void addDefaultAppsToFavs() {
@@ -465,7 +489,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 // Favorites handling
                 Pojo pojo = favorites.get(favNumber);
                 final Result result = Result.fromPojo(MainActivity.this, pojo);
-                result.getPopupMenu(MainActivity.this, adapter, view).show();
+                ListPopup popup = result.getPopupMenu(MainActivity.this, adapter, view);
+                registerPopup( popup );
+                popup.show( view );
                 return true;
             }
         };
@@ -557,6 +583,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             this.recreate();
             return;
         }
+        if ( mPopup != null )
+            mPopup.dismiss();
 
         if (kissBar.getVisibility() != View.VISIBLE) {
             updateRecords(searchEditText.getText().toString());
@@ -589,7 +617,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
-        if (prefs.getBoolean("display-keyboard", false)) {
+        if ( isPreferenceKeyboardOnStart() ) {
             // Display keyboard
             showKeyboard();
 
@@ -603,6 +631,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
+            mSystemUiVisibility.onKeyboardVisibilityChanged( false );
         }
 
         super.onResume();
@@ -644,8 +673,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void onBackPressed() {
+        if ( mPopup != null )
+            mPopup.dismiss();
+
         // Is the kiss bar visible?
-        if (kissBar.getVisibility() == View.VISIBLE) {
+        else if (kissBar.getVisibility() == View.VISIBLE) {
             displayKissBar(false);
         } else if (!searchEditText.getText().toString().isEmpty()) {
             // If no kissmenu, empty the search bar
@@ -740,6 +772,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
+        if ( mWallpaperUtils.onTouch( view, event ) )
+            return true;
         //if motion movement ends
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
             //if history is hidden
@@ -758,7 +792,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         }
         if(view.getId() == searchEditText.getId()) {
-            showKeyboard();
+            if ( event.getActionMasked() == MotionEvent.ACTION_DOWN )
+                showKeyboard();
         }
         return true;
     }
@@ -780,7 +815,25 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
 
-    public void onFavoriteButtonClicked(View favorite) {
+    @Override
+    public boolean dispatchTouchEvent( MotionEvent ev )
+    {
+        if ( mPopup != null )
+        {
+            View popup = mPopup.getContentView();
+            int[] popupPos = {0, 0};
+            popup.getLocationOnScreen( popupPos );
+            final float offsetX = -popupPos[0];
+            final float offsetY = -popupPos[1];
+            ev.offsetLocation(offsetX, offsetY);
+            boolean handled = mPopup.getContentView().dispatchTouchEvent( ev );
+            ev.offsetLocation(-offsetX, -offsetY);
+            return handled;
+        }
+        return super.dispatchTouchEvent( ev );
+    }
+
+    public void onFavoriteButtonClicked( View favorite) {
         // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
         displayKissBar(false);
 
@@ -907,7 +960,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             {
                 searchEditText.setText( "" );
 
-                if( prefs.getBoolean( "display-keyboard", false ) )
+                if( isPreferenceKeyboardOnStart() )
                 {
                     // Display keyboard
                     showKeyboard();
@@ -980,7 +1033,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searcher.cancel(true);
         }
 
+        if ( mPopup != null )
+            mPopup.dismiss();
+
         if (query.length() == 0) {
+            mSystemUiVisibility.resetScroll();
             if (prefs.getBoolean("history-hide", false)) {
                 list.setVerticalScrollBarEnabled(false);
                 searchEditText.setHint("");
@@ -1025,12 +1082,47 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     {
         return BuildConfig.DEBUG;
     }
+  
+    public void registerPopup( ListPopup popup )
+    {
+        if ( mPopup == popup )
+            return;
+        if ( mPopup != null )
+            mPopup.dismiss();
+        mPopup = popup;
+        popup.setVisibilityHelper( mSystemUiVisibility );
+        popup.setOnDismissListener( new PopupWindow.OnDismissListener()
+        {
+            @Override
+            public void onDismiss()
+            {
+                MainActivity.this.mPopup = null;
+            }
+        } );
+        hider.fixScroll();
+    }
+
+    private boolean isPreferenceKeyboardOnStart()
+    {
+        return prefs.getBoolean("display-keyboard", false);
+    }
+
+    @Override
+    public void onWindowFocusChanged( boolean hasFocus )
+    {
+        super.onWindowFocusChanged( hasFocus );
+        mSystemUiVisibility.onWindowFocusChanged( hasFocus );
+        if( hasFocus && isPreferenceKeyboardOnStart() )
+            showKeyboard();
+    }
 
     @Override
     public void showKeyboard() {
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+
+        mSystemUiVisibility.onKeyboardVisibilityChanged( true );
     }
 
     @Override
@@ -1042,6 +1134,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
+
+        mSystemUiVisibility.onKeyboardVisibilityChanged( false );
+        if( mPopup != null )
+            mPopup.dismiss();
+    }
+
+    @Override
+    public void applyScrollSystemUi()
+    {
+        mSystemUiVisibility.applyScrollSystemUi();
     }
 
     /**
@@ -1050,6 +1152,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     public boolean isOnSearchView() {
         return kissBar.getVisibility() != View.VISIBLE;
+    }
+
+    public boolean isListVisible()
+    {
+        boolean bListEmpty = (this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0);
+        return bListEmpty;
     }
 
     public int getFavIconsSize() {
