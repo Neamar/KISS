@@ -25,6 +25,7 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
+@SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -361,5 +362,4 @@ public class SettingsActivity extends PreferenceActivity implements
         lp.setDefaultValue("default");
         lp.setEntryValues(entryValues);
     }
-
 }

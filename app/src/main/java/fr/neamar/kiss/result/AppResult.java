@@ -220,15 +220,19 @@ public class AppResult extends Result {
 
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                KissApplication.getDataHandler(context).getTagsHandler().setTags(app.id, tagInput.getText().toString());
-                // Refresh tags for given app
-                app.setTags(tagInput.getText().toString());
-                // Show toast message
-                String msg = context.getResources().getString(R.string.tags_confirmation_added);
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-            }
-        });
+			public void onClick( DialogInterface dialog, int which )
+			{
+				dialog.dismiss();
+				// Refresh tags for given app
+				app.setTags( tagInput.getText().toString() );
+				KissApplication.getDataHandler( context ).getTagsHandler().setTags( app.id, app.tags );
+				// TODO: update the displayTags with proper highlight
+				app.displayTags = app.tags;
+				// Show toast message
+				String msg = context.getResources().getString( R.string.tags_confirmation_added );
+				Toast.makeText( context, msg, Toast.LENGTH_SHORT ).show();
+			}
+		});
         builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

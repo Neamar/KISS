@@ -364,10 +364,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 return true;
             }
         });
-
-        // Add touch listener for history popup to text field
-        searchEditText.setOnTouchListener(this);
-
+        
         // Initialize widget manager and host, restore widgets
         widgetPrefs = this.getSharedPreferences(WIDGET_PREFERENCE_ID, Context.MODE_PRIVATE);
         mAppWidgetManager = AppWidgetManager.getInstance(this);
