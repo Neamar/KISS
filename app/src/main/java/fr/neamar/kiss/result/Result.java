@@ -1,6 +1,8 @@
 package fr.neamar.kiss.result;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -12,7 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.neamar.kiss.KissApplication;
@@ -30,6 +36,7 @@ import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.pojo.TogglesPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
+import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public abstract class Result {
     /**
@@ -123,6 +130,9 @@ public abstract class Result {
             case R.id.item_favorites_add:
                 launchAddToFavorites(context, pojo);
                 break;
+            case R.id.item_tags_edit:
+                launchEditTagsDialog(context, pojo);
+                break;
             case R.id.item_favorites_remove:
                 launchRemoveFromFavorites(context, pojo);
                 break;
@@ -134,16 +144,60 @@ public abstract class Result {
         return false;
     }
 
-    private void launchAddToFavorites(Context context, Pojo app) {
+    private void launchAddToFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, pojo.id);
+        Toast.makeText(context, String.format(msg, pojo.name), Toast.LENGTH_SHORT).show();
     }
 
-    private void launchRemoveFromFavorites(Context context, Pojo app) {
+    private void launchRemoveFromFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, pojo.id);
+        Toast.makeText(context, String.format(msg, pojo.name), Toast.LENGTH_SHORT).show();
+    }
+
+    private void launchEditTagsDialog(final Context context, final Pojo pojo) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(context.getResources().getString(R.string.tags_add_title));
+
+        // Create the tag dialog
+
+        final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
+        final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
+                android.R.layout.simple_dropdown_item_1line, KissApplication.getDataHandler(context).getTagsHandler().getAllTagsAsArray());
+        tagInput.setTokenizer(new SpaceTokenizer());
+        tagInput.setText(pojo.tags);
+
+        tagInput.setAdapter(adapter);
+        builder.setView(v);
+
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick( DialogInterface dialog, int which )
+            {
+                dialog.dismiss();
+                // Refresh tags for given app
+                pojo.setTags( tagInput.getText().toString() );
+                KissApplication.getDataHandler( context ).getTagsHandler().setTags( pojo.id, pojo.tags );
+                // TODO: update the displayTags with proper highlight
+                pojo.displayTags = pojo.tags;
+                // Show toast message
+                String msg = context.getResources().getString( R.string.tags_confirmation_added );
+                Toast.makeText( context, msg, Toast.LENGTH_SHORT ).show();
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE );
+
+        dialog.show();
     }
 
     /**
@@ -240,5 +294,18 @@ public abstract class Result {
         int color = ta.getColor(0, Color.WHITE);
         ta.recycle();
         return color;
+    }
+
+    protected void displayTags(Context context, View view, Pojo pojo) {
+        TextView tagsView = (TextView) view.findViewById(R.id.item_app_tag);
+        //Hide tags view if tags are empty or if user has selected to hide them and the query doesnt match tags
+        if (pojo.displayTags.isEmpty() ||
+                ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (pojo.displayTags.equals(pojo.tags)))) {
+            tagsView.setVisibility(View.GONE);
+        }
+        else {
+            tagsView.setVisibility(View.VISIBLE);
+            tagsView.setText(enrichText(pojo.displayTags, context));
+        }
     }
 }
