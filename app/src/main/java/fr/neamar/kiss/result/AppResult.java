@@ -17,13 +17,11 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +30,7 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
@@ -126,12 +125,19 @@ public class AppResult extends Result {
     }
 
     @Override
-    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        PopupMenu menu = inflatePopupMenu(R.menu.menu_item_app, context, parentView);
+    protected ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
+		if( (!(context instanceof MainActivity)) || (((MainActivity)context).isOnSearchView()) )
+		{
+			adapter.add( new ListPopup.Item( context, R.string.menu_remove ) );
+		}
+		adapter.add( new ListPopup.Item( context, R.string.menu_exclude ) );
+		adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
+		adapter.add( new ListPopup.Item( context, R.string.menu_tags_edit ) );
+		adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
+		adapter.add( new ListPopup.Item( context, R.string.menu_app_details ) );
 
-        if ((context instanceof MainActivity) && (!((MainActivity)context).isOnSearchView())) {
-            menu.getMenu().removeItem(R.id.item_remove);
-        }
+        ListPopup menu = inflatePopupMenu(adapter, context );
+
         try {
             // app installed under /system can't be uninstalled
 			boolean isSameProfile = true;
@@ -148,7 +154,7 @@ public class AppResult extends Result {
             
             // Need to AND the flags with SYSTEM:
             if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && isSameProfile) {
-                menu.getMenuInflater().inflate(R.menu.menu_item_app_uninstall, menu.getMenu());
+				adapter.add( new ListPopup.Item( context, R.string.menu_app_uninstall ) );
             }
         } catch (NameNotFoundException | IndexOutOfBoundsException e) {
             // should not happen
@@ -156,34 +162,34 @@ public class AppResult extends Result {
 
         //append root menu if available
         if (KissApplication.getRootHandler(context).isRootActivated() && KissApplication.getRootHandler(context).isRootAvailable()) {
-            menu.getMenuInflater().inflate(R.menu.menu_item_app_root, menu.getMenu());
+			adapter.add( new ListPopup.Item( context, R.string.menu_app_hibernate ) );
         }
         return menu;
     }
 
     @Override
-    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_app_details:
+    protected Boolean popupMenuClickHandler( Context context, RecordAdapter parent, int stringId ) {
+        switch ( stringId ) {
+            case R.string.menu_app_details:
                 launchAppDetails(context, appPojo);
                 return true;
-            case R.id.item_app_uninstall:
+            case R.string.menu_app_uninstall:
                 launchUninstall(context, appPojo);
                 return true;
-            case R.id.item_app_hibernate:
+            case R.string.menu_app_hibernate:
                 hibernate(context, appPojo);
                 return true;
-            case R.id.item_exclude:
+            case R.string.menu_exclude:
                 // remove item since it will be hidden
                 parent.removeResult(this);
                 excludeFromAppList(context, appPojo);
                 return true;
-            case R.id.item_tags_edit:
+            case R.string.menu_tags_edit:
                 launchEditTagsDialog(context, appPojo);
                 break;
         }
 
-        return super.popupMenuClickHandler(context, parent, item);
+        return super.popupMenuClickHandler(context, parent, stringId );
     }
 
     private void excludeFromAppList(Context context, AppPojo appPojo) {

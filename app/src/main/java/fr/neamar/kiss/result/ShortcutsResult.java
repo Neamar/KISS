@@ -9,10 +9,9 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +23,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.ui.ListPopup;
 
 public class ShortcutsResult extends Result {
     private final ShortcutsPojo shortcutPojo;
@@ -101,21 +101,25 @@ public class ShortcutsResult extends Result {
     }
 
     @Override
-    PopupMenu buildPopupMenu(Context context, RecordAdapter parent, View parentView) {
-        return inflatePopupMenu(R.menu.menu_item_shortcut, context, parentView);
+	ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView ) {
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_shortcut_remove ) );
+
+        return inflatePopupMenu(adapter, context );
     }
 
     @Override
-    Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_app_uninstall:
+    Boolean popupMenuClickHandler( Context context, RecordAdapter parent, int stringId ) {
+        switch ( stringId ) {
+            case R.string.menu_shortcut_remove:
                 launchUninstall(context, shortcutPojo);
                 // Also remove item, since it will be uninstalled
                 parent.removeResult(this);
                 return true;
 
         }
-        return super.popupMenuClickHandler(context, parent, item);
+        return super.popupMenuClickHandler(context, parent, stringId );
     }
 
     private void launchUninstall(Context context, ShortcutsPojo shortcutPojo) {
