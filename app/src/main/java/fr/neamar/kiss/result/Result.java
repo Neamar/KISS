@@ -47,15 +47,16 @@ public abstract class Result {
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
         if ( parent.showRelevance() )
         {
-            int relevance;
-            try
+            int relevance = pojo.relevance - 1;
+            if ( pojo.displayTags != null && pojo.displayTags.length() > 2 && "(".equals( pojo.displayTags.substring( 0, 1 ) ) )
             {
-                relevance = NumberFormat.getIntegerInstance()
-                                        .parse( pojo.displayTags.substring( 1 ) )
-                                        .intValue();
-            } catch( Exception ignore )
-            {
-                relevance = -1;
+                try
+                {
+                    relevance = NumberFormat.getIntegerInstance()
+                                            .parse( pojo.displayTags.substring( 1 ) )
+                                            .intValue();
+                } catch( Exception ignore )
+                {}
             }
             if( relevance != pojo.relevance )
             {
