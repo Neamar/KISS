@@ -808,5 +808,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void OnToggleUpdated()
     {
         updateRecords();
+        toggleTags.showBar();
     }
 }
