@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -50,6 +51,15 @@ public class TagsHandler {
         }
 
         return tags.toArray(new String[tags.size()]);
+    }
+
+    public List<String> getAllTagsAsList() {
+        Set<String> tags = new HashSet<>();
+        for (Map.Entry<String, String> entry : tagsCache.entrySet()) {
+            tags.addAll(Arrays.asList(entry.getValue().split("\\s+")));
+        }
+
+        return new ArrayList<>( tags );
     }
 
     private void addDefaultAliases() {
