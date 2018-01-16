@@ -342,12 +342,25 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
+        searchEditText.setOnTouchListener( new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch( View v, MotionEvent event )
+            {
+                int act = event.getActionMasked();
+                if( act == MotionEvent.ACTION_DOWN || act == MotionEvent.ACTION_POINTER_DOWN )
+                    showKeyboard();
+                return false;
+            }
+        } );
+
         // On validate, launch first record
         searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == android.R.id.closeButton) {
+                    toggleTags.hideBar();
                     mSystemUiVisibility.onKeyboardVisibilityChanged(false);
                     if (mPopup != null) {
                         mPopup.dismiss();
@@ -632,7 +645,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
-            mSystemUiVisibility.onKeyboardVisibilityChanged(false);
         }
 
         super.onResume();
