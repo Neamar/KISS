@@ -72,7 +72,7 @@ public class ToggleTags
 		{
 			ToggleButton button = (ToggleButton)LayoutInflater.from( toggleContainer.getContext() )
 															  .inflate( R.layout.tags_toggle_item, toggleContainer, false );
-			button.setTextOn( "-" + list[i] );
+			button.setTextOn( "\u2013" + list[i] ); // U+2013 en dash
 			button.setTextOff( list[i] );
 			button.setChecked( false );
 			button.setOnCheckedChangeListener( checkedChangeListener );
