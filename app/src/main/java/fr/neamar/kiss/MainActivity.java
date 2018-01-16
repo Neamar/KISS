@@ -389,6 +389,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         favoritesKissBar = findViewById(R.id.favoritesKissBar);
 
         toggleTags = new ToggleTags( findViewById( R.id.tagsToggleBar ), this );
+        toggleTags.loadTags( prefs );
 
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
@@ -1288,8 +1289,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
-    public void OnToggleUpdated()
+    public void onToggleUpdated()
     {
+        toggleTags.saveHiddenTags( prefs );
         updateRecords();
         toggleTags.showBar();
     }

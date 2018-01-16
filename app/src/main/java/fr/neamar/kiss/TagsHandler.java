@@ -50,12 +50,20 @@ public class TagsHandler {
 
     public String[] getAllTagsAsArray() {
         Set<String> tags = new HashSet<>();
-        String[] tagsNew;
         for (Map.Entry<String, String> entry : tagsCache.entrySet()) {
             tags.addAll(Arrays.asList(entry.getValue().split("\\s+")));
         }
 
         return tags.toArray(new String[tags.size()]);
+    }
+
+    public List<String> getAllTagsAsList() {
+        Set<String> tags = new HashSet<>();
+        for (Map.Entry<String, String> entry : tagsCache.entrySet()) {
+            tags.addAll(Arrays.asList(entry.getValue().split("\\s+")));
+        }
+
+        return new ArrayList<>( tags );
     }
 
     private void addDefaultAliases() {
