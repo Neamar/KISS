@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -316,7 +317,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         });
 
         toggleTags = new ToggleTags( findViewById( R.id.tagsToggleBar ), this );
-        toggleTags.loadTags( prefs );
+        toggleTags.loadTags( prefs, getApplicationContext() );
 
         registerForContextMenu(menuButton);
 
@@ -398,6 +399,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         forwarderManager.onResume();
+
+        toggleTags.loadTags( prefs, getApplicationContext() );
 
         super.onResume();
     }
@@ -693,7 +696,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             toggleTags.hideBar();
             systemUiVisibilityHelper.resetScroll();
         } else {
-            toggleTags.showBar();
+            toggleTags.showBar( prefs );
             runTask(new QuerySearcher(this, query));
         }
     }
@@ -765,7 +768,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         assert mgr != null;
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
 
-        toggleTags.showBar();
+        toggleTags.showBar( prefs );
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
     }
 
@@ -813,7 +816,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         list.animateChange();
     }
 
-    public ArrayList<String> getHiddenTags()
+    public Set<String> getHiddenTags()
     {
         return toggleTags.getHiddenTags();
     }
@@ -823,6 +826,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     {
         toggleTags.saveHiddenTags( prefs );
         updateRecords();
-        toggleTags.showBar();
+        toggleTags.showBar( prefs );
     }
 }

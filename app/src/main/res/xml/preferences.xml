@@ -154,6 +154,18 @@
                 android:key="pref-hide-statusbar"
                 android:summary="@string/pref_hide_statusbar_desc"
                 android:title="@string/pref_hide_statusbar" />
+            <PreferenceScreen
+                android:title="@string/screen_toggle_tags">
+                <fr.neamar.kiss.SwitchPreference
+                    android:defaultValue="false"
+                    android:key="pref-toggle-tags"
+                    android:title="@string/pref_toggle_tags">
+                </fr.neamar.kiss.SwitchPreference>
+                <MultiSelectListPreference
+                    android:key="pref-toggle-tags-list"
+                    android:title="@string/pref_toggle_tags_select"
+                    android:defaultValue="@array/toggleTagsDefault"/>
+            </PreferenceScreen>
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <fr.neamar.kiss.SwitchPreference
