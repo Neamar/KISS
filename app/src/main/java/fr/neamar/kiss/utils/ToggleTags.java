@@ -1,16 +1,16 @@
 package fr.neamar.kiss.utils;
 
+import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -24,8 +24,8 @@ public class ToggleTags
 {
 	private final View                  toggleBarView;
 	private final ViewGroup             toggleContainer;
-	private final ArrayList<String>     hiddenTagList;
-	private final ArrayList<String>     togglableTagList;
+	private final Set<String>           hiddenTagList;
+	private final Set<String>           togglableTagList;
 	private final ToggleUpdatedListener toggleUpdatedListener;
 	private final CompoundButton.OnCheckedChangeListener checkedChangeListener = new CompoundButton.OnCheckedChangeListener()
 	{
@@ -56,46 +56,49 @@ public class ToggleTags
 		void onToggleUpdated();
 	}
 
+	public ToggleTags()
+	{
+		super();
+
+		toggleBarView = null;
+		toggleContainer = null;
+		hiddenTagList = new TreeSet<>();
+		togglableTagList = new TreeSet<>();
+		toggleUpdatedListener = null;
+	}
+
 	public ToggleTags( View toggleBar, ToggleUpdatedListener listener )
 	{
 		super();
 
 		toggleBarView = toggleBar;
 		toggleContainer = (ViewGroup)toggleBar.findViewById( R.id.tags_toggle_list );
-		hiddenTagList = new ArrayList<>( 5 );
-		togglableTagList = new ArrayList<>( 5 );
+		hiddenTagList = new TreeSet<>();
+		togglableTagList = new TreeSet<>();
 		toggleUpdatedListener = listener;
 	}
 
 	public void saveHiddenTags( SharedPreferences prefs )
 	{
 		prefs.edit()
-			 .putString( "hidden-tags-list", TextUtils.join( " ", hiddenTagList ) )
+			 .putStringSet( "hidden-tags-list", hiddenTagList )
 			 .apply();
 	}
 
-	public void saveTogglableTags( SharedPreferences prefs )
+	public void loadTags( SharedPreferences prefs, Context context )
 	{
-		prefs.edit()
-			 .putString( "togglable-tags-list", TextUtils.join( " ", togglableTagList ) )
-			 .apply();
-	}
-
-	public void loadTags( SharedPreferences prefs )
-	{
-		setHiddenTags( TextUtils.split( prefs.getString( "hidden-tags-list", "" ), " " ) );
-		setTogglableTags( TextUtils.split( prefs.getString( "togglable-tags-list", "" ), " " ) );
+		setHiddenTags( getHiddenTags( prefs ) );
+		setTogglableTags( getTogglableTags( prefs ) );
 		if( togglableTagList.isEmpty() )
 		{
-			TagsHandler tagsHandler = KissApplication.getDataHandler( toggleBarView.getContext() )
+			TagsHandler tagsHandler = KissApplication.getDataHandler( context )
 													 .getTagsHandler();
-			List<String> list = tagsHandler.getAllTagsAsList();
-			try
+			Set<String> list = tagsHandler.getAllTagsAsSet();
+			for( String tag : list )
 			{
-				togglableTagList.addAll( list.subList( 0, 5 ) );
-			} catch( IndexOutOfBoundsException ignored )
-			{
-				togglableTagList.addAll( list );
+				togglableTagList.add( tag );
+				if( togglableTagList.size() >= 5 )
+					break;
 			}
 		}
 		refreshContainer();
@@ -103,6 +106,16 @@ public class ToggleTags
 
 	private void refreshContainer()
 	{
+		// make sure we don't have hidden tags that we can't toggle
+		for( Iterator<String> iterator = hiddenTagList.iterator(); iterator.hasNext(); )
+		{
+			String tag = iterator.next();
+			if( !togglableTagList.contains( tag ) )
+				iterator.remove();
+		}
+
+		if( toggleContainer == null )
+			return;
 		toggleContainer.removeAllViews();
 		for( String tag : togglableTagList )
 		{
@@ -117,9 +130,10 @@ public class ToggleTags
 		}
 	}
 
-	public void showBar()
+	public void showBar( SharedPreferences prefs )
 	{
-		toggleBarView.setVisibility( View.VISIBLE );
+		if ( prefs.getBoolean( "pref-toggle-tags", false ) )
+			toggleBarView.setVisibility( View.VISIBLE );
 	}
 
 	public void hideBar()
@@ -127,20 +141,37 @@ public class ToggleTags
 		toggleBarView.setVisibility( View.GONE );
 	}
 
-	void setHiddenTags( String[] list )
+	private void setHiddenTags( Set<String> list )
 	{
 		hiddenTagList.clear();
-		Collections.addAll( hiddenTagList, list );
+		if( list != null )
+			hiddenTagList.addAll( list );
 	}
 
-	void setTogglableTags( String[] list )
+	private void setTogglableTags( Set<String> list )
 	{
 		togglableTagList.clear();
-		Collections.addAll( togglableTagList, list );
+		if( list != null )
+			togglableTagList.addAll( list );
 	}
 
-	public ArrayList<String> getHiddenTags()
+	public Set<String> getHiddenTags()
 	{
 		return hiddenTagList;
+	}
+
+	public Set<String> getTogglableTags()
+	{
+		return togglableTagList;
+	}
+
+	static Set<String> getTogglableTags( SharedPreferences prefs )
+	{
+		return prefs.getStringSet( "pref-toggle-tags-list", null );
+	}
+
+	static Set<String> getHiddenTags( SharedPreferences prefs )
+	{
+		return prefs.getStringSet( "hidden-tags-list", null );
 	}
 }

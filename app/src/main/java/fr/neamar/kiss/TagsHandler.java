@@ -49,21 +49,17 @@ public class TagsHandler {
     }
 
     public String[] getAllTagsAsArray() {
-        Set<String> tags = new HashSet<>();
-        for (Map.Entry<String, String> entry : tagsCache.entrySet()) {
-            tags.addAll(Arrays.asList(entry.getValue().split("\\s+")));
-        }
-
+        Set<String> tags = getAllTagsAsSet();
         return tags.toArray(new String[tags.size()]);
     }
 
-    public List<String> getAllTagsAsList() {
+    public Set<String> getAllTagsAsSet() {
         Set<String> tags = new HashSet<>();
         for (Map.Entry<String, String> entry : tagsCache.entrySet()) {
             tags.addAll(Arrays.asList(entry.getValue().split("\\s+")));
         }
 
-        return new ArrayList<>( tags );
+        return tags;
     }
 
     private void addDefaultAliases() {

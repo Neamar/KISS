@@ -51,6 +51,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -389,7 +390,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         favoritesKissBar = findViewById(R.id.favoritesKissBar);
 
         toggleTags = new ToggleTags( findViewById( R.id.tagsToggleBar ), this );
-        toggleTags.loadTags( prefs );
+        toggleTags.loadTags( prefs, getApplicationContext() );
 
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
@@ -647,6 +648,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // unless coming back from KISS settings
             hideKeyboard();
         }
+
+        toggleTags.loadTags( prefs, getApplicationContext() );
 
         super.onResume();
     }
@@ -1063,7 +1066,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         } else {
-            toggleTags.showBar();
+            toggleTags.showBar( prefs );
 
             searcher = new QuerySearcher(this, query);
         }
@@ -1127,7 +1130,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
-        toggleTags.showBar();
+        toggleTags.showBar( prefs );
 
         mSystemUiVisibility.onKeyboardVisibilityChanged(true);
     }
@@ -1283,7 +1286,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         listView.animateChange();
     }
 
-    public ArrayList<String> getHiddenTags()
+    public Set<String> getHiddenTags()
     {
         return toggleTags.getHiddenTags();
     }
@@ -1293,6 +1296,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     {
         toggleTags.saveHiddenTags( prefs );
         updateRecords();
-        toggleTags.showBar();
+        toggleTags.showBar( prefs );
     }
 }

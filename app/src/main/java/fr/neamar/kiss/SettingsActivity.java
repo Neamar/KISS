@@ -24,6 +24,7 @@ import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.ToggleTags;
 
 @SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
@@ -38,6 +39,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
+    private final ToggleTags toggleTags = new ToggleTags();
 
     @SuppressWarnings("deprecation")
     @Override
@@ -71,6 +73,8 @@ public class SettingsActivity extends PreferenceActivity implements
         addExcludedAppSettings(prefs);
 
         addCustomSearchProvidersPreferences(prefs);
+
+        addHiddenTagsTogglesInformation(prefs);
 
         UiTweaks.updateThemePrimaryColor(this);
 
@@ -362,4 +366,17 @@ public class SettingsActivity extends PreferenceActivity implements
         lp.setDefaultValue("default");
         lp.setEntryValues(entryValues);
     }
+
+	private void addHiddenTagsTogglesInformation( SharedPreferences prefs )
+	{
+        toggleTags.loadTags( prefs, getApplicationContext() );
+        MultiSelectListPreference selectListPreference = (MultiSelectListPreference)findPreference( "pref-toggle-tags-list" );
+        Set<String> tagList = KissApplication.getDataHandler( this )
+                                             .getTagsHandler()
+                                             .getAllTagsAsSet();
+        String[] tagArray = tagList.toArray( new String[0] );
+        selectListPreference.setEntries( tagArray );
+        selectListPreference.setEntryValues( tagArray );
+        selectListPreference.setValues( toggleTags.getTogglableTags() );
+	}
 }
