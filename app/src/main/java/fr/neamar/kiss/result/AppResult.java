@@ -186,7 +186,7 @@ public class AppResult extends Result {
                 return true;
             case R.string.menu_tags_edit:
                 launchEditTagsDialog(context, appPojo);
-                break;
+                return true;
         }
 
         return super.popupMenuClickHandler(context, parent, stringId );
