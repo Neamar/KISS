@@ -19,13 +19,6 @@ public interface IProvider {
     void requestResults( String s, Searcher searcher );
 
     /**
-     * Synchronously retrieve list of search results for the given query string
-     *
-     * @param s Some string query (usually provided by an user)
-     */
-    ArrayList<Pojo> getResults(String s);
-
-    /**
      * Reload the data stored in this provider
      *
      * `"fr.neamar.summon.LOAD_OVER"` will be emitted once the reload is complete. The data provider

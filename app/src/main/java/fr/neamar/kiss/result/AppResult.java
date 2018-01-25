@@ -57,7 +57,7 @@ public class AppResult extends Result {
         TextView tagsView = (TextView) view.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them and the query doesn't match tags
         if (appPojo.displayTags.isEmpty() ||
-                ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (appPojo.displayTags.equals(appPojo.tags)))) {
+                ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (appPojo.displayTags.equals(appPojo.getTags())))) {
             tagsView.setVisibility(View.GONE);
         }
         else {
@@ -164,7 +164,7 @@ public class AppResult extends Result {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getDataHandler(context).getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
-        tagInput.setText(appPojo.tags);
+        tagInput.setText(appPojo.getTags());
 
         tagInput.setAdapter(adapter);
         builder.setView(v);
@@ -176,9 +176,9 @@ public class AppResult extends Result {
 				dialog.dismiss();
 				// Refresh tags for given app
 				app.setTags( tagInput.getText().toString() );
-				KissApplication.getDataHandler( context ).getTagsHandler().setTags( app.id, app.tags );
+				KissApplication.getDataHandler( context ).getTagsHandler().setTags( app.id, app.getTags() );
 				// TODO: update the displayTags with proper highlight
-				app.displayTags = app.tags;
+				app.displayTags = app.getTags();
 				// Show toast message
 				String msg = context.getResources().getString( R.string.tags_confirmation_added );
 				Toast.makeText( context, msg, Toast.LENGTH_SHORT ).show();
@@ -217,7 +217,7 @@ public class AppResult extends Result {
             msg = context.getResources().getString(R.string.toast_hibernate_error);
         }
 
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     /**

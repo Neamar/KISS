@@ -42,7 +42,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void>
 		void afterChange();
 	}
 
-	class RefreshTask implements Runnable
+	static class RefreshTask implements Runnable
 	{
 		volatile int runCounter = 0;
 

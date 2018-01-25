@@ -28,7 +28,7 @@ public class PhoneProvider extends Provider<PhonePojo> {
         searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
     }
 
-    public ArrayList<Pojo> getResults(String query) {
+    protected ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> pojos = new ArrayList<>();
 
         // Append an item only if query looks like a phone number and device has phone capabilities
@@ -39,7 +39,6 @@ public class PhoneProvider extends Provider<PhonePojo> {
         return pojos;
     }
 
-
     public Pojo findById(String id) {
         return getResult(id.replaceFirst(Pattern.quote(PHONE_SCHEME), ""));
     }
@@ -49,7 +48,7 @@ public class PhoneProvider extends Provider<PhonePojo> {
         pojo.id = PHONE_SCHEME + phoneNumber;
         pojo.phone = phoneNumber;
         pojo.relevance = 20;
-        pojo.name = phoneNumber;
+        pojo.setName( phoneNumber, false );
         return pojo;
     }
 }

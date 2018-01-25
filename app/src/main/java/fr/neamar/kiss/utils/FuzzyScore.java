@@ -47,17 +47,16 @@ public class FuzzyScore
 	 */
 	private int unmatched_letter_penalty;
 
-	public FuzzyScore( String pattern )
+	public FuzzyScore( int[] pattern )
 	{
 		super();
-		patternLength = pattern.length();
+		patternLength = pattern.length;
 		patternChar = new int[patternLength];
 		patternLower = new int[patternLength];
 		for( int i = 0; i < patternLower.length; i += 1 )
 		{
-			int codePoint = pattern.codePointAt( i );
-			patternChar[i] = codePoint;
-			patternLower[i] = Character.toLowerCase( codePoint );
+			patternChar[i] = pattern[i];
+			patternLower[i] = Character.toLowerCase( pattern[i] );
 		}
 		adjacency_bonus = 5;
 		separator_bonus = 10;
@@ -133,18 +132,18 @@ public class FuzzyScore
 	/**
 	 * Returns true if each character in pattern is found sequentially within str
 	 *
-	 * @param str where to search
+	 * @param text string converted to codepoints
 	 * @return true if each character in pattern is found sequentially within str
 	 */
-	public boolean match( String str )
+	public boolean match( int[] text )
 	{
 		int patternIdx    = 0;
 		int strIdx        = 0;
-		int strLength     = str.length();
+		int strLength     = text.length;
 
 		while( patternIdx != patternLength && strIdx != strLength )
 		{
-			int strChar = Character.toLowerCase( str.codePointAt( strIdx ) );
+			int strChar = Character.toLowerCase( text[strIdx] );
 			if( patternLower[patternIdx] == strChar )
 				++patternIdx;
 			++strIdx;
@@ -154,11 +153,32 @@ public class FuzzyScore
 	}
 
 	/**
-	 * @param text where to search
+	 * @param text string where to search
 	 * @param info will hold matching results
 	 * @return true if each character in pattern is found sequentially within text
 	 */
-	public boolean match( String text, MatchInfo info )
+	public boolean match( CharSequence text, MatchInfo info )
+	{
+		int   idx          = 0;
+		int   idxCodepoint = 0;
+		int   textLength   = text.length();
+		int[] codepoints   = new int[Character.codePointCount( text, 0, textLength )];
+		while( idx < textLength )
+		{
+			int codepoint = Character.codePointAt( text, idx );
+			codepoints[idxCodepoint] = codepoint;
+			idx += Character.charCount( codepoint );
+			idxCodepoint += 1;
+		}
+		return match( codepoints, info );
+	}
+	
+	/**
+	 * @param text string converted to codepoints
+	 * @param info will hold matching results
+	 * @return true if each character in pattern is found sequentially within text
+	 */
+	public boolean match( int[] text, MatchInfo info )
 	{
 		if( info == null )
 			return match( text );
@@ -167,7 +187,7 @@ public class FuzzyScore
 		int     score         = 0;
 		int     patternIdx    = 0;
 		int     strIdx        = 0;
-		int     strLength     = text.length();
+		int     strLength     = text.length;
 		boolean prevMatched   = false;
 		boolean prevLower     = false;
 		boolean prevSeparator = true;       // true so if first letter match gets separator bonus
@@ -190,7 +210,7 @@ public class FuzzyScore
 				patternChar = this.patternChar[patternIdx];
 				patternLower = this.patternLower[patternIdx];
 			}
-			int strChar  = text.codePointAt( strIdx );
+			int strChar  = text[strIdx];
 			int strLower = Character.toLowerCase( strChar );
 			int strUpper = Character.toUpperCase( strChar );
 
@@ -246,7 +266,7 @@ public class FuzzyScore
 						score += unmatched_letter_penalty;
 
 					bestLetter = strChar;
-					bestLower = Character.toLowerCase( bestLetter );
+					bestLower = strLower;
 					bestLetterIdx = strIdx;
 					bestLetterScore = newScore;
 				}

@@ -32,7 +32,7 @@ public class SearchProvider extends Provider<SearchPojo> {
         searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
     }
 
-    public ArrayList<Pojo> getResults(String query) {
+    protected ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> records = new ArrayList<>();
 
         for (SearchPojo pojo : pojos) {
@@ -50,7 +50,7 @@ public class SearchProvider extends Provider<SearchPojo> {
                 SearchPojo pojo = new SearchPojo();
                 pojo.query = "";
                 pojo.relevance = 50;
-                pojo.name = guessedUrl;
+                pojo.setName( guessedUrl, false );
                 pojo.url = guessedUrl;
                 pojo.direct = true;
                 records.add(pojo);

@@ -64,8 +64,7 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
     private SettingsPojo createPojo(String name, String settingName, int resId) {
         SettingsPojo pojo = new SettingsPojo();
         pojo.id = pojoScheme + settingName.toLowerCase(Locale.ENGLISH);
-        pojo.name = name;
-        pojo.nameNormalized = pojo.name.toLowerCase(Locale.ENGLISH);
+        pojo.setName( name, true );
         pojo.settingName = settingName;
         pojo.icon = resId;
 

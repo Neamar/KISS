@@ -47,8 +47,7 @@ public class LoadTogglesPojos extends LoadPojos<TogglesPojo> {
     private TogglesPojo createPojo(String name, String settingName, int resId) {
         TogglesPojo pojo = new TogglesPojo();
         pojo.id = pojoScheme + name.toLowerCase();
-        pojo.name = name;
-        pojo.nameNormalized = pojo.name.toLowerCase();
+        pojo.setName( name, true );
         pojo.settingName = settingName;
         pojo.icon = resId;
 

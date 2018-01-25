@@ -13,7 +13,12 @@ public class PojoComparator implements Comparator<Pojo> {
     public int compare(Pojo lhs, Pojo rhs)
     {
         if ( lhs.relevance == rhs.relevance )
-            return lhs.nameNormalized.compareTo( rhs.nameNormalized );
+        {
+            if ( lhs.normalizedName != null && rhs.normalizedName != null )
+                return lhs.normalizedName.compareTo( rhs.normalizedName );
+            else
+                return lhs.name.compareTo( rhs.name );
+        }
         return lhs.relevance - rhs.relevance;
     }
 }

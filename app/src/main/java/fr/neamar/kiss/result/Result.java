@@ -31,6 +31,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
@@ -45,25 +46,27 @@ public abstract class Result {
     Pojo pojo = null;
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
-        if ( parent.showRelevance() )
+        if ( pojo instanceof PojoWithTags && parent.showRelevance() )
         {
+            PojoWithTags tagsPojo = (PojoWithTags)pojo;
             int relevance = pojo.relevance - 1;
-            if ( pojo.displayTags != null && pojo.displayTags.length() > 2 && "(".equals( pojo.displayTags.substring( 0, 1 ) ) )
+            if ( tagsPojo.displayTags != null && tagsPojo.displayTags.length() > 2 && "(".equals( tagsPojo.displayTags.substring( 0, 1 ) ) )
             {
                 try
                 {
                     relevance = NumberFormat.getIntegerInstance()
-                                            .parse( pojo.displayTags.substring( 1 ) )
+                                            .parse( tagsPojo.displayTags.substring( 1 ) )
                                             .intValue();
                 } catch( Exception ignore )
                 {}
             }
             if( relevance != pojo.relevance )
             {
-                if( pojo.tags == null || pojo.tags.isEmpty() )
-                    pojo.displayTags = "<small>(" + pojo.relevance + ")</small> ";
+                String tags = tagsPojo.getTags();
+                if( tags == null || tags.isEmpty() )
+                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> ";
                 else
-                    pojo.displayTags = "<small>(" + pojo.relevance + ")</small> " + pojo.displayTags;
+                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> " + tagsPojo.displayTags;
             }
         }
 
@@ -125,7 +128,7 @@ public abstract class Result {
     public String toString()
     {
         if ( pojo != null )
-            return pojo.name;
+            return pojo.getName();
         return super.toString();
     }
 
@@ -226,13 +229,13 @@ public abstract class Result {
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
         KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
         KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     /**

@@ -301,7 +301,7 @@ public class DataHandler extends BroadcastReceiver
 
     public void addShortcut(ShortcutsPojo shortcut) {
         ShortcutRecord record = new ShortcutRecord();
-        record.name = shortcut.name;
+        record.name = shortcut.getName();
         record.iconResource = shortcut.resourceName;
         record.packageName = shortcut.packageName;
         record.intentUri = shortcut.intentUri;
@@ -327,7 +327,7 @@ public class DataHandler extends BroadcastReceiver
     }
 
     public void removeShortcut(ShortcutsPojo shortcut) {
-        DBHelper.removeShortcut(this.context, shortcut.name);
+        DBHelper.removeShortcut(this.context, shortcut.getName());
 
         if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
