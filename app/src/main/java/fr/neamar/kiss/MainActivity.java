@@ -1286,9 +1286,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         listView.animateChange();
     }
 
-    public Set<String> getHiddenTags()
+    public Set<String> getExcludeTags()
     {
         return toggleTags.getHiddenTags();
+    }
+
+    public Set<String> getIncludeTags()
+    {
+        return toggleTags.getMustShowTags();
     }
 
     @Override
