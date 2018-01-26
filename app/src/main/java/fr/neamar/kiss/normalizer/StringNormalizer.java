@@ -66,8 +66,12 @@ public class StringNormalizer {
                         break;
 
                     default:
-                        resultString.appendCodePoint(Character.toLowerCase(resultChar));
-                        resultMap.add(inputOffset);
+                        int mapIdx = resultString.length();
+                        int lwrCodePoint = Character.toLowerCase(resultChar);
+                        resultString.appendCodePoint( lwrCodePoint );
+                        if ( Character.charCount( lwrCodePoint ) == 2 )
+                            resultMap.add( mapIdx );
+                        resultMap.add( mapIdx );
                 }
 
                 decomposedCharOffset += Character.charCount(resultChar);
