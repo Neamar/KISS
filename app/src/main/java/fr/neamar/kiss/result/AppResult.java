@@ -59,6 +59,7 @@ public class AppResult extends Result {
             if (isCancelled() || drawable == null)
                 return;
             image.setImageDrawable(drawable);
+            image.setTag(appPojo.packageName);
             view.setTag(null);
         }
     }
@@ -101,8 +102,11 @@ public class AppResult extends Result {
                 view.setTag(null);
             }
 
-            view.setTag(new AsyncSetImage(view, appIcon).execute());
-            appIcon.setImageResource(android.R.color.transparent);
+            // Load new image if package is different from what we're currently displaying
+            if(!(appIcon.getTag() instanceof String) || !((appIcon.getTag()).equals(appPojo.packageName))) {
+                view.setTag(new AsyncSetImage(view, appIcon).execute());
+                appIcon.setImageResource(android.R.color.transparent);
+            }
         }
 
         return view;
