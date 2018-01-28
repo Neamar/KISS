@@ -61,7 +61,8 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     @Override
-    public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
+    public @NonNull
+    View getView(int position, View convertView, @NonNull ViewGroup parent) {
         return results.get(position).display(getContext(), results.size() - position, convertView);
     }
 
@@ -70,8 +71,8 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
         //check if menu contains elements and if yes show it
         if (menu.getAdapter().getCount() > 0) {
-            parent.registerPopup( menu );
-            menu.show( v );
+            parent.registerPopup(menu);
+            menu.show(v);
         }
     }
 
