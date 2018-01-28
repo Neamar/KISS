@@ -50,13 +50,6 @@ public class AppResult extends Result {
 		}
 
 		@Override
-		protected void onPreExecute()
-		{
-			super.onPreExecute();
-			image.setImageResource(android.R.color.transparent);
-		}
-
-		@Override
 		protected Drawable doInBackground( Void... voids )
 		{
 			if ( isCancelled() || view.getTag() != this )
