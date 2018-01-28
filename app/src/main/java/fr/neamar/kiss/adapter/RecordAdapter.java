@@ -2,16 +2,14 @@ package fr.neamar.kiss.adapter;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.R;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.PhoneResult;
@@ -63,7 +61,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
         return results.get(position).display(getContext(), results.size() - position, convertView);
     }
 
