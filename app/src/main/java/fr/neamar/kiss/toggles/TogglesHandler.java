@@ -30,7 +30,7 @@ public class TogglesHandler {
     public TogglesHandler(Context context) {
         this.connectivityManager = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
-        this.wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        this.wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         this.audioManager = ((AudioManager) context.getSystemService(Context.AUDIO_SERVICE));
         this.contentResolver = context.getContentResolver();
