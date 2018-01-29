@@ -4,12 +4,14 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 public class UiTweaks {
     public static String COLOR_DEFAULT = "#4caf50";
@@ -60,6 +62,8 @@ public class UiTweaks {
         // Launcher button should have the main color
         ImageView launcherButton = (ImageView) mainActivity.findViewById(R.id.launcherButton);
         launcherButton.setColorFilter(primaryColor);
+        ProgressBar loaderBar = (ProgressBar) mainActivity.findViewById(R.id.loaderBar);
+        loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background
         mainActivity.findViewById(R.id.main_kissbar).setBackgroundColor(primaryColor);
