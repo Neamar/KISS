@@ -46,24 +46,20 @@ public abstract class Result {
     Pojo pojo = null;
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
-        if ( pojo instanceof PojoWithTags && parent.showRelevance() )
-        {
-            PojoWithTags tagsPojo = (PojoWithTags)pojo;
+        if (pojo instanceof PojoWithTags && parent.showRelevance()) {
+            PojoWithTags tagsPojo = (PojoWithTags) pojo;
             int relevance = pojo.relevance - 1;
-            if ( tagsPojo.displayTags != null && tagsPojo.displayTags.length() > 2 && "(".equals( tagsPojo.displayTags.substring( 0, 1 ) ) )
-            {
-                try
-                {
+            if (tagsPojo.displayTags != null && tagsPojo.displayTags.length() > 2 && "(".equals(tagsPojo.displayTags.substring(0, 1))) {
+                try {
                     relevance = NumberFormat.getIntegerInstance()
-                                            .parse( tagsPojo.displayTags.substring( 1 ) )
-                                            .intValue();
-                } catch( Exception ignore )
-                {}
+                            .parse(tagsPojo.displayTags.substring(1))
+                            .intValue();
+                } catch (Exception ignore) {
+                }
             }
-            if( relevance != pojo.relevance )
-            {
+            if (relevance != pojo.relevance) {
                 String tags = tagsPojo.getTags();
-                if( tags == null || tags.isEmpty() )
+                if (tags == null || tags.isEmpty())
                     tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> ";
                 else
                     tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> " + tagsPojo.displayTags;
@@ -89,45 +85,19 @@ public abstract class Result {
         throw new RuntimeException("Unable to create a result from POJO");
     }
 
-    static class AsyncSetImage extends AsyncTask<Void, Void, Drawable>
-    {
-        final private WeakReference<ImageView> imageViewWeakReference;
-        final private WeakReference<Result>    appResultWeakReference;
-        AsyncSetImage( ImageView image, Result result )
-        {
-            super();
-            image.setTag( this );
-            this.imageViewWeakReference = new WeakReference<>( image );
-            this.appResultWeakReference = new WeakReference<>( result );
-        }
-
-        @Override
-        protected Drawable doInBackground( Void... voids )
-        {
-            ImageView image = imageViewWeakReference.get();
-            if ( isCancelled() || image == null || image.getTag() != this )
-                return null;
-            Result result = appResultWeakReference.get();
-            if ( result == null )
-                return null;
-            return result.getDrawable( image.getContext() );
-        }
-
-        @Override
-        protected void onPostExecute( Drawable drawable )
-        {
-            ImageView image = imageViewWeakReference.get();
-            if ( isCancelled() || image == null || drawable == null )
-                return;
-            image.setImageDrawable( drawable );
-            image.setTag( null );
-        }
+    /**
+     * Enrich text for display. Put text requiring highlighting between {}
+     *
+     * @param text to highlight
+     * @return text displayable on a textview
+     */
+    static Spanned enrichText(String text, Context context) {
+        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
     @Override
-    public String toString()
-    {
-        if ( pojo != null )
+    public String toString() {
+        if (pojo != null)
             return pojo.getName();
         return super.toString();
     }
@@ -146,16 +116,15 @@ public abstract class Result {
      *
      * @return a PopupMenu object
      */
-    public ListPopup getPopupMenu( final Context context, final RecordAdapter parent, View parentView) {
-        ArrayAdapter<ListPopup.Item> adapter = new ArrayAdapter<>( context, R.layout.popup_list_item );
+    public ListPopup getPopupMenu(final Context context, final RecordAdapter parent, View parentView) {
+        ArrayAdapter<ListPopup.Item> adapter = new ArrayAdapter<>(context, R.layout.popup_list_item);
         ListPopup menu = buildPopupMenu(context, adapter, parent, parentView);
 
         menu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
             @Override
-            public void onItemClick( ListAdapter adapter, View view, int position )
-            {
-                @StringRes int stringId = ((ListPopup.Item)adapter.getItem( position )).stringId;
-                popupMenuClickHandler( view.getContext(), parent, stringId );
+            public void onItemClick(ListAdapter adapter, View view, int position) {
+                @StringRes int stringId = ((ListPopup.Item) adapter.getItem(position)).stringId;
+                popupMenuClickHandler(view.getContext(), parent, stringId);
             }
         });
 
@@ -167,34 +136,32 @@ public abstract class Result {
      *
      * @return an inflated, listener-free PopupMenu
      */
-    ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
-        adapter.add( new ListPopup.Item( context, R.string.menu_remove ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
-        return inflatePopupMenu(adapter, context );
+    ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView) {
+        adapter.add(new ListPopup.Item(context, R.string.menu_remove));
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
+        return inflatePopupMenu(adapter, context);
     }
 
-    protected ListPopup inflatePopupMenu( ArrayAdapter<ListPopup.Item> adapter, Context context ) {
-        ListPopup menu = new ListPopup( context );
-        menu.setAdapter( adapter );
+    protected ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
+        ListPopup menu = new ListPopup(context);
+        menu.setAdapter(adapter);
 
         // If app already pinned, do not display the "add to favorite" option
         // otherwise don't show the "remove favorite button"
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
         if (favApps.contains(this.pojo.id + ";")) {
-            for ( int i = 0; i < adapter.getCount(); i += 1 )
-            {
-                ListPopup.Item item = adapter.getItem( i );
-                if( item.stringId == R.string.menu_favorites_add )
-                    adapter.remove( item );
+            for (int i = 0; i < adapter.getCount(); i += 1) {
+                ListPopup.Item item = adapter.getItem(i);
+                if (item.stringId == R.string.menu_favorites_add)
+                    adapter.remove(item);
             }
         } else {
-            for ( int i = 0; i < adapter.getCount(); i += 1 )
-            {
-                ListPopup.Item item = adapter.getItem( i );
-                if( item.stringId == R.string.menu_favorites_remove )
-                    adapter.remove( item );
+            for (int i = 0; i < adapter.getCount(); i += 1) {
+                ListPopup.Item item = adapter.getItem(i);
+                if (item.stringId == R.string.menu_favorites_remove)
+                    adapter.remove(item);
             }
         }
 
@@ -207,8 +174,8 @@ public abstract class Result {
      *
      * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
      */
-    Boolean popupMenuClickHandler( Context context, RecordAdapter parent, @StringRes int stringId ) {
-        switch ( stringId ) {
+    Boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId) {
+        switch (stringId) {
             case R.string.menu_remove:
                 removeItem(context, parent);
                 return true;
@@ -285,25 +252,19 @@ public abstract class Result {
         return null;
     }
 
-    boolean isDrawableCached()
-    {
+    boolean isDrawableCached() {
         return false;
     }
 
-    void setAsyncDrawable( ImageView view )
-    {
-        if ( view.getTag() instanceof AsyncSetImage )
-        {
-            ((AsyncSetImage)view.getTag()).cancel( true );
-            view.setTag( null );
+    void setAsyncDrawable(ImageView view) {
+        if (view.getTag() instanceof AsyncSetImage) {
+            ((AsyncSetImage) view.getTag()).cancel(true);
+            view.setTag(null);
         }
-        if( isDrawableCached() )
-        {
+        if (isDrawableCached()) {
             view.setImageDrawable(getDrawable(view.getContext()));
-        }
-        else
-        {
-            view.setTag( new AsyncSetImage( view, this ).execute() );
+        } else {
+            view.setTag(new AsyncSetImage(view, this).execute());
         }
     }
 
@@ -318,16 +279,6 @@ public abstract class Result {
         LayoutInflater vi = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         return vi.inflate(id, null);
-    }
-
-    /**
-     * Enrich text for display. Put text requiring highlighting between {}
-     *
-     * @param text to highlight
-     * @return text displayable on a textview
-     */
-    static Spanned enrichText(String text, Context context) {
-        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
     /**
@@ -356,9 +307,40 @@ public abstract class Result {
         return color;
     }
 
-    public long getUniqueId()
-    {
+    public long getUniqueId() {
         // we can consider hashCode unique enough in this context
         return this.pojo.id.hashCode();
+    }
+
+    static class AsyncSetImage extends AsyncTask<Void, Void, Drawable> {
+        final private WeakReference<ImageView> imageViewWeakReference;
+        final private WeakReference<Result> appResultWeakReference;
+
+        AsyncSetImage(ImageView image, Result result) {
+            super();
+            image.setTag(this);
+            this.imageViewWeakReference = new WeakReference<>(image);
+            this.appResultWeakReference = new WeakReference<>(result);
+        }
+
+        @Override
+        protected Drawable doInBackground(Void... voids) {
+            ImageView image = imageViewWeakReference.get();
+            if (isCancelled() || image == null || image.getTag() != this)
+                return null;
+            Result result = appResultWeakReference.get();
+            if (result == null)
+                return null;
+            return result.getDrawable(image.getContext());
+        }
+
+        @Override
+        protected void onPostExecute(Drawable drawable) {
+            ImageView image = imageViewWeakReference.get();
+            if (isCancelled() || image == null || drawable == null)
+                return;
+            image.setImageDrawable(drawable);
+            image.setTag(null);
+        }
     }
 }

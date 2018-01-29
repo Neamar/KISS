@@ -32,8 +32,7 @@ public class SpaceTokenizer implements MultiAutoCompleteTextView.Tokenizer {
         while (i < len) {
             if (text.charAt(i) == ' ') {
                 return i;
-            }
-            else {
+            } else {
                 i++;
             }
         }
@@ -50,15 +49,13 @@ public class SpaceTokenizer implements MultiAutoCompleteTextView.Tokenizer {
 
         if (i > 0 && text.charAt(i - 1) == ' ') {
             return text;
-        }
-        else {
+        } else {
             if (text instanceof Spanned) {
                 SpannableString sp = new SpannableString(text + " ");
                 TextUtils.copySpansFrom((Spanned) text, 0, text.length(),
                         Object.class, sp, 0);
                 return sp;
-            }
-            else {
+            } else {
                 return text + " ";
             }
         }

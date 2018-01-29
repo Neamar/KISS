@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2013 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,15 +13,17 @@
      limitations under the License.
 -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
+
     <ImageView
         android:id="@+id/color_picker_swatch"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <ImageView
         android:id="@+id/color_picker_checkmark"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_colorpicker_swatch_selected"
         android:scaleType="fitXY"
+        android:src="@drawable/ic_colorpicker_swatch_selected"
         android:visibility="gone" />
 </merge>

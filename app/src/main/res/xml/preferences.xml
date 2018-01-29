@@ -21,12 +21,11 @@
             android:title="@string/reset_excluded_apps_name" />
         <EditTextPreference
             android:defaultValue="25"
-            android:key="number-of-display-elements"
             android:inputType="number"
+            android:key="number-of-display-elements"
             android:order="45"
-            android:title="@string/number_ofdisplay_items"
             android:textColor="?attr/searchColor"
-            />
+            android:title="@string/number_ofdisplay_items" />
         <PreferenceCategory
             android:order="50"
             android:title="@string/alternate_history_inputs">
@@ -49,7 +48,9 @@
                 android:title="@string/exclude_favorites" />
         </PreferenceCategory>
     </PreferenceScreen>
-    <PreferenceScreen android:title="@string/title_ui" android:key="ui-holder">
+    <PreferenceScreen
+        android:key="ui-holder"
+        android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
@@ -145,10 +146,10 @@
 
             <fr.neamar.kiss.SwitchPreference
                 android:key="transparent-search"
-                android:title="@string/transparent_search_bar"/>
+                android:title="@string/transparent_search_bar" />
             <fr.neamar.kiss.SwitchPreference
                 android:key="transparent-favorites"
-                android:title="@string/transparent_favorites_bar"/>
+                android:title="@string/transparent_favorites_bar" />
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
                 android:key="large-search-bar"
@@ -185,9 +186,8 @@
         <PreferenceCategory android:title="@string/search_name">
             <fr.neamar.kiss.preference.AddSearchProviderPreference
                 android:key="custom-search-provider-add"
-                android:title="@string/custom_search_provider"
                 android:textColor="?attr/searchColor"
-                />
+                android:title="@string/custom_search_provider" />
             <fr.neamar.kiss.preference.ResetSearchProvidersPreference
                 android:dialogMessage="@string/search_provider_reset_desc"
                 android:key="reset"
@@ -225,6 +225,5 @@
     </PreferenceScreen>
     <Preference
         android:key="rate-app"
-        android:title="@string/rate_the_app">
-    </Preference>
+        android:title="@string/rate_the_app"></Preference>
 </PreferenceScreen>

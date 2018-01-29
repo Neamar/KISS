@@ -15,22 +15,19 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
     }
 
     @Override
-    public void requestResults( String query, Searcher searcher )
-    {
-        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult( query, false );
+    public void requestResults(String query, Searcher searcher) {
+        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
-        FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized.codePoints );
-        FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
+        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
 
-        for( ShortcutsPojo pojo : pojos )
-        {
-            boolean match = fuzzyScore.match( pojo.normalizedName.codePoints, matchInfo );
+        for (ShortcutsPojo pojo : pojos) {
+            boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
             pojo.relevance = matchInfo.score;
 
-            if ( match )
-            {
-                pojo.setDisplayNameHighlightRegion( matchInfo.getMatchedSequences() );
-                if( !searcher.addResult( pojo ) )
+            if (match) {
+                pojo.setDisplayNameHighlightRegion(matchInfo.getMatchedSequences());
+                if (!searcher.addResult(pojo))
                     return;
             }
         }

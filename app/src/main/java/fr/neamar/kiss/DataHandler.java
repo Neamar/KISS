@@ -45,14 +45,11 @@ public class DataHandler extends BroadcastReceiver
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
             "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
     );
-
+    private static TagsHandler tagsHandler;
     final private Context context;
     private String currentQuery;
-
     private Map<String, ProviderEntry> providers = new HashMap<>();
     private boolean providersReady = false;
-
-    private static TagsHandler tagsHandler;
 
     /**
      * Initialize all providers
@@ -236,14 +233,13 @@ public class DataHandler extends BroadcastReceiver
     /**
      * Get records for this query.
      *
-     * @param query   query to run
+     * @param query    query to run
      * @param searcher
      */
-    public void requestResults( String query, Searcher searcher )
-    {
+    public void requestResults(String query, Searcher searcher) {
         currentQuery = query;
         for (ProviderEntry entry : this.providers.values()) {
-            if ( searcher.isCancelled() )
+            if (searcher.isCancelled())
                 break;
             if (entry.provider == null)
                 continue;
@@ -321,8 +317,7 @@ public class DataHandler extends BroadcastReceiver
         Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
     }
 
-    public void clearHistory()
-    {
+    public void clearHistory() {
         DBHelper.clearHistory(this.context);
     }
 
@@ -344,8 +339,8 @@ public class DataHandler extends BroadcastReceiver
 
 
     public void addToExcluded(String packageName, UserHandle user) {
-		packageName = user.addUserSuffixToString(packageName, '#');
-		
+        packageName = user.addUserSuffixToString(packageName, '#');
+
         String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("excluded-apps-list", context.getPackageName() + ";");
         PreferenceManager.getDefaultSharedPreferences(context).edit()
@@ -353,32 +348,32 @@ public class DataHandler extends BroadcastReceiver
     }
 
     public void removeFromExcluded(String packageName, UserHandle user) {
-		packageName = user.addUserSuffixToString(packageName, '#');
-		
+        packageName = user.addUserSuffixToString(packageName, '#');
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
         String excluded = prefs.getString("excluded-apps-list", context.getPackageName() + ";");
         prefs.edit().putString("excluded-apps-list", excluded.replaceAll(packageName + ";", "")).apply();
     }
 
-	public void removeFromExcluded(UserHandle user) {
-		// This is only intended for apps from foreign-profiles
-		if(user.isCurrentUser()) {
-			return;
-		}
-		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
-		String[] excludedList = prefs.getString("excluded-apps-list", context.getPackageName() + ";").split(";");
-		
-		StringBuilder excluded = new StringBuilder();
-		for(String excludedItem : excludedList) {
-			if(!user.hasStringUserSuffix(excludedItem, '#')) {
-				excluded.append( excludedItem )
-                        .append( ";" );
-			}
-		}
-		
-		prefs.edit().putString("excluded-apps-list", excluded.toString()).apply();
-	}
+    public void removeFromExcluded(UserHandle user) {
+        // This is only intended for apps from foreign-profiles
+        if (user.isCurrentUser()) {
+            return;
+        }
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
+        String[] excludedList = prefs.getString("excluded-apps-list", context.getPackageName() + ";").split(";");
+
+        StringBuilder excluded = new StringBuilder();
+        for (String excludedItem : excludedList) {
+            if (!user.hasStringUserSuffix(excludedItem, '#')) {
+                excluded.append(excludedItem)
+                        .append(";");
+            }
+        }
+
+        prefs.edit().putString("excluded-apps-list", excluded.toString()).apply();
+    }
 
     /**
      * Return all applications
@@ -479,26 +474,26 @@ public class DataHandler extends BroadcastReceiver
 
         return true;
     }
-    
-	public void removeFromFavorites(UserHandle user) {
-		// This is only intended for apps from foreign-profiles
-		if(user.isCurrentUser()) {
-			return;
-		}
-		
-		String[] favAppList = PreferenceManager.getDefaultSharedPreferences(this.context)
-		                                       .getString("favorite-apps-list", "").split(";");
-		
-		StringBuilder favApps = new StringBuilder();
-		for(String favAppID : favAppList) {
-			if(!favAppID.startsWith("app://") || !user.hasStringUserSuffix(favAppID, '/')) {
-				favApps.append(favAppID + ";");
-			}
-		}
-		
-		PreferenceManager.getDefaultSharedPreferences(this.context).edit()
-		                 .putString("favorite-apps-list", favApps.toString()).apply();
-	}
+
+    public void removeFromFavorites(UserHandle user) {
+        // This is only intended for apps from foreign-profiles
+        if (user.isCurrentUser()) {
+            return;
+        }
+
+        String[] favAppList = PreferenceManager.getDefaultSharedPreferences(this.context)
+                .getString("favorite-apps-list", "").split(";");
+
+        StringBuilder favApps = new StringBuilder();
+        for (String favAppID : favAppList) {
+            if (!favAppID.startsWith("app://") || !user.hasStringUserSuffix(favAppID, '/')) {
+                favApps.append(favAppID + ";");
+            }
+        }
+
+        PreferenceManager.getDefaultSharedPreferences(this.context).edit()
+                .putString("favorite-apps-list", favApps.toString()).apply();
+    }
 
     /**
      * Insert specified ID (probably a pojo.id) into history
@@ -525,11 +520,6 @@ public class DataHandler extends BroadcastReceiver
         return null;
     }
 
-    protected static final class ProviderEntry {
-        public IProvider provider = null;
-        public ServiceConnection connection = null;
-    }
-
     public TagsHandler getTagsHandler() {
         if (tagsHandler == null) {
             tagsHandler = new TagsHandler(context);
@@ -539,5 +529,10 @@ public class DataHandler extends BroadcastReceiver
 
     public void resetTagsHandler() {
         tagsHandler = new TagsHandler(this.context);
+    }
+
+    protected static final class ProviderEntry {
+        public IProvider provider = null;
+        public ServiceConnection connection = null;
     }
 }

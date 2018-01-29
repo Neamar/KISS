@@ -30,14 +30,6 @@ public class KeyboardScrollHider implements View.OnTouchListener {
 
     private boolean scrollBarEnabled = true;
 
-    public interface KeyboardHandler {
-        void showKeyboard();
-
-        void hideKeyboard();
-
-        void applyScrollSystemUi();
-    }
-
     public KeyboardScrollHider(KeyboardHandler handler, BlockableListView list, BottomPullEffectView pullEffect) {
         this.handler = handler;
         this.list = list;
@@ -221,16 +213,21 @@ public class KeyboardScrollHider implements View.OnTouchListener {
         return false;
     }
 
-    public void fixScroll()
-    {
-        this.list.post( new Runnable()
-        {
+    public void fixScroll() {
+        this.list.post(new Runnable() {
             @Override
-            public void run()
-            {
+            public void run() {
                 resizeDone = false;
                 handleResizeDone();
             }
-        } );
+        });
+    }
+
+    public interface KeyboardHandler {
+        void showKeyboard();
+
+        void hideKeyboard();
+
+        void applyScrollSystemUi();
     }
 }

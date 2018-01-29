@@ -1,4 +1,3 @@
-
 package fr.neamar.kiss.androidTest;
 
 import android.support.test.InstrumentationRegistry;
@@ -24,6 +23,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public MainActivityTest() {
         super(MainActivity.class);
     }
+
     @Before
     public void setUp() throws Exception {
         super.setUp();
@@ -32,8 +32,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
                 getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
-                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                        WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
         };
         getActivity().runOnUiThread(wakeUpDevice);

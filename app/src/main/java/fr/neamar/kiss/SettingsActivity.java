@@ -222,7 +222,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
                 for (String searchProvider : availableSearchProviders) {
                     for (String providerToDelete : searchProvidersToDelete) {
-                        if (searchProvider.startsWith(providerToDelete+"|")) {
+                        if (searchProvider.startsWith(providerToDelete + "|")) {
                             updatedProviders.remove(searchProvider);
                             continue;
                         }
@@ -321,7 +321,7 @@ public class SettingsActivity extends PreferenceActivity implements
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
             Preference resetScroll = findPreference("resetScroll");
-            if ( resetScroll != null )
+            if (resetScroll != null)
                 resetScroll.setSummary(String.format(getString(R.string.items_title), historyLength));
         }
 

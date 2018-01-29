@@ -20,162 +20,146 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.result.Result;
 
-public abstract class Searcher extends AsyncTask<Void, Result, Void>
-{
-	static final        int             DEFAULT_MAX_RESULTS   = 50;
-	static final        int             DEFAULT_REFRESH_TIMER = 150;
-	// define a different thread than the default AsyncTask thread or else we will block everything else that uses AsyncTask while we search
-	public static final ExecutorService SEARCH_THREAD         = Executors.newSingleThreadExecutor();
+public abstract class Searcher extends AsyncTask<Void, Result, Void> {
+    // define a different thread than the default AsyncTask thread or else we will block everything else that uses AsyncTask while we search
+    public static final ExecutorService SEARCH_THREAD = Executors.newSingleThreadExecutor();
+    static final int DEFAULT_MAX_RESULTS = 50;
+    static final int DEFAULT_REFRESH_TIMER = 150;
+    final WeakReference<MainActivity> activityWeakReference;
+    private final PriorityQueue<Pojo> processedPojos;
+    private final RefreshTask refreshTask;
+    // It's better to have a Handler than a Timer. Note that java.util.Timer (and TimerTask) will be deprecated in JDK 9
+    private final Handler handler;
+    private long start;
+    private String query;
+    private int refreshCounter;
 
-	private long start;
-	private String query;
-	final         WeakReference<MainActivity> activityWeakReference;
-	private final PriorityQueue<Pojo>         processedPojos;
-	private final RefreshTask                 refreshTask;
-	private       int                         refreshCounter;
-	// It's better to have a Handler than a Timer. Note that java.util.Timer (and TimerTask) will be deprecated in JDK 9
-	private final Handler                     handler;
+    /**
+     * Constructor
+     *
+     * @param activity
+     */
+    Searcher(MainActivity activity, String query) {
+        super();
+        this.query = query;
+        this.activityWeakReference = new WeakReference<>(activity);
+        this.processedPojos = new PriorityQueue<>(DEFAULT_MAX_RESULTS, new PojoComparator());
+        this.refreshTask = new RefreshTask();
+        this.refreshCounter = 0;
+        // This handler should run on the Ui thread. That's the only thread that can't be blocked.
+        this.handler = new Handler(Looper.getMainLooper());
+    }
 
-	public interface DataObserver
-	{
-		void beforeChange();
-		void afterChange();
-	}
+    protected int getMaxResultCount() {
+        return DEFAULT_MAX_RESULTS;
+    }
 
-	static class RefreshTask implements Runnable
-	{
-		volatile int runCounter = 0;
+    /**
+     * This is called from the background thread by the providers
+     */
+    public boolean addResult(Pojo... pojos) {
+        if (isCancelled())
+            return false;
 
-		@Override
-		public void run()
-		{
-			runCounter += 1;
-		}
-	}
+        MainActivity activity = activityWeakReference.get();
+        if (activity == null)
+            return false;
 
-	/**
-	 * Constructor
-	 *
-	 * @param activity
-	 */
-	Searcher( MainActivity activity, String query )
-	{
-		super();
-		this.query = query;
-		this.activityWeakReference = new WeakReference<>( activity );
-		this.processedPojos = new PriorityQueue<>( DEFAULT_MAX_RESULTS, new PojoComparator() );
-		this.refreshTask = new RefreshTask();
-		this.refreshCounter = 0;
-		// This handler should run on the Ui thread. That's the only thread that can't be blocked.
-		this.handler = new Handler( Looper.getMainLooper() );
-	}
+        this.processedPojos.addAll(Arrays.asList(pojos));
+        int maxResults = getMaxResultCount();
+        while (this.processedPojos.size() > maxResults)
+            this.processedPojos.poll();
 
-	protected int getMaxResultCount()
-	{
-		return DEFAULT_MAX_RESULTS;
-	}
+        int counter = this.refreshTask.runCounter;
+        // if timer passed, refresh list
+        if (this.refreshCounter < counter) {
+            this.refreshCounter = counter;
 
-	/**
-	 * This is called from the background thread by the providers
-	 */
-	public boolean addResult( Pojo... pojos )
-	{
-		if( isCancelled() )
-			return false;
+            // clone the PriorityQueue so we can extract the pojos in sorted order and still keep them in the original list
+            PriorityQueue<Pojo> queue = new PriorityQueue<>(this.processedPojos);
+            Collection<Result> results = new ArrayList<>(queue.size());
+            while (queue.peek() != null) {
+                results.add(Result.fromPojo(activity, queue.poll()));
+            }
+            // make the adapter update from the main thread
+            publishProgress(results.toArray(new Result[0]));
+        }
 
-		MainActivity activity = activityWeakReference.get();
-		if( activity == null )
-			return false;
+        return true;
+    }
 
-		this.processedPojos.addAll( Arrays.asList( pojos ) );
-		int maxResults = getMaxResultCount();
-		while( this.processedPojos.size() > maxResults )
-			this.processedPojos.poll();
+    @CallSuper
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        start = System.currentTimeMillis();
 
-		int counter = this.refreshTask.runCounter;
-		// if timer passed, refresh list
-		if( this.refreshCounter < counter )
-		{
-			this.refreshCounter = counter;
+        MainActivity activity = activityWeakReference.get();
+        if (activity == null)
+            return;
 
-			// clone the PriorityQueue so we can extract the pojos in sorted order and still keep them in the original list
-			PriorityQueue<Pojo> queue   = new PriorityQueue<>( this.processedPojos );
-			Collection<Result>  results = new ArrayList<>( queue.size() );
-			while( queue.peek() != null )
-			{
-				results.add( Result.fromPojo( activity, queue.poll() ) );
-			}
-			// make the adapter update from the main thread
-			publishProgress( results.toArray( new Result[0] ) );
-		}
+        this.handler.postDelayed(this.refreshTask, DEFAULT_REFRESH_TIMER);
+        activity.displayLoader(true);
+    }
 
-		return true;
-	}
+    @Override
+    protected void onProgressUpdate(Result... results) {
+        MainActivity activity = activityWeakReference.get();
+        if (activity == null)
+            return;
 
-	@CallSuper
-	@Override
-	protected void onPreExecute()
-	{
-		super.onPreExecute();
-		start = System.currentTimeMillis();
+        activity.beforeChange();
 
-		MainActivity activity = activityWeakReference.get();
-		if( activity == null )
-			return;
+        activity.adapter.clear();
+        activity.adapter.addAll(results);
 
-		this.handler.postDelayed( this.refreshTask, DEFAULT_REFRESH_TIMER );
-		activity.displayLoader( true );
-	}
+        activity.afterChange();
+    }
 
-	@Override
-	protected void onProgressUpdate( Result... results )
-	{
-		MainActivity activity = activityWeakReference.get();
-		if( activity == null )
-			return;
+    @Override
+    protected void onPostExecute(Void param) {
+        this.handler.removeCallbacks(this.refreshTask);
 
-		activity.beforeChange();
+        MainActivity activity = activityWeakReference.get();
+        if (activity == null)
+            return;
 
-		activity.adapter.clear();
-		activity.adapter.addAll( results );
+        activity.displayLoader(false);
 
-		activity.afterChange();
-	}
+        if (this.processedPojos.isEmpty()) {
+            activity.adapter.clear();
+        } else {
+            PriorityQueue<Pojo> queue = this.processedPojos;
+            Collection<Result> results = new ArrayList<>(queue.size());
+            while (queue.peek() != null) {
+                results.add(Result.fromPojo(activity, queue.poll()));
+            }
+            activity.beforeChange();
 
-	@Override
-	protected void onPostExecute( Void param )
-	{
-		this.handler.removeCallbacks( this.refreshTask );
+            activity.adapter.clear();
+            activity.adapter.addAll(results);
 
-		MainActivity activity = activityWeakReference.get();
-		if( activity == null )
-			return;
+            activity.afterChange();
+        }
 
-		activity.displayLoader( false );
+        activity.resetTask();
 
-		if( this.processedPojos.isEmpty() )
-		{
-			activity.adapter.clear();
-		}
-		else
-		{
-			PriorityQueue<Pojo> queue   = this.processedPojos;
-			Collection<Result>  results = new ArrayList<>( queue.size() );
-			while( queue.peek() != null )
-			{
-				results.add( Result.fromPojo( activity, queue.poll() ) );
-			}
-			activity.beforeChange();
+        long time = System.currentTimeMillis() - start;
+        Log.v("Timing", "Time to run query `" + query + "` to completion: " + time + "ms");
+    }
 
-			activity.adapter.clear();
-			activity.adapter.addAll( results );
+    public interface DataObserver {
+        void beforeChange();
 
-			activity.afterChange();
-		}
+        void afterChange();
+    }
 
-		activity.resetTask();
+    static class RefreshTask implements Runnable {
+        volatile int runCounter = 0;
 
-		long time = System.currentTimeMillis() - start;
-		Log.v("Timing", "Time to run query `" + query + "` to completion: " + time + "ms");
-	}
+        @Override
+        public void run() {
+            runCounter += 1;
+        }
+    }
 }

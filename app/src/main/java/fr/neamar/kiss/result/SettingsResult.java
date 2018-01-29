@@ -54,7 +54,7 @@ public class SettingsResult extends Result {
         if (!settingPojo.packageName.isEmpty()) {
             intent.setClassName(settingPojo.packageName, settingPojo.settingName);
         }
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             intent.setSourceBounds(v.getClipBounds());
         }
 

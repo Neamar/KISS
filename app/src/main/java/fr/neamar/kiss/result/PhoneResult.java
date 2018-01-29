@@ -40,19 +40,19 @@ public class PhoneResult extends Result {
     }
 
     @Override
-    protected ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
-        adapter.add( new ListPopup.Item( context, R.string.menu_remove ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_phone_create ) );
-        adapter.add( new ListPopup.Item( context, R.string.ui_item_contact_hint_message ) );
+    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView) {
+        adapter.add(new ListPopup.Item(context, R.string.menu_remove));
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
+        adapter.add(new ListPopup.Item(context, R.string.menu_phone_create));
+        adapter.add(new ListPopup.Item(context, R.string.ui_item_contact_hint_message));
 
-        return inflatePopupMenu(adapter, context );
+        return inflatePopupMenu(adapter, context);
     }
 
     @Override
-    protected Boolean popupMenuClickHandler( Context context, RecordAdapter parent, int stringId ) {
-        switch ( stringId ) {
+    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+        switch (stringId) {
             case R.string.menu_phone_create:
                 // Create a new contact with this phone number
                 Intent createIntent = new Intent(Intent.ACTION_INSERT);
@@ -69,14 +69,14 @@ public class PhoneResult extends Result {
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, stringId );
+        return super.popupMenuClickHandler(context, parent, stringId);
     }
 
     @Override
     public void doLaunch(Context context, View v) {
         Intent phone = new Intent(Intent.ACTION_CALL);
         phone.setData(Uri.parse("tel:" + Uri.encode(phonePojo.phone)));
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             phone.setSourceBounds(v.getClipBounds());
         }
 

@@ -17,234 +17,199 @@ import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 /**
  * Created by TBog on 12/6/2017.
  */
-public class ListPopup extends PopupWindow
-{
-	private final View.OnClickListener     mClickListener;
-	private       OnItemClickListener      mItemClickListener;
-	private       DataSetObserver          mObserver;
-	private       ListAdapter              mAdapter;
-	private       SystemUiVisibilityHelper mSystemUiVisibilityHelper;
+public class ListPopup extends PopupWindow {
+    private final View.OnClickListener mClickListener;
+    private OnItemClickListener mItemClickListener;
+    private DataSetObserver mObserver;
+    private ListAdapter mAdapter;
+    private SystemUiVisibilityHelper mSystemUiVisibilityHelper;
 
-	public static class Item
-	{
-		@StringRes
-		public final int    stringId;
-		final        String string;
+    public ListPopup(Context context) {
+        super(context, null, android.R.attr.popupMenuStyle);
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        ScrollView scrollView = new ScrollView(context);
+        scrollView.addView(layout);
+        setContentView(scrollView);
+        setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
+        setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+        mItemClickListener = null;
+        mClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+                if (mItemClickListener != null) {
+                    LinearLayout layout = getLinearLayout();
+                    int position = layout.indexOfChild(v);
+                    mItemClickListener.onItemClick(mAdapter, v, position);
+                }
+            }
+        };
+    }
 
-		public Item( Context context, @StringRes int stringId )
-		{
-			super();
-			this.stringId = stringId;
-			this.string = context.getResources()
-								 .getString( stringId );
-		}
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mItemClickListener = onItemClickListener;
+    }
 
-		@Override
-		public String toString()
-		{
-			return this.string;
-		}
-	}
+    public void setVisibilityHelper(SystemUiVisibilityHelper systemUiVisibility) {
+        mSystemUiVisibilityHelper = systemUiVisibility;
+        mSystemUiVisibilityHelper.addPopup();
+    }
 
-	public interface OnItemClickListener
-	{
-		void onItemClick( ListAdapter adapter, View view, int position );
-	}
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        mSystemUiVisibilityHelper.popPopup();
+    }
 
-	protected class ScrollView extends android.widget.ScrollView
-	{
-		public ScrollView( Context context )
-		{
-			super( context );
-		}
+    public ListAdapter getAdapter() {
+        return mAdapter;
+    }
 
-		@Override
-		public boolean dispatchTouchEvent( MotionEvent event )
-		{
-			// act as a modal, if we click outside dismiss the popup
-			final int x = (int) event.getX();
-			final int y = (int) event.getY();
-			if ((event.getAction() == MotionEvent.ACTION_DOWN)
-				&& ((x < 0) || (x >= getWidth()) || (y < 0) || (y >= getHeight()))) {
-				dismiss();
-				return true;
-			} else if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-				dismiss();
-				return true;
-			}
-			return super.dispatchTouchEvent( event );
-		}
-	}
+    /**
+     * Sets the adapter that provides the data and the views to represent the data
+     * in this popup window.
+     *
+     * @param adapter The adapter to use to create this window's content.
+     */
+    public void setAdapter(ListAdapter adapter) {
+        if (mObserver == null) {
+            mObserver = new PopupDataSetObserver();
+        } else if (mAdapter != null) {
+            mAdapter.unregisterDataSetObserver(mObserver);
+        }
+        mAdapter = adapter;
+        if (mAdapter != null) {
+            adapter.registerDataSetObserver(mObserver);
+        }
+    }
 
-	private class PopupDataSetObserver extends DataSetObserver
-	{
-		@Override
-		public void onChanged()
-		{
-			if( isShowing() )
-			{
-				// Resize the popup to fit new content
-				updateItems();
-				update();
-			}
-		}
+    private LinearLayout getLinearLayout() {
+        return (LinearLayout) ((ScrollView) getContentView()).getChildAt(0);
+    }
 
-		@Override
-		public void onInvalidated()
-		{
-			dismiss();
-		}
-	}
+    private void updateItems() {
+        LinearLayout layout = getLinearLayout();
+        layout.removeAllViews();
+        int adapterCount = mAdapter.getCount();
+        for (int i = 0; i < adapterCount; i += 1) {
+            View view = mAdapter.getView(i, null, layout);
+            layout.addView(view);
+            view.setOnClickListener(mClickListener);
+        }
+    }
 
-	public ListPopup( Context context )
-	{
-		super( context, null, android.R.attr.popupMenuStyle );
-		LinearLayout layout     = new LinearLayout( context );
-		layout.setOrientation( LinearLayout.VERTICAL );
-		ScrollView     scrollView = new ScrollView( context );
-		scrollView.addView( layout );
-		setContentView( scrollView );
-		setWidth( LinearLayout.LayoutParams.WRAP_CONTENT );
-		setHeight( LinearLayout.LayoutParams.WRAP_CONTENT );
-		mItemClickListener = null;
-		mClickListener = new View.OnClickListener()
-		{
-			@Override
-			public void onClick( View v )
-			{
-				dismiss();
-				if( mItemClickListener != null )
-				{
-					LinearLayout layout   = getLinearLayout();
-					int          position = layout.indexOfChild( v );
-					mItemClickListener.onItemClick( mAdapter, v, position );
-				}
-			}
-		};
-	}
+    public void show(View anchor) {
+        updateItems();
 
-	public void setOnItemClickListener( OnItemClickListener onItemClickListener )
-	{
-		mItemClickListener = onItemClickListener;
-	}
+        if (mSystemUiVisibilityHelper != null)
+            mSystemUiVisibilityHelper.copyVisibility(getContentView());
 
-	public void setVisibilityHelper( SystemUiVisibilityHelper systemUiVisibility )
-	{
-		mSystemUiVisibilityHelper = systemUiVisibility;
-		mSystemUiVisibilityHelper.addPopup();
-	}
+        // don't steal the focus, this will prevent the keyboard from changing
+        setFocusable(false);
+        // draw over stuff if needed
+        setClippingEnabled(false);
 
-	@Override
-	public void dismiss()
-	{
-		super.dismiss();
-		mSystemUiVisibilityHelper.popPopup();
-	}
+        final Rect displayFrame = new Rect();
+        anchor.getWindowVisibleDisplayFrame(displayFrame);
 
-	/**
-	 * Sets the adapter that provides the data and the views to represent the data
-	 * in this popup window.
-	 *
-	 * @param adapter The adapter to use to create this window's content.
-	 */
-	public void setAdapter( ListAdapter adapter )
-	{
-		if( mObserver == null )
-		{
-			mObserver = new PopupDataSetObserver();
-		}
-		else if( mAdapter != null )
-		{
-			mAdapter.unregisterDataSetObserver( mObserver );
-		}
-		mAdapter = adapter;
-		if( mAdapter != null )
-		{
-			adapter.registerDataSetObserver( mObserver );
-		}
-	}
+        final int[] anchorPos = new int[2];
+        anchor.getLocationOnScreen(anchorPos);
 
-	public ListAdapter getAdapter()
-	{
-		return mAdapter;
-	}
+        final int distanceToBottom = displayFrame.bottom - (anchorPos[1] + anchor.getHeight());
+        final int distanceToTop = anchorPos[1] - displayFrame.top;
 
-	private LinearLayout getLinearLayout()
-	{
-		return (LinearLayout)((ScrollView)getContentView()).getChildAt( 0 );
-	}
+        LinearLayout linearLayout = getLinearLayout();
 
-	private void updateItems()
-	{
-		LinearLayout layout = getLinearLayout();
-		layout.removeAllViews();
-		int adapterCount = mAdapter.getCount();
-		for( int i = 0; i < adapterCount; i += 1 )
-		{
-			View view = mAdapter.getView( i, null, layout );
-			layout.addView( view );
-			view.setOnClickListener( mClickListener );
-		}
-	}
+        linearLayout.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
 
-	public void show( View anchor )
-	{
-		updateItems();
+        int xOffset = anchorPos[0] + anchor.getPaddingLeft();
+        if (xOffset + linearLayout.getMeasuredWidth() > displayFrame.right)
+            xOffset = displayFrame.right - linearLayout.getMeasuredWidth();
 
-		if( mSystemUiVisibilityHelper != null )
-			mSystemUiVisibilityHelper.copyVisibility( getContentView() );
+        int halfAnchorHeight = anchor.getHeight() / 2;
+        int yOffset;
+        if (distanceToBottom > linearLayout.getMeasuredHeight()) {
+            // show below anchor
+            yOffset = anchorPos[1] + halfAnchorHeight;
+            setAnimationStyle(R.style.PopupAnimationTop);
+        } else if (distanceToTop > distanceToBottom) {
+            // show above anchor
+            yOffset = anchorPos[1] + halfAnchorHeight - linearLayout.getMeasuredHeight();
+            setAnimationStyle(R.style.PopupAnimationBottom);
+            if (distanceToTop < linearLayout.getMeasuredHeight()) {
+                // enable scroll
+                setHeight(distanceToTop + halfAnchorHeight);
+                yOffset += linearLayout.getMeasuredHeight() - distanceToTop - halfAnchorHeight;
+            }
+        } else {
+            // show below anchor with scroll
+            yOffset = anchorPos[1] + halfAnchorHeight;
+            setAnimationStyle(R.style.PopupAnimationTop);
+            setHeight(distanceToBottom + halfAnchorHeight);
+        }
 
-		// don't steal the focus, this will prevent the keyboard from changing
-		setFocusable( false );
-		// draw over stuff if needed
-		setClippingEnabled( false );
+        showAtLocation(anchor, Gravity.START | Gravity.TOP, xOffset, yOffset);
+    }
 
-		final Rect displayFrame = new Rect();
-		anchor.getWindowVisibleDisplayFrame( displayFrame );
+    public interface OnItemClickListener {
+        void onItemClick(ListAdapter adapter, View view, int position);
+    }
 
-		final int[] anchorPos = new int[2];
-		anchor.getLocationOnScreen( anchorPos );
+    public static class Item {
+        @StringRes
+        public final int stringId;
+        final String string;
 
-		final int distanceToBottom = displayFrame.bottom - (anchorPos[1] + anchor.getHeight());
-		final int distanceToTop = anchorPos[1] - displayFrame.top;
+        public Item(Context context, @StringRes int stringId) {
+            super();
+            this.stringId = stringId;
+            this.string = context.getResources()
+                    .getString(stringId);
+        }
 
-		LinearLayout linearLayout = getLinearLayout();
+        @Override
+        public String toString() {
+            return this.string;
+        }
+    }
 
-		linearLayout.measure( View.MeasureSpec.makeMeasureSpec( 0, View.MeasureSpec.UNSPECIFIED ),
-				View.MeasureSpec.makeMeasureSpec( 0, View.MeasureSpec.UNSPECIFIED ) );
+    protected class ScrollView extends android.widget.ScrollView {
+        public ScrollView(Context context) {
+            super(context);
+        }
 
-		int xOffset = anchorPos[0] + anchor.getPaddingLeft();
-		if( xOffset + linearLayout.getMeasuredWidth() > displayFrame.right )
-			xOffset = displayFrame.right - linearLayout.getMeasuredWidth();
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent event) {
+            // act as a modal, if we click outside dismiss the popup
+            final int x = (int) event.getX();
+            final int y = (int) event.getY();
+            if ((event.getAction() == MotionEvent.ACTION_DOWN)
+                    && ((x < 0) || (x >= getWidth()) || (y < 0) || (y >= getHeight()))) {
+                dismiss();
+                return true;
+            } else if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+                dismiss();
+                return true;
+            }
+            return super.dispatchTouchEvent(event);
+        }
+    }
 
-		int halfAnchorHeight = anchor.getHeight() / 2;
-		int yOffset;
-		if( distanceToBottom > linearLayout.getMeasuredHeight() )
-		{
-			// show below anchor
-			yOffset = anchorPos[1] + halfAnchorHeight;
-			setAnimationStyle( R.style.PopupAnimationTop );
-		}
-		else if ( distanceToTop > distanceToBottom )
-		{
-			// show above anchor
-			yOffset = anchorPos[1] + halfAnchorHeight - linearLayout.getMeasuredHeight();
-			setAnimationStyle( R.style.PopupAnimationBottom );
-			if ( distanceToTop < linearLayout.getMeasuredHeight() )
-			{
-				// enable scroll
-				setHeight( distanceToTop + halfAnchorHeight );
-				yOffset += linearLayout.getMeasuredHeight() - distanceToTop - halfAnchorHeight;
-			}
-		}
-		else
-		{
-			// show below anchor with scroll
-			yOffset = anchorPos[1] + halfAnchorHeight;
-			setAnimationStyle( R.style.PopupAnimationTop );
-			setHeight( distanceToBottom + halfAnchorHeight );
-		}
+    private class PopupDataSetObserver extends DataSetObserver {
+        @Override
+        public void onChanged() {
+            if (isShowing()) {
+                // Resize the popup to fit new content
+                updateItems();
+                update();
+            }
+        }
 
-		showAtLocation( anchor, Gravity.START | Gravity.TOP, xOffset, yOffset );
-	}
+        @Override
+        public void onInvalidated() {
+            dismiss();
+        }
+    }
 }

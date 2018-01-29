@@ -18,32 +18,26 @@ public class SettingsProvider extends Provider<SettingsPojo> {
     }
 
     @Override
-    public void requestResults( String query, Searcher searcher )
-    {
-        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult( query, false );
+    public void requestResults(String query, Searcher searcher) {
+        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
-        FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized.codePoints );
-        FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
+        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
 
-        for (SettingsPojo pojo : pojos)
-        {
-            boolean match = fuzzyScore.match( pojo.normalizedName.codePoints, matchInfo );
+        for (SettingsPojo pojo : pojos) {
+            boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
             pojo.relevance = matchInfo.score;
 
-            if ( match )
-            {
-                pojo.setDisplayNameHighlightRegion( matchInfo.getMatchedSequences() );
-            }
-            else if( fuzzyScore.match( settingName, matchInfo ) )
-            {
+            if (match) {
+                pojo.setDisplayNameHighlightRegion(matchInfo.getMatchedSequences());
+            } else if (fuzzyScore.match(settingName, matchInfo)) {
                 match = true;
                 pojo.relevance = matchInfo.score;
                 pojo.setDisplayNameHighlightRegion(0, 0);
             }
 
-            if( match )
-            {
-                if( !searcher.addResult( pojo ) )
+            if (match) {
+                if (!searcher.addResult(pojo))
                     return;
             }
         }

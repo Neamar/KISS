@@ -177,7 +177,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         if (positiveresult && shouldPersist()) {
             //persistString(providerName.getText().toString());
             Set<String> availableProviders = new HashSet<String>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
-            availableProviders.add(providerName.getText().toString()+"|"+providerUrl.getText().toString().toLowerCase());
+            availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString().toLowerCase());
             prefs.edit().putStringSet("available-search-providers", availableProviders).commit();
             prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).commit();
 

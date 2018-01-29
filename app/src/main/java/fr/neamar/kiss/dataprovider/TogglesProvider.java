@@ -18,32 +18,26 @@ public class TogglesProvider extends Provider<TogglesPojo> {
     }
 
     @Override
-    public void requestResults( String query, Searcher searcher )
-    {
-        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult( query, false );
+    public void requestResults(String query, Searcher searcher) {
+        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
-        FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized.codePoints );
-        FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
+        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
 
-        for (TogglesPojo pojo : pojos)
-        {
-            boolean match = fuzzyScore.match( pojo.normalizedName.codePoints, matchInfo );
+        for (TogglesPojo pojo : pojos) {
+            boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
             pojo.relevance = matchInfo.score;
 
-            if ( match )
-            {
-                pojo.setDisplayNameHighlightRegion( matchInfo.getMatchedSequences() );
-            }
-            else if( fuzzyScore.match( toggleName, matchInfo ) )
-            {
+            if (match) {
+                pojo.setDisplayNameHighlightRegion(matchInfo.getMatchedSequences());
+            } else if (fuzzyScore.match(toggleName, matchInfo)) {
                 match = true;
                 pojo.relevance = matchInfo.score;
                 pojo.setDisplayNameHighlightRegion(0, 0);
             }
 
-            if( match )
-            {
-                if( !searcher.addResult( pojo ) )
+            if (match) {
+                if (!searcher.addResult(pojo))
                     return;
             }
         }

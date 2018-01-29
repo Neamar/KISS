@@ -51,8 +51,8 @@ public class ContactsResult extends Result {
 
         // Contact phone
         TextView contactPhone = (TextView) view.findViewById(R.id.item_contact_phone);
-        if ( contactPojo.displayTags != null )
-            contactPhone.setText(enrichText( contactPojo.displayTags + contactPojo.phone, context ));
+        if (contactPojo.displayTags != null)
+            contactPhone.setText(enrichText(contactPojo.displayTags + contactPojo.phone, context));
         else
             contactPhone.setText(contactPojo.phone);
 
@@ -60,7 +60,7 @@ public class ContactsResult extends Result {
         ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) view
                 .findViewById(R.id.item_contact_icon);
 
-        this.setAsyncDrawable( contactIcon );
+        this.setAsyncDrawable(contactIcon);
 
         contactIcon.assignContactUri(Uri.withAppendedPath(
                 ContactsContract.Contacts.CONTENT_LOOKUP_URI,
@@ -116,24 +116,24 @@ public class ContactsResult extends Result {
     }
 
     @Override
-    protected ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
-        adapter.add( new ListPopup.Item( context, R.string.menu_remove ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_contact_copy_phone ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
+    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView) {
+        adapter.add(new ListPopup.Item(context, R.string.menu_remove));
+        adapter.add(new ListPopup.Item(context, R.string.menu_contact_copy_phone));
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
 
-        return inflatePopupMenu(adapter, context );
+        return inflatePopupMenu(adapter, context);
     }
 
     @Override
-    protected Boolean popupMenuClickHandler( Context context, RecordAdapter parent, int stringId ) {
-        switch ( stringId ) {
+    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+        switch (stringId) {
             case R.string.menu_contact_copy_phone:
                 copyPhone(context, contactPojo);
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, stringId );
+        return super.popupMenuClickHandler(context, parent, stringId);
     }
 
     @SuppressWarnings("deprecation")
@@ -147,37 +147,28 @@ public class ContactsResult extends Result {
     }
 
     @Override
-    boolean isDrawableCached()
-    {
+    boolean isDrawableCached() {
         return icon != null;
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
-        synchronized( this )
-        {
-            if( isDrawableCached() )
+        synchronized (this) {
+            if (isDrawableCached())
                 return icon;
-            if( contactPojo.icon != null )
-            {
+            if (contactPojo.icon != null) {
                 InputStream inputStream = null;
-                try
-                {
+                try {
                     inputStream = context.getContentResolver()
-                                         .openInputStream( contactPojo.icon );
-                    return icon = Drawable.createFromStream( inputStream, null );
-                } catch( FileNotFoundException ignored )
-                {
-                } finally
-                {
-                    if( inputStream != null )
-                    {
-                        try
-                        {
+                            .openInputStream(contactPojo.icon);
+                    return icon = Drawable.createFromStream(inputStream, null);
+                } catch (FileNotFoundException ignored) {
+                } finally {
+                    if (inputStream != null) {
+                        try {
                             inputStream.close();
-                        } catch( IOException ignored )
-                        {
+                        } catch (IOException ignored) {
                         }
                     }
                 }
@@ -185,7 +176,7 @@ public class ContactsResult extends Result {
 
             // Default icon
             return icon = context.getResources()
-                                 .getDrawable( R.drawable.ic_contact );
+                    .getDrawable(R.drawable.ic_contact);
         }
     }
 
@@ -195,7 +186,7 @@ public class ContactsResult extends Result {
 
         viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
                 String.valueOf(contactPojo.lookupKey)));
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             viewContact.setSourceBounds(v.getClipBounds());
         }
 

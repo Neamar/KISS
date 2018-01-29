@@ -152,7 +152,7 @@ public class TogglesHandler {
     }
 
     private void setTorchState(Boolean state) {
-        if(KissApplication.getCameraHandler().isTorchAvailable()) {
+        if (KissApplication.getCameraHandler().isTorchAvailable()) {
             KissApplication.getCameraHandler().setTorchState(state);
         }
     }
@@ -184,10 +184,10 @@ public class TogglesHandler {
     }
 
     private Boolean getAutorotationState() {
-        return android.provider.Settings.System.getInt(this.contentResolver,Settings.System.ACCELEROMETER_ROTATION, 0) == 1;
+        return android.provider.Settings.System.getInt(this.contentResolver, Settings.System.ACCELEROMETER_ROTATION, 0) == 1;
     }
 
     private void setAutorotationState(Boolean state) {
-        android.provider.Settings.System.putInt(this.contentResolver,Settings.System.ACCELEROMETER_ROTATION, (state) ? 1 : 0 );
+        android.provider.Settings.System.putInt(this.contentResolver, Settings.System.ACCELEROMETER_ROTATION, (state) ? 1 : 0);
     }
 }

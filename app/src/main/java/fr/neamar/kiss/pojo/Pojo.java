@@ -1,6 +1,7 @@
 package fr.neamar.kiss.pojo;
 
 import android.util.Pair;
+
 import java.text.Collator;
 import java.util.Comparator;
 import java.util.List;
@@ -12,10 +13,6 @@ public abstract class Pojo {
     // Usually starts with provider scheme, e.g. "app://" or "contact://" to
     // ensure unique constraint
     public String id = "(none)";
-
-    // Name for this pojo, e.g. app name
-    protected String name = "";
-
     // normalized name, for faster search
     public StringNormalizer.Result normalizedName = null;
     // Lower-cased name, for faster search
@@ -26,6 +23,8 @@ public abstract class Pojo {
     // How relevant is this record ? The higher, the most probable it will be
     // displayed
     public int relevance = 0;
+    // Name for this pojo, e.g. app name
+    protected String name = "";
 
     /**
      * Map a position in the normalized name to a position in the standard name string
@@ -34,27 +33,13 @@ public abstract class Pojo {
      * @return Position in non-normalized string
      */
     public int mapPosition(int position) {
-        if ( position < normalizedName.mapPosition.length )
+        if (position < normalizedName.mapPosition.length)
             return normalizedName.mapPosition[position];
         return name.length();
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
-    }
-
-    public void setName(String name, boolean generateNormalization)
-    {
-        if( generateNormalization )
-        {
-            setName( name );
-        }
-        else
-        {
-            this.name = name;
-            this.normalizedName = null;
-        }
     }
 
     /**
@@ -66,17 +51,23 @@ public abstract class Pojo {
      *
      * @param name User-friendly name of this container
      */
-    public void setName(String name)
-    {
+    public void setName(String name) {
         if (name != null) {
             // Set the actual user-friendly name
             this.name = name.replaceAll("<", "&lt;");
 
-            this.normalizedName = StringNormalizer.normalizeWithResult( this.name, false );
-        }
-        else
-        {
+            this.normalizedName = StringNormalizer.normalizeWithResult(this.name, false);
+        } else {
             this.name = null;
+            this.normalizedName = null;
+        }
+    }
+
+    public void setName(String name, boolean generateNormalization) {
+        if (generateNormalization) {
+            setName(name);
+        } else {
+            this.name = name;
             this.normalizedName = null;
         }
     }
@@ -101,20 +92,20 @@ public abstract class Pojo {
     }
 
     public void setDisplayNameHighlightRegion(List<Pair<Integer, Integer>> positions) {
-        StringBuilder sb = new StringBuilder( this.name.length() + positions.size() * 2 );
+        StringBuilder sb = new StringBuilder(this.name.length() + positions.size() * 2);
         int lastPositionEnd = 0;
         for (Pair<Integer, Integer> position : positions) {
             int positionStart = this.mapPosition(position.first);
             int positionEnd = this.mapPosition(position.second);
 
-            sb.append( this.name.substring(lastPositionEnd, positionStart) )
-              .append( '{' )
-              .append( this.name.substring(positionStart, positionEnd) )
-              .append( '}' );
+            sb.append(this.name.substring(lastPositionEnd, positionStart))
+                    .append('{')
+                    .append(this.name.substring(positionStart, positionEnd))
+                    .append('}');
 
             lastPositionEnd = positionEnd;
         }
-        this.displayName = sb.append( this.name.substring(lastPositionEnd) ).toString();
+        this.displayName = sb.append(this.name.substring(lastPositionEnd)).toString();
     }
 
     /**
@@ -122,14 +113,14 @@ public abstract class Pojo {
      * description
      */
     public static class NameComparator implements Comparator<Pojo> {
-    	private final Collator collator = Collator.getInstance();
-    	
-    	
+        private final Collator collator = Collator.getInstance();
+
+
         public final int compare(Pojo a, Pojo b) {
             int result = this.collator.compare(a.name, b.name);
-            if(result == 0) {
-            	// Fall back to ID-based ordering if names match exactly
-            	result = this.collator.compare(a.id, b.id);
+            if (result == 0) {
+                // Fall back to ID-based ordering if names match exactly
+                result = this.collator.compare(a.id, b.id);
             }
             return result;
         }

@@ -13,7 +13,7 @@ import fr.neamar.kiss.DummyActivity;
 /**
  * A Dialog Preference that allows the User to change the default launcher
  */
-public class DefaultLauncherPreference extends DialogPreference{
+public class DefaultLauncherPreference extends DialogPreference {
 
     public DefaultLauncherPreference(Context context, AttributeSet attrs) {
         super(context, attrs);

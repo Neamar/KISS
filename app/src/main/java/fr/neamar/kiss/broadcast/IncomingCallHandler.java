@@ -28,7 +28,7 @@ public class IncomingCallHandler extends BroadcastReceiver {
             if (intent.getStringExtra(TelephonyManager.EXTRA_STATE).equals(TelephonyManager.EXTRA_STATE_RINGING)) {
                 String phoneNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
-                if(phoneNumber == null) {
+                if (phoneNumber == null) {
                     // Skipping (private call)
                     return;
                 }

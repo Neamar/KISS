@@ -19,8 +19,8 @@ import fr.neamar.kiss.utils.UserHandle;
  */
 public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
-	public static void handleEvent(Context ctx, String action, String packageName, UserHandle user, boolean replacing) {
-		if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
+    public static void handleEvent(Context ctx, String action, String packageName, UserHandle user, boolean replacing) {
+        if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
             // Insert into history new packages (not updated ones)
             if ("android.intent.action.PACKAGE_ADDED".equals(action) && !replacing) {
                 // Add new package to history
@@ -29,9 +29,9 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
                     return;
                 }
 
-				String className = launchIntent.getComponent().getClassName();
-				if (className != null) {
-					String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
+                String className = launchIntent.getComponent().getClassName();
+                if (className != null) {
+                    String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
                     KissApplication.getDataHandler(ctx).addToHistory(pojoID);
                 }
             }
@@ -50,15 +50,15 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
         if (provider != null) {
             provider.reload();
         }
-	}
+    }
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
-		handleEvent(ctx,
-				intent.getAction(),
-				intent.getData().getSchemeSpecificPart(), new UserHandle(),
-				intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
-		);
+        handleEvent(ctx,
+                intent.getAction(),
+                intent.getData().getSchemeSpecificPart(), new UserHandle(),
+                intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
+        );
 
     }
 

@@ -23,9 +23,8 @@ public class PhoneProvider extends Provider<PhonePojo> {
     }
 
     @Override
-    public void requestResults( String s, Searcher searcher )
-    {
-        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+    public void requestResults(String s, Searcher searcher) {
+        searcher.addResult(getResults(s).toArray(new Pojo[0]));
     }
 
     protected ArrayList<Pojo> getResults(String query) {
@@ -48,7 +47,7 @@ public class PhoneProvider extends Provider<PhonePojo> {
         pojo.id = PHONE_SCHEME + phoneNumber;
         pojo.phone = phoneNumber;
         pojo.relevance = 20;
-        pojo.setName( phoneNumber, false );
+        pojo.setName(phoneNumber, false);
         return pojo;
     }
 }

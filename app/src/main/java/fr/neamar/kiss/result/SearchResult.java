@@ -51,27 +51,26 @@ public class SearchResult extends Result {
     @Override
     public void doLaunch(Context context, View v) {
         String urlWithQuery = searchPojo.url.replace("{q}", searchPojo.query);
-            Uri uri = Uri.parse(urlWithQuery);
-            Intent search = new Intent(Intent.ACTION_VIEW, uri);
-            search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            try {
-                context.startActivity(search);
-            }
-            catch (android.content.ActivityNotFoundException e) {
-                Log.w("SearchResult", "Unable to run search for url: " + searchPojo.url);
-            }
+        Uri uri = Uri.parse(urlWithQuery);
+        Intent search = new Intent(Intent.ACTION_VIEW, uri);
+        search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            context.startActivity(search);
+        } catch (android.content.ActivityNotFoundException e) {
+            Log.w("SearchResult", "Unable to run search for url: " + searchPojo.url);
+        }
     }
 
     @Override
-    protected ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
-        adapter.add( new ListPopup.Item( context, R.string.share ) );
+    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView) {
+        adapter.add(new ListPopup.Item(context, R.string.share));
 
-        return inflatePopupMenu(adapter, context );
+        return inflatePopupMenu(adapter, context);
     }
 
     @Override
-    protected Boolean popupMenuClickHandler( Context context, RecordAdapter parent, int stringId ) {
-        switch ( stringId ) {
+    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+        switch (stringId) {
             case R.string.share:
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
@@ -82,6 +81,6 @@ public class SearchResult extends Result {
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, stringId );
+        return super.popupMenuClickHandler(context, parent, stringId);
     }
 }
