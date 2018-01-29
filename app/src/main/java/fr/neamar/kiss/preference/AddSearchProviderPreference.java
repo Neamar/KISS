@@ -57,6 +57,7 @@ public class AddSearchProviderPreference extends DialogPreference {
 
             providerName.setTextColor(ta.getColor(0, Color.TRANSPARENT));
             providerUrl.setTextColor(ta.getColor(0, Color.TRANSPARENT));
+            ta.recycle();
         }
 
         return layout;
