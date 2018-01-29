@@ -51,13 +51,6 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         loader.execute();
     }
 
-    /**
-     * Synchronously retrieve list of search results for the given query string
-     *
-     * @param s Some string query (usually provided by an user)
-     */
-    public abstract ArrayList<Pojo> getResults(String s);
-
     public abstract void reload();
 
     public boolean isLoaded() {
@@ -95,6 +88,13 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      * @return null if not found
      */
     public Pojo findById(String id) {
+        for (Pojo pojo : pojos) {
+            if (pojo.id.equals(id)) {
+                pojo.displayName = pojo.getName();
+                return pojo;
+            }
+        }
+
         return null;
     }
 

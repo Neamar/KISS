@@ -6,18 +6,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.ui.ListPopup;
 
 import static fr.neamar.kiss.R.drawable.search;
 
@@ -38,11 +37,11 @@ public class SearchResult extends Result {
         ImageView image = (ImageView) v.findViewById(R.id.item_search_icon);
         if (searchPojo.direct) {
             String text = context.getString(R.string.ui_item_visit);
-            appName.setText(enrichText(String.format(text, "{" + this.pojo.name + "}"), context));
+            appName.setText(enrichText(String.format(text, "{" + this.pojo.getName() + "}"), context));
             image.setImageResource(R.drawable.ic_public);
         } else {
             String text = context.getString(R.string.ui_item_search);
-            appName.setText(enrichText(String.format(text, this.pojo.name, "{" + searchPojo.query + "}"), context));
+            appName.setText(enrichText(String.format(text, this.pojo.getName(), "{" + searchPojo.query + "}"), context));
             image.setImageResource(search);
         }
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
@@ -59,14 +58,21 @@ public class SearchResult extends Result {
                 context.startActivity(search);
             }
             catch (android.content.ActivityNotFoundException e) {
-                Log.w("SearchResult","Unable to run search for url: "+searchPojo.url);
+                Log.w("SearchResult", "Unable to run search for url: " + searchPojo.url);
             }
     }
 
     @Override
-    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_share:
+    protected ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
+        adapter.add( new ListPopup.Item( context, R.string.share ) );
+
+        return inflatePopupMenu(adapter, context );
+    }
+
+    @Override
+    protected Boolean popupMenuClickHandler( Context context, RecordAdapter parent, int stringId ) {
+        switch ( stringId ) {
+            case R.string.share:
                 Intent shareIntent = new Intent();
                 shareIntent.setAction(Intent.ACTION_SEND);
                 shareIntent.putExtra(Intent.EXTRA_TEXT, searchPojo.query);
@@ -76,11 +82,6 @@ public class SearchResult extends Result {
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, item);
-    }
-
-    @Override
-    protected PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        return inflatePopupMenu(R.menu.menu_item_search, context, parentView);
+        return super.popupMenuClickHandler(context, parent, stringId );
     }
 }

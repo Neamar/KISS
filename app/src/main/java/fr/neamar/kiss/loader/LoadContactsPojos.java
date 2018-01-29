@@ -75,8 +75,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                     contact.id = pojoScheme + contact.lookupKey + contact.phone;
 
-                    if (contact.name != null) {
-                        contact.nameNormalized = StringNormalizer.normalize(contact.name);
+                    if (contact.getName() != null) {
+                        //TBog: contact should have the normalized name already
+                        //contact.setName( contact.getName(), true );
 
                         if (mapContacts.containsKey(contact.lookupKey))
                             mapContacts.get(contact.lookupKey).add(contact);

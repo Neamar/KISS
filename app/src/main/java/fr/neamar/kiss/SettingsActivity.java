@@ -25,6 +25,7 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
+@SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -319,7 +320,9 @@ public class SettingsActivity extends PreferenceActivity implements
     private void fixSummaries() {
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
-            findPreference("reset").setSummary(String.format(getString(R.string.items_title), historyLength));
+            Preference resetScroll = findPreference("resetScroll");
+            if ( resetScroll != null )
+                resetScroll.setSummary(String.format(getString(R.string.items_title), historyLength));
         }
 
 
@@ -359,5 +362,4 @@ public class SettingsActivity extends PreferenceActivity implements
         lp.setDefaultValue("default");
         lp.setEntryValues(entryValues);
     }
-
 }

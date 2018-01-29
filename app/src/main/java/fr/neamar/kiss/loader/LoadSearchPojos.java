@@ -38,7 +38,7 @@ public class LoadSearchPojos extends LoadPojos<SearchPojo> {
             SearchPojo pojo = new SearchPojo();
             pojo.relevance = 10;
             pojo.url = getProviderUrl(availableProviders, searchProvider);
-            pojo.name = searchProvider;
+            pojo.setName( searchProvider, false );
             if (pojo.url != null) {
                 pojos.add(pojo);
             }

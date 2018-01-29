@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import fr.neamar.kiss.loader.LoadPhonePojos;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.searcher.Searcher;
 
 public class PhoneProvider extends Provider<PhonePojo> {
     public static final String PHONE_SCHEME = "phone://";
@@ -21,7 +22,13 @@ public class PhoneProvider extends Provider<PhonePojo> {
         deviceIsPhone = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
     }
 
-    public ArrayList<Pojo> getResults(String query) {
+    @Override
+    public void requestResults( String s, Searcher searcher )
+    {
+        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+    }
+
+    protected ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> pojos = new ArrayList<>();
 
         // Append an item only if query looks like a phone number and device has phone capabilities
@@ -32,7 +39,6 @@ public class PhoneProvider extends Provider<PhonePojo> {
         return pojos;
     }
 
-
     public Pojo findById(String id) {
         return getResult(id.replaceFirst(Pattern.quote(PHONE_SCHEME), ""));
     }
@@ -42,7 +48,7 @@ public class PhoneProvider extends Provider<PhonePojo> {
         pojo.id = PHONE_SCHEME + phoneNumber;
         pojo.phone = phoneNumber;
         pojo.relevance = 20;
-        pojo.name = phoneNumber;
+        pojo.setName( phoneNumber, false );
         return pojo;
     }
 }

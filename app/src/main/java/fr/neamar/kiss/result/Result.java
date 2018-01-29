@@ -4,16 +4,22 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.support.annotation.MenuRes;
+import android.support.annotation.StringRes;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
+import java.text.NumberFormat;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -25,11 +31,13 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.pojo.TogglesPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
+import fr.neamar.kiss.ui.ListPopup;
 
 public abstract class Result {
     /**
@@ -38,6 +46,30 @@ public abstract class Result {
     Pojo pojo = null;
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
+        if ( pojo instanceof PojoWithTags && parent.showRelevance() )
+        {
+            PojoWithTags tagsPojo = (PojoWithTags)pojo;
+            int relevance = pojo.relevance - 1;
+            if ( tagsPojo.displayTags != null && tagsPojo.displayTags.length() > 2 && "(".equals( tagsPojo.displayTags.substring( 0, 1 ) ) )
+            {
+                try
+                {
+                    relevance = NumberFormat.getIntegerInstance()
+                                            .parse( tagsPojo.displayTags.substring( 1 ) )
+                                            .intValue();
+                } catch( Exception ignore )
+                {}
+            }
+            if( relevance != pojo.relevance )
+            {
+                String tags = tagsPojo.getTags();
+                if( tags == null || tags.isEmpty() )
+                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> ";
+                else
+                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> " + tagsPojo.displayTags;
+            }
+        }
+
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
         else if (pojo instanceof ContactsPojo)
@@ -57,6 +89,49 @@ public abstract class Result {
         throw new RuntimeException("Unable to create a result from POJO");
     }
 
+    static class AsyncSetImage extends AsyncTask<Void, Void, Drawable>
+    {
+        final private WeakReference<ImageView> imageViewWeakReference;
+        final private WeakReference<Result>    appResultWeakReference;
+        AsyncSetImage( ImageView image, Result result )
+        {
+            super();
+            image.setTag( this );
+            this.imageViewWeakReference = new WeakReference<>( image );
+            this.appResultWeakReference = new WeakReference<>( result );
+        }
+
+        @Override
+        protected Drawable doInBackground( Void... voids )
+        {
+            ImageView image = imageViewWeakReference.get();
+            if ( isCancelled() || image == null || image.getTag() != this )
+                return null;
+            Result result = appResultWeakReference.get();
+            if ( result == null )
+                return null;
+            return result.getDrawable( image.getContext() );
+        }
+
+        @Override
+        protected void onPostExecute( Drawable drawable )
+        {
+            ImageView image = imageViewWeakReference.get();
+            if ( isCancelled() || image == null || drawable == null )
+                return;
+            image.setImageDrawable( drawable );
+            image.setTag( null );
+        }
+    }
+
+    @Override
+    public String toString()
+    {
+        if ( pojo != null )
+            return pojo.getName();
+        return super.toString();
+    }
+
     /**
      * How to display this record ?
      *
@@ -71,12 +146,16 @@ public abstract class Result {
      *
      * @return a PopupMenu object
      */
-    public PopupMenu getPopupMenu(final Context context, final RecordAdapter parent, View parentView) {
-        PopupMenu menu = buildPopupMenu(context, parent, parentView);
+    public ListPopup getPopupMenu( final Context context, final RecordAdapter parent, View parentView) {
+        ArrayAdapter<ListPopup.Item> adapter = new ArrayAdapter<>( context, R.layout.popup_list_item );
+        ListPopup menu = buildPopupMenu(context, adapter, parent, parentView);
 
-        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem item) {
-                return popupMenuClickHandler(context, parent, item);
+        menu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
+            @Override
+            public void onItemClick( ListAdapter adapter, View view, int position )
+            {
+                @StringRes int stringId = ((ListPopup.Item)adapter.getItem( position )).stringId;
+                popupMenuClickHandler( view.getContext(), parent, stringId );
             }
         });
 
@@ -88,22 +167,35 @@ public abstract class Result {
      *
      * @return an inflated, listener-free PopupMenu
      */
-    PopupMenu buildPopupMenu(Context context, final RecordAdapter parent, View parentView) {
-        return inflatePopupMenu(R.menu.menu_item_default, context, parentView);
+    ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView ) {
+        adapter.add( new ListPopup.Item( context, R.string.menu_remove ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
+        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
+        return inflatePopupMenu(adapter, context );
     }
 
-    protected PopupMenu inflatePopupMenu(@MenuRes int menuId, Context context, View parentView) {
-        PopupMenu menu = new PopupMenu(context, parentView);
-        menu.getMenuInflater().inflate(menuId, menu.getMenu());
+    protected ListPopup inflatePopupMenu( ArrayAdapter<ListPopup.Item> adapter, Context context ) {
+        ListPopup menu = new ListPopup( context );
+        menu.setAdapter( adapter );
 
         // If app already pinned, do not display the "add to favorite" option
         // otherwise don't show the "remove favorite button"
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
         if (favApps.contains(this.pojo.id + ";")) {
-            menu.getMenu().removeItem(R.id.item_favorites_add);
+            for ( int i = 0; i < adapter.getCount(); i += 1 )
+            {
+                ListPopup.Item item = adapter.getItem( i );
+                if( item.stringId == R.string.menu_favorites_add )
+                    adapter.remove( item );
+            }
         } else {
-            menu.getMenu().removeItem(R.id.item_favorites_remove);
+            for ( int i = 0; i < adapter.getCount(); i += 1 )
+            {
+                ListPopup.Item item = adapter.getItem( i );
+                if( item.stringId == R.string.menu_favorites_remove )
+                    adapter.remove( item );
+            }
         }
 
         return menu;
@@ -115,15 +207,15 @@ public abstract class Result {
      *
      * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
      */
-    Boolean popupMenuClickHandler(Context context, RecordAdapter parent, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_remove:
+    Boolean popupMenuClickHandler( Context context, RecordAdapter parent, @StringRes int stringId ) {
+        switch ( stringId ) {
+            case R.string.menu_remove:
                 removeItem(context, parent);
                 return true;
-            case R.id.item_favorites_add:
+            case R.string.menu_favorites_add:
                 launchAddToFavorites(context, pojo);
                 break;
-            case R.id.item_favorites_remove:
+            case R.string.menu_favorites_remove:
                 launchRemoveFromFavorites(context, pojo);
                 break;
         }
@@ -137,13 +229,13 @@ public abstract class Result {
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
         KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
         KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -193,6 +285,28 @@ public abstract class Result {
         return null;
     }
 
+    boolean isDrawableCached()
+    {
+        return false;
+    }
+
+    void setAsyncDrawable( ImageView view )
+    {
+        if ( view.getTag() instanceof AsyncSetImage )
+        {
+            ((AsyncSetImage)view.getTag()).cancel( true );
+            view.setTag( null );
+        }
+        if( isDrawableCached() )
+        {
+            view.setImageDrawable(getDrawable(view.getContext()));
+        }
+        else
+        {
+            view.setTag( new AsyncSetImage( view, this ).execute() );
+        }
+    }
+
     /**
      * Helper function to get a view
      *
@@ -212,7 +326,7 @@ public abstract class Result {
      * @param text to highlight
      * @return text displayable on a textview
      */
-    Spanned enrichText(String text, Context context) {
+    static Spanned enrichText(String text, Context context) {
         return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
@@ -240,5 +354,11 @@ public abstract class Result {
         int color = ta.getColor(0, Color.WHITE);
         ta.recycle();
         return color;
+    }
+
+    public long getUniqueId()
+    {
+        // we can consider hashCode unique enough in this context
+        return this.pojo.id.hashCode();
     }
 }
