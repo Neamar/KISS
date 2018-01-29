@@ -39,6 +39,8 @@
     <!-- To autorotation toggle -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -174,6 +176,13 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".broadcast.BadgeCountHandler">
+            <intent-filter>
+                <action android:name="android.intent.action.BADGE_COUNT_UPDATE" />
+                <action android:name="com.htc.launcher.action.UPDATE_SHORTCUT" />
+                <action android:name="com.sonyericsson.home.action.UPDATE_BADGE" />
+            </intent-filter>
+        </receiver>
         <service android:name=".dataprovider.AppProvider" />
         <service android:name=".dataprovider.ContactsProvider" />
         <service android:name=".dataprovider.PhoneProvider" />

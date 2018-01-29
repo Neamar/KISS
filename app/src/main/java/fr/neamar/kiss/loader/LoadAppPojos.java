@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import fr.neamar.kiss.BadgeHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -27,12 +28,14 @@ import fr.neamar.kiss.utils.UserHandle;
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
     private TagsHandler tagsHandler;
+    private BadgeHandler badgeHandler;
     private static SharedPreferences prefs;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
         tagsHandler = KissApplication.getDataHandler(context).getTagsHandler();
+        badgeHandler = KissApplication.getDataHandler(context).getBadgeHandler();
     }
 
     @Override
@@ -64,7 +67,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 						
 						app.packageName  = appInfo.packageName;
 						app.activityName = activityInfo.getName();
-						
+						app.setBadgeCount(badgeHandler.getBadgeCount(appInfo.packageName));
 						// Wrap Android user handle in opaque container that will work across
 						// all Android versions
 						app.userHandle = user;

@@ -285,4 +285,38 @@ public class DBHelper {
         return records;
 
     }
+
+    public static Map<String, Integer> loadBadges(Context context) {
+        Map<String, Integer> records = new HashMap<>();
+        SQLiteDatabase db = getDatabase(context);
+
+        Cursor cursor = db.query("badges", new String[]{"package", "badge_count"}, null, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String package_name = cursor.getString(0);
+            int badge_count = cursor.getInt(1);
+            records.put(package_name, badge_count);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
+        return records;
+
+    }
+
+    public static void setBadgeCount(Context context, String packageName, Integer badgeCount) {
+        SQLiteDatabase db = getDatabase(context);
+
+        db.delete("badges", "package = ?", new String[]{packageName});
+
+        if (badgeCount > 0) {
+            ContentValues values = new ContentValues();
+            values.put("package", packageName);
+            values.put("badge_count", badgeCount);
+
+            db.insert("badges", null, values);
+        }
+        db.close();
+    }
 }

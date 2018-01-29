@@ -57,6 +57,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
@@ -126,6 +127,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
 
     private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
+    private final int[] favBadgeIds = new int[]{R.id.favoriteBadge0, R.id.favoriteBadge1, R.id.favoriteBadge2, R.id.favoriteBadge3, R.id.favoriteBadge4, R.id.favoriteBadge5};
 
     /**
      * Number of favorites to retrieve.
@@ -203,10 +205,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private PopupWindow mPopup;
 
     /**
+     * Access instance from broadcasters
+     */
+    public static MainActivity instance;
+
+    public static MainActivity getInstance() {
+        return instance;
+    }
+
+    /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        instance = this;
+
         // Initialize UI
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -272,6 +285,17 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        }
+
+        // Apps may notify badge updates for Samsung devices
+        // through a ContentResolver on the url: content://com.sec.badge/apps
+        if (SamsungBadgeObserver.providerExists(this)) {
+
+            //Content Resolver has content, so, register for updates and load its actual content
+            Uri samsungBadgeUri = Uri.parse("content://com.sec.badge/apps");
+            getContentResolver()
+                    .registerContentObserver(samsungBadgeUri, true, new SamsungBadgeObserver(new Handler(), this));
+            SamsungBadgeObserver.loadBadges(this);
         }
 
         setContentView(R.layout.main);
@@ -634,6 +658,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mSystemUiVisibility.onKeyboardVisibilityChanged( false );
         }
 
+        // redraw list items to display possible updates on badges
+        reloadBadges();
+
         super.onResume();
     }
 
@@ -649,6 +676,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     protected void onPause() {
         super.onPause();
         KissApplication.getCameraHandler().releaseCamera();
+        instance = null;
     }
 
     @Override
@@ -1008,13 +1036,29 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 image.setImageResource(R.drawable.ic_contact);
             }
 
-            image.setVisibility(View.VISIBLE);
+            View parent = (View) findViewById(favoritesIds[i]).getParent();
+            parent.setVisibility(View.VISIBLE);
+
             image.setContentDescription(pojo.displayName);
+
+            TextView badgeView = (TextView) findViewById(favBadgeIds[i]);
+
+            if (pojo instanceof AppPojo) {
+                AppPojo appPojo = ((AppPojo) pojo);
+                int badgeCount = appPojo.badgeCount;
+                if (badgeCount > 0) {
+                    badgeView.setText(String.valueOf(appPojo.displayBadge));
+                    badgeView.setVisibility(View.VISIBLE);
+                } else {
+                    badgeView.setVisibility(View.GONE);
+                }
+            }
         }
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
-            findViewById(favoritesIds[i]).setVisibility(View.GONE);
+            View parent = (View) findViewById(favoritesIds[i]).getParent();
+            parent.setVisibility(View.GONE);
         }
     }
 
@@ -1261,6 +1305,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+    public void reloadBadges(){
+        adapter.reloadBadges();
+        displayFavorites();
+    }
+
+    public void reloadBadge(String packageName) {
+        adapter.reloadBadge(packageName);
+        displayFavorites();
+    }
+  
     @Override
     public void beforeChange()
     {
