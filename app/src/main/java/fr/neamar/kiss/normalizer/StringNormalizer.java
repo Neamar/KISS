@@ -123,16 +123,17 @@ public class StringNormalizer {
             final Result that = (Result) aThat;
 
             int result;
-            if ((result = this.codePoints.length - that.codePoints.length) != 0)
-                return result;
-
-            for (int i = 0; i < codePoints.length; i += 1) {
+            for (int i = 0; i < Math.min(this.codePoints.length, that.codePoints.length); i += 1) {
                 if ((result = this.codePoints[i] - that.codePoints[i]) != 0)
                     return result;
             }
 
+            if (this.codePoints.length != that.codePoints.length)
+                return this.codePoints.length - that.codePoints.length;
+
             if (BuildConfig.DEBUG && !this.equals(that))
                 throw new AssertionError("compareTo inconsistent with equals.");
+
             // equal
             return 0;
         }
