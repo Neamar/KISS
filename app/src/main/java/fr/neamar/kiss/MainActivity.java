@@ -66,6 +66,7 @@ import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.ui.AnimatedListView;
 import fr.neamar.kiss.ui.BlockableListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
@@ -75,7 +76,7 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 import fr.neamar.kiss.utils.WallpaperUtils;
 
-public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -861,7 +862,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    private void displayLoader(Boolean display) {
+    public void displayLoader(Boolean display) {
         final View loaderBar = findViewById(R.id.loaderBar);
         final View launcherButton = findViewById(R.id.launcherButton);
 
@@ -1077,6 +1078,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
+    public boolean showRelevance()
+    {
+        return BuildConfig.DEBUG;
+    }
+  
     public void registerPopup( ListPopup popup )
     {
         if ( mPopup == popup )
@@ -1253,5 +1259,19 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         for (int appWidgetId : widgetIds.values()){
             addWidgetToLauncher(appWidgetId);
         }
+    }
+
+    @Override
+    public void beforeChange()
+    {
+        AnimatedListView listView = (AnimatedListView)this.list;
+        listView.prepareChangeAnim();
+    }
+
+    @Override
+    public void afterChange()
+    {
+        AnimatedListView listView = (AnimatedListView)this.list;
+        listView.animateChange();
     }
 }

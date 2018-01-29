@@ -11,6 +11,7 @@ import android.os.UserManager;
 import android.util.Pair;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
@@ -18,6 +19,9 @@ import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoWithTags;
+import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class AppProvider extends Provider<AppPojo> {
@@ -113,115 +117,65 @@ public class AppProvider extends Provider<AppPojo> {
         this.initialize(new LoadAppPojos(this));
     }
 
-    public ArrayList<Pojo> getResults(String query) {
-        query = StringNormalizer.normalize(query);
-        ArrayList<Pojo> records = new ArrayList<>();
+	/**
+	 * @param query    The string to search for
+	 * @param searcher The receiver of results
+	 */
 
-        int relevance;
-        int queryPos;           // The position inside the query
-        int normalizedAppPos;   // The position inside pojo.nameNormalized
-        int appPos;             // The position inside pojo.name, updated after we increment normalizedAppPos
-        int beginMatch;
-        int matchedWordStarts;
-        int totalWordStarts;
-        ArrayList<Pair<Integer, Integer>> matchPositions;
+	@Override
+	public void requestResults( String query, Searcher searcher )
+	{
+		StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult( query, false );
 
-        for (AppPojo pojo : pojos) {
-            pojo.displayName = pojo.name;
-            pojo.displayTags = pojo.tags;
-            relevance = 0;
-            queryPos = 0;
-            normalizedAppPos = 0;
-            appPos = pojo.mapPosition(normalizedAppPos);
-            beginMatch = 0;
-            matchedWordStarts = 0;
-            totalWordStarts = 0;
-            matchPositions = null;
+		FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized.codePoints );
+		FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
 
-            boolean match = false;
-            while (normalizedAppPos < pojo.nameNormalized.length()) {
-                int cApp = pojo.nameNormalized.codePointAt(normalizedAppPos);
-                if (queryPos < query.length() && query.codePointAt(queryPos) == cApp) {
-                    // If we aren't already matching something, let's save the beginning of the match
-                    if (!match) {
-                        beginMatch = normalizedAppPos;
-                        match = true;
-                    }
+		for( AppPojo pojo : pojos )
+		{
+		    boolean bDisplayNameSet = false;
+		    boolean bDisplayTagsSet = false;
+			boolean match = fuzzyScore.match( pojo.normalizedName.codePoints, matchInfo );
+			pojo.relevance = matchInfo.score;
 
-                    // If we are at the beginning of a word, add it to matchedWordStarts
-                    if (appPos == 0 || normalizedAppPos == 0
-                            || Character.isUpperCase(pojo.name.codePointAt(appPos))
-                            || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
-                        matchedWordStarts += 1;
+			if ( match )
+			{
+				List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
+				try
+				{
+					pojo.setDisplayNameHighlightRegion( positions );
+				} catch( Exception e )
+				{
+					pojo.setDisplayNameHighlightRegion( 0, pojo.normalizedName.length() );
+				}
+                bDisplayNameSet = true;
+			}
 
-                    // Increment the position in the query
-                    queryPos += Character.charCount(query.codePointAt(queryPos));
-                }
-                else if (match) {
-                    if (matchPositions == null)
-                        matchPositions = new ArrayList<>();
-                    matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
-                    match = false;
-                }
+			// check relevance for tags
+			if( pojo.normalizedTags != null )
+			{
+				if( fuzzyScore.match( pojo.normalizedTags.codePoints, matchInfo ) )
+				{
+					if( !match || (matchInfo.score > pojo.relevance) )
+					{
+						match = true;
+						pojo.relevance = matchInfo.score;
+						pojo.setTagHighlight( matchInfo.matchedIndices );
+						bDisplayTagsSet = true;
+					}
+				}
+			}
 
-                // If we are at the beginning of a word, add it to totalWordsStarts
-                if (appPos == 0 || normalizedAppPos == 0
-                        || Character.isUpperCase(pojo.name.codePointAt(appPos))
-                        || Character.isWhitespace(pojo.name.codePointBefore(appPos)))
-                    totalWordStarts += 1;
-
-                normalizedAppPos += Character.charCount(cApp);
-                appPos = pojo.mapPosition(normalizedAppPos);
-            }
-
-            if (match) {
-
-                if (matchPositions == null) {matchPositions = new ArrayList<>();}
-                matchPositions.add(Pair.create(beginMatch, normalizedAppPos));
-            }
-
-            boolean matchedTags = false;
-            int tagStart = 0;
-            int tagEnd = 0;
-
-            if (queryPos == query.length() && matchPositions != null) {
-                // Add percentage of matched letters, but at a weight of 40
-                relevance += (int) (((double) queryPos / pojo.nameNormalized.length()) * 40);
-
-                // Add percentage of matched upper case letters (start of word), but at a weight of 60
-                relevance += (int) (((double) matchedWordStarts / totalWordStarts) * 60);
-
-                // The more fragmented the matches are, the less the result is important
-                relevance = (int) (relevance * (0.2 + 0.8 * (1.0 / matchPositions.size())));
-            }
-            else {
-                if (pojo.tagsNormalized.startsWith(query)) {
-                    relevance = 4 + query.length();
-                }
-                else if (pojo.tagsNormalized.contains(query)) {
-                    relevance = 3 + query.length();
-                }
-                if (relevance > 0) {
-                    matchedTags = true;
-                }
-                tagStart = pojo.tagsNormalized.indexOf(query);
-                tagEnd = tagStart + query.length();
-            }
-
-            if (relevance > 0) {
-                if (!matchedTags) {
-                    pojo.setDisplayNameHighlightRegion(matchPositions);
-                }
-                else {
-                    pojo.setTagHighlight(tagStart, tagEnd);
-                }
-                pojo.relevance = relevance;
-                records.add(pojo);
-            }
-        }
-
-        return records;
-    }
+			if( match )
+			{
+			    if ( !bDisplayNameSet )
+                    pojo.displayName = pojo.getName();
+			    if ( !bDisplayTagsSet )
+                    pojo.displayTags = pojo.getTags();
+				if( !searcher.addResult( pojo ) )
+					return;
+			}
+		}
+	}
 
     /**
      * Return a Pojo
@@ -235,10 +189,10 @@ public class AppProvider extends Provider<AppPojo> {
             if (pojo.id.equals(id)) {
                 // Reset displayName to default value
                 if (allowSideEffect) {
-                    pojo.displayName = pojo.name;
-                    if (pojo instanceof AppPojo) {
-                        AppPojo appPojo = (AppPojo) pojo;
-                        appPojo.displayTags = appPojo.tags;
+                    pojo.displayName = pojo.getName();
+                    if (pojo instanceof PojoWithTags) {
+						PojoWithTags tagsPojo = (PojoWithTags) pojo;
+                        tagsPojo.displayTags = tagsPojo.getTags();
                     }
                 }
                 return pojo;
@@ -249,16 +203,9 @@ public class AppProvider extends Provider<AppPojo> {
         return null;
     }
 
+    @Override
     public Pojo findById(String id) {
         return findById(id, true);
-    }
-
-    public Pojo findByName(String name) {
-        for (Pojo pojo : pojos) {
-            if (pojo.name.equals(name))
-                return pojo;
-        }
-        return null;
     }
 
     public ArrayList<Pojo> getAllApps() {
@@ -266,8 +213,8 @@ public class AppProvider extends Provider<AppPojo> {
         records.trimToSize();
 
         for (AppPojo pojo : pojos) {
-            pojo.displayName = pojo.name;
-            pojo.displayTags = pojo.tags;
+            pojo.displayName = pojo.getName();
+            pojo.displayTags = pojo.getTags();
             records.add(pojo);
         }
         return records;

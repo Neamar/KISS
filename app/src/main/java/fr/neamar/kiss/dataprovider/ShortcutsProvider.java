@@ -1,10 +1,11 @@
 package fr.neamar.kiss.dataprovider;
 
-import java.util.ArrayList;
-
 import fr.neamar.kiss.loader.LoadShortcutsPojos;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ShortcutsProvider extends Provider<ShortcutsPojo> {
 
@@ -14,59 +15,30 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
     }
 
     @Override
-    public ArrayList<Pojo> getResults(String query) {
-        ArrayList<Pojo> results = new ArrayList<>();
+    public void requestResults( String query, Searcher searcher )
+    {
+        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult( query, false );
 
-        int relevance;
-        int matchPositionStart;
-        int matchPositionEnd;
-        String shortcutNameLowerCased;
+        FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized.codePoints );
+        FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
 
-        final String queryWithSpace = " " + query;
-        for (ShortcutsPojo shortcut : pojos) {
-            relevance = 0;
-            shortcutNameLowerCased = shortcut.nameNormalized;
+        for( ShortcutsPojo pojo : pojos )
+        {
+            boolean match = fuzzyScore.match( pojo.normalizedName.codePoints, matchInfo );
+            pojo.relevance = matchInfo.score;
 
-            matchPositionEnd = 0;
-            if (shortcutNameLowerCased.startsWith(query)) {
-                relevance = 75;
-                matchPositionStart = 0;
-                matchPositionEnd   = query.length();
-            }
-            else if ((matchPositionStart = shortcutNameLowerCased.indexOf(queryWithSpace)) > -1) {
-                relevance = 50;
-                matchPositionEnd = matchPositionStart + queryWithSpace.length();
-            }
-            else if ((matchPositionStart = shortcutNameLowerCased.indexOf(query)) > -1) {
-                relevance = 1;
-                matchPositionEnd = matchPositionStart + query.length();
-            }
-
-            if (relevance > 0) {
-                shortcut.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
-                shortcut.relevance = relevance;
-                results.add(shortcut);
+            if ( match )
+            {
+                pojo.setDisplayNameHighlightRegion( matchInfo.getMatchedSequences() );
+                if( !searcher.addResult( pojo ) )
+                    return;
             }
         }
-
-        return results;
-    }
-
-    public Pojo findById(String id) {
-
-        for (Pojo pojo : pojos) {
-            if (pojo.id.equals(id)) {
-                pojo.displayName = pojo.name;
-                return pojo;
-            }
-        }
-
-        return null;
     }
 
     public Pojo findByName(String name) {
         for (Pojo pojo : pojos) {
-            if (pojo.name.equals(name))
+            if (pojo.getName().equals(name))
                 return pojo;
         }
         return null;

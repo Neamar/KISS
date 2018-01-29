@@ -2,6 +2,7 @@ package fr.neamar.kiss.adapter;
 
 import android.content.Context;
 import android.os.Handler;
+import android.util.Log;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     /**
      * Array list containing all the results currently displayed
      */
-    private ArrayList<Result> results = new ArrayList<>();
+    private final ArrayList<Result> results;
 
     public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
                          ArrayList<Result> results) {
@@ -37,10 +38,12 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         this.results = results;
     }
 
+    @Override
     public int getViewTypeCount() {
         return 7;
     }
 
+    @Override
     public int getItemViewType(int position) {
         if (results.get(position) instanceof AppResult)
             return 0;
@@ -61,8 +64,34 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     @Override
-    public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        return results.get(position).display(getContext(), results.size() - position, convertView);
+    public boolean hasStableIds()
+    {
+        return true;
+    }
+
+    @Override
+    public long getItemId( int position )
+    {
+        return results.get(position).getUniqueId();
+    }
+
+    @Override
+     public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        if ( convertView != null )
+        {
+            if ( !(convertView.getTag() instanceof Integer) )
+                convertView = null;
+            else if ( (Integer)convertView.getTag() != getItemViewType( position ) )
+            {
+                // This is happening on HTC Desire X (Android 4.1.1, API 16)
+                //throw new IllegalStateException( "can't convert view from different type" );
+                convertView = null;
+            }
+        }
+        View view = results.get(position).display(getContext(), results.size() - position, convertView);
+        //Log.d( "TBog", "getView pos " + position + " convertView " + ((convertView == null) ? "null" : convertView.toString()) + " will return " + view.toString() );
+        view.setTag( getItemViewType( position ) );
+        return view;
     }
 
     public void onLongClick(final int pos, View v) {

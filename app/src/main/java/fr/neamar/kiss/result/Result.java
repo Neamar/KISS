@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.StringRes;
 import android.text.Html;
@@ -11,9 +12,14 @@ import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
+import java.text.NumberFormat;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -25,6 +31,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
@@ -39,6 +46,30 @@ public abstract class Result {
     Pojo pojo = null;
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
+        if ( pojo instanceof PojoWithTags && parent.showRelevance() )
+        {
+            PojoWithTags tagsPojo = (PojoWithTags)pojo;
+            int relevance = pojo.relevance - 1;
+            if ( tagsPojo.displayTags != null && tagsPojo.displayTags.length() > 2 && "(".equals( tagsPojo.displayTags.substring( 0, 1 ) ) )
+            {
+                try
+                {
+                    relevance = NumberFormat.getIntegerInstance()
+                                            .parse( tagsPojo.displayTags.substring( 1 ) )
+                                            .intValue();
+                } catch( Exception ignore )
+                {}
+            }
+            if( relevance != pojo.relevance )
+            {
+                String tags = tagsPojo.getTags();
+                if( tags == null || tags.isEmpty() )
+                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> ";
+                else
+                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> " + tagsPojo.displayTags;
+            }
+        }
+
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
         else if (pojo instanceof ContactsPojo)
@@ -56,6 +87,49 @@ public abstract class Result {
 
 
         throw new RuntimeException("Unable to create a result from POJO");
+    }
+
+    static class AsyncSetImage extends AsyncTask<Void, Void, Drawable>
+    {
+        final private WeakReference<ImageView> imageViewWeakReference;
+        final private WeakReference<Result>    appResultWeakReference;
+        AsyncSetImage( ImageView image, Result result )
+        {
+            super();
+            image.setTag( this );
+            this.imageViewWeakReference = new WeakReference<>( image );
+            this.appResultWeakReference = new WeakReference<>( result );
+        }
+
+        @Override
+        protected Drawable doInBackground( Void... voids )
+        {
+            ImageView image = imageViewWeakReference.get();
+            if ( isCancelled() || image == null || image.getTag() != this )
+                return null;
+            Result result = appResultWeakReference.get();
+            if ( result == null )
+                return null;
+            return result.getDrawable( image.getContext() );
+        }
+
+        @Override
+        protected void onPostExecute( Drawable drawable )
+        {
+            ImageView image = imageViewWeakReference.get();
+            if ( isCancelled() || image == null || drawable == null )
+                return;
+            image.setImageDrawable( drawable );
+            image.setTag( null );
+        }
+    }
+
+    @Override
+    public String toString()
+    {
+        if ( pojo != null )
+            return pojo.getName();
+        return super.toString();
     }
 
     /**
@@ -155,13 +229,13 @@ public abstract class Result {
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
         KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
         KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.name), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -211,6 +285,28 @@ public abstract class Result {
         return null;
     }
 
+    boolean isDrawableCached()
+    {
+        return false;
+    }
+
+    void setAsyncDrawable( ImageView view )
+    {
+        if ( view.getTag() instanceof AsyncSetImage )
+        {
+            ((AsyncSetImage)view.getTag()).cancel( true );
+            view.setTag( null );
+        }
+        if( isDrawableCached() )
+        {
+            view.setImageDrawable(getDrawable(view.getContext()));
+        }
+        else
+        {
+            view.setTag( new AsyncSetImage( view, this ).execute() );
+        }
+    }
+
     /**
      * Helper function to get a view
      *
@@ -230,7 +326,7 @@ public abstract class Result {
      * @param text to highlight
      * @return text displayable on a textview
      */
-    Spanned enrichText(String text, Context context) {
+    static Spanned enrichText(String text, Context context) {
         return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
@@ -258,5 +354,11 @@ public abstract class Result {
         int color = ta.getColor(0, Color.WHITE);
         ta.recycle();
         return color;
+    }
+
+    public long getUniqueId()
+    {
+        // we can consider hashCode unique enough in this context
+        return this.pojo.id.hashCode();
     }
 }

@@ -14,6 +14,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadSearchPojos;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.searcher.Searcher;
 
 public class SearchProvider extends Provider<SearchPojo> {
     public static final String URL_REGEX = "^(?:[a-z]+://)?(?:[a-z0-9-]|[^\\x00-\\x7F])+(?:[.](?:[a-z0-9-]|[^\\x00-\\x7F])+)+.*$";
@@ -25,7 +26,13 @@ public class SearchProvider extends Provider<SearchPojo> {
         this.initialize(new LoadSearchPojos(this));
     }
 
-    public ArrayList<Pojo> getResults(String query) {
+    @Override
+    public void requestResults( String s, Searcher searcher )
+    {
+        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+    }
+
+    protected ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> records = new ArrayList<>();
 
         for (SearchPojo pojo : pojos) {
@@ -43,7 +50,7 @@ public class SearchProvider extends Provider<SearchPojo> {
                 SearchPojo pojo = new SearchPojo();
                 pojo.query = "";
                 pojo.relevance = 50;
-                pojo.name = guessedUrl;
+                pojo.setName( guessedUrl, false );
                 pojo.url = guessedUrl;
                 pojo.direct = true;
                 records.add(pojo);

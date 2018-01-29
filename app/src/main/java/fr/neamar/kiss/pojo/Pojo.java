@@ -2,7 +2,6 @@ package fr.neamar.kiss.pojo;
 
 import android.util.Pair;
 import java.text.Collator;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -15,23 +14,18 @@ public abstract class Pojo {
     public String id = "(none)";
 
     // Name for this pojo, e.g. app name
-    public String name = "";
+    protected String name = "";
 
+    // normalized name, for faster search
+    public StringNormalizer.Result normalizedName = null;
     // Lower-cased name, for faster search
-    public String nameNormalized = "";
+    //public String nameNormalized = "";
     // Name displayed on the screen, may contain HTML (for instance, to put
     // query text in blue)
     public String displayName = "";
     // How relevant is this record ? The higher, the most probable it will be
     // displayed
     public int relevance = 0;
-    // Array that contains the non-normalized positions for every normalized
-    // character entry
-    private int[] namePositionMap = null;
-    // Tags assigned to this pojo
-    public String tags;
-    // Variable to store the formated (user selection in bold) tag
-    public String displayTags = "";
 
     /**
      * Map a position in the normalized name to a position in the standard name string
@@ -40,19 +34,26 @@ public abstract class Pojo {
      * @return Position in non-normalized string
      */
     public int mapPosition(int position) {
-        if (this.namePositionMap != null) {
-            if (position < this.namePositionMap.length) {
-                return this.namePositionMap[position];
-            } else {
-                return this.name.length();
-            }
-        } else {
-            // No mapping defined
-            if (position < this.name.length()) {
-                return position;
-            } else {
-                return this.name.length();
-            }
+        if ( position < normalizedName.mapPosition.length )
+            return normalizedName.mapPosition[position];
+        return name.length();
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name, boolean generateNormalization)
+    {
+        if( generateNormalization )
+        {
+            setName( name );
+        }
+        else
+        {
+            this.name = name;
+            this.normalizedName = null;
         }
     }
 
@@ -65,16 +66,18 @@ public abstract class Pojo {
      *
      * @param name User-friendly name of this container
      */
-    public void setName(String name) {
-        // Set the actual user-friendly name
-        this.name = name;
-
+    public void setName(String name)
+    {
         if (name != null) {
-            this.name = this.name.replaceAll("<", "&lt;");
-            // Normalize name for faster searching
-            Pair<String, int[]> normalized = StringNormalizer.normalizeWithMap(this.name);
-            this.nameNormalized = normalized.first;
-            this.namePositionMap = normalized.second;
+            // Set the actual user-friendly name
+            this.name = name.replaceAll("<", "&lt;");
+
+            this.normalizedName = StringNormalizer.normalizeWithResult( this.name, false );
+        }
+        else
+        {
+            this.name = null;
+            this.normalizedName = null;
         }
     }
 
@@ -98,27 +101,24 @@ public abstract class Pojo {
     }
 
     public void setDisplayNameHighlightRegion(List<Pair<Integer, Integer>> positions) {
-        this.displayName = "";
+        StringBuilder sb = new StringBuilder( this.name.length() + positions.size() * 2 );
         int lastPositionEnd = 0;
         for (Pair<Integer, Integer> position : positions) {
             int positionStart = this.mapPosition(position.first);
             int positionEnd = this.mapPosition(position.second);
 
-            this.displayName += this.name.substring(lastPositionEnd, positionStart)
-                    + '{' + this.name.substring(positionStart, positionEnd) + '}';
+            sb.append( this.name.substring(lastPositionEnd, positionStart) )
+              .append( '{' )
+              .append( this.name.substring(positionStart, positionEnd) )
+              .append( '}' );
+
             lastPositionEnd = positionEnd;
         }
-        this.displayName += this.name.substring(lastPositionEnd);
+        this.displayName = sb.append( this.name.substring(lastPositionEnd) ).toString();
     }
 
-    public void setTagHighlight(int positionStart, int positionEnd) {
-        this.displayTags = this.tags.substring(0, positionStart)
-                + '{' + this.tags.substring(positionStart, positionEnd) + '}'
-                + this.tags.substring(positionEnd);
-    }
-    
     /**
-     * Item comparer for sorting Pojos based on their human-readable text
+     * Item comparator for sorting Pojos based on their human-readable text
      * description
      */
     public static class NameComparator implements Comparator<Pojo> {

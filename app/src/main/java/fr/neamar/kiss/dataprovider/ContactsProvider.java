@@ -2,15 +2,16 @@ package fr.neamar.kiss.dataprovider;
 
 import android.database.ContentObserver;
 import android.provider.ContactsContract;
+import android.util.Pair;
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
+import java.util.List;
 
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
-import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
 
@@ -42,104 +43,66 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         getContentResolver().unregisterContentObserver(cObserver);
     }
 
-    public ArrayList<Pojo> getResults(String query) {
-        query = StringNormalizer.normalize(query);
-        ArrayList<Pojo> results = new ArrayList<>();
-
+    @Override
+    public void requestResults( String query, Searcher searcher )
+    {
+        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult( query, false );
         // Search people with composed names, e.g "jean-marie"
         // (not part of the StringNormalizer class, since we want to keep dashes on other providers)
-        query = query.replaceAll("-", " ");
+        queryNormalized = queryNormalized.replaceAll(Character.codePointAt("-", 0), Character.codePointAt(" ", 0));
 
-        int relevance;
-        int matchPositionStart;
-        int matchPositionEnd;
-        String contactNameNormalized;
+        FuzzyScore   fuzzyScore = new FuzzyScore( queryNormalized.codePoints );
+        FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
+        for (ContactsPojo pojo : pojos)
+        {
+            boolean match = fuzzyScore.match( pojo.normalizedName.codePoints, matchInfo );
+            pojo.relevance = matchInfo.score;
 
-        final String queryWithSpace = " " + query;
-        for (ContactsPojo contact : pojos) {
-            relevance = 0;
-            contactNameNormalized = contact.nameNormalized;
-            boolean alias = false;
+            if ( match )
+            {
+                List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
+                try
+                {
+                    pojo.setDisplayNameHighlightRegion( positions );
+                } catch( Exception e )
+                {
+                    pojo.setDisplayNameHighlightRegion( 0, pojo.normalizedName.length() );
+                }
+            }
 
-            matchPositionStart = 0;
-            matchPositionEnd = 0;
-            if (contactNameNormalized.startsWith(query)) {
-                relevance = 50;
-                matchPositionEnd = matchPositionStart + query.length();
-            } else if ((matchPositionStart = contactNameNormalized.indexOf(queryWithSpace)) > -1) {
-                relevance = 40;
-                matchPositionEnd = matchPositionStart + queryWithSpace.length();
-            } else if (contact.nickname.contains(query)) {
-                alias = true;
-                contact.displayName = contact.name
-                        + " <small>("
-                        + contact.nickname.replaceFirst(
-                        "(?i)(" + Pattern.quote(query) + ")", "{$1}")
-                        + ")</small>";
-                relevance = 30;
-            } else if (query.length() > 2) {
-                if ((matchPositionStart = contactNameNormalized.indexOf(query)) > -1) {
-                    relevance = 15;
-                    matchPositionEnd = matchPositionStart + query.length();
-                } else {
-                    matchPositionStart = 0;
-                    matchPositionEnd = 0;
-                    if (contact.phoneSimplified.startsWith(query)) {
-                        relevance = 10;
-                    } else if (contact.phoneSimplified.contains(query)) {
-                        relevance = 5;
+            if ( !pojo.nickname.isEmpty() )
+            {
+                if( fuzzyScore.match( pojo.nickname, matchInfo ) )
+                {
+                    if( !match || (matchInfo.score > pojo.relevance) )
+                    {
+                        match = true;
+                        pojo.relevance = matchInfo.score;
+                        pojo.displayName = pojo.getName()
+                                           + " <small>({"
+                                           + pojo.nickname
+                                           + "})</small>";
                     }
                 }
             }
 
-            if (relevance > 0) {
-                // Increase relevance according to number of times the contacts
-                // was phoned :
-                relevance += contact.timesContacted;
-                // Increase relevance for starred contacts:
-                if (contact.starred)
-                    relevance += 30;
-                // Decrease for home numbers:
-                if (contact.homeNumber)
-                    relevance -= 1;
-
-                if (!alias)
-                    contact.setDisplayNameHighlightRegion(matchPositionStart, matchPositionEnd);
-                contact.relevance = relevance;
-                results.add(contact);
-
-                // Circuit-breaker to avoid spending too much time
-                // building results
-                // Important: this is made possible because LoadContactsPojos already
-                // returns contacts sorted by popularity, so the first items should be the most useful ones.
-                // (short queries, e.g. "a" with thousands of contacts,
-                // can return hundreds of results which are then slow to sort and display)
-                if (results.size() > 50) {
-                    break;
+            if ( !match && queryNormalized.length() > 2 )
+            {
+                // search for the phone number
+                if( fuzzyScore.match( pojo.phoneSimplified, matchInfo ) )
+                {
+                    match = true;
+                    pojo.relevance = matchInfo.score;
+                    pojo.setDisplayNameHighlightRegion(0, 0);
                 }
             }
-        }
 
-        return results;
-    }
-
-    public Pojo findById(String id) {
-        for (Pojo pojo : pojos) {
-            if (pojo.id.equals(id)) {
-                pojo.displayName = pojo.name;
-                return pojo;
+            if( match )
+            {
+                if( !searcher.addResult( pojo ) )
+                    return;
             }
         }
-
-        return null;
-    }
-
-    public Pojo findByName(String name) {
-        for (Pojo pojo : pojos) {
-            if (pojo.name.equals(name))
-                return pojo;
-        }
-        return null;
     }
 
     /**
