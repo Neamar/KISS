@@ -125,7 +125,7 @@ public class StringNormalizer {
             int result;
             int minLength = Math.min(this.codePoints.length, that.codePoints.length);
             for (int i = 0; i < minLength; i += 1) {
-                if ((result = this.codePoints[i] - that.codePoints[i]) != 0)
+                if ((result = Character.toLowerCase(this.codePoints[i]) - Character.toLowerCase(that.codePoints[i])) != 0)
                     return result;
             }
 
