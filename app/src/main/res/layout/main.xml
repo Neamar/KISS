@@ -163,6 +163,7 @@
             android:layout_width="@dimen/launcher_button_width"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@string/main_kiss"
@@ -175,14 +176,15 @@
 
         <ProgressBar
             android:id="@+id/loaderBar"
-            android:layout_width="25dp"
+            android:layout_width="@dimen/launcher_button_width"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="10dp"
             android:indeterminate="true"
-            android:visibility="gone" />
+            android:paddingLeft="@dimen/launcher_button_padding"
+            android:paddingRight="@dimen/launcher_button_padding"
+            android:visibility="invisible" />
 
         <fr.neamar.kiss.ui.SearchEditText
             android:id="@+id/searchEditText"
