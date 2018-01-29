@@ -17,187 +17,164 @@ import fr.neamar.kiss.MainActivity;
  * Created by TBog on 11/24/2017.
  */
 
-public class WallpaperUtils implements View.OnTouchListener
-{
-	private final MainActivity       mMainActivity;
-	private final WallpaperManager   mWallpaperManager;
-	private       android.os.IBinder mWindowToken;
-	private       View               mContentView;
-	private       float              mLastTouchPos;
-	private       float              mWallpaperOffset;
-	private       Anim               mAnimation;
-	private final Point              mWindowSize;
-	private       VelocityTracker    mVelocityTracker;
-	GestureDetector mGestureDetector;
+public class WallpaperUtils implements View.OnTouchListener {
+    private final MainActivity mMainActivity;
+    private final WallpaperManager mWallpaperManager;
+    private final Point mWindowSize;
+    GestureDetector mGestureDetector;
+    private android.os.IBinder mWindowToken;
+    private View mContentView;
+    private float mLastTouchPos;
+    private float mWallpaperOffset;
+    private Anim mAnimation;
+    private VelocityTracker mVelocityTracker;
 
-	class Anim extends Animation
-	{
-		float mStartOffset;
-		float mDeltaOffset;
-		float mVelocity;
+    public WallpaperUtils(MainActivity activity) {
+        super();
 
-		Anim()
-		{
-			super();
-			setDuration( 1000 );
-		}
+        mMainActivity = activity;
+        mWallpaperManager = (WallpaperManager) activity.getSystemService(Context.WALLPAPER_SERVICE);
+        mContentView = mMainActivity.findViewById(android.R.id.content);
 
-		void init()
-		{
-			mVelocityTracker.computeCurrentVelocity( 1000 / 30 );
-			mVelocity = mVelocityTracker.getXVelocity();
+        mWallpaperManager.setWallpaperOffsetSteps(.5f, 0.f);
+        mWallpaperOffset = 0.5f; // this is the center
+        mAnimation = new Anim();
+        mVelocityTracker = null;
+        mWindowSize = new Point(1, 1);
+    }
 
-			mStartOffset = mWallpaperOffset;
-			mDeltaOffset = 0.5f - mStartOffset;
-		}
+    private boolean isPreferenceLWPTouch() {
+        return PreferenceManager.getDefaultSharedPreferences(mMainActivity).getBoolean("lwp-touch", true);
+    }
 
-		@Override
-		protected void applyTransformation( float interpolatedTime, Transformation t )
-		{
-			float fOffset              = mStartOffset + mDeltaOffset * interpolatedTime;
-			float velocityInterpolator = (float)Math.sqrt( interpolatedTime ) * 3.f;
-			if( velocityInterpolator < 1.f )
-				fOffset -= mVelocity / mWindowSize.x * velocityInterpolator;
-			else
-				fOffset -= mVelocity / mWindowSize.x * (1.f - 0.5f * (velocityInterpolator - 1.f));
-			updateWallpaperOffset( fOffset );
-		}
-	}
+    private boolean isPreferenceLWPDrag() {
+        return PreferenceManager.getDefaultSharedPreferences(mMainActivity).getBoolean("lwp-drag", false);
+    }
 
+    private boolean isPreferenceWPDragAnimate() {
+        return PreferenceManager.getDefaultSharedPreferences(mMainActivity).getBoolean("wp-drag-animate", false);
+    }
 
-	public WallpaperUtils( MainActivity activity )
-	{
-		super();
+    private android.os.IBinder getWindowToken() {
+        return mWindowToken != null ? mWindowToken : (mWindowToken = mContentView.getWindowToken());
+    }
 
-		mMainActivity = activity;
-		mWallpaperManager = (WallpaperManager)activity.getSystemService( Context.WALLPAPER_SERVICE );
-		mContentView = mMainActivity.findViewById( android.R.id.content );
+    private void updateWallpaperOffset(float offset) {
+        android.os.IBinder iBinder = getWindowToken();
+        if (iBinder != null) {
+            offset = Math.max(0.f, Math.min(1.f, offset));
+            mWallpaperOffset = offset;
+            mWallpaperManager.setWallpaperOffsets(iBinder, mWallpaperOffset, 0.f);
+        }
+    }
 
-		mWallpaperManager.setWallpaperOffsetSteps( .5f, 0.f );
-		mWallpaperOffset = 0.5f; // this is the center
-		mAnimation = new Anim();
-		mVelocityTracker = null;
-		mWindowSize = new Point( 1, 1 );
-	}
+    private void sendTouchEvent(int x, int y, int index) {
+        android.os.IBinder iBinder = getWindowToken();
+        if (iBinder != null) {
+            String command = index == 0 ? WallpaperManager.COMMAND_TAP : WallpaperManager.COMMAND_SECONDARY_TAP;
+            mWallpaperManager.sendWallpaperCommand(iBinder, command, x, y, 0, null);
+        }
+    }
 
-	private boolean isPreferenceLWPTouch()
-	{
-		return PreferenceManager.getDefaultSharedPreferences(mMainActivity).getBoolean("lwp-touch", true);
-	}
+    private void sendTouchEvent(View view, MotionEvent event) {
+        int pointerCount = event.getPointerCount();
+        int viewOffset[] = {0, 0};
+        // this will not account for a rotated view
+        view.getLocationOnScreen(viewOffset);
 
-	private boolean isPreferenceLWPDrag()
-	{
-		return PreferenceManager.getDefaultSharedPreferences(mMainActivity).getBoolean("lwp-drag", false);
-	}
+        // get index of first finger
+        int pointerIndex = event.findPointerIndex(0);
+        if (pointerIndex >= 0 && pointerIndex < pointerCount) {
+            sendTouchEvent((int) event.getX(pointerIndex) + viewOffset[0], (int) event.getY(pointerIndex) + viewOffset[1], pointerIndex);
+        }
 
-	private boolean isPreferenceWPDragAnimate()
-	{
-		return PreferenceManager.getDefaultSharedPreferences(mMainActivity).getBoolean("wp-drag-animate", false);
-	}
+        // get index of second finger
+        pointerIndex = event.findPointerIndex(1);
+        if (pointerIndex >= 0 && pointerIndex < pointerCount) {
+            sendTouchEvent((int) event.getX(pointerIndex) + viewOffset[0], (int) event.getY(pointerIndex) + viewOffset[1], pointerIndex);
+        }
+    }
 
-	private android.os.IBinder getWindowToken()
-	{
-		return mWindowToken != null ? mWindowToken : (mWindowToken = mContentView.getWindowToken());
-	}
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+        int actionMasked = event.getActionMasked();
+        switch (actionMasked) {
+            case MotionEvent.ACTION_DOWN:
+                if (isPreferenceWPDragAnimate()) {
+                    mContentView.clearAnimation();
 
-	private void updateWallpaperOffset( float offset )
-	{
-		android.os.IBinder iBinder = getWindowToken();
-		if( iBinder != null )
-		{
-			offset = Math.max( 0.f, Math.min( 1.f, offset ) );
-			mWallpaperOffset = offset;
-			mWallpaperManager.setWallpaperOffsets( iBinder, mWallpaperOffset, 0.f );
-		}
-	}
+                    mVelocityTracker = VelocityTracker.obtain();
+                    mVelocityTracker.addMovement(event);
 
-	private void sendTouchEvent( int x, int y, int index )
-	{
-		android.os.IBinder iBinder = getWindowToken();
-		if( iBinder != null )
-		{
-			String command = index == 0 ? WallpaperManager.COMMAND_TAP : WallpaperManager.COMMAND_SECONDARY_TAP;
-			mWallpaperManager.sendWallpaperCommand( iBinder, command, x, y, 0, null );
-		}
-	}
+                    mLastTouchPos = event.getRawX();
+                    mMainActivity.getWindowManager()
+                            .getDefaultDisplay()
+                            .getSize(mWindowSize);
+                }
+                //send touch event to the LWP
+                if (isPreferenceLWPTouch())
+                    sendTouchEvent(view, event);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if (mVelocityTracker != null) {
+                    mVelocityTracker.addMovement(event);
 
-	private void sendTouchEvent( View view, MotionEvent event )
-	{
-		int pointerCount = event.getPointerCount();
-		int viewOffset[] = {0, 0};
-		// this will not account for a rotated view
-		view.getLocationOnScreen( viewOffset );
+                    float fTouchPos = event.getRawX();
+                    float fOffset = (mLastTouchPos - fTouchPos) * 1.1f / mWindowSize.x;
+                    fOffset += mWallpaperOffset;
+                    updateWallpaperOffset(fOffset);
+                    mLastTouchPos = fTouchPos;
+                }
 
-		// get index of first finger
-		int pointerIndex = event.findPointerIndex( 0 );
-		if( pointerIndex >= 0 && pointerIndex < pointerCount )
-		{
-			sendTouchEvent( (int)event.getX( pointerIndex ) + viewOffset[0], (int)event.getY( pointerIndex ) + viewOffset[1], pointerIndex );
-		}
+                //send move/drag event to the LWP
+                if (isPreferenceLWPDrag())
+                    sendTouchEvent(view, event);
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                if (mVelocityTracker != null) {
+                    mVelocityTracker.addMovement(event);
 
-		// get index of second finger
-		pointerIndex = event.findPointerIndex( 1 );
-		if( pointerIndex >= 0 && pointerIndex < pointerCount )
-		{
-			sendTouchEvent( (int)event.getX( pointerIndex ) + viewOffset[0], (int)event.getY( pointerIndex ) + viewOffset[1], pointerIndex );
-		}
-	}
+                    mAnimation.init();
+                    mContentView.startAnimation(mAnimation);
 
-	@Override
-	public boolean onTouch( View view, MotionEvent event )
-	{
-		int actionMasked = event.getActionMasked();
-		switch( actionMasked )
-		{
-			case MotionEvent.ACTION_DOWN:
-				if ( isPreferenceWPDragAnimate() )
-				{
-					mContentView.clearAnimation();
+                    mVelocityTracker.recycle();
+                    mVelocityTracker = null;
+                }
+                break;
+        }
 
-					mVelocityTracker = VelocityTracker.obtain();
-					mVelocityTracker.addMovement( event );
+        // do not consume the event
+        return false;
+    }
 
-					mLastTouchPos = event.getRawX();
-					mMainActivity.getWindowManager()
-								 .getDefaultDisplay()
-								 .getSize( mWindowSize );
-				}
-				//send touch event to the LWP
-				if ( isPreferenceLWPTouch() )
-					sendTouchEvent( view, event );
-				break;
-			case MotionEvent.ACTION_MOVE:
-				if ( mVelocityTracker != null )
-				{
-					mVelocityTracker.addMovement( event );
+    class Anim extends Animation {
+        float mStartOffset;
+        float mDeltaOffset;
+        float mVelocity;
 
-					float fTouchPos = event.getRawX();
-					float fOffset   = (mLastTouchPos - fTouchPos) * 1.1f / mWindowSize.x;
-					fOffset += mWallpaperOffset;
-					updateWallpaperOffset( fOffset );
-					mLastTouchPos = fTouchPos;
-				}
+        Anim() {
+            super();
+            setDuration(1000);
+        }
 
-				//send move/drag event to the LWP
-				if ( isPreferenceLWPDrag() )
-					sendTouchEvent( view, event );
-				break;
-			case MotionEvent.ACTION_UP:
-			case MotionEvent.ACTION_CANCEL:
-				if( mVelocityTracker != null )
-				{
-					mVelocityTracker.addMovement( event );
+        void init() {
+            mVelocityTracker.computeCurrentVelocity(1000 / 30);
+            mVelocity = mVelocityTracker.getXVelocity();
 
-					mAnimation.init();
-					mContentView.startAnimation( mAnimation );
+            mStartOffset = mWallpaperOffset;
+            mDeltaOffset = 0.5f - mStartOffset;
+        }
 
-					mVelocityTracker.recycle();
-					mVelocityTracker = null;
-				}
-				break;
-		}
-
-		// do not consume the event
-		return false;
-	}
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            float fOffset = mStartOffset + mDeltaOffset * interpolatedTime;
+            float velocityInterpolator = (float) Math.sqrt(interpolatedTime) * 3.f;
+            if (velocityInterpolator < 1.f)
+                fOffset -= mVelocity / mWindowSize.x * velocityInterpolator;
+            else
+                fOffset -= mVelocity / mWindowSize.x * (1.f - 0.5f * (velocityInterpolator - 1.f));
+            updateWallpaperOffset(fOffset);
+        }
+    }
 }

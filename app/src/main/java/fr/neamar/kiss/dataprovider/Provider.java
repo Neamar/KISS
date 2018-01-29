@@ -15,21 +15,18 @@ import fr.neamar.kiss.pojo.Pojo;
 
 public abstract class Provider<T extends Pojo> extends Service implements IProvider {
     /**
+     * Binder given to clients
+     */
+    private final IBinder binder = new LocalBinder();
+    /**
      * Storage for search items used by this provider
      */
     protected List<T> pojos = new ArrayList<>();
     private boolean loaded = false;
-
     /**
      * Scheme used to build ids for the pojos created by this provider
      */
     private String pojoScheme = "(none)://";
-
-    /**
-     * Binder given to clients
-     */
-    private final IBinder binder = new LocalBinder();
-
 
     /**
      * (Re-)load the providers resources when the provider has been completely initialized
@@ -98,18 +95,6 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         return null;
     }
 
-
-    /**
-     * Class used for the client Binder.  Because we know this service always
-     * runs in the same process as its clients, we don't need to deal with IPC.
-     */
-    public class LocalBinder extends Binder {
-        public IProvider getService() {
-            // Return this instance of the provider so that clients can call public methods
-            return Provider.this;
-        }
-    }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // We want this service to continue running until it is explicitly
@@ -120,5 +105,16 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     @Override
     public IBinder onBind(Intent intent) {
         return this.binder;
+    }
+
+    /**
+     * Class used for the client Binder.  Because we know this service always
+     * runs in the same process as its clients, we don't need to deal with IPC.
+     */
+    public class LocalBinder extends Binder {
+        public IProvider getService() {
+            // Return this instance of the provider so that clients can call public methods
+            return Provider.this;
+        }
     }
 }

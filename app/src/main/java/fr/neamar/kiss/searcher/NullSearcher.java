@@ -12,8 +12,7 @@ public class NullSearcher extends Searcher {
     }
 
     @Override
-    protected Void doInBackground( Void... voids )
-    {
+    protected Void doInBackground(Void... voids) {
         // nothing found ;)
         return null;
     }

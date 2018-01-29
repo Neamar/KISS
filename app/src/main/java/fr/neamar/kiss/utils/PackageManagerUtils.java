@@ -15,7 +15,7 @@ public class PackageManagerUtils {
      */
     public static void enableComponent(Context ctx, Class component, boolean enabled) {
         PackageManager pm = ctx.getPackageManager();
-        ComponentName cn =  new ComponentName(ctx, component);
+        ComponentName cn = new ComponentName(ctx, component);
         pm.setComponentEnabledSetting(cn,
                 enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                 PackageManager.DONT_KILL_APP);

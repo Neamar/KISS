@@ -15,14 +15,13 @@ public class ApplicationsSearcher extends Searcher {
     }
 
     @Override
-    protected Void doInBackground( Void... voids )
-    {
+    protected Void doInBackground(Void... voids) {
         MainActivity activity = activityWeakReference.get();
-        if( activity == null )
+        if (activity == null)
             return null;
 
         List<Pojo> pojos = KissApplication.getDataHandler(activity).getApplications();
-        this.addResult( pojos.toArray(new Pojo[0]) );
+        this.addResult(pojos.toArray(new Pojo[0]));
         return null;
     }
 }

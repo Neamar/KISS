@@ -13,14 +13,14 @@ import android.widget.ImageView;
 
 public class UiTweaks {
     public static String COLOR_DEFAULT = "#4caf50";
-    public static int[]  COLOR_LIST    = new int[] {
-			0xFF4CAF50, 0xFFD32F2F, 0xFFC2185B, 0xFF7B1FA2,
-			0xFF512DA8, 0xFF303F9F, 0xFF1976D2, 0xFF0288D1,
-			0xFF0097A7, 0xFF00796B, 0xFF388E3C, 0xFF689F38,
-			0xFFAFB42B, 0xFFFBC02D, 0xFFFFA000, 0xFFF57C00,
-			0xFFE64A19, 0xFF5D4037, 0xFF616161, 0xFF455A64,
-			0xFF000000
-	};
+    public static int[] COLOR_LIST = new int[]{
+            0xFF4CAF50, 0xFFD32F2F, 0xFFC2185B, 0xFF7B1FA2,
+            0xFF512DA8, 0xFF303F9F, 0xFF1976D2, 0xFF0288D1,
+            0xFF0097A7, 0xFF00796B, 0xFF388E3C, 0xFF689F38,
+            0xFFAFB42B, 0xFFFBC02D, 0xFFFFA000, 0xFFF57C00,
+            0xFFE64A19, 0xFF5D4037, 0xFF616161, 0xFF455A64,
+            0xFF000000
+    };
 
     static void updateThemePrimaryColor(Activity activity) {
         String notificationBarColorOverride = getNotificationBarColor(activity);
@@ -73,7 +73,7 @@ public class UiTweaks {
         String primaryColor = PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", COLOR_DEFAULT);
 
         // Transparent can't be displayed for text color, replace with light gray.
-        if(primaryColor.equals("#00000000") || primaryColor.equals(("#AAFFFFFF"))) {
+        if (primaryColor.equals("#00000000") || primaryColor.equals(("#AAFFFFFF"))) {
             return "#BDBDBD";
         }
 

@@ -21,15 +21,19 @@ public class SearchProvider extends Provider<SearchPojo> {
 
     public static final Pattern urlPattern = Pattern.compile(URL_REGEX);
 
+    public static Set<String> getSearchProviders(Context context) {
+        String[] defaultSearchProviders = context.getResources().getStringArray(R.array.defaultSearchProviders);
+        return new HashSet<>(Arrays.asList(defaultSearchProviders));
+    }
+
     @Override
     public void reload() {
         this.initialize(new LoadSearchPojos(this));
     }
 
     @Override
-    public void requestResults( String s, Searcher searcher )
-    {
-        searcher.addResult( getResults( s ).toArray(new Pojo[0]) );
+    public void requestResults(String s, Searcher searcher) {
+        searcher.addResult(getResults(s).toArray(new Pojo[0]));
     }
 
     protected ArrayList<Pojo> getResults(String query) {
@@ -50,17 +54,12 @@ public class SearchProvider extends Provider<SearchPojo> {
                 SearchPojo pojo = new SearchPojo();
                 pojo.query = "";
                 pojo.relevance = 50;
-                pojo.setName( guessedUrl, false );
+                pojo.setName(guessedUrl, false);
                 pojo.url = guessedUrl;
                 pojo.direct = true;
                 records.add(pojo);
             }
         }
         return records;
-    }
-
-    public static Set<String> getSearchProviders(Context context) {
-        String[] defaultSearchProviders = context.getResources().getStringArray(R.array.defaultSearchProviders);
-        return new HashSet<>(Arrays.asList(defaultSearchProviders));
     }
 }

@@ -107,7 +107,25 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private static final int REQUEST_CREATE_APPWIDGET = 5;
     private static final int REQUEST_PICK_APPWIDGET = 9;
     private static final int APPWIDGET_HOST_ID = 442;
+    private static final String TAG = "MainActivity";
+    /**
+     * IDs for the favorites buttons
+     */
+    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
+    /**
+     * Number of favorites to retrieve.
+     * We need to pad this number to account for removed items still in history
+     */
+    public final int tryToRetrieve = favsIds.length + 2;
+    /**
+     * IDs for the favorites buttons on the quickbar
+     */
 
+    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
+    /**
+     * Adapter to display records
+     */
+    public RecordAdapter adapter;
     /**
      * Widget fields
      */
@@ -115,27 +133,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private AppWidgetHost mAppWidgetHost;
     private SharedPreferences widgetPrefs;
     private boolean widgetUsed = false;
-
-    private static final String TAG = "MainActivity";
-    /**
-     * IDs for the favorites buttons
-     */
-    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
-    /**
-     * IDs for the favorites buttons on the quickbar
-     */
-
-    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
-
-    /**
-     * Number of favorites to retrieve.
-     * We need to pad this number to account for removed items still in history
-     */
-    public final int tryToRetrieve = favsIds.length + 2;
-    /**
-     * Adapter to display records
-     */
-    public RecordAdapter adapter;
     /**
      * Store user preferences
      */
@@ -145,12 +142,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * View for the Search text
      */
     private SearchEditText searchEditText;
-    private final Runnable displayKeyboardRunnable = new Runnable() {
-        @Override
-        public void run() {
-            showKeyboard();
-        }
-    };
     /**
      * Whether or not Search text should be spell checked (affects inputType)
      */
@@ -200,6 +191,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * SystemUiVisibility helper
      */
     private SystemUiVisibilityHelper mSystemUiVisibility;
+    private final Runnable displayKeyboardRunnable = new Runnable() {
+        @Override
+        public void run() {
+            showKeyboard();
+        }
+    };
     private PopupWindow mPopup;
 
     /**
@@ -302,7 +299,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
                 if (adapter.isEmpty()) {
                     listContainer.setVisibility(View.GONE);
-                    if(!widgetUsed){
+                    if (!widgetUsed) {
                         // when a widget is displayed this would prevent touches on the widget
                         listEmpty.setVisibility(View.VISIBLE);
                     }
@@ -330,8 +327,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Is the kiss bar visible?
-                if (kissBar.getVisibility() == View.VISIBLE)
-                {
+                if (kissBar.getVisibility() == View.VISIBLE) {
                     displayKissBar(false, false);
                 }
                 String text = s.toString();
@@ -346,15 +342,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ( actionId == android.R.id.closeButton )
-                {
-                    mSystemUiVisibility.onKeyboardVisibilityChanged( false );
-                    if( mPopup != null )
-                    {
+                if (actionId == android.R.id.closeButton) {
+                    mSystemUiVisibility.onKeyboardVisibilityChanged(false);
+                    if (mPopup != null) {
                         mPopup.dismiss();
                         return true;
                     }
-                    mSystemUiVisibility.onKeyboardVisibilityChanged( false );
+                    mSystemUiVisibility.onKeyboardVisibilityChanged(false);
                     hider.fixScroll();
                     return false;
                 }
@@ -412,16 +406,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Transparent Search and Favorites bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if(prefs.getBoolean("transparent-favorites", false)) {
+            if (prefs.getBoolean("transparent-favorites", false)) {
                 this.findViewById(R.id.favoritesBar).setBackgroundColor(Color.TRANSPARENT);
             }
-            if(prefs.getBoolean("transparent-search", false)){
+            if (prefs.getBoolean("transparent-search", false)) {
                 this.findViewById(R.id.searchEditLayout).setBackgroundColor(Color.TRANSPARENT);
                 this.findViewById(R.id.searchEditText).setBackgroundColor(Color.TRANSPARENT);
             }
         }
-        mWallpaperUtils = new WallpaperUtils( this );
-        mSystemUiVisibility = new SystemUiVisibilityHelper( this );
+        mWallpaperUtils = new WallpaperUtils(this);
+        mSystemUiVisibility = new SystemUiVisibilityHelper(this);
     }
 
     private void addDefaultAppsToFavs() {
@@ -490,8 +484,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 Pojo pojo = favorites.get(favNumber);
                 final Result result = Result.fromPojo(MainActivity.this, pojo);
                 ListPopup popup = result.getPopupMenu(MainActivity.this, adapter, view);
-                registerPopup( popup );
-                popup.show( view );
+                registerPopup(popup);
+                popup.show(view);
                 return true;
             }
         };
@@ -523,7 +517,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         View quickFavoritesBar = findViewById(R.id.favoritesBar);
         if (searchEditText.getText().toString().length() == 0
                 && prefs.getBoolean("enable-favorites-bar", true)) {
-            if((!prefs.getBoolean("favorites-hide", false) || touched)) {
+            if ((!prefs.getBoolean("favorites-hide", false) || touched)) {
                 quickFavoritesBar.setVisibility(View.VISIBLE);
             }
 
@@ -542,8 +536,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_settings, menu);
-        if(prefs.getBoolean("history-hide", true)){
-            if(widgetUsed){
+        if (prefs.getBoolean("history-hide", true)) {
+            if (widgetUsed) {
                 menu.findItem(R.id.widget).setTitle(R.string.menu_widget_remove);
             } else {
                 menu.findItem(R.id.widget).setTitle(R.string.menu_widget_add);
@@ -583,7 +577,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             this.recreate();
             return;
         }
-        if ( mPopup != null )
+        if (mPopup != null)
             mPopup.dismiss();
 
         if (kissBar.getVisibility() != View.VISIBLE) {
@@ -617,7 +611,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
-        if ( isPreferenceKeyboardOnStart() ) {
+        if (isPreferenceKeyboardOnStart()) {
             // Display keyboard
             showKeyboard();
 
@@ -631,7 +625,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
-            mSystemUiVisibility.onKeyboardVisibilityChanged( false );
+            mSystemUiVisibility.onKeyboardVisibilityChanged(false);
         }
 
         super.onResume();
@@ -673,10 +667,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void onBackPressed() {
-        if ( mPopup != null )
+        if (mPopup != null)
             mPopup.dismiss();
 
-        // Is the kiss bar visible?
+            // Is the kiss bar visible?
         else if (kissBar.getVisibility() == View.VISIBLE) {
             displayKissBar(false);
         } else if (!searchEditText.getText().toString().isEmpty()) {
@@ -710,7 +704,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 startActivity(Intent.createChooser(intent, getString(R.string.menu_wallpaper)));
                 return true;
             case R.id.widget:
-                if(!widgetUsed) {
+                if (!widgetUsed) {
                     // request widget picker, a selection will lead to a call of onActivityResult
                     int appWidgetId = MainActivity.this.mAppWidgetHost.allocateAppWidgetId();
                     Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
@@ -752,7 +746,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK){
+        if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CREATE_APPWIDGET:
                     addAppWidget(data);
@@ -761,7 +755,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     configureAppWidget(data);
                     break;
             }
-        } else if (resultCode == RESULT_CANCELED && data != null){
+        } else if (resultCode == RESULT_CANCELED && data != null) {
             //if widget was not selected, delete id
             int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
             if (appWidgetId != -1) {
@@ -772,7 +766,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
-        if ( mWallpaperUtils.onTouch( view, event ) )
+        if (mWallpaperUtils.onTouch(view, event))
             return true;
         //if motion movement ends
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
@@ -783,7 +777,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     //if list is empty
                     if ((this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0)) {
                         searcher = new HistorySearcher(MainActivity.this);
-                        searcher.executeOnExecutor( Searcher.SEARCH_THREAD );
+                        searcher.executeOnExecutor(Searcher.SEARCH_THREAD);
                     }
                 }
             }
@@ -791,8 +785,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 displayQuickFavoritesBar(false, true);
             }
         }
-        if(view.getId() == searchEditText.getId()) {
-            if ( event.getActionMasked() == MotionEvent.ACTION_DOWN )
+        if (view.getId() == searchEditText.getId()) {
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN)
                 showKeyboard();
         }
         return true;
@@ -816,24 +810,22 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
-    public boolean dispatchTouchEvent( MotionEvent ev )
-    {
-        if ( mPopup != null )
-        {
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (mPopup != null) {
             View popup = mPopup.getContentView();
             int[] popupPos = {0, 0};
-            popup.getLocationOnScreen( popupPos );
+            popup.getLocationOnScreen(popupPos);
             final float offsetX = -popupPos[0];
             final float offsetY = -popupPos[1];
             ev.offsetLocation(offsetX, offsetY);
-            boolean handled = mPopup.getContentView().dispatchTouchEvent( ev );
+            boolean handled = mPopup.getContentView().dispatchTouchEvent(ev);
             ev.offsetLocation(-offsetX, -offsetY);
             return handled;
         }
-        return super.dispatchTouchEvent( ev );
+        return super.dispatchTouchEvent(ev);
     }
 
-    public void onFavoriteButtonClicked( View favorite) {
+    public void onFavoriteButtonClicked(View favorite) {
         // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
         displayKissBar(false);
 
@@ -894,9 +886,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    private void displayKissBar(Boolean display)
-    {
-        this.displayKissBar( display, true );
+    private void displayKissBar(Boolean display) {
+        this.displayKissBar(display, true);
     }
 
     private void displayKissBar(boolean display, boolean emptyText) {
@@ -915,7 +906,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 searcher.cancel(true);
             }
             searcher = new ApplicationsSearcher(MainActivity.this);
-            searcher.executeOnExecutor( Searcher.SEARCH_THREAD );
+            searcher.executeOnExecutor(Searcher.SEARCH_THREAD);
 
             // Reveal the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -956,12 +947,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 // No animation before Lollipop
                 kissBar.setVisibility(View.GONE);
             }
-            if ( emptyText )
-            {
-                searchEditText.setText( "" );
+            if (emptyText) {
+                searchEditText.setText("");
 
-                if( isPreferenceKeyboardOnStart() )
-                {
+                if (isPreferenceKeyboardOnStart()) {
                     // Display keyboard
                     showKeyboard();
                 }
@@ -1033,7 +1022,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searcher.cancel(true);
         }
 
-        if ( mPopup != null )
+        if (mPopup != null)
             mPopup.dismiss();
 
         if (query.length() == 0) {
@@ -1055,7 +1044,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             searcher = new QuerySearcher(this, query);
         }
-        searcher.executeOnExecutor( Searcher.SEARCH_THREAD );
+        searcher.executeOnExecutor(Searcher.SEARCH_THREAD);
         displayQuickFavoritesBar(false, false);
     }
 
@@ -1078,41 +1067,35 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
-    public boolean showRelevance()
-    {
+    public boolean showRelevance() {
         return BuildConfig.DEBUG;
     }
-  
-    public void registerPopup( ListPopup popup )
-    {
-        if ( mPopup == popup )
+
+    public void registerPopup(ListPopup popup) {
+        if (mPopup == popup)
             return;
-        if ( mPopup != null )
+        if (mPopup != null)
             mPopup.dismiss();
         mPopup = popup;
-        popup.setVisibilityHelper( mSystemUiVisibility );
-        popup.setOnDismissListener( new PopupWindow.OnDismissListener()
-        {
+        popup.setVisibilityHelper(mSystemUiVisibility);
+        popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
-            public void onDismiss()
-            {
+            public void onDismiss() {
                 MainActivity.this.mPopup = null;
             }
-        } );
+        });
         hider.fixScroll();
     }
 
-    private boolean isPreferenceKeyboardOnStart()
-    {
+    private boolean isPreferenceKeyboardOnStart() {
         return prefs.getBoolean("display-keyboard", false);
     }
 
     @Override
-    public void onWindowFocusChanged( boolean hasFocus )
-    {
-        super.onWindowFocusChanged( hasFocus );
-        mSystemUiVisibility.onWindowFocusChanged( hasFocus );
-        if( hasFocus && isPreferenceKeyboardOnStart() )
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        mSystemUiVisibility.onWindowFocusChanged(hasFocus);
+        if (hasFocus && isPreferenceKeyboardOnStart())
             showKeyboard();
     }
 
@@ -1122,7 +1105,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
 
-        mSystemUiVisibility.onKeyboardVisibilityChanged( true );
+        mSystemUiVisibility.onKeyboardVisibilityChanged(true);
     }
 
     @Override
@@ -1135,27 +1118,26 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
 
-        mSystemUiVisibility.onKeyboardVisibilityChanged( false );
-        if( mPopup != null )
+        mSystemUiVisibility.onKeyboardVisibilityChanged(false);
+        if (mPopup != null)
             mPopup.dismiss();
     }
 
     @Override
-    public void applyScrollSystemUi()
-    {
+    public void applyScrollSystemUi() {
         mSystemUiVisibility.applyScrollSystemUi();
     }
 
     /**
      * Check if history / search or app list is visible
+     *
      * @return true of history, false on app list
      */
     public boolean isOnSearchView() {
         return kissBar.getVisibility() != View.VISIBLE;
     }
 
-    public boolean isListVisible()
-    {
+    public boolean isListVisible() {
         boolean bListEmpty = (this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0);
         return bListEmpty;
     }
@@ -1167,9 +1149,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Check if widget needs configuration and display configuration view if necessary,
      * otherwise just add the widget
+     *
      * @param data Intent holding widget id to configure
      */
-    private void configureAppWidget(Intent data){
+    private void configureAppWidget(Intent data) {
         int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
 
         AppWidgetProviderInfo appWidget =
@@ -1189,9 +1172,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     /**
      * Adds widget to Activity and persists it in prefs to be able to restore it
+     *
      * @param data Intent holding widget id to add
      */
-    private void addAppWidget(Intent data){
+    private void addAppWidget(Intent data) {
         int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
         //add widget
         addWidgetToLauncher(appWidgetId);
@@ -1203,11 +1187,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     /**
      * Adds a widget to the widget area on the MainActivity
+     *
      * @param appWidgetId id of widget to add
      */
     private void addWidgetToLauncher(int appWidgetId) {
         // only add widgets if in minimal mode (may need launcher restart when turned on)
-        if(prefs.getBoolean("history-hide", true)){
+        if (prefs.getBoolean("history-hide", true)) {
             // remove empty list view when using widgets, this would block touches on the widget
             listEmpty.setVisibility(View.GONE);
             //add widget to view
@@ -1226,6 +1211,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     /**
      * Removes a single widget and deletes it from persistent prefs
+     *
      * @param hostView instance of a displayed widget
      */
     private void removeAppWidget(AppWidgetHostView hostView) {
@@ -1244,8 +1230,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Removes all widgets from the launcher
      */
-    private void removeAllWidgets(){
-        while(widgetArea.getChildCount()>0){
+    private void removeAllWidgets() {
+        while (widgetArea.getChildCount() > 0) {
             AppWidgetHostView widget = (AppWidgetHostView) widgetArea.getChildAt(0);
             removeAppWidget(widget);
         }
@@ -1254,24 +1240,22 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Restores all previously added widgets
      */
-    private void restoreWidgets(){
+    private void restoreWidgets() {
         HashMap<String, Integer> widgetIds = (HashMap<String, Integer>) widgetPrefs.getAll();
-        for (int appWidgetId : widgetIds.values()){
+        for (int appWidgetId : widgetIds.values()) {
             addWidgetToLauncher(appWidgetId);
         }
     }
 
     @Override
-    public void beforeChange()
-    {
-        AnimatedListView listView = (AnimatedListView)this.list;
+    public void beforeChange() {
+        AnimatedListView listView = (AnimatedListView) this.list;
         listView.prepareChangeAnim();
     }
 
     @Override
-    public void afterChange()
-    {
-        AnimatedListView listView = (AnimatedListView)this.list;
+    public void afterChange() {
+        AnimatedListView listView = (AnimatedListView) this.list;
         listView.animateChange();
     }
 }

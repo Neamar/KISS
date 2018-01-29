@@ -22,8 +22,7 @@ public class HistorySearcher extends Searcher {
     }
 
     @Override
-    protected Void doInBackground( Void... voids )
-    {
+    protected Void doInBackground(Void... voids) {
         // Ask for records
         boolean smartHistory = !prefs.getString("history-mode", "recency").equals("recency");
         boolean excludeFavorites = prefs.getBoolean("exclude-favorites", false);
@@ -33,17 +32,17 @@ public class HistorySearcher extends Searcher {
         int maxRecords = (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
 
         MainActivity activity = activityWeakReference.get();
-        if( activity == null )
+        if (activity == null)
             return null;
 
         //Gather favorites
-        ArrayList<Pojo> favoritesPojo = new ArrayList<>( 0 );
-        if(excludeFavorites){
+        ArrayList<Pojo> favoritesPojo = new ArrayList<>(0);
+        if (excludeFavorites) {
             favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(activity.tryToRetrieve);
         }
 
         List<Pojo> pojos = KissApplication.getDataHandler(activity).getHistory(activity, maxRecords, smartHistory, favoritesPojo);
-        this.addResult( pojos.toArray(new Pojo[0]) );
+        this.addResult(pojos.toArray(new Pojo[0]));
         return null;
     }
 }

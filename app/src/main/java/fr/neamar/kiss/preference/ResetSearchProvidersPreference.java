@@ -25,7 +25,7 @@ public class ResetSearchProvidersPreference extends DialogPreference {
                     .remove("available-search-providers").commit();
             Toast.makeText(getContext(), R.string.search_provider_reset_done_desc, Toast.LENGTH_LONG).show();
             SearchProvider searchProvider = KissApplication.getDataHandler(this.getContext()).getSearchProvider();
-            if(searchProvider != null) {
+            if (searchProvider != null) {
                 searchProvider.reload();
             }
         }

@@ -95,8 +95,7 @@ public class AppProvider extends Provider<AppPojo> {
                 public void onReceive(Context context, Intent intent) {
                     if (intent.getAction().equals(Intent.ACTION_MANAGED_PROFILE_ADDED)) {
                         AppProvider.this.reload();
-                    }
-                    else if (intent.getAction().equals(Intent.ACTION_MANAGED_PROFILE_REMOVED)) {
+                    } else if (intent.getAction().equals(Intent.ACTION_MANAGED_PROFILE_REMOVED)) {
                         android.os.UserHandle profile = (android.os.UserHandle) intent.getParcelableExtra(Intent.EXTRA_USER);
 
                         UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
@@ -117,65 +116,56 @@ public class AppProvider extends Provider<AppPojo> {
         this.initialize(new LoadAppPojos(this));
     }
 
-	/**
-	 * @param query    The string to search for
-	 * @param searcher The receiver of results
-	 */
+    /**
+     * @param query    The string to search for
+     * @param searcher The receiver of results
+     */
 
-	@Override
-	public void requestResults( String query, Searcher searcher )
-	{
-		StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult( query, false );
+    @Override
+    public void requestResults(String query, Searcher searcher) {
+        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
-		FuzzyScore           fuzzyScore = new FuzzyScore( queryNormalized.codePoints );
-		FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
+        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
 
-		for( AppPojo pojo : pojos )
-		{
-		    boolean bDisplayNameSet = false;
-		    boolean bDisplayTagsSet = false;
-			boolean match = fuzzyScore.match( pojo.normalizedName.codePoints, matchInfo );
-			pojo.relevance = matchInfo.score;
+        for (AppPojo pojo : pojos) {
+            boolean bDisplayNameSet = false;
+            boolean bDisplayTagsSet = false;
+            boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
+            pojo.relevance = matchInfo.score;
 
-			if ( match )
-			{
-				List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
-				try
-				{
-					pojo.setDisplayNameHighlightRegion( positions );
-				} catch( Exception e )
-				{
-					pojo.setDisplayNameHighlightRegion( 0, pojo.normalizedName.length() );
-				}
+            if (match) {
+                List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
+                try {
+                    pojo.setDisplayNameHighlightRegion(positions);
+                } catch (Exception e) {
+                    pojo.setDisplayNameHighlightRegion(0, pojo.normalizedName.length());
+                }
                 bDisplayNameSet = true;
-			}
+            }
 
-			// check relevance for tags
-			if( pojo.normalizedTags != null )
-			{
-				if( fuzzyScore.match( pojo.normalizedTags.codePoints, matchInfo ) )
-				{
-					if( !match || (matchInfo.score > pojo.relevance) )
-					{
-						match = true;
-						pojo.relevance = matchInfo.score;
-						pojo.setTagHighlight( matchInfo.matchedIndices );
-						bDisplayTagsSet = true;
-					}
-				}
-			}
+            // check relevance for tags
+            if (pojo.normalizedTags != null) {
+                if (fuzzyScore.match(pojo.normalizedTags.codePoints, matchInfo)) {
+                    if (!match || (matchInfo.score > pojo.relevance)) {
+                        match = true;
+                        pojo.relevance = matchInfo.score;
+                        pojo.setTagHighlight(matchInfo.matchedIndices);
+                        bDisplayTagsSet = true;
+                    }
+                }
+            }
 
-			if( match )
-			{
-			    if ( !bDisplayNameSet )
+            if (match) {
+                if (!bDisplayNameSet)
                     pojo.displayName = pojo.getName();
-			    if ( !bDisplayTagsSet )
+                if (!bDisplayTagsSet)
                     pojo.displayTags = pojo.getTags();
-				if( !searcher.addResult( pojo ) )
-					return;
-			}
-		}
-	}
+                if (!searcher.addResult(pojo))
+                    return;
+            }
+        }
+    }
 
     /**
      * Return a Pojo
@@ -191,7 +181,7 @@ public class AppProvider extends Provider<AppPojo> {
                 if (allowSideEffect) {
                     pojo.displayName = pojo.getName();
                     if (pojo instanceof PojoWithTags) {
-						PojoWithTags tagsPojo = (PojoWithTags) pojo;
+                        PojoWithTags tagsPojo = (PojoWithTags) pojo;
                         tagsPojo.displayTags = tagsPojo.getTags();
                     }
                 }

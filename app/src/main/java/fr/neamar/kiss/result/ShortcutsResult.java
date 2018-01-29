@@ -50,11 +50,11 @@ public class ShortcutsResult extends Result {
         try {
             Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
             List<ResolveInfo> packages = packageManager.queryIntentActivities(intent, 0);
-            if(packages.size() > 0) {
+            if (packages.size() > 0) {
                 ResolveInfo mainPackage = packages.get(0);
                 String packageName = mainPackage.activityInfo.applicationInfo.packageName;
                 String activityName = mainPackage.activityInfo.name;
-                ComponentName className =  new ComponentName(packageName, activityName);
+                ComponentName className = new ComponentName(packageName, activityName);
                 appDrawable = context.getPackageManager().getActivityIcon(className);
             }
         } catch (NameNotFoundException e) {
@@ -88,7 +88,7 @@ public class ShortcutsResult extends Result {
 
         try {
             Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
-            if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 intent.setSourceBounds(v.getClipBounds());
             }
 
@@ -101,17 +101,17 @@ public class ShortcutsResult extends Result {
     }
 
     @Override
-	ListPopup buildPopupMenu( Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView ) {
-        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_add ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_favorites_remove ) );
-        adapter.add( new ListPopup.Item( context, R.string.menu_shortcut_remove ) );
+    ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView) {
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
+        adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
 
-        return inflatePopupMenu(adapter, context );
+        return inflatePopupMenu(adapter, context);
     }
 
     @Override
-    Boolean popupMenuClickHandler( Context context, RecordAdapter parent, int stringId ) {
-        switch ( stringId ) {
+    Boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+        switch (stringId) {
             case R.string.menu_shortcut_remove:
                 launchUninstall(context, shortcutPojo);
                 // Also remove item, since it will be uninstalled
@@ -119,7 +119,7 @@ public class ShortcutsResult extends Result {
                 return true;
 
         }
-        return super.popupMenuClickHandler(context, parent, stringId );
+        return super.popupMenuClickHandler(context, parent, stringId);
     }
 
     private void launchUninstall(Context context, ShortcutsPojo shortcutPojo) {

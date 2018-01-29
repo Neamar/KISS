@@ -44,62 +44,51 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     }
 
     @Override
-    public void requestResults( String query, Searcher searcher )
-    {
-        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult( query, false );
+    public void requestResults(String query, Searcher searcher) {
+        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
         // Search people with composed names, e.g "jean-marie"
         // (not part of the StringNormalizer class, since we want to keep dashes on other providers)
         queryNormalized = queryNormalized.replaceAll(Character.codePointAt("-", 0), Character.codePointAt(" ", 0));
 
-        FuzzyScore   fuzzyScore = new FuzzyScore( queryNormalized.codePoints );
-        FuzzyScore.MatchInfo matchInfo  = new FuzzyScore.MatchInfo();
-        for (ContactsPojo pojo : pojos)
-        {
-            boolean match = fuzzyScore.match( pojo.normalizedName.codePoints, matchInfo );
+        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
+        for (ContactsPojo pojo : pojos) {
+            boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
             pojo.relevance = matchInfo.score;
 
-            if ( match )
-            {
+            if (match) {
                 List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
-                try
-                {
-                    pojo.setDisplayNameHighlightRegion( positions );
-                } catch( Exception e )
-                {
-                    pojo.setDisplayNameHighlightRegion( 0, pojo.normalizedName.length() );
+                try {
+                    pojo.setDisplayNameHighlightRegion(positions);
+                } catch (Exception e) {
+                    pojo.setDisplayNameHighlightRegion(0, pojo.normalizedName.length());
                 }
             }
 
-            if ( !pojo.nickname.isEmpty() )
-            {
-                if( fuzzyScore.match( pojo.nickname, matchInfo ) )
-                {
-                    if( !match || (matchInfo.score > pojo.relevance) )
-                    {
+            if (!pojo.nickname.isEmpty()) {
+                if (fuzzyScore.match(pojo.nickname, matchInfo)) {
+                    if (!match || (matchInfo.score > pojo.relevance)) {
                         match = true;
                         pojo.relevance = matchInfo.score;
                         pojo.displayName = pojo.getName()
-                                           + " <small>({"
-                                           + pojo.nickname
-                                           + "})</small>";
+                                + " <small>({"
+                                + pojo.nickname
+                                + "})</small>";
                     }
                 }
             }
 
-            if ( !match && queryNormalized.length() > 2 )
-            {
+            if (!match && queryNormalized.length() > 2) {
                 // search for the phone number
-                if( fuzzyScore.match( pojo.phoneSimplified, matchInfo ) )
-                {
+                if (fuzzyScore.match(pojo.phoneSimplified, matchInfo)) {
                     match = true;
                     pojo.relevance = matchInfo.score;
                     pojo.setDisplayNameHighlightRegion(0, 0);
                 }
             }
 
-            if( match )
-            {
-                if( !searcher.addResult( pojo ) )
+            if (match) {
+                if (!searcher.addResult(pojo))
                     return;
             }
         }

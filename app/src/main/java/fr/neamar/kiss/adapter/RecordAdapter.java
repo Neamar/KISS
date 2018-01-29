@@ -64,25 +64,22 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     @Override
-    public boolean hasStableIds()
-    {
+    public boolean hasStableIds() {
         return true;
     }
 
     @Override
-    public long getItemId( int position )
-    {
+    public long getItemId(int position) {
         return results.get(position).getUniqueId();
     }
 
     @Override
-     public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        if ( convertView != null )
-        {
-            if ( !(convertView.getTag() instanceof Integer) )
+    public @NonNull
+    View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        if (convertView != null) {
+            if (!(convertView.getTag() instanceof Integer))
                 convertView = null;
-            else if ( (Integer)convertView.getTag() != getItemViewType( position ) )
-            {
+            else if ((Integer) convertView.getTag() != getItemViewType(position)) {
                 // This is happening on HTC Desire X (Android 4.1.1, API 16)
                 //throw new IllegalStateException( "can't convert view from different type" );
                 convertView = null;
@@ -90,7 +87,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         }
         View view = results.get(position).display(getContext(), results.size() - position, convertView);
         //Log.d( "TBog", "getView pos " + position + " convertView " + ((convertView == null) ? "null" : convertView.toString()) + " will return " + view.toString() );
-        view.setTag( getItemViewType( position ) );
+        view.setTag(getItemViewType(position));
         return view;
     }
 
@@ -99,8 +96,8 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
         //check if menu contains elements and if yes show it
         if (menu.getAdapter().getCount() > 0) {
-            parent.registerPopup( menu );
-            menu.show( v );
+            parent.registerPopup(menu);
+            menu.show(v);
         }
     }
 

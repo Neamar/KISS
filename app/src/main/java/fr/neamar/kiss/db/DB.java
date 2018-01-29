@@ -34,17 +34,17 @@ public class DB extends SQLiteOpenHelper {
         // http://www.drdobbs.com/database/using-sqlite-on-android/232900584
         if (oldVersion < newVersion) {
             switch (oldVersion) {
-            case 1:
-            case 2:
-            case 3:
-               database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
-                       + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
-                // fall through
-            case 4:
-                createTags(database);
-                // fall through
-            default:
-                break;
+                case 1:
+                case 2:
+                case 3:
+                    database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
+                            + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
+                    // fall through
+                case 4:
+                    createTags(database);
+                    // fall through
+                default:
+                    break;
             }
         }
     }

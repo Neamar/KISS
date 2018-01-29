@@ -9,29 +9,32 @@ import android.widget.EdgeEffect;
 
 /**
  * View that renders that over-scroll/"pulled too far" effect
- *
+ * <p>
  * Parts (or even all) of the given effect parameters may be discarded with the underlying Android
  * platform does not support them.
  */
 public class BottomPullEffectView extends View {
     private EdgeEffect effect;
-    private float   lastPullDistance;
-    private float   lastPullDisplacement;
+    private float lastPullDistance;
+    private float lastPullDisplacement;
     private boolean lastPullAnimated;
-
-    private void init() {}
 
     public BottomPullEffectView(Context context) {
         super(context);
         this.init();
     }
+
     public BottomPullEffectView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.init();
     }
+
     public BottomPullEffectView(Context context, AttributeSet attrs, int flags) {
         super(context, attrs, flags);
         this.init();
+    }
+
+    private void init() {
     }
 
     /**
@@ -54,14 +57,14 @@ public class BottomPullEffectView extends View {
             this.effect.onPull(distance);
         }
 
-        if(!animated) {
+        if (!animated) {
             // Prevent more than one frame being drawn
             this.effect.finish();
         }
 
-        this.lastPullDistance     = distance;
+        this.lastPullDistance = distance;
         this.lastPullDisplacement = displacement;
-        this.lastPullAnimated     = animated;
+        this.lastPullAnimated = animated;
 
         // Request scene to be redrawn
         this.invalidate();
@@ -71,13 +74,13 @@ public class BottomPullEffectView extends View {
      * Draw a release animation for the previous pull effect
      */
     public void releasePull() {
-        if(this.effect == null) {
+        if (this.effect == null) {
             return;
         }
 
         // Recreate effect without `finish()`-ing it, so that the release effect will be
         // properly drawn
-        if(!this.lastPullAnimated) {
+        if (!this.lastPullAnimated) {
             this.setPull(this.lastPullDistance, this.lastPullDisplacement, true);
         }
 
@@ -89,7 +92,7 @@ public class BottomPullEffectView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if(this.effect == null) {
+        if (this.effect == null) {
             return;
         }
 
@@ -102,7 +105,7 @@ public class BottomPullEffectView extends View {
 
         canvas.restoreToCount(canvas_save_count);
 
-        if(invalidate) {
+        if (invalidate) {
             this.invalidate();
         }
     }

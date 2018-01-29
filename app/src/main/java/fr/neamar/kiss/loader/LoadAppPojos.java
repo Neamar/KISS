@@ -26,8 +26,8 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
-    private TagsHandler tagsHandler;
     private static SharedPreferences prefs;
+    private TagsHandler tagsHandler;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
@@ -44,36 +44,36 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 getString("excluded-apps-list", context.getPackageName() + ";");
         List excludedApps = Arrays.asList(excludedAppList.split(";"));
 
-		if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			UserManager  manager  = (UserManager)  context.getSystemService(Context.USER_SERVICE);
-			LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-			
-			// Handle multi-profile support introduced in Android 5 (#542)
-			for (android.os.UserHandle profile : manager.getUserProfiles()) {
-				UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
-				for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
-					ApplicationInfo appInfo = activityInfo.getApplicationInfo();
-					
-					String fullPackageName = user.addUserSuffixToString(appInfo.packageName, '#');
-					if(!excludedApps.contains(fullPackageName)) {
-						AppPojo app = new AppPojo();
-						
-						app.id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
-						
-						app.setName(activityInfo.getLabel().toString());
-						
-						app.packageName  = appInfo.packageName;
-						app.activityName = activityInfo.getName();
-						
-						// Wrap Android user handle in opaque container that will work across
-						// all Android versions
-						app.userHandle = user;
-						
-						app.setTags(tagsHandler.getTags(app.id));
-						apps.add(app);
-					}
-				}
-			}
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+
+            // Handle multi-profile support introduced in Android 5 (#542)
+            for (android.os.UserHandle profile : manager.getUserProfiles()) {
+                UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
+                for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
+                    ApplicationInfo appInfo = activityInfo.getApplicationInfo();
+
+                    String fullPackageName = user.addUserSuffixToString(appInfo.packageName, '#');
+                    if (!excludedApps.contains(fullPackageName)) {
+                        AppPojo app = new AppPojo();
+
+                        app.id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
+
+                        app.setName(activityInfo.getLabel().toString());
+
+                        app.packageName = appInfo.packageName;
+                        app.activityName = activityInfo.getName();
+
+                        // Wrap Android user handle in opaque container that will work across
+                        // all Android versions
+                        app.userHandle = user;
+
+                        app.setTags(tagsHandler.getTags(app.id));
+                        apps.add(app);
+                    }
+                }
+            }
         } else {
             PackageManager manager = context.getPackageManager();
 
@@ -88,9 +88,9 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     app.id = pojoScheme + appInfo.packageName + "/" + info.activityInfo.name;
                     app.setName(info.loadLabel(manager).toString());
 
-                    app.packageName  = appInfo.packageName;
+                    app.packageName = appInfo.packageName;
                     app.activityName = info.activityInfo.name;
-                    
+
                     app.userHandle = new UserHandle();
 
                     app.setTags(tagsHandler.getTags(app.id));
@@ -98,14 +98,14 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 }
             }
         }
-        
+
         // Apply app sorting preference
         if (prefs.getString("sort-apps", "alphabetical").equals("invertedAlphabetical")) {
             Collections.sort(apps, Collections.reverseOrder(new AppPojo.NameComparator()));
         } else {
             Collections.sort(apps, new AppPojo.NameComparator());
         }
-        
+
         long end = System.nanoTime();
         Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps");
         return apps;

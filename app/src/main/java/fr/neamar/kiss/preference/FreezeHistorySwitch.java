@@ -43,8 +43,7 @@ public class FreezeHistorySwitch extends SwitchPreference {
                             // does nothing
                         }
                     }).show();
-        }
-        else {
+        } else {
             super.onClick();
         }
     }

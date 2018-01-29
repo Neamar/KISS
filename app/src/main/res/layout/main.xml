@@ -11,10 +11,10 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/resultLayout"
         android:layout_alignParentTop="true"
-        android:gravity="center_horizontal"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal">
 
     </RelativeLayout>
 
@@ -25,10 +25,10 @@
         android:layout_above="@+id/favoritesBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="false"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:background="?attr/listBackgroundColor"
         android:elevation="2dp">
 
@@ -75,11 +75,11 @@
                 android:id="@+id/favoriteBar0"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
+                android:padding="@dimen/favorite_padding"
                 android:tag="0"
                 tools:src="@drawable/ic_contact" />
 
@@ -87,11 +87,11 @@
                 android:id="@+id/favoriteBar1"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
+                android:padding="@dimen/favorite_padding"
                 android:tag="1"
                 tools:src="@drawable/ic_contact" />
 
@@ -99,11 +99,11 @@
                 android:id="@+id/favoriteBar2"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
+                android:padding="@dimen/favorite_padding"
                 android:tag="2"
                 tools:src="@drawable/ic_contact" />
 
@@ -111,11 +111,11 @@
                 android:id="@+id/favoriteBar3"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
+                android:padding="@dimen/favorite_padding"
                 android:tag="3"
                 tools:src="@drawable/ic_contact" />
 
@@ -123,11 +123,11 @@
                 android:id="@+id/favoriteBar4"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
+                android:padding="@dimen/favorite_padding"
                 android:tag="4"
                 tools:src="@drawable/ic_contact" />
 
@@ -135,11 +135,11 @@
                 android:id="@+id/favoriteBar5"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
-                android:padding="@dimen/favorite_padding"
                 android:layout_weight="1"
                 android:background="?attr/appSelectableItemBackground"
                 android:contentDescription="@null"
                 android:onClick="onFavoriteButtonClicked"
+                android:padding="@dimen/favorite_padding"
                 android:tag="5"
                 tools:src="@drawable/ic_contact" />
         </LinearLayout>

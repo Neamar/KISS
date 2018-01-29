@@ -34,8 +34,7 @@ public class FreezeHistoryPreference extends CheckBoxPreference {
                             // does nothing
                         }
                     }).show();
-        }
-        else {
+        } else {
             super.onClick();
         }
     }

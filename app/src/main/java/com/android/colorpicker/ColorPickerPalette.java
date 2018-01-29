@@ -25,9 +25,9 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import fr.neamar.kiss.R;
-
 import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
+
+import fr.neamar.kiss.R;
 
 /**
  * A color picker custom view which creates an grid of color squares.  The number of squares per
@@ -50,6 +50,18 @@ public class ColorPickerPalette extends TableLayout {
 
     public ColorPickerPalette(Context context) {
         super(context);
+    }
+
+    /**
+     * Appends a swatch to the end of the row for even-numbered rows (starting with row 0),
+     * to the beginning of a row for odd-numbered rows.
+     */
+    private static void addSwatchToRow(TableRow row, View swatch, int rowNumber) {
+        if (rowNumber % 2 == 0) {
+            row.addView(swatch);
+        } else {
+            row.addView(swatch, 0);
+        }
     }
 
     /**
@@ -129,25 +141,13 @@ public class ColorPickerPalette extends TableLayout {
     }
 
     /**
-     * Appends a swatch to the end of the row for even-numbered rows (starting with row 0),
-     * to the beginning of a row for odd-numbered rows.
-     */
-    private static void addSwatchToRow(TableRow row, View swatch, int rowNumber) {
-        if (rowNumber % 2 == 0) {
-            row.addView(swatch);
-        } else {
-            row.addView(swatch, 0);
-        }
-    }
-
-    /**
      * Add a content description to the specified swatch view. Because the colors get added in a
      * snaking form, every other row will need to compensate for the fact that the colors are added
      * in an opposite direction from their left->right/top->bottom order, which is how the system
      * will arrange them for accessibility purposes.
      */
     private void setSwatchDescription(int rowNumber, int index, int rowElements, boolean selected,
-            View swatch, String[] contentDescriptions) {
+                                      View swatch, String[] contentDescriptions) {
         String description;
         if (contentDescriptions != null && contentDescriptions.length > index) {
             description = contentDescriptions[index];

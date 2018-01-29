@@ -49,7 +49,7 @@ apply plugin: "net.ltgt.errorprone"
 
 tasks.withType(JavaCompile) {
     options.compilerArgs += [
-        '-Xep:MissingOverride:OFF',
+            '-Xep:MissingOverride:OFF',
     ]
 }
 
