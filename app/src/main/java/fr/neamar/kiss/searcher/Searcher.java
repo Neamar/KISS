@@ -12,18 +12,14 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.PriorityQueue;
-import java.util.TreeSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
-import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.result.Result;
 
 public abstract class Searcher extends AsyncTask<Void, Result, Void> {
@@ -136,44 +132,13 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         // Loader should still be displayed until all the providers have finished loading
         activity.displayLoader(!KissApplication.getApplication(activity).getDataHandler().allProvidersHaveLoaded);
 
-        Pattern pattern = Pattern.compile("\\s+");
         if (this.processedPojos.isEmpty()) {
             activity.adapter.clear();
         } else {
             PriorityQueue<Pojo> queue = this.processedPojos;
             Collection<Result> results = new ArrayList<>(queue.size());
             while (queue.peek() != null) {
-                Pojo pojo = queue.poll();
-                boolean addPojo = true;
-                if (pojo instanceof PojoWithTags) {
-                    PojoWithTags pojoWithTags = (PojoWithTags) pojo;
-                    if (pojoWithTags.getTags() != null && !pojoWithTags.getTags().isEmpty()) {
-                        TreeSet<String> tagList = new TreeSet<>();
-                        Collections.addAll(tagList, pattern.split(pojoWithTags.getTags()));
-                        // do not add pojos that contain tags that should be hidden
-                        for (String tag : tagList) {
-                            if (activity.getExcludeTags()
-                                    .contains(tag)) {
-                                addPojo = false;
-                                break;
-                            }
-                        }
-                        if (!activity.getIncludeTags().isEmpty()) {
-                            // do not add pojos if they don't have the include tags
-                            boolean bIncludeTagFound = false;
-                            for (String tag : activity.getIncludeTags()) {
-                                if (tagList.contains(tag)) {
-                                    bIncludeTagFound = true;
-                                    break;
-                                }
-                            }
-                            if (!bIncludeTagFound)
-                                addPojo = false;
-                        }
-                    }
-                }
-                if (addPojo)
-                    results.add(Result.fromPojo(activity, pojo));
+                results.add(Result.fromPojo(activity, queue.poll()));
             }
             activity.beforeListChange();
 
