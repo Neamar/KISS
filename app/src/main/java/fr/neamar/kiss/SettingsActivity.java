@@ -374,6 +374,10 @@ public class SettingsActivity extends PreferenceActivity implements
         Set<String> tagList = KissApplication.getDataHandler( this )
                                              .getTagsHandler()
                                              .getAllTagsAsSet();
+
+        // append tags that are available to toggle now
+        tagList.addAll( toggleTags.getTogglableTags() );
+
         String[] tagArray = tagList.toArray( new String[0] );
         selectListPreference.setEntries( tagArray );
         selectListPreference.setEntryValues( tagArray );

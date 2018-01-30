@@ -68,6 +68,7 @@ import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.ui.AnimatedListView;
+import fr.neamar.kiss.searcher.TagsSearcher;
 import fr.neamar.kiss.ui.BlockableListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
@@ -1048,7 +1049,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (mPopup != null)
             mPopup.dismiss();
 
-        if (query.length() == 0) {
+        if ( query.isEmpty() && !getIncludeTags().isEmpty() ) {
+            toggleTags.showBar(prefs);
+
+            searcher = new TagsSearcher(this);
+        }
+        else if (query.length() == 0) {
             toggleTags.hideBar();
             mSystemUiVisibility.resetScroll();
             if (prefs.getBoolean("history-hide", false)) {
@@ -1066,7 +1072,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         } else {
-            toggleTags.showBar( prefs );
+            toggleTags.showBar(prefs);
 
             searcher = new QuerySearcher(this, query);
         }
@@ -1286,21 +1292,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         listView.animateChange();
     }
 
-    public Set<String> getExcludeTags()
-    {
+    public Set<String> getExcludeTags() {
         return toggleTags.getHiddenTags();
     }
 
-    public Set<String> getIncludeTags()
-    {
+    public Set<String> getIncludeTags() {
         return toggleTags.getMustShowTags();
     }
 
     @Override
-    public void onToggleUpdated()
-    {
-        toggleTags.saveHiddenTags( prefs );
+    public void onToggleUpdated() {
+        toggleTags.saveHiddenTags(prefs);
         updateRecords();
-        toggleTags.showBar( prefs );
+        toggleTags.showBar(prefs);
     }
 }
