@@ -322,6 +322,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         registerForContextMenu(menuButton);
 
+        findViewById(R.id.clearButton).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                registerPopup(toggleTags.showMenu(v));
+                return true;
+            }
+        });
+
         // When scrolling down on the list,
         // Hide the keyboard.
         this.hider = new KeyboardScrollHider(this,
@@ -503,8 +511,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
         // To fix this, we discard any click event occurring when the kissbar is displayed
-        if (isViewingSearchResults())
-            menuButton.showContextMenu();
+        if (isViewingSearchResults()) {
+            if ( isPreferenceTagsMenu() )
+                registerPopup(toggleTags.showMenu(menuButton));
+            else
+                menuButton.showContextMenu();
+        }
     }
 
     @Override
@@ -688,17 +700,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private void updateSearchRecords(String query) {
         resetTask();
 
-        if (mPopup != null)
-            mPopup.dismiss();
-
         forwarderManager.updateSearchRecords(query);
 
-        if ( query.isEmpty() && !getIncludeTags().isEmpty() ) {
-            toggleTags.showBar(prefs);
-
-            runTask(new TagsSearcher(this));
-        }
-        else if (query.isEmpty()) {
+        if (query.isEmpty()) {
             toggleTags.hideBar();
             systemUiVisibilityHelper.resetScroll();
         } else {
@@ -757,6 +761,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
         hider.fixScroll();
+    }
+
+    private boolean isPreferenceTagsMenu() {
+        return prefs.getBoolean("pref-tags-menu", false);
     }
 
     @Override
@@ -833,7 +841,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onToggleUpdated() {
         toggleTags.saveHiddenTags(prefs);
-        updateRecords();
+        updateSearchRecords();
         toggleTags.showBar(prefs);
+    }
+
+    @Override
+    public void showMatchingTags() {
+        runTask(new TagsSearcher(this));
     }
 }

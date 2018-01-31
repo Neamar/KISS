@@ -35,52 +35,51 @@ public class TagsSearcher extends Searcher
 		for( Iterator<Pojo> iterator = results.iterator(); iterator.hasNext(); )
 		{
 			Pojo pojo = iterator.next();
-			if ( !(pojo instanceof PojoWithTags))
+			if ( !(pojo instanceof PojoWithTags)) {
+				iterator.remove();
 				continue;
+			}
 			PojoWithTags pojoWithTags = (PojoWithTags) pojo;
-			if ( pojoWithTags.getTags() != null && !pojoWithTags.getTags().isEmpty() )
-			{
-				// split tags string so we can search faster
-				TreeSet<String> tagList = new TreeSet<>();
-				Collections.addAll( tagList, patternTagSplit.split( pojoWithTags.getTags() ) );
+			if ( pojoWithTags.getTags() == null || pojoWithTags.getTags().isEmpty() ) {
+				iterator.remove();
+				continue;
+			}
 
+			// split tags string so we can search faster
+			TreeSet<String> tagList = new TreeSet<>();
+			Collections.addAll( tagList, patternTagSplit.split( pojoWithTags.getTags() ) );
+
+			if ( !activity.getExcludeTags().isEmpty() ) {
 				// remove pojos that contain tags that should be hidden
 				boolean remove = false;
-				for( String tag : tagList )
-				{
-					if( activity.getExcludeTags()
-								.contains( tag ) )
-					{
+				for (String tag : tagList) {
+					if (activity.getExcludeTags().contains(tag)) {
 						remove = true;
 						break;
 					}
 				}
-				if ( remove )
+				if (remove) {
+					iterator.remove();
+					continue;
+				}
+			}
+
+			if ( !activity.getIncludeTags().isEmpty() )
+			{
+				// remove pojos if they don't have the include tags
+				boolean bIncludeTagFound = false;
+				for( String tag : activity.getIncludeTags() )
+				{
+					if( tagList.contains( tag ) )
+					{
+						bIncludeTagFound = true;
+						break;
+					}
+				}
+				if ( !bIncludeTagFound )
 				{
 					iterator.remove();
 				}
-				else if ( !activity.getIncludeTags().isEmpty() )
-				{
-					// remove pojos if they don't have the include tags
-					boolean bIncludeTagFound = false;
-					for( String tag : activity.getIncludeTags() )
-					{
-						if( tagList.contains( tag ) )
-						{
-							bIncludeTagFound = true;
-							break;
-						}
-					}
-					if ( !bIncludeTagFound )
-					{
-						iterator.remove();
-					}
-				}
-			}
-			else if ( !activity.getIncludeTags().isEmpty() )
-			{
-				// if we have "must have" tags but the app has no tags, remove it
-				iterator.remove();
 			}
 		}
 

@@ -20,6 +20,7 @@ public class ListPopup extends PopupWindow {
     private DataSetObserver mObserver;
     private ListAdapter mAdapter;
     private SystemUiVisibilityHelper mSystemUiVisibilityHelper;
+    private boolean dismissOnClick = true;
 
     public ListPopup(Context context) {
         super(context, null, android.R.attr.popupMenuStyle);
@@ -34,7 +35,8 @@ public class ListPopup extends PopupWindow {
         mClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                if ( dismissOnClick )
+                    dismiss();
                 if (mItemClickListener != null) {
                     LinearLayout layout = getLinearLayout();
                     int position = layout.indexOfChild(v);
@@ -56,11 +58,17 @@ public class ListPopup extends PopupWindow {
     @Override
     public void dismiss() {
         super.dismiss();
-        mSystemUiVisibilityHelper.popPopup();
+        if ( mSystemUiVisibilityHelper != null )
+            mSystemUiVisibilityHelper.popPopup();
     }
 
     public ListAdapter getAdapter() {
         return mAdapter;
+    }
+
+    public void setDismissOnItemClick(boolean dismissOnClick )
+    {
+        this.dismissOnClick = dismissOnClick;
     }
 
     /**
@@ -120,6 +128,8 @@ public class ListPopup extends PopupWindow {
 
         linearLayout.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+
+        setWidth(linearLayout.getMeasuredWidth());
 
         int xOffset = anchorPos[0] + anchor.getPaddingLeft();
         if (xOffset + linearLayout.getMeasuredWidth() > displayFrame.right)

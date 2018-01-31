@@ -61,7 +61,7 @@ public class QuerySearcher extends Searcher {
             return super.addResult(filteredList.toArray(new Pojo[0]));
         } else if (pojos.length == 1) {
             Pojo pojo = pojos[0];
-            if (pojo instanceof PojoWithTags && !isTagFilterOk((PojoWithTags) pojo)) {
+            if (!(pojo instanceof PojoWithTags) || !isTagFilterOk((PojoWithTags) pojo)) {
                 // skip this pojo
                 return true;
             }
