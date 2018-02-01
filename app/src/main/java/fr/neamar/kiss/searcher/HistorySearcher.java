@@ -19,10 +19,13 @@ public class HistorySearcher extends Searcher {
     public HistorySearcher(MainActivity activity) {
         super(activity, "<history>");
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+    }
 
+    @Override
+    protected int getMaxResultCount() {
         // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
         // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
-        DEFAULT_MAX_RESULTS = (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
+        return (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
     }
 
     @Override
@@ -41,7 +44,7 @@ public class HistorySearcher extends Searcher {
             favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(activity.tryToRetrieve);
         }
 
-        List<Pojo> pojos = KissApplication.getDataHandler(activity).getHistory(activity, DEFAULT_MAX_RESULTS, smartHistory, favoritesPojo);
+        List<Pojo> pojos = KissApplication.getDataHandler(activity).getHistory(activity, getMaxResultCount(), smartHistory, favoritesPojo);
         this.addResult(pojos.toArray(new Pojo[0]));
         return null;
     }

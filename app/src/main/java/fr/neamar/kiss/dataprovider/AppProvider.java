@@ -200,11 +200,11 @@ public class AppProvider extends Provider<AppPojo> {
 
     public ArrayList<Pojo> getAllApps() {
         ArrayList<Pojo> records = new ArrayList<>(pojos.size());
-        records.trimToSize();
 
         for (AppPojo pojo : pojos) {
             pojo.displayName = pojo.getName();
             pojo.displayTags = pojo.getTags();
+            pojo.relevance = 0;
             records.add(pojo);
         }
         return records;
