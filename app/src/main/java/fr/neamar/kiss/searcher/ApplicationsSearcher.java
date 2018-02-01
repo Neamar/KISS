@@ -12,6 +12,7 @@ import fr.neamar.kiss.pojo.Pojo;
 public class ApplicationsSearcher extends Searcher {
     public ApplicationsSearcher(MainActivity activity) {
         super(activity, "<application>");
+        DEFAULT_MAX_RESULTS = Integer.MAX_VALUE;
     }
 
     @Override
