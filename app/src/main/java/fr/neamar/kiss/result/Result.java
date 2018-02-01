@@ -12,9 +12,8 @@ import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
@@ -319,6 +318,7 @@ public abstract class Result {
         AsyncSetImage(ImageView image, Result result) {
             super();
             image.setTag(this);
+            image.setImageResource(android.R.color.transparent);
             this.imageViewWeakReference = new WeakReference<>(image);
             this.appResultWeakReference = new WeakReference<>(result);
         }
