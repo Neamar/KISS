@@ -263,8 +263,12 @@ public abstract class Result {
         if (isDrawableCached()) {
             view.setImageDrawable(getDrawable(view.getContext()));
         } else {
-            view.setTag(new AsyncSetImage(view, this).execute());
+            view.setTag(createAsyncSetImage(view).execute());
         }
+    }
+
+    AsyncSetImage createAsyncSetImage(ImageView imageView) {
+        return new AsyncSetImage(imageView, this);
     }
 
     /**
@@ -312,8 +316,8 @@ public abstract class Result {
     }
 
     static class AsyncSetImage extends AsyncTask<Void, Void, Drawable> {
-        final private WeakReference<ImageView> imageViewWeakReference;
-        final private WeakReference<Result> appResultWeakReference;
+        final protected WeakReference<ImageView> imageViewWeakReference;
+        final protected WeakReference<Result> appResultWeakReference;
 
         AsyncSetImage(ImageView image, Result result) {
             super();
@@ -326,8 +330,10 @@ public abstract class Result {
         @Override
         protected Drawable doInBackground(Void... voids) {
             ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || image.getTag() != this)
+            if (isCancelled() || image == null || image.getTag() != this) {
+                imageViewWeakReference.clear();
                 return null;
+            }
             Result result = appResultWeakReference.get();
             if (result == null)
                 return null;
@@ -337,8 +343,10 @@ public abstract class Result {
         @Override
         protected void onPostExecute(Drawable drawable) {
             ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || drawable == null)
+            if (isCancelled() || image == null || drawable == null) {
+                imageViewWeakReference.clear();
                 return;
+            }
             image.setImageDrawable(drawable);
             image.setTag(null);
         }
