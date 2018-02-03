@@ -22,14 +22,17 @@ public class HistorySearcher extends Searcher {
     }
 
     @Override
+    protected int getMaxResultCount() {
+        // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
+        // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
+        return (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
+    }
+
+    @Override
     protected Void doInBackground(Void... voids) {
         // Ask for records
         boolean smartHistory = !prefs.getString("history-mode", "recency").equals("recency");
         boolean excludeFavorites = prefs.getBoolean("exclude-favorites", false);
-
-        // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
-        // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
-        int maxRecords = (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
 
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
@@ -41,7 +44,7 @@ public class HistorySearcher extends Searcher {
             favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(activity.tryToRetrieve);
         }
 
-        List<Pojo> pojos = KissApplication.getDataHandler(activity).getHistory(activity, maxRecords, smartHistory, favoritesPojo);
+        List<Pojo> pojos = KissApplication.getDataHandler(activity).getHistory(activity, getMaxResultCount(), smartHistory, favoritesPojo);
         this.addResult(pojos.toArray(new Pojo[0]));
         return null;
     }

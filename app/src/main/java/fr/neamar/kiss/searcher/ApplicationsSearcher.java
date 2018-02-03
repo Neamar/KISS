@@ -15,6 +15,11 @@ public class ApplicationsSearcher extends Searcher {
     }
 
     @Override
+    protected int getMaxResultCount() {
+        return Integer.MAX_VALUE;
+    }
+
+    @Override
     protected Void doInBackground(Void... voids) {
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
