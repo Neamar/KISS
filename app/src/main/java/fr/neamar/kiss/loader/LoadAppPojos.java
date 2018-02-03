@@ -2,21 +2,18 @@ package fr.neamar.kiss.loader;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.preference.PreferenceManager;
 import android.os.Build;
-import android.os.Process;
 import android.os.UserManager;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
@@ -26,12 +23,10 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
-    private static SharedPreferences prefs;
     private TagsHandler tagsHandler;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
-        prefs = PreferenceManager.getDefaultSharedPreferences(context);
         tagsHandler = KissApplication.getDataHandler(context).getTagsHandler();
     }
 
@@ -97,13 +92,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     apps.add(app);
                 }
             }
-        }
-
-        // Apply app sorting preference
-        if (prefs.getString("sort-apps", "alphabetical").equals("invertedAlphabetical")) {
-            Collections.sort(apps, Collections.reverseOrder(new AppPojo.NameComparator()));
-        } else {
-            Collections.sort(apps, new AppPojo.NameComparator());
         }
 
         long end = System.nanoTime();

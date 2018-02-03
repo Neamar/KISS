@@ -1,6 +1,7 @@
 package fr.neamar.kiss.searcher;
 
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
@@ -43,11 +44,15 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         super();
         this.query = query;
         this.activityWeakReference = new WeakReference<>(activity);
-        this.processedPojos = new PriorityQueue<>(DEFAULT_MAX_RESULTS, new PojoComparator());
+        this.processedPojos = getPojoProcessor(activity);
         this.refreshTask = new RefreshTask();
         this.refreshCounter = 0;
         // This handler should run on the Ui thread. That's the only thread that can't be blocked.
         this.handler = new Handler(Looper.getMainLooper());
+    }
+
+    PriorityQueue<Pojo> getPojoProcessor(Context context) {
+        return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new PojoComparator());
     }
 
     protected int getMaxResultCount() {
