@@ -45,7 +45,7 @@ public class HistorySearcher extends Searcher {
         }
 
         List<Pojo> pojos = KissApplication.getDataHandler(activity).getHistory(activity, getMaxResultCount(), smartHistory, favoritesPojo);
-        
+
         int size = pojos.size();
         for(int i = 0; i < size; i += 1) {
             pojos.get(i).relevance = size - i;
