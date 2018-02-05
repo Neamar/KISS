@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.FileNotFoundException;
@@ -60,6 +61,9 @@ public class ContactsResult extends Result {
         ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) view
                 .findViewById(R.id.item_contact_icon);
 
+        if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
+            icon = contactIcon.getDrawable();
+        }
         this.setAsyncDrawable(contactIcon);
 
         contactIcon.assignContactUri(Uri.withAppendedPath(
@@ -227,5 +231,28 @@ public class ContactsResult extends Result {
             }
         }, KissApplication.TOUCH_DELAY);
 
+    }
+
+    @Override
+    Result.AsyncSetImage createAsyncSetImage(ImageView imageView) {
+        return new AsyncSetImage(imageView, this);
+    }
+
+    static class AsyncSetImage extends Result.AsyncSetImage {
+
+        AsyncSetImage(ImageView image, Result result) {
+            super(image, result);
+        }
+
+        @Override
+        protected void onPostExecute(Drawable drawable) {
+            super.onPostExecute(drawable);
+            ImageView image = imageViewWeakReference.get();
+            Result result = appResultWeakReference.get();
+            if (result instanceof ContactsResult && image != null && image.getTag() == null) {
+                // the view got the drawable, now we store the app info to help when we refresh
+                image.setTag(((ContactsResult) result).contactPojo);
+            }
+        }
     }
 }
