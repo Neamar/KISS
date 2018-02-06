@@ -234,6 +234,11 @@ public class AppResult extends Result {
     }
 
     @Override
+    void setDrawableCache(Drawable drawable) {
+        icon = drawable;
+    }
+
+    @Override
     public Drawable getDrawable(Context context) {
         synchronized (this) {
             if (icon == null) {
@@ -266,29 +271,6 @@ public class AppResult extends Result {
         } catch (ActivityNotFoundException e) {
             // Application was just removed?
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    Result.AsyncSetImage createAsyncSetImage(ImageView imageView) {
-        return new AsyncSetImage(imageView, this);
-    }
-
-    static class AsyncSetImage extends Result.AsyncSetImage {
-
-        AsyncSetImage(ImageView image, Result result) {
-            super(image, result);
-        }
-
-        @Override
-        protected void onPostExecute(Drawable drawable) {
-            super.onPostExecute(drawable);
-            ImageView image = imageViewWeakReference.get();
-            Result result = appResultWeakReference.get();
-            if (result instanceof AppResult && image != null && image.getTag() == null) {
-                // the view got the drawable, now we store the app info to help when we refresh
-                image.setTag(((AppResult) result).className);
-            }
         }
     }
 }

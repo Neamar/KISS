@@ -254,11 +254,19 @@ public abstract class Result {
     boolean isDrawableCached() {
         return false;
     }
+    void setDrawableCache( Drawable drawable ) {}
 
     void setAsyncDrawable(ImageView view) {
+        // the ImageView tag will store the async task if it's running
         if (view.getTag() instanceof AsyncSetImage) {
             ((AsyncSetImage) view.getTag()).cancel(true);
             view.setTag(null);
+        }
+        // the ImageView will store the Result after the AsyncTask finished
+        if ( view.getTag() instanceof Result )
+        {
+            ((Result)view.getTag()).setDrawableCache( view.getDrawable() );
+            return;
         }
         if (isDrawableCached()) {
             view.setImageDrawable(getDrawable(view.getContext()));
@@ -348,7 +356,7 @@ public abstract class Result {
                 return;
             }
             image.setImageDrawable(drawable);
-            image.setTag(null);
+            image.setTag(appResultWeakReference.get());
         }
     }
 }

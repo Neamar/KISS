@@ -155,6 +155,11 @@ public class ContactsResult extends Result {
         return icon != null;
     }
 
+    @Override
+    void setDrawableCache(Drawable drawable) {
+        icon = drawable;
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
@@ -231,28 +236,5 @@ public class ContactsResult extends Result {
             }
         }, KissApplication.TOUCH_DELAY);
 
-    }
-
-    @Override
-    Result.AsyncSetImage createAsyncSetImage(ImageView imageView) {
-        return new AsyncSetImage(imageView, this);
-    }
-
-    static class AsyncSetImage extends Result.AsyncSetImage {
-
-        AsyncSetImage(ImageView image, Result result) {
-            super(image, result);
-        }
-
-        @Override
-        protected void onPostExecute(Drawable drawable) {
-            super.onPostExecute(drawable);
-            ImageView image = imageViewWeakReference.get();
-            Result result = appResultWeakReference.get();
-            if (result instanceof ContactsResult && image != null && image.getTag() == null) {
-                // the view got the drawable, now we store the app info to help when we refresh
-                image.setTag(((ContactsResult) result).contactPojo);
-            }
-        }
     }
 }
