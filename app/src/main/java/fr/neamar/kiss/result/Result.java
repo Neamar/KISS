@@ -263,7 +263,7 @@ public abstract class Result {
             view.setTag(null);
         }
         // the ImageView will store the Result after the AsyncTask finished
-        if ( view.getTag() instanceof Result )
+        if ( this.equals(view.getTag()) )
         {
             ((Result)view.getTag()).setDrawableCache( view.getDrawable() );
             return;
