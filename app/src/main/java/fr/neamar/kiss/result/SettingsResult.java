@@ -18,8 +18,8 @@ public class SettingsResult extends Result {
     private final SettingsPojo settingPojo;
 
     public SettingsResult(SettingsPojo settingPojo) {
-        super();
-        this.pojo = this.settingPojo = settingPojo;
+        super(settingPojo);
+        this.settingPojo = settingPojo;
     }
 
     @Override

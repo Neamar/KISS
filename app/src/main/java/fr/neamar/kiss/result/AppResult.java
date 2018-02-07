@@ -38,8 +38,8 @@ public class AppResult extends Result {
     private Drawable icon = null;
 
     public AppResult(AppPojo appPojo) {
-        super();
-        this.pojo = this.appPojo = appPojo;
+        super(appPojo);
+        this.appPojo = appPojo;
 
         className = new ComponentName(appPojo.packageName, appPojo.activityName);
     }

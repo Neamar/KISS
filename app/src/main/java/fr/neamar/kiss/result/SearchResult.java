@@ -1,7 +1,5 @@
 package fr.neamar.kiss.result;
 
-import android.app.SearchManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -24,8 +21,8 @@ public class SearchResult extends Result {
     private final SearchPojo searchPojo;
 
     public SearchResult(SearchPojo searchPojo) {
-        super();
-        this.pojo = this.searchPojo = searchPojo;
+        super(searchPojo);
+        this.searchPojo = searchPojo;
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.text.Html;
 import android.text.Spanned;
@@ -42,7 +43,12 @@ public abstract class Result {
     /**
      * Current information pojo
      */
-    Pojo pojo = null;
+    final Pojo pojo;
+
+    protected Result(@NonNull Pojo pojo) {
+        this.pojo = pojo;
+    }
+
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
         if (pojo instanceof PojoWithTags && parent.showRelevance()) {
@@ -91,14 +97,13 @@ public abstract class Result {
      * @return text displayable on a textview
      */
     static Spanned enrichText(String text, Context context) {
+        //TODO: cache the result. We consume lots of CPU and RAM converting every time we display
         return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
     @Override
     public String toString() {
-        if (pojo != null)
-            return pojo.getName();
-        return super.toString();
+        return pojo.getName();
     }
 
     /**
@@ -259,17 +264,23 @@ public abstract class Result {
     void setAsyncDrawable(ImageView view) {
         // the ImageView tag will store the async task if it's running
         if (view.getTag() instanceof AsyncSetImage) {
-            ((AsyncSetImage) view.getTag()).cancel(true);
-            view.setTag(null);
+            AsyncSetImage asyncSetImage = (AsyncSetImage) view.getTag();
+            if (this.equals(asyncSetImage.appResultWeakReference.get())) {
+                // we are already loading the icon for this
+                return;
+            } else {
+                asyncSetImage.cancel(true);
+                view.setTag(null);
+            }
         }
         // the ImageView will store the Result after the AsyncTask finished
-        if ( this.equals(view.getTag()) )
-        {
-            ((Result)view.getTag()).setDrawableCache( view.getDrawable() );
+        else if (this.equals(view.getTag())) {
+            ((Result) view.getTag()).setDrawableCache(view.getDrawable());
             return;
         }
         if (isDrawableCached()) {
             view.setImageDrawable(getDrawable(view.getContext()));
+            view.setTag(this);
         } else {
             view.setTag(createAsyncSetImage(view).execute());
         }

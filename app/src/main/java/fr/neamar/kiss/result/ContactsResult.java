@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.FileNotFoundException;
@@ -35,8 +34,8 @@ public class ContactsResult extends Result {
     private Drawable icon = null;
 
     public ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
-        super();
-        this.pojo = this.contactPojo = contactPojo;
+        super(contactPojo);
+        this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
     }
 

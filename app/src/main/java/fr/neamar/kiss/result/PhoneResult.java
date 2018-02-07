@@ -21,8 +21,8 @@ public class PhoneResult extends Result {
     private final PhonePojo phonePojo;
 
     public PhoneResult(PhonePojo phonePojo) {
-        super();
-        this.pojo = this.phonePojo = phonePojo;
+        super(phonePojo);
+        this.phonePojo = phonePojo;
     }
 
     @Override
