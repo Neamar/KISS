@@ -10,6 +10,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.forwarder.Favorites;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoWithTags;
 
 /**
  * Retrieve pojos from history
@@ -48,8 +49,14 @@ public class HistorySearcher extends Searcher {
         List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler().getHistory(activity, getMaxResultCount(), smartHistory, favoritesPojo);
 
         int size = pojos.size();
-        for(int i = 0; i < size; i += 1) {
-            pojos.get(i).relevance = size - i;
+        for(int i = 0; i < pojos.size(); i += 1) {
+            Pojo pojo = pojos.get(i);
+            if (pojo instanceof PojoWithTags && !isTagFilterOk(activity, (PojoWithTags) pojo))
+            {
+                pojos.remove(i--);
+                continue;
+            }
+            pojo.relevance = size - i;
         }
 
         this.addResult(pojos.toArray(new Pojo[0]));

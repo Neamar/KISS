@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.CallSuper;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
@@ -13,18 +15,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.PriorityQueue;
+import java.util.TreeSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.result.Result;
 
 public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     // define a different thread than the default AsyncTask thread or else we will block everything else that uses AsyncTask while we search
     public static final ExecutorService SEARCH_THREAD = Executors.newSingleThreadExecutor();
+    static final Pattern patternTagSplit = Pattern.compile("\\s+");
     static final int DEFAULT_MAX_RESULTS = 50;
     private static final int DEFAULT_REFRESH_TIMER = 150;
     final WeakReference<MainActivity> activityWeakReference;
@@ -153,6 +159,49 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         long time = System.currentTimeMillis() - start;
         Log.v("Timing", "Time to run query `" + query + "` on " + getClass().getSimpleName() + " to completion: " + time + "ms");
     }
+
+    static boolean isTagFilterOk(@Nullable MainActivity activity, @NonNull PojoWithTags pojo) {
+        if (activity == null)
+            return false;
+        if (pojo.getTags() != null && !pojo.getTags().isEmpty()) {
+            // split tags string so we can search faster
+            TreeSet<String> tagList = null;
+            boolean excludeTagsPresent = !activity.getExcludeTags().isEmpty();
+            boolean includeTagsPresent = !activity.getIncludeTags().isEmpty();
+            if ( excludeTagsPresent || includeTagsPresent )
+            {
+                tagList = new TreeSet<>();
+                Collections.addAll(tagList, patternTagSplit.split(pojo.getTags()));
+            }
+
+            if ( excludeTagsPresent ) {
+                // remove pojos that contain tags that should be hidden
+                for (String tag : tagList) {
+                    if (activity.getExcludeTags().contains(tag)) {
+                        return false;
+                    }
+                }
+            }
+            if (includeTagsPresent) {
+                // remove pojos if they don't have the include tags
+                boolean bIncludeTagFound = false;
+                for (String tag : activity.getIncludeTags()) {
+                    if (tagList.contains(tag)) {
+                        bIncludeTagFound = true;
+                        break;
+                    }
+                }
+                if (!bIncludeTagFound) {
+                    return false;
+                }
+            }
+        } else if (!activity.getIncludeTags().isEmpty()) {
+            // if we have "must have" tags but the app has no tags, remove it
+            return false;
+        }
+        return true;
+    }
+
 
     public interface DataObserver {
         void beforeListChange();

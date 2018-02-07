@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -33,7 +32,6 @@ public class TagsSearcher extends Searcher
 			return null;
 		List<Pojo> results = KissApplication.getApplication(activity).getDataHandler().getApplications();
 
-		Pattern patternTagSplit = Pattern.compile("\\s+");
 		for( Iterator<Pojo> iterator = results.iterator(); iterator.hasNext(); )
 		{
 			Pojo pojo = iterator.next();
