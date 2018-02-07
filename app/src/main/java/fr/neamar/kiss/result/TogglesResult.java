@@ -26,8 +26,8 @@ public class TogglesResult extends Result {
     private TogglesHandler togglesHandler = null;
 
     public TogglesResult(TogglesPojo togglePojo) {
-        super();
-        this.pojo = this.togglePojo = togglePojo;
+        super(togglePojo);
+        this.togglePojo = togglePojo;
     }
 
     @SuppressWarnings({"ResourceType", "deprecation"})
@@ -75,25 +75,12 @@ public class TogglesResult extends Result {
                     togglesHandler.setState(togglePojo, toggleButton.isChecked());
 
                     toggleButton.setEnabled(false);
-                    new AsyncTask<Void, Void, Void>() {
-
+                    toggleButton.postDelayed(new Runnable() {
                         @Override
-                        protected Void doInBackground(Void... params) {
-                            try {
-                                Thread.sleep(1500);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            return null;
-                        }
-
-                        @Override
-                        protected void onPostExecute(Void result) {
-                            super.onPostExecute(result);
+                        public void run() {
                             toggleButton.setEnabled(true);
                         }
-
-                    }.execute();
+                    }, 1500);
                 }
             }
         });

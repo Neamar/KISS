@@ -34,8 +34,8 @@ public class ContactsResult extends Result {
     private Drawable icon = null;
 
     public ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
-        super();
-        this.pojo = this.contactPojo = contactPojo;
+        super(contactPojo);
+        this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
     }
 
@@ -60,6 +60,9 @@ public class ContactsResult extends Result {
         ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) view
                 .findViewById(R.id.item_contact_icon);
 
+        if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
+            icon = contactIcon.getDrawable();
+        }
         this.setAsyncDrawable(contactIcon);
 
         contactIcon.assignContactUri(Uri.withAppendedPath(
@@ -149,6 +152,11 @@ public class ContactsResult extends Result {
     @Override
     boolean isDrawableCached() {
         return icon != null;
+    }
+
+    @Override
+    void setDrawableCache(Drawable drawable) {
+        icon = drawable;
     }
 
     @SuppressWarnings("deprecation")

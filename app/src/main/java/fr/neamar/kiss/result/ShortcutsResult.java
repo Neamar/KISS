@@ -29,8 +29,8 @@ public class ShortcutsResult extends Result {
     private final ShortcutsPojo shortcutPojo;
 
     public ShortcutsResult(ShortcutsPojo shortcutPojo) {
-        super();
-        this.pojo = this.shortcutPojo = shortcutPojo;
+        super(shortcutPojo);
+        this.shortcutPojo = shortcutPojo;
     }
 
     @Override
