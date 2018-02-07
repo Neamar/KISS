@@ -1,6 +1,5 @@
 package fr.neamar.kiss.searcher;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -18,9 +17,12 @@ import fr.neamar.kiss.pojo.PojoWithTags;
 
 public class TagsSearcher extends Searcher
 {
-	public TagsSearcher( MainActivity activity )
+	private final boolean showOneTag;
+
+	public TagsSearcher( MainActivity activity, String query )
 	{
-		super( activity, "<tags>" );
+		super( activity, query == null ? "<tags>" : query );
+		showOneTag = query != null;
 	}
 
 	@Override
@@ -48,6 +50,13 @@ public class TagsSearcher extends Searcher
 			// split tags string so we can search faster
 			TreeSet<String> tagList = new TreeSet<>();
 			Collections.addAll( tagList, patternTagSplit.split( pojoWithTags.getTags() ) );
+
+			if (showOneTag)
+			{
+				if ( !tagList.contains(this.query) )
+					iterator.remove();
+				continue;
+			}
 
 			if ( !activity.getExcludeTags().isEmpty() ) {
 				// remove pojos that contain tags that should be hidden

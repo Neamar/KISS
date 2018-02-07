@@ -3,6 +3,7 @@ package fr.neamar.kiss.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +83,7 @@ public class ToggleTags
     public interface ToggleUpdatedListener
 	{
 		void onToggleUpdated();
-		void showMatchingTags();
+		void showMatchingTags( @Nullable String tag );
 	}
 
 	public ToggleTags()
@@ -231,26 +232,17 @@ public class ToggleTags
 	}
 
 	interface MenuItem {
-		String toString();
+	}
+
+	static class MenuItemDivider implements MenuItem {
 	}
 
 	static class MenuItemTag implements MenuItem
 	{
 		final String tag;
-		View view;
 
 		MenuItemTag(String tag) {
 			this.tag = tag;
-			this.view = null;
-		}
-
-		public void setView(View view) {
-			this.view = view;
-		}
-
-		@Nullable
-		public View getView() {
-			return view;
 		}
 
 		@Override
@@ -261,12 +253,12 @@ public class ToggleTags
 
 	static class MenuItemBtn implements MenuItem
 	{
+		final int nameRes;
 		final String name;
-		View view;
 
-		MenuItemBtn(String name) {
-			this.name = name;
-			this.view = null;
+		MenuItemBtn(Context context, @StringRes int nameRes) {
+			this.nameRes = nameRes;
+			this.name = context.getString(nameRes);
 		}
 
 		@Override
@@ -298,20 +290,19 @@ public class ToggleTags
 		public View getView(int position, View convertView, ViewGroup parent) {
 			MenuItem item = getItem(position);
 			String text = item.toString();
-			if ( item instanceof MenuItemTag ) {
+			if (item instanceof MenuItemDivider) {
+				return LayoutInflater.from(parent.getContext()).inflate(R.layout.popup_divider, parent, false);
+			} else if (item instanceof MenuItemTag) {
 				convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.popup_tag_menu, parent, false);
-				((MenuItemTag) item).setView(convertView);
 
 				TriToggleButton btn = (TriToggleButton) convertView.findViewById(R.id.toggle);
-				btn.setTextForState( STATE_HIDE, "\u2718" ); // ✘	heavy ballot x
-				btn.setTextForState( STATE_DEFAULT, "\u2325" ); // ⌥	option key
-				btn.setTextForState( STATE_SHOW, "\u2714" ); // ✔	heavy check mark
-				btn.setState( hiddenTagList.contains( text ) ? STATE_HIDE : (mustShowTagList.contains( text ) ? STATE_SHOW : STATE_DEFAULT) );
+				btn.setTextForState(STATE_HIDE, "\u2718"); // ✘	heavy ballot x
+				btn.setTextForState(STATE_DEFAULT, "\u2325"); // ⌥	option key
+				btn.setTextForState(STATE_SHOW, "\u2714"); // ✔	heavy check mark
+				btn.setState(hiddenTagList.contains(text) ? STATE_HIDE : (mustShowTagList.contains(text) ? STATE_SHOW : STATE_DEFAULT));
 				btn.setTag(text);
-				btn.setOnCheckedChangeListener( checkedChangeListener );
-			}
-			else
-			{
+				btn.setOnCheckedChangeListener(checkedChangeListener);
+			} else {
 				convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.popup_list_item, parent, false);
 			}
 
@@ -324,6 +315,16 @@ public class ToggleTags
 		public void add(MenuItem item) {
 			list.add(item);
 			notifyDataSetChanged();
+		}
+
+		@Override
+		public boolean areAllItemsEnabled() {
+			return false;
+		}
+
+		@Override
+		public boolean isEnabled(int position) {
+			return !(list.get(position) instanceof MenuItemDivider);
 		}
 	}
 
@@ -341,7 +342,10 @@ public class ToggleTags
 		{
 			adapter.add(new MenuItemTag(tag));
 		}
-		adapter.add(new MenuItemBtn(context.getString(R.string.ctx_menu)));
+		adapter.add(new MenuItemDivider());
+		adapter.add(new MenuItemBtn(context, R.string.show_matching));
+		adapter.add(new MenuItemDivider());
+		adapter.add(new MenuItemBtn(context, R.string.ctx_menu));
 
 		popupMenu.setAdapter(adapter);
 		popupMenu.setDismissOnItemClick(false);
@@ -352,23 +356,22 @@ public class ToggleTags
 				if ( adapterItem instanceof MenuItemTag )
 				{
 					MenuItemTag item = (MenuItemTag) adapterItem;
-					TriToggleButton btn = null;
-					if ( item.getView() != null )
-						btn = (TriToggleButton) item.getView().findViewById(R.id.toggle);
-					if ( mustShowTagList.add(item.tag) )
-					{
-						barNeedsRefresh = true;
-						if ( btn != null )
-							btn.setState( STATE_SHOW );
-						hiddenTagList.remove(item.tag);
-					}
-					toggleUpdatedListener.showMatchingTags();
+					// show only apps that match this tag
+					toggleUpdatedListener.showMatchingTags( item.tag );
 				}
 				else if ( adapterItem instanceof MenuItemBtn )
 				{
-					if ( ToggleTags.this.popupMenu != null )
-						ToggleTags.this.popupMenu.dismiss();
-					anchor.showContextMenu();
+					switch (((MenuItemBtn) adapterItem).nameRes)
+					{
+						case R.string.ctx_menu:
+							if ( ToggleTags.this.popupMenu != null )
+								ToggleTags.this.popupMenu.dismiss();
+							anchor.showContextMenu();
+							break;
+						case R.string.show_matching:
+							// show all matching
+							toggleUpdatedListener.showMatchingTags( null );
+					}
 				}
 			}
 		});

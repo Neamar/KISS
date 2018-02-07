@@ -841,15 +841,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onToggleUpdated() {
         toggleTags.saveHiddenTags(prefs);
-        if (searchEditText.getText().length() == 0)
-            showMatchingTags();
-        else
+        if (searchEditText.getText().length() == 0) {
+            // show all matching when the search bar is empty
+            showMatchingTags(null);
+        } else
             updateSearchRecords();
         toggleTags.showBar(prefs);
     }
 
     @Override
-    public void showMatchingTags() {
-        runTask(new TagsSearcher(this));
+    public void showMatchingTags( String tag ) {
+        runTask(new TagsSearcher(this, tag));
     }
 }
