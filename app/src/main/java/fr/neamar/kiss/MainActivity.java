@@ -40,6 +40,7 @@ import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
+import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
@@ -852,5 +853,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void showMatchingTags( String tag ) {
         runTask(new TagsSearcher(this, tag));
+
+        final View clearButton = findViewById(R.id.clearButton);
+        clearButton.setVisibility(View.VISIBLE);
+        menuButton.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showHistory() {
+        runTask(new HistorySearcher(this));
+
+        final View clearButton = findViewById(R.id.clearButton);
+        clearButton.setVisibility(View.VISIBLE);
+        menuButton.setVisibility(View.INVISIBLE);
     }
 }

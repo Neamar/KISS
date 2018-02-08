@@ -1,7 +1,9 @@
 package fr.neamar.kiss.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
@@ -84,6 +86,7 @@ public class ToggleTags
 	{
 		void onToggleUpdated();
 		void showMatchingTags( @Nullable String tag );
+		void showHistory();
 	}
 
 	public ToggleTags()
@@ -232,9 +235,32 @@ public class ToggleTags
 	}
 
 	interface MenuItem {
+    	@LayoutRes int getLayoutResource();
 	}
 
 	static class MenuItemDivider implements MenuItem {
+		@Override
+		public int getLayoutResource() {
+			return R.layout.popup_divider;
+		}
+	}
+
+	static class MenuItemTitle implements MenuItem {
+		final String name;
+
+		MenuItemTitle(Context context, @StringRes int nameRes) {
+			this.name = context.getString(nameRes);
+		}
+
+		@Override
+		public String toString() {
+			return name;
+		}
+
+		@Override
+		public int getLayoutResource() {
+			return R.layout.popup_title;
+		}
 	}
 
 	static class MenuItemTag implements MenuItem
@@ -248,6 +274,11 @@ public class ToggleTags
 		@Override
 		public String toString() {
 			return tag;
+		}
+
+		@Override
+		public int getLayoutResource() {
+			return R.layout.popup_tag_menu;
 		}
 	}
 
@@ -264,6 +295,11 @@ public class ToggleTags
 		@Override
 		public String toString() {
 			return name;
+		}
+
+		@Override
+		public int getLayoutResource() {
+			return R.layout.popup_list_item;
 		}
 	}
 
@@ -286,15 +322,15 @@ public class ToggleTags
 			return position;
 		}
 
+		@SuppressLint("ViewHolder")
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			MenuItem item = getItem(position);
 			String text = item.toString();
+			convertView = LayoutInflater.from(parent.getContext()).inflate(item.getLayoutResource(), parent, false);
 			if (item instanceof MenuItemDivider) {
-				return LayoutInflater.from(parent.getContext()).inflate(R.layout.popup_divider, parent, false);
+				return convertView;
 			} else if (item instanceof MenuItemTag) {
-				convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.popup_tag_menu, parent, false);
-
 				TriToggleButton btn = (TriToggleButton) convertView.findViewById(R.id.toggle);
 				btn.setTextForState(STATE_HIDE, "\u2718"); // ✘	heavy ballot x
 				btn.setTextForState(STATE_DEFAULT, "\u2325"); // ⌥	option key
@@ -302,8 +338,6 @@ public class ToggleTags
 				btn.setState(hiddenTagList.contains(text) ? STATE_HIDE : (mustShowTagList.contains(text) ? STATE_SHOW : STATE_DEFAULT));
 				btn.setTag(text);
 				btn.setOnCheckedChangeListener(checkedChangeListener);
-			} else {
-				convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.popup_list_item, parent, false);
 			}
 
 			TextView textView = (TextView) convertView.findViewById(android.R.id.text1);
@@ -324,7 +358,8 @@ public class ToggleTags
 
 		@Override
 		public boolean isEnabled(int position) {
-			return !(list.get(position) instanceof MenuItemDivider);
+			MenuItem item = list.get(position);
+			return (item instanceof MenuItemTag) || (item instanceof MenuItemBtn);
 		}
 	}
 
@@ -338,15 +373,19 @@ public class ToggleTags
 		popupMenu = new ListPopup(context);
 		MenuAdapter adapter = new MenuAdapter();
 
+		//build menu
+		adapter.add(new MenuItemTitle(context, R.string.popup_tags_title));
 		for ( String tag : togglableTagList )
 		{
 			adapter.add(new MenuItemTag(tag));
 		}
-		adapter.add(new MenuItemDivider());
+		adapter.add(new MenuItemTitle(context, R.string.popup_tags_actions));
 		adapter.add(new MenuItemBtn(context, R.string.show_matching));
+		adapter.add(new MenuItemBtn(context, R.string.show_history));
 		adapter.add(new MenuItemDivider());
 		adapter.add(new MenuItemBtn(context, R.string.ctx_menu));
 
+		// set popup interaction rules
 		popupMenu.setAdapter(adapter);
 		popupMenu.setDismissOnItemClick(false);
 		popupMenu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
@@ -368,9 +407,13 @@ public class ToggleTags
 								ToggleTags.this.popupMenu.dismiss();
 							anchor.showContextMenu();
 							break;
+						case R.string.show_history:
+							toggleUpdatedListener.showHistory();
+							break;
 						case R.string.show_matching:
 							// show all matching
 							toggleUpdatedListener.showMatchingTags( null );
+							break;
 					}
 				}
 			}

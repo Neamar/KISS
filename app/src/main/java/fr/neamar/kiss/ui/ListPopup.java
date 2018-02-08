@@ -100,7 +100,8 @@ public class ListPopup extends PopupWindow {
         for (int i = 0; i < adapterCount; i += 1) {
             View view = mAdapter.getView(i, null, layout);
             layout.addView(view);
-            view.setOnClickListener(mClickListener);
+            if ( mAdapter.isEnabled(i) )
+                view.setOnClickListener(mClickListener);
         }
     }
 
