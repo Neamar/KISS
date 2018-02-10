@@ -1,5 +1,6 @@
 ---
 question: One of my favorite is missing from KISS!
+layout: question
 ---
 
 This will happen if the favorite isn't available to KISS anymore, for instance:
