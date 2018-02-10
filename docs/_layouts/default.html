@@ -14,6 +14,19 @@
   </head>
   <body>
     <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="http://kisslauncher.com">KISS Launcher</a></li>
+          {% if page.question == nil %}
+          <li class="breadcrumb-item active">Documentation</li>
+          {% else %}
+          <li class="breadcrumb-item"><a href="{% link index.html %}">Documentation</a></li>
+          {% endif %}
+          {% if page.question %}
+          <li class="breadcrumb-item active" aria-current="page">{{ page.question }}</li>
+          {% endif %}
+        </ol>
+      </nav>
       <h1>{{page.title}}</h1>
 
       {{ content }}

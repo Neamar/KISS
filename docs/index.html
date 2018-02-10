@@ -1,4 +1,13 @@
 ---
 title: KISS Launcher documentation
+layout: default
 ---
 
+Welcome to KISS Launcher documentation hub.
+
+<h2>Questions list</h2>
+<ul>
+{% for question in site.questions %}
+  <li><a href="questions/{{ question.slug }}/">{{ question.question }}</a></li>
+{% endfor %}
+</ul>
