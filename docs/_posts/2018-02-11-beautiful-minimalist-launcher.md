@@ -6,6 +6,8 @@ description: "Example settings for a beautiful, minimalist launcher."
 type: Document
 ---
 
+Here are some example minimalist configurations from KISS.
+
 ## Example 1: minimalist, dark theme
 ![Image: Derk Wola](/screenshots/example-minimalist-1.png)
 > Image: Derk Wola
