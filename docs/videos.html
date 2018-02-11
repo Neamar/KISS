@@ -1,7 +1,0 @@
----
----
-{% assign videos = site.posts | where: "type", "Video" | sort: "title" %}
-
-<h2>Videos <span class="count">({{ videos | size }})</span></h2>
-
-{% include listings.html listings=videos %}
