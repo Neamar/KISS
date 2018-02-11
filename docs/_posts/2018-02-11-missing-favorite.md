@@ -1,6 +1,9 @@
 ---
-question: One of my favorite is missing from KISS!
-layout: question
+title: Fix missing favorite
+categories:
+  - favorites
+description: "One of my favorite is missing from KISS!"
+type: Document
 ---
 
 This will happen if the favorite isn't available to KISS anymore, for instance:

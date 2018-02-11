@@ -1,0 +1,378 @@
+.count {
+	color: $light-grey;
+	font-size: .7em;
+	position: relative;
+	top: -2px;
+}
+
+.categories {
+	display: flex;
+	flex-wrap:wrap;
+	flex-direction:row;
+	justify-content:flex-start;
+	align-items:stretch;
+	font-size: .9em;
+
+	h3 {
+		font-size: 2.75rem;
+		margin-bottom: 20px;
+	}
+}
+
+.category {
+	flex: 0 0 100%;
+
+	h3 {
+		text-transform:capitalize;
+	}
+
+	@media #{$mid-point} {
+		flex: 0 0 50%;
+	}
+
+	@media #{$desktop} {
+		flex: 0 0 33%;
+	}
+	margin: 0 0 30px 0;
+
+	ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	li {
+		margin-right: 15px;
+		a {
+			padding: 2px 0;
+			display: flex;
+			font-size: 1.1em;
+			align-items: center;
+
+			svg {
+				margin: 0 5px 0 0;
+				fill: $link-color;
+				width: 25px;
+				height: 25px;
+				-webkit-transition: all .2s ease;
+			}
+
+			&:hover {
+				text-decoration: none;
+				svg {
+					fill: $link-hover-color;
+					width: 30px;
+					height: 30px;
+				}
+			}
+		}
+	}
+}
+
+.tutorial {
+	display: flex;
+
+	h2 {
+		margin-top: 40px;
+	}
+
+	.sidebar {
+		display: none;
+		padding: 0 20px 0 0;
+		position: absolute;
+    top: 85px;
+		width: 200px;
+
+		@media #{$mid-point} {
+			display: block;
+		}
+
+		h3 {
+			margin-top: 0;
+		}
+
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+
+			li {
+				margin: 0 0 15px 0;
+			}
+		}
+
+		a {
+			color: $medium-grey;
+			text-decoration: none;
+			display: block;
+			-webkit-transition: transform .2s ease;
+			line-height: 1.3em;
+
+			&.active {
+				color: $link-color;
+				transform: translateX(10px);
+			}
+		}
+	}
+
+	.tutorial-content {
+		width: 100%;
+
+		@media #{$mid-point} {
+			margin-left: 230px;
+		}
+	}
+}
+
+.listing {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-flow: wrap;
+
+	li {
+		margin: 10px 0;
+		padding: 0;
+		width: 100%;
+		@media #{$mid-point} {
+			flex: 0 0 50%;
+		}
+	}
+
+	h3 {
+		margin: 0;
+		font-size: 1.3em;
+	}
+
+	a {
+		display: flex;
+		text-decoration: none;
+		padding: 5px;
+		border-radius: 5px;
+		height: 100%;
+
+		article {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+
+		.icon {
+			flex: 0 0 50px;
+			display: flex;
+			align-items: center;
+			padding: 0 5px 0 0;
+			svg {
+				width: 35px;
+				height: 35px;
+				fill: $link-color;
+				-webkit-transition: all .2s ease;
+				margin: 0 auto;
+			}
+		}
+
+		.length {
+			color: $light-grey;
+			font-size: .8em;
+		}
+
+		&:hover {
+			svg {
+				fill: $link-hover-color;
+				width: 40px;
+				height: 40px;
+			}
+		}
+
+		p {
+			margin: 5px 0 0 0;
+			color: #888;
+			font-size: .9em;
+			line-height: 1.4em;
+			width: 100%;
+		}
+	}
+}
+
+.tutorial-share {
+
+	a {
+		color: $medium-grey;
+		text-decoration: none;
+		margin-right: 10px;
+
+		&:hover {
+			color: $dark-grey;
+
+			svg {
+				fill: $dark-grey;
+			}
+		}
+	}
+
+	svg {
+		fill: $medium-grey;
+		position: relative;
+		top: 5px;
+		width: 20px;
+	}
+}
+
+.sharing {
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+
+		li {
+			margin: 10px 0 0 0;
+		}
+
+		svg {
+			background-color: black;
+			fill: #fff;
+			padding: 6px;
+			border-radius: 3px;
+			margin: 0 10px 0 0;
+			transition: border-radius 200ms ease-in;
+
+			&.email {
+				background-color: #ff9d09;
+			}
+
+			&.facebook {
+				background-color: #3b5998;
+			}
+
+			&.twitter {
+				background-color: #55acee;
+			}
+
+			&.google-plus {
+				background-color: #db4437;
+			}
+
+			&.youtube {
+				background-color: #cd201f;
+			}
+
+			&.instagram {
+				background-color: #f167f5;
+			}
+
+			&.linkedin {
+				background-color: #0077b5;
+			}
+
+			&.pinterest {
+				background-color: #bd081c;
+			}
+
+			&.hacker-news {
+				background-color: #ff6600;
+			}
+
+			&.designer-news {
+				background-color: #2d72d9;
+			}
+		}
+	}
+
+	a {
+		text-decoration: none;
+		padding: 3px 0;
+		display: flex;
+		align-items: center;
+		font-size: 1.1em;
+		color: #666;
+
+		&:hover {
+			color: #111;
+		}
+	}
+}
+
+.related, .tutorial-series {
+	margin: 50px 0;
+	padding: 20px 0;
+
+	ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+}
+
+.tutorial-series {
+	ul {
+		padding: 0 0 0 20px;
+	}
+
+	li:last-child a:after {
+		background: none;
+		height: 0;
+		width: 0;
+	}
+
+	li {
+		flex: 0 0 100%;
+		margin: 0;
+
+		a {
+			position: relative;
+			margin: 0 0 20px 0;
+			&:before {
+				content: "\25BA";
+				position: absolute;
+				display: block;
+				top: 50%;
+				-webkit-transform: translateY(-50%);
+				-moz-transform: translateY(-50%);
+				-ms-transform: translateY(-50%);
+				transform: translateY(-50%);
+				left: -23px;
+				color: #e0e0e0;
+				z-index: 1;
+			}
+
+			&:after {
+				content: "";
+				display: block;
+				left: -22px;
+				background: #e0e0e0;
+				position: absolute;
+				bottom: -43px;
+				width: 2px;
+				top: 39px;
+			}
+		}
+
+		&.active a:before {
+			color: $medium-grey;
+		}
+	}
+
+	h4 {
+		margin: 0;
+	}
+}
+
+.resources {
+	background: #fafafa;
+	padding: 15px;
+	border: 1px solid #eee;
+	border-top: 0;
+	margin: 0 0 30px 0;
+	h3 {
+		margin-top: 0;
+	}
+
+	ul {
+		margin: 0;
+	}
+
+	li {
+		margin: 0;
+	}
+}

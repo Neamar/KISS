@@ -1,6 +1,9 @@
 ---
-question: How to add a widget?
-layout: question
+title: How to add a widget?
+categories:
+  - widgets
+description: "Customize your KISS launcher with a widget on the home screen."
+type: Document
 ---
 
 KISS only supports widget in `Minimalistic UI`.

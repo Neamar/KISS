@@ -1,13 +1,26 @@
 ---
-title: KISS Launcher documentation
-layout: default
 ---
 
-Welcome to KISS Launcher documentation hub.
+<section class="categories">
+	{% assign categories = site.categories | sort %}
+	{% for category in categories %}
+		{% assign name = category[0] %}
+		{% assign posts = category[1] %}
+		{% assign size = posts | size %}
+		<section class="category">
+				<h3>
+					<a href="{{ site.baseurl }}/category/{{ name | slugify }}/">{{ name | replace: "-", " " }}</a>
+				</h3>
 
-<h2>Questions list</h2>
-<ul>
-{% for question in site.questions %}
-  <li><a href="questions/{{ question.slug }}/">{{ question.question }}</a></li>
-{% endfor %}
-</ul>
+			<ul>
+				{% assign tutorials = posts | sort: "title" %}
+				{% for tutorial in tutorials limit: 4 %}
+					<li><a href="{{ site.baseurl }}{{ tutorial.url }}">{% include document-icon.html icon=tutorial.type %}{{ tutorial.title }}</a></li>
+				{% endfor %}
+				{% if size > 4 %}
+					<li><a href="{{ site.baseurl }}/category/{{ name | slugify }}/">{{ size | minus: 4 }} more...</a></li>
+				{% endif %}
+			</ul>
+		</section>
+	{% endfor %}
+</section>
