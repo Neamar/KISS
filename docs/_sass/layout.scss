@@ -1,0 +1,51 @@
+.wrapper {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 0 30px;
+	position: relative;
+}
+
+.logo {
+	img {
+		height: 30px;
+	}
+}
+
+.content {
+	background: #fff;
+	padding: 60px 0;
+}
+
+dt, h2 {
+	a.header-link {
+		text-decoration: none;
+		color: #ccc;
+		opacity: 0;
+		transition: opacity ease .2s,color ease .2s;
+		vertical-align: bottom;
+		margin: 0 0 0 5px;
+
+		&:hover {
+			color: $link-color;
+		}
+	}
+
+	&:hover a {
+		opacity: 1;
+	}
+}
+
+.video_wrapper {
+	position: relative;
+	padding-bottom: 59.5%;
+	padding-top: 25px;
+	height: 0;
+
+	iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}

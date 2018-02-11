@@ -1,0 +1,162 @@
+@media #{$mid-point} {
+	.show_hero_search header nav form {
+		display: none;
+	}
+
+	.show_hero_search .hero_search {
+		display: block;
+	}
+}
+
+header {
+	padding: 16px 0 10px 0;
+	background: $header-color;
+	color: #fff;
+
+	form {
+		position: relative;
+
+		input[type=search] {
+			box-sizing: border-box;
+			width: 100%;
+		}
+	}
+
+	.top-bar {
+		@media #{$mid-point} {
+			display: flex;
+		}
+
+		.logo {
+			a {
+				display: block;
+				line-height: 0;
+			}
+
+			svg {
+				fill: #fff;
+				width: 100%;
+				height: 46px;
+				min-width: 100px;
+			}
+		}
+
+		form svg {
+			fill: #eee;
+		}
+	}
+
+	nav {
+		@media #{$mid-point} {
+			flex: 1;
+			margin: 0 0 0 10px;
+			display: block;
+
+			form {
+				position: absolute;
+				right: 25px;
+				top: 4px;
+				text-align: right;
+			}
+
+			input[type="search"] {
+				max-width: 300px;
+			}
+		}
+		display: none;
+
+		input[type="search"] {
+			width: 100%;
+			padding: 5px 10px;
+		}
+
+		svg {
+			position: absolute;
+			top: 6px;
+			right: 7px;
+			width: 25px;
+			cursor: pointer;
+		}
+
+		a {
+			color: #fff;
+			text-decoration: none;
+			display: block;
+			padding: 20px 0;
+
+			@media #{$mid-point} {
+				display: inline-block;
+				padding: 7px 0;
+				margin: 0 15px;
+				border-bottom: 2px solid rgba(255, 255, 255, 0)
+			}
+
+			&.active, &.active:hover {
+				border-bottom-color: rgba(255, 255, 255, .3);
+			}
+
+			&:hover {
+				text-decoration: none;
+				color: #fff;
+				@media #{$mid-point} {
+					border-bottom-color: rgba(255, 255, 255, .1);
+				}
+			}
+		}
+	}
+}
+
+.nav-open header nav {
+	display: block;
+}
+
+.nav-toggle {
+	position: absolute;
+	right: 25px;
+	font-size: 1.6em;
+	line-height: 1em;
+	text-decoration: none;
+	color: #fff;
+	top: 4px;
+
+	@media #{$mid-point} {
+		display: none;
+	}
+}
+
+.hero_search {
+	display: none;
+	text-align: center;
+	flex: 0 0 100%;
+	padding: 60px 0 30px 0;
+
+	form {
+		position: relative;
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px 0;
+
+		svg {
+			fill: #eee;
+			position: absolute;
+			top: 31px;
+			right: 12px;
+			display: inline-block;
+			width: 36px;
+			height: 40px;
+			cursor: pointer;
+		}
+	}
+
+	h1 {
+		// font-size: 2.4em;
+		color: #fff;
+	}
+
+	input[type=search] {
+		margin: 0;
+		color: #555;
+		padding: 15px;
+		font-size: 1.1em;
+	}
+}

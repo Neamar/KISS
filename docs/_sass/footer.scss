@@ -1,0 +1,45 @@
+footer {
+	background: #343642;
+	color: #fff;
+	padding: 20px 0;
+
+	.edit-footer {
+		text-align: center;
+		margin: 0;
+	}
+
+	.copyright {
+		color: $medium-grey;
+		margin: 0;
+		text-align: center;
+		font-size: .9em;
+	}
+
+	a {
+		color: #fff;
+		text-decoration: none;
+
+		&:hover svg {
+			fill: #fff;
+		}
+	}
+
+	ul {
+		padding: 0;
+		list-style: none;
+		margin: 0;
+		text-align: center;
+	}
+
+	li {
+		display: inline-block;
+		margin: 0 6px 15px 0;
+	}
+
+	svg {
+		fill: $medium-grey;
+		position: relative;
+		top: 5px;
+		transition: fill 200ms ease-in;
+	}
+}

@@ -1,0 +1,64 @@
+.modalDialog {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.6);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 200ms ease-in;
+	-moz-transition: opacity 200ms ease-in;
+	transition: opacity 200ms ease-in;
+	pointer-events: none;
+
+	&.show {
+		opacity:1;
+		pointer-events: auto;
+	}
+
+	& > div {
+		max-width: 600px;
+		position: relative;
+		margin: 10% auto;
+		padding: 130px 40px 40px;
+		border-radius: 3px;
+		background: #fff;
+		box-sizing: border-box;
+	}
+
+	h2 {
+		font-weight: bold;
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 0 40px;
+		line-height: 100px;
+		width: 100%;
+		box-sizing: border-box;
+		background: #eee;
+		border-radius: 2px 2px 0 0;
+	}
+
+	p {
+		font-size: .9em;
+		line-height: 1.3em;
+		margin: 0 0 20px 0;
+	}
+
+	input[type="email"] {
+		font-size: 1em;
+	}
+
+	.close {
+		position: absolute;
+		top: 33px;
+		right: 35px;
+		font-size: 1.5em;
+		width: 25px;
+		height: 25px;
+		cursor: pointer;
+		z-index: 99;
+		font-size: 30px;
+	}
+}
