@@ -46,6 +46,7 @@ public class StringNormalizer {
             String decomposedCharString = Normalizer.normalize(charBuffer, Normalizer.Form.NFKD);
             charBuffer.delete(0, charBuffer.length());
 
+            int mapIdx = resultString.length();
             // `inputChar` codepoint may be decomposed to four (or maybe even more) new code points
             int decomposedCharOffset = 0;
             while (decomposedCharOffset < decomposedCharString.length()) {
@@ -66,7 +67,6 @@ public class StringNormalizer {
                         break;
 
                     default:
-                        int mapIdx = resultString.length();
                         int lwrCodePoint = Character.toLowerCase(resultChar);
                         resultString.appendCodePoint( lwrCodePoint );
                         if ( Character.charCount( lwrCodePoint ) == 2 )
