@@ -1,0 +1,14 @@
+<footer>
+	<div class="wrapper">
+		<ul class="footer-links">
+			{% for link in site.data.footer %}
+				<li><a {% if link.new_window %}target="_blank"{% endif %} href="{% include relative-src.html src=link.link %}" {% if link.social_icon %}class="{{ link.social_icon }}-icon"{% endif %}>
+					{% if link.social_icon %}
+						{% include social-icon.html icon=link.social_icon %}
+					{% endif %}
+					{{ link.name }}</a></li>
+			{% endfor %}
+		</ul>
+		<p class="copyright">KISS is free. Feel free to fork and reuse!</p>
+	</div>
+</footer>

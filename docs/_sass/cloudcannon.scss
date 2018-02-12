@@ -1,0 +1,32 @@
+.editor-link {
+ 	display: none;
+	margin-top: 0;
+	border: 0;
+	border-radius: 2px;
+	box-sizing: border-box;
+	text-decoration: none;
+	margin: 0;
+	cursor: pointer;
+	background-color: #f7e064;
+	color: #333;
+	box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+	&:hover {
+		background-color: #f4d525;
+		color: #333;
+	}
+}
+
+.cms-editor-active .editor-link {
+	display: block;
+}
+
+.cms-editor-active nav .editor-link {
+	display: inline;
+}
+
+.cms-editor-active .sidebar .editor-link {
+	display: inline-block;
+	margin: 0 auto 20px auto;
+	padding: 10px 20px;
+}
