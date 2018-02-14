@@ -188,10 +188,10 @@ public class ListPopup extends PopupWindow {
             if ((event.getAction() == MotionEvent.ACTION_DOWN)
                     && ((x < 0) || (x >= getWidth()) || (y < 0) || (y >= getHeight()))) {
                 dismiss();
-                return true;
+                return false;
             } else if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
                 dismiss();
-                return true;
+                return false;
             }
             return super.dispatchTouchEvent(event);
         }
