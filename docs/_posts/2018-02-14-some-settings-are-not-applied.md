@@ -1,5 +1,5 @@
 ---
-title: My new settings are not applied!
+title: My new setting is not applied!
 categories:
   - UI
 description: "What to do when KISS UI doesn't reflect your settings changes"
