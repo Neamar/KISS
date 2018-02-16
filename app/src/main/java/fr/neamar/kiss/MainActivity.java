@@ -1197,6 +1197,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             listEmpty.setVisibility(View.GONE);
             //add widget to view
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+            if (appWidgetInfo == null) {
+                removeAllWidgets();
+                return;
+            }
             AppWidgetHostView hostView = mAppWidgetHost.createView(this, appWidgetId, appWidgetInfo);
             hostView.setMinimumHeight(appWidgetInfo.minHeight);
             hostView.setAppWidget(appWidgetId, appWidgetInfo);
