@@ -7,6 +7,7 @@ import java.util.List;
 import fr.neamar.kiss.loader.LoadShortcutsPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -62,6 +63,37 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
                     return;
             }
         }
+    }
+
+    /**
+     * Return a Pojo
+     *
+     * @param id              we're looking for
+     * @param allowSideEffect do we allow this function to have potential side effect? Set to false to ensure none.
+     * @return an AppPojo, or null
+     */
+    public Pojo findById(String id, Boolean allowSideEffect) {
+        for (Pojo pojo : pojos) {
+            if (pojo.id.equals(id)) {
+                // Reset displayName to default value
+                if (allowSideEffect) {
+                    pojo.displayName = pojo.getName();
+                    if (pojo instanceof PojoWithTags) {
+                        PojoWithTags tagsPojo = (PojoWithTags) pojo;
+                        tagsPojo.displayTags = tagsPojo.getTags();
+                    }
+                }
+                return pojo;
+            }
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public Pojo findById(String id) {
+        return findById(id, true);
     }
 
     public Pojo findByName(String name) {
