@@ -10,4 +10,4 @@ KISS has a lot of settings, and sometimes updating multiples settings together c
 
 KISS does its best to automatically refresh itself when changing settings, but if you're not seeing the changes you're expecting you can force a reboot of KISS by going to `⋮, KISS Settings, Advanced Settings, Restart KISS`.
 
-> Please note that if you're using KISS as an assist app, and not as a launcher, this will just quit the app and you'll need to re-open KISS manually.
+> Please note that if you're using KISS as [an assist app](/advanced/how-to-use-kiss-as-an-assist-app/), and not as a launcher, this will just quit the app and you'll need to re-open KISS manually.
