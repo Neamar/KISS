@@ -1,7 +1,7 @@
 ---
 title: My new setting is not applied!
 categories:
-  - UI
+  - Bugs
 description: "What to do when KISS UI doesn't reflect your settings changes"
 type: Document
 ---
