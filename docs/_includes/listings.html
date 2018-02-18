@@ -1,8 +1,8 @@
-<ul class="listing">
+<ul class="listing two-columns">
 	{% for item in include.listings %}
 		<li {% if item.url == page.url %}class="active"{% endif %}>
 			<a href="{{ site.baseurl }}{{ item.url }}">
-				<div class="icon">{% include document-icon.html icon=item.type %}</div>
+				{% include document-icon.html icon=item.type %}
 				<article>
 					<div>
 						<h3>{% if include.numbered %}{{ forloop.index }}. {% endif %}{{ item.title }}</h3>
