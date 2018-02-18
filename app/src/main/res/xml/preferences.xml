@@ -69,6 +69,23 @@
         <fr.neamar.kiss.preference.ColorPreference
             android:key="primary-color"
             android:title="@string/main_color" />
+        <PreferenceCategory android:title="@string/misc">
+            <fr.neamar.kiss.SwitchPreference
+                android:key="transparent-search"
+                android:title="@string/transparent_search_bar" />
+            <fr.neamar.kiss.SwitchPreference
+                android:key="transparent-favorites"
+                android:title="@string/transparent_favorites_bar" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="large-search-bar"
+                android:title="@string/large_search_bar" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="ux-holder"
+        android:title="@string/title_ux"
+        android:summary="@string/user_experience_summary">
         <PreferenceCategory android:title="@string/keyboard_options">
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
@@ -145,17 +162,6 @@
                 android:key="icons-hide"
                 android:summary="@string/icons_hide_desc"
                 android:title="@string/icons_hide_main" />
-
-            <fr.neamar.kiss.SwitchPreference
-                android:key="transparent-search"
-                android:title="@string/transparent_search_bar" />
-            <fr.neamar.kiss.SwitchPreference
-                android:key="transparent-favorites"
-                android:title="@string/transparent_favorites_bar" />
-            <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="false"
-                android:key="large-search-bar"
-                android:title="@string/large_search_bar" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
