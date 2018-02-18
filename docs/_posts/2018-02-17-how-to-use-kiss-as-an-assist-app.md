@@ -41,4 +41,4 @@ Go to `Settings > Apps > Google App (Or current default app) > CLEAR DEFAULTS`
 Then hold home and select KISS as default
 
 
-> This answer is based on (this reddit thread)[https://www.reddit.com/r/opensource/comments/5i47sr/kiss_an_open_source_blazingly_fast_launcher_for/]
+> This answer is based on [this reddit thread](https://www.reddit.com/r/opensource/comments/5i47sr/kiss_an_open_source_blazingly_fast_launcher_for/)
