@@ -3,7 +3,8 @@
     android:title="@string/activity_setting">
     <PreferenceScreen
         android:key="history_category"
-        android:title="@string/title_history">
+        android:title="@string/title_history"
+        android:summary="@string/history_settings_summary">
         <fr.neamar.kiss.preference.ResetPreference
             android:dialogMessage="@string/reset_warn"
             android:key="reset"
@@ -50,7 +51,8 @@
     </PreferenceScreen>
     <PreferenceScreen
         android:key="ui-holder"
-        android:title="@string/title_ui">
+        android:title="@string/title_ui"
+        android:summary="@string/user_interface_summary">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
@@ -158,6 +160,7 @@
     </PreferenceScreen>
     <PreferenceScreen
         android:key="providers"
+        android:summary="@string/providers_summary"
         android:title="@string/title_providers">
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="true"
