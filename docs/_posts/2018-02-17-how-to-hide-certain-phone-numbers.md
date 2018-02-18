@@ -24,6 +24,6 @@ From now on, only this phone number will be displayed for this contact.
 
 ![Default phone number](/screenshots/contact-multiple-default-phone-number.png)
 
-> On some older phones, you'll need to restart KISS for the change to be visible: `⋮, KISS Settings, Advanced Settings, Restart KISS`.
+> On some older phones, you'll need to restart KISS for the change to be visible: `⋮, KISS Settings, Advanced settings, Restart KISS`.
 
 To revert the change, view your contact again, long press the default phone number and select "Clear default". All phones numbers will be displayed again.

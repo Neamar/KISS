@@ -11,7 +11,7 @@ You may notice that some of your contacts are missing, even though you can see t
 There can be multiple reasons for this:
 
 ### Contact was just added or edited
-Some devices don't notify properly when the contact database is updated. You'll need to manually restart KISS, which will force a synchronisation with the contact database: `⋮, KISS Settings, Advanced Settings, Restart KISS`.
+Some devices don't notify properly when the contact database is updated. You'll need to manually restart KISS, which will force a synchronisation with the contact database: `⋮, KISS Settings, Advanced settings, Restart KISS`.
 
 ### Contact doesn't have a phone number
 Contacts without a phone number are not displayed in KISS, as KISS only provides tooling for phone and messages.
