@@ -3,8 +3,8 @@
     android:title="@string/activity_setting">
     <PreferenceScreen
         android:key="history_category"
-        android:title="@string/title_history"
-        android:summary="@string/history_settings_summary">
+        android:summary="@string/history_settings_summary"
+        android:title="@string/title_history">
         <fr.neamar.kiss.preference.ResetPreference
             android:dialogMessage="@string/reset_warn"
             android:key="reset"
@@ -45,8 +45,8 @@
     </PreferenceScreen>
     <PreferenceScreen
         android:key="history_favorites"
-        android:title="@string/title_favorites"
-        android:summary="@string/history_favorites_summary">
+        android:summary="@string/history_favorites_summary"
+        android:title="@string/title_favorites">
         <fr.neamar.kiss.preference.ResetFavoritesPreference
             android:dialogMessage="@string/reset_favorites_warn"
             android:key="reset"
@@ -54,14 +54,14 @@
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="true"
             android:key="enable-favorites-bar"
-            android:summaryOn="Display favorites above the search bar"
             android:summaryOff="Only display favorites when pressing the KISS icon"
+            android:summaryOn="Display favorites above the search bar"
             android:title="@string/enable_favorites_bar" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="ui-holder"
-        android:title="@string/title_ui"
-        android:summary="@string/user_interface_summary">
+        android:summary="@string/user_interface_summary"
+        android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"
             android:entries="@array/themesEntries"
@@ -93,8 +93,8 @@
     </PreferenceScreen>
     <PreferenceScreen
         android:key="ux-holder"
-        android:title="@string/title_ux"
-        android:summary="@string/user_experience_summary">
+        android:summary="@string/user_experience_summary"
+        android:title="@string/title_ux">
         <PreferenceCategory android:title="@string/keyboard_options">
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
