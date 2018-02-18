@@ -6,14 +6,19 @@ import android.graphics.BitmapFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
 
+    private TagsHandler tagsHandler;
+
     public LoadShortcutsPojos(Context context) {
         super(context, ShortcutsPojo.SCHEME);
+        tagsHandler = KissApplication.getDataHandler(context).getTagsHandler();
     }
 
     @Override
@@ -30,6 +35,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
                 pojo.icon = BitmapFactory.decodeByteArray(shortcutRecord.icon_blob, 0, shortcutRecord.icon_blob.length);
             }
 
+            pojo.setTags(tagsHandler.getTags(pojo.id));
             pojos.add(pojo);
         }
 

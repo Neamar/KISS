@@ -15,7 +15,7 @@ KISS comes with 6 pre-defined themes:
 * Dark-semi-transparent theme, to dim your wallpaper
 * Dark transparent theme, for really light wallpapers
 
-Not all themes will work correctly with all wallpapers, make sure you pick a theme that you like and that doesn't block legibility!
+Not all themes will work correctly with all wallpapers, make sure you pick a theme that you like, and that doesn't block legibility!
 
 To change your theme, click `⋮, KISS Settings, User Interface, Theme interface`.
 
@@ -38,4 +38,3 @@ Below is a preview of the built-in themes.
 
 ## Dark transparent theme
 ![Dark transparent theme](/screenshots/dark-transparent-theme.png)
-

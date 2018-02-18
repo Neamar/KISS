@@ -8,17 +8,26 @@
 		{% assign posts = category[1] %}
 		{% assign size = posts | size %}
 		<section class="category">
-				<h3>
-					<a href="{{ site.baseurl }}/category/{{ name | slugify }}/">{{ name | replace: "-", " " }}</a>
-				</h3>
+			<h3>
+				<a href="{{ site.baseurl }}/category/{{ name | slugify }}/">{{ name | replace: "-", " " }}</a>
+			</h3>
 
-			<ul>
+			<ul class="listing">
 				{% assign tutorials = posts | sort: "title" %}
 				{% for tutorial in tutorials limit: 4 %}
-					<li><a href="{{ site.baseurl }}{{ tutorial.url }}">{% include document-icon.html icon=tutorial.type %}{{ tutorial.title }}</a></li>
+					<li>
+						<a href="{{ site.baseurl }}{{ tutorial.url }}">
+							{% include document-icon.html icon=tutorial.type %}
+							<article>{{ tutorial.title }}</article>
+						</a>
+					</li>
 				{% endfor %}
 				{% if size > 4 %}
-					<li><a href="{{ site.baseurl }}/category/{{ name | slugify }}/">{{ size | minus: 4 }} more...</a></li>
+					<li>
+						<a href="{{ site.baseurl }}/category/{{ name | slugify }}/">
+							{{ size | minus: 4 }} more...
+						</a>
+					</li>
 				{% endif %}
 			</ul>
 		</section>
