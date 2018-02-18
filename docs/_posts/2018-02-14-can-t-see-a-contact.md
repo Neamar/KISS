@@ -1,5 +1,5 @@
 ---
-title: One of my contact does not appear in KISS
+title: One of my contacts does not appear in KISS
 categories:
   - UI
 description: "What to do when a contact is not listed in KISS"
@@ -21,4 +21,4 @@ To access this contact, you'll need to search in KISS for "Contacts" and open th
 ### Contact isn't part of your personal contact list
 This will happen if your company uses Google Apps. The company directory will appear in contacts, but it isn't downloaded locally to the phone. As KISS doesn't have permission to access the Internet, it won't be able to display those contacts.
 
-To fix this, you can open one of the missing contact in the *Contacts* app and click on the "+" icon to add the contact to one of your local account.
+To fix this, you can open one of the missing contacts in the *Contacts* app and click on the "+" icon to add the contact to one of your local accounts.

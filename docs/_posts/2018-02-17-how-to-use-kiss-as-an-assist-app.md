@@ -7,7 +7,7 @@ type: Document
 ---
 
 KISS was built to be used as a launcher.
-However, if you'd rather keep your default launcher and only use KISS for search, you can setup KISS to appear automatically when you long press the Home button. This is called an assist app in Android.
+However, if you'd rather keep your default launcher and only use KISS for search, you can setup KISS to appear automatically when you long press the Home button. This is called an "assist app" in Android.
 
 ![Example assist app](/screenshots/assist-app.png)
 
@@ -38,7 +38,7 @@ Select KISS.
 
 Go to `Settings > Apps > Google App (Or current default app) > CLEAR DEFAULTS`
 
-Then hold home and select KISS as default
+Then hold home and select KISS as default.
 
 
-> This answer is based on [this reddit thread](https://www.reddit.com/r/opensource/comments/5i47sr/kiss_an_open_source_blazingly_fast_launcher_for/)
+> This answer is based on [this Reddit thread](https://www.reddit.com/r/opensource/comments/5i47sr/kiss_an_open_source_blazingly_fast_launcher_for/)

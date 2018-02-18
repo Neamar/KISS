@@ -6,7 +6,7 @@ description: "Not interested in landline phone numbers?"
 type: Document
 ---
 
-When one of your contact has multiple phone numbers, KISS will display all of them separately, assuming you might want to call or message your contact over one of those phone numbers.
+When one of your contacts has multiple phone numbers, KISS will display all of them separately, assuming you might want to call or message your contact over one of those phone numbers.
 
 However, for most contacts, you'll often end up using the same number.
 

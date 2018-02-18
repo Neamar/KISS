@@ -8,7 +8,7 @@ type: Document
 
 KISS was designed to be easy to use, and fast. It also learns from your habits, and to do so needs to locally store all the results you've clicked before. This is then used to improve the ranking of items.
 
-Over time, the history can grow quite large, and takes a lot of memory that you might want to use for something else.
+Over time, the history can grow quite large and takes a lot of memory that you might want to use for something else.
 
 To clear history, go to `⋮, KISS Settings, History Settings, Reset history`.
 
