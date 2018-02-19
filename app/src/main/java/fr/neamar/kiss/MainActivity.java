@@ -51,6 +51,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -67,6 +68,7 @@ import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.ui.AnimatedListView;
+import fr.neamar.kiss.searcher.TagsSearcher;
 import fr.neamar.kiss.ui.BlockableListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
@@ -74,9 +76,10 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
+import fr.neamar.kiss.utils.ToggleTags;
 import fr.neamar.kiss.utils.WallpaperUtils;
 
-public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver, ToggleTags.ToggleUpdatedListener {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -183,6 +186,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Search edit layout
      */
     private View searchEditLayout;
+    /**
+     * A helper class used to manage all tags toggles
+     */
+    private ToggleTags toggleTags;
     /**
      * Wallpaper scroll
      */
@@ -337,12 +344,25 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
+        searchEditText.setOnTouchListener( new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch( View v, MotionEvent event )
+            {
+                int act = event.getActionMasked();
+                if( act == MotionEvent.ACTION_DOWN || act == MotionEvent.ACTION_POINTER_DOWN )
+                    showKeyboard();
+                return false;
+            }
+        } );
+
         // On validate, launch first record
         searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == android.R.id.closeButton) {
+                    toggleTags.hideBar();
                     mSystemUiVisibility.onKeyboardVisibilityChanged(false);
                     if (mPopup != null) {
                         mPopup.dismiss();
@@ -369,6 +389,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         kissBar = findViewById(R.id.main_kissbar);
         favoritesKissBar = findViewById(R.id.favoritesKissBar);
+
+        toggleTags = new ToggleTags( findViewById( R.id.tagsToggleBar ), this );
+        toggleTags.loadTags( prefs, getApplicationContext() );
 
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
@@ -625,8 +648,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             hideKeyboard();
-            mSystemUiVisibility.onKeyboardVisibilityChanged(false);
         }
+
+        toggleTags.loadTags( prefs, getApplicationContext() );
 
         super.onResume();
     }
@@ -1027,7 +1051,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (mPopup != null)
             mPopup.dismiss();
 
-        if (query.length() == 0) {
+        if ( query.isEmpty() && !getIncludeTags().isEmpty() ) {
+            toggleTags.showBar(prefs);
+
+            searcher = new TagsSearcher(this);
+        }
+        else if (query.length() == 0) {
+            toggleTags.hideBar();
             mSystemUiVisibility.resetScroll();
             if (prefs.getBoolean("history-hide", false)) {
                 list.setVerticalScrollBarEnabled(false);
@@ -1044,6 +1074,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         } else {
+            toggleTags.showBar(prefs);
+
             searcher = new QuerySearcher(this, query);
         }
         searcher.executeOnExecutor(Searcher.SEARCH_THREAD);
@@ -1106,6 +1138,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+        toggleTags.showBar( prefs );
 
         mSystemUiVisibility.onKeyboardVisibilityChanged(true);
     }
@@ -1263,5 +1296,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void afterChange() {
         AnimatedListView listView = (AnimatedListView) this.list;
         listView.animateChange();
+    }
+
+    public Set<String> getExcludeTags() {
+        return toggleTags.getHiddenTags();
+    }
+
+    public Set<String> getIncludeTags() {
+        return toggleTags.getMustShowTags();
+    }
+
+    @Override
+    public void onToggleUpdated() {
+        toggleTags.saveHiddenTags(prefs);
+        updateRecords();
+        toggleTags.showBar(prefs);
     }
 }
