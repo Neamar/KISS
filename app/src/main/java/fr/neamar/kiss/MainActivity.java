@@ -812,14 +812,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (mPopup != null) {
-            View popup = mPopup.getContentView();
+            View popupContentView = mPopup.getContentView();
             int[] popupPos = {0, 0};
-            popup.getLocationOnScreen(popupPos);
+            popupContentView.getLocationOnScreen(popupPos);
             final float offsetX = -popupPos[0];
             final float offsetY = -popupPos[1];
             ev.offsetLocation(offsetX, offsetY);
-            boolean handled = mPopup.getContentView().dispatchTouchEvent(ev);
+            boolean handled = popupContentView.dispatchTouchEvent(ev);
             ev.offsetLocation(-offsetX, -offsetY);
+            if ( !handled )
+                handled = super.dispatchTouchEvent(ev);
             return handled;
         }
         return super.dispatchTouchEvent(ev);
@@ -1197,6 +1199,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             listEmpty.setVisibility(View.GONE);
             //add widget to view
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+            if (appWidgetInfo == null) {
+                removeAllWidgets();
+                return;
+            }
             AppWidgetHostView hostView = mAppWidgetHost.createView(this, appWidgetId, appWidgetInfo);
             hostView.setMinimumHeight(appWidgetInfo.minHeight);
             hostView.setAppWidget(appWidgetId, appWidgetInfo);

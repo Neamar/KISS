@@ -5,70 +5,6 @@
 	top: -2px;
 }
 
-.categories {
-	display: flex;
-	flex-wrap:wrap;
-	flex-direction:row;
-	justify-content:flex-start;
-	align-items:stretch;
-	font-size: .9em;
-
-	h3 {
-		font-size: 2.75rem;
-		margin-bottom: 20px;
-	}
-}
-
-.category {
-	flex: 0 0 100%;
-
-	h3 {
-		text-transform:capitalize;
-	}
-
-	@media #{$mid-point} {
-		flex: 0 0 50%;
-	}
-
-	@media #{$desktop} {
-		flex: 0 0 33%;
-	}
-	margin: 0 0 30px 0;
-
-	ul {
-		padding: 0;
-		margin: 0;
-		list-style: none;
-	}
-
-	li {
-		margin-right: 15px;
-		a {
-			padding: 2px 0;
-			display: flex;
-			font-size: 1.1em;
-			align-items: center;
-
-			svg {
-				margin: 0 5px 0 0;
-				fill: $link-color;
-				width: 25px;
-				height: 25px;
-				-webkit-transition: all .2s ease;
-			}
-
-			&:hover {
-				text-decoration: none;
-				svg {
-					fill: $link-hover-color;
-					width: 30px;
-					height: 30px;
-				}
-			}
-		}
-	}
-}
-
 .tutorial {
 	display: flex;
 
@@ -135,6 +71,9 @@
 		margin: 10px 0;
 		padding: 0;
 		width: 100%;
+	}
+
+	&.two-columns li {
 		@media #{$mid-point} {
 			flex: 0 0 50%;
 		}
@@ -148,26 +87,27 @@
 	a {
 		display: flex;
 		text-decoration: none;
-		padding: 5px;
 		border-radius: 5px;
 		height: 100%;
+		padding: 2px 0;
 
 		article {
 			display: flex;
 			align-items: center;
 			flex-wrap: wrap;
+			padding-right: 20px;
 		}
 
 		.icon {
-			flex: 0 0 50px;
+			flex: 0 0 35px;
 			display: flex;
 			align-items: center;
 			padding: 0 5px 0 0;
 			svg {
-				width: 35px;
-				height: 35px;
+				width: 28px;
+				height: 28px;
 				fill: $link-color;
-				-webkit-transition: all .2s ease;
+				-webkit-transition: all .1s ease;
 				margin: 0 auto;
 			}
 		}
@@ -180,8 +120,8 @@
 		&:hover {
 			svg {
 				fill: $link-hover-color;
-				width: 40px;
-				height: 40px;
+				width: 30px;
+				height: 30px;
 			}
 		}
 
@@ -195,8 +135,45 @@
 	}
 }
 
-.tutorial-share {
+.categories {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: stretch;
+	font-size: .9em;
 
+	h3 {
+		font-size: 2.75rem;
+		margin-bottom: 20px;
+	}
+}
+
+.category {
+	flex: 0 0 100%;
+
+	h3 {
+		text-transform: capitalize;
+	}
+
+	@media #{$mid-point} {
+		flex: 0 0 50%;
+	}
+
+	@media #{$desktop} {
+		flex: 0 0 33%;
+	}
+	margin: 0 0 30px 0;
+
+	li {
+		margin: 4px 0;
+		a {
+			font-size: 1.1em;
+		}
+	}
+}
+
+.tutorial-share {
 	a {
 		color: $medium-grey;
 		text-decoration: none;
