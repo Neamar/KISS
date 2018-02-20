@@ -10,7 +10,6 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
-import fr.neamar.kiss.searcher.Searcher;
 
 // Deals with any settings in the "User Experience" setting sub-screen
 class UXTweaksForwarder extends Forwarder {
@@ -41,8 +40,7 @@ class UXTweaksForwarder extends Forwarder {
                 // and we're not looking at the app list
                 if ((mainActivity.kissBar.getVisibility() != View.VISIBLE) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
                     if ((mainActivity.list.getAdapter() == null) || (mainActivity.list.getAdapter().isEmpty())) {
-                        mainActivity.searchTask = new HistorySearcher(mainActivity);
-                        mainActivity.searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
+                        mainActivity.runTask(new HistorySearcher(mainActivity));
                     }
                 }
             }
@@ -59,14 +57,14 @@ class UXTweaksForwarder extends Forwarder {
             if (prefs.getBoolean("history-hide", false)) {
                 mainActivity.list.setVerticalScrollBarEnabled(false);
                 mainActivity.searchEditText.setHint("");
-                mainActivity.searchTask = new NullSearcher(mainActivity);
+                mainActivity.runTask(new NullSearcher(mainActivity));
                 //Hide default scrollview
                 mainActivity.findViewById(R.id.main_empty).setVisibility(View.GONE);
 
             } else {
                 mainActivity.list.setVerticalScrollBarEnabled(true);
                 mainActivity.searchEditText.setHint(R.string.ui_search_hint);
-                mainActivity.searchTask = new HistorySearcher(mainActivity);
+                mainActivity.runTask(new HistorySearcher(mainActivity));
                 //Show default scrollview
                 mainActivity.findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }

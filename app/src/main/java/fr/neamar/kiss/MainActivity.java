@@ -154,7 +154,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Task launched on text change
      */
-    public Searcher searchTask;
+    private Searcher searchTask;
 
     /**
      * SystemUiVisibility helper
@@ -432,7 +432,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public void displayExternalFavoritesBar(boolean initialize, boolean touched) {
         View quickFavoritesBar = findViewById(R.id.favoritesBar);
-        if (searchEditText.getText().toString().length() == 0
+        if (searchEditText.getText().toString().isEmpty()
                 && prefs.getBoolean("enable-favorites-bar", true)) {
             if ((!prefs.getBoolean("favorites-hide", false) || touched)) {
                 quickFavoritesBar.setVisibility(View.VISIBLE);
@@ -877,9 +877,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @param query the query on which to search
      */
     private void updateRecords(String query) {
-        if (searchTask != null) {
-            searchTask.cancel(true);
-        }
+        resetTask();
 
         if (mPopup != null)
             mPopup.dismiss();
@@ -889,14 +887,22 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (query.isEmpty()) {
             mSystemUiVisibility.resetScroll();
         } else {
-            searchTask = new QuerySearcher(this, query);
+            runTask(new QuerySearcher(this, query));
         }
-        searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
         displayExternalFavoritesBar(false, false);
     }
 
+    public void runTask(Searcher task) {
+        resetTask();
+        searchTask = task;
+        searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
+    }
+
     public void resetTask() {
-        searchTask = null;
+        if (searchTask != null) {
+            searchTask.cancel(true);
+            searchTask = null;
+        }
     }
 
     /**

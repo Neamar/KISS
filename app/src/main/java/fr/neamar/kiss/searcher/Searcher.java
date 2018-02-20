@@ -163,6 +163,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         volatile int runCounter = 0;
 
         @Override
+        @SuppressWarnings("NonAtomicVolatileUpdate")
         public void run() {
             runCounter += 1;
         }
