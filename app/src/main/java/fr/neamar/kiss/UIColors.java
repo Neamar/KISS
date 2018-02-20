@@ -4,16 +4,13 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 
-public class UiTweaks {
+public class UIColors {
     public static String COLOR_DEFAULT = "#4caf50";
     public static int[] COLOR_LIST = new int[]{
             0xFF4CAF50, 0xFFD32F2F, 0xFFC2185B, 0xFF7B1FA2,
@@ -24,7 +21,7 @@ public class UiTweaks {
             0xFF000000
     };
 
-    static void updateThemePrimaryColor(Activity activity) {
+    public static void updateThemePrimaryColor(Activity activity) {
         String notificationBarColorOverride = getNotificationBarColor(activity);
 
         // Circuit breaker, keep default behavior.
@@ -47,26 +44,6 @@ public class UiTweaks {
         if (actionBar != null) {
             actionBar.setBackgroundDrawable(new ColorDrawable(notificationBarColor));
         }
-    }
-
-    static void tintResources(MainActivity mainActivity) {
-        String primaryColorOverride = getPrimaryColor(mainActivity);
-
-        // Circuit breaker, keep default behavior.
-        if (primaryColorOverride.equals(COLOR_DEFAULT)) {
-            return;
-        }
-
-        int primaryColor = Color.parseColor(primaryColorOverride);
-
-        // Launcher button should have the main color
-        ImageView launcherButton = (ImageView) mainActivity.findViewById(R.id.launcherButton);
-        launcherButton.setColorFilter(primaryColor);
-        ProgressBar loaderBar = (ProgressBar) mainActivity.findViewById(R.id.loaderBar);
-        loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
-
-        // Kissbar background
-        mainActivity.findViewById(R.id.main_kissbar).setBackgroundColor(primaryColor);
     }
 
     private static String getNotificationBarColor(Context context) {

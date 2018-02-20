@@ -24,7 +24,7 @@ import java.text.NumberFormat;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UiTweaks;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -98,7 +98,7 @@ public abstract class Result {
      */
     static Spanned enrichText(String text, Context context) {
         //TODO: cache the result. We consume lots of CPU and RAM converting every time we display
-        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
+        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UIColors.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
     @Override

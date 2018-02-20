@@ -2,7 +2,6 @@ package fr.neamar.kiss.forwarder;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -14,12 +13,15 @@ public class Forwarder {
     MainActivity mainActivity;
     protected SharedPreferences prefs;
 
-    Forwarder(MainActivity mainActivity) {
+    Forwarder(MainActivity mainActivity, SharedPreferences prefs) {
         this.mainActivity = mainActivity;
-        prefs = PreferenceManager.getDefaultSharedPreferences(mainActivity);
+        this.prefs = prefs;
     }
 
     public void onCreate() {
+    }
+
+    public void onResume() {
     }
 
     public void onStart() {

@@ -1,6 +1,7 @@
 package fr.neamar.kiss.forwarder;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -11,12 +12,14 @@ import fr.neamar.kiss.MainActivity;
 public class ForwarderManager extends Forwarder {
     private final WidgetForwarder widgetForwarder;
     private final WallpaperForwarder wallpaperForwarder;
+    private final UITweaksForwarder uiTweaksForwarder;
 
-    public ForwarderManager(MainActivity mainActivity) {
-        super(mainActivity);
+    public ForwarderManager(MainActivity mainActivity, SharedPreferences prefs) {
+        super(mainActivity, prefs);
 
-        this.widgetForwarder = new WidgetForwarder(mainActivity);
-        this.wallpaperForwarder = new WallpaperForwarder(mainActivity);
+        this.widgetForwarder = new WidgetForwarder(mainActivity, prefs);
+        this.wallpaperForwarder = new WallpaperForwarder(mainActivity, prefs);
+        this.uiTweaksForwarder = new UITweaksForwarder(mainActivity, prefs);
     }
 
     @Override
@@ -24,6 +27,12 @@ public class ForwarderManager extends Forwarder {
         super.onCreate();
         widgetForwarder.onCreate();
         wallpaperForwarder.onCreate();
+        uiTweaksForwarder.onCreate();
+    }
+
+    @Override
+    public void onResume() {
+        uiTweaksForwarder.onResume();
     }
 
     @Override

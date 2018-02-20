@@ -40,8 +40,8 @@ public class WidgetForwarder extends Forwarder {
      */
     private ViewGroup widgetArea;
 
-    WidgetForwarder(MainActivity mainActivity) {
-        super(mainActivity);
+    WidgetForwarder(MainActivity mainActivity, SharedPreferences prefs) {
+        super(mainActivity, prefs);
     }
 
     @Override
@@ -90,7 +90,7 @@ public class WidgetForwarder extends Forwarder {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.widget) {
+        if (item.getItemId() == R.id.widget) {
             if (!widgetUsed) {
                 // request widget picker, a selection will lead to a call of onActivityResult
                 int appWidgetId = mAppWidgetHost.allocateAppWidgetId();

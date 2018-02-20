@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import android.content.SharedPreferences;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -12,8 +13,8 @@ public class WallpaperForwarder extends Forwarder {
      */
     private WallpaperUtils mWallpaperUtils;
 
-    public WallpaperForwarder(MainActivity mainActivity) {
-        super(mainActivity);
+    public WallpaperForwarder(MainActivity mainActivity, SharedPreferences prefs) {
+        super(mainActivity, prefs);
     }
 
     @Override

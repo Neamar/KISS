@@ -12,9 +12,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
 import android.database.DataSetObserver;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -150,20 +148,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Kiss bar
      */
-    private View kissBar;
+    public View kissBar;
     /**
      * Favorites bar, in the KISS bar (not the quick favorites bar from minimal UI)
      */
-    private View favoritesKissBar;
+    public View favoritesInKissBar;
 
     /**
      * Task launched on text change
      */
-    private Searcher searcher;
-    /**
-     * Search edit layout
-     */
-    private View searchEditLayout;
+    private Searcher searchTask;
 
     /**
      * SystemUiVisibility helper
@@ -184,37 +178,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // Initialize all forwarders
-        forwarderManager = new ForwarderManager(this);
-
-        // Initialize UI
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String theme = prefs.getString("theme", "light");
-        switch (theme) {
-            case "dark":
-                setTheme(R.style.AppThemeDark);
-                break;
-            case "transparent":
-                setTheme(R.style.AppThemeTransparent);
-                break;
-            case "semi-transparent":
-                setTheme(R.style.AppThemeSemiTransparent);
-                break;
-            case "semi-transparent-dark":
-                setTheme(R.style.AppThemeSemiTransparentDark);
-                break;
-            case "transparent-dark":
-                setTheme(R.style.AppThemeTransparentDark);
-                break;
-        }
-
-
         super.onCreate(savedInstanceState);
 
-        IntentFilter intentFilter = new IntentFilter(START_LOAD);
-        IntentFilter intentFilterBis = new IntentFilter(LOAD_OVER);
-        IntentFilter intentFilterTer = new IntentFilter(FULL_LOAD_OVER);
+        // Initialize preferences
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // Initialize all forwarders
+        forwarderManager = new ForwarderManager(this, prefs);
+
+        IntentFilter intentFilterLoad = new IntentFilter(START_LOAD);
+        IntentFilter intentFilterLoadOver = new IntentFilter(LOAD_OVER);
+        IntentFilter intentFilterFullLoadOver = new IntentFilter(FULL_LOAD_OVER);
         mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -224,7 +199,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
 
-                    displayQuickFavoritesBar(true, false);
+                    displayExternalFavoritesBar(true, false);
                     displayLoader(false);
 
                 } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
@@ -233,17 +208,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         };
 
-        this.registerReceiver(mReceiver, intentFilter);
-        this.registerReceiver(mReceiver, intentFilterBis);
-        this.registerReceiver(mReceiver, intentFilterTer);
+        this.registerReceiver(mReceiver, intentFilterLoad);
+        this.registerReceiver(mReceiver, intentFilterLoadOver);
+        this.registerReceiver(mReceiver, intentFilterFullLoadOver);
         KissApplication.initDataHandler(this);
 
-        // Initialize preferences
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
         // Lock launcher into portrait mode
-        // Do it here (before initializing the view) to make the transition as smooth as possible
+        // Do it here (before initializing the view in onCreate) to make the transition as smooth as possible
         if (prefs.getBoolean("force-portrait", true)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
@@ -291,8 +262,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         });
 
         registerLongClickOnFavorites();
+
         searchEditText = (SearchEditText) findViewById(R.id.searchEditText);
-        searchEditLayout = findViewById(R.id.searchEditLayout);
 
         // Listen to changes
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -341,7 +312,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         });
 
         kissBar = findViewById(R.id.main_kissbar);
-        favoritesKissBar = findViewById(R.id.favoritesKissBar);
+        favoritesInKissBar = findViewById(R.id.favoritesKissBar);
 
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
@@ -374,19 +345,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         configureFirstRun();
 
-        UiTweaks.updateThemePrimaryColor(this);
-        UiTweaks.tintResources(this);
-
-        // Transparent Search and Favorites bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (prefs.getBoolean("transparent-favorites", false)) {
-                this.findViewById(R.id.favoritesBar).setBackgroundColor(Color.TRANSPARENT);
-            }
-            if (prefs.getBoolean("transparent-search", false)) {
-                this.findViewById(R.id.searchEditLayout).setBackgroundColor(Color.TRANSPARENT);
-                this.findViewById(R.id.searchEditText).setBackgroundColor(Color.TRANSPARENT);
-            }
-        }
         mSystemUiVisibility = new SystemUiVisibilityHelper(this);
 
         forwarderManager.onCreate();
@@ -487,7 +445,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    private void displayQuickFavoritesBar(boolean initialize, boolean touched) {
+    private void displayExternalFavoritesBar(boolean initialize, boolean touched) {
         View quickFavoritesBar = findViewById(R.id.favoritesBar);
         if (searchEditText.getText().toString().length() == 0
                 && prefs.getBoolean("enable-favorites-bar", true)) {
@@ -497,7 +455,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
             if (initialize) {
                 Log.i(TAG, "Using quick favorites bar, filling content.");
-                favoritesKissBar.setVisibility(View.INVISIBLE);
+                favoritesInKissBar.setVisibility(View.INVISIBLE);
                 displayFavorites();
             }
         } else {
@@ -541,6 +499,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             this.recreate();
             return;
         }
+
         if (mPopup != null)
             mPopup.dismiss();
 
@@ -551,18 +510,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             displayKissBar(false);
         }
 
-        boolean largeSearchBar = prefs.getBoolean("large-search-bar", false);
-        Resources res = getResources();
-        int searchHeight;
-        if (largeSearchBar) {
-            searchHeight = res.getDimensionPixelSize(R.dimen.large_bar_height);
-        } else {
-            searchHeight = res.getDimensionPixelSize(R.dimen.bar_height);
-        }
-        searchEditLayout.getLayoutParams().height = searchHeight;
-        kissBar.getLayoutParams().height = searchHeight;
-        favoritesKissBar.getLayoutParams().height = searchHeight;
-
         //Show favorites above search field ONLY if AppProvider is already loaded
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
         AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
@@ -570,7 +517,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // Favorites needs to be displayed again if the quickfavorite bar is active,
             // Not sure why exactly, but without the "true" the favorites drawable will disappear
             // (not their intent) after moving to another activity and switching back to KISS.
-            displayQuickFavoritesBar(true, searchEditText.getText().toString().length() > 0);
+            displayExternalFavoritesBar(true, searchEditText.getText().toString().length() > 0);
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -630,10 +577,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void onBackPressed() {
-        if (mPopup != null)
+        if (mPopup != null) {
             mPopup.dismiss();
-
-            // Is the kiss bar visible?
+        }
+        // Is the kiss bar visible?
         else if (kissBar.getVisibility() == View.VISIBLE) {
             displayKissBar(false);
         } else if (!searchEditText.getText().toString().isEmpty()) {
@@ -718,13 +665,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 if ((kissBar.getVisibility() != View.VISIBLE) && (searchEditText.getText().toString().isEmpty())) {
                     //if list is empty
                     if ((this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0)) {
-                        searcher = new HistorySearcher(MainActivity.this);
-                        searcher.executeOnExecutor(Searcher.SEARCH_THREAD);
+                        searchTask = new HistorySearcher(MainActivity.this);
+                        searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
                     }
                 }
             }
             if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)) {
-                displayQuickFavoritesBar(false, true);
+                displayExternalFavoritesBar(false, true);
             }
         }
         if (view.getId() == searchEditText.getId()) {
@@ -747,7 +694,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     public void onLauncherButtonClicked(View launcherButton) {
         // Display or hide the kiss bar, according to current view tag (showMenu / hideMenu).
-
         displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
 
@@ -846,11 +792,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         if (display) {
             // Display the app list
-            if (searcher != null) {
-                searcher.cancel(true);
+            if (searchTask != null) {
+                searchTask.cancel(true);
             }
-            searcher = new ApplicationsSearcher(MainActivity.this);
-            searcher.executeOnExecutor(Searcher.SEARCH_THREAD);
+            searchTask = new ApplicationsSearcher(MainActivity.this);
+            searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
 
             // Reveal the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -867,7 +813,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
 
             // Only display favorites if we're not using the quick bar
-            if (favoritesKissBar.getVisibility() == View.VISIBLE) {
+            if (favoritesInKissBar.getVisibility() == View.VISIBLE) {
                 // Retrieve favorites. Try to retrieve more, since some favorites can't be displayed (e.g. search queries)
                 displayFavorites();
             }
@@ -903,14 +849,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Hide the favorite bar in the kiss bar if the quick bar is enabled
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("enable-favorites-bar", true)) {
-            favoritesKissBar.setVisibility(View.INVISIBLE);
+            favoritesInKissBar.setVisibility(View.INVISIBLE);
         } else {
-            favoritesKissBar.setVisibility(View.VISIBLE);
+            favoritesInKissBar.setVisibility(View.VISIBLE);
         }
     }
 
     public void displayFavorites() {
-        int[] favoritesIds = favoritesKissBar.getVisibility() == View.VISIBLE ? favsIds : favBarIds;
+        int[] favoritesIds = favoritesInKissBar.getVisibility() == View.VISIBLE ? favsIds : favBarIds;
 
         ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
                 .getFavorites(tryToRetrieve);
@@ -962,8 +908,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @param query the query on which to search
      */
     private void updateRecords(String query) {
-        if (searcher != null) {
-            searcher.cancel(true);
+        if (searchTask != null) {
+            searchTask.cancel(true);
         }
 
         if (mPopup != null)
@@ -974,26 +920,26 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (prefs.getBoolean("history-hide", false)) {
                 list.setVerticalScrollBarEnabled(false);
                 searchEditText.setHint("");
-                searcher = new NullSearcher(this);
+                searchTask = new NullSearcher(this);
                 //Hide default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
 
             } else {
                 list.setVerticalScrollBarEnabled(true);
                 searchEditText.setHint(R.string.ui_search_hint);
-                searcher = new HistorySearcher(this);
+                searchTask = new HistorySearcher(this);
                 //Show default scrollview
                 findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         } else {
-            searcher = new QuerySearcher(this, query);
+            searchTask = new QuerySearcher(this, query);
         }
-        searcher.executeOnExecutor(Searcher.SEARCH_THREAD);
-        displayQuickFavoritesBar(false, false);
+        searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
+        displayExternalFavoritesBar(false, false);
     }
 
     public void resetTask() {
-        searcher = null;
+        searchTask = null;
     }
 
     /**

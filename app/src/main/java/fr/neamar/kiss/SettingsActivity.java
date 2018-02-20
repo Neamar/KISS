@@ -72,7 +72,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
         addCustomSearchProvidersPreferences(prefs);
 
-        UiTweaks.updateThemePrimaryColor(this);
+        UIColors.updateThemePrimaryColor(this);
 
         // Notification color can't be updated before Lollipop
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
