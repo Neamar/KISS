@@ -7,13 +7,13 @@ import android.view.View;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.utils.WallpaperUtils;
 
-public class WallpaperForwarder extends Forwarder {
+class WallpaperForwarder extends Forwarder {
     /**
      * Wallpaper scroll
      */
     private WallpaperUtils mWallpaperUtils;
 
-    public WallpaperForwarder(MainActivity mainActivity, SharedPreferences prefs) {
+    WallpaperForwarder(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
     }
 

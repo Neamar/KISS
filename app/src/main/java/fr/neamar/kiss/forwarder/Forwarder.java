@@ -9,7 +9,7 @@ import android.view.View;
 
 import fr.neamar.kiss.MainActivity;
 
-public class Forwarder {
+class Forwarder {
     MainActivity mainActivity;
     protected SharedPreferences prefs;
 

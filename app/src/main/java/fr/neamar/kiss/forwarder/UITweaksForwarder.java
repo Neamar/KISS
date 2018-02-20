@@ -13,7 +13,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 
 // Deals with any settings in the "User Interface" setting sub-screen
-public class UITweaksForwarder extends Forwarder {
+class UITweaksForwarder extends Forwarder {
     UITweaksForwarder(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
 
@@ -40,8 +40,6 @@ public class UITweaksForwarder extends Forwarder {
 
     @Override
     public void onCreate() {
-
-
         UIColors.updateThemePrimaryColor(mainActivity);
         tintResources(mainActivity);
 

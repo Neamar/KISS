@@ -13,6 +13,7 @@ public class ForwarderManager extends Forwarder {
     private final WidgetForwarder widgetForwarder;
     private final WallpaperForwarder wallpaperForwarder;
     private final UITweaksForwarder uiTweaksForwarder;
+    private final UXTweaksForwarder uxTweaksForwarder;
 
     public ForwarderManager(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
@@ -20,6 +21,8 @@ public class ForwarderManager extends Forwarder {
         this.widgetForwarder = new WidgetForwarder(mainActivity, prefs);
         this.wallpaperForwarder = new WallpaperForwarder(mainActivity, prefs);
         this.uiTweaksForwarder = new UITweaksForwarder(mainActivity, prefs);
+        this.uxTweaksForwarder = new UXTweaksForwarder(mainActivity, prefs);
+
     }
 
     @Override
