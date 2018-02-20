@@ -10,7 +10,7 @@ KISS was designed to be easy to use, and fast. It also learns from your habits, 
 
 Over time, the history can grow quite large and takes a lot of memory that you might want to use for something else.
 
-To clear history, go to `⋮, KISS Settings, History Settings, Reset history`.
+To clear history, go to `⋮, KISS Settings, History settings, Reset history`.
 
 After that, you'll have a clean KISS!
 
