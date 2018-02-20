@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.DataSetObserver;
@@ -212,18 +211,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.registerReceiver(mReceiver, intentFilterLoadOver);
         this.registerReceiver(mReceiver, intentFilterFullLoadOver);
         KissApplication.initDataHandler(this);
-
-        // Lock launcher into portrait mode
-        // Do it here (before initializing the view in onCreate) to make the transition as smooth as possible
-        if (prefs.getBoolean("force-portrait", true)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-            } else {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-        }
 
         setContentView(R.layout.main);
 
