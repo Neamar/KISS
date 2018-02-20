@@ -64,11 +64,16 @@ public class ForwarderManager extends Forwarder {
     }
 
     public boolean onTouch(View view, MotionEvent event) {
+        uxTweaksForwarder.onTouch(view, event); // always return false anyway
         return wallpaperForwarder.onTouch(view, event);
     }
 
     @Override
     public void onDataSetChanged() {
         widgetForwarder.onDataSetChanged();
+    }
+
+    public void updateRecords(String query) {
+        uxTweaksForwarder.updateRecords(query);
     }
 }

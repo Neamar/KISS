@@ -46,4 +46,7 @@ class Forwarder {
 
     public void onDataSetChanged() {
     }
+
+    public void updateRecords(String query) {
+    }
 }

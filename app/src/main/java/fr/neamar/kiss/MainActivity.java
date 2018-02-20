@@ -53,8 +53,6 @@ import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
-import fr.neamar.kiss.searcher.HistorySearcher;
-import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
@@ -122,7 +120,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * View for the Search text
      */
-    private SearchEditText searchEditText;
+    public SearchEditText searchEditText;
     /**
      * Whether or not Search text should be spell checked (affects inputType)
      */
@@ -130,7 +128,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Main list view
      */
-    private ListView list;
+    public ListView list;
     private View listContainer;
     /**
      * View to display when list is empty
@@ -149,14 +147,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     public View kissBar;
     /**
-     * Favorites bar, in the KISS bar (not the quick favorites bar from minimal UI)
+     * Favorites bar, in the KISS bar, next to KISS logo
      */
     public View favoritesInKissBar;
 
     /**
      * Task launched on text change
      */
-    private Searcher searchTask;
+    public Searcher searchTask;
 
     /**
      * SystemUiVisibility helper
@@ -432,7 +430,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    private void displayExternalFavoritesBar(boolean initialize, boolean touched) {
+    public void displayExternalFavoritesBar(boolean initialize, boolean touched) {
         View quickFavoritesBar = findViewById(R.id.favoritesBar);
         if (searchEditText.getText().toString().length() == 0
                 && prefs.getBoolean("enable-favorites-bar", true)) {
@@ -644,26 +642,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             return true;
         }
 
-        //if motion movement ends
-        if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
-            //if history is hidden
-            if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
-                //if not on the application list and not searching for something
-                if ((kissBar.getVisibility() != View.VISIBLE) && (searchEditText.getText().toString().isEmpty())) {
-                    //if list is empty
-                    if ((this.list.getAdapter() == null) || (this.list.getAdapter().getCount() == 0)) {
-                        searchTask = new HistorySearcher(MainActivity.this);
-                        searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
-                    }
-                }
-            }
-            if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)) {
-                displayExternalFavoritesBar(false, true);
-            }
-        }
         if (view.getId() == searchEditText.getId()) {
-            if (event.getActionMasked() == MotionEvent.ACTION_DOWN)
-                showKeyboard();
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                searchEditText.performClick();
+            }
         }
         return true;
     }
@@ -902,22 +884,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (mPopup != null)
             mPopup.dismiss();
 
-        if (query.length() == 0) {
-            mSystemUiVisibility.resetScroll();
-            if (prefs.getBoolean("history-hide", false)) {
-                list.setVerticalScrollBarEnabled(false);
-                searchEditText.setHint("");
-                searchTask = new NullSearcher(this);
-                //Hide default scrollview
-                findViewById(R.id.main_empty).setVisibility(View.INVISIBLE);
+        forwarderManager.updateRecords(query);
 
-            } else {
-                list.setVerticalScrollBarEnabled(true);
-                searchEditText.setHint(R.string.ui_search_hint);
-                searchTask = new HistorySearcher(this);
-                //Show default scrollview
-                findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
-            }
+        if (query.isEmpty()) {
+            mSystemUiVisibility.resetScroll();
         } else {
             searchTask = new QuerySearcher(this, query);
         }
