@@ -3,23 +3,27 @@ package fr.neamar.kiss.forwarder;
 import android.content.Intent;
 import android.view.ContextMenu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 
 import fr.neamar.kiss.MainActivity;
 
 public class ForwarderManager extends Forwarder {
     private final WidgetForwarder widgetForwarder;
+    private final WallpaperForwarder wallpaperForwarder;
 
     public ForwarderManager(MainActivity mainActivity) {
         super(mainActivity);
 
         this.widgetForwarder = new WidgetForwarder(mainActivity);
+        this.wallpaperForwarder = new WallpaperForwarder(mainActivity);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         widgetForwarder.onCreate();
+        wallpaperForwarder.onCreate();
     }
 
     @Override
@@ -45,6 +49,10 @@ public class ForwarderManager extends Forwarder {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         widgetForwarder.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    public boolean onTouch(View view, MotionEvent event) {
+        return wallpaperForwarder.onTouch(view, event);
     }
 
     @Override

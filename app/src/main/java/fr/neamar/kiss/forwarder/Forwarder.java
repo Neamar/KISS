@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.ContextMenu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 
 import fr.neamar.kiss.MainActivity;
@@ -35,6 +36,10 @@ public class Forwarder {
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    }
+
+    public boolean onTouch(View view, MotionEvent event) {
+        return false;
     }
 
     public void onDataSetChanged() {

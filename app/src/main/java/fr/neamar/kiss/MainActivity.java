@@ -69,7 +69,6 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
-import fr.neamar.kiss.utils.WallpaperUtils;
 
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
 
@@ -165,10 +164,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Search edit layout
      */
     private View searchEditLayout;
-    /**
-     * Wallpaper scroll
-     */
-    private WallpaperUtils mWallpaperUtils;
+
     /**
      * SystemUiVisibility helper
      */
@@ -182,6 +178,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private PopupWindow mPopup;
 
     private ForwarderManager forwarderManager;
+
     /**
      * Called when the activity is first created.
      */
@@ -390,7 +387,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 this.findViewById(R.id.searchEditText).setBackgroundColor(Color.TRANSPARENT);
             }
         }
-        mWallpaperUtils = new WallpaperUtils(this);
         mSystemUiVisibility = new SystemUiVisibilityHelper(this);
 
         forwarderManager.onCreate();
@@ -661,7 +657,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(forwarderManager.onOptionsItemSelected(item)) {
+        if (forwarderManager.onOptionsItemSelected(item)) {
             return true;
         }
 
@@ -710,8 +706,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public boolean onTouch(View view, MotionEvent event) {
-        if (mWallpaperUtils.onTouch(view, event))
+        if (forwarderManager.onTouch(view, event)) {
             return true;
+        }
+
         //if motion movement ends
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
             //if history is hidden
@@ -764,7 +762,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             ev.offsetLocation(offsetX, offsetY);
             boolean handled = popupContentView.dispatchTouchEvent(ev);
             ev.offsetLocation(-offsetX, -offsetY);
-            if ( !handled )
+            if (!handled)
                 handled = super.dispatchTouchEvent(ev);
             return handled;
         }
