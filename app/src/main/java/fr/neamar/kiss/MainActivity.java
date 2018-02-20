@@ -156,6 +156,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     private Searcher searchTask;
 
+    public Boolean allProvidersHaveLoaded = false;
+
     /**
      * SystemUiVisibility helper
      */
@@ -197,10 +199,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     System.gc();
 
                     displayExternalFavoritesBar(true, false);
-                    displayLoader(false);
-
-                } else if (intent.getAction().equalsIgnoreCase(START_LOAD)) {
-                    displayLoader(true);
+                    allProvidersHaveLoaded = true;
                 }
             }
         };
@@ -211,6 +210,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         KissApplication.initDataHandler(this);
 
         setContentView(R.layout.main);
+        displayLoader(true);
 
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
