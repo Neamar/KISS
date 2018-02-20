@@ -16,10 +16,8 @@ import fr.neamar.kiss.UIColors;
 public class UITweaksForwarder extends Forwarder {
     UITweaksForwarder(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
-    }
 
-    @Override
-    public void onCreate() {
+        // Setting the theme needs to be done before setContentView()
         String theme = prefs.getString("theme", "light");
         switch (theme) {
             case "dark":
@@ -38,6 +36,11 @@ public class UITweaksForwarder extends Forwarder {
                 mainActivity.setTheme(R.style.AppThemeTransparentDark);
                 break;
         }
+    }
+
+    @Override
+    public void onCreate() {
+
 
         UIColors.updateThemePrimaryColor(mainActivity);
         tintResources(mainActivity);
