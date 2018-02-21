@@ -29,7 +29,6 @@ public class ForwarderManager extends Forwarder {
     public void onCreate() {
         super.onCreate();
         widgetForwarder.onCreate();
-        wallpaperForwarder.onCreate();
         uiTweaksForwarder.onCreate();
     }
 
