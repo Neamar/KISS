@@ -28,6 +28,7 @@ import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
+import fr.neamar.kiss.forwarder.FavoriteForwarder;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
@@ -444,7 +445,7 @@ public class DataHandler extends BroadcastReceiver
         }
 
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        if (favAppsList.size() >= context.getFavIconsSize()) {
+        if (favAppsList.size() >= FavoriteForwarder.FAVORITES_COUNT) {
             favApps = favApps.substring(favApps.indexOf(";") + 1);
         }
 
@@ -456,7 +457,7 @@ public class DataHandler extends BroadcastReceiver
         return true;
     }
 
-    public boolean removeFromFavorites(MainActivity context, String id) {
+    public void removeFromFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
@@ -471,8 +472,6 @@ public class DataHandler extends BroadcastReceiver
                 .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
 
         context.displayFavorites();
-
-        return true;
     }
 
     public void removeFromFavorites(UserHandle user) {

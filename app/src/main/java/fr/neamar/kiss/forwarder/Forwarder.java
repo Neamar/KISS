@@ -49,4 +49,7 @@ class Forwarder {
 
     public void updateRecords(String query) {
     }
+
+    public void allProvidersHaveLoaded() {
+    }
 }

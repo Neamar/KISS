@@ -92,20 +92,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Widget constants
      */
     private static final String TAG = "MainActivity";
-    /**
-     * IDs for the favorites buttons
-     */
-    private final int[] favsIds = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
-    /**
-     * Number of favorites to retrieve.
-     * We need to pad this number to account for removed items still in history
-     */
-    public final int tryToRetrieve = favsIds.length + 2;
-    /**
-     * IDs for the favorites buttons on the quickbar
-     */
 
-    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
     /**
      * Adapter to display records
      */
@@ -145,10 +132,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Kiss bar
      */
     public View kissBar;
-    /**
-     * Favorites bar, in the KISS bar, next to KISS logo
-     */
-    public View favoritesInKissBar;
 
     /**
      * Task launched on text change
@@ -197,8 +180,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
 
-                    displayExternalFavoritesBar(true, false);
                     allProvidersHaveLoaded = true;
+                    forwarderManager.allProvidersHaveLoaded();
                 }
             }
         };
@@ -230,6 +213,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 adapter.onClick(position, v);
             }
         });
+
         this.adapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
@@ -244,8 +228,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 }
             }
         });
-
-        registerLongClickOnFavorites();
 
         searchEditText = (SearchEditText) findViewById(R.id.searchEditText);
 
@@ -274,7 +256,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // On validate, launch first record
         searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
-
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == android.R.id.closeButton) {
@@ -296,7 +277,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         });
 
         kissBar = findViewById(R.id.main_kissbar);
-        favoritesInKissBar = findViewById(R.id.favoritesKissBar);
 
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
@@ -327,90 +307,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
-        configureFirstRun();
-
         mSystemUiVisibility = new SystemUiVisibilityHelper(this);
 
         forwarderManager.onCreate();
-    }
-
-    private void addDefaultAppsToFavs() {
-        {
-            //Default phone call app
-            Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
-            phoneIntent.setData(Uri.parse("tel:0000"));
-            ResolveInfo resolveInfo = getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo != null) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
-                    KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
-                }
-            }
-        }
-        {
-            //Default contacts app
-            Intent contactsIntent = new Intent(Intent.ACTION_DEFAULT, ContactsContract.Contacts.CONTENT_URI);
-            ResolveInfo resolveInfo = getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo != null) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
-                    KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
-                }
-            }
-
-        }
-        {
-            //Default browser
-            Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
-            ResolveInfo resolveInfo = getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo != null) {
-                String packageName = resolveInfo.activityInfo.packageName;
-
-                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
-                    KissApplication.getDataHandler(this).addToFavorites(this, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
-                }
-            }
-        }
-    }
-
-    private void configureFirstRun() {
-        if (prefs.getBoolean("firstRun", true)) {
-            // It is the first run. Make sure this is not an update by checking if history is empty
-            if (DBHelper.getHistoryLength(this) == 0) {
-                addDefaultAppsToFavs();
-            }
-            // set flag to false
-            prefs.edit().putBoolean("firstRun", false).commit();
-        }
-    }
-
-    private void registerLongClickOnFavorites() {
-        View.OnLongClickListener listener = new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                int favNumber = Integer.parseInt((String) view.getTag());
-                ArrayList<Pojo> favorites = KissApplication.getDataHandler(MainActivity.this).getFavorites(tryToRetrieve);
-                if (favNumber >= favorites.size()) {
-                    // Clicking on a favorite before everything is loaded.
-                    Log.i(TAG, "Long clicking on an unitialized favorite.");
-                    return false;
-                }
-                // Favorites handling
-                Pojo pojo = favorites.get(favNumber);
-                final Result result = Result.fromPojo(MainActivity.this, pojo);
-                ListPopup popup = result.getPopupMenu(MainActivity.this, adapter, view);
-                registerPopup(popup);
-                popup.show(view);
-                return true;
-            }
-        };
-        for (int id : favBarIds) {
-            findViewById(id).setOnLongClickListener(listener);
-        }
-        for (int id : favsIds) {
-            findViewById(id).setOnLongClickListener(listener);
-        }
     }
 
     private void adjustInputType(String currentText) {
@@ -426,24 +325,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
         if (currentInputType != requiredInputType) {
             searchEditText.setInputType(requiredInputType);
-        }
-    }
-
-    public void displayExternalFavoritesBar(boolean initialize, boolean touched) {
-        View quickFavoritesBar = findViewById(R.id.favoritesBar);
-        if (searchEditText.getText().toString().isEmpty()
-                && prefs.getBoolean("enable-favorites-bar", true)) {
-            if ((!prefs.getBoolean("favorites-hide", false) || touched)) {
-                quickFavoritesBar.setVisibility(View.VISIBLE);
-            }
-
-            if (initialize) {
-                Log.i(TAG, "Using quick favorites bar, filling content.");
-                favoritesInKissBar.setVisibility(View.INVISIBLE);
-                displayFavorites();
-            }
-        } else {
-            quickFavoritesBar.setVisibility(View.GONE);
         }
     }
 
@@ -495,15 +376,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             displayKissBar(false);
         }
 
-        //Show favorites above search field ONLY if AppProvider is already loaded
-        //Otherwise this will get triggered by the broadcastreceiver in the onCreate
-        if (allProvidersHaveLoaded) {
-            // Favorites needs to be displayed again if the quickfavorite bar is active,
-            // Not sure why exactly, but without the "true" the favorites drawable will disappear
-            // (not their intent) after moving to another activity and switching back to KISS.
-            displayExternalFavoritesBar(true, searchEditText.getText().toString().length() > 0);
-        }
-
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
@@ -524,6 +396,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mSystemUiVisibility.onKeyboardVisibilityChanged(false);
         }
 
+        forwarderManager.onResume();
         super.onResume();
     }
 
@@ -823,48 +696,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    public void displayFavorites() {
-        int[] favoritesIds = favoritesInKissBar.getVisibility() == View.VISIBLE ? favsIds : favBarIds;
-
-        ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(MainActivity.this)
-                .getFavorites(tryToRetrieve);
-
-        if (favoritesPojo.size() == 0) {
-            int noFavCnt = prefs.getInt("no-favorites-tip", 0);
-            if (noFavCnt < 3 && !prefs.getBoolean("enable-favorites-bar", true)) {
-                Toast toast = Toast.makeText(MainActivity.this, getString(R.string.no_favorites), Toast.LENGTH_SHORT);
-                toast.show();
-                prefs.edit().putInt("no-favorites-tip", ++noFavCnt).apply();
-
-            }
-        }
-
-        // Don't look for items after favIds length, we won't be able to display them
-        for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
-            Pojo pojo = favoritesPojo.get(i);
-
-            ImageView image = (ImageView) findViewById(favoritesIds[i]);
-
-            Result result = Result.fromPojo(MainActivity.this, pojo);
-            Drawable drawable = result.getDrawable(MainActivity.this);
-            if (drawable != null) {
-                image.setImageDrawable(drawable);
-            } else {
-                Log.e(TAG, "Falling back to default image for favorite.");
-                // Use the default contact image otherwise
-                image.setImageResource(R.drawable.ic_contact);
-            }
-
-            image.setVisibility(View.VISIBLE);
-            image.setContentDescription(pojo.displayName);
-        }
-
-        // Hide empty favorites (not enough favorites yet)
-        for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
-            findViewById(favoritesIds[i]).setVisibility(View.GONE);
-        }
-    }
-
     public void updateRecords() {
         updateRecords(searchEditText.getText().toString());
     }
@@ -888,7 +719,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             runTask(new QuerySearcher(this, query));
         }
-        displayExternalFavoritesBar(false, false);
     }
 
     public void runTask(Searcher task) {
@@ -987,10 +817,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     public boolean isOnSearchView() {
         return kissBar.getVisibility() != View.VISIBLE;
-    }
-
-    public int getFavIconsSize() {
-        return favsIds.length;
     }
 
     @Override
