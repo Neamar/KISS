@@ -47,7 +47,6 @@ import java.util.regex.Pattern;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
-import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.pojo.Pojo;
@@ -485,8 +484,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             return;
         }
 
-        if (mPopup != null)
+        if (mPopup != null) {
             mPopup.dismiss();
+        }
 
         if (kissBar.getVisibility() != View.VISIBLE) {
             updateRecords(searchEditText.getText().toString());
@@ -497,12 +497,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         //Show favorites above search field ONLY if AppProvider is already loaded
         //Otherwise this will get triggered by the broadcastreceiver in the onCreate
-        AppProvider appProvider = KissApplication.getDataHandler(this).getAppProvider();
-        if (appProvider != null && appProvider.isLoaded())
+        if (allProvidersHaveLoaded) {
             // Favorites needs to be displayed again if the quickfavorite bar is active,
             // Not sure why exactly, but without the "true" the favorites drawable will disappear
             // (not their intent) after moving to another activity and switching back to KISS.
             displayExternalFavoritesBar(true, searchEditText.getText().toString().length() > 0);
+        }
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -577,11 +577,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public boolean onKeyDown(int keycode, @NonNull KeyEvent e) {
-        switch (keycode) {
-            case KeyEvent.KEYCODE_MENU:
-                // For user with a physical menu button, we still want to display *our* contextual menu
-                menuButton.showContextMenu();
-                return true;
+        if (keycode == KeyEvent.KEYCODE_MENU) {
+            // For devices with a physical menu button, we still want to display *our* contextual menu
+            menuButton.showContextMenu();
+            return true;
         }
 
         return super.onKeyDown(keycode, e);
