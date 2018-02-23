@@ -50,7 +50,7 @@ class Forwarder {
     public void updateRecords(String query) {
     }
 
-    public void allProvidersHaveLoaded() {
+    public void onAllProvidersLoaded() {
     }
 
     public void onFavoriteChange() {

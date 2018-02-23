@@ -61,7 +61,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
-    public static final String FAVORITES_CHANGE = "fr.neamar.summon.FAVORITES_CHANGE";
 
     /**
      * InputType that behaves as if the consuming IME is a standard-obeying
@@ -170,12 +169,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
+                    onFavoriteChange();
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
 
                     allProvidersHaveLoaded = true;
-                    forwarderManager.allProvidersHaveLoaded();
+                    forwarderManager.onAllProvidersLoaded();
                 }
             }
         };

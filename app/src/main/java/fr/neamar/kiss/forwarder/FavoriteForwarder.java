@@ -21,7 +21,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
 
-public class FavoriteForwarder extends Forwarder {
+public class FavoriteForwarder extends Forwarder implements View.OnClickListener, View.OnLongClickListener {
     private static final String TAG = "FavoriteForwarder";
 
     /**
@@ -41,14 +41,14 @@ public class FavoriteForwarder extends Forwarder {
     public final static int TRY_TO_RETRIEVE = FAVORITES_COUNT + 2;
 
     /**
-     * IDs for the favorites buttons on the quickbar
-     */
-    private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
-
-    /**
      * Favorites bar, above the KISS bar
      */
     private View favorites;
+
+    /**
+     * Currently displayed favorites
+     */
+    private ArrayList<Pojo> favoritesPojo;
 
     FavoriteForwarder(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
@@ -64,6 +64,7 @@ public class FavoriteForwarder extends Forwarder {
             throw new RuntimeException("TODO");
         }
 
+        registerClickOnFavorites();
         registerLongClickOnFavorites();
 
         if (prefs.getBoolean("firstRun", true)) {
@@ -77,16 +78,16 @@ public class FavoriteForwarder extends Forwarder {
     }
 
     @Override
-    public void allProvidersHaveLoaded() {
+    public void onAllProvidersLoaded() {
         onFavoriteChange();
     }
 
     @Override
     public void onFavoriteChange() {
         Log.e("WTF", "Triggered favorite redraw");
-        int[] favoritesIds = favBarIds;
+        int[] favoritesIds = FAV_IDS;
 
-        ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(mainActivity)
+        favoritesPojo = KissApplication.getDataHandler(mainActivity)
                 .getFavorites(TRY_TO_RETRIEVE);
 
         // Don't look for items after favIds length, we won't be able to display them
@@ -113,24 +114,6 @@ public class FavoriteForwarder extends Forwarder {
         for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
             favorites.findViewById(favoritesIds[i]).setVisibility(View.GONE);
         }
-    }
-
-    public void onFavoriteButtonClicked(View favorite) {
-        // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
-        mainActivity.displayKissBar(false);
-
-        int favNumber = Integer.parseInt((String) favorite.getTag());
-        ArrayList<Pojo> favorites = KissApplication.getDataHandler(mainActivity).getFavorites(TRY_TO_RETRIEVE);
-        if (favNumber >= favorites.size()) {
-            // Clicking on a favorite before everything is loaded.
-            Log.i(TAG, "Clicking on an unitialized favorite.");
-            return;
-        }
-        // Favorites handling
-        Pojo pojo = favorites.get(favNumber);
-        final Result result = Result.fromPojo(mainActivity, pojo);
-
-        result.fastLaunch(mainActivity, favorite);
     }
 
     @Override
@@ -185,32 +168,51 @@ public class FavoriteForwarder extends Forwarder {
         }
     }
 
-    private void registerLongClickOnFavorites() {
-        View.OnLongClickListener listener = new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                int favNumber = Integer.parseInt((String) view.getTag());
-                ArrayList<Pojo> favorites = KissApplication.getDataHandler(mainActivity).getFavorites(TRY_TO_RETRIEVE);
-                if (favNumber >= favorites.size()) {
-                    // Clicking on a favorite before everything is loaded.
-                    Log.i(TAG, "Long clicking on an unitialized favorite.");
-                    return false;
-                }
-                // Favorites handling
-                Pojo pojo = favorites.get(favNumber);
-                final Result result = Result.fromPojo(mainActivity, pojo);
-                ListPopup popup = result.getPopupMenu(mainActivity, mainActivity.adapter, view);
-                mainActivity.registerPopup(popup);
-                popup.show(view);
-                return true;
-            }
-        };
-        for (int id : favBarIds) {
-            mainActivity.findViewById(id).setOnLongClickListener(listener);
-        }
+    private void registerClickOnFavorites() {
         for (int id : FAV_IDS) {
-            mainActivity.findViewById(id).setOnLongClickListener(listener);
+            mainActivity.findViewById(id).setOnClickListener(this);
         }
+    }
+
+    private void registerLongClickOnFavorites() {
+        for (int id : FAV_IDS) {
+            mainActivity.findViewById(id).setOnLongClickListener(this);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
+        mainActivity.displayKissBar(false);
+
+        int favNumber = Integer.parseInt((String) v.getTag());
+        if (favNumber >= favoritesPojo.size()) {
+            // Clicking on a favorite before everything is loaded.
+            Log.i(TAG, "Clicking on an unitialized favorite.");
+            return;
+        }
+
+        // Favorites handling
+        Pojo pojo = favoritesPojo.get(favNumber);
+        final Result result = Result.fromPojo(mainActivity, pojo);
+
+        result.fastLaunch(mainActivity, v);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        int favNumber = Integer.parseInt((String) v.getTag());
+        if (favNumber >= favoritesPojo.size()) {
+            // Clicking on a favorite before everything is loaded.
+            Log.i(TAG, "Long clicking on an unitialized favorite.");
+            return false;
+        }
+        // Favorites handling
+        Pojo pojo = favoritesPojo.get(favNumber);
+        final Result result = Result.fromPojo(mainActivity, pojo);
+        ListPopup popup = result.getPopupMenu(mainActivity, mainActivity.adapter, v);
+        mainActivity.registerPopup(popup);
+        popup.show(v);
+        return true;
     }
 }

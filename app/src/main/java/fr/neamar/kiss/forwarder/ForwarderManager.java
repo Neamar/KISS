@@ -81,8 +81,8 @@ public class ForwarderManager extends Forwarder {
     }
 
     @Override
-    public void allProvidersHaveLoaded() {
-        favoriteForwarder.allProvidersHaveLoaded();
+    public void onAllProvidersLoaded() {
+        favoriteForwarder.onAllProvidersLoaded();
     }
 
     public void onFavoriteChange() {
