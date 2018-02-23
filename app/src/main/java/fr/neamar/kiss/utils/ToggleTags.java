@@ -3,6 +3,7 @@ package fr.neamar.kiss.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -266,9 +267,11 @@ public class ToggleTags
 	static class MenuItemTag implements MenuItem
 	{
 		final String tag;
+		final boolean showButton;
 
-		MenuItemTag(String tag) {
+		MenuItemTag(String tag, boolean showButton) {
 			this.tag = tag;
+			this.showButton = showButton;
 		}
 
 		@Override
@@ -278,7 +281,7 @@ public class ToggleTags
 
 		@Override
 		public int getLayoutResource() {
-			return R.layout.popup_tag_menu;
+			return showButton ? R.layout.popup_tag_menu : R.layout.popup_list_item;
 		}
 	}
 
@@ -332,12 +335,14 @@ public class ToggleTags
 				return convertView;
 			} else if (item instanceof MenuItemTag) {
 				TriToggleButton btn = (TriToggleButton) convertView.findViewById(R.id.toggle);
-				btn.setTextForState(STATE_HIDE, "\u2718"); // ✘	heavy ballot x
-				btn.setTextForState(STATE_DEFAULT, "\u2325"); // ⌥	option key
-				btn.setTextForState(STATE_SHOW, "\u2714"); // ✔	heavy check mark
-				btn.setState(hiddenTagList.contains(text) ? STATE_HIDE : (mustShowTagList.contains(text) ? STATE_SHOW : STATE_DEFAULT));
-				btn.setTag(text);
-				btn.setOnCheckedChangeListener(checkedChangeListener);
+				if (btn != null) {
+					btn.setTextForState(STATE_HIDE, "\u2718"); // ✘	heavy ballot x
+					btn.setTextForState(STATE_DEFAULT, "\u2325"); // ⌥	option key
+					btn.setTextForState(STATE_SHOW, "\u2714"); // ✔	heavy check mark
+					btn.setState(hiddenTagList.contains(text) ? STATE_HIDE : (mustShowTagList.contains(text) ? STATE_SHOW : STATE_DEFAULT));
+					btn.setTag(text);
+					btn.setOnCheckedChangeListener(checkedChangeListener);
+				}
 			}
 
 			TextView textView = (TextView) convertView.findViewById(android.R.id.text1);
@@ -348,6 +353,11 @@ public class ToggleTags
 
 		public void add(MenuItem item) {
 			list.add(item);
+			notifyDataSetChanged();
+		}
+
+		public void add(int index, MenuItem item) {
+			list.add(index, item);
 			notifyDataSetChanged();
 		}
 
@@ -373,15 +383,26 @@ public class ToggleTags
 		popupMenu = new ListPopup(context);
 		MenuAdapter adapter = new MenuAdapter();
 
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
 		//build menu
+		boolean triStateBtn = prefs.getBoolean("pref-tags-menu-3state", true);
 		adapter.add(new MenuItemTitle(context, R.string.popup_tags_title));
 		for ( String tag : togglableTagList )
 		{
-			adapter.add(new MenuItemTag(tag));
+			adapter.add(new MenuItemTag(tag, triStateBtn));
 		}
-		adapter.add(new MenuItemTitle(context, R.string.popup_tags_actions));
-		adapter.add(new MenuItemBtn(context, R.string.show_matching));
-		adapter.add(new MenuItemBtn(context, R.string.show_history));
+
+		// remember where the title should go
+		int actionsTitlePosition = adapter.getCount();
+		if ( triStateBtn )
+			adapter.add(new MenuItemBtn(context, R.string.show_matching));
+		if ( !prefs.getBoolean("history-onclick", false) )
+			adapter.add(new MenuItemBtn(context, R.string.show_history));
+		// insert title only if at least an action was added
+		if ( actionsTitlePosition != adapter.getCount() )
+			adapter.add(actionsTitlePosition, new MenuItemTitle(context, R.string.popup_tags_actions));
+
 		adapter.add(new MenuItemDivider());
 		adapter.add(new MenuItemBtn(context, R.string.ctx_menu));
 
@@ -403,8 +424,9 @@ public class ToggleTags
 					switch (((MenuItemBtn) adapterItem).nameRes)
 					{
 						case R.string.ctx_menu:
-							if ( ToggleTags.this.popupMenu != null )
-								ToggleTags.this.popupMenu.dismiss();
+							if ( popupMenu != null )
+								popupMenu.dismiss();
+							popupMenu = null;
 							anchor.showContextMenu();
 							break;
 						case R.string.show_history:
