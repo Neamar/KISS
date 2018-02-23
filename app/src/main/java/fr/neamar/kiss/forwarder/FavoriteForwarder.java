@@ -38,7 +38,7 @@ public class FavoriteForwarder extends Forwarder {
      * Number of favorites to retrieve.
      * We need to pad this number to account for removed items still in history
      */
-    private final int tryToRetrieve = FAVORITES_COUNT + 2;
+    public final static int TRY_TO_RETRIEVE = FAVORITES_COUNT + 2;
 
     /**
      * IDs for the favorites buttons on the quickbar
@@ -58,6 +58,7 @@ public class FavoriteForwarder extends Forwarder {
     public void onCreate() {
         if(prefs.getBoolean("enable-favorites-bar", true)) {
             favorites = mainActivity.findViewById(R.id.favoritesBar);
+            favorites.setVisibility(View.VISIBLE);
         }
         else {
             throw new RuntimeException("TODO");
@@ -82,10 +83,11 @@ public class FavoriteForwarder extends Forwarder {
 
     @Override
     public void onFavoriteChange() {
+        Log.e("WTF", "Triggered favorite redraw");
         int[] favoritesIds = favBarIds;
 
         ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(mainActivity)
-                .getFavorites(tryToRetrieve);
+                .getFavorites(TRY_TO_RETRIEVE);
 
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
@@ -118,7 +120,7 @@ public class FavoriteForwarder extends Forwarder {
         mainActivity.displayKissBar(false);
 
         int favNumber = Integer.parseInt((String) favorite.getTag());
-        ArrayList<Pojo> favorites = KissApplication.getDataHandler(mainActivity).getFavorites(tryToRetrieve);
+        ArrayList<Pojo> favorites = KissApplication.getDataHandler(mainActivity).getFavorites(TRY_TO_RETRIEVE);
         if (favNumber >= favorites.size()) {
             // Clicking on a favorite before everything is loaded.
             Log.i(TAG, "Clicking on an unitialized favorite.");
@@ -189,7 +191,7 @@ public class FavoriteForwarder extends Forwarder {
             public boolean onLongClick(View view) {
 
                 int favNumber = Integer.parseInt((String) view.getTag());
-                ArrayList<Pojo> favorites = KissApplication.getDataHandler(mainActivity).getFavorites(tryToRetrieve);
+                ArrayList<Pojo> favorites = KissApplication.getDataHandler(mainActivity).getFavorites(TRY_TO_RETRIEVE);
                 if (favNumber >= favorites.size()) {
                     // Clicking on a favorite before everything is loaded.
                     Log.i(TAG, "Long clicking on an unitialized favorite.");

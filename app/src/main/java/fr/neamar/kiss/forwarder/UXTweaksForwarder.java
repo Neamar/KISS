@@ -45,7 +45,7 @@ class UXTweaksForwarder extends Forwarder {
                 }
             }
             if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)) {
-                mainActivity.displayExternalFavoritesBar(false, true);
+                mainActivity.findViewById(R.id.favoritesBar).setVisibility(View.VISIBLE);
             }
         }
 
