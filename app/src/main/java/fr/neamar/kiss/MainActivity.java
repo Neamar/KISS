@@ -391,6 +391,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         forwarderManager.onResume();
+
         super.onResume();
     }
 

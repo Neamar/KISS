@@ -78,6 +78,7 @@ public class ForwarderManager extends Forwarder {
     @Override
     public void updateRecords(String query) {
         uxTweaksForwarder.updateRecords(query);
+        favoriteForwarder.updateRecords(query);
     }
 
     @Override
