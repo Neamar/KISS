@@ -52,4 +52,7 @@ class Forwarder {
 
     public void allProvidersHaveLoaded() {
     }
+
+    public void onFavoriteChange() {
+    }
 }

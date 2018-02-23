@@ -85,4 +85,7 @@ public class ForwarderManager extends Forwarder {
         favoriteForwarder.allProvidersHaveLoaded();
     }
 
+    public void onFavoriteChange() {
+        favoriteForwarder.onFavoriteChange();
+    }
 }

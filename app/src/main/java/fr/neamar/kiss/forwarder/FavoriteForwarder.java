@@ -10,7 +10,6 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -47,19 +46,23 @@ public class FavoriteForwarder extends Forwarder {
     private final int[] favBarIds = new int[]{R.id.favoriteBar0, R.id.favoriteBar1, R.id.favoriteBar2, R.id.favoriteBar3, R.id.favoriteBar4, R.id.favoriteBar5};
 
     /**
-     * Favorites bar, in the KISS bar, next to KISS logo
+     * Favorites bar, above the KISS bar
      */
-    private final View favoritesInKissBar;
-
+    private View favorites;
 
     FavoriteForwarder(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
-
-        favoritesInKissBar = mainActivity.findViewById(R.id.favoritesKissBar);
     }
 
     @Override
     public void onCreate() {
+        if(prefs.getBoolean("enable-favorites-bar", true)) {
+            favorites = mainActivity.findViewById(R.id.favoritesBar);
+        }
+        else {
+            throw new RuntimeException("TODO");
+        }
+
         registerLongClickOnFavorites();
 
         if (prefs.getBoolean("firstRun", true)) {
@@ -73,62 +76,22 @@ public class FavoriteForwarder extends Forwarder {
     }
 
     @Override
-    public void onResume() {
-        //Show favorites above search field ONLY if AppProvider is already loaded
-        //Otherwise this will get triggered by the broadcastreceiver in the onCreate
-        if (mainActivity.allProvidersHaveLoaded) {
-            // Favorites needs to be displayed again if the quickfavorite bar is active,
-            // Not sure why exactly, but without the "true" the favorites drawable will disappear
-            // (not their intent) after moving to another activity and switching back to KISS.
-            displayExternalFavoritesBar(true, mainActivity.searchEditText.getText().toString().length() > 0);
-        }
+    public void allProvidersHaveLoaded() {
+        onFavoriteChange();
     }
 
     @Override
-    public void allProvidersHaveLoaded() {
-        displayExternalFavoritesBar(true, false);
-    }
-
-    private void displayExternalFavoritesBar(boolean initialize, boolean touched) {
-        View quickFavoritesBar = mainActivity.findViewById(R.id.favoritesBar);
-        if (mainActivity.searchEditText.getText().toString().isEmpty()
-                && prefs.getBoolean("enable-favorites-bar", true)) {
-            if ((!prefs.getBoolean("favorites-hide", false) || touched)) {
-                quickFavoritesBar.setVisibility(View.VISIBLE);
-            }
-
-            if (initialize) {
-                Log.i(TAG, "Using quick favorites bar, filling content.");
-                favoritesInKissBar.setVisibility(View.INVISIBLE);
-                displayFavorites();
-            }
-        } else {
-            quickFavoritesBar.setVisibility(View.GONE);
-        }
-    }
-
-
-    public void displayFavorites() {
-        int[] favoritesIds = favoritesInKissBar.getVisibility() == View.VISIBLE ? FAV_IDS : favBarIds;
+    public void onFavoriteChange() {
+        int[] favoritesIds = favBarIds;
 
         ArrayList<Pojo> favoritesPojo = KissApplication.getDataHandler(mainActivity)
                 .getFavorites(tryToRetrieve);
-
-        if (favoritesPojo.size() == 0) {
-            int noFavCnt = prefs.getInt("no-favorites-tip", 0);
-            if (noFavCnt < 3 && !prefs.getBoolean("enable-favorites-bar", true)) {
-                Toast toast = Toast.makeText(mainActivity, mainActivity.getString(R.string.no_favorites), Toast.LENGTH_SHORT);
-                toast.show();
-                prefs.edit().putInt("no-favorites-tip", ++noFavCnt).apply();
-
-            }
-        }
 
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
 
-            ImageView image = (ImageView) mainActivity.findViewById(favoritesIds[i]);
+            ImageView image = (ImageView) favorites.findViewById(favoritesIds[i]);
 
             Result result = Result.fromPojo(mainActivity, pojo);
             Drawable drawable = result.getDrawable(mainActivity);
@@ -146,13 +109,36 @@ public class FavoriteForwarder extends Forwarder {
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
-            mainActivity.findViewById(favoritesIds[i]).setVisibility(View.GONE);
+            favorites.findViewById(favoritesIds[i]).setVisibility(View.GONE);
         }
+    }
+
+    public void onFavoriteButtonClicked(View favorite) {
+        // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
+        mainActivity.displayKissBar(false);
+
+        int favNumber = Integer.parseInt((String) favorite.getTag());
+        ArrayList<Pojo> favorites = KissApplication.getDataHandler(mainActivity).getFavorites(tryToRetrieve);
+        if (favNumber >= favorites.size()) {
+            // Clicking on a favorite before everything is loaded.
+            Log.i(TAG, "Clicking on an unitialized favorite.");
+            return;
+        }
+        // Favorites handling
+        Pojo pojo = favorites.get(favNumber);
+        final Result result = Result.fromPojo(mainActivity, pojo);
+
+        result.fastLaunch(mainActivity, favorite);
     }
 
     @Override
     public void updateRecords(String query) {
-        displayExternalFavoritesBar(false, false);
+        if(query.isEmpty()) {
+            favorites.setVisibility(View.VISIBLE);
+        }
+        else {
+            favorites.setVisibility(View.GONE);
+        }
     }
 
     /**

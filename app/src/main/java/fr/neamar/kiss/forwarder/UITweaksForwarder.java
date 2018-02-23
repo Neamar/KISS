@@ -88,6 +88,6 @@ class UITweaksForwarder extends Forwarder {
 
         mainActivity.findViewById(R.id.searchEditLayout).getLayoutParams().height = searchHeight;
         mainActivity.kissBar.getLayoutParams().height = searchHeight;
-        mainActivity.favoritesInKissBar.getLayoutParams().height = searchHeight;
+        mainActivity.findViewById(R.id.favoritesKissBar).getLayoutParams().height = searchHeight;
     }
 }
