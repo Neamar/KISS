@@ -29,15 +29,16 @@ public class ForwarderManager extends Forwarder {
     @Override
     public void onCreate() {
         super.onCreate();
+        favoriteForwarder.onCreate();
         widgetForwarder.onCreate();
         uiTweaksForwarder.onCreate();
-        favoriteForwarder.onCreate();
+        uxTweaksForwarder.onCreate();
     }
 
     @Override
     public void onResume() {
-        uiTweaksForwarder.onResume();
         favoriteForwarder.onResume();
+        uiTweaksForwarder.onResume();
     }
 
     @Override
@@ -77,8 +78,8 @@ public class ForwarderManager extends Forwarder {
 
     @Override
     public void updateRecords(String query) {
-        uxTweaksForwarder.updateRecords(query);
         favoriteForwarder.updateRecords(query);
+        uxTweaksForwarder.updateRecords(query);
     }
 
     @Override
@@ -88,5 +89,9 @@ public class ForwarderManager extends Forwarder {
 
     public void onFavoriteChange() {
         favoriteForwarder.onFavoriteChange();
+    }
+
+    public void onDisplayKissBar(Boolean display) {
+        uxTweaksForwarder.onDisplayKissBar(display);
     }
 }

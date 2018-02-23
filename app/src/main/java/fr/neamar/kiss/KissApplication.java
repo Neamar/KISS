@@ -1,6 +1,7 @@
 package fr.neamar.kiss;
 
 import android.content.Context;
+import android.content.Intent;
 
 public class KissApplication {
     /**
@@ -48,6 +49,11 @@ public class KissApplication {
     public static void initDataHandler(Context ctx) {
         if (dataHandler == null) {
             dataHandler = new DataHandler(ctx);
+        }
+        else {
+            // Already loaded!
+            Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
+            ctx.sendBroadcast(i);
         }
     }
 

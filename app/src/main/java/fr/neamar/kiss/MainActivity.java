@@ -154,6 +154,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.v(TAG, "onCreate() MainActivity");
+
         // Initialize preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -169,14 +171,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
-                    onFavoriteChange();
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
 
+                    Log.v(TAG, "All providers are done loading.");
+
                     allProvidersHaveLoaded = true;
                     forwarderManager.onAllProvidersLoaded();
                 }
+                onFavoriteChange();
             }
         };
 
@@ -662,6 +666,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 }
             }
         }
+
+        forwarderManager.onDisplayKissBar(display);
     }
 
     public void updateRecords() {

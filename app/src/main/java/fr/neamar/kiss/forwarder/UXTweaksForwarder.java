@@ -13,6 +13,8 @@ import fr.neamar.kiss.searcher.NullSearcher;
 
 // Deals with any settings in the "User Experience" setting sub-screen
 class UXTweaksForwarder extends Forwarder {
+    View favoritesBar;
+
     UXTweaksForwarder(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
 
@@ -30,12 +32,17 @@ class UXTweaksForwarder extends Forwarder {
     }
 
     @Override
+    public void onCreate() {
+        favoritesBar = mainActivity.findViewById(R.id.favoritesBar);
+    }
+
+    @Override
     public boolean onTouch(View view, MotionEvent event) {
         //if motion movement ends
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
             // and minimalistic mode is enabled,
             // and we want to display history on touch
-            if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
+            if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
                 // and we're currently in minimalistic mode with no results,
                 // and we're not looking at the app list
                 if ((mainActivity.kissBar.getVisibility() != View.VISIBLE) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
@@ -44,23 +51,40 @@ class UXTweaksForwarder extends Forwarder {
                     }
                 }
             }
-            if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)) {
-                mainActivity.findViewById(R.id.favoritesBar).setVisibility(View.VISIBLE);
+
+            if (isMinimalisticModeEnabledForFavorites()) {
+                favoritesBar.setVisibility(View.VISIBLE);
             }
         }
 
         return false;
     }
 
+    @Override
+    public void onDisplayKissBar(Boolean display) {
+        if (isMinimalisticModeEnabledForFavorites()) {
+            if(display) {
+                favoritesBar.setVisibility(View.VISIBLE);
+            }
+            else {
+                favoritesBar.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    @Override
     public void updateRecords(String query) {
-        if (query.length() == 0) {
-            if (prefs.getBoolean("history-hide", false)) {
+        if (query.isEmpty()) {
+            if (isMinimalisticModeEnabled()) {
                 mainActivity.list.setVerticalScrollBarEnabled(false);
                 mainActivity.searchEditText.setHint("");
                 mainActivity.runTask(new NullSearcher(mainActivity));
                 //Hide default scrollview
                 mainActivity.findViewById(R.id.main_empty).setVisibility(View.GONE);
 
+                if (isMinimalisticModeEnabledForFavorites()) {
+                    favoritesBar.setVisibility(View.GONE);
+                }
             } else {
                 mainActivity.list.setVerticalScrollBarEnabled(true);
                 mainActivity.searchEditText.setHint(R.string.ui_search_hint);
@@ -69,5 +93,13 @@ class UXTweaksForwarder extends Forwarder {
                 mainActivity.findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    private boolean isMinimalisticModeEnabled() {
+        return prefs.getBoolean("history-hide", false);
+    }
+
+    private boolean isMinimalisticModeEnabledForFavorites() {
+        return prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false);
     }
 }

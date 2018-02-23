@@ -55,4 +55,7 @@ class Forwarder {
 
     public void onFavoriteChange() {
     }
+
+    public void onDisplayKissBar(Boolean display) {
+    }
 }
