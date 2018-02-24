@@ -480,7 +480,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
         // To fix this, we discard any click event occurring when the kissbar is displayed
-        if (isViewingAllApps())
+        if (isViewingSearchResults())
             menuButton.showContextMenu();
     }
 
