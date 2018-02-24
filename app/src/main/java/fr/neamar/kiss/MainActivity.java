@@ -29,7 +29,6 @@ import android.view.ViewAnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -85,7 +84,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Main list view
      */
-    public ListView list;
+    public AnimatedListView list;
     private View listContainer;
     /**
      * View to display when list is empty
@@ -187,7 +186,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Set the view and store all useful components
          */
         setContentView(R.layout.main);
-        this.list = (ListView) this.findViewById(android.R.id.list);
+        this.list = (AnimatedListView) this.findViewById(android.R.id.list);
         this.listContainer = (View) this.list.getParent();
         this.emptyListView = this.findViewById(android.R.id.empty);
         this.kissBar = findViewById(R.id.mainKissbar);
@@ -784,13 +783,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void beforeChange() {
-        AnimatedListView listView = (AnimatedListView) this.list;
-        listView.prepareChangeAnim();
+        list.prepareChangeAnim();
     }
 
     @Override
     public void afterChange() {
-        AnimatedListView listView = (AnimatedListView) this.list;
-        listView.animateChange();
+        list.animateChange();
     }
 }
