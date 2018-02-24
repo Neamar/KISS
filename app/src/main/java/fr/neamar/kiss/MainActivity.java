@@ -16,7 +16,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -36,7 +35,6 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -61,25 +59,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
-
-    /**
-     * InputType that behaves as if the consuming IME is a standard-obeying
-     * soft-keyboard
-     * <p>
-     * *Auto Complete* means "we're handling auto-completion ourselves". Then
-     * we ignore whatever the IME thinks we should display.
-     */
-    private final static int INPUT_TYPE_STANDARD = InputType.TYPE_CLASS_TEXT
-            | InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE
-            | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
-    /**
-     * InputType that behaves as if the consuming IME is SwiftKey
-     * <p>
-     * *Visible Password* fields will break many non-Latin IMEs and may show
-     * unexpected behaviour in numerous ways. (#454, #517)
-     */
-    private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
 
     private static final String TAG = "MainActivity";
 
@@ -138,6 +117,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     private Searcher searchTask;
 
+    /**
+     * A flag set to true after all providers reported loading is over
+     */
     public Boolean allProvidersHaveLoaded = false;
 
     /**
@@ -160,8 +142,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.v(TAG, "onCreate() MainActivity");
 
         // Initialize preferences
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -255,7 +235,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     displayKissBar(false, false);
                 }
                 String text = s.toString();
-                adjustInputType(text);
                 updateRecords(text);
                 displayClearOnInput();
             }
@@ -307,7 +286,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Check whether user enabled spell check and adjust input type accordingly
         searchEditTextWorkaround = prefs.getBoolean("enable-keyboard-workaround", false);
-        adjustInputType(null);
 
         // Enable/disable phone/sms broadcast receiver
         PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
@@ -319,22 +297,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         mSystemUiVisibility = new SystemUiVisibilityHelper(this);
 
         forwarderManager.onCreate();
-    }
-
-    private void adjustInputType(String currentText) {
-        int currentInputType = searchEditText.getInputType();
-        int requiredInputType;
-
-        if (currentText != null && Pattern.matches("[+]\\d+", currentText)) {
-            requiredInputType = InputType.TYPE_CLASS_PHONE;
-        } else if (searchEditTextWorkaround) {
-            requiredInputType = INPUT_TYPE_WORKAROUND;
-        } else {
-            requiredInputType = INPUT_TYPE_STANDARD;
-        }
-        if (currentInputType != requiredInputType) {
-            searchEditText.setInputType(requiredInputType);
-        }
     }
 
     @Override

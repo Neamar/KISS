@@ -3,8 +3,11 @@ package fr.neamar.kiss.forwarder;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
+import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -13,6 +16,25 @@ import fr.neamar.kiss.searcher.NullSearcher;
 
 // Deals with any settings in the "User Experience" setting sub-screen
 class UXTweaksForwarder extends Forwarder {
+    /**
+     * InputType that behaves as if the consuming IME is a standard-obeying
+     * soft-keyboard
+     * <p>
+     * *Auto Complete* means "we're handling auto-completion ourselves". Then
+     * we ignore whatever the IME thinks we should display.
+     */
+    private final static int INPUT_TYPE_STANDARD = InputType.TYPE_CLASS_TEXT
+            | InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE
+            | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS;
+    /**
+     * InputType that behaves as if the consuming IME is SwiftKey
+     * <p>
+     * *Visible Password* fields will break many non-Latin IMEs and may show
+     * unexpected behaviour in numerous ways. (#454, #517)
+     */
+    private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
+
     UXTweaksForwarder(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
 
@@ -27,6 +49,11 @@ class UXTweaksForwarder extends Forwarder {
         } else {
             mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
+    }
+
+    @Override
+    public void onCreate() {
+        adjustInputType(null);
     }
 
     @Override
@@ -67,6 +94,8 @@ class UXTweaksForwarder extends Forwarder {
 
     @Override
     public void updateRecords(String query) {
+        adjustInputType(query);
+
         if (query.isEmpty()) {
             if (isMinimalisticModeEnabled()) {
                 mainActivity.list.setVerticalScrollBarEnabled(false);
@@ -88,11 +117,36 @@ class UXTweaksForwarder extends Forwarder {
         }
     }
 
+    // Ensure the keyboard uses the right input method
+    private void adjustInputType(String currentText) {
+        int currentInputType = mainActivity.searchEditText.getInputType();
+        int requiredInputType;
+
+        if (currentText != null && Pattern.matches("[+]\\d+", currentText)) {
+            requiredInputType = InputType.TYPE_CLASS_PHONE;
+        } else if (isNonCompliantKeyboard()) {
+            requiredInputType = INPUT_TYPE_WORKAROUND;
+        } else {
+            requiredInputType = INPUT_TYPE_STANDARD;
+        }
+        if (currentInputType != requiredInputType) {
+            mainActivity.searchEditText.setInputType(requiredInputType);
+        }
+    }
+
     private boolean isMinimalisticModeEnabled() {
         return prefs.getBoolean("history-hide", false);
     }
 
     private boolean isMinimalisticModeEnabledForFavorites() {
         return prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false);
+    }
+
+    /**
+     * Should we force the keyboard not to display suggestions?
+     * (swiftkey)
+     */
+    private boolean isNonCompliantKeyboard() {
+        return prefs.getBoolean("enable-keyboard-workaround", false);
     }
 }
