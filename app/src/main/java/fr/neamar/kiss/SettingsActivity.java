@@ -12,7 +12,6 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
 import android.widget.Toast;
 
 import java.util.Arrays;
@@ -32,8 +31,6 @@ public class SettingsActivity extends PreferenceActivity implements
     // Those settings require the app to restart
 
     final static private String requireRestartSettings = "force-portrait primary-color transparent-search transparent-favorites history-hide enable-favorites-bar";
-
-    final static private String requireInstantRestart = "theme notification-bar-color";
 
     private boolean requireFullRestart = false;
 
@@ -71,15 +68,6 @@ public class SettingsActivity extends PreferenceActivity implements
         addExcludedAppSettings(prefs);
 
         addCustomSearchProvidersPreferences(prefs);
-
-        UIColors.updateThemePrimaryColor(this);
-
-        // Notification color can't be updated before Lollipop
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            PreferenceScreen screen = (PreferenceScreen) findPreference("ui-holder");
-            Preference pref = findPreference("notification-bar-color");
-            screen.removePreference(pref);
-        }
     }
 
     private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
@@ -274,12 +262,6 @@ public class SettingsActivity extends PreferenceActivity implements
 
         if (requireRestartSettings.contains(key)) {
             requireFullRestart = true;
-        }
-
-        if (requireInstantRestart.contains(key)) {
-            requireFullRestart = true;
-            finish();
-            return;
         }
 
         if ("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
