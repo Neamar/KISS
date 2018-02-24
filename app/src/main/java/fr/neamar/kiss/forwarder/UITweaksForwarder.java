@@ -72,7 +72,7 @@ class UITweaksForwarder extends Forwarder {
         loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background
-        mainActivity.findViewById(R.id.main_kissbar).setBackgroundColor(primaryColor);
+        mainActivity.findViewById(R.id.mainKissbar).setBackgroundColor(primaryColor);
     }
 
     @Override

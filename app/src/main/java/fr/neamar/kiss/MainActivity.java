@@ -81,9 +81,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
 
-    /**
-     * Widget constants
-     */
     private static final String TAG = "MainActivity";
 
     /**
@@ -95,7 +92,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Store user preferences
      */
     private SharedPreferences prefs;
+
+    /**
+     * Receive events from providers
+     */
     private BroadcastReceiver mReceiver;
+
     /**
      * View for the Search text
      */
@@ -177,14 +179,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
-                    // Run GC once to free all the garbage accumulated during provider initialization
-                    System.gc();
-
                     Log.v(TAG, "All providers are done loading.");
 
                     allProvidersHaveLoaded = true;
                     forwarderManager.onAllProvidersLoaded();
+
+                    // Run GC once to free all the garbage accumulated during provider initialization
+                    System.gc();
                 }
+
+                // New provider might mean new favorites
                 onFavoriteChange();
             }
         };
@@ -279,7 +283,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
-        kissBar = findViewById(R.id.main_kissbar);
+        kissBar = findViewById(R.id.mainKissbar);
 
         menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
@@ -293,6 +297,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
+        // When scrolling down on the list,
+        // Hide the keyboard.
         this.hider = new KeyboardScrollHider(this,
                 (BlockableListView) this.list,
                 (BottomPullEffectView) this.findViewById(R.id.listEdgeEffect)
@@ -303,7 +309,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         searchEditTextWorkaround = prefs.getBoolean("enable-keyboard-workaround", false);
         adjustInputType(null);
 
-        //enable/disable phone/sms broadcast receiver
+        // Enable/disable phone/sms broadcast receiver
         PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
         PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
 
@@ -382,7 +388,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
-        if (isPreferenceKeyboardOnStart()) {
+        if (isKeyboardOnStartEnabled()) {
             // Display keyboard
             showKeyboard();
 
@@ -666,7 +672,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (emptyText) {
                 searchEditText.setText("");
 
-                if (isPreferenceKeyboardOnStart()) {
+                if (isKeyboardOnStartEnabled()) {
                     // Display keyboard
                     showKeyboard();
                 }
@@ -722,7 +728,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void launchOccurred(int index, Result result) {
         // We selected an item on the list,
         // now we can cleanup the filter:
-        if (!searchEditText.getText().toString().equals("")) {
+        if (!searchEditText.getText().toString().isEmpty()) {
             searchEditText.setText("");
             hideKeyboard();
         }
@@ -749,7 +755,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         hider.fixScroll();
     }
 
-    private boolean isPreferenceKeyboardOnStart() {
+    private boolean isKeyboardOnStartEnabled() {
         return prefs.getBoolean("display-keyboard", false);
     }
 
@@ -757,7 +763,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         mSystemUiVisibility.onWindowFocusChanged(hasFocus);
-        if (hasFocus && isPreferenceKeyboardOnStart())
+        if (hasFocus && isKeyboardOnStartEnabled())
             showKeyboard();
     }
 

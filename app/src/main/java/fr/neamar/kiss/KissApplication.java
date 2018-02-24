@@ -51,7 +51,7 @@ public class KissApplication {
             dataHandler = new DataHandler(ctx);
         }
         else {
-            // Already loaded!
+            // Already loaded! We still need to fire the FULL_LOAD event
             Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
             ctx.sendBroadcast(i);
         }

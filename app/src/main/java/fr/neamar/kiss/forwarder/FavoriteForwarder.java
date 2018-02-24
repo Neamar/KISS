@@ -82,7 +82,6 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
 
     @Override
     public void onFavoriteChange() {
-        Log.e("WTF", "Triggered favorite redraw");
         int[] favoritesIds = FAV_IDS;
 
         favoritesPojo = KissApplication.getDataHandler(mainActivity)
