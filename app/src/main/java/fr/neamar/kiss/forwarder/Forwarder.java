@@ -49,4 +49,13 @@ class Forwarder {
 
     public void updateRecords(String query) {
     }
+
+    public void onAllProvidersLoaded() {
+    }
+
+    public void onFavoriteChange() {
+    }
+
+    public void onDisplayKissBar(Boolean display) {
+    }
 }

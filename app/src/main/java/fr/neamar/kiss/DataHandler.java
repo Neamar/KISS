@@ -28,6 +28,7 @@ import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
+import fr.neamar.kiss.forwarder.FavoriteForwarder;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
@@ -432,7 +433,7 @@ public class DataHandler extends BroadcastReceiver
         return favorites;
     }
 
-    public boolean addToFavorites(MainActivity context, String id) {
+    public void addToFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
@@ -440,23 +441,21 @@ public class DataHandler extends BroadcastReceiver
         // Check if we are already a fav icon
         if (favApps.contains(id + ";")) {
             //shouldn't happen
-            return false;
+            return;
         }
 
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        if (favAppsList.size() >= context.getFavIconsSize()) {
+        if (favAppsList.size() >= FavoriteForwarder.FAVORITES_COUNT) {
             favApps = favApps.substring(favApps.indexOf(";") + 1);
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps + id + ";").apply();
 
-        context.displayFavorites();
-
-        return true;
+        context.onFavoriteChange();
     }
 
-    public boolean removeFromFavorites(MainActivity context, String id) {
+    public void removeFromFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
@@ -464,15 +463,13 @@ public class DataHandler extends BroadcastReceiver
         // Check if we are not already a fav icon
         if (!favApps.contains(id + ";")) {
             //shouldn't happen
-            return false;
+            return;
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
 
-        context.displayFavorites();
-
-        return true;
+        context.onFavoriteChange();
     }
 
     public void removeFromFavorites(UserHandle user) {
@@ -487,7 +484,8 @@ public class DataHandler extends BroadcastReceiver
         StringBuilder favApps = new StringBuilder();
         for (String favAppID : favAppList) {
             if (!favAppID.startsWith("app://") || !user.hasStringUserSuffix(favAppID, '/')) {
-                favApps.append(favAppID + ";");
+                favApps.append(favAppID) ;
+                favApps.append(";");
             }
         }
 

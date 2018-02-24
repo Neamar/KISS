@@ -46,7 +46,7 @@ class UITweaksForwarder extends Forwarder {
         // Transparent Search and Favorites bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             if (prefs.getBoolean("transparent-favorites", false)) {
-                mainActivity.findViewById(R.id.favoritesBar).setBackgroundColor(Color.TRANSPARENT);
+                mainActivity.favorites.setBackgroundColor(Color.TRANSPARENT);
             }
             if (prefs.getBoolean("transparent-search", false)) {
                 mainActivity.findViewById(R.id.searchEditLayout).setBackgroundColor(Color.TRANSPARENT);
@@ -72,7 +72,7 @@ class UITweaksForwarder extends Forwarder {
         loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background
-        mainActivity.findViewById(R.id.main_kissbar).setBackgroundColor(primaryColor);
+        mainActivity.findViewById(R.id.mainKissbar).setBackgroundColor(primaryColor);
     }
 
     @Override
@@ -88,6 +88,6 @@ class UITweaksForwarder extends Forwarder {
 
         mainActivity.findViewById(R.id.searchEditLayout).getLayoutParams().height = searchHeight;
         mainActivity.kissBar.getLayoutParams().height = searchHeight;
-        mainActivity.favoritesInKissBar.getLayoutParams().height = searchHeight;
+        mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams().height = searchHeight;
     }
 }

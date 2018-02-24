@@ -14,6 +14,7 @@ public class ForwarderManager extends Forwarder {
     private final WallpaperForwarder wallpaperForwarder;
     private final UITweaksForwarder uiTweaksForwarder;
     private final UXTweaksForwarder uxTweaksForwarder;
+    private final FavoriteForwarder favoriteForwarder;
 
     public ForwarderManager(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
@@ -22,18 +23,20 @@ public class ForwarderManager extends Forwarder {
         this.wallpaperForwarder = new WallpaperForwarder(mainActivity, prefs);
         this.uiTweaksForwarder = new UITweaksForwarder(mainActivity, prefs);
         this.uxTweaksForwarder = new UXTweaksForwarder(mainActivity, prefs);
-
+        this.favoriteForwarder = new FavoriteForwarder(mainActivity, prefs);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        favoriteForwarder.onCreate();
         widgetForwarder.onCreate();
         uiTweaksForwarder.onCreate();
     }
 
     @Override
     public void onResume() {
+        favoriteForwarder.onResume();
         uiTweaksForwarder.onResume();
     }
 
@@ -72,7 +75,22 @@ public class ForwarderManager extends Forwarder {
         widgetForwarder.onDataSetChanged();
     }
 
+    @Override
     public void updateRecords(String query) {
+        favoriteForwarder.updateRecords(query);
         uxTweaksForwarder.updateRecords(query);
+    }
+
+    @Override
+    public void onAllProvidersLoaded() {
+        favoriteForwarder.onAllProvidersLoaded();
+    }
+
+    public void onFavoriteChange() {
+        favoriteForwarder.onFavoriteChange();
+    }
+
+    public void onDisplayKissBar(Boolean display) {
+        uxTweaksForwarder.onDisplayKissBar(display);
     }
 }

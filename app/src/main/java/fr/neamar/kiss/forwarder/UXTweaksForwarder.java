@@ -35,7 +35,7 @@ class UXTweaksForwarder extends Forwarder {
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
             // and minimalistic mode is enabled,
             // and we want to display history on touch
-            if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onclick", false)) {
+            if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
                 // and we're currently in minimalistic mode with no results,
                 // and we're not looking at the app list
                 if ((mainActivity.kissBar.getVisibility() != View.VISIBLE) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
@@ -44,23 +44,40 @@ class UXTweaksForwarder extends Forwarder {
                     }
                 }
             }
-            if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false)) {
-                mainActivity.displayExternalFavoritesBar(false, true);
+
+            if (isMinimalisticModeEnabledForFavorites()) {
+                mainActivity.favorites.setVisibility(View.VISIBLE);
             }
         }
 
         return false;
     }
 
+    @Override
+    public void onDisplayKissBar(Boolean display) {
+        if (isMinimalisticModeEnabledForFavorites()) {
+            if(display) {
+                mainActivity.favorites.setVisibility(View.VISIBLE);
+            }
+            else {
+                mainActivity.favorites.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    @Override
     public void updateRecords(String query) {
-        if (query.length() == 0) {
-            if (prefs.getBoolean("history-hide", false)) {
+        if (query.isEmpty()) {
+            if (isMinimalisticModeEnabled()) {
                 mainActivity.list.setVerticalScrollBarEnabled(false);
                 mainActivity.searchEditText.setHint("");
                 mainActivity.runTask(new NullSearcher(mainActivity));
                 //Hide default scrollview
                 mainActivity.findViewById(R.id.main_empty).setVisibility(View.GONE);
 
+                if (isMinimalisticModeEnabledForFavorites()) {
+                    mainActivity.favorites.setVisibility(View.GONE);
+                }
             } else {
                 mainActivity.list.setVerticalScrollBarEnabled(true);
                 mainActivity.searchEditText.setHint(R.string.ui_search_hint);
@@ -69,5 +86,13 @@ class UXTweaksForwarder extends Forwarder {
                 mainActivity.findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    private boolean isMinimalisticModeEnabled() {
+        return prefs.getBoolean("history-hide", false);
+    }
+
+    private boolean isMinimalisticModeEnabledForFavorites() {
+        return prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false);
     }
 }
