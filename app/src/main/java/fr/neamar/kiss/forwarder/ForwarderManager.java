@@ -32,7 +32,6 @@ public class ForwarderManager extends Forwarder {
         favoriteForwarder.onCreate();
         widgetForwarder.onCreate();
         uiTweaksForwarder.onCreate();
-        uxTweaksForwarder.onCreate();
     }
 
     @Override

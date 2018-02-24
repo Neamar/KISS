@@ -373,7 +373,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         if (kissBar.getVisibility() != View.VISIBLE) {
-            updateRecords(searchEditText.getText().toString());
+            updateRecords();
             displayClearOnInput();
         } else {
             displayKissBar(false);
@@ -622,6 +622,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
+            searchEditText.setText("");
             // Display the app list
             if (searchTask != null) {
                 searchTask.cancel(true);

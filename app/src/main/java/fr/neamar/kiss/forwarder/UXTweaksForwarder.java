@@ -13,8 +13,6 @@ import fr.neamar.kiss.searcher.NullSearcher;
 
 // Deals with any settings in the "User Experience" setting sub-screen
 class UXTweaksForwarder extends Forwarder {
-    View favoritesBar;
-
     UXTweaksForwarder(MainActivity mainActivity, SharedPreferences prefs) {
         super(mainActivity, prefs);
 
@@ -29,11 +27,6 @@ class UXTweaksForwarder extends Forwarder {
         } else {
             mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
-    }
-
-    @Override
-    public void onCreate() {
-        favoritesBar = mainActivity.findViewById(R.id.externalFavoriteBar);
     }
 
     @Override
@@ -53,7 +46,7 @@ class UXTweaksForwarder extends Forwarder {
             }
 
             if (isMinimalisticModeEnabledForFavorites()) {
-                favoritesBar.setVisibility(View.VISIBLE);
+                mainActivity.favorites.setVisibility(View.VISIBLE);
             }
         }
 
@@ -64,10 +57,10 @@ class UXTweaksForwarder extends Forwarder {
     public void onDisplayKissBar(Boolean display) {
         if (isMinimalisticModeEnabledForFavorites()) {
             if(display) {
-                favoritesBar.setVisibility(View.VISIBLE);
+                mainActivity.favorites.setVisibility(View.VISIBLE);
             }
             else {
-                favoritesBar.setVisibility(View.GONE);
+                mainActivity.favorites.setVisibility(View.GONE);
             }
         }
     }
@@ -83,7 +76,7 @@ class UXTweaksForwarder extends Forwarder {
                 mainActivity.findViewById(R.id.main_empty).setVisibility(View.GONE);
 
                 if (isMinimalisticModeEnabledForFavorites()) {
-                    favoritesBar.setVisibility(View.GONE);
+                    mainActivity.favorites.setVisibility(View.GONE);
                 }
             } else {
                 mainActivity.list.setVerticalScrollBarEnabled(true);
