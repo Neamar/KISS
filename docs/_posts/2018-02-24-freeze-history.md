@@ -2,7 +2,7 @@
 title: Freeze history feature
 categories:
   - Favorites
-description: "How to freeze history to display more favorites"
+description: "How to freeze history in order to display more favorites"
 type: Document
 ---
 
