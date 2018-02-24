@@ -1,7 +1,7 @@
 ---
 title: Fix missing favorite
 categories:
-  - favorites
+  - Favorites
 description: "One of my favorites is missing from KISS!"
 type: Document
 ---
