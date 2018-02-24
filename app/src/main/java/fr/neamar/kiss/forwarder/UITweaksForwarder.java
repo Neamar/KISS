@@ -50,7 +50,7 @@ class UITweaksForwarder extends Forwarder {
             }
             if (prefs.getBoolean("transparent-search", false)) {
                 mainActivity.findViewById(R.id.searchEditLayout).setBackgroundColor(Color.TRANSPARENT);
-                mainActivity.findViewById(R.id.searchEditText).setBackgroundColor(Color.TRANSPARENT);
+                mainActivity.searchEditText.setBackgroundColor(Color.TRANSPARENT);
             }
         }
     }
@@ -72,7 +72,7 @@ class UITweaksForwarder extends Forwarder {
         loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background
-        mainActivity.findViewById(R.id.mainKissbar).setBackgroundColor(primaryColor);
+        mainActivity.kissBar.setBackgroundColor(primaryColor);
     }
 
     @Override
