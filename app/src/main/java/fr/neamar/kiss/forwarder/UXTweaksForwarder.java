@@ -65,7 +65,7 @@ class UXTweaksForwarder extends Forwarder {
             if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
                 // and we're currently in minimalistic mode with no results,
                 // and we're not looking at the app list
-                if ((mainActivity.kissBar.getVisibility() != View.VISIBLE) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
+                if ((mainActivity.isViewingSearchResults()) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
                     if ((mainActivity.list.getAdapter() == null) || (mainActivity.list.getAdapter().isEmpty())) {
                         mainActivity.runTask(new HistorySearcher(mainActivity));
                     }

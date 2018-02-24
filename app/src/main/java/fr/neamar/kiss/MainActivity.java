@@ -254,8 +254,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Is the kiss bar visible?
-                if (kissBar.getVisibility() == View.VISIBLE) {
+                if (isViewingAllApps()) {
                     displayKissBar(false, false);
                 }
                 String text = s.toString();
@@ -352,7 +351,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
         }
 
-        if (kissBar.getVisibility() != View.VISIBLE) {
+        if (isViewingSearchResults()) {
             updateRecords();
             displayClearOnInput();
         } else {
@@ -421,9 +420,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onBackPressed() {
         if (mPopup != null) {
             mPopup.dismiss();
-        }
-        // Is the kiss bar visible?
-        else if (kissBar.getVisibility() == View.VISIBLE) {
+        } else if (isViewingAllApps()) {
             displayKissBar(false);
         } else if (!searchEditText.getText().toString().isEmpty()) {
             // If no kissmenu, empty the search bar
@@ -483,7 +480,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
         // To fix this, we discard any click event occurring when the kissbar is displayed
-        if (kissBar.getVisibility() != View.VISIBLE)
+        if (isViewingAllApps())
             menuButton.showContextMenu();
     }
 
@@ -616,13 +613,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                         android.R.integer.config_shortAnimTime);
 
                 Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
-                kissBar.setVisibility(View.VISIBLE);
                 anim.setDuration(animationDuration);
                 anim.start();
-            } else {
-                // No animation before Lollipop
-                kissBar.setVisibility(View.VISIBLE);
             }
+            kissBar.setVisibility(View.VISIBLE);
         } else {
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -777,8 +771,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      *
      * @return true of history, false on app list
      */
-    public boolean isOnSearchView() {
+    public boolean isViewingSearchResults() {
         return kissBar.getVisibility() != View.VISIBLE;
+    }
+
+    public boolean isViewingAllApps() {
+        return kissBar.getVisibility() == View.VISIBLE;
     }
 
     @Override
