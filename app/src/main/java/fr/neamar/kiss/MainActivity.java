@@ -81,10 +81,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * View for the Search text
      */
     public SearchEditText searchEditText;
-    /**
-     * Whether or not Search text should be spell checked (affects inputType)
-     */
-    private boolean searchEditTextWorkaround;
+
     /**
      * Main list view
      */
@@ -143,19 +140,27 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize preferences
+        /*
+         * Initialize preferences
+         */
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // Initialize all forwarders
+        /*
+         * Initialize all forwarders
+         */
         forwarderManager = new ForwarderManager(this, prefs);
 
+        /*
+         * Initialize data handler and start loading providers
+         */
         IntentFilter intentFilterLoad = new IntentFilter(START_LOAD);
         IntentFilter intentFilterLoadOver = new IntentFilter(LOAD_OVER);
         IntentFilter intentFilterFullLoadOver = new IntentFilter(FULL_LOAD_OVER);
         mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                //noinspection ConstantConditions
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateRecords(searchEditText.getText().toString());
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
@@ -178,15 +183,25 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.registerReceiver(mReceiver, intentFilterFullLoadOver);
         KissApplication.initDataHandler(this);
 
+        /*
+         * Set the view and store all useful components
+         */
         setContentView(R.layout.main);
+        this.list = (ListView) this.findViewById(android.R.id.list);
+        this.listContainer = (View) this.list.getParent();
+        this.emptyListView = this.findViewById(android.R.id.empty);
+        this.kissBar = findViewById(R.id.mainKissbar);
+        this.menuButton = findViewById(R.id.menuButton);
+        this.searchEditText = (SearchEditText) findViewById(R.id.searchEditText);
+
+        /*
+         * Initialize components behavior
+         * Note that a lot of behaviors are also initialized through the forwarderManager.onCreate() call.
+         */
         displayLoader(true);
 
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
-
-        this.list = (ListView) this.findViewById(android.R.id.list);
-        this.listContainer = (View) this.list.getParent();
-        this.emptyListView = this.findViewById(android.R.id.empty);
 
         // add history popup touch listener to empty view (prevents on not working there)
         this.emptyListView.setOnTouchListener(this);
@@ -201,22 +216,32 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
+        this.list.setLongClickable(true);
+        this.list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
+                ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
+                return true;
+            }
+        });
+
+        // Display empty list view whe having no results
         this.adapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
                 super.onChanged();
-                forwarderManager.onDataSetChanged();
-
                 if (adapter.isEmpty()) {
                     listContainer.setVisibility(View.GONE);
+                    emptyListView.setVisibility(View.VISIBLE);
                 } else {
                     listContainer.setVisibility(View.VISIBLE);
                     emptyListView.setVisibility(View.GONE);
                 }
+
+                forwarderManager.onDataSetChanged();
+
             }
         });
-
-        searchEditText = (SearchEditText) findViewById(R.id.searchEditText);
 
         // Listen to changes
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -262,19 +287,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
-        kissBar = findViewById(R.id.mainKissbar);
-
-        menuButton = findViewById(R.id.menuButton);
         registerForContextMenu(menuButton);
-
-        this.list.setLongClickable(true);
-        this.list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
-                ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
-                return true;
-            }
-        });
 
         // When scrolling down on the list,
         // Hide the keyboard.
@@ -283,9 +296,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 (BottomPullEffectView) this.findViewById(R.id.listEdgeEffect)
         );
         this.hider.start();
-
-        // Check whether user enabled spell check and adjust input type accordingly
-        searchEditTextWorkaround = prefs.getBoolean("enable-keyboard-workaround", false);
 
         // Enable/disable phone/sms broadcast receiver
         PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
@@ -296,6 +306,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         mSystemUiVisibility = new SystemUiVisibilityHelper(this);
 
+        /*
+         * Defer everything else to the forwarders
+         */
         forwarderManager.onCreate();
     }
 
@@ -733,6 +746,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void showKeyboard() {
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        //noinspection ConstantConditions
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
 
         mSystemUiVisibility.onKeyboardVisibilityChanged(true);
@@ -745,6 +759,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            //noinspection ConstantConditions
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
 

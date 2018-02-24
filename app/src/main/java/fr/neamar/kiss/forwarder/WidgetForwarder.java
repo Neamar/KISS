@@ -122,9 +122,9 @@ class WidgetForwarder extends Forwarder {
 
     @Override
     public void onDataSetChanged() {
-        if (!widgetUsed && mainActivity.adapter.isEmpty()) {
-            // when a widget is displayed this would prevent touches on the widget
-            mainActivity.emptyListView.setVisibility(View.VISIBLE);
+        if (widgetUsed && mainActivity.adapter.isEmpty()) {
+            // when a widget is displayed the empty list would prevent touches on the widget
+            mainActivity.emptyListView.setVisibility(View.GONE);
         }
     }
 
