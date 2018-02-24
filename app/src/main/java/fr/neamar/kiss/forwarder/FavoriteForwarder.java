@@ -1,7 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
@@ -45,8 +44,8 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
      */
     private ArrayList<Pojo> favoritesPojo;
 
-    FavoriteForwarder(MainActivity mainActivity, SharedPreferences prefs) {
-        super(mainActivity, prefs);
+    FavoriteForwarder(MainActivity mainActivity) {
+        super(mainActivity);
     }
 
     @Override

@@ -147,7 +147,7 @@ public abstract class Result {
         return inflatePopupMenu(adapter, context);
     }
 
-    protected ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
+    ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
         ListPopup menu = new ListPopup(context);
         menu.setAdapter(adapter);
 
@@ -192,7 +192,10 @@ public abstract class Result {
         }
 
         //Update Search to reflect favorite add, if the "exclude favorites" option is active
-        ((MainActivity) context).updateRecords();
+        MainActivity mainActivity = (MainActivity) context;
+        if(mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
+            mainActivity.updateRecords();
+        }
 
         return false;
     }

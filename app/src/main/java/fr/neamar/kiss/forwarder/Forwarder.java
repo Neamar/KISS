@@ -13,9 +13,9 @@ abstract class Forwarder {
     MainActivity mainActivity;
     protected SharedPreferences prefs;
 
-    Forwarder(MainActivity mainActivity, SharedPreferences prefs) {
+    Forwarder(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        this.prefs = prefs;
+        this.prefs = mainActivity.prefs;
     }
 
     public void onCreate() {

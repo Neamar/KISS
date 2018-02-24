@@ -1,6 +1,5 @@
 package fr.neamar.kiss.forwarder;
 
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -14,8 +13,8 @@ import fr.neamar.kiss.UIColors;
 
 // Deals with any settings in the "User Interface" setting sub-screen
 class UITweaksForwarder extends Forwarder {
-    UITweaksForwarder(MainActivity mainActivity, SharedPreferences prefs) {
-        super(mainActivity, prefs);
+    UITweaksForwarder(MainActivity mainActivity) {
+        super(mainActivity);
 
         // Setting the theme needs to be done before setContentView()
         String theme = prefs.getString("theme", "light");

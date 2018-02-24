@@ -1,6 +1,5 @@
 package fr.neamar.kiss.forwarder;
 
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.text.InputType;
@@ -35,8 +34,8 @@ class UXTweaksForwarder extends Forwarder {
     private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
 
-    UXTweaksForwarder(MainActivity mainActivity, SharedPreferences prefs) {
-        super(mainActivity, prefs);
+    UXTweaksForwarder(MainActivity mainActivity) {
+        super(mainActivity);
 
         // Lock launcher into portrait mode
         // Do it here (before initializing the view in onCreate) to make the transition as smooth as possible

@@ -17,13 +17,13 @@ public class ForwarderManager extends Forwarder {
     private final FavoriteForwarder favoriteForwarder;
 
     public ForwarderManager(MainActivity mainActivity, SharedPreferences prefs) {
-        super(mainActivity, prefs);
+        super(mainActivity);
 
         this.widgetForwarder = new WidgetForwarder(mainActivity, prefs);
-        this.wallpaperForwarder = new WallpaperForwarder(mainActivity, prefs);
-        this.uiTweaksForwarder = new UITweaksForwarder(mainActivity, prefs);
-        this.uxTweaksForwarder = new UXTweaksForwarder(mainActivity, prefs);
-        this.favoriteForwarder = new FavoriteForwarder(mainActivity, prefs);
+        this.wallpaperForwarder = new WallpaperForwarder(mainActivity);
+        this.uiTweaksForwarder = new UITweaksForwarder(mainActivity);
+        this.uxTweaksForwarder = new UXTweaksForwarder(mainActivity);
+        this.favoriteForwarder = new FavoriteForwarder(mainActivity);
     }
 
     @Override

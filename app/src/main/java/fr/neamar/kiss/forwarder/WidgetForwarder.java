@@ -41,7 +41,7 @@ class WidgetForwarder extends Forwarder {
     private ViewGroup widgetArea;
 
     WidgetForwarder(MainActivity mainActivity, SharedPreferences prefs) {
-        super(mainActivity, prefs);
+        super(mainActivity);
     }
 
     @Override

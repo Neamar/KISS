@@ -69,7 +69,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Store user preferences
      */
-    private SharedPreferences prefs;
+    public SharedPreferences prefs;
 
     /**
      * Receive events from providers

@@ -2,7 +2,6 @@ package fr.neamar.kiss.forwarder;
 
 import android.app.WallpaperManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -22,8 +21,8 @@ class WallpaperForwarder extends Forwarder {
     private WallpaperForwarder.Anim mAnimation;
     private VelocityTracker mVelocityTracker;
 
-    WallpaperForwarder(MainActivity mainActivity, SharedPreferences prefs) {
-        super(mainActivity, prefs);
+    WallpaperForwarder(MainActivity mainActivity) {
+        super(mainActivity);
 
         mWallpaperManager = (WallpaperManager) mainActivity.getSystemService(Context.WALLPAPER_SERVICE);
         mContentView = mainActivity.findViewById(android.R.id.content);
