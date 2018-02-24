@@ -33,7 +33,7 @@ class UXTweaksForwarder extends Forwarder {
 
     @Override
     public void onCreate() {
-        favoritesBar = mainActivity.findViewById(R.id.favoritesBar);
+        favoritesBar = mainActivity.findViewById(R.id.externalFavoriteBar);
     }
 
     @Override

@@ -41,11 +41,6 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
     public final static int TRY_TO_RETRIEVE = FAVORITES_COUNT + 2;
 
     /**
-     * Favorites bar, above the KISS bar
-     */
-    private View favorites;
-
-    /**
      * Currently displayed favorites
      */
     private ArrayList<Pojo> favoritesPojo;
@@ -57,11 +52,14 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
     @Override
     public void onCreate() {
         if(prefs.getBoolean("enable-favorites-bar", true)) {
-            favorites = mainActivity.findViewById(R.id.favoritesBar);
-            favorites.setVisibility(View.VISIBLE);
+            mainActivity.favorites = mainActivity.findViewById(R.id.externalFavoriteBar);
+            // Hide the embedded bar
+            mainActivity.findViewById(R.id.embeddedFavoritesBar).setVisibility(View.INVISIBLE);
         }
         else {
-            throw new RuntimeException("TODO");
+            mainActivity.favorites = mainActivity.findViewById(R.id.embeddedFavoritesBar);
+            // Hide the external bar
+            mainActivity.findViewById(R.id.externalFavoriteBar).setVisibility(View.GONE);
         }
 
         registerClickOnFavorites();
@@ -94,7 +92,7 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
         for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
 
-            ImageView image = (ImageView) favorites.findViewById(favoritesIds[i]);
+            ImageView image = (ImageView) mainActivity.favorites.findViewById(favoritesIds[i]);
 
             Result result = Result.fromPojo(mainActivity, pojo);
             Drawable drawable = result.getDrawable(mainActivity);
@@ -112,17 +110,17 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
-            favorites.findViewById(favoritesIds[i]).setVisibility(View.GONE);
+            mainActivity.favorites.findViewById(favoritesIds[i]).setVisibility(View.GONE);
         }
     }
 
     @Override
     public void updateRecords(String query) {
         if(query.isEmpty()) {
-            favorites.setVisibility(View.VISIBLE);
+            mainActivity.favorites.setVisibility(View.VISIBLE);
         }
         else {
-            favorites.setVisibility(View.GONE);
+            mainActivity.favorites.setVisibility(View.GONE);
         }
     }
 
@@ -170,13 +168,13 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
 
     private void registerClickOnFavorites() {
         for (int id : FAV_IDS) {
-            mainActivity.findViewById(id).setOnClickListener(this);
+            mainActivity.favorites.findViewById(id).setOnClickListener(this);
         }
     }
 
     private void registerLongClickOnFavorites() {
         for (int id : FAV_IDS) {
-            mainActivity.findViewById(id).setOnLongClickListener(this);
+            mainActivity.favorites.findViewById(id).setOnLongClickListener(this);
         }
     }
 

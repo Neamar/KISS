@@ -22,7 +22,7 @@
         android:id="@+id/resultLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/favoritesBar"
+        android:layout_above="@+id/externalFavoriteBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="false"
         android:layout_marginBottom="10dp"
@@ -53,7 +53,7 @@
     </FrameLayout>
 
     <RelativeLayout
-        android:id="@+id/favoritesBar"
+        android:id="@+id/externalFavoriteBar"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_above="@+id/searchEditLayout"
@@ -62,9 +62,7 @@
         android:layout_marginRight="10dp"
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
-        android:elevation="2dp"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:elevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -236,7 +234,7 @@
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/favoritesBar"
+        android:layout_above="@id/externalFavoriteBar"
         android:visibility="gone">
 
         <include
