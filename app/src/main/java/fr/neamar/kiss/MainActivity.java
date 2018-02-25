@@ -312,7 +312,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_settings, menu);
+        inflater.inflate(R.menu.menu_main, menu);
         forwarderManager.onCreateContextMenu(menu, v, menuInfo);
     }
 
@@ -465,7 +465,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_settings, menu);
+        inflater.inflate(R.menu.menu_main, menu);
 
         return true;
     }
