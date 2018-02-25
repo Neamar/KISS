@@ -112,11 +112,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private Searcher searchTask;
 
     /**
-     * A flag set to true after all providers reported loading is over
-     */
-    public Boolean allProvidersHaveLoaded = false;
-
-    /**
      * SystemUiVisibility helper
      */
     public SystemUiVisibilityHelper systemUiVisibilityHelper;
@@ -131,6 +126,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate()");
 
         /*
          * Initialize preferences
@@ -158,7 +154,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     Log.v(TAG, "All providers are done loading.");
 
-                    allProvidersHaveLoaded = true;
                     displayLoader(false);
 
                     // Run GC once to free all the garbage accumulated during provider initialization
@@ -327,7 +322,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     @SuppressLint("CommitPrefEdits")
     protected void onResume() {
-        Log.i(TAG, "Resuming KISS");
+        Log.d(TAG, "onResume()");
 
         if (prefs.getBoolean("require-layout-update", false)) {
             super.onResume();
@@ -343,11 +338,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
         }
 
-        if (isViewingSearchResults()) {
-            updateRecords();
-            displayClearOnInput();
-        } else {
-            displayKissBar(false);
+        if(KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
+            displayLoader(false);
         }
 
         forwarderManager.onResume();
@@ -665,7 +657,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // now we can cleanup the filter:
         if (!searchEditText.getText().toString().isEmpty()) {
             searchEditText.setText("");
+            displayClearOnInput();
             hideKeyboard();
+        }
+        else if(isViewingAllApps()) {
+            displayKissBar(false);
         }
     }
 
