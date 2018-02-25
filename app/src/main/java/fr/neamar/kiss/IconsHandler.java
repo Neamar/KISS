@@ -312,7 +312,7 @@ public class IconsHandler {
         return drawableFile.isFile();
     }
 
-    private boolean cacheStoreDrawable(String key, Drawable drawable) {
+    private void cacheStoreDrawable(String key, Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             File drawableFile = cacheGetFileName(key);
             FileOutputStream fos;
@@ -321,12 +321,10 @@ public class IconsHandler {
                 ((BitmapDrawable) drawable).getBitmap().compress(CompressFormat.PNG, 100, fos);
                 fos.flush();
                 fos.close();
-                return true;
             } catch (Exception e) {
                 Log.e(TAG, "Unable to store drawable in cache " + e);
             }
         }
-        return false;
     }
 
     private Drawable cacheGetDrawable(String key) {

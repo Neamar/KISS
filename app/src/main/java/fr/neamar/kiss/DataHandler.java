@@ -221,17 +221,6 @@ public class DataHandler extends BroadcastReceiver
     }
 
     /**
-     * Reload all currently used data providers
-     */
-    public void reloadAll() {
-        for (ProviderEntry entry : this.providers.values()) {
-            if (entry.provider != null && entry.provider.isLoaded()) {
-                entry.provider.reload();
-            }
-        }
-    }
-
-    /**
      * Get records for this query.
      *
      * @param query    query to run

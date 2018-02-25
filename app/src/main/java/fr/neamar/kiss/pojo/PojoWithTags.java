@@ -32,14 +32,6 @@ public class PojoWithTags extends Pojo {
         }
     }
 
-    public void setTagHighlight(int positionStart, int positionEnd) {
-        int posStart = this.mapTagsPosition(positionStart);
-        int posEnd = this.mapTagsPosition(positionEnd);
-
-        this.displayTags = this.tags.substring(0, posStart)
-                + '{' + this.tags.substring(posStart, posEnd) + '}' + this.tags.substring(posEnd, this.tags.length());
-    }
-
     public void setTagHighlight(List<Integer> matchPositions) {
         int startPos = matchPositions.get(0);
         int endPos = startPos + 1;

@@ -148,7 +148,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         /*
          * Initialize all forwarders
          */
-        forwarderManager = new ForwarderManager(this, prefs);
+        forwarderManager = new ForwarderManager(this);
 
         /*
          * Initialize data handler and start loading providers

@@ -2,8 +2,6 @@ package fr.neamar.kiss.pojo;
 
 import android.util.Pair;
 
-import java.text.Collator;
-import java.util.Comparator;
 import java.util.List;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -106,23 +104,5 @@ public abstract class Pojo {
             lastPositionEnd = positionEnd;
         }
         this.displayName = sb.append(this.name.substring(lastPositionEnd)).toString();
-    }
-
-    /**
-     * Item comparator for sorting Pojos based on their human-readable text
-     * description
-     */
-    public static class NameComparator implements Comparator<Pojo> {
-        private final Collator collator = Collator.getInstance();
-
-
-        public final int compare(Pojo a, Pojo b) {
-            int result = this.collator.compare(a.name, b.name);
-            if (result == 0) {
-                // Fall back to ID-based ordering if names match exactly
-                result = this.collator.compare(a.id, b.id);
-            }
-            return result;
-        }
     }
 }

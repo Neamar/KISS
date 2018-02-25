@@ -88,6 +88,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             }
 
             if (match) {
+                pojo.relevance += pojo.timesContacted;
+                if(pojo.starred) {
+                    pojo.relevance += 15;
+                }
+
                 if (!searcher.addResult(pojo))
                     return;
             }

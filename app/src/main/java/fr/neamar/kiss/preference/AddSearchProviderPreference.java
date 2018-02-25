@@ -63,7 +63,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         return layout;
     }
 
-    private boolean closeDialog(DialogInterface dialog, boolean close, int which) {
+    private void closeDialog(DialogInterface dialog, boolean close, int which) {
         try {
             Field field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
             field.setAccessible(true);
@@ -71,10 +71,7 @@ public class AddSearchProviderPreference extends DialogPreference {
             super.onClick(dialog, which);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
-
     }
 
     private boolean validatePipes() {

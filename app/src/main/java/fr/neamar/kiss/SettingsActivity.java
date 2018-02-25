@@ -125,13 +125,13 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void addCustomSearchProvidersPreferences(SharedPreferences prefs) {
-        removeSearchProviderSelect(prefs);
-        removeSearchProviderDelete(prefs);
+        removeSearchProviderSelect();
+        removeSearchProviderDelete();
         addCustomSearchProvidersSelect(prefs);
         addCustomSearchProvidersDelete(prefs);
     }
 
-    private void removeSearchProviderSelect(SharedPreferences prefs) {
+    private void removeSearchProviderSelect() {
         PreferenceGroup category = (PreferenceGroup) findPreference("providers");
         Preference pref = findPreference("selected-search-provider-names");
         if (pref != null) {
@@ -139,7 +139,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    private void removeSearchProviderDelete(SharedPreferences prefs) {
+    private void removeSearchProviderDelete() {
         PreferenceGroup category = (PreferenceGroup) findPreference("providers");
         Preference pref = findPreference("deleting-search-providers-names");
         if (pref != null) {
