@@ -41,7 +41,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         }
     }
 
-    protected void drawPalette() {
+    private void drawPalette() {
         if (this.palette != null) {
             this.palette.drawPalette(UIColors.COLOR_LIST, this.selectedColor);
         }

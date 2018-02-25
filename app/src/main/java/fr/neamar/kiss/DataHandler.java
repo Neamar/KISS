@@ -99,7 +99,7 @@ public class DataHandler extends BroadcastReceiver
      * @param name The name of the provider
      * @return Android intent for this provider
      */
-    protected Intent providerName2Intent(String name) {
+    private Intent providerName2Intent(String name) {
         // Build expected fully-qualified provider class name
         StringBuilder className = new StringBuilder(50);
         className.append(PROVIDER_PREFIX);
@@ -121,7 +121,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
      */
-    protected void connectToProvider(final String name) {
+    private void connectToProvider(final String name) {
         // Do not continue if this provider has already been connected to
         if (this.providers.containsKey(name)) {
             return;
@@ -170,7 +170,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param name Data provider name (i.e.: `AppProvider` → `"app"`)
      */
-    protected void disconnectFromProvider(String name) {
+    private void disconnectFromProvider(String name) {
         // Skip already disconnected services
         ProviderEntry entry = this.providers.get(name);
         if (entry == null) {
@@ -529,7 +529,7 @@ public class DataHandler extends BroadcastReceiver
         tagsHandler = new TagsHandler(this.context);
     }
 
-    protected static final class ProviderEntry {
+    static final class ProviderEntry {
         public IProvider provider = null;
         public ServiceConnection connection = null;
     }

@@ -18,7 +18,7 @@ import static org.mockito.Mockito.mock;
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
 public class MainActivityTest {
-    DataHandler mockDataHandler;
+    private DataHandler mockDataHandler;
 
     @Before
     public void setUp() {

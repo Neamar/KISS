@@ -93,7 +93,7 @@ public class FuzzyScore {
      * @param text string converted to codepoints
      * @return true if each character in pattern is found sequentially within str
      */
-    public boolean match(int[] text) {
+    private boolean match(int[] text) {
         int patternIdx = 0;
         int strIdx = 0;
         int strLength = text.length;

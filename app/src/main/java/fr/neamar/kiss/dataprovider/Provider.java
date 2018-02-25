@@ -21,7 +21,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     /**
      * Storage for search items used by this provider
      */
-    protected List<T> pojos = new ArrayList<>();
+    List<T> pojos = new ArrayList<>();
     private boolean loaded = false;
     /**
      * Scheme used to build ids for the pojos created by this provider
@@ -40,7 +40,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     }
 
 
-    protected void initialize(LoadPojos<T> loader) {
+    void initialize(LoadPojos<T> loader) {
         Log.i("Provider.initialize", "Starting provider: " + this.getClass().getSimpleName());
 
         loader.setProvider(this);

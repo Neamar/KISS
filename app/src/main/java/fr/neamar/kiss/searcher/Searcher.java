@@ -25,7 +25,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     // define a different thread than the default AsyncTask thread or else we will block everything else that uses AsyncTask while we search
     public static final ExecutorService SEARCH_THREAD = Executors.newSingleThreadExecutor();
     static final int DEFAULT_MAX_RESULTS = 50;
-    static final int DEFAULT_REFRESH_TIMER = 150;
+    private static final int DEFAULT_REFRESH_TIMER = 150;
     final WeakReference<MainActivity> activityWeakReference;
     private final PriorityQueue<Pojo> processedPojos;
     private final RefreshTask refreshTask;
@@ -55,7 +55,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new PojoComparator());
     }
 
-    protected int getMaxResultCount() {
+    int getMaxResultCount() {
         return DEFAULT_MAX_RESULTS;
     }
 

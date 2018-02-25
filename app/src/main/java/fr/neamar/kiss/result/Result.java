@@ -45,7 +45,7 @@ public abstract class Result {
      */
     final Pojo pojo;
 
-    protected Result(@NonNull Pojo pojo) {
+    Result(@NonNull Pojo pojo) {
         this.pojo = pojo;
     }
 

@@ -35,7 +35,7 @@ import fr.neamar.kiss.R;
  */
 public class ColorPickerPalette extends TableLayout {
 
-    public OnColorSelectedListener mOnColorSelectedListener;
+    private OnColorSelectedListener mOnColorSelectedListener;
 
     private String mDescription;
     private String mDescriptionSelected;

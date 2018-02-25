@@ -74,7 +74,7 @@ public class IconsHandler {
     /**
      * Load configured icons pack
      */
-    public void loadIconsPack() {
+    private void loadIconsPack() {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         loadIconsPack(prefs.getString("icons-pack", "default"));
@@ -184,7 +184,7 @@ public class IconsHandler {
     }
 
 
-    public Drawable getDefaultAppDrawable(ComponentName componentName, UserHandle userHandle) {
+    private Drawable getDefaultAppDrawable(ComponentName componentName, UserHandle userHandle) {
         try {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);

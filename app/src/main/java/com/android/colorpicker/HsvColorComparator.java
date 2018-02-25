@@ -23,7 +23,7 @@ import java.util.Comparator;
 /**
  * A color comparator which compares based on hue, saturation, and value.
  */
-public class HsvColorComparator implements Comparator<Integer> {
+class HsvColorComparator implements Comparator<Integer> {
 
     @Override
     public int compare(Integer lhs, Integer rhs) {

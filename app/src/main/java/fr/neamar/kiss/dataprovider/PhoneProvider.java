@@ -27,7 +27,7 @@ public class PhoneProvider extends Provider<PhonePojo> {
         searcher.addResult(getResults(s).toArray(new Pojo[0]));
     }
 
-    protected ArrayList<Pojo> getResults(String query) {
+    private ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> pojos = new ArrayList<>();
 
         // Append an item only if query looks like a phone number and device has phone capabilities

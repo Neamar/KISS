@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 
-public class RootModePreference extends CheckBoxPreference {
+class RootModePreference extends CheckBoxPreference {
 
     public RootModePreference(Context context, AttributeSet attrs) {
         super(context, attrs);

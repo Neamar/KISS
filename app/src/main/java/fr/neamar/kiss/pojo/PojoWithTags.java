@@ -14,7 +14,7 @@ public class PojoWithTags extends Pojo {
     // Variable to store the formatted (user selection in bold) tag
     public String displayTags = "";
     // Tags assigned to this pojo
-    protected String tags;
+    private String tags;
 
     public String getTags() {
         return tags;
@@ -77,7 +77,7 @@ public class PojoWithTags extends Pojo {
      * @param position Position in normalized tags string
      * @return Position in standard tags string
      */
-    public int mapTagsPosition(int position) {
+    private int mapTagsPosition(int position) {
         if (position < normalizedTags.mapPosition.length)
             return normalizedTags.mapPosition[position];
         return tags.length();

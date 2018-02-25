@@ -774,7 +774,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         return kissBar.getVisibility() != View.VISIBLE;
     }
 
-    public boolean isViewingAllApps() {
+    private boolean isViewingAllApps() {
         return kissBar.getVisibility() == View.VISIBLE;
     }
 

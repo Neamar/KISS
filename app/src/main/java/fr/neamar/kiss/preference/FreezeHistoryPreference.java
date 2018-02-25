@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 
 import fr.neamar.kiss.R;
 
-public class FreezeHistoryPreference extends CheckBoxPreference {
+class FreezeHistoryPreference extends CheckBoxPreference {
 
     public FreezeHistoryPreference(Context context, AttributeSet attrs) {
         super(context, attrs);

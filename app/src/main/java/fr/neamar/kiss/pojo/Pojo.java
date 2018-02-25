@@ -24,7 +24,7 @@ public abstract class Pojo {
     // displayed
     public int relevance = 0;
     // Name for this pojo, e.g. app name
-    protected String name = "";
+    String name = "";
 
     /**
      * Map a position in the normalized name to a position in the standard name string
@@ -32,7 +32,7 @@ public abstract class Pojo {
      * @param position Position in normalized name
      * @return Position in non-normalized string
      */
-    public int mapPosition(int position) {
+    private int mapPosition(int position) {
         if (position < normalizedName.mapPosition.length)
             return normalizedName.mapPosition[position];
         return name.length();

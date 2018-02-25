@@ -25,7 +25,7 @@ import android.graphics.drawable.LayerDrawable;
  * A drawable which sets its color filter to a color specified by the user, and changes to a
  * slightly darker color when pressed or focused.
  */
-public class ColorStateDrawable extends LayerDrawable {
+class ColorStateDrawable extends LayerDrawable {
 
     private static final float PRESSED_STATE_MULTIPLIER = 0.70f;
 

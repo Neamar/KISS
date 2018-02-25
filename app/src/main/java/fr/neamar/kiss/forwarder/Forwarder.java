@@ -11,17 +11,17 @@ import fr.neamar.kiss.MainActivity;
 
 abstract class Forwarder {
     MainActivity mainActivity;
-    protected SharedPreferences prefs;
+    SharedPreferences prefs;
 
     Forwarder(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
         this.prefs = mainActivity.prefs;
     }
 
-    public void onCreate() {
+    void onCreate() {
     }
 
-    public void onResume() {
+    void onResume() {
     }
 
     public void onStart() {
