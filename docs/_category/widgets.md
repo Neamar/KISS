@@ -1,4 +1,4 @@
 ---
 tag: Widgets
-permalink: "/category/widgets"
+permalink: "/category/widgets/"
 ---

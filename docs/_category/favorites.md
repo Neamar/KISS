@@ -1,4 +1,4 @@
 ---
 tag: Favorites
-permalink: "/category/favorites"
+permalink: "/category/favorites/"
 ---

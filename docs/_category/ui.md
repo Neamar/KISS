@@ -1,4 +1,4 @@
 ---
 tag: UI
-permalink: "/category/ui"
+permalink: "/category/ui/"
 ---

@@ -1,4 +1,4 @@
 ---
 tag: Contacts
-permalink: "/category/contacts"
+permalink: "/category/contacts/"
 ---

@@ -1,4 +1,4 @@
 ---
 tag: Advanced
-permalink: "/category/advanced"
+permalink: "/category/advanced/"
 ---

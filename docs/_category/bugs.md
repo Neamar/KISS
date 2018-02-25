@@ -1,4 +1,4 @@
 ---
 tag: Bugs
-permalink: "/category/bugs"
+permalink: "/category/bugs/"
 ---
