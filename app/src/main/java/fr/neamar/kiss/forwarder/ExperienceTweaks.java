@@ -44,6 +44,8 @@ class ExperienceTweaks extends Forwarder {
         }
     };
 
+    private View mainEmptyView;
+
     ExperienceTweaks(MainActivity mainActivity) {
         super(mainActivity);
 
@@ -62,6 +64,7 @@ class ExperienceTweaks extends Forwarder {
 
     void onCreate() {
         adjustInputType(null);
+        mainEmptyView = mainActivity.findViewById(R.id.main_empty);
     }
 
     void onResume() {
@@ -83,6 +86,13 @@ class ExperienceTweaks extends Forwarder {
             // unless coming back from KISS settings
             mainActivity.hideKeyboard();
         }
+
+        if (isMinimalisticModeEnabled()) {
+            mainEmptyView.setVisibility(View.GONE);
+
+            mainActivity.list.setVerticalScrollBarEnabled(false);
+            mainActivity.searchEditText.setHint("");
+        }
     }
 
     void onTouch(View view, MotionEvent event) {
@@ -101,7 +111,7 @@ class ExperienceTweaks extends Forwarder {
             }
 
             if (isMinimalisticModeEnabledForFavorites()) {
-                mainActivity.favorites.setVisibility(View.VISIBLE);
+                mainActivity.favoritesBar.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -115,9 +125,9 @@ class ExperienceTweaks extends Forwarder {
     void onDisplayKissBar(Boolean display) {
         if (isMinimalisticModeEnabledForFavorites()) {
             if (display) {
-                mainActivity.favorites.setVisibility(View.VISIBLE);
+                mainActivity.favoritesBar.setVisibility(View.VISIBLE);
             } else {
-                mainActivity.favorites.setVisibility(View.GONE);
+                mainActivity.favoritesBar.setVisibility(View.GONE);
             }
         }
 
@@ -132,21 +142,15 @@ class ExperienceTweaks extends Forwarder {
 
         if (query.isEmpty()) {
             if (isMinimalisticModeEnabled()) {
-                mainActivity.list.setVerticalScrollBarEnabled(false);
-                mainActivity.searchEditText.setHint("");
                 mainActivity.runTask(new NullSearcher(mainActivity));
-                //Hide default scrollview
-                mainActivity.findViewById(R.id.main_empty).setVisibility(View.GONE);
+                // By default, help text is displayed -- not in minimalistic mode.
+                mainEmptyView.setVisibility(View.GONE);
 
                 if (isMinimalisticModeEnabledForFavorites()) {
-                    mainActivity.favorites.setVisibility(View.GONE);
+                    mainActivity.favoritesBar.setVisibility(View.GONE);
                 }
             } else {
-                mainActivity.list.setVerticalScrollBarEnabled(true);
-                mainActivity.searchEditText.setHint(R.string.ui_search_hint);
                 mainActivity.runTask(new HistorySearcher(mainActivity));
-                //Show default scrollview
-                mainActivity.findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         }
     }

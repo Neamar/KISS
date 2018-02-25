@@ -104,17 +104,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Favorites bar. Can be either the favorites within the KISS bar,
      * or the external favorites bar (default)
      */
-    public View favorites;
+    public View favoritesBar;
 
     /**
      * Task launched on text change
      */
     private Searcher searchTask;
-
-    /**
-     * A flag set to true after all providers reported loading is over
-     */
-    public Boolean allProvidersHaveLoaded = false;
 
     /**
      * SystemUiVisibility helper
@@ -131,6 +126,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate()");
 
         /*
          * Initialize preferences
@@ -158,8 +154,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     Log.v(TAG, "All providers are done loading.");
 
-                    allProvidersHaveLoaded = true;
-                    forwarderManager.onAllProvidersLoaded();
+                    displayLoader(false);
 
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
@@ -222,9 +217,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onChanged() {
                 super.onChanged();
                 if (adapter.isEmpty()) {
+                    // Display help text when no results available
                     listContainer.setVisibility(View.GONE);
                     emptyListView.setVisibility(View.VISIBLE);
                 } else {
+                    // Otherwise, display results
                     listContainer.setVisibility(View.VISIBLE);
                     emptyListView.setVisibility(View.GONE);
                 }
@@ -327,7 +324,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     @SuppressLint("CommitPrefEdits")
     protected void onResume() {
-        Log.i(TAG, "Resuming KISS");
+        Log.d(TAG, "onResume()");
 
         if (prefs.getBoolean("require-layout-update", false)) {
             super.onResume();
@@ -343,11 +340,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
         }
 
-        if (isViewingSearchResults()) {
-            updateRecords();
-            displayClearOnInput();
-        } else {
-            displayKissBar(false);
+        if(KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
+            displayLoader(false);
+            onFavoriteChange();
         }
 
         forwarderManager.onResume();
@@ -573,9 +568,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (display) {
             searchEditText.setText("");
             // Display the app list
-            if (searchTask != null) {
-                searchTask.cancel(true);
-            }
+            resetTask();
+
             searchTask = new ApplicationsSearcher(MainActivity.this);
             searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
 
@@ -665,7 +659,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // now we can cleanup the filter:
         if (!searchEditText.getText().toString().isEmpty()) {
             searchEditText.setText("");
+            displayClearOnInput();
             hideKeyboard();
+        }
+        else if(isViewingAllApps()) {
+            displayKissBar(false);
         }
     }
 

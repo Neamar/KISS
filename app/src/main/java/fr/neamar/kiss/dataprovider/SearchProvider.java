@@ -28,6 +28,7 @@ public class SearchProvider extends Provider<SearchPojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadSearchPojos(this));
     }
 

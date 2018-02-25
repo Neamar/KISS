@@ -121,6 +121,7 @@ public class AppProvider extends Provider<AppPojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadAppPojos(this));
     }
 

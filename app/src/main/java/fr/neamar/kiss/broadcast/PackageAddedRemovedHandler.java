@@ -54,9 +54,18 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
+        String packageName = intent.getData().getSchemeSpecificPart();
+
+        if(packageName.equalsIgnoreCase(ctx.getPackageName())) {
+            // When running KISS locally, sending a new version of the APK immediately triggers a "package removed" for fr.neamar.kiss,
+            // There is no need to handle this event.
+            // Discarding it makes startup time much faster locally as apps don't have to be loaded twice.
+            return;
+        }
+
         handleEvent(ctx,
                 intent.getAction(),
-                intent.getData().getSchemeSpecificPart(), new UserHandle(),
+                packageName, new UserHandle(),
                 intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
         );
 

@@ -44,7 +44,7 @@ class InterfaceTweaks extends Forwarder {
         // Transparent Search and Favorites bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             if (prefs.getBoolean("transparent-favorites", false)) {
-                mainActivity.favorites.setBackgroundColor(Color.TRANSPARENT);
+                mainActivity.favoritesBar.setBackgroundColor(Color.TRANSPARENT);
             }
             if (prefs.getBoolean("transparent-search", false)) {
                 mainActivity.findViewById(R.id.searchEditLayout).setBackgroundColor(Color.TRANSPARENT);

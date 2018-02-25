@@ -12,6 +12,7 @@ public class TogglesProvider extends Provider<TogglesPojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadTogglesPojos(this));
 
         toggleName = this.getString(R.string.toggles_prefix).toLowerCase();

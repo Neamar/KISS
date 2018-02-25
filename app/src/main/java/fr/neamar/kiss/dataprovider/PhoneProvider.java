@@ -16,6 +16,7 @@ public class PhoneProvider extends Provider<PhonePojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadPhonePojos(this));
 
         PackageManager pm = this.getPackageManager();

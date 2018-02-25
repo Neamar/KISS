@@ -16,6 +16,7 @@ import java.util.PriorityQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
@@ -125,7 +126,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             return;
 
         // Loader should still be displayed until all the providers have finished loading
-        activity.displayLoader(!activity.allProvidersHaveLoaded);
+        activity.displayLoader(!KissApplication.getApplication(activity).getDataHandler().allProvidersHaveLoaded);
 
         if (this.processedPojos.isEmpty()) {
             activity.adapter.clear();

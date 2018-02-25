@@ -75,10 +75,6 @@ public class ForwarderManager extends Forwarder {
         experienceTweaksProvider.updateRecords(query);
     }
 
-    public void onAllProvidersLoaded() {
-        favoritesForwarder.onAllProvidersLoaded();
-    }
-
     public void onFavoriteChange() {
         favoritesForwarder.onFavoriteChange();
     }
