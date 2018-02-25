@@ -30,7 +30,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
      * IDs for the favorites buttons
      */
     private final static int[] FAV_IDS = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
-    private View[] favoritesView;
+    private View[] favoritesViews;
 
     /**
      * Number of favorites that can be displayed
@@ -63,9 +63,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             mainActivity.findViewById(R.id.externalFavoriteBar).setVisibility(View.GONE);
         }
 
-        favoritesView = new View[FAV_IDS.length];
+        favoritesViews = new View[FAV_IDS.length];
         for (int i = 0; i < FAV_IDS.length; i++) {
-            favoritesView[i] = mainActivity.favoritesBar.findViewById(FAV_IDS[i]);
+            favoritesViews[i] = mainActivity.favoritesBar.findViewById(FAV_IDS[i]);
         }
 
         registerClickOnFavorites();
@@ -91,7 +91,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
 
-            ImageView image = (ImageView) favoritesView[i];
+            ImageView image = (ImageView) favoritesViews[i];
 
             Result result = Result.fromPojo(mainActivity, pojo);
             Drawable drawable = result.getDrawable(mainActivity);
@@ -109,7 +109,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
-            favoritesView[i].setVisibility(View.GONE);
+            favoritesViews[i].setVisibility(View.GONE);
         }
     }
 
@@ -164,13 +164,13 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     private void registerClickOnFavorites() {
-        for (View v : favoritesView) {
+        for (View v : favoritesViews) {
             v.setOnClickListener(this);
         }
     }
 
     private void registerLongClickOnFavorites() {
-        for (View v : favoritesView) {
+        for (View v : favoritesViews) {
             v.setOnLongClickListener(this);
         }
     }
