@@ -132,8 +132,21 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
+                Log.i(TAG, "Dialer resolves to:" + packageName + "/" + resolveInfo.activityInfo.name);
+
                 if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                    String activityName = resolveInfo.activityInfo.name;
+                    if(packageName.equals("com.google.android.dialer")) {
+                        // Default dialer has two different activities, one when calling a phone number and one when opening the app from the launcher.
+                        // (com.google.android.apps.dialer.extensions.GoogleDialtactsActivity vs. com.google.android.dialer.extensions.GoogleDialtactsActivity)
+                        // (notice the .apps. in the middle)
+                        // The phoneIntent above resolve to the former, which isn't exposed as a Launcher activity and thus can't be displayed as a favorite
+                        // This hack uses the correct resolver when the application id is the default dialer.
+                        // In terms of maintenance, if Android was to change the name of the phone's main resolver, the favorite would simply not appear
+                        // and we would have to update the String below to the new default resolver
+                        activityName = "com.google.android.dialer.extensions.GoogleDialtactsActivity";
+                    }
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + activityName);
                 }
             }
         }
@@ -143,6 +156,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
+                Log.i(TAG, "Contacts resolves to:" + packageName);
                 if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
                     KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
@@ -155,9 +169,19 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
+                Log.i(TAG, "Browser resolves to:" + packageName);
 
                 if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                    String activityName = resolveInfo.activityInfo.name;
+                    if(packageName.equalsIgnoreCase("com.android.chrome")) {
+                        // Chrome has two different activities, one for Launcher and one when opening an URL.
+                        // The browserIntent above resolve to the latter, which isn't exposed as a Launcher activity and thus can't be displayed
+                        // This hack uses the correct resolver when the application is Chrome.
+                        // In terms of maintenance, if Chrome was to change the name of the main resolver, the favorite would simply not appear
+                        // and we would have to update the String below to the new default resolver
+                        activityName = "com.google.android.apps.chrome.Main";
+                    }
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + activityName);
                 }
             }
         }
