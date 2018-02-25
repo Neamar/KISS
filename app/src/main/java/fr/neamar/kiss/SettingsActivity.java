@@ -111,7 +111,7 @@ public class SettingsActivity extends PreferenceActivity implements
                     multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
                 }
 
-                final AppProvider provider = KissApplication.getDataHandler(SettingsActivity.this).getAppProvider();
+                final AppProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler(SettingsActivity.this).getAppProvider();
                 if (provider != null) {
                     provider.reload();
                 }
@@ -168,7 +168,7 @@ public class SettingsActivity extends PreferenceActivity implements
             @SuppressWarnings("unchecked")
             public boolean onPreferenceChange(Preference preference, Object newValue) {
 
-                final SearchProvider provider = KissApplication.getDataHandler(SettingsActivity.this).getSearchProvider();
+                final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler(SettingsActivity.this).getSearchProvider();
                 if (provider != null) {
                     provider.reload();
                 }
@@ -224,7 +224,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 }
 
                 // Reload search list
-                final SearchProvider provider = KissApplication.getDataHandler(SettingsActivity.this).getSearchProvider();
+                final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler(SettingsActivity.this).getSearchProvider();
                 if (provider != null) {
                     provider.reload();
                 }
@@ -246,10 +246,10 @@ public class SettingsActivity extends PreferenceActivity implements
         if (key.equalsIgnoreCase("available-search-providers")) {
             addCustomSearchProvidersPreferences(prefs);
         } else if (key.equalsIgnoreCase("icons-pack")) {
-            KissApplication.getIconsHandler(this).loadIconsPack(sharedPreferences.getString(key, "default"));
+            KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
         } else if (key.equalsIgnoreCase("sort-apps")) {
             // Reload application list
-            final AppProvider provider = KissApplication.getDataHandler(this).getAppProvider();
+            final AppProvider provider = KissApplication.getApplication(this).getDataHandler(this).getAppProvider();
             if (provider != null) {
                 provider.reload();
             }
@@ -279,7 +279,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @SuppressWarnings("deprecation")
     private void fixSummaries() {
-        int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
+        int historyLength = KissApplication.getApplication(this).getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
             findPreference("reset").setSummary(String.format(getString(R.string.items_title), historyLength));
         }
@@ -303,7 +303,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     protected void setListPreferenceIconsPacksData(ListPreference lp) {
-        IconsHandler iph = KissApplication.getIconsHandler(this);
+        IconsHandler iph = KissApplication.getApplication(this).getIconsHandler();
 
         CharSequence[] entries = new CharSequence[iph.getIconsPacks().size() + 1];
         CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size() + 1];

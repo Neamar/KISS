@@ -108,8 +108,8 @@ public class AppProvider extends Provider<AppPojo> {
 
                         UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
 
-                        KissApplication.getDataHandler(context).removeFromExcluded(user);
-                        KissApplication.getDataHandler(context).removeFromFavorites(user);
+                        KissApplication.getApplication(context).getDataHandler(context).removeFromExcluded(user);
+                        KissApplication.getApplication(context).getDataHandler(context).removeFromFavorites(user);
                         AppProvider.this.reload();
                     }
                 }

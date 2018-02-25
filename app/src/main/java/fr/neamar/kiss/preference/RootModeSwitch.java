@@ -11,22 +11,13 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 
 public class RootModeSwitch extends SwitchPreference {
-
-    public RootModeSwitch(Context context) {
-        this(context, null);
-    }
-
-    public RootModeSwitch(Context context, AttributeSet attrs) {
-        this(context, attrs, android.R.attr.switchPreferenceStyle);
-    }
-
     public RootModeSwitch(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
     @Override
     protected void onClick() {
-        if (!isChecked() && !KissApplication.getRootHandler(getContext()).isRootAvailable()) {
+        if (!isChecked() && !KissApplication.getApplication(getContext()).getRootHandler(getContext()).isRootAvailable()) {
             //show error dialog
             new AlertDialog.Builder(getContext()).setMessage(R.string.root_mode_error)
                     .setPositiveButton(android.R.string.ok, new OnClickListener() {
@@ -41,7 +32,7 @@ public class RootModeSwitch extends SwitchPreference {
         }
 
         try {
-            KissApplication.resetRootHandler(getContext());
+            KissApplication.getApplication(getContext()).resetRootHandler(getContext());
         } catch (NullPointerException e) {
             // uninitialized roothandler.
         }

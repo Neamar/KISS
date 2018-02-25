@@ -83,7 +83,7 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
     public void onFavoriteChange() {
         int[] favoritesIds = FAV_IDS;
 
-        favoritesPojo = KissApplication.getDataHandler(mainActivity)
+        favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler(mainActivity)
                 .getFavorites(TRY_TO_RETRIEVE);
 
         // Don't look for items after favIds length, we won't be able to display them
@@ -134,7 +134,7 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
                 if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
-                    KissApplication.getDataHandler(mainActivity).addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                    KissApplication.getApplication(mainActivity).getDataHandler(mainActivity).addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
         }
@@ -145,7 +145,7 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
                 if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
-                    KissApplication.getDataHandler(mainActivity).addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                    KissApplication.getApplication(mainActivity).getDataHandler(mainActivity).addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
 
@@ -158,7 +158,7 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
                 String packageName = resolveInfo.activityInfo.packageName;
 
                 if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
-                    KissApplication.getDataHandler(mainActivity).addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                    KissApplication.getApplication(mainActivity).getDataHandler(mainActivity).addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
         }

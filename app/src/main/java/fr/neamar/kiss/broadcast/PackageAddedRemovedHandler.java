@@ -32,21 +32,21 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
                 String className = launchIntent.getComponent().getClassName();
                 if (className != null) {
                     String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
-                    KissApplication.getDataHandler(ctx).addToHistory(pojoID);
+                    KissApplication.getApplication(ctx).getDataHandler(ctx).addToHistory(pojoID);
                 }
             }
         }
 
         if ("android.intent.action.PACKAGE_REMOVED".equals(action) && !replacing) {
             // Removed all installed shortcuts
-            KissApplication.getDataHandler(ctx).removeShortcuts(packageName);
-            KissApplication.getDataHandler(ctx).removeFromExcluded(packageName, user);
+            KissApplication.getApplication(ctx).getDataHandler(ctx).removeShortcuts(packageName);
+            KissApplication.getApplication(ctx).getDataHandler(ctx).removeFromExcluded(packageName, user);
         }
 
-        KissApplication.resetIconsHandler(ctx);
+        KissApplication.getApplication(ctx).resetIconsHandler();
 
         // Reload application list
-        final AppProvider provider = KissApplication.getDataHandler(ctx).getAppProvider();
+        final AppProvider provider = KissApplication.getApplication(ctx).getDataHandler(ctx).getAppProvider();
         if (provider != null) {
             provider.reload();
         }

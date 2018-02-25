@@ -39,13 +39,13 @@ public class HistorySearcher extends Searcher {
         if (activity == null)
             return null;
 
-        //Gather favorites
+        // Gather favorites
         ArrayList<Pojo> favoritesPojo = new ArrayList<>(0);
         if (excludeFavorites) {
-            favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(FavoriteForwarder.TRY_TO_RETRIEVE);
+            favoritesPojo = KissApplication.getApplication(activity).getDataHandler(activity).getFavorites(FavoriteForwarder.TRY_TO_RETRIEVE);
         }
 
-        List<Pojo> pojos = KissApplication.getDataHandler(activity).getHistory(activity, getMaxResultCount(), smartHistory, favoritesPojo);
+        List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler(activity).getHistory(activity, getMaxResultCount(), smartHistory, favoritesPojo);
 
         int size = pojos.size();
         for(int i = 0; i < size; i += 1) {

@@ -46,7 +46,7 @@ public class DataHandler extends BroadcastReceiver
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
             "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
     );
-    private static TagsHandler tagsHandler;
+    private TagsHandler tagsHandler;
     final private Context context;
     private String currentQuery;
     private Map<String, ProviderEntry> providers = new HashMap<>();
