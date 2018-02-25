@@ -18,28 +18,32 @@ public class LoadTogglesPojos extends LoadPojos<TogglesPojo> {
     @Override
     protected ArrayList<TogglesPojo> doInBackground(Void... params) {
         ArrayList<TogglesPojo> toggles = new ArrayList<>();
-        PackageManager pm = context.getPackageManager();
+        if(context.get() == null) {
+            return toggles;
+        }
+
+        PackageManager pm = context.get().getPackageManager();
         if (pm.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
-            toggles.add(createPojo(context.getString(R.string.toggle_wifi), "wifi", R.drawable.toggle_wifi));
+            toggles.add(createPojo(context.get().getString(R.string.toggle_wifi), "wifi", R.drawable.toggle_wifi));
         }
         if (pm.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
-            toggles.add(createPojo(context.getString(R.string.toggle_bluetooth), "bluetooth", R.drawable.toggle_bluetooth));
+            toggles.add(createPojo(context.get().getString(R.string.toggle_bluetooth), "bluetooth", R.drawable.toggle_bluetooth));
         }
-        toggles.add(createPojo(context.getString(R.string.toggle_silent), "silent", R.drawable.toggle_silent));
+        toggles.add(createPojo(context.get().getString(R.string.toggle_silent), "silent", R.drawable.toggle_silent));
         if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY) && android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             // Not working after 4.4
             // See http://stackoverflow.com/questions/26539445/the-setmobiledataenabled-method-is-no-longer-callable-as-of-android-l-and-later
-            toggles.add(createPojo(context.getString(R.string.toggle_data), "data", R.drawable.toggle_data));
+            toggles.add(createPojo(context.get().getString(R.string.toggle_data), "data", R.drawable.toggle_data));
         }
         if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-            toggles.add(createPojo(context.getString(R.string.toggle_torch), "torch", R.drawable.toggle_torch));
+            toggles.add(createPojo(context.get().getString(R.string.toggle_torch), "torch", R.drawable.toggle_torch));
         }
 
         //toggle for synchronization
-        toggles.add(createPojo(context.getString(R.string.toggle_sync), "sync", R.drawable.toggle_sync));
+        toggles.add(createPojo(context.get().getString(R.string.toggle_sync), "sync", R.drawable.toggle_sync));
 
         //toggle for autorotation
-        toggles.add(createPojo(context.getString(R.string.toggle_autorotate), "autorotate", R.drawable.toggle_rotation));
+        toggles.add(createPojo(context.get().getString(R.string.toggle_autorotate), "autorotate", R.drawable.toggle_rotation));
 
         return toggles;
     }

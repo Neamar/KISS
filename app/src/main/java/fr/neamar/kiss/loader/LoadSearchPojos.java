@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import fr.neamar.kiss.dataprovider.SearchProvider;
-import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 
 public class LoadSearchPojos extends LoadPojos<SearchPojo> {
@@ -31,8 +30,13 @@ public class LoadSearchPojos extends LoadPojos<SearchPojo> {
     @Override
     protected ArrayList<SearchPojo> doInBackground(Void... params) {
         ArrayList<SearchPojo> pojos = new ArrayList<>();
-        Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(this.context).getStringSet("selected-search-provider-names", new HashSet<>(Arrays.asList("Google")));
-        Set<String> availableProviders = PreferenceManager.getDefaultSharedPreferences(this.context).getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.context));
+
+        if(context.get() == null) {
+            return pojos;
+        }
+
+        Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(context.get()).getStringSet("selected-search-provider-names", new HashSet<>(Arrays.asList("Google")));
+        Set<String> availableProviders = PreferenceManager.getDefaultSharedPreferences(context.get()).getStringSet("available-search-providers", SearchProvider.getSearchProviders(context.get()));
 
         for (String searchProvider : selectedProviders) {
             SearchPojo pojo = new SearchPojo();

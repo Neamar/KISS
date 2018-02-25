@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
@@ -26,8 +25,14 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
     protected ArrayList<ContactsPojo> doInBackground(Void... params) {
         long start = System.nanoTime();
 
+        ArrayList<ContactsPojo> contacts = new ArrayList<>();
+
+        if(context.get() == null) {
+            return contacts;
+        }
+
         // Run query
-        Cursor cur = context.getContentResolver().query(
+        Cursor cur = context.get().getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 new String[]{ContactsContract.Contacts.LOOKUP_KEY,
                         ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED,
@@ -93,7 +98,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
 
         // Retrieve contacts' nicknames
-        Cursor nickCursor = context.getContentResolver().query(
+        Cursor nickCursor = context.get().getContentResolver().query(
                 ContactsContract.Data.CONTENT_URI,
                 new String[]{
                         ContactsContract.CommonDataKinds.Nickname.NAME,
@@ -119,8 +124,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             }
             nickCursor.close();
         }
-
-        ArrayList<ContactsPojo> contacts = new ArrayList<>();
 
         Pattern phoneFormatter = Pattern.compile("[ \\.\\(\\)]");
         for (List<ContactsPojo> phones : mapContacts.values()) {

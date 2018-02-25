@@ -6,8 +6,10 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="@dimen/result_margin_bottom"
+    android:paddingEnd="@dimen/result_margin_right"
     android:paddingLeft="@dimen/result_margin_left"
     android:paddingRight="@dimen/result_margin_right"
+    android:paddingStart="@dimen/result_margin_left"
     android:paddingTop="@dimen/result_margin_top">
 
     <ImageView
@@ -15,8 +17,10 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginBottom="@dimen/icon_margin_bottom"
+        android:layout_marginEnd="@dimen/icon_margin_right"
         android:layout_marginLeft="@dimen/icon_margin_left"
         android:layout_marginRight="@dimen/icon_margin_right"
+        android:layout_marginStart="@dimen/icon_margin_left"
         android:layout_marginTop="@dimen/icon_margin_top"
         android:contentDescription="@null"
         tools:src="@drawable/ic_launcher" />
@@ -58,6 +62,7 @@
         android:layout_alignBottom="@+id/item_shortcut_icon"
         android:layout_alignEnd="@+id/item_shortcut_icon"
         android:layout_alignRight="@+id/item_shortcut_icon"
+        android:layout_marginEnd="-4dp"
         android:layout_marginRight="-4dp"
         android:layout_marginTop="-4dp"
         android:contentDescription="@null"
