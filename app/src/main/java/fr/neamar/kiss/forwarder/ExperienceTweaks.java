@@ -17,7 +17,7 @@ import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
 
 // Deals with any settings in the "User Experience" setting sub-screen
-class UXTweaksForwarder extends Forwarder {
+class ExperienceTweaks extends Forwarder {
     /**
      * InputType that behaves as if the consuming IME is a standard-obeying
      * soft-keyboard
@@ -44,7 +44,7 @@ class UXTweaksForwarder extends Forwarder {
         }
     };
 
-    UXTweaksForwarder(MainActivity mainActivity) {
+    ExperienceTweaks(MainActivity mainActivity) {
         super(mainActivity);
 
         // Lock launcher into portrait mode

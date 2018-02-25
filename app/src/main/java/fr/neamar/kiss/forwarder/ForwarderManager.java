@@ -9,32 +9,32 @@ import android.view.View;
 import fr.neamar.kiss.MainActivity;
 
 public class ForwarderManager extends Forwarder {
-    private final WidgetForwarder widgetForwarder;
-    private final WallpaperForwarder wallpaperForwarder;
-    private final UITweaksForwarder uiTweaksForwarder;
-    private final UXTweaksForwarder uxTweaksForwarder;
-    private final FavoriteForwarder favoriteForwarder;
+    private final Widget widgetForwarder;
+    private final LiveWallpaper liveWallpaperForwarder;
+    private final InterfaceTweaks interfaceTweaksProvider;
+    private final ExperienceTweaks experienceTweaksProvider;
+    private final Favorites favoritesForwarder;
 
     public ForwarderManager(MainActivity mainActivity) {
         super(mainActivity);
 
-        this.widgetForwarder = new WidgetForwarder(mainActivity);
-        this.wallpaperForwarder = new WallpaperForwarder(mainActivity);
-        this.uiTweaksForwarder = new UITweaksForwarder(mainActivity);
-        this.uxTweaksForwarder = new UXTweaksForwarder(mainActivity);
-        this.favoriteForwarder = new FavoriteForwarder(mainActivity);
+        this.widgetForwarder = new Widget(mainActivity);
+        this.liveWallpaperForwarder = new LiveWallpaper(mainActivity);
+        this.interfaceTweaksProvider = new InterfaceTweaks(mainActivity);
+        this.experienceTweaksProvider = new ExperienceTweaks(mainActivity);
+        this.favoritesForwarder = new Favorites(mainActivity);
     }
 
     public void onCreate() {
-        favoriteForwarder.onCreate();
+        favoritesForwarder.onCreate();
         widgetForwarder.onCreate();
-        uiTweaksForwarder.onCreate();
-        uxTweaksForwarder.onCreate();
+        interfaceTweaksProvider.onCreate();
+        experienceTweaksProvider.onCreate();
     }
 
     public void onResume() {
-        uiTweaksForwarder.onResume();
-        uxTweaksForwarder.onResume();
+        interfaceTweaksProvider.onResume();
+        experienceTweaksProvider.onResume();
     }
 
     public void onStart() {
@@ -58,12 +58,12 @@ public class ForwarderManager extends Forwarder {
     }
 
     public boolean onTouch(View view, MotionEvent event) {
-        uxTweaksForwarder.onTouch(view, event); // always return false anyway
-        return wallpaperForwarder.onTouch(view, event);
+        experienceTweaksProvider.onTouch(view, event); // always return false anyway
+        return liveWallpaperForwarder.onTouch(view, event);
     }
 
     public void onWindowFocusChanged(boolean hasFocus) {
-        uxTweaksForwarder.onWindowFocusChanged(hasFocus);
+        experienceTweaksProvider.onWindowFocusChanged(hasFocus);
     }
 
     public void onDataSetChanged() {
@@ -71,19 +71,19 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void updateRecords(String query) {
-        favoriteForwarder.updateRecords(query);
-        uxTweaksForwarder.updateRecords(query);
+        favoritesForwarder.updateRecords(query);
+        experienceTweaksProvider.updateRecords(query);
     }
 
     public void onAllProvidersLoaded() {
-        favoriteForwarder.onAllProvidersLoaded();
+        favoritesForwarder.onAllProvidersLoaded();
     }
 
     public void onFavoriteChange() {
-        favoriteForwarder.onFavoriteChange();
+        favoritesForwarder.onFavoriteChange();
     }
 
     public void onDisplayKissBar(Boolean display) {
-        uxTweaksForwarder.onDisplayKissBar(display);
+        experienceTweaksProvider.onDisplayKissBar(display);
     }
 }

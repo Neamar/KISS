@@ -11,17 +11,17 @@ import android.view.animation.Transformation;
 
 import fr.neamar.kiss.MainActivity;
 
-class WallpaperForwarder extends Forwarder {
+class LiveWallpaper extends Forwarder {
     private final WallpaperManager mWallpaperManager;
     private final Point mWindowSize;
     private android.os.IBinder mWindowToken;
     private final View mContentView;
     private float mLastTouchPos;
     private float mWallpaperOffset;
-    private final WallpaperForwarder.Anim mAnimation;
+    private final LiveWallpaper.Anim mAnimation;
     private VelocityTracker mVelocityTracker;
 
-    WallpaperForwarder(MainActivity mainActivity) {
+    LiveWallpaper(MainActivity mainActivity) {
         super(mainActivity);
 
         mWallpaperManager = (WallpaperManager) mainActivity.getSystemService(Context.WALLPAPER_SERVICE);
@@ -30,7 +30,7 @@ class WallpaperForwarder extends Forwarder {
         mContentView = mainActivity.findViewById(android.R.id.content);
         mWallpaperManager.setWallpaperOffsetSteps(.5f, 0.f);
         mWallpaperOffset = 0.5f; // this is the center
-        mAnimation = new WallpaperForwarder.Anim();
+        mAnimation = new LiveWallpaper.Anim();
         mVelocityTracker = null;
         mWindowSize = new Point(1, 1);
     }

@@ -12,8 +12,8 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 
 // Deals with any settings in the "User Interface" setting sub-screen
-class UITweaksForwarder extends Forwarder {
-    UITweaksForwarder(MainActivity mainActivity) {
+class InterfaceTweaks extends Forwarder {
+    InterfaceTweaks(MainActivity mainActivity) {
         super(mainActivity);
 
         // Setting the theme needs to be done before setContentView()

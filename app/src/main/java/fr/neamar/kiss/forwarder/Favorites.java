@@ -20,7 +20,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
 
-public class FavoriteForwarder extends Forwarder implements View.OnClickListener, View.OnLongClickListener {
+public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener {
     private static final String TAG = "FavoriteForwarder";
 
     /**
@@ -44,7 +44,7 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
      */
     private ArrayList<Pojo> favoritesPojo;
 
-    FavoriteForwarder(MainActivity mainActivity) {
+    Favorites(MainActivity mainActivity) {
         super(mainActivity);
     }
 

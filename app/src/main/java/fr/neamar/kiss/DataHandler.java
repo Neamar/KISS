@@ -28,7 +28,7 @@ import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
-import fr.neamar.kiss.forwarder.FavoriteForwarder;
+import fr.neamar.kiss.forwarder.Favorites;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
@@ -434,7 +434,7 @@ public class DataHandler extends BroadcastReceiver
         }
 
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        if (favAppsList.size() >= FavoriteForwarder.FAVORITES_COUNT) {
+        if (favAppsList.size() >= Favorites.FAVORITES_COUNT) {
             favApps = favApps.substring(favApps.indexOf(";") + 1);
         }
 

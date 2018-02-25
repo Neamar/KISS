@@ -19,7 +19,7 @@ import java.util.HashMap;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 
-class WidgetForwarder extends Forwarder {
+class Widget extends Forwarder {
     private static final int REQUEST_PICK_APPWIDGET = 9;
     private static final int REQUEST_CREATE_APPWIDGET = 5;
 
@@ -40,7 +40,7 @@ class WidgetForwarder extends Forwarder {
      */
     private ViewGroup widgetArea;
 
-    WidgetForwarder(MainActivity mainActivity) {
+    Widget(MainActivity mainActivity) {
         super(mainActivity);
     }
 
