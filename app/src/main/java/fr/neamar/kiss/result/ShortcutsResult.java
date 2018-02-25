@@ -152,7 +152,7 @@ public class ShortcutsResult extends Result {
         final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
         final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
-                android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler(context).getTagsHandler().getAllTagsAsArray());
+                android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
         tagInput.setText(shortcutPojo.getTags());
 
@@ -165,7 +165,7 @@ public class ShortcutsResult extends Result {
                 dialog.dismiss();
                 // Refresh tags for given app
                 pojo.setTags(tagInput.getText().toString());
-                KissApplication.getApplication(context).getDataHandler(context).getTagsHandler().setTags(pojo.id, pojo.getTags());
+                KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
                 // TODO: update the displayTags with proper highlight
                 pojo.displayTags = pojo.getTags();
                 // Show toast message
@@ -188,7 +188,7 @@ public class ShortcutsResult extends Result {
 
 
     private void launchUninstall(Context context, ShortcutsPojo shortcutPojo) {
-        DataHandler dh = KissApplication.getApplication(context).getDataHandler(context);
+        DataHandler dh = KissApplication.getApplication(context).getDataHandler();
         if (dh != null) {
             dh.removeShortcut(shortcutPojo);
         }

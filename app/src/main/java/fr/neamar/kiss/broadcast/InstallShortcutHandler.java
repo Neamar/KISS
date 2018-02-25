@@ -19,7 +19,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent data) {
 
-        DataHandler dh = KissApplication.getApplication(context).getDataHandler(context);
+        DataHandler dh = KissApplication.getApplication(context).getDataHandler();
         ShortcutsProvider sp = dh.getShortcutsProvider();
 
         if (sp == null)

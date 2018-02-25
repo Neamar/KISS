@@ -111,7 +111,7 @@ public class SettingsActivity extends PreferenceActivity implements
                     multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
                 }
 
-                final AppProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler(SettingsActivity.this).getAppProvider();
+                final AppProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getAppProvider();
                 if (provider != null) {
                     provider.reload();
                 }
@@ -168,7 +168,7 @@ public class SettingsActivity extends PreferenceActivity implements
             @SuppressWarnings("unchecked")
             public boolean onPreferenceChange(Preference preference, Object newValue) {
 
-                final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler(SettingsActivity.this).getSearchProvider();
+                final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getSearchProvider();
                 if (provider != null) {
                     provider.reload();
                 }
@@ -224,7 +224,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 }
 
                 // Reload search list
-                final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler(SettingsActivity.this).getSearchProvider();
+                final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getSearchProvider();
                 if (provider != null) {
                     provider.reload();
                 }
@@ -249,7 +249,7 @@ public class SettingsActivity extends PreferenceActivity implements
             KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
         } else if (key.equalsIgnoreCase("sort-apps")) {
             // Reload application list
-            final AppProvider provider = KissApplication.getApplication(this).getDataHandler(this).getAppProvider();
+            final AppProvider provider = KissApplication.getApplication(this).getDataHandler().getAppProvider();
             if (provider != null) {
                 provider.reload();
             }
@@ -279,7 +279,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @SuppressWarnings("deprecation")
     private void fixSummaries() {
-        int historyLength = KissApplication.getApplication(this).getDataHandler(this).getHistoryLength();
+        int historyLength = KissApplication.getApplication(this).getDataHandler().getHistoryLength();
         if (historyLength > 5) {
             findPreference("reset").setSummary(String.format(getString(R.string.items_title), historyLength));
         }

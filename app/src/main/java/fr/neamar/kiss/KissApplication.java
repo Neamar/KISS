@@ -19,9 +19,9 @@ public class KissApplication extends Application {
         return (KissApplication) context.getApplicationContext();
     }
 
-    public DataHandler getDataHandler(Context ctx) {
+    public DataHandler getDataHandler() {
         if (dataHandler == null) {
-            dataHandler = new DataHandler(ctx);
+            dataHandler = new DataHandler(this);
         }
         return dataHandler;
     }
@@ -37,9 +37,9 @@ public class KissApplication extends Application {
         return cameraHandler;
     }
 
-    public RootHandler getRootHandler(Context ctx) {
+    public RootHandler getRootHandler() {
         if (rootHandler == null) {
-            rootHandler = new RootHandler(ctx);
+            rootHandler = new RootHandler(this);
         }
         return rootHandler;
     }
@@ -48,14 +48,14 @@ public class KissApplication extends Application {
         rootHandler.resetRootHandler(ctx);
     }
 
-    public void initDataHandler(Context ctx) {
+    public void initDataHandler() {
         if (dataHandler == null) {
-            dataHandler = new DataHandler(ctx);
+            dataHandler = new DataHandler(this);
         }
         else {
             // Already loaded! We still need to fire the FULL_LOAD event
             Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
-            ctx.sendBroadcast(i);
+            sendBroadcast(i);
         }
     }
 

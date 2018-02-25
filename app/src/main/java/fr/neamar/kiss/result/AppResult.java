@@ -112,7 +112,7 @@ public class AppResult extends Result {
         }
 
         //append root menu if available
-        if (KissApplication.getApplication(context).getRootHandler(context).isRootActivated() && KissApplication.getApplication(context).getRootHandler(context).isRootAvailable()) {
+        if (KissApplication.getApplication(context).getRootHandler().isRootActivated() && KissApplication.getApplication(context).getRootHandler().isRootAvailable()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_hibernate));
         }
         return menu;
@@ -144,10 +144,10 @@ public class AppResult extends Result {
     }
 
     private void excludeFromAppList(Context context, AppPojo appPojo) {
-        KissApplication.getApplication(context).getDataHandler(context).addToExcluded(appPojo.packageName, appPojo.userHandle);
+        KissApplication.getApplication(context).getDataHandler().addToExcluded(appPojo.packageName, appPojo.userHandle);
         //remove app pojo from appProvider results - no need to reset handler
-        KissApplication.getApplication(context).getDataHandler(context).getAppProvider().removeApp(appPojo);
-        KissApplication.getApplication(context).getDataHandler(context).removeFromFavorites((MainActivity) context, appPojo.id);
+        KissApplication.getApplication(context).getDataHandler().getAppProvider().removeApp(appPojo);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, appPojo.id);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
 
     }
@@ -161,7 +161,7 @@ public class AppResult extends Result {
         final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
         final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
-                android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler(context).getTagsHandler().getAllTagsAsArray());
+                android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
         tagInput.setText(appPojo.getTags());
 
@@ -174,7 +174,7 @@ public class AppResult extends Result {
                 dialog.dismiss();
                 // Refresh tags for given app
                 app.setTags(tagInput.getText().toString());
-                KissApplication.getApplication(context).getDataHandler(context).getTagsHandler().setTags(app.id, app.getTags());
+                KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
                 // TODO: update the displayTags with proper highlight
                 app.displayTags = app.getTags();
                 // Show toast message
@@ -212,7 +212,7 @@ public class AppResult extends Result {
 
     private void hibernate(Context context, AppPojo app) {
         String msg = context.getResources().getString(R.string.toast_hibernate_completed);
-        if (!KissApplication.getApplication(context).getRootHandler(context).hibernateApp(appPojo.packageName)) {
+        if (!KissApplication.getApplication(context).getRootHandler().hibernateApp(appPojo.packageName)) {
             msg = context.getResources().getString(R.string.toast_hibernate_error);
         }
 

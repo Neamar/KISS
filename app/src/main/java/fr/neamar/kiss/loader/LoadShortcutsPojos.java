@@ -18,7 +18,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
 
     public LoadShortcutsPojos(Context context) {
         super(context, ShortcutsPojo.SCHEME);
-        tagsHandler = KissApplication.getApplication(context).getDataHandler(context).getTagsHandler();
+        tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class IncomingCallHandler extends BroadcastReceiver {
         }
 
         try {
-            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler(context);
+            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
             ContactsProvider contactsProvider = dataHandler.getContactsProvider();
 
             // Stop if contacts are not enabled

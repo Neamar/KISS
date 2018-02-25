@@ -27,7 +27,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
-        tagsHandler = KissApplication.getApplication(context).getDataHandler(context).getTagsHandler();
+        tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
     }
 
     @Override

@@ -18,7 +18,7 @@ public class RootModePreference extends CheckBoxPreference {
 
     @Override
     protected void onClick() {
-        if (!isChecked() && !KissApplication.getApplication(getContext()).getRootHandler(getContext()).isRootAvailable()) {
+        if (!isChecked() && !KissApplication.getApplication(getContext()).getRootHandler().isRootAvailable()) {
             //show error dialog
             new AlertDialog.Builder(getContext()).setMessage(R.string.root_mode_error)
                     .setPositiveButton(android.R.string.ok, new OnClickListener() {

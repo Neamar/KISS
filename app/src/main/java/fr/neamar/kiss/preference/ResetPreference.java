@@ -20,7 +20,9 @@ public class ResetPreference extends DialogPreference {
     public void onClick(DialogInterface dialog, int which) {
         super.onClick(dialog, which);
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            KissApplication.getApplication(getContext()).getDataHandler(getContext()).clearHistory();
+            KissApplication.getApplication(getContext()).getDataHandler().clearHistory();
+
+            // We'll have to redraw the list, so add a flag for MainActivity to restart
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putBoolean("require-layout-update", true).apply();
 
             Toast.makeText(getContext(), R.string.history_erased, Toast.LENGTH_LONG).show();
