@@ -104,7 +104,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Favorites bar. Can be either the favorites within the KISS bar,
      * or the external favorites bar (default)
      */
-    public View favorites;
+    public View favoritesBar;
 
     /**
      * Task launched on text change

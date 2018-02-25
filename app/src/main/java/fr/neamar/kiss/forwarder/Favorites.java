@@ -23,10 +23,14 @@ import fr.neamar.kiss.ui.ListPopup;
 public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener {
     private static final String TAG = "FavoriteForwarder";
 
+    // Package used by Android when an Intent can be matched with more than one app
+    private static final String DEFAULT_RESOLVER = "com.android.internal.app.ResolverActivity";
+
     /**
      * IDs for the favorites buttons
      */
     private final static int[] FAV_IDS = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
+    private View[] favoritesView;
 
     /**
      * Number of favorites that can be displayed
@@ -49,15 +53,19 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     void onCreate() {
-        if(prefs.getBoolean("enable-favorites-bar", true)) {
-            mainActivity.favorites = mainActivity.findViewById(R.id.externalFavoriteBar);
+        if (prefs.getBoolean("enable-favorites-bar", true)) {
+            mainActivity.favoritesBar = mainActivity.findViewById(R.id.externalFavoriteBar);
             // Hide the embedded bar
             mainActivity.findViewById(R.id.embeddedFavoritesBar).setVisibility(View.INVISIBLE);
-        }
-        else {
-            mainActivity.favorites = mainActivity.findViewById(R.id.embeddedFavoritesBar);
+        } else {
+            mainActivity.favoritesBar = mainActivity.findViewById(R.id.embeddedFavoritesBar);
             // Hide the external bar
             mainActivity.findViewById(R.id.externalFavoriteBar).setVisibility(View.GONE);
+        }
+
+        favoritesView = new View[FAV_IDS.length];
+        for (int i = 0; i < FAV_IDS.length; i++) {
+            favoritesView[i] = mainActivity.favoritesBar.findViewById(FAV_IDS[i]);
         }
 
         registerClickOnFavorites();
@@ -83,7 +91,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
 
-            ImageView image = (ImageView) mainActivity.favorites.findViewById(favoritesIds[i]);
+            ImageView image = (ImageView) favoritesView[i];
 
             Result result = Result.fromPojo(mainActivity, pojo);
             Drawable drawable = result.getDrawable(mainActivity);
@@ -101,16 +109,15 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         // Hide empty favorites (not enough favorites yet)
         for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
-            mainActivity.favorites.findViewById(favoritesIds[i]).setVisibility(View.GONE);
+            favoritesView[i].setVisibility(View.GONE);
         }
     }
 
     void updateRecords(String query) {
-        if(query.isEmpty()) {
-            mainActivity.favorites.setVisibility(View.VISIBLE);
-        }
-        else {
-            mainActivity.favorites.setVisibility(View.GONE);
+        if (query.isEmpty()) {
+            mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+        } else {
+            mainActivity.favoritesBar.setVisibility(View.GONE);
         }
     }
 
@@ -125,7 +132,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
-                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
+                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
                     KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
@@ -136,7 +143,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
-                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
+                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
                     KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
@@ -149,7 +156,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
 
-                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals("com.android.internal.app.ResolverActivity"))) {
+                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
                     KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
@@ -157,14 +164,14 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     private void registerClickOnFavorites() {
-        for (int id : FAV_IDS) {
-            mainActivity.favorites.findViewById(id).setOnClickListener(this);
+        for (View v : favoritesView) {
+            v.setOnClickListener(this);
         }
     }
 
     private void registerLongClickOnFavorites() {
-        for (int id : FAV_IDS) {
-            mainActivity.favorites.findViewById(id).setOnLongClickListener(this);
+        for (View v : favoritesView) {
+            v.setOnLongClickListener(this);
         }
     }
 

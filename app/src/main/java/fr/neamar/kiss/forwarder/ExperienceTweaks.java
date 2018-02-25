@@ -101,7 +101,7 @@ class ExperienceTweaks extends Forwarder {
             }
 
             if (isMinimalisticModeEnabledForFavorites()) {
-                mainActivity.favorites.setVisibility(View.VISIBLE);
+                mainActivity.favoritesBar.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -115,9 +115,9 @@ class ExperienceTweaks extends Forwarder {
     void onDisplayKissBar(Boolean display) {
         if (isMinimalisticModeEnabledForFavorites()) {
             if (display) {
-                mainActivity.favorites.setVisibility(View.VISIBLE);
+                mainActivity.favoritesBar.setVisibility(View.VISIBLE);
             } else {
-                mainActivity.favorites.setVisibility(View.GONE);
+                mainActivity.favoritesBar.setVisibility(View.GONE);
             }
         }
 
@@ -139,7 +139,7 @@ class ExperienceTweaks extends Forwarder {
                 mainActivity.findViewById(R.id.main_empty).setVisibility(View.GONE);
 
                 if (isMinimalisticModeEnabledForFavorites()) {
-                    mainActivity.favorites.setVisibility(View.GONE);
+                    mainActivity.favoritesBar.setVisibility(View.GONE);
                 }
             } else {
                 mainActivity.list.setVerticalScrollBarEnabled(true);
