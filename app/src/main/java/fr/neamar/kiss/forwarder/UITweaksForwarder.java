@@ -37,7 +37,6 @@ class UITweaksForwarder extends Forwarder {
         }
     }
 
-    @Override
     public void onCreate() {
         UIColors.updateThemePrimaryColor(mainActivity);
         tintResources(mainActivity);
@@ -74,7 +73,6 @@ class UITweaksForwarder extends Forwarder {
         mainActivity.kissBar.setBackgroundColor(primaryColor);
     }
 
-    @Override
     public void onResume() {
         boolean largeSearchBar = prefs.getBoolean("large-search-bar", false);
         Resources res = mainActivity.getResources();

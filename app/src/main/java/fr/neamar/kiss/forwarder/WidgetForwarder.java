@@ -44,7 +44,6 @@ class WidgetForwarder extends Forwarder {
         super(mainActivity);
     }
 
-    @Override
     public void onCreate() {
         // Initialize widget manager and host, restore widgets
         widgetPrefs = mainActivity.getSharedPreferences(WIDGET_PREFERENCE_ID, Context.MODE_PRIVATE);
@@ -56,19 +55,16 @@ class WidgetForwarder extends Forwarder {
         restoreWidgets();
     }
 
-    @Override
     public void onStart() {
         // Start listening for widget update
         mAppWidgetHost.startListening();
     }
 
-    @Override
     public void onStop() {
         // Stop listening for widget update
         mAppWidgetHost.stopListening();
     }
 
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
@@ -88,7 +84,6 @@ class WidgetForwarder extends Forwarder {
         }
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.widget) {
             if (!widgetUsed) {
@@ -107,7 +102,6 @@ class WidgetForwarder extends Forwarder {
         return false;
     }
 
-    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         if (prefs.getBoolean("history-hide", true)) {
             if (widgetUsed) {
@@ -120,7 +114,6 @@ class WidgetForwarder extends Forwarder {
         }
     }
 
-    @Override
     public void onDataSetChanged() {
         if (widgetUsed && mainActivity.adapter.isEmpty()) {
             // when a widget is displayed the empty list would prevent touches on the widget

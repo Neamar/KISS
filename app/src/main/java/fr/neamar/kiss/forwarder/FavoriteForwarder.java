@@ -48,7 +48,6 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
         super(mainActivity);
     }
 
-    @Override
     public void onCreate() {
         if(prefs.getBoolean("enable-favorites-bar", true)) {
             mainActivity.favorites = mainActivity.findViewById(R.id.externalFavoriteBar);
@@ -74,12 +73,10 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
         }
     }
 
-    @Override
     public void onAllProvidersLoaded() {
         onFavoriteChange();
     }
 
-    @Override
     public void onFavoriteChange() {
         int[] favoritesIds = FAV_IDS;
 
@@ -112,7 +109,6 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
         }
     }
 
-    @Override
     public void updateRecords(String query) {
         if(query.isEmpty()) {
             mainActivity.favorites.setVisibility(View.VISIBLE);

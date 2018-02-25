@@ -65,7 +65,6 @@ class UXTweaksForwarder extends Forwarder {
         adjustInputType(null);
     }
 
-    @Override
     void onResume() {
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
@@ -87,7 +86,6 @@ class UXTweaksForwarder extends Forwarder {
         }
     }
 
-    @Override
     public boolean onTouch(View view, MotionEvent event) {
         //if motion movement ends
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
@@ -111,14 +109,12 @@ class UXTweaksForwarder extends Forwarder {
         return false;
     }
 
-    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus && isKeyboardOnStartEnabled()) {
             showKeyboard();
         }
     }
 
-    @Override
     public void onDisplayKissBar(Boolean display) {
         if (isMinimalisticModeEnabledForFavorites()) {
             if (display) {
@@ -134,7 +130,6 @@ class UXTweaksForwarder extends Forwarder {
         }
     }
 
-    @Override
     public void updateRecords(String query) {
         adjustInputType(query);
 

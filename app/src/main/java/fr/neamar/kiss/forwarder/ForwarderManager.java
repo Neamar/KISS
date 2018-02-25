@@ -25,43 +25,34 @@ public class ForwarderManager extends Forwarder {
         this.favoriteForwarder = new FavoriteForwarder(mainActivity);
     }
 
-    @Override
     public void onCreate() {
-        super.onCreate();
         favoriteForwarder.onCreate();
         widgetForwarder.onCreate();
         uiTweaksForwarder.onCreate();
         uxTweaksForwarder.onCreate();
     }
 
-    @Override
     public void onResume() {
-        favoriteForwarder.onResume();
         uiTweaksForwarder.onResume();
         uxTweaksForwarder.onResume();
     }
 
-    @Override
     public void onStart() {
         widgetForwarder.onStart();
     }
 
-    @Override
     public void onStop() {
         widgetForwarder.onStop();
     }
 
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         widgetForwarder.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return widgetForwarder.onOptionsItemSelected(item);
     }
 
-    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         widgetForwarder.onCreateContextMenu(menu, v, menuInfo);
     }
@@ -74,18 +65,16 @@ public class ForwarderManager extends Forwarder {
     public void onWindowFocusChanged(boolean hasFocus) {
         uxTweaksForwarder.onWindowFocusChanged(hasFocus);
     }
-    @Override
+
     public void onDataSetChanged() {
         widgetForwarder.onDataSetChanged();
     }
 
-    @Override
     public void updateRecords(String query) {
         favoriteForwarder.updateRecords(query);
         uxTweaksForwarder.updateRecords(query);
     }
 
-    @Override
     public void onAllProvidersLoaded() {
         favoriteForwarder.onAllProvidersLoaded();
     }
