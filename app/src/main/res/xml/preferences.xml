@@ -51,10 +51,6 @@
                 android:defaultValue="true"
                 android:key="enable-app-history"
                 android:title="@string/enable_app" />
-            <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="false"
-                android:key="exclude-favorites"
-                android:title="@string/exclude_favorites" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
@@ -71,6 +67,10 @@
             android:summaryOff="Only display favorites when pressing the KISS icon"
             android:summaryOn="Display favorites above the search bar"
             android:title="@string/enable_favorites_bar" />
+        <fr.neamar.kiss.SwitchPreference
+            android:defaultValue="false"
+            android:key="exclude-favorites"
+            android:title="@string/exclude_favorites" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="ui-holder"
