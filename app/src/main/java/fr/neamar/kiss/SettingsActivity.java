@@ -29,7 +29,6 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-
     final static private String requireRestartSettings = "force-portrait primary-color transparent-search transparent-favorites history-hide enable-favorites-bar theme notification-bar-color";
 
     private boolean requireFullRestart = false;
@@ -181,7 +180,7 @@ public class SettingsActivity extends PreferenceActivity implements
         category.addPreference(multiPreference);
     }
 
-    private void addCustomSearchProvidersDelete(SharedPreferences prefs) {
+    private void addCustomSearchProvidersDelete(final SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
 
         Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this));
@@ -216,8 +215,10 @@ public class SettingsActivity extends PreferenceActivity implements
                         }
                     }
                 }
-                PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).edit().putStringSet("available-search-providers", updatedProviders).commit();
-                PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).edit().putStringSet("deleting-search-providers-names", updatedProviders).commit();
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putStringSet("available-search-providers", updatedProviders);
+                editor.putStringSet("deleting-search-providers-names", updatedProviders);
+                editor.apply();
 
                 if (searchProvidersToDelete.size() > 0) {
                     Toast.makeText(SettingsActivity.this, R.string.search_provider_deleted, Toast.LENGTH_LONG).show();
@@ -243,33 +244,24 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
         if (key.equalsIgnoreCase("available-search-providers")) {
             addCustomSearchProvidersPreferences(prefs);
-        }
-
-        if (key.equalsIgnoreCase("icons-pack")) {
+        } else if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getIconsHandler(this).loadIconsPack(sharedPreferences.getString(key, "default"));
-        }
-
-        if (key.equalsIgnoreCase("sort-apps")) {
+        } else if (key.equalsIgnoreCase("sort-apps")) {
             // Reload application list
             final AppProvider provider = KissApplication.getDataHandler(this).getAppProvider();
             if (provider != null) {
                 provider.reload();
             }
+        } else if (key.equalsIgnoreCase("enable-sms-history")) {
+            PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, sharedPreferences.getBoolean(key, false));
+        } else if (key.equalsIgnoreCase("enable-phone-history")) {
+            PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
         }
 
         if (requireRestartSettings.contains(key)) {
             requireFullRestart = true;
-        }
-
-        if ("enable-sms-history".equals(key) || "enable-phone-history".equals(key)) {
-            if ("enable-sms-history".equals(key)) {
-                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, sharedPreferences.getBoolean(key, false));
-            } else {
-                PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
-            }
         }
     }
 
@@ -283,16 +275,6 @@ public class SettingsActivity extends PreferenceActivity implements
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();
 
-            // Restart current activity to refresh view, since some
-            // preferences
-            // require using a new UI
-            Intent intent = new Intent(this, getClass());
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                    | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
             return;
         }
 
