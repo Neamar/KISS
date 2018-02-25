@@ -12,7 +12,7 @@ public class KissApplication {
     private static DataHandler dataHandler;
     private static CameraHandler cameraHandler;
     private static RootHandler rootHandler;
-    private static IconsHandler iconsPackHandler;
+    private IconsHandler iconsPackHandler;
 
     private KissApplication() {
     }

@@ -9,6 +9,7 @@ import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.Process;
 import android.os.UserManager;
+import android.support.annotation.RequiresApi;
 import android.util.Pair;
 
 import java.util.ArrayList;
@@ -97,12 +98,13 @@ public class AppProvider extends Provider<AppPojo> {
             filter.addAction(Intent.ACTION_MANAGED_PROFILE_ADDED);
             filter.addAction(Intent.ACTION_MANAGED_PROFILE_REMOVED);
             this.registerReceiver(new BroadcastReceiver() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     if (Objects.equals(intent.getAction(), Intent.ACTION_MANAGED_PROFILE_ADDED)) {
                         AppProvider.this.reload();
                     } else if (Objects.equals(intent.getAction(), Intent.ACTION_MANAGED_PROFILE_REMOVED)) {
-                        android.os.UserHandle profile = (android.os.UserHandle) intent.getParcelableExtra(Intent.EXTRA_USER);
+                        android.os.UserHandle profile = intent.getParcelableExtra(Intent.EXTRA_USER);
 
                         UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
 
