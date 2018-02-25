@@ -148,16 +148,16 @@
                 android:title="@string/pref_hide_statusbar" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="true"
+                android:key="force-portrait"
+                android:title="@string/portrait_title" />
             <ListPreference
                 android:defaultValue="invertedAlphabetical"
                 android:entries="@array/sortAppListEntries"
                 android:entryValues="@array/sortAppListValues"
                 android:key="sort-apps"
                 android:title="@string/order_apps_name" />
-            <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="true"
-                android:key="force-portrait"
-                android:title="@string/portrait_title" />
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="true"
                 android:key="tags-visible"

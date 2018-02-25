@@ -222,7 +222,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
-        // Display empty list view whe having no results
+        // Display empty list view when having no results
         this.adapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
@@ -586,7 +586,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.displayKissBar(display, true);
     }
 
-    private void displayKissBar(boolean display, boolean emptyText) {
+    private void displayKissBar(boolean display, boolean clearSearchText) {
         final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
 
         // get the center for the clipping circle
@@ -635,7 +635,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 // No animation before Lollipop
                 kissBar.setVisibility(View.GONE);
             }
-            if (emptyText) {
+            if (clearSearchText) {
                 searchEditText.setText("");
 
                 if (isKeyboardOnStartEnabled()) {
