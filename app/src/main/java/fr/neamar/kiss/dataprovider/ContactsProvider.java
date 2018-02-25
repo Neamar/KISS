@@ -26,6 +26,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadContactsPojos(this));
     }
 

@@ -43,6 +43,7 @@ public abstract class Result {
     /**
      * Current information pojo
      */
+    @NonNull
     final Pojo pojo;
 
     Result(@NonNull Pojo pojo) {

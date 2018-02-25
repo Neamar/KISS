@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -36,6 +37,8 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
+    final static private String TAG = "DataHandler";
+
     /**
      * Package the providers reside in
      */
@@ -127,6 +130,9 @@ public class DataHandler extends BroadcastReceiver
             return;
         }
 
+        Log.v(TAG, "Connecting to " + name);
+
+
         // Find provider class for the given service name
         Intent intent = this.providerName2Intent(name);
         if (intent == null) {
@@ -203,20 +209,22 @@ public class DataHandler extends BroadcastReceiver
             }
         }
 
+        Log.v(TAG, "All providers are loaded.");
+        this.allProvidersHaveLoaded = true;
+
         // Broadcast the fact that the new providers list is ready
         try {
             this.context.unregisterReceiver(this);
             Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
             this.context.sendBroadcast(i);
         } catch (IllegalArgumentException e) {
-            // Nothing
+            e.printStackTrace();
         }
-
-        this.allProvidersHaveLoaded = true;
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        // A provider finished loading and contacted us
         this.handleProviderLoaded();
     }
 

@@ -73,10 +73,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
-    void onAllProvidersLoaded() {
-        onFavoriteChange();
-    }
-
     void onFavoriteChange() {
         int[] favoritesIds = FAV_IDS;
 
@@ -94,7 +90,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             if (drawable != null) {
                 image.setImageDrawable(drawable);
             } else {
-                Log.e(TAG, "Falling back to default image for favorite.");
+                Log.w(TAG, "Falling back to default image for favorite.");
                 // Use the default contact image otherwise
                 image.setImageResource(R.drawable.ic_contact);
             }

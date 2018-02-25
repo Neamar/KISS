@@ -16,6 +16,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadShortcutsPojos(this));
     }
 

@@ -159,7 +159,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     Log.v(TAG, "All providers are done loading.");
 
                     allProvidersHaveLoaded = true;
-                    forwarderManager.onAllProvidersLoaded();
+                    displayLoader(false);
 
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
