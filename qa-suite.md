@@ -204,3 +204,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Change default launcher option opens system dialog to pick a launcher
 * [ ] TODO: root mode
 * [ ] "Restart KISS" option closes the settings and reopen KISS
+
+### Misc
+* [ ] Rate the app settings appears if history has more than 300 items
+* [ ] Help icon opens help website
