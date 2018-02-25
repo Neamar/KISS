@@ -12,7 +12,6 @@ import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
@@ -121,12 +120,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * SystemUiVisibility helper
      */
     private SystemUiVisibilityHelper mSystemUiVisibility;
-    private final Runnable displayKeyboardRunnable = new Runnable() {
-        @Override
-        public void run() {
-            showKeyboard();
-        }
-    };
+
     private PopupWindow mPopup;
 
     private ForwarderManager forwarderManager;
@@ -354,26 +348,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             displayClearOnInput();
         } else {
             displayKissBar(false);
-        }
-
-        // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
-        // so the keyboard will be hidden by default
-        // we may want to display it if the setting is set
-        if (isKeyboardOnStartEnabled()) {
-            // Display keyboard
-            showKeyboard();
-
-            new Handler().postDelayed(displayKeyboardRunnable, 10);
-            // For some weird reasons, keyboard may be hidden by the system
-            // So we have to run this multiple time at different time
-            // See https://github.com/Neamar/KISS/issues/119
-            new Handler().postDelayed(displayKeyboardRunnable, 100);
-            new Handler().postDelayed(displayKeyboardRunnable, 500);
-        } else {
-            // Not used (thanks windowSoftInputMode)
-            // unless coming back from KISS settings
-            hideKeyboard();
-            mSystemUiVisibility.onKeyboardVisibilityChanged(false);
         }
 
         forwarderManager.onResume();
@@ -637,11 +611,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
             if (clearSearchText) {
                 searchEditText.setText("");
-
-                if (isKeyboardOnStartEnabled()) {
-                    // Display keyboard
-                    showKeyboard();
-                }
             }
         }
 
@@ -721,16 +690,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         hider.fixScroll();
     }
 
-    private boolean isKeyboardOnStartEnabled() {
-        return prefs.getBoolean("display-keyboard", false);
-    }
-
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         mSystemUiVisibility.onWindowFocusChanged(hasFocus);
-        if (hasFocus && isKeyboardOnStartEnabled())
-            showKeyboard();
+        forwarderManager.onWindowFocusChanged(hasFocus);
     }
 
     @Override

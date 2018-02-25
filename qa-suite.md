@@ -144,8 +144,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Open a search result. Press back, keyboard is not displayed
 * [ ] Enable keyboard on start
 * [ ] Press home. Keyboard is displayed
-* [ ] Press back. Keyboard is displayed
-* [ ] Display app list. Hide app list, keyboard is displayed
+* [ ] Display app list. Hide keyboard. Hide app list, keyboard is displayed
 * [ ] Open a search result. Press home, keyboard is displayed
 * [ ] Open a search result. Press back, keyboard is displayed
 * [ ] (using Swiftkey keyboard) Disable "keyboard suggestions fix". Keyboard displays suggestions when typing
