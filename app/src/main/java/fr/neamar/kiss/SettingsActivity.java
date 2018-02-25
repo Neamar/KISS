@@ -283,6 +283,11 @@ public class SettingsActivity extends PreferenceActivity implements
         if (requireRestartSettings.contains(key)) {
             requireFullRestart = true;
         }
+
+        if(key.equalsIgnoreCase("theme")) {
+            // Reload with new theme
+            recreate();
+        }
     }
 
     @Override

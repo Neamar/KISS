@@ -211,7 +211,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Select a search provider. Ensure it is available in search
 * [ ] Reset search providers. Ensure only default providers are visible
 * [ ] Delete a search provider. Ensure it is not available in search anymore
-* [ ] Disable search providers. Enter a query with no results. Help text is displayed.
+* [ ] Disable search providers. Disable minimalistic mode. Enter a query with no results. Help text is displayed.
 * [ ] Disable search providers. Enable minimalistic mode. Enter a query with no results. Nothing is displayed
 
 ### Advanced settings
