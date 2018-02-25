@@ -44,6 +44,8 @@ class ExperienceTweaks extends Forwarder {
         }
     };
 
+    private View mainEmptyView;
+
     ExperienceTweaks(MainActivity mainActivity) {
         super(mainActivity);
 
@@ -62,6 +64,7 @@ class ExperienceTweaks extends Forwarder {
 
     void onCreate() {
         adjustInputType(null);
+        mainEmptyView = mainActivity.findViewById(R.id.main_empty);
     }
 
     void onResume() {
@@ -82,6 +85,13 @@ class ExperienceTweaks extends Forwarder {
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             mainActivity.hideKeyboard();
+        }
+
+        if (isMinimalisticModeEnabled()) {
+            mainEmptyView.setVisibility(View.GONE);
+
+            mainActivity.list.setVerticalScrollBarEnabled(false);
+            mainActivity.searchEditText.setHint("");
         }
     }
 
@@ -132,21 +142,15 @@ class ExperienceTweaks extends Forwarder {
 
         if (query.isEmpty()) {
             if (isMinimalisticModeEnabled()) {
-                mainActivity.list.setVerticalScrollBarEnabled(false);
-                mainActivity.searchEditText.setHint("");
                 mainActivity.runTask(new NullSearcher(mainActivity));
-                //Hide default scrollview
-                mainActivity.findViewById(R.id.main_empty).setVisibility(View.GONE);
+                // By default, help text is displayed -- not in minimalistic mode.
+                mainEmptyView.setVisibility(View.GONE);
 
                 if (isMinimalisticModeEnabledForFavorites()) {
                     mainActivity.favoritesBar.setVisibility(View.GONE);
                 }
             } else {
-                mainActivity.list.setVerticalScrollBarEnabled(true);
-                mainActivity.searchEditText.setHint(R.string.ui_search_hint);
                 mainActivity.runTask(new HistorySearcher(mainActivity));
-                //Show default scrollview
-                mainActivity.findViewById(R.id.main_empty).setVisibility(View.VISIBLE);
             }
         }
     }

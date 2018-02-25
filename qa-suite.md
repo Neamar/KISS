@@ -6,6 +6,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 ### Get started...
 * [ ] Loader appears when opening the app
+* [ ] Help text appears while app is loading
 * [ ] After some time, loader disappears and is replaced by launcher icon
 * [ ] Searching for text displays results
 * [ ] Clicking the launcher displays the list of apps
@@ -15,7 +16,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When going back to KISS, the item has been added to history
 * [ ] Three dots menu is displayed to the right
 * [ ] Entering a search query replaces the three-dots menu with an "X"
-* [ ] Clicking the "X" empties the search field and displays three dots menu
+* [ ] Clicking the "X" empties the search field, displays three dots menu and displays help text
 * [ ] When searching, pressing enter on the keyboard launches the first result
 * [ ] When keyboard is displayed, scrolling the list down hides the keyboard
 * [ ] When searching, pressing space as the first character does nothing (left-hand side trimming)
@@ -209,6 +210,8 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Select a search provider. Ensure it is available in search
 * [ ] Reset search providers. Ensure only default providers are visible
 * [ ] Delete a search provider. Ensure it is not available in search anymore
+* [ ] Disable search providers. Enter a query with no results. Help text is displayed.
+* [ ] Disable search providers. Enable minimalistic mode. Enter a query with no results. Nothing is displayed
 
 ### Advanced settings
 * [ ] Change default launcher option opens system dialog to pick a launcher

@@ -217,9 +217,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onChanged() {
                 super.onChanged();
                 if (adapter.isEmpty()) {
+                    // Display help text when no results available
                     listContainer.setVisibility(View.GONE);
                     emptyListView.setVisibility(View.VISIBLE);
                 } else {
+                    // Otherwise, display results
                     listContainer.setVisibility(View.VISIBLE);
                     emptyListView.setVisibility(View.GONE);
                 }
