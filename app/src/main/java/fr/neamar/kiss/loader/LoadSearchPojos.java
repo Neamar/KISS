@@ -40,7 +40,8 @@ public class LoadSearchPojos extends LoadPojos<SearchPojo> {
 
         for (String searchProvider : selectedProviders) {
             SearchPojo pojo = new SearchPojo();
-            pojo.relevance = 10;
+            // Super low relevance, should never be displayed before anything
+            pojo.relevance = -500;
             pojo.url = getProviderUrl(availableProviders, searchProvider);
             pojo.setName(searchProvider, false);
             if (pojo.url != null) {
