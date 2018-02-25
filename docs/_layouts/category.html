@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign posts = page.posts | sort: "title" %}
+{% assign posts = site.categories[page.tag] | sort: "title" %}
 <h2 style="text-transform:capitalize;">{{ page.title | replace: "-", " " }} <span class="count">({{ posts | size }})</span></h2>
 
 {% include listings.html listings=posts %}

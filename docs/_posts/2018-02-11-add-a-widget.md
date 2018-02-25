@@ -1,7 +1,7 @@
 ---
 title: How to add a widget?
 categories:
-  - widgets
+  - Widgets
 description: "Customize your KISS launcher with a widget on the home screen."
 type: Document
 ---
