@@ -10,7 +10,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Searching for text displays results
 * [ ] Clicking the launcher displays the list of apps
 * [ ] History is displayed when search box is empty
-* [ ] When clicking on an search item, the corresponding intent is triggered
+* [ ] When clicking on a search item, the corresponding intent is triggered
 * [ ] When going back to KISS, search results have been cleared
 * [ ] When going back to KISS, the item has been added to history
 * [ ] Three dots menu is displayed to the right
@@ -18,12 +18,12 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Clicking the "X" empties the search field and displays three dots menu
 * [ ] When searching, pressing enter on the keyboard launches the first result
 * [ ] When keyboard is displayed, scrolling the list down hides the keyboard
-* [ ] When searching, pressing space as the first character has no effect (left hand side trimming)
+* [ ] When searching, pressing space as the first character does nothing (left-hand side trimming)
 * [ ] Press kiss icon. App list is displayed, and kiss bar appears with a circular reveal animation
 * [ ] Press kiss icon again. App list is hidden, and kiss bar disappears with a circular (un)reveal animation
-* [ ] With keyboard open, press kiss icon. App list is displayed and keyboard stays there
-* [ ] With keyboard open, press kiss icon. App list is displayed. When typing something on the keyboard, app list is hidden and search results start appearing
-* [ ] Search for something, press kiss icon. App list is displayed. Press kiss icon again, search query has been emptied
+* [ ] With keyboard open, press kiss icon. App list is displayed, and keyboard stays there
+* [ ] With keyboard open, press kiss icon. The app list is displayed. When typing something on the keyboard, app list is hidden, and search results start appearing
+* [ ] Search for something, press kiss icon. The app list is displayed. Press kiss icon again, search query has been emptied
 * [ ] With KISS set as default launcher, pressing home empties the search field and displays history
 * [ ] With KISS set as default launcher and app list displayed, pressing home hides the app list and displays history
 * [ ] When app bar is displayed, pressing back hides the bar and displays history
@@ -36,7 +36,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Long-clicking the three dots menu open a popup
 * [ ] If device has physical menu button, pressing menu displays the three-dots menu
 * [ ] Long pressing a search result displays contextual menu
-* [ ] When three dots menu is clicked, pressing back dismisses the popup
+* [ ] When clicking three dots menu, pressing back dismisses the popup
 
 ### History
 #### Standard history manipulation
@@ -50,7 +50,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Resetting excluded app removes all excluded apps
 * [ ] Resetting excluded apps allows apps previously hidden to be displayed in app list
 * [ ] No more than Max number of results in search is displayed to the user
-* [ ] Changing the value dynamically updates the history
+* [ ] Changing the value updates the history dynamically
 * [ ] Freezing history prevents new items from being added to history
 * [ ] Unchecking "Freeze history" ensures history is populated again
 * [ ] TODO: history mode
@@ -65,7 +65,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 ### Favorites
 * [ ] Favorite bar is displayed automatically at startup
-* [ ] Clicking on a favorite triggers the correct Intent
+* [ ] Clicking on a favorite trigger the correct Intent
 * [ ] When going back to KISS, the favorite has been added to history
 * [ ] Long-clicking favorite displays the menu
 * [ ] Long-click menu can be used to remove the favorite
@@ -76,9 +76,9 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When kiss bar is opened, favorites are displayed
 * [ ] When kiss bar is opened, internal favorites bar is hidden
 * [ ] When kiss bar is opened, you can't click on the menu button behind the kiss bar (not even visible, doesn't respond to touch events either)
-* [ ] When searching and pressing home, query is cleared and favorites are displayed
-* [ ] When adding a favorite, it appears automatically and favorites are evenly spaced
-* [ ] When removing a favorite, it disappears automatically and favorites are evenly spaced
+* [ ] When searching and pressing home, query is cleared, and favorites are displayed
+* [ ] When adding a favorite, it appears automatically, and favorites are evenly spaced
+* [ ] When removing a favorite, it disappears automatically, and favorites are evenly spaced
 * [ ] When viewing the search list and adding an application to favorites, the app list remains visible and the favorite appears
 * [ ] When searching and adding a result to favorites, the search remains visible and the favorite appears
 
@@ -113,7 +113,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] The bar background is *not* transparent, but still green.
 
 #### First run
-* [ ] On first run, favorites are set by default (browser, contact and phone)
+* [ ] On the first run, favorites are set by default (browser, contact, and phone)
 
 ### UI
 #### Theming
@@ -122,7 +122,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Loader circle is properly tinted according to the primary color
 * [ ] Launcher icon is properly tinted according to the primary color
 * [ ] KISS bar background is properly tinted according to the primary color
-* [ ] Notification bar is the selected color in the main screen theme
+* [ ] Notification bar is of the selected color on the main screen theme
 
 #### Icons pack
 * [ ] TODO: theme icon packs
@@ -155,12 +155,23 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When using minimalistic mode and pressing home, history is not displayed
 * [ ] When using minimalistic mode and pressing the search bar, history is not displayed
 * [ ] When using minimalistic mode and pressing anywhere else, history is not displayed
-* [ ] When using minimalistic mode with history-touch and pressing anywhere else, history is displayed
+* [ ] When using minimalistic mode with history-touch and pressing anywhere else (outside of a widget), history is displayed
 * [ ] When scrolling down on the history, the keyboard disappears
 * [ ] When using immersive mode for the notification bar, notification bar disappears when pressing home
 * [ ] When using immersive mode for the notification bar, notification bar appears when searching for a text
 * [ ] When using immersive mode for the notification bar, notification bar appears when displaying app list
 * [ ] When using immersive mode for the navigation bar, navigation bar disappears when pressing home
+
+##### Widgets
+* [ ] When using minimalistic mode, the three dot menu has an option to Add a widget
+* [ ] Selecting the option displays a list of all available widgets
+* [ ] Selecting a widget displays the widget when history is empty
+* [ ] Widget is hidden when displaying app list
+* [ ] Widget is hidden when searching
+* [ ] When opening a search result and pressing back, Widget is displayed
+* [ ] When opening a search result and pressing home, Widget is displayed
+* [ ] Clicking on the widget opens the widget app
+* [ ] Clicking outside of the widget with history-touch replace the widget with history
 
 #### Portrait / landscape
 * [ ] When portrait-locked, app can't pivot
@@ -174,7 +185,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] With show app tags enabled, long press an app and add a tag. Tag is displayed
 * [ ] Search for the tag you just added, app is displayed and tag is highlighted
 * [ ] With show app tags disabled, long press an app and add a tag. Tag is not displayed
-* [ ] Search for the tag you just added, app is displayed without tags (TODO: does that make sense?)
+* [ ] Search for the tag you just added, the app is displayed without tags (TODO: does that make sense?)
 * [ ] With hide app icons disabled, app icons are displayed
 * [ ] With hide app icons enabled, app icons are not displayed (empty space)
 
@@ -183,11 +194,11 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] TODO: drag events
 
 ### Providers settings
-* [ ] Search for a contact. Make sure it is displayed as a result, and appended to history on click
-* [ ] Search for a device setting. Make sure it is displayed as a result, and appended to history on click
-* [ ] Search for a toggle. Make sure it is displayed as a result, and appended to history on click
-* [ ] Search for a phone number. Make sure it is displayed as a result, and appended to history on click
-* [ ] Search for a shortcut (you'll probably need to create one from an app first, for instance WhatsApp). Make sure it is displayed as a result, and appended to history on click
+* [ ] Search for a contact. Make sure it is displayed as a result and appended to history on click
+* [ ] Search for a device setting. Make sure it is displayed as a result and appended to history on click
+* [ ] Search for a toggle. Make sure it is displayed as a result and appended to history on click
+* [ ] Search for a phone number. Make sure it is displayed as a result and appended to history on click
+* [ ] Search for a shortcut (you'll probably need to create one from an app first, for instance, WhatsApp). Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a long test. Make sure a web search option is displayed as a result
 * [ ] From Providers selection, disable Contacts. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Device settings. From now on, they are not displayed anymore in search or history
