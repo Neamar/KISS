@@ -211,7 +211,6 @@ public class SettingsActivity extends PreferenceActivity implements
                     for (String providerToDelete : searchProvidersToDelete) {
                         if (searchProvider.startsWith(providerToDelete + "|")) {
                             updatedProviders.remove(searchProvider);
-                            continue;
                         }
                     }
                 }
@@ -270,12 +269,10 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onPause();
         prefs.unregisterOnSharedPreferenceChangeListener(this);
 
+        // Some settings require a full UI refresh,
+        // Flag this, so that MainActivity get the information onResume().
         if (requireFullRestart) {
-            Toast.makeText(this, R.string.app_will_restart, Toast.LENGTH_SHORT).show();
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             prefs.edit().putBoolean("require-layout-update", true).apply();
-
-            return;
         }
 
     }
