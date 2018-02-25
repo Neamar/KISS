@@ -180,7 +180,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.registerReceiver(mReceiver, intentFilterLoad);
         this.registerReceiver(mReceiver, intentFilterLoadOver);
         this.registerReceiver(mReceiver, intentFilterFullLoadOver);
-        KissApplication.getApplication(this).initDataHandler();
 
         /*
          * Set the view and store all useful components

@@ -50,7 +50,7 @@ public class DataHandler extends BroadcastReceiver
     final private Context context;
     private String currentQuery;
     private Map<String, ProviderEntry> providers = new HashMap<>();
-    private boolean providersReady = false;
+    public boolean allProvidersHaveLoaded = false;
 
     /**
      * Initialize all providers
@@ -192,7 +192,7 @@ public class DataHandler extends BroadcastReceiver
      * might be ready now
      */
     private void handleProviderLoaded() {
-        if (this.providersReady) {
+        if (this.allProvidersHaveLoaded) {
             return;
         }
 
@@ -212,7 +212,7 @@ public class DataHandler extends BroadcastReceiver
             // Nothing
         }
 
-        this.providersReady = true;
+        this.allProvidersHaveLoaded = true;
     }
 
     @Override
