@@ -284,13 +284,10 @@ public class SettingsActivity extends PreferenceActivity implements
     private void fixSummaries() {
         int historyLength = KissApplication.getDataHandler(this).getHistoryLength();
         if (historyLength > 5) {
-            Preference resetScroll = findPreference("resetScroll");
-            if (resetScroll != null)
-                resetScroll.setSummary(String.format(getString(R.string.items_title), historyLength));
+            findPreference("reset").setSummary(String.format(getString(R.string.items_title), historyLength));
         }
 
-
-        // Only display the "rate the app" preference if the user has been using KISS long enough to enjoy it ;)
+        // Only display "rate the app" preference if the user has been using KISS long enough to enjoy it ;)
         Preference rateApp = findPreference("rate-app");
         if (historyLength < 300) {
             getPreferenceScreen().removePreference(rateApp);
