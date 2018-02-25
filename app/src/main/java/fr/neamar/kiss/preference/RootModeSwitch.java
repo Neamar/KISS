@@ -11,6 +11,14 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 
 public class RootModeSwitch extends SwitchPreference {
+    public RootModeSwitch(Context context) {
+        this(context, null);
+    }
+
+    public RootModeSwitch(Context context, AttributeSet attrs) {
+        this(context, attrs, android.R.attr.switchPreferenceStyle);
+    }
+
     public RootModeSwitch(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
