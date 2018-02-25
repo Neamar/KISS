@@ -30,7 +30,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     // Those settings require the app to restart
 
-    final static private String requireRestartSettings = "force-portrait primary-color transparent-search transparent-favorites history-hide enable-favorites-bar";
+    final static private String requireRestartSettings = "force-portrait primary-color transparent-search transparent-favorites history-hide enable-favorites-bar theme notification-bar-color";
 
     private boolean requireFullRestart = false;
 
