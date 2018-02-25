@@ -342,6 +342,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         if(KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
             displayLoader(false);
+            onFavoriteChange();
         }
 
         forwarderManager.onResume();
@@ -567,9 +568,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (display) {
             searchEditText.setText("");
             // Display the app list
-            if (searchTask != null) {
-                searchTask.cancel(true);
-            }
+            resetTask();
+
             searchTask = new ApplicationsSearcher(MainActivity.this);
             searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
 
