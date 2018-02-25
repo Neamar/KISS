@@ -48,7 +48,7 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
         super(mainActivity);
     }
 
-    public void onCreate() {
+    void onCreate() {
         if(prefs.getBoolean("enable-favorites-bar", true)) {
             mainActivity.favorites = mainActivity.findViewById(R.id.externalFavoriteBar);
             // Hide the embedded bar
@@ -73,11 +73,11 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
         }
     }
 
-    public void onAllProvidersLoaded() {
+    void onAllProvidersLoaded() {
         onFavoriteChange();
     }
 
-    public void onFavoriteChange() {
+    void onFavoriteChange() {
         int[] favoritesIds = FAV_IDS;
 
         favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler()
@@ -109,7 +109,7 @@ public class FavoriteForwarder extends Forwarder implements View.OnClickListener
         }
     }
 
-    public void updateRecords(String query) {
+    void updateRecords(String query) {
         if(query.isEmpty()) {
             mainActivity.favorites.setVisibility(View.VISIBLE);
         }

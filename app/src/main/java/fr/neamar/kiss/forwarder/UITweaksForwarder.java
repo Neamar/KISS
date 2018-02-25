@@ -37,7 +37,7 @@ class UITweaksForwarder extends Forwarder {
         }
     }
 
-    public void onCreate() {
+    void onCreate() {
         UIColors.updateThemePrimaryColor(mainActivity);
         tintResources(mainActivity);
 
@@ -51,6 +51,21 @@ class UITweaksForwarder extends Forwarder {
                 mainActivity.searchEditText.setBackgroundColor(Color.TRANSPARENT);
             }
         }
+    }
+
+    void onResume() {
+        boolean largeSearchBar = prefs.getBoolean("large-search-bar", false);
+        Resources res = mainActivity.getResources();
+        int searchHeight;
+        if (largeSearchBar) {
+            searchHeight = res.getDimensionPixelSize(R.dimen.large_bar_height);
+        } else {
+            searchHeight = res.getDimensionPixelSize(R.dimen.bar_height);
+        }
+
+        mainActivity.findViewById(R.id.searchEditLayout).getLayoutParams().height = searchHeight;
+        mainActivity.kissBar.getLayoutParams().height = searchHeight;
+        mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams().height = searchHeight;
     }
 
     private void tintResources(MainActivity mainActivity) {
@@ -71,20 +86,5 @@ class UITweaksForwarder extends Forwarder {
 
         // Kissbar background
         mainActivity.kissBar.setBackgroundColor(primaryColor);
-    }
-
-    public void onResume() {
-        boolean largeSearchBar = prefs.getBoolean("large-search-bar", false);
-        Resources res = mainActivity.getResources();
-        int searchHeight;
-        if (largeSearchBar) {
-            searchHeight = res.getDimensionPixelSize(R.dimen.large_bar_height);
-        } else {
-            searchHeight = res.getDimensionPixelSize(R.dimen.bar_height);
-        }
-
-        mainActivity.findViewById(R.id.searchEditLayout).getLayoutParams().height = searchHeight;
-        mainActivity.kissBar.getLayoutParams().height = searchHeight;
-        mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams().height = searchHeight;
     }
 }

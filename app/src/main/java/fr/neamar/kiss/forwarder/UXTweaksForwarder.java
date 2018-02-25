@@ -60,8 +60,7 @@ class UXTweaksForwarder extends Forwarder {
         }
     }
 
-    @Override
-    public void onCreate() {
+    void onCreate() {
         adjustInputType(null);
     }
 
@@ -86,7 +85,7 @@ class UXTweaksForwarder extends Forwarder {
         }
     }
 
-    public boolean onTouch(View view, MotionEvent event) {
+    void onTouch(View view, MotionEvent event) {
         //if motion movement ends
         if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
             // and minimalistic mode is enabled,
@@ -105,17 +104,15 @@ class UXTweaksForwarder extends Forwarder {
                 mainActivity.favorites.setVisibility(View.VISIBLE);
             }
         }
-
-        return false;
     }
 
-    public void onWindowFocusChanged(boolean hasFocus) {
+    void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus && isKeyboardOnStartEnabled()) {
             showKeyboard();
         }
     }
 
-    public void onDisplayKissBar(Boolean display) {
+    void onDisplayKissBar(Boolean display) {
         if (isMinimalisticModeEnabledForFavorites()) {
             if (display) {
                 mainActivity.favorites.setVisibility(View.VISIBLE);
@@ -130,7 +127,7 @@ class UXTweaksForwarder extends Forwarder {
         }
     }
 
-    public void updateRecords(String query) {
+    void updateRecords(String query) {
         adjustInputType(query);
 
         if (query.isEmpty()) {

@@ -25,8 +25,9 @@ class WallpaperForwarder extends Forwarder {
         super(mainActivity);
 
         mWallpaperManager = (WallpaperManager) mainActivity.getSystemService(Context.WALLPAPER_SERVICE);
-        mContentView = mainActivity.findViewById(android.R.id.content);
+        assert mWallpaperManager != null;
 
+        mContentView = mainActivity.findViewById(android.R.id.content);
         mWallpaperManager.setWallpaperOffsetSteps(.5f, 0.f);
         mWallpaperOffset = 0.5f; // this is the center
         mAnimation = new WallpaperForwarder.Anim();
@@ -34,7 +35,7 @@ class WallpaperForwarder extends Forwarder {
         mWindowSize = new Point(1, 1);
     }
 
-    public boolean onTouch(View view, MotionEvent event) {
+    boolean onTouch(View view, MotionEvent event) {
         int actionMasked = event.getActionMasked();
         switch (actionMasked) {
             case MotionEvent.ACTION_DOWN:

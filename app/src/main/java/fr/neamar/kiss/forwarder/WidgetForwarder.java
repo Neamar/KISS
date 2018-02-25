@@ -44,7 +44,7 @@ class WidgetForwarder extends Forwarder {
         super(mainActivity);
     }
 
-    public void onCreate() {
+    void onCreate() {
         // Initialize widget manager and host, restore widgets
         widgetPrefs = mainActivity.getSharedPreferences(WIDGET_PREFERENCE_ID, Context.MODE_PRIVATE);
 
@@ -55,17 +55,17 @@ class WidgetForwarder extends Forwarder {
         restoreWidgets();
     }
 
-    public void onStart() {
+    void onStart() {
         // Start listening for widget update
         mAppWidgetHost.startListening();
     }
 
-    public void onStop() {
+    void onStop() {
         // Stop listening for widget update
         mAppWidgetHost.stopListening();
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CREATE_APPWIDGET:
@@ -84,7 +84,7 @@ class WidgetForwarder extends Forwarder {
         }
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
+    boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.widget) {
             if (!widgetUsed) {
                 // request widget picker, a selection will lead to a call of onActivityResult
@@ -102,7 +102,7 @@ class WidgetForwarder extends Forwarder {
         return false;
     }
 
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+    void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         if (prefs.getBoolean("history-hide", true)) {
             if (widgetUsed) {
                 menu.findItem(R.id.widget).setTitle(R.string.menu_widget_remove);
@@ -114,7 +114,7 @@ class WidgetForwarder extends Forwarder {
         }
     }
 
-    public void onDataSetChanged() {
+    void onDataSetChanged() {
         if (widgetUsed && mainActivity.adapter.isEmpty()) {
             // when a widget is displayed the empty list would prevent touches on the widget
             mainActivity.emptyListView.setVisibility(View.GONE);
