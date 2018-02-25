@@ -44,6 +44,9 @@ abstract class Forwarder {
         return false;
     }
 
+    public void onWindowFocusChanged(boolean hasFocus) {
+    }
+
     public void onDataSetChanged() {
     }
 

@@ -38,6 +38,7 @@ public class ForwarderManager extends Forwarder {
     public void onResume() {
         favoriteForwarder.onResume();
         uiTweaksForwarder.onResume();
+        uxTweaksForwarder.onResume();
     }
 
     @Override
@@ -70,6 +71,9 @@ public class ForwarderManager extends Forwarder {
         return wallpaperForwarder.onTouch(view, event);
     }
 
+    public void onWindowFocusChanged(boolean hasFocus) {
+        uxTweaksForwarder.onWindowFocusChanged(hasFocus);
+    }
     @Override
     public void onDataSetChanged() {
         widgetForwarder.onDataSetChanged();

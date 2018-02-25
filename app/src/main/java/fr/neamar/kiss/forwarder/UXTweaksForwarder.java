@@ -1,10 +1,13 @@
 package fr.neamar.kiss.forwarder;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
+import android.os.Handler;
 import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.regex.Pattern;
 
@@ -34,6 +37,13 @@ class UXTweaksForwarder extends Forwarder {
     private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
 
+    private final Runnable displayKeyboardRunnable = new Runnable() {
+        @Override
+        public void run() {
+            showKeyboard();
+        }
+    };
+
     UXTweaksForwarder(MainActivity mainActivity) {
         super(mainActivity);
 
@@ -53,6 +63,28 @@ class UXTweaksForwarder extends Forwarder {
     @Override
     public void onCreate() {
         adjustInputType(null);
+    }
+
+    @Override
+    void onResume() {
+        // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
+        // so the keyboard will be hidden by default
+        // we may want to display it if the setting is set
+        if (isKeyboardOnStartEnabled()) {
+            // Display keyboard
+            showKeyboard();
+
+            new Handler().postDelayed(displayKeyboardRunnable, 10);
+            // For some weird reasons, keyboard may be hidden by the system
+            // So we have to run this multiple time at different time
+            // See https://github.com/Neamar/KISS/issues/119
+            new Handler().postDelayed(displayKeyboardRunnable, 100);
+            new Handler().postDelayed(displayKeyboardRunnable, 500);
+        } else {
+            // Not used (thanks windowSoftInputMode)
+            // unless coming back from KISS settings
+            mainActivity.hideKeyboard();
+        }
     }
 
     @Override
@@ -80,14 +112,25 @@ class UXTweaksForwarder extends Forwarder {
     }
 
     @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (hasFocus && isKeyboardOnStartEnabled()) {
+            showKeyboard();
+        }
+    }
+
+    @Override
     public void onDisplayKissBar(Boolean display) {
         if (isMinimalisticModeEnabledForFavorites()) {
-            if(display) {
+            if (display) {
                 mainActivity.favorites.setVisibility(View.VISIBLE);
-            }
-            else {
+            } else {
                 mainActivity.favorites.setVisibility(View.GONE);
             }
+        }
+
+        if (!display && isKeyboardOnStartEnabled()) {
+            // Display keyboard
+            showKeyboard();
         }
     }
 
@@ -133,6 +176,15 @@ class UXTweaksForwarder extends Forwarder {
         }
     }
 
+    private void showKeyboard() {
+        mainActivity.searchEditText.requestFocus();
+        InputMethodManager mgr = (InputMethodManager) mainActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert mgr != null;
+        mgr.showSoftInput(mainActivity.searchEditText, InputMethodManager.SHOW_IMPLICIT);
+
+        mainActivity.systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
+    }
+
     private boolean isMinimalisticModeEnabled() {
         return prefs.getBoolean("history-hide", false);
     }
@@ -147,5 +199,12 @@ class UXTweaksForwarder extends Forwarder {
      */
     private boolean isNonCompliantKeyboard() {
         return prefs.getBoolean("enable-keyboard-workaround", false);
+    }
+
+    /**
+     * Should the keyboard be displayed by default?
+     */
+    private boolean isKeyboardOnStartEnabled() {
+        return prefs.getBoolean("display-keyboard", false);
     }
 }
