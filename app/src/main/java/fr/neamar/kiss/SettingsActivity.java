@@ -32,8 +32,8 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String requireRestartSettings = "force-portrait primary-color transparent-search transparent-favorites history-hide enable-favorites-bar theme notification-bar-color";
-
+    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites history-hide enable-favorites-bar notification-bar-color";
+    final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait";
     private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
@@ -280,13 +280,13 @@ public class SettingsActivity extends PreferenceActivity implements
             PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
         }
 
-        if (requireRestartSettings.contains(key)) {
+        if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
             requireFullRestart = true;
-        }
 
-        if(key.equalsIgnoreCase("theme")) {
-            // Reload with new theme
-            recreate();
+            if(settingsRequiringRestartForSettingsActivity.contains(key)) {
+                // Kill this activity too, and restart
+                recreate();
+            }
         }
     }
 
