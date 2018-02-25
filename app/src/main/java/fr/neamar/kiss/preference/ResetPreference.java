@@ -2,6 +2,7 @@ package fr.neamar.kiss.preference;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
@@ -23,7 +24,9 @@ public class ResetPreference extends DialogPreference {
             KissApplication.getApplication(getContext()).getDataHandler().clearHistory();
 
             // We'll have to redraw the list, so add a flag for MainActivity to restart
-            PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putBoolean("require-layout-update", true).apply();
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+            editor.putBoolean("require-layout-update", true);
+            editor.apply();
 
             Toast.makeText(getContext(), R.string.history_erased, Toast.LENGTH_LONG).show();
         }

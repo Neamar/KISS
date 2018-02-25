@@ -381,6 +381,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             Log.i(TAG, "Clearing search field");
             searchEditText.setText("");
         }
+
+        // Hide kissbar when coming back to kiss
+        if(isViewingAllApps()) {
+            displayKissBar(false);
+        }
     }
 
     @Override

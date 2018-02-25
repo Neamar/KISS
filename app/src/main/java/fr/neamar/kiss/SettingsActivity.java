@@ -96,8 +96,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
         multiSelectList.setEntries(apps);
         multiSelectList.setEntryValues(apps);
-        //noinspection Convert2Diamond
-        multiSelectList.setValues(new HashSet<String>(Arrays.asList(apps)));
+        multiSelectList.setValues(new HashSet<>(Arrays.asList(apps)));
     }
 
     private boolean hasNoExcludedApps(final SharedPreferences prefs) {
