@@ -6,17 +6,18 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 ### Get started...
 * [ ] Loader appears when opening the app
-* [ ] Help text appears while app is loading
+* [ ] Help text ("search apps, contacts, ...") appears while app is loading
 * [ ] After some time, loader disappears and is replaced by launcher icon
+* [ ] Touching the search field displays the keyboard
 * [ ] Searching for text displays results
-* [ ] Clicking the launcher displays the list of apps
-* [ ] History is displayed when search box is empty
+* [ ] Clicking the launcher icon displays the list of apps
 * [ ] When clicking on a search item, the corresponding intent is triggered
 * [ ] When going back to KISS, search results have been cleared
 * [ ] When going back to KISS, the item has been added to history
+* [ ] History is displayed when search box is empty
 * [ ] Three dots menu is displayed to the right
 * [ ] Entering a search query replaces the three-dots menu with an "X"
-* [ ] Clicking the "X" empties the search field, displays three dots menu and displays help text
+* [ ] Clicking the "X" empties the search field, displays three dots menu and displays history
 * [ ] When searching, pressing enter on the keyboard launches the first result
 * [ ] When keyboard is displayed, scrolling the list down hides the keyboard
 * [ ] When searching, pressing space as the first character does nothing (left-hand side trimming)
@@ -157,9 +158,9 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When using minimalistic mode and pressing anywhere else, history is not displayed
 * [ ] When using minimalistic mode with history-touch and pressing anywhere else (outside of a widget), history is displayed
 * [ ] When scrolling down on the history, the keyboard disappears
+* [ ] Disable show keyboard on start
 * [ ] When using immersive mode for the notification bar, notification bar disappears when pressing home
 * [ ] When using immersive mode for the notification bar, notification bar appears when searching for a text
-* [ ] When using immersive mode for the notification bar, notification bar appears when displaying app list
 * [ ] When using immersive mode for the navigation bar, navigation bar disappears when pressing home
 
 ##### Widgets
@@ -199,7 +200,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Search for a toggle. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a phone number. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a shortcut (you'll probably need to create one from an app first, for instance, WhatsApp). Make sure it is displayed as a result and appended to history on click
-* [ ] Search for a long test. Make sure a web search option is displayed as a result
+* [ ] Search for a long text. Make sure a web search option is displayed as a result
 * [ ] From Providers selection, disable Contacts. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Device settings. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Toggles. From now on, they are not displayed anymore in search or history

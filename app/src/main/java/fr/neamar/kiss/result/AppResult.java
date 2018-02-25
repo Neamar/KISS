@@ -71,7 +71,7 @@ public class AppResult extends Result {
             }
             this.setAsyncDrawable(appIcon);
         } else {
-            appIcon.setVisibility(View.INVISIBLE);
+            appIcon.setImageDrawable(null);
         }
         return view;
     }

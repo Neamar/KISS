@@ -345,6 +345,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             onFavoriteChange();
         }
 
+        // We need to update the history in case an external event created new items
+        // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
+        updateRecords();
+
         forwarderManager.onResume();
 
         super.onResume();
