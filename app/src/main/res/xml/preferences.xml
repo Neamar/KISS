@@ -64,8 +64,8 @@
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="true"
             android:key="enable-favorites-bar"
-            android:summaryOff="Only display favorites when pressing the KISS icon"
-            android:summaryOn="Display favorites above the search bar"
+            android:summaryOff="@string/enable_favorites_bar_summary_off"
+            android:summaryOn="@string/enable_favorites_bar_summary_on"
             android:title="@string/enable_favorites_bar" />
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="false"
@@ -247,5 +247,5 @@
     </PreferenceScreen>
     <Preference
         android:key="rate-app"
-        android:title="@string/rate_the_app"></Preference>
+        android:title="@string/rate_the_app" />
 </PreferenceScreen>
