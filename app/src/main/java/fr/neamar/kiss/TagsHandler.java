@@ -20,9 +20,9 @@ import fr.neamar.kiss.db.DBHelper;
  */
 
 public class TagsHandler {
-    private Context context;
+    private final Context context;
     //cached tags
-    private Map<String, String> tagsCache;
+    private final Map<String, String> tagsCache;
 
     TagsHandler(Context context) {
         this.context = context;

@@ -49,7 +49,7 @@ public class DataHandler extends BroadcastReceiver
     private TagsHandler tagsHandler;
     final private Context context;
     private String currentQuery;
-    private Map<String, ProviderEntry> providers = new HashMap<>();
+    private final Map<String, ProviderEntry> providers = new HashMap<>();
     public boolean allProvidersHaveLoaded = false;
 
     /**

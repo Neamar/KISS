@@ -23,7 +23,7 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
-    private TagsHandler tagsHandler;
+    private final TagsHandler tagsHandler;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");

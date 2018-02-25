@@ -11,8 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class UIColors {
-    public static String COLOR_DEFAULT = "#4caf50";
-    public static int[] COLOR_LIST = new int[]{
+    public static final String COLOR_DEFAULT = "#4caf50";
+    public static final int[] COLOR_LIST = new int[]{
             0xFF4CAF50, 0xFFD32F2F, 0xFFC2185B, 0xFF7B1FA2,
             0xFF512DA8, 0xFF303F9F, 0xFF1976D2, 0xFF0288D1,
             0xFF0097A7, 0xFF00796B, 0xFF388E3C, 0xFF689F38,

@@ -15,10 +15,10 @@ class WallpaperForwarder extends Forwarder {
     private final WallpaperManager mWallpaperManager;
     private final Point mWindowSize;
     private android.os.IBinder mWindowToken;
-    private View mContentView;
+    private final View mContentView;
     private float mLastTouchPos;
     private float mWallpaperOffset;
-    private WallpaperForwarder.Anim mAnimation;
+    private final WallpaperForwarder.Anim mAnimation;
     private VelocityTracker mVelocityTracker;
 
     WallpaperForwarder(MainActivity mainActivity) {

@@ -29,10 +29,10 @@ import fr.neamar.kiss.R;
  * Creates a circular swatch of a specified color.  Adds a checkmark if marked as checked.
  */
 public class ColorPickerSwatch extends FrameLayout implements View.OnClickListener {
-    private int mColor;
-    private ImageView mSwatchImage;
-    private ImageView mCheckmarkImage;
-    private OnColorSelectedListener mOnColorSelectedListener;
+    private final int mColor;
+    private final ImageView mSwatchImage;
+    private final ImageView mCheckmarkImage;
+    private final OnColorSelectedListener mOnColorSelectedListener;
 
     public ColorPickerSwatch(Context context, int color, boolean checked,
                              OnColorSelectedListener listener) {

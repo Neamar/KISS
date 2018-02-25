@@ -100,7 +100,7 @@ public class AnimatedListView extends BlockableListView {
     static class ItemInfo {
         final int top;
         final int viewIndex;
-        boolean validated;
+        final boolean validated;
 
         ItemInfo(int index, int top) {
             this.viewIndex = index;

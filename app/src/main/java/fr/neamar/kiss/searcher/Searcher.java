@@ -32,7 +32,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     // It's better to have a Handler than a Timer. Note that java.util.Timer (and TimerTask) will be deprecated in JDK 9
     private final Handler handler;
     private long start;
-    private String query;
+    private final String query;
     private int refreshCounter;
 
     /**

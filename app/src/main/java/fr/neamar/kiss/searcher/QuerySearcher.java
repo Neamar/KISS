@@ -24,7 +24,7 @@ public class QuerySearcher extends Searcher {
     /**
      * Store user preferences
      */
-    private SharedPreferences prefs;
+    private final SharedPreferences prefs;
 
     public QuerySearcher(MainActivity activity, String query) {
         super(activity, query);

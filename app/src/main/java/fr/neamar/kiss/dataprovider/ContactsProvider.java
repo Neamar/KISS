@@ -15,7 +15,7 @@ import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
 
-    private ContentObserver cObserver = new ContentObserver(null) {
+    private final ContentObserver cObserver = new ContentObserver(null) {
 
         @Override
         public void onChange(boolean selfChange) {

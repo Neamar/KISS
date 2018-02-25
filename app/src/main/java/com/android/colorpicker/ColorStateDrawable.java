@@ -29,7 +29,7 @@ class ColorStateDrawable extends LayerDrawable {
 
     private static final float PRESSED_STATE_MULTIPLIER = 0.70f;
 
-    private int mColor;
+    private final int mColor;
 
     public ColorStateDrawable(Drawable[] layers, int color) {
         super(layers);

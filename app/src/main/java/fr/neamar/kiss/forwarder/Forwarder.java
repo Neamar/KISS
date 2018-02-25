@@ -10,8 +10,8 @@ import android.view.View;
 import fr.neamar.kiss.MainActivity;
 
 abstract class Forwarder {
-    MainActivity mainActivity;
-    SharedPreferences prefs;
+    final MainActivity mainActivity;
+    final SharedPreferences prefs;
 
     Forwarder(MainActivity mainActivity) {
         this.mainActivity = mainActivity;

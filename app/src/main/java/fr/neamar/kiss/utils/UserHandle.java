@@ -9,8 +9,8 @@ import android.os.Process;
  * Wrapper class for `android.os.UserHandle` that works with all Android versions
  */
 public class UserHandle {
-    private long serial;
-    private Object handle; // android.os.UserHandle on Android 4.2 and newer
+    private final long serial;
+    private final Object handle; // android.os.UserHandle on Android 4.2 and newer
 
     public UserHandle() {
         this(0, null);

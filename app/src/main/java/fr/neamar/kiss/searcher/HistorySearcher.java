@@ -15,7 +15,7 @@ import fr.neamar.kiss.pojo.Pojo;
  * Retrieve pojos from history
  */
 public class HistorySearcher extends Searcher {
-    private SharedPreferences prefs;
+    private final SharedPreferences prefs;
 
     public HistorySearcher(MainActivity activity) {
         super(activity, "<history>");

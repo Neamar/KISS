@@ -14,7 +14,7 @@ import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
 
-    private TagsHandler tagsHandler;
+    private final TagsHandler tagsHandler;
 
     public LoadShortcutsPojos(Context context) {
         super(context, ShortcutsPojo.SCHEME);
