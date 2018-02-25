@@ -182,4 +182,25 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Wallpaper reacts to touch events
 * [ ] TODO: drag events
 
+### Providers settings
+* [ ] Search for a contact. Make sure it is displayed as a result, and appended to history on click
+* [ ] Search for a device setting. Make sure it is displayed as a result, and appended to history on click
+* [ ] Search for a toggle. Make sure it is displayed as a result, and appended to history on click
+* [ ] Search for a phone number. Make sure it is displayed as a result, and appended to history on click
+* [ ] Search for a shortcut (you'll probably need to create one from an app first, for instance WhatsApp). Make sure it is displayed as a result, and appended to history on click
+* [ ] Search for a long test. Make sure a web search option is displayed as a result
+* [ ] From Providers selection, disable Contacts. From now on, they are not displayed anymore in search or history
+* [ ] From Providers selection, disable Device settings. From now on, they are not displayed anymore in search or history
+* [ ] From Providers selection, disable Toggles. From now on, they are not displayed anymore in search or history
+* [ ] From Providers selection, disable Phone numbers. From now on, they are not displayed anymore in search or history
+* [ ] From Providers selection, disable Shortcuts. From now on, they are not displayed anymore in search or history
+* [ ] From Providers selection, disable Web Search. From now on, they are not displayed anymore in search
+* [ ] Add a search provider. Ensure it is available in the select search provider setting
+* [ ] Select a search provider. Ensure it is available in search
+* [ ] Reset search providers. Ensure only default providers are visible
+* [ ] Delete a search provider. Ensure it is not available in search anymore
+
 ### Advanced settings
+* [ ] Change default launcher option opens system dialog to pick a launcher
+* [ ] TODO: root mode
+* [ ] "Restart KISS" option closes the settings and reopen KISS
