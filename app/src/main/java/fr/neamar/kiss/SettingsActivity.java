@@ -78,9 +78,9 @@ public class SettingsActivity extends PreferenceActivity implements
         multiSelectList.setValues(new HashSet<String>(Arrays.asList(apps)));
     }
 
-    private boolean hasExcludedApps(final SharedPreferences prefs) {
+    private boolean hasNoExcludedApps(final SharedPreferences prefs) {
         String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
-        return !excludedAppList.isEmpty();
+        return excludedAppList.isEmpty();
     }
 
     @SuppressWarnings("deprecation")
@@ -107,7 +107,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
                 prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").apply();
                 loadExcludedAppsToPreference(multiPreference);
-                if (!hasExcludedApps(prefs)) {
+                if (hasNoExcludedApps(prefs)) {
                     multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
                 }
 
@@ -119,7 +119,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 return false;
             }
         });
-        if (!hasExcludedApps(prefs)) {
+        if (hasNoExcludedApps(prefs)) {
             multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
         }
     }

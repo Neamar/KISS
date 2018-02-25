@@ -77,6 +77,6 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
         /**
          * Called when a specific color square has been selected.
          */
-        public void onColorSelected(int color);
+        void onColorSelected(int color);
     }
 }

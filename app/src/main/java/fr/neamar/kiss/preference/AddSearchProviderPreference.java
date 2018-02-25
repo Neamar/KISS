@@ -78,17 +78,11 @@ public class AddSearchProviderPreference extends DialogPreference {
     }
 
     private boolean validatePipes() {
-        if (providerName.getText().toString().contains("|") || providerUrl.getText().toString().contains("|")) {
-            return false;
-        }
-        return true;
+        return !(providerName.getText().toString().contains("|") || providerUrl.getText().toString().contains("|"));
     }
 
     private boolean validateQueryPlaceholder() {
-        if (!providerUrl.getText().toString().contains("{q}")) {
-            return false;
-        }
-        return true;
+        return providerUrl.getText().toString().contains("{q}");
     }
 
     private boolean validateNameExists() {

@@ -1,7 +1,6 @@
 package fr.neamar.kiss.utils;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.os.Build;
 import android.os.Process;
 
@@ -54,10 +53,7 @@ public class UserHandle {
         if (this.handle == null) {
             return base;
         } else {
-            StringBuilder result = new StringBuilder(base);
-            result.append(separator);
-            result.append(this.serial);
-            return result.toString();
+            return base + separator + this.serial;
         }
     }
 
@@ -69,7 +65,7 @@ public class UserHandle {
             String serialText = string.substring(index);
             try {
                 serial = Long.parseLong(serialText);
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException ignored) {
             }
         }
 
