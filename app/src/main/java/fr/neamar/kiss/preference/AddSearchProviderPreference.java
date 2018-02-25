@@ -179,8 +179,8 @@ public class AddSearchProviderPreference extends DialogPreference {
             //persistString(providerName.getText().toString());
             Set<String> availableProviders = new HashSet<String>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
             availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString().toLowerCase());
-            prefs.edit().putStringSet("available-search-providers", availableProviders).commit();
-            prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).commit();
+            prefs.edit().putStringSet("available-search-providers", availableProviders).apply();
+            prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).apply();
 
             Toast.makeText(getContext(), R.string.search_provider_added, Toast.LENGTH_LONG).show();
         }

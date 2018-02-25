@@ -180,7 +180,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.registerReceiver(mReceiver, intentFilterLoad);
         this.registerReceiver(mReceiver, intentFilterLoadOver);
         this.registerReceiver(mReceiver, intentFilterFullLoadOver);
-        KissApplication.initDataHandler(this);
 
         /*
          * Set the view and store all useful components
@@ -388,13 +387,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onDestroy();
         // unregister our receiver
         this.unregisterReceiver(this.mReceiver);
-        KissApplication.getCameraHandler().releaseCamera();
+        KissApplication.getApplication(this).getCameraHandler().releaseCamera();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        KissApplication.getCameraHandler().releaseCamera();
+        KissApplication.getApplication(this).getCameraHandler().releaseCamera();
     }
 
     @Override

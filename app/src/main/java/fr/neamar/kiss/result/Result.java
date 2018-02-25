@@ -202,13 +202,13 @@ public abstract class Result {
 
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().addToFavorites((MainActivity) context, app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
@@ -313,7 +313,7 @@ public abstract class Result {
      */
     void recordLaunch(Context context) {
         // Save in history
-        KissApplication.getDataHandler(context).addToHistory(pojo.id);
+        KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.id);
     }
 
     public void deleteRecord(Context context) {

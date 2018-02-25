@@ -120,6 +120,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 
     @Override
     protected void onBindDialogView(View view) {
+        super.onBindDialogView(view);
         android.util.Log.i("ColorPreference", "View Width:  " + view.getWidth() + " | " + view.getMeasuredWidth());
         // Set selected color value based on the actual color value currently used
         // (but fall back to default from XML)

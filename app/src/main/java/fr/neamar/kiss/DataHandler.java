@@ -46,11 +46,11 @@ public class DataHandler extends BroadcastReceiver
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
             "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
     );
-    private static TagsHandler tagsHandler;
+    private TagsHandler tagsHandler;
     final private Context context;
     private String currentQuery;
     private Map<String, ProviderEntry> providers = new HashMap<>();
-    private boolean providersReady = false;
+    public boolean allProvidersHaveLoaded = false;
 
     /**
      * Initialize all providers
@@ -192,7 +192,7 @@ public class DataHandler extends BroadcastReceiver
      * might be ready now
      */
     private void handleProviderLoaded() {
-        if (this.providersReady) {
+        if (this.allProvidersHaveLoaded) {
             return;
         }
 
@@ -212,7 +212,7 @@ public class DataHandler extends BroadcastReceiver
             // Nothing
         }
 
-        this.providersReady = true;
+        this.allProvidersHaveLoaded = true;
     }
 
     @Override
