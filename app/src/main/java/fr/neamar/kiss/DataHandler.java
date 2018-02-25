@@ -224,7 +224,7 @@ public class DataHandler extends BroadcastReceiver
      * Get records for this query.
      *
      * @param query    query to run
-     * @param searcher
+     * @param searcher the searcher currently running
      */
     public void requestResults(String query, Searcher searcher) {
         currentQuery = query;

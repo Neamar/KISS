@@ -3,7 +3,6 @@ package fr.neamar.kiss.result;
 import android.content.Context;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;

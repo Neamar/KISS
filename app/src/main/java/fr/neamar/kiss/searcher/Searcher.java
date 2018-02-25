@@ -35,11 +35,6 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     private final String query;
     private int refreshCounter;
 
-    /**
-     * Constructor
-     *
-     * @param activity
-     */
     Searcher(MainActivity activity, String query) {
         super();
         this.query = query;

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,7 +35,7 @@ public class LoadSearchPojos extends LoadPojos<SearchPojo> {
             return pojos;
         }
 
-        Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(context.get()).getStringSet("selected-search-provider-names", new HashSet<>(Arrays.asList("Google")));
+        Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(context.get()).getStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google")));
         Set<String> availableProviders = PreferenceManager.getDefaultSharedPreferences(context.get()).getStringSet("available-search-providers", SearchProvider.getSearchProviders(context.get()));
 
         for (String searchProvider : selectedProviders) {

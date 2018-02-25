@@ -75,6 +75,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
         multiSelectList.setEntries(apps);
         multiSelectList.setEntryValues(apps);
+        //noinspection Convert2Diamond
         multiSelectList.setValues(new HashSet<String>(Arrays.asList(apps)));
     }
 
@@ -205,7 +206,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 Set<String> searchProvidersToDelete = (Set<String>) newValue;//PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("deleting-search-providers-names", new HashSet<String>());
                 Set<String> availableSearchProviders = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders(SettingsActivity.this));
 
-                Set<String> updatedProviders = new HashSet<String>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders(SettingsActivity.this)));
+                Set<String> updatedProviders = new HashSet<>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders(SettingsActivity.this)));
 
                 for (String searchProvider : availableSearchProviders) {
                     for (String providerToDelete : searchProvidersToDelete) {

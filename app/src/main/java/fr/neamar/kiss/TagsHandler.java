@@ -15,10 +15,6 @@ import java.util.Set;
 
 import fr.neamar.kiss.db.DBHelper;
 
-/**
- * Created by nmitsou on 13.10.16.
- */
-
 public class TagsHandler {
     private final Context context;
     //cached tags

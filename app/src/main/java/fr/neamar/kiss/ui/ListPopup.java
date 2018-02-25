@@ -14,9 +14,6 @@ import android.widget.PopupWindow;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
-/**
- * Created by TBog on 12/6/2017.
- */
 public class ListPopup extends PopupWindow {
     private final View.OnClickListener mClickListener;
     private OnItemClickListener mItemClickListener;

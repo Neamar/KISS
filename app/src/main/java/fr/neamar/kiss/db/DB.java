@@ -10,7 +10,7 @@ class DB extends SQLiteOpenHelper {
     private final static String DB_NAME = "kiss.s3db";
     private final static int DB_VERSION = 5;
 
-    public DB(Context context) {
+    DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

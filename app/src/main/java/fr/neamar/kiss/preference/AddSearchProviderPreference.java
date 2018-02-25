@@ -31,7 +31,7 @@ public class AddSearchProviderPreference extends DialogPreference {
 
     private final SharedPreferences prefs;
 
-    //Called when addPreferencesFromResource() is called. Initializes basic paramaters
+    //Called when addPreferencesFromResource() is called. Initializes basic parameters
     public AddSearchProviderPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setPersistent(true);
@@ -47,7 +47,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         layout.addView(providerName);
         layout.addView(providerUrl);
 
-        // default text color is white that doesnt work well on the light themes
+        // default text color is white that doesn't work well on the light themes
         String theme = prefs.getString("theme", "light");
         //if theme is light, change the text color
         if (!theme.contains("dark")) {
@@ -164,11 +164,11 @@ public class AddSearchProviderPreference extends DialogPreference {
 
     //persist values and disassemble views
     @Override
-    protected void onDialogClosed(boolean positiveresult) {
-        super.onDialogClosed(positiveresult);
-        if (positiveresult && shouldPersist()) {
+    protected void onDialogClosed(boolean positiveResult) {
+        super.onDialogClosed(positiveResult);
+        if (positiveResult && shouldPersist()) {
             //persistString(providerName.getText().toString());
-            Set<String> availableProviders = new HashSet<String>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
+            Set<String> availableProviders = new HashSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
             availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString().toLowerCase());
             prefs.edit().putStringSet("available-search-providers", availableProviders).apply();
             prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).apply();

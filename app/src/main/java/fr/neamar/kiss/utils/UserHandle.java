@@ -65,7 +65,8 @@ public class UserHandle {
             String serialText = string.substring(index);
             try {
                 serial = Long.parseLong(serialText);
-            } catch (NumberFormatException ignored) {
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
             }
         }
 

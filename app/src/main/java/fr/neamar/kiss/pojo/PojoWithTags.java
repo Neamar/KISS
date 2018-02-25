@@ -4,10 +4,6 @@ import java.util.List;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
-/**
- * Created by TBog on 1/25/2018.
- */
-
 public class PojoWithTags extends Pojo {
     // tags normalized, for faster search
     public StringNormalizer.Result normalizedTags = null;

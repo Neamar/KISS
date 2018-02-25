@@ -45,7 +45,6 @@ import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.ui.AnimatedListView;
-import fr.neamar.kiss.ui.BlockableListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
@@ -289,7 +288,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // When scrolling down on the list,
         // Hide the keyboard.
         this.hider = new KeyboardScrollHider(this,
-                (BlockableListView) this.list,
+                this.list,
                 (BottomPullEffectView) this.findViewById(R.id.listEdgeEffect)
         );
         this.hider.start();

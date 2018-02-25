@@ -2,7 +2,6 @@ package fr.neamar.kiss.adapter;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
