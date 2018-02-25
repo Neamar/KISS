@@ -119,7 +119,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * SystemUiVisibility helper
      */
-    private SystemUiVisibilityHelper mSystemUiVisibility;
+    public SystemUiVisibilityHelper systemUiVisibilityHelper;
 
     private PopupWindow mPopup;
 
@@ -260,12 +260,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == android.R.id.closeButton) {
-                    mSystemUiVisibility.onKeyboardVisibilityChanged(false);
+                    systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
                     if (mPopup != null) {
                         mPopup.dismiss();
                         return true;
                     }
-                    mSystemUiVisibility.onKeyboardVisibilityChanged(false);
+                    systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
                     hider.fixScroll();
                     return false;
                 }
@@ -294,7 +294,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();
 
-        mSystemUiVisibility = new SystemUiVisibilityHelper(this);
+        systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
 
         /*
          * Defer everything else to the forwarders
@@ -636,7 +636,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.updateRecords(query);
 
         if (query.isEmpty()) {
-            mSystemUiVisibility.resetScroll();
+            systemUiVisibilityHelper.resetScroll();
         } else {
             runTask(new QuerySearcher(this, query));
         }
@@ -680,7 +680,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (mPopup != null)
             mPopup.dismiss();
         mPopup = popup;
-        popup.setVisibilityHelper(mSystemUiVisibility);
+        popup.setVisibilityHelper(systemUiVisibilityHelper);
         popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -693,18 +693,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        mSystemUiVisibility.onWindowFocusChanged(hasFocus);
+        systemUiVisibilityHelper.onWindowFocusChanged(hasFocus);
         forwarderManager.onWindowFocusChanged(hasFocus);
-    }
-
-    @Override
-    public void showKeyboard() {
-        searchEditText.requestFocus();
-        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        //noinspection ConstantConditions
-        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
-
-        mSystemUiVisibility.onKeyboardVisibilityChanged(true);
     }
 
     @Override
@@ -718,14 +708,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
 
-        mSystemUiVisibility.onKeyboardVisibilityChanged(false);
+        systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         if (mPopup != null)
             mPopup.dismiss();
     }
 
     @Override
     public void applyScrollSystemUi() {
-        mSystemUiVisibility.applyScrollSystemUi();
+        systemUiVisibilityHelper.applyScrollSystemUi();
     }
 
     /**

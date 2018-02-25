@@ -1,11 +1,13 @@
 package fr.neamar.kiss.forwarder;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.regex.Pattern;
 
@@ -38,7 +40,7 @@ class UXTweaksForwarder extends Forwarder {
     private final Runnable displayKeyboardRunnable = new Runnable() {
         @Override
         public void run() {
-            mainActivity.showKeyboard();
+            showKeyboard();
         }
     };
 
@@ -70,7 +72,7 @@ class UXTweaksForwarder extends Forwarder {
         // we may want to display it if the setting is set
         if (isKeyboardOnStartEnabled()) {
             // Display keyboard
-            mainActivity.showKeyboard();
+            showKeyboard();
 
             new Handler().postDelayed(displayKeyboardRunnable, 10);
             // For some weird reasons, keyboard may be hidden by the system
@@ -82,8 +84,6 @@ class UXTweaksForwarder extends Forwarder {
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             mainActivity.hideKeyboard();
-            // TODO
-            // mSystemUiVisibility.onKeyboardVisibilityChanged(false);
         }
     }
 
@@ -114,7 +114,7 @@ class UXTweaksForwarder extends Forwarder {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus && isKeyboardOnStartEnabled()) {
-            mainActivity.showKeyboard();
+            showKeyboard();
         }
     }
 
@@ -130,7 +130,7 @@ class UXTweaksForwarder extends Forwarder {
 
         if (!display && isKeyboardOnStartEnabled()) {
             // Display keyboard
-            mainActivity.showKeyboard();
+            showKeyboard();
         }
     }
 
@@ -174,6 +174,15 @@ class UXTweaksForwarder extends Forwarder {
         if (currentInputType != requiredInputType) {
             mainActivity.searchEditText.setInputType(requiredInputType);
         }
+    }
+
+    private void showKeyboard() {
+        mainActivity.searchEditText.requestFocus();
+        InputMethodManager mgr = (InputMethodManager) mainActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert mgr != null;
+        mgr.showSoftInput(mainActivity.searchEditText, InputMethodManager.SHOW_IMPLICIT);
+
+        mainActivity.systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
     }
 
     private boolean isMinimalisticModeEnabled() {
