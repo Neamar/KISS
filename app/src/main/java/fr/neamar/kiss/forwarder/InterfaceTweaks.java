@@ -85,6 +85,6 @@ class InterfaceTweaks extends Forwarder {
         loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background
-        mainActivity.kissBar.setBackgroundColor(primaryColor);
+        mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
     }
 }
