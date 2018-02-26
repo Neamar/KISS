@@ -186,7 +186,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] With show app tags enabled, long press an app and add a tag. Tag is displayed
 * [ ] Search for the tag you just added, app is displayed and tag is highlighted
 * [ ] With show app tags disabled, long press an app and add a tag. Tag is not displayed
-* [ ] Search for the tag you just added, the app is displayed without tags (TODO: does that make sense?)
+* [ ] Search for the tag you just added, the app is displayed with matching tag
 * [ ] With hide app icons disabled, app icons are displayed
 * [ ] With hide app icons enabled, app icons are not displayed (empty space)
 

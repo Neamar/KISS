@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
@@ -36,8 +37,7 @@ public class AppResult extends Result {
     private final AppPojo appPojo;
     private final ComponentName className;
     private Drawable icon = null;
-
-    public AppResult(AppPojo appPojo) {
+    AppResult(AppPojo appPojo) {
         super(appPojo);
         this.appPojo = appPojo;
 
@@ -51,13 +51,16 @@ public class AppResult extends Result {
             view = inflateFromId(context, R.layout.item_app);
         }
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+
         TextView appName = (TextView) view.findViewById(R.id.item_app_name);
         appName.setText(enrichText(appPojo.displayName, context));
 
         TextView tagsView = (TextView) view.findViewById(R.id.item_app_tag);
-        //Hide tags view if tags are empty or if user has selected to hide them and the query doesn't match tags
+        //Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
         if (appPojo.displayTags.isEmpty() ||
-                ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (appPojo.displayTags.equals(appPojo.getTags())))) {
+                (!prefs.getBoolean("tags-visible", true) && !appPojo.displayTags.contains("{"))) {
             tagsView.setVisibility(View.GONE);
         } else {
             tagsView.setVisibility(View.VISIBLE);
@@ -65,7 +68,7 @@ public class AppResult extends Result {
         }
 
         final ImageView appIcon = (ImageView) view.findViewById(R.id.item_app_icon);
-        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
+        if (!prefs.getBoolean("icons-hide", false)) {
             if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
                 icon = appIcon.getDrawable();
             }
