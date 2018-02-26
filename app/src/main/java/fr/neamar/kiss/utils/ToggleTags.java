@@ -127,7 +127,7 @@ public class ToggleTags
 		setTogglableTags( getTogglableTags( prefs ) );
 		if( togglableTagList.isEmpty() )
 		{
-            TagsHandler tagsHandler = KissApplication.getApplication(toggleBarView.getContext()).getDataHandler().getTagsHandler();
+            TagsHandler tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
 			Set<String> list = tagsHandler.getAllTagsAsSet();
 			for( String tag : list )
 			{

@@ -589,19 +589,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public void displayLoader(Boolean display) {
-        int animationDuration = getResources().getInteger(
-                android.R.integer.config_longAnimTime);
+        launcherButton.clearAnimation();
+        loaderSpinner.clearAnimation();
 
         // Do not display animation if launcher button is already visible
         if (!display && launcherButton.getVisibility() == View.INVISIBLE) {
+            int animationDuration = getResources().getInteger(android.R.integer.config_longAnimTime);
             launcherButton.setVisibility(View.VISIBLE);
 
             // Animate transition from loader to launch button
-            launcherButton.setAlpha(0);
+            launcherButton.setAlpha(0f);
             launcherButton.animate()
                     .alpha(1f)
-                    .setDuration(animationDuration)
-                    .setListener(null);
+                    .setDuration(animationDuration);
+            loaderSpinner.setAlpha(1f);
             loaderSpinner.animate()
                     .alpha(0f)
                     .setDuration(animationDuration)
@@ -609,11 +610,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             loaderSpinner.setVisibility(View.GONE);
-                            loaderSpinner.setAlpha(1);
                         }
                     });
         } else if(display) {
             launcherButton.setVisibility(View.INVISIBLE);
+            loaderSpinner.setAlpha(1f);
             loaderSpinner.setVisibility(View.VISIBLE);
         }
     }
@@ -854,7 +855,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void showMatchingTags( String tag ) {
         runTask(new TagsSearcher(this, tag));
 
-        final View clearButton = findViewById(R.id.clearButton);
         clearButton.setVisibility(View.VISIBLE);
         menuButton.setVisibility(View.INVISIBLE);
     }
@@ -863,7 +863,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void showHistory() {
         runTask(new HistorySearcher(this));
 
-        final View clearButton = findViewById(R.id.clearButton);
         clearButton.setVisibility(View.VISIBLE);
         menuButton.setVisibility(View.INVISIBLE);
     }
