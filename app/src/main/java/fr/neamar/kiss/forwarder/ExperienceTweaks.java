@@ -40,7 +40,7 @@ class ExperienceTweaks extends Forwarder {
     private final Runnable displayKeyboardRunnable = new Runnable() {
         @Override
         public void run() {
-            showKeyboard();
+            mainActivity.showKeyboard();
         }
     };
 
@@ -73,7 +73,7 @@ class ExperienceTweaks extends Forwarder {
         // we may want to display it if the setting is set
         if (isKeyboardOnStartEnabled()) {
             // Display keyboard
-            showKeyboard();
+            mainActivity.showKeyboard();
 
             new Handler().postDelayed(displayKeyboardRunnable, 10);
             // For some weird reasons, keyboard may be hidden by the system
@@ -118,7 +118,7 @@ class ExperienceTweaks extends Forwarder {
 
     void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus && isKeyboardOnStartEnabled()) {
-            showKeyboard();
+            mainActivity.showKeyboard();
         }
     }
 
@@ -133,7 +133,7 @@ class ExperienceTweaks extends Forwarder {
 
         if (!display && isKeyboardOnStartEnabled()) {
             // Display keyboard
-            showKeyboard();
+            mainActivity.showKeyboard();
         }
     }
 
@@ -170,15 +170,6 @@ class ExperienceTweaks extends Forwarder {
         if (currentInputType != requiredInputType) {
             mainActivity.searchEditText.setInputType(requiredInputType);
         }
-    }
-
-    private void showKeyboard() {
-        mainActivity.searchEditText.requestFocus();
-        InputMethodManager mgr = (InputMethodManager) mainActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert mgr != null;
-        mgr.showSoftInput(mainActivity.searchEditText, InputMethodManager.SHOW_IMPLICIT);
-
-        mainActivity.systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
     }
 
     private boolean isMinimalisticModeEnabled() {

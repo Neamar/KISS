@@ -224,6 +224,7 @@ public class KeyboardScrollHider implements View.OnTouchListener {
     }
 
     public interface KeyboardHandler {
+        void showKeyboard();
         void hideKeyboard();
 
         void applyScrollSystemUi();

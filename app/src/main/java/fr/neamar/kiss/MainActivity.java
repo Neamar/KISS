@@ -704,6 +704,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.onWindowFocusChanged(hasFocus);
     }
 
+
+    public void showKeyboard() {
+        searchEditText.requestFocus();
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert mgr != null;
+        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+
+        systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
+    }
+
     @Override
     public void hideKeyboard() {
 
