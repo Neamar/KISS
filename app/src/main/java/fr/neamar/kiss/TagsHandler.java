@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -16,16 +15,12 @@ import java.util.Set;
 
 import fr.neamar.kiss.db.DBHelper;
 
-/**
- * Created by nmitsou on 13.10.16.
- */
-
 public class TagsHandler {
-    Context context;
+    private final Context context;
     //cached tags
-    private Map<String, String> tagsCache;
+    private final Map<String, String> tagsCache;
 
-    public TagsHandler(Context context) {
+    TagsHandler(Context context) {
         this.context = context;
         tagsCache = DBHelper.loadTags(this.context);
         addDefaultAliases();
@@ -50,7 +45,6 @@ public class TagsHandler {
 
     public String[] getAllTagsAsArray() {
         Set<String> tags = new HashSet<>();
-        String[] tagsNew;
         for (Map.Entry<String, String> entry : tagsCache.entrySet()) {
             tags.addAll(Arrays.asList(entry.getValue().split("\\s+")));
         }
@@ -60,7 +54,6 @@ public class TagsHandler {
 
     private void addDefaultAliases() {
         final PackageManager pm = context.getPackageManager();
-        ArrayList alias = new ArrayList<>();
 
         String phoneApp = getApp(pm, Intent.ACTION_DIAL);
         if (phoneApp != null) {

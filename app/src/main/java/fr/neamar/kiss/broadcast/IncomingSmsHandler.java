@@ -20,7 +20,7 @@ public class IncomingSmsHandler extends BroadcastReceiver {
         }
 
         // Stop if contacts are not enabled
-        DataHandler dataHandler = KissApplication.getDataHandler(context);
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         ContactsProvider contactsProvider = dataHandler.getContactsProvider();
         if (contactsProvider == null) {
             // Contacts have been disabled from settings

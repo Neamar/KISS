@@ -21,7 +21,7 @@ import java.io.InputStream;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UiTweaks;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -77,7 +77,7 @@ public class ContactsResult extends Result {
             }
         });
 
-        int primaryColor = Color.parseColor(UiTweaks.getPrimaryColor(context));
+        int primaryColor = Color.parseColor(UIColors.getPrimaryColor(context));
         // Phone action
         ImageButton phoneButton = (ImageButton) view.findViewById(R.id.item_contact_action_phone);
         phoneButton.setColorFilter(primaryColor);

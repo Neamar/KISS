@@ -29,10 +29,10 @@ import fr.neamar.kiss.R;
  * Creates a circular swatch of a specified color.  Adds a checkmark if marked as checked.
  */
 public class ColorPickerSwatch extends FrameLayout implements View.OnClickListener {
-    private int mColor;
-    private ImageView mSwatchImage;
-    private ImageView mCheckmarkImage;
-    private OnColorSelectedListener mOnColorSelectedListener;
+    private final int mColor;
+    private final ImageView mSwatchImage;
+    private final ImageView mCheckmarkImage;
+    private final OnColorSelectedListener mOnColorSelectedListener;
 
     public ColorPickerSwatch(Context context, int color, boolean checked,
                              OnColorSelectedListener listener) {
@@ -48,7 +48,7 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
         setOnClickListener(this);
     }
 
-    protected void setColor(int color) {
+    private void setColor(int color) {
         Drawable[] colorDrawable = new Drawable[]
                 {getContext().getResources().getDrawable(R.drawable.color_picker_swatch)};
         mSwatchImage.setImageDrawable(new ColorStateDrawable(colorDrawable, color));
@@ -77,6 +77,6 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
         /**
          * Called when a specific color square has been selected.
          */
-        public void onColorSelected(int color);
+        void onColorSelected(int color);
     }
 }

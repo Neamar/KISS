@@ -8,10 +8,6 @@ public class PackageManagerUtils {
 
     /**
      * Method to enable/disable a specific component
-     *
-     * @param ctx
-     * @param component
-     * @param enabled
      */
     public static void enableComponent(Context ctx, Class component, boolean enabled) {
         PackageManager pm = ctx.getPackageManager();

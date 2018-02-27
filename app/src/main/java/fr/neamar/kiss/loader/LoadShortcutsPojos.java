@@ -14,17 +14,21 @@ import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
 
-    private TagsHandler tagsHandler;
+    private final TagsHandler tagsHandler;
 
     public LoadShortcutsPojos(Context context) {
         super(context, ShortcutsPojo.SCHEME);
-        tagsHandler = KissApplication.getDataHandler(context).getTagsHandler();
+        tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
     }
 
     @Override
     protected ArrayList<ShortcutsPojo> doInBackground(Void... arg0) {
-        List<ShortcutRecord> records = DBHelper.getShortcuts(context);
         ArrayList<ShortcutsPojo> pojos = new ArrayList<>();
+
+        if(context.get() == null) {
+            return pojos;
+        }
+        List<ShortcutRecord> records = DBHelper.getShortcuts(context.get());
         for (ShortcutRecord shortcutRecord : records) {
             ShortcutsPojo pojo = createPojo(shortcutRecord.name);
 
@@ -42,7 +46,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
         return pojos;
     }
 
-    public ShortcutsPojo createPojo(String name) {
+    private ShortcutsPojo createPojo(String name) {
         ShortcutsPojo pojo = new ShortcutsPojo();
 
         pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase();

@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
@@ -36,8 +37,7 @@ public class AppResult extends Result {
     private final AppPojo appPojo;
     private final ComponentName className;
     private Drawable icon = null;
-
-    public AppResult(AppPojo appPojo) {
+    AppResult(AppPojo appPojo) {
         super(appPojo);
         this.appPojo = appPojo;
 
@@ -51,13 +51,16 @@ public class AppResult extends Result {
             view = inflateFromId(context, R.layout.item_app);
         }
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+
         TextView appName = (TextView) view.findViewById(R.id.item_app_name);
         appName.setText(enrichText(appPojo.displayName, context));
 
         TextView tagsView = (TextView) view.findViewById(R.id.item_app_tag);
-        //Hide tags view if tags are empty or if user has selected to hide them and the query doesn't match tags
+        //Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
         if (appPojo.displayTags.isEmpty() ||
-                ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (appPojo.displayTags.equals(appPojo.getTags())))) {
+                (!prefs.getBoolean("tags-visible", true) && !appPojo.displayTags.contains("{"))) {
             tagsView.setVisibility(View.GONE);
         } else {
             tagsView.setVisibility(View.VISIBLE);
@@ -65,20 +68,20 @@ public class AppResult extends Result {
         }
 
         final ImageView appIcon = (ImageView) view.findViewById(R.id.item_app_icon);
-        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("icons-hide", false)) {
+        if (!prefs.getBoolean("icons-hide", false)) {
             if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
                 icon = appIcon.getDrawable();
             }
             this.setAsyncDrawable(appIcon);
         } else {
-            appIcon.setVisibility(View.INVISIBLE);
+            appIcon.setImageDrawable(null);
         }
         return view;
     }
 
     @Override
     protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView) {
-        if ((!(context instanceof MainActivity)) || (((MainActivity) context).isOnSearchView())) {
+        if ((!(context instanceof MainActivity)) || (((MainActivity) context).isViewingSearchResults())) {
             adapter.add(new ListPopup.Item(context, R.string.menu_remove));
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_exclude));
@@ -112,7 +115,7 @@ public class AppResult extends Result {
         }
 
         //append root menu if available
-        if (KissApplication.getRootHandler(context).isRootActivated() && KissApplication.getRootHandler(context).isRootAvailable()) {
+        if (KissApplication.getApplication(context).getRootHandler().isRootActivated() && KissApplication.getApplication(context).getRootHandler().isRootAvailable()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_hibernate));
         }
         return menu;
@@ -144,10 +147,10 @@ public class AppResult extends Result {
     }
 
     private void excludeFromAppList(Context context, AppPojo appPojo) {
-        KissApplication.getDataHandler(context).addToExcluded(appPojo.packageName, appPojo.userHandle);
+        KissApplication.getApplication(context).getDataHandler().addToExcluded(appPojo.packageName, appPojo.userHandle);
         //remove app pojo from appProvider results - no need to reset handler
-        KissApplication.getDataHandler(context).getAppProvider().removeApp(appPojo);
-        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, appPojo.id);
+        KissApplication.getApplication(context).getDataHandler().getAppProvider().removeApp(appPojo);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, appPojo.id);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
 
     }
@@ -158,11 +161,10 @@ public class AppResult extends Result {
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
         // Create the tag dialog
-
         final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
         final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
-                android.R.layout.simple_dropdown_item_1line, KissApplication.getDataHandler(context).getTagsHandler().getAllTagsAsArray());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
+                android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
         tagInput.setText(appPojo.getTags());
 
@@ -175,7 +177,7 @@ public class AppResult extends Result {
                 dialog.dismiss();
                 // Refresh tags for given app
                 app.setTags(tagInput.getText().toString());
-                KissApplication.getDataHandler(context).getTagsHandler().setTags(app.id, app.getTags());
+                KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
                 // TODO: update the displayTags with proper highlight
                 app.displayTags = app.getTags();
                 // Show toast message
@@ -202,6 +204,7 @@ public class AppResult extends Result {
     private void launchAppDetails(Context context, AppPojo app) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            assert launcher != null;
             launcher.startAppDetailsActivity(className, appPojo.userHandle.getRealHandle(), null, null);
         } else {
             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
@@ -212,7 +215,7 @@ public class AppResult extends Result {
 
     private void hibernate(Context context, AppPojo app) {
         String msg = context.getResources().getString(R.string.toast_hibernate_completed);
-        if (!KissApplication.getRootHandler(context).hibernateApp(appPojo.packageName)) {
+        if (!KissApplication.getApplication(context).getRootHandler().hibernateApp(appPojo.packageName)) {
             msg = context.getResources().getString(R.string.toast_hibernate_error);
         }
 
@@ -242,7 +245,7 @@ public class AppResult extends Result {
     public Drawable getDrawable(Context context) {
         synchronized (this) {
             if (icon == null) {
-                icon = KissApplication.getIconsHandler(context)
+                icon = KissApplication.getApplication(context).getIconsHandler()
                         .getDrawableIconForPackage(className, this.appPojo.userHandle);
             }
 
@@ -255,6 +258,7 @@ public class AppResult extends Result {
         try {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                assert launcher != null;
                 launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), v.getClipBounds(), null);
             } else {
                 Intent intent = new Intent(Intent.ACTION_MAIN);

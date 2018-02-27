@@ -5,12 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DB extends SQLiteOpenHelper {
+class DB extends SQLiteOpenHelper {
 
-    public final static String DB_NAME = "kiss.s3db";
+    private final static String DB_NAME = "kiss.s3db";
     private final static int DB_VERSION = 5;
 
-    public DB(Context context) {
+    DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

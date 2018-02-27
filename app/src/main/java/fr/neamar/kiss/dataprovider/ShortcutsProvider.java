@@ -16,6 +16,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadShortcutsPojos(this));
     }
 
@@ -72,7 +73,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
      * @param allowSideEffect do we allow this function to have potential side effect? Set to false to ensure none.
      * @return an AppPojo, or null
      */
-    public Pojo findById(String id, Boolean allowSideEffect) {
+    private Pojo findById(String id, Boolean allowSideEffect) {
         for (Pojo pojo : pojos) {
             if (pojo.id.equals(id)) {
                 // Reset displayName to default value

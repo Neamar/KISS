@@ -16,6 +16,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.TogglesPojo;
 
 public class TogglesHandler {
+    private final Context context;
     private final ConnectivityManager connectivityManager;
     private final WifiManager wifiManager;
     private final BluetoothAdapter bluetoothAdapter;
@@ -28,6 +29,7 @@ public class TogglesHandler {
      * @param context android context
      */
     public TogglesHandler(Context context) {
+        this.context = context.getApplicationContext();
         this.connectivityManager = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         this.wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -148,12 +150,12 @@ public class TogglesHandler {
     }
 
     private Boolean getTorchState() {
-        return KissApplication.getCameraHandler().isTorchAvailable() && KissApplication.getCameraHandler().getTorchState();
+        return KissApplication.getApplication(context).getCameraHandler().isTorchAvailable() && KissApplication.getApplication(context).getCameraHandler().getTorchState();
     }
 
     private void setTorchState(Boolean state) {
-        if (KissApplication.getCameraHandler().isTorchAvailable()) {
-            KissApplication.getCameraHandler().setTorchState(state);
+        if (KissApplication.getApplication(context).getCameraHandler().isTorchAvailable()) {
+            KissApplication.getApplication(context).getCameraHandler().setTorchState(state);
         }
     }
 

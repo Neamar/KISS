@@ -10,7 +10,7 @@ import java.util.List;
 
 @SuppressWarnings("deprecation") // android.hardware.camera2 requires SDK 21+
 public class CameraHandler {
-    public static final String TAG = "CameraHandler";
+    private static final String TAG = "CameraHandler";
     private Camera camera = null;
     private SurfaceTexture surfaceTexture = null;
     private Boolean torchState = null;

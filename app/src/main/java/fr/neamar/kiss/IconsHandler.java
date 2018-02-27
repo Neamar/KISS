@@ -45,23 +45,23 @@ public class IconsHandler {
 
     private static final String TAG = "IconsHandler";
     // map with available icons packs
-    private HashMap<String, String> iconsPacks = new HashMap<>();
+    private final HashMap<String, String> iconsPacks = new HashMap<>();
     // map with available drawable for an icons pack
-    private Map<String, String> packagesDrawables = new HashMap<>();
+    private final Map<String, String> packagesDrawables = new HashMap<>();
     // instance of a resource object of an icon pack
     private Resources iconPackres;
     // package name of the icons pack
     private String iconsPackPackageName;
     // list of back images available on an icons pack
-    private List<Bitmap> backImages = new ArrayList<>();
+    private final List<Bitmap> backImages = new ArrayList<>();
     // bitmap mask of an icons pack
     private Bitmap maskImage = null;
     // front image of an icons pack
     private Bitmap frontImage = null;
     // scale factor of an icons pack
     private float factor = 1.0f;
-    private PackageManager pm;
-    private Context ctx;
+    private final PackageManager pm;
+    private final Context ctx;
 
     public IconsHandler(Context ctx) {
         super();
@@ -74,7 +74,7 @@ public class IconsHandler {
     /**
      * Load configured icons pack
      */
-    public void loadIconsPack() {
+    private void loadIconsPack() {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         loadIconsPack(prefs.getString("icons-pack", "default"));
@@ -184,7 +184,7 @@ public class IconsHandler {
     }
 
 
-    public Drawable getDefaultAppDrawable(ComponentName componentName, UserHandle userHandle) {
+    private Drawable getDefaultAppDrawable(ComponentName componentName, UserHandle userHandle) {
         try {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
@@ -312,7 +312,7 @@ public class IconsHandler {
         return drawableFile.isFile();
     }
 
-    private boolean cacheStoreDrawable(String key, Drawable drawable) {
+    private void cacheStoreDrawable(String key, Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             File drawableFile = cacheGetFileName(key);
             FileOutputStream fos;
@@ -321,12 +321,10 @@ public class IconsHandler {
                 ((BitmapDrawable) drawable).getBitmap().compress(CompressFormat.PNG, 100, fos);
                 fos.flush();
                 fos.close();
-                return true;
             } catch (Exception e) {
                 Log.e(TAG, "Unable to store drawable in cache " + e);
             }
         }
-        return false;
     }
 
     private Drawable cacheGetDrawable(String key) {

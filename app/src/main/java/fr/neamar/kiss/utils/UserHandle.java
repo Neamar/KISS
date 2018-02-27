@@ -1,7 +1,6 @@
 package fr.neamar.kiss.utils;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.os.Build;
 import android.os.Process;
 
@@ -10,8 +9,8 @@ import android.os.Process;
  * Wrapper class for `android.os.UserHandle` that works with all Android versions
  */
 public class UserHandle {
-    private long serial;
-    private Object handle; // android.os.UserHandle on Android 4.2 and newer
+    private final long serial;
+    private final Object handle; // android.os.UserHandle on Android 4.2 and newer
 
     public UserHandle() {
         this(0, null);
@@ -54,10 +53,7 @@ public class UserHandle {
         if (this.handle == null) {
             return base;
         } else {
-            StringBuilder result = new StringBuilder(base);
-            result.append(separator);
-            result.append(this.serial);
-            return result.toString();
+            return base + separator + this.serial;
         }
     }
 
@@ -70,6 +66,7 @@ public class UserHandle {
             try {
                 serial = Long.parseLong(serialText);
             } catch (NumberFormatException e) {
+                e.printStackTrace();
             }
         }
 

@@ -4,17 +4,13 @@ import java.util.List;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
-/**
- * Created by TBog on 1/25/2018.
- */
-
 public class PojoWithTags extends Pojo {
     // tags normalized, for faster search
     public StringNormalizer.Result normalizedTags = null;
     // Variable to store the formatted (user selection in bold) tag
     public String displayTags = "";
     // Tags assigned to this pojo
-    protected String tags;
+    private String tags;
 
     public String getTags() {
         return tags;
@@ -30,14 +26,6 @@ public class PojoWithTags extends Pojo {
             this.tags = null;
             this.normalizedTags = null;
         }
-    }
-
-    public void setTagHighlight(int positionStart, int positionEnd) {
-        int posStart = this.mapTagsPosition(positionStart);
-        int posEnd = this.mapTagsPosition(positionEnd);
-
-        this.displayTags = this.tags.substring(0, posStart)
-                + '{' + this.tags.substring(posStart, posEnd) + '}' + this.tags.substring(posEnd, this.tags.length());
     }
 
     public void setTagHighlight(List<Integer> matchPositions) {
@@ -77,7 +65,7 @@ public class PojoWithTags extends Pojo {
      * @param position Position in normalized tags string
      * @return Position in standard tags string
      */
-    public int mapTagsPosition(int position) {
+    private int mapTagsPosition(int position) {
         if (position < normalizedTags.mapPosition.length)
             return normalizedTags.mapPosition[position];
         return tags.length();

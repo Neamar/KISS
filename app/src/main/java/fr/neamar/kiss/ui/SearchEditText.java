@@ -4,11 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.widget.EditText;
-import android.widget.TextView;
-
-/**
- * Created by TBog on 12/5/2017.
- */
 
 public class SearchEditText extends EditText {
     private OnEditorActionListener mEditorListener;

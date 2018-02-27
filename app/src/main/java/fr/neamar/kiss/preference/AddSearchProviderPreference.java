@@ -29,9 +29,9 @@ public class AddSearchProviderPreference extends DialogPreference {
     private final EditText providerName = new EditText(this.getContext());
     private final EditText providerUrl = new EditText(this.getContext());
 
-    SharedPreferences prefs;
+    private final SharedPreferences prefs;
 
-    //Called when addPreferencesFromResource() is called. Initializes basic paramaters
+    //Called when addPreferencesFromResource() is called. Initializes basic parameters
     public AddSearchProviderPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setPersistent(true);
@@ -47,7 +47,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         layout.addView(providerName);
         layout.addView(providerUrl);
 
-        // default text color is white that doesnt work well on the light themes
+        // default text color is white that doesn't work well on the light themes
         String theme = prefs.getString("theme", "light");
         //if theme is light, change the text color
         if (!theme.contains("dark")) {
@@ -63,7 +63,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         return layout;
     }
 
-    private boolean closeDialog(DialogInterface dialog, boolean close, int which) {
+    private void closeDialog(DialogInterface dialog, boolean close, int which) {
         try {
             Field field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
             field.setAccessible(true);
@@ -71,24 +71,15 @@ public class AddSearchProviderPreference extends DialogPreference {
             super.onClick(dialog, which);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
-
     }
 
     private boolean validatePipes() {
-        if (providerName.getText().toString().contains("|") || providerUrl.getText().toString().contains("|")) {
-            return false;
-        }
-        return true;
+        return !(providerName.getText().toString().contains("|") || providerUrl.getText().toString().contains("|"));
     }
 
     private boolean validateQueryPlaceholder() {
-        if (!providerUrl.getText().toString().contains("{q}")) {
-            return false;
-        }
-        return true;
+        return providerUrl.getText().toString().contains("{q}");
     }
 
     private boolean validateNameExists() {
@@ -173,14 +164,14 @@ public class AddSearchProviderPreference extends DialogPreference {
 
     //persist values and disassemble views
     @Override
-    protected void onDialogClosed(boolean positiveresult) {
-        super.onDialogClosed(positiveresult);
-        if (positiveresult && shouldPersist()) {
+    protected void onDialogClosed(boolean positiveResult) {
+        super.onDialogClosed(positiveResult);
+        if (positiveResult && shouldPersist()) {
             //persistString(providerName.getText().toString());
-            Set<String> availableProviders = new HashSet<String>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
+            Set<String> availableProviders = new HashSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
             availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString().toLowerCase());
-            prefs.edit().putStringSet("available-search-providers", availableProviders).commit();
-            prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).commit();
+            prefs.edit().putStringSet("available-search-providers", availableProviders).apply();
+            prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).apply();
 
             Toast.makeText(getContext(), R.string.search_provider_added, Toast.LENGTH_LONG).show();
         }

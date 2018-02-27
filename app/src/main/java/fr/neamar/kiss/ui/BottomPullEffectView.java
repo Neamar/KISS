@@ -21,20 +21,14 @@ public class BottomPullEffectView extends View {
 
     public BottomPullEffectView(Context context) {
         super(context);
-        this.init();
     }
 
     public BottomPullEffectView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.init();
     }
 
     public BottomPullEffectView(Context context, AttributeSet attrs, int flags) {
         super(context, attrs, flags);
-        this.init();
-    }
-
-    private void init() {
     }
 
     /**

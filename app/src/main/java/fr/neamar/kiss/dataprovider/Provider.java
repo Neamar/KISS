@@ -14,6 +14,8 @@ import fr.neamar.kiss.loader.LoadPojos;
 import fr.neamar.kiss.pojo.Pojo;
 
 public abstract class Provider<T extends Pojo> extends Service implements IProvider {
+    private final static String TAG = "Provider";
+
     /**
      * Binder given to clients
      */
@@ -21,7 +23,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     /**
      * Storage for search items used by this provider
      */
-    protected List<T> pojos = new ArrayList<>();
+    List<T> pojos = new ArrayList<>();
     private boolean loaded = false;
     /**
      * Scheme used to build ids for the pojos created by this provider
@@ -40,22 +42,26 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     }
 
 
-    protected void initialize(LoadPojos<T> loader) {
-        Log.i("Provider.initialize", "Starting provider: " + this.getClass().getSimpleName());
+    void initialize(LoadPojos<T> loader) {
+        Log.i(TAG, "Starting provider: " + this.getClass().getSimpleName());
 
         loader.setProvider(this);
         this.pojoScheme = loader.getPojoScheme();
         loader.execute();
     }
 
-    public abstract void reload();
+    public void reload() {
+        if(pojos.size() > 0) {
+            Log.v(TAG, "Reloading provider: " + this.getClass().getSimpleName());
+        }
+    };
 
     public boolean isLoaded() {
         return this.loaded;
     }
 
     public void loadOver(ArrayList<T> results) {
-        Log.i("Provider.loadOver", "Done loading provider: " + this.getClass().getSimpleName());
+        Log.i(TAG, "Done loading provider: " + this.getClass().getSimpleName());
 
         // Store results
         this.pojos = results;

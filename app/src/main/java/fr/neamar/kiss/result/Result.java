@@ -24,7 +24,7 @@ import java.text.NumberFormat;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UiTweaks;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -43,9 +43,10 @@ public abstract class Result {
     /**
      * Current information pojo
      */
+    @NonNull
     final Pojo pojo;
 
-    protected Result(@NonNull Pojo pojo) {
+    Result(@NonNull Pojo pojo) {
         this.pojo = pojo;
     }
 
@@ -98,7 +99,7 @@ public abstract class Result {
      */
     static Spanned enrichText(String text, Context context) {
         //TODO: cache the result. We consume lots of CPU and RAM converting every time we display
-        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
+        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UIColors.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
     @Override
@@ -147,7 +148,7 @@ public abstract class Result {
         return inflatePopupMenu(adapter, context);
     }
 
-    protected ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
+    ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
         ListPopup menu = new ListPopup(context);
         menu.setAdapter(adapter);
 
@@ -192,20 +193,23 @@ public abstract class Result {
         }
 
         //Update Search to reflect favorite add, if the "exclude favorites" option is active
-        ((MainActivity) context).updateRecords();
+        MainActivity mainActivity = (MainActivity) context;
+        if(mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
+            mainActivity.updateRecords();
+        }
 
         return false;
     }
 
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().addToFavorites((MainActivity) context, app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
@@ -310,7 +314,7 @@ public abstract class Result {
      */
     void recordLaunch(Context context) {
         // Save in history
-        KissApplication.getDataHandler(context).addToHistory(pojo.id);
+        KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.id);
     }
 
     public void deleteRecord(Context context) {

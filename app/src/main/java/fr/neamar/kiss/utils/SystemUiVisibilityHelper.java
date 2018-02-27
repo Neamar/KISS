@@ -10,14 +10,10 @@ import android.view.View;
 
 import fr.neamar.kiss.MainActivity;
 
-/**
- * Created by TBog on 12/4/2017.
- */
-
 public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChangeListener {
     private final MainActivity mMainActivity;
     private final Handler mHandler;
-    private SharedPreferences prefs;
+    private final SharedPreferences prefs;
     private boolean mKeyboardVisible;
     private boolean mIsScrolling;
     private int mPopupCount;

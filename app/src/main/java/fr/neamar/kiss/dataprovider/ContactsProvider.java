@@ -15,7 +15,7 @@ import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
 
-    private ContentObserver cObserver = new ContentObserver(null) {
+    private final ContentObserver cObserver = new ContentObserver(null) {
 
         @Override
         public void onChange(boolean selfChange) {
@@ -26,6 +26,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadContactsPojos(this));
     }
 
@@ -88,6 +89,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             }
 
             if (match) {
+                pojo.relevance += Math.min(15, pojo.timesContacted);
+                if(pojo.starred) {
+                    pojo.relevance += 15;
+                }
+
                 if (!searcher.addResult(pojo))
                     return;
             }

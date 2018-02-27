@@ -1,6 +1,5 @@
 package fr.neamar.kiss.preference;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.preference.DialogPreference;
@@ -8,14 +7,13 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerPalette;
 import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UiTweaks;
+import fr.neamar.kiss.UIColors;
 
 
 public class ColorPreference extends DialogPreference implements OnColorSelectedListener {
@@ -34,7 +32,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         this.setDialogLayoutResource(R.layout.pref_color);
 
         // Optianlly override default color value with value from preference XML
-        this.selectedColor = Color.parseColor(UiTweaks.COLOR_DEFAULT);
+        this.selectedColor = Color.parseColor(UIColors.COLOR_DEFAULT);
         if (attrs != null) {
             String value = attrs.getAttributeValue("http://schemas.android.com/apk/res/android", "defaultValue");
             if (value != null) {
@@ -43,9 +41,9 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         }
     }
 
-    protected void drawPalette() {
+    private void drawPalette() {
         if (this.palette != null) {
-            this.palette.drawPalette(UiTweaks.COLOR_LIST, this.selectedColor);
+            this.palette.drawPalette(UIColors.COLOR_LIST, this.selectedColor);
         }
     }
 
@@ -122,6 +120,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 
     @Override
     protected void onBindDialogView(View view) {
+        super.onBindDialogView(view);
         android.util.Log.i("ColorPreference", "View Width:  " + view.getWidth() + " | " + view.getMeasuredWidth());
         // Set selected color value based on the actual color value currently used
         // (but fall back to default from XML)

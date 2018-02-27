@@ -15,9 +15,13 @@ public class IncomingCallHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
+        // Only handle calls received
+        if (!intent.getAction().equals("android.intent.action.PHONE_STATE")) {
+            return;
+        }
 
         try {
-            DataHandler dataHandler = KissApplication.getDataHandler(context);
+            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
             ContactsProvider contactsProvider = dataHandler.getContactsProvider();
 
             // Stop if contacts are not enabled

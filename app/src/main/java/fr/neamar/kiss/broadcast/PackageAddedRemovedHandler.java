@@ -32,21 +32,21 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
                 String className = launchIntent.getComponent().getClassName();
                 if (className != null) {
                     String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
-                    KissApplication.getDataHandler(ctx).addToHistory(pojoID);
+                    KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
                 }
             }
         }
 
         if ("android.intent.action.PACKAGE_REMOVED".equals(action) && !replacing) {
             // Removed all installed shortcuts
-            KissApplication.getDataHandler(ctx).removeShortcuts(packageName);
-            KissApplication.getDataHandler(ctx).removeFromExcluded(packageName, user);
+            KissApplication.getApplication(ctx).getDataHandler().removeShortcuts(packageName);
+            KissApplication.getApplication(ctx).getDataHandler().removeFromExcluded(packageName, user);
         }
 
-        KissApplication.resetIconsHandler(ctx);
+        KissApplication.getApplication(ctx).resetIconsHandler();
 
         // Reload application list
-        final AppProvider provider = KissApplication.getDataHandler(ctx).getAppProvider();
+        final AppProvider provider = KissApplication.getApplication(ctx).getDataHandler().getAppProvider();
         if (provider != null) {
             provider.reload();
         }
@@ -54,9 +54,18 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
+        String packageName = intent.getData().getSchemeSpecificPart();
+
+        if(packageName.equalsIgnoreCase(ctx.getPackageName())) {
+            // When running KISS locally, sending a new version of the APK immediately triggers a "package removed" for fr.neamar.kiss,
+            // There is no need to handle this event.
+            // Discarding it makes startup time much faster locally as apps don't have to be loaded twice.
+            return;
+        }
+
         handleEvent(ctx,
                 intent.getAction(),
-                intent.getData().getSchemeSpecificPart(), new UserHandle(),
+                packageName, new UserHandle(),
                 intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
         );
 
