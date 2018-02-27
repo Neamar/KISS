@@ -150,7 +150,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onReceive(Context context, Intent intent) {
                 //noinspection ConstantConditions
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
-                    updateRecords(searchEditText.getText().toString());
+                    updateRecords();
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     Log.v(TAG, "All providers are done loading.");
 
@@ -612,6 +612,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 // No animation before Lollipop
                 kissBar.setVisibility(View.GONE);
             }
+
             if (clearSearchText) {
                 searchEditText.setText("");
             }
