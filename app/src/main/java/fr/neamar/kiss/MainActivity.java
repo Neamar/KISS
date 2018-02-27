@@ -24,6 +24,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.UserHandle;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
@@ -131,7 +133,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     private AppWidgetManager mAppWidgetManager;
     private AppWidgetHost mAppWidgetHost;
-    private SharedPreferences widgetPrefs;
+    private SharedPreferences widgetPrefs; 
+    private UserManager mUserManager;
     private boolean widgetUsed = false;
     /**
      * Store user preferences
@@ -362,7 +365,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Initialize widget manager and host, restore widgets
         widgetPrefs = this.getSharedPreferences(WIDGET_PREFERENCE_ID, Context.MODE_PRIVATE);
-        mAppWidgetManager = AppWidgetManager.getInstance(this);
+        mUserManager = Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 ? (UserManager) this.getSystemService(Context.USER_SERVICE) : null;
+        mAppWidgetManager = AppWidgetManager.getInstance(this); 
         mAppWidgetHost = new AppWidgetHost(this, APPWIDGET_HOST_ID);
         widgetArea = (ViewGroup) findViewById(R.id.widgetLayout);
         restoreWidgets();
@@ -709,6 +713,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     int appWidgetId = MainActivity.this.mAppWidgetHost.allocateAppWidgetId();
                     Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
                     pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && mUserManager != null) {
+                        ArrayList<AppWidgetProviderInfo> allWidgets = new ArrayList<>();
+                        for (UserHandle user : mUserManager.getUserProfiles()) {
+                           allWidgets.addAll(mAppWidgetManager.getInstalledProvidersForProfile(user));
+                        }
+                        pickIntent.putExtra(AppWidgetManager.EXTRA_CUSTOM_INFO, allWidgets);
+                    }
                     startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
                 } else {
                     // if we already have a widget we remove it
