@@ -201,9 +201,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     @Override
     public void onClick(View v) {
-        // The bar is shown due to dispatchTouchEvent, hide it again to stop the bad ux.
-        mainActivity.displayKissBar(false);
-
         int favNumber = Integer.parseInt((String) v.getTag());
         if (favNumber >= favoritesPojo.size()) {
             // Clicking on a favorite before everything is loaded.

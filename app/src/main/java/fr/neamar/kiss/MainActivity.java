@@ -613,9 +613,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 kissBar.setVisibility(View.GONE);
             }
 
-            // Empty text field if not already empty
-            // (we need to check otherwise the textField dispatch onChange() and trigger a search for no reason)
-            if (clearSearchText && !searchEditText.getText().toString().isEmpty()) {
+            if (clearSearchText) {
                 searchEditText.setText("");
             }
         }
