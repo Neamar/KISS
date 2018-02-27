@@ -189,6 +189,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // clip list content to rounded corners
+            this.listContainer.setClipToOutline(true);
+        }
         // add history popup touch listener to empty view (prevents on not working there)
         this.emptyListView.setOnTouchListener(this);
 
