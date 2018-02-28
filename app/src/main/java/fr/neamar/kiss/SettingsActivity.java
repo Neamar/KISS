@@ -32,7 +32,7 @@ public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     // Those settings require the app to restart
-    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites history-hide enable-favorites-bar notification-bar-color";
+    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars history-hide enable-favorites-bar notification-bar-color";
     final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait require-settings-update";
     private boolean requireFullRestart = false;
 

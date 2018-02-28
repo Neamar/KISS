@@ -83,7 +83,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Main list view
      */
     public AnimatedListView list;
-    private View listContainer;
+    public View listContainer;
     /**
      * View to display when list is empty
      */

@@ -39,16 +39,17 @@ class InterfaceTweaks extends Forwarder {
 
     void onCreate() {
         UIColors.updateThemePrimaryColor(mainActivity);
+        applyRoundedCorners(mainActivity);
         tintResources(mainActivity);
 
         // Transparent Search and Favorites bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             if (prefs.getBoolean("transparent-favorites", false)) {
-                mainActivity.favoritesBar.setBackgroundColor(Color.TRANSPARENT);
+                mainActivity.favoritesBar.setBackgroundResource(android.R.color.transparent);
             }
             if (prefs.getBoolean("transparent-search", false)) {
-                mainActivity.findViewById(R.id.searchEditLayout).setBackgroundColor(Color.TRANSPARENT);
-                mainActivity.searchEditText.setBackgroundColor(Color.TRANSPARENT);
+                mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(android.R.color.transparent);
+                mainActivity.searchEditText.setBackgroundResource(android.R.color.transparent);
             }
         }
     }
@@ -68,6 +69,22 @@ class InterfaceTweaks extends Forwarder {
         mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams().height = searchHeight;
     }
 
+    private void applyRoundedCorners(MainActivity mainActivity) {
+        if (prefs.getBoolean("pref-rounded-bars", false)) {
+            mainActivity.kissBar.setBackgroundResource(R.drawable.rounded_kiss_bar);
+            mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
+            mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
+        }
+
+        if (prefs.getBoolean("pref-rounded-list", false)) {
+            mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                // clip list content to rounded corners
+                mainActivity.listContainer.setClipToOutline(true);
+            }
+        }
+    }
+
     private void tintResources(MainActivity mainActivity) {
         String primaryColorOverride = UIColors.getPrimaryColor(mainActivity);
 
@@ -85,6 +102,6 @@ class InterfaceTweaks extends Forwarder {
         loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background
-        mainActivity.kissBar.setBackgroundColor(primaryColor);
+        mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
     }
 }
