@@ -40,8 +40,13 @@
         android:layout_toStartOf="@+id/item_contact_action_message"
         android:ellipsize="end"
         android:singleLine="true"
+        android:paddingRight="2px"
         android:text="@string/stub_contact"
         android:textColor="?attr/resultColor"
+        android:shadowColor="?attr/resultShadowColor"
+        android:shadowRadius="3"
+        android:shadowDx="1"
+        android:shadowDy="2"
         android:textSize="@dimen/result_title_size" />
 
     <TextView
@@ -51,6 +56,11 @@
         android:layout_alignBottom="@+id/item_contact_icon"
         android:layout_alignLeft="@+id/item_contact_name"
         android:layout_alignStart="@+id/item_contact_name"
+        android:paddingRight="2px"
+        android:shadowColor="?attr/resultShadowColor"
+        android:shadowRadius="3"
+        android:shadowDx="1"
+        android:shadowDy="2"
         android:text="@string/stub_contact_phone"
         android:textColor="?android:attr/textColorSecondary" />
 

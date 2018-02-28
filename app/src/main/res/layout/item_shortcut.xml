@@ -16,6 +16,7 @@
         android:id="@+id/item_shortcut_icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_centerVertical="true"
         android:layout_marginBottom="@dimen/icon_margin_bottom"
         android:layout_marginEnd="@dimen/icon_margin_right"
         android:layout_marginLeft="@dimen/icon_margin_left"
@@ -31,6 +32,7 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/item_shortcut_icon"
         android:layout_toRightOf="@+id/item_shortcut_icon"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
@@ -42,6 +44,10 @@
             android:paddingBottom="3dp"
             android:text="@string/stub_application"
             android:textColor="?attr/resultColor"
+            android:shadowColor="?attr/resultShadowColor"
+            android:shadowRadius="3"
+            android:shadowDx="1"
+            android:shadowDy="2"
             android:textSize="@dimen/result_title_size" />
 
         <TextView
@@ -51,6 +57,10 @@
             android:layout_marginTop="-6dp"
             android:ellipsize="end"
             android:text="@string/stub_app_tag"
+            android:shadowColor="?attr/resultShadowColor"
+            android:shadowRadius="3"
+            android:shadowDx="1"
+            android:shadowDy="2"
             android:textColor="?android:attr/textColorSecondary" />
 
     </LinearLayout>
