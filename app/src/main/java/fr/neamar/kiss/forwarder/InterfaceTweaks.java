@@ -74,12 +74,6 @@ class InterfaceTweaks extends Forwarder {
             mainActivity.kissBar.setBackgroundResource(R.drawable.rounded_kiss_bar);
             mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
             mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
-        } else {
-            int kissGreen = mainActivity.getResources().getColor(R.color.kiss_green);
-            mainActivity.kissBar.setBackgroundColor(kissGreen);
-
-            mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rectangle_search_bar);
-            mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rectangle_search_bar);
         }
 
         if (prefs.getBoolean("pref-rounded-list", false)) {
@@ -88,8 +82,6 @@ class InterfaceTweaks extends Forwarder {
                 // clip list content to rounded corners
                 mainActivity.listContainer.setClipToOutline(true);
             }
-        } else {
-            mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rectangle_result_layout);
         }
     }
 
