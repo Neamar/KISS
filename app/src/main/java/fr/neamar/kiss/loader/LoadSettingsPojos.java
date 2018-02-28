@@ -34,7 +34,7 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
         settings.add(createPojo(context.get().getString(R.string.settings_applications),
                 Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, R.drawable.setting_apps));
         settings.add(createPojo(context.get().getString(R.string.settings_connectivity),
-                Settings.ACTION_WIRELESS_SETTINGS, R.drawable.toggle_wifi));
+                Settings.ACTION_WIRELESS_SETTINGS, R.drawable.setting_wifi));
         settings.add(createPojo(context.get().getString(R.string.settings_storage),
                 Settings.ACTION_INTERNAL_STORAGE_SETTINGS, R.drawable.setting_storage));
         settings.add(createPojo(context.get().getString(R.string.settings_accessibility),
