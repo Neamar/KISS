@@ -35,7 +35,6 @@ import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
-import fr.neamar.kiss.pojo.TogglesPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 
@@ -80,8 +79,6 @@ public abstract class Result {
             return new SearchResult((SearchPojo) pojo);
         else if (pojo instanceof SettingsPojo)
             return new SettingsResult((SettingsPojo) pojo);
-        else if (pojo instanceof TogglesPojo)
-            return new TogglesResult((TogglesPojo) pojo);
         else if (pojo instanceof PhonePojo)
             return new PhoneResult((PhonePojo) pojo);
         else if (pojo instanceof ShortcutsPojo)
