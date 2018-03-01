@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -154,6 +155,15 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void addCustomSearchProvidersPreferences(SharedPreferences prefs) {
+        if(prefs.getStringSet("selected-search-provider-names", null) == null) {
+            // If null, it means this setting has never been accessed before
+            // In this case, null != [] ([] happens when the user manually unselected every single option)
+            // So, when null, we now it's the first time opening this setting and we can write the default value.
+            // note: other preferences are initialized automatically in MainActivity.onCreate() from the preferences XML,
+            // but this preference isn't defined in the XML so can't be initialized that easily.
+            prefs.edit().putStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google"))).apply();
+        }
+
         removeSearchProviderSelect();
         removeSearchProviderDelete();
         addCustomSearchProvidersSelect(prefs);
