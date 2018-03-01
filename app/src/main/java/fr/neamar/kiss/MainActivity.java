@@ -357,15 +357,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // unregister our receiver
         this.unregisterReceiver(this.mReceiver);
-        KissApplication.getApplication(this).getCameraHandler().releaseCamera();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        KissApplication.getApplication(this).getCameraHandler().releaseCamera();
     }
 
     @Override

@@ -50,12 +50,6 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         onView(withId(R.id.item_search_text)).check(matches(withText("Search Google for “blahblah”")));
     }
 
-    public void testTorchToggleAppears() {
-        onView(withId(R.id.searchEditText)).perform(typeText("torch"));
-        onView(withId(R.id.item_toggle_icon)).check(matches(isDisplayed()));
-        onView(withId(R.id.item_toggle_name)).check(matches(withText("Toggle: Torch")));
-    }
-
     public void testBatterySettingAppears() {
         onView(withId(R.id.searchEditText)).perform(typeText("batter"));
         onView(withId(R.id.item_setting_icon)).check(matches(isDisplayed()));

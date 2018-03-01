@@ -17,7 +17,6 @@ import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.SearchResult;
 import fr.neamar.kiss.result.SettingsResult;
 import fr.neamar.kiss.result.ShortcutsResult;
-import fr.neamar.kiss.result.TogglesResult;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 
@@ -39,7 +38,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
     @Override
     public int getViewTypeCount() {
-        return 7;
+        return 6;
     }
 
     @Override
@@ -50,14 +49,12 @@ public class RecordAdapter extends ArrayAdapter<Result> {
             return 1;
         else if (results.get(position) instanceof ContactsResult)
             return 2;
-        else if (results.get(position) instanceof TogglesResult)
-            return 3;
         else if (results.get(position) instanceof SettingsResult)
-            return 4;
+            return 3;
         else if (results.get(position) instanceof PhoneResult)
-            return 5;
+            return 4;
         else if (results.get(position) instanceof ShortcutsResult)
-            return 6;
+            return 5;
         else
             return -1;
     }
