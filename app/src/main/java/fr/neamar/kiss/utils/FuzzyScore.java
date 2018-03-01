@@ -55,8 +55,8 @@ public class FuzzyScore {
             patternChar[i] = pattern[i];
             patternLower[i] = Character.toLowerCase(pattern[i]);
         }
-        adjacency_bonus = 5;
-        separator_bonus = 10;
+        adjacency_bonus = 10;
+        separator_bonus = 5;
         camel_bonus = 10;
         leading_letter_penalty = -3;
         max_leading_letter_penalty = -9;
