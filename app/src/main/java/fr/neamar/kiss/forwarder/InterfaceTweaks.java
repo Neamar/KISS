@@ -1,6 +1,7 @@
 package fr.neamar.kiss.forwarder;
 
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
@@ -50,6 +51,20 @@ class InterfaceTweaks extends Forwarder {
             if (prefs.getBoolean("transparent-search", false)) {
                 mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(android.R.color.transparent);
                 mainActivity.searchEditText.setBackgroundResource(android.R.color.transparent);
+
+                // get theme shadow color
+                int[] attrs = new int[]{R.attr.searchBackgroundColor /* index 0 */};
+                TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
+                int shadowColor = ta.getColor(0, Color.BLACK);
+                ta.recycle();
+
+                // make shadow color intense
+                float[] hsv = new float[3];
+                Color.colorToHSV(shadowColor, hsv);
+                // if color is close to black, make it black
+                hsv[2] = hsv[2] < 0.5f ? 0f : 1f;
+                shadowColor = Color.HSVToColor(hsv);
+                mainActivity.searchEditText.setShadowLayer(3, 1, 2, shadowColor);
             }
         }
     }
