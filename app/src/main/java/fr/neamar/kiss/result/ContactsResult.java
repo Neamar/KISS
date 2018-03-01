@@ -33,7 +33,7 @@ public class ContactsResult extends Result {
     private final QueryInterface queryInterface;
     private Drawable icon = null;
 
-    public ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
+    ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
         super(contactPojo);
         this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
@@ -143,6 +143,7 @@ public class ContactsResult extends Result {
     private void copyPhone(Context context, ContactsPojo contactPojo) {
         android.content.ClipboardManager clipboard =
                 (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        assert clipboard != null;
         android.content.ClipData clip = android.content.ClipData.newPlainText(
                 "Phone number for " + contactPojo.displayName,
                 contactPojo.phone);

@@ -20,7 +20,7 @@ import static fr.neamar.kiss.R.drawable.search;
 public class SearchResult extends Result {
     private final SearchPojo searchPojo;
 
-    public SearchResult(SearchPojo searchPojo) {
+    SearchResult(SearchPojo searchPojo) {
         super(searchPojo);
         this.searchPojo = searchPojo;
     }

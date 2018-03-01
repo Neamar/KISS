@@ -17,7 +17,7 @@ import fr.neamar.kiss.pojo.SettingsPojo;
 public class SettingsResult extends Result {
     private final SettingsPojo settingPojo;
 
-    public SettingsResult(SettingsPojo settingPojo) {
+    SettingsResult(SettingsPojo settingPojo) {
         super(settingPojo);
         this.settingPojo = settingPojo;
     }

@@ -35,7 +35,7 @@ import fr.neamar.kiss.utils.SpaceTokenizer;
 public class ShortcutsResult extends Result {
     private final ShortcutsPojo shortcutPojo;
 
-    public ShortcutsResult(ShortcutsPojo shortcutPojo) {
+    ShortcutsResult(ShortcutsPojo shortcutPojo) {
         super(shortcutPojo);
         this.shortcutPojo = shortcutPojo;
     }

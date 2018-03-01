@@ -20,7 +20,7 @@ import fr.neamar.kiss.ui.ListPopup;
 public class PhoneResult extends Result {
     private final PhonePojo phonePojo;
 
-    public PhoneResult(PhonePojo phonePojo) {
+    PhoneResult(PhonePojo phonePojo) {
         super(phonePojo);
         this.phonePojo = phonePojo;
     }
