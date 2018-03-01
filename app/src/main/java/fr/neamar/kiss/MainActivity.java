@@ -10,12 +10,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -30,12 +32,27 @@ import android.widget.AdapterView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Map;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -57,6 +74,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
 
     private static final String TAG = "MainActivity";
+    private static final int REQUEST_LOAD_REPLACE_TAGS = 11;
 
     /**
      * Adapter to display records
@@ -442,22 +460,48 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (forwarderManager.onOptionsItemSelected(item)) {
             return true;
         }
-
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.settings:
                 startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
                 return true;
             case R.id.wallpaper:
                 hideKeyboard();
-                Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
+                intent = new Intent(Intent.ACTION_SET_WALLPAPER);
                 startActivity(Intent.createChooser(intent, getString(R.string.menu_wallpaper)));
                 return true;
             case R.id.preferences:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
+            case R.id.shareTags:
+                intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                String serializedTags;
+                try {
+                    serializedTags = getSerializedTags();
+                } catch (JSONException e) {
+                    serializedTags = e.toString();
+                }
+                intent.putExtra(Intent.EXTRA_TEXT, serializedTags);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "KISS_tags_" + new SimpleDateFormat("yyyyMMdd", Locale.US).format(new Date()) + ".json");
+                intent.setType("application/json");
+                startActivity(Intent.createChooser(intent, getString(R.string.share_tags_chooser)));
+                return true;
+            case R.id.loadReplaceTags:
+                intent = new Intent();
+                intent.setType("application/json");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, getString(R.string.share_tags_chooser)), REQUEST_LOAD_REPLACE_TAGS);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    String getSerializedTags() throws JSONException {
+        Map<String, String> tags = DBHelper.loadTags(this);
+        JSONObject json = new JSONObject(tags);
+        return json.toString(1);
     }
 
     @Override
@@ -483,7 +527,56 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if ( resultCode == Activity.RESULT_OK && requestCode == REQUEST_LOAD_REPLACE_TAGS )
+        {
+            TagsHandler tagsHandler = KissApplication.getApplication(this).getDataHandler().getTagsHandler();
+            Uri selectedFile = data.getData();
+            if ( selectedFile != null ) {
+                InputStream stream;
+                try {
+                    stream = getContentResolver().openInputStream(selectedFile);
+                } catch (FileNotFoundException e) {
+                    Log.e("TBog", "con't open file", e);
+                    stream = null;
+                }
+                if (stream != null) {
+                    int count = 0;
+                    try {
+                        String jsonText = convertStreamToString(stream);
+                        JSONObject json = new JSONObject(jsonText);
+                        Iterator<String> iter = json.keys();
+                        while ( iter.hasNext() )
+                        {
+                            String appId = iter.next();
+                            String tagsForApp = json.get(appId).toString();
+                            tagsHandler.setTags(appId, tagsForApp);
+                            count+= 1;
+                        }
+                    } catch (Exception e) {
+                        Log.e("TBog", "can't load tags", e);
+                        Toast.makeText(this, "can't load tags", Toast.LENGTH_LONG).show();
+                    }
+                    Toast.makeText(this, "loaded tags for " + count + " app(s)", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
         forwarderManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public static String convertStreamToString(InputStream is) throws IOException {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+        } finally {
+            is.close();
+        }
+        return sb.toString();
     }
 
     @Override
