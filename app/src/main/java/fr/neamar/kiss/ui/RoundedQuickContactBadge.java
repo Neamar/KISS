@@ -1,10 +1,13 @@
 package fr.neamar.kiss.ui;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Path.Direction;
-import android.support.annotation.NonNull;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.widget.QuickContactBadge;
 
@@ -20,7 +23,8 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
     /**
      * This path is used to mask out the outer edges of a circle on this View
      */
-    private Path clipPath;
+    private static Bitmap rounder = null;
+    private static Paint xferPaint;
 
     public RoundedQuickContactBadge(Context context) {
         super(context);
@@ -57,35 +61,39 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldWidth, int oldHeight) {
-        super.onSizeChanged(w, h, oldWidth, oldHeight);
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
 
-		/*
-         * Create a new clip path. Anything outside this path will be clipped from this view and not drawn by onDraw method
-		 */
-        clipPath = new Path();
+        if (rounder != null) {
+            if (rounder.getWidth() != w || rounder.getHeight() != h) {
+                rounder.recycle();
+            } else {
+                // we have everything set-up already
+                return;
+            }
+        }
 
+        // We have to make sure our rounded corners have an alpha channel in most cases
+        rounder = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(rounder);
 
-        //Adding a circle. The circle will be positioned in the center using x = w/2 and y = w/2
-        //Circle will be limiting it's radius to the smaller one of height or width.
-        //Direction doesn't matter
-        clipPath.addCircle(w / 2, h / 2, w < h ? w / 2 : h / 2, Direction.CW);
+        // We're going to apply this paint eventually using a porter-duff xfer mode.
+        // This will allow us to only overwrite certain pixels. RED is arbitrary. This
+        // could be any color that was fully opaque (alpha = 255)
+        xferPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        xferPaint.setColor(Color.RED);
+
+        // We're just reusing xferPaint to paint a normal looking rounded box
+        canvas.drawRoundRect(new RectF(0, 0, w, h), w, h, xferPaint);
+
+        // Now we apply the 'magic sauce' to the paint
+        xferPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
 
     @Override
-    protected void onDraw(@NonNull Canvas canvas) {
-
-        try {
-            //Erase everything out of our little circle in clipPath and hence create the real rounded QuickContactBadge
-            canvas.clipPath(clipPath);
-        } catch (UnsupportedOperationException e) {
-            // clipPath() not supported on this device
-            // (often a bug with hardware acceleration on API18)
-            // http://stackoverflow.com/questions/8895677/work-around-canvas-clippath-that-is-not-supported-in-android-any-more/8895894#8895894
-
-        }
-
-        //Do everything else that original badge does. Drawing of the overlay is also handled there
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        canvas.drawBitmap(rounder, 0, 0, xferPaint);
     }
 }
