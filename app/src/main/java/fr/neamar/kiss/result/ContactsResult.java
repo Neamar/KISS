@@ -24,6 +24,7 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
@@ -229,15 +230,16 @@ public class ContactsResult extends Result {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Make sure we have permission to call
-        MainActivity mainActivity = KissApplication.getApplication(context).currentMainActivity.get();
+        MainActivity mainActivity = Permission.currentMainActivity.get();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && mainActivity != null && mainActivity.checkSelfPermission(android.Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED) {
             mainActivity.requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE},
                     MainActivity.PERMISSION_CALL_PHONE);
-            KissApplication.getApplication(context).pendingIntent = i;
+            Permission.pendingIntent = i;
 
-            // Do not start ther activity (we don't have permission),
+            // Do not start the activity (we don't have permission),
             // do not recordLaunch (that would clear the screen)
+            // just wait for the user to consent.
             return;
         }
 

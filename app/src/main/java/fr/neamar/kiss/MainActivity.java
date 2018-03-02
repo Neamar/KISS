@@ -32,7 +32,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -131,8 +130,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
-
-        KissApplication.getApplication(this).currentMainActivity = new WeakReference<>(this);
 
         /*
          * Initialize preferences

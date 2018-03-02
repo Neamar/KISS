@@ -1,8 +1,11 @@
 package fr.neamar.kiss.forwarder;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -10,10 +13,22 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 
 
-class Permission extends Forwarder {
+public class Permission extends Forwarder {
+
+    // Weak reference to the main activity, this is sadly required for permissions to work correctly.
+    public static WeakReference<MainActivity> currentMainActivity;
+
+    /**
+     * Sometimes, we need to wait for the user to give us permission before we can start an intent.
+     * Store the intent here for later use.
+     * Ideally, we'd want to use MainActivty to store this, but MainActivity has stateNotNeeded=true
+     * which means it's always rebuild from scratch, we can't store any state in it.
+     */
+    public static Intent pendingIntent = null;
 
     Permission(MainActivity mainActivity) {
         super(mainActivity);
+        currentMainActivity = new WeakReference<>(mainActivity);
     }
 
     void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
@@ -31,8 +46,8 @@ class Permission extends Forwarder {
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Great! Start the intent we stored for later use.
                 KissApplication kissApplication = KissApplication.getApplication(mainActivity);
-                mainActivity.startActivity(kissApplication.pendingIntent);
-                kissApplication.pendingIntent = null;
+                mainActivity.startActivity(pendingIntent);
+                pendingIntent = null;
 
                 // Record launch to clear search results
                 mainActivity.launchOccurred();
