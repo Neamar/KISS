@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.DataSetObserver;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -56,6 +58,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
+
+    public static final int PERMISSION_READ_CONTACTS = 0;
 
     private static final String TAG = "MainActivity";
 
@@ -127,6 +131,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(android.Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS},
+                    PERMISSION_READ_CONTACTS);
+        }
 
         /*
          * Initialize preferences
@@ -340,7 +350,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
         }
 
-        if(KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
+        if (KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
             displayLoader(false);
             onFavoriteChange();
         }
@@ -379,7 +389,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         // Hide kissbar when coming back to kiss
-        if(isViewingAllApps()) {
+        if (isViewingAllApps()) {
             displayKissBar(false);
         }
     }
@@ -455,6 +465,22 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         forwarderManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_READ_CONTACTS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    ContactsProvider contactsProvider = KissApplication.getApplication(this).getDataHandler().getContactsProvider();
+                    if(contactsProvider != null) {
+                        contactsProvider.reload();
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -663,8 +689,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searchEditText.setText("");
             displayClearOnInput();
             hideKeyboard();
-        }
-        else if(isViewingAllApps()) {
+        } else if (isViewingAllApps()) {
             displayKissBar(false);
         }
     }

@@ -1,8 +1,11 @@
 package fr.neamar.kiss.loader;
 
+import android.Manifest;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Log;
 
@@ -28,6 +31,13 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
 
         if(context.get() == null) {
+            return contacts;
+        }
+
+        // Skip if we don't have permission :(
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context.get().checkSelfPermission(Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            Log.e("WTF", "NO PERMISSION");
             return contacts;
         }
 
