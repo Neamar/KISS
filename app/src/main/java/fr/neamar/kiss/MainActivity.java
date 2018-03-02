@@ -533,7 +533,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int animationDuration = getResources().getInteger(
                 android.R.integer.config_longAnimTime);
 
-        if (!display) {
+        // Do not display animation is launcher button is already visible
+        if (!display && launcherButton.getVisibility() == View.INVISIBLE) {
             launcherButton.setVisibility(View.VISIBLE);
 
             // Animate transition from loader to launch button
@@ -552,7 +553,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                             loaderSpinner.setAlpha(1);
                         }
                     });
-        } else {
+        } else if(display) {
             launcherButton.setVisibility(View.INVISIBLE);
             loaderSpinner.setVisibility(View.VISIBLE);
         }
