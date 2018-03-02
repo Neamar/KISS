@@ -95,11 +95,15 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         super.onPreExecute();
         start = System.currentTimeMillis();
 
+        this.handler.postDelayed(this.refreshTask, DEFAULT_REFRESH_TIMER);
+        displayActivityLoader();
+    }
+
+    protected void displayActivityLoader() {
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
             return;
 
-        this.handler.postDelayed(this.refreshTask, DEFAULT_REFRESH_TIMER);
         activity.displayLoader(true);
     }
 
