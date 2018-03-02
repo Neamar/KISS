@@ -2,9 +2,6 @@ package fr.neamar.kiss.forwarder;
 
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.util.Log;
-
-import java.util.Arrays;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -18,26 +15,21 @@ class Permission extends Forwarder {
     }
 
     void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        if (requestCode == MainActivity.PERMISSION_READ_CONTACTS) {
-            // If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Great! Reload the contact provider. We're done :)
-                ContactsProvider contactsProvider = KissApplication.getApplication(mainActivity).getDataHandler().getContactsProvider();
-                if (contactsProvider != null) {
-                    contactsProvider.reload();
-                }
+        if(grantResults.length == 0) {
+            return;
+        }
+
+        if (requestCode == MainActivity.PERMISSION_READ_CONTACTS && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Great! Reload the contact provider. We're done :)
+            ContactsProvider contactsProvider = KissApplication.getApplication(mainActivity).getDataHandler().getContactsProvider();
+            if (contactsProvider != null) {
+                contactsProvider.reload();
             }
-        } else if (requestCode == MainActivity.PERMISSION_CALL_PHONE) {
-            // If request is cancelled, the result arrays are empty.
-            Log.e("WTF", "Res:" + Arrays.toString(grantResults));
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Great! Start the intent we stored for later use.
-                KissApplication kissApplication = KissApplication.getApplication(mainActivity);
-                mainActivity.startActivity(kissApplication.pendingIntent);
-                kissApplication.pendingIntent = null;
-            }
+        } else if (requestCode == MainActivity.PERMISSION_CALL_PHONE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Great! Start the intent we stored for later use.
+            KissApplication kissApplication = KissApplication.getApplication(mainActivity);
+            mainActivity.startActivity(kissApplication.pendingIntent);
+            kissApplication.pendingIntent = null;
         }
     }
 }
