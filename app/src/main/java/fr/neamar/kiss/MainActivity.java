@@ -57,9 +57,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
 
-    public static final int PERMISSION_READ_CONTACTS = 0;
-    public static final int PERMISSION_CALL_PHONE = 1;
-
     private static final String TAG = "MainActivity";
 
     /**

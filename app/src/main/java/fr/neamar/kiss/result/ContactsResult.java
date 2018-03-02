@@ -234,10 +234,10 @@ public class ContactsResult extends Result {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && mainActivity != null && mainActivity.checkSelfPermission(android.Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED) {
             mainActivity.requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE},
-                    MainActivity.PERMISSION_CALL_PHONE);
+                    Permission.PERMISSION_CALL_PHONE);
             Permission.pendingIntent = i;
 
-            // Do not start the activity (we don't have permission),
+            // Do not start the activity (we don't have permission yet),
             // do not recordLaunch (that would clear the screen)
             // just wait for the user to consent.
             return;

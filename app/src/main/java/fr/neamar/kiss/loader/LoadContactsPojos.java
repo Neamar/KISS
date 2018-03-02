@@ -44,7 +44,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             MainActivity mainActivity = Permission.currentMainActivity.get();
             if(mainActivity != null) {
                 mainActivity.requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS},
-                        MainActivity.PERMISSION_READ_CONTACTS);
+                        Permission.PERMISSION_READ_CONTACTS);
             }
 
             // And in the meantime, just return nothing.

@@ -14,6 +14,8 @@ import fr.neamar.kiss.dataprovider.ContactsProvider;
 
 
 public class Permission extends Forwarder {
+    public static final int PERMISSION_READ_CONTACTS = 0;
+    public static final int PERMISSION_CALL_PHONE = 1;
 
     // Weak reference to the main activity, this is sadly required for permissions to work correctly.
     public static WeakReference<MainActivity> currentMainActivity;
@@ -36,13 +38,13 @@ public class Permission extends Forwarder {
             return;
         }
 
-        if (requestCode == MainActivity.PERMISSION_READ_CONTACTS && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == PERMISSION_READ_CONTACTS && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             // Great! Reload the contact provider. We're done :)
             ContactsProvider contactsProvider = KissApplication.getApplication(mainActivity).getDataHandler().getContactsProvider();
             if (contactsProvider != null) {
                 contactsProvider.reload();
             }
-        } else if (requestCode == MainActivity.PERMISSION_CALL_PHONE) {
+        } else if (requestCode == PERMISSION_CALL_PHONE) {
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Great! Start the intent we stored for later use.
                 KissApplication kissApplication = KissApplication.getApplication(mainActivity);
