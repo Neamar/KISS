@@ -2,9 +2,11 @@ package fr.neamar.kiss.forwarder;
 
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 
 
@@ -25,11 +27,18 @@ class Permission extends Forwarder {
             if (contactsProvider != null) {
                 contactsProvider.reload();
             }
-        } else if (requestCode == MainActivity.PERMISSION_CALL_PHONE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // Great! Start the intent we stored for later use.
-            KissApplication kissApplication = KissApplication.getApplication(mainActivity);
-            mainActivity.startActivity(kissApplication.pendingIntent);
-            kissApplication.pendingIntent = null;
+        } else if (requestCode == MainActivity.PERMISSION_CALL_PHONE) {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Great! Start the intent we stored for later use.
+                KissApplication kissApplication = KissApplication.getApplication(mainActivity);
+                mainActivity.startActivity(kissApplication.pendingIntent);
+                kissApplication.pendingIntent = null;
+
+                // Record launch to clear search results
+                mainActivity.launchOccurred();
+            } else {
+                Toast.makeText(mainActivity, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

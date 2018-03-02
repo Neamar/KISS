@@ -344,11 +344,27 @@ public class SettingsActivity extends PreferenceActivity implements
             return;
         }
 
-        if(requestCode == PERMISSION_READ_PHONE_STATE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-phone-history", false));
+        if(requestCode == PERMISSION_READ_PHONE_STATE) {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-phone-history", false));
+            }
+            else {
+                // You don't want to give us permission, that's fine. Revert the toggle.
+                SwitchPreference p = (SwitchPreference) findPreference("enable-phone-history");
+                p.setChecked(false);
+                Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+            }
         }
-        else if(requestCode == PERMISSION_RECEIVE_SMS && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
+        else if(requestCode == PERMISSION_RECEIVE_SMS) {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
+            }
+            else {
+                // You don't want to give us permission, that's fine. Revert the toggle.
+                SwitchPreference p = (SwitchPreference) findPreference("enable-sms-history");
+                p.setChecked(false);
+                Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

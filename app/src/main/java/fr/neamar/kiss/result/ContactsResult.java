@@ -74,7 +74,7 @@ public class ContactsResult extends Result {
             @Override
             public void onClick(View v) {
                 recordLaunch(v.getContext());
-                queryInterface.launchOccurred(-1, ContactsResult.this);
+                queryInterface.launchOccurred();
             }
         });
 
@@ -216,7 +216,7 @@ public class ContactsResult extends Result {
             @Override
             public void run() {
                 recordLaunch(context);
-                queryInterface.launchOccurred(-1, ContactsResult.this);
+                queryInterface.launchOccurred();
             }
         }, KissApplication.TOUCH_DELAY);
 
@@ -228,17 +228,6 @@ public class ContactsResult extends Result {
         Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        // Register launch in the future
-        // (animation delay)
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                recordLaunch(context);
-                queryInterface.launchOccurred(-1, ContactsResult.this);
-            }
-        }, KissApplication.TOUCH_DELAY);
-
         // Make sure we have permission to call
         MainActivity mainActivity = KissApplication.getApplication(context).currentMainActivity.get();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && mainActivity != null && mainActivity.checkSelfPermission(android.Manifest.permission.CALL_PHONE)
@@ -246,10 +235,24 @@ public class ContactsResult extends Result {
             mainActivity.requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE},
                     MainActivity.PERMISSION_CALL_PHONE);
             KissApplication.getApplication(context).pendingIntent = i;
+
+            // Do not start ther activity (we don't have permission),
+            // do not recordLaunch (that would clear the screen)
             return;
         }
 
         // Pre-android 23, or we already have permission
         context.startActivity(i);
+
+        // Register launch in the future
+        // (animation delay)
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                recordLaunch(context);
+                queryInterface.launchOccurred();
+            }
+        }, KissApplication.TOUCH_DELAY);
     }
 }

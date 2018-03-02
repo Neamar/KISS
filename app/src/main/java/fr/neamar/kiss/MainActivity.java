@@ -663,11 +663,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     /**
-     * Call this function when we're leaving the activity We can't use
-     * onPause(), since it may be called for a configuration change
+     * Call this function when we're leaving the activity after clicking a search result
+     * to clear the search list.
+     * We can't use onPause(), since it may be called for a configuration change
      */
     @Override
-    public void launchOccurred(int index, Result result) {
+    public void launchOccurred() {
         // We selected an item on the list,
         // now we can cleanup the filter:
         if (!searchEditText.getText().toString().isEmpty()) {
