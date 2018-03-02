@@ -36,7 +36,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             return contacts;
         }
 
-        // Skip if we don't have permission :(
+        // Skip if we don't have permission to list contacts yet:(
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context.get().checkSelfPermission(Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
 

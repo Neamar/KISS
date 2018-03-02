@@ -229,7 +229,7 @@ public class ContactsResult extends Result {
         Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        // Make sure we have permission to call
+        // Make sure we have permission to call someone as this is considered a dangerous permission
         MainActivity mainActivity = Permission.currentMainActivity.get();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && mainActivity != null && mainActivity.checkSelfPermission(android.Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED) {

@@ -17,19 +17,23 @@ public class Permission extends Forwarder {
     public static final int PERMISSION_READ_CONTACTS = 0;
     public static final int PERMISSION_CALL_PHONE = 1;
 
-    // Weak reference to the main activity, this is sadly required for permissions to work correctly.
+    // Static weak reference to the main activity, this is sadly required
+    // to ensure classes requesting permission can access activity.requestPermission()
     public static WeakReference<MainActivity> currentMainActivity;
 
     /**
      * Sometimes, we need to wait for the user to give us permission before we can start an intent.
      * Store the intent here for later use.
-     * Ideally, we'd want to use MainActivty to store this, but MainActivity has stateNotNeeded=true
+     * Ideally, we'd want to use MainActivity to store this, but MainActivity has stateNotNeeded=true
      * which means it's always rebuild from scratch, we can't store any state in it.
+     * This means that when we use pendingIntent, it's highly likely taht by the time we end up using it,
+     * currentMainActivity will have changed
      */
     public static Intent pendingIntent = null;
 
     Permission(MainActivity mainActivity) {
         super(mainActivity);
+        // Store the latest reference to a MainActivity
         currentMainActivity = new WeakReference<>(mainActivity);
     }
 
