@@ -32,6 +32,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -56,6 +57,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
+
+    public static final int PERMISSION_READ_CONTACTS = 0;
+    public static final int PERMISSION_CALL_PHONE = 1;
 
     private static final String TAG = "MainActivity";
 
@@ -127,6 +131,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
+
+        KissApplication.getApplication(this).currentMainActivity = new WeakReference<>(this);
 
         /*
          * Initialize preferences

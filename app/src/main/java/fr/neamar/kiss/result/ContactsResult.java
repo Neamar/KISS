@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -222,11 +223,13 @@ public class ContactsResult extends Result {
     }
 
     private void launchCall(final Context context) {
+        // Create the intent to start a phone call
         String url = "tel:" + Uri.encode(contactPojo.phone);
         Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
 
+        // Register launch in the future
+        // (animation delay)
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -236,5 +239,17 @@ public class ContactsResult extends Result {
             }
         }, KissApplication.TOUCH_DELAY);
 
+        // Make sure we have permission to call
+        MainActivity mainActivity = KissApplication.getApplication(context).currentMainActivity.get();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && mainActivity != null && mainActivity.checkSelfPermission(android.Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            mainActivity.requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE},
+                    MainActivity.PERMISSION_CALL_PHONE);
+            KissApplication.getApplication(context).pendingIntent = i;
+            return;
+        }
+
+        // Pre-android 23, or we already have permission
+        context.startActivity(i);
     }
 }

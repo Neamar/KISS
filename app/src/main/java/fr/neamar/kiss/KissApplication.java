@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import java.lang.ref.WeakReference;
+
 public class KissApplication extends Application {
     /**
      * Number of ms to wait, after a click occurred, to record a launch
@@ -13,6 +15,17 @@ public class KissApplication extends Application {
     private DataHandler dataHandler;
     private RootHandler rootHandler;
     private IconsHandler iconsPackHandler;
+
+    // Weak reference to the main activity, this is sadly required for permissions to work correctly.
+    public WeakReference<MainActivity> currentMainActivity;
+
+    /**
+     * Sometimes, we need to wait for the user to give us permission before we can start an intent.
+     * Store the intent here for later use.
+     * Ideally, we'd want to use MainActivty to store this, but MainActivity has stateNotNeeded=true
+     * which means it's always rebuild from scratch, we can't store any state in it.
+     */
+    public Intent pendingIntent = null;
 
     public static KissApplication getApplication(Context context) {
         return (KissApplication) context.getApplicationContext();

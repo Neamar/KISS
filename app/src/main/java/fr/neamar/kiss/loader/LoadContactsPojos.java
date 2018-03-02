@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 
@@ -37,7 +39,15 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         // Skip if we don't have permission :(
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context.get().checkSelfPermission(Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
-            Log.e("WTF", "NO PERMISSION");
+
+            // If we don't have permission to list contacts, ask for it.
+            MainActivity mainActivity = KissApplication.getApplication(context.get()).currentMainActivity.get();
+            if(mainActivity != null) {
+                mainActivity.requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS},
+                        MainActivity.PERMISSION_READ_CONTACTS);
+            }
+
+            // And in the meantime, just return nothing.
             return contacts;
         }
 

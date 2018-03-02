@@ -34,7 +34,6 @@ public class ForwarderManager extends Forwarder {
         widgetForwarder.onCreate();
         interfaceTweaks.onCreate();
         experienceTweaks.onCreate();
-        permissionForwarder.onCreate();
     }
 
     public void onResume() {
