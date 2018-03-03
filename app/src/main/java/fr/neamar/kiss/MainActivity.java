@@ -127,6 +127,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     public SystemUiVisibilityHelper systemUiVisibilityHelper;
 
+    /**
+     * Is the KISS bar currently displayed?
+     * (flag updated before animation is over)
+     */
+    private boolean isDisplayingKissBar = false;
+
     private PopupWindow mPopup;
 
     private ForwarderManager forwarderManager;
@@ -586,6 +592,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
+            isDisplayingKissBar = true;
             // Display the app list
             if(searchEditText.getText().length() != 0) {
                 searchEditText.setText("");
@@ -606,6 +613,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
             kissBar.setVisibility(View.VISIBLE);
         } else {
+            isDisplayingKissBar = false;
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 int animationDuration = getResources().getInteger(
@@ -756,11 +764,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @return true of history, false on app list
      */
     public boolean isViewingSearchResults() {
-        return kissBar.getVisibility() != View.VISIBLE;
+        return !isDisplayingKissBar ;
     }
 
     public boolean isViewingAllApps() {
-        return kissBar.getVisibility() == View.VISIBLE;
+        return isDisplayingKissBar;
     }
 
     @Override
