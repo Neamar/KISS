@@ -139,6 +139,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
 
+        KissApplication.getApplication(this).initDataHandler();
+
         /*
          * Initialize preferences
          */
@@ -161,7 +163,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onReceive(Context context, Intent intent) {
                 //noinspection ConstantConditions
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
-                    updateRecords();
+                    updateSearchRecords();
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     Log.v(TAG, "All providers are done loading.");
 
@@ -184,12 +186,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Set the view and store all useful components
          */
         setContentView(R.layout.main);
-        this.list = (AnimatedListView) this.findViewById(android.R.id.list);
+        this.list = this.findViewById(android.R.id.list);
         this.listContainer = (View) this.list.getParent();
         this.emptyListView = this.findViewById(android.R.id.empty);
         this.kissBar = findViewById(R.id.mainKissbar);
         this.menuButton = findViewById(R.id.menuButton);
-        this.searchEditText = (SearchEditText) findViewById(R.id.searchEditText);
+        this.searchEditText = findViewById(R.id.searchEditText);
         this.loaderSpinner = findViewById(R.id.loaderBar);
         this.launcherButton = findViewById(R.id.launcherButton);
         this.clearButton = findViewById(R.id.clearButton);
@@ -261,7 +263,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     displayKissBar(false, false);
                 }
                 String text = s.toString();
-                updateRecords(text);
+                updateSearchRecords(text);
                 displayClearOnInput();
             }
         });
@@ -354,14 +356,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
         }
 
-        if(KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
+        if (KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
             displayLoader(false);
             onFavoriteChange();
         }
 
         // We need to update the history in case an external event created new items
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
-        updateRecords();
+        updateSearchRecords();
 
         forwarderManager.onResume();
 
@@ -393,7 +395,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         // Hide kissbar when coming back to kiss
-        if(isViewingAllApps()) {
+        if (isViewingAllApps()) {
             displayKissBar(false);
         }
     }
@@ -469,6 +471,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         forwarderManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        forwarderManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
@@ -576,8 +583,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
-            searchEditText.setText("");
             // Display the app list
+            if(searchEditText.getText().length() != 0) {
+                searchEditText.setText("");
+            }
             resetTask();
 
             searchTask = new ApplicationsSearcher(MainActivity.this);
@@ -622,8 +631,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.onDisplayKissBar(display);
     }
 
-    public void updateRecords() {
-        updateRecords(searchEditText.getText().toString());
+    public void updateSearchRecords() {
+        updateSearchRecords(searchEditText.getText().toString());
     }
 
     /**
@@ -632,13 +641,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      *
      * @param query the query on which to search
      */
-    private void updateRecords(String query) {
+    private void updateSearchRecords(String query) {
         resetTask();
 
         if (mPopup != null)
             mPopup.dismiss();
 
-        forwarderManager.updateRecords(query);
+        forwarderManager.updateSearchRecords(query);
 
         if (query.isEmpty()) {
             systemUiVisibilityHelper.resetScroll();
@@ -661,19 +670,19 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     /**
-     * Call this function when we're leaving the activity We can't use
-     * onPause(), since it may be called for a configuration change
+     * Call this function when we're leaving the activity after clicking a search result
+     * to clear the search list.
+     * We can't use onPause(), since it may be called for a configuration change
      */
     @Override
-    public void launchOccurred(int index, Result result) {
+    public void launchOccurred() {
         // We selected an item on the list,
         // now we can cleanup the filter:
         if (!searchEditText.getText().toString().isEmpty()) {
             searchEditText.setText("");
             displayClearOnInput();
             hideKeyboard();
-        }
-        else if(isViewingAllApps()) {
+        } else if (isViewingAllApps()) {
             displayKissBar(false);
         }
     }
@@ -746,17 +755,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         return kissBar.getVisibility() != View.VISIBLE;
     }
 
-    private boolean isViewingAllApps() {
+    public boolean isViewingAllApps() {
         return kissBar.getVisibility() == View.VISIBLE;
     }
 
     @Override
-    public void beforeChange() {
+    public void beforeListChange() {
         list.prepareChangeAnim();
     }
 
     @Override
-    public void afterChange() {
+    public void afterListChange() {
         list.animateChange();
+        forwarderManager.afterListChange();
     }
 }

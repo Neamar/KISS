@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 27
     buildToolsVersion '27.0.1'
     defaultConfig {
         applicationId 'fr.neamar.kiss'
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 27
         versionCode 112
         versionName "3.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,11 +27,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile 'org.hamcrest:hamcrest-library:1.3'
     compile 'com.android.support:support-annotations:27.0.2'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.robolectric:robolectric:3.1.4'
-    testCompile 'org.mockito:mockito-core:1.10.19'
 }
 
 buildscript {

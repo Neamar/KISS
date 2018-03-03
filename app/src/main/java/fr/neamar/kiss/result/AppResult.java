@@ -54,10 +54,10 @@ public class AppResult extends Result {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
 
-        TextView appName = (TextView) view.findViewById(R.id.item_app_name);
+        TextView appName = view.findViewById(R.id.item_app_name);
         appName.setText(enrichText(appPojo.displayName, context));
 
-        TextView tagsView = (TextView) view.findViewById(R.id.item_app_tag);
+        TextView tagsView = view.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
         if (appPojo.displayTags.isEmpty() ||
                 (!prefs.getBoolean("tags-visible", true) && !appPojo.displayTags.contains("{"))) {
@@ -67,7 +67,7 @@ public class AppResult extends Result {
             tagsView.setText(enrichText(appPojo.displayTags, context));
         }
 
-        final ImageView appIcon = (ImageView) view.findViewById(R.id.item_app_icon);
+        final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!prefs.getBoolean("icons-hide", false)) {
             if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
                 icon = appIcon.getDrawable();
@@ -162,7 +162,7 @@ public class AppResult extends Result {
 
         // Create the tag dialog
         final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
-        final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
+        final MultiAutoCompleteTextView tagInput = v.findViewById(R.id.tag_input);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());

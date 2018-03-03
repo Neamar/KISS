@@ -113,12 +113,12 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         if (activity == null)
             return;
 
-        activity.beforeChange();
+        activity.beforeListChange();
 
         activity.adapter.clear();
         activity.adapter.addAll(results);
 
-        activity.afterChange();
+        activity.afterListChange();
     }
 
     @Override
@@ -140,12 +140,12 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             while (queue.peek() != null) {
                 results.add(Result.fromPojo(activity, queue.poll()));
             }
-            activity.beforeChange();
+            activity.beforeListChange();
 
             activity.adapter.clear();
             activity.adapter.addAll(results);
 
-            activity.afterChange();
+            activity.afterListChange();
         }
 
         activity.resetTask();
@@ -155,9 +155,9 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     }
 
     public interface DataObserver {
-        void beforeChange();
+        void beforeListChange();
 
-        void afterChange();
+        void afterListChange();
     }
 
     static class RefreshTask implements Runnable {
