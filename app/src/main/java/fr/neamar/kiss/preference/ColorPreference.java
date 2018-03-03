@@ -31,8 +31,8 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 
         this.setDialogLayoutResource(R.layout.pref_color);
 
-        // Optianlly override default color value with value from preference XML
-        this.selectedColor = Color.parseColor(UIColors.COLOR_DEFAULT);
+        // Optionally override default color value with value from preference XML
+        this.selectedColor = UIColors.COLOR_DEFAULT;
         if (attrs != null) {
             String value = attrs.getAttributeValue("http://schemas.android.com/apk/res/android", "defaultValue");
             if (value != null) {

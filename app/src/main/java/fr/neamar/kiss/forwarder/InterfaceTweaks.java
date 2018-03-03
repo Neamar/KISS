@@ -101,22 +101,20 @@ class InterfaceTweaks extends Forwarder {
     }
 
     private void tintResources(MainActivity mainActivity) {
-        String primaryColorOverride = UIColors.getPrimaryColor(mainActivity);
+        int primaryColorOverride = UIColors.getPrimaryColor(mainActivity);
 
         // Circuit breaker, keep default behavior.
-        if (primaryColorOverride.equals(UIColors.COLOR_DEFAULT)) {
+        if (primaryColorOverride == UIColors.COLOR_DEFAULT) {
             return;
         }
 
-        int primaryColor = Color.parseColor(primaryColorOverride);
-
         // Launcher button should have the main color
         ImageView launcherButton = mainActivity.findViewById(R.id.launcherButton);
-        launcherButton.setColorFilter(primaryColor);
+        launcherButton.setColorFilter(primaryColorOverride);
         ProgressBar loaderBar = mainActivity.findViewById(R.id.loaderBar);
-        loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
+        loaderBar.getIndeterminateDrawable().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background
-        mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
+        mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
     }
 }

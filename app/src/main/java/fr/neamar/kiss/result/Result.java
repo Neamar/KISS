@@ -95,7 +95,11 @@ public abstract class Result {
      */
     static Spanned enrichText(String text, Context context) {
         //TODO: cache the result. We consume lots of CPU and RAM converting every time we display
-        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UIColors.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
+        return Html.fromHtml(
+                text
+                        .replaceAll("\\{", "<font color=" + String.format("#%06X", UIColors.getPrimaryColor(context) & 0xFFFFFF) + ">")
+                        .replaceAll("\\}", "</font>")
+        );
     }
 
     @Override

@@ -79,7 +79,7 @@ public class ContactsResult extends Result {
             }
         });
 
-        int primaryColor = Color.parseColor(UIColors.getPrimaryColor(context));
+        int primaryColor = UIColors.getPrimaryColor(context);
         // Phone action
         ImageButton phoneButton = view.findViewById(R.id.item_contact_action_phone);
         phoneButton.setColorFilter(primaryColor);
