@@ -18,13 +18,6 @@ public class KissApplication extends Application {
         return (KissApplication) context.getApplicationContext();
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        // When opening the app for any reason, start loading the data handler
-        initDataHandler();
-    }
-
     public DataHandler getDataHandler() {
         if (dataHandler == null) {
             dataHandler = new DataHandler(this);
@@ -47,7 +40,7 @@ public class KissApplication extends Application {
         rootHandler.resetRootHandler(ctx);
     }
 
-    private void initDataHandler() {
+    public void initDataHandler() {
         if (dataHandler == null) {
             dataHandler = new DataHandler(this);
         }

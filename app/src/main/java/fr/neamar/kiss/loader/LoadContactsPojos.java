@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 
@@ -28,6 +29,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
 
         if(context.get() == null) {
+            return contacts;
+        }
+
+        // Skip if we don't have permission to list contacts yet:(
+        if(!Permission.checkContactPermission()) {
+            Permission.askContactPermission();
             return contacts;
         }
 

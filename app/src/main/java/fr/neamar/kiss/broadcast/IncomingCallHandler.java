@@ -16,7 +16,7 @@ public class IncomingCallHandler extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, Intent intent) {
         // Only handle calls received
-        if (!intent.getAction().equals("android.intent.action.PHONE_STATE")) {
+        if (!"android.intent.action.PHONE_STATE".equals(intent.getAction())) {
             return;
         }
 
