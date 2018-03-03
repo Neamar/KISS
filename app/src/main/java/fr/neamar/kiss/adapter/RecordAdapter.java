@@ -66,7 +66,9 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
     @Override
     public long getItemId(int position) {
-        return results.get(position).getUniqueId();
+        // Ternary is in place for MainActivity test,
+        // because ActivityInstrumentationTestCase2 seems to use an invalid position for some records.
+        return position < results.size() ? results.get(position).getUniqueId() : position;
     }
 
     @Override
