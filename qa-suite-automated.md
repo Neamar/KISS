@@ -6,26 +6,26 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 ### Get started...
 * [ ] Loader appears when opening the app
-* [ ] Help text ("search apps, contacts, ...") appears while app are loading
+* [x] Help text ("search apps, contacts, ...") appears while app are loading
 * [ ] After some time, loader disappears and is replaced by launcher icon
 * [ ] Touching the search field displays the keyboard
-* [ ] Searching for text displays results
-* [ ] Clicking the launcher icon displays the list of apps
+* [x] Searching for text displays results
+* [x] Clicking the launcher icon displays the list of apps
 * [ ] When clicking on a search item, the corresponding intent is triggered
 * [ ] When going back to KISS, search results have been cleared
 * [ ] When going back to KISS, the item has been added to history
 * [ ] History is displayed when search box is empty
-* [ ] Three dots menu is displayed to the right
-* [ ] Entering a search query replaces the three-dots menu with an "X"
-* [ ] Clicking the "X" empties the search field, displays three dots menu and displays history
+* [x] Three dots menu is displayed to the right
+* [x] Entering a search query replaces the three-dots menu with an "X"
+* [x] Clicking the "X" empties the search field, displays three dots menu and displays history
 * [ ] When searching, pressing enter on the keyboard launches the first result
 * [ ] When keyboard is displayed, scrolling the list down hides the keyboard
-* [ ] When searching, pressing space as the first character does nothing (left-hand side trimming)
-* [ ] Press kiss icon. App list is displayed, and kiss bar appears with a circular reveal animation
-* [ ] Press kiss icon again. App list is hidden, and kiss bar disappears with a circular (un)reveal animation
+* [x] When searching, pressing space as the first character does nothing (left-hand side trimming)
+* [x] Press kiss icon. App list is displayed, and kiss bar appears with a circular reveal animation
+* [x] Press kiss icon again. App list is hidden, and kiss bar disappears with a circular (un)reveal animation
 * [ ] With keyboard open, press kiss icon. App list is displayed, and keyboard stays there
 * [ ] With keyboard open, press kiss icon. The app list is displayed. When typing something on the keyboard, app list is hidden, and search results start appearing
-* [ ] Search for something, press kiss icon. The app list is displayed. Press kiss icon again, search query has been emptied
+* [x] Search for something, press kiss icon. The app list is displayed. Press kiss icon again, search query has been emptied
 * [ ] With KISS set as default launcher, pressing home empties the search field and displays history
 * [ ] With KISS set as default launcher and app list displayed, pressing home hides the app list and displays history
 * [ ] When app bar is displayed, pressing back hides the bar and displays history
@@ -66,16 +66,16 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When "Show newly installed apps" is enabled, new apps are added to history
 
 ### Favorites
-* [ ] Favorite bar is displayed automatically at startup
+* [x] Favorite bar is displayed automatically at startup
 * [ ] Clicking on a favorite trigger the correct Intent
 * [ ] When going back to KISS, the favorite has been added to history
 * [ ] Long-clicking favorite displays the menu
 * [ ] Long-click menu can be used to remove the favorite
 * [ ] Empty favorites are not displayed (favorites takes all available space in the bar)
-* [ ] When entering a search query, favorite bar is hidden
+* [x] When entering a search query, favorite bar is hidden
 * [ ] When search query is removed, bar appears again
 * [ ] When coming back from an application launched through search, bar is displayed again
-* [ ] When kiss bar is opened, favorites are displayed
+* [ ] When kiss bar is opened, favorites are hidden
 * [ ] When kiss bar is opened, internal favorites bar is hidden
 * [ ] When kiss bar is opened, you can't click on the menu button behind the kiss bar (not even visible, doesn't respond to touch events either)
 * [ ] When searching and pressing home, query is cleared, and favorites are displayed

@@ -36,6 +36,7 @@ public class FavoritesTest extends ActivityInstrumentationTestCase2<MainActivity
         // Initialize to default preferences
         KissApplication.getApplication(getActivity()).getDataHandler().clearHistory();
         PreferenceManager.setDefaultValues(getActivity(), R.xml.preferences, true);
+        getActivity().prefs.edit().putBoolean("enable-favorites-bar", true).apply();
 
         // Remove lock screen
         Runnable wakeUpDevice = new Runnable() {
@@ -46,6 +47,18 @@ public class FavoritesTest extends ActivityInstrumentationTestCase2<MainActivity
             }
         };
         getActivity().runOnUiThread(wakeUpDevice);
+    }
+
+    private void enableInternalBar() {
+        getActivity().prefs.edit().putBoolean("enable-favorites-bar", false).apply();
+        getInstrumentation().runOnMainSync(new Runnable() {
+            @Override
+            public void run() {
+                getActivity().recreate();
+            }
+        });
+        setActivity(null);
+        getActivity();
     }
 
     public void testExternalBarDisplayed() {
@@ -59,10 +72,36 @@ public class FavoritesTest extends ActivityInstrumentationTestCase2<MainActivity
         onView(withId(R.id.externalFavoriteBar)).check(matches(isDisplayed()));
     }
 
+    public void testInternalBarHiddenWhenViewingAllAppsWithExternalModeOn() {
+        onView(withId(R.id.launcherButton)).perform(click());
+        onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
+    }
+
     public void testExternalBarHiddenOnSearch() {
         onView(withId(R.id.searchEditText)).perform(typeText("Test"));
         onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
         onView(withId(R.id.clearButton)).perform(click());
         onView(withId(R.id.externalFavoriteBar)).check(matches(isDisplayed()));
+    }
+
+    public void testInternalBarHidden() {
+        enableInternalBar();
+
+        onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
+    }
+
+    public void testInternalBarHiddenOnSearch() {
+        onView(withId(R.id.searchEditText)).perform(typeText("Test"));
+        onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.clearButton)).perform(click());
+        onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
+    }
+
+    public void testInternalBarDisplayedWhenViewingAllApps() {
+        enableInternalBar();
+        onView(withId(R.id.launcherButton)).perform(click());
+        onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.embeddedFavoritesBar)).check(matches(isDisplayed()));
     }
 }
