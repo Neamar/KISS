@@ -371,6 +371,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
         updateSearchRecords();
 
+        if(isViewingAllApps()) {
+            displayKissBar(false);
+        }
+
         forwarderManager.onResume();
 
         super.onResume();
