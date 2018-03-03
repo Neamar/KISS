@@ -183,6 +183,14 @@ public class IconsHandler {
         return null;
     }
 
+    public Bitmap getBitmap(String component) {
+        if (packagesDrawables.containsKey(component)) {
+            String drawableName = packagesDrawables.get(component);
+            return loadBitmap(drawableName);
+        } else {
+            return null;
+        }
+    }
 
     private Drawable getDefaultAppDrawable(ComponentName componentName, UserHandle userHandle) {
         try {
@@ -204,11 +212,15 @@ public class IconsHandler {
      * Get or generate icon for an app
      */
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
+        Drawable customIcon = cacheGetDrawable(componentName.toString(), true);
+        if (customIcon != null) {
+            return customIcon;
+        }
         // system icons, nothing to do
         if (iconsPackPackageName.equalsIgnoreCase("default")) {
             return this.getDefaultAppDrawable(componentName, userHandle);
         }
-
+        
         String drawable = packagesDrawables.get(componentName.toString());
         if (drawable != null) { //there is a custom icon
             int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
@@ -307,11 +319,16 @@ public class IconsHandler {
         return iconsPacks;
     }
 
+    public Map<String, String> getPackagesDrawables() {
+        return packagesDrawables;
+    }
+
     private boolean isDrawableInCache(String key) {
         File drawableFile = cacheGetFileName(key);
         return drawableFile.isFile();
     }
 
+    
     private void cacheStoreDrawable(String key, Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             File drawableFile = cacheGetFileName(key);
@@ -328,6 +345,9 @@ public class IconsHandler {
     }
 
     private Drawable cacheGetDrawable(String key) {
+        cacheGetDrawable(key, false);
+    }
+    private Drawable cacheGetDrawable(String key, boolean isCustomDrawable) {
 
         if (!isDrawableInCache(key)) {
             return null;
@@ -335,7 +355,8 @@ public class IconsHandler {
 
         FileInputStream fis;
         try {
-            fis = new FileInputStream(cacheGetFileName(key));
+            File file = (isCustomDrawable) ? cacheGetCustomFileName(key) : cacheGetFileName(key);
+            fis = new FileInputStream(file);
             BitmapDrawable drawable =
                     new BitmapDrawable(this.ctx.getResources(), BitmapFactory.decodeStream(fis));
             fis.close();
@@ -355,6 +376,14 @@ public class IconsHandler {
         return new File(getIconsCacheDir() + iconsPackPackageName + "_" + key.hashCode() + ".png");
     }
 
+    public File cacheGetCustomFileName(String key) {
+        return new File(getCustomIconsCacheDir() + key.hashCode() + ".png");
+    }
+
+    private File getCustomIconsCacheDir() {
+        return new File(getIconsCacheDir() + "/custom/");
+    }
+
     private File getIconsCacheDir() {
         return new File(this.ctx.getCacheDir().getPath() + "/icons/");
     }
@@ -363,7 +392,11 @@ public class IconsHandler {
      * Clear cache
      */
     private void cacheClear() {
-        File cacheDir = this.getIconsCacheDir();
+        cacheClear(false);
+    }
+    private void cacheClear(boolean isCustom) {
+        File cacheDir = (isCustom) ? this.getCustomIconsCacheDir()
+                                   : this.getIconsCacheDir();
 
         if (!cacheDir.isDirectory())
             return;

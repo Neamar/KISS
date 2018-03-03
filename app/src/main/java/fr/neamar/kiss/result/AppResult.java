@@ -85,6 +85,7 @@ public class AppResult extends Result {
             adapter.add(new ListPopup.Item(context, R.string.menu_remove));
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_exclude));
+        adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
@@ -126,6 +127,11 @@ public class AppResult extends Result {
         switch (stringId) {
             case R.string.menu_app_details:
                 launchAppDetails(context, appPojo);
+                return true;
+            case R.string.menu_custom_icon:
+                Intent intent = new Intent(context, ChangeIconActivity.class);
+                intent.putExtra(ChangeIconActivity.COMPONENT_NAME, className.toString());
+                startActivity(intent);
                 return true;
             case R.string.menu_app_uninstall:
                 launchUninstall(context, appPojo);
