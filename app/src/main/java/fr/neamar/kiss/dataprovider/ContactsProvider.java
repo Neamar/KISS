@@ -6,6 +6,7 @@ import android.util.Pair;
 
 import java.util.List;
 
+import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -33,8 +34,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     @Override
     public void onCreate() {
         super.onCreate();
-        //register content observer
-        getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+        // register content observer if we have permission
+        if(Permission.checkContactPermission()) {
+            getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+        }
     }
 
     @Override

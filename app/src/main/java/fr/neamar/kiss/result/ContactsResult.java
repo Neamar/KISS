@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -223,38 +224,28 @@ public class ContactsResult extends Result {
 
     }
 
+    @SuppressLint("MissingPermission")
     private void launchCall(final Context context) {
         // Create the intent to start a phone call
         String url = "tel:" + Uri.encode(contactPojo.phone);
-        Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+        phoneIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Make sure we have permission to call someone as this is considered a dangerous permission
-        MainActivity mainActivity = Permission.currentMainActivity.get();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && mainActivity != null && mainActivity.checkSelfPermission(android.Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
-            mainActivity.requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE},
-                    Permission.PERMISSION_CALL_PHONE);
-            Permission.pendingIntent = i;
+       if(Permission.ensureCallPhonePermission(phoneIntent)) {
+           // Pre-android 23, or we already have permission
+           context.startActivity(phoneIntent);
 
-            // Do not start the activity (we don't have permission yet),
-            // do not recordLaunch (that would clear the screen)
-            // just wait for the user to consent.
-            return;
-        }
-
-        // Pre-android 23, or we already have permission
-        context.startActivity(i);
-
-        // Register launch in the future
-        // (animation delay)
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                recordLaunch(context);
-                queryInterface.launchOccurred();
-            }
-        }, KissApplication.TOUCH_DELAY);
+           // Register launch in the future
+           // (animation delay)
+           Handler handler = new Handler();
+           handler.postDelayed(new Runnable() {
+               @Override
+               public void run() {
+                   recordLaunch(context);
+                   queryInterface.launchOccurred();
+               }
+           }, KissApplication.TOUCH_DELAY);
+       }
     }
 }

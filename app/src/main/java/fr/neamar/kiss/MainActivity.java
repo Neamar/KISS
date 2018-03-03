@@ -128,6 +128,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
 
+        KissApplication.getApplication(this).initDataHandler();
+
         /*
          * Initialize preferences
          */

@@ -1,7 +1,9 @@
 package fr.neamar.kiss.forwarder;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
@@ -14,12 +16,12 @@ import fr.neamar.kiss.dataprovider.ContactsProvider;
 
 
 public class Permission extends Forwarder {
-    public static final int PERMISSION_READ_CONTACTS = 0;
-    public static final int PERMISSION_CALL_PHONE = 1;
+    private static final int PERMISSION_READ_CONTACTS = 0;
+    private static final int PERMISSION_CALL_PHONE = 1;
 
     // Static weak reference to the main activity, this is sadly required
     // to ensure classes requesting permission can access activity.requestPermission()
-    public static WeakReference<MainActivity> currentMainActivity;
+    private static WeakReference<MainActivity> currentMainActivity;
 
     /**
      * Sometimes, we need to wait for the user to give us permission before we can start an intent.
@@ -29,7 +31,45 @@ public class Permission extends Forwarder {
      * This means that when we use pendingIntent, it's highly likely taht by the time we end up using it,
      * currentMainActivity will have changed
      */
-    public static Intent pendingIntent = null;
+    private static Intent pendingIntent = null;
+
+    /**
+     * Try to start the dialer with specified intent, if we have permission already
+     * Otherwise, ask for permission and store the intent for future use;
+     *
+     * @return true if we do have permission already, false if we're asking for permission now and will handle dispatching the intent in the Forwarder
+     */
+    public static boolean ensureCallPhonePermission(Intent pendingIntent) {
+        MainActivity mainActivity = Permission.currentMainActivity.get();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && mainActivity != null && mainActivity.checkSelfPermission(android.Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            mainActivity.requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE},
+                    Permission.PERMISSION_CALL_PHONE);
+            Permission.pendingIntent = pendingIntent;
+
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean checkContactPermission() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+
+        }
+        MainActivity mainActivity = Permission.currentMainActivity.get();
+        return mainActivity != null && mainActivity.checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static void askContactPermission() {
+        // If we don't have permission to list contacts, ask for it.
+        MainActivity mainActivity = Permission.currentMainActivity.get();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && mainActivity != null) {
+            mainActivity.requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS},
+                    Permission.PERMISSION_READ_CONTACTS);
+        }
+    }
 
     Permission(MainActivity mainActivity) {
         super(mainActivity);
@@ -38,7 +78,7 @@ public class Permission extends Forwarder {
     }
 
     void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        if(grantResults.length == 0) {
+        if (grantResults.length == 0) {
             return;
         }
 
@@ -49,7 +89,7 @@ public class Permission extends Forwarder {
                 contactsProvider.reload();
             }
         } else if (requestCode == PERMISSION_CALL_PHONE) {
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Great! Start the intent we stored for later use.
                 KissApplication kissApplication = KissApplication.getApplication(mainActivity);
                 mainActivity.startActivity(pendingIntent);

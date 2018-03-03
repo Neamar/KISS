@@ -1,11 +1,8 @@
 package fr.neamar.kiss.loader;
 
-import android.Manifest;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Log;
 
@@ -15,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
@@ -37,17 +33,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
 
         // Skip if we don't have permission to list contacts yet:(
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context.get().checkSelfPermission(Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // If we don't have permission to list contacts, ask for it.
-            MainActivity mainActivity = Permission.currentMainActivity.get();
-            if(mainActivity != null) {
-                mainActivity.requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS},
-                        Permission.PERMISSION_READ_CONTACTS);
-            }
-
-            // And in the meantime, just return nothing.
+        if(!Permission.checkContactPermission()) {
+            Permission.askContactPermission();
             return contacts;
         }
 
