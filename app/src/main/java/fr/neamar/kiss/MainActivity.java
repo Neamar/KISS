@@ -592,12 +592,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
-            isDisplayingKissBar = true;
             // Display the app list
             if(searchEditText.getText().length() != 0) {
                 searchEditText.setText("");
             }
             resetTask();
+
+            // Needs to be done after setting the text content to empty
+            isDisplayingKissBar = true;
 
             searchTask = new ApplicationsSearcher(MainActivity.this);
             searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
