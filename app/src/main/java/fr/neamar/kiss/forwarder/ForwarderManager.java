@@ -78,9 +78,9 @@ public class ForwarderManager extends Forwarder {
         widgetForwarder.onDataSetChanged();
     }
 
-    public void updateRecords(String query) {
-        favoritesForwarder.updateRecords(query);
-        experienceTweaks.updateRecords(query);
+    public void updateSearchRecords(String query) {
+        favoritesForwarder.updateSearchRecords(query);
+        experienceTweaks.updateSearchRecords(query);
     }
 
     public void onFavoriteChange() {
@@ -89,5 +89,9 @@ public class ForwarderManager extends Forwarder {
 
     public void onDisplayKissBar(Boolean display) {
         experienceTweaks.onDisplayKissBar(display);
+    }
+
+    public void afterListChange() {
+        favoritesForwarder.afterListChange();
     }
 }

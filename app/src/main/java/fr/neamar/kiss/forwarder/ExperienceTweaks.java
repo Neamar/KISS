@@ -135,7 +135,7 @@ class ExperienceTweaks extends Forwarder {
         }
     }
 
-    void updateRecords(String query) {
+    void updateSearchRecords(String query) {
         adjustInputType(query);
 
         if (query.isEmpty()) {
