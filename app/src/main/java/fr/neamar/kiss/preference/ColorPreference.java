@@ -71,7 +71,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         final View view = super.onCreateDialogView();
 
         // Configure the color picker
-        this.palette = (ColorPickerPalette) view.findViewById(R.id.colorPicker);
+        this.palette = view.findViewById(R.id.colorPicker);
         this.palette.init(ColorPickerDialog.SIZE_SMALL, 4, this);
 
         // Reconfigure color picker based on the available space
@@ -96,19 +96,19 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         });
 
         // Bind click events from the custom color values
-        Button button1 = (Button) view.findViewById(R.id.colorTransparentDark);
+        Button button1 = view.findViewById(R.id.colorTransparentDark);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ColorPreference.this.onColorSelected(0xAA000000);
             }
         });
-        Button button2 = (Button) view.findViewById(R.id.colorTransparentWhite);
+        Button button2 = view.findViewById(R.id.colorTransparentWhite);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ColorPreference.this.onColorSelected(0xAAFFFFFF);
             }
         });
-        Button button3 = (Button) view.findViewById(R.id.colorTransparent);
+        Button button3 = view.findViewById(R.id.colorTransparent);
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ColorPreference.this.onColorSelected(0x00000000);

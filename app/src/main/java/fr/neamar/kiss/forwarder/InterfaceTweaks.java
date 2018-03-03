@@ -111,9 +111,9 @@ class InterfaceTweaks extends Forwarder {
         int primaryColor = Color.parseColor(primaryColorOverride);
 
         // Launcher button should have the main color
-        ImageView launcherButton = (ImageView) mainActivity.findViewById(R.id.launcherButton);
+        ImageView launcherButton = mainActivity.findViewById(R.id.launcherButton);
         launcherButton.setColorFilter(primaryColor);
-        ProgressBar loaderBar = (ProgressBar) mainActivity.findViewById(R.id.loaderBar);
+        ProgressBar loaderBar = mainActivity.findViewById(R.id.loaderBar);
         loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background

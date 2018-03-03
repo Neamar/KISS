@@ -30,8 +30,8 @@ public class SearchResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_search);
 
-        TextView appName = (TextView) v.findViewById(R.id.item_search_text);
-        ImageView image = (ImageView) v.findViewById(R.id.item_search_icon);
+        TextView appName = v.findViewById(R.id.item_search_text);
+        ImageView image = v.findViewById(R.id.item_search_icon);
         if (searchPojo.direct) {
             String text = context.getString(R.string.ui_item_visit);
             appName.setText(enrichText(String.format(text, "{" + this.pojo.getName() + "}"), context));

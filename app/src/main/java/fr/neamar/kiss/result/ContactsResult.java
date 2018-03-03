@@ -49,18 +49,18 @@ public class ContactsResult extends Result {
             view = inflateFromId(context, R.layout.item_contact);
 
         // Contact name
-        TextView contactName = (TextView) view.findViewById(R.id.item_contact_name);
+        TextView contactName = view.findViewById(R.id.item_contact_name);
         contactName.setText(enrichText(contactPojo.displayName, context));
 
         // Contact phone
-        TextView contactPhone = (TextView) view.findViewById(R.id.item_contact_phone);
+        TextView contactPhone = view.findViewById(R.id.item_contact_phone);
         if (contactPojo.displayTags != null)
             contactPhone.setText(enrichText(contactPojo.displayTags + contactPojo.phone, context));
         else
             contactPhone.setText(contactPojo.phone);
 
         // Contact photo
-        ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) view
+        ImprovedQuickContactBadge contactIcon = view
                 .findViewById(R.id.item_contact_icon);
 
         if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
@@ -82,10 +82,10 @@ public class ContactsResult extends Result {
 
         int primaryColor = Color.parseColor(UIColors.getPrimaryColor(context));
         // Phone action
-        ImageButton phoneButton = (ImageButton) view.findViewById(R.id.item_contact_action_phone);
+        ImageButton phoneButton = view.findViewById(R.id.item_contact_action_phone);
         phoneButton.setColorFilter(primaryColor);
         // Message action
-        ImageButton messageButton = (ImageButton) view.findViewById(R.id.item_contact_action_message);
+        ImageButton messageButton = view.findViewById(R.id.item_contact_action_message);
         messageButton.setColorFilter(primaryColor);
 
         PackageManager pm = context.getPackageManager();

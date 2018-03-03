@@ -175,12 +175,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Set the view and store all useful components
          */
         setContentView(R.layout.main);
-        this.list = (AnimatedListView) this.findViewById(android.R.id.list);
+        this.list = this.findViewById(android.R.id.list);
         this.listContainer = (View) this.list.getParent();
         this.emptyListView = this.findViewById(android.R.id.empty);
         this.kissBar = findViewById(R.id.mainKissbar);
         this.menuButton = findViewById(R.id.menuButton);
-        this.searchEditText = (SearchEditText) findViewById(R.id.searchEditText);
+        this.searchEditText = findViewById(R.id.searchEditText);
 
         /*
          * Initialize components behavior
@@ -564,7 +564,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     private void displayKissBar(boolean display, boolean clearSearchText) {
-        final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
+        final ImageView launcherButton = findViewById(R.id.launcherButton);
 
         // get the center for the clipping circle
         int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;

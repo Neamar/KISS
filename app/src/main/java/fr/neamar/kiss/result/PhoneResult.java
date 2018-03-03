@@ -32,7 +32,7 @@ public class PhoneResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_phone);
 
-        TextView appName = (TextView) v.findViewById(R.id.item_phone_text);
+        TextView appName = v.findViewById(R.id.item_phone_text);
         String text = context.getString(R.string.ui_item_phone);
         appName.setText(enrichText(String.format(text, "{" + phonePojo.phone + "}"), context));
 
