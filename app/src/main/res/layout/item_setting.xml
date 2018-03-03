@@ -27,9 +27,24 @@
         tools:src="@android:drawable/ic_menu_manage" />
 
     <TextView
+        android:id="@+id/item_setting_prefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/settings_prefix"
+        android:shadowColor="?attr/resultShadowColor"
+        android:shadowRadius="3"
+        android:shadowDx="1"
+        android:shadowDy="2"
+        android:textColor="?android:attr/textColorSecondary" />
+
+    <TextView
         android:id="@+id/item_setting_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:text="@string/stub_setting"
         android:textColor="?attr/resultColor"
         android:shadowColor="?attr/resultShadowColor"
