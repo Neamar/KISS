@@ -119,7 +119,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         onView(allOf(withId(R.id.item_app_name), withText("Settings"))).check(doesNotExist());
     }
 
-    
+
     // Searching for something, then displaying and hiding the search abr, should empty query
     public void testKissBarEmptiesSearch() {
         // Sanity check
