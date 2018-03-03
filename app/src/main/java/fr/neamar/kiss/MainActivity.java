@@ -639,8 +639,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     /**
-     * This function gets called on changes. It will ask all the providers for
-     * data
+     * This function gets called on query changes.
+     * It will ask all the providers for data
+     * This function is not called for non search-related changes! Have a look at onDataSetChanged() if that's what you're looking for :)
      *
      * @param query the query on which to search
      */
@@ -770,6 +771,5 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void afterListChange() {
         list.animateChange();
-        forwarderManager.afterListChange();
     }
 }
