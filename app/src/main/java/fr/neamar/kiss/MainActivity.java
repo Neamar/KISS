@@ -150,7 +150,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onReceive(Context context, Intent intent) {
                 //noinspection ConstantConditions
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
-                    updateRecords();
+                    updateSearchRecords();
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     Log.v(TAG, "All providers are done loading.");
 
@@ -247,7 +247,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     displayKissBar(false, false);
                 }
                 String text = s.toString();
-                updateRecords(text);
+                updateSearchRecords(text);
                 displayClearOnInput();
             }
         });
@@ -347,7 +347,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // We need to update the history in case an external event created new items
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
-        updateRecords();
+        updateSearchRecords();
 
         forwarderManager.onResume();
 
@@ -572,8 +572,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
-            searchEditText.setText("");
             // Display the app list
+            if(searchEditText.getText().length() != 0) {
+                searchEditText.setText("");
+            }
             resetTask();
 
             searchTask = new ApplicationsSearcher(MainActivity.this);
@@ -618,8 +620,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.onDisplayKissBar(display);
     }
 
-    public void updateRecords() {
-        updateRecords(searchEditText.getText().toString());
+    public void updateSearchRecords() {
+        updateSearchRecords(searchEditText.getText().toString());
     }
 
     /**
@@ -628,13 +630,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      *
      * @param query the query on which to search
      */
-    private void updateRecords(String query) {
+    private void updateSearchRecords(String query) {
         resetTask();
 
         if (mPopup != null)
             mPopup.dismiss();
 
-        forwarderManager.updateRecords(query);
+        forwarderManager.updateSearchRecords(query);
 
         if (query.isEmpty()) {
             systemUiVisibilityHelper.resetScroll();
@@ -742,17 +744,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         return kissBar.getVisibility() != View.VISIBLE;
     }
 
-    private boolean isViewingAllApps() {
+    public boolean isViewingAllApps() {
         return kissBar.getVisibility() == View.VISIBLE;
     }
 
     @Override
-    public void beforeChange() {
+    public void beforeListChange() {
         list.prepareChangeAnim();
     }
 
     @Override
-    public void afterChange() {
+    public void afterListChange() {
         list.animateChange();
+        forwarderManager.afterListChange();
     }
 }
