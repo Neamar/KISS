@@ -27,7 +27,6 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -105,6 +104,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * or the external favorites bar (default)
      */
     public View favoritesBar;
+    /**
+     * Progress bar displayed when loading
+     */
+    private View loaderSpinner;
+    /**
+     * Launcher button, can be clicked to display all apps
+     */
+    private View launcherButton;
+    /**
+     * "X" button to empty the search field
+     */
+    private View clearButton;
 
     /**
      * Task launched on text change
@@ -181,6 +192,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.kissBar = findViewById(R.id.mainKissbar);
         this.menuButton = findViewById(R.id.menuButton);
         this.searchEditText = findViewById(R.id.searchEditText);
+        this.loaderSpinner = findViewById(R.id.loaderBar);
+        this.launcherButton = findViewById(R.id.launcherButton);
+        this.clearButton = findViewById(R.id.clearButton);
 
         /*
          * Initialize components behavior
@@ -392,11 +406,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
         } else if (isViewingAllApps()) {
             displayKissBar(false);
-        } else if (!searchEditText.getText().toString().isEmpty()) {
+        } else {
             // If no kissmenu, empty the search bar
+            // (this will trigger a new event if the search bar was already empty)
+            // (which means pressing back in minimalistic mode with history displayed
+            // will hide history again)
             searchEditText.setText("");
         }
-        // No call to super.onBackPressed, since this would quit the launcher.
+        // No call to super.onBackPressed(), since this would quit the launcher.
     }
 
     @Override
@@ -513,7 +530,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     private void displayClearOnInput() {
-        final View clearButton = findViewById(R.id.clearButton);
         if (searchEditText.getText().length() > 0) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
@@ -524,13 +540,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public void displayLoader(Boolean display) {
-        final View loaderBar = findViewById(R.id.loaderBar);
-        final View launcherButton = findViewById(R.id.launcherButton);
-
         int animationDuration = getResources().getInteger(
                 android.R.integer.config_longAnimTime);
 
-        if (!display) {
+        // Do not display animation if launcher button is already visible
+        if (!display && launcherButton.getVisibility() == View.INVISIBLE) {
             launcherButton.setVisibility(View.VISIBLE);
 
             // Animate transition from loader to launch button
@@ -539,19 +553,19 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     .alpha(1f)
                     .setDuration(animationDuration)
                     .setListener(null);
-            loaderBar.animate()
+            loaderSpinner.animate()
                     .alpha(0f)
                     .setDuration(animationDuration)
                     .setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            loaderBar.setVisibility(View.GONE);
-                            loaderBar.setAlpha(1);
+                            loaderSpinner.setVisibility(View.GONE);
+                            loaderSpinner.setAlpha(1);
                         }
                     });
-        } else {
+        } else if(display) {
             launcherButton.setVisibility(View.INVISIBLE);
-            loaderBar.setVisibility(View.VISIBLE);
+            loaderSpinner.setVisibility(View.VISIBLE);
         }
     }
 
@@ -564,8 +578,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     private void displayKissBar(boolean display, boolean clearSearchText) {
-        final ImageView launcherButton = findViewById(R.id.launcherButton);
-
         // get the center for the clipping circle
         int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
         int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
@@ -627,8 +639,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     /**
-     * This function gets called on changes. It will ask all the providers for
-     * data
+     * This function gets called on query changes.
+     * It will ask all the providers for data
+     * This function is not called for non search-related changes! Have a look at onDataSetChanged() if that's what you're looking for :)
      *
      * @param query the query on which to search
      */
@@ -758,6 +771,5 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void afterListChange() {
         list.animateChange();
-        forwarderManager.afterListChange();
     }
 }

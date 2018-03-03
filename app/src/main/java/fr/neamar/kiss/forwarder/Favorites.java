@@ -121,7 +121,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
-    void afterListChange() {
+    void onDataSetChanged() {
         // Do not display the external bar when viewing all apps
         if(mainActivity.isViewingAllApps() && isExternalFavoriteBarEnabled()) {
             mainActivity.favoritesBar.setVisibility(View.GONE);
