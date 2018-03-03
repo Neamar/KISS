@@ -75,7 +75,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When entering a search query, favorite bar is hidden
 * [ ] When search query is removed, bar appears again
 * [ ] When coming back from an application launched through search, bar is displayed again
-* [ ] When kiss bar is opened, favorites are displayed
+* [ ] When kiss bar is opened, favorites bar is hidden
 * [ ] When kiss bar is opened, internal favorites bar is hidden
 * [ ] When kiss bar is opened, you can't click on the menu button behind the kiss bar (not even visible, doesn't respond to touch events either)
 * [ ] When searching and pressing home, query is cleared, and favorites are displayed
