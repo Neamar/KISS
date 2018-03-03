@@ -6,7 +6,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 ### Get started...
 * [ ] Loader appears when opening the app
-* [ ] Help text ("search apps, contacts, ...") appears while app is loading
+* [ ] Help text ("search apps, contacts, ...") appears while app are loading
 * [ ] After some time, loader disappears and is replaced by launcher icon
 * [ ] Touching the search field displays the keyboard
 * [ ] Searching for text displays results
@@ -75,7 +75,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When entering a search query, favorite bar is hidden
 * [ ] When search query is removed, bar appears again
 * [ ] When coming back from an application launched through search, bar is displayed again
-* [ ] When kiss bar is opened, favorites are displayed
+* [ ] When kiss bar is opened, favorites bar is hidden
 * [ ] When kiss bar is opened, internal favorites bar is hidden
 * [ ] When kiss bar is opened, you can't click on the menu button behind the kiss bar (not even visible, doesn't respond to touch events either)
 * [ ] When searching and pressing home, query is cleared, and favorites are displayed
