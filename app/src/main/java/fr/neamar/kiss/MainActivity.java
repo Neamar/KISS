@@ -408,9 +408,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             displayKissBar(false);
         } else {
             // If no kissmenu, empty the search bar
+            // (this will trigger a new event if the search bar was already empty)
+            // (which means pressing back in minimalistic mode with history displayed
+            // will hide history again)
             searchEditText.setText("");
         }
-        // No call to super.onBackPressed, since this would quit the launcher.
+        // No call to super.onBackPressed(), since this would quit the launcher.
     }
 
     @Override
@@ -540,7 +543,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int animationDuration = getResources().getInteger(
                 android.R.integer.config_longAnimTime);
 
-        // Do not display animation is launcher button is already visible
+        // Do not display animation if launcher button is already visible
         if (!display && launcherButton.getVisibility() == View.INVISIBLE) {
             launcherButton.setVisibility(View.VISIBLE);
 

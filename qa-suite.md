@@ -157,6 +157,8 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When using minimalistic mode and pressing the search bar, history is not displayed
 * [ ] When using minimalistic mode and pressing anywhere else, history is not displayed
 * [ ] When using minimalistic mode with history-touch and pressing anywhere else (outside of a widget), history is displayed
+* [ ] When using minimalistic mode with history-touch, display history then press back, history is hidden
+* [ ] When using minimalistic mode with history-touch, display history then press home, history is hidden
 * [ ] When scrolling down on the history, the keyboard disappears
 * [ ] Disable show keyboard on start
 * [ ] When using immersive mode for the notification bar, notification bar disappears when pressing home
@@ -197,13 +199,11 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 ### Providers settings
 * [ ] Search for a contact. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a device setting. Make sure it is displayed as a result and appended to history on click
-* [ ] Search for a toggle. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a phone number. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a shortcut (you'll probably need to create one from an app first, for instance, WhatsApp). Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a long text. Make sure a web search option is displayed as a result
 * [ ] From Providers selection, disable Contacts. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Device settings. From now on, they are not displayed anymore in search or history
-* [ ] From Providers selection, disable Toggles. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Phone numbers. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Shortcuts. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Web Search. From now on, they are not displayed anymore in search
