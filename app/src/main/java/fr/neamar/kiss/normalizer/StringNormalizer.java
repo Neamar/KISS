@@ -90,18 +90,21 @@ public class StringNormalizer {
             i += Character.charCount(codepoint);
         }
 
-        return new Result(codePoints.toArray(), resultMap.toArray());
+        return new Result(input.length(), codePoints.toArray(), resultMap.toArray());
     }
 
     public static class Result implements Comparable {
+        private final int originalInputLastCharPosition;
         public final int[] codePoints;
-        public final int[] mapPosition;
+        private final int[] mapPositions;
 
-        Result(int[] codePoints, int[] mapPosition) {
-            if (codePoints.length != mapPosition.length)
+        Result(final int originalInputLastCharPosition,
+               final int[] codePoints, final int[] mapPositions) {
+            if (codePoints.length != mapPositions.length)
                 throw new IllegalStateException("Each codepoint needs a mapped position");
+            this.originalInputLastCharPosition = originalInputLastCharPosition;
             this.codePoints = codePoints;
-            this.mapPosition = mapPosition;
+            this.mapPositions = mapPositions;
         }
 
         public int length() {
@@ -113,6 +116,19 @@ public class StringNormalizer {
                 if (codePoints[i] == whatToSearch)
                     codePoints[i] = withWhatToReplace;
             return this;
+        }
+
+        /**
+         * Map a position in the normalized string to a position in the original string
+         *
+         * @param position Position in normalized string
+         * @return Position in non-normalized string
+         */
+        public int mapPosition(int position) {
+            if (position < mapPositions.length)
+                return mapPositions[position];
+            // We are behind the last character, return the position of the end of the original input
+            return originalInputLastCharPosition;
         }
 
         @Override

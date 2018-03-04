@@ -1,5 +1,8 @@
 package fr.neamar.kiss.pojo;
 
+import android.util.Pair;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -37,8 +40,8 @@ public class PojoWithTags extends Pojo {
             if ((endPos == matchPositions.get(i))) {
                 endPos += 1;
             } else {
-                int mappedStartPos = mapTagsPosition(startPos);
-                int mappedEndPos = mapTagsPosition(endPos);
+                int mappedStartPos = normalizedTags.mapPosition(startPos);
+                int mappedEndPos = normalizedTags.mapPosition(endPos);
                 sb.append(this.tags.substring(lastInsert, mappedStartPos))
                         .append("{")
                         .append(this.tags.substring(mappedStartPos, mappedEndPos))
@@ -48,8 +51,8 @@ public class PojoWithTags extends Pojo {
                 endPos = startPos + 1;
             }
         }
-        int mappedStartPos = mapTagsPosition(startPos);
-        int mappedEndPos = mapTagsPosition(endPos);
+        int mappedStartPos = normalizedTags.mapPosition(startPos);
+        int mappedEndPos = normalizedTags.mapPosition(endPos);
         sb.append(this.tags.substring(lastInsert, mappedStartPos))
                 .append("{")
                 .append(this.tags.substring(mappedStartPos, mappedEndPos))
@@ -58,17 +61,4 @@ public class PojoWithTags extends Pojo {
         sb.append(this.tags.substring(lastInsert));
         this.displayTags = sb.toString();
     }
-
-    /**
-     * Map a position in the normalized tags string to a position in the standard tags string
-     *
-     * @param position Position in normalized tags string
-     * @return Position in standard tags string
-     */
-    private int mapTagsPosition(int position) {
-        if (position < normalizedTags.mapPosition.length)
-            return normalizedTags.mapPosition[position];
-        return tags.length();
-    }
-
 }
