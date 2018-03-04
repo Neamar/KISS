@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
@@ -44,8 +45,10 @@ public class ShortcutsResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_shortcut);
 
-        TextView appName = v.findViewById(R.id.item_app_name);
-        appName.setText(enrichText(shortcutPojo.displayName, context));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        TextView shortcutName = v.findViewById(R.id.item_app_name);
+        shortcutName.setText(enrichText(shortcutPojo.getName(), shortcutPojo.nameMatchPositions, context));
 
         TextView tagsView = v.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them and the query doesn't match tags
@@ -54,7 +57,7 @@ public class ShortcutsResult extends Result {
             tagsView.setVisibility(View.GONE);
         } else {
             tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(enrichText(shortcutPojo.displayTags, context));
+            tagsView.setText(oldEnrichText(shortcutPojo.displayTags, context));
         }
 
         final ImageView shortcutIcon = v.findViewById(R.id.item_shortcut_icon);

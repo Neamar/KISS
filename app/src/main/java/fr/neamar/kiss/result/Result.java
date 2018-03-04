@@ -9,8 +9,12 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,7 +23,7 @@ import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
-import java.text.NumberFormat;
+import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -93,7 +97,7 @@ public abstract class Result {
      * @param text to highlight
      * @return text displayable on a textview
      */
-    static Spanned enrichText(String text, Context context) {
+    static Spanned oldEnrichText(String text, Context context) {
         //TODO: cache the result. We consume lots of CPU and RAM converting every time we display
         return Html.fromHtml(
                 text
@@ -101,6 +105,29 @@ public abstract class Result {
                         .replaceAll("\\}", "</font>")
         );
     }
+
+    /**
+     * Enrich text for display.
+     *
+     *
+     * @param text Text to highlight
+     * @param positions List of matched positions
+     * @param context Application context
+     * @return Spannable displayable on a TextView
+     */
+    static Spanned enrichText(String text, List<Pair<Integer, Integer>> positions, Context context) {
+        SpannableString enriched = new SpannableString(text);
+
+        int primaryColor = UIColors.getPrimaryColor(context);
+        for (Pair<Integer, Integer> position : positions) {
+            enriched.setSpan(
+                    new ForegroundColorSpan(primaryColor),
+                    position.first, position.second, Spannable.SPAN_INCLUSIVE_INCLUSIVE
+            );
+        }
+        return enriched;
+    }
+
 
     @Override
     public String toString() {

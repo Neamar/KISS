@@ -32,11 +32,11 @@ public class SettingsProvider extends Provider<SettingsPojo> {
             pojo.relevance = matchInfo.score;
 
             if (match) {
-                pojo.setDisplayNameHighlightRegion(matchInfo.getMatchedSequences());
+                pojo.setNameHighlight(matchInfo.getMatchedSequences());
             } else if (fuzzyScore.match(settingName, matchInfo)) {
                 match = true;
                 pojo.relevance = matchInfo.score;
-                pojo.setDisplayNameHighlightRegion(0, 0);
+                pojo.setNameHighlight(0, 0);
             }
 
             if (match) {

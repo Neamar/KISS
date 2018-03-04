@@ -146,9 +146,9 @@ public class AppProvider extends Provider<AppPojo> {
             if (match) {
                 List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
                 try {
-                    pojo.setDisplayNameHighlightRegion(positions);
+                    pojo.setNameHighlight(positions);
                 } catch (Exception e) {
-                    pojo.setDisplayNameHighlightRegion(0, pojo.normalizedName.length());
+                    pojo.setNameHighlight(0, pojo.normalizedName.length());
                 }
                 bDisplayNameSet = true;
             }
@@ -167,7 +167,7 @@ public class AppProvider extends Provider<AppPojo> {
 
             if (match) {
                 if (!bDisplayNameSet)
-                    pojo.displayName = pojo.getName();
+                    pojo.clearNameHighlight();
                 if (!bDisplayTagsSet)
                     pojo.displayTags = pojo.getTags();
                 if (!searcher.addResult(pojo))
@@ -186,8 +186,7 @@ public class AppProvider extends Provider<AppPojo> {
     public Pojo findById(String id) {
         for (Pojo pojo : pojos) {
             if (pojo.id.equals(id)) {
-                // Reset displayName to default value
-                pojo.displayName = pojo.getName();
+                pojo.clearNameHighlight();
                 if (pojo instanceof PojoWithTags) {
                     PojoWithTags tagsPojo = (PojoWithTags) pojo;
                     tagsPojo.displayTags = tagsPojo.getTags();
@@ -204,7 +203,7 @@ public class AppProvider extends Provider<AppPojo> {
         ArrayList<Pojo> records = new ArrayList<>(pojos.size());
 
         for (AppPojo pojo : pojos) {
-            pojo.displayName = pojo.getName();
+            pojo.clearNameHighlight();
             pojo.displayTags = pojo.getTags();
             pojo.relevance = 0;
             records.add(pojo);

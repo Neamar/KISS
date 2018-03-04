@@ -52,9 +52,8 @@ public class AppResult extends Result {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-
         TextView appName = view.findViewById(R.id.item_app_name);
-        appName.setText(enrichText(appPojo.displayName, context));
+        appName.setText(enrichText(appPojo.getName(), appPojo.nameMatchPositions, context));
 
         TextView tagsView = view.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
@@ -63,7 +62,7 @@ public class AppResult extends Result {
             tagsView.setVisibility(View.GONE);
         } else {
             tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(enrichText(appPojo.displayTags, context));
+            tagsView.setText(oldEnrichText(appPojo.displayTags, context));
         }
 
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
