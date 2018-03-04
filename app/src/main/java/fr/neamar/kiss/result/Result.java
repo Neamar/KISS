@@ -35,7 +35,6 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
@@ -54,7 +53,7 @@ public abstract class Result {
     }
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
-        if (pojo instanceof PojoWithTags && parent.showRelevance()) {
+        /*if (pojo instanceof PojoWithTags && parent.showRelevance()) {
             PojoWithTags tagsPojo = (PojoWithTags) pojo;
             int relevance = pojo.relevance - 1;
             if (tagsPojo.displayTags != null && tagsPojo.displayTags.length() > 2 && "(".equals(tagsPojo.displayTags.substring(0, 1))) {
@@ -72,7 +71,7 @@ public abstract class Result {
                 else
                     tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> " + tagsPojo.displayTags;
             }
-        }
+        }*/
 
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);

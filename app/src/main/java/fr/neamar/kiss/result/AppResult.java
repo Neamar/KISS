@@ -56,13 +56,13 @@ public class AppResult extends Result {
         appName.setText(enrichText(appPojo.getName(), appPojo.nameMatchPositions, context));
 
         TextView tagsView = view.findViewById(R.id.item_app_tag);
-        //Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
-        if (appPojo.displayTags.isEmpty() ||
-                (!prefs.getBoolean("tags-visible", true) && !appPojo.displayTags.contains("{"))) {
+        // Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
+        if (appPojo.getTags().isEmpty() ||
+                (!prefs.getBoolean("tags-visible", true) && !appPojo.tagsMatchPositions.isEmpty())) {
             tagsView.setVisibility(View.GONE);
         } else {
             tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(oldEnrichText(appPojo.displayTags, context));
+            tagsView.setText(enrichText(appPojo.getTags(), appPojo.tagsMatchPositions, context));
         }
 
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
@@ -177,7 +177,7 @@ public class AppResult extends Result {
                 app.setTags(tagInput.getText().toString());
                 KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
                 // TODO: update the displayTags with proper highlight
-                app.displayTags = app.getTags();
+                app.clearTagHighlight();
                 // Show toast message
                 String msg = context.getResources().getString(R.string.tags_confirmation_added);
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();

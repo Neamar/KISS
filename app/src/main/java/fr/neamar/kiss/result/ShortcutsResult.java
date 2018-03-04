@@ -52,12 +52,12 @@ public class ShortcutsResult extends Result {
 
         TextView tagsView = v.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them and the query doesn't match tags
-        if (shortcutPojo.displayTags.isEmpty() ||
-                ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (shortcutPojo.displayTags.equals(shortcutPojo.getTags())))) {
+        if (shortcutPojo.getTags().isEmpty() ||
+                (!prefs.getBoolean("tags-visible", true) && !shortcutPojo.tagsMatchPositions.isEmpty())) {
             tagsView.setVisibility(View.GONE);
         } else {
             tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(oldEnrichText(shortcutPojo.displayTags, context));
+            tagsView.setText(enrichText(shortcutPojo.getTags(), shortcutPojo.tagsMatchPositions, context));
         }
 
         final ImageView shortcutIcon = v.findViewById(R.id.item_shortcut_icon);
@@ -168,7 +168,7 @@ public class ShortcutsResult extends Result {
                 pojo.setTags(tagInput.getText().toString());
                 KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
                 // TODO: update the displayTags with proper highlight
-                pojo.displayTags = pojo.getTags();
+                pojo.clearTagHighlight();
                 // Show toast message
                 String msg = context.getResources().getString(R.string.tags_confirmation_added);
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();

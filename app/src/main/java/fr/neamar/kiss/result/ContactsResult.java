@@ -52,10 +52,7 @@ public class ContactsResult extends Result {
 
         // Contact phone
         TextView contactPhone = view.findViewById(R.id.item_contact_phone);
-        if (contactPojo.displayTags != null)
-            contactPhone.setText(oldEnrichText(contactPojo.displayTags + contactPojo.phone, context));
-        else
-            contactPhone.setText(contactPojo.phone);
+        contactPhone.setText(contactPojo.phone);
 
         // Contact photo
         ImprovedQuickContactBadge contactIcon = view

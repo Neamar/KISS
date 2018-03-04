@@ -49,7 +49,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
                     if (!match || (matchInfo.score > pojo.relevance)) {
                         match = true;
                         pojo.relevance = matchInfo.score;
-                        pojo.setTagHighlight(matchInfo.matchedIndices);
+                        pojo.setTagHighlight(matchInfo.getMatchedSequences());
                         bDisplayTagsSet = true;
                     }
                 }
@@ -59,7 +59,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
                 if (!bDisplayNameSet)
                     pojo.clearNameHighlight();
                 if (!bDisplayTagsSet)
-                    pojo.displayTags = pojo.getTags();
+                    pojo.clearTagHighlight();
                 if (!searcher.addResult(pojo))
                     return;
             }
@@ -80,7 +80,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
                     pojo.clearNameHighlight();
                     if (pojo instanceof PojoWithTags) {
                         PojoWithTags tagsPojo = (PojoWithTags) pojo;
-                        tagsPojo.displayTags = tagsPojo.getTags();
+                        tagsPojo.clearTagHighlight();
                     }
                 }
                 return pojo;
