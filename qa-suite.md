@@ -176,12 +176,6 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] Clicking on the widget opens the widget app
 * [ ] Clicking outside of the widget with history-touch replace the widget with history
 
-#### Portrait / landscape
-* [ ] When portrait-locked, app can't pivot
-* [ ] When not locked, app can pivot
-* [ ] When not locked and searching, app can pivot and search remains
-* [ ] When not locked and viewing app list, app can pivot and app list remains available
-
 #### Apps
 * [ ] App list is displayed alphabetically when A-Z is selected in "App list sort order"
 * [ ] App list is displayed in reverse order when Z-A is selected in "App list sort order"
