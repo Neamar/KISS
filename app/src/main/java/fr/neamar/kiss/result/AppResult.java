@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -161,7 +162,7 @@ public class AppResult extends Result {
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
         // Create the tag dialog
-        final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
+        @SuppressLint("InflateParams") final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
         final MultiAutoCompleteTextView tagInput = v.findViewById(R.id.tag_input);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
