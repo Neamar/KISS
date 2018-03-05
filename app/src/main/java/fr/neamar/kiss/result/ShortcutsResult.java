@@ -151,7 +151,7 @@ public class ShortcutsResult extends Result {
 
         final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
         final MultiAutoCompleteTextView tagInput = v.findViewById(R.id.tag_input);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
         tagInput.setText(shortcutPojo.getTags());
