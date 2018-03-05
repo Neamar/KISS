@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import fr.neamar.kiss.pojo.ShortcutsPojo;
@@ -224,7 +225,7 @@ public class DBHelper {
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) { // remove from history
-            db.delete("history", "record = ?", new String[]{ShortcutsPojo.SCHEME + cursor.getString(0).toLowerCase()});
+            db.delete("history", "record = ?", new String[]{ShortcutsPojo.SCHEME + cursor.getString(0).toLowerCase(Locale.ROOT)});
             cursor.moveToNext();
         }
         cursor.close();
