@@ -33,8 +33,8 @@
         android:background="?attr/listBackgroundColor"
         android:elevation="2dp"
         android:visibility="gone"
-        tools:visibility="visible"
-        tools:ignore="UnusedAttribute">
+        tools:ignore="UnusedAttribute"
+        tools:visibility="visible">
 
         <fr.neamar.kiss.ui.AnimatedListView
             android:id="@android:id/list"
@@ -56,7 +56,7 @@
 
     </FrameLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/externalFavoriteBar"
         android:layout_width="match_parent"
         android:layout_height="58dp"
@@ -67,87 +67,82 @@
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
         android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         tools:ignore="UnusedAttribute">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/favorite0"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/appSelectableItemBackground"
+            android:contentDescription="@null"
+            android:padding="@dimen/favorite_padding"
+            android:tag="0"
+            tools:ignore="DuplicateIncludedIds"
+            tools:src="@drawable/ic_contact" />
 
-            <ImageView
-                android:id="@+id/favorite0"
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:padding="@dimen/favorite_padding"
-                android:tag="0"
-                tools:src="@drawable/ic_contact"
-                tools:ignore="DuplicateIncludedIds" />
+        <ImageView
+            android:id="@+id/favorite1"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/appSelectableItemBackground"
+            android:contentDescription="@null"
+            android:padding="@dimen/favorite_padding"
+            android:tag="1"
+            tools:ignore="DuplicateIncludedIds"
+            tools:src="@drawable/ic_contact" />
 
-            <ImageView
-                android:id="@+id/favorite1"
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:padding="@dimen/favorite_padding"
-                android:tag="1"
-                tools:src="@drawable/ic_contact"
-                tools:ignore="DuplicateIncludedIds" />
+        <ImageView
+            android:id="@+id/favorite2"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/appSelectableItemBackground"
+            android:contentDescription="@null"
+            android:padding="@dimen/favorite_padding"
+            android:tag="2"
+            tools:ignore="DuplicateIncludedIds"
+            tools:src="@drawable/ic_contact" />
 
-            <ImageView
-                android:id="@+id/favorite2"
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:padding="@dimen/favorite_padding"
-                android:tag="2"
-                tools:src="@drawable/ic_contact"
-                tools:ignore="DuplicateIncludedIds" />
+        <ImageView
+            android:id="@+id/favorite3"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/appSelectableItemBackground"
+            android:contentDescription="@null"
+            android:padding="@dimen/favorite_padding"
+            android:tag="3"
+            tools:ignore="DuplicateIncludedIds"
+            tools:src="@drawable/ic_contact" />
 
-            <ImageView
-                android:id="@+id/favorite3"
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:padding="@dimen/favorite_padding"
-                android:tag="3"
-                tools:src="@drawable/ic_contact"
-                tools:ignore="DuplicateIncludedIds" />
+        <ImageView
+            android:id="@+id/favorite4"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/appSelectableItemBackground"
+            android:contentDescription="@null"
+            android:padding="@dimen/favorite_padding"
+            android:tag="4"
+            tools:ignore="DuplicateIncludedIds"
+            tools:src="@drawable/ic_contact" />
 
-            <ImageView
-                android:id="@+id/favorite4"
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:padding="@dimen/favorite_padding"
-                android:tag="4"
-                tools:src="@drawable/ic_contact"
-                tools:ignore="DuplicateIncludedIds" />
-
-            <ImageView
-                android:id="@+id/favorite5"
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/appSelectableItemBackground"
-                android:contentDescription="@null"
-                android:padding="@dimen/favorite_padding"
-                android:tag="5"
-                tools:src="@drawable/ic_contact"
-                tools:ignore="DuplicateIncludedIds" />
-        </LinearLayout>
-    </RelativeLayout>
+        <ImageView
+            android:id="@+id/favorite5"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/appSelectableItemBackground"
+            android:contentDescription="@null"
+            android:padding="@dimen/favorite_padding"
+            android:tag="5"
+            tools:ignore="DuplicateIncludedIds"
+            tools:src="@drawable/ic_contact" />
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/searchEditLayout"
