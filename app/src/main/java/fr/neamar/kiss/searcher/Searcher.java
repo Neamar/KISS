@@ -99,7 +99,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         displayActivityLoader();
     }
 
-    protected void displayActivityLoader() {
+    void displayActivityLoader() {
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
             return;

@@ -125,7 +125,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * SystemUiVisibility helper
      */
-    public SystemUiVisibilityHelper systemUiVisibilityHelper;
+    private SystemUiVisibilityHelper systemUiVisibilityHelper;
 
     /**
      * Is the KISS bar currently displayed?
@@ -583,7 +583,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.onFavoriteChange();
     }
 
-    public void displayKissBar(Boolean display) {
+    private void displayKissBar(Boolean display) {
         this.displayKissBar(display, true);
     }
 

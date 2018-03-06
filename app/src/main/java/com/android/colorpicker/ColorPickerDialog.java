@@ -113,12 +113,10 @@ public class ColorPickerDialog extends DialogFragment implements OnColorSelected
             showPaletteView();
         }
 
-        AlertDialog mAlertDialog = new AlertDialog.Builder(activity)
+        return new AlertDialog.Builder(activity)
                 .setTitle(mTitleResId)
                 .setView(view)
                 .create();
-
-        return mAlertDialog;
     }
 
     @Override
