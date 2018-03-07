@@ -42,6 +42,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -565,7 +566,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public static String convertStreamToString(InputStream is) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.defaultCharset()));
         StringBuilder sb = new StringBuilder();
 
         String line;
