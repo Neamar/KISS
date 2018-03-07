@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -26,6 +23,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.ui.RoundedQuickContactBadge;
 
 public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener {
     private static final String TAG = "FavoriteForwarder";
@@ -126,25 +124,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             Drawable drawable = result.getDrawable(mainActivity);
             if (drawable != null) {
                 if (result instanceof ContactsResult) {
-                    Bitmap originalIcon = drawableToBitmap(drawable);
-                    // Load the bitmap as a shader to the paint.
-                    final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                    final Shader shader = new BitmapShader(originalIcon, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-                    paint.setShader(shader);
-
-                    // Create a new image that will be used by the favorites ImageView
-                    Bitmap newIcon = Bitmap.createBitmap(originalIcon.getWidth(), originalIcon.getHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(newIcon);
-                    // Draw a circle with the required radius.
-                    final float halfWidth = canvas.getWidth() / 2;
-                    final float halfHeight = canvas.getHeight() / 2;
-                    final float radius = Math.max(halfWidth, halfHeight);
-                    canvas.drawCircle(halfWidth, halfHeight, radius, paint);
-
-                    image.setImageBitmap(newIcon);
-                } else {
-                    image.setImageDrawable(drawable);
+                    Bitmap iconBitmap = drawableToBitmap(drawable);
+                    drawable = new RoundedQuickContactBadge.RoundedDrawable(iconBitmap);
                 }
+                image.setImageDrawable(drawable);
             } else {
                 // Use a placeholder if no drawable found
                 image.setImageResource(R.drawable.ic_launcher_white);

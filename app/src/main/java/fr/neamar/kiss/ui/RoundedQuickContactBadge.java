@@ -42,14 +42,14 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         init(); //Set our initialization
     }
 
-    static class RoundedDrawable extends Drawable
+    public static class RoundedDrawable extends Drawable
     {
 
         private final Paint mPaint;
         private final BitmapShader mBitmapShader;
         private final RectF mRect;
 
-        RoundedDrawable(Bitmap bitmap) {
+        public RoundedDrawable(Bitmap bitmap) {
             mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
             mPaint = new Paint();
