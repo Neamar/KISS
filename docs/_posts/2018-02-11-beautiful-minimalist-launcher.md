@@ -72,4 +72,4 @@ From `⋮, KISS Settings, User experience`:
 
 * Minimalistic UI: enable
 
-Press `⋮`, then select "Add widget" and pick a widget you like!
+Press `⋮`, then select "Add widget" and [pick a widget you like](https://play.google.com/store/apps/details?id=com.apalon.weatherlive.free)!
