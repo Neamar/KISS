@@ -2,7 +2,6 @@ package fr.neamar.kiss.adapter;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +69,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
     @Override
     public long getItemId(int position) {
-        return results.get(position).getUniqueId();
+        return position >= results.size() ? 0 : results.get(position).getUniqueId();
     }
 
     @Override
