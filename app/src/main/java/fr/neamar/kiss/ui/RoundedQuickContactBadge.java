@@ -1,10 +1,20 @@
 package fr.neamar.kiss.ui;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Path.Direction;
+import android.graphics.ColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.QuickContactBadge;
 
@@ -16,11 +26,6 @@ import java.lang.reflect.Field;
  * @author kishu27 (http://linkd.in/1laN852)
  */
 public class RoundedQuickContactBadge extends QuickContactBadge {
-
-    /**
-     * This path is used to mask out the outer edges of a circle on this View
-     */
-    private Path clipPath;
 
     public RoundedQuickContactBadge(Context context) {
         super(context);
@@ -35,6 +40,55 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
     public RoundedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(); //Set our initialization
+    }
+
+    static class RoundedDrawable extends Drawable
+    {
+
+        private final Paint mPaint;
+        private final BitmapShader mBitmapShader;
+        private final RectF mRect;
+
+        RoundedDrawable(Bitmap bitmap) {
+            mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+
+            mPaint = new Paint();
+            mPaint.setAntiAlias(true);
+            mPaint.setShader(mBitmapShader);
+            
+            mRect = new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        }
+
+        @Override
+        protected void onBoundsChange(Rect bounds) {
+            super.onBoundsChange(bounds);
+
+            Matrix m = new Matrix();
+            mBitmapShader.getLocalMatrix(m);
+            m.setScale(bounds.width() / mRect.width(), bounds.height() / mRect.height());
+            mRect.set(bounds);
+            mBitmapShader.setLocalMatrix(m);
+        }
+
+        @Override
+        public void draw(@NonNull Canvas canvas) {
+            canvas.drawRoundRect(mRect, mRect.width() * .5f, mRect.height() * .5f, mPaint);
+        }
+
+        @Override
+        public void setAlpha(int alpha) {
+            mPaint.setAlpha(alpha);
+        }
+
+        @Override
+        public void setColorFilter(@Nullable ColorFilter colorFilter) {
+            mPaint.setColorFilter(colorFilter);
+        }
+
+        @Override
+        public int getOpacity() {
+            return PixelFormat.TRANSLUCENT;
+        }
     }
 
     /**
@@ -57,35 +111,11 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldWidth, int oldHeight) {
-        super.onSizeChanged(w, h, oldWidth, oldHeight);
-
-		/*
-         * Create a new clip path. Anything outside this path will be clipped from this view and not drawn by onDraw method
-		 */
-        clipPath = new Path();
-
-
-        //Adding a circle. The circle will be positioned in the center using x = w/2 and y = w/2
-        //Circle will be limiting it's radius to the smaller one of height or width.
-        //Direction doesn't matter
-        clipPath.addCircle(w / 2, h / 2, w < h ? w / 2 : h / 2, Direction.CW);
-    }
-
-    @Override
-    protected void onDraw(@NonNull Canvas canvas) {
-
-        try {
-            //Erase everything out of our little circle in clipPath and hence create the real rounded QuickContactBadge
-            canvas.clipPath(clipPath);
-        } catch (UnsupportedOperationException e) {
-            // clipPath() not supported on this device
-            // (often a bug with hardware acceleration on API18)
-            // http://stackoverflow.com/questions/8895677/work-around-canvas-clippath-that-is-not-supported-in-android-any-more/8895894#8895894
-
+    public void setImageDrawable(@Nullable Drawable drawable) {
+        if ( drawable instanceof BitmapDrawable) {
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+            drawable = new RoundedDrawable(bitmap);
         }
-
-        //Do everything else that original badge does. Drawing of the overlay is also handled there
-        super.onDraw(canvas);
+        super.setImageDrawable(drawable);
     }
 }

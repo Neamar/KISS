@@ -7,8 +7,8 @@ android {
         applicationId 'fr.neamar.kiss'
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 112
-        versionName "3.0.1"
+        versionCode 115
+        versionName "3.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -27,7 +27,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    compile 'com.android.support:support-annotations:27.0.2'
+    compile 'com.android.support:support-annotations:27.1.0'
 }
 
 buildscript {

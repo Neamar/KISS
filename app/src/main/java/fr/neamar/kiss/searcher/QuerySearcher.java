@@ -28,7 +28,7 @@ public class QuerySearcher extends Searcher {
 
     public QuerySearcher(MainActivity activity, String query) {
         super(activity, query);
-        this.query = query;
+        this.query = query.trim();
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
 
     }
