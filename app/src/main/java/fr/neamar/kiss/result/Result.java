@@ -24,7 +24,7 @@ import java.text.NumberFormat;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UiTweaks;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -35,7 +35,6 @@ import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
-import fr.neamar.kiss.pojo.TogglesPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 
@@ -43,12 +42,12 @@ public abstract class Result {
     /**
      * Current information pojo
      */
+    @NonNull
     final Pojo pojo;
 
-    protected Result(@NonNull Pojo pojo) {
+    Result(@NonNull Pojo pojo) {
         this.pojo = pojo;
     }
-
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
         if (pojo instanceof PojoWithTags && parent.showRelevance()) {
@@ -79,8 +78,6 @@ public abstract class Result {
             return new SearchResult((SearchPojo) pojo);
         else if (pojo instanceof SettingsPojo)
             return new SettingsResult((SettingsPojo) pojo);
-        else if (pojo instanceof TogglesPojo)
-            return new TogglesResult((TogglesPojo) pojo);
         else if (pojo instanceof PhonePojo)
             return new PhoneResult((PhonePojo) pojo);
         else if (pojo instanceof ShortcutsPojo)
@@ -98,7 +95,7 @@ public abstract class Result {
      */
     static Spanned enrichText(String text, Context context) {
         //TODO: cache the result. We consume lots of CPU and RAM converting every time we display
-        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UiTweaks.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
+        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UIColors.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
     }
 
     @Override
@@ -147,7 +144,7 @@ public abstract class Result {
         return inflatePopupMenu(adapter, context);
     }
 
-    protected ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
+    ListPopup inflatePopupMenu(ArrayAdapter<ListPopup.Item> adapter, Context context) {
         ListPopup menu = new ListPopup(context);
         menu.setAdapter(adapter);
 
@@ -158,12 +155,14 @@ public abstract class Result {
         if (favApps.contains(this.pojo.id + ";")) {
             for (int i = 0; i < adapter.getCount(); i += 1) {
                 ListPopup.Item item = adapter.getItem(i);
+                assert item != null;
                 if (item.stringId == R.string.menu_favorites_add)
                     adapter.remove(item);
             }
         } else {
             for (int i = 0; i < adapter.getCount(); i += 1) {
                 ListPopup.Item item = adapter.getItem(i);
+                assert item != null;
                 if (item.stringId == R.string.menu_favorites_remove)
                     adapter.remove(item);
             }
@@ -192,20 +191,23 @@ public abstract class Result {
         }
 
         //Update Search to reflect favorite add, if the "exclude favorites" option is active
-        ((MainActivity) context).updateRecords();
+        MainActivity mainActivity = (MainActivity) context;
+        if(mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
+            mainActivity.updateSearchRecords();
+        }
 
         return false;
     }
 
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getDataHandler(context).addToFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().addToFavorites((MainActivity) context, app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getDataHandler(context).removeFromFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
@@ -286,7 +288,7 @@ public abstract class Result {
         }
     }
 
-    AsyncSetImage createAsyncSetImage(ImageView imageView) {
+    private AsyncSetImage createAsyncSetImage(ImageView imageView) {
         return new AsyncSetImage(imageView, this);
     }
 
@@ -300,6 +302,7 @@ public abstract class Result {
     View inflateFromId(Context context, int id) {
         LayoutInflater vi = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        assert vi != null;
         return vi.inflate(id, null);
     }
 
@@ -310,7 +313,7 @@ public abstract class Result {
      */
     void recordLaunch(Context context) {
         // Save in history
-        KissApplication.getDataHandler(context).addToHistory(pojo.id);
+        KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.id);
     }
 
     public void deleteRecord(Context context) {
@@ -321,7 +324,7 @@ public abstract class Result {
      * Get fill color from theme
      *
      */
-    public int getThemeFillColor(Context context) {
+    int getThemeFillColor(Context context) {
         int[] attrs = new int[]{R.attr.resultColor /* index 0 */};
         TypedArray ta = context.obtainStyledAttributes(attrs);
         int color = ta.getColor(0, Color.WHITE);
@@ -335,8 +338,8 @@ public abstract class Result {
     }
 
     static class AsyncSetImage extends AsyncTask<Void, Void, Drawable> {
-        final protected WeakReference<ImageView> imageViewWeakReference;
-        final protected WeakReference<Result> appResultWeakReference;
+        final WeakReference<ImageView> imageViewWeakReference;
+        final WeakReference<Result> appResultWeakReference;
 
         AsyncSetImage(ImageView image, Result result) {
             super();

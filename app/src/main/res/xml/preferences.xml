@@ -3,17 +3,13 @@
     android:title="@string/activity_setting">
     <PreferenceScreen
         android:key="history_category"
+        android:summary="@string/history_settings_summary"
         android:title="@string/title_history">
         <fr.neamar.kiss.preference.ResetPreference
             android:dialogMessage="@string/reset_warn"
             android:key="reset"
             android:order="10"
             android:title="@string/reset_name" />
-        <fr.neamar.kiss.preference.ResetFavoritesPreference
-            android:dialogMessage="@string/reset_favorites_warn"
-            android:key="reset"
-            android:order="11"
-            android:title="@string/reset_favorites_name" />
         <fr.neamar.kiss.preference.ResetExcludedAppsPreference
             android:dialogMessage="@string/reset_excluded_apps_warn"
             android:key="reset-excluded-apps"
@@ -25,11 +21,24 @@
             android:key="number-of-display-elements"
             android:order="45"
             android:textColor="?attr/searchColor"
-            android:title="@string/number_ofdisplay_items" />
+            android:title="@string/number_of_display_items" />
+        <ListPreference
+            android:defaultValue="recency"
+            android:entries="@array/historyModeEntries"
+            android:entryValues="@array/historyModeValues"
+            android:order="46"
+            android:key="history-mode"
+            android:summary="@string/history_mode_desc"
+            android:title="@string/history_mode_name" />
+        <fr.neamar.kiss.preference.FreezeHistorySwitch
+            android:defaultValue="false"
+            android:key="freeze-history"
+            android:order="47"
+            android:summary="@string/freeze_history_summary"
+            android:title="@string/freeze_history_name" />
         <PreferenceCategory
             android:order="50"
             android:title="@string/alternate_history_inputs">
-
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
                 android:key="enable-sms-history"
@@ -42,14 +51,30 @@
                 android:defaultValue="true"
                 android:key="enable-app-history"
                 android:title="@string/enable_app" />
-            <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="false"
-                android:key="exclude-favorites"
-                android:title="@string/exclude_favorites" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
+        android:key="history_favorites"
+        android:summary="@string/history_favorites_summary"
+        android:title="@string/title_favorites">
+        <fr.neamar.kiss.preference.ResetFavoritesPreference
+            android:dialogMessage="@string/reset_favorites_warn"
+            android:key="reset"
+            android:title="@string/reset_favorites_name" />
+        <fr.neamar.kiss.SwitchPreference
+            android:defaultValue="true"
+            android:key="enable-favorites-bar"
+            android:summaryOff="@string/enable_favorites_bar_summary_off"
+            android:summaryOn="@string/enable_favorites_bar_summary_on"
+            android:title="@string/enable_favorites_bar" />
+        <fr.neamar.kiss.SwitchPreference
+            android:defaultValue="false"
+            android:key="exclude-favorites"
+            android:title="@string/exclude_favorites" />
+    </PreferenceScreen>
+    <PreferenceScreen
         android:key="ui-holder"
+        android:summary="@string/user_interface_summary"
         android:title="@string/title_ui">
         <ListPreference
             android:defaultValue="light"
@@ -67,6 +92,31 @@
         <fr.neamar.kiss.preference.ColorPreference
             android:key="primary-color"
             android:title="@string/main_color" />
+        <PreferenceCategory android:title="@string/misc">
+            <fr.neamar.kiss.SwitchPreference
+                android:key="transparent-search"
+                android:title="@string/transparent_search_bar" />
+            <fr.neamar.kiss.SwitchPreference
+                android:key="transparent-favorites"
+                android:title="@string/transparent_favorites_bar" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="large-search-bar"
+                android:title="@string/large_search_bar" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-rounded-list"
+                android:title="Rounded list corners" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-rounded-bars"
+                android:title="Rounded bars corners" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="ux-holder"
+        android:summary="@string/user_experience_summary"
+        android:title="@string/title_ux">
         <PreferenceCategory android:title="@string/keyboard_options">
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
@@ -106,6 +156,10 @@
                 android:title="@string/pref_hide_statusbar" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="true"
+                android:key="force-portrait"
+                android:title="@string/portrait_title" />
             <ListPreference
                 android:defaultValue="invertedAlphabetical"
                 android:entries="@array/sortAppListEntries"
@@ -114,12 +168,17 @@
                 android:title="@string/order_apps_name" />
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="true"
-                android:key="enable-favorites-bar"
-                android:title="@string/enable_favorites_bar" />
+                android:key="tags-visible"
+                android:title="@string/tags_visible" />
             <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="true"
-                android:key="force-portrait"
-                android:title="@string/portrait_title" />
+                android:defaultValue="false"
+                android:key="icons-hide"
+                android:summary="@string/icons_hide_desc"
+                android:title="@string/icons_hide_main" />
+        </PreferenceCategory>
+        <PreferenceScreen
+            android:key="wallpaper-holder"
+            android:title="@string/title_wallpaper">
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="true"
                 android:key="lwp-touch"
@@ -134,30 +193,12 @@
                 android:key="wp-drag-animate"
                 android:summary="@string/wp_drag_animate_desc"
                 android:title="@string/wp_drag_animate" />
-            <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="true"
-                android:key="tags-visible"
-                android:title="@string/tags_visible" />
-            <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="false"
-                android:key="icons-hide"
-                android:summary="@string/icons_hide_desc"
-                android:title="@string/icons_hide_main" />
-
-            <fr.neamar.kiss.SwitchPreference
-                android:key="transparent-search"
-                android:title="@string/transparent_search_bar" />
-            <fr.neamar.kiss.SwitchPreference
-                android:key="transparent-favorites"
-                android:title="@string/transparent_favorites_bar" />
-            <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="false"
-                android:key="large-search-bar"
-                android:title="@string/large_search_bar" />
-        </PreferenceCategory>
+        </PreferenceScreen>
     </PreferenceScreen>
+
     <PreferenceScreen
         android:key="providers"
+        android:summary="@string/providers_summary"
         android:title="@string/title_providers">
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="true"
@@ -167,10 +208,6 @@
             android:defaultValue="true"
             android:key="enable-settings"
             android:title="@string/settings_name" />
-        <fr.neamar.kiss.SwitchPreference
-            android:defaultValue="true"
-            android:key="enable-toggles"
-            android:title="@string/toggles_name" />
         <fr.neamar.kiss.SwitchPreference
             android:defaultValue="true"
             android:key="enable-phone"
@@ -193,7 +230,6 @@
                 android:key="reset"
                 android:order="11"
                 android:title="@string/search_provider_reset" />
-
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen android:title="@string/title_advanced">
@@ -201,17 +237,6 @@
             android:dialogMessage="@string/default_launcher_warn"
             android:key="default-launcher"
             android:title="@string/default_launcher_title" />
-        <ListPreference
-            android:defaultValue="recency"
-            android:entries="@array/historyModeEntries"
-            android:entryValues="@array/historyModeValues"
-            android:key="history-mode"
-            android:summary="@string/history_mode_desc"
-            android:title="@string/history_mode_name" />
-        <fr.neamar.kiss.preference.FreezeHistorySwitch
-            android:defaultValue="false"
-            android:key="freeze-history"
-            android:title="@string/freeze_history_name" />
         <fr.neamar.kiss.preference.RootModeSwitch
             android:defaultValue="false"
             android:key="root-mode"
@@ -225,5 +250,5 @@
     </PreferenceScreen>
     <Preference
         android:key="rate-app"
-        android:title="@string/rate_the_app"></Preference>
+        android:title="@string/rate_the_app" />
 </PreferenceScreen>

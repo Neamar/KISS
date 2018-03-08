@@ -14,10 +14,10 @@ import android.view.animation.AccelerateInterpolator;
 public class KeyboardScrollHider implements View.OnTouchListener {
     private final static int THRESHOLD = 24;
 
-    private KeyboardHandler handler;
-    private BlockableListView list;
-    private View listParent;
-    private BottomPullEffectView pullEffect;
+    private final KeyboardHandler handler;
+    private final BlockableListView list;
+    private final View listParent;
+    private final BottomPullEffectView pullEffect;
     private int listHeightInitial = 0;
 
     private float offsetYStart = 0;
@@ -225,7 +225,6 @@ public class KeyboardScrollHider implements View.OnTouchListener {
 
     public interface KeyboardHandler {
         void showKeyboard();
-
         void hideKeyboard();
 
         void applyScrollSystemUi();

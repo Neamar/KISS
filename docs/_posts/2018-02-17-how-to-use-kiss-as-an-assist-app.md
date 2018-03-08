@@ -11,7 +11,9 @@ However, if you'd rather keep your default launcher and only use KISS for search
 
 ![Example assist app](/screenshots/assist-app.png)
 
-The way to achieve this differ slightly across Android versions, but the general gist is the same.
+> Please note that assist apps have a lot of privileges, and can theoretically read your screen. KISS doesn't use those features.
+
+The way to set KISS as the default assist app differs slightly across Android versions, but the general gist is the same.
 
 ### Android 8
 Open the system settings, then search for "assist app".
@@ -25,14 +27,19 @@ Click on the existing app ("Enhanced Google Services" in the screenshot), then s
 
 Go to `Settings > Apps > Cog > Assist & voice input > Assist app`
 
-
 Select KISS.
 
 ### Android 6
 
 Go to `Settings > Apps > Cog > Default Apps > Assist & voice input > Assist app`.
 
-Select KISS.
+![Settings](/screenshots/assist-app-settings-android-6-1.png)
+
+Click on the existing app ("None" in the screenshot), then select KISS.
+
+![Settings](/screenshots/assist-app-settings-android-6-2.png)
+
+Click on "Agree".
 
 ### Android 5
 

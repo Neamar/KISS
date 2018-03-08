@@ -13,7 +13,6 @@
     <string name="title_history">Options de l’historique</string>
     <string name="title_providers">Choisir les sources de données</string>
     <string name="menu_settings">Paramètres du périphérique</string>
-    <string name="no_favorites">Aucun favori pour l\'instant. Ajoutez-en en utilisant l\'appui long.</string>
 
     <string name="ui_empty_1">Recherchez… ce que vous voulez</string>
     <string name="ui_empty_1_sub">Applications, contacts, réglages…</string>
@@ -21,8 +20,6 @@
     <string name="ui_empty_2_sub">Pour un accès rapide</string>
     <string name="ui_empty_3">Accès rapide aux applis les plus utilisées</string>
     <string name="ui_empty_3_sub">KISS launcher apprend de vos habitudes</string>
-
-    <string name="toggles_name">Paramètres rapides (Wi-Fi, Bluetooth, …)</string>
 
     <string name="contacts_name">Contacts</string>
 
@@ -46,16 +43,11 @@
     <string name="alias_market">market,store,marché,centre applications</string>
     <string name="alias_messaging">appels, SMS, MMS, messagerie</string>
     <string name="settings_prefix">"Paramètres : "</string>
-    <string name="toggles_prefix">"Toggle : "</string>
     <string name="settings_connectivity">Connectivité</string>
     <string name="settings_battery">Batterie</string>
-    <string name="settings_applications">Apps</string>
+    <string name="settings_applications">Applications</string>
     <string name="settings_airplane">Mode avion</string>
     <string name="settings_device_info">Infos périphérique</string>
-    <string name="toggle_bluetooth">Bluetooth</string>
-    <string name="toggle_silent">Silencieux</string>
-    <string name="toggle_wifi">Wi-Fi</string>
-    <string name="toggle_data">Données mobiles</string>
     <string name="menu_wallpaper">Mettre à jour le papier peint</string>
     <string name="application_not_found">Impossible de lancer cette application.</string>
     <string name="history_erased">Historique supprimé.</string>
@@ -74,7 +66,6 @@
     <string name="root_mode_name">Mode superutilisateur</string>
     <string name="root_mode_error">Impossible d\'obtenir les privilèges superutilisateur.</string>
 
-    <string name="toggle_torch">Lampe torche</string>
     <string name="menu_app_hibernate">Mettre en veille</string>
 
     <string name="toast_hibernate_completed">%s a été hibernée, relancez-la pour la réveiller.</string>
@@ -82,10 +73,8 @@
     <string name="menu_phone_create">Créer un contact</string>
     <string name="order_apps_name">Ordre de tri de la liste d\'applications</string>
     <string name="portrait_title">Forcer le mode portrait</string>
-    <string name="toggle_sync">Synchronisation</string>
     <string name="history_hide_name">Interface minimaliste</string>
     <string name="history_hide_desc">Cacher l\'historique et l\'écran d\'introduction, activer les widgets</string>
-    <string name="toggle_autorotate">Rotation de l\'écran</string>
     <string name="shortcuts_name">Raccourcis</string>
     <string name="reset_warn">Voulez-vous vraiment supprimer votre historique ?</string>
     <string name="icons_hide_main">Masquer les icones des applications</string>
@@ -94,8 +83,6 @@
     <string name="enable_app">Afficher les applications récemment installés dans l\'historique</string>
     <string name="enable_phone">Afficher les appels entrants dans l\'historique</string>
     <string name="enable_sms">Afficher les SMS reçus dans l’historique</string>
-    <string name="toggles_on">%s activé</string>
-    <string name="toggles_off">%s désactivé</string>
 
     <string name="reset_excluded_apps_name">Réinitialiser la liste des applications masquées</string>
     <string name="reset_favorites_warn">Voulez-vous vraiment réinitialiser vos favoris ?</string>
@@ -138,7 +125,6 @@
     <string name="restart_warn">Voulez-vous vraiment redémarrer KISS ? Si KISS n’est pas votre accueil par défaut, l’appli va juste quitter.</string>
 
     <string name="items_title">%d objets</string>
-    <string name="app_will_restart">Vous avez changé des paramètres importants, l’application va redémarrer.</string>
     <string name="alternate_history_inputs">Autres entrées de l’historique</string>
     <string name="keyboard_options">Options du clavier</string>
     <string name="misc">Divers</string>
@@ -147,7 +133,7 @@
     <string name="settings_sound">Son et volume</string>
 
     <string name="color_picker_default_title" msgid="1248663997452044787">"Sélectionner une couleur"</string>
-    <string name="color_swatch_description" msgid="2883438431173736180">"Couleur <xliff:g id="COLOR_INDEX">%1$d</xliff:g>"</string>
+    <string name="color_swatch_description" msgid="2883438431173736180">Couleur <xliff:g example="14" id="color_index">%1$d</xliff:g></string>
     <string name="color_swatch_description_selected" msgid="5020921249944943124">Couleur <xliff:g example="14" id="color_index">%1$d</xliff:g> sélectionnée</string>
     <string name="ui_item_visit">Visiter “%1$s”</string>
     <string name="stub_app_tag">Exemple d\'étiquette</string>
@@ -171,38 +157,53 @@
 
     <string name="tags_add_title">Ajouter des étiquettes séparées par des espaces</string>
     <string name="tags_visible">Montrer les étiquettes de l\'application</string>
-    <string name="number_ofdisplay_items">Nombre maximum de résultats de recherche et d\'historique</string>
+    <string name="number_of_display_items">Nombre maximum de résultats de recherche et d\'historique</string>
 
     <string name="large_search_bar">Large champ de recherche</string>
     <string name="transparent_search_bar">Barre de recherche transparente</string>
     <string name="transparent_favorites_bar">Barre de favoris transparente</string>
 
-    <string name="menu_widget_add">(BETA) Ajouter widget</string>
-    <string name="menu_widget_remove">Enlever widget</string>
+    <string name="menu_widget_add">(BETA) Ajouter un widget</string>
+    <string name="menu_widget_remove">Enlever le widget</string>
 
     <string name="rate_the_app">Évaluez l\'application</string>
 
     <string name="search_providers_delete">Supprimer des moteurs de recherche</string>
     <string name="custom_search_provider">Ajouter moteur de recherche</string>
     <string name="search_provider_reset">Réinitialiser les moteurs de recherche</string>
-    <string name="search_provider_reset_desc">Souhaitez-vous réinitialiser la liste des moteurs de recherche?</string>
+    <string name="search_provider_reset_desc">Souhaitez-vous réinitialiser la liste des moteurs de recherche ?</string>
     <string name="search_provider_reset_done_desc">Les moteurs de recherche ont été réinitialisés</string>
     <string name="search_provider_name">Nom du moteur de recherche</string>
-    <string name="search_provider_added">Le moteur de recherche a été ajouté</string>
-    <string name="search_provider_deleted">Le moteur de recherche a été supprimé</string>
+    <string name="search_provider_added">Le moteur de recherche a été ajouté.</string>
+    <string name="search_provider_deleted">Le·s moteur·s de recherche a·ont été supprimé·s.</string>
     <string name="search_provider_error_char">Veuillez ne pas utiliser le caractère |</string>
     <string name="search_provider_error_placeholder">Veuillez utiliser {q} pour les requêtes</string>
     <string name="search_provider_error_url">Veuillez utiliser une URL valide</string>
     <string name="search_provider_error_exists">Un moteur de recherche porte déjà ce nom</string>
 
 
-    <string name="lwp_touch">Envoyer commandes tactiles au fond d\'écran</string>
-    <string name="lwp_drag">Simuler un glissement pour le fond d\'écran</string>
+    <string name="lwp_touch">Envoyer évènements tactiles au fond d\'écran</string>
+    <string name="lwp_drag">Simuler un glissement du fond d\'écran</string>
     <string name="lwp_drag_desc">Envoyer de multiples commandes tactiles</string>
     <string name="wp_drag_animate">Faire défiler le fond d\'écran</string>
-    <string name="wp_drag_animate_desc">Glisser pour changer le fond d\'écran</string>
+    <string name="wp_drag_animate_desc">Glisser horizontalement pour déplacer le fond d\'écran</string>
     <string name="pref_hide_navbar">Masquer la barre de navigation</string>
     <string name="pref_hide_navbar_desc">Masquer la barre de navigation et activer le mode immersif pour KitKat (4.4) et plus</string>
     <string name="pref_hide_statusbar">Masquer la barre d\'état</string>
-    <string name="pref_hide_statusbar_desc">Masquer la barre d\'état et activer le mode immersion pour KitKat (4.4) et plus</string>
+    <string name="pref_hide_statusbar_desc">Masquer la barre des notifications et activer le mode immersion pour KitKat (4.4) et suivant</string>
+<string name="history_settings_summary">Purger l\'historique, exclure des applications…</string>
+    <string name="user_interface_summary">Thèmes, transparence et couleurs</string>
+    <string name="providers_summary">Désactiver des fournisseurs, ajouter d\'autres moteurs de recherche…</string>
+    <string name="title_ux">Expérience utilisateur</string>
+    <string name="user_experience_summary">Interface minimaliste, préférences du clavier…</string>
+    <string name="title_favorites">Paramètres favoris</string>
+    <string name="history_favorites_summary">Réinitialiser vos favoris, enlever la barre des favoris…</string>
+    <string name="title_wallpaper">Interactions du fond d\'écran dynamique</string>
+    <string name="freeze_history_summary">Figer l\'historique tant que cette case est cochée</string>
+    <string name="enable_favorites_bar_summary_off">Seulement afficher les favoris lors de l\'appui sur l\'icône KISS</string>
+    <string name="enable_favorites_bar_summary_on">Afficher les favoris au dessus de la barre de recherche</string>
+    <string name="get_help">À l\'aide !</string>
+
+<string name="permission_denied">La permission a été refusée</string>
+
 </resources>

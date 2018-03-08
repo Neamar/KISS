@@ -12,37 +12,64 @@ Here are some example minimalist configurations from KISS.
 ![Image: Derk Wola](/screenshots/example-minimalist-1.png)
 > Image: Derk Wola
 
-From `⋮, KISS Settings, User Interface`:
+From `⋮, KISS Settings, User interface`:
 
 * Theme interface: select dark transparent theme
 * Notification bar color: select transparent
 * Primary color: select gray
+
+From `⋮, KISS Settings, User experience`:
+
 * Minimalistic UI: enable
 
 ## Example 2: minimalist, dark theme, transparent search bar
 ![Image: Benjamin Slade](/screenshots/example-minimalist-2.png)
 > Image: Benjamin Slade
 
-From `⋮, KISS Settings, User Interface`:
+From `⋮, KISS Settings, User interface`:
 
 * Theme interface: select transparent theme
 * Notification bar color: select transparent
 * Primary color: select teal
-* Minimalistic UI: disable
 * Transparent search bar: enable
 * Transparent favorites bar: enable
+
+From `⋮, KISS Settings, User experience`:
+
+* Minimalistic UI: disable
 * Show app tag: enable
-* Find an icon pack that you like!
+
+Finally, find an icon pack that you like!
 
 ## Example 3: minimalist-est
 ![Image: Muhammad Samir](/screenshots/example-minimalist-3.png)
 > Image: Muhammad Samir
 
-From `⋮, KISS Settings, User Interface`:
+From `⋮, KISS Settings, User interface`:
 
 * Theme interface: select transparent theme
 * Notification bar color: select transparent
 * Primary color: select dark gray
-* Minimalistic UI: enable
 * Transparent search bar: enable
+
+From `⋮, KISS Settings, User experience`:
+
 * Hide favorites bar: enable
+* Minimalistic UI: enable
+
+## Example 4: minimalist, widget, rounded
+![Image: Guillaume Besson](/screenshots/example-minimalist-4.png)
+> Image: Guillaume Besson
+
+From `⋮, KISS Settings, User interface`:
+
+* Notification bar color: select green
+* Transparent favorites bar: enable
+* Large search bar: enable
+* Rounded bars corners: enable
+
+From `⋮, KISS Settings, User experience`:
+
+* Minimalistic UI: enable
+
+Press `⋮`, then select "Add widget" and [pick a widget you like](https://play.google.com/store/apps/details?id=com.apalon.weatherlive.free)!

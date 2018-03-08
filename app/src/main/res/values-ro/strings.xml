@@ -13,7 +13,6 @@
     <string name="title_providers">Selecție furnizori</string>
     <string name="title_advanced">Setări avansate</string>
     <string name="menu_settings">Setări dispozitiv</string>
-    <string name="no_favorites">Fără favorite. Atinge lung pentru a adăuga.</string>
 
     <string name="ui_empty_1">Pornește căutarea</string>
     <string name="ui_empty_1_sub">Aplicații, contacte, setări…</string>
@@ -21,10 +20,6 @@
     <string name="ui_empty_2_sub">Pentru acces rapid</string>
     <string name="ui_empty_3">Acces rapid la aplicațiile folosite des</string>
     <string name="ui_empty_3_sub">Lansatorul KISS învață din obiceiurile tale</string>
-
-    <string name="toggles_name">Comutatoare (Wi-Fi, Bluetooth…)</string>
-    <string name="toggles_on">%s activat</string>
-    <string name="toggles_off">%s dezactivat</string>
 
     <string name="contacts_name">Contacte</string>
 
@@ -68,7 +63,6 @@
     <string name="alias_clock">ceas,alarma,timer,cronometru</string>
     <string name="alias_messaging">mesaj text,compune,SMS,MMS,mesagerie</string>
     <string name="settings_prefix">"Setări: "</string>
-    <string name="toggles_prefix">"Comutatori: "</string>
     <string name="settings_airplane">Mod avion</string>
     <string name="settings_device_info">Informații dispozitiv</string>
     <string name="settings_applications">Aplicații</string>
@@ -76,13 +70,6 @@
     <string name="settings_battery">Baterie</string>
     <string name="settings_nfc">NFC</string>
     <string name="settings_tethering">Partajare conexiune</string>
-    <string name="toggle_wifi">Wi-Fi</string>
-    <string name="toggle_bluetooth">Bluetooth</string>
-    <string name="toggle_silent">Silentios</string>
-    <string name="toggle_data">Date mobile</string>
-    <string name="toggle_torch">Lanternă</string>
-    <string name="toggle_sync">Sincronizare</string>
-    <string name="toggle_autorotate">Rotire automată</string>
     <string name="menu_wallpaper">Actualizare imagine fundal</string>
     <string name="application_not_found">Opa… nu am putut lansa acea aplicație.</string>
     <string name="history_erased">Istoric șters.</string>
@@ -137,7 +124,6 @@
     <string name="settings_accessibility">Accesibilitate</string>
     <string name="keyboard_workaround_name">Rezolvare sugestii tastatură</string>
     <string name="keyboard_workaround_desc">Previne tastaturile problematice (precum SwiftKey™) să mai arate sugestii</string>
-    <string name="app_will_restart">S-au schimbat setări importante, aplicația va reporni.</string>
     <string name="alternate_history_inputs">Surse alternative istoric</string>
     <string name="keyboard_options">Opțiuni tastatură</string>
     <string name="misc">Diverse</string>
@@ -165,9 +151,9 @@
 
 
     <string name="color_picker_default_title" msgid="1248663997452044787">"Selectați o culoare"</string>
-    <string name="color_swatch_description" msgid="2883438431173736180">"Culoarea <xliff:g id="COLOR_INDEX">%1$d</xliff:g>"</string>
-    <string name="color_swatch_description_selected" msgid="5020921249944943124">"Culoarea <xliff:g id="COLOR_INDEX">%1$d</xliff:g> este selectată"</string>
-    <string name="number_ofdisplay_items">Numărul maxim de rezultate în căutare și istoric</string>
+    <string name="color_swatch_description" msgid="2883438431173736180">Culoarea <xliff:g example="14" id="color_index">%1$d</xliff:g></string>
+    <string name="color_swatch_description_selected" msgid="5020921249944943124">Culoarea <xliff:g example="14" id="color_index">%1$d</xliff:g> este selectată</string>
+    <string name="number_of_display_items">Numărul maxim de rezultate în căutare și istoric</string>
 
     <string name="color_transparent_dark">Transparent întunecat</string>
     <string name="color_transparent_white">Transparent alb</string>
@@ -197,13 +183,29 @@
     <string name="search_provider_error_exists">Un furnizor cu acest nume există deja</string>
 
 
-    <string name="lwp_touch">Trimite atingerile către fundal</string>
-    <string name="lwp_drag">Emulează evenimentele ce afectează fundalul</string>
-    <string name="lwp_drag_desc">Trimite atingeri multiple</string>
+    <string name="lwp_touch">Trimite atingerile la fundal</string>
+    <string name="lwp_drag">Emulează evenimente ce afectează fundalul</string>
+    <string name="lwp_drag_desc">Trimite mai multe atingeri</string>
     <string name="wp_drag_animate">Derulează fundalul</string>
     <string name="wp_drag_animate_desc">Trage orizontal pentru a derula fundalul</string>
     <string name="pref_hide_navbar">"Ascunde bara de navigație "</string>
     <string name="pref_hide_navbar_desc">Ascunde bara de navigație și activează modul imersiv pentru KitKat (4.4) sau mai nou</string>
     <string name="pref_hide_statusbar">Ascunde bara de stare</string>
-    <string name="pref_hide_statusbar_desc">Ascunde bara de stare și activează modul imersiv pe KitKat (4.4) sau mai nou</string>
+    <string name="pref_hide_statusbar_desc">Ascunde bara de notificări și activează modul imersiv pe KitKat (4.4) sau mai nou</string>
+<string name="history_settings_summary">Resetează istoric, aplicații excluse, …</string>
+    <string name="user_interface_summary">Teme, transparență și culori</string>
+    <string name="providers_summary">Dezactivează furnizori, adaugă motoare de căutare personalizate, …</string>
+    <string name="title_ux">Interacțiune</string>
+    <string name="user_experience_summary">Interfață minimalistă, setări tastatură, …</string>
+    <string name="title_favorites">Setări favorite</string>
+    <string name="history_favorites_summary">Resetare favorite, eliminare bară favorite, …</string>
+    <string name="freeze_history_summary">Păstrează istoric cum e acum până la debifare</string>
+
+<string name="title_wallpaper">Interacțiuni cu fundaluri animate</string>
+    <string name="enable_favorites_bar_summary_off">Arată favoritele doar atunci când se apasă iconița KISS</string>
+    <string name="enable_favorites_bar_summary_on">Arată favoritele deasupra barei de căutare</string>
+    <string name="get_help">Cere ajutor!</string>
+
+<string name="permission_denied">Permisiune refuzată</string>
+
 </resources>

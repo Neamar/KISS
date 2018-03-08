@@ -6,6 +6,7 @@ import android.util.Pair;
 
 import java.util.List;
 
+import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -15,7 +16,7 @@ import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
 
-    private ContentObserver cObserver = new ContentObserver(null) {
+    private final ContentObserver cObserver = new ContentObserver(null) {
 
         @Override
         public void onChange(boolean selfChange) {
@@ -26,14 +27,17 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadContactsPojos(this));
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        //register content observer
-        getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+        // register content observer if we have permission
+        if(Permission.checkContactPermission()) {
+            getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+        }
     }
 
     @Override
@@ -88,6 +92,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             }
 
             if (match) {
+                pojo.relevance += Math.min(15, pojo.timesContacted);
+                if(pojo.starred) {
+                    pojo.relevance += 15;
+                }
+
                 if (!searcher.addResult(pojo))
                     return;
             }

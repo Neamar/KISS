@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" tools:ignore="MissingTranslation">
 
     <string name="app_name">KISS launcher</string>
     <string name="activity_setting">KISS settings</string>
@@ -10,12 +10,11 @@
     <string name="ui_item_contact_hint_message">Message</string>
     <string name="ui_item_contact_hint_call">Call</string>
 
-    <string name="title_ui">User Interface</string>
-    <string name="title_history">History Settings</string>
-    <string name="title_providers">Providers Selection</string>
-    <string name="title_advanced">Advanced Settings</string>
-    <string name="menu_settings">Device Settings</string>
-    <string name="no_favorites">No favorites yet. Add them through long click.</string>
+    <string name="title_ui">User interface</string>
+    <string name="title_history">History settings</string>
+    <string name="title_providers">Providers selection</string>
+    <string name="title_advanced">Advanced settings</string>
+    <string name="menu_settings">Device settings</string>
 
     <string name="ui_empty_1">Start searching for anything</string>
     <string name="ui_empty_1_sub">Apps, contacts, settings, …</string>
@@ -23,10 +22,6 @@
     <string name="ui_empty_2_sub">For fast access</string>
     <string name="ui_empty_3">Quick access to most used apps</string>
     <string name="ui_empty_3_sub">KISS launcher learns from your habits</string>
-
-    <string name="toggles_name">Toggles (Wi-Fi, Bluetooth, …)</string>
-    <string name="toggles_on">%s activated</string>
-    <string name="toggles_off">%s deactivated</string>
 
     <string name="contacts_name">Contacts</string>
 
@@ -42,7 +37,6 @@
     <string name="stub_contact" translatable="false">Contact name</string>
     <string name="stub_contact_phone" translatable="false">+1 330 1234 5678</string>
     <string name="stub_setting" translatable="false">Setting name</string>
-    <string name="stub_toggle" translatable="false">Setting to toggle</string>
     <string name="stub_phone" translatable="false">Call +1 330 1234 5678</string>
     <string name="stub_app_tag">Tag example</string>
     <string name="main_menu">Menu</string>
@@ -107,7 +101,6 @@
     <string name="alias_clock">clock,alarm,timer,stopwatch</string>
     <string name="alias_messaging">text message,compose,SMS,MMS,messaging</string>
     <string name="settings_prefix">"Setting: "</string>
-    <string name="toggles_prefix">"Toggle: "</string>
     <string name="settings_airplane">Airplane mode</string>
     <string name="settings_device_info">Device info</string>
     <string name="settings_applications">Apps</string>
@@ -120,13 +113,6 @@
     <string name="settings_accessibility">Accessibility</string>
     <string name="settings_sound">Sound and volume</string>
     <string name="settings_display">Display</string>
-    <string name="toggle_wifi">Wi-Fi</string>
-    <string name="toggle_bluetooth">Bluetooth</string>
-    <string name="toggle_silent">Silent</string>
-    <string name="toggle_data">Network data</string>
-    <string name="toggle_torch">Torch</string>
-    <string name="toggle_sync">Synchronization</string>
-    <string name="toggle_autorotate">Autorotate</string>
     <string name="menu_wallpaper">Update wallpaper</string>
     <string name="application_not_found">Whoops… unable to launch that app.</string>
     <string name="history_erased">History erased.</string>
@@ -165,7 +151,7 @@
     <string name="pref_hide_navbar">Hide navbar</string>
     <string name="pref_hide_navbar_desc">Hide navigation bar and enable immersive mode for KitKat (4.4) and beyond</string>
     <string name="pref_hide_statusbar">Hide status bar</string>
-    <string name="pref_hide_statusbar_desc">Hide status bar and enable immersive mode for KitKat (4.4) and beyond</string>
+    <string name="pref_hide_statusbar_desc">Hide notification bar and enable immersive mode for KitKat (4.4) and beyond</string>
     <string name="shortcut_added">Shortcut added to KISS.</string>
 
     <string name="restart_desc">Fix theme issues and new contacts not displaying</string>
@@ -176,14 +162,13 @@
     <string name="default_launcher_warn">After selecting the Default Launcher, you\'ll be sent to its home screen. Are you sure you\'d like to proceed?\n\nNote: If you don\'t see the \"Always\" option, press the \"Home\" button after selecting your desired launcher.</string>
 
     <string name="items_title">%d items</string>
-    <string name="app_will_restart">You\'ve changed some important settings, the app will restart.</string>
     <string name="alternate_history_inputs">Alternate history inputs</string>
     <string name="keyboard_options">Keyboard options</string>
     <string name="misc">Misc</string>
     <string name="toast_favorites_removed">%s was removed from favorites</string>
     <string name="menu_favorites_remove">Remove favorite</string>
     <string name="share">Share to…</string>
-    <string name="number_ofdisplay_items">Max number of results in search and history</string>
+    <string name="number_of_display_items">Max number of results in search and history</string>
 
     <string name="main_color">Primary color</string>
     <string name="notification_bar_color">Notification bar color</string>
@@ -193,13 +178,12 @@
     <string name="color_transparent">Transparent</string>
 
 
-
     <!-- Default title for color picker dialog [CHAR LIMIT=30] -->
     <string name="color_picker_default_title">Select a Color</string>
     <!-- Content description for a color square. -->
-    <string name="color_swatch_description">Color <xliff:g id="color_index" example="14">%1$d</xliff:g></string>
+    <string name="color_swatch_description">Color <xliff:g example="14" id="color_index">%1$d</xliff:g></string>
     <!-- Content description for a selected color square. -->
-    <string name="color_swatch_description_selected">Color <xliff:g id="color_index" example="14">%1$d</xliff:g> selected</string>
+    <string name="color_swatch_description_selected">Color <xliff:g example="14" id="color_index">%1$d</xliff:g> selected</string>
 
     <string name="transparent_search_bar">Transparent search bar</string>
     <string name="transparent_favorites_bar">Transparent favorites bar</string>
@@ -209,5 +193,18 @@
     <string name="menu_widget_add">(BETA) Add widget</string>
     <string name="menu_widget_remove">Remove widget</string>
     <string name="rate_the_app">Rate the app</string>
+    <string name="history_settings_summary">Reset your history, exclude apps, …</string>
+    <string name="user_interface_summary">Themes, transparency and colors</string>
+    <string name="providers_summary">Disable providers, add custom search engines, …</string>
+    <string name="title_ux">User experience</string>
+    <string name="user_experience_summary">Minimalistic UI, keyboard settings, …</string>
+    <string name="title_favorites">Favorites settings</string>
+    <string name="history_favorites_summary">Reset your favorites, remove favorites bar, …</string>
+    <string name="title_wallpaper">Live wallpaper interactions</string>
+    <string name="freeze_history_summary">Keep history as-is until unchecked</string>
+    <string name="enable_favorites_bar_summary_off">Only display favorites when pressing the KISS icon</string>
+    <string name="enable_favorites_bar_summary_on">Display favorites above the search bar</string>
+    <string name="get_help">Get help!</string>
+    <string name="permission_denied">Permission has been denied</string>
 
 </resources>

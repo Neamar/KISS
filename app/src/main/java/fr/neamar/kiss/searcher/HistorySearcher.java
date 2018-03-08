@@ -8,13 +8,14 @@ import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.forwarder.Favorites;
 import fr.neamar.kiss.pojo.Pojo;
 
 /**
  * Retrieve pojos from history
  */
 public class HistorySearcher extends Searcher {
-    private SharedPreferences prefs;
+    private final SharedPreferences prefs;
 
     public HistorySearcher(MainActivity activity) {
         super(activity, "<history>");
@@ -38,13 +39,13 @@ public class HistorySearcher extends Searcher {
         if (activity == null)
             return null;
 
-        //Gather favorites
+        // Gather favorites
         ArrayList<Pojo> favoritesPojo = new ArrayList<>(0);
         if (excludeFavorites) {
-            favoritesPojo = KissApplication.getDataHandler(activity).getFavorites(activity.tryToRetrieve);
+            favoritesPojo = KissApplication.getApplication(activity).getDataHandler().getFavorites(Favorites.TRY_TO_RETRIEVE);
         }
 
-        List<Pojo> pojos = KissApplication.getDataHandler(activity).getHistory(activity, getMaxResultCount(), smartHistory, favoritesPojo);
+        List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler().getHistory(activity, getMaxResultCount(), smartHistory, favoritesPojo);
 
         int size = pojos.size();
         for(int i = 0; i < size; i += 1) {

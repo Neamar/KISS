@@ -15,12 +15,12 @@ public class IncomingSmsHandler extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         // Only handle SMS received
-        if (!intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
+        if (!"android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
             return;
         }
 
         // Stop if contacts are not enabled
-        DataHandler dataHandler = KissApplication.getDataHandler(context);
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         ContactsProvider contactsProvider = dataHandler.getContactsProvider();
         if (contactsProvider == null) {
             // Contacts have been disabled from settings

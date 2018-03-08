@@ -17,7 +17,7 @@ import fr.neamar.kiss.pojo.SettingsPojo;
 public class SettingsResult extends Result {
     private final SettingsPojo settingPojo;
 
-    public SettingsResult(SettingsPojo settingPojo) {
+    SettingsResult(SettingsPojo settingPojo) {
         super(settingPojo);
         this.settingPojo = settingPojo;
     }
@@ -28,10 +28,10 @@ public class SettingsResult extends Result {
             v = inflateFromId(context, R.layout.item_setting);
 
         String settingPrefix = "<small><small>" + context.getString(R.string.settings_prefix) + "</small></small>";
-        TextView settingName = (TextView) v.findViewById(R.id.item_setting_name);
+        TextView settingName = v.findViewById(R.id.item_setting_name);
         settingName.setText(TextUtils.concat(Html.fromHtml(settingPrefix), enrichText(settingPojo.displayName, context)));
 
-        ImageView settingIcon = (ImageView) v.findViewById(R.id.item_setting_icon);
+        ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
         settingIcon.setImageDrawable(getDrawable(context));
         settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
 

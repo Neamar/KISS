@@ -22,7 +22,7 @@ public class ContactsPojo extends PojoWithTags {
     public Boolean starred = false;
 
     // Is this number a home (local) number ?
-    public Boolean homeNumber = false;
+    public final Boolean homeNumber = false;
 
     public String nickname = "";
 

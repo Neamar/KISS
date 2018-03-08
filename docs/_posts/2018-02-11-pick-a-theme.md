@@ -17,7 +17,7 @@ KISS comes with 6 pre-defined themes:
 
 Not all themes will work correctly with all wallpapers, make sure you pick a theme that you like, and that doesn't block legibility!
 
-To change your theme, click `⋮, KISS Settings, User Interface, Theme interface`.
+To change your theme, click `⋮, KISS Settings, User interface, Theme interface`.
 
 Below is a preview of the built-in themes.
 

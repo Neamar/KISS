@@ -12,6 +12,7 @@ public class SettingsProvider extends Provider<SettingsPojo> {
 
     @Override
     public void reload() {
+        super.reload();
         this.initialize(new LoadSettingsPojos(this));
 
         settingName = this.getString(R.string.settings_prefix).toLowerCase();

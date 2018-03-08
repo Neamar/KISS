@@ -55,8 +55,8 @@ public class FuzzyScore {
             patternChar[i] = pattern[i];
             patternLower[i] = Character.toLowerCase(pattern[i]);
         }
-        adjacency_bonus = 5;
-        separator_bonus = 10;
+        adjacency_bonus = 10;
+        separator_bonus = 5;
         camel_bonus = 10;
         leading_letter_penalty = -3;
         max_leading_letter_penalty = -9;
@@ -93,7 +93,7 @@ public class FuzzyScore {
      * @param text string converted to codepoints
      * @return true if each character in pattern is found sequentially within str
      */
-    public boolean match(int[] text) {
+    private boolean match(int[] text) {
         int patternIdx = 0;
         int strIdx = 0;
         int strLength = text.length;

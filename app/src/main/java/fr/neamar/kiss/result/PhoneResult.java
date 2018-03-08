@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -14,13 +15,14 @@ import android.widget.TextView;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.ui.ListPopup;
 
 public class PhoneResult extends Result {
     private final PhonePojo phonePojo;
 
-    public PhoneResult(PhonePojo phonePojo) {
+    PhoneResult(PhonePojo phonePojo) {
         super(phonePojo);
         this.phonePojo = phonePojo;
     }
@@ -30,7 +32,7 @@ public class PhoneResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_phone);
 
-        TextView appName = (TextView) v.findViewById(R.id.item_phone_text);
+        TextView appName = v.findViewById(R.id.item_phone_text);
         String text = context.getString(R.string.ui_item_phone);
         appName.setText(enrichText(String.format(text, "{" + phonePojo.phone + "}"), context));
 
@@ -72,6 +74,7 @@ public class PhoneResult extends Result {
         return super.popupMenuClickHandler(context, parent, stringId);
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public void doLaunch(Context context, View v) {
         Intent phone = new Intent(Intent.ACTION_CALL);
@@ -82,7 +85,10 @@ public class PhoneResult extends Result {
 
         phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        context.startActivity(phone);
+        // Make sure we have permission to call someone as this is considered a dangerous permission
+        if(Permission.ensureCallPhonePermission(phone)) {
+            context.startActivity(phone);
+        }
     }
 
     @Override

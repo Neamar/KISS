@@ -1,7 +1,7 @@
 ---
 title: How to add a widget?
 categories:
-  - widgets
+  - Widgets
 description: "Customize your KISS launcher with a widget on the home screen."
 type: Document
 ---
@@ -10,9 +10,9 @@ KISS only supports widget in `Minimalistic UI`.
 
 ## Enable `Minimalistic UI`
 
-From the settings, enable `Minimalistic UI` (`⋮, KISS Settings, User Interface, Enable minimalistic UI`).
+From the settings, enable `Minimalistic UI` (`⋮, KISS Settings, User experience`, enable `Minimalistic UI`).
 
-While you're there, you may want to enable some other settings in `Minimalistic UI` section to make sure you're happy with the end result;
+While you're there, you may want to enable some other settings in the `Minimalistic UI` section to make sure you're happy with the end result!
 
 Go back to KISS by pressing the Home button on your device.
 

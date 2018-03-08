@@ -5,13 +5,15 @@
     android:layout_height="@dimen/bar_height"
     android:background="@color/kiss_green"
     android:clipToPadding="false"
-    android:elevation="2dp">
+    android:elevation="2dp"
+    tools:ignore="UnusedAttribute">
 
     <ImageView
         android:id="@+id/whiteLauncherButton"
         android:layout_width="@dimen/launcher_button_width"
         android:layout_height="@dimen/bar_height"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/main_kiss_back"
         android:focusable="true"
@@ -22,9 +24,10 @@
         android:tag="hideMenu" />
 
     <LinearLayout
-        android:id="@+id/favoritesKissBar"
+        android:id="@+id/embeddedFavoritesBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bar_height"
+        android:layout_toEndOf="@+id/whiteLauncherButton"
         android:layout_toRightOf="@+id/whiteLauncherButton"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -36,7 +39,6 @@
             android:layout_weight="1"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@null"
-            android:onClick="onFavoriteButtonClicked"
             android:padding="@dimen/favorite_padding"
             android:tag="0"
             tools:src="@drawable/ic_contact" />
@@ -48,7 +50,6 @@
             android:layout_weight="1"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@null"
-            android:onClick="onFavoriteButtonClicked"
             android:padding="@dimen/favorite_padding"
             android:tag="1"
             tools:src="@drawable/ic_contact" />
@@ -60,7 +61,6 @@
             android:layout_weight="1"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@null"
-            android:onClick="onFavoriteButtonClicked"
             android:padding="@dimen/favorite_padding"
             android:tag="2"
             tools:src="@drawable/ic_contact" />
@@ -72,7 +72,6 @@
             android:layout_weight="1"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@null"
-            android:onClick="onFavoriteButtonClicked"
             android:padding="@dimen/favorite_padding"
             android:tag="3"
             tools:src="@drawable/ic_contact" />
@@ -84,7 +83,6 @@
             android:layout_weight="1"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@null"
-            android:onClick="onFavoriteButtonClicked"
             android:padding="@dimen/favorite_padding"
             android:tag="4"
             tools:src="@drawable/ic_contact" />
@@ -96,7 +94,6 @@
             android:layout_weight="1"
             android:background="?attr/appSelectableItemBackground"
             android:contentDescription="@null"
-            android:onClick="onFavoriteButtonClicked"
             android:padding="@dimen/favorite_padding"
             android:tag="5"
             tools:src="@drawable/ic_contact" />

@@ -17,7 +17,6 @@ import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.SearchResult;
 import fr.neamar.kiss.result.SettingsResult;
 import fr.neamar.kiss.result.ShortcutsResult;
-import fr.neamar.kiss.result.TogglesResult;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 
@@ -39,7 +38,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
     @Override
     public int getViewTypeCount() {
-        return 7;
+        return 6;
     }
 
     @Override
@@ -50,14 +49,12 @@ public class RecordAdapter extends ArrayAdapter<Result> {
             return 1;
         else if (results.get(position) instanceof ContactsResult)
             return 2;
-        else if (results.get(position) instanceof TogglesResult)
-            return 3;
         else if (results.get(position) instanceof SettingsResult)
-            return 4;
+            return 3;
         else if (results.get(position) instanceof PhoneResult)
-            return 5;
+            return 4;
         else if (results.get(position) instanceof ShortcutsResult)
-            return 6;
+            return 5;
         else
             return -1;
     }
@@ -69,6 +66,8 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
     @Override
     public long getItemId(int position) {
+        // In some situation, Android tries to display an item that does not exist (e.g. item 24 in a list containing 22 items)
+        // See https://github.com/Neamar/KISS/issues/890
         return position >= results.size() ? 0 : results.get(position).getUniqueId();
     }
 
@@ -118,7 +117,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                parent.launchOccurred(results.size() - position, result);
+                parent.launchOccurred();
             }
         }, KissApplication.TOUCH_DELAY * 3);
 

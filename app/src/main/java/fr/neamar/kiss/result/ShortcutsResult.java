@@ -28,7 +28,6 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.SpaceTokenizer;
@@ -36,7 +35,7 @@ import fr.neamar.kiss.utils.SpaceTokenizer;
 public class ShortcutsResult extends Result {
     private final ShortcutsPojo shortcutPojo;
 
-    public ShortcutsResult(ShortcutsPojo shortcutPojo) {
+    ShortcutsResult(ShortcutsPojo shortcutPojo) {
         super(shortcutPojo);
         this.shortcutPojo = shortcutPojo;
     }
@@ -46,10 +45,10 @@ public class ShortcutsResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_shortcut);
 
-        TextView appName = (TextView) v.findViewById(R.id.item_app_name);
+        TextView appName = v.findViewById(R.id.item_app_name);
         appName.setText(enrichText(shortcutPojo.displayName, context));
 
-        TextView tagsView = (TextView) v.findViewById(R.id.item_app_tag);
+        TextView tagsView = v.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them and the query doesn't match tags
         if (shortcutPojo.displayTags.isEmpty() ||
                 ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (shortcutPojo.displayTags.equals(shortcutPojo.getTags())))) {
@@ -59,8 +58,8 @@ public class ShortcutsResult extends Result {
             tagsView.setText(enrichText(shortcutPojo.displayTags, context));
         }
 
-        final ImageView shortcutIcon = (ImageView) v.findViewById(R.id.item_shortcut_icon);
-        final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
+        final ImageView shortcutIcon = v.findViewById(R.id.item_shortcut_icon);
+        final ImageView appIcon = v.findViewById(R.id.item_app_icon);
 
         // Retrieve package icon for this shortcut
         final PackageManager packageManager = context.getPackageManager();
@@ -151,9 +150,9 @@ public class ShortcutsResult extends Result {
         // Create the tag dialog
 
         final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
-        final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
+        final MultiAutoCompleteTextView tagInput = v.findViewById(R.id.tag_input);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
-                android.R.layout.simple_dropdown_item_1line, KissApplication.getDataHandler(context).getTagsHandler().getAllTagsAsArray());
+                android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
         tagInput.setText(shortcutPojo.getTags());
 
@@ -166,7 +165,7 @@ public class ShortcutsResult extends Result {
                 dialog.dismiss();
                 // Refresh tags for given app
                 pojo.setTags(tagInput.getText().toString());
-                KissApplication.getDataHandler(context).getTagsHandler().setTags(pojo.id, pojo.getTags());
+                KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
                 // TODO: update the displayTags with proper highlight
                 pojo.displayTags = pojo.getTags();
                 // Show toast message
@@ -189,7 +188,7 @@ public class ShortcutsResult extends Result {
 
 
     private void launchUninstall(Context context, ShortcutsPojo shortcutPojo) {
-        DataHandler dh = KissApplication.getDataHandler(context);
+        DataHandler dh = KissApplication.getApplication(context).getDataHandler();
         if (dh != null) {
             dh.removeShortcut(shortcutPojo);
         }

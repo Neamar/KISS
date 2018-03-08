@@ -23,11 +23,11 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
-    private TagsHandler tagsHandler;
+    private final TagsHandler tagsHandler;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
-        tagsHandler = KissApplication.getDataHandler(context).getTagsHandler();
+        tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
     }
 
     @Override
@@ -35,13 +35,18 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         long start = System.nanoTime();
 
         ArrayList<AppPojo> apps = new ArrayList<>();
-        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("excluded-apps-list", context.getPackageName() + ";");
+
+        if(context.get() == null) {
+            return apps;
+        }
+
+        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context.get()).
+                getString("excluded-apps-list", context.get().getPackageName() + ";");
         List excludedApps = Arrays.asList(excludedAppList.split(";"));
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-            LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            UserManager manager = (UserManager) context.get().getSystemService(Context.USER_SERVICE);
+            LauncherApps launcher = (LauncherApps) context.get().getSystemService(Context.LAUNCHER_APPS_SERVICE);
 
             // Handle multi-profile support introduced in Android 5 (#542)
             for (android.os.UserHandle profile : manager.getUserProfiles()) {
@@ -70,7 +75,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 }
             }
         } else {
-            PackageManager manager = context.getPackageManager();
+            PackageManager manager = context.get().getPackageManager();
 
             Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);

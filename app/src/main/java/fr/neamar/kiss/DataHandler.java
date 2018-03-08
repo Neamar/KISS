@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -28,6 +29,7 @@ import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
+import fr.neamar.kiss.forwarder.Favorites;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
@@ -35,6 +37,8 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
+    final static private String TAG = "DataHandler";
+
     /**
      * Package the providers reside in
      */
@@ -43,13 +47,13 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "app", "contacts", "phone", "search", "settings", "shortcuts", "toggles"
+            "app", "contacts", "phone", "search", "settings", "shortcuts"
     );
-    private static TagsHandler tagsHandler;
+    private TagsHandler tagsHandler;
     final private Context context;
     private String currentQuery;
-    private Map<String, ProviderEntry> providers = new HashMap<>();
-    private boolean providersReady = false;
+    private final Map<String, ProviderEntry> providers = new HashMap<>();
+    public boolean allProvidersHaveLoaded = false;
 
     /**
      * Initialize all providers
@@ -98,7 +102,7 @@ public class DataHandler extends BroadcastReceiver
      * @param name The name of the provider
      * @return Android intent for this provider
      */
-    protected Intent providerName2Intent(String name) {
+    private Intent providerName2Intent(String name) {
         // Build expected fully-qualified provider class name
         StringBuilder className = new StringBuilder(50);
         className.append(PROVIDER_PREFIX);
@@ -120,11 +124,14 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
      */
-    protected void connectToProvider(final String name) {
+    private void connectToProvider(final String name) {
         // Do not continue if this provider has already been connected to
         if (this.providers.containsKey(name)) {
             return;
         }
+
+        Log.v(TAG, "Connecting to " + name);
+
 
         // Find provider class for the given service name
         Intent intent = this.providerName2Intent(name);
@@ -169,7 +176,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param name Data provider name (i.e.: `AppProvider` → `"app"`)
      */
-    protected void disconnectFromProvider(String name) {
+    private void disconnectFromProvider(String name) {
         // Skip already disconnected services
         ProviderEntry entry = this.providers.get(name);
         if (entry == null) {
@@ -191,7 +198,7 @@ public class DataHandler extends BroadcastReceiver
      * might be ready now
      */
     private void handleProviderLoaded() {
-        if (this.providersReady) {
+        if (this.allProvidersHaveLoaded) {
             return;
         }
 
@@ -202,39 +209,30 @@ public class DataHandler extends BroadcastReceiver
             }
         }
 
+        Log.v(TAG, "All providers are loaded.");
+        this.allProvidersHaveLoaded = true;
+
         // Broadcast the fact that the new providers list is ready
         try {
             this.context.unregisterReceiver(this);
             Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
             this.context.sendBroadcast(i);
         } catch (IllegalArgumentException e) {
-            // Nothing
+            e.printStackTrace();
         }
-
-        this.providersReady = true;
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        // A provider finished loading and contacted us
         this.handleProviderLoaded();
-    }
-
-    /**
-     * Reload all currently used data providers
-     */
-    public void reloadAll() {
-        for (ProviderEntry entry : this.providers.values()) {
-            if (entry.provider != null && entry.provider.isLoaded()) {
-                entry.provider.reload();
-            }
-        }
     }
 
     /**
      * Get records for this query.
      *
      * @param query    query to run
-     * @param searcher
+     * @param searcher the searcher currently running
      */
     public void requestResults(String query, Searcher searcher) {
         currentQuery = query;
@@ -432,7 +430,7 @@ public class DataHandler extends BroadcastReceiver
         return favorites;
     }
 
-    public boolean addToFavorites(MainActivity context, String id) {
+    public void addToFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
@@ -440,23 +438,21 @@ public class DataHandler extends BroadcastReceiver
         // Check if we are already a fav icon
         if (favApps.contains(id + ";")) {
             //shouldn't happen
-            return false;
+            return;
         }
 
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        if (favAppsList.size() >= context.getFavIconsSize()) {
+        if (favAppsList.size() >= Favorites.FAVORITES_COUNT) {
             favApps = favApps.substring(favApps.indexOf(";") + 1);
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps + id + ";").apply();
 
-        context.displayFavorites();
-
-        return true;
+        context.onFavoriteChange();
     }
 
-    public boolean removeFromFavorites(MainActivity context, String id) {
+    public void removeFromFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
@@ -464,15 +460,13 @@ public class DataHandler extends BroadcastReceiver
         // Check if we are not already a fav icon
         if (!favApps.contains(id + ";")) {
             //shouldn't happen
-            return false;
+            return;
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
 
-        context.displayFavorites();
-
-        return true;
+        context.onFavoriteChange();
     }
 
     public void removeFromFavorites(UserHandle user) {
@@ -487,7 +481,8 @@ public class DataHandler extends BroadcastReceiver
         StringBuilder favApps = new StringBuilder();
         for (String favAppID : favAppList) {
             if (!favAppID.startsWith("app://") || !user.hasStringUserSuffix(favAppID, '/')) {
-                favApps.append(favAppID + ";");
+                favApps.append(favAppID) ;
+                favApps.append(";");
             }
         }
 
@@ -531,7 +526,7 @@ public class DataHandler extends BroadcastReceiver
         tagsHandler = new TagsHandler(this.context);
     }
 
-    protected static final class ProviderEntry {
+    static final class ProviderEntry {
         public IProvider provider = null;
         public ServiceConnection connection = null;
     }

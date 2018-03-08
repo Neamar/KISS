@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,9 +21,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UiTweaks;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
@@ -33,7 +36,7 @@ public class ContactsResult extends Result {
     private final QueryInterface queryInterface;
     private Drawable icon = null;
 
-    public ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
+    ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
         super(contactPojo);
         this.contactPojo = contactPojo;
         this.queryInterface = queryInterface;
@@ -46,18 +49,18 @@ public class ContactsResult extends Result {
             view = inflateFromId(context, R.layout.item_contact);
 
         // Contact name
-        TextView contactName = (TextView) view.findViewById(R.id.item_contact_name);
+        TextView contactName = view.findViewById(R.id.item_contact_name);
         contactName.setText(enrichText(contactPojo.displayName, context));
 
         // Contact phone
-        TextView contactPhone = (TextView) view.findViewById(R.id.item_contact_phone);
+        TextView contactPhone = view.findViewById(R.id.item_contact_phone);
         if (contactPojo.displayTags != null)
             contactPhone.setText(enrichText(contactPojo.displayTags + contactPojo.phone, context));
         else
             contactPhone.setText(contactPojo.phone);
 
         // Contact photo
-        ImprovedQuickContactBadge contactIcon = (ImprovedQuickContactBadge) view
+        ImprovedQuickContactBadge contactIcon = view
                 .findViewById(R.id.item_contact_icon);
 
         if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
@@ -73,16 +76,16 @@ public class ContactsResult extends Result {
             @Override
             public void onClick(View v) {
                 recordLaunch(v.getContext());
-                queryInterface.launchOccurred(-1, ContactsResult.this);
+                queryInterface.launchOccurred();
             }
         });
 
-        int primaryColor = Color.parseColor(UiTweaks.getPrimaryColor(context));
+        int primaryColor = Color.parseColor(UIColors.getPrimaryColor(context));
         // Phone action
-        ImageButton phoneButton = (ImageButton) view.findViewById(R.id.item_contact_action_phone);
+        ImageButton phoneButton = view.findViewById(R.id.item_contact_action_phone);
         phoneButton.setColorFilter(primaryColor);
         // Message action
-        ImageButton messageButton = (ImageButton) view.findViewById(R.id.item_contact_action_message);
+        ImageButton messageButton = view.findViewById(R.id.item_contact_action_message);
         messageButton.setColorFilter(primaryColor);
 
         PackageManager pm = context.getPackageManager();
@@ -143,6 +146,7 @@ public class ContactsResult extends Result {
     private void copyPhone(Context context, ContactsPojo contactPojo) {
         android.content.ClipboardManager clipboard =
                 (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        assert clipboard != null;
         android.content.ClipData clip = android.content.ClipData.newPlainText(
                 "Phone number for " + contactPojo.displayName,
                 contactPojo.phone);
@@ -214,26 +218,34 @@ public class ContactsResult extends Result {
             @Override
             public void run() {
                 recordLaunch(context);
-                queryInterface.launchOccurred(-1, ContactsResult.this);
+                queryInterface.launchOccurred();
             }
         }, KissApplication.TOUCH_DELAY);
 
     }
 
+    @SuppressLint("MissingPermission")
     private void launchCall(final Context context) {
+        // Create the intent to start a phone call
         String url = "tel:" + Uri.encode(contactPojo.phone);
-        Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(url));
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
+        Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+        phoneIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                recordLaunch(context);
-                queryInterface.launchOccurred(-1, ContactsResult.this);
-            }
-        }, KissApplication.TOUCH_DELAY);
+        // Make sure we have permission to call someone as this is considered a dangerous permission
+       if(Permission.ensureCallPhonePermission(phoneIntent)) {
+           // Pre-android 23, or we already have permission
+           context.startActivity(phoneIntent);
 
+           // Register launch in the future
+           // (animation delay)
+           Handler handler = new Handler();
+           handler.postDelayed(new Runnable() {
+               @Override
+               public void run() {
+                   recordLaunch(context);
+                   queryInterface.launchOccurred();
+               }
+           }, KissApplication.TOUCH_DELAY);
+       }
     }
 }

@@ -16,6 +16,7 @@ import java.util.PriorityQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
@@ -25,21 +26,16 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     // define a different thread than the default AsyncTask thread or else we will block everything else that uses AsyncTask while we search
     public static final ExecutorService SEARCH_THREAD = Executors.newSingleThreadExecutor();
     static final int DEFAULT_MAX_RESULTS = 50;
-    static final int DEFAULT_REFRESH_TIMER = 150;
+    private static final int DEFAULT_REFRESH_TIMER = 150;
     final WeakReference<MainActivity> activityWeakReference;
     private final PriorityQueue<Pojo> processedPojos;
     private final RefreshTask refreshTask;
     // It's better to have a Handler than a Timer. Note that java.util.Timer (and TimerTask) will be deprecated in JDK 9
     private final Handler handler;
     private long start;
-    private String query;
+    private final String query;
     private int refreshCounter;
 
-    /**
-     * Constructor
-     *
-     * @param activity
-     */
     Searcher(MainActivity activity, String query) {
         super();
         this.query = query;
@@ -55,7 +51,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new PojoComparator());
     }
 
-    protected int getMaxResultCount() {
+    int getMaxResultCount() {
         return DEFAULT_MAX_RESULTS;
     }
 
@@ -99,11 +95,15 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         super.onPreExecute();
         start = System.currentTimeMillis();
 
+        this.handler.postDelayed(this.refreshTask, DEFAULT_REFRESH_TIMER);
+        displayActivityLoader();
+    }
+
+    protected void displayActivityLoader() {
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
             return;
 
-        this.handler.postDelayed(this.refreshTask, DEFAULT_REFRESH_TIMER);
         activity.displayLoader(true);
     }
 
@@ -113,12 +113,12 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         if (activity == null)
             return;
 
-        activity.beforeChange();
+        activity.beforeListChange();
 
         activity.adapter.clear();
         activity.adapter.addAll(results);
 
-        activity.afterChange();
+        activity.afterListChange();
     }
 
     @Override
@@ -129,7 +129,8 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         if (activity == null)
             return;
 
-        activity.displayLoader(false);
+        // Loader should still be displayed until all the providers have finished loading
+        activity.displayLoader(!KissApplication.getApplication(activity).getDataHandler().allProvidersHaveLoaded);
 
         if (this.processedPojos.isEmpty()) {
             activity.adapter.clear();
@@ -139,12 +140,12 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             while (queue.peek() != null) {
                 results.add(Result.fromPojo(activity, queue.poll()));
             }
-            activity.beforeChange();
+            activity.beforeListChange();
 
             activity.adapter.clear();
             activity.adapter.addAll(results);
 
-            activity.afterChange();
+            activity.afterListChange();
         }
 
         activity.resetTask();
@@ -154,15 +155,16 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     }
 
     public interface DataObserver {
-        void beforeChange();
+        void beforeListChange();
 
-        void afterChange();
+        void afterListChange();
     }
 
     static class RefreshTask implements Runnable {
         volatile int runCounter = 0;
 
         @Override
+        @SuppressWarnings("NonAtomicVolatileUpdate")
         public void run() {
             runCounter += 1;
         }
