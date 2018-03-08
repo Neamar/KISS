@@ -66,9 +66,9 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
     @Override
     public long getItemId(int position) {
-        // Ternary is in place for MainActivity test,
-        // because ActivityInstrumentationTestCase2 seems to use an invalid position for some records.
-        return position < results.size() ? results.get(position).getUniqueId() : position;
+        // In some situation, Android tries to display an item that does not exist (e.g. item 24 in a list containing 22 items)
+        // See https://github.com/Neamar/KISS/issues/890
+        return position >= results.size() ? 0 : results.get(position).getUniqueId();
     }
 
     @Override
