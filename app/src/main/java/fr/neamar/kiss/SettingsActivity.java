@@ -3,6 +3,7 @@ package fr.neamar.kiss;
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -39,7 +40,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     // Those settings require the app to restart
     final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars history-hide enable-favorites-bar notification-bar-color";
-    final static private String settingsRequiringRestartForSettingsActivity = "theme require-settings-update";
+    final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait require-settings-update";
     private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
@@ -59,6 +60,18 @@ public class SettingsActivity extends PreferenceActivity implements
             // and the sharedpreferencesListener only triggers on value change
             // so we ensure it doesn't have a value before we display the settings
             prefs.edit().remove("require-settings-update").apply();
+        }
+
+        // Lock launcher into portrait mode
+        // Do it here to make the transition as smooth as possible
+        if (prefs.getBoolean("force-portrait", true)) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
 
         super.onCreate(savedInstanceState);
