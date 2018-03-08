@@ -56,3 +56,20 @@ From `⋮, KISS Settings, User experience`:
 
 * Hide favorites bar: enable
 * Minimalistic UI: enable
+
+## Example 4: minimalist, widget, rounded
+![Image: Guillaume Besson](/screenshots/example-minimalist-4.png)
+> Image: Guillaume Besson
+
+From `⋮, KISS Settings, User interface`:
+
+* Notification bar color: select green
+* Transparent favorites bar: enable
+* Large search bar: enable
+* Rounded bars corners: enable
+
+From `⋮, KISS Settings, User experience`:
+
+* Minimalistic UI: enable
+
+Press `⋮`, then select "Add widget" and [pick a widget you like](https://play.google.com/store/apps/details?id=com.apalon.weatherlive.free)!

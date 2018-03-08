@@ -3,6 +3,12 @@ package fr.neamar.kiss.forwarder;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -17,6 +23,7 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
 
@@ -81,6 +88,28 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if (bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        Bitmap bitmap;
+        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            // Single color bitmap will be created of 1x1 pixel
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
     void onFavoriteChange() {
         int[] favoritesIds = FAV_IDS;
 
@@ -96,11 +125,29 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             Result result = Result.fromPojo(mainActivity, pojo);
             Drawable drawable = result.getDrawable(mainActivity);
             if (drawable != null) {
-                image.setImageDrawable(drawable);
+                if (result instanceof ContactsResult) {
+                    Bitmap originalIcon = drawableToBitmap(drawable);
+                    // Load the bitmap as a shader to the paint.
+                    final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                    final Shader shader = new BitmapShader(originalIcon, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+                    paint.setShader(shader);
+
+                    // Create a new image that will be used by the favorites ImageView
+                    Bitmap newIcon = Bitmap.createBitmap(originalIcon.getWidth(), originalIcon.getHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(newIcon);
+                    // Draw a circle with the required radius.
+                    final float halfWidth = canvas.getWidth() / 2;
+                    final float halfHeight = canvas.getHeight() / 2;
+                    final float radius = Math.max(halfWidth, halfHeight);
+                    canvas.drawCircle(halfWidth, halfHeight, radius, paint);
+
+                    image.setImageBitmap(newIcon);
+                } else {
+                    image.setImageDrawable(drawable);
+                }
             } else {
-                Log.w(TAG, "Falling back to default image for favorite.");
-                // Use the default contact image otherwise
-                image.setImageResource(R.drawable.ic_contact);
+                // Use a placeholder if no drawable found
+                image.setImageResource(R.drawable.ic_launcher_white);
             }
 
             image.setVisibility(View.VISIBLE);
