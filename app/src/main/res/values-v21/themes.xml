@@ -10,6 +10,7 @@
         </item>
         <item name="android:alertDialogTheme">@android:style/Theme.Material.Light.Dialog.Alert
         </item>
+        <item name="textShadowRadius">0</item>
     </style>
 
     <style name="BaseThemeDark" parent="@android:style/Theme.Material.NoActionBar">
@@ -19,6 +20,7 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="appSelectableItemBackground">?android:attr/selectableItemBackgroundBorderless
         </item>
+        <item name="textShadowRadius">0</item>
     </style>
 
     <style name="AppThemeTransparent" parent="AppThemeLight">
@@ -27,23 +29,27 @@
         <item name="listBackgroundColor">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator_transparent</item>
         <item name="android:colorPrimaryDark">@android:color/transparent</item>
+        <item name="textShadowRadius">3</item>
     </style>
 
     <style name="AppThemeSemiTransparent" parent="AppThemeLight">
         <item name="resultShadowColor">@color/kiss_background_light_transparent</item>
         <item name="listBackgroundColor">@color/kiss_background_light_transparent</item>
         <item name="android:colorPrimaryDark">@color/kiss_green_semitransparent</item>
+        <item name="textShadowRadius">3</item>
     </style>
 
     <style name="AppThemeSemiTransparentDark" parent="AppThemeDark">
         <item name="listBackgroundColor">@color/kiss_background_dark_transparent</item>
         <item name="android:colorPrimaryDark">@color/kiss_green_semitransparent</item>
+        <item name="textShadowRadius">3</item>
     </style>
 
     <style name="AppThemeTransparentDark" parent="AppThemeDark">
         <item name="listBackgroundColor">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator_transparent</item>
         <item name="android:colorPrimaryDark">@android:color/transparent</item>
+        <item name="textShadowRadius">3</item>
     </style>
 
     <style name="SettingTheme" parent="AppThemeLight">
