@@ -16,13 +16,11 @@
 
 package com.android.colorpicker;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -104,7 +102,7 @@ public class ColorPickerDialog extends DialogFragment implements OnColorSelected
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Activity activity = getActivity();
 
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(getActivity()).inflate(R.layout.color_picker_dialog, null);
+        View view = View.inflate(activity, R.layout.color_picker_dialog, null);
         mProgress = view.findViewById(android.R.id.progress);
         mPalette = view.findViewById(R.id.color_picker);
         mPalette.init(mSize, mColumns, this);
