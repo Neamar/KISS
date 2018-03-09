@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -161,7 +160,7 @@ public class AppResult extends Result {
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
         // Create the tag dialog
-        final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
+        final View v = View.inflate(context, R.layout.tags_dialog, null);
         final MultiAutoCompleteTextView tagInput = v.findViewById(R.id.tag_input);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());

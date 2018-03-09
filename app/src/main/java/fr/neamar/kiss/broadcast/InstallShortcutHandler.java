@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.net.URISyntaxException;
+import java.util.Locale;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
@@ -61,7 +62,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
 
         try {
             Intent intent = Intent.parseUri(pojo.intentUri, 0);
-            if (intent.getCategories() != null && intent.getCategories().contains(Intent.CATEGORY_LAUNCHER) && intent.getAction().equals(Intent.ACTION_MAIN)) {
+            if (intent.getCategories() != null && intent.getCategories().contains(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN.equals(intent.getAction())) {
                 // The Play Store has an option to create shortcut for new apps,
                 // However, KISS already displays all apps, so we discard the shortcut to avoid duplicates.
                 Log.d("onReceive", "Shortcut for launcher app, discarded.");
@@ -77,10 +78,10 @@ public class InstallShortcutHandler extends BroadcastReceiver {
         dh.addShortcut(pojo);
     }
 
-    public ShortcutsPojo createPojo(String name) {
+    private ShortcutsPojo createPojo(String name) {
         ShortcutsPojo pojo = new ShortcutsPojo();
 
-        pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase();
+        pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase(Locale.ROOT);
         pojo.setName(name);
 
         return pojo;

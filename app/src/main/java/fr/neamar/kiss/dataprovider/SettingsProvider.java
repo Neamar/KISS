@@ -1,5 +1,7 @@
 package fr.neamar.kiss.dataprovider;
 
+import java.util.Locale;
+
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadSettingsPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -15,7 +17,7 @@ public class SettingsProvider extends Provider<SettingsPojo> {
         super.reload();
         this.initialize(new LoadSettingsPojos(this));
 
-        settingName = this.getString(R.string.settings_prefix).toLowerCase();
+        settingName = this.getString(R.string.settings_prefix).toLowerCase(Locale.ROOT);
     }
 
     @Override

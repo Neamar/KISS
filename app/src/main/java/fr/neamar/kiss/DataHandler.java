@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import fr.neamar.kiss.dataprovider.AppProvider;
@@ -107,7 +108,7 @@ public class DataHandler extends BroadcastReceiver
         StringBuilder className = new StringBuilder(50);
         className.append(PROVIDER_PREFIX);
         className.append(Character.toUpperCase(name.charAt(0)));
-        className.append(name.substring(1).toLowerCase());
+        className.append(name.substring(1).toLowerCase(Locale.ROOT));
         className.append("Provider");
 
         // Try to create reflection class instance for class name

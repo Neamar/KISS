@@ -17,12 +17,12 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Ar
 
     LoadPojos(Context context, String pojoScheme) {
         super();
-        this.context = new WeakReference<Context>(context);
+        this.context = new WeakReference<>(context);
         this.pojoScheme = pojoScheme;
     }
 
     public void setProvider(Provider<T> provider) {
-        this.provider = new WeakReference<Provider<T>>(provider);
+        this.provider = new WeakReference<>(provider);
     }
 
     public String getPojoScheme() {

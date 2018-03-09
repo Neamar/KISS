@@ -35,8 +35,8 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public static final int PERMISSION_RECEIVE_SMS = 0;
-    public static final int PERMISSION_READ_PHONE_STATE = 1;
+    private static final int PERMISSION_RECEIVE_SMS = 0;
+    private static final int PERMISSION_READ_PHONE_STATE = 1;
 
     // Those settings require the app to restart
     final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars history-hide enable-favorites-bar notification-bar-color";
@@ -393,7 +393,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    protected void setListPreferenceIconsPacksData(ListPreference lp) {
+    private void setListPreferenceIconsPacksData(ListPreference lp) {
         IconsHandler iph = KissApplication.getApplication(this).getIconsHandler();
 
         CharSequence[] entries = new CharSequence[iph.getIconsPacks().size() + 1];
