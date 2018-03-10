@@ -42,8 +42,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         init(); //Set our initialization
     }
 
-    public static class RoundedDrawable extends Drawable
-    {
+    public static class RoundedDrawable extends Drawable {
 
         private final Paint mPaint;
         private final BitmapShader mBitmapShader;
@@ -55,7 +54,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
             mPaint = new Paint();
             mPaint.setAntiAlias(true);
             mPaint.setShader(mBitmapShader);
-            
+
             mRect = new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight());
         }
 
@@ -68,11 +67,18 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
             m.setScale(bounds.width() / mRect.width(), bounds.height() / mRect.height());
             mRect.set(bounds);
             mBitmapShader.setLocalMatrix(m);
+
+            float delta = (mRect.width() - mRect.height()) / 2;
+            if (delta > 0) {
+                mRect.left += delta;
+                mRect.right -= delta;
+            }
         }
 
         @Override
         public void draw(@NonNull Canvas canvas) {
-            canvas.drawRoundRect(mRect, mRect.width() * .5f, mRect.height() * .5f, mPaint);
+            float radius = mRect.height() * .5f;
+            canvas.drawRoundRect(mRect, radius, radius, mPaint);
         }
 
         @Override
@@ -89,6 +95,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         public int getOpacity() {
             return PixelFormat.TRANSLUCENT;
         }
+
     }
 
     /**
@@ -112,7 +119,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
 
     @Override
     public void setImageDrawable(@Nullable Drawable drawable) {
-        if ( drawable instanceof BitmapDrawable) {
+        if (drawable instanceof BitmapDrawable) {
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
             drawable = new RoundedDrawable(bitmap);
         }
