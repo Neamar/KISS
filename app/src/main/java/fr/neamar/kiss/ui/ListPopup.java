@@ -166,6 +166,12 @@ public class ListPopup extends PopupWindow {
                     .getString(stringId);
         }
 
+        public Item(Context context, String string) {
+            super();
+            this.stringId = 0;
+            this.string = string;
+        }
+
         @Override
         public String toString() {
             return this.string;

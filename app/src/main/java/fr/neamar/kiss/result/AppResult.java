@@ -88,8 +88,6 @@ public class AppResult extends Result {
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
 
-        ListPopup menu = inflatePopupMenu(adapter, context);
-
         try {
             // app installed under /system can't be uninstalled
             boolean isSameProfile = true;
@@ -116,7 +114,8 @@ public class AppResult extends Result {
         if (KissApplication.getApplication(context).getRootHandler().isRootActivated() && KissApplication.getApplication(context).getRootHandler().isRootAvailable()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_hibernate));
         }
-        return menu;
+
+        return inflatePopupMenu(adapter, context);
     }
 
     @Override

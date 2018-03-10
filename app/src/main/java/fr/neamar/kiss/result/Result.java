@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -53,26 +55,6 @@ public abstract class Result {
     }
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
-        /*if (pojo instanceof PojoWithTags && parent.showRelevance()) {
-            PojoWithTags tagsPojo = (PojoWithTags) pojo;
-            int relevance = pojo.relevance - 1;
-            if (tagsPojo.displayTags != null && tagsPojo.displayTags.length() > 2 && "(".equals(tagsPojo.displayTags.substring(0, 1))) {
-                try {
-                    relevance = NumberFormat.getIntegerInstance()
-                            .parse(tagsPojo.displayTags.substring(1))
-                            .intValue();
-                } catch (Exception ignore) {
-                }
-            }
-            if (relevance != pojo.relevance) {
-                String tags = tagsPojo.getTags();
-                if (tags == null || tags.isEmpty())
-                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> ";
-                else
-                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> " + tagsPojo.displayTags;
-            }
-        }*/
-
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
         else if (pojo instanceof ContactsPojo)
@@ -196,6 +178,11 @@ public abstract class Result {
                 if (item.stringId == R.string.menu_favorites_remove)
                     adapter.remove(item);
             }
+        }
+
+        if (BuildConfig.DEBUG) {
+            int relevance = pojo.relevance - 1;
+            adapter.add(new ListPopup.Item(context, "Relevance: " + relevance));
         }
 
         return menu;
