@@ -74,10 +74,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                     if (!match || (matchInfo.score > pojo.relevance)) {
                         match = true;
                         pojo.relevance = matchInfo.score;
-                        //pojo.displayName = pojo.getName()
-                        //        + " <small>({"
-                        //        + pojo.nickname
-                        //        + "})</small>";
+                        pojo.setNameHighlight(0, 0);
                     }
                 }
             }

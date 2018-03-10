@@ -54,6 +54,16 @@ public class ContactsResult extends Result {
         TextView contactPhone = view.findViewById(R.id.item_contact_phone);
         contactPhone.setText(contactPojo.phone);
 
+        // Contact nickname
+        TextView contactNickname = view.findViewById(R.id.item_contact_nickname);
+        if (!contactPojo.nickname.isEmpty()) {
+            contactNickname.setVisibility(View.VISIBLE);
+            contactNickname.setText(contactPojo.nickname);
+        }
+        else {
+            contactNickname.setVisibility(View.GONE);
+        }
+
         // Contact photo
         ImprovedQuickContactBadge contactIcon = view
                 .findViewById(R.id.item_contact_icon);
