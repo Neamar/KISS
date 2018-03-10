@@ -23,6 +23,7 @@
         <item name="listBackgroundColor">@android:color/white</item>
         <item name="searchBackgroundColor">@android:color/white</item>
         <item name="dividerDrawable">@drawable/list_separator_light</item>
+        <item name="textShadowRadius">0</item>
     </style>
 
     <style name="AppThemeDark" parent="BaseThemeDark">
@@ -37,6 +38,7 @@
         <item name="listBackgroundColor">@color/kiss_list_background_inverse</item>
         <item name="searchBackgroundColor">@color/kiss_list_background_inverse</item>
         <item name="dividerDrawable">@drawable/list_separator_dark</item>
+        <item name="textShadowRadius">0</item>
     </style>
 
     <style name="AppThemeTransparent" parent="AppThemeLight">
@@ -44,20 +46,24 @@
         <item name="resultShadowColor">@android:color/black</item>
         <item name="listBackgroundColor">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator_transparent</item>
+        <item name="textShadowRadius">3</item>
     </style>
 
     <style name="AppThemeSemiTransparent" parent="AppThemeLight">
         <item name="resultShadowColor">@color/kiss_background_light_transparent</item>
         <item name="listBackgroundColor">@color/kiss_background_light_transparent</item>
+        <item name="textShadowRadius">3</item>
     </style>
 
     <style name="AppThemeSemiTransparentDark" parent="AppThemeDark">
         <item name="listBackgroundColor">@color/kiss_background_dark_transparent</item>
+        <item name="textShadowRadius">3</item>
     </style>
 
     <style name="AppThemeTransparentDark" parent="AppThemeDark">
         <item name="listBackgroundColor">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator_transparent</item>
+        <item name="textShadowRadius">3</item>
     </style>
 
     <style name="SettingTheme" parent="AppThemeLight">
