@@ -71,16 +71,18 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
             // Scale bitmap to display within specified bounds
             int minScale = Math.min(bounds.width(), bounds.height());
             m.setScale(minScale / mBitmapRect.width(), minScale / mBitmapRect.height());
+            if (bounds.width() > bounds.height()) {
+                m.postTranslate((bounds.width() - bounds.height()) / 2f, 0f);
+            }
             mBitmapShader.setLocalMatrix(m);
-            
+
             mDisplayBounds.set(bounds);
         }
 
         @Override
         public void draw(@NonNull Canvas canvas) {
             float radius = mDisplayBounds.height() / 2;
-            canvas.drawCircle(radius, radius, radius, mPaint);
-            // canvas.drawRoundRect(mBitmapRect, radius, radius, mPaint);
+            canvas.drawCircle(mDisplayBounds.centerX(), mDisplayBounds.centerY(), radius, mPaint);
         }
 
         @Override
