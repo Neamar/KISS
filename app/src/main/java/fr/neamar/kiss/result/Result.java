@@ -74,13 +74,12 @@ public abstract class Result {
     /**
      * Enrich text for display.
      *
-     *
      * @param text Text to highlight
      * @param positions List of matched positions
      * @param context Application context
      * @return Spannable displayable on a TextView
      */
-    static Spanned enrichText(String text, List<Pair<Integer, Integer>> positions, Context context) {
+    Spanned enrichText(String text, List<Pair<Integer, Integer>> positions, Context context) {
         SpannableString enriched = new SpannableString(text);
 
         for (Pair<Integer, Integer> position : positions) {
@@ -164,8 +163,7 @@ public abstract class Result {
         }
 
         if (BuildConfig.DEBUG) {
-            int relevance = pojo.relevance - 1;
-            adapter.add(new ListPopup.Item("Relevance: " + relevance));
+            adapter.add(new ListPopup.Item("Relevance: " + pojo.relevance));
         }
 
         return menu;
