@@ -46,7 +46,8 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
 
         private final Paint mPaint;
         private final BitmapShader mBitmapShader;
-        private final RectF mRect;
+        private final RectF mBitmapRect;
+        private RectF mDisplayBounds;
 
         public RoundedDrawable(Bitmap bitmap) {
             mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -55,7 +56,9 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
             mPaint.setAntiAlias(true);
             mPaint.setShader(mBitmapShader);
 
-            mRect = new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight());
+            mBitmapRect = new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight());
+            mDisplayBounds = new RectF();
+            mDisplayBounds.set(mBitmapRect);
         }
 
         @Override
@@ -64,21 +67,20 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
 
             Matrix m = new Matrix();
             mBitmapShader.getLocalMatrix(m);
-            m.setScale(bounds.width() / mRect.width(), bounds.height() / mRect.height());
-            mRect.set(bounds);
-            mBitmapShader.setLocalMatrix(m);
 
-            float delta = (mRect.width() - mRect.height()) / 2;
-            if (delta > 0) {
-                mRect.left += delta;
-                mRect.right -= delta;
-            }
+            // Scale bitmap to display within specified bounds
+            int minScale = Math.min(bounds.width(), bounds.height());
+            m.setScale(minScale / mBitmapRect.width(), minScale / mBitmapRect.height());
+            mBitmapShader.setLocalMatrix(m);
+            
+            mDisplayBounds.set(bounds);
         }
 
         @Override
         public void draw(@NonNull Canvas canvas) {
-            float radius = mRect.height() * .5f;
-            canvas.drawRoundRect(mRect, radius, radius, mPaint);
+            float radius = mDisplayBounds.height() / 2;
+            canvas.drawCircle(radius, radius, radius, mPaint);
+            // canvas.drawRoundRect(mBitmapRect, radius, radius, mPaint);
         }
 
         @Override
