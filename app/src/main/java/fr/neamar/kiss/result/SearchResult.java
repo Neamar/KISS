@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Collections;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -32,15 +35,25 @@ public class SearchResult extends Result {
 
         TextView appName = v.findViewById(R.id.item_search_text);
         ImageView image = v.findViewById(R.id.item_search_icon);
+
+        String text;
+        int pos;
+        int len;
+
         if (searchPojo.direct) {
-            String text = context.getString(R.string.ui_item_visit);
-            appName.setText(oldEnrichText(String.format(text, "{" + this.pojo.getName() + "}"), context));
+            text = String.format(context.getString(R.string.ui_item_visit), this.pojo.getName());
+            pos = text.indexOf(this.pojo.getName());
+            len = this.pojo.getName().length();
             image.setImageResource(R.drawable.ic_public);
         } else {
-            String text = context.getString(R.string.ui_item_search);
-            appName.setText(oldEnrichText(String.format(text, this.pojo.getName(), "{" + searchPojo.query + "}"), context));
+            text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), searchPojo.query);
+            pos = text.indexOf(searchPojo.query);
+            len = searchPojo.query.length();
             image.setImageResource(search);
         }
+
+        appName.setText(enrichText(text, Collections.singletonList(new Pair<Integer, Integer>(pos, pos + len)), context));
+
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;
     }

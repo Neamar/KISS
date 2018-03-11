@@ -73,21 +73,6 @@ public abstract class Result {
     }
 
     /**
-     * Enrich text for display. Put text requiring highlighting between {}
-     *
-     * @param text to highlight
-     * @return text displayable on a textview
-     */
-    static Spanned oldEnrichText(String text, Context context) {
-        //TODO: cache the result. We consume lots of CPU and RAM converting every time we display
-        return Html.fromHtml(
-                text
-                        .replaceAll("\\{", "<font color=" + String.format("#%06X", UIColors.getPrimaryColor(context) & 0xFFFFFF) + ">")
-                        .replaceAll("\\}", "</font>")
-        );
-    }
-
-    /**
      * Enrich text for display.
      *
      *
