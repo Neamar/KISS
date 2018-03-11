@@ -37,18 +37,18 @@
         android:layout_toEndOf="@+id/item_contact_icon"
         android:layout_toRightOf="@+id/item_contact_icon"
         android:ellipsize="end"
+        android:paddingBottom="2dp"
         android:paddingEnd="2dp"
         android:paddingRight="2dp"
-        android:paddingBottom="2dp"
         android:shadowColor="?attr/resultShadowColor"
         android:shadowDx="1"
         android:shadowDy="2"
         android:shadowRadius="?attr/textShadowRadius"
         android:singleLine="true"
-        android:text="@string/stub_contact"
         android:textColor="?attr/resultColor"
         android:textSize="@dimen/result_title_size"
-        tools:ignore="RtlSymmetry"/>
+        tools:ignore="RtlSymmetry"
+        tools:text="@string/stub_contact" />
 
     <TextView
         android:id="@+id/item_contact_phone"
@@ -63,10 +63,10 @@
         android:shadowDx="1"
         android:shadowDy="2"
         android:shadowRadius="?attr/textShadowRadius"
-        android:text="@string/stub_contact_phone"
-        android:textSize="@dimen/result_small_size"
         android:textColor="?android:attr/textColorSecondary"
-        tools:ignore="RtlSymmetry" />
+        android:textSize="@dimen/result_small_size"
+        tools:ignore="RtlSymmetry"
+        tools:text="@string/stub_contact_phone" />
 
     <TextView
         android:id="@+id/item_contact_nickname"
@@ -85,10 +85,10 @@
         android:shadowDy="2"
         android:shadowRadius="?attr/textShadowRadius"
         android:singleLine="true"
-        android:text="@string/stub_contact_nickname"
         android:textColor="?android:attr/textColorSecondary"
         android:textSize="@dimen/result_small_size"
-        tools:ignore="RtlSymmetry"/>
+        tools:ignore="RtlSymmetry"
+        tools:text="@string/stub_contact_nickname" />
 
     <ImageButton
         android:id="@+id/item_contact_action_message"

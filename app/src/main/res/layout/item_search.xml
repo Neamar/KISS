@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
@@ -28,12 +29,12 @@
         android:id="@+id/item_search_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ui_item_search"
-        android:textColor="?attr/resultColor"
         android:shadowColor="?attr/resultShadowColor"
-        android:shadowRadius="?attr/textShadowRadius"
         android:shadowDx="1"
         android:shadowDy="2"
-        android:textSize="@dimen/result_title_size" />
+        android:shadowRadius="?attr/textShadowRadius"
+        android:textColor="?attr/resultColor"
+        android:textSize="@dimen/result_title_size"
+        tools:text="@string/ui_item_search" />
 
 </LinearLayout>
