@@ -47,7 +47,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         private final Paint mPaint;
         private final BitmapShader mBitmapShader;
         private final RectF mBitmapRect;
-        private RectF mDisplayBounds;
+        private final RectF mDisplayBounds;
 
         public RoundedDrawable(Bitmap bitmap) {
             mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -71,8 +71,12 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
             // Scale bitmap to display within specified bounds
             int minScale = Math.min(bounds.width(), bounds.height());
             m.setScale(minScale / mBitmapRect.width(), minScale / mBitmapRect.height());
+
+            // When bounds is not a square, ensure we display the bitmap centered
+            // (we will clip to display as a centered circle,
+            //  and we need to ensure the bitmap is in the right position below)
             if (bounds.width() > bounds.height()) {
-                m.postTranslate((bounds.width() - bounds.height()) / 2f, 0f);
+                m.postTranslate((bounds.width() - bounds.height()) * 0.5f, 0f);
             }
             mBitmapShader.setLocalMatrix(m);
 
@@ -81,7 +85,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
 
         @Override
         public void draw(@NonNull Canvas canvas) {
-            float radius = mDisplayBounds.height() / 2;
+            float radius = mDisplayBounds.height() * 0.5f;
             canvas.drawCircle(mDisplayBounds.centerX(), mDisplayBounds.centerY(), radius, mPaint);
         }
 
