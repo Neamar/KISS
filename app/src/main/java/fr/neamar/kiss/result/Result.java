@@ -11,7 +11,6 @@ import android.support.annotation.StringRes;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.Pair;
@@ -81,10 +80,11 @@ public abstract class Result {
      */
     Spanned enrichText(String text, List<Pair<Integer, Integer>> positions, Context context) {
         SpannableString enriched = new SpannableString(text);
+        int primaryColor = UIColors.getPrimaryColor(context);
 
         for (Pair<Integer, Integer> position : positions) {
             enriched.setSpan(
-                    new ForegroundColorSpan(UIColors.getPrimaryColor(context)),
+                    new ForegroundColorSpan(primaryColor),
                     position.first, position.second, Spannable.SPAN_INCLUSIVE_INCLUSIVE
             );
         }
