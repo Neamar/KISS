@@ -86,7 +86,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
-    public static Bitmap drawableToBitmap(Drawable drawable) {
+    private static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             if (bitmapDrawable.getBitmap() != null) {
