@@ -47,10 +47,13 @@
         android:maxLines="1"
         android:text="@string/stub_setting"
         android:textColor="?attr/resultColor"
+        android:paddingRight="2dp"
+        android:paddingBottom="2dp"
         android:shadowColor="?attr/resultShadowColor"
-        android:shadowRadius="3"
+        android:shadowRadius="?attr/textShadowRadius"
         android:shadowDx="1"
         android:shadowDy="2"
-        android:textSize="@dimen/result_title_size" />
+        android:textSize="@dimen/result_title_size"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
 </LinearLayout>
