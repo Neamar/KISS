@@ -10,7 +10,8 @@
     android:paddingLeft="@dimen/result_margin_left"
     android:paddingRight="@dimen/result_margin_right"
     android:paddingStart="@dimen/result_margin_left"
-    android:paddingTop="@dimen/result_margin_top">
+    android:paddingTop="@dimen/result_margin_top"
+    tools:ignore="UseCompoundDrawables">
 
     <ImageView
         android:id="@+id/item_phone_icon"
@@ -33,8 +34,8 @@
         android:shadowDx="1"
         android:shadowDy="2"
         android:shadowRadius="?attr/textShadowRadius"
+        android:text="@string/stub_phone"
         android:textColor="?attr/resultColor"
-        android:textSize="@dimen/result_title_size"
-        tools:text="@string/stub_phone" />
+        android:textSize="@dimen/result_title_size" />
 
 </LinearLayout>
