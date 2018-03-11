@@ -166,7 +166,7 @@ public class ListPopup extends PopupWindow {
                     .getString(stringId);
         }
 
-        public Item(Context context, String string) {
+        public Item(String string) {
             super();
             this.stringId = 0;
             this.string = string;

@@ -5,11 +5,9 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -167,7 +165,7 @@ public abstract class Result {
 
         if (BuildConfig.DEBUG) {
             int relevance = pojo.relevance - 1;
-            adapter.add(new ListPopup.Item(context, "Relevance: " + relevance));
+            adapter.add(new ListPopup.Item("Relevance: " + relevance));
         }
 
         return menu;
