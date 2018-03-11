@@ -22,6 +22,8 @@ public class UIColors {
     };
     private static final String COLOR_DEFAULT_STR = String.format("#%06X", COLOR_DEFAULT & 0xFFFFFF);
 
+    private static int primaryColor = -1;
+
     public static void updateThemePrimaryColor(Activity activity) {
         int notificationBarColorOverride = getNotificationBarColor(activity);
 
@@ -53,13 +55,22 @@ public class UIColors {
     }
 
     public static int getPrimaryColor(Context context) {
-        String primaryColor = PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", COLOR_DEFAULT_STR);
+        if (primaryColor == -1) {
+            String primaryColorStr = PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", COLOR_DEFAULT_STR);
 
-        // Transparent can't be displayed for text color, replace with light gray.
-        if (primaryColor.equals("#00000000") || primaryColor.equals(("#AAFFFFFF"))) {
-            return 0xFFBDBDBD;
+            // Transparent can't be displayed for text color, replace with light gray.
+            if (primaryColorStr.equals("#00000000") || primaryColorStr.equals(("#AAFFFFFF"))) {
+                primaryColor = 0xFFBDBDBD;
+            }
+            else {
+                primaryColor = Color.parseColor(primaryColorStr);
+            }
         }
 
-        return Color.parseColor(primaryColor);
+        return primaryColor;
+    }
+
+    public static void clearPrimaryColorCache(Context context) {
+        primaryColor = -1;
     }
 }

@@ -314,6 +314,8 @@ public class SettingsActivity extends PreferenceActivity implements
                 return;
             }
             PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
+        } else if (key.equalsIgnoreCase("primary-color")) {
+            UIColors.clearPrimaryColorCache(this);
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
