@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.text.Html;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,9 +25,8 @@ public class SettingsResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_setting);
 
-        String settingPrefix = "<small><small>" + context.getString(R.string.settings_prefix) + "</small></small>";
         TextView settingName = v.findViewById(R.id.item_setting_name);
-        settingName.setText(TextUtils.concat(Html.fromHtml(settingPrefix), enrichText(settingPojo.displayName, context)));
+        settingName.setText(enrichText(settingPojo.getName(), settingPojo.nameMatchPositions, context));
 
         ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
         settingIcon.setImageDrawable(getDrawable(context));

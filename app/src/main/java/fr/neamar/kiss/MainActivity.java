@@ -705,11 +705,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    @Override
-    public boolean showRelevance() {
-        return BuildConfig.DEBUG;
-    }
-
     public void registerPopup(ListPopup popup) {
         if (mPopup == popup)
             return;
