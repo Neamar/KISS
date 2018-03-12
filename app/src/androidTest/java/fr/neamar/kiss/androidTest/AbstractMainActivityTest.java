@@ -14,7 +14,7 @@ import fr.neamar.kiss.R;
 
 abstract class AbstractMainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
-    public AbstractMainActivityTest() {
+    AbstractMainActivityTest() {
         super(MainActivity.class);
     }
 
@@ -22,10 +22,18 @@ abstract class AbstractMainActivityTest extends ActivityInstrumentationTestCase2
     public void setUp() throws Exception {
         super.setUp();
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getInstrumentation().getUiAutomation().executeShellCommand(
+                    "pm grant " + getActivity().getPackageName()
+                            + " android.permission.READ_CONTACTS");
+        }
+
         getActivity();
 
         // Initialize to default preferences
         KissApplication.getApplication(getActivity()).getDataHandler().clearHistory();
+        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().clear().apply();
         PreferenceManager.setDefaultValues(getActivity(), R.xml.preferences, true);
 
         // Remove lock screen
@@ -37,14 +45,5 @@ abstract class AbstractMainActivityTest extends ActivityInstrumentationTestCase2
             }
         };
         getActivity().runOnUiThread(wakeUpDevice);
-    }
-
-    @Before
-    public void grantPhonePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getInstrumentation().getUiAutomation().executeShellCommand(
-                    "pm grant " + getActivity().getPackageName()
-                            + " android.permission.READ_CONTACTS");
-        }
     }
 }
