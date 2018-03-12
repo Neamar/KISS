@@ -95,7 +95,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public void testBatterySettingAppears() {
         onView(withId(R.id.searchEditText)).perform(typeText("batter"));
         onView(withId(R.id.item_setting_icon)).check(matches(isDisplayed()));
-        onView(withId(R.id.item_setting_name)).check(matches(withText("Setting: Battery")));
+        onView(withId(R.id.item_setting_name)).check(matches(withText("Battery")));
     }
 
     public void testKissBarDisplayed() {
