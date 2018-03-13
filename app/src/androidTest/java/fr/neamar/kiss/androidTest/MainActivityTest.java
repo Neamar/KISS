@@ -1,15 +1,7 @@
 package fr.neamar.kiss.androidTest;
 
-import android.preference.PreferenceManager;
-import android.support.test.InstrumentationRegistry;
-import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
-import android.view.WindowManager;
 
-import org.junit.Before;
-
-import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -25,32 +17,7 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.not;
 
 @LargeTest
-public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
-
-    public MainActivityTest() {
-        super(MainActivity.class);
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        super.setUp();
-        injectInstrumentation(InstrumentationRegistry.getInstrumentation());
-        getActivity();
-
-        // Initialize to default preferences
-        KissApplication.getApplication(getActivity()).getDataHandler().clearHistory();
-        PreferenceManager.setDefaultValues(getActivity(), R.xml.preferences, true);
-
-        // Remove lock screen
-        Runnable wakeUpDevice = new Runnable() {
-            public void run() {
-                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
-                        WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            }
-        };
-        getActivity().runOnUiThread(wakeUpDevice);
-    }
+public class MainActivityTest extends AbstractMainActivityTest {
 
     public void testHintDisplayed() {
         onView(withId(R.id.searchEditText)).check(matches(withHint(R.string.ui_search_hint)));
@@ -110,13 +77,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
     public void testKissBarHidden() {
         onView(withId(R.id.launcherButton)).perform(click());
-        // Sanity check
+
         onView(withId(R.id.mainKissbar)).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.item_app_name), withText("Settings"))).check(matches(isDisplayed()));
 
         onView(withId(R.id.whiteLauncherButton)).perform(click());
         onView(withId(R.id.mainKissbar)).check(matches(not(isDisplayed())));
-        onView(allOf(withId(R.id.item_app_name), withText("Settings"))).check(doesNotExist());
     }
 
 
