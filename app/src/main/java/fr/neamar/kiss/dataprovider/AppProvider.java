@@ -116,6 +116,16 @@ public class AppProvider extends Provider<AppPojo> {
             }, filter);
         }
 
+        // Get notified when app changes on standard user profile
+        IntentFilter appChangedFilter = new IntentFilter();
+        appChangedFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        appChangedFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        appChangedFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        appChangedFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+        appChangedFilter.addDataScheme("package");
+        appChangedFilter.addDataScheme("file");
+        this.registerReceiver(new PackageAddedRemovedHandler(), appChangedFilter);
+
         super.onCreate();
     }
 

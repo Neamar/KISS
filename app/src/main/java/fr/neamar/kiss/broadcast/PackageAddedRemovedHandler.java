@@ -52,6 +52,7 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
+
         String packageName = intent.getData().getSchemeSpecificPart();
 
         if (packageName.equalsIgnoreCase(ctx.getPackageName())) {
