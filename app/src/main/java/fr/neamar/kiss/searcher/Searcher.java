@@ -34,15 +34,13 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     private final Handler handler;
     private long start;
     private final String query;
-    private int refreshCounter;
 
     Searcher(MainActivity activity, String query) {
         super();
         this.query = query;
         this.activityWeakReference = new WeakReference<>(activity);
         this.processedPojos = getPojoProcessor(activity);
-        this.refreshTask = new RefreshTask();
-        this.refreshCounter = 0;
+        this.refreshTask = new RefreshTask(this);
         // This handler should run on the Ui thread. That's the only thread that can't be blocked.
         this.handler = new Handler(Looper.getMainLooper());
     }
@@ -53,6 +51,19 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 
     int getMaxResultCount() {
         return DEFAULT_MAX_RESULTS;
+    }
+
+    Collection<Result> queueToList(PriorityQueue<Pojo> priorityQueue) {
+        MainActivity activity = activityWeakReference.get();
+        if (activity == null)
+            return new ArrayList<>();
+
+        Collection<Result> results = new ArrayList<>(priorityQueue.size());
+        while (priorityQueue.peek() != null) {
+            results.add(Result.fromPojo(activity, priorityQueue.poll()));
+        }
+
+        return results;
     }
 
     /**
@@ -68,23 +79,10 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 
         this.processedPojos.addAll(Arrays.asList(pojos));
         int maxResults = getMaxResultCount();
+
+        // Trim the list
         while (this.processedPojos.size() > maxResults)
             this.processedPojos.poll();
-
-        int counter = this.refreshTask.runCounter;
-        // if timer passed, refresh list
-        if (this.refreshCounter < counter) {
-            this.refreshCounter = counter;
-
-            // clone the PriorityQueue so we can extract the pojos in sorted order and still keep them in the original list
-            PriorityQueue<Pojo> queue = new PriorityQueue<>(this.processedPojos);
-            Collection<Result> results = new ArrayList<>(queue.size());
-            while (queue.peek() != null) {
-                results.add(Result.fromPojo(activity, queue.poll()));
-            }
-            // make the adapter update from the main thread
-            publishProgress(results.toArray(new Result[0]));
-        }
 
         return true;
     }
@@ -135,11 +133,8 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         if (this.processedPojos.isEmpty()) {
             activity.adapter.clear();
         } else {
-            PriorityQueue<Pojo> queue = this.processedPojos;
-            Collection<Result> results = new ArrayList<>(queue.size());
-            while (queue.peek() != null) {
-                results.add(Result.fromPojo(activity, queue.poll()));
-            }
+            Collection<Result> results = queueToList(this.processedPojos);
+
             activity.beforeListChange();
 
             activity.adapter.clear();
@@ -159,14 +154,21 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 
         void afterListChange();
     }
-
+    
     static class RefreshTask implements Runnable {
-        volatile int runCounter = 0;
+        Searcher searcher;
+
+        RefreshTask(Searcher searcher) {
+            this.searcher = searcher;
+        }
 
         @Override
-        @SuppressWarnings("NonAtomicVolatileUpdate")
+        // Periodically update the results displayed in the list
         public void run() {
-            runCounter += 1;
+            Log.e("WTF", "Refreshing");
+            // clone the PriorityQueue so we can extract the pojos in sorted order and still keep them in the original list
+            PriorityQueue<Pojo> queue = new PriorityQueue<>(searcher.processedPojos);
+            searcher.publishProgress(searcher.queueToList(queue).toArray(new Result[0]));
         }
     }
 }
