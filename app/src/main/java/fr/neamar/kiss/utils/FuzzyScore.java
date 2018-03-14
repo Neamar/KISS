@@ -226,7 +226,7 @@ public class FuzzyScore {
 
             // Includes "clever" isLetter check.
             prevLower = strChar == strLower && strLower != strUpper;
-            prevSeparator = Character.isSpaceChar(strChar) || Character.isWhitespace(strChar);
+            prevSeparator = Character.isWhitespace(strChar);
 
             ++strIdx;
         }
