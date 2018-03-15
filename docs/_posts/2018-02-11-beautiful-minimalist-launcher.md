@@ -39,7 +39,7 @@ From `⋮, KISS Settings, User experience`:
 * Minimalistic UI: disable
 * Show app tag: enable
 
-Finally, find an icon pack that you like!
+Finally, find an icon pack that you like ([Aeon](https://play.google.com/store/apps/details?id=stealthychief.theme.aeon) in the screenshot)!
 
 ## Example 3: minimalist-est
 ![Image: Muhammad Samir](/screenshots/example-minimalist-3.png)
