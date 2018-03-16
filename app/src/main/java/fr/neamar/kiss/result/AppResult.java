@@ -36,6 +36,7 @@ public class AppResult extends Result {
     private final AppPojo appPojo;
     private final ComponentName className;
     private Drawable icon = null;
+
     AppResult(AppPojo appPojo) {
         super(appPojo);
         this.appPojo = appPojo;
@@ -58,7 +59,7 @@ public class AppResult extends Result {
         TextView tagsView = view.findViewById(R.id.item_app_tag);
         // Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
         if (appPojo.getTags().isEmpty() ||
-                (!prefs.getBoolean("tags-visible", true) && !appPojo.tagsMatchPositions.isEmpty())) {
+                (!prefs.getBoolean("tags-visible", true) && appPojo.tagsMatchPositions.isEmpty())) {
             tagsView.setVisibility(View.GONE);
         } else {
             tagsView.setVisibility(View.VISIBLE);
