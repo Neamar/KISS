@@ -46,10 +46,12 @@ public class AddSearchProviderPreference extends DialogPreference {
         providerName.setHint(R.string.search_provider_name);
         providerUrl.setHint(R.string.search_provider_url);
 
+        //adding margins (default is zero)
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(40, 10, 40, 0);
 
+        //add the two text fields (with margins)
         layout.addView(providerName, layoutParams);
         layout.addView(providerUrl, layoutParams);
 
