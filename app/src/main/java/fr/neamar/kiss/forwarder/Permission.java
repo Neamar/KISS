@@ -1,6 +1,7 @@
 package fr.neamar.kiss.forwarder;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -53,13 +54,8 @@ public class Permission extends Forwarder {
         return true;
     }
 
-    public static boolean checkContactPermission() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-
-        }
-        MainActivity mainActivity = Permission.currentMainActivity.get();
-        return mainActivity != null && mainActivity.checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
+    public static boolean checkContactPermission(Context context) {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
     }
 
     public static void askContactPermission() {
