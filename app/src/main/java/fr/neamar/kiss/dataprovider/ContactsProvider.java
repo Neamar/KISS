@@ -35,7 +35,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     public void onCreate() {
         super.onCreate();
         // register content observer if we have permission
-        if(Permission.checkContactPermission()) {
+        if(Permission.checkContactPermission(this)) {
             getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
         }
     }

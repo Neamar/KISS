@@ -27,13 +27,13 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         long start = System.nanoTime();
 
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
-
-        if(context.get() == null) {
+        Context c = context.get();
+        if(c == null) {
             return contacts;
         }
 
         // Skip if we don't have permission to list contacts yet:(
-        if(!Permission.checkContactPermission()) {
+        if(!Permission.checkContactPermission(c)) {
             Permission.askContactPermission();
             return contacts;
         }
