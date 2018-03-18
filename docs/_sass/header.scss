@@ -28,6 +28,8 @@ header {
 		}
 
 		.logo {
+			padding-bottom: 10px;
+
 			a {
 				display: block;
 				line-height: 0;
@@ -51,10 +53,12 @@ header {
 	}
 
 	nav {
+
 		@media #{$mid-point} {
 			flex: 1;
 			margin: 0 0 0 10px;
 			display: block;
+			text-align: right !important;
 
 			form {
 				position: absolute;
@@ -112,6 +116,7 @@ header {
 
 .nav-open header nav {
 	display: block;
+	text-align: left;
 }
 
 .nav-toggle {
