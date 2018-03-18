@@ -7,6 +7,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     protected View onCreateDialogView() {
         providerName.setHint(R.string.search_provider_name);
         providerUrl.setHint(R.string.search_provider_url);
+        providerUrl.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 
         //adding margins (default is zero)
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
