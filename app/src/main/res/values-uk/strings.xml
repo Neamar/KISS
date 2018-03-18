@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"><string name="activity_setting">KISS Параметри</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:tools="http://schemas.android.com/tools"><string name="activity_setting">KISS Параметри</string>
     <string name="app_name">KISS Запускач</string>
     <string name="ui_search_hint">Пошук застосунків, контактів, …</string>
     <string name="ui_item_search">Пошук %1$s для “%2$s”</string>
@@ -18,14 +18,14 @@
 
     <string name="main_menu">Меню</string>
     <string name="settings_device_info">Інформація про пристрій</string>
-    <string name="menu_wallpaper">Оновити шпалери</string>
+    <string name="menu_wallpaper">Оновити тло</string>
     <string name="removed_item">Вилучено</string>
     <string name="menu_remove">Вилучити з історії</string>
     <string name="menu_phone_create">Створити контакт</string>
 
     <string name="keyboard_options">Параметри клавіатури</string>
     <string name="color_picker_default_title">Вибір кольору</string>
-    <string name="color_swatch_description">Колір <xliff:g id="color_index" example="14">%1$d</xliff:g></string>
+    <string name="color_swatch_description">Колір <xliff:g example="14" id="color_index">%1$d</xliff:g></string>
     <string name="menu_widget_add">(БЕТА-ВЕРСІЯ) Додати віджет</string>
     <string name="menu_widget_remove">Вилучити віджет</string>
     <string name="rate_the_app">Оцініть застосунок</string>
@@ -77,4 +77,125 @@
     <string name="search_provider_error_char">Будь ласка, не використовуйте символ |</string>
     <string name="root_mode_name">Root режим</string>
     <string name="title_wallpaper">Живе інтерактивне тло</string>
+    <string name="title_providers">Вибір постачальників</string>
+    <string name="keyboard_workaround_name">Виправлення клавіатурних пропозицій</string>
+    <string name="keyboard_workaround_desc">Перешкоджати зламаним програмним клавіатурам (наприклад, SwiftKey ™) від показу пропозицій</string>
+    <string name="history_onclick_name">Показати історію при дотику</string>
+    <string name="portrait_title">Примусовий портретний режим</string>
+    <string name="lwp_touch">Надсилайте дотичні події на тло</string>
+    <string name="lwp_drag">Емулювати перетягування для тла</string>
+    <string name="lwp_drag_desc">Надіслати декілька подій дотику</string>
+    <string name="wp_drag_animate">Прокрутити тло</string>
+    <string name="wp_drag_animate_desc">Перетягніть горизонтально, щоб прокрутити тло</string>
+    <string name="search_provider_reset_desc">Ви хочете скинути список постачальників пошуку?</string>
+    <string name="search_provider_deleted">Постачальника(-ів) пошуку було видалено.</string>
+    <string name="search_provider_error_placeholder">Будь ласка, використовуйте {q} для заповнювача запитів</string>
+    <string name="search_provider_error_exists">Постачальник з такою назвою вже існує</string>
+
+
+    <string name="history_mode_name">"Режим історії "</string>
+    <string name="history_mode_desc">Виберіть спосіб заповнення історії</string>
+    <string name="root_mode_desc">Якщо доступно, використовуйте його для сплячого режиму</string>
+    <string name="root_mode_error">Не вдається отримати root привілеї.</string>
+    <string name="freeze_history_name">Заморозити історію</string>
+    <string name="freeze_history_warn">Ви впевнені, що хочете заморозити історію та вимкнути всі подальші оновлення? Ваша історія більше не зміниться.</string>
+
+    <string name="icons_pack_name">Тема піктограм (тема ADW.Launcher)</string>
+    <string name="icons_pack_default_name">Системні піктограми</string>
+
+    <string name="alias_phone">набір,виклик,телефон</string>
+    <string name="alias_contacts">контакти,люди,відносини</string>
+    <string name="alias_web">Інтернет,веб,браузер</string>
+    <string name="alias_mail">пошта,епошта,е-пошта</string>
+    <string name="alias_market">маркет,магазин,центр додатків</string>
+    <string name="alias_clock">годинник,будильник,таймер,секундомір</string>
+    <string name="alias_messaging">текстове повідомлення, написати, SMS, MMS, обмін повідомленнями</string>
+    <string name="settings_prefix">"Параметр: "</string>
+    <string name="settings_airplane">Режим \"у літаку\"</string>
+    <string name="settings_applications">Додатка</string>
+    <string name="settings_connectivity">Підключення</string>
+    <string name="settings_battery">Батарея</string>
+    <string name="settings_nfc">"NFC "</string>
+    <string name="settings_tethering">Тетерінґ</string>
+    <string name="settings_storage">Сховище</string>
+    <string name="settings_dev">"Параметри розробника "</string>
+    <string name="settings_accessibility">Спеціальні можливості</string>
+    <string name="settings_sound">Звук і гучність</string>
+    <string name="settings_display">Дисплей</string>
+    <string name="application_not_found">Халепа… не вдалося запустити цю програму.</string>
+    <string name="history_erased">Історія стерта.</string>
+    <string name="favorites_erased">Уподобання стерті.</string>
+    <string name="menu_favorites_add">Додати до вподобань</string>
+    <string name="menu_tags_edit">Додати або змінити теґи</string>
+    <string name="tags_add_title">Додати теґи, розділені пробілом</string>
+    <string name="tags_confirmation_added">Теґ встановлено</string>
+    <string name="tags_visible">Показати теґи додатків</string>
+    <string name="excluded_app_list_erased">Список виключених програм стерто.</string>
+    <string name="excluded_app_list_added">"Програма виключена з KISS. Скинути через KISS  налаштування "</string>
+
+    <string name="menu_exclude">Виключити додаток з KISS</string>
+    <string name="menu_app_details">Інформація про додаток</string>
+    <string name="menu_app_uninstall">Видалити</string>
+    <string name="menu_app_hibernate">Сплячий режим</string>
+    <string name="menu_shortcut_remove">Видалити ярлик</string>
+
+    <string name="toast_hibernate_completed">%s перебуває в режимі очікування, перезапустити, щоб прокинутися.</string>
+    <string name="toast_hibernate_error">%s не сплячий режим.</string>
+    <string name="menu_contact_copy_phone">Копіювати номер телефону</string>
+    <string name="theme_name">Тема інтерфейсу</string>
+    <string name="toast_favorites_added">%s було додано до вподобань</string>
+
+    <string name="order_apps_name">Порядок сортування списку додатків</string>
+    <string name="enable_sms">Показати вхідні SMS-повідомлення в історії</string>
+    <string name="enable_phone">Показати вхідні дзвінки в історії</string>
+    <string name="enable_app">Показати нещодавно встановлені додатки в історії</string>
+    <string name="enable_favorites_bar">Показ уподобань над панеллю пошуку</string>
+    <string name="exclude_favorites">Виключити вподобане з історії</string>
+    <string name="favorites_hide">Сховати панель уподобань</string>
+    <string name="pref_hide_navbar">Приховати навігаційну панель</string>
+    <string name="pref_hide_navbar_desc">Приховати навігаційну панель та активувати режим занурення для KitKat (4.4) та вище</string>
+    <string name="pref_hide_statusbar">Приховати панель стану</string>
+    <string name="pref_hide_statusbar_desc">Приховати панель сповіщень та активувати режим занурення для KitKat (4.4) та вище</string>
+    <string name="shortcut_added">Ярлик доданий до KISS.</string>
+
+    <string name="restart_desc">Виправлення тем та нових контактів, які не відображаються</string>
+    <string name="restart_name">Перезапустити KISS</string>
+    <string name="restart_warn">Ви дійсно хочете перезапустити KISS? Якщо KISS не є запускачем за замовчуванням, додаток просто завершить роботу.</string>
+
+    <string name="default_launcher_title">Змінити запускач за замовчуванням</string>
+    <string name="default_launcher_warn">Вибравши Запускача за замовчуванням, ви будете відправлені на головний екран. Ви впевнені, що хочете продовжити?
+\n
+\nПримітка. Якщо ви не бачите опції \"Завжди\", натисніть кнопку \"Домашня\" після вибору бажаної панелі запуску.</string>
+
+    <string name="items_title" tools:ignore="PluralsCandidate">%d елементів</string>
+    <string name="alternate_history_inputs">Альтернативні вхідні дані історії</string>
+    <string name="misc">Різне</string>
+    <string name="toast_favorites_removed">%s було вилучено з уподобань</string>
+    <string name="menu_favorites_remove">Вилучити з уподобань</string>
+    <string name="share">Поділитися…</string>
+    <string name="number_of_display_items">Максимальна кількість результатів пошуку та історії</string>
+
+    <string name="main_color">Основний колір</string>
+    <string name="notification_bar_color">Колір панелі сповіщень</string>
+
+    <string name="color_transparent_dark">Прозорий темний</string>
+    <string name="color_transparent_white">Прозорий білий</string>
+    <string name="color_transparent">Прозорий</string>
+
+
+    <string name="color_swatch_description_selected" tools:ignore="PluralsCandidate">Колір <xliff:g example="14" id="color_index">%1$d</xliff:g> вибрано</string>
+
+    <string name="transparent_search_bar">Прозора панель пошуку</string>
+    <string name="transparent_favorites_bar">Прозора панель уподобань</string>
+
+    <string name="large_search_bar">Велика панель пошуку</string>
+    <string name="history_settings_summary">Скидання історії, виключення додатків, …</string>
+    <string name="user_interface_summary">Теми, прозорість та кольори</string>
+    <string name="providers_summary">Вимкнути постачальників, додати власні пошукові системи, …</string>
+    <string name="user_experience_summary">Мінімалістичний інтерфейс, налаштування клавіатури, …</string>
+    <string name="history_favorites_summary">Скидання ваших уподобань, видалення панелі вподобань, …</string>
+    <string name="freeze_history_summary">Залишити історію, як є, поки не буде помічено</string>
+    <string name="enable_favorites_bar_summary_off">Відображати тільки уподобання, коли натиснувши на KISS піктограму</string>
+    <string name="enable_favorites_bar_summary_on">Відобразити вибране над панеллю пошуку</string>
+    <string name="get_help">Отримати допомогу!</string>
     </resources>
