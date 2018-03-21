@@ -21,7 +21,11 @@ public class LoadSearchPojos extends LoadPojos<SearchPojo> {
     private String getProviderUrl(Set<String> searchProviders, String searchProviderName) {
         for (String nameAndUrl : searchProviders) {
             if (nameAndUrl.contains(searchProviderName + "|")) {
-                return nameAndUrl.split("\\|")[1];
+                String[] arrayNameAndUrl = nameAndUrl.split("\\|");
+                //sanity check
+                if (arrayNameAndUrl.length == 2) {
+                    return arrayNameAndUrl[1];
+                }
             }
         }
         return null;
