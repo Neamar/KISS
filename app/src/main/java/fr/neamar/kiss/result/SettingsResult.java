@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff.Mode;
@@ -8,6 +9,7 @@ import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingsPojo;
@@ -56,6 +58,13 @@ public class SettingsResult extends Result {
         }
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+
+        try {
+            context.startActivity(intent);
+        }
+        catch(ActivityNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+        }
     }
 }
