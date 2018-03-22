@@ -51,7 +51,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     /**
      * Currently displayed favorites
      */
-    private ArrayList<Pojo> favoritesPojo;
+    private ArrayList<Pojo> favoritesPojo = new ArrayList<>();
 
     Favorites(MainActivity mainActivity) {
         super(mainActivity);
