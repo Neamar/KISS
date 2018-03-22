@@ -22,7 +22,7 @@ public class Permission extends Forwarder {
 
     // Static weak reference to the main activity, this is sadly required
     // to ensure classes requesting permission can access activity.requestPermission()
-    private static WeakReference<MainActivity> currentMainActivity;
+    private static WeakReference<MainActivity> currentMainActivity = new WeakReference<MainActivity>(null);
 
     /**
      * Sometimes, we need to wait for the user to give us permission before we can start an intent.
