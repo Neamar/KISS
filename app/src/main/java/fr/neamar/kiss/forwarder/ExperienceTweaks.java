@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Handler;
@@ -9,6 +10,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.MainActivity;
@@ -47,7 +50,7 @@ class ExperienceTweaks extends Forwarder {
     private View mainEmptyView;
     private final GestureDetector gd;
 
-    ExperienceTweaks(MainActivity mainActivity) {
+    ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
 
         // Lock launcher into portrait mode
@@ -80,8 +83,30 @@ class ExperienceTweaks extends Forwarder {
                 return true;
             }
 
+            @SuppressLint("PrivateApi")
             @Override
             public boolean onDown(MotionEvent e) {
+                @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
+                Class<?> statusbarManager = null;
+                try {
+                    statusbarManager = Class.forName("android.app.StatusBarManager");
+                    Method showsb;
+                    if (Build.VERSION.SDK_INT >= 17) {
+                        showsb = statusbarManager.getMethod("expandNotificationsPanel");
+                    }
+                    else {
+                        showsb = statusbarManager.getMethod("expand");
+                    }
+                    showsb.invoke( sbservice );
+                } catch (ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (NoSuchMethodException e1) {
+                    e1.printStackTrace();
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                } catch (InvocationTargetException e1) {
+                    e1.printStackTrace();
+                }
                 return true;
             }
         });
