@@ -4,6 +4,8 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.text.InputType;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -43,6 +45,7 @@ class ExperienceTweaks extends Forwarder {
     };
 
     private View mainEmptyView;
+    private final GestureDetector gd;
 
     ExperienceTweaks(MainActivity mainActivity) {
         super(mainActivity);
@@ -58,6 +61,30 @@ class ExperienceTweaks extends Forwarder {
         } else {
             mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
+
+        gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                //your action here for double tap e.g.
+                Log.e("OnDoubleTapListener", "onDoubleTap");
+                return true;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+                super.onLongPress(e);
+            }
+
+            @Override
+            public boolean onDoubleTapEvent(MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+        });
     }
 
     void onCreate() {
@@ -112,6 +139,8 @@ class ExperienceTweaks extends Forwarder {
                 mainActivity.favoritesBar.setVisibility(View.VISIBLE);
             }
         }
+
+        gd.onTouchEvent(event);
     }
 
     void onWindowFocusChanged(boolean hasFocus) {
