@@ -50,9 +50,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     @Override
     public void requestResults(String query, Searcher searcher) {
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
-        // Search people with composed names, e.g "jean-marie"
-        // (not part of the StringNormalizer class, since we want to keep dashes on other providers)
-        queryNormalized = queryNormalized.replaceAll(Character.codePointAt("-", 0), Character.codePointAt(" ", 0));
+
+        if (queryNormalized.codePoints.length == 0) {
+            return;
+        }
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
         FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
