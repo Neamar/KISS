@@ -74,38 +74,15 @@ class ExperienceTweaks extends Forwarder {
             }
 
             @Override
-            public void onLongPress(MotionEvent e) {
-                super.onLongPress(e);
-            }
-
-            @Override
-            public boolean onDoubleTapEvent(MotionEvent e) {
-                return true;
-            }
-
-            @SuppressLint("PrivateApi")
-            @Override
-            public boolean onDown(MotionEvent e) {
-                @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
-                Class<?> statusbarManager = null;
-                try {
-                    statusbarManager = Class.forName("android.app.StatusBarManager");
-                    Method showsb;
-                    if (Build.VERSION.SDK_INT >= 17) {
-                        showsb = statusbarManager.getMethod("expandNotificationsPanel");
-                    }
-                    else {
-                        showsb = statusbarManager.getMethod("expand");
-                    }
-                    showsb.invoke( sbservice );
-                } catch (ClassNotFoundException e1) {
-                    e1.printStackTrace();
-                } catch (NoSuchMethodException e1) {
-                    e1.printStackTrace();
-                } catch (IllegalAccessException e1) {
-                    e1.printStackTrace();
-                } catch (InvocationTargetException e1) {
-                    e1.printStackTrace();
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                float direction = e2.getY() - e1.getY();
+                if(direction > 0) {
+                    // Fling down: display notifications
+                    displayNotificationDrawer();
+                }
+                else {
+                    // Fling up: display keyboard
+                    mainActivity.showKeyboard();
                 }
                 return true;
             }
@@ -221,6 +198,31 @@ class ExperienceTweaks extends Forwarder {
         }
         if (currentInputType != requiredInputType) {
             mainActivity.searchEditText.setInputType(requiredInputType);
+        }
+    }
+
+    @SuppressLint("PrivateApi")
+    private void displayNotificationDrawer() {
+        @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
+        Class<?> statusbarManager = null;
+        try {
+            statusbarManager = Class.forName("android.app.StatusBarManager");
+            Method showsb;
+            if (Build.VERSION.SDK_INT >= 17) {
+                showsb = statusbarManager.getMethod("expandNotificationsPanel");
+            }
+            else {
+                showsb = statusbarManager.getMethod("expand");
+            }
+            showsb.invoke( sbservice );
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (NoSuchMethodException e1) {
+            e1.printStackTrace();
+        } catch (IllegalAccessException e1) {
+            e1.printStackTrace();
+        } catch (InvocationTargetException e1) {
+            e1.printStackTrace();
         }
     }
 
