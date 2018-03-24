@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.text.InputType;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -66,13 +65,6 @@ class ExperienceTweaks extends Forwarder {
         }
 
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                //your action here for double tap e.g.
-                Log.e("OnDoubleTapListener", "onDoubleTap");
-                return true;
-            }
-
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 float direction = e2.getY() - e1.getY();
@@ -142,6 +134,7 @@ class ExperienceTweaks extends Forwarder {
             }
         }
 
+        // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
     }
 
@@ -201,20 +194,22 @@ class ExperienceTweaks extends Forwarder {
         }
     }
 
+    // Super hacky code to display notification drawer
+    // Can (and will) break in any Android release.
     @SuppressLint("PrivateApi")
     private void displayNotificationDrawer() {
         @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
         Class<?> statusbarManager = null;
         try {
             statusbarManager = Class.forName("android.app.StatusBarManager");
-            Method showsb;
+            Method showStatusBar;
             if (Build.VERSION.SDK_INT >= 17) {
-                showsb = statusbarManager.getMethod("expandNotificationsPanel");
+                showStatusBar = statusbarManager.getMethod("expandNotificationsPanel");
             }
             else {
-                showsb = statusbarManager.getMethod("expand");
+                showStatusBar = statusbarManager.getMethod("expand");
             }
-            showsb.invoke( sbservice );
+            showStatusBar.invoke( sbservice );
         } catch (ClassNotFoundException e1) {
             e1.printStackTrace();
         } catch (NoSuchMethodException e1) {
