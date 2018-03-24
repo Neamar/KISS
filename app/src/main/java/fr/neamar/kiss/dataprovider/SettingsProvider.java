@@ -24,6 +24,10 @@ public class SettingsProvider extends Provider<SettingsPojo> {
     public void requestResults(String query, Searcher searcher) {
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
+        if (queryNormalized.codePoints.length == 0) {
+            return;
+        }
+
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
         FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
 

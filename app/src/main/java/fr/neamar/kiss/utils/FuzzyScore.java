@@ -252,7 +252,7 @@ public class FuzzyScore {
 
         public List<Pair<Integer, Integer>> getMatchedSequences() {
             // compute pair match indices
-            List<Pair<Integer, Integer>> positions = new ArrayList<>(matchedIndices.size());
+            List<Pair<Integer, Integer>> positions = new ArrayList<>(this.matchedIndices.size());
             int start = this.matchedIndices.get(0);
             int end = start + 1;
             for (int i = 1; i < this.matchedIndices.size(); i += 1) {
