@@ -66,6 +66,27 @@ class ExperienceTweaks extends Forwarder {
 
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
             @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                // if minimalistic mode is enabled,
+                // and we want to display history on touch
+                if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
+                    // and we're currently in minimalistic mode with no results,
+                    // and we're not looking at the app list
+                    if ((mainActivity.isViewingSearchResults()) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
+                        if ((mainActivity.list.getAdapter() == null) || (mainActivity.list.getAdapter().isEmpty())) {
+                            mainActivity.runTask(new HistorySearcher(mainActivity));
+                        }
+                    }
+                }
+
+                if (isMinimalisticModeEnabledForFavorites()) {
+                    mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                }
+
+                return super.onSingleTapConfirmed(e);
+            }
+
+            @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 float direction = e2.getY() - e1.getY();
                 if(direction > 0) {
@@ -115,25 +136,6 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void onTouch(View view, MotionEvent event) {
-        //if motion movement ends
-        if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
-            // and minimalistic mode is enabled,
-            // and we want to display history on touch
-            if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
-                // and we're currently in minimalistic mode with no results,
-                // and we're not looking at the app list
-                if ((mainActivity.isViewingSearchResults()) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
-                    if ((mainActivity.list.getAdapter() == null) || (mainActivity.list.getAdapter().isEmpty())) {
-                        mainActivity.runTask(new HistorySearcher(mainActivity));
-                    }
-                }
-            }
-
-            if (isMinimalisticModeEnabledForFavorites()) {
-                mainActivity.favoritesBar.setVisibility(View.VISIBLE);
-            }
-        }
-
         // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
     }
