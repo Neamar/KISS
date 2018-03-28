@@ -85,15 +85,18 @@ class InterfaceTweaks extends Forwarder {
         if (prefs.getBoolean("pref-rounded-bars", false)) {
             mainActivity.kissBar.setBackgroundResource(R.drawable.rounded_kiss_bar);
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
                 mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
             }
             else {
                 // Before API21, you can't access values from current theme using ?attr/
                 // So we made two different drawables (#931).
                 if(getSearchBackgroundColor() == Color.WHITE) {
+                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
                     mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
                 }
                 else {
+                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
                     mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
                 }
             }
