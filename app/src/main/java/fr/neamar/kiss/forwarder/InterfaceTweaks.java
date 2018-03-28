@@ -53,10 +53,7 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.searchEditText.setBackgroundResource(android.R.color.transparent);
 
                 // get theme shadow color
-                int[] attrs = new int[]{R.attr.searchBackgroundColor /* index 0 */};
-                TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
-                int shadowColor = ta.getColor(0, Color.BLACK);
-                ta.recycle();
+                int shadowColor = getSearchBackgroundColor();
 
                 // make shadow color intense
                 float[] hsv = new float[3];
@@ -87,8 +84,19 @@ class InterfaceTweaks extends Forwarder {
     private void applyRoundedCorners(MainActivity mainActivity) {
         if (prefs.getBoolean("pref-rounded-bars", false)) {
             mainActivity.kissBar.setBackgroundResource(R.drawable.rounded_kiss_bar);
-            mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
-            mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
+            }
+            else {
+                // Before API21, you can't access values from current theme using ?attr/
+                // So we made two different drawables (#931).
+                if(getSearchBackgroundColor() == Color.WHITE) {
+                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
+                }
+                else {
+                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
+                }
+            }
         }
 
         if (prefs.getBoolean("pref-rounded-list", false)) {
@@ -116,5 +124,14 @@ class InterfaceTweaks extends Forwarder {
 
         // Kissbar background
         mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
+    }
+
+    private int getSearchBackgroundColor() {
+        // get theme shadow color
+        int[] attrs = new int[]{R.attr.searchBackgroundColor /* index 0 */};
+        TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
+        int shadowColor = ta.getColor(0, Color.BLACK);
+        ta.recycle();
+        return shadowColor;
     }
 }
