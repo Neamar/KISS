@@ -107,6 +107,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         });
         if(ColorPreference.this.selectedColor == COLOR_DARK_TRANSPARENT) {
             button1.setTypeface(null, Typeface.BOLD);
+            button1.setTextColor(Color.BLACK);
         }
         Button button2 = view.findViewById(R.id.colorTransparentWhite);
         button2.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +117,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         });
         if(ColorPreference.this.selectedColor == COLOR_LIGHT_TRANSPARENT) {
             button2.setTypeface(null, Typeface.BOLD);
+            button2.setTextColor(Color.BLACK);
         }
         Button button3 = view.findViewById(R.id.colorTransparent);
         button3.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +127,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         });
         if(ColorPreference.this.selectedColor == COLOR_TRANSPARENT) {
             button3.setTypeface(null, Typeface.BOLD);
+            button3.setTextColor(Color.BLACK);
         }
         return view;
     }
@@ -140,19 +143,20 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         );
 
         // This will set the correct typeface for the extra items
-        Button button1 = view.findViewById(R.id.colorTransparentDark);
         if(ColorPreference.this.selectedColor == COLOR_DARK_TRANSPARENT) {
+            Button button1 = view.findViewById(R.id.colorTransparentDark);
             button1.setTypeface(null, Typeface.BOLD);
-
+            button1.setTextColor(Color.BLACK);
         }
-        Button button2 = view.findViewById(R.id.colorTransparentWhite);
         if(ColorPreference.this.selectedColor == COLOR_LIGHT_TRANSPARENT) {
+            Button button2 = view.findViewById(R.id.colorTransparentWhite);
             button2.setTypeface(null, Typeface.BOLD);
-
+            button2.setTextColor(Color.BLACK);
         }
-        Button button3 = view.findViewById(R.id.colorTransparent);
         if(ColorPreference.this.selectedColor == COLOR_TRANSPARENT) {
+            Button button3 = view.findViewById(R.id.colorTransparent);
             button3.setTypeface(null, Typeface.BOLD);
+            button3.setTextColor(Color.BLACK);
         }
 
         this.drawPalette();
