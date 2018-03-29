@@ -12,6 +12,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -115,8 +116,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 
         activity.beforeListChange();
 
-        activity.adapter.clear();
-        activity.adapter.addAll(results);
+        activity.adapter.updateResults(Arrays.asList(results));
 
         activity.afterListChange();
     }
@@ -136,14 +136,13 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             activity.adapter.clear();
         } else {
             PriorityQueue<Pojo> queue = this.processedPojos;
-            Collection<Result> results = new ArrayList<>(queue.size());
+            List<Result> results = new ArrayList<>(queue.size());
             while (queue.peek() != null) {
                 results.add(Result.fromPojo(activity, queue.poll()));
             }
             activity.beforeListChange();
 
-            activity.adapter.clear();
-            activity.adapter.addAll(results);
+            activity.adapter.updateResults(results);
 
             activity.afterListChange();
         }

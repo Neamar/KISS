@@ -215,7 +215,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.emptyListView.setOnTouchListener(this);
 
         // Create adapter for records
-        this.adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
+        this.adapter = new RecordAdapter(this, this, new ArrayList<Result>());
         this.list.setAdapter(this.adapter);
 
         this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
