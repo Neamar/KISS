@@ -13,8 +13,6 @@ public class PojoWithTags extends Pojo {
     // Tags assigned to this pojo
     private String tags;
 
-    public List<Pair<Integer, Integer>> tagsMatchPositions = new ArrayList<>();
-
     public String getTags() {
         return tags;
     }
@@ -28,14 +26,5 @@ public class PojoWithTags extends Pojo {
             this.tags = null;
             this.normalizedTags = null;
         }
-    }
-
-    public void clearTagHighlight() {
-        tagsMatchPositions.clear();
-    }
-
-    public void setTagHighlight(List<Pair<Integer, Integer>> positions) {
-        clearTagHighlight();
-        setHighlight(tagsMatchPositions, normalizedTags, positions);
     }
 }

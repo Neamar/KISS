@@ -61,21 +61,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
             pojo.relevance = matchInfo.score;
 
-            if (match) {
-                List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
-                try {
-                    pojo.setNameHighlight(positions);
-                } catch (Exception e) {
-                    pojo.setNameHighlight(0, pojo.normalizedName.length());
-                }
-            }
-
             if (!pojo.nickname.isEmpty()) {
                 if (fuzzyScore.match(pojo.nickname, matchInfo)) {
                     if (!match || (matchInfo.score > pojo.relevance)) {
                         match = true;
                         pojo.relevance = matchInfo.score;
-                        pojo.clearNameHighlight();
                     }
                 }
             }
@@ -85,7 +75,6 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 if (fuzzyScore.match(pojo.phoneSimplified, matchInfo)) {
                     match = true;
                     pojo.relevance = matchInfo.score;
-                    pojo.clearNameHighlight();
                 }
             }
 

@@ -8,14 +8,10 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.Arrays;
-import java.util.Collections;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -39,10 +35,7 @@ public class PhoneResult extends Result {
         TextView appName = v.findViewById(R.id.item_phone_text);
         String text = String.format(context.getString(R.string.ui_item_phone), phonePojo.phone);
         int pos = text.indexOf(phonePojo.phone);
-        appName.setText(enrichText(
-                text,
-                Collections.singletonList(new Pair<Integer, Integer>(pos, pos + phonePojo.phone.length())),
-                context));
+        appName.setText(text);
 
         ((ImageView) v.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
 
@@ -94,7 +87,7 @@ public class PhoneResult extends Result {
         phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Make sure we have permission to call someone as this is considered a dangerous permission
-        if(Permission.ensureCallPhonePermission(phone)) {
+        if (Permission.ensureCallPhonePermission(phone)) {
             context.startActivity(phone);
         }
     }

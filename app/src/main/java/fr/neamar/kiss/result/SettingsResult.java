@@ -28,7 +28,7 @@ public class SettingsResult extends Result {
             v = inflateFromId(context, R.layout.item_setting);
 
         TextView settingName = v.findViewById(R.id.item_setting_name);
-        settingName.setText(enrichText(settingPojo.getName(), settingPojo.nameMatchPositions, context));
+        settingName.setText(settingPojo.getName());
 
         ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
         settingIcon.setImageDrawable(getDrawable(context));

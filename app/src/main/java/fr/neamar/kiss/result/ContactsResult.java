@@ -48,7 +48,7 @@ public class ContactsResult extends Result {
 
         // Contact name
         TextView contactName = view.findViewById(R.id.item_contact_name);
-        contactName.setText(enrichText(contactPojo.getName(), contactPojo.nameMatchPositions, context));
+        contactName.setText(contactPojo.getName());
 
         // Contact phone
         TextView contactPhone = view.findViewById(R.id.item_contact_phone);

@@ -22,7 +22,6 @@ import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
-import java.util.List;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
@@ -70,26 +69,6 @@ public abstract class Result {
         throw new RuntimeException("Unable to create a result from POJO");
     }
 
-    /**
-     * Enrich text for display.
-     *
-     * @param text Text to highlight
-     * @param positions List of matched positions
-     * @param context Application context
-     * @return Spannable displayable on a TextView
-     */
-    Spanned enrichText(String text, List<Pair<Integer, Integer>> positions, Context context) {
-        SpannableString enriched = new SpannableString(text);
-        int primaryColor = UIColors.getPrimaryColor(context);
-
-        for (Pair<Integer, Integer> position : positions) {
-            enriched.setSpan(
-                    new ForegroundColorSpan(primaryColor),
-                    position.first, position.second, Spannable.SPAN_INCLUSIVE_INCLUSIVE
-            );
-        }
-        return enriched;
-    }
 
     @Override
     public String toString() {

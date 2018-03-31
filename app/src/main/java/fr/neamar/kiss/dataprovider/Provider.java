@@ -101,7 +101,6 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     public Pojo findById(String id) {
         for (Pojo pojo : pojos) {
             if (pojo.id.equals(id)) {
-                pojo.clearNameHighlight();
                 return pojo;
             }
         }

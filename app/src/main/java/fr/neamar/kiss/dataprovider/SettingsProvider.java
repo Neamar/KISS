@@ -35,12 +35,9 @@ public class SettingsProvider extends Provider<SettingsPojo> {
             boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
             pojo.relevance = matchInfo.score;
 
-            if (match) {
-                pojo.setNameHighlight(matchInfo.getMatchedSequences());
-            } else if (fuzzyScore.match(settingName, matchInfo)) {
+            if (!match && fuzzyScore.match(settingName, matchInfo)) {
                 match = true;
                 pojo.relevance = matchInfo.score;
-                pojo.clearNameHighlight();
             }
 
             if (match) {
