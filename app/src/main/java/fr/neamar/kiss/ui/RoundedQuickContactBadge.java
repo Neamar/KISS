@@ -18,8 +18,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.QuickContactBadge;
 
-import java.lang.reflect.Field;
-
 /**
  * A rounded version of {@link QuickContactBadge]
  *
@@ -29,17 +27,14 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
 
     public RoundedQuickContactBadge(Context context) {
         super(context);
-        init(); //Set our initialization
     }
 
     public RoundedQuickContactBadge(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(); //Set our initialization
     }
 
     public RoundedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init(); //Set our initialization
     }
 
     public static class RoundedDrawable extends Drawable {
@@ -102,25 +97,6 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         @Override
         public int getOpacity() {
             return PixelFormat.TRANSLUCENT;
-        }
-
-    }
-
-    /**
-     * Initialize our stuff
-     */
-    private void init() {
-
-        //Use reflection to reset the default triangular overlay from default quick contact badge
-        try {
-            Field field = QuickContactBadge.class.getDeclaredField("mOverlay");
-            field.setAccessible(true);
-
-            //Using null to not draw anything at all
-            field.set(this, null);
-
-        } catch (Exception e) {
-            //No-op, just well off with the default overlay
         }
 
     }
