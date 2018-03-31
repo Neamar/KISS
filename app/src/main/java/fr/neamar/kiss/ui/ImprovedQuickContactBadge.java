@@ -17,6 +17,7 @@ package fr.neamar.kiss.ui;
  */
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.QuickContactBadge;
@@ -32,14 +33,17 @@ public class ImprovedQuickContactBadge extends RoundedQuickContactBadge {
 
     public ImprovedQuickContactBadge(Context context) {
         super(context);
+        init(); //Set our initialization
     }
 
     public ImprovedQuickContactBadge(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(); //Set our initialization
     }
 
     public ImprovedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init(); //Set our initialization
     }
 
     @Override
@@ -52,6 +56,16 @@ public class ImprovedQuickContactBadge extends RoundedQuickContactBadge {
 
     public void setExtraOnClickListener(View.OnClickListener extraOnClickListener) {
         mExtraOnClickListener = extraOnClickListener;
+    }
+
+
+    /**
+     * Hide the overlay
+     */
+    private void init() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setOverlay(null);
+        }
     }
 
 }
