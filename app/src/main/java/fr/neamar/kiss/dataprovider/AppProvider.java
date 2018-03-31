@@ -10,10 +10,8 @@ import android.os.Build;
 import android.os.Process;
 import android.os.UserManager;
 import android.support.annotation.RequiresApi;
-import android.util.Pair;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import fr.neamar.kiss.KissApplication;
@@ -22,7 +20,6 @@ import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
@@ -149,19 +146,20 @@ public class AppProvider extends Provider<AppPojo> {
         }
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
-        FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
+        FuzzyScore.MatchInfo matchInfo;
+        boolean match;
 
         for (AppPojo pojo : pojos) {
-            boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
+            matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+            match = matchInfo.match;
             pojo.relevance = matchInfo.score;
 
             // check relevance for tags
             if (pojo.normalizedTags != null) {
-                if (fuzzyScore.match(pojo.normalizedTags.codePoints, matchInfo)) {
-                    if (!match || (matchInfo.score > pojo.relevance)) {
-                        match = true;
-                        pojo.relevance = matchInfo.score;
-                    }
+                matchInfo = fuzzyScore.match(pojo.normalizedTags.codePoints);
+                if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
+                    match = true;
+                    pojo.relevance = matchInfo.score;
                 }
             }
 

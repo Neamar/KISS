@@ -29,19 +29,20 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
         }
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
-        FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
+        FuzzyScore.MatchInfo matchInfo;
+        boolean match;
 
         for (ShortcutsPojo pojo : pojos) {
-            boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
+            matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+            match = matchInfo.match;
             pojo.relevance = matchInfo.score;
 
             // check relevance for tags
             if (pojo.normalizedTags != null) {
-                if (fuzzyScore.match(pojo.normalizedTags.codePoints, matchInfo)) {
-                    if (!match || (matchInfo.score > pojo.relevance)) {
-                        match = true;
-                        pojo.relevance = matchInfo.score;
-                    }
+                matchInfo = fuzzyScore.match(pojo.normalizedTags.codePoints);
+                if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
+                    match = true;
+                    pojo.relevance = matchInfo.score;
                 }
             }
 

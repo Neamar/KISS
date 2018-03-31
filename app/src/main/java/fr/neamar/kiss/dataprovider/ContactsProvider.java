@@ -56,26 +56,27 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         }
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
-        FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
+        FuzzyScore.MatchInfo matchInfo;
+        boolean match;
+
         for (ContactsPojo pojo : pojos) {
-            boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
+            matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+            match = matchInfo.match;
             pojo.relevance = matchInfo.score;
 
             if (!pojo.nickname.isEmpty()) {
-                if (fuzzyScore.match(pojo.nickname, matchInfo)) {
-                    if (!match || (matchInfo.score > pojo.relevance)) {
-                        match = true;
-                        pojo.relevance = matchInfo.score;
-                    }
+                matchInfo = fuzzyScore.match(pojo.nickname);
+                if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
+                    match = true;
+                    pojo.relevance = matchInfo.score;
                 }
             }
 
             if (!match && queryNormalized.length() > 2) {
                 // search for the phone number
-                if (fuzzyScore.match(pojo.phoneSimplified, matchInfo)) {
-                    match = true;
-                    pojo.relevance = matchInfo.score;
-                }
+                matchInfo = fuzzyScore.match(pojo.phoneSimplified);
+                match = matchInfo.match;
+                pojo.relevance = matchInfo.score;
             }
 
             if (match) {

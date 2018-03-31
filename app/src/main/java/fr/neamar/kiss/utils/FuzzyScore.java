@@ -9,10 +9,6 @@ import java.util.List;
  * A Sublime Text inspired fuzzy match algorithm
  * https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md
  * <p>
- * matchSimple("ftw", "ForrestTheWoods") = true
- * matchSimple("fwt", "ForrestTheWoods") = false
- * matchSimple("gh", "GitHub") = true
- * <p>
  * match("otw", "Power of the Wild", info) = true, info.score = 14
  * match("otw", "Druid of the Claw", info) = true, info.score = -3
  * match("otw", "Frostwolf Grunt", info) = true, info.score = -13
@@ -46,7 +42,9 @@ public class FuzzyScore {
      */
     private int unmatched_letter_penalty;
 
-    public FuzzyScore(int[] pattern) {
+    private final MatchInfo matchInfo;
+
+    public FuzzyScore(int[] pattern, boolean detailedMatchIndices) {
         super();
         patternLength = pattern.length;
         patternChar = new int[patternLength];
@@ -61,6 +59,15 @@ public class FuzzyScore {
         leading_letter_penalty = -3;
         max_leading_letter_penalty = -9;
         unmatched_letter_penalty = -1;
+        if (detailedMatchIndices) {
+            matchInfo = new MatchInfo(patternLength);
+        } else {
+            matchInfo = new MatchInfo();
+        }
+    }
+
+    public FuzzyScore(int[] pattern) {
+        this(pattern, false);
     }
 
     public void setAdjacencyBonus(int adjacency_bonus) {
@@ -88,32 +95,11 @@ public class FuzzyScore {
     }
 
     /**
-     * Returns true if each character in pattern is found sequentially within str
-     *
-     * @param text string converted to codepoints
-     * @return true if each character in pattern is found sequentially within str
-     */
-    private boolean match(int[] text) {
-        int patternIdx = 0;
-        int strIdx = 0;
-        int strLength = text.length;
-
-        while (patternIdx != patternLength && strIdx != strLength) {
-            int strChar = Character.toLowerCase(text[strIdx]);
-            if (patternLower[patternIdx] == strChar)
-                ++patternIdx;
-            ++strIdx;
-        }
-
-        return patternLength != 0 && strLength != 0 && patternIdx == patternLength;
-    }
-
-    /**
      * @param text string where to search
      * @param info will hold matching results
      * @return true if each character in pattern is found sequentially within text
      */
-    public boolean match(CharSequence text, MatchInfo info) {
+    public MatchInfo match(CharSequence text) {
         int idx = 0;
         int idxCodepoint = 0;
         int textLength = text.length();
@@ -124,18 +110,14 @@ public class FuzzyScore {
             idx += Character.charCount(codepoint);
             idxCodepoint += 1;
         }
-        return match(codepoints, info);
+        return match(codepoints);
     }
 
     /**
      * @param text string converted to codepoints
-     * @param info will hold matching results
      * @return true if each character in pattern is found sequentially within text
      */
-    public boolean match(int[] text, MatchInfo info) {
-        if (info == null)
-            return match(text);
-
+    public MatchInfo match(int[] text) {
         // Loop variables
         int score = 0;
         int patternIdx = 0;
@@ -151,7 +133,9 @@ public class FuzzyScore {
         Integer bestLetterIdx = null;
         int bestLetterScore = 0;
 
-        ArrayList<Integer> matchedIndices = new ArrayList<>(patternLength);
+        if (matchInfo.matchedIndices != null) {
+            matchInfo.matchedIndices.clear();
+        }
 
         // Loop over strings
         while (strIdx != strLength) {
@@ -172,7 +156,9 @@ public class FuzzyScore {
             boolean patternRepeat = bestLetter != null && patternChar != null && patternLower.equals(bestLower);
             if (advanced || patternRepeat) {
                 score += bestLetterScore;
-                matchedIndices.add(bestLetterIdx);
+                if (matchInfo.matchedIndices != null) {
+                    matchInfo.matchedIndices.add(bestLetterIdx);
+                }
                 bestLetter = null;
                 bestLower = null;
                 bestLetterIdx = null;
@@ -234,12 +220,16 @@ public class FuzzyScore {
         // Apply score for last match
         if (bestLetter != null) {
             score += bestLetterScore;
-            matchedIndices.add(bestLetterIdx);
+            if (matchInfo.matchedIndices != null) {
+                matchInfo.matchedIndices.add(bestLetterIdx);
+            }
         }
 
-        info.score = score;
-        info.matchedIndices = matchedIndices;
-        return patternIdx == patternLength;
+        matchInfo.match = patternIdx == patternLength;
+        if (matchInfo.match) {
+            matchInfo.score = score;
+        }
+        return matchInfo;
     }
 
     public static class MatchInfo {
@@ -248,9 +238,21 @@ public class FuzzyScore {
          * Can only compare scores with same search pattern.
          */
         public int score;
-        public ArrayList<Integer> matchedIndices;
+        public boolean match;
+        public final ArrayList<Integer> matchedIndices;
+
+        MatchInfo() {
+            matchedIndices = null;
+        }
+
+        MatchInfo(int patternLength) {
+            matchedIndices = new ArrayList<>(patternLength);
+        }
 
         public List<Pair<Integer, Integer>> getMatchedSequences() {
+            if (matchedIndices == null) {
+                throw new RuntimeException("getMatchedSequences() called with matchedIndices == null");
+            }
             // compute pair match indices
             List<Pair<Integer, Integer>> positions = new ArrayList<>(this.matchedIndices.size());
             int start = this.matchedIndices.get(0);
