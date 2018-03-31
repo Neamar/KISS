@@ -81,19 +81,6 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     }
 
     @Override
-    protected void onProgressUpdate(Result... results) {
-        MainActivity activity = activityWeakReference.get();
-        if (activity == null)
-            return;
-
-        activity.beforeListChange();
-
-        activity.adapter.updateResults(Arrays.asList(results));
-
-        activity.afterListChange();
-    }
-
-    @Override
     protected void onPostExecute(Void param) {
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
