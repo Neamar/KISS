@@ -31,8 +31,6 @@ public class RecordAdapter extends BaseAdapter {
     private List<Result> results;
 
     public RecordAdapter(Context context, QueryInterface parent, ArrayList<Result> results) {
-        super();
-
         this.context = context;
         this.parent = parent;
         this.results = results;
