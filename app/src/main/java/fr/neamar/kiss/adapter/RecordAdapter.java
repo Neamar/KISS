@@ -78,6 +78,8 @@ public class RecordAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
+        // In some situation, Android tries to display an item that does not exist (e.g. item 24 in a list containing 22 items)
+        // See https://github.com/Neamar/KISS/issues/890
         return position < results.size() ? results.get(position).getUniqueId() : -1;
     }
 
