@@ -103,10 +103,20 @@ class InterfaceTweaks extends Forwarder {
         }
 
         if (prefs.getBoolean("pref-rounded-list", false)) {
-            mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout);
                 // clip list content to rounded corners
                 mainActivity.listContainer.setClipToOutline(true);
+            }
+            else {
+                // Before API21, you can't access values from current theme using ?attr/
+                // So we made two different drawables (#931).
+                if(getSearchBackgroundColor() == Color.WHITE) {
+                    mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_light);
+                }
+                else {
+                    mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_dark);
+                }
             }
         }
     }
