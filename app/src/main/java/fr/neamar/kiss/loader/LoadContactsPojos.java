@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
@@ -132,7 +131,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             nickCursor.close();
         }
 
-        Pattern phoneFormatter = Pattern.compile("[ \\.\\(\\)]");
         for (List<ContactsPojo> phones : mapContacts.values()) {
             // Find primary phone and add this one.
             Boolean hasPrimary = false;
@@ -144,16 +142,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 }
             }
 
-            // If not available, add all (excluding duplicates).
+            // If no primary available, add all (excluding duplicates).
             if (!hasPrimary) {
                 Map<String, Boolean> added = new HashMap<>();
                 for (ContactsPojo contact : phones) {
-                    String uniqueKey = phoneFormatter.matcher(contact.phone).replaceAll("");
-                    // TODO: what's this supposed to do?
-                    //uniqueKey = uniqueKey.replaceAll("^\\+33", "0");
-                    //uniqueKey = uniqueKey.replaceAll("^\\+1", "0");
-                    if (!added.containsKey(uniqueKey)) {
-                        added.put(uniqueKey, true);
+                    if (!added.containsKey(contact.phoneSimplified)) {
+                        added.put(contact.phoneSimplified, true);
                         contacts.add(contact);
                     }
                 }
