@@ -56,10 +56,20 @@ public class StringNormalizer {
         int i = 0;
         for (int iterCodePoint = 0; iterCodePoint < numCodePoints; iterCodePoint += 1) {
             int codepoint = Character.codePointAt(input, i);
-            buffer.put(Character.toChars(codepoint));
-            buffer.flip();
-            String decomposedCharString = Normalizer.normalize(buffer, Normalizer.Form.NFKD);
-            buffer.clear();
+            String decomposedCharString;
+            // Is it within the basic latin range?
+            // If so, we can skip the expensive call to Normalizer.normalize
+            if(codepoint < 'z') {
+                // Ascii range, no need to normalize
+                decomposedCharString = String.valueOf((char) codepoint);
+            }
+            else {
+                // Otherwise, we'll need to normalize the code point to a letter and potential accentuation
+                buffer.put(Character.toChars(codepoint));
+                buffer.flip();
+                decomposedCharString = Normalizer.normalize(buffer, Normalizer.Form.NFKD);
+                buffer.clear();
+            }
 
             // `inputChar` codepoint may be decomposed to four (or maybe even more) new code points
             int decomposedCharOffset = 0;
@@ -111,13 +121,6 @@ public class StringNormalizer {
             return this.codePoints.length;
         }
 
-        public Result replaceAll(int whatToSearch, int withWhatToReplace) {
-            for (int i = 0; i < codePoints.length; i += 1)
-                if (codePoints[i] == whatToSearch)
-                    codePoints[i] = withWhatToReplace;
-            return this;
-        }
-
         /**
          * Map a position in the normalized string to a position in the original string
          *
@@ -133,7 +136,7 @@ public class StringNormalizer {
 
         @Override
         public int compareTo(@NonNull Object aThat) {
-            //this optimization is usually worthwhile, and can always be added
+            // this optimization is usually worthwhile, and can always be added
             if (this == aThat)
                 return 0;
             final Result that = (Result) aThat;
