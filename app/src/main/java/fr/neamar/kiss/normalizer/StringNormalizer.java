@@ -56,35 +56,57 @@ public class StringNormalizer {
         int i = 0;
         for (int iterCodePoint = 0; iterCodePoint < numCodePoints; iterCodePoint += 1) {
             int codepoint = Character.codePointAt(input, i);
-            buffer.put(Character.toChars(codepoint));
-            buffer.flip();
-            String decomposedCharString = Normalizer.normalize(buffer, Normalizer.Form.NFKD);
-            buffer.clear();
-
-            // `inputChar` codepoint may be decomposed to four (or maybe even more) new code points
-            int decomposedCharOffset = 0;
-            while (decomposedCharOffset < decomposedCharString.length()) {
-                int resultChar = decomposedCharString.codePointAt(decomposedCharOffset);
-
-                // Skip characters for some unicode character classes, including:
-                //  * combining characters produced by the NFKD normalizer above
-                //  * dashes
-                // See the method's description for more information
-                switch (Character.getType(resultChar)) {
-                    case Character.NON_SPACING_MARK:
-                    case Character.COMBINING_SPACING_MARK:
-                        // Some combining character found
-                        break;
-
-                    case Character.DASH_PUNCTUATION:
-                        break;
-
-                    default:
-                        codePoints.add(makeLowercase ? Character.toLowerCase(resultChar) : resultChar);
-                        resultMap.add(i);
+            String decomposedCharString;
+            // Is it within the basic latin range?
+            // If so, we can skip the expensive call to Normalizer.normalize
+            if(codepoint < 'z') {
+                // Ascii range, no need to normalize!
+                // Add directly if it's not a dash
+                // (HYPHEN-MINUS is the only character before 'z' in one of the
+                //  NON_SPACING_MARK / COMBINING_SPACING_MARK / DASH_PUNCTUATION
+                //  category, so we can skip the Character.getType() and explicitly check for it)
+                if(codepoint != '-') {
+                    codePoints.add(makeLowercase ? Character.toLowerCase(codepoint) : codepoint);
+                    resultMap.add(i);
                 }
+            }
+            else {
+                // Otherwise, we'll need to normalize the code point to a letter and potential accentuation
+                buffer.put(Character.toChars(codepoint));
+                buffer.flip();
+                decomposedCharString = Normalizer.normalize(buffer, Normalizer.Form.NFKD);
+                buffer.clear();
 
-                decomposedCharOffset += Character.charCount(resultChar);
+                // `inputChar` codepoint may be decomposed to four (or maybe even more) new code points
+                int decomposedCharOffset = 0;
+                while (decomposedCharOffset < decomposedCharString.length()) {
+                    int resultChar = decomposedCharString.codePointAt(decomposedCharOffset);
+
+                    // Skip characters for some unicode character classes, including:
+                    //  * combining characters produced by the NFKD normalizer above
+                    //  * dashes
+                    // See the method's description for more information
+                    switch (Character.getType(resultChar)) {
+                        case Character.NON_SPACING_MARK:
+                        case Character.COMBINING_SPACING_MARK:
+                            // Some combining character found
+                            // See http://www.fileformat.info/info/unicode/category/Mn/list.htm
+                            // And http://www.fileformat.info/info/unicode/category/Mc/list.htm
+                            break;
+
+                        case Character.DASH_PUNCTUATION:
+                            // We skip dashes too
+                            // (standard HYPHEN-MINUS was skipped above, but dashes are a large family!)
+                            // see http://www.fileformat.info/info/unicode/category/Pd/list.htm
+                            break;
+
+                        default:
+                            codePoints.add(makeLowercase ? Character.toLowerCase(resultChar) : resultChar);
+                            resultMap.add(i);
+                    }
+
+                    decomposedCharOffset += Character.charCount(resultChar);
+                }
             }
 
             i += Character.charCount(codepoint);
@@ -111,13 +133,6 @@ public class StringNormalizer {
             return this.codePoints.length;
         }
 
-        public Result replaceAll(int whatToSearch, int withWhatToReplace) {
-            for (int i = 0; i < codePoints.length; i += 1)
-                if (codePoints[i] == whatToSearch)
-                    codePoints[i] = withWhatToReplace;
-            return this;
-        }
-
         /**
          * Map a position in the normalized string to a position in the original string
          *
@@ -133,7 +148,7 @@ public class StringNormalizer {
 
         @Override
         public int compareTo(@NonNull Object aThat) {
-            //this optimization is usually worthwhile, and can always be added
+            // this optimization is usually worthwhile, and can always be added
             if (this == aThat)
                 return 0;
             final Result that = (Result) aThat;
