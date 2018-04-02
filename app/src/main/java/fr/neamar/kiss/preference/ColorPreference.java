@@ -1,9 +1,12 @@
 package fr.neamar.kiss.preference;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.Color;
 import android.preference.DialogPreference;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.Button;
@@ -17,10 +20,12 @@ import fr.neamar.kiss.UIColors;
 
 
 public class ColorPreference extends DialogPreference implements OnColorSelectedListener {
+    public final int COLOR_TRANSPARENT = 0x00000000;
+    public final int COLOR_LIGHT_TRANSPARENT = 0xAAFFFFFF;
+    public final int COLOR_DARK_TRANSPARENT = 0xAA000000;
     private ColorPickerPalette palette;
 
     private int selectedColor;
-
 
     public ColorPreference(Context context) {
         this(context, null);
@@ -65,6 +70,16 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         this.getDialog().dismiss();
     }
 
+    private void selectButton(Button button) {
+        Context context = getContext();
+        TypedValue tv = new TypedValue();
+        boolean found = context.getTheme().resolveAttribute(android.R.attr.textColor, tv, true);
+        @ColorInt int primaryColor = found ? tv.data : Color.BLACK;
+
+        button.setTypeface(null, Typeface.BOLD);
+        button.setTextColor(primaryColor);
+    }
+
     @Override
     protected View onCreateDialogView() {
         // Create layout from bound resource
@@ -99,21 +114,27 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         Button button1 = view.findViewById(R.id.colorTransparentDark);
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ColorPreference.this.onColorSelected(0xAA000000);
+                ColorPreference.this.onColorSelected(COLOR_DARK_TRANSPARENT);
             }
         });
+
         Button button2 = view.findViewById(R.id.colorTransparentWhite);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ColorPreference.this.onColorSelected(0xAAFFFFFF);
+                ColorPreference.this.onColorSelected(COLOR_LIGHT_TRANSPARENT);
             }
         });
+
         Button button3 = view.findViewById(R.id.colorTransparent);
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ColorPreference.this.onColorSelected(0x00000000);
+                ColorPreference.this.onColorSelected(COLOR_TRANSPARENT);
             }
         });
+
+        if(ColorPreference.this.selectedColor == COLOR_DARK_TRANSPARENT) this.selectButton(button1);
+        if(ColorPreference.this.selectedColor == COLOR_LIGHT_TRANSPARENT) this.selectButton(button2);
+        if(ColorPreference.this.selectedColor == COLOR_TRANSPARENT) this.selectButton(button3);
 
         return view;
     }
@@ -127,6 +148,20 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         this.selectedColor = Color.parseColor(
                 this.getPersistedString(String.format("#%08X", this.selectedColor))
         );
+
+        // This will set the correct typeface for the extra items
+        if(ColorPreference.this.selectedColor == COLOR_DARK_TRANSPARENT) {
+            Button button = view.findViewById(R.id.colorTransparentDark);
+            selectButton(button);
+        }
+        if(ColorPreference.this.selectedColor == COLOR_LIGHT_TRANSPARENT) {
+            Button button = view.findViewById(R.id.colorTransparentWhite);
+            selectButton(button);
+        }
+        if(ColorPreference.this.selectedColor == COLOR_TRANSPARENT) {
+            Button button = view.findViewById(R.id.colorTransparent);
+            selectButton(button);
+        }
 
         this.drawPalette();
     }
