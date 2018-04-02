@@ -96,6 +96,7 @@ public class StringNormalizer {
 
                         case Character.DASH_PUNCTUATION:
                             // We skip dashes too
+                            // (standard HYPHEN-MINUS was skipped above, but dashes are a large family!)
                             // see http://www.fileformat.info/info/unicode/category/Pd/list.htm
                             break;
 

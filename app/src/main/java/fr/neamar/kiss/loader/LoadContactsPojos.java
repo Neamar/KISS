@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -144,10 +145,10 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
             // If no primary available, add all (excluding duplicates).
             if (!hasPrimary) {
-                Map<String, Boolean> added = new HashMap<>();
+                HashSet<String> added = new HashSet<>(phones.size());
                 for (ContactsPojo contact : phones) {
-                    if (!added.containsKey(contact.phoneSimplified)) {
-                        added.put(contact.phoneSimplified, true);
+                    if (!added.contains(contact.phoneSimplified)) {
+                        added.add(contact.phoneSimplified);
                         contacts.add(contact);
                     }
                 }
