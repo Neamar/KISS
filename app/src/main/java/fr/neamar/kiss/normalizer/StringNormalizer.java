@@ -60,8 +60,15 @@ public class StringNormalizer {
             // Is it within the basic latin range?
             // If so, we can skip the expensive call to Normalizer.normalize
             if(codepoint < 'z') {
-                // Ascii range, no need to normalize
-                decomposedCharString = String.valueOf((char) codepoint);
+                // Ascii range, no need to normalize!
+                // Add directly if it's not a dash
+                // (HYPHEN-MINUS is the only character before 'z' in one of the
+                //  NON_SPACING_MARK / COMBINING_SPACING_MARK / DASH_PUNCTUATION
+                //  category, so we can skip the Character.getType() and explicitly check for it)
+                if(codepoint != '-') {
+                    codePoints.add(makeLowercase ? Character.toLowerCase(codepoint) : codepoint);
+                    resultMap.add(i);
+                }
             }
             else {
                 // Otherwise, we'll need to normalize the code point to a letter and potential accentuation
@@ -69,32 +76,36 @@ public class StringNormalizer {
                 buffer.flip();
                 decomposedCharString = Normalizer.normalize(buffer, Normalizer.Form.NFKD);
                 buffer.clear();
-            }
 
-            // `inputChar` codepoint may be decomposed to four (or maybe even more) new code points
-            int decomposedCharOffset = 0;
-            while (decomposedCharOffset < decomposedCharString.length()) {
-                int resultChar = decomposedCharString.codePointAt(decomposedCharOffset);
+                // `inputChar` codepoint may be decomposed to four (or maybe even more) new code points
+                int decomposedCharOffset = 0;
+                while (decomposedCharOffset < decomposedCharString.length()) {
+                    int resultChar = decomposedCharString.codePointAt(decomposedCharOffset);
 
-                // Skip characters for some unicode character classes, including:
-                //  * combining characters produced by the NFKD normalizer above
-                //  * dashes
-                // See the method's description for more information
-                switch (Character.getType(resultChar)) {
-                    case Character.NON_SPACING_MARK:
-                    case Character.COMBINING_SPACING_MARK:
-                        // Some combining character found
-                        break;
+                    // Skip characters for some unicode character classes, including:
+                    //  * combining characters produced by the NFKD normalizer above
+                    //  * dashes
+                    // See the method's description for more information
+                    switch (Character.getType(resultChar)) {
+                        case Character.NON_SPACING_MARK:
+                        case Character.COMBINING_SPACING_MARK:
+                            // Some combining character found
+                            // See http://www.fileformat.info/info/unicode/category/Mn/list.htm
+                            // And http://www.fileformat.info/info/unicode/category/Mc/list.htm
+                            break;
 
-                    case Character.DASH_PUNCTUATION:
-                        break;
+                        case Character.DASH_PUNCTUATION:
+                            // We skip dashes too
+                            // see http://www.fileformat.info/info/unicode/category/Pd/list.htm
+                            break;
 
-                    default:
-                        codePoints.add(makeLowercase ? Character.toLowerCase(resultChar) : resultChar);
-                        resultMap.add(i);
+                        default:
+                            codePoints.add(makeLowercase ? Character.toLowerCase(resultChar) : resultChar);
+                            resultMap.add(i);
+                    }
+
+                    decomposedCharOffset += Character.charCount(resultChar);
                 }
-
-                decomposedCharOffset += Character.charCount(resultChar);
             }
 
             i += Character.charCount(codepoint);
