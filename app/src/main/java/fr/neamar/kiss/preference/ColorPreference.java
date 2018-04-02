@@ -1,10 +1,12 @@
 package fr.neamar.kiss.preference;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.Color;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.Button;
@@ -68,6 +70,18 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         this.getDialog().dismiss();
     }
 
+    private void selectButton(Button button) {
+
+        // Acquire the context to get the theme colours.
+        Context context = getContext();
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = context.getTheme();
+        theme.resolveAttribute(android.R.attr.textColorPrimary, typedValue, true);
+
+        button.setTypeface(null, Typeface.BOLD);
+        button.setTextColor(typedValue.data);
+    }
+
     @Override
     protected View onCreateDialogView() {
         // Create layout from bound resource
@@ -105,30 +119,25 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
                 ColorPreference.this.onColorSelected(COLOR_DARK_TRANSPARENT);
             }
         });
-        if(ColorPreference.this.selectedColor == COLOR_DARK_TRANSPARENT) {
-            button1.setTypeface(null, Typeface.BOLD);
-            button1.setTextColor(Color.BLACK);
-        }
+
         Button button2 = view.findViewById(R.id.colorTransparentWhite);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ColorPreference.this.onColorSelected(COLOR_LIGHT_TRANSPARENT);
             }
         });
-        if(ColorPreference.this.selectedColor == COLOR_LIGHT_TRANSPARENT) {
-            button2.setTypeface(null, Typeface.BOLD);
-            button2.setTextColor(Color.BLACK);
-        }
+
         Button button3 = view.findViewById(R.id.colorTransparent);
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ColorPreference.this.onColorSelected(COLOR_TRANSPARENT);
             }
         });
-        if(ColorPreference.this.selectedColor == COLOR_TRANSPARENT) {
-            button3.setTypeface(null, Typeface.BOLD);
-            button3.setTextColor(Color.BLACK);
-        }
+
+        if(ColorPreference.this.selectedColor == COLOR_DARK_TRANSPARENT) this.selectButton(button1);
+        if(ColorPreference.this.selectedColor == COLOR_LIGHT_TRANSPARENT) this.selectButton(button2);
+        if(ColorPreference.this.selectedColor == COLOR_TRANSPARENT) this.selectButton(button3);
+
         return view;
     }
 
