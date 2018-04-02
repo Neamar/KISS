@@ -38,3 +38,8 @@ You're all set! You can now search on your new provider:
 ![Example search](/screenshots/add-search-provider-3.png)
 
 > If you want to remove your custom search providers, access `⋮, KISS Settings, Providers Selection` and select `Delete search providers`.
+
+## Sample search providers URLs
+
+* Qwant: `https://www.qwant.com/?q={q}`
+* Wikipedia: `https://en.wikipedia.org/w/index.php?search={q}&title=Special:Search&fulltext=1`
