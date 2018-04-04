@@ -36,7 +36,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     //Called when addPreferencesFromResource() is called. Initializes basic parameters
     public AddSearchProviderPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setPersistent(true);
+        setPersistent(false);
         layout.setOrientation(LinearLayout.VERTICAL);
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -44,9 +44,13 @@ public class AddSearchProviderPreference extends DialogPreference {
     //Create the Dialog view
     @Override
     protected View onCreateDialogView() {
+        removeViews();
         providerName.setHint(R.string.search_provider_name);
         providerUrl.setHint(R.string.search_provider_url);
         providerUrl.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+
+        providerName.setText("");
+        providerUrl.setText("");
 
         //adding margins (default is zero)
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -157,14 +161,6 @@ public class AddSearchProviderPreference extends DialogPreference {
 
     }
 
-    //Attach persisted values to Dialog
-    @Override
-    protected void onBindDialogView(View view) {
-        super.onBindDialogView(view);
-        providerName.setText("");
-        providerUrl.setText("");
-    }
-
     //persist values and disassemble views
     protected void save() {
 
@@ -174,11 +170,18 @@ public class AddSearchProviderPreference extends DialogPreference {
         prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).apply();
 
         Toast.makeText(getContext(), R.string.search_provider_added, Toast.LENGTH_LONG).show();
+    }
 
-        ((ViewGroup) providerName.getParent()).removeView(providerName);
-        ((ViewGroup) providerUrl.getParent()).removeView(providerUrl);
-        ((ViewGroup) layout.getParent()).removeView(layout);
-
+    private void removeViews() {
+        if (providerName.getParent() != null) {
+            ((ViewGroup) providerName.getParent()).removeView(providerName);
+        }
+        if (providerUrl.getParent() != null) {
+            ((ViewGroup) providerUrl.getParent()).removeView(providerUrl);
+        }
+        if (layout.getParent() != null) {
+            ((ViewGroup) layout.getParent()).removeView(layout);
+        }
         notifyChanged();
     }
 }
