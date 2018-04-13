@@ -530,11 +530,17 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             final float offsetX = -popupPos[0];
             final float offsetY = -popupPos[1];
             ev.offsetLocation(offsetX, offsetY);
-            boolean handled = popupContentView.dispatchTouchEvent(ev);
-            ev.offsetLocation(-offsetX, -offsetY);
-            if (!handled)
-                handled = super.dispatchTouchEvent(ev);
-            return handled;
+            try {
+                boolean handled = popupContentView.dispatchTouchEvent(ev);
+                ev.offsetLocation(-offsetX, -offsetY);
+                if (!handled)
+                    handled = super.dispatchTouchEvent(ev);
+                return handled;
+            }
+            catch(IllegalArgumentException e) {
+                // Quick temporary fix for #925
+                return false;
+            }
         }
         return super.dispatchTouchEvent(ev);
     }
