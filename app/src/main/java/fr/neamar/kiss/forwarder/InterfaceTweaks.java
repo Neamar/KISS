@@ -101,6 +101,10 @@ class InterfaceTweaks extends Forwarder {
                 }
             }
         }
+        else if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            // Tinting is not properly applied pre lollipop if there is no solid background, so we need to manually set the background color
+            mainActivity.kissBar.setBackgroundColor(UIColors.getPrimaryColor(mainActivity));
+        }
 
         if (prefs.getBoolean("pref-rounded-list", false)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
