@@ -3,6 +3,7 @@ package fr.neamar.kiss.forwarder;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Handler;
+import android.provider.Settings;
 import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
@@ -180,10 +181,11 @@ class ExperienceTweaks extends Forwarder {
 
     /**
      * Should we force the keyboard not to display suggestions?
-     * (swiftkey)
+     * (swiftkey is broken, see https://github.com/Neamar/KISS/issues/44)
      */
     private boolean isNonCompliantKeyboard() {
-        return prefs.getBoolean("enable-keyboard-workaround", false);
+        String currentKeyboard = Settings.Secure.getString(mainActivity.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);
+        return currentKeyboard.contains("swiftkey");
     }
 
     /**
