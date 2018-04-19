@@ -355,7 +355,7 @@ public class IconsHandler {
 
         FileInputStream fis;
         try {
-            File file = (isCustomDrawable) ? cacheGetCustomFileName(key) : cacheGetFileName(key);
+            File file = (isCustomDrawable) ? getCustomFileName(key) : cacheGetFileName(key);
             fis = new FileInputStream(file);
             BitmapDrawable drawable =
                     new BitmapDrawable(this.ctx.getResources(), BitmapFactory.decodeStream(fis));
@@ -376,12 +376,12 @@ public class IconsHandler {
         return new File(getIconsCacheDir() + iconsPackPackageName + "_" + key.hashCode() + ".png");
     }
 
-    public File cacheGetCustomFileName(String key) {
-        return new File(getCustomIconsCacheDir() + key.hashCode() + ".png");
+    public File getCustomFileName(String key) {
+        return new File(getCustomIconsDir() + key.hashCode() + ".png");
     }
 
-    private File getCustomIconsCacheDir() {
-        return new File(getIconsCacheDir() + "/custom/");
+    private File getCustomIconsDir() {
+        return new File(this.ctx.getFilesDir().getPath() + "/custom/");
     }
 
     private File getIconsCacheDir() {
@@ -392,16 +392,15 @@ public class IconsHandler {
      * Clear cache
      */
     private void cacheClear() {
-        cacheClear(false);
+        clearIconData(false);
     }
-    private void cacheClear(boolean isCustom) {
-        File cacheDir = (isCustom) ? this.getCustomIconsCacheDir()
+    private void clearIconData(boolean isCustom) {
+        File iconsDir = (isCustom) ? this.getCustomIconsDir()
                                    : this.getIconsCacheDir();
-
-        if (!cacheDir.isDirectory())
+        if (!iconsDir.isDirectory())
             return;
 
-        for (File item : cacheDir.listFiles()) {
+        for (File item : iconsDir.listFiles()) {
             if (!item.delete()) {
                 Log.w(TAG, "Failed to delete file: " + item.getAbsolutePath());
             }

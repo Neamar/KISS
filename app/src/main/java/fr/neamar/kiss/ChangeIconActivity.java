@@ -31,16 +31,19 @@ import java.util.ArrayList;
 
 public class ChangeIconActivity extends Activity{
     public final static String COMPONENT_NAME = "fr.neamar.kiss.component_name";
+    public final static String APP_NAME = "fr.neamar.kiss.app_name";
     private GridView iconGrid;
     private IconGridAdapter iconGridAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_icon);
         Intent intent = getIntent();
+        final String appName = intent.getStringExtra(APP_NAME);
+        setTitle(String.format(getResources().getString(R.string.change_icon_title), appName));
+        setContentView(R.layout.activity_change_icon);
         final String component = intent.getStringExtra(COMPONENT_NAME);
         EditText iconSearchBar = (EditText)findViewById(R.id.icon_search_bar);
-        final File customIconFile = MyCache.getCustomIconFile(this, component);
+        final File customIconFile = KissApplication.getApplication(this).getIconsHandler().getCustomFileName(component);
         if (customIconFile.exists()) {
             ((Button)findViewById(R.id.reset_icon)).setEnabled(true);
             ((Button)findViewById(R.id.reset_icon)).setOnClickListener(
@@ -58,7 +61,7 @@ public class ChangeIconActivity extends Activity{
             );
         }
         iconGrid = (GridView)findViewById(R.id.icon_grid);
-        iconGridAdapter = new IconGridAdapter(this);
+        iconGridAdapter = new IconGridAdapter(this, appName);
         iconGridAdapter.setComponent(component);
         iconGrid.setAdapter(iconGridAdapter);
         iconSearchBar.addTextChangedListener(new TextWatcher() {
@@ -77,8 +80,8 @@ public class ChangeIconActivity extends Activity{
         super.onResume();
     }
     public void saveCustomIcon(String appComponent, String iconComponent) {
-        IconsHandler iconsHandler = KissApplication.getInstance().getIconsHandler();
-        File customIconFile = iconsHandler.cacheGetCustomFileName(this, appComponent);
+        IconsHandler iconsHandler = KissApplication.getApplication(this).getIconsHandler();
+        File customIconFile = iconsHandler.getCustomFileName(this, appComponent);
         Bitmap customBitmap = iconsHandler.getBitmap(iconComponent);
         if (customIconFile != null) {
             try {
@@ -112,10 +115,10 @@ public class ChangeIconActivity extends Activity{
             this.component = component;
         }
         
-        public IconGridAdapter(Context context) {
+        public IconGridAdapter(Context context, final String appName) {
             super();
             res = context.getResources();
-            Map<String, String> iconsList = KissApplication.getInstance().getIconsHandler().getPackagesDrawables();
+            Map<String, String> iconsList = KissApplication.getApplication(context).getIconsHandler().getPackagesDrawables();
             Set<String> iconsSet = iconsList.keySet();
             iconsArray = new ArrayList<String>(iconsSet);
             Collections.sort(iconsArray);
@@ -124,7 +127,7 @@ public class ChangeIconActivity extends Activity{
                 public void onClick(View view) {
                     final Object tag = view.getTag();
                     AlertDialog.Builder builder = new AlertDialog.Builder(ChangeIconActivity.this);
-                    builder.setMessage(res.getString(R.string.change_icon_question));
+                    builder.setMessage(String.format(getResources().getString(R.string.change_icon_question), appName));
                     builder.setPositiveButton(android.R.string.yes, 
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -156,7 +159,7 @@ public class ChangeIconActivity extends Activity{
                 v = convertView;
             }
             icon = (ImageView)v.findViewById(R.id.adapter_icon);
-            icon.setImageBitmap(KissApplication.getInstance().getIconsHandler().getBitmap(toDisplay.get(i)));
+            icon.setImageBitmap(KissApplication.getApplication(IconGridAdapter.this).getIconsHandler().getBitmap(toDisplay.get(i)));
             text = (TextView)v.findViewById(R.id.adapter_icon_text);
             text.setText(toDisplay.get(i));
             v.setTag(toDisplay.get(i));
