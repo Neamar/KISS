@@ -12,7 +12,7 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context ctx, Intent intent) {
         // Only handle system broadcasts
-        if (!intent.getAction().equals("android.intent.action.LOCALE_CHANGED")) {
+        if (!"android.intent.action.LOCALE_CHANGED".equals(intent.getAction())) {
             return;
         }
 

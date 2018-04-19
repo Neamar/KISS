@@ -35,10 +35,11 @@
 
     <string name="stub_application" translatable="false">App name</string>
     <string name="stub_contact" translatable="false">Contact name</string>
+    <string name="stub_contact_nickname" translatable="false">Nickname</string>
     <string name="stub_contact_phone" translatable="false">+1 330 1234 5678</string>
     <string name="stub_setting" translatable="false">Setting name</string>
     <string name="stub_phone" translatable="false">Call +1 330 1234 5678</string>
-    <string name="stub_app_tag">Tag example</string>
+    <string name="stub_app_tag" translatable="false">Tag example</string>
     <string name="main_menu">Menu</string>
     <string name="main_clear">Clear search bar</string>
     <string name="main_kiss">Display favorites and app list</string>
@@ -161,7 +162,7 @@
     <string name="default_launcher_title">Change Default Launcher</string>
     <string name="default_launcher_warn">After selecting the Default Launcher, you\'ll be sent to its home screen. Are you sure you\'d like to proceed?\n\nNote: If you don\'t see the \"Always\" option, press the \"Home\" button after selecting your desired launcher.</string>
 
-    <string name="items_title">%d items</string>
+    <string name="items_title" tools:ignore="PluralsCandidate">%d items</string>
     <string name="alternate_history_inputs">Alternate history inputs</string>
     <string name="keyboard_options">Keyboard options</string>
     <string name="misc">Misc</string>
@@ -183,12 +184,14 @@
     <!-- Content description for a color square. -->
     <string name="color_swatch_description">Color <xliff:g example="14" id="color_index">%1$d</xliff:g></string>
     <!-- Content description for a selected color square. -->
-    <string name="color_swatch_description_selected">Color <xliff:g example="14" id="color_index">%1$d</xliff:g> selected</string>
+    <string name="color_swatch_description_selected" tools:ignore="PluralsCandidate">Color <xliff:g example="14" id="color_index">%1$d</xliff:g> selected</string>
 
     <string name="transparent_search_bar">Transparent search bar</string>
     <string name="transparent_favorites_bar">Transparent favorites bar</string>
 
     <string name="large_search_bar">Large search bar</string>
+    <string name="rounded_list">Rounded list corners</string>
+    <string name="rounded_bars">Rounded bar corners</string>
     <!-- Widget strings, preference id should not be translated -->
     <string name="menu_widget_add">(BETA) Add widget</string>
     <string name="menu_widget_remove">Remove widget</string>
@@ -211,5 +214,6 @@
 	<string name="change_icon_question">Do you want to change the icon of %s?</string>
 	<string name="search_icon_hint">Search icon by package name</string>
     <string name="reset_icon">Reset icon</string>
+    <string name="permission_denied">Permission has been denied</string>
 
 </resources>

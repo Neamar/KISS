@@ -54,7 +54,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         if(pojos.size() > 0) {
             Log.v(TAG, "Reloading provider: " + this.getClass().getSimpleName());
         }
-    };
+    }
 
     public boolean isLoaded() {
         return this.loaded;
@@ -93,7 +93,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     public Pojo findById(String id) {
         for (Pojo pojo : pojos) {
             if (pojo.id.equals(id)) {
-                pojo.displayName = pojo.getName();
+                pojo.clearNameHighlight();
                 return pojo;
             }
         }

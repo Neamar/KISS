@@ -116,6 +116,16 @@ public class AppProvider extends Provider<AppPojo> {
             }, filter);
         }
 
+        // Get notified when app changes on standard user profile
+        IntentFilter appChangedFilter = new IntentFilter();
+        appChangedFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        appChangedFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+        appChangedFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        appChangedFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+        appChangedFilter.addDataScheme("package");
+        appChangedFilter.addDataScheme("file");
+        this.registerReceiver(new PackageAddedRemovedHandler(), appChangedFilter);
+
         super.onCreate();
     }
 
@@ -134,6 +144,10 @@ public class AppProvider extends Provider<AppPojo> {
     public void requestResults(String query, Searcher searcher) {
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
+        if (queryNormalized.codePoints.length == 0) {
+            return;
+        }
+
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
         FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
 
@@ -146,9 +160,9 @@ public class AppProvider extends Provider<AppPojo> {
             if (match) {
                 List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
                 try {
-                    pojo.setDisplayNameHighlightRegion(positions);
+                    pojo.setNameHighlight(positions);
                 } catch (Exception e) {
-                    pojo.setDisplayNameHighlightRegion(0, pojo.normalizedName.length());
+                    pojo.setNameHighlight(0, pojo.normalizedName.length());
                 }
                 bDisplayNameSet = true;
             }
@@ -159,7 +173,7 @@ public class AppProvider extends Provider<AppPojo> {
                     if (!match || (matchInfo.score > pojo.relevance)) {
                         match = true;
                         pojo.relevance = matchInfo.score;
-                        pojo.setTagHighlight(matchInfo.matchedIndices);
+                        pojo.setTagHighlight(matchInfo.getMatchedSequences());
                         bDisplayTagsSet = true;
                     }
                 }
@@ -167,9 +181,9 @@ public class AppProvider extends Provider<AppPojo> {
 
             if (match) {
                 if (!bDisplayNameSet)
-                    pojo.displayName = pojo.getName();
+                    pojo.clearNameHighlight();
                 if (!bDisplayTagsSet)
-                    pojo.displayTags = pojo.getTags();
+                    pojo.clearTagHighlight();
                 if (!searcher.addResult(pojo))
                     return;
             }
@@ -186,11 +200,10 @@ public class AppProvider extends Provider<AppPojo> {
     public Pojo findById(String id) {
         for (Pojo pojo : pojos) {
             if (pojo.id.equals(id)) {
-                // Reset displayName to default value
-                pojo.displayName = pojo.getName();
+                pojo.clearNameHighlight();
                 if (pojo instanceof PojoWithTags) {
                     PojoWithTags tagsPojo = (PojoWithTags) pojo;
-                    tagsPojo.displayTags = tagsPojo.getTags();
+                    tagsPojo.clearTagHighlight();
                 }
                 return pojo;
             }
@@ -204,8 +217,8 @@ public class AppProvider extends Provider<AppPojo> {
         ArrayList<Pojo> records = new ArrayList<>(pojos.size());
 
         for (AppPojo pojo : pojos) {
-            pojo.displayName = pojo.getName();
-            pojo.displayTags = pojo.getTags();
+            pojo.clearNameHighlight();
+            pojo.clearTagHighlight();
             pojo.relevance = 0;
             records.add(pojo);
         }

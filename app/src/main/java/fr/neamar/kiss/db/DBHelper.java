@@ -7,17 +7,22 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class DBHelper {
+    private static SQLiteDatabase database = null;
+
     private DBHelper() {
     }
 
     private static SQLiteDatabase getDatabase(Context context) {
-        DB db = new DB(context);
-        return db.getReadableDatabase();
+        if(database == null) {
+            database = new DB(context).getReadableDatabase();
+        }
+        return database;
     }
 
     private static ArrayList<ValuedHistoryRecord> readCursor(Cursor cursor) {
@@ -52,19 +57,16 @@ public class DBHelper {
         values.put("query", query);
         values.put("record", record);
         db.insert("history", null, values);
-        db.close();
     }
 
     public static void removeFromHistory(Context context, String record) {
         SQLiteDatabase db = getDatabase(context);
         db.delete("history", "record = ?", new String[]{record});
-        db.close();
     }
 
     public static void clearHistory(Context context) {
         SQLiteDatabase db = getDatabase(context);
         db.delete("history", "", null);
-        db.close();
     }
 
     private static Cursor getSmartHistoryCursor(SQLiteDatabase db, int limit) {
@@ -113,7 +115,6 @@ public class DBHelper {
 
         records = readCursor(cursor);
         cursor.close();
-        db.close();
         return records;
     }
 
@@ -136,7 +137,6 @@ public class DBHelper {
         cursor.moveToFirst();
         int historyLength = cursor.getInt(0);
         cursor.close();
-        db.close();
         return historyLength;
     }
 
@@ -159,7 +159,6 @@ public class DBHelper {
                 "query LIKE ?", new String[]{query + "%"}, "record", null, "COUNT(*) DESC", "10");
         records = readCursor(cursor);
         cursor.close();
-        db.close();
         return records;
     }
 
@@ -174,13 +173,11 @@ public class DBHelper {
         values.put("icon_blob", shortcut.icon_blob);
 
         db.insert("shortcuts", null, values);
-        db.close();
     }
 
     public static void removeShortcut(Context context, String name) {
         SQLiteDatabase db = getDatabase(context);
         db.delete("shortcuts", "name = ?", new String[]{name});
-        db.close();
     }
 
 
@@ -209,7 +206,6 @@ public class DBHelper {
         }
         cursor.close();
 
-        db.close();
         return records;
     }
 
@@ -224,15 +220,13 @@ public class DBHelper {
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) { // remove from history
-            db.delete("history", "record = ?", new String[]{ShortcutsPojo.SCHEME + cursor.getString(0).toLowerCase()});
+            db.delete("history", "record = ?", new String[]{ShortcutsPojo.SCHEME + cursor.getString(0).toLowerCase(Locale.ROOT)});
             cursor.moveToNext();
         }
         cursor.close();
 
         //remove shortcuts
         db.delete("shortcuts", "intent_uri LIKE ?", new String[]{"%" + packageName + "%"});
-
-        db.close();
     }
 
     /**
@@ -249,7 +243,6 @@ public class DBHelper {
         values.put("tag", tag);
         values.put("record", record);
         db.insert("tags", null, values);
-        db.close();
     }
 
 
@@ -264,7 +257,6 @@ public class DBHelper {
         SQLiteDatabase db = getDatabase(context);
 
         db.delete("tags", "record = ?", new String[]{record});
-        db.close();
     }
 
     public static Map<String, String> loadTags(Context context) {
@@ -281,7 +273,6 @@ public class DBHelper {
             cursor.moveToNext();
         }
         cursor.close();
-        db.close();
         return records;
 
     }

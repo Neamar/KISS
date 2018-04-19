@@ -27,7 +27,6 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -105,6 +104,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * or the external favorites bar (default)
      */
     public View favoritesBar;
+    /**
+     * Progress bar displayed when loading
+     */
+    private View loaderSpinner;
+    /**
+     * Launcher button, can be clicked to display all apps
+     */
+    private View launcherButton;
+    /**
+     * "X" button to empty the search field
+     */
+    private View clearButton;
 
     /**
      * Task launched on text change
@@ -114,7 +125,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * SystemUiVisibility helper
      */
-    public SystemUiVisibilityHelper systemUiVisibilityHelper;
+    private SystemUiVisibilityHelper systemUiVisibilityHelper;
+
+    /**
+     * Is the KISS bar currently displayed?
+     * (flag updated before animation is over)
+     */
+    private boolean isDisplayingKissBar = false;
 
     private PopupWindow mPopup;
 
@@ -127,6 +144,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
+
+        KissApplication.getApplication(this).initDataHandler();
 
         /*
          * Initialize preferences
@@ -150,7 +169,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onReceive(Context context, Intent intent) {
                 //noinspection ConstantConditions
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
-                    updateRecords();
+                    updateSearchRecords();
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     Log.v(TAG, "All providers are done loading.");
 
@@ -173,12 +192,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Set the view and store all useful components
          */
         setContentView(R.layout.main);
-        this.list = (AnimatedListView) this.findViewById(android.R.id.list);
+        this.list = this.findViewById(android.R.id.list);
         this.listContainer = (View) this.list.getParent();
         this.emptyListView = this.findViewById(android.R.id.empty);
         this.kissBar = findViewById(R.id.mainKissbar);
         this.menuButton = findViewById(R.id.menuButton);
-        this.searchEditText = (SearchEditText) findViewById(R.id.searchEditText);
+        this.searchEditText = findViewById(R.id.searchEditText);
+        this.loaderSpinner = findViewById(R.id.loaderBar);
+        this.launcherButton = findViewById(R.id.launcherButton);
+        this.clearButton = findViewById(R.id.clearButton);
 
         /*
          * Initialize components behavior
@@ -193,7 +215,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.emptyListView.setOnTouchListener(this);
 
         // Create adapter for records
-        this.adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
+        this.adapter = new RecordAdapter(this, this, new ArrayList<Result>());
         this.list.setAdapter(this.adapter);
 
         this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -247,7 +269,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     displayKissBar(false, false);
                 }
                 String text = s.toString();
-                updateRecords(text);
+                updateSearchRecords(text);
                 displayClearOnInput();
             }
         });
@@ -340,14 +362,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
         }
 
-        if(KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
+        if (KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
             displayLoader(false);
             onFavoriteChange();
         }
 
         // We need to update the history in case an external event created new items
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
-        updateRecords();
+        updateSearchRecords();
+
+        if(isViewingAllApps()) {
+            displayKissBar(false);
+        }
 
         forwarderManager.onResume();
 
@@ -379,7 +405,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         // Hide kissbar when coming back to kiss
-        if(isViewingAllApps()) {
+        if (isViewingAllApps()) {
             displayKissBar(false);
         }
     }
@@ -390,11 +416,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
         } else if (isViewingAllApps()) {
             displayKissBar(false);
-        } else if (!searchEditText.getText().toString().isEmpty()) {
+        } else {
             // If no kissmenu, empty the search bar
+            // (this will trigger a new event if the search bar was already empty)
+            // (which means pressing back in minimalistic mode with history displayed
+            // will hide history again)
             searchEditText.setText("");
         }
-        // No call to super.onBackPressed, since this would quit the launcher.
+        // No call to super.onBackPressed(), since this would quit the launcher.
     }
 
     @Override
@@ -458,6 +487,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        forwarderManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
     public boolean onTouch(View view, MotionEvent event) {
         if (forwarderManager.onTouch(view, event)) {
             return true;
@@ -496,17 +530,22 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             final float offsetX = -popupPos[0];
             final float offsetY = -popupPos[1];
             ev.offsetLocation(offsetX, offsetY);
-            boolean handled = popupContentView.dispatchTouchEvent(ev);
-            ev.offsetLocation(-offsetX, -offsetY);
-            if (!handled)
-                handled = super.dispatchTouchEvent(ev);
-            return handled;
+            try {
+                boolean handled = popupContentView.dispatchTouchEvent(ev);
+                ev.offsetLocation(-offsetX, -offsetY);
+                if (!handled)
+                    handled = super.dispatchTouchEvent(ev);
+                return handled;
+            }
+            catch(IllegalArgumentException e) {
+                // Quick temporary fix for #925
+                return false;
+            }
         }
         return super.dispatchTouchEvent(ev);
     }
 
     private void displayClearOnInput() {
-        final View clearButton = findViewById(R.id.clearButton);
         if (searchEditText.getText().length() > 0) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
@@ -517,13 +556,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public void displayLoader(Boolean display) {
-        final View loaderBar = findViewById(R.id.loaderBar);
-        final View launcherButton = findViewById(R.id.launcherButton);
-
         int animationDuration = getResources().getInteger(
                 android.R.integer.config_longAnimTime);
 
-        if (!display) {
+        // Do not display animation if launcher button is already visible
+        if (!display && launcherButton.getVisibility() == View.INVISIBLE) {
             launcherButton.setVisibility(View.VISIBLE);
 
             // Animate transition from loader to launch button
@@ -532,19 +569,19 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     .alpha(1f)
                     .setDuration(animationDuration)
                     .setListener(null);
-            loaderBar.animate()
+            loaderSpinner.animate()
                     .alpha(0f)
                     .setDuration(animationDuration)
                     .setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            loaderBar.setVisibility(View.GONE);
-                            loaderBar.setAlpha(1);
+                            loaderSpinner.setVisibility(View.GONE);
+                            loaderSpinner.setAlpha(1);
                         }
                     });
-        } else {
+        } else if(display) {
             launcherButton.setVisibility(View.INVISIBLE);
-            loaderBar.setVisibility(View.VISIBLE);
+            loaderSpinner.setVisibility(View.VISIBLE);
         }
     }
 
@@ -552,13 +589,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.onFavoriteChange();
     }
 
-    public void displayKissBar(Boolean display) {
+    private void displayKissBar(Boolean display) {
         this.displayKissBar(display, true);
     }
 
     private void displayKissBar(boolean display, boolean clearSearchText) {
-        final ImageView launcherButton = (ImageView) findViewById(R.id.launcherButton);
-
         // get the center for the clipping circle
         int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
         int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
@@ -567,9 +602,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
-            searchEditText.setText("");
             // Display the app list
+            if(searchEditText.getText().length() != 0) {
+                searchEditText.setText("");
+            }
             resetTask();
+
+            // Needs to be done after setting the text content to empty
+            isDisplayingKissBar = true;
 
             searchTask = new ApplicationsSearcher(MainActivity.this);
             searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
@@ -585,6 +625,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
             kissBar.setVisibility(View.VISIBLE);
         } else {
+            isDisplayingKissBar = false;
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 int animationDuration = getResources().getInteger(
@@ -613,23 +654,24 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.onDisplayKissBar(display);
     }
 
-    public void updateRecords() {
-        updateRecords(searchEditText.getText().toString());
+    public void updateSearchRecords() {
+        updateSearchRecords(searchEditText.getText().toString());
     }
 
     /**
-     * This function gets called on changes. It will ask all the providers for
-     * data
+     * This function gets called on query changes.
+     * It will ask all the providers for data
+     * This function is not called for non search-related changes! Have a look at onDataSetChanged() if that's what you're looking for :)
      *
      * @param query the query on which to search
      */
-    private void updateRecords(String query) {
+    private void updateSearchRecords(String query) {
         resetTask();
 
         if (mPopup != null)
             mPopup.dismiss();
 
-        forwarderManager.updateRecords(query);
+        forwarderManager.updateSearchRecords(query);
 
         if (query.isEmpty()) {
             systemUiVisibilityHelper.resetScroll();
@@ -652,26 +694,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     /**
-     * Call this function when we're leaving the activity We can't use
-     * onPause(), since it may be called for a configuration change
+     * Call this function when we're leaving the activity after clicking a search result
+     * to clear the search list.
+     * We can't use onPause(), since it may be called for a configuration change
      */
     @Override
-    public void launchOccurred(int index, Result result) {
+    public void launchOccurred() {
         // We selected an item on the list,
         // now we can cleanup the filter:
         if (!searchEditText.getText().toString().isEmpty()) {
             searchEditText.setText("");
             displayClearOnInput();
             hideKeyboard();
-        }
-        else if(isViewingAllApps()) {
+        } else if (isViewingAllApps()) {
             displayKissBar(false);
         }
-    }
-
-    @Override
-    public boolean showRelevance() {
-        return BuildConfig.DEBUG;
     }
 
     public void registerPopup(ListPopup popup) {
@@ -734,20 +771,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @return true of history, false on app list
      */
     public boolean isViewingSearchResults() {
-        return kissBar.getVisibility() != View.VISIBLE;
+        return !isDisplayingKissBar ;
     }
 
-    private boolean isViewingAllApps() {
-        return kissBar.getVisibility() == View.VISIBLE;
+    public boolean isViewingAllApps() {
+        return isDisplayingKissBar;
     }
 
     @Override
-    public void beforeChange() {
+    public void beforeListChange() {
         list.prepareChangeAnim();
     }
 
     @Override
-    public void afterChange() {
+    public void afterListChange() {
         list.animateChange();
     }
 }

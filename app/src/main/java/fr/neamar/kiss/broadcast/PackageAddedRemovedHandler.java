@@ -30,10 +30,8 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
                 }
 
                 String className = launchIntent.getComponent().getClassName();
-                if (className != null) {
-                    String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
-                    KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
-                }
+                String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
+                KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
             }
         }
 
@@ -54,9 +52,10 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context ctx, Intent intent) {
+
         String packageName = intent.getData().getSchemeSpecificPart();
 
-        if(packageName.equalsIgnoreCase(ctx.getPackageName())) {
+        if (packageName.equalsIgnoreCase(ctx.getPackageName())) {
             // When running KISS locally, sending a new version of the APK immediately triggers a "package removed" for fr.neamar.kiss,
             // There is no need to handle this event.
             // Discarding it makes startup time much faster locally as apps don't have to be loaded twice.

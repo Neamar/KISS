@@ -1,8 +1,10 @@
 package fr.neamar.kiss;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,11 +29,15 @@ import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
 @SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private static final int PERMISSION_RECEIVE_SMS = 0;
+    private static final int PERMISSION_READ_PHONE_STATE = 1;
 
     // Those settings require the app to restart
     final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars history-hide enable-favorites-bar notification-bar-color";
@@ -241,7 +248,7 @@ public class SettingsActivity extends PreferenceActivity implements
         multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                Set<String> searchProvidersToDelete = (Set<String>) newValue;//PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("deleting-search-providers-names", new HashSet<String>());
+                Set<String> searchProvidersToDelete = (Set<String>) newValue;
                 Set<String> availableSearchProviders = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders(SettingsActivity.this));
 
                 Set<String> updatedProviders = new HashSet<>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getSearchProviders(SettingsActivity.this)));
@@ -293,9 +300,26 @@ public class SettingsActivity extends PreferenceActivity implements
                 provider.reload();
             }
         } else if (key.equalsIgnoreCase("enable-sms-history")) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.RECEIVE_SMS},
+                        SettingsActivity.PERMISSION_RECEIVE_SMS);
+                return;
+            }
             PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, sharedPreferences.getBoolean(key, false));
         } else if (key.equalsIgnoreCase("enable-phone-history")) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.READ_PHONE_STATE},
+                        SettingsActivity.PERMISSION_READ_PHONE_STATE);
+                return;
+            }
             PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
+        } else if (key.equalsIgnoreCase("primary-color")) {
+            UIColors.clearPrimaryColorCache(this);
+        }
+        else if(key.equalsIgnoreCase("number-of-display-elements")) {
+            QuerySearcher.clearMaxResultCountCache();
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
@@ -318,7 +342,36 @@ public class SettingsActivity extends PreferenceActivity implements
         if (requireFullRestart) {
             prefs.edit().putBoolean("require-layout-update", true).apply();
         }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(grantResults.length == 0) {
+            return;
+        }
+
+        if(requestCode == PERMISSION_READ_PHONE_STATE) {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-phone-history", false));
+            }
+            else {
+                // You don't want to give us permission, that's fine. Revert the toggle.
+                SwitchPreference p = (SwitchPreference) findPreference("enable-phone-history");
+                p.setChecked(false);
+                Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if(requestCode == PERMISSION_RECEIVE_SMS) {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
+            }
+            else {
+                // You don't want to give us permission, that's fine. Revert the toggle.
+                SwitchPreference p = (SwitchPreference) findPreference("enable-sms-history");
+                p.setChecked(false);
+                Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -346,7 +399,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    protected void setListPreferenceIconsPacksData(ListPreference lp) {
+    private void setListPreferenceIconsPacksData(ListPreference lp) {
         IconsHandler iph = KissApplication.getApplication(this).getIconsHandler();
 
         CharSequence[] entries = new CharSequence[iph.getIconsPacks().size() + 1];

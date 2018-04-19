@@ -3,6 +3,9 @@ package fr.neamar.kiss.forwarder;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -17,8 +20,10 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.ui.RoundedQuickContactBadge;
 
 public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener {
     private static final String TAG = "FavoriteForwarder";
@@ -46,14 +51,14 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     /**
      * Currently displayed favorites
      */
-    private ArrayList<Pojo> favoritesPojo;
+    private ArrayList<Pojo> favoritesPojo = new ArrayList<>();
 
     Favorites(MainActivity mainActivity) {
         super(mainActivity);
     }
 
     void onCreate() {
-        if (prefs.getBoolean("enable-favorites-bar", true)) {
+        if (isExternalFavoriteBarEnabled()) {
             mainActivity.favoritesBar = mainActivity.findViewById(R.id.externalFavoriteBar);
             // Hide the embedded bar
             mainActivity.findViewById(R.id.embeddedFavoritesBar).setVisibility(View.INVISIBLE);
@@ -81,6 +86,28 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
+    private static Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if (bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        Bitmap bitmap;
+        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            // Single color bitmap will be created of 1x1 pixel
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
     void onFavoriteChange() {
         int[] favoritesIds = FAV_IDS;
 
@@ -96,15 +123,18 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             Result result = Result.fromPojo(mainActivity, pojo);
             Drawable drawable = result.getDrawable(mainActivity);
             if (drawable != null) {
+                if (result instanceof ContactsResult) {
+                    Bitmap iconBitmap = drawableToBitmap(drawable);
+                    drawable = new RoundedQuickContactBadge.RoundedDrawable(iconBitmap);
+                }
                 image.setImageDrawable(drawable);
             } else {
-                Log.w(TAG, "Falling back to default image for favorite.");
-                // Use the default contact image otherwise
-                image.setImageResource(R.drawable.ic_contact);
+                // Use a placeholder if no drawable found
+                image.setImageResource(R.drawable.ic_launcher_white);
             }
 
             image.setVisibility(View.VISIBLE);
-            image.setContentDescription(pojo.displayName);
+            image.setContentDescription(pojo.getName());
         }
 
         // Hide empty favorites (not enough favorites yet)
@@ -113,10 +143,17 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
-    void updateRecords(String query) {
+    void updateSearchRecords(String query) {
         if (query.isEmpty()) {
             mainActivity.favoritesBar.setVisibility(View.VISIBLE);
         } else {
+            mainActivity.favoritesBar.setVisibility(View.GONE);
+        }
+    }
+
+    void onDataSetChanged() {
+        // Do not display the external bar when viewing all apps
+        if(mainActivity.isViewingAllApps() && isExternalFavoriteBarEnabled()) {
             mainActivity.favoritesBar.setVisibility(View.GONE);
         }
     }
@@ -230,5 +267,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         mainActivity.registerPopup(popup);
         popup.show(v);
         return true;
+    }
+
+    private boolean isExternalFavoriteBarEnabled() {
+        return prefs.getBoolean("enable-favorites-bar", true);
     }
 }

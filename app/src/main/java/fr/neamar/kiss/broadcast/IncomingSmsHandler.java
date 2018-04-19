@@ -15,7 +15,7 @@ public class IncomingSmsHandler extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         // Only handle SMS received
-        if (!intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")) {
+        if (!"android.provider.Telephony.SMS_RECEIVED".equals(intent.getAction())) {
             return;
         }
 

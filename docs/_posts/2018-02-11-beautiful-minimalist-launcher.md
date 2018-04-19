@@ -39,7 +39,7 @@ From `⋮, KISS Settings, User experience`:
 * Minimalistic UI: disable
 * Show app tag: enable
 
-Finally, find an icon pack that you like!
+Finally, find an icon pack that you like ([Aeon](https://play.google.com/store/apps/details?id=stealthychief.theme.aeon) in the screenshot)!
 
 ## Example 3: minimalist-est
 ![Image: Muhammad Samir](/screenshots/example-minimalist-3.png)
@@ -56,3 +56,20 @@ From `⋮, KISS Settings, User experience`:
 
 * Hide favorites bar: enable
 * Minimalistic UI: enable
+
+## Example 4: minimalist, widget, rounded
+![Image: Guillaume Besson](/screenshots/example-minimalist-4.png)
+> Image: Guillaume Besson
+
+From `⋮, KISS Settings, User interface`:
+
+* Notification bar color: select green
+* Transparent favorites bar: enable
+* Large search bar: enable
+* Rounded bars corners: enable
+
+From `⋮, KISS Settings, User experience`:
+
+* Minimalistic UI: enable
+
+Press `⋮`, then select "Add widget" and [pick a widget you like](https://play.google.com/store/apps/details?id=com.apalon.weatherlive.free)!

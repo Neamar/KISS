@@ -39,9 +39,9 @@
     <string name="alias_phone">dial,biraj,zovi,pozovi,šalji,poruka,telefon,бирај,зови,позови,шаљи,порука,телефон</string>
     <string name="alias_contacts">kontakt,ljudi,osobe,контакт,људи,особе</string>
     <string name="alias_web">internet,web,browser,pregledač,pretraživač,интернет,веб,прегледач,претраживач</string>
-    <string name="alias_mail">pošta,mejl,imejl,email,мејл,имејл,пошта</string>
+    <string name="alias_mail">mail,email,e-mail,pošta,mejl,imejl,пошта,мејл,имејл</string>
     <string name="alias_market">market,store,app center,prodavnica,маркет,продавница,апликације</string>
-    <string name="alias_messaging">text,sms,mms,poruka,порука,смс,ммс,слање</string>
+    <string name="alias_messaging">text,compose,SMS,MMS,poruka,razmena,razmjena,порука,размена,размјена</string>
     <string name="settings_prefix">"Поставка: "</string>
     <string name="settings_airplane">Авионски режим</string>
     <string name="settings_device_info">Подаци о уређају</string>
@@ -88,7 +88,7 @@
     <string name="portrait_title">Присили усправни режим</string>
     <string name="reset_excluded_apps_name">Очисти списак искључених апликација</string>
     <string name="reset_excluded_apps_warn">Желите ли заиста да очистите списак искључених апликација?</string>
-    <string name="ui_excluded_apps">Прикажи/уреди искључене апликације</string>
+    <string name="ui_excluded_apps">Приказ или уређивање искључених апликација</string>
     <string name="ui_excluded_apps_not_found">Нема искључених апликација</string>
     <string name="reset_warn">Желите ли заиста да очистите ваш историјат?</string>
     <string name="reset_favorites_name">Очисти списак омиљених</string>
@@ -117,7 +117,7 @@
     <string name="favorites_hide">Сакриј траку омиљених</string>
     <string name="shortcut_added">Пречица додата у КИС.</string>
 
-    <string name="restart_desc">Поправи проблеме теме / не приказивање нових контаката</string>
+    <string name="restart_desc">Поправи проблеме теме и приказа нових контаката</string>
     <string name="ui_excluded_apps_dialog_title">Одзначите апликације које желите да укључите</string>
     <string name="history_mode_desc">Одредите начин попуњавања историјата</string>
     <string name="root_mode_desc">Ако је доступан, користите га да хибернирате апликације</string>
@@ -135,17 +135,16 @@
     <string name="settings_sound">Звук</string>
     <string name="settings_display">Приказ</string>
     <string name="ui_item_visit">Посети „%1$s“</string>
-    <string name="menu_tags_edit">Додај/уреди ознаке</string>
+    <string name="menu_tags_edit">Додај или уреди ознаке</string>
     <string name="tags_add_title">Додајте размаком одвојене ознаке</string>
     <string name="tags_confirmation_added">Ознака је постављена</string>
     <string name="toast_favorites_removed">%s је уклоњена из омиљених</string>
     <string name="menu_favorites_remove">Уклони омиљено</string>
 
-    <string name="stub_app_tag">Пример ознаке</string>
     <string name="default_launcher_title">Промени подразумевани покретач</string>
     <string name="default_launcher_warn">Након што одредите подразумевани покретач отвориће вам се његов почетни екран. Желите ли заиста да наставите?
-
-Напомена: Ако нема опције „Увек“, притисните тастер Почетна након што одредите жељени покретач.</string>
+\n
+\nНапомена: Ако нема опције „Увек“, притисните тастер Почетна након што одредите жељени покретач.</string>
 
     <string name="tags_visible">Прикажи ознаке апликација</string>
     <string name="share">Дели за…</string>
@@ -155,8 +154,8 @@
 
 
     <string name="color_picker_default_title" msgid="1248663997452044787">"Изаберите боју"</string>
-    <string name="color_swatch_description" msgid="2883438431173736180">"Боја <xliff:g id="COLOR_INDEX">%1$d</xliff:g>"</string>
-    <string name="color_swatch_description_selected" msgid="5020921249944943124">"Боја <xliff:g id="COLOR_INDEX">%1$d</xliff:g> је изабрана"</string>
+    <string name="color_swatch_description" msgid="2883438431173736180">Боја <xliff:g example="14" id="color_index">%1$d</xliff:g></string>
+    <string name="color_swatch_description_selected" msgid="5020921249944943124">Боја <xliff:g example="14" id="color_index">%1$d</xliff:g> је изабрана</string>
     <string name="number_of_display_items">Највећи број резултата у претрази и историјату</string>
 
     <string name="color_transparent_dark">Прозирна црна</string>
@@ -170,5 +169,29 @@
 
     <string name="menu_widget_add">(БЕТА) Додај виџет</string>
     <string name="menu_widget_remove">Уклони виџет</string>
+
+<string name="wp_drag_animate">Клизај тапет</string>
+    <string name="search_providers_delete">Обриши услуге претраге</string>
+    <string name="custom_search_provider">Додај услугу претраге</string>
+    <string name="search_provider_reset">Ресетуј услуге претраге</string>
+    <string name="search_provider_reset_desc">Желите ли да ресетујете списак услуга претраге?</string>
+    <string name="search_provider_reset_done_desc">Услуге претраге су ресетоване</string>
+    <string name="search_provider_name">Назив услуге</string>
+    <string name="search_provider_added">Услуга претраге је додата.</string>
+    <string name="search_provider_deleted">Услуге претраге су обрисане.</string>
+    <string name="search_provider_error_char">Не користите знак |</string>
+    <string name="search_provider_error_placeholder">Користите {q} за место упита</string>
+    <string name="search_provider_error_url">Користите исправан УРЛ</string>
+    <string name="search_provider_error_exists">Услуга истог назива већ постоји</string>
+
+
+    <string name="pref_hide_navbar">Сакриј навигациону траку</string>
+    <string name="pref_hide_statusbar">Сакриј траку стања</string>
+    <string name="rate_the_app">Оцените апликацију</string>
+    <string name="user_interface_summary">Теме, прозирност и боје</string>
+    <string name="title_ux">Корисничко искуство</string>
+    <string name="title_favorites">Поставке омиљених</string>
+    <string name="get_help">Тражите помоћ!</string>
+    <string name="permission_denied">Дозвола је одбијена.</string>
 
 </resources>

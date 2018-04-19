@@ -6,7 +6,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 
 ### Get started...
 * [ ] Loader appears when opening the app
-* [ ] Help text ("search apps, contacts, ...") appears while app is loading
+* [ ] Help text ("search apps, contacts, ...") appears while app are loading
 * [ ] After some time, loader disappears and is replaced by launcher icon
 * [ ] Touching the search field displays the keyboard
 * [ ] Searching for text displays results
@@ -75,7 +75,7 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When entering a search query, favorite bar is hidden
 * [ ] When search query is removed, bar appears again
 * [ ] When coming back from an application launched through search, bar is displayed again
-* [ ] When kiss bar is opened, favorites are displayed
+* [ ] When kiss bar is opened, favorites bar is hidden
 * [ ] When kiss bar is opened, internal favorites bar is hidden
 * [ ] When kiss bar is opened, you can't click on the menu button behind the kiss bar (not even visible, doesn't respond to touch events either)
 * [ ] When searching and pressing home, query is cleared, and favorites are displayed
@@ -157,6 +157,8 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] When using minimalistic mode and pressing the search bar, history is not displayed
 * [ ] When using minimalistic mode and pressing anywhere else, history is not displayed
 * [ ] When using minimalistic mode with history-touch and pressing anywhere else (outside of a widget), history is displayed
+* [ ] When using minimalistic mode with history-touch, display history then press back, history is hidden
+* [ ] When using minimalistic mode with history-touch, display history then press home, history is hidden
 * [ ] When scrolling down on the history, the keyboard disappears
 * [ ] Disable show keyboard on start
 * [ ] When using immersive mode for the notification bar, notification bar disappears when pressing home
@@ -197,13 +199,11 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 ### Providers settings
 * [ ] Search for a contact. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a device setting. Make sure it is displayed as a result and appended to history on click
-* [ ] Search for a toggle. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a phone number. Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a shortcut (you'll probably need to create one from an app first, for instance, WhatsApp). Make sure it is displayed as a result and appended to history on click
 * [ ] Search for a long text. Make sure a web search option is displayed as a result
 * [ ] From Providers selection, disable Contacts. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Device settings. From now on, they are not displayed anymore in search or history
-* [ ] From Providers selection, disable Toggles. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Phone numbers. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Shortcuts. From now on, they are not displayed anymore in search or history
 * [ ] From Providers selection, disable Web Search. From now on, they are not displayed anymore in search

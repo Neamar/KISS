@@ -26,7 +26,7 @@ public class ResetPreference extends DialogPreference {
             // We'll have to redraw the list, so add a flag for MainActivity to restart
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
             // SettingsActivity will have to restart (hides the summary with history count after reset)
-            // Nothing to do for MainActivity, since updateRecords() is called onResume().
+            // Nothing to do for MainActivity, since updateSearchRecords() is called onResume().
             editor.putBoolean("require-settings-update", true);
             editor.apply();
 

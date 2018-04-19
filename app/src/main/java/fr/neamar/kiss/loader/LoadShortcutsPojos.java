@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
@@ -49,7 +50,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
     private ShortcutsPojo createPojo(String name) {
         ShortcutsPojo pojo = new ShortcutsPojo();
 
-        pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase();
+        pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase(Locale.ROOT);
         pojo.setName(name);
 
         return pojo;

@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
@@ -12,7 +13,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -45,21 +45,23 @@ public class ShortcutsResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_shortcut);
 
-        TextView appName = (TextView) v.findViewById(R.id.item_app_name);
-        appName.setText(enrichText(shortcutPojo.displayName, context));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        TextView tagsView = (TextView) v.findViewById(R.id.item_app_tag);
+        TextView shortcutName = v.findViewById(R.id.item_app_name);
+        shortcutName.setText(enrichText(shortcutPojo.getName(), shortcutPojo.nameMatchPositions, context));
+
+        TextView tagsView = v.findViewById(R.id.item_app_tag);
         //Hide tags view if tags are empty or if user has selected to hide them and the query doesn't match tags
-        if (shortcutPojo.displayTags.isEmpty() ||
-                ((!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("tags-visible", true)) && (shortcutPojo.displayTags.equals(shortcutPojo.getTags())))) {
+        if (shortcutPojo.getTags().isEmpty() ||
+                (!prefs.getBoolean("tags-visible", true) && !shortcutPojo.tagsMatchPositions.isEmpty())) {
             tagsView.setVisibility(View.GONE);
         } else {
             tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(enrichText(shortcutPojo.displayTags, context));
+            tagsView.setText(enrichText(shortcutPojo.getTags(), shortcutPojo.tagsMatchPositions, context));
         }
 
-        final ImageView shortcutIcon = (ImageView) v.findViewById(R.id.item_shortcut_icon);
-        final ImageView appIcon = (ImageView) v.findViewById(R.id.item_app_icon);
+        final ImageView shortcutIcon = v.findViewById(R.id.item_shortcut_icon);
+        final ImageView appIcon = v.findViewById(R.id.item_app_icon);
 
         // Retrieve package icon for this shortcut
         final PackageManager packageManager = context.getPackageManager();
@@ -148,10 +150,9 @@ public class ShortcutsResult extends Result {
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
         // Create the tag dialog
-
-        final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
-        final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
+        final View v = View.inflate(context, R.layout.tags_dialog, null);
+        final MultiAutoCompleteTextView tagInput = v.findViewById(R.id.tag_input);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
         tagInput.setText(shortcutPojo.getTags());
@@ -167,7 +168,7 @@ public class ShortcutsResult extends Result {
                 pojo.setTags(tagInput.getText().toString());
                 KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
                 // TODO: update the displayTags with proper highlight
-                pojo.displayTags = pojo.getTags();
+                pojo.clearTagHighlight();
                 // Show toast message
                 String msg = context.getResources().getString(R.string.tags_confirmation_added);
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();

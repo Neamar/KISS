@@ -8,9 +8,12 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
-import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,8 +22,9 @@ import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
-import java.text.NumberFormat;
+import java.util.List;
 
+import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -31,7 +35,6 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
@@ -50,26 +53,6 @@ public abstract class Result {
     }
 
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
-        if (pojo instanceof PojoWithTags && parent.showRelevance()) {
-            PojoWithTags tagsPojo = (PojoWithTags) pojo;
-            int relevance = pojo.relevance - 1;
-            if (tagsPojo.displayTags != null && tagsPojo.displayTags.length() > 2 && "(".equals(tagsPojo.displayTags.substring(0, 1))) {
-                try {
-                    relevance = NumberFormat.getIntegerInstance()
-                            .parse(tagsPojo.displayTags.substring(1))
-                            .intValue();
-                } catch (Exception ignore) {
-                }
-            }
-            if (relevance != pojo.relevance) {
-                String tags = tagsPojo.getTags();
-                if (tags == null || tags.isEmpty())
-                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> ";
-                else
-                    tagsPojo.displayTags = "<small>(" + pojo.relevance + ")</small> " + tagsPojo.displayTags;
-            }
-        }
-
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
         else if (pojo instanceof ContactsPojo)
@@ -88,15 +71,26 @@ public abstract class Result {
     }
 
     /**
-     * Enrich text for display. Put text requiring highlighting between {}
+     * Enrich text for display.
      *
-     * @param text to highlight
-     * @return text displayable on a textview
+     * @param text Text to highlight
+     * @param positions List of matched positions
+     * @param context Application context
+     * @return Spannable displayable on a TextView
      */
-    static Spanned enrichText(String text, Context context) {
-        //TODO: cache the result. We consume lots of CPU and RAM converting every time we display
-        return Html.fromHtml(text.replaceAll("\\{", "<font color=" + UIColors.getPrimaryColor(context) + ">").replaceAll("\\}", "</font>"));
+    Spanned enrichText(String text, List<Pair<Integer, Integer>> positions, Context context) {
+        SpannableString enriched = new SpannableString(text);
+        int primaryColor = UIColors.getPrimaryColor(context);
+
+        for (Pair<Integer, Integer> position : positions) {
+            enriched.setSpan(
+                    new ForegroundColorSpan(primaryColor),
+                    position.first, position.second, Spannable.SPAN_INCLUSIVE_INCLUSIVE
+            );
+        }
+        return enriched;
     }
+
 
     @Override
     public String toString() {
@@ -168,6 +162,10 @@ public abstract class Result {
             }
         }
 
+        if (BuildConfig.DEBUG) {
+            adapter.add(new ListPopup.Item("Relevance: " + pojo.relevance));
+        }
+
         return menu;
     }
 
@@ -193,7 +191,7 @@ public abstract class Result {
         //Update Search to reflect favorite add, if the "exclude favorites" option is active
         MainActivity mainActivity = (MainActivity) context;
         if(mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
-            mainActivity.updateRecords();
+            mainActivity.updateSearchRecords();
         }
 
         return false;

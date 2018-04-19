@@ -21,7 +21,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -43,7 +42,6 @@ public class ColorPickerDialog extends DialogFragment implements OnColorSelected
     private static final String KEY_SELECTED_COLOR = "selected_color";
     private static final String KEY_COLUMNS = "columns";
     private static final String KEY_SIZE = "size";
-    private AlertDialog mAlertDialog;
     private int mTitleResId = R.string.color_picker_default_title;
     private int[] mColors = null;
     private String[] mColorContentDescriptions = null;
@@ -104,21 +102,19 @@ public class ColorPickerDialog extends DialogFragment implements OnColorSelected
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Activity activity = getActivity();
 
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.color_picker_dialog, null);
-        mProgress = (ProgressBar) view.findViewById(android.R.id.progress);
-        mPalette = (ColorPickerPalette) view.findViewById(R.id.color_picker);
+        View view = View.inflate(activity, R.layout.color_picker_dialog, null);
+        mProgress = view.findViewById(android.R.id.progress);
+        mPalette = view.findViewById(R.id.color_picker);
         mPalette.init(mSize, mColumns, this);
 
         if (mColors != null) {
             showPaletteView();
         }
 
-        mAlertDialog = new AlertDialog.Builder(activity)
+        return new AlertDialog.Builder(activity)
                 .setTitle(mTitleResId)
                 .setView(view)
                 .create();
-
-        return mAlertDialog;
     }
 
     @Override

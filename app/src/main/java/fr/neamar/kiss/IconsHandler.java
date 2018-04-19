@@ -226,11 +226,16 @@ public class IconsHandler {
             int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
             if (id > 0) {
                 //noinspection deprecation: Resources.getDrawable(int, Theme) requires SDK 21+
-                return iconPackres.getDrawable(id);
+                try {
+                    return iconPackres.getDrawable(id);
+                } catch(Resources.NotFoundException e) {
+                    // Unable to load icon, keep going.
+                    e.printStackTrace();
+                }
             }
         }
 
-        //search first in cache
+        // Search first in cache
         Drawable systemIcon = cacheGetDrawable(componentName.toString());
         if (systemIcon != null)
             return systemIcon;

@@ -1,6 +1,7 @@
 package fr.neamar.kiss.forwarder;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -11,30 +12,33 @@ import fr.neamar.kiss.MainActivity;
 public class ForwarderManager extends Forwarder {
     private final Widget widgetForwarder;
     private final LiveWallpaper liveWallpaperForwarder;
-    private final InterfaceTweaks interfaceTweaksProvider;
-    private final ExperienceTweaks experienceTweaksProvider;
+    private final InterfaceTweaks interfaceTweaks;
+    private final ExperienceTweaks experienceTweaks;
     private final Favorites favoritesForwarder;
+    private final Permission permissionForwarder;
+
 
     public ForwarderManager(MainActivity mainActivity) {
         super(mainActivity);
 
         this.widgetForwarder = new Widget(mainActivity);
         this.liveWallpaperForwarder = new LiveWallpaper(mainActivity);
-        this.interfaceTweaksProvider = new InterfaceTweaks(mainActivity);
-        this.experienceTweaksProvider = new ExperienceTweaks(mainActivity);
+        this.interfaceTweaks = new InterfaceTweaks(mainActivity);
+        this.experienceTweaks = new ExperienceTweaks(mainActivity);
         this.favoritesForwarder = new Favorites(mainActivity);
+        this.permissionForwarder = new Permission(mainActivity);
     }
 
     public void onCreate() {
         favoritesForwarder.onCreate();
         widgetForwarder.onCreate();
-        interfaceTweaksProvider.onCreate();
-        experienceTweaksProvider.onCreate();
+        interfaceTweaks.onCreate();
+        experienceTweaks.onCreate();
     }
 
     public void onResume() {
-        interfaceTweaksProvider.onResume();
-        experienceTweaksProvider.onResume();
+        interfaceTweaks.onResume();
+        experienceTweaks.onResume();
     }
 
     public void onStart() {
@@ -49,6 +53,10 @@ public class ForwarderManager extends Forwarder {
         widgetForwarder.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        permissionForwarder.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         return widgetForwarder.onOptionsItemSelected(item);
     }
@@ -58,21 +66,22 @@ public class ForwarderManager extends Forwarder {
     }
 
     public boolean onTouch(View view, MotionEvent event) {
-        experienceTweaksProvider.onTouch(view, event); // always return false anyway
+        experienceTweaks.onTouch(view, event); // always return false anyway
         return liveWallpaperForwarder.onTouch(view, event);
     }
 
     public void onWindowFocusChanged(boolean hasFocus) {
-        experienceTweaksProvider.onWindowFocusChanged(hasFocus);
+        experienceTweaks.onWindowFocusChanged(hasFocus);
     }
 
     public void onDataSetChanged() {
         widgetForwarder.onDataSetChanged();
+        favoritesForwarder.onDataSetChanged();
     }
 
-    public void updateRecords(String query) {
-        favoritesForwarder.updateRecords(query);
-        experienceTweaksProvider.updateRecords(query);
+    public void updateSearchRecords(String query) {
+        favoritesForwarder.updateSearchRecords(query);
+        experienceTweaks.updateSearchRecords(query);
     }
 
     public void onFavoriteChange() {
@@ -80,6 +89,6 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onDisplayKissBar(Boolean display) {
-        experienceTweaksProvider.onDisplayKissBar(display);
+        experienceTweaks.onDisplayKissBar(display);
     }
 }

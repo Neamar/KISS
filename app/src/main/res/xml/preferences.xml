@@ -16,7 +16,7 @@
             android:order="12"
             android:title="@string/reset_excluded_apps_name" />
         <EditTextPreference
-            android:defaultValue="25"
+            android:defaultValue="20"
             android:inputType="number"
             android:key="number-of-display-elements"
             android:order="45"
@@ -106,11 +106,11 @@
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
                 android:key="pref-rounded-list"
-                android:title="Rounded list corners" />
+                android:title="@string/rounded_list" />
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
                 android:key="pref-rounded-bars"
-                android:title="Rounded bars corners" />
+                android:title="@string/rounded_bars" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
@@ -157,7 +157,7 @@
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="true"
+                android:defaultValue="false"
                 android:key="force-portrait"
                 android:title="@string/portrait_title" />
             <ListPreference

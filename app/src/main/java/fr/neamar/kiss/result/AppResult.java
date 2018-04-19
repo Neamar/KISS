@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -37,6 +36,7 @@ public class AppResult extends Result {
     private final AppPojo appPojo;
     private final ComponentName className;
     private Drawable icon = null;
+
     AppResult(AppPojo appPojo) {
         super(appPojo);
         this.appPojo = appPojo;
@@ -53,21 +53,20 @@ public class AppResult extends Result {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
+        TextView appName = view.findViewById(R.id.item_app_name);
+        appName.setText(enrichText(appPojo.getName(), appPojo.nameMatchPositions, context));
 
-        TextView appName = (TextView) view.findViewById(R.id.item_app_name);
-        appName.setText(enrichText(appPojo.displayName, context));
-
-        TextView tagsView = (TextView) view.findViewById(R.id.item_app_tag);
-        //Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
-        if (appPojo.displayTags.isEmpty() ||
-                (!prefs.getBoolean("tags-visible", true) && !appPojo.displayTags.contains("{"))) {
+        TextView tagsView = view.findViewById(R.id.item_app_tag);
+        // Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
+        if (appPojo.getTags().isEmpty() ||
+                (!prefs.getBoolean("tags-visible", true) && appPojo.tagsMatchPositions.isEmpty())) {
             tagsView.setVisibility(View.GONE);
         } else {
             tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(enrichText(appPojo.displayTags, context));
+            tagsView.setText(enrichText(appPojo.getTags(), appPojo.tagsMatchPositions, context));
         }
 
-        final ImageView appIcon = (ImageView) view.findViewById(R.id.item_app_icon);
+        final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!prefs.getBoolean("icons-hide", false)) {
             if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
                 icon = appIcon.getDrawable();
@@ -90,8 +89,6 @@ public class AppResult extends Result {
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
-
-        ListPopup menu = inflatePopupMenu(adapter, context);
 
         try {
             // app installed under /system can't be uninstalled
@@ -119,7 +116,8 @@ public class AppResult extends Result {
         if (KissApplication.getApplication(context).getRootHandler().isRootActivated() && KissApplication.getApplication(context).getRootHandler().isRootAvailable()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_hibernate));
         }
-        return menu;
+
+        return inflatePopupMenu(adapter, context);
     }
 
     @Override
@@ -168,8 +166,8 @@ public class AppResult extends Result {
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
         // Create the tag dialog
-        final View v = LayoutInflater.from(context).inflate(R.layout.tags_dialog, null);
-        final MultiAutoCompleteTextView tagInput = (MultiAutoCompleteTextView) v.findViewById(R.id.tag_input);
+        final View v = View.inflate(context, R.layout.tags_dialog, null);
+        final MultiAutoCompleteTextView tagInput = v.findViewById(R.id.tag_input);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
@@ -186,7 +184,7 @@ public class AppResult extends Result {
                 app.setTags(tagInput.getText().toString());
                 KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
                 // TODO: update the displayTags with proper highlight
-                app.displayTags = app.getTags();
+                app.clearTagHighlight();
                 // Show toast message
                 String msg = context.getResources().getString(R.string.tags_confirmation_added);
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();

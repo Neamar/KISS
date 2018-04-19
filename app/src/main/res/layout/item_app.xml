@@ -42,28 +42,33 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingBottom="3dp"
-            android:paddingRight="2px"
-            android:text="@string/stub_application"
-            android:textColor="?attr/resultColor"
+            android:paddingEnd="2dp"
+            android:paddingRight="2dp"
             android:shadowColor="?attr/resultShadowColor"
-            android:shadowRadius="3"
             android:shadowDx="1"
             android:shadowDy="2"
-            android:textSize="@dimen/result_title_size" />
+            android:shadowRadius="?attr/textShadowRadius"
+            android:textColor="?attr/resultColor"
+            android:textSize="@dimen/result_title_size"
+            tools:ignore="RtlSymmetry"
+            tools:text="@string/stub_application" />
 
         <TextView
             android:id="@+id/item_app_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-6dp"
-            android:paddingRight="2px"
             android:ellipsize="end"
-            android:text="@string/stub_app_tag"
+            android:paddingEnd="2dp"
+            android:paddingRight="2dp"
             android:shadowColor="?attr/resultShadowColor"
-            android:shadowRadius="3"
             android:shadowDx="1"
             android:shadowDy="2"
-            android:textColor="?android:attr/textColorSecondary" />
+            android:shadowRadius="?attr/textShadowRadius"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="@dimen/result_small_size"
+            tools:ignore="RtlSymmetry"
+            tools:text="@string/stub_app_tag" />
 
     </LinearLayout>
 </RelativeLayout>
