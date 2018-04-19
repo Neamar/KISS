@@ -131,6 +131,7 @@ public class AppResult extends Result {
             case R.string.menu_custom_icon:
                 Intent intent = new Intent(context, ChangeIconActivity.class);
                 intent.putExtra(ChangeIconActivity.COMPONENT_NAME, className.toString());
+                intent.putExtra(ChangeIconActivity.APP_NAME, enrichText(appPojo.displayName, context));
                 startActivity(intent);
                 return true;
             case R.string.menu_app_uninstall:
