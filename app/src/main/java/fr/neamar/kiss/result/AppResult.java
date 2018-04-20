@@ -24,6 +24,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fr.neamar.kiss.ChangeIconActivity;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -129,8 +130,8 @@ public class AppResult extends Result {
             case R.string.menu_custom_icon:
                 Intent intent = new Intent(context, ChangeIconActivity.class);
                 intent.putExtra(ChangeIconActivity.COMPONENT_NAME, className.toString());
-                intent.putExtra(ChangeIconActivity.APP_NAME, enrichText(appPojo.displayName, context));
-                startActivity(intent);
+                intent.putExtra(ChangeIconActivity.APP_NAME, appPojo.getName());
+                context.startActivity(intent);
                 return true;
             case R.string.menu_app_uninstall:
                 launchUninstall(context, appPojo);
