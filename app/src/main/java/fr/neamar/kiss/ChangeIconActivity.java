@@ -75,10 +75,7 @@ public class ChangeIconActivity extends Activity{
             }
         });
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+    
     public void saveCustomIcon(String appComponent, String iconComponent) {
         IconsHandler iconsHandler = KissApplication.getApplication(this).getIconsHandler();
         File customIconFile = iconsHandler.getCustomFileName(this, appComponent);
