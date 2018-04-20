@@ -382,7 +382,7 @@ public class IconsHandler {
     }
 
     public File getCustomFileName(String key) {
-        return new File(getCustomIconsDir() + key.hashCode() + ".png");
+        return new File(getCustomIconsDir().getPath() + key.hashCode() + ".png");
     }
 
     private File getCustomIconsDir() {

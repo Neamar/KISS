@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.lang.ref.SoftReference;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -78,7 +79,7 @@ public class ChangeIconActivity extends Activity{
     
     public void saveCustomIcon(String appComponent, String iconComponent) {
         IconsHandler iconsHandler = KissApplication.getApplication(this).getIconsHandler();
-        File customIconFile = iconsHandler.getCustomFileName(this, appComponent);
+        File customIconFile = iconsHandler.getCustomFileName(appComponent);
         Bitmap customBitmap = iconsHandler.getBitmap(iconComponent);
         if (customIconFile != null) {
             try {
@@ -96,7 +97,7 @@ public class ChangeIconActivity extends Activity{
         private ImageView icon;
         private TextView text;
         private String component;
-        private Resources res;
+        private SoftReference<Context> contextRef;
         private View.OnClickListener onClickListener;
         public void filter(CharSequence searchInput) {
             toDisplay.clear();
@@ -114,7 +115,7 @@ public class ChangeIconActivity extends Activity{
         
         public IconGridAdapter(Context context, final String appName) {
             super();
-            res = context.getResources();
+            contextRef = new SoftReference<Context>(context);
             Map<String, String> iconsList = KissApplication.getApplication(context).getIconsHandler().getPackagesDrawables();
             Set<String> iconsSet = iconsList.keySet();
             iconsArray = new ArrayList<String>(iconsSet);
@@ -156,7 +157,7 @@ public class ChangeIconActivity extends Activity{
                 v = convertView;
             }
             icon = (ImageView)v.findViewById(R.id.adapter_icon);
-            icon.setImageBitmap(KissApplication.getApplication(IconGridAdapter.this).getIconsHandler().getBitmap(toDisplay.get(i)));
+            icon.setImageBitmap(KissApplication.getApplication(contextRef.get()).getIconsHandler().getBitmap(toDisplay.get(i)));
             text = (TextView)v.findViewById(R.id.adapter_icon_text);
             text.setText(toDisplay.get(i));
             v.setTag(toDisplay.get(i));
