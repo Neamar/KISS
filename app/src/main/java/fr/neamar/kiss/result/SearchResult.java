@@ -14,6 +14,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 import static fr.neamar.kiss.R.drawable.search;
 
@@ -26,7 +27,7 @@ public class SearchResult extends Result {
     }
 
     @Override
-    public View display(Context context, int position, View v) {
+    public View display(Context context, int position, View v, FuzzyScore fuzzyScore) {
         if (v == null)
             v = inflateFromId(context, R.layout.item_search);
 

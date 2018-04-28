@@ -18,6 +18,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public class PhoneResult extends Result {
     private final PhonePojo phonePojo;
@@ -28,7 +29,7 @@ public class PhoneResult extends Result {
     }
 
     @Override
-    public View display(Context context, int position, View v) {
+    public View display(Context context, int position, View v, FuzzyScore fuzzyScore) {
         if (v == null)
             v = inflateFromId(context, R.layout.item_phone);
 

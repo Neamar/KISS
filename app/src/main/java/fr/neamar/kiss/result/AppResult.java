@@ -30,6 +30,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
@@ -45,7 +46,7 @@ public class AppResult extends Result {
     }
 
     @Override
-    public View display(final Context context, int position, View convertView) {
+    public View display(final Context context, int position, View convertView, FuzzyScore fuzzyScore) {
         View view = convertView;
         if (convertView == null) {
             view = inflateFromId(context, R.layout.item_app);
@@ -54,7 +55,8 @@ public class AppResult extends Result {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         TextView appName = view.findViewById(R.id.item_app_name);
-        appName.setText(appPojo.getName());
+
+        displayHighlighted(appPojo.normalizedName, appPojo.getName(), fuzzyScore, appName, context);
 
         TextView tagsView = view.findViewById(R.id.item_app_tag);
         // Hide tags view if tags are empty or if user has selected to hide them when query doesn't match

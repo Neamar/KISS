@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingsPojo;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public class SettingsResult extends Result {
     private final SettingsPojo settingPojo;
@@ -23,12 +24,12 @@ public class SettingsResult extends Result {
     }
 
     @Override
-    public View display(Context context, int position, View v) {
+    public View display(Context context, int position, View v, FuzzyScore fuzzyScore) {
         if (v == null)
             v = inflateFromId(context, R.layout.item_setting);
 
         TextView settingName = v.findViewById(R.id.item_setting_name);
-        settingName.setText(settingPojo.getName());
+        displayHighlighted(settingPojo.normalizedName, settingPojo.getName(), fuzzyScore, settingName, context);
 
         ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
         settingIcon.setImageDrawable(getDrawable(context));

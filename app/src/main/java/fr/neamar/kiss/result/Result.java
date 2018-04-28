@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.util.Pair;
@@ -19,6 +18,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
@@ -30,6 +30,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
@@ -39,6 +40,7 @@ import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public abstract class Result {
     /**
@@ -80,9 +82,32 @@ public abstract class Result {
      *
      * @param context     android context
      * @param convertView a view to be recycled
+     * @param fuzzyScore
      * @return a view to display as item
      */
-    public abstract View display(Context context, int position, View convertView);
+    public abstract View display(Context context, int position, View convertView, FuzzyScore fuzzyScore);
+
+    public void displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore, TextView view, Context context) {
+        FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
+
+        if (!matchInfo.match) {
+            view.setText(text);
+            return;
+        }
+
+        SpannableString enriched = new SpannableString(text);
+        int primaryColor = UIColors.getPrimaryColor(context);
+
+        for (Pair<Integer, Integer> position : matchInfo.getMatchedSequences()) {
+            enriched.setSpan(
+                    new ForegroundColorSpan(primaryColor),
+                    normalized.mapPosition(position.first),
+                    normalized.mapPosition(position.second),
+                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
+            );
+        }
+        view.setText(enriched);
+    }
 
     public String getSection() {
         // get the normalized first letter of the pojo
