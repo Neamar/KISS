@@ -24,9 +24,22 @@ public class ContactsPojo extends Pojo {
     // Is this number a home (local) number ?
     public final Boolean homeNumber = false;
 
-    public String nickname = "";
+    public StringNormalizer.Result normalizedNickname = null;
+
+    private String nickname = "";
+
+    public String getNickname() {
+        return nickname;
+    }
 
     public void setNickname(String nickname) {
-        this.nickname = StringNormalizer.normalize(nickname);
+        if (nickname != null) {
+            // Set the actual user-friendly name
+            this.nickname = nickname;
+            this.normalizedNickname = StringNormalizer.normalizeWithResult(this.nickname, false);
+        } else {
+            this.nickname = null;
+            this.normalizedNickname = null;
+        }
     }
 }

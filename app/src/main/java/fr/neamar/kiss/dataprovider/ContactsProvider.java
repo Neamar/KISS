@@ -64,8 +64,8 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             match = matchInfo.match;
             pojo.relevance = matchInfo.score;
 
-            if (!pojo.nickname.isEmpty()) {
-                matchInfo = fuzzyScore.match(pojo.nickname);
+            if (pojo.normalizedNickname != null) {
+                matchInfo = fuzzyScore.match(pojo.normalizedNickname.codePoints);
                 if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
                     match = true;
                     pojo.relevance = matchInfo.score;

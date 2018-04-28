@@ -59,7 +59,7 @@ public class ContactsResult extends Result {
         TextView contactNickname = view.findViewById(R.id.item_contact_nickname);
         if (!contactPojo.nickname.isEmpty()) {
             contactNickname.setVisibility(View.VISIBLE);
-            contactNickname.setText(contactPojo.nickname);
+            displayHighlighted(contactPojo.normalizedNickname, contactPojo.getNickname(), fuzzyScore, contactNickname, context);
         }
         else {
             contactNickname.setVisibility(View.GONE);
