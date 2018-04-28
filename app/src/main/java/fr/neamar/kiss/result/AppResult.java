@@ -59,14 +59,15 @@ public class AppResult extends Result {
         displayHighlighted(appPojo.normalizedName, appPojo.getName(), fuzzyScore, appName, context);
 
         TextView tagsView = view.findViewById(R.id.item_app_tag);
-        // Hide tags view if tags are empty or if user has selected to hide them when query doesn't match
-        /*if (appPojo.getTags().isEmpty() ||
-                (!prefs.getBoolean("tags-visible", true) && appPojo.tagsMatchPositions.isEmpty())) {
+        // Hide tags view if tags are empty
+        if (appPojo.getTags().isEmpty()) {
             tagsView.setVisibility(View.GONE);
-        } else {
+        } else if (displayHighlighted(appPojo.normalizedTags, appPojo.getTags(),
+                fuzzyScore, tagsView, context) || prefs.getBoolean("tags-visible", true)) {
             tagsView.setVisibility(View.VISIBLE);
-            tagsView.setText(appPojo.getTags());
-        }*/
+        } else {
+            tagsView.setVisibility(View.GONE);
+        }
 
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!prefs.getBoolean("icons-hide", false)) {
@@ -178,8 +179,6 @@ public class AppResult extends Result {
                 // Refresh tags for given app
                 app.setTags(tagInput.getText().toString());
                 KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
-                // TODO: update the displayTags with proper highlight
-                //app.clearTagHighlight();
                 // Show toast message
                 String msg = context.getResources().getString(R.string.tags_confirmation_added);
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();

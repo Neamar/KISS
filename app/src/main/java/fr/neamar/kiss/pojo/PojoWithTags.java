@@ -11,7 +11,7 @@ public class PojoWithTags extends Pojo {
     // tags normalized, for faster search
     public StringNormalizer.Result normalizedTags = null;
     // Tags assigned to this pojo
-    private String tags;
+    private String tags = "";
 
     public String getTags() {
         return tags;

@@ -57,12 +57,10 @@ public class ContactsResult extends Result {
 
         // Contact nickname
         TextView contactNickname = view.findViewById(R.id.item_contact_nickname);
-        if (!contactPojo.nickname.isEmpty()) {
-            contactNickname.setVisibility(View.VISIBLE);
-            displayHighlighted(contactPojo.normalizedNickname, contactPojo.getNickname(), fuzzyScore, contactNickname, context);
-        }
-        else {
+        if (contactPojo.getNickname().isEmpty()) {
             contactNickname.setVisibility(View.GONE);
+        } else {
+            displayHighlighted(contactPojo.normalizedNickname, contactPojo.getNickname(), fuzzyScore, contactNickname, context);
         }
 
         // Contact photo

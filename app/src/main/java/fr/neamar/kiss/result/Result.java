@@ -87,12 +87,13 @@ public abstract class Result {
      */
     public abstract View display(Context context, int position, View convertView, FuzzyScore fuzzyScore);
 
-    public void displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore, TextView view, Context context) {
+    public boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
+            TextView view, Context context) {
         FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
         if (!matchInfo.match) {
             view.setText(text);
-            return;
+            return false;
         }
 
         SpannableString enriched = new SpannableString(text);
@@ -106,7 +107,9 @@ public abstract class Result {
                     Spannable.SPAN_INCLUSIVE_INCLUSIVE
             );
         }
+        view.setVisibility(View.VISIBLE);
         view.setText(enriched);
+        return true;
     }
 
     public String getSection() {
@@ -117,6 +120,7 @@ public abstract class Result {
         // after upper A-Z
         return ch.toUpperCase();
     }
+
     /**
      * How to display the popup menu
      *
