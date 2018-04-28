@@ -12,7 +12,6 @@ import android.view.View;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -104,7 +103,7 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void onCreate() {
-        adjustInputType(null);
+        adjustInputType();
         mainEmptyView = mainActivity.findViewById(R.id.main_empty);
     }
 
@@ -163,8 +162,6 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void updateSearchRecords(String query) {
-        adjustInputType(query);
-
         if (query.isEmpty()) {
             if (isMinimalisticModeEnabled()) {
                 mainActivity.runTask(new NullSearcher(mainActivity));
@@ -181,13 +178,11 @@ class ExperienceTweaks extends Forwarder {
     }
 
     // Ensure the keyboard uses the right input method
-    private void adjustInputType(String currentText) {
+    private void adjustInputType() {
         int currentInputType = mainActivity.searchEditText.getInputType();
         int requiredInputType;
 
-        if (currentText != null && Pattern.matches("[+]\\d+", currentText)) {
-            requiredInputType = InputType.TYPE_CLASS_PHONE;
-        } else if (isNonCompliantKeyboard()) {
+        if (isNonCompliantKeyboard()) {
             requiredInputType = INPUT_TYPE_WORKAROUND;
         } else {
             requiredInputType = INPUT_TYPE_STANDARD;
