@@ -1,19 +1,25 @@
 package fr.neamar.kiss.normalizer;
 
 public class PhoneNormalizer {
-    public static String simplifyPhoneNumber(String phoneNumber) {
+    public static StringNormalizer.Result simplifyPhoneNumber(String phoneNumber) {
         // This is done manually for performance reason,
         // But the algorithm is just a regexp replacement of "[-.():/ ]" with ""
-        StringBuilder sb = new StringBuilder();
-        int phoneLength = phoneNumber.length();
-        for(int i = 0; i < phoneLength; i++)
-        {
-            char c = phoneNumber.charAt(i);
-            if(c == ' ' || c == '-' || c == '.' || c == '(' || c == ')' || c == ':' || c == '/') {
-                continue;
+
+        int numCodePoints = Character.codePointCount(phoneNumber, 0, phoneNumber.length());
+        IntSequenceBuilder codePoints = new IntSequenceBuilder(numCodePoints);
+        IntSequenceBuilder resultMap = new IntSequenceBuilder(numCodePoints);
+
+        int i = 0;
+        for (int iterCodePoint = 0; iterCodePoint < numCodePoints; iterCodePoint += 1) {
+            int c = Character.codePointAt(phoneNumber, i);
+
+            if (c != ' ' && c != '-' && c != '.' && c != '(' && c != ')' && c != ':' && c != '/') {
+                codePoints.add(c);
+                resultMap.add(i);
             }
-            sb.append(c);
+            i += Character.charCount(c);
         }
-        return sb.toString();
+
+        return new StringNormalizer.Result(phoneNumber.length(), codePoints.toArray(), resultMap.toArray());
     }
 }

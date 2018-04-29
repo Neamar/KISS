@@ -9,7 +9,7 @@ public class ContactsPojo extends Pojo {
 
     public String phone = "";
     //phone without special characters
-    public String phoneSimplified = "";
+    public StringNormalizer.Result normalizedPhone = null;
     public Uri icon = null;
 
     // Is this a primary phone?

@@ -2,9 +2,6 @@ package fr.neamar.kiss.dataprovider;
 
 import android.database.ContentObserver;
 import android.provider.ContactsContract;
-import android.util.Pair;
-
-import java.util.List;
 
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.loader.LoadContactsPojos;
@@ -74,7 +71,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
             if (!match && queryNormalized.length() > 2) {
                 // search for the phone number
-                matchInfo = fuzzyScore.match(pojo.phoneSimplified);
+                matchInfo = fuzzyScore.match(pojo.normalizedPhone.codePoints);
                 match = matchInfo.match;
                 pojo.relevance = matchInfo.score;
             }
@@ -99,10 +96,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
      * @return a contactpojo, or null.
      */
     public ContactsPojo findByPhone(String phoneNumber) {
-        String simplifiedPhoneNumber = PhoneNormalizer.simplifyPhoneNumber(phoneNumber);
+        StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.simplifyPhoneNumber(phoneNumber);
 
         for (ContactsPojo pojo : pojos) {
-            if (pojo.phoneSimplified.equals(simplifiedPhoneNumber)) {
+            if (pojo.normalizedPhone.equals(simplifiedPhoneNumber)) {
                 return pojo;
             }
         }

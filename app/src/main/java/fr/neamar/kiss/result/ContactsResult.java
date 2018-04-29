@@ -53,7 +53,7 @@ public class ContactsResult extends Result {
 
         // Contact phone
         TextView contactPhone = view.findViewById(R.id.item_contact_phone);
-        contactPhone.setText(contactPojo.phone);
+        displayHighlighted(contactPojo.normalizedPhone, contactPojo.phone, fuzzyScore, contactPhone, context);
 
         // Contact nickname
         TextView contactNickname = view.findViewById(R.id.item_contact_nickname);
