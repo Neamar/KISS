@@ -287,15 +287,13 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         return prefs.getBoolean("enable-favorites-bar", true);
     }
 
-
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            Log.i(TAG, "OnTouch down event, resetting timer");
             startTime = motionEvent.getEventTime();
             isTouching = true;
         }
-        // NO need to do the extra work
+        // No need to do the extra work
         if(isDragging || !isTouching) {
             return true;
         }
@@ -305,7 +303,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         if(holdTime > LONG_PRESS_DELAY) {
             // Reset so we dont trigger the menu again next time.
             isTouching = false;
-            startTime = motionEvent.getEventTime();
             this.onLongClick(view);
             return true;
         }
@@ -362,6 +359,19 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 isDragging = false;
 
                 final View draggedView = (View) event.getLocalState();
+
+                // Sometimes we dont trigger onDrag over another app, in which case just drop.
+                if (overApp == null) {
+                    Log.w(TAG, "Wasn't dragged over an app, returning app to starting position");
+                    draggedView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            draggedView.setVisibility(View.VISIBLE);
+                        }
+                    });
+                    break;
+                }
+
                 int draggedFavIndex = Integer.parseInt((String) draggedView.getTag());
                 final Pojo draggedApp = favoritesPojo.get(draggedFavIndex);
 
