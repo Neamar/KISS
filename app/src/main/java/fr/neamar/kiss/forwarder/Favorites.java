@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -271,6 +272,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         int favNumber = Integer.parseInt((String) v.getTag());
         final Result result = getFavResult(favNumber);
         result.fastLaunch(mainActivity, v);
+        v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+
     }
 
     @Override
@@ -280,6 +283,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         ListPopup popup = result.getPopupMenu(mainActivity, mainActivity.adapter, v);
         mainActivity.registerPopup(popup);
         popup.show(v);
+        v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
         return true;
     }
 
