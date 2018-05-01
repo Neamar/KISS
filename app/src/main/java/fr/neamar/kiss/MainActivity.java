@@ -410,6 +410,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (isViewingAllApps()) {
             displayKissBar(false);
         }
+
+        // Close the backButton context menu
+        MainActivity.this.closeContextMenu();
     }
 
     @Override
