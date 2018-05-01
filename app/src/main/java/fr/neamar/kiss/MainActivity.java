@@ -50,6 +50,8 @@ import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
+import static android.view.HapticFeedbackConstants.LONG_PRESS;
+
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
@@ -431,6 +433,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (keycode == KeyEvent.KEYCODE_MENU) {
             // For devices with a physical menu button, we still want to display *our* contextual menu
             menuButton.showContextMenu();
+            menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
 
@@ -477,8 +480,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
         // To fix this, we discard any click event occurring when the kissbar is displayed
-        if (isViewingSearchResults())
-            menuButton.showContextMenu();
+        if (isViewingSearchResults()) {
+            this.menuButton.showContextMenu();
+            this.menuButton.performHapticFeedback(LONG_PRESS);
+        }
     }
 
     @Override
