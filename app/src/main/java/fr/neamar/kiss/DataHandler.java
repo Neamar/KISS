@@ -447,7 +447,6 @@ public class DataHandler extends BroadcastReceiver
         int currentPos = favAppsList.indexOf(id);
         if(currentPos == -1) {
             Log.e(TAG, "Couldn't find id in favAppsList");
-            // TODO: Perhaps we should throw a better error here?
             return;
         }
         // Clamp the position so we dont just extend past the end of the array.
