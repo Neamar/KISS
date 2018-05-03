@@ -412,7 +412,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         // Close the backButton context menu
-        MainActivity.this.closeContextMenu();
+        closeContextMenu();
     }
 
     @Override
