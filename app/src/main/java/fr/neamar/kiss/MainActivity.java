@@ -18,6 +18,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -274,6 +275,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
+
+        // Fixes bug when dropping onto a textEdit widget which can cause a NPE
+        // This fix should be on ALL TextEdit Widgets !!!
+        // See : https://stackoverflow.com/a/23483957
+        searchEditText.setOnDragListener( new View.OnDragListener() {
+            @Override
+            public boolean onDrag( View v, DragEvent event) {
+                return true;
+            }
+        });
+
+
         // On validate, launch first record
         searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
             @Override
@@ -358,9 +371,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             return;
         }
 
-        if (mPopup != null) {
-            mPopup.dismiss();
-        }
+        dismissPopup();
 
         if (KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
             displayLoader(false);
@@ -523,26 +534,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (mPopup != null) {
-            View popupContentView = mPopup.getContentView();
-            int[] popupPos = {0, 0};
-            popupContentView.getLocationOnScreen(popupPos);
-            final float offsetX = -popupPos[0];
-            final float offsetY = -popupPos[1];
-            ev.offsetLocation(offsetX, offsetY);
-            try {
-                boolean handled = popupContentView.dispatchTouchEvent(ev);
-                ev.offsetLocation(-offsetX, -offsetY);
-                if (!handled)
-                    handled = super.dispatchTouchEvent(ev);
-                return handled;
-            }
-            catch(IllegalArgumentException e) {
-                // Quick temporary fix for #925
-                return false;
-            }
+        boolean handled = super.dispatchTouchEvent(ev);
+        if (ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
+            dismissPopup();
         }
-        return super.dispatchTouchEvent(ev);
+        return handled;
     }
 
     private void displayClearOnInput() {
@@ -667,9 +663,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     private void updateSearchRecords(String query) {
         resetTask();
-
-        if (mPopup != null)
-            mPopup.dismiss();
+        dismissPopup();
 
         forwarderManager.updateSearchRecords(query);
 
@@ -714,8 +708,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void registerPopup(ListPopup popup) {
         if (mPopup == popup)
             return;
-        if (mPopup != null)
-            mPopup.dismiss();
+        dismissPopup();
         mPopup = popup;
         popup.setVisibilityHelper(systemUiVisibilityHelper);
         popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -756,8 +749,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
-        if (mPopup != null)
-            mPopup.dismiss();
+        dismissPopup();
     }
 
     @Override
@@ -786,5 +778,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void afterListChange() {
         list.animateChange();
+    }
+
+    public void dismissPopup() {
+        if (mPopup != null)
+            mPopup.dismiss();
     }
 }

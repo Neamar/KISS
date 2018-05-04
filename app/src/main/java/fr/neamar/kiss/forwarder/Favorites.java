@@ -66,12 +66,12 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     /**
      * Configuration for drag and drop
      */
-    private final int MOVE_SENSITIVITY = 15; // How much you need to move your finger to be considered "moving"
+    private final int MOVE_SENSITIVITY = 5; // How much you need to move your finger to be considered "moving"
     private final int LONG_PRESS_DELAY = 250; // How long to hold your finger inplace to trigger the app menu.
 
     // Use so we dont over process on the drag events.
     private boolean isDragging = false;
-    private boolean isTouching = false;
+    private boolean contextMenuShown = false;
 
     Favorites(MainActivity mainActivity) {
         super(mainActivity);
@@ -284,7 +284,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         mainActivity.registerPopup(popup);
         popup.show(v);
         v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-
         return true;
     }
 
@@ -296,24 +295,23 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             startTime = motionEvent.getEventTime();
-            isTouching = true;
+            contextMenuShown = false;
+            return true;
         }
         // No need to do the extra work
-        if(isDragging || !isTouching) {
+        if(isDragging) {
             return true;
         }
 
         // Click handlers first
         long holdTime = motionEvent.getEventTime() - startTime;
-        if(holdTime > LONG_PRESS_DELAY) {
-            // Reset so we dont trigger the menu again next time.
-            isTouching = false;
-            this.onLongClick(view);
+        if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            this.onClick(view);
             return true;
         }
-        if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            isTouching = false;
-            this.onClick(view);
+        if(!contextMenuShown && holdTime > LONG_PRESS_DELAY) {
+            contextMenuShown = true;
+            this.onLongClick(view);
             return true;
         }
 
@@ -325,13 +323,15 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
         if (hasMoved) {
+            mainActivity.dismissPopup();
+            mainActivity.closeContextMenu();
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
             view.startDrag(null, shadowBuilder, view, 0);
             view.setVisibility(View.INVISIBLE);
             return true;
         }
 
-        return true;
+        return false;
     }
 
     @Override
