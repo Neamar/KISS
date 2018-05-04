@@ -88,8 +88,11 @@ class ExperienceTweaks extends Forwarder {
 
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                float direction = e2.getY() - e1.getY();
-                if(direction > 0) {
+                float directionY = e2.getY() - e1.getY();
+                float directionX = e2.getX() - e1.getX();
+                if ( Math.abs(directionX) > Math.abs(directionY) )
+                    return false;
+                if(directionY > 0) {
                     // Fling down: display notifications
                     displayNotificationDrawer();
                 }
