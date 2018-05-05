@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.LauncherApps;
 import android.database.DataSetObserver;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,7 +36,6 @@ import java.util.ArrayList;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
-import fr.neamar.kiss.broadcast.InstallShortcutOreoHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -323,18 +321,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Defer everything else to the forwarders
          */
         forwarderManager.onCreate();
-
-        // Shortcuts in Android O
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Intent intent = getIntent();
-            if (intent != null) {
-                final String action = intent.getAction();
-                Log.e("WTFonCreate", action);
-                if (LauncherApps.ACTION_CONFIRM_PIN_SHORTCUT.equals(action)) {
-                    InstallShortcutOreoHandler.handleIntent(this, intent);
-                }
-            }
-        }
     }
 
     @Override

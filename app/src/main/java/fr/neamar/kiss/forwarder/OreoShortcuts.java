@@ -1,4 +1,4 @@
-package fr.neamar.kiss.broadcast;
+package fr.neamar.kiss.forwarder;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -14,15 +14,32 @@ import android.util.Log;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 
+public class OreoShortcuts extends Forwarder {
+    private static final String TAG = "OreoShortcuts";
 
-public class InstallShortcutOreoHandler {
-    private static final String TAG = "ShortcutOreoHandler";
+    OreoShortcuts(MainActivity mainActivity) {
+        super(mainActivity);
+    }
+
+    void onCreate() {
+        // Shortcuts in Android O
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Intent intent = mainActivity.getIntent();
+            if (intent != null) {
+                final String action = intent.getAction();
+                if (LauncherApps.ACTION_CONFIRM_PIN_SHORTCUT.equals(action)) {
+                    createOreoShortcut(mainActivity, intent);
+                }
+            }
+        }
+    }
 
     @TargetApi(Build.VERSION_CODES.O)
-    public static void handleIntent(Context context, Intent intent) {
+    private void createOreoShortcut(Context context, Intent intent) {
         DataHandler dh = KissApplication.getApplication(context).getDataHandler();
         ShortcutsProvider sp = dh.getShortcutsProvider();
 
@@ -35,30 +52,19 @@ public class InstallShortcutOreoHandler {
         final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
         assert launcherApps != null;
 
-        // Only the default launcher is allowed to accept permission
-        // we've been called, so we can assume that we're the default launcher,
-        // but we might as well confirm.
-        // Documentation isn't super clear about this anyway.
-        if (!launcherApps.hasShortcutHostPermission()) {
-            return;
-        }
-
         final LauncherApps.PinItemRequest pinItemRequest = intent.getParcelableExtra(LauncherApps.EXTRA_PIN_ITEM_REQUEST);
         final ShortcutInfo shortcutInfo = pinItemRequest.getShortcutInfo();
         assert shortcutInfo != null;
 
         Log.d(TAG, "Shortcut: " + shortcutInfo.getPackage() + " " + shortcutInfo.getId());
 
-        if (!shortcutInfo.isEnabled()) {
-            return;
-        }
 
         ShortcutsPojo pojo = new ShortcutsPojo();
-
-        // id isn't used anymore after being saved in the DB.
+        // id isn't used after being saved in the DB.
         pojo.id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
         pojo.packageName = shortcutInfo.getPackage();
 
+        // Name can be either in shortLabel or longLabel
         if (shortcutInfo.getShortLabel() != null) {
             pojo.setName(shortcutInfo.getShortLabel().toString());
         } else if (shortcutInfo.getLongLabel() != null) {
@@ -73,6 +79,7 @@ public class InstallShortcutOreoHandler {
 
         pojo.setOreoId(shortcutInfo.getId());
 
+        // Add shortcut to the DataHandler
         dh.addShortcut(pojo);
 
         // Notify we accepted the shortcut
@@ -80,7 +87,7 @@ public class InstallShortcutOreoHandler {
     }
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
-    private static Bitmap drawableToBitmap(Drawable drawable) {
+    private Bitmap drawableToBitmap(Drawable drawable) {
         Bitmap bitmap = null;
 
         if (drawable instanceof BitmapDrawable) {
@@ -101,4 +108,6 @@ public class InstallShortcutOreoHandler {
         drawable.draw(canvas);
         return bitmap;
     }
+
+
 }

@@ -143,7 +143,7 @@ public class ShortcutsResult extends Result {
         query.setPackage(shortcutPojo.packageName);
         query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
         query.setQueryFlags(LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED);
-        
+
         List<UserHandle> userHandles = launcherApps.getProfiles();
 
         // Find the correct UserHandle, and launch the shortcut.
