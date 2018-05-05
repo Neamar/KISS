@@ -70,9 +70,12 @@ public class InstallShortcutOreoHandler {
         final Drawable iconDrawable = launcherApps.getShortcutBadgedIconDrawable(shortcutInfo, 0);
         pojo.icon = drawableToBitmap(iconDrawable);
 
-        pojo.intentUri = "invalid_for_now";
+        pojo.intentUri =  ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
 
         dh.addShortcut(pojo);
+
+        // Notify we accepted the shortcut
+        pinItemRequest.accept();
     }
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap

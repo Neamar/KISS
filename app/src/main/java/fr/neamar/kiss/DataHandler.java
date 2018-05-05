@@ -313,6 +313,7 @@ public class DataHandler extends BroadcastReceiver
             this.getShortcutsProvider().reload();
         }
 
+        Log.d(TAG, "Shortcut " + shortcut.id + " added.");
         Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
     }
 

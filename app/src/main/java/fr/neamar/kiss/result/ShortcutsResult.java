@@ -1,18 +1,22 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.UserHandle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -104,19 +108,37 @@ public class ShortcutsResult extends Result {
 
     @Override
     protected void doLaunch(Context context, View v) {
-
-        try {
-            Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                intent.setSourceBounds(v.getClipBounds());
-            }
-
-            context.startActivity(intent);
-        } catch (Exception e) {
-            // Application was just removed?
-            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+        if(shortcutPojo.intentUri.contains(ShortcutsPojo.OREO_PREFIX)) {
+            // Oreo shortcuts
+            doOreoLaunch(context, v);
         }
+        else {
+            // Pre-oreo shortcuts
+            try {
+                Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                    intent.setSourceBounds(v.getClipBounds());
+                }
 
+                context.startActivity(intent);
+            } catch (Exception e) {
+                // Application was just removed?
+                Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private void doOreoLaunch(Context context, View v) {
+        final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        assert launcherApps != null;
+
+        UserHandle userHandle = launcherApps.getProfiles().get(0);
+        String shortcutId = shortcutPojo.intentUri.replace(ShortcutsPojo.OREO_PREFIX, "");
+        Log.e("WTF", shortcutId);
+        Log.e("WTF", shortcutPojo.packageName);
+
+        launcherApps.startShortcut(shortcutPojo.packageName, shortcutId, v.getClipBounds(), null, userHandle);
     }
 
     @Override
