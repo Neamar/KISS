@@ -80,6 +80,14 @@ public class ShortcutsResult extends Result {
                 String activityName = mainPackage.activityInfo.name;
                 ComponentName className = new ComponentName(packageName, activityName);
                 appDrawable = context.getPackageManager().getActivityIcon(className);
+            } else {
+                // Can't make sense of the intent URI (Oreo shortcut?)
+                // Retrieve app icon
+                try {
+                    appDrawable = packageManager.getApplicationIcon(shortcutPojo.packageName);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (NameNotFoundException e) {
             e.printStackTrace();
@@ -109,11 +117,10 @@ public class ShortcutsResult extends Result {
 
     @Override
     protected void doLaunch(Context context, View v) {
-        if(shortcutPojo.isOreoShortcut()) {
+        if (shortcutPojo.isOreoShortcut()) {
             // Oreo shortcuts
             doOreoLaunch(context, v);
-        }
-        else {
+        } else {
             // Pre-oreo shortcuts
             try {
                 Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
@@ -147,9 +154,9 @@ public class ShortcutsResult extends Result {
         List<UserHandle> userHandles = launcherApps.getProfiles();
 
         // Find the correct UserHandle, and launch the shortcut.
-        for(UserHandle userHandle: userHandles) {
+        for (UserHandle userHandle : userHandles) {
             List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
-            if(shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
+            if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
                 launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
                 return;
             }

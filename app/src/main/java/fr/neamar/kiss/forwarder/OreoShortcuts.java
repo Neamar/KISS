@@ -74,7 +74,7 @@ public class OreoShortcuts extends Forwarder {
             return;
         }
 
-        final Drawable iconDrawable = launcherApps.getShortcutBadgedIconDrawable(shortcutInfo, 0);
+        final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
         pojo.icon = drawableToBitmap(iconDrawable);
 
         pojo.setOreoId(shortcutInfo.getId());
