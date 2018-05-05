@@ -16,7 +16,7 @@ import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class InstallShortcutHandler extends BroadcastReceiver {
-
+    private final static String TAG = "InstallShortcutHandler";
     @Override
     public void onReceive(Context context, Intent data) {
 
@@ -27,7 +27,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
             return;
 
         String name = data.getStringExtra(Intent.EXTRA_SHORTCUT_NAME);
-        Log.d("onReceive", "Received shortcut " + name);
+        Log.d(TAG, "Received shortcut " + name);
 
         Intent target = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_INTENT);
         if (target.getAction() == null) {
@@ -39,23 +39,23 @@ public class InstallShortcutHandler extends BroadcastReceiver {
         // convert target intent to parsable uri
         pojo.intentUri = target.toUri(0);
 
-        //get embedded icon
+        // get embedded icon
         Bitmap icon = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON);
         if (icon != null) {
-            Log.d("onReceive", "Shortcut " + name + " has embedded icon");
+            Log.d(TAG, "Shortcut " + name + " has embedded icon");
             pojo.icon = icon;
         } else {
             ShortcutIconResource sir = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE);
 
             if (sir != null) {
-                Log.d("onReceive", "Received icon package name " + sir.packageName);
-                Log.d("onReceive", "Received icon resource name " + sir.resourceName);
+                Log.d(TAG, "Received icon package name " + sir.packageName);
+                Log.d(TAG, "Received icon resource name " + sir.resourceName);
 
                 pojo.packageName = sir.packageName;
                 pojo.resourceName = sir.resourceName;
             } else {
                 //invalid shortcut
-                Log.d("onReceive", "Invalid shortcut " + name + ", ignoring");
+                Log.d(TAG, "Invalid shortcut " + name + ", ignoring");
                 return;
             }
         }
@@ -65,7 +65,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
             if (intent.getCategories() != null && intent.getCategories().contains(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN.equals(intent.getAction())) {
                 // The Play Store has an option to create shortcut for new apps,
                 // However, KISS already displays all apps, so we discard the shortcut to avoid duplicates.
-                Log.d("onReceive", "Shortcut for launcher app, discarded.");
+                Log.d(TAG, "Shortcut for launcher app, discarded.");
                 return;
             }
         } catch (URISyntaxException e) {
