@@ -55,6 +55,7 @@ public class InstallShortcutOreoHandler {
 
         ShortcutsPojo pojo = new ShortcutsPojo();
 
+        // id isn't used anymore after being saved in the DB.
         pojo.id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
         pojo.packageName = shortcutInfo.getPackage();
 
@@ -70,7 +71,7 @@ public class InstallShortcutOreoHandler {
         final Drawable iconDrawable = launcherApps.getShortcutBadgedIconDrawable(shortcutInfo, 0);
         pojo.icon = drawableToBitmap(iconDrawable);
 
-        pojo.intentUri =  ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
+        pojo.setOreoId(shortcutInfo.getId());
 
         dh.addShortcut(pojo);
 

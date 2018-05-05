@@ -11,12 +11,12 @@ import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserHandle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.List;
 
 import fr.neamar.kiss.DataHandler;
@@ -108,7 +109,7 @@ public class ShortcutsResult extends Result {
 
     @Override
     protected void doLaunch(Context context, View v) {
-        if(shortcutPojo.intentUri.contains(ShortcutsPojo.OREO_PREFIX)) {
+        if(shortcutPojo.isOreoShortcut()) {
             // Oreo shortcuts
             doOreoLaunch(context, v);
         }
@@ -133,12 +134,26 @@ public class ShortcutsResult extends Result {
         final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
         assert launcherApps != null;
 
-        UserHandle userHandle = launcherApps.getProfiles().get(0);
-        String shortcutId = shortcutPojo.intentUri.replace(ShortcutsPojo.OREO_PREFIX, "");
-        Log.e("WTF", shortcutId);
-        Log.e("WTF", shortcutPojo.packageName);
+        // Only the default launcher is allowed to start shortcuts
+        if (!launcherApps.hasShortcutHostPermission()) {
+            return;
+        }
 
-        launcherApps.startShortcut(shortcutPojo.packageName, shortcutId, v.getClipBounds(), null, userHandle);
+        LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
+        query.setPackage(shortcutPojo.packageName);
+        query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
+        query.setQueryFlags(LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED);
+        
+        List<UserHandle> userHandles = launcherApps.getProfiles();
+
+        // Find the correct UserHandle, and launch the shortcut.
+        for(UserHandle userHandle: userHandles) {
+            List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
+            if(shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
+                launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
+                return;
+            }
+        }
     }
 
     @Override
