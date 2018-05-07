@@ -2,6 +2,7 @@ package fr.neamar.kiss.pojo;
 
 import android.util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -15,26 +16,13 @@ public abstract class Pojo {
     public StringNormalizer.Result normalizedName = null;
     // Lower-cased name, for faster search
     //public String nameNormalized = "";
-    // Name displayed on the screen, may contain HTML (for instance, to put
-    // query text in blue)
-    public String displayName = "";
     // How relevant is this record ? The higher, the most probable it will be
     // displayed
     public int relevance = 0;
     // Name for this pojo, e.g. app name
     String name = "";
 
-    /**
-     * Map a position in the normalized name to a position in the standard name string
-     *
-     * @param position Position in normalized name
-     * @return Position in non-normalized string
-     */
-    private int mapPosition(int position) {
-        if (position < normalizedName.mapPosition.length)
-            return normalizedName.mapPosition[position];
-        return name.length();
-    }
+    public List<Pair<Integer, Integer>> nameMatchPositions = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -52,8 +40,7 @@ public abstract class Pojo {
     public void setName(String name) {
         if (name != null) {
             // Set the actual user-friendly name
-            this.name = name.replaceAll("<", "&lt;");
-
+            this.name = name;
             this.normalizedName = StringNormalizer.normalizeWithResult(this.name, false);
         } else {
             this.name = null;
@@ -70,9 +57,12 @@ public abstract class Pojo {
         }
     }
 
+    public void clearNameHighlight() {
+        nameMatchPositions.clear();
+    }
+
     /**
-     * Set which area of the display name should marked as highlighted in the `displayName`
-     * attribute
+     * Set which area of the display name should marked as highlighted.
      * <p/>
      * The start and end positions should be offsets in the normalized string and will be converted
      * to their non-normalized positions before they are used.
@@ -80,29 +70,30 @@ public abstract class Pojo {
      * @param positionNormalizedStart Highlighting start position in normalized name
      * @param positionNormalizedEnd   Highlighting end position in normalized name
      */
-    public void setDisplayNameHighlightRegion(int positionNormalizedStart, int positionNormalizedEnd) {
-        int positionStart = this.mapPosition(positionNormalizedStart);
-        int positionEnd = this.mapPosition(positionNormalizedEnd);
-
-        this.displayName = this.name.substring(0, positionStart)
-                + '{' + this.name.substring(positionStart, positionEnd) + '}'
-                + this.name.substring(positionEnd);
+    public void setNameHighlight(int positionNormalizedStart, int positionNormalizedEnd) {
+        clearNameHighlight();
+        setHighlight(nameMatchPositions, normalizedName, positionNormalizedStart, positionNormalizedEnd);
     }
 
-    public void setDisplayNameHighlightRegion(List<Pair<Integer, Integer>> positions) {
-        StringBuilder sb = new StringBuilder(this.name.length() + positions.size() * 2);
-        int lastPositionEnd = 0;
+    public void setNameHighlight(List<Pair<Integer, Integer>> positions) {
+        clearNameHighlight();
+        setHighlight(nameMatchPositions, normalizedName, positions);
+    }
+
+    protected void setHighlight(List<Pair<Integer, Integer>> matchPositions, StringNormalizer.Result string,
+                                int positionNormalizedStart, int positionNormalizedEnd) {
+        int positionStart = string.mapPosition(positionNormalizedStart);
+        int positionEnd = string.mapPosition(positionNormalizedEnd);
+
+        matchPositions.add(new Pair<Integer, Integer>(positionStart, positionEnd));
+    }
+
+    protected void setHighlight(List<Pair<Integer, Integer>> matchPositions, StringNormalizer.Result string,
+                                List<Pair<Integer, Integer>> positions) {
         for (Pair<Integer, Integer> position : positions) {
-            int positionStart = this.mapPosition(position.first);
-            int positionEnd = this.mapPosition(position.second);
-
-            sb.append(this.name.substring(lastPositionEnd, positionStart))
-                    .append('{')
-                    .append(this.name.substring(positionStart, positionEnd))
-                    .append('}');
-
-            lastPositionEnd = positionEnd;
+            int positionStart = string.mapPosition(position.first);
+            int positionEnd = string.mapPosition(position.second);
+            matchPositions.add(new Pair<Integer, Integer>(positionStart, positionEnd));
         }
-        this.displayName = sb.append(this.name.substring(lastPositionEnd)).toString();
     }
 }

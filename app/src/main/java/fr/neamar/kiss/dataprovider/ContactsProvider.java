@@ -35,7 +35,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     public void onCreate() {
         super.onCreate();
         // register content observer if we have permission
-        if(Permission.checkContactPermission()) {
+        if(Permission.checkContactPermission(this)) {
             getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
         }
     }
@@ -50,9 +50,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     @Override
     public void requestResults(String query, Searcher searcher) {
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
-        // Search people with composed names, e.g "jean-marie"
-        // (not part of the StringNormalizer class, since we want to keep dashes on other providers)
-        queryNormalized = queryNormalized.replaceAll(Character.codePointAt("-", 0), Character.codePointAt(" ", 0));
+
+        if (queryNormalized.codePoints.length == 0) {
+            return;
+        }
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
         FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
@@ -63,9 +64,9 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             if (match) {
                 List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
                 try {
-                    pojo.setDisplayNameHighlightRegion(positions);
+                    pojo.setNameHighlight(positions);
                 } catch (Exception e) {
-                    pojo.setDisplayNameHighlightRegion(0, pojo.normalizedName.length());
+                    pojo.setNameHighlight(0, pojo.normalizedName.length());
                 }
             }
 
@@ -74,10 +75,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                     if (!match || (matchInfo.score > pojo.relevance)) {
                         match = true;
                         pojo.relevance = matchInfo.score;
-                        pojo.displayName = pojo.getName()
-                                + " <small>({"
-                                + pojo.nickname
-                                + "})</small>";
+                        pojo.clearNameHighlight();
                     }
                 }
             }
@@ -87,7 +85,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 if (fuzzyScore.match(pojo.phoneSimplified, matchInfo)) {
                     match = true;
                     pojo.relevance = matchInfo.score;
-                    pojo.setDisplayNameHighlightRegion(0, 0);
+                    pojo.clearNameHighlight();
                 }
             }
 

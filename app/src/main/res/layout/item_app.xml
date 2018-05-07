@@ -47,11 +47,11 @@
             android:shadowColor="?attr/resultShadowColor"
             android:shadowDx="1"
             android:shadowDy="2"
-            android:shadowRadius="3"
-            android:text="@string/stub_application"
+            android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?attr/resultColor"
             android:textSize="@dimen/result_title_size"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="RtlSymmetry"
+            tools:text="@string/stub_application" />
 
         <TextView
             android:id="@+id/item_app_tag"
@@ -64,10 +64,11 @@
             android:shadowColor="?attr/resultShadowColor"
             android:shadowDx="1"
             android:shadowDy="2"
-            android:shadowRadius="3"
-            android:text="@string/stub_app_tag"
+            android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?android:attr/textColorSecondary"
-            tools:ignore="RtlSymmetry" />
+            android:textSize="@dimen/result_small_size"
+            tools:ignore="RtlSymmetry"
+            tools:text="@string/stub_app_tag" />
 
     </LinearLayout>
 </RelativeLayout>

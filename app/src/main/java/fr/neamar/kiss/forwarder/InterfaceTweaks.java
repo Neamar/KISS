@@ -53,10 +53,7 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.searchEditText.setBackgroundResource(android.R.color.transparent);
 
                 // get theme shadow color
-                int[] attrs = new int[]{R.attr.searchBackgroundColor /* index 0 */};
-                TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
-                int shadowColor = ta.getColor(0, Color.BLACK);
-                ta.recycle();
+                int shadowColor = getSearchBackgroundColor();
 
                 // make shadow color intense
                 float[] hsv = new float[3];
@@ -87,36 +84,71 @@ class InterfaceTweaks extends Forwarder {
     private void applyRoundedCorners(MainActivity mainActivity) {
         if (prefs.getBoolean("pref-rounded-bars", false)) {
             mainActivity.kissBar.setBackgroundResource(R.drawable.rounded_kiss_bar);
-            mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
-            mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
+                mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
+            }
+            else {
+                // Before API21, you can't access values from current theme using ?attr/
+                // So we made two different drawables (#931).
+                if(getSearchBackgroundColor() == Color.WHITE) {
+                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
+                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
+                }
+                else {
+                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
+                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
+                }
+            }
+        }
+        else if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            // Tinting is not properly applied pre lollipop if there is no solid background, so we need to manually set the background color
+            mainActivity.kissBar.setBackgroundColor(UIColors.getPrimaryColor(mainActivity));
         }
 
         if (prefs.getBoolean("pref-rounded-list", false)) {
-            mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout);
                 // clip list content to rounded corners
                 mainActivity.listContainer.setClipToOutline(true);
+            }
+            else {
+                // Before API21, you can't access values from current theme using ?attr/
+                // So we made two different drawables (#931).
+                if(getSearchBackgroundColor() == Color.WHITE) {
+                    mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_light);
+                }
+                else {
+                    mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_dark);
+                }
             }
         }
     }
 
     private void tintResources(MainActivity mainActivity) {
-        String primaryColorOverride = UIColors.getPrimaryColor(mainActivity);
+        int primaryColorOverride = UIColors.getPrimaryColor(mainActivity);
 
         // Circuit breaker, keep default behavior.
-        if (primaryColorOverride.equals(UIColors.COLOR_DEFAULT)) {
+        if (primaryColorOverride == UIColors.COLOR_DEFAULT) {
             return;
         }
 
-        int primaryColor = Color.parseColor(primaryColorOverride);
-
         // Launcher button should have the main color
         ImageView launcherButton = mainActivity.findViewById(R.id.launcherButton);
-        launcherButton.setColorFilter(primaryColor);
+        launcherButton.setColorFilter(primaryColorOverride);
         ProgressBar loaderBar = mainActivity.findViewById(R.id.loaderBar);
-        loaderBar.getIndeterminateDrawable().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
+        loaderBar.getIndeterminateDrawable().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background
-        mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColor, PorterDuff.Mode.SRC_IN);
+        mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
+    }
+
+    private int getSearchBackgroundColor() {
+        // get theme shadow color
+        int[] attrs = new int[]{R.attr.searchBackgroundColor /* index 0 */};
+        TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
+        int shadowColor = ta.getColor(0, Color.BLACK);
+        ta.recycle();
+        return shadowColor;
     }
 }

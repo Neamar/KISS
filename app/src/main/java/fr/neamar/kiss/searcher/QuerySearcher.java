@@ -20,6 +20,7 @@ import fr.neamar.kiss.pojo.PojoWithTags;
  * @author dorvaryn
  */
 public class QuerySearcher extends Searcher {
+    public static int MAX_RESULT_COUNT = -1;
     private final String query;
     private HashMap<String, Integer> knownIds;
     /**
@@ -36,9 +37,13 @@ public class QuerySearcher extends Searcher {
 
     @Override
     protected int getMaxResultCount() {
-        // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
-        // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
-        return (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
+        if(MAX_RESULT_COUNT == -1) {
+            // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
+            // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
+            MAX_RESULT_COUNT = (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
+        }
+
+        return MAX_RESULT_COUNT;
     }
 
     @Override
@@ -94,5 +99,9 @@ public class QuerySearcher extends Searcher {
         // Request results via "addResult"
         KissApplication.getApplication(activity).getDataHandler().requestResults(query, this);
         return null;
+    }
+
+    public static void clearMaxResultCountCache() {
+        MAX_RESULT_COUNT = -1;
     }
 }

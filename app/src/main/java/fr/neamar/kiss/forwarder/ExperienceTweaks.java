@@ -1,13 +1,17 @@
 package fr.neamar.kiss.forwarder;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Handler;
+import android.provider.Settings;
 import android.text.InputType;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.regex.Pattern;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -43,8 +47,9 @@ class ExperienceTweaks extends Forwarder {
     };
 
     private View mainEmptyView;
+    private final GestureDetector gd;
 
-    ExperienceTweaks(MainActivity mainActivity) {
+    ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
 
         // Lock launcher into portrait mode
@@ -58,10 +63,50 @@ class ExperienceTweaks extends Forwarder {
         } else {
             mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
+
+        gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                // if minimalistic mode is enabled,
+                // and we want to display history on touch
+                if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
+                    // and we're currently in minimalistic mode with no results,
+                    // and we're not looking at the app list
+                    if ((mainActivity.isViewingSearchResults()) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
+                        if ((mainActivity.list.getAdapter() == null) || (mainActivity.list.getAdapter().isEmpty())) {
+                            mainActivity.runTask(new HistorySearcher(mainActivity));
+                        }
+                    }
+                }
+
+                if (isMinimalisticModeEnabledForFavorites()) {
+                    mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                }
+
+                return super.onSingleTapConfirmed(e);
+            }
+
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                float directionY = e2.getY() - e1.getY();
+                float directionX = e2.getX() - e1.getX();
+                if ( Math.abs(directionX) > Math.abs(directionY) )
+                    return false;
+                if(directionY > 0) {
+                    // Fling down: display notifications
+                    displayNotificationDrawer();
+                }
+                else {
+                    // Fling up: display keyboard
+                    mainActivity.showKeyboard();
+                }
+                return true;
+            }
+        });
     }
 
     void onCreate() {
-        adjustInputType(null);
+        adjustInputType();
         mainEmptyView = mainActivity.findViewById(R.id.main_empty);
     }
 
@@ -94,24 +139,8 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void onTouch(View view, MotionEvent event) {
-        //if motion movement ends
-        if ((event.getAction() == MotionEvent.ACTION_CANCEL) || (event.getAction() == MotionEvent.ACTION_UP)) {
-            // and minimalistic mode is enabled,
-            // and we want to display history on touch
-            if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
-                // and we're currently in minimalistic mode with no results,
-                // and we're not looking at the app list
-                if ((mainActivity.isViewingSearchResults()) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
-                    if ((mainActivity.list.getAdapter() == null) || (mainActivity.list.getAdapter().isEmpty())) {
-                        mainActivity.runTask(new HistorySearcher(mainActivity));
-                    }
-                }
-            }
-
-            if (isMinimalisticModeEnabledForFavorites()) {
-                mainActivity.favoritesBar.setVisibility(View.VISIBLE);
-            }
-        }
+        // Forward touch events to the gesture detector
+        gd.onTouchEvent(event);
     }
 
     void onWindowFocusChanged(boolean hasFocus) {
@@ -136,8 +165,6 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void updateSearchRecords(String query) {
-        adjustInputType(query);
-
         if (query.isEmpty()) {
             if (isMinimalisticModeEnabled()) {
                 mainActivity.runTask(new NullSearcher(mainActivity));
@@ -154,19 +181,44 @@ class ExperienceTweaks extends Forwarder {
     }
 
     // Ensure the keyboard uses the right input method
-    private void adjustInputType(String currentText) {
+    private void adjustInputType() {
         int currentInputType = mainActivity.searchEditText.getInputType();
         int requiredInputType;
 
-        if (currentText != null && Pattern.matches("[+]\\d+", currentText)) {
-            requiredInputType = InputType.TYPE_CLASS_PHONE;
-        } else if (isNonCompliantKeyboard()) {
+        if (isNonCompliantKeyboard()) {
             requiredInputType = INPUT_TYPE_WORKAROUND;
         } else {
             requiredInputType = INPUT_TYPE_STANDARD;
         }
         if (currentInputType != requiredInputType) {
             mainActivity.searchEditText.setInputType(requiredInputType);
+        }
+    }
+
+    // Super hacky code to display notification drawer
+    // Can (and will) break in any Android release.
+    @SuppressLint("PrivateApi")
+    private void displayNotificationDrawer() {
+        @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
+        Class<?> statusbarManager = null;
+        try {
+            statusbarManager = Class.forName("android.app.StatusBarManager");
+            Method showStatusBar;
+            if (Build.VERSION.SDK_INT >= 17) {
+                showStatusBar = statusbarManager.getMethod("expandNotificationsPanel");
+            }
+            else {
+                showStatusBar = statusbarManager.getMethod("expand");
+            }
+            showStatusBar.invoke( sbservice );
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (NoSuchMethodException e1) {
+            e1.printStackTrace();
+        } catch (IllegalAccessException e1) {
+            e1.printStackTrace();
+        } catch (InvocationTargetException e1) {
+            e1.printStackTrace();
         }
     }
 
@@ -180,10 +232,11 @@ class ExperienceTweaks extends Forwarder {
 
     /**
      * Should we force the keyboard not to display suggestions?
-     * (swiftkey)
+     * (swiftkey is broken, see https://github.com/Neamar/KISS/issues/44)
      */
     private boolean isNonCompliantKeyboard() {
-        return prefs.getBoolean("enable-keyboard-workaround", false);
+        String currentKeyboard = Settings.Secure.getString(mainActivity.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);
+        return currentKeyboard.contains("swiftkey");
     }
 
     /**

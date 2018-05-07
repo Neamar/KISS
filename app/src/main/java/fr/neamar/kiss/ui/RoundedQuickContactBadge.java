@@ -18,8 +18,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.QuickContactBadge;
 
-import java.lang.reflect.Field;
-
 /**
  * A rounded version of {@link QuickContactBadge]
  *
@@ -29,25 +27,22 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
 
     public RoundedQuickContactBadge(Context context) {
         super(context);
-        init(); //Set our initialization
     }
 
     public RoundedQuickContactBadge(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(); //Set our initialization
     }
 
     public RoundedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init(); //Set our initialization
     }
 
-    public static class RoundedDrawable extends Drawable
-    {
+    public static class RoundedDrawable extends Drawable {
 
         private final Paint mPaint;
         private final BitmapShader mBitmapShader;
-        private final RectF mRect;
+        private final RectF mBitmapRect;
+        private final RectF mDisplayBounds;
 
         public RoundedDrawable(Bitmap bitmap) {
             mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -55,8 +50,10 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
             mPaint = new Paint();
             mPaint.setAntiAlias(true);
             mPaint.setShader(mBitmapShader);
-            
-            mRect = new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+            mBitmapRect = new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight());
+            mDisplayBounds = new RectF();
+            mDisplayBounds.set(mBitmapRect);
         }
 
         @Override
@@ -65,14 +62,26 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
 
             Matrix m = new Matrix();
             mBitmapShader.getLocalMatrix(m);
-            m.setScale(bounds.width() / mRect.width(), bounds.height() / mRect.height());
-            mRect.set(bounds);
+
+            // Scale bitmap to display within specified bounds
+            int minScale = Math.min(bounds.width(), bounds.height());
+            m.setScale(minScale / mBitmapRect.width(), minScale / mBitmapRect.height());
+
+            // When bounds is not a square, ensure we display the bitmap centered
+            // (we will clip to display as a centered circle,
+            //  and we need to ensure the bitmap is in the right position below)
+            if (bounds.width() > bounds.height()) {
+                m.postTranslate((bounds.width() - bounds.height()) * 0.5f, 0f);
+            }
             mBitmapShader.setLocalMatrix(m);
+
+            mDisplayBounds.set(bounds);
         }
 
         @Override
         public void draw(@NonNull Canvas canvas) {
-            canvas.drawRoundRect(mRect, mRect.width() * .5f, mRect.height() * .5f, mPaint);
+            float radius = mDisplayBounds.height() * 0.5f;
+            canvas.drawCircle(mDisplayBounds.centerX(), mDisplayBounds.centerY(), radius, mPaint);
         }
 
         @Override
@@ -89,30 +98,12 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         public int getOpacity() {
             return PixelFormat.TRANSLUCENT;
         }
-    }
-
-    /**
-     * Initialize our stuff
-     */
-    private void init() {
-
-        //Use reflection to reset the default triangular overlay from default quick contact badge
-        try {
-            Field field = QuickContactBadge.class.getDeclaredField("mOverlay");
-            field.setAccessible(true);
-
-            //Using null to not draw anything at all
-            field.set(this, null);
-
-        } catch (Exception e) {
-            //No-op, just well off with the default overlay
-        }
 
     }
 
     @Override
     public void setImageDrawable(@Nullable Drawable drawable) {
-        if ( drawable instanceof BitmapDrawable) {
+        if (drawable instanceof BitmapDrawable) {
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
             drawable = new RoundedDrawable(bitmap);
         }

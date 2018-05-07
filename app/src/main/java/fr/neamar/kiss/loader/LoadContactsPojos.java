@@ -8,9 +8,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
@@ -27,13 +27,13 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         long start = System.nanoTime();
 
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
-
-        if(context.get() == null) {
+        Context c = context.get();
+        if(c == null) {
             return contacts;
         }
 
         // Skip if we don't have permission to list contacts yet:(
-        if(!Permission.checkContactPermission()) {
+        if(!Permission.checkContactPermission(c)) {
             Permission.askContactPermission();
             return contacts;
         }
@@ -132,7 +132,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             nickCursor.close();
         }
 
-        Pattern phoneFormatter = Pattern.compile("[ \\.\\(\\)]");
         for (List<ContactsPojo> phones : mapContacts.values()) {
             // Find primary phone and add this one.
             Boolean hasPrimary = false;
@@ -144,16 +143,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 }
             }
 
-            // If not available, add all (excluding duplicates).
+            // If no primary available, add all (excluding duplicates).
             if (!hasPrimary) {
-                Map<String, Boolean> added = new HashMap<>();
+                HashSet<String> added = new HashSet<>(phones.size());
                 for (ContactsPojo contact : phones) {
-                    String uniqueKey = phoneFormatter.matcher(contact.phone).replaceAll("");
-                    // TODO: what's this supposed to do?
-                    //uniqueKey = uniqueKey.replaceAll("^\\+33", "0");
-                    //uniqueKey = uniqueKey.replaceAll("^\\+1", "0");
-                    if (!added.containsKey(uniqueKey)) {
-                        added.put(uniqueKey, true);
+                    if (!added.contains(contact.phoneSimplified)) {
+                        added.add(contact.phoneSimplified);
                         contacts.add(contact);
                     }
                 }

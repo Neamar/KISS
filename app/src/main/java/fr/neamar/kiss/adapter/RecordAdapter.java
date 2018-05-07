@@ -5,9 +5,10 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.result.AppResult;
@@ -20,18 +21,17 @@ import fr.neamar.kiss.result.ShortcutsResult;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 
-public class RecordAdapter extends ArrayAdapter<Result> {
-
+public class RecordAdapter extends BaseAdapter {
+    private final Context context;
     private final QueryInterface parent;
+
     /**
      * Array list containing all the results currently displayed
      */
-    private final ArrayList<Result> results;
+    private List<Result> results;
 
-    public RecordAdapter(Context context, QueryInterface parent, int textViewResourceId,
-                         ArrayList<Result> results) {
-        super(context, textViewResourceId, results);
-
+    public RecordAdapter(Context context, QueryInterface parent, ArrayList<Result> results) {
+        this.context = context;
         this.parent = parent;
         this.results = results;
     }
@@ -65,10 +65,20 @@ public class RecordAdapter extends ArrayAdapter<Result> {
     }
 
     @Override
+    public int getCount() {
+        return results.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return results.get(position);
+    }
+
+    @Override
     public long getItemId(int position) {
         // In some situation, Android tries to display an item that does not exist (e.g. item 24 in a list containing 22 items)
         // See https://github.com/Neamar/KISS/issues/890
-        return position >= results.size() ? 0 : results.get(position).getUniqueId();
+        return position < results.size() ? results.get(position).getUniqueId() : -1;
     }
 
     @Override
@@ -83,14 +93,14 @@ public class RecordAdapter extends ArrayAdapter<Result> {
                 convertView = null;
             }
         }
-        View view = results.get(position).display(getContext(), results.size() - position, convertView);
+        View view = results.get(position).display(context, results.size() - position, convertView);
         //Log.d( "TBog", "getView pos " + position + " convertView " + ((convertView == null) ? "null" : convertView.toString()) + " will return " + view.toString() );
         view.setTag(getItemViewType(position));
         return view;
     }
 
     public void onLongClick(final int pos, View v) {
-        ListPopup menu = results.get(pos).getPopupMenu(getContext(), this, v);
+        ListPopup menu = results.get(pos).getPopupMenu(context, this, v);
 
         //check if menu contains elements and if yes show it
         if (menu.getAdapter().getCount() > 0) {
@@ -104,7 +114,7 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
         try {
             result = results.get(position);
-            result.launch(getContext(), v);
+            result.launch(context, v);
         } catch (ArrayIndexOutOfBoundsException ignored) {
             return;
         }
@@ -125,7 +135,17 @@ public class RecordAdapter extends ArrayAdapter<Result> {
 
     public void removeResult(Result result) {
         results.remove(result);
-        result.deleteRecord(getContext());
+        result.deleteRecord(context);
+        notifyDataSetChanged();
+    }
+
+    public void updateResults(List<Result> results) {
+        this.results = results;
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
+        this.results.clear();
         notifyDataSetChanged();
     }
 }

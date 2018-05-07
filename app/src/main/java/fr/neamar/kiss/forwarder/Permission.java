@@ -1,6 +1,7 @@
 package fr.neamar.kiss.forwarder;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -21,7 +22,7 @@ public class Permission extends Forwarder {
 
     // Static weak reference to the main activity, this is sadly required
     // to ensure classes requesting permission can access activity.requestPermission()
-    private static WeakReference<MainActivity> currentMainActivity;
+    private static WeakReference<MainActivity> currentMainActivity = new WeakReference<MainActivity>(null);
 
     /**
      * Sometimes, we need to wait for the user to give us permission before we can start an intent.
@@ -53,13 +54,8 @@ public class Permission extends Forwarder {
         return true;
     }
 
-    public static boolean checkContactPermission() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-
-        }
-        MainActivity mainActivity = Permission.currentMainActivity.get();
-        return mainActivity != null && mainActivity.checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
+    public static boolean checkContactPermission(Context context) {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
     }
 
     public static void askContactPermission() {

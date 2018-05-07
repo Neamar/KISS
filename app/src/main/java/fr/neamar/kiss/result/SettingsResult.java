@@ -1,15 +1,15 @@
 package fr.neamar.kiss.result;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.text.Html;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingsPojo;
@@ -27,9 +27,8 @@ public class SettingsResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_setting);
 
-        String settingPrefix = "<small><small>" + context.getString(R.string.settings_prefix) + "</small></small>";
         TextView settingName = v.findViewById(R.id.item_setting_name);
-        settingName.setText(TextUtils.concat(Html.fromHtml(settingPrefix), enrichText(settingPojo.displayName, context)));
+        settingName.setText(enrichText(settingPojo.getName(), settingPojo.nameMatchPositions, context));
 
         ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
         settingIcon.setImageDrawable(getDrawable(context));
@@ -59,6 +58,13 @@ public class SettingsResult extends Result {
         }
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+
+        try {
+            context.startActivity(intent);
+        }
+        catch(ActivityNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+        }
     }
 }

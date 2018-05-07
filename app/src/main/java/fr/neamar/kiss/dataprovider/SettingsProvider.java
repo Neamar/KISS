@@ -24,6 +24,10 @@ public class SettingsProvider extends Provider<SettingsPojo> {
     public void requestResults(String query, Searcher searcher) {
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
+        if (queryNormalized.codePoints.length == 0) {
+            return;
+        }
+
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
         FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
 
@@ -32,11 +36,11 @@ public class SettingsProvider extends Provider<SettingsPojo> {
             pojo.relevance = matchInfo.score;
 
             if (match) {
-                pojo.setDisplayNameHighlightRegion(matchInfo.getMatchedSequences());
+                pojo.setNameHighlight(matchInfo.getMatchedSequences());
             } else if (fuzzyScore.match(settingName, matchInfo)) {
                 match = true;
                 pojo.relevance = matchInfo.score;
-                pojo.setDisplayNameHighlightRegion(0, 0);
+                pojo.clearNameHighlight();
             }
 
             if (match) {

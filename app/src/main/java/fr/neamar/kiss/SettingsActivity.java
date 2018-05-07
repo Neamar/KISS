@@ -29,6 +29,7 @@ import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ToggleTags;
 
@@ -317,6 +318,11 @@ public class SettingsActivity extends PreferenceActivity implements
                 return;
             }
             PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
+        } else if (key.equalsIgnoreCase("primary-color")) {
+            UIColors.clearPrimaryColorCache(this);
+        }
+        else if(key.equalsIgnoreCase("number-of-display-elements")) {
+            QuerySearcher.clearMaxResultCountCache();
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {

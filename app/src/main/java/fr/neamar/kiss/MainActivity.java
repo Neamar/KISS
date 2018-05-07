@@ -18,6 +18,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,6 +54,8 @@ import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 import fr.neamar.kiss.utils.ToggleTags;
+
+import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver, ToggleTags.ToggleUpdatedListener {
 
@@ -224,7 +227,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.emptyListView.setOnTouchListener(this);
 
         // Create adapter for records
-        this.adapter = new RecordAdapter(this, this, R.layout.item_app, new ArrayList<Result>());
+        this.adapter = new RecordAdapter(this, this, new ArrayList<Result>());
         this.list.setAdapter(this.adapter);
 
         this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -283,17 +286,17 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
-        searchEditText.setOnTouchListener( new View.OnTouchListener()
-        {
+
+        // Fixes bug when dropping onto a textEdit widget which can cause a NPE
+        // This fix should be on ALL TextEdit Widgets !!!
+        // See : https://stackoverflow.com/a/23483957
+        searchEditText.setOnDragListener( new View.OnDragListener() {
             @Override
-            public boolean onTouch( View v, MotionEvent event )
-            {
-                int act = event.getActionMasked();
-                if( act == MotionEvent.ACTION_DOWN || act == MotionEvent.ACTION_POINTER_DOWN )
-                    showKeyboard();
-                return false;
+            public boolean onDrag( View v, DragEvent event) {
+                return true;
             }
-        } );
+        });
+
 
         // On validate, launch first record
         searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
@@ -391,9 +394,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             return;
         }
 
-        if (mPopup != null) {
-            mPopup.dismiss();
-        }
+        dismissPopup();
 
         if (KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
             displayLoader(false);
@@ -443,6 +444,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (isViewingAllApps()) {
             displayKissBar(false);
         }
+
+        // Close the backButton context menu
+        closeContextMenu();
     }
 
     @Override
@@ -466,6 +470,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (keycode == KeyEvent.KEYCODE_MENU) {
             // For devices with a physical menu button, we still want to display *our* contextual menu
             menuButton.showContextMenu();
+            menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
 
@@ -512,12 +517,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
         // To fix this, we discard any click event occurring when the kissbar is displayed
-        if (isViewingSearchResults()) {
-            if ( isPreferenceTagsMenu() )
-                registerPopup(toggleTags.showMenu(menuButton));
-            else
-                menuButton.showContextMenu();
+        if (!isViewingSearchResults()) {
+            return;
         }
+        if ( isPreferenceTagsMenu() )
+            registerPopup(toggleTags.showMenu(menuButton));
+        else
+            menuButton.showContextMenu();
+        menuButton.performHapticFeedback(LONG_PRESS);
     }
 
     @Override
@@ -562,18 +569,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (mPopup != null) {
-            View popupContentView = mPopup.getContentView();
-            int[] popupPos = {0, 0};
-            popupContentView.getLocationOnScreen(popupPos);
-            final float offsetX = -popupPos[0];
-            final float offsetY = -popupPos[1];
-            ev.offsetLocation(offsetX, offsetY);
-            boolean handled = popupContentView.dispatchTouchEvent(ev);
-            ev.offsetLocation(-offsetX, -offsetY);
-            if (!handled)
-                handled = super.dispatchTouchEvent(ev);
-            return handled;
+        if (mPopup != null && ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
+            dismissPopup();
+            return true;
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -701,6 +699,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      */
     private void updateSearchRecords(String query) {
         resetTask();
+        dismissPopup();
 
         forwarderManager.updateSearchRecords(query);
 
@@ -744,16 +743,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    @Override
-    public boolean showRelevance() {
-        return BuildConfig.DEBUG;
-    }
-
     public void registerPopup(ListPopup popup) {
         if (mPopup == popup)
             return;
-        if (mPopup != null)
-            mPopup.dismiss();
+        dismissPopup();
         mPopup = popup;
         popup.setVisibilityHelper(systemUiVisibilityHelper);
         popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -800,8 +793,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
-        if (mPopup != null)
-            mPopup.dismiss();
+        dismissPopup();
     }
 
     @Override
@@ -830,6 +822,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void afterListChange() {
         list.animateChange();
+    }
+
+    public void dismissPopup() {
+        if (mPopup != null)
+            mPopup.dismiss();
     }
 
     public Set<String> getExcludeTags() {

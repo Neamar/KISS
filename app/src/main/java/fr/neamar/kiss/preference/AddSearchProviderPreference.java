@@ -1,12 +1,14 @@
 package fr.neamar.kiss.preference;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -30,12 +31,12 @@ public class AddSearchProviderPreference extends DialogPreference {
     private final EditText providerName = new EditText(this.getContext());
     private final EditText providerUrl = new EditText(this.getContext());
 
-    private final SharedPreferences prefs;
+    private SharedPreferences prefs;
 
     //Called when addPreferencesFromResource() is called. Initializes basic parameters
     public AddSearchProviderPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setPersistent(true);
+        setPersistent(false);
         layout.setOrientation(LinearLayout.VERTICAL);
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -43,10 +44,22 @@ public class AddSearchProviderPreference extends DialogPreference {
     //Create the Dialog view
     @Override
     protected View onCreateDialogView() {
+        removeViews();
         providerName.setHint(R.string.search_provider_name);
         providerUrl.setHint(R.string.search_provider_url);
-        layout.addView(providerName);
-        layout.addView(providerUrl);
+        providerUrl.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+
+        providerName.setText("");
+        providerUrl.setText("");
+
+        //adding margins (default is zero)
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(40, 10, 40, 0);
+
+        //add the two text fields (with margins)
+        layout.addView(providerName, layoutParams);
+        layout.addView(providerUrl, layoutParams);
 
         // default text color is white that doesn't work well on the light themes
         String theme = prefs.getString("theme", "light");
@@ -64,15 +77,20 @@ public class AddSearchProviderPreference extends DialogPreference {
         return layout;
     }
 
-    private void closeDialog(DialogInterface dialog, boolean close, int which) {
-        try {
-            Field field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
-            field.setAccessible(true);
-            field.set(dialog, close);
-            super.onClick(dialog, which);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @Override
+    protected void showDialog(Bundle state) {
+        super.showDialog(state);
+
+        final AlertDialog dlg = (AlertDialog) getDialog();
+        dlg.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate()) {
+                    save();
+                    dlg.dismiss();
+                }
+            }
+        });
     }
 
     private boolean validatePipes() {
@@ -105,82 +123,65 @@ public class AddSearchProviderPreference extends DialogPreference {
         return m.find();
     }
 
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
+    protected boolean validate() {
 
-        if (which == DialogInterface.BUTTON_POSITIVE) {
-            //check if empty name / url
-            if (!validateEmpty()) {
-                // do not close - empty strings
-                closeDialog(dialog, false, which);
-                return;
-            }
-            // check if input contains |
-            if (!validatePipes()) {
-                //show tip
-                Toast.makeText(this.getContext(), R.string.search_provider_error_char, Toast.LENGTH_SHORT).show();
-                //cancel close dialog
-                closeDialog(dialog, false, which);
-                return;
-            }
-            //check if custom provider
-            if (!validateNameExists()) {
-                //show tip
-                Toast.makeText(this.getContext(), R.string.search_provider_error_exists, Toast.LENGTH_SHORT).show();
-                //cancel close dialog
-                closeDialog(dialog, false, which);
-                return;
-            }
-            // check input
-            if (!validateQueryPlaceholder()) {
-                //show tip
-                Toast.makeText(this.getContext(), R.string.search_provider_error_placeholder, Toast.LENGTH_SHORT).show();
-                //cancel close dialog
-                closeDialog(dialog, false, which);
-                return;
-            }
-            //check if a valid url is given
-            if (!validateUrl()) {
-                Toast.makeText(this.getContext(), R.string.search_provider_error_url, Toast.LENGTH_SHORT).show();
-                //not a url
-                closeDialog(dialog, false, which);
-                return;
-            }
-            //if all validates are correct, then close dialog with close flag = true
-            closeDialog(dialog, true, which);
-
-        } else if (which == DialogInterface.BUTTON_NEGATIVE) {
-            // now close
-            closeDialog(dialog, true, which);
+        if (!validateEmpty()) {
+            // do not close - empty strings
+            return false;
         }
-    }
+        // check if input contains |
+        if (!validatePipes()) {
+            //show tip
+            Toast.makeText(this.getContext(), R.string.search_provider_error_char, Toast.LENGTH_SHORT).show();
+            //cancel close dialog
+            return false;
+        }
+        //check if custom provider
+        if (!validateNameExists()) {
+            //show tip
+            Toast.makeText(this.getContext(), R.string.search_provider_error_exists, Toast.LENGTH_SHORT).show();
+            //cancel close dialog
+            return false;
+        }
+        // check input
+        if (!validateQueryPlaceholder()) {
+            //show tip
+            Toast.makeText(this.getContext(), R.string.search_provider_error_placeholder, Toast.LENGTH_SHORT).show();
+            //cancel close dialog
+            return false;
+        }
+        //check if a valid url is given
+        if (!validateUrl()) {
+            Toast.makeText(this.getContext(), R.string.search_provider_error_url, Toast.LENGTH_SHORT).show();
+            //not a url
+            return false;
+        }
+        //if all validates are correct, then close dialog with close flag = true
+        return true;
 
-    //Attach persisted values to Dialog
-    @Override
-    protected void onBindDialogView(View view) {
-        super.onBindDialogView(view);
-        providerName.setText("");
-        providerUrl.setText("");
     }
 
     //persist values and disassemble views
-    @Override
-    protected void onDialogClosed(boolean positiveResult) {
-        super.onDialogClosed(positiveResult);
-        if (positiveResult && shouldPersist()) {
-            //persistString(providerName.getText().toString());
-            Set<String> availableProviders = new HashSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
-            availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString().toLowerCase(Locale.ROOT));
-            prefs.edit().putStringSet("available-search-providers", availableProviders).apply();
-            prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).apply();
+    protected void save() {
 
-            Toast.makeText(getContext(), R.string.search_provider_added, Toast.LENGTH_LONG).show();
+        Set<String> availableProviders = new HashSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
+        availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString().toLowerCase(Locale.ROOT));
+        prefs.edit().putStringSet("available-search-providers", availableProviders).apply();
+        prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).apply();
+
+        Toast.makeText(getContext(), R.string.search_provider_added, Toast.LENGTH_LONG).show();
+    }
+
+    private void removeViews() {
+        if (providerName.getParent() != null) {
+            ((ViewGroup) providerName.getParent()).removeView(providerName);
         }
-
-        ((ViewGroup) providerName.getParent()).removeView(providerName);
-        ((ViewGroup) providerUrl.getParent()).removeView(providerUrl);
-        ((ViewGroup) layout.getParent()).removeView(layout);
-
+        if (providerUrl.getParent() != null) {
+            ((ViewGroup) providerUrl.getParent()).removeView(providerUrl);
+        }
+        if (layout.getParent() != null) {
+            ((ViewGroup) layout.getParent()).removeView(layout);
+        }
         notifyChanged();
     }
 }
