@@ -12,6 +12,7 @@ import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -86,6 +87,10 @@ public class SettingsActivity extends PreferenceActivity implements
         addExcludedAppSettings(prefs);
 
         addCustomSearchProvidersPreferences(prefs);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            removePreference("colors", "black-notification-icons");
+        }
     }
 
     @Override
@@ -104,6 +109,12 @@ public class SettingsActivity extends PreferenceActivity implements
             return true;
         }
         return super.onMenuItemSelected(featureId, item);
+    }
+
+    private void removePreference(String parent, String category) {
+        PreferenceCategory p = (PreferenceCategory) findPreference(parent);
+        Preference c = findPreference(category);
+        p.removePreference(c);
     }
 
     private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
