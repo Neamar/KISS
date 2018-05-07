@@ -33,8 +33,10 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.amplitude.api.Amplitude;
+import com.amplitude.api.Identify;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -148,6 +150,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         Amplitude.getInstance().initialize(this, "ce5704d98bb60331b30cce7dee138112").enableForegroundTracking(getApplication());
 
         Log.d(TAG, "onCreate()");
@@ -338,6 +341,27 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Defer everything else to the forwarders
          */
         forwarderManager.onCreate();
+
+        Map<String, ?> settings = prefs.getAll();
+        // Do not identify user (keep results anonymous)
+        Identify identify = new Identify();
+        for(String s: settings.keySet()) {
+            // Filter any Personal Information out
+            if(s.equals("excluded-apps-list")) {
+                identify.set("excluded-apps-count", settings.get(s).toString().split(";").length);
+            }
+            else if(s.equals("favorite-apps-list")) {
+                identify.set("favorite-apps-count", settings.get(s).toString().split(";").length);
+            }
+            else if(s.equals(("selected-search-provider-names"))) {
+                identify.set("search-provider-count", settings.get(s).toString().split(",").length);
+            }
+            else if(!s.equals("excluded_apps_ui")) {
+                identify.set(s, settings.get(s).toString());
+            }
+        }
+        Amplitude.getInstance().identify(identify);
+
     }
 
     @Override
@@ -610,6 +634,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
+            Amplitude.getInstance().logEvent("All apps displayed");
+
             // Display the app list
             if(searchEditText.getText().length() != 0) {
                 searchEditText.setText("");
@@ -633,6 +659,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
             kissBar.setVisibility(View.VISIBLE);
         } else {
+            Amplitude.getInstance().logEvent("All apps hidden");
+
             isDisplayingKissBar = false;
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
