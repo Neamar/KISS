@@ -56,11 +56,14 @@ public class DataHandler extends BroadcastReceiver
     private String currentQuery;
     private final Map<String, ProviderEntry> providers = new HashMap<>();
     public boolean allProvidersHaveLoaded = false;
+    private long start;
 
     /**
      * Initialize all providers
      */
     public DataHandler(Context context) {
+        start = System.currentTimeMillis();
+
         // Make sure we are in the context of the main activity
         // (otherwise we might receive an exception about broadcast listeners not being able
         //  to bind to services)
@@ -211,7 +214,9 @@ public class DataHandler extends BroadcastReceiver
             }
         }
 
-        Log.v(TAG, "All providers are loaded.");
+        long time = System.currentTimeMillis() - start;
+        Log.v(TAG, "Time to load all providers: " + time + "ms");
+
         this.allProvidersHaveLoaded = true;
 
         // Broadcast the fact that the new providers list is ready
@@ -435,8 +440,8 @@ public class DataHandler extends BroadcastReceiver
     /**
      * This method is used to set the specific position of an app in the fav array.
      *
-     * @param context The mainActivity context
-     * @param id the app you want to set the position of
+     * @param context  The mainActivity context
+     * @param id       the app you want to set the position of
      * @param position the new position of the fav
      */
     public void setFavoritePosition(MainActivity context, String id, int position) {
@@ -445,7 +450,7 @@ public class DataHandler extends BroadcastReceiver
         List<String> favAppsList = new ArrayList<>(Arrays.asList(favApps.split(";")));
 
         int currentPos = favAppsList.indexOf(id);
-        if(currentPos == -1) {
+        if (currentPos == -1) {
             Log.e(TAG, "Couldn't find id in favAppsList");
             return;
         }
@@ -467,7 +472,7 @@ public class DataHandler extends BroadcastReceiver
      * Helper function to get the position of a favorite. Used mainly by the drag and drop system to know where to place the dropped app.
      *
      * @param context mainActivity context
-     * @param id the app you want to get the position of.
+     * @param id      the app you want to get the position of.
      * @return
      */
     public int getFavoritePosition(MainActivity context, String id) {
@@ -529,7 +534,7 @@ public class DataHandler extends BroadcastReceiver
         StringBuilder favApps = new StringBuilder();
         for (String favAppID : favAppList) {
             if (!favAppID.startsWith("app://") || !user.hasStringUserSuffix(favAppID, '/')) {
-                favApps.append(favAppID) ;
+                favApps.append(favAppID);
                 favApps.append(";");
             }
         }

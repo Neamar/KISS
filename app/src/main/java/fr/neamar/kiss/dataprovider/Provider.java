@@ -35,6 +35,8 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      */
     private String pojoScheme = "(none)://";
 
+    private long start;
+
     /**
      * (Re-)load the providers resources when the provider has been completely initialized
      * by the Android system
@@ -48,6 +50,8 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
 
     void initialize(LoadPojos<T> loader) {
+        start = System.currentTimeMillis();
+
         Log.i(TAG, "Starting provider: " + this.getClass().getSimpleName());
 
         loader.setProvider(this);
@@ -56,6 +60,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     }
 
     public void reload() {
+        // Handled at subclass level
         if(pojos.size() > 0) {
             Log.v(TAG, "Reloading provider: " + this.getClass().getSimpleName());
         }
@@ -66,7 +71,9 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     }
 
     public void loadOver(ArrayList<T> results) {
-        Log.i(TAG, "Done loading provider: " + getClass().getSimpleName());
+        long time = System.currentTimeMillis() - start;
+
+        Log.i(TAG, "Time to load " + this.getClass().getSimpleName() + ": " + time + "ms");
 
         try {
             JSONObject eventProperties = new JSONObject();
@@ -76,7 +83,6 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         // Store results
         this.pojos = results;
         this.loaded = true;
