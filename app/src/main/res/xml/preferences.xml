@@ -189,6 +189,18 @@
                 android:key="wp-drag-animate"
                 android:summary="@string/wp_drag_animate_desc"
                 android:title="@string/wp_drag_animate" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="true"
+                android:dependency="wp-drag-animate"
+                android:key="wp-animate-center"
+                android:summary="@string/wp_animate_center_desc"
+                android:title="@string/wp_animate_center" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:dependency="wp-drag-animate"
+                android:key="wp-animate-sides"
+                android:summary="@string/wp_animate_sides_desc"
+                android:title="@string/wp_animate_sides" />
         </PreferenceScreen>
     </PreferenceScreen>
 
