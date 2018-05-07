@@ -91,7 +91,6 @@ public abstract class Result {
         return enriched;
     }
 
-
     @Override
     public String toString() {
         return pojo.getName();
@@ -106,6 +105,13 @@ public abstract class Result {
      */
     public abstract View display(Context context, int position, View convertView);
 
+    public String getSection() {
+        // get the first letter of the store
+        String ch = Character.toString((char) pojo.normalizedName.codePoints[0]);
+        // convert to uppercase otherwise lowercase a -z will be sorted
+        // after upper A-Z
+        return ch.toUpperCase();
+    }
     /**
      * How to display the popup menu
      *

@@ -47,4 +47,11 @@ public class ApplicationsSearcher extends Searcher {
         this.addResult(pojos.toArray(new Pojo[0]));
         return null;
     }
+
+    @Override
+    protected void onPostExecute(Void param) {
+        super.onPostExecute(param);
+        // Build sections for fast scrolling
+        activityWeakReference.get().adapter.buildSections();
+    }
 }

@@ -6,9 +6,13 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.SectionIndexer;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.result.AppResult;
@@ -21,7 +25,7 @@ import fr.neamar.kiss.result.ShortcutsResult;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 
-public class RecordAdapter extends BaseAdapter {
+public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     private final Context context;
     private final QueryInterface parent;
 
@@ -29,6 +33,11 @@ public class RecordAdapter extends BaseAdapter {
      * Array list containing all the results currently displayed
      */
     private List<Result> results;
+
+    // Mapping from letter to a position (only used for fast scroll, when viewing app list)
+    private HashMap<String, Integer> alphaIndexer = new HashMap<>();
+    // List of available sections (only used for fast scroll)
+    private String[] sections = new String[0];
 
     public RecordAdapter(Context context, QueryInterface parent, ArrayList<Result> results) {
         this.context = context;
@@ -147,5 +156,45 @@ public class RecordAdapter extends BaseAdapter {
     public void clear() {
         this.results.clear();
         notifyDataSetChanged();
+    }
+
+    /**
+     * When using fast scroll, generate a mapping to know where a given letter starts in the list
+     * (can only be used with a sorted result set!)
+     */
+    public void buildSections() {
+        alphaIndexer.clear();
+        int size = results.size();
+
+        // Generate the mapping letter => number
+        for (int x = 0; x < size; x++) {
+            String s = results.get(x).getSection();
+
+            if (!alphaIndexer.containsKey(s)) {
+                alphaIndexer.put(s, x);
+            }
+        }
+
+        // Generate section list
+        Set<String> sectionLetters = alphaIndexer.keySet();
+        ArrayList<String> sectionList = new ArrayList<>(sectionLetters);
+        Collections.sort(sectionList);
+        sections = new String[sectionList.size()];
+        sectionList.toArray(sections);
+    }
+
+    @Override
+    public Object[] getSections() {
+        return sections;
+    }
+
+    @Override
+    public int getPositionForSection(int sectionIndex) {
+        return alphaIndexer.get(sections[sectionIndex]);
+    }
+
+    @Override
+    public int getSectionForPosition(int position) {
+        return 0;
     }
 }
