@@ -1,18 +1,14 @@
 package fr.neamar.kiss.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -170,22 +166,12 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         alphaIndexer.clear();
         int size = results.size();
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        // Apply app sorting preference
-        boolean isAlphabetical = prefs.getString("sort-apps", "alphabetical").equals("alphabetical");
-
         // Generate the mapping letter => number
         for (int x = 0; x < size; x++) {
             String s = results.get(x).getSection();
 
-            if(isAlphabetical) {
-                // Put the first one
-                if (!alphaIndexer.containsKey(s)) {
-                    alphaIndexer.put(s, x);
-                }
-            }
-            else {
-                // Put the last one
+            // Put the first one
+            if (!alphaIndexer.containsKey(s)) {
                 alphaIndexer.put(s, x);
             }
         }
@@ -194,45 +180,29 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         Set<String> sectionLetters = alphaIndexer.keySet();
         ArrayList<String> sectionList = new ArrayList<>(sectionLetters);
         Collections.sort(sectionList);
-        if (isAlphabetical) {
-            // When displaying from A to Z, everything needs to be reversed
-            Collections.reverse(sectionList);
-        }
+        // We're displaying from A to Z, everything needs to be reversed
+        Collections.reverse(sectionList);
         sections = new String[sectionList.size()];
         sectionList.toArray(sections);
     }
 
     @Override
     public Object[] getSections() {
-        Log.e("WTF", Arrays.toString(sections));
-        Log.e("WTF", alphaIndexer.toString());
-
         return sections;
     }
 
     @Override
     public int getPositionForSection(int sectionIndex) {
-        Log.e("WTF", "P4S" +  alphaIndexer.get(sections[sectionIndex]) + " " + sectionIndex + " " + sections[sectionIndex]);
         return alphaIndexer.get(sections[sectionIndex]);
     }
 
     @Override
     public int getSectionForPosition(int position) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        // Apply app sorting preference
-        boolean isAlphabetical = prefs.getString("sort-apps", "alphabetical").equals("alphabetical");
-
-        if(isAlphabetical) {
-            for (int i = 0; i < sections.length; i++) {
-                if (alphaIndexer.get(sections[i]) > position) {
-                    Log.e("WTF", "S4P" + i + "  " + position + " " + sections[i]);
-                    return i - 1;
-                }
+        for (int i = 0; i < sections.length; i++) {
+            if (alphaIndexer.get(sections[i]) > position) {
+                return i - 1;
             }
-            return sections.length - 1;
         }
-
-        // Non alphabetical doesn't need section
-        return 0;
+        return sections.length - 1;
     }
 }
