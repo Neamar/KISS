@@ -79,6 +79,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
             JSONObject eventProperties = new JSONObject();
             eventProperties.put("type", getClass().getSimpleName());
             eventProperties.put("pojo_count", pojos.size());
+            eventProperties.put("time", time);
             Amplitude.getInstance().logEvent("Provider loaded", eventProperties);
         } catch (JSONException e) {
             e.printStackTrace();
