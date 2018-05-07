@@ -225,13 +225,14 @@ public abstract class Result {
         parent.removeResult(this);
     }
 
-    public final void launch(Context context, View v) {
+    public final void launch(Context context, View v, int position) {
         Log.i("log", "Launching " + pojo.id);
 
         try {
             JSONObject eventProperties = new JSONObject();
             eventProperties.put("type", pojo.getClass().getSimpleName());
             eventProperties.put("relevance", pojo.relevance);
+            eventProperties.put("position", position);
             Amplitude.getInstance().logEvent("Result clicked", eventProperties);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -258,7 +259,7 @@ public abstract class Result {
      * @param context android context
      */
     public void fastLaunch(Context context, View v) {
-        this.launch(context, v);
+        this.launch(context, v, -1);
     }
 
     /**
