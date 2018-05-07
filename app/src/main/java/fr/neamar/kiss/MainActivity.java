@@ -540,15 +540,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (mPopup != null && ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
-            dismissPopup();
-            return true;
-        }
-        return super.dispatchTouchEvent(ev);
-    }
-
     private void displayClearOnInput() {
         if (searchEditText.getText().length() > 0) {
             clearButton.setVisibility(View.VISIBLE);
