@@ -263,7 +263,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     private Result getFavResult(int favNumber) {
         if (favNumber >= favoritesPojo.size()) {
             // Clicking on a favorite before everything is loaded.
-            Log.i(TAG, "Clicking on an unitialized favorite.");
+            Log.i(TAG, "Clicking on an uninitialized favorite.");
             return null;
         }
 
