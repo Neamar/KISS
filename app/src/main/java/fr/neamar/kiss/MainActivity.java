@@ -4,8 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -15,7 +17,12 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.DragEvent;
@@ -342,6 +349,36 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          */
         forwarderManager.onCreate();
 
+        if(!prefs.contains("informed-about-tracking-in-beta")) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Important information");
+            Spannable text= new SpannableString(Html.fromHtml("Thanks for being part of KISS beta!<br>" +
+                    "This version anonymously reports which settings are currently in use.<br>" +
+                    "<b>This will allow us to prioritize the most-used settings in our development</b>.<br>" +
+                    "This is <i>temporary</i>, for the next couple weeks at most. " +
+                    "For more details (including opting-out): <a href=https://github.com/Neamar/KISS/pull/979>https://github.com/Neamar/KISS/pull/979</a>.<br>" +
+                    "Sorry for the inconvenience!"));
+            Linkify.addLinks(text, Linkify.WEB_URLS);
+
+            alert.setMessage(text);
+
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    trackSettings();
+                    prefs.edit().putBoolean("informed-about-tracking-in-beta", true).apply();
+                }
+            });
+
+            AlertDialog a = alert.create();
+            a.show();
+            ((TextView) a.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        }
+        else {
+            trackSettings();
+        }
+    }
+
+    public void trackSettings() {
         Map<String, ?> settings = prefs.getAll();
         // Do not identify user (keep results anonymous)
         Identify identify = new Identify();
@@ -361,7 +398,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         }
         Amplitude.getInstance().identify(identify);
-
     }
 
     @Override
