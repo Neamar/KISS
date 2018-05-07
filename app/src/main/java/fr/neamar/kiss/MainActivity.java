@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -352,12 +353,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if(!prefs.contains("informed-about-tracking-in-beta")) {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setTitle("Important information");
-            Spannable text= new SpannableString(Html.fromHtml("Thanks for being part of KISS beta!<br>" +
+            Spannable text= new SpannableString(Html.fromHtml("Welcome to KISS beta!<br>" +
                     "This version anonymously reports which settings are currently in use.<br>" +
                     "<b>This will allow us to prioritize the most-used settings in our development</b>.<br>" +
-                    "This is <i>temporary</i>, for the next couple weeks at most. " +
-                    "For more details (including opting-out): <a href=https://github.com/Neamar/KISS/pull/979>https://github.com/Neamar/KISS/pull/979</a>.<br>" +
-                    "Sorry for the inconvenience!"));
+                    "For more details: <a href=https://github.com/Neamar/KISS/pull/979>https://github.com/Neamar/KISS/pull/979</a><br>" +
+                    "Thanks for your help in improving KISS!"));
             Linkify.addLinks(text, Linkify.WEB_URLS);
 
             alert.setMessage(text);
@@ -366,6 +366,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 public void onClick(DialogInterface dialog, int whichButton) {
                     trackSettings();
                     prefs.edit().putBoolean("informed-about-tracking-in-beta", true).apply();
+                }
+            });
+
+            alert.setNegativeButton("Leave the beta", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    String url = "https://play.google.com/apps/testing/fr.neamar.kiss";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                    finish();
                 }
             });
 

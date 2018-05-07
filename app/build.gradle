@@ -7,14 +7,12 @@ android {
         applicationId 'fr.neamar.kiss'
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 127
-        versionName "3.2.0"
+        versionCode 129
+        versionName "3.2.2-beta"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
