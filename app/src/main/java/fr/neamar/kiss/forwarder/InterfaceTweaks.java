@@ -18,7 +18,7 @@ class InterfaceTweaks extends Forwarder {
         super(mainActivity);
 
         // Setting the theme needs to be done before setContentView()
-        String theme = prefs.getString("theme", "light");
+        String theme = prefs.getString("theme", "transparent");
         switch (theme) {
             case "dark":
                 mainActivity.setTheme(R.style.AppThemeDark);
@@ -45,7 +45,7 @@ class InterfaceTweaks extends Forwarder {
 
         // Transparent Search and Favorites bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (prefs.getBoolean("transparent-favorites", false)) {
+            if (prefs.getBoolean("transparent-favorites", true)) {
                 mainActivity.favoritesBar.setBackgroundResource(android.R.color.transparent);
             }
             if (prefs.getBoolean("transparent-search", false)) {
@@ -82,7 +82,7 @@ class InterfaceTweaks extends Forwarder {
     }
 
     private void applyRoundedCorners(MainActivity mainActivity) {
-        if (prefs.getBoolean("pref-rounded-bars", false)) {
+        if (prefs.getBoolean("pref-rounded-bars", true)) {
             mainActivity.kissBar.setBackgroundResource(R.drawable.rounded_kiss_bar);
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
