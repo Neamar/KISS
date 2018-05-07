@@ -100,12 +100,16 @@ public class ListPopup extends PopupWindow {
         for (int i = 0; i < adapterCount; i += 1) {
             View view = mAdapter.getView(i, null, layout);
             layout.addView(view);
-            if ( mAdapter.isEnabled(i) )
+            if (mAdapter.isEnabled(i))
                 view.setOnClickListener(mClickListener);
         }
     }
 
     public void show(View anchor) {
+        show(anchor,0.5f);
+    }
+
+    public void show(View anchor, float anchorOverlap) {
         updateItems();
 
         if (mSystemUiVisibilityHelper != null)
@@ -136,26 +140,26 @@ public class ListPopup extends PopupWindow {
         if (xOffset + linearLayout.getMeasuredWidth() > displayFrame.right)
             xOffset = displayFrame.right - linearLayout.getMeasuredWidth();
 
-        int halfAnchorHeight = anchor.getHeight() / 2;
+        int overlapAmount = (int) (anchor.getHeight() * anchorOverlap);
         int yOffset;
         if (distanceToBottom > linearLayout.getMeasuredHeight()) {
             // show below anchor
-            yOffset = anchorPos[1] + halfAnchorHeight;
+            yOffset = anchorPos[1] + overlapAmount;
             setAnimationStyle(R.style.PopupAnimationTop);
         } else if (distanceToTop > distanceToBottom) {
             // show above anchor
-            yOffset = anchorPos[1] + halfAnchorHeight - linearLayout.getMeasuredHeight();
+            yOffset = anchorPos[1] + overlapAmount - linearLayout.getMeasuredHeight();
             setAnimationStyle(R.style.PopupAnimationBottom);
             if (distanceToTop < linearLayout.getMeasuredHeight()) {
                 // enable scroll
-                setHeight(distanceToTop + halfAnchorHeight);
-                yOffset += linearLayout.getMeasuredHeight() - distanceToTop - halfAnchorHeight;
+                setHeight(distanceToTop + overlapAmount);
+                yOffset += linearLayout.getMeasuredHeight() - distanceToTop - overlapAmount;
             }
         } else {
             // show below anchor with scroll
-            yOffset = anchorPos[1] + halfAnchorHeight;
+            yOffset = anchorPos[1] + overlapAmount;
             setAnimationStyle(R.style.PopupAnimationTop);
-            setHeight(distanceToBottom + halfAnchorHeight);
+            setHeight(distanceToBottom + overlapAmount);
         }
 
         showAtLocation(anchor, Gravity.START | Gravity.TOP, xOffset, yOffset);

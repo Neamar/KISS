@@ -178,9 +178,14 @@ public class ToggleTags
 		barNeedsRefresh = false;
 	}
 
+	public boolean isMenuShowing()
+    {
+        return popupMenu != null && popupMenu.isShowing();
+    }
+
 	public void showBar( SharedPreferences prefs )
 	{
-		if ( popupMenu != null && popupMenu.isShowing() ) {
+		if ( isMenuShowing() ) {
 			// the popup menu has priority
 			return;
 		}
@@ -375,7 +380,7 @@ public class ToggleTags
 
 	public ListPopup showMenu(final View anchor ) {
     	if ( popupMenu != null ) {
-			popupMenu.show(anchor);
+			popupMenu.show(anchor, 0);
 			return popupMenu;
 		}
 
@@ -445,7 +450,7 @@ public class ToggleTags
 		// 2. there is no need to have both visible
 		hideBar();
 
-		popupMenu.show(anchor);
+		popupMenu.show(anchor, 0);
 		return popupMenu;
 	}
 }

@@ -520,10 +520,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (!isViewingSearchResults()) {
             return;
         }
-        if ( isPreferenceTagsMenu() )
-            registerPopup(toggleTags.showMenu(menuButton));
-        else
+        if ( isPreferenceTagsMenu() ) {
+            if (toggleTags.isMenuShowing())
+                dismissPopup();
+            else
+                registerPopup(toggleTags.showMenu(menuButton));
+        }
+        else {
+            dismissPopup();
             menuButton.showContextMenu();
+        }
         menuButton.performHapticFeedback(LONG_PRESS);
     }
 
