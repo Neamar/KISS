@@ -32,6 +32,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.amplitude.api.Amplitude;
+
 import java.util.ArrayList;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -146,6 +148,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Amplitude.getInstance().initialize(this, "ce5704d98bb60331b30cce7dee138112").enableForegroundTracking(getApplication());
+
         Log.d(TAG, "onCreate()");
 
         KissApplication.getApplication(this).initDataHandler();

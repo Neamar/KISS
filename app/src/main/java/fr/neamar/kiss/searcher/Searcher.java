@@ -6,6 +6,11 @@ import android.os.AsyncTask;
 import android.support.annotation.CallSuper;
 import android.util.Log;
 
+import com.amplitude.api.Amplitude;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,6 +113,17 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 
         long time = System.currentTimeMillis() - start;
         Log.v("Timing", "Time to run query `" + query + "` to completion: " + time + "ms");
+
+        try {
+            JSONObject eventProperties = new JSONObject();
+            eventProperties.put("type", getClass().getSimpleName());
+            eventProperties.put("length", query.replace("<null>", "").length());
+            eventProperties.put("time", time);
+            eventProperties.put("allProvidersHaveLoaded", KissApplication.getApplication(activity).getDataHandler().allProvidersHaveLoaded);
+            Amplitude.getInstance().logEvent("Search", eventProperties);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public interface DataObserver {

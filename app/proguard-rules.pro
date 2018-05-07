@@ -8,3 +8,5 @@
     public static int d(...);
     public static int e(...);
 }
+-keep class com.google.android.gms.ads.** { *; }
+-dontwarn okio.**
