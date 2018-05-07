@@ -31,7 +31,7 @@ public class SearchResult extends Result {
         if (v == null)
             v = inflateFromId(context, R.layout.item_search);
 
-        TextView appName = v.findViewById(R.id.item_search_text);
+        TextView searchText = v.findViewById(R.id.item_search_text);
         ImageView image = v.findViewById(R.id.item_search_icon);
 
         String text;
@@ -50,7 +50,7 @@ public class SearchResult extends Result {
             image.setImageResource(search);
         }
 
-        appName.setText(text);
+        searchText.setText(text);
 
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;

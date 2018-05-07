@@ -107,7 +107,6 @@ public abstract class Result {
                     Spannable.SPAN_INCLUSIVE_INCLUSIVE
             );
         }
-        view.setVisibility(View.VISIBLE);
         view.setText(enriched);
         return true;
     }

@@ -250,9 +250,7 @@ public class FuzzyScore {
         }
 
         public List<Pair<Integer, Integer>> getMatchedSequences() {
-            if (matchedIndices == null) {
-                throw new RuntimeException("getMatchedSequences() called with matchedIndices == null");
-            }
+            assert this.matchedIndices != null;
             // compute pair match indices
             List<Pair<Integer, Integer>> positions = new ArrayList<>(this.matchedIndices.size());
             int start = this.matchedIndices.get(0);
