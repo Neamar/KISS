@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -55,11 +56,14 @@ public class DataHandler extends BroadcastReceiver
     private String currentQuery;
     private final Map<String, ProviderEntry> providers = new HashMap<>();
     public boolean allProvidersHaveLoaded = false;
+    private long start;
 
     /**
      * Initialize all providers
      */
     public DataHandler(Context context) {
+        start = System.currentTimeMillis();
+
         // Make sure we are in the context of the main activity
         // (otherwise we might receive an exception about broadcast listeners not being able
         //  to bind to services)
@@ -210,7 +214,9 @@ public class DataHandler extends BroadcastReceiver
             }
         }
 
-        Log.v(TAG, "All providers are loaded.");
+        long time = System.currentTimeMillis() - start;
+        Log.v(TAG, "Time to load all providers: " + time + "ms");
+
         this.allProvidersHaveLoaded = true;
 
         // Broadcast the fact that the new providers list is ready
@@ -432,6 +438,52 @@ public class DataHandler extends BroadcastReceiver
         return favorites;
     }
 
+    /**
+     * This method is used to set the specific position of an app in the fav array.
+     *
+     * @param context  The mainActivity context
+     * @param id       the app you want to set the position of
+     * @param position the new position of the fav
+     */
+    public void setFavoritePosition(MainActivity context, String id, int position) {
+        String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
+                getString("favorite-apps-list", "");
+        List<String> favAppsList = new ArrayList<>(Arrays.asList(favApps.split(";")));
+
+        int currentPos = favAppsList.indexOf(id);
+        if (currentPos == -1) {
+            Log.e(TAG, "Couldn't find id in favAppsList");
+            return;
+        }
+        // Clamp the position so we dont just extend past the end of the array.
+        position = Math.min(position, favAppsList.size() - 1);
+
+        favAppsList.remove(currentPos);
+        // Because we're removing ourselves from the array, positions may change, we should take that into account
+        favAppsList.add(currentPos > position ? position + 1 : position, id);
+        String newFavList = TextUtils.join(";", favAppsList);
+
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", newFavList + ";").apply();
+
+        context.onFavoriteChange();
+    }
+
+    /**
+     * Helper function to get the position of a favorite. Used mainly by the drag and drop system to know where to place the dropped app.
+     *
+     * @param context mainActivity context
+     * @param id      the app you want to get the position of.
+     * @return
+     */
+    public int getFavoritePosition(MainActivity context, String id) {
+        String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
+                getString("favorite-apps-list", "");
+        List<String> favAppsList = new ArrayList<>(Arrays.asList(favApps.split(";")));
+
+        return favAppsList.indexOf(id);
+    }
+
     public void addToFavorites(MainActivity context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
@@ -483,7 +535,7 @@ public class DataHandler extends BroadcastReceiver
         StringBuilder favApps = new StringBuilder();
         for (String favAppID : favAppList) {
             if (!favAppID.startsWith("app://") || !user.hasStringUserSuffix(favAppID, '/')) {
-                favApps.append(favAppID) ;
+                favApps.append(favAppID);
                 favApps.append(";");
             }
         }

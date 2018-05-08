@@ -10,6 +10,9 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.DragEvent;
+import android.view.HapticFeedbackConstants;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -25,7 +28,7 @@ import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.RoundedQuickContactBadge;
 
-public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener {
+public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener, View.OnTouchListener, View.OnDragListener {
     private static final String TAG = "FavoriteForwarder";
 
     // Package used by Android when an Intent can be matched with more than one app
@@ -53,6 +56,23 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
      */
     private ArrayList<Pojo> favoritesPojo = new ArrayList<>();
 
+    /**
+     * Globals for drag and drop support
+     */
+    private static long startTime = 0; // Start of the drag and drop, used for long press menu
+    private float currentX = 0.0f; // Current X position of the drag op, this is 0 on DRAG END so we keep a copy here
+    private Pojo overApp; // the view for the DRAG_END event is typically wrong, so we store a reference of the last dragged over app.
+
+    /**
+     * Configuration for drag and drop
+     */
+    private final int MOVE_SENSITIVITY = 5; // How much you need to move your finger to be considered "moving"
+    private final int LONG_PRESS_DELAY = 250; // How long to hold your finger inplace to trigger the app menu.
+
+    // Use so we dont over process on the drag events.
+    private boolean isDragging = false;
+    private boolean contextMenuShown = false;
+
     Favorites(MainActivity mainActivity) {
         super(mainActivity);
     }
@@ -73,8 +93,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             favoritesViews[i] = mainActivity.favoritesBar.findViewById(FAV_IDS[i]);
         }
 
-        registerClickOnFavorites();
-        registerLongClickOnFavorites();
+        registerTouchOnFavorites();
+        registerDragOnFavorites();
 
         if (prefs.getBoolean("firstRun", true)) {
             // It is the first run. Make sure this is not an update by checking if history is empty
@@ -224,52 +244,169 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
-    private void registerClickOnFavorites() {
+    private void registerTouchOnFavorites() {
         for (View v : favoritesViews) {
-            v.setOnClickListener(this);
+            v.setOnTouchListener(this);
+        }
+    }
+    private void registerDragOnFavorites() {
+        for (View v : favoritesViews) {
+            v.setOnDragListener(this);
         }
     }
 
-    private void registerLongClickOnFavorites() {
-        for (View v : favoritesViews) {
-            v.setOnLongClickListener(this);
+    private Result getFavResult(int favNumber) {
+        if (favNumber >= favoritesPojo.size()) {
+            // Clicking on a favorite before everything is loaded.
+            Log.i(TAG, "Clicking on an uninitialized favorite.");
+            return null;
         }
+
+        // Favorites handling
+        Pojo pojo = favoritesPojo.get(favNumber);
+        return Result.fromPojo(mainActivity, pojo);
     }
 
     @Override
     public void onClick(View v) {
         int favNumber = Integer.parseInt((String) v.getTag());
-        if (favNumber >= favoritesPojo.size()) {
-            // Clicking on a favorite before everything is loaded.
-            Log.i(TAG, "Clicking on an unitialized favorite.");
-            return;
-        }
-
-        // Favorites handling
-        Pojo pojo = favoritesPojo.get(favNumber);
-        final Result result = Result.fromPojo(mainActivity, pojo);
-
+        final Result result = getFavResult(favNumber);
         result.fastLaunch(mainActivity, v);
+        v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+
     }
 
     @Override
     public boolean onLongClick(View v) {
         int favNumber = Integer.parseInt((String) v.getTag());
-        if (favNumber >= favoritesPojo.size()) {
-            // Clicking on a favorite before everything is loaded.
-            Log.i(TAG, "Long clicking on an unitialized favorite.");
-            return false;
-        }
-        // Favorites handling
-        Pojo pojo = favoritesPojo.get(favNumber);
-        final Result result = Result.fromPojo(mainActivity, pojo);
+        final Result result = getFavResult(favNumber);
         ListPopup popup = result.getPopupMenu(mainActivity, mainActivity.adapter, v);
         mainActivity.registerPopup(popup);
         popup.show(v);
+        v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         return true;
     }
 
     private boolean isExternalFavoriteBarEnabled() {
         return prefs.getBoolean("enable-favorites-bar", true);
     }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            startTime = motionEvent.getEventTime();
+            contextMenuShown = false;
+            return true;
+        }
+        // No need to do the extra work
+        if(isDragging) {
+            return true;
+        }
+
+        // Click handlers first
+        long holdTime = motionEvent.getEventTime() - startTime;
+        if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            this.onClick(view);
+            return true;
+        }
+        if(!contextMenuShown && holdTime > LONG_PRESS_DELAY) {
+            contextMenuShown = true;
+            this.onLongClick(view);
+            return true;
+        }
+
+        // Drag handlers
+        int intCurrentY = Math.round(motionEvent.getY());
+        int intCurrentX = Math.round(motionEvent.getX());
+        int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
+        int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
+        boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
+
+        if (hasMoved) {
+            mainActivity.dismissPopup();
+            mainActivity.closeContextMenu();
+            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+            view.startDrag(null, shadowBuilder, view, 0);
+            view.setVisibility(View.INVISIBLE);
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean onDrag(View v, final DragEvent event) {
+        int overFavIndex;
+
+        switch (event.getAction()) {
+            case DragEvent.ACTION_DRAG_STARTED:
+                isDragging = true;
+                break;
+
+            case DragEvent.ACTION_DRAG_ENTERED:
+            case DragEvent.ACTION_DRAG_EXITED:
+            case DragEvent.ACTION_DROP:
+                if (!isDragging) {
+                    return true;
+                }
+
+                overFavIndex = Integer.parseInt((String) v.getTag());
+                overApp = favoritesPojo.get(overFavIndex);
+
+                currentX = (event.getX() != 0.0f) ? event.getX() : currentX;
+                break;
+
+            case DragEvent.ACTION_DRAG_ENDED:
+                // Only need to handle this action once.
+                if(!isDragging) {
+                    return true;
+                }
+                isDragging = false;
+
+                final View draggedView = (View) event.getLocalState();
+
+                // Sometimes we dont trigger onDrag over another app, in which case just drop.
+                if (overApp == null) {
+                    Log.w(TAG, "Wasn't dragged over an app, returning app to starting position");
+                    draggedView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            draggedView.setVisibility(View.VISIBLE);
+                        }
+                    });
+                    break;
+                }
+
+                int draggedFavIndex = Integer.parseInt((String) draggedView.getTag());
+                final Pojo draggedApp = favoritesPojo.get(draggedFavIndex);
+
+                int left = v.getLeft();
+                int right = v.getRight();
+                int width = right - left;
+
+                // currentX is relative to the view not the screen, so add the current X of the view.
+                final boolean leftSide = (left + currentX < left + (width / 2));
+
+                final int pos = KissApplication.getApplication(mainActivity).getDataHandler().getFavoritePosition(mainActivity, overApp.id);
+                draggedView.post(new Runnable() {
+                     @Override
+                     public void run() {
+                        // Signals to a View that the drag and drop operation has concluded.
+                        // If event result is set, this means the dragged view was dropped in target
+                        if (event.getResult()) {
+                            KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.id, leftSide ? pos - 1 : pos);
+                            mainActivity.onFavoriteChange();
+                        } else {
+                            draggedView.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
 }
+
