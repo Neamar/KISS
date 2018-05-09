@@ -40,9 +40,11 @@ import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
+import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.searcher.TagsSearcher;
 import fr.neamar.kiss.ui.AnimatedListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
@@ -494,7 +496,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
         // To fix this, we discard any click event occurring when the kissbar is displayed
-        if (isViewingSearchResults()) {
+        if (!isViewingSearchResults()) {
+            return;
+        }
+        if (!forwarderManager.onMenuButtonClicked(this.menuButton)) {
             this.menuButton.showContextMenu();
             this.menuButton.performHapticFeedback(LONG_PRESS);
         }
@@ -598,6 +603,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     private void displayKissBar(boolean display, boolean clearSearchText) {
+        dismissPopup();
         // get the center for the clipping circle
         int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
         int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
@@ -803,5 +809,19 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void dismissPopup() {
         if (mPopup != null)
             mPopup.dismiss();
+    }
+
+    public void showMatchingTags( String tag ) {
+        runTask(new TagsSearcher(this, tag));
+
+        clearButton.setVisibility(View.VISIBLE);
+        menuButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void showHistory() {
+        runTask(new HistorySearcher(this));
+
+        clearButton.setVisibility(View.VISIBLE);
+        menuButton.setVisibility(View.INVISIBLE);
     }
 }
