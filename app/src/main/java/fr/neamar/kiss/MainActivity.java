@@ -403,7 +403,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             else if(s.equals(("selected-search-provider-names"))) {
                 identify.set("search-provider-count", settings.get(s).toString().split(",").length);
             }
-            else if(!s.equals("excluded_apps_ui")) {
+            else if(!s.equals("excluded_apps_ui") && !s.equals("available-search-providers") && !s.equals("deleting-search-providers-names")) {
                 identify.set(s, settings.get(s).toString());
             }
         }
