@@ -2,6 +2,7 @@ package fr.neamar.kiss.dataprovider;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
@@ -56,7 +57,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
         loader.setProvider(this);
         this.pojoScheme = loader.getPojoScheme();
-        loader.execute();
+        loader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     public void reload() {
