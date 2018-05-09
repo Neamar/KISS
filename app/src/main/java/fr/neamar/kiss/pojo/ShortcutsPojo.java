@@ -19,7 +19,7 @@ public class ShortcutsPojo extends PojoWithTags {
     }
 
     public void setOreoId(String id) {
-        intentUri =  ShortcutsPojo.OREO_PREFIX + id;
+        intentUri = ShortcutsPojo.OREO_PREFIX + id;
     }
 
     public String getOreoId() {

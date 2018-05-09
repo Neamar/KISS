@@ -81,7 +81,7 @@ public class ShortcutsResult extends Result {
                 ComponentName className = new ComponentName(packageName, activityName);
                 appDrawable = context.getPackageManager().getActivityIcon(className);
             } else {
-                // Can't make sense of the intent URI (Oreo shortcut?)
+                // Can't make sense of the intent URI (Oreo shortcut, or a shortcut from an activity that was removed from an installed app)
                 // Retrieve app icon
                 try {
                     appDrawable = packageManager.getApplicationIcon(shortcutPojo.packageName);
@@ -143,6 +143,7 @@ public class ShortcutsResult extends Result {
 
         // Only the default launcher is allowed to start shortcuts
         if (!launcherApps.hasShortcutHostPermission()) {
+            Toast.makeText(context, context.getString(R.string.shortcuts_no_host_permission), Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -161,6 +162,9 @@ public class ShortcutsResult extends Result {
                 return;
             }
         }
+
+        // Application removed? Invalid shortcut? Shortcut to an app on an unmounted SD card?
+        Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
     }
 
     @Override
