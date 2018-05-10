@@ -49,7 +49,7 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "app", "contacts", "phone", "search", "settings", "shortcuts"
+            "app", "commands", "contacts", "phone", "search", "settings", "shortcuts"
     );
     private TagsHandler tagsHandler;
     final private Context context;

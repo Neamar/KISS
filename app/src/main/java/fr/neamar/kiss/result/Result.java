@@ -32,6 +32,7 @@ import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.CommandsPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
@@ -55,6 +56,8 @@ public abstract class Result {
     public static Result fromPojo(QueryInterface parent, Pojo pojo) {
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
+        else if (pojo instanceof CommandsPojo)
+            return new CommandsResult((CommandsPojo) pojo);
         else if (pojo instanceof ContactsPojo)
             return new ContactsResult(parent, (ContactsPojo) pojo);
         else if (pojo instanceof SearchPojo)
