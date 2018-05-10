@@ -635,16 +635,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 int animationDuration = getResources().getInteger(
                         android.R.integer.config_shortAnimTime);
 
-                Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, finalRadius, 0);
-                anim.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        kissBar.setVisibility(View.GONE);
-                        super.onAnimationEnd(animation);
-                    }
-                });
-                anim.setDuration(animationDuration);
-                anim.start();
+                try {
+                    Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, finalRadius, 0);
+                    anim.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            kissBar.setVisibility(View.GONE);
+                            super.onAnimationEnd(animation);
+                        }
+                    });
+                    anim.setDuration(animationDuration);
+                    anim.start();
+                } catch(IllegalStateException e) {
+                    // If the view hasn't been laid out yet, we can't animate it
+                    kissBar.setVisibility(View.GONE);
+                }
             } else {
                 // No animation before Lollipop
                 kissBar.setVisibility(View.GONE);
