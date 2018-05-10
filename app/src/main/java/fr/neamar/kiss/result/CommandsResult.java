@@ -47,7 +47,7 @@ public class CommandsResult extends Result {
     public void doLaunch(Context context, View v) {
         switch (commandPojo.id) {
             case "kiss_history_clear" : KissApplication.getApplication(context).getDataHandler().clearHistory(); break;
-            case "kiss_ui_theme_next" :
+            case "kiss_ui_theme_light" :
                 PreferenceManager.getDefaultSharedPreferences(context).edit().putString("theme", "light").apply();
                 context.setTheme(R.style.AppThemeLight);
                 ((MainActivity)context).recreate();

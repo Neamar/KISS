@@ -20,7 +20,7 @@ public class LoadCommandsPojos extends LoadPojos<CommandsPojo> {
             return settings;
         }
         settings.add(new CommandsPojo("kiss_history_clear", "kiss history clear"));
-        settings.add(new CommandsPojo("kiss_ui_theme_next", "kiss theme next"));
+        settings.add(new CommandsPojo("kiss_ui_theme_light", "kiss theme light"));
 
         return settings;
     }
