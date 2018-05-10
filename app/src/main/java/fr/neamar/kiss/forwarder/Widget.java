@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.ui.WidgetLayout;
 
 class Widget extends Forwarder {
     private static final int REQUEST_PICK_APPWIDGET = 9;
@@ -153,18 +154,67 @@ class Widget extends Forwarder {
             if (Build.VERSION.SDK_INT > 15) {
                 hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
             }
-            widgetArea.addView(hostView);
+            addWidgetHostView(hostView, appWidgetInfo);
         }
         // only one widget allowed so widgetUsed is true now, even if not added to view
         widgetUsed = true;
+    }
+
+    private void addWidgetHostView(AppWidgetHostView hostView, AppWidgetProviderInfo appWidgetInfo) {
+        widgetArea.addView(hostView);
+        
+        int w = ViewGroup.LayoutParams.WRAP_CONTENT;
+        int h = ViewGroup.LayoutParams.WRAP_CONTENT;
+//        int w = appWidgetInfo.minWidth;
+//        int h = appWidgetInfo.minHeight;
+
+//        switch (appWidgetInfo.resizeMode)
+//        {
+//            case AppWidgetProviderInfo.RESIZE_HORIZONTAL:
+//                w = ViewGroup.LayoutParams.MATCH_PARENT;
+//                break;
+//            case AppWidgetProviderInfo.RESIZE_VERTICAL:
+//                h = ViewGroup.LayoutParams.MATCH_PARENT;
+//                break;
+//            case AppWidgetProviderInfo.RESIZE_BOTH:
+//                w = ViewGroup.LayoutParams.MATCH_PARENT;
+//                h = ViewGroup.LayoutParams.MATCH_PARENT;
+//                break;
+//        }
+
+        //TODO: widgetArea needs to be a custom layout so I can be able to position and resize views as I please
+
+        WidgetLayout.LayoutParams layoutParams = new WidgetLayout.LayoutParams(w, h);
+        layoutParams.position = WidgetLayout.LayoutParams.POSITION_LEFT;
+
+        hostView.setBackgroundColor(0x7Fffd700);
+        hostView.setLayoutParams(layoutParams);
+    }
+
+    private void removeWidgetHostView(AppWidgetHostView hostView) {
+        int childCount = widgetArea.getChildCount();
+        for (int i = 0; i < childCount; i += 1) {
+            if (widgetArea.getChildAt(i) == hostView) {
+                widgetArea.removeViewAt(i);
+                return;
+            }
+        }
+    }
+
+    private AppWidgetHostView getWidgetHostView(int index) {
+        return (AppWidgetHostView) widgetArea.getChildAt(index);
+    }
+
+    private int getWidgetHostViewCount() {
+        return widgetArea.getChildCount();
     }
 
     /**
      * Removes all widgets from the launcher
      */
     private void removeAllWidgets() {
-        while (widgetArea.getChildCount() > 0) {
-            AppWidgetHostView widget = (AppWidgetHostView) widgetArea.getChildAt(0);
+        while (getWidgetHostViewCount() > 0) {
+            AppWidgetHostView widget = getWidgetHostView(0);
             removeAppWidget(widget);
         }
     }
@@ -178,7 +228,7 @@ class Widget extends Forwarder {
         // remove widget from view
         int appWidgetId = hostView.getAppWidgetId();
         mAppWidgetHost.deleteAppWidgetId(appWidgetId);
-        widgetArea.removeView(hostView);
+        removeWidgetHostView(hostView);
         // remove widget id from persistent prefs
         SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
         widgetPrefsEditor.remove(String.valueOf(appWidgetId));
