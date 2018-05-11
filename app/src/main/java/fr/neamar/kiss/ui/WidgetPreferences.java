@@ -123,15 +123,15 @@ public class WidgetPreferences implements Serializable {
             //Width
             text = contentView.findViewById(R.id.value_width);
             seek = contentView.findViewById(R.id.seek_width);
-            seek.setProgress(widgetPreferences.width - info.minWidth);
             seek.setMax(mWindowSize.x - info.minWidth);
+            seek.setProgress(widgetPreferences.width - info.minWidth);
             seek.setOnSeekBarChangeListener(new SeekBarSync(text, info.minWidth));
 
             //Height
             text = contentView.findViewById(R.id.value_height);
             seek = contentView.findViewById(R.id.seek_height);
-            seek.setProgress(widgetPreferences.height - info.minHeight);
             seek.setMax(mWindowSize.y - info.minHeight);
+            seek.setProgress(widgetPreferences.height - info.minHeight);
             seek.setOnSeekBarChangeListener(new SeekBarSync(text, info.minHeight));
 
             showAtLocation(mainActivity.emptyListView, Gravity.CENTER, 0, 0);

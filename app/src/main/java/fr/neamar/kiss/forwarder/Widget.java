@@ -119,8 +119,8 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
                     AppWidgetHostView hostView = getWidgetHostView(i);
                     if (hostView != null) {
                         AppWidgetProviderInfo info = hostView.getAppWidgetInfo();
-                        adapter.add(new WidgetMenuItem("Edit widget " + info.provider.flattenToShortString(), hostView.getAppWidgetId(), R.string.menu_widget_settings));
-                        adapter.add(new WidgetMenuItem("Remove widget " + info.provider.flattenToShortString(), hostView.getAppWidgetId(), R.string.menu_widget_remove));
+                        adapter.add(new WidgetMenuItem("Edit widget " + info.provider.getClassName(), hostView.getAppWidgetId(), R.string.menu_widget_settings));
+                        adapter.add(new WidgetMenuItem("Remove widget " + info.provider.getClassName(), hostView.getAppWidgetId(), R.string.menu_widget_remove));
                     }
                 }
 
@@ -183,7 +183,7 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
             if (Build.VERSION.SDK_INT > 15) {
                 hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
             }
-            addWidgetHostView(hostView, appWidgetInfo);
+            addWidgetHostView(hostView);
             WidgetLayout.LayoutParams layoutParams = (WidgetLayout.LayoutParams) hostView.getLayoutParams();
 
             WidgetPreferences wp = new WidgetPreferences();
@@ -196,35 +196,22 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
         return null;
     }
 
-    private void addWidgetHostView(AppWidgetHostView hostView, AppWidgetProviderInfo appWidgetInfo) {
+    private void addWidgetHostView(AppWidgetHostView hostView) {
         widgetArea.addView(hostView);
+        String data = widgetPrefs.getString(String.valueOf(hostView.getAppWidgetId()), null);
+        WidgetPreferences wp = WidgetPreferences.unserialize(data);
 
         int w = ViewGroup.LayoutParams.WRAP_CONTENT;
         int h = ViewGroup.LayoutParams.WRAP_CONTENT;
-//        int w = appWidgetInfo.minWidth;
-//        int h = appWidgetInfo.minHeight;
-
-//        switch (appWidgetInfo.resizeMode)
-//        {
-//            case AppWidgetProviderInfo.RESIZE_HORIZONTAL:
-//                w = ViewGroup.LayoutParams.MATCH_PARENT;
-//                break;
-//            case AppWidgetProviderInfo.RESIZE_VERTICAL:
-//                h = ViewGroup.LayoutParams.MATCH_PARENT;
-//                break;
-//            case AppWidgetProviderInfo.RESIZE_BOTH:
-//                w = ViewGroup.LayoutParams.MATCH_PARENT;
-//                h = ViewGroup.LayoutParams.MATCH_PARENT;
-//                break;
-//        }
-
-        //TODO: widgetArea needs to be a custom layout so I can be able to position and resize views as I please
+        if ( wp != null ) {
+            w = wp.width;
+            h = wp.height;
+        }
 
         WidgetLayout.LayoutParams layoutParams = new WidgetLayout.LayoutParams(w, h);
-        //layoutParams.position = WidgetLayout.LayoutParams.POSITION_MIDDLE;
         layoutParams.position = getWidgetHostViewCount() - 1;
 
-        hostView.setBackgroundColor(0x7Fffd700);
+        //hostView.setBackgroundColor(0x7Fffd700);
         hostView.setLayoutParams(layoutParams);
     }
 
@@ -341,22 +328,32 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
         }
     }
 
-    public void onWidgetLayout(View child, boolean changed, Rect childRect) {
+    public void onWidgetLayout(View child, boolean changed, Rect rect) {
         if (!changed)
             return;
         AppWidgetHostView hostView = getWidgetHostView(child);
-        // remove widget from view
         int appWidgetId = hostView.getAppWidgetId();
 
         String data = widgetPrefs.getString(String.valueOf(appWidgetId), null);
         WidgetPreferences wp = WidgetPreferences.unserialize(data);
-        if (wp == null)
+        boolean needToApply = false;
+        if (wp == null) {
             wp = new WidgetPreferences();
-        wp.width = childRect.width();
-        wp.height = childRect.height();
-        SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
-        widgetPrefsEditor.putString(String.valueOf(appWidgetId), WidgetPreferences.serialize(wp));
-        widgetPrefsEditor.apply();
+            needToApply = true;
+        }
+        if ( wp.width == 0 ) {
+            wp.width = rect.width();
+            needToApply = true;
+        }
+        if ( wp.height == 0 ) {
+            wp.height = rect.height();
+            needToApply = true;
+        }
+        if ( needToApply ) {
+            SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
+            widgetPrefsEditor.putString(String.valueOf(appWidgetId), WidgetPreferences.serialize(wp));
+            widgetPrefsEditor.apply();
+        }
     }
 
     @Override
