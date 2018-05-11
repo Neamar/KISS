@@ -5,6 +5,8 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Point;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -117,22 +119,31 @@ public class WidgetPreferences implements Serializable {
                     dismiss();
                 }
             });
+
+            String label;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                label = hostView.getAppWidgetInfo().label;
+            } else {
+                label = hostView.getAppWidgetInfo().loadLabel(mainActivity.getPackageManager());
+            }
+            TextView text = contentView.findViewById(R.id.title);
+            text.setText(label);
+
             SeekBar seek;
-            TextView text;
 
             //Width
             text = contentView.findViewById(R.id.value_width);
             seek = contentView.findViewById(R.id.seek_width);
             seek.setMax(mWindowSize.x - info.minWidth);
-            seek.setProgress(widgetPreferences.width - info.minWidth);
             seek.setOnSeekBarChangeListener(new SeekBarSync(text, info.minWidth));
+            seek.setProgress(widgetPreferences.width - info.minWidth);
 
             //Height
             text = contentView.findViewById(R.id.value_height);
             seek = contentView.findViewById(R.id.seek_height);
             seek.setMax(mWindowSize.y - info.minHeight);
-            seek.setProgress(widgetPreferences.height - info.minHeight);
             seek.setOnSeekBarChangeListener(new SeekBarSync(text, info.minHeight));
+            seek.setProgress(widgetPreferences.height - info.minHeight);
 
             showAtLocation(mainActivity.emptyListView, Gravity.CENTER, 0, 0);
         }
