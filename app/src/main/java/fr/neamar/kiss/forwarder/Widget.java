@@ -361,6 +361,13 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
         WidgetMenuItem menuItem = (WidgetMenuItem) adapter.getItem(position);
         switch (menuItem.action)
         {
+            case R.string.menu_widget_add:
+                // request widget picker, a selection will lead to a call of onActivityResult
+                int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
+                Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+                pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+                mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
+                break;
             case R.string.menu_widget_remove:
                 for ( int i = 0; i < getWidgetHostViewCount(); i+= 1 ) {
                     AppWidgetHostView hostView = getWidgetHostView(i);
