@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RemoteViews;
 
+import fr.neamar.kiss.forwarder.Widget;
+
 /**
  * Example of writing a custom layout manager.  This is a fairly full-featured
  * layout manager that is relatively general, handling all layout cases.  You
@@ -30,6 +32,8 @@ public class WidgetLayout extends ViewGroup {
      */
     private final Rect mTmpContainerRect = new Rect();
     private final Rect mTmpChildRect = new Rect();
+
+    private Widget mWidget = null;
 
     public WidgetLayout(Context context) {
         super(context);
@@ -160,6 +164,9 @@ public class WidgetLayout extends ViewGroup {
                 // Place the child.
                 child.layout(mTmpChildRect.left, mTmpChildRect.top,
                         mTmpChildRect.right, mTmpChildRect.bottom);
+
+                if ( mWidget != null )
+                    mWidget.onWidgetLayout(child, changed, mTmpChildRect);
             }
         }
     }
@@ -176,7 +183,7 @@ public class WidgetLayout extends ViewGroup {
 
     @Override
     protected LayoutParams generateDefaultLayoutParams() {
-        return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }
 
     @Override
@@ -189,6 +196,10 @@ public class WidgetLayout extends ViewGroup {
         return p instanceof LayoutParams;
     }
 
+    public void setWidgetForwarder(Widget widget) {
+        mWidget = widget;
+    }
+
     /**
      * Custom per-child layout information.
      */
@@ -197,7 +208,7 @@ public class WidgetLayout extends ViewGroup {
          * The gravity to apply with the View to which these layout parameters
          * are associated.
          */
-        public int gravity = Gravity.TOP | Gravity.START;
+        public int gravity = Gravity.TOP;
 
         public static int POSITION_MIDDLE = 0;
         public static int POSITION_LEFT = 1;

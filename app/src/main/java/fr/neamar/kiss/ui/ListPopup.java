@@ -165,6 +165,12 @@ public class ListPopup extends PopupWindow {
         showAtLocation(anchor, Gravity.START | Gravity.TOP, xOffset, yOffset);
     }
 
+    public void showCentered(View view) {
+        updateItems();
+
+        showAtLocation(view, Gravity.CENTER, 0, 0);
+    }
+
     public interface OnItemClickListener {
         void onItemClick(ListAdapter adapter, View view, int position);
     }
