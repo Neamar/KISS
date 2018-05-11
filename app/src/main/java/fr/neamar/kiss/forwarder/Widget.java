@@ -119,8 +119,14 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
                     AppWidgetHostView hostView = getWidgetHostView(i);
                     if (hostView != null) {
                         AppWidgetProviderInfo info = hostView.getAppWidgetInfo();
-                        adapter.add(new WidgetMenuItem("Edit widget " + info.provider.getClassName(), hostView.getAppWidgetId(), R.string.menu_widget_settings));
-                        adapter.add(new WidgetMenuItem("Remove widget " + info.provider.getClassName(), hostView.getAppWidgetId(), R.string.menu_widget_remove));
+                        String label;
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                            label = info.label;
+                        } else {
+                            label = info.loadLabel(mainActivity.getPackageManager());
+                        }
+                        adapter.add(new WidgetMenuItem("Edit widget " + label, hostView.getAppWidgetId(), R.string.menu_widget_settings));
+                        adapter.add(new WidgetMenuItem("Remove widget " + label, hostView.getAppWidgetId(), R.string.menu_widget_remove));
                     }
                 }
 
