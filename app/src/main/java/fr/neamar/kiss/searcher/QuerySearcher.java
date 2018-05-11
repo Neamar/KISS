@@ -3,6 +3,7 @@ package fr.neamar.kiss.searcher;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoWithTags;
 
 /**
  * AsyncTask retrieving data from the providers and updating the view
@@ -46,15 +48,36 @@ public class QuerySearcher extends Searcher {
 
     @Override
     public boolean addResult(Pojo... pojos) {
-        // Give a boost if item was previously selected for this query
-        for (Pojo pojo : pojos) {
-            if (knownIds.containsKey(pojo.id)) {
-                pojo.relevance += 25 * knownIds.get(pojo.id);
+        MainActivity mainActivity = activityWeakReference.get();
+        if (pojos.length > 1) {
+            ArrayList<Pojo> filteredList = new ArrayList<>(pojos.length);
+            for (Pojo pojo : pojos) {
+                if (pojo instanceof PojoWithTags && !isTagFilterOk(mainActivity, (PojoWithTags) pojo)) {
+                    // skip this pojo
+                    continue;
+                }
+                applyBoost(pojo);
+                filteredList.add(pojo);
             }
+            // call super implementation to update the adapter
+            return super.addResult(filteredList.toArray(new Pojo[0]));
+        } else if (pojos.length == 1) {
+            Pojo pojo = pojos[0];
+            if ((pojo instanceof PojoWithTags) && !isTagFilterOk(mainActivity, (PojoWithTags) pojo)) {
+                // skip this pojo
+                return true;
+            }
+            applyBoost(pojo);
         }
-
         // call super implementation to update the adapter
         return super.addResult(pojos);
+    }
+
+    protected void applyBoost(Pojo pojo) {
+        // Give a boost if item was previously selected for this query
+        if (knownIds.containsKey(pojo.id)) {
+            pojo.relevance += 25 * knownIds.get(pojo.id);
+        }
     }
 
     /**

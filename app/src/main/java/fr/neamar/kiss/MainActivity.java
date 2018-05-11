@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -40,9 +41,11 @@ import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
+import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.searcher.TagsSearcher;
 import fr.neamar.kiss.ui.AnimatedListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
@@ -50,10 +53,11 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
+import fr.neamar.kiss.utils.ToggleTags;
 
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
-public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver, ToggleTags.ToggleUpdatedListener {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -124,6 +128,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Task launched on text change
      */
     private Searcher searchTask;
+
+    /**
+     * A helper class used to manage all tags toggles
+     */
+    private ToggleTags toggleTags;
 
     /**
      * SystemUiVisibility helper
@@ -294,6 +303,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == android.R.id.closeButton) {
+                    toggleTags.hideBar();
                     systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
                     if (mPopup != null) {
                         mPopup.dismiss();
@@ -311,7 +321,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
+        toggleTags = new ToggleTags( findViewById( R.id.tagsToggleBar ), this );
+        toggleTags.loadTags( prefs, getApplicationContext() );
+
         registerForContextMenu(menuButton);
+
+        findViewById(R.id.clearButton).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                registerPopup(toggleTags.showMenu(v));
+                return true;
+            }
+        });
 
         // When scrolling down on the list,
         // Hide the keyboard.
@@ -389,6 +410,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         forwarderManager.onResume();
+
+        toggleTags.loadTags( prefs, getApplicationContext() );
 
         super.onResume();
     }
@@ -494,10 +517,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
         // To fix this, we discard any click event occurring when the kissbar is displayed
-        if (isViewingSearchResults()) {
-            this.menuButton.showContextMenu();
-            this.menuButton.performHapticFeedback(LONG_PRESS);
+        if (!isViewingSearchResults()) {
+            return;
         }
+        if ( isPreferenceTagsMenu() ) {
+            if (toggleTags.isMenuShowing())
+                dismissPopup();
+            else
+                registerPopup(toggleTags.showMenu(menuButton));
+        }
+        else {
+            dismissPopup();
+            menuButton.showContextMenu();
+        }
+        menuButton.performHapticFeedback(LONG_PRESS);
     }
 
     @Override
@@ -560,19 +593,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public void displayLoader(Boolean display) {
-        int animationDuration = getResources().getInteger(
-                android.R.integer.config_longAnimTime);
+        launcherButton.clearAnimation();
+        loaderSpinner.clearAnimation();
 
         // Do not display animation if launcher button is already visible
         if (!display && launcherButton.getVisibility() == View.INVISIBLE) {
+            int animationDuration = getResources().getInteger(android.R.integer.config_longAnimTime);
             launcherButton.setVisibility(View.VISIBLE);
 
             // Animate transition from loader to launch button
-            launcherButton.setAlpha(0);
+            launcherButton.setAlpha(0f);
             launcherButton.animate()
                     .alpha(1f)
-                    .setDuration(animationDuration)
-                    .setListener(null);
+                    .setDuration(animationDuration);
+            loaderSpinner.setAlpha(1f);
             loaderSpinner.animate()
                     .alpha(0f)
                     .setDuration(animationDuration)
@@ -580,11 +614,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             loaderSpinner.setVisibility(View.GONE);
-                            loaderSpinner.setAlpha(1);
                         }
                     });
         } else if(display) {
             launcherButton.setVisibility(View.INVISIBLE);
+            loaderSpinner.setAlpha(1f);
             loaderSpinner.setVisibility(View.VISIBLE);
         }
     }
@@ -681,8 +715,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.updateSearchRecords(query);
 
         if (query.isEmpty()) {
+            toggleTags.hideBar();
             systemUiVisibilityHelper.resetScroll();
         } else {
+            toggleTags.showBar(prefs);
             runTask(new QuerySearcher(this, query));
         }
     }
@@ -733,6 +769,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         hider.fixScroll();
     }
 
+    private boolean isPreferenceTagsMenu() {
+        return prefs.getBoolean("pref-tags-menu", false);
+    }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -741,12 +781,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
 
+    @Override
     public void showKeyboard() {
         searchEditText.requestFocus();
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         assert mgr != null;
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
 
+        toggleTags.showBar( prefs );
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
     }
 
@@ -796,5 +838,40 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void dismissPopup() {
         if (mPopup != null)
             mPopup.dismiss();
+    }
+
+    public Set<String> getExcludeTags() {
+        return toggleTags.getHiddenTags();
+    }
+
+    public Set<String> getIncludeTags() {
+        return toggleTags.getMustShowTags();
+    }
+
+    @Override
+    public void onToggleUpdated() {
+        toggleTags.saveHiddenTags(prefs);
+        if (searchEditText.getText().length() == 0) {
+            // show all matching when the search bar is empty
+            showMatchingTags(null);
+        } else
+            updateSearchRecords();
+        toggleTags.showBar(prefs);
+    }
+
+    @Override
+    public void showMatchingTags( String tag ) {
+        runTask(new TagsSearcher(this, tag));
+
+        clearButton.setVisibility(View.VISIBLE);
+        menuButton.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showHistory() {
+        runTask(new HistorySearcher(this));
+
+        clearButton.setVisibility(View.VISIBLE);
+        menuButton.setVisibility(View.INVISIBLE);
     }
 }

@@ -31,6 +31,7 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.ToggleTags;
 
 @SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
@@ -45,6 +46,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
+    private final ToggleTags toggleTags = new ToggleTags();
 
     @SuppressWarnings("deprecation")
     @Override
@@ -86,6 +88,8 @@ public class SettingsActivity extends PreferenceActivity implements
         addExcludedAppSettings(prefs);
 
         addCustomSearchProvidersPreferences(prefs);
+
+        addHiddenTagsTogglesInformation(prefs);
     }
 
     @Override
@@ -94,7 +98,6 @@ public class SettingsActivity extends PreferenceActivity implements
         inflater.inflate(R.menu.menu_settings, menu);
         return true;
     }
-
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         if(item.getItemId() == R.id.help) {
@@ -417,4 +420,22 @@ public class SettingsActivity extends PreferenceActivity implements
         lp.setDefaultValue("default");
         lp.setEntryValues(entryValues);
     }
+
+	private void addHiddenTagsTogglesInformation( SharedPreferences prefs )
+	{
+        toggleTags.loadTags( prefs, getApplicationContext() );
+        MultiSelectListPreference selectListPreference = (MultiSelectListPreference)findPreference( "pref-toggle-tags-list" );
+        Set<String> tagList = KissApplication.getApplication(this)
+                                             .getDataHandler()
+                                             .getTagsHandler()
+                                             .getAllTagsAsSet();
+
+        // append tags that are available to toggle now
+        tagList.addAll( toggleTags.getTogglableTags() );
+
+        String[] tagArray = tagList.toArray( new String[0] );
+        selectListPreference.setEntries( tagArray );
+        selectListPreference.setEntryValues( tagArray );
+        selectListPreference.setValues( toggleTags.getTogglableTags() );
+	}
 }

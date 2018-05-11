@@ -61,7 +61,7 @@
         android:animateLayoutChanges="true"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:layout_above="@+id/searchEditLayout"
+        android:layout_above="@+id/tagsToggleBar"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -144,6 +144,14 @@
             tools:ignore="DuplicateIncludedIds"
             tools:src="@drawable/ic_contact" />
     </LinearLayout>
+
+    <include
+        android:id="@+id/tagsToggleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/searchEditLayout"
+        layout="@layout/tags_toggle"
+        />
 
     <RelativeLayout
         android:id="@+id/searchEditLayout"
