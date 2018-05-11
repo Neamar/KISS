@@ -26,13 +26,15 @@
             android:id="@+id/seek_width"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3" />
+            android:layout_weight="1" />
 
         <EditText
             android:id="@+id/value_width"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:inputType="number"
+            android:maxEms="5"
+            android:minEms="3"
             android:selectAllOnFocus="true"
             android:singleLine="true" />
     </LinearLayout>
@@ -52,13 +54,15 @@
             android:id="@+id/seek_height"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3" />
+            android:layout_weight="1" />
 
         <EditText
             android:id="@+id/value_height"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:inputType="number"
+            android:maxEms="5"
+            android:minEms="3"
             android:selectAllOnFocus="true"
             android:singleLine="true" />
     </LinearLayout>

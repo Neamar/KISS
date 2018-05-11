@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -130,6 +132,7 @@ public class WidgetPreferences implements Serializable {
             text.setText(label);
 
             SeekBar seek;
+            TextViewSync textSync;
 
             //Width
             text = contentView.findViewById(R.id.value_width);
@@ -137,6 +140,9 @@ public class WidgetPreferences implements Serializable {
             seek.setMax(mWindowSize.x - info.minWidth);
             seek.setOnSeekBarChangeListener(new SeekBarSync(text, info.minWidth));
             seek.setProgress(widgetPreferences.width - info.minWidth);
+            textSync = new TextViewSync(seek, info.minWidth);
+            text.addTextChangedListener(textSync);
+            text.setOnFocusChangeListener(textSync);
 
             //Height
             text = contentView.findViewById(R.id.value_height);
@@ -144,7 +150,11 @@ public class WidgetPreferences implements Serializable {
             seek.setMax(mWindowSize.y - info.minHeight);
             seek.setOnSeekBarChangeListener(new SeekBarSync(text, info.minHeight));
             seek.setProgress(widgetPreferences.height - info.minHeight);
+            textSync = new TextViewSync(seek, info.minHeight);
+            text.addTextChangedListener(textSync);
+            text.setOnFocusChangeListener(textSync);
 
+            setFocusable(true);
             showAtLocation(mainActivity.emptyListView, Gravity.CENTER, 0, 0);
         }
 
@@ -164,7 +174,14 @@ public class WidgetPreferences implements Serializable {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mTextView.setText(String.valueOf(progress + mMin));
+                int textProgress;
+                try {
+                    textProgress = Integer.parseInt(mTextView.getText().toString()) - mMin;
+                } catch (NumberFormatException e) {
+                    textProgress = 0;
+                }
+                if ( textProgress != progress )
+                    mTextView.setText(String.valueOf(progress + mMin));
             }
 
             @Override
@@ -175,6 +192,54 @@ public class WidgetPreferences implements Serializable {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        }
+
+        static class TextViewSync implements TextWatcher, View.OnFocusChangeListener {
+            final SeekBar mSeekBar;
+            final int mMin;
+
+            TextViewSync(SeekBar seekBar, int min) {
+                mSeekBar = seekBar;
+                mMin = min;
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                int progress;
+                try {
+                    progress = Integer.parseInt(s.toString()) - mMin;
+                } catch (NumberFormatException e) {
+                    progress = mSeekBar.getProgress();
+                }
+                if (progress >= 0)
+                    mSeekBar.setProgress(progress);
+            }
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    return;
+                }
+                TextView textView = (TextView) v;
+                int textProgress;
+                try {
+                    textProgress = Integer.parseInt(textView.getText().toString()) - mMin;
+                } catch (NumberFormatException e) {
+                    textProgress = -1;
+                }
+                if ( textProgress != mSeekBar.getProgress() )
+                    textView.setText(String.valueOf(mSeekBar.getProgress() + mMin));
             }
         }
     }
