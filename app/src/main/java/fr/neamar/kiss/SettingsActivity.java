@@ -304,12 +304,6 @@ public class SettingsActivity extends PreferenceActivity implements
             addCustomSearchProvidersPreferences(prefs);
         } else if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
-        } else if (key.equalsIgnoreCase("sort-apps")) {
-            // Reload application list
-            final AppProvider provider = KissApplication.getApplication(this).getDataHandler().getAppProvider();
-            if (provider != null) {
-                provider.reload();
-            }
         } else if (key.equalsIgnoreCase("enable-sms-history")) {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS)
                     != PackageManager.PERMISSION_GRANTED) {

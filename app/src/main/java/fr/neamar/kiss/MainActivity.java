@@ -628,6 +628,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 anim.start();
             }
             kissBar.setVisibility(View.VISIBLE);
+
+            // Display the alphabet on the scrollbar (#926)
+            list.setFastScrollEnabled(true);
         } else {
             isDisplayingKissBar = false;
             // Hide the bar
@@ -658,6 +661,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (clearSearchText) {
                 searchEditText.setText("");
             }
+
+            // Do not display the alphabetical scrollbar (#926)
+            // They only make sense when displaying apps alphabetically, not for searching
+            list.setFastScrollEnabled(false);
         }
 
         forwarderManager.onDisplayKissBar(display);
