@@ -657,7 +657,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 searchEditText.setText("");
             }
 
-            // Do not display the alphabetical scrollbars (#926)
+            // Do not display the alphabetical scrollbar (#926)
+            // They only make sense when displaying apps alphabetically, not for searching
             list.setFastScrollEnabled(false);
         }
 

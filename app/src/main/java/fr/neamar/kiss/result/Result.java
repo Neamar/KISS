@@ -106,7 +106,8 @@ public abstract class Result {
     public abstract View display(Context context, int position, View convertView);
 
     public String getSection() {
-        // get the first letter of the store
+        // get the normalized first letter of the pojo
+        // Ensure accented characters are never displayed. (É => E)
         String ch = Character.toString((char) pojo.normalizedName.codePoints[0]);
         // convert to uppercase otherwise lowercase a -z will be sorted
         // after upper A-Z
