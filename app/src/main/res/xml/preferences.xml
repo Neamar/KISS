@@ -26,8 +26,8 @@
             android:defaultValue="recency"
             android:entries="@array/historyModeEntries"
             android:entryValues="@array/historyModeValues"
-            android:order="46"
             android:key="history-mode"
+            android:order="46"
             android:summary="@string/history_mode_desc"
             android:title="@string/history_mode_name" />
         <fr.neamar.kiss.preference.FreezeHistorySwitch
@@ -86,19 +86,24 @@
             android:defaultValue="default"
             android:key="icons-pack"
             android:title="@string/icons_pack_name" />
-        <fr.neamar.kiss.preference.ColorPreference
-            android:key="notification-bar-color"
-            android:title="@string/notification_bar_color" />
-        <fr.neamar.kiss.preference.ColorPreference
-            android:key="primary-color"
-            android:title="@string/main_color" />
+        <PreferenceCategory android:title="@string/colors" android:key="colors">
+            <fr.neamar.kiss.preference.ColorPreference
+                android:key="notification-bar-color"
+                android:title="@string/notification_bar_color" />
+            <fr.neamar.kiss.preference.ColorPreference
+                android:key="primary-color"
+                android:title="@string/main_color" />
+            <fr.neamar.kiss.SwitchPreference
+                android:key="black-notification-icons"
+                android:title="@string/black_notification_icons" />
+        </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <fr.neamar.kiss.SwitchPreference
                 android:key="transparent-search"
                 android:title="@string/transparent_search_bar" />
             <fr.neamar.kiss.SwitchPreference
-                android:key="transparent-favorites"
                 android:defaultValue="true"
+                android:key="transparent-favorites"
                 android:title="@string/transparent_favorites_bar" />
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
@@ -156,12 +161,6 @@
                 android:defaultValue="false"
                 android:key="force-portrait"
                 android:title="@string/portrait_title" />
-            <ListPreference
-                android:defaultValue="alphabetical"
-                android:entries="@array/sortAppListEntries"
-                android:entryValues="@array/sortAppListValues"
-                android:key="sort-apps"
-                android:title="@string/order_apps_name" />
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="true"
                 android:key="tags-visible"

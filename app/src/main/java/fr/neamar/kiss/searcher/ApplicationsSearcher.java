@@ -1,8 +1,6 @@
 package fr.neamar.kiss.searcher;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,13 +21,8 @@ public class ApplicationsSearcher extends Searcher {
 
     @Override
     PriorityQueue<Pojo> getPojoProcessor(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        // Apply app sorting preference
-        if (prefs.getString("sort-apps", "alphabetical").equals("invertedAlphabetical")) {
-            return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new PojoComparator());
-        } else {
-            return new PriorityQueue<>(DEFAULT_MAX_RESULTS, Collections.reverseOrder(new PojoComparator()));
-        }
+        // Sort from A to Z, so reverse (last item needs to be A, listview starts at the bottom)
+        return new PriorityQueue<>(DEFAULT_MAX_RESULTS, Collections.reverseOrder(new PojoComparator()));
     }
 
     @Override
@@ -46,5 +39,12 @@ public class ApplicationsSearcher extends Searcher {
         List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler().getApplications();
         this.addResult(pojos.toArray(new Pojo[0]));
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void param) {
+        super.onPostExecute(param);
+        // Build sections for fast scrolling
+        activityWeakReference.get().adapter.buildSections();
     }
 }

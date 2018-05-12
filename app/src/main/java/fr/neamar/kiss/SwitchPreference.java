@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 // https://code.google.com/p/android/issues/detail?id=26194
-
+// Can be removed once we drop support for KitKat
 public class SwitchPreference extends android.preference.SwitchPreference {
 
     public SwitchPreference(Context context) {

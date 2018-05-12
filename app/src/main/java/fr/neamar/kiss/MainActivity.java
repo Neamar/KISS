@@ -458,7 +458,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
         updateSearchRecords();
 
-        if(isViewingAllApps()) {
+        if (isViewingAllApps()) {
             displayKissBar(false);
         }
 
@@ -657,7 +657,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                             loaderSpinner.setAlpha(1);
                         }
                     });
-        } else if(display) {
+        } else if (display) {
             launcherButton.setVisibility(View.INVISIBLE);
             loaderSpinner.setVisibility(View.VISIBLE);
         }
@@ -683,7 +683,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             Amplitude.getInstance().logEvent("All apps displayed");
 
             // Display the app list
-            if(searchEditText.getText().length() != 0) {
+            if (searchEditText.getText().length() != 0) {
                 searchEditText.setText("");
             }
             resetTask();
@@ -704,6 +704,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 anim.start();
             }
             kissBar.setVisibility(View.VISIBLE);
+
+            // Display the alphabet on the scrollbar (#926)
+            list.setFastScrollEnabled(true);
         } else {
             Amplitude.getInstance().logEvent("All apps hidden");
 
@@ -713,16 +716,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 int animationDuration = getResources().getInteger(
                         android.R.integer.config_shortAnimTime);
 
-                Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, finalRadius, 0);
-                anim.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        kissBar.setVisibility(View.GONE);
-                        super.onAnimationEnd(animation);
-                    }
-                });
-                anim.setDuration(animationDuration);
-                anim.start();
+                try {
+                    Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, finalRadius, 0);
+                    anim.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            kissBar.setVisibility(View.GONE);
+                            super.onAnimationEnd(animation);
+                        }
+                    });
+                    anim.setDuration(animationDuration);
+                    anim.start();
+                } catch(IllegalStateException e) {
+                    // If the view hasn't been laid out yet, we can't animate it
+                    kissBar.setVisibility(View.GONE);
+                }
             } else {
                 // No animation before Lollipop
                 kissBar.setVisibility(View.GONE);
@@ -731,6 +739,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (clearSearchText) {
                 searchEditText.setText("");
             }
+
+            // Do not display the alphabetical scrollbar (#926)
+            // They only make sense when displaying apps alphabetically, not for searching
+            list.setFastScrollEnabled(false);
         }
 
         forwarderManager.onDisplayKissBar(display);
@@ -849,7 +861,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @return true of history, false on app list
      */
     public boolean isViewingSearchResults() {
-        return !isDisplayingKissBar ;
+        return !isDisplayingKissBar;
     }
 
     public boolean isViewingAllApps() {
