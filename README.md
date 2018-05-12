@@ -5,6 +5,8 @@ KISS is a *blazingly* fast launcher for android requiring nearly no memory to ru
 [<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="60">](https://f-droid.org/app/fr.neamar.kiss)
 <a href="https://play.google.com/store/apps/details?id=fr.neamar.kiss"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="60"></a>
 
+![CircleCI](https://img.shields.io/circleci/project/github/Neamar/KISS.svg?style=flat-square)
+
 Join the [G+ community](https://plus.google.com/communities/116489528310489783081) to get download instruction for the beta version.
 
 > See [contributing](CONTRIBUTING.md) for details on how to help with this project.

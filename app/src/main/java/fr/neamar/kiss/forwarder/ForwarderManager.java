@@ -16,6 +16,7 @@ public class ForwarderManager extends Forwarder {
     private final ExperienceTweaks experienceTweaks;
     private final Favorites favoritesForwarder;
     private final Permission permissionForwarder;
+    private final OreoShortcuts shortcutsForwarder;
 
 
     public ForwarderManager(MainActivity mainActivity) {
@@ -27,6 +28,7 @@ public class ForwarderManager extends Forwarder {
         this.experienceTweaks = new ExperienceTweaks(mainActivity);
         this.favoritesForwarder = new Favorites(mainActivity);
         this.permissionForwarder = new Permission(mainActivity);
+        this.shortcutsForwarder = new OreoShortcuts(mainActivity);
     }
 
     public void onCreate() {
@@ -34,6 +36,7 @@ public class ForwarderManager extends Forwarder {
         widgetForwarder.onCreate();
         interfaceTweaks.onCreate();
         experienceTweaks.onCreate();
+        shortcutsForwarder.onCreate();
     }
 
     public void onResume() {
