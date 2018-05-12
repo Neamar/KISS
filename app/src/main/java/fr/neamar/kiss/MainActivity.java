@@ -384,7 +384,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
         updateSearchRecords();
 
-        if(isViewingAllApps()) {
+        if (isViewingAllApps()) {
             displayKissBar(false);
         }
 
@@ -583,7 +583,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                             loaderSpinner.setAlpha(1);
                         }
                     });
-        } else if(display) {
+        } else if (display) {
             launcherButton.setVisibility(View.INVISIBLE);
             loaderSpinner.setVisibility(View.VISIBLE);
         }
@@ -607,7 +607,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         if (display) {
             // Display the app list
-            if(searchEditText.getText().length() != 0) {
+            if (searchEditText.getText().length() != 0) {
                 searchEditText.setText("");
             }
             resetTask();
@@ -776,7 +776,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @return true of history, false on app list
      */
     public boolean isViewingSearchResults() {
-        return !isDisplayingKissBar ;
+        return !isDisplayingKissBar;
     }
 
     public boolean isViewingAllApps() {

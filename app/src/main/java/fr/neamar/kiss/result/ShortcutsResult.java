@@ -1,17 +1,21 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.UserHandle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.List;
 
 import fr.neamar.kiss.DataHandler;
@@ -75,6 +80,14 @@ public class ShortcutsResult extends Result {
                 String activityName = mainPackage.activityInfo.name;
                 ComponentName className = new ComponentName(packageName, activityName);
                 appDrawable = context.getPackageManager().getActivityIcon(className);
+            } else {
+                // Can't make sense of the intent URI (Oreo shortcut, or a shortcut from an activity that was removed from an installed app)
+                // Retrieve app icon
+                try {
+                    appDrawable = packageManager.getApplicationIcon(shortcutPojo.packageName);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (NameNotFoundException e) {
             e.printStackTrace();
@@ -104,19 +117,54 @@ public class ShortcutsResult extends Result {
 
     @Override
     protected void doLaunch(Context context, View v) {
+        if (shortcutPojo.isOreoShortcut()) {
+            // Oreo shortcuts
+            doOreoLaunch(context, v);
+        } else {
+            // Pre-oreo shortcuts
+            try {
+                Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                    intent.setSourceBounds(v.getClipBounds());
+                }
 
-        try {
-            Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                intent.setSourceBounds(v.getClipBounds());
+                context.startActivity(intent);
+            } catch (Exception e) {
+                // Application was just removed?
+                Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
             }
+        }
+    }
 
-            context.startActivity(intent);
-        } catch (Exception e) {
-            // Application was just removed?
-            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+    @TargetApi(Build.VERSION_CODES.O)
+    private void doOreoLaunch(Context context, View v) {
+        final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        assert launcherApps != null;
+
+        // Only the default launcher is allowed to start shortcuts
+        if (!launcherApps.hasShortcutHostPermission()) {
+            Toast.makeText(context, context.getString(R.string.shortcuts_no_host_permission), Toast.LENGTH_LONG).show();
+            return;
         }
 
+        LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
+        query.setPackage(shortcutPojo.packageName);
+        query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
+        query.setQueryFlags(LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED);
+
+        List<UserHandle> userHandles = launcherApps.getProfiles();
+
+        // Find the correct UserHandle, and launch the shortcut.
+        for (UserHandle userHandle : userHandles) {
+            List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
+            if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
+                launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
+                return;
+            }
+        }
+
+        // Application removed? Invalid shortcut? Shortcut to an app on an unmounted SD card?
+        Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
     }
 
     @Override
