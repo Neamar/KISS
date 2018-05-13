@@ -89,7 +89,11 @@ public class SettingsActivity extends PreferenceActivity implements
         addCustomSearchProvidersPreferences(prefs);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            removePreference("colors", "black-notification-icons");
+            removePreference("colors-section", "black-notification-icons");
+        }
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            removePreference("history-hide-section", "pref-hide-navbar");
+            removePreference("history-hide-section", "pref-hide-statusbar");
         }
     }
 
