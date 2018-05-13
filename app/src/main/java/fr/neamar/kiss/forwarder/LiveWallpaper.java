@@ -59,7 +59,7 @@ class LiveWallpaper extends Forwarder {
                     mVelocityTracker.addMovement(event);
 
                     float fTouchPos = event.getRawX();
-                    float fOffset = (mLastTouchPos - fTouchPos) * 1.1f / mWindowSize.x;
+                    float fOffset = (mLastTouchPos - fTouchPos) * 1.01f / mWindowSize.x;
                     fOffset += mWallpaperOffset;
                     updateWallpaperOffset(fOffset);
                     mLastTouchPos = fTouchPos;
@@ -74,8 +74,8 @@ class LiveWallpaper extends Forwarder {
                 if (mVelocityTracker != null) {
                     mVelocityTracker.addMovement(event);
 
-                    mAnimation.init();
-                    mContentView.startAnimation(mAnimation);
+                    if (mAnimation.init())
+                        mContentView.startAnimation(mAnimation);
 
                     mVelocityTracker.recycle();
                     mVelocityTracker = null;
@@ -97,6 +97,14 @@ class LiveWallpaper extends Forwarder {
 
     private boolean isPreferenceWPDragAnimate() {
         return prefs.getBoolean("wp-drag-animate", false);
+    }
+
+    private boolean isPreferenceWPReturnCenter() {
+        return prefs.getBoolean("wp-animate-center", true);
+    }
+
+    private boolean isPreferenceWPStickToSides() {
+        return prefs.getBoolean("wp-animate-sides", false);
     }
 
     private android.os.IBinder getWindowToken() {
@@ -149,12 +157,42 @@ class LiveWallpaper extends Forwarder {
             setDuration(1000);
         }
 
-        void init() {
+        boolean init() {
             mVelocityTracker.computeCurrentVelocity(1000 / 30);
             mVelocity = mVelocityTracker.getXVelocity();
+            //Log.d("LWP", "mVelocity=" + String.format(Locale.US, "%.2f", mVelocity));
 
             mStartOffset = mWallpaperOffset;
-            mDeltaOffset = 0.5f - mStartOffset;
+            //Log.d("LWP", "mStartOffset=" + String.format(Locale.US, "%.2f", mStartOffset));
+
+            boolean stickToSides = isPreferenceWPStickToSides();
+            boolean stickToCenter = isPreferenceWPReturnCenter();
+            float expectedPos = -Math.min(Math.max(mVelocity / mWindowSize.x, -.5f), .5f) + mStartOffset;
+            //Log.d("LWP", "expectedPos=" + String.format(Locale.US, "%.2f", expectedPos));
+
+            // if we stick only to the center
+            float leftStickPercent = -1.f;
+            float rightStickPercent = 2.f;
+
+            if (stickToSides && stickToCenter) {
+                // if we stick to the left, right and center
+                leftStickPercent = .2f;
+                rightStickPercent = .8f;
+            } else if (stickToSides) {
+                // if we stick only to the center
+                leftStickPercent = .5f;
+                rightStickPercent = .5f;
+            }
+
+            if (expectedPos <= leftStickPercent)
+                mDeltaOffset = 0.f - mStartOffset;
+            else if (expectedPos >= rightStickPercent)
+                mDeltaOffset = 1.f - mStartOffset;
+            else if (stickToCenter)
+                mDeltaOffset = .5f - mStartOffset;
+            else
+                return false;
+            return true;
         }
 
         @Override
