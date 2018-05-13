@@ -41,7 +41,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private static final int PERMISSION_READ_PHONE_STATE = 1;
 
     // Those settings require the app to restart
-    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars history-hide enable-favorites-bar notification-bar-color";
+    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars history-hide enable-favorites-bar notification-bar-color black-notification-icons";
     final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait require-settings-update";
     private boolean requireFullRestart = false;
 
@@ -89,7 +89,11 @@ public class SettingsActivity extends PreferenceActivity implements
         addCustomSearchProvidersPreferences(prefs);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            removePreference("colors", "black-notification-icons");
+            removePreference("colors-section", "black-notification-icons");
+        }
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            removePreference("history-hide-section", "pref-hide-navbar");
+            removePreference("history-hide-section", "pref-hide-statusbar");
         }
     }
 

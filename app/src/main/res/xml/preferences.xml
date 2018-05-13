@@ -86,7 +86,7 @@
             android:defaultValue="default"
             android:key="icons-pack"
             android:title="@string/icons_pack_name" />
-        <PreferenceCategory android:title="@string/colors" android:key="colors">
+        <PreferenceCategory android:title="@string/colors" android:key="colors-section">
             <fr.neamar.kiss.preference.ColorPreference
                 android:key="notification-bar-color"
                 android:title="@string/notification_bar_color" />
@@ -129,7 +129,7 @@
                 android:key="display-keyboard"
                 android:title="@string/keyboard_name" />
         </PreferenceCategory>
-        <PreferenceCategory android:title="@string/history_hide_name">
+        <PreferenceCategory android:title="@string/history_hide_name" android:key="history-hide-section">
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
                 android:key="history-hide"
@@ -188,6 +188,18 @@
                 android:key="wp-drag-animate"
                 android:summary="@string/wp_drag_animate_desc"
                 android:title="@string/wp_drag_animate" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="true"
+                android:dependency="wp-drag-animate"
+                android:key="wp-animate-center"
+                android:summary="@string/wp_animate_center_desc"
+                android:title="@string/wp_animate_center" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:dependency="wp-drag-animate"
+                android:key="wp-animate-sides"
+                android:summary="@string/wp_animate_sides_desc"
+                android:title="@string/wp_animate_sides" />
         </PreferenceScreen>
     </PreferenceScreen>
 
