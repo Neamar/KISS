@@ -867,4 +867,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         clearButton.setVisibility(View.VISIBLE);
         menuButton.setVisibility(View.INVISIBLE);
     }
+
+    public void onWallpaperScroll(float fCurrent) {
+        forwarderManager.onWallpaperScroll(fCurrent);
+    }
 }

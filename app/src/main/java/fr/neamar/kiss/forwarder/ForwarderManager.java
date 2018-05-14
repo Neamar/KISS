@@ -115,4 +115,8 @@ public class ForwarderManager extends Forwarder {
         }
         return false;
     }
+
+    public void onWallpaperScroll(float fCurrent) {
+        widgetForwarder.onWallpaperScroll(fCurrent);
+    }
 }

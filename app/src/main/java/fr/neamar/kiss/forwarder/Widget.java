@@ -8,9 +8,11 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +60,15 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
         mAppWidgetHost = new AppWidgetHost(mainActivity, APPWIDGET_HOST_ID);
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
         widgetArea.setWidgetForwarder(this);
+
+        //set the size of the Widget Area
+        Point size = new Point();
+        mainActivity.getWindowManager().getDefaultDisplay().getSize(size);
+        ViewGroup.LayoutParams params = widgetArea.getLayoutParams();
+        //TODO: Fix this! We assume the widget area size is 3x screen size
+        params.width = size.x * 3;
+        widgetArea.setLayoutParams(params);
+        widgetArea.scrollWidgets(.5f);
 
         restoreWidgets();
     }
@@ -130,7 +141,7 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
                     }
                 }
 
-                menu.setOnItemClickListener( this );
+                menu.setOnItemClickListener(this);
 
                 menu.showCentered(widgetArea);
                 mainActivity.registerPopup(menu);
@@ -209,15 +220,18 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
 
         int w = ViewGroup.LayoutParams.WRAP_CONTENT;
         int h = ViewGroup.LayoutParams.WRAP_CONTENT;
-        if ( wp != null ) {
+        if (wp != null) {
             w = wp.width;
             h = wp.height;
         }
 
         WidgetLayout.LayoutParams layoutParams = new WidgetLayout.LayoutParams(w, h);
-        layoutParams.position = getWidgetHostViewCount() - 1;
+        layoutParams.position = WidgetLayout.LayoutParams.POSITION_MIDDLE;
+        layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.TOP;
+        if (wp != null)
+            layoutParams.topMargin = wp.offsetTop;
 
-        //hostView.setBackgroundColor(0x7Fffd700);
+        //hostView.setBackgroundColor(0x3F7f0000);
         hostView.setLayoutParams(layoutParams);
     }
 
@@ -319,10 +333,10 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
         WidgetPreferences wp = WidgetPreferences.unserialize(data);
         if (wp == null)
             return;
-        for ( int i = 0; i < getWidgetHostViewCount(); i+= 1 ) {
+        for (int i = 0; i < getWidgetHostViewCount(); i += 1) {
             AppWidgetHostView hostView = getWidgetHostView(i);
-            if ( hostView.getAppWidgetId() == appWidgetId ) {
-                WidgetLayout.LayoutParams layoutParams = (WidgetLayout.LayoutParams)hostView.getLayoutParams();
+            if (hostView.getAppWidgetId() == appWidgetId) {
+                WidgetLayout.LayoutParams layoutParams = (WidgetLayout.LayoutParams) hostView.getLayoutParams();
 
                 layoutParams.width = wp.width;
                 layoutParams.height = wp.height;
@@ -347,15 +361,15 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
             wp = new WidgetPreferences();
             needToApply = true;
         }
-        if ( wp.width == 0 ) {
+        if (wp.width == 0) {
             wp.width = rect.width();
             needToApply = true;
         }
-        if ( wp.height == 0 ) {
+        if (wp.height == 0) {
             wp.height = rect.height();
             needToApply = true;
         }
-        if ( needToApply ) {
+        if (needToApply) {
             SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
             widgetPrefsEditor.putString(String.valueOf(appWidgetId), WidgetPreferences.serialize(wp));
             widgetPrefsEditor.apply();
@@ -365,8 +379,7 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
     @Override
     public void onItemClick(ListAdapter adapter, View view, int position) {
         WidgetMenuItem menuItem = (WidgetMenuItem) adapter.getItem(position);
-        switch (menuItem.action)
-        {
+        switch (menuItem.action) {
             case R.string.menu_widget_add:
                 // request widget picker, a selection will lead to a call of onActivityResult
                 int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
@@ -375,18 +388,18 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
                 mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
                 break;
             case R.string.menu_widget_remove:
-                for ( int i = 0; i < getWidgetHostViewCount(); i+= 1 ) {
+                for (int i = 0; i < getWidgetHostViewCount(); i += 1) {
                     AppWidgetHostView hostView = getWidgetHostView(i);
-                    if ( hostView.getAppWidgetId() == menuItem.appWidgetId ) {
+                    if (hostView.getAppWidgetId() == menuItem.appWidgetId) {
                         removeAppWidget(hostView);
                         break;
                     }
                 }
                 break;
             case R.string.menu_widget_settings:
-                for ( int i = 0; i < getWidgetHostViewCount(); i+= 1 ) {
+                for (int i = 0; i < getWidgetHostViewCount(); i += 1) {
                     AppWidgetHostView hostView = getWidgetHostView(i);
-                    if ( hostView.getAppWidgetId() == menuItem.appWidgetId ) {
+                    if (hostView.getAppWidgetId() == menuItem.appWidgetId) {
                         String data = widgetPrefs.getString(String.valueOf(menuItem.appWidgetId), null);
                         WidgetPreferences wp = WidgetPreferences.unserialize(data);
                         if (wp == null)
@@ -397,6 +410,10 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
                 }
                 break;
         }
+    }
+
+    public void onWallpaperScroll(float fCurrent) {
+        widgetArea.scrollWidgets(fCurrent);
     }
 
     static class WidgetMenuItem {
