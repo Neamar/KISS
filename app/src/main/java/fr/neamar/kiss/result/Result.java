@@ -21,6 +21,11 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
+import com.amplitude.api.Amplitude;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.ref.WeakReference;
 import java.util.List;
 
@@ -227,8 +232,18 @@ public abstract class Result {
         parent.removeResult(this);
     }
 
-    public final void launch(Context context, View v) {
+    public final void launch(Context context, View v, int position) {
         Log.i("log", "Launching " + pojo.id);
+
+        try {
+            JSONObject eventProperties = new JSONObject();
+            eventProperties.put("type", pojo.getClass().getSimpleName());
+            eventProperties.put("relevance", pojo.relevance);
+            eventProperties.put("position", position);
+            Amplitude.getInstance().logEvent("Result clicked", eventProperties);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         recordLaunch(context);
 
@@ -251,7 +266,7 @@ public abstract class Result {
      * @param context android context
      */
     public void fastLaunch(Context context, View v) {
-        this.launch(context, v);
+        this.launch(context, v, -1);
     }
 
     /**

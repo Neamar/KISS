@@ -16,6 +16,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.amplitude.api.Amplitude;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import fr.neamar.kiss.KissApplication;
@@ -271,6 +276,18 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     public void onClick(View v) {
         int favNumber = Integer.parseInt((String) v.getTag());
         final Result result = getFavResult(favNumber);
+
+
+        try {
+            JSONObject eventProperties = new JSONObject();
+            eventProperties.put("type", result.getClass().getSimpleName());
+            eventProperties.put("favorite_id", favNumber);
+
+            Amplitude.getInstance().logEvent("Favorite clicked", eventProperties);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         result.fastLaunch(mainActivity, v);
         v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 

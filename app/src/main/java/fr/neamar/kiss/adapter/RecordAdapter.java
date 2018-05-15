@@ -123,7 +123,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
         try {
             result = results.get(position);
-            result.launch(context, v);
+            result.launch(context, v, position);
         } catch (ArrayIndexOutOfBoundsException ignored) {
             return;
         }

@@ -4,18 +4,26 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.text.Editable;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.DragEvent;
@@ -32,7 +40,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.amplitude.api.Amplitude;
+import com.amplitude.api.Identify;
+
 import java.util.ArrayList;
+import java.util.Map;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -146,6 +158,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        Amplitude.getInstance().initialize(this, "ce5704d98bb60331b30cce7dee138112").enableForegroundTracking(getApplication());
+
         Log.d(TAG, "onCreate()");
 
         KissApplication.getApplication(this).initDataHandler();
@@ -334,6 +349,65 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Defer everything else to the forwarders
          */
         forwarderManager.onCreate();
+
+        if(!prefs.contains("informed-about-tracking-in-beta")) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Important information");
+            Spannable text= new SpannableString(Html.fromHtml("Welcome to KISS beta!<br>" +
+                    "This version anonymously reports which settings are currently in use.<br>" +
+                    "<b>This will allow us to prioritize the most-used settings in our development</b>.<br>" +
+                    "For more details: <a href=https://github.com/Neamar/KISS/pull/979>https://github.com/Neamar/KISS/pull/979</a><br>" +
+                    "Thanks for your help in improving KISS!"));
+            Linkify.addLinks(text, Linkify.WEB_URLS);
+
+            alert.setMessage(text);
+
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    trackSettings();
+                    prefs.edit().putBoolean("informed-about-tracking-in-beta", true).apply();
+                }
+            });
+
+            alert.setNegativeButton("Leave the beta", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    String url = "https://play.google.com/apps/testing/fr.neamar.kiss";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                    finish();
+                }
+            });
+
+            AlertDialog a = alert.create();
+            a.show();
+            ((TextView) a.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        }
+        else {
+            trackSettings();
+        }
+    }
+
+    public void trackSettings() {
+        Map<String, ?> settings = prefs.getAll();
+        // Do not identify user (keep results anonymous)
+        Identify identify = new Identify();
+        for(String s: settings.keySet()) {
+            // Filter any Personal Information out
+            if(s.equals("excluded-apps-list")) {
+                identify.set("excluded-apps-count", settings.get(s).toString().split(";").length);
+            }
+            else if(s.equals("favorite-apps-list")) {
+                identify.set("favorite-apps-count", settings.get(s).toString().split(";").length);
+            }
+            else if(s.equals(("selected-search-provider-names"))) {
+                identify.set("search-provider-count", settings.get(s).toString().split(",").length);
+            }
+            else if(!s.equals("excluded_apps_ui") && !s.equals("available-search-providers") && !s.equals("deleting-search-providers-names")) {
+                identify.set(s, settings.get(s).toString());
+            }
+        }
+        Amplitude.getInstance().identify(identify);
     }
 
     @Override
@@ -606,6 +680,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
+            Amplitude.getInstance().logEvent("All apps displayed");
+
             // Display the app list
             if (searchEditText.getText().length() != 0) {
                 searchEditText.setText("");
@@ -632,6 +708,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // Display the alphabet on the scrollbar (#926)
             list.setFastScrollEnabled(true);
         } else {
+            Amplitude.getInstance().logEvent("All apps hidden");
+
             isDisplayingKissBar = false;
             // Hide the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

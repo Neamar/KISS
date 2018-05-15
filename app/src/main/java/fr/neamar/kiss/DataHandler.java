@@ -14,6 +14,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.amplitude.api.Amplitude;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -216,6 +221,14 @@ public class DataHandler extends BroadcastReceiver
 
         long time = System.currentTimeMillis() - start;
         Log.v(TAG, "Time to load all providers: " + time + "ms");
+
+        try {
+            JSONObject eventProperties = new JSONObject();
+            eventProperties.put("time", time);
+            Amplitude.getInstance().logEvent("All providers loaded", eventProperties);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         this.allProvidersHaveLoaded = true;
 
