@@ -226,10 +226,9 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
         }
 
         WidgetLayout.LayoutParams layoutParams = new WidgetLayout.LayoutParams(w, h);
-        layoutParams.position = WidgetLayout.LayoutParams.POSITION_MIDDLE;
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.TOP;
         if (wp != null)
-            layoutParams.topMargin = wp.offsetTop;
+            wp.apply(layoutParams);
 
         //hostView.setBackgroundColor(0x3F7f0000);
         hostView.setLayoutParams(layoutParams);
@@ -337,11 +336,7 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
             AppWidgetHostView hostView = getWidgetHostView(i);
             if (hostView.getAppWidgetId() == appWidgetId) {
                 WidgetLayout.LayoutParams layoutParams = (WidgetLayout.LayoutParams) hostView.getLayoutParams();
-
-                layoutParams.width = wp.width;
-                layoutParams.height = wp.height;
-                layoutParams.topMargin = wp.offsetTop;
-
+                wp.apply(layoutParams);
                 hostView.setLayoutParams(layoutParams);
                 break;
             }

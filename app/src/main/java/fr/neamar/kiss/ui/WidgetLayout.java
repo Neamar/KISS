@@ -126,7 +126,7 @@ public class WidgetLayout extends ViewGroup {
 
         // These are the far left and right edges in which we are performing layout.
         int leftPos = getPaddingLeft();
-        int rightPos = right - left - getPaddingRight();
+        int rightPos = getLayoutParams().width - getPaddingRight();
 
         // This is the middle region inside of the gutter.
         final int middleLeft = leftPos + mLeftWidth;

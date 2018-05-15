@@ -13,10 +13,12 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
@@ -40,7 +42,28 @@ public class WidgetPreferences implements Serializable {
     public int height = 0;
     public int offsetTop = 0;
 
+    private boolean isValid() {
+        return width > 0 && height > 0;
+    }
+
+    public void apply(WidgetLayout.LayoutParams layoutParams) {
+        layoutParams.position = this.position;
+        layoutParams.width = this.width;
+        layoutParams.height = this.height;
+        layoutParams.topMargin = this.offsetTop;
+    }
+
+    private void load(AppWidgetHostView hostView) {
+        WidgetLayout.LayoutParams layoutParams = (WidgetLayout.LayoutParams) hostView.getLayoutParams();
+        this.position = layoutParams.position;
+        this.width = hostView.getMeasuredWidth();
+        this.height = hostView.getMeasuredHeight();
+        this.offsetTop = layoutParams.topMargin;
+    }
+
     public void showEditMenu(MainActivity mainActivity, SharedPreferences widgetPrefs, AppWidgetHostView hostView) {
+        if (!isValid())
+            load(hostView);
         Menu menu = new Menu(mainActivity, widgetPrefs);
         Point windowSize = new Point();
         mainActivity.getWindowManager()
@@ -104,12 +127,20 @@ public class WidgetPreferences implements Serializable {
                 public void onClick(View v) {
                     dismiss();
                     SeekBar seek;
+
                     //Width
                     seek = contentView.findViewById(R.id.seek_width);
                     widgetPreferences.width = seek.getProgress() + info.minWidth;
                     //Height
                     seek = contentView.findViewById(R.id.seek_height);
                     widgetPreferences.height = seek.getProgress() + info.minHeight;
+                    //Offset top
+                    seek = contentView.findViewById(R.id.seek_top);
+                    widgetPreferences.offsetTop = seek.getProgress();
+                    //Position
+                    Spinner dropDown = contentView.findViewById(R.id.value_pos);
+                    widgetPreferences.position = dropDown.getSelectedItemPosition();
+
                     int appWidgetId = hostView.getAppWidgetId();
                     prefs.edit().putString(String.valueOf(appWidgetId), serialize(widgetPreferences)).apply();
                     mainActivity.refreshWidget(appWidgetId);
@@ -154,6 +185,23 @@ public class WidgetPreferences implements Serializable {
             text.addTextChangedListener(textSync);
             text.setOnFocusChangeListener(textSync);
 
+            //Offset top
+            text = contentView.findViewById(R.id.value_top);
+            seek = contentView.findViewById(R.id.seek_top);
+            seek.setMax(mWindowSize.y - info.minHeight);
+            seek.setOnSeekBarChangeListener(new SeekBarSync(text, 0));
+            seek.setProgress(widgetPreferences.offsetTop);
+            textSync = new TextViewSync(seek, 0);
+            text.addTextChangedListener(textSync);
+            text.setOnFocusChangeListener(textSync);
+
+            //Position
+            Spinner dropDown = contentView.findViewById(R.id.value_pos);
+            String[] positionNames = new String[]{"Middle", "Left", "Right"};
+            ArrayAdapter<String> positionsArray = new ArrayAdapter<>(mainActivity, android.R.layout.simple_spinner_item, positionNames);
+            dropDown.setAdapter(positionsArray);
+            dropDown.setSelection(widgetPreferences.position);
+
             setFocusable(true);
             showAtLocation(mainActivity.emptyListView, Gravity.CENTER, 0, 0);
         }
@@ -180,7 +228,7 @@ public class WidgetPreferences implements Serializable {
                 } catch (NumberFormatException e) {
                     textProgress = 0;
                 }
-                if ( textProgress != progress )
+                if (textProgress != progress)
                     mTextView.setText(String.valueOf(progress + mMin));
             }
 
@@ -238,7 +286,7 @@ public class WidgetPreferences implements Serializable {
                 } catch (NumberFormatException e) {
                     textProgress = -1;
                 }
-                if ( textProgress != mSeekBar.getProgress() )
+                if (textProgress != mSeekBar.getProgress())
                     textView.setText(String.valueOf(mSeekBar.getProgress() + mMin));
             }
         }
