@@ -376,6 +376,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         dismissPopup();
+        clearButton.setVisibility(View.INVISIBLE);
+        menuButton.setVisibility(View.VISIBLE);
 
         if (KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
             displayLoader(false);
