@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -51,9 +54,11 @@ public class TagsMenu extends Forwarder {
         setTags(getPrefTags(prefs, mainActivity));
     }
 
+    @NonNull
     public static Set<String> getPrefTags(SharedPreferences prefs, Context context) {
-        Set<String> tags = getPrefTags(prefs);
-        if (tags.isEmpty()) {
+        Set<String> prefTags = getPrefTags(prefs);
+        if (prefTags == null || prefTags.isEmpty()) {
+            Set<String> tags = new HashSet<>(5);
             TagsHandler tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
             Set<String> list = tagsHandler.getAllTagsAsSet();
             for (String tag : list) {
@@ -61,10 +66,12 @@ public class TagsMenu extends Forwarder {
                 if (tags.size() >= 5)
                     break;
             }
+            return tags;
         }
-        return tags;
+        return prefTags;
     }
 
+    @Nullable
     static Set<String> getPrefTags(SharedPreferences prefs) {
         return prefs.getStringSet("pref-toggle-tags-list", null);
     }
