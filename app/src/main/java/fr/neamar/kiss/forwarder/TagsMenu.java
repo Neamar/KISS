@@ -43,7 +43,7 @@ public class TagsMenu extends Forwarder {
         loadTags();
     }
 
-    public boolean isPreferenceEnabled() {
+    public boolean isTagMenuEnabled() {
         return prefs.getBoolean("pref-tags-menu", false);
     }
 

@@ -100,7 +100,7 @@ public class ForwarderManager extends Forwarder {
     }
 
     public boolean onMenuButtonClicked(View menuButton) {
-        if (tagsMenu.isPreferenceEnabled()) {
+        if (tagsMenu.isTagMenuEnabled()) {
             mainActivity.registerPopup(tagsMenu.showMenu(menuButton));
             return true;
         }
