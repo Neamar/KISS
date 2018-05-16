@@ -20,15 +20,6 @@ import fr.neamar.kiss.forwarder.Widget;
  */
 @RemoteViews.RemoteView
 public class WidgetLayout extends ViewGroup {
-    /**
-     * The amount of space used by children in the left gutter.
-     */
-    private int mLeftWidth;
-
-    /**
-     * The amount of space used by children in the right gutter.
-     */
-    private int mRightWidth;
 
     /**
      * These are used for computing child frames based on their gravity.
@@ -59,62 +50,20 @@ public class WidgetLayout extends ViewGroup {
     }
 
     /**
-     * Ask all children to measure themselves and compute the measurement of this
-     * layout based on the children.
+     * Ask all children to measure themselves and compute the measurement
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int count = getChildCount();
-
-        // These keep track of the space we are using on the left and right for
-        // views positioned there; we need member variables so we can also use
-        // these for layout later.
-        mLeftWidth = 0;
-        mRightWidth = 0;
-
-        // Measurement will ultimately be computing these values.
-        int maxHeight = 0;
-        int maxWidth = 0;
-        int childState = 0;
-
-        // Iterate through all children, measuring them and computing our dimensions
-        // from their size.
+        // Iterate through all children and measure them.
         for (int i = 0; i < count; i++) {
             final View child = getChildAt(i);
             if (child.getVisibility() == GONE)
                 continue;
             // Measure the child.
             measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, 0);
-
-            // Update our size information based on the layout params.  Children
-            // that asked to be positioned on the left or right go in those gutters.
-            final LayoutParams lp = (LayoutParams) child.getLayoutParams();
-            if (lp.position == LayoutParams.POSITION_LEFT) {
-                mLeftWidth += Math.max(maxWidth,
-                        child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin);
-            } else if (lp.position == LayoutParams.POSITION_RIGHT) {
-                mRightWidth += Math.max(maxWidth,
-                        child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin);
-            } else {
-                maxWidth = Math.max(maxWidth,
-                        child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin);
-            }
-            maxHeight = Math.max(maxHeight,
-                    child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
-            childState = combineMeasuredStates(childState, child.getMeasuredState());
         }
-
-        // Total width is the maximum width of all inner children plus the gutters.
-        maxWidth += mLeftWidth + mRightWidth;
-
-        // Check against our minimum height and width
-        maxHeight = Math.max(maxHeight, getSuggestedMinimumHeight());
-        maxWidth = Math.max(maxWidth, getSuggestedMinimumWidth());
-
-        // Report our final dimensions.
-        setMeasuredDimension(resolveSizeAndState(maxWidth, widthMeasureSpec, childState),
-                resolveSizeAndState(maxHeight, heightMeasureSpec,
-                        childState << MEASURED_HEIGHT_STATE_SHIFT));
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     /**
@@ -129,8 +78,9 @@ public class WidgetLayout extends ViewGroup {
         int rightPos = getLayoutParams().width - getPaddingRight();
 
         // This is the middle region inside of the gutter.
-        final int middleLeft = leftPos + mLeftWidth;
-        final int middleRight = rightPos - mRightWidth;
+        final int screenWidth = right - left;
+        final int middleLeft = leftPos + screenWidth;
+        final int middleRight = rightPos - screenWidth;
 
         // These are the top and bottom edges in which we are performing layout.
         final int parentTop = getPaddingTop();
@@ -185,17 +135,17 @@ public class WidgetLayout extends ViewGroup {
 
     @Override
     protected LayoutParams generateDefaultLayoutParams() {
-        return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        return new WidgetLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }
 
     @Override
     protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
-        return new LayoutParams(p);
+        return new WidgetLayout.LayoutParams(p);
     }
 
     @Override
     protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
-        return p instanceof LayoutParams;
+        return p instanceof WidgetLayout.LayoutParams;
     }
 
     public void setWidgetForwarder(Widget widget) {
@@ -217,7 +167,7 @@ public class WidgetLayout extends ViewGroup {
          * The gravity to apply with the View to which these layout parameters
          * are associated.
          */
-        public int gravity = Gravity.TOP;
+        public int gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
 
         public static int POSITION_MIDDLE = 0;
         public static int POSITION_LEFT = 1;

@@ -197,24 +197,19 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
             AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
             hostView.setMinimumHeight(appWidgetInfo.minHeight);
             hostView.setAppWidget(appWidgetId, appWidgetInfo);
-            if (Build.VERSION.SDK_INT > 15) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
             }
             addWidgetHostView(hostView);
-            WidgetLayout.LayoutParams layoutParams = (WidgetLayout.LayoutParams) hostView.getLayoutParams();
 
             WidgetPreferences wp = new WidgetPreferences();
-            wp.width = layoutParams.width;
-            wp.height = layoutParams.height;
-            wp.offsetTop = layoutParams.topMargin;
-            wp.position = layoutParams.position;
+            wp.load( hostView );
             return wp;
         }
         return null;
     }
 
-    private void addWidgetHostView(AppWidgetHostView hostView) {
-        widgetArea.addView(hostView);
+    private void addWidgetHostView(final AppWidgetHostView hostView) {
         String data = widgetPrefs.getString(String.valueOf(hostView.getAppWidgetId()), null);
         WidgetPreferences wp = WidgetPreferences.unserialize(data);
 
@@ -232,6 +227,13 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
 
         //hostView.setBackgroundColor(0x3F7f0000);
         hostView.setLayoutParams(layoutParams);
+
+        widgetArea.post(new Runnable() {
+            @Override
+            public void run() {
+                widgetArea.addView(hostView);
+            }
+        });
     }
 
     private void removeWidgetHostView(AppWidgetHostView hostView) {

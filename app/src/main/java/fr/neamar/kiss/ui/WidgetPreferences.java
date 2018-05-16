@@ -1,11 +1,11 @@
 package fr.neamar.kiss.ui;
 
+import android.annotation.SuppressLint;
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Point;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,6 +28,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -37,10 +38,15 @@ import fr.neamar.kiss.R;
  * Created by TBog on 5/10/2018.
  */
 public class WidgetPreferences implements Serializable {
+    static int MASK_GRAVITY_VERTICAL = Gravity.FILL_VERTICAL | Gravity.CLIP_VERTICAL;
+    static int MASK_GRAVITY_HORIZONTAL = Gravity.FILL_HORIZONTAL | Gravity.CLIP_HORIZONTAL;
+
     public int position = WidgetLayout.LayoutParams.POSITION_MIDDLE;
     public int width = 0;
     public int height = 0;
-    public int offsetTop = 0;
+    public int offsetVertical = 0;
+    public int offsetHorizontal = 0;
+    public int gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
 
     private boolean isValid() {
         return width > 0 && height > 0;
@@ -50,15 +56,18 @@ public class WidgetPreferences implements Serializable {
         layoutParams.position = this.position;
         layoutParams.width = this.width;
         layoutParams.height = this.height;
-        layoutParams.topMargin = this.offsetTop;
+        layoutParams.topMargin = this.offsetVertical;
+        layoutParams.leftMargin = this.offsetHorizontal;
+        layoutParams.gravity = this.gravity;
     }
 
-    private void load(AppWidgetHostView hostView) {
+    public void load(AppWidgetHostView hostView) {
         WidgetLayout.LayoutParams layoutParams = (WidgetLayout.LayoutParams) hostView.getLayoutParams();
         this.position = layoutParams.position;
         this.width = hostView.getMeasuredWidth();
         this.height = hostView.getMeasuredHeight();
-        this.offsetTop = layoutParams.topMargin;
+        this.offsetVertical = layoutParams.topMargin;
+        this.gravity = layoutParams.gravity;
     }
 
     public void showEditMenu(MainActivity mainActivity, SharedPreferences widgetPrefs, AppWidgetHostView hostView) {
@@ -127,6 +136,7 @@ public class WidgetPreferences implements Serializable {
                 public void onClick(View v) {
                     dismiss();
                     SeekBar seek;
+                    Spinner dropDown;
 
                     //Width
                     seek = contentView.findViewById(R.id.seek_width);
@@ -136,10 +146,16 @@ public class WidgetPreferences implements Serializable {
                     widgetPreferences.height = seek.getProgress() + info.minHeight;
                     //Offset top
                     seek = contentView.findViewById(R.id.seek_top);
-                    widgetPreferences.offsetTop = seek.getProgress();
+                    widgetPreferences.offsetVertical = seek.getProgress();
                     //Position
-                    Spinner dropDown = contentView.findViewById(R.id.value_pos);
+                    dropDown = contentView.findViewById(R.id.value_pos);
                     widgetPreferences.position = dropDown.getSelectedItemPosition();
+                    //Gravity
+                    widgetPreferences.gravity = Gravity.NO_GRAVITY;
+                    dropDown = contentView.findViewById(R.id.value_gravity_ver);
+                    widgetPreferences.gravity |= ((SpinnerItem) dropDown.getSelectedItem()).value;
+                    dropDown = contentView.findViewById(R.id.value_gravity_hor);
+                    widgetPreferences.gravity |= ((SpinnerItem) dropDown.getSelectedItem()).value;
 
                     int appWidgetId = hostView.getAppWidgetId();
                     prefs.edit().putString(String.valueOf(appWidgetId), serialize(widgetPreferences)).apply();
@@ -164,6 +180,8 @@ public class WidgetPreferences implements Serializable {
 
             SeekBar seek;
             TextViewSync textSync;
+            Spinner dropDown;
+            ArrayList<SpinnerItem> dropDownItems;
 
             //Width
             text = contentView.findViewById(R.id.value_width);
@@ -190,17 +208,37 @@ public class WidgetPreferences implements Serializable {
             seek = contentView.findViewById(R.id.seek_top);
             seek.setMax(mWindowSize.y - info.minHeight);
             seek.setOnSeekBarChangeListener(new SeekBarSync(text, 0));
-            seek.setProgress(widgetPreferences.offsetTop);
+            seek.setProgress(widgetPreferences.offsetVertical);
             textSync = new TextViewSync(seek, 0);
             text.addTextChangedListener(textSync);
             text.setOnFocusChangeListener(textSync);
 
             //Position
-            Spinner dropDown = contentView.findViewById(R.id.value_pos);
-            String[] positionNames = new String[]{"Middle", "Left", "Right"};
-            ArrayAdapter<String> positionsArray = new ArrayAdapter<>(mainActivity, android.R.layout.simple_spinner_item, positionNames);
-            dropDown.setAdapter(positionsArray);
-            dropDown.setSelection(widgetPreferences.position);
+            dropDown = contentView.findViewById(R.id.value_pos);
+            dropDownItems = new ArrayList<>(3);
+            dropDownItems.add(new SpinnerItem(WidgetLayout.LayoutParams.POSITION_LEFT, "Left"));
+            dropDownItems.add(new SpinnerItem(WidgetLayout.LayoutParams.POSITION_MIDDLE, "Middle"));
+            dropDownItems.add(new SpinnerItem(WidgetLayout.LayoutParams.POSITION_RIGHT, "Right"));
+            dropDown.setAdapter(new ArrayAdapter<>(mainActivity, android.R.layout.simple_spinner_dropdown_item, dropDownItems));
+            dropDown.setSelection(dropDownItems.indexOf(new SpinnerItem(widgetPreferences.position)));
+
+            //Gravity vertical
+            dropDown = contentView.findViewById(R.id.value_gravity_ver);
+            dropDownItems = new ArrayList<>(3);
+            dropDownItems.add(new SpinnerItem(Gravity.TOP, "Top"));
+            dropDownItems.add(new SpinnerItem(Gravity.CENTER_VERTICAL, "Center vertical"));
+            dropDownItems.add(new SpinnerItem(Gravity.BOTTOM, "Bottom"));
+            dropDown.setAdapter(new ArrayAdapter<>(mainActivity, android.R.layout.simple_spinner_dropdown_item, dropDownItems));
+            dropDown.setSelection(dropDownItems.indexOf(new SpinnerItem(widgetPreferences.gravity & MASK_GRAVITY_VERTICAL)));
+
+            //Gravity horizontal
+            dropDown = contentView.findViewById(R.id.value_gravity_hor);
+            dropDownItems = new ArrayList<>(3);
+            dropDownItems.add(new SpinnerItem(Gravity.LEFT, "Left"));
+            dropDownItems.add(new SpinnerItem(Gravity.CENTER_HORIZONTAL, "Center horizontal"));
+            dropDownItems.add(new SpinnerItem(Gravity.RIGHT, "Right"));
+            dropDown.setAdapter(new ArrayAdapter<>(mainActivity, android.R.layout.simple_spinner_dropdown_item, dropDownItems));
+            dropDown.setSelection(dropDownItems.indexOf(new SpinnerItem(widgetPreferences.gravity & MASK_GRAVITY_HORIZONTAL)));
 
             setFocusable(true);
             showAtLocation(mainActivity.emptyListView, Gravity.CENTER, 0, 0);
@@ -288,6 +326,39 @@ public class WidgetPreferences implements Serializable {
                 }
                 if (textProgress != mSeekBar.getProgress())
                     textView.setText(String.valueOf(mSeekBar.getProgress() + mMin));
+            }
+        }
+
+        static class SpinnerItem {
+            final int value;
+            final String name;
+
+            @Override
+            public boolean equals(Object o) {
+                if (this == o) return true;
+                if (o == null || getClass() != o.getClass()) return false;
+                SpinnerItem that = (SpinnerItem) o;
+                return value == that.value;
+            }
+
+            @Override
+            public int hashCode() {
+                return value;
+            }
+
+            SpinnerItem(int value) {
+                this.value = value;
+                this.name = null;
+            }
+
+            SpinnerItem(int value, String name) {
+                this.value = value;
+                this.name = name;
+            }
+
+            @Override
+            public String toString() {
+                return name;
             }
         }
     }
