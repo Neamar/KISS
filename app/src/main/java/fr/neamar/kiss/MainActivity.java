@@ -376,8 +376,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         dismissPopup();
-        clearButton.setVisibility(View.INVISIBLE);
-        menuButton.setVisibility(View.VISIBLE);
 
         if (KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
             displayLoader(false);
@@ -387,6 +385,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // We need to update the history in case an external event created new items
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
         updateSearchRecords();
+        displayClearOnInput();
 
         if (isViewingAllApps()) {
             displayKissBar(false);
