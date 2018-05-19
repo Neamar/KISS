@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/result_margin_bottom"
+    android:paddingEnd="@dimen/result_margin_right"
+    android:paddingLeft="@dimen/result_margin_left"
+    android:paddingRight="@dimen/result_margin_right"
+    android:paddingStart="@dimen/result_margin_left"
+    android:paddingTop="@dimen/result_margin_top"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/item_command_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="@dimen/icon_margin_bottom"
+        android:layout_marginEnd="@dimen/icon_margin_right"
+        android:layout_marginLeft="@dimen/icon_margin_left"
+        android:layout_marginRight="@dimen/icon_margin_right"
+        android:layout_marginStart="@dimen/icon_margin_left"
+        android:layout_marginTop="@dimen/icon_margin_top"
+        android:contentDescription="@null"
+        android:src="@drawable/kiss_settings" />
+
+    <TextView
+        android:id="@+id/item_command_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shadowColor="?attr/resultShadowColor"
+        android:shadowDx="1"
+        android:shadowDy="2"
+        android:shadowRadius="?attr/textShadowRadius"
+        android:textColor="?attr/resultColor"
+        android:textSize="@dimen/result_title_size"
+        tools:text="@string/ui_item_command" />
+
+</LinearLayout>
