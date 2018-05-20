@@ -54,7 +54,8 @@ public class ShortcutsResult extends Result {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         TextView shortcutName = v.findViewById(R.id.item_app_name);
-        shortcutName.setText(shortcutPojo.getName());
+
+        displayHighlighted(shortcutPojo.normalizedName, shortcutPojo.getName(), fuzzyScore, shortcutName, context);
 
         TextView tagsView = v.findViewById(R.id.item_app_tag);
 
