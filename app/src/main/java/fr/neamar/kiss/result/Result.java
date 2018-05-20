@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
@@ -86,6 +87,23 @@ public abstract class Result {
      * @return a view to display as item
      */
     public abstract View display(Context context, int position, View convertView, FuzzyScore fuzzyScore);
+
+    public boolean displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
+        SpannableString enriched = new SpannableString(text);
+        int primaryColor = UIColors.getPrimaryColor(context);
+
+        for (Pair<Integer, Integer> position : positions) {
+            enriched.setSpan(
+                    new ForegroundColorSpan(primaryColor),
+                    position.first,
+                    position.second,
+                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
+            );
+        }
+        view.setText(enriched);
+
+        return true;
+    }
 
     public boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
             TextView view, Context context) {

@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Collections;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -50,7 +53,7 @@ public class SearchResult extends Result {
             image.setImageResource(search);
         }
 
-        searchText.setText(text);
+        displayHighlighted(text, Collections.singletonList(new Pair<Integer, Integer>(pos, pos + len)), searchText, context);
 
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;
