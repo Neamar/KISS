@@ -19,7 +19,7 @@ import fr.neamar.kiss.pojo.Pojo;
  */
 public class QuerySearcher extends Searcher {
     public static int MAX_RESULT_COUNT = -1;
-    private final String query;
+    private final String trimmedQuery;
     private HashMap<String, Integer> knownIds;
     /**
      * Store user preferences
@@ -28,7 +28,7 @@ public class QuerySearcher extends Searcher {
 
     public QuerySearcher(MainActivity activity, String query) {
         super(activity, query);
-        this.query = query.trim();
+        this.trimmedQuery = query.trim();
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
 
     }
@@ -67,14 +67,14 @@ public class QuerySearcher extends Searcher {
             return null;
 
         // Have we ever made the same query and selected something ?
-        List<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(activity, query);
+        List<ValuedHistoryRecord> lastIdsForQuery = DBHelper.getPreviousResultsForQuery(activity, trimmedQuery);
         knownIds = new HashMap<>();
         for (ValuedHistoryRecord id : lastIdsForQuery) {
             knownIds.put(id.record, id.value);
         }
 
         // Request results via "addResult"
-        KissApplication.getApplication(activity).getDataHandler().requestResults(query, this);
+        KissApplication.getApplication(activity).getDataHandler().requestResults(trimmedQuery, this);
         return null;
     }
 

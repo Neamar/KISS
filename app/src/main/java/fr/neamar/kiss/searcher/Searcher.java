@@ -8,8 +8,7 @@ import android.util.Log;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -27,7 +26,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
     final WeakReference<MainActivity> activityWeakReference;
     private final PriorityQueue<Pojo> processedPojos;
     private long start;
-    private final String query;
+    protected final String query;
 
     Searcher(MainActivity activity, String query) {
         super();
@@ -55,7 +54,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         if (activity == null)
             return false;
 
-        this.processedPojos.addAll(Arrays.asList(pojos));
+        Collections.addAll(this.processedPojos, pojos);
         int maxResults = getMaxResultCount();
         while (this.processedPojos.size() > maxResults)
             this.processedPojos.poll();
@@ -93,7 +92,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             activity.adapter.clear();
         } else {
             PriorityQueue<Pojo> queue = this.processedPojos;
-            List<Result> results = new ArrayList<>(queue.size());
+            ArrayList<Result> results = new ArrayList<>(queue.size());
             while (queue.peek() != null) {
                 results.add(Result.fromPojo(activity, queue.poll()));
             }
@@ -107,7 +106,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
         activity.resetTask();
 
         long time = System.currentTimeMillis() - start;
-        Log.v("Timing", "Time to run query `" + query + "` to completion: " + time + "ms");
+        Log.v("Timing", "Time to run query `" + query + "` on " + getClass().getSimpleName() + " to completion: " + time + "ms");
     }
 
     public interface DataObserver {

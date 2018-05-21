@@ -30,6 +30,7 @@ import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
@@ -95,6 +96,8 @@ public class SettingsActivity extends PreferenceActivity implements
             removePreference("history-hide-section", "pref-hide-navbar");
             removePreference("history-hide-section", "pref-hide-statusbar");
         }
+
+        addHiddenTagsTogglesInformation(prefs);
     }
 
     @Override
@@ -426,4 +429,22 @@ public class SettingsActivity extends PreferenceActivity implements
         lp.setDefaultValue("default");
         lp.setEntryValues(entryValues);
     }
+
+	private void addHiddenTagsTogglesInformation( SharedPreferences prefs )
+	{
+        Set<String> menuTags = TagsMenu.getPrefTags( prefs, getApplicationContext() );
+        MultiSelectListPreference selectListPreference = (MultiSelectListPreference)findPreference( "pref-toggle-tags-list" );
+        Set<String> tagList = KissApplication.getApplication(this)
+                                             .getDataHandler()
+                                             .getTagsHandler()
+                                             .getAllTagsAsSet();
+
+        // append tags that are available to toggle now
+        tagList.addAll( menuTags );
+
+        String[] tagArray = tagList.toArray( new String[0] );
+        selectListPreference.setEntries( tagArray );
+        selectListPreference.setEntryValues( tagArray );
+        selectListPreference.setValues( menuTags );
+	}
 }
