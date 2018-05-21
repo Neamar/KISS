@@ -51,7 +51,10 @@ public class TagsMenu extends Forwarder {
     }
 
     private void loadTags() {
-        setTags(getPrefTags(prefs, mainActivity));
+        if (isTagMenuEnabled())
+        	setTags(getPrefTags(prefs, mainActivity));
+        else
+            setTags(null);
     }
 
     @NonNull
