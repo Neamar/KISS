@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import fr.neamar.kiss.R;
@@ -22,6 +21,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public class PhoneResult extends Result {
     private final PhonePojo phonePojo;
@@ -32,17 +32,15 @@ public class PhoneResult extends Result {
     }
 
     @Override
-    public View display(Context context, int position, View v) {
+    public View display(Context context, int position, View v, FuzzyScore fuzzyScore) {
         if (v == null)
             v = inflateFromId(context, R.layout.item_phone);
 
-        TextView appName = v.findViewById(R.id.item_phone_text);
+        TextView phoneText = v.findViewById(R.id.item_phone_text);
         String text = String.format(context.getString(R.string.ui_item_phone), phonePojo.phone);
         int pos = text.indexOf(phonePojo.phone);
-        appName.setText(enrichText(
-                text,
-                Collections.singletonList(new Pair<Integer, Integer>(pos, pos + phonePojo.phone.length())),
-                context));
+        int len = phonePojo.phone.length();
+        displayHighlighted(text, Collections.singletonList(new Pair<Integer, Integer>(pos, pos + len)), phoneText, context);
 
         ((ImageView) v.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
 
@@ -94,7 +92,7 @@ public class PhoneResult extends Result {
         phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Make sure we have permission to call someone as this is considered a dangerous permission
-        if(Permission.ensureCallPhonePermission(phone)) {
+        if (Permission.ensureCallPhonePermission(phone)) {
             context.startActivity(phone);
         }
     }

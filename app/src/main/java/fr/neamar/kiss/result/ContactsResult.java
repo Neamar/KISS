@@ -28,6 +28,7 @@ import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ContactsResult extends Result {
     private final ContactsPojo contactPojo;
@@ -41,27 +42,25 @@ public class ContactsResult extends Result {
     }
 
     @Override
-    public View display(Context context, int position, View convertView) {
+    public View display(Context context, int position, View convertView, FuzzyScore fuzzyScore) {
         View view = convertView;
         if (convertView == null)
             view = inflateFromId(context, R.layout.item_contact);
 
         // Contact name
         TextView contactName = view.findViewById(R.id.item_contact_name);
-        contactName.setText(enrichText(contactPojo.getName(), contactPojo.nameMatchPositions, context));
+        displayHighlighted(contactPojo.normalizedName, contactPojo.getName(), fuzzyScore, contactName, context);
 
         // Contact phone
         TextView contactPhone = view.findViewById(R.id.item_contact_phone);
-        contactPhone.setText(contactPojo.phone);
+        displayHighlighted(contactPojo.normalizedPhone, contactPojo.phone, fuzzyScore, contactPhone, context);
 
         // Contact nickname
         TextView contactNickname = view.findViewById(R.id.item_contact_nickname);
-        if (!contactPojo.nickname.isEmpty()) {
-            contactNickname.setVisibility(View.VISIBLE);
-            contactNickname.setText(contactPojo.nickname);
-        }
-        else {
+        if (contactPojo.getNickname().isEmpty()) {
             contactNickname.setVisibility(View.GONE);
+        } else {
+            displayHighlighted(contactPojo.normalizedNickname, contactPojo.getNickname(), fuzzyScore, contactNickname, context);
         }
 
         // Contact photo

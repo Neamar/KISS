@@ -2,9 +2,6 @@ package fr.neamar.kiss.dataprovider;
 
 import android.database.ContentObserver;
 import android.provider.ContactsContract;
-import android.util.Pair;
-
-import java.util.List;
 
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.loader.LoadContactsPojos;
@@ -56,37 +53,27 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         }
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
-        FuzzyScore.MatchInfo matchInfo = new FuzzyScore.MatchInfo();
+        FuzzyScore.MatchInfo matchInfo;
+        boolean match;
+
         for (ContactsPojo pojo : pojos) {
-            boolean match = fuzzyScore.match(pojo.normalizedName.codePoints, matchInfo);
+            matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+            match = matchInfo.match;
             pojo.relevance = matchInfo.score;
 
-            if (match) {
-                List<Pair<Integer, Integer>> positions = matchInfo.getMatchedSequences();
-                try {
-                    pojo.setNameHighlight(positions);
-                } catch (Exception e) {
-                    pojo.setNameHighlight(0, pojo.normalizedName.length());
-                }
-            }
-
-            if (!pojo.nickname.isEmpty()) {
-                if (fuzzyScore.match(pojo.nickname, matchInfo)) {
-                    if (!match || (matchInfo.score > pojo.relevance)) {
-                        match = true;
-                        pojo.relevance = matchInfo.score;
-                        pojo.clearNameHighlight();
-                    }
+            if (pojo.normalizedNickname != null) {
+                matchInfo = fuzzyScore.match(pojo.normalizedNickname.codePoints);
+                if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
+                    match = true;
+                    pojo.relevance = matchInfo.score;
                 }
             }
 
             if (!match && queryNormalized.length() > 2) {
                 // search for the phone number
-                if (fuzzyScore.match(pojo.phoneSimplified, matchInfo)) {
-                    match = true;
-                    pojo.relevance = matchInfo.score;
-                    pojo.clearNameHighlight();
-                }
+                matchInfo = fuzzyScore.match(pojo.normalizedPhone.codePoints);
+                match = matchInfo.match;
+                pojo.relevance = matchInfo.score;
             }
 
             if (match) {
@@ -109,10 +96,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
      * @return a contactpojo, or null.
      */
     public ContactsPojo findByPhone(String phoneNumber) {
-        String simplifiedPhoneNumber = PhoneNormalizer.simplifyPhoneNumber(phoneNumber);
+        StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.simplifyPhoneNumber(phoneNumber);
 
         for (ContactsPojo pojo : pojos) {
-            if (pojo.phoneSimplified.equals(simplifiedPhoneNumber)) {
+            if (pojo.normalizedPhone.equals(simplifiedPhoneNumber)) {
                 return pojo;
             }
         }

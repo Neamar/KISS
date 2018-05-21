@@ -99,7 +99,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             }
             activity.beforeListChange();
 
-            activity.adapter.updateResults(results);
+            activity.adapter.updateResults(results, query);
 
             activity.afterListChange();
         }

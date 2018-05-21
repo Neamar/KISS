@@ -22,8 +22,6 @@ public abstract class Pojo {
     // Name for this pojo, e.g. app name
     String name = "";
 
-    public List<Pair<Integer, Integer>> nameMatchPositions = new ArrayList<>();
-
     public String getName() {
         return name;
     }
@@ -54,46 +52,6 @@ public abstract class Pojo {
         } else {
             this.name = name;
             this.normalizedName = null;
-        }
-    }
-
-    public void clearNameHighlight() {
-        nameMatchPositions.clear();
-    }
-
-    /**
-     * Set which area of the display name should marked as highlighted.
-     * <p/>
-     * The start and end positions should be offsets in the normalized string and will be converted
-     * to their non-normalized positions before they are used.
-     *
-     * @param positionNormalizedStart Highlighting start position in normalized name
-     * @param positionNormalizedEnd   Highlighting end position in normalized name
-     */
-    public void setNameHighlight(int positionNormalizedStart, int positionNormalizedEnd) {
-        clearNameHighlight();
-        setHighlight(nameMatchPositions, normalizedName, positionNormalizedStart, positionNormalizedEnd);
-    }
-
-    public void setNameHighlight(List<Pair<Integer, Integer>> positions) {
-        clearNameHighlight();
-        setHighlight(nameMatchPositions, normalizedName, positions);
-    }
-
-    protected void setHighlight(List<Pair<Integer, Integer>> matchPositions, StringNormalizer.Result string,
-                                int positionNormalizedStart, int positionNormalizedEnd) {
-        int positionStart = string.mapPosition(positionNormalizedStart);
-        int positionEnd = string.mapPosition(positionNormalizedEnd);
-
-        matchPositions.add(new Pair<Integer, Integer>(positionStart, positionEnd));
-    }
-
-    protected void setHighlight(List<Pair<Integer, Integer>> matchPositions, StringNormalizer.Result string,
-                                List<Pair<Integer, Integer>> positions) {
-        for (Pair<Integer, Integer> position : positions) {
-            int positionStart = string.mapPosition(position.first);
-            int positionEnd = string.mapPosition(position.second);
-            matchPositions.add(new Pair<Integer, Integer>(positionStart, positionEnd));
         }
     }
 }
