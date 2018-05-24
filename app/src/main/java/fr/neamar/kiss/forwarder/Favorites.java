@@ -322,7 +322,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
         boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
-        if (hasMoved) {
+        // Get the number of favs, if its less than 2 don't do drag and drops.
+        int favSize = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites(3).size();
+
+        if (hasMoved && favSize > 1) {
             mainActivity.dismissPopup();
             mainActivity.closeContextMenu();
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
@@ -337,6 +340,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     @Override
     public boolean onDrag(View v, final DragEvent event) {
         int overFavIndex;
+        Log.d(TAG, "Drag happened");
+
 
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
@@ -362,6 +367,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     return true;
                 }
                 isDragging = false;
+
+                Log.v(TAG, "AHHHH ");
 
                 final View draggedView = (View) event.getLocalState();
 
@@ -394,9 +401,12 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                         // Signals to a View that the drag and drop operation has concluded.
                         // If event result is set, this means the dragged view was dropped in target
                         if (event.getResult()) {
+                            Log.d(TAG, "Result got");
                             KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.id, leftSide ? pos - 1 : pos);
                             mainActivity.onFavoriteChange();
                         } else {
+                            Log.d(TAG, "no Result got");
+
                             draggedView.setVisibility(View.VISIBLE);
                         }
                     }
