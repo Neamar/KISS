@@ -434,15 +434,16 @@ public class SettingsActivity extends PreferenceActivity implements
 	{
         Set<String> menuTags = TagsMenu.getPrefTags( prefs, getApplicationContext() );
         MultiSelectListPreference selectListPreference = (MultiSelectListPreference)findPreference( "pref-toggle-tags-list" );
-        Set<String> tagList = KissApplication.getApplication(this)
+        Set<String> tagsSet = KissApplication.getApplication(this)
                                              .getDataHandler()
                                              .getTagsHandler()
                                              .getAllTagsAsSet();
 
         // append tags that are available to toggle now
-        tagList.addAll( menuTags );
+        tagsSet.addAll( menuTags );
 
-        String[] tagArray = tagList.toArray( new String[0] );
+        String[] tagArray = tagsSet.toArray( new String[0] );
+        Arrays.sort(tagArray);
         selectListPreference.setEntries( tagArray );
         selectListPreference.setEntryValues( tagArray );
         selectListPreference.setValues( menuTags );
