@@ -67,9 +67,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
      * Configuration for drag and drop
      */
     private final int MOVE_SENSITIVITY = 5; // How much you need to move your finger to be considered "moving"
-    private final int LONG_PRESS_DELAY = 250; // How long to hold your finger inplace to trigger the app menu.
+    private final int LONG_PRESS_DELAY = 250; // How long to hold your finger in place to trigger the app menu.
 
     // Use so we dont over process on the drag events.
+    private boolean mDragEnabled = true;
     private boolean isDragging = false;
     private boolean contextMenuShown = false;
 
@@ -161,6 +162,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
             favoritesViews[i].setVisibility(View.GONE);
         }
+
+        mDragEnabled = favoritesPojo.size() > 1;
     }
 
     void updateSearchRecords(String query) {
@@ -322,10 +325,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
         boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
-        // Get the number of favs, if its less than 2 don't do drag and drops.
-        int favSize = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites(3).size();
-
-        if (hasMoved && favSize > 1) {
+        if (hasMoved && mDragEnabled) {
             mainActivity.dismissPopup();
             mainActivity.closeContextMenu();
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
@@ -368,7 +368,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
                 final View draggedView = (View) event.getLocalState();
 
-                // Sometimes we dont trigger onDrag over another app, in which case just drop.
+                // Sometimes we don't trigger onDrag over another app, in which case just drop.
                 if (overApp == null) {
                     Log.w(TAG, "Wasn't dragged over an app, returning app to starting position");
                     draggedView.post(new Runnable() {
