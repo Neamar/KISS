@@ -32,7 +32,7 @@ public class HistorySearcher extends Searcher {
     @Override
     protected Void doInBackground(Void... voids) {
         // Ask for records
-        boolean smartHistory = !prefs.getString("history-mode", "recency").equals("recency");
+        String historyMode = prefs.getString("history-mode", "recency");
         boolean excludeFavorites = prefs.getBoolean("exclude-favorites", false);
 
         MainActivity activity = activityWeakReference.get();
@@ -45,7 +45,7 @@ public class HistorySearcher extends Searcher {
             favoritesPojo = KissApplication.getApplication(activity).getDataHandler().getFavorites(Favorites.TRY_TO_RETRIEVE);
         }
 
-        List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler().getHistory(activity, getMaxResultCount(), smartHistory, favoritesPojo);
+        List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler().getHistory(activity, getMaxResultCount(), historyMode, favoritesPojo);
 
         int size = pojos.size();
         for(int i = 0; i < size; i += 1) {

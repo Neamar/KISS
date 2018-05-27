@@ -265,13 +265,13 @@ public class DataHandler extends BroadcastReceiver
      * @param itemsToExclude Items to exclude from history
      * @return pojos in recent history
      */
-    public ArrayList<Pojo> getHistory(Context context, int itemCount, boolean smartHistory, ArrayList<Pojo> itemsToExclude) {
+    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode, ArrayList<Pojo> itemsToExclude) {
         // Pre-allocate array slots that are likely to be used based on the current maximum item
         // count
         ArrayList<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
 
         // Read history
-        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount, smartHistory);
+        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount, historyMode);
 
         // Find associated items
         for (int i = 0; i < ids.size(); i++) {
