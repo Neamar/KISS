@@ -210,6 +210,11 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
                 return i - 1;
             }
         }
-        return sections.length - 1;
+
+        // If apps starting with the letter "A" cover more than a full screen,
+        // we will never get > position
+        // so we just return the before-last section
+        // See #1005
+        return sections.length - 2;
     }
 }
