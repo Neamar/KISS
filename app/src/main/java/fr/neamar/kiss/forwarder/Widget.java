@@ -9,25 +9,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.os.Build;
-import android.view.ContextMenu;
-import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
+import android.view.*;
+import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.R;
+import fr.neamar.kiss.ui.WidgetLayout;
+import fr.neamar.kiss.ui.WidgetMenu;
+import fr.neamar.kiss.ui.WidgetPreferences;
 
 import java.util.Map;
 
-import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.R;
-import fr.neamar.kiss.ui.ListPopup;
-import fr.neamar.kiss.ui.WidgetLayout;
-import fr.neamar.kiss.ui.WidgetPreferences;
-
-public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
+public class Widget extends Forwarder implements WidgetMenu.OnClickListener {
     public static final int REQUEST_REFRESH_APPWIDGET = 10;
     private static final int REQUEST_PICK_APPWIDGET = 9;
     private static final int REQUEST_CREATE_APPWIDGET = 5;
@@ -59,7 +51,6 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
         mAppWidgetManager = AppWidgetManager.getInstance(mainActivity);
         mAppWidgetHost = new AppWidgetHost(mainActivity, APPWIDGET_HOST_ID);
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
-        widgetArea.setWidgetForwarder(this);
 
         //set the size of the Widget Area
         Point size = new Point();
@@ -106,56 +97,51 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
     }
 
     boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.widget) {
-
-            if (getWidgetHostViewCount() == 0) {
-                if (canAddWidget()) {
-                    // request widget picker, a selection will lead to a call of onActivityResult
-                    int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
-                    Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
-                    pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-                    mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
-                } else {
-                    // if we already have a widget we remove it
-                    removeAllWidgets();
-                }
-            } else {
-                ListPopup menu = new ListPopup(mainActivity);
-                ArrayAdapter<WidgetMenuItem> adapter = new ArrayAdapter<>(mainActivity, R.layout.popup_list_item);
-                menu.setAdapter(adapter);
-                if (canAddWidget())
-                    adapter.add(new WidgetMenuItem(mainActivity.getResources().getString(R.string.menu_widget_add), -1, R.string.menu_widget_add));
-
-                for (int i = 0; i < getWidgetHostViewCount(); i += 1) {
-                    AppWidgetHostView hostView = getWidgetHostView(i);
-                    if (hostView != null) {
-                        AppWidgetProviderInfo info = hostView.getAppWidgetInfo();
-                        String label;
-                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                            label = info.label;
-                        } else {
-                            label = info.loadLabel(mainActivity.getPackageManager());
-                        }
-                        adapter.add(new WidgetMenuItem("Edit widget " + label, hostView.getAppWidgetId(), R.string.menu_widget_settings));
-                        adapter.add(new WidgetMenuItem("Remove widget " + label, hostView.getAppWidgetId(), R.string.menu_widget_remove));
-                    }
-                }
-
-                menu.setOnItemClickListener(this);
-
-                menu.showCentered(widgetArea);
-                mainActivity.registerPopup(menu);
-            }
-            return true;
+        if (item.getItemId() != R.id.widget) {
+            return false;
         }
 
-        return false;
-    }
+        if (getWidgetHostViewCount() == 0) {
+            if (canAddWidget()) {
+                // request widget picker, a selection will lead to a call of onActivityResult
+                int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
+                Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+                pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+                mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
+            } else {
+                // if we already have a widget we remove it
+                removeAllWidgets();
+            }
+        } else {
+            WidgetMenu menu = new WidgetMenu(this);
+            if (canAddWidget())
+                menu.add(mainActivity, R.string.menu_widget_add);
+            for (int i = 0; i < getWidgetHostViewCount(); i += 1) {
+                AppWidgetHostView hostView = getWidgetHostView(i);
+                if (hostView == null)
+                    continue;
+                AppWidgetProviderInfo info = hostView.getAppWidgetInfo();
+                String label;
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    label = info.label;
+                } else {
+                    label = info.loadLabel(mainActivity.getPackageManager());
+                }
+                menu.add(hostView.getAppWidgetId(), label);
+            }
+            mainActivity.registerPopup(menu.show(widgetArea));
+        }
+        return true;
+  }
 
     void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         if (prefs.getBoolean("history-hide", true)) {
-            if (getWidgetHostViewCount() == 0)
-                menu.findItem(R.id.widget).setTitle(R.string.menu_widget_add);
+            if (getWidgetHostViewCount() == 0) {
+                if (canAddWidget())
+                    menu.findItem(R.id.widget).setTitle(R.string.menu_widget_add);
+                else
+                    menu.findItem(R.id.widget).setTitle(R.string.menu_widget_remove);
+            }
         } else {
             menu.findItem(R.id.widget).setVisible(false);
         }
@@ -191,7 +177,8 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
             //add widget to view
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
             if (appWidgetInfo == null) {
-                removeAllWidgets();
+                //removeAllWidgets();
+                removeAppWidget(appWidgetId);
                 return null;
             }
             AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
@@ -276,8 +263,18 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
     private void removeAppWidget(AppWidgetHostView hostView) {
         // remove widget from view
         int appWidgetId = hostView.getAppWidgetId();
-        mAppWidgetHost.deleteAppWidgetId(appWidgetId);
+        removeAppWidget(appWidgetId);
         removeWidgetHostView(hostView);
+    }
+
+    /**
+     * Removes a single widget and deletes it from persistent prefs
+     *
+     * @param appWidgetId id of widget that should get removed
+     */
+    private void removeAppWidget(int appWidgetId) {
+        // remove widget from view
+        mAppWidgetHost.deleteAppWidgetId(appWidgetId);
         // remove widget id from persistent prefs
         SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
         widgetPrefsEditor.remove(String.valueOf(appWidgetId));
@@ -285,7 +282,7 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
     }
 
     private boolean canAddWidget() {
-        return getWidgetHostViewCount() < 3;
+        return true;
     }
 
     /**
@@ -345,88 +342,42 @@ public class Widget extends Forwarder implements ListPopup.OnItemClickListener {
         }
     }
 
-    public void onWidgetLayout(View child, boolean changed, Rect rect) {
-        if (!changed)
-            return;
-        AppWidgetHostView hostView = getWidgetHostView(child);
-        int appWidgetId = hostView.getAppWidgetId();
-
-        String data = widgetPrefs.getString(String.valueOf(appWidgetId), null);
-        WidgetPreferences wp = WidgetPreferences.unserialize(data);
-        boolean needToApply = false;
-        if (wp == null) {
-            wp = new WidgetPreferences();
-            needToApply = true;
-        }
-        if (wp.width == 0) {
-            wp.width = rect.width();
-            needToApply = true;
-        }
-        if (wp.height == 0) {
-            wp.height = rect.height();
-            needToApply = true;
-        }
-        if (needToApply) {
-            SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
-            widgetPrefsEditor.putString(String.valueOf(appWidgetId), WidgetPreferences.serialize(wp));
-            widgetPrefsEditor.apply();
-        }
-    }
-
-    @Override
-    public void onItemClick(ListAdapter adapter, View view, int position) {
-        WidgetMenuItem menuItem = (WidgetMenuItem) adapter.getItem(position);
-        switch (menuItem.action) {
-            case R.string.menu_widget_add:
-                // request widget picker, a selection will lead to a call of onActivityResult
-                int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
-                Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
-                pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-                mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
-                break;
-            case R.string.menu_widget_remove:
-                for (int i = 0; i < getWidgetHostViewCount(); i += 1) {
-                    AppWidgetHostView hostView = getWidgetHostView(i);
-                    if (hostView.getAppWidgetId() == menuItem.appWidgetId) {
-                        removeAppWidget(hostView);
-                        break;
-                    }
-                }
-                break;
-            case R.string.menu_widget_settings:
-                for (int i = 0; i < getWidgetHostViewCount(); i += 1) {
-                    AppWidgetHostView hostView = getWidgetHostView(i);
-                    if (hostView.getAppWidgetId() == menuItem.appWidgetId) {
-                        String data = widgetPrefs.getString(String.valueOf(menuItem.appWidgetId), null);
-                        WidgetPreferences wp = WidgetPreferences.unserialize(data);
-                        if (wp == null)
-                            wp = new WidgetPreferences();
-                        wp.showEditMenu(mainActivity, widgetPrefs, hostView);
-                        break;
-                    }
-                }
-                break;
-        }
-    }
-
     public void onWallpaperScroll(float fCurrent) {
         widgetArea.scrollWidgets(fCurrent);
     }
 
-    static class WidgetMenuItem {
-        final String string;
-        final int appWidgetId;
-        final int action;
+    @Override
+    public void onWidgetAdd() {
+        // request widget picker, a selection will lead to a call of onActivityResult
+        int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
+        Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+        pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
+    }
 
-        WidgetMenuItem(String string, int appWidgetId, int action) {
-            this.string = string;
-            this.appWidgetId = appWidgetId;
-            this.action = action;
+    @Override
+    public void onWidgetEdit(int appWidgetId) {
+        for (int i = 0; i < getWidgetHostViewCount(); i += 1) {
+            AppWidgetHostView hostView = getWidgetHostView(i);
+            if (hostView.getAppWidgetId() == appWidgetId) {
+                String data = widgetPrefs.getString(String.valueOf(appWidgetId), null);
+                WidgetPreferences wp = WidgetPreferences.unserialize(data);
+                if (wp == null)
+                    wp = new WidgetPreferences();
+                wp.showEditMenu(mainActivity, widgetPrefs, hostView);
+                break;
+            }
         }
+    }
 
-        @Override
-        public String toString() {
-            return this.string;
+    @Override
+    public void onWidgetRemove(int appWidgetId) {
+        for (int i = 0; i < getWidgetHostViewCount(); i += 1) {
+            AppWidgetHostView hostView = getWidgetHostView(i);
+            if (hostView.getAppWidgetId() == appWidgetId) {
+                removeAppWidget(hostView);
+                break;
+            }
         }
     }
 }

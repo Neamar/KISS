@@ -2,15 +2,18 @@ package fr.neamar.kiss.ui;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.graphics.Point;
 import android.graphics.Rect;
 import androidx.annotation.StringRes;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
-
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
@@ -167,6 +170,24 @@ public class ListPopup extends PopupWindow {
 
     public void showCentered(View view) {
         updateItems();
+
+        WindowManager windowManager = (WindowManager) view.getContext().getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager != null) {
+            DisplayMetrics displayMetrics = view.getContext().getResources().getDisplayMetrics();
+            int marginHorizontal = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, displayMetrics);
+            LinearLayout linearLayout = getLinearLayout();
+
+            linearLayout.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+
+            Point size = new Point(0, 0);
+            windowManager.getDefaultDisplay().getSize(size);
+            if (size.x > 0 && ((size.x - linearLayout.getMeasuredWidth()) < marginHorizontal * 2)) {
+                setWidth(size.x - marginHorizontal * 2);
+            } else {
+                setWidth(Math.max(linearLayout.getMeasuredWidth(), size.x / 2));
+            }
+        }
 
         showAtLocation(view, Gravity.CENTER, 0, 0);
     }

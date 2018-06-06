@@ -27,8 +27,6 @@ public class WidgetLayout extends ViewGroup {
     private final Rect mTmpContainerRect = new Rect();
     private final Rect mTmpChildRect = new Rect();
 
-    private Widget mWidget = null;
-
     public WidgetLayout(Context context) {
         super(context);
     }
@@ -117,9 +115,6 @@ public class WidgetLayout extends ViewGroup {
             // Place the child.
             child.layout(mTmpChildRect.left, mTmpChildRect.top,
                     mTmpChildRect.right, mTmpChildRect.bottom);
-
-            if (mWidget != null)
-                mWidget.onWidgetLayout(child, changed, mTmpChildRect);
         }
     }
 
@@ -128,10 +123,10 @@ public class WidgetLayout extends ViewGroup {
     // If you do not need these (for example you are writing a layout manager
     // that does fixed positioning of its children), you can drop all of this.
 
-    @Override
-    public LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new WidgetLayout.LayoutParams(getContext(), attrs);
-    }
+//    @Override
+//    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+//        return new WidgetLayout.LayoutParams(getContext(), attrs);
+//    }
 
     @Override
     protected LayoutParams generateDefaultLayoutParams() {
@@ -146,10 +141,6 @@ public class WidgetLayout extends ViewGroup {
     @Override
     protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
         return p instanceof WidgetLayout.LayoutParams;
-    }
-
-    public void setWidgetForwarder(Widget widget) {
-        mWidget = widget;
     }
 
     public void scrollWidgets(float fCurrent) {
