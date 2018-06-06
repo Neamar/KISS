@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <EditText
+        android:id="@+id/icon_search_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:hint="@string/search_icon_hint"
+        android:singleLine="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true">
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/reset_icon"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:enabled="false"
+        android:text="@string/reset_icon"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+    <GridView
+        android:id="@+id/icon_grid"
+        android:layout_above="@id/icon_search_bar"
+        android:layout_below="@id/reset_icon"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="4"
+        android:verticalSpacing="10dp"
+        android:layout_margin="5dp" />
+
+</RelativeLayout>
