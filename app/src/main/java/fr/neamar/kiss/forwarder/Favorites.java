@@ -73,6 +73,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     private boolean mDragEnabled = true;
     private boolean isDragging = false;
     private boolean contextMenuShown = false;
+    private int favCount = -1;
 
     Favorites(MainActivity mainActivity) {
         super(mainActivity);
@@ -135,6 +136,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler()
                 .getFavorites(TRY_TO_RETRIEVE);
 
+        favCount = favoritesPojo.size();
+
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
             Pojo pojo = favoritesPojo.get(i);
@@ -163,7 +166,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             favoritesViews[i].setVisibility(View.GONE);
         }
 
-        mDragEnabled = favoritesPojo.size() > 1;
+        mDragEnabled = favCount > 1;
     }
 
     void updateSearchRecords(String query) {
@@ -326,6 +329,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
         if (hasMoved && mDragEnabled) {
+            mDragEnabled = false;
             mainActivity.dismissPopup();
             mainActivity.closeContextMenu();
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
@@ -365,6 +369,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     return true;
                 }
                 isDragging = false;
+
+                // Reset dragging to what it should be
+                mDragEnabled = favCount > 1;
 
                 final View draggedView = (View) event.getLocalState();
 
