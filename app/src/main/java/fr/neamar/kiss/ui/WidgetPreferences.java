@@ -30,6 +30,7 @@ import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 
@@ -149,7 +150,7 @@ public class WidgetPreferences implements Serializable {
                     widgetPreferences.offsetVertical = seek.getProgress();
                     //Position
                     dropDown = contentView.findViewById(R.id.value_pos);
-                    widgetPreferences.position = dropDown.getSelectedItemPosition();
+                    widgetPreferences.position = ((SpinnerItem) dropDown.getSelectedItem()).value;
                     //Gravity
                     widgetPreferences.gravity = Gravity.NO_GRAVITY;
                     dropDown = contentView.findViewById(R.id.value_gravity_ver);
@@ -177,6 +178,8 @@ public class WidgetPreferences implements Serializable {
             }
             TextView text = contentView.findViewById(R.id.title);
             text.setText(label);
+            if (BuildConfig.DEBUG)
+                text.setText(text.getText().toString() + " id:" + hostView.getAppWidgetId());
 
             SeekBar seek;
             TextViewSync textSync;
