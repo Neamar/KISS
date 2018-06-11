@@ -96,12 +96,10 @@ public class WidgetLayout extends ViewGroup {
             // Compute the frame in which we are placing this child.
             if (lp.position == LayoutParams.POSITION_LEFT) {
                 mTmpContainerRect.left = leftPos + lp.leftMargin;
-                mTmpContainerRect.right = leftPos + width + lp.rightMargin;
-                leftPos = mTmpContainerRect.right;
+                mTmpContainerRect.right = middleLeft - lp.rightMargin;
             } else if (lp.position == LayoutParams.POSITION_RIGHT) {
                 mTmpContainerRect.right = rightPos - lp.rightMargin;
-                mTmpContainerRect.left = rightPos - width - lp.leftMargin;
-                rightPos = mTmpContainerRect.left;
+                mTmpContainerRect.left = middleRight + lp.leftMargin;
             } else {
                 mTmpContainerRect.left = middleLeft + lp.leftMargin;
                 mTmpContainerRect.right = middleRight - lp.rightMargin;
