@@ -47,7 +47,7 @@ public class SearchProvider extends Provider<SearchPojo> {
             records.add(pojo);
         }
 
-        // Open URLs directly
+        // Open URLs directly (if I type http://something.com for instance)
         Matcher m = urlPattern.matcher(query);
         if (m.find()) {
             String guessedUrl = URLUtil.guessUrl(query);
@@ -57,7 +57,7 @@ public class SearchProvider extends Provider<SearchPojo> {
                 pojo.relevance = 50;
                 pojo.setName(guessedUrl, false);
                 pojo.url = guessedUrl;
-                pojo.direct = true;
+                pojo.type = SearchPojo.URL_QUERY;
                 records.add(pojo);
             }
         }

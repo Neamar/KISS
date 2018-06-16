@@ -28,6 +28,7 @@ import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.CalculatorProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
@@ -85,6 +86,11 @@ public class DataHandler extends BroadcastReceiver
                 this.connectToProvider(providerName);
             }
         }
+
+        ProviderEntry entry = new ProviderEntry();
+        entry.provider = new CalculatorProvider();
+        this.providers.put("Calculator", entry);
+
     }
 
     @Override
