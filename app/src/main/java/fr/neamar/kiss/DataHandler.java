@@ -29,6 +29,7 @@ import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.CalculatorProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
@@ -81,16 +82,25 @@ public class DataHandler extends BroadcastReceiver
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         // Connect to initial providers
+        // Those are the complex providers, that are defined as Android services
+        // to survive even if the app's UI is killed
+        // (this way, we don't need to reload the app list everytime for instance)
         for (String providerName : PROVIDER_NAMES) {
             if (prefs.getBoolean("enable-" + providerName, true)) {
                 this.connectToProvider(providerName);
             }
         }
 
-        ProviderEntry entry = new ProviderEntry();
-        entry.provider = new CalculatorProvider();
-        this.providers.put("Calculator", entry);
-
+        // Some basic providers are defined directly,
+        // as we don't need the overhead of a service for them
+        // Those providers don't expose a service connection,
+        // and you can't bind / unbind to them dynamically.
+        ProviderEntry calculatorEntry = new ProviderEntry();
+        calculatorEntry.provider = new CalculatorProvider();
+        this.providers.put("calculator", calculatorEntry);
+        ProviderEntry phoneEntry = new ProviderEntry();
+        phoneEntry.provider = new PhoneProvider(context);
+        this.providers.put("phone", phoneEntry);
     }
 
     @Override

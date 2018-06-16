@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-import fr.neamar.kiss.dataprovider.PhoneProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
 import fr.neamar.kiss.pojo.PhonePojo;
 
 public class LoadPhonePojos extends LoadPojos<PhonePojo> {
