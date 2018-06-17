@@ -20,10 +20,12 @@ Our Bitcoin wallet:
 
 <p style="text-align:center; font-size: 1.5em"><tt>37jNrusScmZH6433hKztScKDEwidxKHgnH</tt></p>
 
-### How will my money be used?
+### How will your money be used?
 KISS expenses are really minimal. Your money is likely going to be used to:
 
-* make KISS more well known in third-world countries that could benefit from a lightweight launcher.
+* make KISS more well known in third-world countries that benefit from a lightweight launcher.
 * sponsor additional developments
-* pay some developers for a coffee or a meal
+* pay some KISS developers for a coffee or a meal (students or people living of their open-source contributions)
 * go to charities (ecology, animals, homeless shelters, open-source projects, NGOs...)
+
+Once again, a big thank you -- and keep in mind, even if you can't donate, you can still help by spreading the word! Your enthusiasm is our best motivation :)
