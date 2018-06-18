@@ -26,6 +26,6 @@ KISS expenses are really minimal. Your money is likely going to be used to:
 * make KISS more well known in third-world countries that benefit from a lightweight launcher.
 * sponsor additional developments
 * pay some KISS developers for a coffee or a meal (students or people living of their open-source contributions)
-* go to charities (ecology, animals, homeless shelters, open-source projects, NGOs...)
+* go to charities (ecology, animals, homeless shelters, open-source projects, NGOs...). Maybe you can donate there directly too? :)
 
-Once again, a big thank you -- and keep in mind, even if you can't donate, you can still help by spreading the word! Your enthusiasm is our best motivation :)
+Once again, a big thank you -- and keep in mind, even if you can't donate, you can still help by spreading the word! Your enthusiasm is our best motivation!
