@@ -12,7 +12,7 @@ public class CalculatorProvider implements IProvider {
     private Pattern p;
 
     public CalculatorProvider() {
-        p = Pattern.compile("([0-9.]+)\\s?([+\\-*/×÷])\\s?([0-9.]+)");
+        p = Pattern.compile("([0-9.]+)\\s?([+\\-*/×x÷])\\s?([0-9.]+)");
     }
 
     @Override
@@ -40,11 +40,14 @@ public class CalculatorProvider implements IProvider {
                     break;
                 case "*":
                 case "×":
+                case "x":
                     floatResult = lhs * rhs;
+                    operator = "×";
                     break;
                 case "/":
                 case "÷":
                     floatResult = lhs / rhs;
+                    operator = "÷";
                     break;
                 default:
                     floatResult = Float.POSITIVE_INFINITY;
