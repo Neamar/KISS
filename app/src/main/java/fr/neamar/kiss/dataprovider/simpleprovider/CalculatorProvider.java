@@ -25,23 +25,29 @@ public class CalculatorProvider implements IProvider {
             pojo.type = SearchPojo.CALCULATOR_QUERY;
 
             String operator = m.group(2);
-            String result = "";
+
             // let's go for floating point arithmetic
             float lhs = Float.parseFloat(m.group(1));
             float rhs = Float.parseFloat(m.group(3));
 
             float floatResult = 0;
-            if (operator.equals("+")) {
-                floatResult = lhs + rhs;
-            }
-            if (operator.equals("-")) {
-                floatResult = lhs - rhs;
-            }
-            if (operator.equals("*") || operator.equals("×")) {
-                floatResult = lhs * rhs;
-            }
-            if (operator.equals("/") || operator.equals("÷")) {
-                floatResult = lhs / rhs;
+            switch (operator) {
+                case "+":
+                    floatResult = lhs + rhs;
+                    break;
+                case "-":
+                    floatResult = lhs - rhs;
+                    break;
+                case "*":
+                case "×":
+                    floatResult = lhs * rhs;
+                    break;
+                case "/":
+                case "÷":
+                    floatResult = lhs / rhs;
+                    break;
+                default:
+                    floatResult = Float.POSITIVE_INFINITY;
             }
 
             pojo.query = floatToString(lhs) + " " + operator + " " + floatToString(rhs) + " = " + floatToString(floatResult);
@@ -50,7 +56,7 @@ public class CalculatorProvider implements IProvider {
         }
     }
 
-    public String floatToString(float f) {
+    private String floatToString(float f) {
         // If f is an int, we don't want to display 9.0: cast to int
         if (f == Math.round(f)) {
             return Integer.toString(Math.round(f));
