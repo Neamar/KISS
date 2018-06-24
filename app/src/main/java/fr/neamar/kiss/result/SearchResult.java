@@ -19,8 +19,6 @@ import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 
-import static fr.neamar.kiss.R.drawable.search;
-
 public class SearchResult extends Result {
     private final SearchPojo searchPojo;
 
@@ -41,19 +39,25 @@ public class SearchResult extends Result {
         int pos;
         int len;
 
-        if (searchPojo.direct) {
+        if (searchPojo.type == SearchPojo.URL_QUERY) {
             text = String.format(context.getString(R.string.ui_item_visit), this.pojo.getName());
             pos = text.indexOf(this.pojo.getName());
             len = this.pojo.getName().length();
             image.setImageResource(R.drawable.ic_public);
-        } else {
+        } else if(searchPojo.type == SearchPojo.SEARCH_QUERY){
             text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), searchPojo.query);
             pos = text.indexOf(searchPojo.query);
             len = searchPojo.query.length();
-            image.setImageResource(search);
+            image.setImageResource(R.drawable.search);
+        }
+        else {
+            text = searchPojo.query;
+            pos = text.indexOf("=");
+            len = text.length() - pos;
+            image.setImageResource(R.drawable.ic_functions);
         }
 
-        displayHighlighted(text, Collections.singletonList(new Pair<Integer, Integer>(pos, pos + len)), searchText, context);
+        displayHighlighted(text, Collections.singletonList(new Pair<>(pos, pos + len)), searchText, context);
 
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;
