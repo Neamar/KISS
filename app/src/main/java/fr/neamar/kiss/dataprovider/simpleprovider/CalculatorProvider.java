@@ -27,8 +27,10 @@ public class CalculatorProvider implements IProvider {
             String operator = m.group(2);
 
             // let's go for floating point arithmetic
-            float lhs = Float.parseFloat(m.group(1));
-            float rhs = Float.parseFloat(m.group(3));
+            // we need to add a "0" on top of it to support ".2" => 0.2
+            // For every other case, this doesn't change the number "01" => 1
+            float lhs = Float.parseFloat("0" + m.group(1));
+            float rhs = Float.parseFloat("0" + m.group(3));
 
             float floatResult = 0;
             switch (operator) {
