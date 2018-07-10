@@ -200,6 +200,11 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
     @Override
     public int getPositionForSection(int sectionIndex) {
+        // In some rare situations, the system will ask for a section
+        // that does not exist anymore.
+        // It's likely there is a threading issue in our code somewhere,
+        // But I was unable to find where, so the following line is a quick and dirty fix.
+        sectionIndex = Math.min(sections.length - 1, sectionIndex);
         return alphaIndexer.get(sections[sectionIndex]);
     }
 
