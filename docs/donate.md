@@ -14,7 +14,16 @@ However, before you make your payment, please read the following:
 
 If you still want to donate after reading all of the above&mdash;thank you so much!
 
-In the spirit of open-source, we use Bitcoin to receive all donations.
+## Donate on Liberapay
+Liberapay is a donation platform whose primary goal is to fund the commons, particularly free software.
+
+<p style="text-align:center">
+<script src="https://liberapay.com/KISS/widgets/button.js"></script>
+<noscript><a href="https://liberapay.com/KISS/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
+</p>
+
+## Donate in Bitcoin
+In the spirit of open-source, we accept Bitcoin.
 
 Our Bitcoin wallet:
 
