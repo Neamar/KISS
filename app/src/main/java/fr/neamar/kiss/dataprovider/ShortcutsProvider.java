@@ -1,13 +1,11 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.util.Pair;
+import android.widget.Toast;
 
-import java.util.List;
-
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadShortcutsPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PojoWithTags;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -17,7 +15,17 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
     @Override
     public void reload() {
         super.reload();
-        this.initialize(new LoadShortcutsPojos(this));
+        // If the user tries to add a new shortcut, but KISS isn't the default launcher
+        // AND the services are not running (low memory), then we won't be able to
+        // spawn a new service on Android 8.1+.
+
+        try {
+            this.initialize(new LoadShortcutsPojos(this));
+        }
+        catch(IllegalStateException e) {
+            Toast.makeText(this, R.string.unable_to_initialize_shortcuts, Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
 
     @Override
