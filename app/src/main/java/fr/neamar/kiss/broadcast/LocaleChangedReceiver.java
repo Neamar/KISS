@@ -16,9 +16,15 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
             return;
         }
 
-        // If new locale, then reset tags to load the correct aliases
-        KissApplication.getApplication(ctx).getDataHandler().resetTagsHandler();
-
+        try {
+            // If new locale, then reset tags to load the correct aliases
+            KissApplication.getApplication(ctx).getDataHandler().resetTagsHandler();
+        }
+        catch(IllegalStateException e) {
+            // Since Android 8.1, we're not allowed to create a new service
+            // when the app is not running
+            e.printStackTrace();
+        }
         // Reload application list
         final AppProvider provider = KissApplication.getApplication(ctx).getDataHandler().getAppProvider();
         if (provider != null) {
