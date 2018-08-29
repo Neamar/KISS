@@ -21,9 +21,9 @@ If the default list does not fit your need, you can create a new search engine f
 Navigate to `⋮, KISS Settings, Providers Selection`. Select `Add search provider`. This will open a new dialog, you'll need to enter:
 
 * a **name** for your provider. This can be anything you want, but make sure you remember what it is!
-* a **URL** for your provider. This has to be a valid URL, use `{q}` as a placeholder for the actual query.
+* a **URL** for your provider. This has to be a valid URL, use `%s` as a placeholder for the actual query.
 
-> For instance, if you want to add Wikipedia as a search provider, you'll first need to find the search URL. When going to Wikipedia, use the search box, enter `kiss launcher`. You'll be redirected to `https://en.wikipedia.org/w/index.php?search=kiss+launcher`, so the URL you need to use is `https://en.wikipedia.org/w/index.php?search={q}`
+> For instance, if you want to add Wikipedia as a search provider, you'll first need to find the search URL. When going to Wikipedia, use the search box, enter `kiss launcher`. You'll be redirected to `https://en.wikipedia.org/w/index.php?search=kiss+launcher`, so the URL you need to use is `https://en.wikipedia.org/w/index.php?search=%s`
 
 Enter both values in the dialog:
 
@@ -41,5 +41,5 @@ You're all set! You can now search on your new provider:
 
 ## Sample search providers URLs
 
-* Qwant: `https://www.qwant.com/?q={q}`
-* Wikipedia: `https://en.wikipedia.org/w/index.php?search={q}&title=Special:Search&fulltext=1`
+* Qwant: `https://www.qwant.com/?q=%s`
+* Wikipedia: `https://en.wikipedia.org/w/index.php?search=%s&title=Special:Search&fulltext=1`
