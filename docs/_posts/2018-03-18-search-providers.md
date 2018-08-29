@@ -9,7 +9,7 @@ type: Document
 KISS will, by default, enable Google search. If you'd rather use another search provider, you can customize your experience by adding other search engines (Duck Duck Go, Bing, etc.) or even create your own provider!
 
 ## Use an alternative search provider
-Navigate to `⋮, KISS Settings, Providers Selection`. Select `Select web search providers`. By default, the list will contain DuckDuckGo, Google, Bing and Yahoo. Enable the providers you want to use (you can have more than one!)
+Navigate to `⋮, KISS Settings, Providers Selection`. Select `Select web search providers`. By default, the list will contain DuckDuckGo, Google and Bing. Enable the providers you want to use (you can have more than one!)
 
 From now on, search will use your new search providers:
 
