@@ -6,8 +6,6 @@ import java.nio.CharBuffer;
 import java.text.Normalizer;
 import java.util.Arrays;
 
-import fr.neamar.kiss.BuildConfig;
-
 /**
  * String utils to handle accented characters for search and highlighting
  */
@@ -162,10 +160,7 @@ public class StringNormalizer {
 
             if (this.codePoints.length != that.codePoints.length)
                 return this.codePoints.length - that.codePoints.length;
-
-            if (BuildConfig.DEBUG && !this.equals(that))
-                throw new AssertionError("compareTo inconsistent with equals.");
-
+            
             // equal
             return 0;
         }
