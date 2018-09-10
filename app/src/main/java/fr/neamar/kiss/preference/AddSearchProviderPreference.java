@@ -98,7 +98,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     }
 
     private boolean validateQueryPlaceholder() {
-        return providerUrl.getText().toString().contains("{q}");
+        return providerUrl.getText().toString().contains("%s");
     }
 
     private boolean validateNameExists() {
