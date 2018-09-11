@@ -1,5 +1,6 @@
 package fr.neamar.kiss.loader;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
+import fr.neamar.kiss.cache.MemoryCacheHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -36,17 +38,18 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
         ArrayList<AppPojo> apps = new ArrayList<>();
 
-        if(context.get() == null) {
+        Context ctx = context.get();
+        if(ctx == null) {
             return apps;
         }
 
-        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context.get()).
-                getString("excluded-apps-list", context.get().getPackageName() + ";");
+        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(ctx).
+                getString("excluded-apps-list", ctx.getPackageName() + ";");
         List excludedApps = Arrays.asList(excludedAppList.split(";"));
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            UserManager manager = (UserManager) context.get().getSystemService(Context.USER_SERVICE);
-            LauncherApps launcher = (LauncherApps) context.get().getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            UserManager manager = (UserManager) ctx.getSystemService(Context.USER_SERVICE);
+            LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 
             // Handle multi-profile support introduced in Android 5 (#542)
             for (android.os.UserHandle profile : manager.getUserProfiles()) {
@@ -75,7 +78,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 }
             }
         } else {
-            PackageManager manager = context.get().getPackageManager();
+            PackageManager manager = ctx.getPackageManager();
 
             Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -101,6 +104,13 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
         long end = System.nanoTime();
         Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps");
+
+        // cache all app icons
+        for ( AppPojo app : apps )
+        {
+            MemoryCacheHelper.cacheAppIconDrawable(ctx, new ComponentName(app.packageName, app.activityName), app.userHandle);
+        }
+
         return apps;
     }
 }
