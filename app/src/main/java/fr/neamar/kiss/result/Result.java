@@ -394,13 +394,14 @@ public abstract class Result {
 
         @Override
         protected void onPostExecute(Drawable drawable) {
+            Result result = appResultWeakReference.get();
             ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || drawable == null) {
+            if (isCancelled() || result == null || image == null || drawable == null) {
                 imageViewWeakReference.clear();
                 return;
             }
             image.setImageDrawable(drawable);
-            image.setTag(appResultWeakReference.get());
+            image.setTag(result);
         }
     }
 }

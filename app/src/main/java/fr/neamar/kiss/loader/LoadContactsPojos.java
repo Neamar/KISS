@@ -41,7 +41,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
 
         // Run query
-        Cursor cur = context.get().getContentResolver().query(
+        Cursor cur = c.getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 new String[]{ContactsContract.Contacts.LOOKUP_KEY,
                         ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED,
@@ -105,7 +105,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
 
         // Retrieve contacts' nicknames
-        Cursor nickCursor = context.get().getContentResolver().query(
+        Cursor nickCursor = c.getContentResolver().query(
                 ContactsContract.Data.CONTENT_URI,
                 new String[]{
                         ContactsContract.CommonDataKinds.Nickname.NAME,
