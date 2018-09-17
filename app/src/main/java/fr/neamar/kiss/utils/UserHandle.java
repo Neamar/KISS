@@ -72,4 +72,23 @@ public class UserHandle {
 
         return (serial == this.serial);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserHandle that = (UserHandle) o;
+
+        if (serial != that.serial) return false;
+        return handle != null ? handle.equals(that.handle) : that.handle == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (serial ^ (serial >>> 32));
+        result = 31 * result + (handle != null ? handle.hashCode() : 0);
+        return result;
+    }
+
 }
