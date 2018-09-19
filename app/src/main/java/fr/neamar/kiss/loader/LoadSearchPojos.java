@@ -35,12 +35,13 @@ public class LoadSearchPojos extends LoadPojos<SearchPojo> {
     protected ArrayList<SearchPojo> doInBackground(Void... params) {
         ArrayList<SearchPojo> pojos = new ArrayList<>();
 
-        if(context.get() == null) {
+        Context context = this.context.get();
+        if(context == null) {
             return pojos;
         }
 
-        Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(context.get()).getStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google")));
-        Set<String> availableProviders = PreferenceManager.getDefaultSharedPreferences(context.get()).getStringSet("available-search-providers", SearchProvider.getSearchProviders(context.get()));
+        Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google")));
+        Set<String> availableProviders = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("available-search-providers", SearchProvider.getSearchProviders(context));
 
         for (String searchProvider : selectedProviders) {
             SearchPojo pojo = new SearchPojo();

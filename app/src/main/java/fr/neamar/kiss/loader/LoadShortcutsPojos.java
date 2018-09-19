@@ -26,10 +26,11 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
     protected ArrayList<ShortcutsPojo> doInBackground(Void... arg0) {
         ArrayList<ShortcutsPojo> pojos = new ArrayList<>();
 
-        if(context.get() == null) {
+        Context context = this.context.get();
+        if(context == null) {
             return pojos;
         }
-        List<ShortcutRecord> records = DBHelper.getShortcuts(context.get());
+        List<ShortcutRecord> records = DBHelper.getShortcuts(context);
         for (ShortcutRecord shortcutRecord : records) {
             ShortcutsPojo pojo = createPojo(shortcutRecord.name);
 
