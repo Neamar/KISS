@@ -34,7 +34,7 @@
     <string name="shortcuts_name">Collegamenti</string>
 
     <string name="main_menu">Menu</string>
-    <string name="main_clear">Elimina i dati di ricerca</string>
+    <string name="main_clear">Pulisci barra di ricerca</string>
     <string name="main_kiss">Mostra preferiti e lista applicazioni</string>
     <string name="main_kiss_back">Mostra la cronologia</string>
     <string name="reset_name">Elimina la cronologia</string>
@@ -47,7 +47,7 @@
     <string name="reset_favorites_name">Azzera l\'elenco dei preferiti</string>
     <string name="reset_favorites_warn">Sei sicuro di voler azzerare l\'elenco dei preferiti?</string>
     <string name="keyboard_name">Visualizza la tastiera all\'avvio</string>
-    <string name="history_hide_desc">Cronologia e schermata introduttiva saranno nascoste</string>
+    <string name="history_hide_desc">Nascondi cronologia e schermata introduttiva, abilita i widget</string>
     <string name="history_hide_name">Interfaccia minimale</string>
     <string name="history_onclick_name">Visualizza la cronologia al tocco</string>
     <string name="portrait_title">Forza la modalità verticale</string>
@@ -55,7 +55,7 @@
     <string name="lwp_drag">Simula l\'evento di trascinamento per lo sfondo</string>
     <string name="lwp_drag_desc">Registra eventi per i tocchi multipli</string>
     <string name="wp_drag_animate">Trascina sfondo</string>
-    <string name="wp_drag_animate_desc">Trascina orizzontalmente per navigare nello sfondo</string>
+    <string name="wp_drag_animate_desc">Trascina ← → per navigare nello sfondo</string>
     <string name="icons_hide_main">Nascondi le icone delle applicazioni</string>
     <string name="icons_hide_desc">Utile per i dispositivi lenti</string>
     <string name="search_providers_title">Motore di ricerca</string>
@@ -90,7 +90,7 @@
     <string name="alias_mail">mail,email,e-mail</string>
     <string name="alias_market">market,store,centro applicazioni</string>
     <string name="alias_clock">orologio,sveglia,timer,cronometro</string>
-    <string name="alias_messaging">messaggio,componi,sms,mms,messaggistica</string>
+    <string name="alias_messaging">messaggio,componi,SMS,MMS,messaggistica</string>
     <string name="settings_prefix">"Impostazione: "</string>
     <string name="settings_airplane">Modalità aereo</string>
     <string name="settings_device_info">Informazioni dispositivo</string>
@@ -109,9 +109,9 @@
     <string name="history_erased">Cronologia eliminata.</string>
     <string name="favorites_erased">Preferiti azzerati.</string>
     <string name="menu_favorites_add">Aggiungi ai preferiti</string>
-    <string name="menu_tags_edit">Aggiungi / modifica tag</string>
+    <string name="menu_tags_edit">Aggiungi o modifica tag</string>
     <string name="tags_add_title">Aggiungi tag separati da spazio</string>
-    <string name="tags_confirmation_added">Tag aggiunto</string>
+    <string name="tags_confirmation_added">Tag aggiunti</string>
     <string name="tags_visible">Mostra i tag per le applicazioni</string>
     <string name="excluded_app_list_erased">Elenco delle applicazioni escluse azzerato.</string>
     <string name="excluded_app_list_added">L\'applicazione è stata esclusa da KISS. Per annullare, controlla le impostazioni del launcher</string>
@@ -139,17 +139,19 @@
     <string name="exclude_favorites">Escludi i preferiti</string>
     <string name="favorites_hide">Nascondi la barra dei preferiti</string>
     <string name="pref_hide_navbar">Nascondi la barra di navigazione</string>
-    <string name="pref_hide_navbar_desc">Nascondi la barra di navigazione e attiva la modalità immersiva per KitKat (4.4) e oltre</string>
+    <string name="pref_hide_navbar_desc">Nascondi la barra di navigazione e attiva la modalità immersiva</string>
     <string name="pref_hide_statusbar">Nascondi la barra di stato</string>
-    <string name="pref_hide_statusbar_desc">Nascondi la barra delle notifiche e attiva la modalità immersiva per KitKat (4.4) e oltre</string>
+    <string name="pref_hide_statusbar_desc">Nascondi la barra delle notifiche e attiva la modalità immersiva</string>
     <string name="shortcut_added">Collegamento aggiunto a KISS.</string>
 
     <string name="restart_desc">Risolve i problemi di temi non correttamente applicati o contatti non visualizzati.</string>
     <string name="restart_name">Riavvia KISS</string>
     <string name="restart_warn">Sei sicuro di voler riavviare KISS? Se KISS non è il tuo launcher predefinito, verrà solamente terminato.</string>
 
-    <string name="default_launcher_title">Modifica launcher impostato</string>
-    <string name="default_launcher_warn">"Dopo aver selezionato il launcher da impostare, ne verrà visualizzata la schermata principale.  Sei sicuro di voler procedere?  Nota: se non dovesse apparire l\'opzione \'Sempre\', premi il tasto Home una volta selezionato il launcher desiderato."</string>
+    <string name="default_launcher_title">Modifica launcher predefinito</string>
+    <string name="default_launcher_warn">"Dopo aver selezionato il launcher predefinito, verrà visualizzata la sua schermata iniziale.  Sei sicuro di voler procedere?
+\n
+\nNota: se non dovesse apparire l\'opzione \"Sempre\", premi il tasto \"Home\" una volta selezionato il launcher desiderato."</string>
 
     <string name="items_title" tools:ignore="PluralsCandidate">%d items</string>
     <string name="alternate_history_inputs">Elementi aggiuntivi</string>
@@ -171,9 +173,9 @@
     <!-- Default title for color picker dialog [CHAR LIMIT=30] -->
     <string name="color_picker_default_title">"Seleziona un colore"</string>
     <!-- Content description for a color square. -->
-    <string name="color_swatch_description">"Colore &lt;xliff:g id=\"COLOR_INDEX\" &gt;%1$d&lt;/xliff:g&gt;"</string>
+    <string name="color_swatch_description">Colore %1$d</string>
     <!-- Content description for a selected color square. -->
-    <string name="color_swatch_description_selected" tools:ignore="PluralsCandidate">Color %1$d selected</string>
+    <string name="color_swatch_description_selected" tools:ignore="PluralsCandidate">Colore %1$d selezionato</string>
 
     <string name="transparent_search_bar">Barra di ricerca trasparente</string>
     <string name="transparent_favorites_bar">Barra dei favoriti trasparente</string>
@@ -182,7 +184,7 @@
     <string name="rounded_list">Bordi della lista arrotondati</string>
     <string name="rounded_bars">Bordi delle barre arrotondati</string>
     <!-- Widget strings, preference id should not be translated -->
-    <string name="menu_widget_add">(BETA) Aggiungi widget</string>
+    <string name="menu_widget_add">(beta) Aggiungi widget</string>
     <string name="menu_widget_remove">Rimuovi widget</string>
     <string name="rate_the_app">Recensisci l\'app</string>
     <string name="history_settings_summary">Reimposta la cronologia, escludi applicazioni, …</string>
@@ -200,4 +202,6 @@
     <string name="permission_denied">Il permesso e\' stato rifiutato</string>
 
 <string name="colors">Colori</string>
-    </resources>
+    <string name="wp_animate_center">Centra sfondo</string>
+    <string name="unable_to_initialize_shortcuts">Impossibile inizializzare le scorciatoie. Verifica che KISS sia il launcher predefinito.</string>
+</resources>
