@@ -73,8 +73,10 @@ public class AppResult extends Result {
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!prefs.getBoolean("icons-hide", false)) {
             if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
-                icon = appIcon.getDrawable();
+                setDrawableCache(appIcon.getDrawable());
             }
+            if (!isDrawableCached())
+                setDrawableCache(MemoryCacheHelper.getCachedAppIconDrawable(className, this.appPojo.userHandle));
             this.setAsyncDrawable(appIcon);
         } else {
             appIcon.setImageDrawable(null);
