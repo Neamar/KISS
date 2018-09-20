@@ -96,7 +96,6 @@ public class FuzzyScore {
 
     /**
      * @param text string where to search
-     * @param info will hold matching results
      * @return true if each character in pattern is found sequentially within text
      */
     public MatchInfo match(CharSequence text) {

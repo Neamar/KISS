@@ -97,7 +97,7 @@ layout: default
 			<li><a class="twitter" target="_blank" href="https://twitter.com/intent/tweet?url={{ page.url | prepend: site.url | cgi_escape }}">{% include social-icon.html icon="Twitter" %} Twitter</a></li>
 			<li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | prepend: site.url | cgi_escape }}">{% include social-icon.html icon="Facebook2" %} Facebook</a></li>
 			<li><a class="google-plus" target="_blank" href="https://plus.google.com/share?url={{ page.url | prepend: site.url | cgi_escape }}">{% include social-icon.html icon="Google Plus" %} Google+</a></li>
-			<li><a class="hacker-news" target="_blank" href="http://news.ycombinator.com/submitlink?u={{ page.url | prepend: site.url | cgi_escape }}&t={{ page.title | cgi_escape | replace: "+", "%20" }}">{% include social-icon.html icon="Hacker News" %} Hacker News</a></li>
+			<li><a class="hacker-news" target="_blank" href='http://news.ycombinator.com/submitlink?u={{ page.url | prepend: site.url | cgi_escape }}&t={{ page.title | cgi_escape | replace: "+", "%20" }}'>{% include social-icon.html icon="Hacker News" %} Hacker News</a></li>
 		</ul>
 	</div>
 </div>

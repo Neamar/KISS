@@ -7,6 +7,8 @@ import android.content.ComponentName;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import java.util.List;
+
 import fr.neamar.kiss.cache.MemoryCacheHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
@@ -24,12 +26,15 @@ public class ApplicationLifecycleHandler implements Application.ActivityLifecycl
     @Override
     public void onActivityResumed(Activity activity) {
 
-        for (Pojo pojo : KissApplication.getApplication(activity).getDataHandler().getApplications()) {
-            if (!(pojo instanceof AppPojo))
-                continue;
-            AppPojo appPojo = (AppPojo) pojo;
-            ComponentName componentName = new ComponentName(appPojo.packageName, appPojo.activityName);
-            MemoryCacheHelper.cacheAppIconDrawable(activity, componentName, appPojo.userHandle);
+        List<Pojo> appPojoList = KissApplication.getApplication(activity).getDataHandler().getApplications();
+        if (appPojoList != null) {
+            for (Pojo pojo : appPojoList) {
+                if (!(pojo instanceof AppPojo))
+                    continue;
+                AppPojo appPojo = (AppPojo) pojo;
+                ComponentName componentName = new ComponentName(appPojo.packageName, appPojo.activityName);
+                MemoryCacheHelper.cacheAppIconDrawable(activity, componentName, appPojo.userHandle);
+            }
         }
     }
 

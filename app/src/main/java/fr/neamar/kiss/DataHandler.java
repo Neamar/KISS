@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -402,25 +403,31 @@ public class DataHandler extends BroadcastReceiver
      *
      * @return pojos for all applications
      */
-    public ArrayList<Pojo> getApplications() {
-        return this.getAppProvider().getAllApps();
+    @Nullable
+    public List<Pojo> getApplications() {
+        AppProvider appProvider = getAppProvider();
+        return appProvider != null ? appProvider.getAllApps() : null;
     }
 
+    @Nullable
     public ContactsProvider getContactsProvider() {
         ProviderEntry entry = this.providers.get("contacts");
         return (entry != null) ? ((ContactsProvider) entry.provider) : null;
     }
 
+    @Nullable
     public ShortcutsProvider getShortcutsProvider() {
         ProviderEntry entry = this.providers.get("shortcuts");
         return (entry != null) ? ((ShortcutsProvider) entry.provider) : null;
     }
 
+    @Nullable
     public AppProvider getAppProvider() {
         ProviderEntry entry = this.providers.get("app");
         return (entry != null) ? ((AppProvider) entry.provider) : null;
     }
 
+    @Nullable
     public SearchProvider getSearchProvider() {
         ProviderEntry entry = this.providers.get("search");
         return (entry != null) ? ((SearchProvider) entry.provider) : null;
