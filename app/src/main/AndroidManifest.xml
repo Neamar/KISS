@@ -100,6 +100,15 @@
             android:name=".SettingsActivity"
             android:label="@string/activity_setting"
             android:theme="@style/SettingTheme" />
+        <activity
+            android:name=".kustomsupport.AutoFinishTransparentActivity"
+            android:theme="@style/Theme.Transparent" />
+
+        <provider
+            android:name=".kustomsupport.Kustom5SecsProvider"
+            android:authorities="${applicationId}.kustomsupport.kustom5secsprovider"
+            android:exported="true"
+            android:grantUriPermissions="true" />
 
         <receiver
             android:name=".broadcast.LocaleChangedReceiver"
