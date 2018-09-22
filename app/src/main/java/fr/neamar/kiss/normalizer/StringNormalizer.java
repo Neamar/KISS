@@ -15,18 +15,6 @@ public class StringNormalizer {
 
     /**
      * Make the given string easier to compare by performing a number of simplifications on it
-     *
-     * @param input string input, with accents and anything else you can think of
-     * @return normalized string
-     * @see StringNormalizer#normalizeWithResult(CharSequence, boolean)
-     */
-    public static String normalize(String input) {
-        Result result = StringNormalizer.normalizeWithResult(input, false);
-        return result.toString();
-    }
-
-    /**
-     * Make the given string easier to compare by performing a number of simplifications on it
      * <p/>
      * 1. Decompose combination characters into their respective parts (see below)
      * 2. Strip all combining character marks (see below)
