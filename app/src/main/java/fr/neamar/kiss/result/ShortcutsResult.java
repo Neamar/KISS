@@ -182,7 +182,7 @@ public class ShortcutsResult extends Result {
     }
 
     @Override
-    Boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
         switch (stringId) {
             case R.string.menu_shortcut_remove:
                 launchUninstall(context, shortcutPojo);

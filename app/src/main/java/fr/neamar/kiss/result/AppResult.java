@@ -126,7 +126,7 @@ public class AppResult extends Result {
     }
 
     @Override
-    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
         switch (stringId) {
             case R.string.menu_app_details:
                 launchAppDetails(context, appPojo);
