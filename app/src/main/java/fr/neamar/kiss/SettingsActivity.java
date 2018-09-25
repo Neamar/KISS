@@ -28,6 +28,7 @@ import java.util.Set;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.broadcast.IncomingSmsHandler;
+import fr.neamar.kiss.cache.MemoryCacheHelper;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.TagsMenu;
@@ -307,6 +308,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        MemoryCacheHelper.updatePreferences(sharedPreferences);
         if (key.equalsIgnoreCase("available-search-providers")) {
             addCustomSearchProvidersPreferences(prefs);
         } else if (key.equalsIgnoreCase("icons-pack")) {

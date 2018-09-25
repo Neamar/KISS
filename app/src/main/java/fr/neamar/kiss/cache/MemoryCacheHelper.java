@@ -2,6 +2,7 @@ package fr.neamar.kiss.cache;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import fr.neamar.kiss.utils.UserHandle;
 public class MemoryCacheHelper {
 
     private static final HashMap<AppIconHandle, Drawable> sAppIconCache = new HashMap<>();
+    private static boolean sPrefNoCache = false;
 
     /**
      * If the app icon is not found in the cache we load it. Else return cache value. Synchronous function.
@@ -47,13 +49,16 @@ public class MemoryCacheHelper {
                     return null;
                 drawable = KissApplication.getApplication(context).getIconsHandler()
                         .getDrawableIconForPackage(handle.componentName, handle.userHandle);
-                sAppIconCache.put(handle, drawable);
+                if (!sPrefNoCache)
+                    sAppIconCache.put(handle, drawable);
             }
         }
         return drawable;
     }
 
     public static void cacheAppIconDrawable(@NonNull Context context, ComponentName className, UserHandle userHandle) {
+        if (sPrefNoCache)
+            return;
         AppIconHandle handle = new AppIconHandle(className, userHandle);
         if (!sAppIconCache.containsKey(handle))
             new AsyncAppIconLoad(context, handle).execute();
@@ -71,6 +76,12 @@ public class MemoryCacheHelper {
         synchronized (sAppIconCache) {
             return sAppIconCache.get(handle);
         }
+    }
+
+    public static void updatePreferences(SharedPreferences prefs) {
+        sPrefNoCache = !prefs.getBoolean("keep-icons-in-memory", false);
+        if (sPrefNoCache)
+            trimMemory();
     }
 
     private static class AsyncAppIconLoad extends AsyncTask<Void, Void, Drawable> {
