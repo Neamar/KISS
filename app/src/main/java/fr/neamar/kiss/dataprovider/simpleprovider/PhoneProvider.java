@@ -43,14 +43,6 @@ public class PhoneProvider implements IProvider {
         return id.startsWith(PHONE_SCHEME);
     }
 
-    private ArrayList<Pojo> getResults(String query) {
-        ArrayList<Pojo> pojos = new ArrayList<>();
-
-
-
-        return pojos;
-    }
-
     public Pojo findById(String id) {
         return getResult(id.replaceFirst(Pattern.quote(PHONE_SCHEME), ""));
     }

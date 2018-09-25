@@ -88,7 +88,7 @@ public abstract class Result {
      */
     public abstract View display(Context context, int position, View convertView, FuzzyScore fuzzyScore);
 
-    public boolean displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
+    public void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
         SpannableString enriched = new SpannableString(text);
         int primaryColor = UIColors.getPrimaryColor(context);
 
@@ -101,8 +101,6 @@ public abstract class Result {
             );
         }
         view.setText(enriched);
-
-        return true;
     }
 
     public boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
@@ -207,7 +205,7 @@ public abstract class Result {
      *
      * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
      */
-    Boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId) {
+    boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId) {
         switch (stringId) {
             case R.string.menu_remove:
                 removeItem(context, parent);

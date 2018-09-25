@@ -59,7 +59,7 @@ public class PhoneResult extends Result {
     }
 
     @Override
-    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
         switch (stringId) {
             case R.string.menu_phone_create:
                 // Create a new contact with this phone number

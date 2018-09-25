@@ -136,7 +136,7 @@ public class ContactsResult extends Result {
     }
 
     @Override
-    protected Boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
         switch (stringId) {
             case R.string.menu_contact_copy_phone:
                 copyPhone(context, contactPojo);
