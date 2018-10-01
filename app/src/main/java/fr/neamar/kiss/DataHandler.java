@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,9 +20,11 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
@@ -35,6 +38,7 @@ import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.forwarder.Favorites;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
@@ -278,7 +282,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context        android context
      * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @param smartHistory   Recency vs Frecency
+     * @param historyMode Recency vs Frecency vs Frequency
      * @param itemsToExclude Items to exclude from history
      * @return pojos in recent history
      */
@@ -360,22 +364,32 @@ public class DataHandler extends BroadcastReceiver
         }
     }
 
-
-    public void addToExcluded(String packageName, UserHandle user) {
-        packageName = user.addUserSuffixToString(packageName, '#');
-
-        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("excluded-apps-list", context.getPackageName() + ";");
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("excluded-apps-list", excludedAppList + packageName + ";").apply();
+    @NonNull
+    public Set<String> getExcluded() {
+        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps", null);
+        if (excluded == null) {
+            excluded = new HashSet<>();
+            excluded.add(context.getPackageName());
+        }
+        return excluded;
     }
 
-    public void removeFromExcluded(String packageName, UserHandle user) {
-        packageName = user.addUserSuffixToString(packageName, '#');
+    public void addToExcluded(AppPojo app) {
+        Set<String> excluded = getExcluded();
+        excluded.add(app.getComponentName());
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
+    }
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
-        String excluded = prefs.getString("excluded-apps-list", context.getPackageName() + ";");
-        prefs.edit().putString("excluded-apps-list", excluded.replaceAll(packageName + ";", "")).apply();
+    public void removeFromExcluded(String packageName) {
+        Set<String> excluded = getExcluded();
+        Set<String> newExcluded = new HashSet<String>();
+        for (String excludedItem : excluded) {
+            if (!excludedItem.contains(packageName + "/")) {
+                newExcluded.add(excludedItem);
+            }
+        }
+
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", newExcluded).apply();
     }
 
     public void removeFromExcluded(UserHandle user) {
@@ -384,18 +398,15 @@ public class DataHandler extends BroadcastReceiver
             return;
         }
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
-        String[] excludedList = prefs.getString("excluded-apps-list", context.getPackageName() + ";").split(";");
-
-        StringBuilder excluded = new StringBuilder();
-        for (String excludedItem : excludedList) {
+        Set<String> excluded = getExcluded();
+        Set<String> newExcluded = new HashSet<String>();
+        for (String excludedItem : excluded) {
             if (!user.hasStringUserSuffix(excludedItem, '#')) {
-                excluded.append(excludedItem)
-                        .append(";");
+                newExcluded.add(excludedItem);
             }
         }
 
-        prefs.edit().putString("excluded-apps-list", excluded.toString()).apply();
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", newExcluded).apply();
     }
 
     /**
@@ -497,7 +508,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context mainActivity context
      * @param id      the app you want to get the position of.
-     * @return
+     * @return favorite position
      */
     public int getFavoritePosition(MainActivity context, String id) {
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).

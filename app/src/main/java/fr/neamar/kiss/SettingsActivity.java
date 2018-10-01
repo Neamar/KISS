@@ -57,7 +57,7 @@ public class SettingsActivity extends PreferenceActivity implements
             setTheme(R.style.SettingThemeDark);
         }
 
-        if(prefs.contains("require-settings-update")) {
+        if (prefs.contains("require-settings-update")) {
             // This flag will be used when the settings activity needs to restart,
             // but the value will be set to true
             // and the sharedpreferencesListener only triggers on value change
@@ -92,7 +92,7 @@ public class SettingsActivity extends PreferenceActivity implements
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             removePreference("colors-section", "black-notification-icons");
         }
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             removePreference("history-hide-section", "pref-hide-navbar");
             removePreference("history-hide-section", "pref-hide-statusbar");
         }
@@ -109,7 +109,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        if(item.getItemId() == R.id.help) {
+        if (item.getItemId() == R.id.help) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("http://help.kisslauncher.com"));
             startActivity(intent);
@@ -125,16 +125,16 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
-        String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
-        String[] apps = excludedAppList.split(";");
+        Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcluded();
+        String[] apps = (String[]) excludedAppList.toArray(new String[0]);
 
         multiSelectList.setEntries(apps);
         multiSelectList.setEntryValues(apps);
         multiSelectList.setValues(new HashSet<>(Arrays.asList(apps)));
     }
 
-    private boolean hasNoExcludedApps(final SharedPreferences prefs) {
-        String excludedAppList = prefs.getString("excluded-apps-list", "").replace(this.getPackageName() + ";", "");
+    private boolean hasNoExcludedApps() {
+        Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcluded();
         return excludedAppList.isEmpty();
     }
 
@@ -155,14 +155,9 @@ public class SettingsActivity extends PreferenceActivity implements
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 Set<String> appListToBeExcluded = (HashSet<String>) newValue;
 
-                StringBuilder builder = new StringBuilder();
-                for (String s : appListToBeExcluded) {
-                    builder.append(s).append(";");
-                }
-
-                prefs.edit().putString("excluded-apps-list", builder.toString() + SettingsActivity.this.getPackageName() + ";").apply();
+                prefs.edit().putStringSet("excluded-apps", appListToBeExcluded).apply();
                 loadExcludedAppsToPreference(multiPreference);
-                if (hasNoExcludedApps(prefs)) {
+                if (hasNoExcludedApps()) {
                     multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
                 }
 
@@ -174,13 +169,13 @@ public class SettingsActivity extends PreferenceActivity implements
                 return false;
             }
         });
-        if (hasNoExcludedApps(prefs)) {
+        if (hasNoExcludedApps()) {
             multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
         }
     }
 
     private void addCustomSearchProvidersPreferences(SharedPreferences prefs) {
-        if(prefs.getStringSet("selected-search-provider-names", null) == null) {
+        if (prefs.getStringSet("selected-search-provider-names", null) == null) {
             // If null, it means this setting has never been accessed before
             // In this case, null != [] ([] happens when the user manually unselected every single option)
             // So, when null, we know it's the first time opening this setting and we can write the default value.
@@ -312,7 +307,7 @@ public class SettingsActivity extends PreferenceActivity implements
         } else if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
         } else if (key.equalsIgnoreCase("enable-sms-history")) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS)
                     != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{android.Manifest.permission.RECEIVE_SMS},
                         SettingsActivity.PERMISSION_RECEIVE_SMS);
@@ -320,7 +315,7 @@ public class SettingsActivity extends PreferenceActivity implements
             }
             PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, sharedPreferences.getBoolean(key, false));
         } else if (key.equalsIgnoreCase("enable-phone-history")) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
                     != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{android.Manifest.permission.READ_PHONE_STATE},
                         SettingsActivity.PERMISSION_READ_PHONE_STATE);
@@ -329,15 +324,14 @@ public class SettingsActivity extends PreferenceActivity implements
             PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
         } else if (key.equalsIgnoreCase("primary-color")) {
             UIColors.clearPrimaryColorCache(this);
-        }
-        else if(key.equalsIgnoreCase("number-of-display-elements")) {
+        } else if (key.equalsIgnoreCase("number-of-display-elements")) {
             QuerySearcher.clearMaxResultCountCache();
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
             requireFullRestart = true;
 
-            if(settingsRequiringRestartForSettingsActivity.contains(key)) {
+            if (settingsRequiringRestartForSettingsActivity.contains(key)) {
                 // Kill this activity too, and restart
                 recreate();
             }
@@ -358,26 +352,23 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(grantResults.length == 0) {
+        if (grantResults.length == 0) {
             return;
         }
 
-        if(requestCode == PERMISSION_READ_PHONE_STATE) {
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == PERMISSION_READ_PHONE_STATE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-phone-history", false));
-            }
-            else {
+            } else {
                 // You don't want to give us permission, that's fine. Revert the toggle.
                 SwitchPreference p = (SwitchPreference) findPreference("enable-phone-history");
                 p.setChecked(false);
                 Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
             }
-        }
-        else if(requestCode == PERMISSION_RECEIVE_SMS) {
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        } else if (requestCode == PERMISSION_RECEIVE_SMS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
-            }
-            else {
+            } else {
                 // You don't want to give us permission, that's fine. Revert the toggle.
                 SwitchPreference p = (SwitchPreference) findPreference("enable-sms-history");
                 p.setChecked(false);
@@ -430,22 +421,21 @@ public class SettingsActivity extends PreferenceActivity implements
         lp.setEntryValues(entryValues);
     }
 
-	private void addHiddenTagsTogglesInformation( SharedPreferences prefs )
-	{
-        Set<String> menuTags = TagsMenu.getPrefTags( prefs, getApplicationContext() );
-        MultiSelectListPreference selectListPreference = (MultiSelectListPreference)findPreference( "pref-toggle-tags-list" );
+    private void addHiddenTagsTogglesInformation(SharedPreferences prefs) {
+        Set<String> menuTags = TagsMenu.getPrefTags(prefs, getApplicationContext());
+        MultiSelectListPreference selectListPreference = (MultiSelectListPreference) findPreference("pref-toggle-tags-list");
         Set<String> tagsSet = KissApplication.getApplication(this)
-                                             .getDataHandler()
-                                             .getTagsHandler()
-                                             .getAllTagsAsSet();
+                .getDataHandler()
+                .getTagsHandler()
+                .getAllTagsAsSet();
 
         // append tags that are available to toggle now
-        tagsSet.addAll( menuTags );
+        tagsSet.addAll(menuTags);
 
-        String[] tagArray = tagsSet.toArray( new String[0] );
+        String[] tagArray = tagsSet.toArray(new String[0]);
         Arrays.sort(tagArray);
-        selectListPreference.setEntries( tagArray );
-        selectListPreference.setEntryValues( tagArray );
-        selectListPreference.setValues( menuTags );
-	}
+        selectListPreference.setEntries(tagArray);
+        selectListPreference.setEntryValues(tagArray);
+        selectListPreference.setValues(menuTags);
+    }
 }

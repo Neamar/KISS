@@ -6,4 +6,8 @@ public class AppPojo extends PojoWithTags {
     public String packageName;
     public String activityName;
     public UserHandle userHandle;
+
+    public String getComponentName() {
+        return userHandle.addUserSuffixToString(packageName + "/" + activityName, '#');
+    }
 }

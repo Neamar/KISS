@@ -10,12 +10,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.UserManager;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
@@ -39,13 +37,11 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         ArrayList<AppPojo> apps = new ArrayList<>();
 
         Context ctx = context.get();
-        if(ctx == null) {
+        if (ctx == null) {
             return apps;
         }
 
-        String excludedAppList = PreferenceManager.getDefaultSharedPreferences(ctx).
-                getString("excluded-apps-list", ctx.getPackageName() + ";");
-        List excludedApps = Arrays.asList(excludedAppList.split(";"));
+        Set<String> excludedAppList = KissApplication.getApplication(ctx).getDataHandler().getExcluded();
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             UserManager manager = (UserManager) ctx.getSystemService(Context.USER_SERVICE);
@@ -58,21 +54,22 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
 
                     String fullPackageName = user.addUserSuffixToString(appInfo.packageName, '#');
-                    if (!excludedApps.contains(fullPackageName)) {
-                        AppPojo app = new AppPojo();
+                    AppPojo app = new AppPojo();
 
-                        app.id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
+                    app.id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
 
-                        app.setName(activityInfo.getLabel().toString());
+                    app.setName(activityInfo.getLabel().toString());
 
-                        app.packageName = appInfo.packageName;
-                        app.activityName = activityInfo.getName();
+                    app.packageName = appInfo.packageName;
+                    app.activityName = activityInfo.getName();
 
-                        // Wrap Android user handle in opaque container that will work across
-                        // all Android versions
-                        app.userHandle = user;
+                    // Wrap Android user handle in opaque container that will work across
+                    // all Android versions
+                    app.userHandle = user;
 
-                        app.setTags(tagsHandler.getTags(app.id));
+                    app.setTags(tagsHandler.getTags(app.id));
+
+                    if (!excludedAppList.contains(app.getComponentName())) {
                         apps.add(app);
                     }
                 }
@@ -85,18 +82,18 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
             for (ResolveInfo info : manager.queryIntentActivities(mainIntent, 0)) {
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
-                if (!excludedApps.contains(appInfo.packageName)) {
-                    AppPojo app = new AppPojo();
+                AppPojo app = new AppPojo();
 
-                    app.id = pojoScheme + appInfo.packageName + "/" + info.activityInfo.name;
-                    app.setName(info.loadLabel(manager).toString());
+                app.id = pojoScheme + appInfo.packageName + "/" + info.activityInfo.name;
+                app.setName(info.loadLabel(manager).toString());
 
-                    app.packageName = appInfo.packageName;
-                    app.activityName = info.activityInfo.name;
+                app.packageName = appInfo.packageName;
+                app.activityName = info.activityInfo.name;
 
-                    app.userHandle = new UserHandle();
+                app.userHandle = new UserHandle();
 
-                    app.setTags(tagsHandler.getTags(app.id));
+                app.setTags(tagsHandler.getTags(app.id));
+                if (!excludedAppList.contains(app.getComponentName())) {
                     apps.add(app);
                 }
             }
@@ -106,8 +103,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps");
 
         // cache all app icons
-        for ( AppPojo app : apps )
-        {
+        for (AppPojo app : apps) {
             MemoryCacheHelper.cacheAppIconDrawable(ctx, new ComponentName(app.packageName, app.activityName), app.userHandle);
         }
 
