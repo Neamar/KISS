@@ -8,7 +8,6 @@ import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.forwarder.Favorites;
 import fr.neamar.kiss.pojo.Pojo;
 
 /**
@@ -42,7 +41,7 @@ public class HistorySearcher extends Searcher {
         // Gather favorites
         ArrayList<Pojo> favoritesPojo = new ArrayList<>(0);
         if (excludeFavorites) {
-            favoritesPojo = KissApplication.getApplication(activity).getDataHandler().getFavorites(Favorites.TRY_TO_RETRIEVE);
+            favoritesPojo = KissApplication.getApplication(activity).getDataHandler().getFavorites();
         }
 
         List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler().getHistory(activity, getMaxResultCount(), historyMode, favoritesPojo);

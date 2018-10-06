@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -12,8 +13,10 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.HapticFeedbackConstants;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -37,19 +40,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     /**
      * IDs for the favorites buttons
      */
-    private final static int[] FAV_IDS = new int[]{R.id.favorite0, R.id.favorite1, R.id.favorite2, R.id.favorite3, R.id.favorite4, R.id.favorite5};
-    private View[] favoritesViews;
-
-    /**
-     * Number of favorites that can be displayed
-     */
-    public final static int FAVORITES_COUNT = FAV_IDS.length;
-
-    /**
-     * Number of favorites to retrieve.
-     * We need to pad this number to account for removed items still in history
-     */
-    public final static int TRY_TO_RETRIEVE = FAVORITES_COUNT + 2;
+    private ArrayList<ImageView> favoritesViews = new ArrayList<>();
 
     /**
      * Currently displayed favorites
@@ -69,7 +60,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     private final int MOVE_SENSITIVITY = 5; // How much you need to move your finger to be considered "moving"
     private final int LONG_PRESS_DELAY = 250; // How long to hold your finger in place to trigger the app menu.
 
-    // Use so we dont over process on the drag events.
+    // Use so we don't over process on the drag events.
     private boolean mDragEnabled = true;
     private boolean isDragging = false;
     private boolean contextMenuShown = false;
@@ -89,14 +80,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             // Hide the external bar
             mainActivity.findViewById(R.id.externalFavoriteBar).setVisibility(View.GONE);
         }
-
-        favoritesViews = new View[FAV_IDS.length];
-        for (int i = 0; i < FAV_IDS.length; i++) {
-            favoritesViews[i] = mainActivity.favoritesBar.findViewById(FAV_IDS[i]);
-        }
-
-        registerTouchOnFavorites();
-        registerDragOnFavorites();
 
         if (prefs.getBoolean("firstRun", true)) {
             // It is the first run. Make sure this is not an update by checking if history is empty
@@ -131,18 +114,33 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     void onFavoriteChange() {
-        int[] favoritesIds = FAV_IDS;
-
         favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler()
-                .getFavorites(TRY_TO_RETRIEVE);
+                .getFavorites();
 
         favCount = favoritesPojo.size();
+        LayoutInflater layoutInflater = null;
 
         // Don't look for items after favIds length, we won't be able to display them
-        for (int i = 0; i < Math.min(favoritesIds.length, favoritesPojo.size()); i++) {
+        for (int i = 0; i < favoritesPojo.size(); i++) {
             Pojo pojo = favoritesPojo.get(i);
 
-            ImageView image = (ImageView) favoritesViews[i];
+            ImageView image;
+
+            if (favoritesViews.size() <= i) {
+                if (layoutInflater == null) {
+                    layoutInflater = (LayoutInflater) mainActivity.favoritesBar.getContext()
+                            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                }
+                assert layoutInflater != null;
+                image = (ImageView) layoutInflater.inflate(R.layout.favorite_item, (ViewGroup) mainActivity.favoritesBar, false);
+                image.setTag(i);
+                image.setOnDragListener(this);
+                image.setOnTouchListener(this);
+                ((ViewGroup) mainActivity.favoritesBar).addView(image);
+                favoritesViews.add(image);
+            } else {
+                image = (ImageView) favoritesViews.get(i);
+            }
 
             Result result = Result.fromPojo(mainActivity, pojo);
             Drawable drawable = result.getDrawable(mainActivity);
@@ -162,8 +160,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
 
         // Hide empty favorites (not enough favorites yet)
-        for (int i = favoritesPojo.size(); i < favoritesIds.length; i++) {
-            favoritesViews[i].setVisibility(View.GONE);
+        for (int i = favoritesPojo.size(); i < favoritesViews.size(); i++) {
+            favoritesViews.get(i).setVisibility(View.GONE);
         }
 
         mDragEnabled = favCount > 1;
@@ -250,17 +248,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
-    private void registerTouchOnFavorites() {
-        for (View v : favoritesViews) {
-            v.setOnTouchListener(this);
-        }
-    }
-    private void registerDragOnFavorites() {
-        for (View v : favoritesViews) {
-            v.setOnDragListener(this);
-        }
-    }
-
     private Result getFavResult(int favNumber) {
         if (favNumber >= favoritesPojo.size()) {
             // Clicking on a favorite before everything is loaded.
@@ -275,7 +262,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     @Override
     public void onClick(View v) {
-        int favNumber = Integer.parseInt((String) v.getTag());
+        int favNumber = (int) v.getTag();
         final Result result = getFavResult(favNumber);
         result.fastLaunch(mainActivity, v);
         v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
@@ -284,7 +271,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     @Override
     public boolean onLongClick(View v) {
-        int favNumber = Integer.parseInt((String) v.getTag());
+        int favNumber = (int) v.getTag();
         final Result result = getFavResult(favNumber);
         ListPopup popup = result.getPopupMenu(mainActivity, mainActivity.adapter, v);
         mainActivity.registerPopup(popup);
@@ -357,7 +344,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     return true;
                 }
 
-                overFavIndex = Integer.parseInt((String) v.getTag());
+                overFavIndex = (int) v.getTag();
                 overApp = favoritesPojo.get(overFavIndex);
 
                 currentX = (event.getX() != 0.0f) ? event.getX() : currentX;
@@ -387,7 +374,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     break;
                 }
 
-                int draggedFavIndex = Integer.parseInt((String) draggedView.getTag());
+                int draggedFavIndex = (int) draggedView.getTag();
                 final Pojo draggedApp = favoritesPojo.get(draggedFavIndex);
 
                 int left = v.getLeft();

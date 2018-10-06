@@ -37,7 +37,6 @@ import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
-import fr.neamar.kiss.forwarder.Favorites;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
@@ -448,24 +447,23 @@ public class DataHandler extends BroadcastReceiver
      * Return most used items.<br />
      * May return null if no items were ever selected (app first use)
      *
-     * @param limit max number of items to retrieve. You may end with less items if favorites contains non existing items.
      * @return favorites' pojo
      */
-    public ArrayList<Pojo> getFavorites(int limit) {
-        ArrayList<Pojo> favorites = new ArrayList<>(limit);
+    public ArrayList<Pojo> getFavorites() {
+        ArrayList<Pojo> favorites = new ArrayList<>();
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
+
+        // We might skip some later but this avoid to expand memory multiple times
+        favorites.ensureCapacity(favAppsList.size());
 
         // Find associated items
         for (int i = 0; i < favAppsList.size(); i++) {
             Pojo pojo = getPojo(favAppsList.get(i));
             if (pojo != null) {
                 favorites.add(pojo);
-            }
-            if (favorites.size() >= limit) {
-                break;
             }
         }
 
@@ -530,9 +528,6 @@ public class DataHandler extends BroadcastReceiver
         }
 
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        if (favAppsList.size() >= Favorites.FAVORITES_COUNT) {
-            favApps = favApps.substring(favApps.indexOf(";") + 1);
-        }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps + id + ";").apply();
