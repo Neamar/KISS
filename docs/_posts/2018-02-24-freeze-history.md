@@ -6,7 +6,7 @@ description: "How to freeze history in order to display more favorites"
 type: Document
 ---
 
-KISS can display up to 5 favorites. If this is not enough for you, there is a way to freeze the history to always display the same results when you open KISS.
+If you don't like adding infinite favorites (since they get smaller and smaller), there is a way to freeze the history to always display the same results when you open KISS.
 
 The best way to use this feature is to reset all your history to start from a clean slate (`⋮, KISS Settings, History settings, Reset history`).
 
