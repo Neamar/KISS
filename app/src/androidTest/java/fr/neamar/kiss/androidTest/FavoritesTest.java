@@ -1,6 +1,8 @@
 package fr.neamar.kiss.androidTest;
 
-import android.test.suitebuilder.annotation.LargeTest;
+import android.support.test.filters.LargeTest;
+
+import org.junit.Test;
 
 import fr.neamar.kiss.R;
 
@@ -15,21 +17,26 @@ import static org.hamcrest.Matchers.not;
 @LargeTest
 public class FavoritesTest extends AbstractMainActivityTest {
     private void enableInternalBar() {
-        getActivity().prefs.edit().putBoolean("enable-favorites-bar", false).apply();
-        getInstrumentation().runOnMainSync(new Runnable() {
-            @Override
-            public void run() {
-                getActivity().recreate();
-            }
-        });
-        setActivity(null);
-        getActivity();
+        mActivityRule.getActivity().prefs.edit().putBoolean("enable-favorites-bar", false).apply();
+        try {
+            mActivityRule.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mActivityRule.getActivity().recreate();
+                }
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        mActivityRule.getActivity();
     }
 
+    @Test
     public void testExternalBarDisplayed() {
         onView(withId(R.id.externalFavoriteBar)).check(matches(isDisplayed()));
     }
 
+    @Test
     public void testExternalBarHiddenWhenViewingAllApps() {
         onView(withId(R.id.launcherButton)).perform(click());
         onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
@@ -37,11 +44,13 @@ public class FavoritesTest extends AbstractMainActivityTest {
         onView(withId(R.id.externalFavoriteBar)).check(matches(isDisplayed()));
     }
 
+    @Test
     public void testInternalBarHiddenWhenViewingAllAppsWithExternalModeOn() {
         onView(withId(R.id.launcherButton)).perform(click());
         onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
     }
 
+    @Test
     public void testExternalBarHiddenOnSearch() {
         onView(withId(R.id.searchEditText)).perform(typeText("Test"));
         onView(withId(R.id.externalFavoriteBar)).check(matches(not(isDisplayed())));
@@ -49,6 +58,7 @@ public class FavoritesTest extends AbstractMainActivityTest {
         onView(withId(R.id.externalFavoriteBar)).check(matches(isDisplayed()));
     }
 
+    @Test
     public void testInternalBarHidden() {
         enableInternalBar();
 
@@ -56,6 +66,7 @@ public class FavoritesTest extends AbstractMainActivityTest {
         onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
     }
 
+    @Test
     public void testInternalBarHiddenOnSearch() {
         onView(withId(R.id.searchEditText)).perform(typeText("Test"));
         onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
@@ -63,6 +74,7 @@ public class FavoritesTest extends AbstractMainActivityTest {
         onView(withId(R.id.embeddedFavoritesBar)).check(matches(not(isDisplayed())));
     }
 
+    @Test
     public void testInternalBarDisplayedWhenViewingAllApps() {
         enableInternalBar();
         onView(withId(R.id.launcherButton)).perform(click());

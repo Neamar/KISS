@@ -2,48 +2,45 @@ package fr.neamar.kiss.androidTest;
 
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.test.InstrumentationRegistry;
-import android.test.ActivityInstrumentationTestCase2;
+import android.support.test.rule.ActivityTestRule;
 import android.view.WindowManager;
 
 import org.junit.Before;
+import org.junit.Rule;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 
-abstract class AbstractMainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
+import static android.support.test.InstrumentationRegistry.getInstrumentation;
 
-    AbstractMainActivityTest() {
-        super(MainActivity.class);
-    }
+abstract class AbstractMainActivityTest {
+    @Rule
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
 
     @Before
-    public void setUp() throws Exception {
-        super.setUp();
-        injectInstrumentation(InstrumentationRegistry.getInstrumentation());
-
+    public void setUp() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getInstrumentation().getUiAutomation().executeShellCommand(
-                    "pm grant " + getActivity().getPackageName()
+                    "pm grant " + mActivityRule.getActivity().getPackageName()
                             + " android.permission.READ_CONTACTS");
         }
 
-        getActivity();
+        mActivityRule.getActivity();
 
         // Initialize to default preferences
-        KissApplication.getApplication(getActivity()).getDataHandler().clearHistory();
-        PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().clear().apply();
-        PreferenceManager.setDefaultValues(getActivity(), R.xml.preferences, true);
+        KissApplication.getApplication(mActivityRule.getActivity()).getDataHandler().clearHistory();
+        PreferenceManager.getDefaultSharedPreferences(mActivityRule.getActivity()).edit().clear().apply();
+        PreferenceManager.setDefaultValues(mActivityRule.getActivity(), R.xml.preferences, true);
 
         // Remove lock screen
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
-                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                mActivityRule.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                         WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
         };
-        getActivity().runOnUiThread(wakeUpDevice);
+        mActivityRule.getActivity().runOnUiThread(wakeUpDevice);
     }
 }
