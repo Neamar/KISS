@@ -571,7 +571,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Do not display animation if launcher button is already visible
         if (!display && launcherButton.getVisibility() == View.INVISIBLE) {
-            launcherButton.setVisibility(View.VISIBLE);
+            if (!prefs.getBoolean("pref-hide-circle", false)) {
+                launcherButton.setVisibility(View.VISIBLE);
+            }
+            else {
+                launcherButton.setVisibility(View.INVISIBLE);
+            }
 
             // Animate transition from loader to launch button
             launcherButton.setAlpha(0);
