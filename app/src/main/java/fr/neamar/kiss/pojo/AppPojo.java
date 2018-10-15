@@ -3,9 +3,9 @@ package fr.neamar.kiss.pojo;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class AppPojo extends PojoWithTags {
-    public String packageName;
-    public String activityName;
-    public UserHandle userHandle;
+    public final String packageName;
+    public final String activityName;
+    public final UserHandle userHandle;
 
     public AppPojo(String packageName, String activityName, UserHandle userHandle) {
         this.packageName = packageName;
