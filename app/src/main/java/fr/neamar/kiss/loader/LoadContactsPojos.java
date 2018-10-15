@@ -88,7 +88,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     }
 
                     ContactsPojo contact = new ContactsPojo(lookupKey, phone, normalizedPhone, icon,
-                            primary, timesContacted, starred);
+                            primary, timesContacted, starred, false);
 
                     contact.setName(name);
 

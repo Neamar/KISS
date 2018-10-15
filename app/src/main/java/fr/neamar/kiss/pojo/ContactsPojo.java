@@ -22,14 +22,15 @@ public class ContactsPojo extends Pojo {
     public final Boolean starred;
 
     // Is this number a home (local) number ?
-    public final Boolean homeNumber = false;
+    public final Boolean homeNumber;
 
     public StringNormalizer.Result normalizedNickname = null;
 
     private String nickname = "";
 
     public ContactsPojo(String lookupKey, String phone, StringNormalizer.Result normalizedPhone,
-                        Uri icon, Boolean primary, int timesContacted, Boolean starred) {
+                        Uri icon, Boolean primary, int timesContacted, Boolean starred,
+                        Boolean homeNumber) {
         this.lookupKey = lookupKey;
         this.phone = phone;
         this.normalizedPhone = normalizedPhone;
@@ -37,6 +38,7 @@ public class ContactsPojo extends Pojo {
         this.primary = primary;
         this.timesContacted = timesContacted;
         this.starred = starred;
+        this.homeNumber = homeNumber;
     }
 
     public String getNickname() {
