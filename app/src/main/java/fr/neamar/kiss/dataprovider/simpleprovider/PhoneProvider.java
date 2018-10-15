@@ -48,9 +48,8 @@ public class PhoneProvider implements IProvider {
     }
 
     private Pojo getResult(String phoneNumber) {
-        PhonePojo pojo = new PhonePojo();
+        PhonePojo pojo = new PhonePojo(phoneNumber);
         pojo.id = PHONE_SCHEME + phoneNumber;
-        pojo.phone = phoneNumber;
         pojo.relevance = 20;
         pojo.setName(phoneNumber, false);
         return pojo;
