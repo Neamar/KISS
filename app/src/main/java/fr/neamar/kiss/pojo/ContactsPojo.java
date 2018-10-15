@@ -5,21 +5,21 @@ import android.net.Uri;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public class ContactsPojo extends Pojo {
-    public String lookupKey = "";
+    public final String lookupKey;
 
-    public String phone = "";
+    public final String phone;
     //phone without special characters
-    public StringNormalizer.Result normalizedPhone = null;
-    public Uri icon = null;
+    public final StringNormalizer.Result normalizedPhone;
+    public final Uri icon;
 
     // Is this a primary phone?
-    public Boolean primary = false;
+    public final Boolean primary;
 
     // How many times did we phone this contact?
-    public int timesContacted = 0;
+    public final int timesContacted;
 
     // Is this contact starred ?
-    public Boolean starred = false;
+    public final Boolean starred;
 
     // Is this number a home (local) number ?
     public final Boolean homeNumber = false;
