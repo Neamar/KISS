@@ -52,12 +52,9 @@ public class SearchProvider extends Provider<SearchPojo> {
         if (m.find()) {
             String guessedUrl = URLUtil.guessUrl(query);
             if (URLUtil.isValidUrl(guessedUrl)) {
-                SearchPojo pojo = new SearchPojo();
-                pojo.query = "";
+                SearchPojo pojo = new SearchPojo("", guessedUrl, SearchPojo.URL_QUERY);
                 pojo.relevance = 50;
                 pojo.setName(guessedUrl, false);
-                pojo.url = guessedUrl;
-                pojo.type = SearchPojo.URL_QUERY;
                 records.add(pojo);
             }
         }
