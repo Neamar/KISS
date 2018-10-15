@@ -9,17 +9,33 @@ public class ShortcutsPojo extends PojoWithTags {
 
     public String packageName;
     public String resourceName;
-    public String intentUri;
+    public String intentUri;// TODO: 15/10/18 Use boolean instead of prefix for Oreo shortcuts 
     public Bitmap icon;
 
-    public boolean isOreoShortcut() {
-        // Oreo shortcuts do not have a real intentUri, instead they have a shortcut id
-        // and the Android system is responsible for safekeeping the Intent
-        return intentUri.contains(ShortcutsPojo.OREO_PREFIX);
+    public ShortcutsPojo(String packageName, String resourceName, String intentUri, Bitmap icon) {
+        this.packageName = packageName;
+        this.resourceName = resourceName;
+        this.intentUri = intentUri;
+        this.icon = icon;
     }
 
-    public void setOreoId(String id) {
-        intentUri = ShortcutsPojo.OREO_PREFIX + id;
+    /**
+     * Oreo shortcuts do not have a real intentUri, instead they have a shortcut id
+     * and the Android system is responsible for safekeeping the Intent
+     */
+    public ShortcutsPojo(String packageName, String oreoId, Bitmap icon) {
+        this.packageName = packageName;
+        this.resourceName = null;
+        this.intentUri = ShortcutsPojo.OREO_PREFIX + oreoId;
+        this.icon = icon;
+    }
+
+    /**
+     * Oreo shortcuts do not have a real intentUri, instead they have a shortcut id
+     * and the Android system is responsible for safekeeping the Intent
+     */
+    public boolean isOreoShortcut() {
+        return intentUri.contains(ShortcutsPojo.OREO_PREFIX);
     }
 
     public String getOreoId() {

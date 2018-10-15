@@ -34,16 +34,15 @@ public class InstallShortcutHandler extends BroadcastReceiver {
             target.setAction(Intent.ACTION_VIEW);
         }
 
-        ShortcutsPojo pojo = createPojo(name);
-
         // convert target intent to parsable uri
-        pojo.intentUri = target.toUri(0);
+        String intentUri = target.toUri(0);
+        String packageName = null;
+        String resourceName = null;
 
         // get embedded icon
         Bitmap icon = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON);
         if (icon != null) {
             Log.d(TAG, "Shortcut " + name + " has embedded icon");
-            pojo.icon = icon;
         } else {
             ShortcutIconResource sir = data.getParcelableExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE);
 
@@ -51,8 +50,8 @@ public class InstallShortcutHandler extends BroadcastReceiver {
                 Log.d(TAG, "Received icon package name " + sir.packageName);
                 Log.d(TAG, "Received icon resource name " + sir.resourceName);
 
-                pojo.packageName = sir.packageName;
-                pojo.resourceName = sir.resourceName;
+                packageName = sir.packageName;
+                resourceName = sir.resourceName;
             } else {
                 //invalid shortcut
                 Log.d(TAG, "Invalid shortcut " + name + ", ignoring");
@@ -61,7 +60,7 @@ public class InstallShortcutHandler extends BroadcastReceiver {
         }
 
         try {
-            Intent intent = Intent.parseUri(pojo.intentUri, 0);
+            Intent intent = Intent.parseUri(intentUri, 0);
             if (intent.getCategories() != null && intent.getCategories().contains(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN.equals(intent.getAction())) {
                 // The Play Store has an option to create shortcut for new apps,
                 // However, KISS already displays all apps, so we discard the shortcut to avoid duplicates.
@@ -75,16 +74,11 @@ public class InstallShortcutHandler extends BroadcastReceiver {
             return;
         }
 
-        dh.addShortcut(pojo);
-    }
-
-    private ShortcutsPojo createPojo(String name) {
-        ShortcutsPojo pojo = new ShortcutsPojo();
+        ShortcutsPojo pojo = new ShortcutsPojo(packageName, resourceName, intentUri, icon);
 
         pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase(Locale.ROOT);
         pojo.setName(name);
 
-        return pojo;
+        dh.addShortcut(pojo);
     }
-
 }
