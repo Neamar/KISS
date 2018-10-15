@@ -28,6 +28,17 @@ public class ContactsPojo extends Pojo {
 
     private String nickname = "";
 
+    public ContactsPojo(String lookupKey, String phone, StringNormalizer.Result normalizedPhone,
+                        Uri icon, Boolean primary, int timesContacted, Boolean starred) {
+        this.lookupKey = lookupKey;
+        this.phone = phone;
+        this.normalizedPhone = normalizedPhone;
+        this.icon = icon;
+        this.primary = primary;
+        this.timesContacted = timesContacted;
+        this.starred = starred;
+    }
+
     public String getNickname() {
         return nickname;
     }
