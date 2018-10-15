@@ -7,10 +7,10 @@ public class ShortcutsPojo extends PojoWithTags {
     public static final String SCHEME = "shortcut://";
     public static final String OREO_PREFIX = "oreo-shortcut/";
 
-    public String packageName;
-    public String resourceName;
-    public String intentUri;// TODO: 15/10/18 Use boolean instead of prefix for Oreo shortcuts 
-    public Bitmap icon;
+    public final String packageName;
+    public final String resourceName;
+    public final String intentUri;// TODO: 15/10/18 Use boolean instead of prefix for Oreo shortcuts
+    public final Bitmap icon;
 
     public ShortcutsPojo(String packageName, String resourceName, String intentUri, Bitmap icon) {
         this.packageName = packageName;
