@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -60,13 +62,14 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
         return settings;
     }
 
-    private SettingsPojo createPojo(String name, String packageName, String settingName, int resId) {
+    private SettingsPojo createPojo(String name, String packageName, String settingName,
+                                    @DrawableRes int resId) {
         SettingsPojo pojo = new SettingsPojo(settingName, packageName, resId);
         assingIdAndName(pojo, name, settingName);
         return pojo;
     }
 
-    private SettingsPojo createPojo(String name, String settingName, int resId) {
+    private SettingsPojo createPojo(String name, String settingName, @DrawableRes  int resId) {
         SettingsPojo pojo = new SettingsPojo(settingName, resId);
         assingIdAndName(pojo, name, settingName);
         return pojo;
