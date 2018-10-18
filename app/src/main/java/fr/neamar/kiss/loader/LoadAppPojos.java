@@ -54,18 +54,11 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
 
                     String fullPackageName = user.addUserSuffixToString(appInfo.packageName, '#');
-                    AppPojo app = new AppPojo();
+                    AppPojo app = new AppPojo(appInfo.packageName, activityInfo.getName(), user);
 
                     app.id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
 
                     app.setName(activityInfo.getLabel().toString());
-
-                    app.packageName = appInfo.packageName;
-                    app.activityName = activityInfo.getName();
-
-                    // Wrap Android user handle in opaque container that will work across
-                    // all Android versions
-                    app.userHandle = user;
 
                     app.setTags(tagsHandler.getTags(app.id));
 
@@ -82,15 +75,10 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
             for (ResolveInfo info : manager.queryIntentActivities(mainIntent, 0)) {
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
-                AppPojo app = new AppPojo();
+                AppPojo app = new AppPojo(appInfo.packageName, info.activityInfo.name, new UserHandle());
 
                 app.id = pojoScheme + appInfo.packageName + "/" + info.activityInfo.name;
                 app.setName(info.loadLabel(manager).toString());
-
-                app.packageName = appInfo.packageName;
-                app.activityName = info.activityInfo.name;
-
-                app.userHandle = new UserHandle();
 
                 app.setTags(tagsHandler.getTags(app.id));
                 if (!excludedAppList.contains(app.getComponentName())) {
