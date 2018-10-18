@@ -28,7 +28,6 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.cache.MemoryCacheHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -244,7 +243,8 @@ public class AppResult extends Result {
     public Drawable getDrawable(Context context) {
         synchronized (this) {
             if (icon == null) {
-                icon = MemoryCacheHelper.getAppIconDrawable(context, className, this.appPojo.userHandle);
+                icon = KissApplication.getApplication(context).getIconsHandler()
+                        .getDrawableIconForPackage(className, this.appPojo.userHandle);
             }
 
             return icon;
