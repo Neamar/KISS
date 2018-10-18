@@ -1,9 +1,9 @@
 package fr.neamar.kiss.pojo;
 
 public class SettingsPojo extends Pojo {
-    public String settingName;
-    public String packageName = "";
-    public int icon = -1;
+    public final String settingName;
+    public final String packageName;
+    public final int icon;
 
     public SettingsPojo(String settingName, int icon) {
         this.settingName = settingName;
