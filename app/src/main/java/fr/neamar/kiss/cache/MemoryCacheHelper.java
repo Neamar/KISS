@@ -149,7 +149,7 @@ public class MemoryCacheHelper {
 
         @Override
         public int compareTo(@NonNull AppIconHandle o) {
-            return userHandle.equals(o.userHandle) ? componentName.compareTo(o.componentName) : (userHandle.hashCode() - o.userHandle.hashCode());
+            return 0;
         }
     }
 
