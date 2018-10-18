@@ -17,33 +17,12 @@ public class MemoryCacheHelper {
 
     private static final HashMap<AppIconHandle, Drawable> sAppIconCache = new HashMap<>();
 
-    /**
-     * If the app icon is not found in the cache we load it. Else return cache value. Asynchronous function.
-     *
-     * @param context    context to use
-     * @param className  app
-     * @param userHandle android.os.UserHandle
-     * @param callback   this will be called when we know what the drawable is
-     */
-    public static <T> void getAppIconDrawable(@NonNull Context context, ComponentName className, UserHandle userHandle, @Nullable OnDrawableReady<T> callback) {
-        AppIconHandle handle = new AppIconHandle(className, userHandle);
-        Drawable drawable;
-        synchronized (sAppIconCache) {
-            drawable = sAppIconCache.get(handle);
-            if (drawable == null) {
-                // if the drawable cached for this app is null don't bother trying to find it again
-                if (!sAppIconCache.containsKey(handle)) {
-                    new AsyncAppIconLoad(context, handle, callback).execute();
-                    return;
-                }
-            }
-        }
-        if (callback != null)
-            callback.onDrawableReady(drawable);
+    public static <T> void getAppIconDrawable(@NonNull Context context, ComponentName className, UserHandle userHandle, @NonNull OnDrawableReady<T> callback) {
+        new AsyncAppIconLoad(context, className, userHandle, callback).execute();
     }
 
     /**
-     * If the app icon is not found in the cache we load it. Else return cache value. Synchronous function.
+     * This is called from the async task. To prevent accidents, do not access sAppIconCache without a sync block
      *
      * @param context    context to use
      * @param className  app
@@ -52,17 +31,6 @@ public class MemoryCacheHelper {
      */
     public static Drawable getAppIconDrawable(@NonNull Context context, ComponentName className, UserHandle userHandle) {
         AppIconHandle handle = new AppIconHandle(className, userHandle);
-        return getAppIconDrawable(context, handle);
-    }
-
-    /**
-     * This is called from the async task. To prevent accidents, do not access sAppIconCache without a sync block
-     *
-     * @param context context to use
-     * @param handle  wrapper for app name
-     * @return app icon drawable from cache
-     */
-    private static Drawable getAppIconDrawable(@NonNull Context context, AppIconHandle handle) {
         Drawable drawable;
         synchronized (sAppIconCache) {
             drawable = sAppIconCache.get(handle);
@@ -71,7 +39,7 @@ public class MemoryCacheHelper {
                 if (sAppIconCache.containsKey(handle))
                     return null;
                 drawable = KissApplication.getApplication(context).getIconsHandler()
-                        .getDrawableIconForPackage(handle.componentName, handle.userHandle);
+                        .getDrawableIconForPackage(className, userHandle);
                 sAppIconCache.put(handle, drawable);
             }
         }
@@ -79,26 +47,19 @@ public class MemoryCacheHelper {
     }
 
     public static void cacheAppIconDrawable(@NonNull Context context, ComponentName className, UserHandle userHandle) {
-        AppIconHandle handle = new AppIconHandle(className, userHandle);
-        if (!sAppIconCache.containsKey(handle))
-            new AsyncAppIconLoad(context, handle, null).execute();
-    }
-
-    public static void trimMemory() {
-        synchronized (sAppIconCache) {
-            sAppIconCache.clear();
-        }
-        System.gc();
+        new AsyncAppIconLoad(context, className, userHandle, null).execute();
     }
 
     private static class AsyncAppIconLoad extends AsyncTask<Void, Void, Drawable> {
         final WeakReference<Context> contextRef;
-        final AppIconHandle handle;
+        final ComponentName className;
+        final UserHandle userHandle;
         final OnDrawableReady callback;
 
-        public AsyncAppIconLoad(@NonNull Context context, AppIconHandle handle, @Nullable OnDrawableReady callback) {
+        public AsyncAppIconLoad(@NonNull Context context, ComponentName className, UserHandle userHandle, @Nullable OnDrawableReady callback) {
             this.contextRef = new WeakReference<>(context);
-            this.handle = handle;
+            this.className = className;
+            this.userHandle = userHandle;
             this.callback = callback;
         }
 
@@ -107,7 +68,7 @@ public class MemoryCacheHelper {
             Context context = contextRef.get();
             if (isCancelled() || context == null)
                 return null;
-            return getAppIconDrawable(context, handle.componentName, handle.userHandle);
+            return getAppIconDrawable(context, className, userHandle);
         }
 
         @Override
@@ -119,7 +80,7 @@ public class MemoryCacheHelper {
         }
     }
 
-    private static class AppIconHandle implements Comparable<AppIconHandle> {
+    static class AppIconHandle implements Comparable<AppIconHandle> {
         final ComponentName componentName;
         final UserHandle userHandle;
 
