@@ -61,18 +61,19 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
     }
 
     private SettingsPojo createPojo(String name, String packageName, String settingName, int resId) {
-        SettingsPojo pojo = this.createPojo(name, settingName, resId);
-        pojo.packageName = packageName;
+        SettingsPojo pojo = new SettingsPojo(settingName, packageName, resId);
+        assingIdAndName(pojo, name, settingName);
         return pojo;
     }
 
     private SettingsPojo createPojo(String name, String settingName, int resId) {
-        SettingsPojo pojo = new SettingsPojo();
+        SettingsPojo pojo = new SettingsPojo(settingName, resId);
+        assingIdAndName(pojo, name, settingName);
+        return pojo;
+    }
+
+    private void assingIdAndName(SettingsPojo pojo, String name, String settingName) {
         pojo.id = pojoScheme + settingName.toLowerCase(Locale.ENGLISH);
         pojo.setName(name, true);
-        pojo.settingName = settingName;
-        pojo.icon = resId;
-
-        return pojo;
     }
 }
