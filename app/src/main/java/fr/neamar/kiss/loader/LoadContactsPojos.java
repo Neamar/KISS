@@ -87,12 +87,11 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                                 Long.parseLong(photoId));
                     }
 
-                    ContactsPojo contact = new ContactsPojo(lookupKey, phone, normalizedPhone, icon,
-                            primary, timesContacted, starred, false);
+                    ContactsPojo contact = new ContactsPojo(pojoScheme + lookupKey + phone,
+                            lookupKey, phone, normalizedPhone, icon, primary, timesContacted,
+                            starred, false);
 
                     contact.setName(name);
-
-                    contact.id = pojoScheme + contact.lookupKey + contact.phone;
 
                     if (contact.getName() != null) {
                         //TBog: contact should have the normalized name already

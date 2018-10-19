@@ -53,9 +53,8 @@ public class CalculatorProvider implements IProvider {
 
             String queryProcessed = floatToString(lhs) + " " + operator + " "
                     + floatToString(rhs) + " = " + floatToString(floatResult);
-            SearchPojo pojo = new SearchPojo(queryProcessed, "", SearchPojo.CALCULATOR_QUERY);
+            SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojo.CALCULATOR_QUERY);
 
-            pojo.id = "calculator://";
             pojo.relevance = 100;
             searcher.addResult(pojo);
         }

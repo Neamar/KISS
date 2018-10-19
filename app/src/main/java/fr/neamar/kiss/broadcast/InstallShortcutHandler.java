@@ -74,9 +74,9 @@ public class InstallShortcutHandler extends BroadcastReceiver {
             return;
         }
 
-        ShortcutsPojo pojo = new ShortcutsPojo(packageName, resourceName, intentUri, icon);
+        String id = ShortcutsPojo.SCHEME + name.toLowerCase(Locale.ROOT);
+        ShortcutsPojo pojo = new ShortcutsPojo(id, packageName, resourceName, intentUri, icon);
 
-        pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase(Locale.ROOT);
         pojo.setName(name);
 
         dh.addShortcut(pojo);

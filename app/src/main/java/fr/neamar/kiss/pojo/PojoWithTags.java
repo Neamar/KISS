@@ -13,6 +13,10 @@ public class PojoWithTags extends Pojo {
     // Tags assigned to this pojo
     private String tags = "";
 
+    public PojoWithTags(String id) {
+        super(id);
+    }
+
     public StringNormalizer.Result getNormalizedTags() {
         return normalizedTags;
     }

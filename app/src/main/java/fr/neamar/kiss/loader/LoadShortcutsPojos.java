@@ -38,10 +38,11 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
                 icon = BitmapFactory.decodeByteArray(shortcutRecord.icon_blob, 0, shortcutRecord.icon_blob.length);
             }
 
-            ShortcutsPojo pojo = new ShortcutsPojo(shortcutRecord.packageName,
+            String id = ShortcutsPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
+
+            ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutRecord.packageName,
                     shortcutRecord.iconResource, shortcutRecord.intentUri, icon);
 
-            pojo.id = ShortcutsPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
             pojo.setName(shortcutRecord.name);
             pojo.setTags(tagsHandler.getTags(pojo.id));
 

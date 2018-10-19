@@ -10,6 +10,12 @@ public class SearchPojo extends Pojo {
     public int type = SEARCH_QUERY;
 
     public SearchPojo(String query, String url, int type) {
+        this(DEFAULT_ID, query, url, type);
+    }
+
+    public SearchPojo(String id, String query, String url, int type) {
+        super(id);
+
         if(type != SEARCH_QUERY && type != URL_QUERY && type != CALCULATOR_QUERY) {
             throw new IllegalArgumentException("Wrong type!");
         }
