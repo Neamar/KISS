@@ -12,7 +12,7 @@ public class CalculatorProvider implements IProvider {
     private Pattern p;
 
     public CalculatorProvider() {
-        p = Pattern.compile("([0-9.]+)\\s?([+\\-*/×x÷])\\s?([0-9.]+)");
+        p = Pattern.compile("(-?)([0-9.]+)\\s?([+\\-*/×x÷])\\s?(-?)([0-9.]+)");
     }
 
     @Override
@@ -24,13 +24,15 @@ public class CalculatorProvider implements IProvider {
             pojo.id = "calculator://";
             pojo.type = SearchPojo.CALCULATOR_QUERY;
 
-            String operator = m.group(2);
+            String operator = m.group(3);
 
             // let's go for floating point arithmetic
             // we need to add a "0" on top of it to support ".2" => 0.2
             // For every other case, this doesn't change the number "01" => 1
-            float lhs = Float.parseFloat("0" + m.group(1));
-            float rhs = Float.parseFloat("0" + m.group(3));
+            float lhs = Float.parseFloat("0" + m.group(2));
+            lhs = m.group(1).equals("-") ? -lhs : lhs;
+            float rhs = Float.parseFloat("0" + m.group(5));
+            rhs = m.group(4).equals("-") ? -rhs : rhs;
 
             float floatResult = 0;
             switch (operator) {
