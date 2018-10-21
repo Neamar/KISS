@@ -8,10 +8,12 @@ import java.util.List;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public abstract class Pojo {
+    public static final String DEFAULT_ID = "(none)";
+
     // Globally unique ID.
     // Usually starts with provider scheme, e.g. "app://" or "contact://" to
     // ensure unique constraint
-    public String id = "(none)";
+    public String id;
     // normalized name, for faster search
     public StringNormalizer.Result normalizedName = null;
     // Lower-cased name, for faster search
@@ -21,6 +23,10 @@ public abstract class Pojo {
     public int relevance = 0;
     // Name for this pojo, e.g. app name
     String name = "";
+
+    public Pojo(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

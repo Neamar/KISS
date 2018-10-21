@@ -43,10 +43,11 @@ public class LoadSearchPojos extends LoadPojos<SearchPojo> {
         Set<String> availableProviders = PreferenceManager.getDefaultSharedPreferences(context.get()).getStringSet("available-search-providers", SearchProvider.getSearchProviders(context.get()));
 
         for (String searchProvider : selectedProviders) {
-            SearchPojo pojo = new SearchPojo();
+            String url = getProviderUrl(availableProviders, searchProvider);
+
+            SearchPojo pojo = new SearchPojo("", url, SearchPojo.SEARCH_QUERY);
             // Super low relevance, should never be displayed before anything
             pojo.relevance = -500;
-            pojo.url = getProviderUrl(availableProviders, searchProvider);
             pojo.setName(searchProvider, false);
             if (pojo.url != null) {
                 pojos.add(pojo);

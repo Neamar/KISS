@@ -7,7 +7,9 @@ public class AppPojo extends PojoWithTags {
     public final String activityName;
     public final UserHandle userHandle;
 
-    public AppPojo(String packageName, String activityName, UserHandle userHandle) {
+    public AppPojo(String id, String packageName, String activityName, UserHandle userHandle) {
+        super(id);
+
         this.packageName = packageName;
         this.activityName = activityName;
         this.userHandle = userHandle;

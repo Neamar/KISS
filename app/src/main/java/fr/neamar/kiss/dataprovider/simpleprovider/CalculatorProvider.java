@@ -20,10 +20,6 @@ public class CalculatorProvider implements IProvider {
         // Now create matcher object.
         Matcher m = p.matcher(query);
         if (m.find()) {
-            SearchPojo pojo = new SearchPojo();
-            pojo.id = "calculator://";
-            pojo.type = SearchPojo.CALCULATOR_QUERY;
-
             String operator = m.group(3);
 
             // let's go for floating point arithmetic
@@ -57,7 +53,10 @@ public class CalculatorProvider implements IProvider {
                     floatResult = Float.POSITIVE_INFINITY;
             }
 
-            pojo.query = floatToString(lhs) + " " + operator + " " + floatToString(rhs) + " = " + floatToString(floatResult);
+            String queryProcessed = floatToString(lhs) + " " + operator + " "
+                    + floatToString(rhs) + " = " + floatToString(floatResult);
+            SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojo.CALCULATOR_QUERY);
+
             pojo.relevance = 100;
             searcher.addResult(pojo);
         }

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -60,19 +62,24 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
         return settings;
     }
 
-    private SettingsPojo createPojo(String name, String packageName, String settingName, int resId) {
-        SettingsPojo pojo = this.createPojo(name, settingName, resId);
-        pojo.packageName = packageName;
+    private SettingsPojo createPojo(String name, String packageName, String settingName,
+                                    @DrawableRes int resId) {
+        SettingsPojo pojo = new SettingsPojo(getId(settingName), settingName, packageName, resId);
+        assingName(pojo, name);
         return pojo;
     }
 
-    private SettingsPojo createPojo(String name, String settingName, int resId) {
-        SettingsPojo pojo = new SettingsPojo();
-        pojo.id = pojoScheme + settingName.toLowerCase(Locale.ENGLISH);
-        pojo.setName(name, true);
-        pojo.settingName = settingName;
-        pojo.icon = resId;
-
+    private SettingsPojo createPojo(String name, String settingName, @DrawableRes  int resId) {
+        SettingsPojo pojo = new SettingsPojo(getId(settingName), settingName, resId);
+        assingName(pojo, name);
         return pojo;
+    }
+
+    private String getId(String settingName) {
+        return pojoScheme + settingName.toLowerCase(Locale.ENGLISH);
+    }
+
+    private void assingName(SettingsPojo pojo, String name) {
+        pojo.setName(name, true);
     }
 }

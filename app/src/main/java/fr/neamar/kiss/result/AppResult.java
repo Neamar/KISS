@@ -62,7 +62,7 @@ public class AppResult extends Result {
         // Hide tags view if tags are empty
         if (appPojo.getTags().isEmpty()) {
             tagsView.setVisibility(View.GONE);
-        } else if (displayHighlighted(appPojo.normalizedTags, appPojo.getTags(),
+        } else if (displayHighlighted(appPojo.getNormalizedTags(), appPojo.getTags(),
                 fuzzyScore, tagsView, context) || prefs.getBoolean("tags-visible", true)) {
             tagsView.setVisibility(View.VISIBLE);
         } else {
