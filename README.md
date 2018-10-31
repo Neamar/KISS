@@ -27,6 +27,6 @@ Get ready to be amazed.
 Previews
 ---------------------
 
-|![Preview](https://lh3.googleusercontent.com/1B-Vc9Tqh6bfGCVyKXkYSZycwY9Z4g6NxX3ULAKdCPgi9pmGHoyIelC4nsVbQK8d5l0i) | ![Preview](https://lh3.googleusercontent.com/ADlhgu6JBVOJRn_XS-BbFbw6HtGopVABpBSdBMfANXpGpicFY3jxVLcuBhnJ9QkSshTp) | ![Preview](https://lh3.googleusercontent.com/17JTZKi0wh8ReNTMmhEzoR1Iu_mirK867_H2GbMwDhFf8QwpqhxzccpBLAFo5DbFdg) |
+|![Preview](https://user-images.githubusercontent.com/1615426/47822548-d6804a00-dd64-11e8-967a-0a027ae4ed40.png) | ![Preview](https://user-images.githubusercontent.com/1615426/47822549-d6804a00-dd64-11e8-9c8e-fa74881badfc.png) | ![Preview](https://user-images.githubusercontent.com/1615426/47822605-f7489f80-dd64-11e8-88a8-b5ebec461e1d.png) |
 |:-------------------:|:------------------------:|:-----------------:|
-| Recently used first | Search apps, contacts... | Even in settings! |
+| Slick looking homescreen :) Supports one widget! | Apps are just a few key strokes away! | Search in contacts too! (and everything is customizable) |
