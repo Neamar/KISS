@@ -92,7 +92,6 @@ public class IconsHandler {
         iconsPackPackageName = packageName;
         packagesDrawables.clear();
         backImages.clear();
-        cacheClear();
 
         // system icons, nothing to do
         if (iconsPackPackageName.equalsIgnoreCase("default")) {
@@ -223,16 +222,9 @@ public class IconsHandler {
             }
         }
 
-        // Search first in cache
-        Drawable systemIcon = cacheGetDrawable(componentName.toString());
-        if (systemIcon != null)
-            return systemIcon;
-
-        systemIcon = this.getDefaultAppDrawable(componentName, userHandle);
+        Drawable systemIcon = this.getDefaultAppDrawable(componentName, userHandle);
         if (systemIcon instanceof BitmapDrawable) {
-            Drawable generated = generateBitmap(systemIcon);
-            cacheStoreDrawable(componentName.toString(), generated);
-            return generated;
+            return generateBitmap(systemIcon);
         }
         return systemIcon;
     }
@@ -310,74 +302,6 @@ public class IconsHandler {
 
     public HashMap<String, String> getIconsPacks() {
         return iconsPacks;
-    }
-
-    private boolean isDrawableInCache(String key) {
-        File drawableFile = cacheGetFileName(key);
-        return drawableFile.isFile();
-    }
-
-    private void cacheStoreDrawable(String key, Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            File drawableFile = cacheGetFileName(key);
-            FileOutputStream fos;
-            try {
-                fos = new FileOutputStream(drawableFile);
-                ((BitmapDrawable) drawable).getBitmap().compress(CompressFormat.PNG, 100, fos);
-                fos.flush();
-                fos.close();
-            } catch (Exception e) {
-                Log.e(TAG, "Unable to store drawable in cache " + e);
-            }
-        }
-    }
-
-    private Drawable cacheGetDrawable(String key) {
-
-        if (!isDrawableInCache(key)) {
-            return null;
-        }
-
-        FileInputStream fis;
-        try {
-            fis = new FileInputStream(cacheGetFileName(key));
-            BitmapDrawable drawable =
-                    new BitmapDrawable(this.ctx.getResources(), BitmapFactory.decodeStream(fis));
-            fis.close();
-            return drawable;
-        } catch (Exception e) {
-            Log.e(TAG, "Unable to get drawable from cache " + e);
-        }
-
-        return null;
-    }
-
-    /**
-     * create path for icons cache like this
-     * {cacheDir}/icons/{icons_pack_package_name}_{key_hash}.png
-     */
-    private File cacheGetFileName(String key) {
-        return new File(getIconsCacheDir() + iconsPackPackageName + "_" + key.hashCode() + ".png");
-    }
-
-    private File getIconsCacheDir() {
-        return new File(this.ctx.getCacheDir().getPath() + "/icons/");
-    }
-
-    /**
-     * Clear cache
-     */
-    private void cacheClear() {
-        File cacheDir = this.getIconsCacheDir();
-
-        if (!cacheDir.isDirectory())
-            return;
-
-        for (File item : cacheDir.listFiles()) {
-            if (!item.delete()) {
-                Log.w(TAG, "Failed to delete file: " + item.getAbsolutePath());
-            }
-        }
     }
 
 }
