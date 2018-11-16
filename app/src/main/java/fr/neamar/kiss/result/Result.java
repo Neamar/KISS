@@ -279,11 +279,11 @@ public abstract class Result {
     }
 
     /**
-     * Return the icon for this Result, or null if non existing.
+     * Return the model for this Result, or null
      *
      * @param context android context
      */
-    public Drawable getDrawable(Context context) {
+    public Object getModel(Context context) {
         return null;
     }
 
@@ -351,7 +351,7 @@ public abstract class Result {
         return this.pojo.id.hashCode();
     }
 
-    static class AsyncSetImage extends AsyncTask<Void, Void, Drawable> {
+    static class AsyncSetImage extends AsyncTask<Void, Void, Object> {
         final WeakReference<ImageView> imageViewWeakReference;
         final WeakReference<Result> appResultWeakReference;
 
@@ -364,7 +364,7 @@ public abstract class Result {
         }
 
         @Override
-        protected Drawable doInBackground(Void... voids) {
+        protected Object doInBackground(Void... voids) {
             ImageView image = imageViewWeakReference.get();
             if (isCancelled() || image == null || image.getTag() != this) {
                 imageViewWeakReference.clear();
@@ -373,17 +373,17 @@ public abstract class Result {
             Result result = appResultWeakReference.get();
             if (result == null)
                 return null;
-            return result.getDrawable(image.getContext());
+            return result.getModel(image.getContext());
         }
 
         @Override
-        protected void onPostExecute(Drawable drawable) {
+        protected void onPostExecute(Object model) {
             ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || drawable == null) {
+            if (isCancelled() || image == null || model == null) {
                 imageViewWeakReference.clear();
                 return;
             }
-            GlideApp.with(image).load(drawable).into(image);
+            GlideApp.with(image).load(model).into(image);
             image.setTag(appResultWeakReference.get());
         }
     }

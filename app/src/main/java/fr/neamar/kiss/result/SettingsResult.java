@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import androidx.annotation.DrawableRes;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class SettingsResult extends Result {
         displayHighlighted(settingPojo.normalizedName, settingPojo.getName(), fuzzyScore, settingName, context);
 
         ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
-        GlideApp.with(context).load(getDrawable(context)).into(settingIcon);
+        GlideApp.with(context).load(getModel(context)).into(settingIcon);
         settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
 
         return v;
@@ -41,9 +42,9 @@ public class SettingsResult extends Result {
 
     @SuppressWarnings("deprecation")
     @Override
-    public Drawable getDrawable(Context context) {
+    public @DrawableRes Integer getModel(Context context) {
         if (settingPojo.icon != -1) {
-            return context.getResources().getDrawable(settingPojo.icon);
+            return settingPojo.icon;
         }
 
         return null;

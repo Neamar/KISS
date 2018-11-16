@@ -143,7 +143,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             }
 
             Result result = Result.fromPojo(mainActivity, pojo);
-            Drawable drawable = result.getDrawable(mainActivity);
+            Drawable drawable = result.getModel(mainActivity);
             if (drawable != null) {
                 if (result instanceof ContactsResult) {
                     Bitmap iconBitmap = drawableToBitmap(drawable);

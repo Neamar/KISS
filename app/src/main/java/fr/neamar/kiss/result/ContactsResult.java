@@ -167,28 +167,12 @@ public class ContactsResult extends Result {
 
     @SuppressWarnings("deprecation")
     @Override
-    public Drawable getDrawable(Context context) {
+    public ContactsPojo getModel(Context context) {
         synchronized (this) {
-            if (contactPojo.icon != null) {
-                InputStream inputStream = null;
-                try {
-                    inputStream = context.getContentResolver()
-                            .openInputStream(contactPojo.icon);
-                    return icon = Drawable.createFromStream(inputStream, null);
-                } catch (FileNotFoundException ignored) {
-                } finally {
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (IOException ignored) {
-                        }
-                    }
-                }
-            }
+            return contactPojo;
 
-            // Default icon
-            return icon = context.getResources()
-                    .getDrawable(R.drawable.ic_contact);
+            //TODO use Default icon
+            //return icon = context.getResources().getDrawable(R.drawable.ic_contact);
         }
     }
 

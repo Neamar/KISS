@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import androidx.annotation.DrawableRes;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -98,8 +99,8 @@ public class PhoneResult extends Result {
     }
 
     @Override
-    public Drawable getDrawable(Context context) {
+    public @DrawableRes Integer getModel(Context context) {
         //noinspection deprecation: getDrawable(int, Theme) requires SDK 21+
-        return context.getResources().getDrawable(android.R.drawable.ic_menu_call);
+        return android.R.drawable.ic_menu_call;
     }
 }
