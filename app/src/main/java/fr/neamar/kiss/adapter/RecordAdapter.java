@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
@@ -98,9 +99,9 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     public @NonNull
     View getView(int position, View convertView, @NonNull ViewGroup parent) {
         if (convertView != null) {
-            if (!(convertView.getTag() instanceof Integer))
+            if (!(convertView.getTag(R.id.VIEW_TAG_KISS) instanceof Integer))
                 convertView = null;
-            else if ((Integer) convertView.getTag() != getItemViewType(position)) {
+            else if ((Integer) convertView.getTag(R.id.VIEW_TAG_KISS) != getItemViewType(position)) {
                 // This is happening on HTC Desire X (Android 4.1.1, API 16)
                 //throw new IllegalStateException( "can't convert view from different type" );
                 convertView = null;
@@ -108,7 +109,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         }
         View view = results.get(position).display(context, results.size() - position, convertView, fuzzyScore);
         //Log.d( "TBog", "getView pos " + position + " convertView " + ((convertView == null) ? "null" : convertView.toString()) + " will return " + view.toString() );
-        view.setTag(getItemViewType(position));
+        view.setTag(R.id.VIEW_TAG_KISS, getItemViewType(position));
         return view;
     }
 

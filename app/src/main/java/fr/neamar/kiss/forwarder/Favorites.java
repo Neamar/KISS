@@ -133,7 +133,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 }
                 assert layoutInflater != null;
                 image = (ImageView) layoutInflater.inflate(R.layout.favorite_item, (ViewGroup) mainActivity.favoritesBar, false);
-                image.setTag(i);
+                image.setTag(R.id.VIEW_TAG_KISS, i);
                 image.setOnDragListener(this);
                 image.setOnTouchListener(this);
                 ((ViewGroup) mainActivity.favoritesBar).addView(image);
@@ -262,7 +262,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     @Override
     public void onClick(View v) {
-        int favNumber = (int) v.getTag();
+        int favNumber = (int) v.getTag(R.id.VIEW_TAG_KISS);
         final Result result = getFavResult(favNumber);
         result.fastLaunch(mainActivity, v);
         v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
@@ -271,7 +271,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     @Override
     public boolean onLongClick(View v) {
-        int favNumber = (int) v.getTag();
+        int favNumber = (int) v.getTag(R.id.VIEW_TAG_KISS);
         final Result result = getFavResult(favNumber);
         ListPopup popup = result.getPopupMenu(mainActivity, mainActivity.adapter, v);
         mainActivity.registerPopup(popup);
@@ -344,7 +344,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     return true;
                 }
 
-                overFavIndex = (int) v.getTag();
+                overFavIndex = (int) v.getTag(R.id.VIEW_TAG_KISS);
                 overApp = favoritesPojo.get(overFavIndex);
 
                 currentX = (event.getX() != 0.0f) ? event.getX() : currentX;
@@ -374,7 +374,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     break;
                 }
 
-                int draggedFavIndex = (int) draggedView.getTag();
+                int draggedFavIndex = (int) draggedView.getTag(R.id.VIEW_TAG_KISS);
                 final Pojo draggedApp = favoritesPojo.get(draggedFavIndex);
 
                 int left = v.getLeft();
