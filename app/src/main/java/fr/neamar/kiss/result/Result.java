@@ -286,11 +286,6 @@ public abstract class Result {
         return null;
     }
 
-    boolean isDrawableCached() {
-        return false;
-    }
-    void setDrawableCache( Drawable drawable ) {}
-
     void setAsyncDrawable(ImageView view) {
         // the ImageView tag will store the async task if it's running
         if (view.getTag() instanceof AsyncSetImage) {
@@ -303,17 +298,7 @@ public abstract class Result {
                 view.setTag(null);
             }
         }
-        // the ImageView will store the Result after the AsyncTask finished
-        else if (this.equals(view.getTag())) {
-            ((Result) view.getTag()).setDrawableCache(view.getDrawable());
-            return;
-        }
-        if (isDrawableCached()) {
-            view.setImageDrawable(getDrawable(view.getContext()));
-            view.setTag(this);
-        } else {
-            view.setTag(createAsyncSetImage(view).execute());
-        }
+        view.setTag(createAsyncSetImage(view).execute());
     }
 
     private AsyncSetImage createAsyncSetImage(ImageView imageView) {

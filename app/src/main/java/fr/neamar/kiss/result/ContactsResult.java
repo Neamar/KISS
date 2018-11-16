@@ -165,22 +165,10 @@ public class ContactsResult extends Result {
         clipboard.setPrimaryClip(clip);
     }
 
-    @Override
-    boolean isDrawableCached() {
-        return icon != null;
-    }
-
-    @Override
-    void setDrawableCache(Drawable drawable) {
-        icon = drawable;
-    }
-
     @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
         synchronized (this) {
-            if (isDrawableCached())
-                return icon;
             if (contactPojo.icon != null) {
                 InputStream inputStream = null;
                 try {

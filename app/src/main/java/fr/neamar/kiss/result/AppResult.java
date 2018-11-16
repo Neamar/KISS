@@ -269,16 +269,6 @@ public class AppResult extends Result {
     }
 
     @Override
-    boolean isDrawableCached() {
-        return icon != null;
-    }
-
-    @Override
-    void setDrawableCache(Drawable drawable) {
-        icon = drawable;
-    }
-
-    @Override
     public Drawable getDrawable(Context context) {
         synchronized (this) {
             if (icon == null) {
