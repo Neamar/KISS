@@ -79,7 +79,10 @@ public class AppResult extends Result {
             if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
                 icon = appIcon.getDrawable();
             }
-            this.setAsyncDrawable(appIcon);
+            GlideApp.with(appIcon)
+                    .load(getModel(appIcon.getContext()))
+                    .placeholder(android.R.color.transparent)
+                    .into(appIcon);
         } else {
             GlideApp.with(appIcon).load((Drawable) null).into(appIcon);
         }

@@ -287,25 +287,6 @@ public abstract class Result {
         return null;
     }
 
-    void setAsyncDrawable(ImageView view) {
-        // the ImageView tag will store the async task if it's running
-        if (view.getTag() instanceof AsyncSetImage) {
-            AsyncSetImage asyncSetImage = (AsyncSetImage) view.getTag();
-            if (this.equals(asyncSetImage.appResultWeakReference.get())) {
-                // we are already loading the icon for this
-                return;
-            } else {
-                asyncSetImage.cancel(true);
-                view.setTag(null);
-            }
-        }
-        view.setTag(createAsyncSetImage(view).execute());
-    }
-
-    private AsyncSetImage createAsyncSetImage(ImageView imageView) {
-        return new AsyncSetImage(imageView, this);
-    }
-
     /**
      * Helper function to get a view
      *
@@ -349,42 +330,5 @@ public abstract class Result {
     public long getUniqueId() {
         // we can consider hashCode unique enough in this context
         return this.pojo.id.hashCode();
-    }
-
-    static class AsyncSetImage extends AsyncTask<Void, Void, Object> {
-        final WeakReference<ImageView> imageViewWeakReference;
-        final WeakReference<Result> appResultWeakReference;
-
-        AsyncSetImage(ImageView image, Result result) {
-            super();
-            image.setTag(this);
-            GlideApp.with(image).load(android.R.color.transparent).into(image);
-            this.imageViewWeakReference = new WeakReference<>(image);
-            this.appResultWeakReference = new WeakReference<>(result);
-        }
-
-        @Override
-        protected Object doInBackground(Void... voids) {
-            ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || image.getTag() != this) {
-                imageViewWeakReference.clear();
-                return null;
-            }
-            Result result = appResultWeakReference.get();
-            if (result == null)
-                return null;
-            return result.getModel(image.getContext());
-        }
-
-        @Override
-        protected void onPostExecute(Object model) {
-            ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || model == null) {
-                imageViewWeakReference.clear();
-                return;
-            }
-            GlideApp.with(image).load(model).into(image);
-            image.setTag(appResultWeakReference.get());
-        }
     }
 }

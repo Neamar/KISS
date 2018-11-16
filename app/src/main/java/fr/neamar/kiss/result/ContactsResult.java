@@ -26,6 +26,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.forwarder.Permission;
+import fr.neamar.kiss.glide.GlideApp;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
@@ -74,10 +75,15 @@ public class ContactsResult extends Result {
             if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
                 icon = contactIcon.getDrawable();
             }
-            this.setAsyncDrawable(contactIcon);
-        }
-        else {
-            contactIcon.setImageDrawable(null);
+
+            GlideApp.with(contactIcon)
+                    .load(getModel(contactIcon.getContext()))
+                    .placeholder(android.R.color.transparent)
+                    .into(contactIcon);
+        } else {
+            GlideApp.with(contactIcon)
+                    .load((Drawable) null)
+                    .into(contactIcon);
         }
 
         contactIcon.assignContactUri(Uri.withAppendedPath(
