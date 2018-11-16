@@ -36,7 +36,6 @@ import fr.neamar.kiss.utils.FuzzyScore;
 public class ContactsResult extends Result {
     private final ContactsPojo contactPojo;
     private final QueryInterface queryInterface;
-    private Drawable icon = null;
 
     ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
         super(contactPojo);
@@ -72,10 +71,6 @@ public class ContactsResult extends Result {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (!prefs.getBoolean("icons-hide", false)) {
-            if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
-                icon = contactIcon.getDrawable();
-            }
-
             GlideApp.with(contactIcon)
                     .load(getModel(contactIcon.getContext()))
                     .placeholder(android.R.color.transparent)

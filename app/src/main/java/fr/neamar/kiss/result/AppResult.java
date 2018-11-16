@@ -41,7 +41,6 @@ import fr.neamar.kiss.utils.SpaceTokenizer;
 public class AppResult extends Result {
     private final AppPojo appPojo;
     private final ComponentName className;
-    private Drawable icon = null;
 
     AppResult(AppPojo appPojo) {
         super(appPojo);
@@ -76,9 +75,6 @@ public class AppResult extends Result {
 
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!prefs.getBoolean("icons-hide", false)) {
-            if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
-                icon = appIcon.getDrawable();
-            }
             GlideApp.with(appIcon)
                     .load(getModel(appIcon.getContext()))
                     .placeholder(android.R.color.transparent)
