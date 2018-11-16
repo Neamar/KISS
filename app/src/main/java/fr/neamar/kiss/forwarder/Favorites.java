@@ -19,12 +19,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.glide.GlideApp;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.Result;
@@ -91,28 +94,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
-    private static Bitmap drawableToBitmap(Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if (bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
-            }
-        }
-
-        Bitmap bitmap;
-        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            // Single color bitmap will be created of 1x1 pixel
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
-    }
-
     void onFavoriteChange() {
         favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler()
                 .getFavorites();
@@ -143,13 +124,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             }
 
             Result result = Result.fromPojo(mainActivity, pojo);
-            Drawable drawable = result.getModel(mainActivity);
-            if (drawable != null) {
-                if (result instanceof ContactsResult) {
-                    Bitmap iconBitmap = drawableToBitmap(drawable);
-                    drawable = new RoundedQuickContactBadge.RoundedDrawable(iconBitmap);
-                }
-                image.setImageDrawable(drawable);
+            Object model = result.getModel(mainActivity);
+            if (model != null) {
+                GlideApp.with(image).load(model).into(image);
             } else {
                 // Use a placeholder if no drawable found
                 image.setImageResource(R.drawable.ic_launcher_white);
