@@ -31,6 +31,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.glide.GlideApp;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ContactsPojo;
@@ -357,7 +358,7 @@ public abstract class Result {
         AsyncSetImage(ImageView image, Result result) {
             super();
             image.setTag(this);
-            image.setImageResource(android.R.color.transparent);
+            GlideApp.with(image).load(android.R.color.transparent).into(image);
             this.imageViewWeakReference = new WeakReference<>(image);
             this.appResultWeakReference = new WeakReference<>(result);
         }
@@ -382,7 +383,7 @@ public abstract class Result {
                 imageViewWeakReference.clear();
                 return;
             }
-            image.setImageDrawable(drawable);
+            GlideApp.with(image).load(drawable).into(image);
             image.setTag(appResultWeakReference.get());
         }
     }

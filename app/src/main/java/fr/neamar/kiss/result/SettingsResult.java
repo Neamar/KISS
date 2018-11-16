@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.glide.GlideApp;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.utils.FuzzyScore;
 
@@ -32,7 +33,7 @@ public class SettingsResult extends Result {
         displayHighlighted(settingPojo.normalizedName, settingPojo.getName(), fuzzyScore, settingName, context);
 
         ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
-        settingIcon.setImageDrawable(getDrawable(context));
+        GlideApp.with(context).load(getDrawable(context)).into(settingIcon);
         settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
 
         return v;
