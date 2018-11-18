@@ -52,14 +52,6 @@ public class IconsHandler {
     private Resources iconPackres;
     // package name of the icons pack
     private String iconsPackPackageName;
-    // list of back images available on an icons pack
-    private final List<Bitmap> backImages = new ArrayList<>();
-    // bitmap mask of an icons pack
-    private Bitmap maskImage = null;
-    // front image of an icons pack
-    private Bitmap frontImage = null;
-    // scale factor of an icons pack
-    private float factor = 1.0f;
     private final PackageManager pm;
     private final Context ctx;
 
@@ -91,7 +83,6 @@ public class IconsHandler {
         //clear icons pack
         iconsPackPackageName = packageName;
         packagesDrawables.clear();
-        backImages.clear();
 
         // system icons, nothing to do
         if (iconsPackPackageName.equalsIgnoreCase("default")) {
@@ -118,9 +109,6 @@ public class IconsHandler {
                                 if (xpp.getAttributeName(i).startsWith("img")) {
                                     String drawableName = xpp.getAttributeValue(i);
                                     Bitmap iconback = loadBitmap(drawableName);
-                                    if (iconback != null) {
-                                        backImages.add(iconback);
-                                    }
                                 }
                             }
                         }
@@ -128,20 +116,23 @@ public class IconsHandler {
                         else if (xpp.getName().equals("iconmask")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
-                                maskImage = loadBitmap(drawableName);
+                                // bitmap mask of an icons pack
+                                Bitmap maskImage = loadBitmap(drawableName);
                             }
                         }
                         //parse <iconupon> xml tags used as front image of generated icons
                         else if (xpp.getName().equals("iconupon")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
-                                frontImage = loadBitmap(drawableName);
+                                // front image of an icons pack
+                                Bitmap frontImage = loadBitmap(drawableName);
                             }
                         }
                         //parse <scale> xml tags used as scale factor of original bitmap icon
                         else if (xpp.getName().equals("scale")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
-                                factor = Float.valueOf(xpp.getAttributeValue(0));
+                                // scale factor of an icons pack
+                                float factor = Float.valueOf(xpp.getAttributeValue(0));
                             }
                         }
                         //parse <item> xml tags for custom icons
