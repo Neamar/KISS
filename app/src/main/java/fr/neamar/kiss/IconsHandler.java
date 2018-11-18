@@ -103,38 +103,6 @@ public class IconsHandler {
                 int eventType = xpp.getEventType();
                 while (eventType != XmlPullParser.END_DOCUMENT) {
                     if (eventType == XmlPullParser.START_TAG) {
-                        //parse <iconback> xml tags used as backgroud of generated icons
-                        if (xpp.getName().equals("iconback")) {
-                            for (int i = 0; i < xpp.getAttributeCount(); i++) {
-                                if (xpp.getAttributeName(i).startsWith("img")) {
-                                    String drawableName = xpp.getAttributeValue(i);
-                                    Bitmap iconback = loadBitmap(drawableName);
-                                }
-                            }
-                        }
-                        //parse <iconmask> xml tags used as mask of generated icons
-                        else if (xpp.getName().equals("iconmask")) {
-                            if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
-                                String drawableName = xpp.getAttributeValue(0);
-                                // bitmap mask of an icons pack
-                                Bitmap maskImage = loadBitmap(drawableName);
-                            }
-                        }
-                        //parse <iconupon> xml tags used as front image of generated icons
-                        else if (xpp.getName().equals("iconupon")) {
-                            if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
-                                String drawableName = xpp.getAttributeValue(0);
-                                // front image of an icons pack
-                                Bitmap frontImage = loadBitmap(drawableName);
-                            }
-                        }
-                        //parse <scale> xml tags used as scale factor of original bitmap icon
-                        else if (xpp.getName().equals("scale")) {
-                            if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
-                                // scale factor of an icons pack
-                                float factor = Float.valueOf(xpp.getAttributeValue(0));
-                            }
-                        }
                         //parse <item> xml tags for custom icons
                         if (xpp.getName().equals("item")) {
                             String componentName = null;
@@ -160,19 +128,6 @@ public class IconsHandler {
         }
 
     }
-
-    private Bitmap loadBitmap(String drawableName) {
-        int id = iconPackres.getIdentifier(drawableName, "drawable", iconsPackPackageName);
-        if (id > 0) {
-            //noinspection deprecation: Resources.getDrawable(int, Theme) requires SDK 21+
-            Drawable bitmap = iconPackres.getDrawable(id);
-            if (bitmap instanceof BitmapDrawable) {
-                return ((BitmapDrawable) bitmap).getBitmap();
-            }
-        }
-        return null;
-    }
-
 
     private Drawable getDefaultAppDrawable(ComponentName componentName, UserHandle userHandle) {
         try {
