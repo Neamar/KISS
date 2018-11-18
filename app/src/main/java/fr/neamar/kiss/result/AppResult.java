@@ -32,7 +32,6 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.glide.GlideApp;
-import fr.neamar.kiss.glide.appicon.AppIconModel;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -270,9 +269,9 @@ public class AppResult extends Result {
     }
 
     @Override
-    public AppIconModel getModel(Context context) {
+    public AppPojo getModel(Context context) {
         synchronized (this) {
-            return new AppIconModel(className, this.appPojo.userHandle);
+            return this.appPojo;
         }
     }
 

@@ -10,8 +10,9 @@ import com.bumptech.glide.load.model.MultiModelLoaderFactory;
 
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.pojo.AppPojo;
 
-public class AppIconModelLoaderFactory implements ModelLoaderFactory<AppIconModel, Drawable> {
+public class AppIconModelLoaderFactory implements ModelLoaderFactory<AppPojo, Drawable> {
 
 	private final IconsHandler iconsHandler;
 
@@ -20,7 +21,7 @@ public class AppIconModelLoaderFactory implements ModelLoaderFactory<AppIconMode
 	}
 
 	@Override
-	public ModelLoader<AppIconModel, Drawable> build(MultiModelLoaderFactory unused) {
+	public ModelLoader<AppPojo, Drawable> build(MultiModelLoaderFactory unused) {
 		return new AppIconModelLoader(iconsHandler);
 	}
 
