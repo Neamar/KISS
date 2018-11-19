@@ -26,6 +26,8 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +36,7 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.glide.GlideApp;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -103,19 +106,18 @@ public class ShortcutsResult extends Result {
         }
 
         if (!prefs.getBoolean("icons-hide", false)) {
-
             if (shortcutPojo.icon != null) {
-                BitmapDrawable drawable = new BitmapDrawable(context.getResources(), shortcutPojo.icon);
-                shortcutIcon.setImageDrawable(drawable);
-                appIcon.setImageDrawable(appDrawable);
+                GlideApp.with(context).load(getModel(context)).into(shortcutIcon);
+                GlideApp.with(context).load(appDrawable).into(appIcon);
             } else {
                 // No icon for this shortcut, use app icon
-                shortcutIcon.setImageDrawable(appDrawable);
-                appIcon.setImageResource(android.R.drawable.ic_menu_send);
+                GlideApp.with(context).load(appDrawable).into(shortcutIcon);
+                GlideApp.with(context).load(android.R.drawable.ic_menu_send).into(appIcon);
             }
-        }
-        else {
-            appIcon.setImageDrawable(null);
+        } else {
+            GlideApp.with(appIcon)
+                    .load((Drawable) null)
+                    .into(appIcon);
         }
 
         return v;
