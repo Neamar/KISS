@@ -245,7 +245,7 @@ public class TagsMenu extends Forwarder {
 
         // set popup interaction rules
         popupMenu.setAdapter(adapter);
-        popupMenu.setDismissOnItemClick(false);
+        popupMenu.setDismissOnItemClick(true);
         popupMenu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
             @Override
             public void onItemClick(ListAdapter adapter, View view, int position) {
