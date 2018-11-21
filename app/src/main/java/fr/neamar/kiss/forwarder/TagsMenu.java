@@ -50,6 +50,11 @@ public class TagsMenu extends Forwarder {
         return prefs.getBoolean("pref-tags-menu", false);
     }
 
+    public boolean isAutoDismiss()
+    {
+        return prefs.getBoolean("pref-tags-menu-dismiss", false);
+    }
+
     private void loadTags() {
         if (isTagMenuEnabled())
         	setTags(getPrefTags(prefs, mainActivity));
@@ -245,7 +250,7 @@ public class TagsMenu extends Forwarder {
 
         // set popup interaction rules
         popupMenu.setAdapter(adapter);
-        popupMenu.setDismissOnItemClick(true);
+        popupMenu.setDismissOnItemClick( isAutoDismiss() );
         popupMenu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
             @Override
             public void onItemClick(ListAdapter adapter, View view, int position) {
