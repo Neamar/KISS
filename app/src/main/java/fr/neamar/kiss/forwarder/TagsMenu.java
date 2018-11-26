@@ -241,7 +241,7 @@ public class TagsMenu extends Forwarder {
             adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_matching));
         if (!prefs.getBoolean("history-onclick", false))
             adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_history));
-        if (prefs.getBoolean("pref-snow-untagged", false))
+        if (prefs.getBoolean("pref-show-untagged", false))
             adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_untagged));
         // insert title only if at least an action was added
         if (actionsTitlePosition != adapter.getCount())
