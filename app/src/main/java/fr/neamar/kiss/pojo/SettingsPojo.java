@@ -1,6 +1,6 @@
 package fr.neamar.kiss.pojo;
 
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 
 public class SettingsPojo extends Pojo {
     public final String settingName;

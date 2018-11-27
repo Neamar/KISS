@@ -3,7 +3,7 @@ package fr.neamar.kiss.searcher;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.annotation.CallSuper;
+import androidx.annotation.CallSuper;
 import android.util.Log;
 
 import java.lang.ref.WeakReference;
