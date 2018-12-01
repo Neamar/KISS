@@ -1,13 +1,14 @@
 package fr.neamar.kiss.forwarder;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -54,17 +55,14 @@ class LegacyShortcut extends Forwarder {
 
         AppPopupAdapter mAdapter = new AppPopupAdapter(availableShortcuts);
         listView.setAdapter(mAdapter);
-        // listView.setOnItemClickListener(mOnItemClick);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        dialog.setView(customView);
-        dialog.setPositiveButton("Add shortcut", new DialogInterface.OnClickListener() {
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("WTF", "Click");
             }
         });
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        dialog.setView(customView);
         dialog.show();
     }
 }
