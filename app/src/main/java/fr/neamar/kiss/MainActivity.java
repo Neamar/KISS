@@ -283,9 +283,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
         // This fix should be on ALL TextEdit Widgets !!!
         // See : https://stackoverflow.com/a/23483957
-        searchEditText.setOnDragListener( new View.OnDragListener() {
+        searchEditText.setOnDragListener(new View.OnDragListener() {
             @Override
-            public boolean onDrag( View v, DragEvent event) {
+            public boolean onDrag(View v, DragEvent event) {
                 return true;
             }
         });
@@ -656,7 +656,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     });
                     anim.setDuration(animationDuration);
                     anim.start();
-                } catch(IllegalStateException e) {
+                } catch (IllegalStateException e) {
                     // If the view hasn't been laid out yet, we can't animate it
                     kissBar.setVisibility(View.GONE);
                 }
@@ -812,7 +812,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
     }
 
-    public void showMatchingTags( String tag ) {
+    public void showMatchingTags(String tag) {
         runTask(new TagsSearcher(this, tag));
 
         clearButton.setVisibility(View.VISIBLE);

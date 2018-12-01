@@ -18,6 +18,7 @@ public class ForwarderManager extends Forwarder {
     private final Permission permissionForwarder;
     private final OreoShortcuts shortcutsForwarder;
     private final TagsMenu tagsMenu;
+    private final LegacyShortcut legacyShortcutForwarder;
 
 
     public ForwarderManager(MainActivity mainActivity) {
@@ -31,6 +32,7 @@ public class ForwarderManager extends Forwarder {
         this.permissionForwarder = new Permission(mainActivity);
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.tagsMenu = new TagsMenu(mainActivity);
+        this.legacyShortcutForwarder = new LegacyShortcut(mainActivity);
     }
 
     public void onCreate() {
@@ -65,7 +67,7 @@ public class ForwarderManager extends Forwarder {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        return widgetForwarder.onOptionsItemSelected(item);
+        return widgetForwarder.onOptionsItemSelected(item) || legacyShortcutForwarder.onOptionsItemSelected(item);
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
