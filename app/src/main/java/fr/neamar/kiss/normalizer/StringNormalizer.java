@@ -1,6 +1,6 @@
 package fr.neamar.kiss.normalizer;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.nio.CharBuffer;
 import java.text.Normalizer;

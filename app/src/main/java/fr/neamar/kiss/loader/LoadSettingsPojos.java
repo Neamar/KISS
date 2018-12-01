@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntegerRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.Locale;

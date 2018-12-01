@@ -3,7 +3,7 @@ package fr.neamar.kiss.ui;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Rect;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
