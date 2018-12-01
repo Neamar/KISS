@@ -45,6 +45,7 @@ import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.searcher.TagsSearcher;
+import fr.neamar.kiss.searcher.UntaggedSearcher;
 import fr.neamar.kiss.ui.AnimatedListView;
 import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
@@ -814,6 +815,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public void showMatchingTags( String tag ) {
         runTask(new TagsSearcher(this, tag));
+
+        clearButton.setVisibility(View.VISIBLE);
+        menuButton.setVisibility(View.INVISIBLE);
+    }
+
+    public void showUntagged()
+    {
+        runTask(new UntaggedSearcher(this));
 
         clearButton.setVisibility(View.VISIBLE);
         menuButton.setVisibility(View.INVISIBLE);

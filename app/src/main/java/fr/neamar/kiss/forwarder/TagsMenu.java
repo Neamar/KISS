@@ -241,6 +241,8 @@ public class TagsMenu extends Forwarder {
             adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_matching));
         if (!prefs.getBoolean("history-onclick", false))
             adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_history));
+        if (prefs.getBoolean("pref-show-untagged", false))
+            adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_untagged));
         // insert title only if at least an action was added
         if (actionsTitlePosition != adapter.getCount())
             adapter.add(actionsTitlePosition, new TagsMenu.MenuItemTitle(context, R.string.popup_tags_actions));
@@ -273,6 +275,9 @@ public class TagsMenu extends Forwarder {
                         case R.string.show_matching:
                             // show all matching
                             mainActivity.showMatchingTags(null);
+                            break;
+                        case R.string.show_untagged:
+                            mainActivity.showUntagged();
                             break;
                     }
                 }
