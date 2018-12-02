@@ -17,9 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import com.bumptech.glide.RequestBuilder;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -71,9 +69,7 @@ public class ContactsResult extends Result {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (!prefs.getBoolean("icons-hide", false)) {
-            GlideApp.with(contactIcon)
-                    .load(getModel(contactIcon.getContext()))
-                    .placeholder(android.R.color.transparent)
+            getRequestBuilder(contactIcon.getContext())
                     .into(contactIcon);
         } else {
             GlideApp.with(contactIcon)
@@ -168,13 +164,10 @@ public class ContactsResult extends Result {
 
     @SuppressWarnings("deprecation")
     @Override
-    public ContactsPojo getModel(Context context) {
-        synchronized (this) {
-            return contactPojo;
-
-            //TODO use Default icon
-            //return icon = context.getResources().getDrawable(R.drawable.ic_contact);
-        }
+    public RequestBuilder getRequestBuilder(Context context) {
+        return GlideApp.with(context)
+                .load(contactPojo)
+                .placeholder(R.drawable.ic_contact);
     }
 
     @Override

@@ -21,6 +21,8 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.RequestBuilder;
+
 import java.lang.ref.WeakReference;
 import java.util.List;
 
@@ -283,8 +285,8 @@ public abstract class Result {
      *
      * @param context android context
      */
-    public Object getModel(Context context) {
-        return null;
+    public RequestBuilder getRequestBuilder(Context context) {
+        return GlideApp.with(context).load((Drawable) null);//Fallback will be loaded and no possibility of NPE
     }
 
     /**

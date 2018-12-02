@@ -15,11 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.RequestBuilder;
+
 import java.util.Collections;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.forwarder.Permission;
+import fr.neamar.kiss.glide.GlideApp;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -99,8 +102,10 @@ public class PhoneResult extends Result {
     }
 
     @Override
-    public @DrawableRes Integer getModel(Context context) {
+    public RequestBuilder getRequestBuilder(Context context) {
         //noinspection deprecation: getDrawable(int, Theme) requires SDK 21+
-        return android.R.drawable.ic_menu_call;
+        return GlideApp
+                       .with(context)
+                       .load(android.R.drawable.ic_menu_call);
     }
 }

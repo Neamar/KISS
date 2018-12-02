@@ -27,6 +27,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.RequestBuilder;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -74,9 +76,7 @@ public class AppResult extends Result {
 
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!prefs.getBoolean("icons-hide", false)) {
-            GlideApp.with(appIcon)
-                    .load(getModel(appIcon.getContext()))
-                    .placeholder(android.R.color.transparent)
+            getRequestBuilder(appIcon.getContext())
                     .into(appIcon);
         } else {
             GlideApp.with(appIcon).load((Drawable) null).into(appIcon);
@@ -269,10 +269,10 @@ public class AppResult extends Result {
     }
 
     @Override
-    public AppPojo getModel(Context context) {
-        synchronized (this) {
-            return this.appPojo;
-        }
+    public RequestBuilder getRequestBuilder(Context context) {
+        return GlideApp.with(context)
+                       .load(this.appPojo)
+                       .placeholder(android.R.color.transparent);
     }
 
     @Override

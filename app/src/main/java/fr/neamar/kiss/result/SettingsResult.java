@@ -6,14 +6,16 @@ import android.content.Intent;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import androidx.annotation.DrawableRes;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.RequestBuilder;
+
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.glide.GlideApp;
+import fr.neamar.kiss.glide.GlideRequests;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.utils.FuzzyScore;
 
@@ -34,7 +36,7 @@ public class SettingsResult extends Result {
         displayHighlighted(settingPojo.normalizedName, settingPojo.getName(), fuzzyScore, settingName, context);
 
         ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
-        GlideApp.with(context).load(getModel(context)).into(settingIcon);
+        getRequestBuilder(context).into(settingIcon);
         settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
 
         return v;
@@ -42,12 +44,14 @@ public class SettingsResult extends Result {
 
     @SuppressWarnings("deprecation")
     @Override
-    public @DrawableRes Integer getModel(Context context) {
+    public RequestBuilder getRequestBuilder(Context context) {
+        GlideRequests request = GlideApp.with(context);
+
         if (settingPojo.icon != -1) {
-            return settingPojo.icon;
+            return request.load(settingPojo.icon);
         }
 
-        return null;
+        return request.load((Drawable) null);
     }
 
     @Override

@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -19,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
 import fr.neamar.kiss.KissApplication;
@@ -29,10 +23,8 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.glide.GlideApp;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
-import fr.neamar.kiss.ui.RoundedQuickContactBadge;
 
 public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener, View.OnTouchListener, View.OnDragListener {
     private static final String TAG = "FavoriteForwarder";
@@ -123,14 +115,11 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 image = (ImageView) favoritesViews.get(i);
             }
 
-            Result result = Result.fromPojo(mainActivity, pojo);
-            Object model = result.getModel(mainActivity);
-            if (model != null) {
-                GlideApp.with(image).load(model).into(image);
-            } else {
-                // Use a placeholder if no drawable found
-                image.setImageResource(R.drawable.ic_launcher_white);
-            }
+            GlideApp
+                    .with(image)
+                    .load(Result.fromPojo(mainActivity, pojo).getRequestBuilder(mainActivity))
+                    .fallback(R.drawable.ic_launcher_white) // Use a placeholder if no drawable found
+                    .into(image);
 
             image.setVisibility(View.VISIBLE);
             image.setContentDescription(pojo.getName());

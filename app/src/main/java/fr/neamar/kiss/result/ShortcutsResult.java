@@ -12,8 +12,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserHandle;
@@ -26,7 +24,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 
 import java.net.URISyntaxException;
 import java.util.Collections;
@@ -107,7 +105,7 @@ public class ShortcutsResult extends Result {
 
         if (!prefs.getBoolean("icons-hide", false)) {
             if (shortcutPojo.icon != null) {
-                GlideApp.with(context).load(getModel(context)).into(shortcutIcon);
+                getRequestBuilder(context).into(shortcutIcon);
                 GlideApp.with(context).load(appDrawable).into(appIcon);
             } else {
                 // No icon for this shortcut, use app icon
@@ -123,8 +121,8 @@ public class ShortcutsResult extends Result {
         return v;
     }
 
-    public Bitmap getModel(Context context) {
-        return shortcutPojo.icon;
+    public RequestBuilder getRequestBuilder(Context context) {
+        return GlideApp.with(context).load(shortcutPojo.icon);
     }
 
 
