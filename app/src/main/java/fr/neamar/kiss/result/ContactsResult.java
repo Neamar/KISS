@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.request.RequestOptions;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -167,6 +168,7 @@ public class ContactsResult extends Result {
     public RequestBuilder getRequestBuilder(Context context) {
         return GlideApp.with(context)
                 .load(contactPojo)
+                .apply(RequestOptions.circleCropTransform())
                 .placeholder(R.drawable.ic_contact);
     }
 
