@@ -320,7 +320,9 @@ public class DataHandler extends BroadcastReceiver
         return DBHelper.getHistoryLength(this.context);
     }
 
-    public void addShortcut(ShortcutsPojo shortcut) {
+    public boolean addShortcut(ShortcutsPojo shortcut) {
+        boolean success = false;//this is here to know what info is being returned
+
         ShortcutRecord record = new ShortcutRecord();
         record.name = shortcut.getName();
         record.iconResource = shortcut.resourceName;
@@ -334,13 +336,14 @@ public class DataHandler extends BroadcastReceiver
         }
 
         DBHelper.insertShortcut(this.context, record);
+        success = true;
 
         if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
 
         Log.d(TAG, "Shortcut " + shortcut.id + " added.");
-        Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
+        return success;
     }
 
     public void clearHistory() {
