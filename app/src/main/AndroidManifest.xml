@@ -140,7 +140,7 @@
 
         <!-- Intents received used to install/uninstall shortcuts from other applications -->
         <receiver
-            android:name=".broadcast.InstallShortcutHandler"
+            android:name=".shortcut.InstallShortcutHandler"
             android:permission="com.android.launcher.permission.INSTALL_SHORTCUT">
             <intent-filter>
                 <action android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
@@ -148,7 +148,7 @@
         </receiver>
 
         <receiver
-            android:name=".broadcast.UninstallShortcutHandler"
+            android:name=".shortcut.UninstallShortcutHandler"
             android:permission="com.android.launcher.permission.UNINSTALL_SHORTCUT">
             <intent-filter>
                 <action android:name="com.android.launcher.action.UNINSTALL_SHORTCUT" />

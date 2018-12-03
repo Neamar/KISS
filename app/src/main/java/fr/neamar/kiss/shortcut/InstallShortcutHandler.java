@@ -1,4 +1,4 @@
-package fr.neamar.kiss.broadcast;
+package fr.neamar.kiss.shortcut;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
