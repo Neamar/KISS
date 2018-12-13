@@ -89,3 +89,4 @@ From `⋮, KISS Settings, User experience`:
 
 * Minimalistic UI: enable
 
+Icon Pack used: [Lines](https://play.google.com/store/apps/details?id=com.natewren.linesfree)
