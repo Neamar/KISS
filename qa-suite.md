@@ -58,8 +58,6 @@ As best as possible, only actual KISS code is tested, not standard Android syste
 * [ ] TODO: history mode
 
 #### Automated history
-* [ ] When "Show incoming SMS" is disabled, SMS senders are not added to history
-* [ ] When "Show incoming SMS" is enabled, SMS senders are added to history
 * [ ] When "Show incoming calls" is disabled, callers are not added to history
 * [ ] When "Show incoming calls" is enabled, callers are added to history
 * [ ] When "Show newly installed apps" is disabled, new apps are not added to history
