@@ -17,8 +17,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!-- To call a phone number directly without displaying the dialer -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <!-- Incoming SMS sender history -->
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <!-- To read phone state -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- Display notification drawer -->
@@ -116,16 +114,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.LOCALE_CHANGED" />
-            </intent-filter>
-        </receiver>
-
-        <!-- On incoming messages, add user to history -->
-        <receiver
-            android:name=".broadcast.IncomingSmsHandler"
-            android:enabled="false"
-            tools:ignore="UnprotectedSMSBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
