@@ -100,7 +100,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Menu button
      */
-    private View menuButton;
+    public View menuButton;
     /**
      * Kiss bar
      */

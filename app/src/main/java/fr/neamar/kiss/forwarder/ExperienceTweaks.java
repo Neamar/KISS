@@ -139,6 +139,7 @@ class ExperienceTweaks extends Forwarder {
         }
         if (prefs.getBoolean("pref-hide-circle", false)) {
             ((ImageView) mainActivity.launcherButton).setImageBitmap(null);
+            ((ImageView) mainActivity.menuButton).setImageBitmap(null);
         }
     }
 
