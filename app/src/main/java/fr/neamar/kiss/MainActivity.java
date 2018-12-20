@@ -117,7 +117,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Launcher button, can be clicked to display all apps
      */
-    private View launcherButton;
+    public View launcherButton;
     /**
      * "X" button to empty the search field
      */
@@ -572,12 +572,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Do not display animation if launcher button is already visible
         if (!display && launcherButton.getVisibility() == View.INVISIBLE) {
-            if (!prefs.getBoolean("pref-hide-circle", false)) {
-                launcherButton.setVisibility(View.VISIBLE);
-            }
-            else {
-                launcherButton.setVisibility(View.INVISIBLE);
-            }
+            launcherButton.setVisibility(View.VISIBLE);
 
             // Animate transition from loader to launch button
             launcherButton.setAlpha(0);
