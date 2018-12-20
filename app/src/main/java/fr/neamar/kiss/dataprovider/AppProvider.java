@@ -9,7 +9,7 @@ import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.Process;
 import android.os.UserManager;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -155,8 +155,8 @@ public class AppProvider extends Provider<AppPojo> {
             pojo.relevance = matchInfo.score;
 
             // check relevance for tags
-            if (pojo.normalizedTags != null) {
-                matchInfo = fuzzyScore.match(pojo.normalizedTags.codePoints);
+            if (pojo.getNormalizedTags() != null) {
+                matchInfo = fuzzyScore.match(pojo.getNormalizedTags().codePoints);
                 if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
                     match = true;
                     pojo.relevance = matchInfo.score;

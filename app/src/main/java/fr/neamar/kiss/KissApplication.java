@@ -4,8 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
-import fr.neamar.kiss.cache.MemoryCacheHelper;
-
 public class KissApplication extends Application {
     /**
      * Number of ms to wait, after a click occurred, to record a launch
@@ -15,14 +13,6 @@ public class KissApplication extends Application {
     private DataHandler dataHandler;
     private RootHandler rootHandler;
     private IconsHandler iconsPackHandler;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        ApplicationLifecycleHandler handler = new ApplicationLifecycleHandler();
-        registerActivityLifecycleCallbacks(handler);
-        registerComponentCallbacks(handler);
-    }
 
     public static KissApplication getApplication(Context context) {
         return (KissApplication) context.getApplicationContext();

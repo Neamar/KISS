@@ -28,7 +28,6 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.cache.MemoryCacheHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -63,7 +62,7 @@ public class AppResult extends Result {
         // Hide tags view if tags are empty
         if (appPojo.getTags().isEmpty()) {
             tagsView.setVisibility(View.GONE);
-        } else if (displayHighlighted(appPojo.normalizedTags, appPojo.getTags(),
+        } else if (displayHighlighted(appPojo.getNormalizedTags(), appPojo.getTags(),
                 fuzzyScore, tagsView, context) || prefs.getBoolean("tags-visible", true)) {
             tagsView.setVisibility(View.VISIBLE);
         } else {
@@ -73,10 +72,8 @@ public class AppResult extends Result {
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!prefs.getBoolean("icons-hide", false)) {
             if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
-                setDrawableCache(appIcon.getDrawable());
+                icon = appIcon.getDrawable();
             }
-            if (!isDrawableCached())
-                setDrawableCache(MemoryCacheHelper.getCachedAppIconDrawable(className, this.appPojo.userHandle));
             this.setAsyncDrawable(appIcon);
         } else {
             appIcon.setImageDrawable(null);
@@ -246,7 +243,8 @@ public class AppResult extends Result {
     public Drawable getDrawable(Context context) {
         synchronized (this) {
             if (icon == null) {
-                icon = MemoryCacheHelper.getAppIconDrawable(context, className, this.appPojo.userHandle);
+                icon = KissApplication.getApplication(context).getIconsHandler()
+                        .getDrawableIconForPackage(className, this.appPojo.userHandle);
             }
 
             return icon;

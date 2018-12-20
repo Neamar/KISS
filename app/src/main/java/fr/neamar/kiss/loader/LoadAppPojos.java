@@ -1,6 +1,5 @@
 package fr.neamar.kiss.loader;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -17,7 +16,6 @@ import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
-import fr.neamar.kiss.cache.MemoryCacheHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -54,18 +52,11 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
 
                     String fullPackageName = user.addUserSuffixToString(appInfo.packageName, '#');
-                    AppPojo app = new AppPojo();
+                    String id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
 
-                    app.id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
+                    AppPojo app = new AppPojo(id, appInfo.packageName, activityInfo.getName(), user);
 
                     app.setName(activityInfo.getLabel().toString());
-
-                    app.packageName = appInfo.packageName;
-                    app.activityName = activityInfo.getName();
-
-                    // Wrap Android user handle in opaque container that will work across
-                    // all Android versions
-                    app.userHandle = user;
 
                     app.setTags(tagsHandler.getTags(app.id));
 
@@ -82,15 +73,10 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
             for (ResolveInfo info : manager.queryIntentActivities(mainIntent, 0)) {
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
-                AppPojo app = new AppPojo();
+                String id = pojoScheme + appInfo.packageName + "/" + info.activityInfo.name;
+                AppPojo app = new AppPojo(id, appInfo.packageName, info.activityInfo.name, new UserHandle());
 
-                app.id = pojoScheme + appInfo.packageName + "/" + info.activityInfo.name;
                 app.setName(info.loadLabel(manager).toString());
-
-                app.packageName = appInfo.packageName;
-                app.activityName = info.activityInfo.name;
-
-                app.userHandle = new UserHandle();
 
                 app.setTags(tagsHandler.getTags(app.id));
                 if (!excludedAppList.contains(app.getComponentName())) {
@@ -101,11 +87,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
         long end = System.nanoTime();
         Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list apps");
-
-        // cache all app icons
-        for (AppPojo app : apps) {
-            MemoryCacheHelper.cacheAppIconDrawable(ctx, new ComponentName(app.packageName, app.activityName), app.userHandle);
-        }
 
         return apps;
     }

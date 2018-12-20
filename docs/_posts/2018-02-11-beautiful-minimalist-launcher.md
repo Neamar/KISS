@@ -73,3 +73,20 @@ From `⋮, KISS Settings, User experience`:
 * Minimalistic UI: enable
 
 Press `⋮`, then select "Add widget" and [pick a widget you like](https://play.google.com/store/apps/details?id=com.apalon.weatherlive.free)!
+
+## Example 5: minimalist and black
+![Image: Shubham Thakur](/screenshots/example-minimalist-5.jpg)
+> Image: Shubham Thakur
+
+From `⋮, KISS Settings, User interface`:
+
+* Notification bar color: select transparent
+* UI color: select white
+* Transparent favorites bar: enable
+* Large search bar: disable
+
+From `⋮, KISS Settings, User experience`:
+
+* Minimalistic UI: enable
+
+Icon Pack used: [Lines](https://play.google.com/store/apps/details?id=com.natewren.linesfree)

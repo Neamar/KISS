@@ -61,11 +61,13 @@ public class OreoShortcuts extends Forwarder {
 
         Log.d(TAG, "Shortcut: " + shortcutInfo.getPackage() + " " + shortcutInfo.getId());
 
+        final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
 
-        ShortcutsPojo pojo = new ShortcutsPojo();
         // id isn't used after being saved in the DB.
-        pojo.id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
-        pojo.packageName = shortcutInfo.getPackage();
+        String id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
+
+        ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
+                drawableToBitmap(iconDrawable));
 
         // Name can be either in shortLabel or longLabel
         if (shortcutInfo.getShortLabel() != null) {
@@ -76,11 +78,6 @@ public class OreoShortcuts extends Forwarder {
             Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
             return;
         }
-
-        final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-        pojo.icon = drawableToBitmap(iconDrawable);
-
-        pojo.setOreoId(shortcutInfo.getId());
 
         // Add shortcut to the DataHandler
         dh.addShortcut(pojo);

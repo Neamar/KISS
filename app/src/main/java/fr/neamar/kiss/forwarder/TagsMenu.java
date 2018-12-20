@@ -4,10 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +48,11 @@ public class TagsMenu extends Forwarder {
 
     public boolean isTagMenuEnabled() {
         return prefs.getBoolean("pref-tags-menu", false);
+    }
+
+    public boolean isAutoDismiss()
+    {
+        return prefs.getBoolean("pref-tags-menu-dismiss", false);
     }
 
     private void loadTags() {
@@ -236,6 +241,8 @@ public class TagsMenu extends Forwarder {
             adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_matching));
         if (!prefs.getBoolean("history-onclick", false))
             adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_history));
+        if (prefs.getBoolean("pref-show-untagged", false))
+            adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_untagged));
         // insert title only if at least an action was added
         if (actionsTitlePosition != adapter.getCount())
             adapter.add(actionsTitlePosition, new TagsMenu.MenuItemTitle(context, R.string.popup_tags_actions));
@@ -245,7 +252,7 @@ public class TagsMenu extends Forwarder {
 
         // set popup interaction rules
         popupMenu.setAdapter(adapter);
-        popupMenu.setDismissOnItemClick(false);
+        popupMenu.setDismissOnItemClick( isAutoDismiss() );
         popupMenu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
             @Override
             public void onItemClick(ListAdapter adapter, View view, int position) {
@@ -268,6 +275,9 @@ public class TagsMenu extends Forwarder {
                         case R.string.show_matching:
                             // show all matching
                             mainActivity.showMatchingTags(null);
+                            break;
+                        case R.string.show_untagged:
+                            mainActivity.showUntagged();
                             break;
                     }
                 }

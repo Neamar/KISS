@@ -1,6 +1,7 @@
 package fr.neamar.kiss.loader;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
@@ -31,29 +32,24 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
         }
         List<ShortcutRecord> records = DBHelper.getShortcuts(context.get());
         for (ShortcutRecord shortcutRecord : records) {
-            ShortcutsPojo pojo = createPojo(shortcutRecord.name);
+            Bitmap icon = null;
 
-            pojo.packageName = shortcutRecord.packageName;
-            pojo.resourceName = shortcutRecord.iconResource;
-            pojo.intentUri = shortcutRecord.intentUri;
             if (shortcutRecord.icon_blob != null) {
-                pojo.icon = BitmapFactory.decodeByteArray(shortcutRecord.icon_blob, 0, shortcutRecord.icon_blob.length);
+                icon = BitmapFactory.decodeByteArray(shortcutRecord.icon_blob, 0, shortcutRecord.icon_blob.length);
             }
 
+            String id = ShortcutsPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
+
+            ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutRecord.packageName,
+                    shortcutRecord.iconResource, shortcutRecord.intentUri, icon);
+
+            pojo.setName(shortcutRecord.name);
             pojo.setTags(tagsHandler.getTags(pojo.id));
+
             pojos.add(pojo);
         }
 
         return pojos;
-    }
-
-    private ShortcutsPojo createPojo(String name) {
-        ShortcutsPojo pojo = new ShortcutsPojo();
-
-        pojo.id = ShortcutsPojo.SCHEME + name.toLowerCase(Locale.ROOT);
-        pojo.setName(name);
-
-        return pojo;
     }
 
 }

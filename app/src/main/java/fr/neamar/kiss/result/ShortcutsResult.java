@@ -62,7 +62,7 @@ public class ShortcutsResult extends Result {
         // Hide tags view if tags are empty
         if (shortcutPojo.getTags().isEmpty()) {
             tagsView.setVisibility(View.GONE);
-        } else if (displayHighlighted(shortcutPojo.normalizedTags, shortcutPojo.getTags(),
+        } else if (displayHighlighted(shortcutPojo.getNormalizedTags(), shortcutPojo.getTags(),
                 fuzzyScore, tagsView, context) || prefs.getBoolean("tags-visible", true)) {
             tagsView.setVisibility(View.VISIBLE);
         } else {

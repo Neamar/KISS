@@ -12,7 +12,7 @@ public class CalculatorProvider implements IProvider {
     private Pattern p;
 
     public CalculatorProvider() {
-        p = Pattern.compile("([0-9.]+)\\s?([+\\-*/×x÷])\\s?([0-9.]+)");
+        p = Pattern.compile("(-?)([0-9.]+)\\s?([+\\-*/×x÷])\\s?(-?)([0-9.]+)");
     }
 
     @Override
@@ -20,17 +20,15 @@ public class CalculatorProvider implements IProvider {
         // Now create matcher object.
         Matcher m = p.matcher(query);
         if (m.find()) {
-            SearchPojo pojo = new SearchPojo();
-            pojo.id = "calculator://";
-            pojo.type = SearchPojo.CALCULATOR_QUERY;
-
-            String operator = m.group(2);
+            String operator = m.group(3);
 
             // let's go for floating point arithmetic
             // we need to add a "0" on top of it to support ".2" => 0.2
             // For every other case, this doesn't change the number "01" => 1
-            float lhs = Float.parseFloat("0" + m.group(1));
-            float rhs = Float.parseFloat("0" + m.group(3));
+            float lhs = Float.parseFloat("0" + m.group(2));
+            lhs = m.group(1).equals("-") ? -lhs : lhs;
+            float rhs = Float.parseFloat("0" + m.group(5));
+            rhs = m.group(4).equals("-") ? -rhs : rhs;
 
             float floatResult = 0;
             switch (operator) {
@@ -55,7 +53,10 @@ public class CalculatorProvider implements IProvider {
                     floatResult = Float.POSITIVE_INFINITY;
             }
 
-            pojo.query = floatToString(lhs) + " " + operator + " " + floatToString(rhs) + " = " + floatToString(floatResult);
+            String queryProcessed = floatToString(lhs) + " " + operator + " "
+                    + floatToString(rhs) + " = " + floatToString(floatResult);
+            SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojo.CALCULATOR_QUERY);
+
             pojo.relevance = 100;
             searcher.addResult(pojo);
         }
