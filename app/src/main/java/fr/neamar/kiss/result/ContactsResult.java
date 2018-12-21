@@ -3,11 +3,13 @@ package fr.neamar.kiss.result;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -196,8 +198,7 @@ public class ContactsResult extends Result {
         }
     }
 
-    @Override
-    public void doLaunch(Context context, View v) {
+    public void launchContactView(Context context, View v) {
         Intent viewContact = new Intent(Intent.ACTION_VIEW);
 
         viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
@@ -209,6 +210,22 @@ public class ContactsResult extends Result {
         viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         context.startActivity(viewContact);
+
+    }
+
+
+    @Override
+    public void doLaunch(Context context, View v) {
+        SharedPreferences settingPrefs = PreferenceManager.getDefaultSharedPreferences(v.getContext());
+        Boolean callContacts=settingPrefs.getBoolean("call-contacts", false);
+
+        if(!callContacts){
+            launchContactView(context,v);
+        } else {
+            launchCall(v.getContext());
+        }
+
+
     }
 
     private void launchMessaging(final Context context) {
