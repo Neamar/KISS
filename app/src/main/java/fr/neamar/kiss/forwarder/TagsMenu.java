@@ -267,10 +267,6 @@ public class TagsMenu extends Forwarder {
                         case R.string.show_history:
                             mainActivity.showHistory();
                             break;
-                        case R.string.show_matching:
-                            // show all matching
-                            mainActivity.showMatchingTags(null);
-                            break;
                         case R.string.show_untagged:
                             mainActivity.showUntagged();
                             break;
