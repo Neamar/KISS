@@ -15,7 +15,6 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,8 +25,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
-import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.TagsMenu;
@@ -306,14 +305,6 @@ public class SettingsActivity extends PreferenceActivity implements
             addCustomSearchProvidersPreferences(prefs);
         } else if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
-        } else if (key.equalsIgnoreCase("enable-sms-history")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{android.Manifest.permission.RECEIVE_SMS},
-                        SettingsActivity.PERMISSION_RECEIVE_SMS);
-                return;
-            }
-            PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, sharedPreferences.getBoolean(key, false));
         } else if (key.equalsIgnoreCase("enable-phone-history")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -358,19 +349,10 @@ public class SettingsActivity extends PreferenceActivity implements
 
         if (requestCode == PERMISSION_READ_PHONE_STATE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-phone-history", false));
+                PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
             } else {
                 // You don't want to give us permission, that's fine. Revert the toggle.
                 SwitchPreference p = (SwitchPreference) findPreference("enable-phone-history");
-                p.setChecked(false);
-                Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
-            }
-        } else if (requestCode == PERMISSION_RECEIVE_SMS) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
-            } else {
-                // You don't want to give us permission, that's fine. Revert the toggle.
-                SwitchPreference p = (SwitchPreference) findPreference("enable-sms-history");
                 p.setChecked(false);
                 Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
             }

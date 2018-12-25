@@ -13,7 +13,6 @@ import android.database.DataSetObserver;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -34,9 +33,9 @@ import android.widget.TextView.OnEditorActionListener;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
-import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -324,8 +323,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         );
         this.hider.start();
 
-        // Enable/disable phone/sms broadcast receiver
-        PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
+        // Enable/disable phone broadcast receiver
         PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
 
         // Hide the "X" after the text field, instead displaying the menu button
