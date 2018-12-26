@@ -159,7 +159,7 @@ public class SettingsActivity extends PreferenceActivity implements
         multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
         multiPreference.setKey("excluded_apps_ui");
         multiPreference.setOrder(15);
-        PreferenceGroup category = (PreferenceGroup) findPreference("history_category");
+        PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
         category.addPreference(multiPreference);
 
         loadExcludedAppsToPreference(multiPreference);
@@ -195,7 +195,7 @@ public class SettingsActivity extends PreferenceActivity implements
         multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
         multiPreference.setKey("excluded_from_history_apps_ui");
         multiPreference.setOrder(15);
-        PreferenceGroup category = (PreferenceGroup) findPreference("history_category");
+        PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
         category.addPreference(multiPreference);
 
         loadExcludedFromHistoryAppsToPreference(multiPreference);
