@@ -9,6 +9,7 @@ import android.text.InputType;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -135,6 +136,10 @@ class ExperienceTweaks extends Forwarder {
 
             mainActivity.list.setVerticalScrollBarEnabled(false);
             mainActivity.searchEditText.setHint("");
+        }
+        if (prefs.getBoolean("pref-hide-circle", false)) {
+            ((ImageView) mainActivity.launcherButton).setImageBitmap(null);
+            ((ImageView) mainActivity.menuButton).setImageBitmap(null);
         }
     }
 

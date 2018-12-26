@@ -3,11 +3,13 @@ package fr.neamar.kiss.result;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -67,10 +69,16 @@ public class ContactsResult extends Result {
         ImprovedQuickContactBadge contactIcon = view
                 .findViewById(R.id.item_contact_icon);
 
-        if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
-            icon = contactIcon.getDrawable();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!prefs.getBoolean("icons-hide", false)) {
+            if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
+                icon = contactIcon.getDrawable();
+            }
+            this.setAsyncDrawable(contactIcon);
         }
-        this.setAsyncDrawable(contactIcon);
+        else {
+            contactIcon.setImageDrawable(null);
+        }
 
         contactIcon.assignContactUri(Uri.withAppendedPath(
                 ContactsContract.Contacts.CONTENT_LOOKUP_URI,

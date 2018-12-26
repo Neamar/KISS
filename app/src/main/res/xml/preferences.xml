@@ -46,10 +46,6 @@
             android:title="@string/alternate_history_inputs">
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
-                android:key="enable-sms-history"
-                android:title="@string/enable_sms" />
-            <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="false"
                 android:key="enable-phone-history"
                 android:title="@string/enable_phone" />
             <fr.neamar.kiss.SwitchPreference
@@ -160,6 +156,11 @@
                 android:key="pref-hide-statusbar"
                 android:summary="@string/pref_hide_statusbar_desc"
                 android:title="@string/pref_hide_statusbar" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-hide-circle"
+                android:summary="@string/pref_hide_circle_desc"
+                android:title="@string/pref_hide_circle" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <fr.neamar.kiss.SwitchPreference
