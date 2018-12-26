@@ -147,11 +147,10 @@ public class AppResult extends Result {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.exclude_from_history:
-                                excludeFromHistory(context, appPojo);
+                                excludeFromHistory(context, appPojo, parent);
                                 return true;
                             case R.id.exclude_from_kiss:
-
-//                                 remove item since it will be hidden
+                                // remove item since it will be hidden
                                 parent.removeResult(AppResult.this);
                                 excludeFromKiss(context, appPojo);
                                 return true;
@@ -171,11 +170,15 @@ public class AppResult extends Result {
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
-    private void excludeFromHistory(Context context, AppPojo appPojo) {
+    private void excludeFromHistory(Context context, AppPojo appPojo, final RecordAdapter parent) {
         //add to excluded from history app list
         KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
         //remove from history
         deleteRecord(context);
+        //refresh current history
+        if (!((MainActivity)context).isViewingAllApps()) {
+            parent.removeResult(AppResult.this);
+        }
         //inform user
         Toast.makeText(context, R.string.excluded_app_history_added, Toast.LENGTH_LONG).show();
     }
