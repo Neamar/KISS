@@ -99,7 +99,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Menu button
      */
-    private View menuButton;
+    public View menuButton;
     /**
      * Kiss bar
      */
@@ -116,7 +116,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Launcher button, can be clicked to display all apps
      */
-    private View launcherButton;
+    public View launcherButton;
     /**
      * "X" button to empty the search field
      */
