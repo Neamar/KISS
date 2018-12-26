@@ -116,7 +116,7 @@ public class ShortcutsResult extends Result {
         else {
             appIcon.setImageDrawable(null);
         }
-        
+
         return v;
     }
 
