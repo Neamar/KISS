@@ -101,16 +101,22 @@ public class ShortcutsResult extends Result {
             return v;
         }
 
-        if (shortcutPojo.icon != null) {
-            BitmapDrawable drawable = new BitmapDrawable(context.getResources(), shortcutPojo.icon);
-            shortcutIcon.setImageDrawable(drawable);
-            appIcon.setImageDrawable(appDrawable);
-        } else {
-            // No icon for this shortcut, use app icon
-            shortcutIcon.setImageDrawable(appDrawable);
-            appIcon.setImageResource(android.R.drawable.ic_menu_send);
-        }
+        if (!prefs.getBoolean("icons-hide", false)) {
 
+            if (shortcutPojo.icon != null) {
+                BitmapDrawable drawable = new BitmapDrawable(context.getResources(), shortcutPojo.icon);
+                shortcutIcon.setImageDrawable(drawable);
+                appIcon.setImageDrawable(appDrawable);
+            } else {
+                // No icon for this shortcut, use app icon
+                shortcutIcon.setImageDrawable(appDrawable);
+                appIcon.setImageResource(android.R.drawable.ic_menu_send);
+            }
+        }
+        else {
+            appIcon.setImageDrawable(null);
+        }
+        
         return v;
     }
 
