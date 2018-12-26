@@ -92,7 +92,7 @@ public class SearchResult extends Result {
     }
 
     @Override
-    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
         switch (stringId) {
             case R.string.share:
                 Intent shareIntent = new Intent();
@@ -104,6 +104,6 @@ public class SearchResult extends Result {
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, stringId);
+        return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 }

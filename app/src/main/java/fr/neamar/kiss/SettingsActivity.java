@@ -85,6 +85,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
         fixSummaries();
 
+        addExcludedFromHistoryAppSettings(prefs);
         addExcludedAppSettings(prefs);
 
         addCustomSearchProvidersPreferences(prefs);
@@ -133,8 +134,22 @@ public class SettingsActivity extends PreferenceActivity implements
         multiSelectList.setValues(new HashSet<>(Arrays.asList(apps)));
     }
 
+    private void loadExcludedFromHistoryAppsToPreference(MultiSelectListPreference multiSelectList) {
+        Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcludedFromHistory();
+        String[] apps = (String[]) excludedAppList.toArray(new String[0]);
+
+        multiSelectList.setEntries(apps);
+        multiSelectList.setEntryValues(apps);
+        multiSelectList.setValues(new HashSet<>(Arrays.asList(apps)));
+    }
+
     private boolean hasNoExcludedApps() {
         Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcluded();
+        return excludedAppList.isEmpty();
+    }
+
+    private boolean hasNoExcludedFromHistoryApps() {
+        Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcludedFromHistory();
         return excludedAppList.isEmpty();
     }
 
@@ -170,6 +185,37 @@ public class SettingsActivity extends PreferenceActivity implements
             }
         });
         if (hasNoExcludedApps()) {
+            multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void addExcludedFromHistoryAppSettings(final SharedPreferences prefs) {
+        final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+        multiPreference.setTitle(R.string.ui_excluded_from_history_apps);
+        multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
+        multiPreference.setKey("excluded_from_history_apps_ui");
+        multiPreference.setOrder(15);
+        PreferenceGroup category = (PreferenceGroup) findPreference("history_category");
+        category.addPreference(multiPreference);
+
+        loadExcludedFromHistoryAppsToPreference(multiPreference);
+        multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            @SuppressWarnings("unchecked")
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                Set<String> appListToBeExcluded = (HashSet<String>) newValue;
+
+                prefs.edit().putStringSet("excluded-apps-from-history", appListToBeExcluded).apply();
+                loadExcludedFromHistoryAppsToPreference(multiPreference);
+                if (hasNoExcludedFromHistoryApps()) {
+                    multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
+                }
+
+                return false;
+            }
+        });
+        if (hasNoExcludedFromHistoryApps()) {
             multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
         }
     }

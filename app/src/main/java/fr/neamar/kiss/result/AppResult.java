@@ -16,11 +16,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -123,7 +125,7 @@ public class AppResult extends Result {
     }
 
     @Override
-    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    protected boolean popupMenuClickHandler(final Context context, final RecordAdapter parent, int stringId, View parentView) {
         switch (stringId) {
             case R.string.menu_app_details:
                 launchAppDetails(context, appPojo);
@@ -135,19 +137,50 @@ public class AppResult extends Result {
                 hibernate(context, appPojo);
                 return true;
             case R.string.menu_exclude:
-                // remove item since it will be hidden
-                parent.removeResult(this);
-                excludeFromAppList(context, appPojo);
+
+                PopupMenu popupExcludeMenu = new PopupMenu(context, parentView);
+                //Inflating the Popup using xml file
+                popupExcludeMenu.getMenuInflater().inflate(R.menu.menu_exclude, popupExcludeMenu.getMenu());
+
+                //registering popup with OnMenuItemClickListener
+                popupExcludeMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.exclude_from_history:
+                                excludeFromHistory(context, appPojo);
+                                return true;
+                            case R.id.exclude_from_kiss:
+
+//                                 remove item since it will be hidden
+                                parent.removeResult(AppResult.this);
+                                excludeFromKiss(context, appPojo);
+                                return true;
+                        }
+
+                        return true;
+                    }
+                });
+
+                popupExcludeMenu.show();
                 return true;
             case R.string.menu_tags_edit:
                 launchEditTagsDialog(context, appPojo);
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, stringId);
+        return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
-    private void excludeFromAppList(Context context, AppPojo appPojo) {
+    private void excludeFromHistory(Context context, AppPojo appPojo) {
+        //add to excluded from history app list
+        KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
+        //remove from history
+        deleteRecord(context);
+        //inform user
+        Toast.makeText(context, R.string.excluded_app_history_added, Toast.LENGTH_LONG).show();
+    }
+
+    private void excludeFromKiss(Context context, AppPojo appPojo) {
         KissApplication.getApplication(context).getDataHandler().addToExcluded(appPojo);
         //remove app pojo from appProvider results - no need to reset handler
         KissApplication.getApplication(context).getDataHandler().getAppProvider().removeApp(appPojo);
