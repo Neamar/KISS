@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -138,18 +139,20 @@ public class AppResult extends Result {
                 return true;
             case R.string.menu_exclude:
 
+                final int EXCLUDE_HISTORY_ID = 0;
+                final int EXCLUDE_KISS_ID = 1;
                 PopupMenu popupExcludeMenu = new PopupMenu(context, parentView);
                 //Inflating the Popup using xml file
-                popupExcludeMenu.getMenuInflater().inflate(R.menu.menu_exclude, popupExcludeMenu.getMenu());
-
+                popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID,Menu.NONE, Menu.NONE,R.string.menu_exclude_history);
+                popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID,Menu.NONE, Menu.NONE,R.string.menu_exclude_kiss);
                 //registering popup with OnMenuItemClickListener
                 popupExcludeMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.exclude_from_history:
+                        switch (item.getGroupId()) {
+                            case EXCLUDE_HISTORY_ID:
                                 excludeFromHistory(context, appPojo, parent);
                                 return true;
-                            case R.id.exclude_from_kiss:
+                            case EXCLUDE_KISS_ID:
                                 // remove item since it will be hidden
                                 parent.removeResult(AppResult.this);
                                 excludeFromKiss(context, appPojo);
