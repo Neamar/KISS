@@ -142,7 +142,7 @@ public class AppResult extends Result {
                 final int EXCLUDE_HISTORY_ID = 0;
                 final int EXCLUDE_KISS_ID = 1;
                 PopupMenu popupExcludeMenu = new PopupMenu(context, parentView);
-                //Inflating the Popup using xml file
+                //Adding menu items
                 popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID,Menu.NONE, Menu.NONE,R.string.menu_exclude_history);
                 popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID,Menu.NONE, Menu.NONE,R.string.menu_exclude_kiss);
                 //registering popup with OnMenuItemClickListener
