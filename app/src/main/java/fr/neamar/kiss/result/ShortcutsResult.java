@@ -104,7 +104,7 @@ public class ShortcutsResult extends Result {
         }
 
         if (!prefs.getBoolean("icons-hide", false)) {
-            if (shortcutPojo.icon != null) {
+            if (shortcutPojo.bitmapIcon != null || shortcutPojo.oreoIcon != null) {
                 getRequestBuilder(context).into(shortcutIcon);
                 GlideApp.with(context).load(appDrawable).into(appIcon);
             } else {
@@ -122,7 +122,9 @@ public class ShortcutsResult extends Result {
     }
 
     public RequestBuilder getRequestBuilder(Context context) {
-        return GlideApp.with(context).load(shortcutPojo.icon);
+	    return GlideApp
+			           .with(context)
+			           .load(!shortcutPojo.isOreoShortcut()? shortcutPojo.bitmapIcon:shortcutPojo.oreoIcon);
     }
 
 

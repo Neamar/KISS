@@ -22,9 +22,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
@@ -36,6 +38,7 @@ import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
+import fr.neamar.kiss.glide.GlideApp;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
@@ -325,6 +328,7 @@ public class DataHandler extends BroadcastReceiver
         return DBHelper.getHistoryLength(this.context);
     }
 
+    @WorkerThread
     public boolean addShortcut(ShortcutsPojo shortcut) {
         boolean success = false;//this is here to know what info is being returned
 
@@ -334,9 +338,24 @@ public class DataHandler extends BroadcastReceiver
         record.packageName = shortcut.packageName;
         record.intentUri = shortcut.intentUri;
 
-        if (shortcut.icon != null) {
+        if (shortcut.bitmapIcon != null) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            shortcut.icon.compress(CompressFormat.PNG, 100, baos);
+            shortcut.bitmapIcon.compress(CompressFormat.PNG, 100, baos);
+            record.icon_blob = baos.toByteArray();
+        } else if (shortcut.oreoIcon != null) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            try {
+                GlideApp.with(context)
+                        .asBitmap()
+                        .load(shortcut.oreoIcon)
+                        .submit()
+                        .get()
+                        .compress(CompressFormat.PNG, 100, baos);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             record.icon_blob = baos.toByteArray();
         }
 
