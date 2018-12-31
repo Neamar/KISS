@@ -2,7 +2,9 @@ package fr.neamar.kiss.forwarder;
 
 import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Point;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -12,17 +14,28 @@ import android.view.animation.Transformation;
 import fr.neamar.kiss.MainActivity;
 
 class LiveWallpaper extends Forwarder {
-    private final WallpaperManager mWallpaperManager;
-    private final Point mWindowSize;
+    private final boolean wallpaperIsVisible;
+
+    private WallpaperManager mWallpaperManager;
+    private Point mWindowSize;
     private android.os.IBinder mWindowToken;
-    private final View mContentView;
+    private View mContentView;
     private float mLastTouchPos;
     private float mWallpaperOffset;
-    private final LiveWallpaper.Anim mAnimation;
+    private LiveWallpaper.Anim mAnimation;
     private VelocityTracker mVelocityTracker;
 
     LiveWallpaper(MainActivity mainActivity) {
         super(mainActivity);
+        TypedValue typedValue = new TypedValue();
+        mainActivity.getTheme().resolveAttribute(android.R.attr.windowShowWallpaper, typedValue, true);
+        TypedArray a = mainActivity.obtainStyledAttributes(typedValue.resourceId, new int[]{android.R.attr.windowShowWallpaper});
+        wallpaperIsVisible = a.getBoolean(0, true);
+        a.recycle();
+
+        if(!wallpaperIsVisible) {
+            return;
+        }
 
         mWallpaperManager = (WallpaperManager) mainActivity.getSystemService(Context.WALLPAPER_SERVICE);
         assert mWallpaperManager != null;
@@ -36,6 +49,10 @@ class LiveWallpaper extends Forwarder {
     }
 
     boolean onTouch(View view, MotionEvent event) {
+        if(!wallpaperIsVisible) {
+            return false;
+        }
+
         int actionMasked = event.getActionMasked();
         switch (actionMasked) {
             case MotionEvent.ACTION_DOWN:

@@ -1,4 +1,4 @@
-package fr.neamar.kiss.handlers;
+package fr.neamar.kiss;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -8,10 +8,9 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
+import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -25,7 +24,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import fr.neamar.kiss.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
@@ -159,14 +159,30 @@ public class DataHandler extends BroadcastReceiver
 
 
         // Find provider class for the given service name
-        Intent intent = this.providerName2Intent(name);
+        final Intent intent = this.providerName2Intent(name);
         if (intent == null) {
             return;
         }
 
-        // Send "start service" command first so that the service can run independently
-        // of the activity
-        this.context.startService(intent);
+        try {
+            // Send "start service" command first so that the service can run independently
+            // of the activity
+            this.context.startService(intent);
+        }
+        catch(IllegalStateException e) {
+            // In Android 8+, only foreground apps can create a service. However, DataHandler is initialized from within onCreate in MainActivity
+            // and in some rare situations (can't reproduce locally) this is too early for a service to run
+            // yelding an IllegalStateException in those rare cases
+            // So when this happens, we catch it and retry later. If it fails again, it will be reported to the play store
+            // and a more robust solution (maybe using onPostCreate?) will have to be implemented.
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    context.startService(intent);
+                }
+            }, 20);
+        }
 
         final ProviderEntry entry = new ProviderEntry();
 

@@ -1,12 +1,12 @@
 package fr.neamar.kiss.forwarder;
 
 import android.content.Intent;
-import androidx.annotation.NonNull;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import fr.neamar.kiss.MainActivity;
 
 public class ForwarderManager extends Forwarder {
@@ -24,8 +24,8 @@ public class ForwarderManager extends Forwarder {
         super(mainActivity);
 
         this.widgetForwarder = new Widget(mainActivity);
-        this.liveWallpaperForwarder = new LiveWallpaper(mainActivity);
         this.interfaceTweaks = new InterfaceTweaks(mainActivity);
+        this.liveWallpaperForwarder = new LiveWallpaper(mainActivity);
         this.experienceTweaks = new ExperienceTweaks(mainActivity);
         this.favoritesForwarder = new Favorites(mainActivity);
         this.permissionForwarder = new Permission(mainActivity);
