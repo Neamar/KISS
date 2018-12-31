@@ -1,4 +1,4 @@
-package fr.neamar.kiss;
+package fr.neamar.kiss.handlers;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DBHelper;
 
 public class TagsHandler {

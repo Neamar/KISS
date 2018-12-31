@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.TagsHandler;
+import fr.neamar.kiss.handlers.TagsHandler;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.ShortcutsPojo;

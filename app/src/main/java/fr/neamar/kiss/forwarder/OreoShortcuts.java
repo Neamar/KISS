@@ -13,7 +13,7 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
-import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.handlers.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;

@@ -29,7 +29,7 @@ import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.List;
 
-import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.handlers.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;

@@ -23,7 +23,7 @@ import androidx.annotation.StringRes;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.TagsHandler;
+import fr.neamar.kiss.handlers.TagsHandler;
 import fr.neamar.kiss.ui.ListPopup;
 
 /**

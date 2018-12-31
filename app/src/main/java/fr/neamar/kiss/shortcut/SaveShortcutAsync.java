@@ -12,10 +12,9 @@ import java.net.URISyntaxException;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
-import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.handlers.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class SaveShortcutAsync extends AsyncTask<Void, Void, Boolean> {

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.handlers.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.pojo.ContactsPojo;

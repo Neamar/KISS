@@ -1,6 +1,7 @@
 package fr.neamar.kiss.forwarder;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 
+import fr.neamar.kiss.handlers.ImportExportHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -17,12 +19,14 @@ import fr.neamar.kiss.dataprovider.ContactsProvider;
 
 
 public class Permission extends Forwarder {
-    private static final int PERMISSION_READ_CONTACTS = 0;
-    private static final int PERMISSION_CALL_PHONE = 1;
+    public static final int PERMISSION_READ_CONTACTS = 0;
+    public static final int PERMISSION_CALL_PHONE = 1;
+    public static final int PERMISSION_WRITE_SETTINGS_EXTERNAL_STORAGE = 2;
+    public static final int PERMISSION_READ_SETTINGS_EXTERNAL_STORAGE = 3;
 
     // Static weak reference to the main activity, this is sadly required
     // to ensure classes requesting permission can access activity.requestPermission()
-    private static WeakReference<MainActivity> currentMainActivity = new WeakReference<MainActivity>(null);
+    private static WeakReference<MainActivity> currentMainActivity = new WeakReference<>(null);
 
     /**
      * Sometimes, we need to wait for the user to give us permission before we can start an intent.
@@ -60,10 +64,35 @@ public class Permission extends Forwarder {
 
     public static void askContactPermission() {
         // If we don't have permission to list contacts, ask for it.
-        MainActivity mainActivity = Permission.currentMainActivity.get();
+        Activity mainActivity = Permission.currentMainActivity.get();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && mainActivity != null) {
             mainActivity.requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS},
                     Permission.PERMISSION_READ_CONTACTS);
+        }
+    }
+
+    public static boolean checkExternalStorageWritePermission(Context context) {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static void askExternalStorageWritePermissionForSettings(Activity activity) {
+        // If we don't have permission to write to external storage, ask for it.
+        //Activity mainActivity = Permission.currentMainActivity.get();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity != null) {
+            activity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, },
+                    Permission.PERMISSION_WRITE_SETTINGS_EXTERNAL_STORAGE);
+        }
+    }
+    public static boolean checkExternalStorageReadPermission(Context context) {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static void askExternalStorageReadPermissionForSettings(Activity activity) {
+        // If we don't have permission to write to external storage, ask for it.
+        //Activity mainActivity = Permission.currentMainActivity.get();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity != null) {
+            activity.requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    Permission.PERMISSION_READ_SETTINGS_EXTERNAL_STORAGE);
         }
     }
 

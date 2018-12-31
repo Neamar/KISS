@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.TagsHandler;
+import fr.neamar.kiss.handlers.TagsHandler;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.utils.UserHandle;
 

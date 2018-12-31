@@ -1,4 +1,4 @@
-package fr.neamar.kiss;
+package fr.neamar.kiss.handlers;
 
 import android.content.Context;
 import android.content.SharedPreferences;

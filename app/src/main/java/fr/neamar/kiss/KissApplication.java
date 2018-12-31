@@ -4,6 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import fr.neamar.kiss.handlers.DataHandler;
+import fr.neamar.kiss.handlers.IconsHandler;
+import fr.neamar.kiss.handlers.RootHandler;
+
 public class KissApplication extends Application {
     /**
      * Number of ms to wait, after a click occurred, to record a launch
