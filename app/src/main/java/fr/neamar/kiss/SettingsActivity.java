@@ -126,8 +126,9 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
         Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcluded();
-        String[] apps = (String[]) excludedAppList.toArray(new String[0]);
-
+        String[] apps = excludedAppList.toArray(new String[0]);
+        Arrays.sort(apps);
+        
         multiSelectList.setEntries(apps);
         multiSelectList.setEntryValues(apps);
         multiSelectList.setValues(new HashSet<>(Arrays.asList(apps)));
@@ -135,7 +136,8 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private void loadExcludedFromHistoryAppsToPreference(MultiSelectListPreference multiSelectList) {
         Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcludedFromHistory();
-        String[] apps = (String[]) excludedAppList.toArray(new String[0]);
+        String[] apps = excludedAppList.toArray(new String[0]);
+        Arrays.sort(apps);
 
         multiSelectList.setEntries(apps);
         multiSelectList.setEntryValues(apps);
