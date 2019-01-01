@@ -383,6 +383,16 @@ public class DataHandler extends BroadcastReceiver
     }
 
     @NonNull
+    public Set<String> getExcludedFromHistory() {
+        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps-from-history", null);
+        if (excluded == null) {
+            excluded = new HashSet<>();
+            excluded.add(context.getPackageName());
+        }
+        return excluded;
+    }
+
+    @NonNull
     public Set<String> getExcluded() {
         Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps", null);
         if (excluded == null) {
@@ -390,6 +400,12 @@ public class DataHandler extends BroadcastReceiver
             excluded.add(context.getPackageName());
         }
         return excluded;
+    }
+
+    public void addToExcludedFromHistory(AppPojo app) {
+        Set<String> excluded = getExcludedFromHistory();
+        excluded.add(app.id);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
     }
 
     public void addToExcluded(AppPojo app) {
@@ -601,7 +617,9 @@ public class DataHandler extends BroadcastReceiver
         boolean frozen = PreferenceManager.getDefaultSharedPreferences(context).
                 getBoolean("freeze-history", false);
 
-        if (!frozen) {
+        Set<String> excludedFromHistory = getExcludedFromHistory();
+
+        if ((!frozen) && (!excludedFromHistory.contains(id))) {
             DBHelper.insertHistory(this.context, currentQuery, id);
         }
     }

@@ -188,7 +188,7 @@ public class ShortcutsResult extends Result {
     }
 
     @Override
-    boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
         switch (stringId) {
             case R.string.menu_shortcut_remove:
                 launchUninstall(context, shortcutPojo);
@@ -200,7 +200,7 @@ public class ShortcutsResult extends Result {
                 return true;
 
         }
-        return super.popupMenuClickHandler(context, parent, stringId);
+        return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
     private void launchEditTagsDialog(final Context context, final ShortcutsPojo pojo) {

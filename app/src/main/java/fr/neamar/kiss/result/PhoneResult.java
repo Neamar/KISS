@@ -59,7 +59,7 @@ public class PhoneResult extends Result {
     }
 
     @Override
-    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
         switch (stringId) {
             case R.string.menu_phone_create:
                 // Create a new contact with this phone number
@@ -77,7 +77,7 @@ public class PhoneResult extends Result {
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, stringId);
+        return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
     @SuppressLint("MissingPermission")
