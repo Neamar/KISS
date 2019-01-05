@@ -169,7 +169,9 @@ public class SettingsActivity extends PreferenceActivity implements
             @Override
             @SuppressWarnings("unchecked")
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                Set<String> appListToBeExcluded = (HashSet<String>) newValue;
+                // Duplicate then save to make sure we're not editing in place
+                // (can't be done with sharedpreferences)
+                Set<String> appListToBeExcluded = new HashSet<>((HashSet<String>) newValue);
 
                 prefs.edit().putStringSet("excluded-apps", appListToBeExcluded).apply();
                 loadExcludedAppsToPreference(multiPreference);
