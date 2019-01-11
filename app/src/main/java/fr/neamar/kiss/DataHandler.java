@@ -10,11 +10,8 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -26,6 +23,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
@@ -159,14 +158,20 @@ public class DataHandler extends BroadcastReceiver
 
 
         // Find provider class for the given service name
-        Intent intent = this.providerName2Intent(name);
+        final Intent intent = this.providerName2Intent(name);
         if (intent == null) {
             return;
         }
 
-        // Send "start service" command first so that the service can run independently
-        // of the activity
-        this.context.startService(intent);
+        try {
+            // Send "start service" command first so that the service can run independently
+            // of the activity
+            this.context.startService(intent);
+        } catch (IllegalStateException e) {
+            // https://github.com/Neamar/KISS/issues/1130
+            Log.e("KISS", "Unable to start service for " + name + ". This is likely because a broadcast receiver was triggered and KISS is not the default home app, so services are not running and can't be started in this context.");
+            return;
+        }
 
         final ProviderEntry entry = new ProviderEntry();
 
@@ -281,7 +286,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context        android context
      * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @param historyMode Recency vs Frecency vs Frequency
+     * @param historyMode    Recency vs Frecency vs Frequency
      * @param itemsToExclude Items to exclude from history
      * @return pojos in recent history
      */
@@ -320,7 +325,9 @@ public class DataHandler extends BroadcastReceiver
         return DBHelper.getHistoryLength(this.context);
     }
 
-    public void addShortcut(ShortcutsPojo shortcut) {
+    public boolean addShortcut(ShortcutsPojo shortcut) {
+        boolean success = false;//this is here to know what info is being returned
+
         ShortcutRecord record = new ShortcutRecord();
         record.name = shortcut.getName();
         record.iconResource = shortcut.resourceName;
@@ -334,13 +341,14 @@ public class DataHandler extends BroadcastReceiver
         }
 
         DBHelper.insertShortcut(this.context, record);
+        success = true;
 
         if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
 
         Log.d(TAG, "Shortcut " + shortcut.id + " added.");
-        Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
+        return success;
     }
 
     public void clearHistory() {
@@ -364,6 +372,16 @@ public class DataHandler extends BroadcastReceiver
     }
 
     @NonNull
+    public Set<String> getExcludedFromHistory() {
+        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps-from-history", null);
+        if (excluded == null) {
+            excluded = new HashSet<>();
+            excluded.add(context.getPackageName());
+        }
+        return excluded;
+    }
+
+    @NonNull
     public Set<String> getExcluded() {
         Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps", null);
         if (excluded == null) {
@@ -373,8 +391,18 @@ public class DataHandler extends BroadcastReceiver
         return excluded;
     }
 
+    public void addToExcludedFromHistory(AppPojo app) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcludedFromHistory());
+        excluded.add(app.id);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
+    }
+
     public void addToExcluded(AppPojo app) {
-        Set<String> excluded = getExcluded();
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcluded());
         excluded.add(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
     }
@@ -582,7 +610,9 @@ public class DataHandler extends BroadcastReceiver
         boolean frozen = PreferenceManager.getDefaultSharedPreferences(context).
                 getBoolean("freeze-history", false);
 
-        if (!frozen) {
+        Set<String> excludedFromHistory = getExcludedFromHistory();
+
+        if ((!frozen) && (!excludedFromHistory.contains(id))) {
             DBHelper.insertHistory(this.context, currentQuery, id);
         }
     }

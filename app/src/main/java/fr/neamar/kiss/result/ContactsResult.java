@@ -69,10 +69,16 @@ public class ContactsResult extends Result {
         ImprovedQuickContactBadge contactIcon = view
                 .findViewById(R.id.item_contact_icon);
 
-        if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
-            icon = contactIcon.getDrawable();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!prefs.getBoolean("icons-hide", false)) {
+            if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
+                icon = contactIcon.getDrawable();
+            }
+            this.setAsyncDrawable(contactIcon);
         }
-        this.setAsyncDrawable(contactIcon);
+        else {
+            contactIcon.setImageDrawable(null);
+        }
 
         contactIcon.assignContactUri(Uri.withAppendedPath(
                 ContactsContract.Contacts.CONTENT_LOOKUP_URI,
@@ -138,14 +144,14 @@ public class ContactsResult extends Result {
     }
 
     @Override
-    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
         switch (stringId) {
             case R.string.menu_contact_copy_phone:
                 copyPhone(context, contactPojo);
                 return true;
         }
 
-        return super.popupMenuClickHandler(context, parent, stringId);
+        return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
     @SuppressWarnings("deprecation")

@@ -101,14 +101,20 @@ public class ShortcutsResult extends Result {
             return v;
         }
 
-        if (shortcutPojo.icon != null) {
-            BitmapDrawable drawable = new BitmapDrawable(context.getResources(), shortcutPojo.icon);
-            shortcutIcon.setImageDrawable(drawable);
-            appIcon.setImageDrawable(appDrawable);
-        } else {
-            // No icon for this shortcut, use app icon
-            shortcutIcon.setImageDrawable(appDrawable);
-            appIcon.setImageResource(android.R.drawable.ic_menu_send);
+        if (!prefs.getBoolean("icons-hide", false)) {
+
+            if (shortcutPojo.icon != null) {
+                BitmapDrawable drawable = new BitmapDrawable(context.getResources(), shortcutPojo.icon);
+                shortcutIcon.setImageDrawable(drawable);
+                appIcon.setImageDrawable(appDrawable);
+            } else {
+                // No icon for this shortcut, use app icon
+                shortcutIcon.setImageDrawable(appDrawable);
+                appIcon.setImageResource(android.R.drawable.ic_menu_send);
+            }
+        }
+        else {
+            appIcon.setImageDrawable(null);
         }
 
         return v;
@@ -182,7 +188,7 @@ public class ShortcutsResult extends Result {
     }
 
     @Override
-    boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId) {
+    boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
         switch (stringId) {
             case R.string.menu_shortcut_remove:
                 launchUninstall(context, shortcutPojo);
@@ -194,7 +200,7 @@ public class ShortcutsResult extends Result {
                 return true;
 
         }
-        return super.popupMenuClickHandler(context, parent, stringId);
+        return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
     private void launchEditTagsDialog(final Context context, final ShortcutsPojo pojo) {

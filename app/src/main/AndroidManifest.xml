@@ -17,12 +17,12 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!-- To call a phone number directly without displaying the dialer -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <!-- Incoming SMS sender history -->
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <!-- To read phone state -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- Display notification drawer -->
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <!-- Ability to uninstall an app from KISS -->
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -119,16 +119,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- On incoming messages, add user to history -->
-        <receiver
-            android:name=".broadcast.IncomingSmsHandler"
-            android:enabled="false"
-            tools:ignore="UnprotectedSMSBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-        </receiver>
-
         <!-- On incoming calls, add user to history -->
         <receiver
             android:name=".broadcast.IncomingCallHandler"
@@ -140,7 +130,7 @@
 
         <!-- Intents received used to install/uninstall shortcuts from other applications -->
         <receiver
-            android:name=".broadcast.InstallShortcutHandler"
+            android:name=".shortcut.InstallShortcutHandler"
             android:permission="com.android.launcher.permission.INSTALL_SHORTCUT">
             <intent-filter>
                 <action android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
@@ -148,7 +138,7 @@
         </receiver>
 
         <receiver
-            android:name=".broadcast.UninstallShortcutHandler"
+            android:name=".shortcut.UninstallShortcutHandler"
             android:permission="com.android.launcher.permission.UNINSTALL_SHORTCUT">
             <intent-filter>
                 <action android:name="com.android.launcher.action.UNINSTALL_SHORTCUT" />

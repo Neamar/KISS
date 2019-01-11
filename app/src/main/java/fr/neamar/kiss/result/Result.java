@@ -141,7 +141,7 @@ public abstract class Result {
      *
      * @return a PopupMenu object
      */
-    public ListPopup getPopupMenu(final Context context, final RecordAdapter parent, View parentView) {
+    public ListPopup getPopupMenu(final Context context, final RecordAdapter parent, final View parentView) {
         ArrayAdapter<ListPopup.Item> adapter = new ArrayAdapter<>(context, R.layout.popup_list_item);
         ListPopup menu = buildPopupMenu(context, adapter, parent, parentView);
 
@@ -149,7 +149,7 @@ public abstract class Result {
             @Override
             public void onItemClick(ListAdapter adapter, View view, int position) {
                 @StringRes int stringId = ((ListPopup.Item) adapter.getItem(position)).stringId;
-                popupMenuClickHandler(view.getContext(), parent, stringId);
+                popupMenuClickHandler(view.getContext(), parent, stringId, parentView);
             }
         });
 
@@ -205,7 +205,7 @@ public abstract class Result {
      *
      * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
      */
-    boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId) {
+    boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId, View parentView) {
         switch (stringId) {
             case R.string.menu_remove:
                 removeItem(context, parent);

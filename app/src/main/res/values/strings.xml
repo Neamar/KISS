@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string name="app_name">KISS launcher</string>
@@ -31,8 +31,6 @@
 
     <string name="settings_name">Device settings</string>
 
-    <string name="phone_name">Phone numbers</string>
-
     <string name="shortcuts_name">Shortcuts</string>
 
     <string name="stub_application" translatable="false">App name</string>
@@ -47,9 +45,13 @@
     <string name="main_kiss">Display favorites and app list</string>
     <string name="main_kiss_back">Display history</string>
     <string name="reset_name">Reset history</string>
-    <string name="reset_excluded_apps_name">Reset excluded app list</string>
+    <string name="reset_excluded_apps_name">Reset excluded from KISS app list</string>
     <string name="reset_excluded_apps_warn">Do you really want to reset your excluded app list?</string>
-    <string name="ui_excluded_apps">View or edit your excluded apps</string>
+    <string name="reset_excluded_from_history_apps_name">Reset excluded from history app list</string>
+    <string name="reset_excluded_from_history_apps_warn">Do you really want to reset your excluded from history app list?</string>
+    <string name="settings_excluded_apps">Excluded apps</string>
+    <string name="ui_excluded_apps">View or edit your excluded from KISS apps</string>
+    <string name="ui_excluded_from_history_apps">View or edit your excluded from history apps</string>
     <string name="ui_excluded_apps_dialog_title">Deselect the apps you would like to include</string>
     <string name="ui_excluded_apps_not_found">No apps have been excluded</string>
     <string name="reset_warn">Do you really want to reset your history?</string>
@@ -69,7 +71,7 @@
     <string name="wp_animate_center_desc">The wallpaper will return to center after scrolling</string>
     <string name="wp_animate_sides">Side stick wallpaper</string>
     <string name="wp_animate_sides_desc">The wallpaper will stick to the left or right after scrolling</string>
-    <string name="icons_hide_main">Hide app icons</string>
+    <string name="icons_hide_main">Hide icons</string>
     <string name="icons_hide_desc">Useful on slow devices</string>
     <string name="search_providers_title">Select web search providers</string>
     <string name="search_providers_delete">Delete search providers</string>
@@ -129,10 +131,13 @@
     <string name="tags_visible">Show app tags</string>
     <string name="excluded_app_list_erased">List of excluded apps erased.</string>
     <string name="excluded_app_list_added">App excluded from KISS. Reset through the KISS settings</string>
+    <string name="excluded_app_history_added">App excluded from history. Reset through the KISS settings</string>
 
     <string name="removed_item">Removed</string>
     <string name="menu_remove">Remove from history</string>
-    <string name="menu_exclude">Exclude app from KISS</string>
+    <string name="menu_exclude">Exclude app ...</string>
+    <string name="menu_exclude_kiss">from KISS</string>
+    <string name="menu_exclude_history">from history</string>
     <string name="menu_app_details">App info</string>
     <string name="menu_app_uninstall">Uninstall</string>
     <string name="menu_app_hibernate">Hibernate</string>
@@ -146,7 +151,6 @@
 
     <string name="toast_favorites_added">%s was added to favorites</string>
 
-    <string name="enable_sms">Show incoming SMSes in history</string>
     <string name="enable_phone">Show incoming calls in history</string>
     <string name="enable_app">Show newly installed apps in history</string>
     <string name="enable_favorites_bar">Show favorites above search bar</string>
@@ -156,6 +160,8 @@
     <string name="pref_hide_navbar_desc">Hide navigation bar and turn on immersive mode</string>
     <string name="pref_hide_statusbar">Hide status bar</string>
     <string name="pref_hide_statusbar_desc">Hide notification bar and turn on immersive mode</string>
+    <string name="pref_hide_circle">Hide the KISS circle</string>
+    <string name="pref_hide_circle_desc">App list will still be accessible</string>
     <string name="shortcut_added">Shortcut added to KISS.</string>
 
     <string name="restart_desc">Fix theme issues and new contacts not displaying</string>
@@ -218,13 +224,11 @@
     <string name="unable_add_shortcut">Unable to add shortcuts (shortcut provider is turned off in KISS settings)</string>
 
     <!-- Strings from tags menu -->
-    <string name="pref_toggle_tags">Show hide-tags menu</string>
     <string name="screen_toggle_tags">Customize tags menu</string>
     <string name="pref_toggle_tags_select">Tags to show in menu</string>
     <string name="ctx_menu">KISS Menu</string>
     <string name="pref_tags_menu">Add tags in menu</string>
     <string name="pref_tags_menu_dismiss">Close tags menu after selection</string>
-    <string name="show_matching">Show all matching</string>
     <string name="popup_tags_title">Available tags</string>
     <string name="popup_tags_actions">Available actions</string>
     <string name="show_history">Show history</string>

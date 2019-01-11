@@ -15,7 +15,6 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,8 +25,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
-import fr.neamar.kiss.broadcast.IncomingSmsHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.TagsMenu;
@@ -42,7 +41,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private static final int PERMISSION_READ_PHONE_STATE = 1;
 
     // Those settings require the app to restart
-    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars history-hide enable-favorites-bar notification-bar-color black-notification-icons";
+    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars pref-hide-circle history-hide enable-favorites-bar notification-bar-color black-notification-icons";
     final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait require-settings-update";
     private boolean requireFullRestart = false;
 
@@ -85,6 +84,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
         fixSummaries();
 
+        addExcludedFromHistoryAppSettings(prefs);
         addExcludedAppSettings(prefs);
 
         addCustomSearchProvidersPreferences(prefs);
@@ -126,7 +126,18 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
         Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcluded();
-        String[] apps = (String[]) excludedAppList.toArray(new String[0]);
+        String[] apps = excludedAppList.toArray(new String[0]);
+        Arrays.sort(apps);
+
+        multiSelectList.setEntries(apps);
+        multiSelectList.setEntryValues(apps);
+        multiSelectList.setValues(new HashSet<>(Arrays.asList(apps)));
+    }
+
+    private void loadExcludedFromHistoryAppsToPreference(MultiSelectListPreference multiSelectList) {
+        Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcludedFromHistory();
+        String[] apps = excludedAppList.toArray(new String[0]);
+        Arrays.sort(apps);
 
         multiSelectList.setEntries(apps);
         multiSelectList.setEntryValues(apps);
@@ -138,6 +149,11 @@ public class SettingsActivity extends PreferenceActivity implements
         return excludedAppList.isEmpty();
     }
 
+    private boolean hasNoExcludedFromHistoryApps() {
+        Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcludedFromHistory();
+        return excludedAppList.isEmpty();
+    }
+
     @SuppressWarnings("deprecation")
     private void addExcludedAppSettings(final SharedPreferences prefs) {
         final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
@@ -145,7 +161,7 @@ public class SettingsActivity extends PreferenceActivity implements
         multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
         multiPreference.setKey("excluded_apps_ui");
         multiPreference.setOrder(15);
-        PreferenceGroup category = (PreferenceGroup) findPreference("history_category");
+        PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
         category.addPreference(multiPreference);
 
         loadExcludedAppsToPreference(multiPreference);
@@ -153,7 +169,9 @@ public class SettingsActivity extends PreferenceActivity implements
             @Override
             @SuppressWarnings("unchecked")
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                Set<String> appListToBeExcluded = (HashSet<String>) newValue;
+                // Duplicate then save to make sure we're not editing in place
+                // (can't be done with sharedpreferences)
+                Set<String> appListToBeExcluded = new HashSet<>((HashSet<String>) newValue);
 
                 prefs.edit().putStringSet("excluded-apps", appListToBeExcluded).apply();
                 loadExcludedAppsToPreference(multiPreference);
@@ -170,6 +188,37 @@ public class SettingsActivity extends PreferenceActivity implements
             }
         });
         if (hasNoExcludedApps()) {
+            multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void addExcludedFromHistoryAppSettings(final SharedPreferences prefs) {
+        final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
+        multiPreference.setTitle(R.string.ui_excluded_from_history_apps);
+        multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
+        multiPreference.setKey("excluded_from_history_apps_ui");
+        multiPreference.setOrder(15);
+        PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
+        category.addPreference(multiPreference);
+
+        loadExcludedFromHistoryAppsToPreference(multiPreference);
+        multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            @SuppressWarnings("unchecked")
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                Set<String> appListToBeExcluded = (HashSet<String>) newValue;
+
+                prefs.edit().putStringSet("excluded-apps-from-history", appListToBeExcluded).apply();
+                loadExcludedFromHistoryAppsToPreference(multiPreference);
+                if (hasNoExcludedFromHistoryApps()) {
+                    multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
+                }
+
+                return false;
+            }
+        });
+        if (hasNoExcludedFromHistoryApps()) {
             multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
         }
     }
@@ -306,14 +355,6 @@ public class SettingsActivity extends PreferenceActivity implements
             addCustomSearchProvidersPreferences(prefs);
         } else if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
-        } else if (key.equalsIgnoreCase("enable-sms-history")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{android.Manifest.permission.RECEIVE_SMS},
-                        SettingsActivity.PERMISSION_RECEIVE_SMS);
-                return;
-            }
-            PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, sharedPreferences.getBoolean(key, false));
         } else if (key.equalsIgnoreCase("enable-phone-history")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -358,19 +399,10 @@ public class SettingsActivity extends PreferenceActivity implements
 
         if (requestCode == PERMISSION_READ_PHONE_STATE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-phone-history", false));
+                PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
             } else {
                 // You don't want to give us permission, that's fine. Revert the toggle.
                 SwitchPreference p = (SwitchPreference) findPreference("enable-phone-history");
-                p.setChecked(false);
-                Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
-            }
-        } else if (requestCode == PERMISSION_RECEIVE_SMS) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                PackageManagerUtils.enableComponent(this, IncomingSmsHandler.class, prefs.getBoolean("enable-sms-history", false));
-            } else {
-                // You don't want to give us permission, that's fine. Revert the toggle.
-                SwitchPreference p = (SwitchPreference) findPreference("enable-sms-history");
                 p.setChecked(false);
                 Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
             }

@@ -10,11 +10,6 @@
             android:key="reset"
             android:order="10"
             android:title="@string/reset_name" />
-        <fr.neamar.kiss.preference.ResetExcludedAppsPreference
-            android:dialogMessage="@string/reset_excluded_apps_warn"
-            android:key="reset-excluded-apps"
-            android:order="12"
-            android:title="@string/reset_excluded_apps_name" />
         <EditTextPreference
             android:defaultValue="20"
             android:inputType="number"
@@ -41,10 +36,6 @@
             android:title="@string/alternate_history_inputs">
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
-                android:key="enable-sms-history"
-                android:title="@string/enable_sms" />
-            <fr.neamar.kiss.SwitchPreference
-                android:defaultValue="false"
                 android:key="enable-phone-history"
                 android:title="@string/enable_phone" />
             <fr.neamar.kiss.SwitchPreference
@@ -52,6 +43,22 @@
                 android:key="enable-app-history"
                 android:title="@string/enable_app" />
         </PreferenceCategory>
+        <PreferenceCategory
+            android:key="exclude_apps_category"
+            android:order="53"
+            android:title="@string/settings_excluded_apps">
+            <fr.neamar.kiss.preference.ResetExcludedFromHistoryAppsPreference
+                android:dialogMessage="@string/reset_excluded_from_history_apps_warn"
+                android:key="reset-excluded-from-history-apps"
+                android:order="56"
+                android:title="@string/reset_excluded_from_history_apps_name" />
+            <fr.neamar.kiss.preference.ResetExcludedAppsPreference
+                android:dialogMessage="@string/reset_excluded_apps_warn"
+                android:key="reset-excluded-apps"
+                android:order="57"
+                android:title="@string/reset_excluded_apps_name" />
+        </PreferenceCategory>
+
     </PreferenceScreen>
     <PreferenceScreen
         android:key="history_favorites"
@@ -155,6 +162,11 @@
                 android:key="pref-hide-statusbar"
                 android:summary="@string/pref_hide_statusbar_desc"
                 android:title="@string/pref_hide_statusbar" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-hide-circle"
+                android:summary="@string/pref_hide_circle_desc"
+                android:title="@string/pref_hide_circle" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <fr.neamar.kiss.SwitchPreference

@@ -22,6 +22,7 @@
         <item name="resultShadowColor">#3f000000</item>
         <item name="listBackgroundColor">@android:color/white</item>
         <item name="searchBackgroundColor">@android:color/white</item>
+        <item name="searchBackgroundOutline">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator_light</item>
         <item name="textShadowRadius">0</item>
     </style>
@@ -36,10 +37,31 @@
         <item name="resultColor">@color/kiss_text_on_dark</item>
         <item name="resultShadowColor">@android:color/black</item>
         <item name="listBackgroundColor">@color/kiss_list_background_inverse</item>
+
         <item name="searchBackgroundColor">@color/kiss_list_background_inverse</item>
+        <item name="searchBackgroundOutline">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator_dark</item>
         <item name="textShadowRadius">0</item>
     </style>
+
+
+    <style name="AppThemeAmoledDark" parent="BaseThemeDark">
+        <item name="android:windowShowWallpaper">false</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:textColor">@color/kiss_text_on_dark</item>
+        <item name="android:textColorSecondary">#7f7f7f</item>
+
+        <item name="searchColor">@android:color/white</item>
+        <item name="resultColor">@android:color/white</item>
+        <item name="resultShadowColor">@android:color/black</item>
+        <item name="listBackgroundColor">@android:color/black</item>
+        <item name="searchBackgroundOutline">@android:color/white</item>
+        <item name="searchBackgroundColor">@android:color/black</item>
+
+        <item name="dividerDrawable">@android:color/transparent</item>
+        <item name="textShadowRadius">0</item>
+    </style>
+
 
     <style name="AppThemeTransparent" parent="AppThemeLight">
         <item name="resultColor">@color/kiss_text_on_light</item>
