@@ -73,7 +73,7 @@ public class ContactsResult extends Result {
             getRequestBuilder(contactIcon.getContext())
                     .into(contactIcon);
         } else {
-            GlideApp.with(contactIcon)
+            GlideApp.with(context)
                     .load((Drawable) null)
                     .into(contactIcon);
         }

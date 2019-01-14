@@ -79,7 +79,7 @@ public class AppResult extends Result {
             getRequestBuilder(appIcon.getContext())
                     .into(appIcon);
         } else {
-            GlideApp.with(appIcon).load((Drawable) null).into(appIcon);
+            GlideApp.with(context).load((Drawable) null).into(appIcon);
         }
         return view;
     }

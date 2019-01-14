@@ -116,7 +116,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             }
 
             GlideApp
-                    .with(image)
+                    .with(mainActivity.getApplicationContext())
                     .load(Result.fromPojo(mainActivity, pojo).getRequestBuilder(mainActivity))
                     .fallback(R.drawable.ic_launcher_white) // Use a placeholder if no drawable found
                     .into(image);

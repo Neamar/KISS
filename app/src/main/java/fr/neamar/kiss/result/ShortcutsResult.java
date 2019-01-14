@@ -113,7 +113,7 @@ public class ShortcutsResult extends Result {
                 GlideApp.with(context).load(android.R.drawable.ic_menu_send).into(appIcon);
             }
         } else {
-            GlideApp.with(appIcon)
+            GlideApp.with(context)
                     .load((Drawable) null)
                     .into(appIcon);
         }
