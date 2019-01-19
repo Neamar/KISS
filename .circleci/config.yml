@@ -8,6 +8,9 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
+      - run:
+          name: Create keystore
+          run: 'printf "storePassword=android\nkeyPassword=android\nkeyAlias=androiddebugkey\nstoreFile=/home/circleci/.android/debug.keystore" > "./keystore.properties"'
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
