@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="ui_search_hint">Hae sovelluksia, yhteystietoja, …</string>
     <string name="ui_item_contact_hint_call">Soita</string>
 
@@ -8,7 +8,7 @@
     <string name="menu_settings">Laitteen asetukset</string>
 
     <string name="ui_empty_1_sub">Sovellukset, yhteystiedot, asetukset, …</string>
-    <string name="ui_empty_3_sub">KISS-käynnistin oppii tavoistasi</string>
+    <string name="ui_empty_3_sub">KISS-käynnistin oppii tavoillesi</string>
 
     <string name="contacts_name">Yhteystiedot</string>
 
@@ -32,7 +32,7 @@
     <string name="wp_drag_animate_desc">Raahaa ← → vierittääksesi taustakuvaa</string>
     <string name="wp_animate_center">Keskitä taustakuva</string>
     <string name="wp_animate_center_desc">Taustakuva palaa keskelle rullauksen jälkeen</string>
-    <string name="icons_hide_main">Piilota sovellusten kuvakkeet</string>
+    <string name="icons_hide_main">Piilota kuvakkeet</string>
     <string name="icons_hide_desc">Hyödyllinen hitailla laitteilla</string>
     <string name="search_providers_title">Valitse hakukonetarjoajat</string>
     <string name="search_providers_delete">Poista hakukonetarjoajia</string>
@@ -51,7 +51,7 @@
     <string name="settings_airplane">Lentokonetila</string>
     <string name="settings_applications">Sovellukset</string>
     <string name="settings_battery">Akku</string>
-    <string name="settings_tethering">Yhteyden jakaminen</string>
+    <string name="settings_tethering">Hotspot ja yhteyden jako</string>
     <string name="settings_accessibility">Esteettömyys</string>
     <string name="history_erased">Historia pyyhitty.</string>
     <string name="favorites_erased">Suosikit pyyhitty.</string>
@@ -66,5 +66,87 @@
     <string name="menu_phone_create">Luo yhteystieto</string>
 
     <string name="toast_favorites_added">%s lisättiin suosikeihin</string>
-
-    </resources>
+    <string name="app_name">KISS-käynnistin</string>
+    <string name="activity_setting">KISS-käynnistimen asetukset</string>
+    <string name="ui_item_search">Hae %1$s hakukoneella “%2$s”</string>
+    <string name="ui_item_visit">Siirry “%1$s”</string>
+    <string name="ui_item_phone">Soita “%s”</string>
+    <string name="ui_item_contact_hint_message">Viestitä</string>
+    <string name="title_providers">Tarjoajien valinta</string>
+    <string name="ui_empty_1">Aloita minkä tahansa hakeminen</string>
+    <string name="ui_empty_2">Näe aina historiasi</string>
+    <string name="ui_empty_2_sub">Nopeaa käyttöä varten</string>
+    <string name="ui_empty_3">Nopea pääsy useimmiten käyttämille sovelluksillesi</string>
+    <string name="reset_excluded_apps_name">Resetoi KISS-sovelluslistasta poissuljetut sovellukset</string>
+    <string name="reset_excluded_apps_warn">Tahdotko varmasti nollata poissuljetun sovelluslistasi\?</string>
+    <string name="reset_excluded_from_history_apps_name">Resetoi sovellushistorialistasta poissuljetut</string>
+    <string name="reset_excluded_from_history_apps_warn">Tahdotko varmasti resetoida sovellushistorialistastasi poissuljetut\?</string>
+    <string name="settings_excluded_apps">Poissuljetut sovellukset</string>
+    <string name="ui_excluded_apps">Tarkastele tai muokkaa KISSistä poissulkemiasi sovelluksia</string>
+    <string name="ui_excluded_from_history_apps">Tarkastele tai muokkaa historiasta poissulkemiasi sovelluksia</string>
+    <string name="ui_excluded_apps_dialog_title">Poista valinta sovelluksista, jotka tahtoisit sisällyttää</string>
+    <string name="ui_excluded_apps_not_found">Yhtäkään sovellusta ei ole suljettu pois</string>
+    <string name="reset_warn">Tahdotko varmasti nollata historiasi\?</string>
+    <string name="reset_favorites_name">Nollaa suosikki-listasi</string>
+    <string name="reset_favorites_warn">Tahdotko varmasti nollata suosikkisi\?</string>
+    <string name="history_hide_desc">Piilota historia, esittelyteksti, ota widgetit käyttöön</string>
+    <string name="portrait_title">Pakota pystysuora tila</string>
+    <string name="lwp_drag_desc">Lähetä useat kosketustapahtumat</string>
+    <string name="wp_animate_sides">Sivukiinnitystaustakuva</string>
+    <string name="wp_animate_sides_desc">Taustakuva pysyy vasemmalla tai oikealla vierityksen jälkeen</string>
+    <string name="search_provider_error_placeholder">Käytä %s hakukyselyn merkitsijänä</string>
+    <string name="search_provider_error_url">Anna kelvollinen URL</string>
+    <string name="search_provider_error_exists">Samanniminen hakukonetarjoaja on jo olemassa</string>
+    <string name="history_mode_desc">Valitse historialistan täyttötapa</string>
+    <string name="root_mode_desc">Jos saatavilla, käytä sitä sovellusten horrostamiseen</string>
+    <string name="root_mode_error">Root-oikeuksia ei saatu.</string>
+    <string name="freeze_history_warn">Haluatko varmasti jäädyttää historiasi ja poistaa käytöstä tulevat päivitykset\? Historiasi ei enää muutu.</string>
+    <string name="icons_pack_name">Kuvaketeema (ADW.Launcher-teema)</string>
+    <string name="icons_pack_default_name">Järjestelmän kuvakkeet</string>
+    <string name="alias_phone">soita,puhelin,dial,call,phone</string>
+    <string name="alias_contacts">yhteystiedot,ihmiset,suhteet,contacts,people,relations</string>
+    <string name="alias_web">internet,verkko,selain,web,browser</string>
+    <string name="alias_mail">posti,sähköposti,mail,email,e-mail</string>
+    <string name="alias_market">kauppa,sovelluskeskus,sovellusvalikoima,market,store,app center</string>
+    <string name="alias_clock">kello,herätyskello,ajastin,sekuntikello,clock,alarm,timer,stopwatch</string>
+    <string name="alias_messaging">tekstiviesti, luo, kirjoita,SMS,MMS,viestitys,messaging</string>
+    <string name="settings_device_info">Puhelimen tila</string>
+    <string name="settings_connectivity">Verkko ja internet</string>
+    <string name="settings_nfc">NFC</string>
+    <string name="settings_storage">Tallennustila</string>
+    <string name="settings_dev">Kehittäjäasetukset</string>
+    <string name="settings_sound">Ääni</string>
+    <string name="settings_display">Näyttö</string>
+    <string name="menu_wallpaper">Vaihda taustakuva</string>
+    <string name="application_not_found">Hups... Sovellusta ei pystytty käynnistämään.</string>
+    <string name="menu_tags_edit">Lisää tai muokkaa tageja</string>
+    <string name="tags_add_title">Lisää välilyönnein eroteltuja tageja</string>
+    <string name="tags_confirmation_added">Tagit asetettu</string>
+    <string name="tags_visible">Näytä sovellusten tagit</string>
+    <string name="excluded_app_list_erased">Poissuljettujen sovellusten lista pyyhitty.</string>
+    <string name="excluded_app_list_added">Sovellus poissuljettu KISS-käynnnistimestä. Resetoi KISS-käynnistimen asetuksista</string>
+    <string name="excluded_app_history_added">Sovellus poissuljettu historiasta. Resetoi KISS-käynnistimen asetuksista</string>
+    <string name="menu_exclude">Poissulje sovellus ...</string>
+    <string name="menu_exclude_kiss">KISS-käynnistimestä</string>
+    <string name="menu_exclude_history">historiasta</string>
+    <string name="menu_app_details">Sovelluksen tiedot</string>
+    <string name="toast_hibernate_completed">%s horrostettu, käynnistä se uudelleen herättääksesi.</string>
+    <string name="toast_hibernate_error">%s ei horrostettu.</string>
+    <string name="theme_name">Käyttöliittymän teema</string>
+    <string name="enable_phone">Näytä tulevat puhelut historiassa</string>
+    <string name="enable_app">Näytä äskettäin asennetut sovellukset historiassa</string>
+    <string name="enable_favorites_bar">Näytä suosikit hakupalkin yllä</string>
+    <string name="exclude_favorites">Poissulje suosikit historiasta</string>
+    <string name="favorites_hide">Piilota suosikkipalkki</string>
+    <string name="pref_hide_navbar">Piilota navigointipalkki</string>
+    <string name="pref_hide_navbar_desc">Piilota navigointipalkki ja ota käyttöön immersive-tila</string>
+    <string name="pref_hide_statusbar">Piilota tilapalkki</string>
+    <string name="pref_hide_statusbar_desc">Piilota ilmoituspalkki ja ota käyttöön immersive-tila</string>
+    <string name="pref_hide_circle">Piilota KISS-ympyrä</string>
+    <string name="pref_hide_circle_desc">Sovelluslista tulee yhä olemaan saavutettavissa</string>
+    <string name="shortcut_added">Pikakuvake lisätty KISS-käynnistimeen.</string>
+    <string name="restart_desc">Korjaa teemaongelmat ja uusien yhteystietojen näkymättömyyden</string>
+    <string name="restart_name">Uudelleenkäynnistä KISS</string>
+    <string name="restart_warn">Tahdotko varmasti uudelleenkäynnistää KISS-käynnistimen\? Jos KISS ei ole oletus käynnistimesi, sovellus yksinkertaisesti sulkeutuu.</string>
+    <string name="default_launcher_title">Vaihda oletuskäynnistintä</string>
+</resources>

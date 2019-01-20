@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
-import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -169,20 +168,10 @@ public class DataHandler extends BroadcastReceiver
             // Send "start service" command first so that the service can run independently
             // of the activity
             this.context.startService(intent);
-        }
-        catch(IllegalStateException e) {
-            // In Android 8+, only foreground apps can create a service. However, DataHandler is initialized from within onCreate in MainActivity
-            // and in some rare situations (can't reproduce locally) this is too early for a service to run
-            // yelding an IllegalStateException in those rare cases
-            // So when this happens, we catch it and retry later. If it fails again, it will be reported to the play store
-            // and a more robust solution (maybe using onPostCreate?) will have to be implemented.
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    context.startService(intent);
-                }
-            }, 20);
+        } catch (IllegalStateException e) {
+            // https://github.com/Neamar/KISS/issues/1130
+            Log.e("KISS", "Unable to start service for " + name + ". This is likely because a broadcast receiver was triggered and KISS is not the default home app, so services are not running and can't be started in this context.");
+            return;
         }
 
         final ProviderEntry entry = new ProviderEntry();
@@ -298,7 +287,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context        android context
      * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @param historyMode Recency vs Frecency vs Frequency
+     * @param historyMode    Recency vs Frecency vs Frequency
      * @param itemsToExclude Items to exclude from history
      * @return pojos in recent history
      */
@@ -384,6 +373,16 @@ public class DataHandler extends BroadcastReceiver
     }
 
     @NonNull
+    public Set<String> getExcludedFromHistory() {
+        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps-from-history", null);
+        if (excluded == null) {
+            excluded = new HashSet<>();
+            excluded.add(context.getPackageName());
+        }
+        return excluded;
+    }
+
+    @NonNull
     public Set<String> getExcluded() {
         Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps", null);
         if (excluded == null) {
@@ -393,8 +392,18 @@ public class DataHandler extends BroadcastReceiver
         return excluded;
     }
 
+    public void addToExcludedFromHistory(AppPojo app) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcludedFromHistory());
+        excluded.add(app.id);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
+    }
+
     public void addToExcluded(AppPojo app) {
-        Set<String> excluded = getExcluded();
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcluded());
         excluded.add(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
     }
@@ -602,7 +611,9 @@ public class DataHandler extends BroadcastReceiver
         boolean frozen = PreferenceManager.getDefaultSharedPreferences(context).
                 getBoolean("freeze-history", false);
 
-        if (!frozen) {
+        Set<String> excludedFromHistory = getExcludedFromHistory();
+
+        if ((!frozen) && (!excludedFromHistory.contains(id))) {
             DBHelper.insertHistory(this.context, currentQuery, id);
         }
     }

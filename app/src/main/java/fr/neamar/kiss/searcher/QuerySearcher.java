@@ -38,7 +38,13 @@ public class QuerySearcher extends Searcher {
         if(MAX_RESULT_COUNT == -1) {
             // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
             // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
-            MAX_RESULT_COUNT = (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
+            try {
+                MAX_RESULT_COUNT = (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
+            }
+            catch(NumberFormatException e) {
+                // If, for any reason, setting is empty, return default value.
+                MAX_RESULT_COUNT = DEFAULT_MAX_RESULTS;
+            }
         }
 
         return MAX_RESULT_COUNT;
