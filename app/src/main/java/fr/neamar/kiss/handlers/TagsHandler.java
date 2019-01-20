@@ -19,12 +19,21 @@ import fr.neamar.kiss.db.DBHelper;
 public class TagsHandler {
     private final Context context;
     //cached tags
-    private final Map<String, String> tagsCache;
+    private Map<String, String> tagsCache;
 
     TagsHandler(Context context) {
         this.context = context;
+        reload();
+    }
+
+    public void reload() {
         tagsCache = DBHelper.loadTags(this.context);
         addDefaultAliases();
+    }
+
+    public void deleteAllTags() {
+        DBHelper.deleteAllTags(this.context);
+        reload();
     }
 
     public void setTags(String id, String tags) {

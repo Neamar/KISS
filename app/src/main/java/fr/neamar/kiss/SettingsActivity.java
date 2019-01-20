@@ -1,8 +1,6 @@
 package fr.neamar.kiss;
 
 import android.Manifest;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -34,7 +32,6 @@ import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.handlers.IconsHandler;
-import fr.neamar.kiss.handlers.ImportExportHandler;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
@@ -360,29 +357,12 @@ public class SettingsActivity extends PreferenceActivity implements
                 p.setChecked(false);
                 Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
             }
-        } else if (requestCode == Permission.PERMISSION_WRITE_SETTINGS_EXTERNAL_STORAGE) {
+        } else if ((requestCode == Permission.PERMISSION_WRITE_TO_EXTERNAL_STORAGE) ||
+                (requestCode == Permission.PERMISSION_READ_FROM_EXTERNAL_STORAGE)) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, R.string.permission_restart, Toast.LENGTH_SHORT).show();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.permission_restart)
-                        .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //kill process (in order to restart it)
-                                android.os.Process.killProcess(android.os.Process.myPid());
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
+                Permission.restartWithDialog(this);
 
-                //ImportExportHandler.saveSharedPreferencesToFile(this, prefs);
-            } else {
-                Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
-            }
-        } else if (requestCode == Permission.PERMISSION_READ_SETTINGS_EXTERNAL_STORAGE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                ImportExportHandler.loadSharedPreferencesFromFile(this, prefs);
             } else {
                 Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
             }

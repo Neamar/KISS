@@ -16,32 +16,49 @@ import java.io.ObjectOutputStream;
 import java.util.Map;
 import java.util.Set;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.db.DBHelper;
 
 public class ImportExportHandler {
+    enum ExportType {
+    Tags, Settings
+    }
+
     private static final String KISS_SETTINGS_FILE = "kiss.exported.settings.xml";
+    private static final String KISS_TAGS_FILE = "kiss.exported.tags.xml";
 
     public static boolean saveSharedPreferencesToFile(Context context, SharedPreferences prefs) {
-        File settingsFile = new File(Environment.getExternalStorageDirectory(), KISS_SETTINGS_FILE);
+        return exportObjectToFile(context, ExportType.Settings, prefs.getAll());
+    }
+
+    public static boolean saveTagsToFile(Context context) {
+        return exportObjectToFile(context, ExportType.Settings, DBHelper.loadTags(context));
+    }
+
+    private static boolean exportObjectToFile(Context context, ExportType exportType, Object toBeExported) {
+        String filename = exportType == ExportType.Tags ? KISS_TAGS_FILE: KISS_SETTINGS_FILE;
+        File destinationFile = new File(Environment.getExternalStorageDirectory(), filename);
+
         //TODO: try-with-resources when min api >=19
         ObjectOutputStream output = null;
         try {
-            Log.i("export settings", "Saving at: " +settingsFile.getAbsolutePath());
+            Log.i("Exporting", "Saving at: " +destinationFile.getAbsolutePath());
 
             //create if not exist
-            settingsFile.createNewFile();
-            output = new ObjectOutputStream(new FileOutputStream(settingsFile));
-            output.writeObject(prefs.getAll());
+            destinationFile.createNewFile();
+            output = new ObjectOutputStream(new FileOutputStream(destinationFile));
+            output.writeObject(toBeExported);
             output.flush();
-            Toast.makeText(context, R.string.export_settings_success, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.export_success, Toast.LENGTH_LONG).show();
             return true;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Toast.makeText(context, R.string.export_settings_error, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.export_error, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(context, R.string.export_settings_error, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.export_error, Toast.LENGTH_LONG).show();
         } finally {
             try {
                 if (output != null) {
@@ -55,16 +72,48 @@ public class ImportExportHandler {
         return false;
     }
 
-    public static boolean loadSharedPreferencesFromFile(Context context, SharedPreferences sharedPreferences) {
-        File settingsFile = new File(Environment.getExternalStorageDirectory(), KISS_SETTINGS_FILE);
+    private static Map<String, ?> loadObjectFromFile(ExportType exportType) throws IOException, ClassNotFoundException {
+        String filename = exportType == ExportType.Tags ? KISS_TAGS_FILE: KISS_SETTINGS_FILE;
+        File settingsFile = new File(Environment.getExternalStorageDirectory(), filename);
 
-        ObjectInputStream input = null;
+        ObjectInputStream input = new ObjectInputStream(new FileInputStream(settingsFile));
+            return (Map<String, ?>) input.readObject();
+    }
+
+    public static boolean loadTagsFromFile(Context context) {
         try {
-            input = new ObjectInputStream(new FileInputStream(settingsFile));
+            Map<String, ?> tags = loadObjectFromFile(ExportType.Settings);
+            TagsHandler handler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
+
+            if (handler!=null) {
+                handler.deleteAllTags();
+                for (Map.Entry<String, ?> tagPair : tags.entrySet()) {
+                    String tag = (String) tagPair.getValue();
+                    String app = tagPair.getKey();
+                    handler.setTags(app, tag);
+                }
+            }
+            handler.reload();
+            if (KissApplication.getApplication(context).getDataHandler().getAppProvider() != null) {
+                KissApplication.getApplication(context).getDataHandler().getAppProvider().reload();
+            }
+            Toast.makeText(context, R.string.import_success, Toast.LENGTH_LONG).show();
+            return true;
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+            Toast.makeText(context, R.string.import_error, Toast.LENGTH_LONG).show();
+        }
+        return false;
+    }
+
+    public static boolean loadSharedPreferencesFromFile(Context context, SharedPreferences sharedPreferences) {
+
+        try {
+            Map<String, ?> entries = loadObjectFromFile(ExportType.Settings);
+
             SharedPreferences.Editor prefEdit = sharedPreferences.edit();
             prefEdit.clear();
 
-            Map<String, ?> entries = (Map<String, ?>) input.readObject();
             for (Map.Entry<String, ?> entry : entries.entrySet()) {
                 Object v = entry.getValue();
                 String key = entry.getKey();
@@ -86,15 +135,9 @@ public class ImportExportHandler {
             prefEdit.commit();
             return true;
 
-        } catch (FileNotFoundException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
-            Toast.makeText(context, R.string.import_settings_error, Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(context, R.string.import_settings_error, Toast.LENGTH_LONG).show();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            Toast.makeText(context, R.string.import_settings_error, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.import_error, Toast.LENGTH_LONG).show();
         }
 
         return false;

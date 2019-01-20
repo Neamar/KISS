@@ -264,20 +264,31 @@
             android:key="root-mode"
             android:summary="@string/root_mode_desc"
             android:title="@string/root_mode_name" />
-        <fr.neamar.kiss.preference.ImportSettingsPreference
-            android:dialogMessage="@string/import_settings_warn"
-            android:key="import_settings"
-            android:summary="@string/import_settings_desc"
-            android:title="@string/import_settings_name" />
-        <fr.neamar.kiss.preference.ExportSettingsPreference
-            android:dialogMessage="@string/export_settings_warn"
-            android:key="export_settings"
-            android:title="@string/export_settings_name" />
         <fr.neamar.kiss.preference.RestartPreference
             android:dialogMessage="@string/restart_warn"
             android:key="restart"
             android:summary="@string/restart_desc"
             android:title="@string/restart_name" />
+        <PreferenceCategory android:title="@string/title_import_export">
+            <fr.neamar.kiss.preference.ImportSettingsPreference
+                android:dialogMessage="@string/import_settings_warn"
+                android:key="import_settings"
+                android:summary="@string/import_settings_desc"
+                android:title="@string/import_settings_name" />
+            <fr.neamar.kiss.preference.ExportSettingsPreference
+                android:dialogMessage="@string/export_settings_warn"
+                android:key="export_settings"
+                android:title="@string/export_settings_name" />
+            <fr.neamar.kiss.preference.ImportTagsPreference
+                android:dialogMessage="@string/import_tags_warn"
+                android:key="import_tags"
+                android:summary="@string/import_tags_desc"
+                android:title="@string/import_tags_name" />
+            <fr.neamar.kiss.preference.ExportTagsPreference
+                android:dialogMessage="@string/export_tags_warn"
+                android:key="export_tags"
+                android:title="@string/export_tags_name" />
+        </PreferenceCategory>
     </PreferenceScreen>
     <Preference
         android:key="rate-app"

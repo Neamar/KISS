@@ -1,4 +1,4 @@
-package fr.neamar.kiss;
+package fr.neamar.kiss.handlers;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -26,6 +26,7 @@ import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
