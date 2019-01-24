@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import androidx.annotation.RequiresApi;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
 import fr.neamar.kiss.loader.LoadAppPojos;

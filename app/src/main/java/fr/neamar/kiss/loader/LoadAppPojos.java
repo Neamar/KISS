@@ -18,14 +18,32 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.utils.UserHandle;
+import name.pilgr.pipinyin.PiPinyin;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
     private final TagsHandler tagsHandler;
+    private final PiPinyin piPinyin;
 
     public LoadAppPojos(Context context) {
         super(context, "app://");
+        piPinyin = new PiPinyin(context);
+        
         tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
+    }
+
+
+    public static boolean containsHanScript(String s) {
+        for (int i = 0; i < s.length(); ) {
+            int codepoint = s.codePointAt(i);
+            i += Character.charCount(codepoint);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                if (Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
@@ -58,7 +76,11 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
                     app.setName(activityInfo.getLabel().toString());
 
-                    app.setTags(tagsHandler.getTags(app.id));
+                    String tags = tagsHandler.getTags(app.id);
+                    if(containsHanScript(app.getName().toString())){
+                        tags = tags.concat(" "+piPinyin.toPinyin(app.getName().toString(),"").toLowerCase());
+                    }
+                    app.setTags(tags);
 
                     if (!excludedAppList.contains(app.getComponentName())) {
                         apps.add(app);
