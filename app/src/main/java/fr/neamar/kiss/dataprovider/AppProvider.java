@@ -5,15 +5,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.Process;
 import android.os.UserManager;
-import androidx.annotation.RequiresApi;
+import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import androidx.annotation.RequiresApi;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
 import fr.neamar.kiss.loader.LoadAppPojos;
@@ -21,6 +25,7 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.Base64Serialize;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -29,6 +34,7 @@ public class AppProvider extends Provider<AppPojo> {
     @Override
     @SuppressLint("NewApi")
     public void onCreate() {
+        loadCache();
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Package installation/uninstallation events for the main
             // profile are still handled using PackageAddedRemovedHandler itself
@@ -198,5 +204,37 @@ public class AppProvider extends Provider<AppPojo> {
 
     public void removeApp(AppPojo appPojo) {
         pojos.remove(appPojo);
+    }
+
+    @Override
+    public void loadOver(ArrayList<AppPojo> results) {
+        super.loadOver(results);
+        saveCache();
+    }
+
+    private void saveCache() {
+        HashSet<String> appSet = new HashSet<>();
+        for (AppPojo appPojo : pojos) {
+            String serializedPojo = Base64Serialize.encode(appPojo.id, appPojo.packageName, appPojo.activityName, appPojo.getName());
+            appSet.add(serializedPojo);
+        }
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.edit().putStringSet("AppProviderCache", appSet).apply();
+    }
+
+    private void loadCache() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Set<String> appSet = prefs.getStringSet("AppProviderCache", null);
+        if (appSet == null)
+            return;
+        pojos.clear();
+        for (String serializedPojo : appSet) {
+            Object[] pojoData = Base64Serialize.decode(serializedPojo);
+            if (pojoData == null || pojoData.length != 4)
+                continue;
+            AppPojo app = new AppPojo((String) pojoData[0], (String) pojoData[1], (String) pojoData[2], new UserHandle());
+            app.setName((String) pojoData[3]);
+            pojos.add(app);
+        }
     }
 }
