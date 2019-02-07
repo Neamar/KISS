@@ -35,7 +35,7 @@ public class LoadSearchPojos extends LoadPojos<SearchPojo> {
     protected ArrayList<SearchPojo> doInBackground(Void... params) {
         ArrayList<SearchPojo> pojos = new ArrayList<>();
 
-        if(context.get() == null) {
+        if (context.get() == null) {
             return pojos;
         }
 
