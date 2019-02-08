@@ -3,9 +3,11 @@ package fr.neamar.kiss.result;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,8 +34,13 @@ public class SettingsResult extends Result {
         displayHighlighted(settingPojo.normalizedName, settingPojo.getName(), fuzzyScore, settingName, context);
 
         ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
-        settingIcon.setImageDrawable(getDrawable(context));
-        settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!prefs.getBoolean("icons-hide", false)) {
+            settingIcon.setImageDrawable(getDrawable(context));
+            settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
+        } else {
+            settingIcon.setImageDrawable(null);
+        }
 
         return v;
     }
