@@ -39,7 +39,6 @@ public class SearchProvider extends Provider<SearchPojo> {
 
     private ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> records = new ArrayList<>();
-
         for (SearchPojo pojo : pojos) {
             // Set the id, otherwise the result will be boosted since KISS will assume "we've selected this search provider multiple times before"
             pojo.id = "search://" + query;
@@ -51,6 +50,12 @@ public class SearchProvider extends Provider<SearchPojo> {
         Matcher m = urlPattern.matcher(query);
         if (m.find()) {
             String guessedUrl = URLUtil.guessUrl(query);
+            // URLUtil returns an http URL... we'll upgrade it to HTTPS
+            // to avoid security issues on open networks,
+            // technological problems when using HSTS
+            // and do one less redirection to https
+            // (tradeoff: non https URL will break, but they shouldn't exist anymore)
+            guessedUrl = guessedUrl.replace("http://", "https://");
             if (URLUtil.isValidUrl(guessedUrl)) {
                 SearchPojo pojo = new SearchPojo("", guessedUrl, SearchPojo.URL_QUERY);
                 pojo.relevance = 50;
