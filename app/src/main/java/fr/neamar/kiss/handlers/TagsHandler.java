@@ -53,6 +53,10 @@ public class TagsHandler {
         return tag;
     }
 
+    public Map<String, String> getTagsCache() {
+        return tagsCache;
+    }
+
     public String[] getAllTagsAsArray() {
         Set<String> tags = getAllTagsAsSet();
         return tags.toArray(new String[tags.size()]);

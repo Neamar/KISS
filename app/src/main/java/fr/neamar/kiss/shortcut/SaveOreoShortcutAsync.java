@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 
 import androidx.annotation.NonNull;
-import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.handlers.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.ShortcutsPojo;

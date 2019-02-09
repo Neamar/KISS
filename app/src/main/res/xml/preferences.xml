@@ -265,6 +265,28 @@
                 android:title="@string/search_provider_reset" />
         </PreferenceCategory>
     </PreferenceScreen>
+    <PreferenceScreen android:title="@string/title_import_export" android:summary="@string/import_export_summary">
+        <fr.neamar.kiss.preference.ImportSettingsPreference
+            android:dialogMessage="@string/import_settings_warn"
+            android:key="import_settings"
+            android:summary="@string/import_settings_desc"
+            android:title="@string/import_settings_name" />
+        <fr.neamar.kiss.preference.ExportSettingsPreference
+            android:dialogMessage="@string/export_settings_warn"
+            android:key="export_settings"
+            android:summary="@string/export_settings_desc"
+            android:title="@string/export_settings_name" />
+        <fr.neamar.kiss.preference.ImportTagsPreference
+            android:dialogMessage="@string/import_tags_warn"
+            android:key="import_tags"
+            android:summary="@string/import_tags_desc"
+            android:title="@string/import_tags_name" />
+        <fr.neamar.kiss.preference.ExportTagsPreference
+            android:dialogMessage="@string/export_tags_warn"
+            android:key="export_tags"
+            android:summary="@string/export_tags_desc"
+            android:title="@string/export_tags_name" />
+    </PreferenceScreen>
     <PreferenceScreen android:title="@string/title_advanced">
         <fr.neamar.kiss.preference.DefaultLauncherPreference
             android:dialogMessage="@string/default_launcher_warn"
@@ -280,26 +302,6 @@
             android:key="restart"
             android:summary="@string/restart_desc"
             android:title="@string/restart_name" />
-        <PreferenceCategory android:title="@string/title_import_export">
-            <fr.neamar.kiss.preference.ImportSettingsPreference
-                android:dialogMessage="@string/import_settings_warn"
-                android:key="import_settings"
-                android:summary="@string/import_settings_desc"
-                android:title="@string/import_settings_name" />
-            <fr.neamar.kiss.preference.ExportSettingsPreference
-                android:dialogMessage="@string/export_settings_warn"
-                android:key="export_settings"
-                android:title="@string/export_settings_name" />
-            <fr.neamar.kiss.preference.ImportTagsPreference
-                android:dialogMessage="@string/import_tags_warn"
-                android:key="import_tags"
-                android:summary="@string/import_tags_desc"
-                android:title="@string/import_tags_name" />
-            <fr.neamar.kiss.preference.ExportTagsPreference
-                android:dialogMessage="@string/export_tags_warn"
-                android:key="export_tags"
-                android:title="@string/export_tags_name" />
-        </PreferenceCategory>
     </PreferenceScreen>
     <Preference
         android:key="rate-app"
