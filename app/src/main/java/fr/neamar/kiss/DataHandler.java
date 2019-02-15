@@ -326,6 +326,19 @@ public class DataHandler extends BroadcastReceiver
         return DBHelper.getHistoryLength(this.context);
     }
 
+    /**
+     * Query database for item and return its name
+     *
+     * @param id      globally unique ID, usually starts with provider scheme, e.g. "app://" or "contact://"
+     * @return name of item (i.e. app name)
+     */
+    public String getItemName(String id) {
+        // Ask all providers if they know this id
+        Pojo pojo = getPojo(id);
+
+        return (pojo != null) ? pojo.getName() : "???";
+    }
+
     public boolean addShortcut(ShortcutsPojo shortcut) {
         boolean success = false;//this is here to know what info is being returned
 

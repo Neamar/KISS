@@ -6,10 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Collections;
 
+import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class DBHelper {
@@ -69,7 +73,7 @@ public class DBHelper {
         db.delete("history", "", null);
     }
 
-    private static Cursor getHistoryByFrecency(SQLiteDatabase db, int limit, boolean sortHistory) {
+    private static Cursor getHistoryByFrecency(SQLiteDatabase db, int limit) {
         // Since smart history sql uses a group by we don't use the whole history but a limit of recent apps
         int historyWindowSize = limit * 30;
 
@@ -86,41 +90,21 @@ public class DBHelper {
                 "   count(*) * 1.0 / (select count(*) from history LIMIT " + historyWindowSize + ") / ((SELECT _id FROM history ORDER BY _id DESC LIMIT 1) - max(_id) + 0.001) " +
                 " DESC " +
                 " LIMIT " + limit;
-
-        // sort history entries alphabetically
-        if (sortHistory) {
-            sql = "SELECT result.* FROM (" + sql + ") result ORDER BY record ASC";
-        }
-
         return db.rawQuery(sql, null);
     }
 
-    private static Cursor getHistoryByFrequency(SQLiteDatabase db, int limit, boolean sortHistory) {
+    private static Cursor getHistoryByFrequency(SQLiteDatabase db, int limit) {
         // order history based on frequency
         String sql = "SELECT record, count(*) FROM history" +
                 " GROUP BY record " +
                 " ORDER BY count(*) DESC " +
                 " LIMIT " + limit;
-
-        // sort history entries alphabetically
-        if (sortHistory) {
-            sql = "SELECT result.* FROM (" + sql + ") result ORDER BY record ASC";
-        }
-
         return db.rawQuery(sql, null);
     }
 
-    private static Cursor getHistoryByRecency(SQLiteDatabase db, int limit, boolean sortHistory) {
-        String sql = "SELECT DISTINCT record, 1 FROM history" +
-                " ORDER BY _id DESC " +
-                " LIMIT " + limit;
-
-        // sort history entries alphabetically
-        if (sortHistory) {
-            sql = "SELECT result.* FROM (" + sql + ") result ORDER BY record ASC";
-        }
-
-        return db.rawQuery(sql, null);
+    private static Cursor getHistoryByRecency(SQLiteDatabase db, int limit) {
+        return db.query(true, "history", new String[]{"record", "1"}, null, null,
+                null, null, "_id DESC", Integer.toString(limit));
     }
 
     /**
@@ -139,18 +123,35 @@ public class DBHelper {
         Cursor cursor;
         switch (historyMode) {
             case "frecency":
-                cursor = getHistoryByFrecency(db, limit, sortHistory);
+                cursor = getHistoryByFrecency(db, limit);
                 break;
             case "frequency":
-                cursor = getHistoryByFrequency(db, limit, sortHistory);
+                cursor = getHistoryByFrequency(db, limit);
                 break;
             default:
-                cursor = getHistoryByRecency(db, limit, sortHistory);
+                cursor = getHistoryByRecency(db, limit);
                 break;
         }
 
         records = readCursor(cursor);
         cursor.close();
+
+        // sort history entries alphabetically
+        if (sortHistory) {
+            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+
+            for (ValuedHistoryRecord entry : records) {
+                entry.name = dataHandler.getItemName(entry.record);
+            }
+
+            Collections.sort(records, new Comparator<ValuedHistoryRecord>() {
+                @Override
+                public int compare(ValuedHistoryRecord a, ValuedHistoryRecord b) {
+                    return a.name.compareTo(b.name);
+                }
+            });
+        }
+
         return records;
     }
 
