@@ -7,6 +7,11 @@ public class ValuedHistoryRecord {
     public String record;
 
     /**
+     * Name for the record
+     */
+    public String name;
+
+    /**
      * Context dependant value, e.g. number of access
      */
     public int value;
