@@ -19,10 +19,12 @@ KISS is a fast launcher for your Android.
 Search through your apps, contacts and settings lightning fast.
 No more time spent trying to find the app you want to launch: enter a few characters of the name and hit enter.
 Need to call someone? Don't meddle with the call log, just give three letters of their name and push the "phone" button.
+What you won't see is a lame grid of application icons that sit there doing NOTHING.
 
 KISS becomes smarter and smarter as you use it, pushing forward results you're more likely to select.
 
 Get ready to be amazed.
+
 
 Previews
 ---------------------
