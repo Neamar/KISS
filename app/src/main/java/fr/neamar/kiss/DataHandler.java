@@ -296,15 +296,18 @@ public class DataHandler extends BroadcastReceiver
         // count
         ArrayList<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
 
+        // Max sure that we get enough items, regardless of how many may be excluded
+        int extendedItemCount = itemCount + itemsToExclude.size();
+
         // Read history
-        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount, historyMode, sortHistory);
+        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode, sortHistory);
 
         // Find associated items
         for (int i = 0; i < ids.size(); i++) {
             // Ask all providers if they know this id
             Pojo pojo = getPojo(ids.get(i).record);
             if (pojo != null) {
-                //Look if the pojo should get excluded
+                // Look if the pojo should get excluded
                 boolean exclude = false;
                 for (int j = 0; j < itemsToExclude.size(); j++) {
                     if (itemsToExclude.get(j).id.equals(pojo.id)) {
@@ -315,6 +318,11 @@ public class DataHandler extends BroadcastReceiver
 
                 if (!exclude) {
                     history.add(pojo);
+                }
+
+                // Break if maximum number of items have been retrieved
+                if (history.size() >= itemCount) {
+                    break;
                 }
             }
         }
