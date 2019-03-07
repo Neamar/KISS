@@ -86,15 +86,16 @@ public class DataHandler extends BroadcastReceiver
                 init();
             }
             else {
+                Log.v(TAG, "Screen off, delaying services start.");
                 IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
-                final BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
+                context.registerReceiver(new BroadcastReceiver() {
                     @Override
                     public void onReceive(Context context, Intent intent) {
+                        Log.v(TAG, "Screen turned on, starting background services");
                         init();
-                        context.unregisterReceiver(screenOnReceiver);
+                        context.unregisterReceiver(this);
                     }
-                };
-                context.registerReceiver(screenOnReceiver, intentFilter);
+                }, intentFilter);
             }
         }
     }
