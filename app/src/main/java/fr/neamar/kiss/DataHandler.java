@@ -82,7 +82,10 @@ public class DataHandler extends BroadcastReceiver
             // After Android Pie, services can't be started in the background
             // However... KISS is a launcher, and when your device reboots, Android starts the launcher in the background
             // This is obviously an issue, so we need to wait until screen is really on to do something
-            if (isScreenOn()) {
+            // (isInteractive() should be a good enough approximation of isScreenOn() after API 20
+            // https://github.com/Neamar/KISS/issues/1154
+            PowerManager powerManager = (PowerManager) context.getSystemService(POWER_SERVICE);
+            if (powerManager.isInteractive()) {
                 init();
             }
             else {
@@ -102,8 +105,6 @@ public class DataHandler extends BroadcastReceiver
 
     private void init() {
         start = System.currentTimeMillis();
-
-
 
         IntentFilter intentFilter = new IntentFilter(MainActivity.LOAD_OVER);
         this.context.getApplicationContext().registerReceiver(this, intentFilter);
@@ -135,11 +136,6 @@ public class DataHandler extends BroadcastReceiver
         ProviderEntry phoneEntry = new ProviderEntry();
         phoneEntry.provider = new PhoneProvider(context);
         this.providers.put("phone", phoneEntry);
-    }
-
-    public boolean isScreenOn() {
-        PowerManager powerManager = (PowerManager) context.getSystemService(POWER_SERVICE);
-        return powerManager.isScreenOn();
     }
 
     @Override
