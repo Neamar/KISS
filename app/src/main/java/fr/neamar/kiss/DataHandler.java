@@ -8,11 +8,13 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
+import android.hardware.display.DisplayManager;
+import android.os.Build;
 import android.os.IBinder;
-import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
@@ -42,8 +45,6 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.UserHandle;
-
-import static android.content.Context.POWER_SERVICE;
 
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -82,10 +83,8 @@ public class DataHandler extends BroadcastReceiver
             // After Android Pie, services can't be started in the background
             // However... KISS is a launcher, and when your device reboots, Android starts the launcher in the background
             // This is obviously an issue, so we need to wait until screen is really on to do something
-            // (isInteractive() should be a good enough approximation of isScreenOn() after API 20
             // https://github.com/Neamar/KISS/issues/1154
-            PowerManager powerManager = (PowerManager) context.getSystemService(POWER_SERVICE);
-            if (powerManager.isInteractive()) {
+            if (screenIsOn()) {
                 init();
             }
             else {
@@ -680,6 +679,17 @@ public class DataHandler extends BroadcastReceiver
         }
 
         return null;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.P)
+    private boolean screenIsOn() {
+        DisplayManager dm = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+        for (Display display : dm.getDisplays()) {
+            if (display.getState() == Display.STATE_ON) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public TagsHandler getTagsHandler() {
