@@ -2,7 +2,6 @@ package fr.neamar.kiss.adapter;
 
 import android.content.Context;
 import android.os.Handler;
-import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -14,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.result.AppResult;
@@ -200,6 +200,10 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
     @Override
     public int getPositionForSection(int sectionIndex) {
+        if(sections.length == 0) {
+            return 0;
+        }
+
         // In some rare situations, the system will ask for a section
         // that does not exist anymore.
         // It's likely there is a threading issue in our code somewhere,
