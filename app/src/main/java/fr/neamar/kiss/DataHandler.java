@@ -184,19 +184,23 @@ public class DataHandler extends BroadcastReceiver
                 return;
             }
 
+            // Add a receiver to get notified next time the screen is on
+            // or next time the users successfully dismisses his lock screen
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction(Intent.ACTION_SCREEN_ON);
             intentFilter.addAction(Intent.ACTION_USER_PRESENT);
             context.registerReceiver(new BroadcastReceiver() {
                 @Override
                 public void onReceive(final Context context, Intent intent) {
+                    // Is there a lockscreen still visible to the user?
+                    // If yes, we can't start backgroudn services yet, so we'll need to wait until we get ACTION_USER_PRESENT
                     KeyguardManager myKM = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
                     boolean isPhoneLocked = myKM.inKeyguardRestrictedInputMode();
                     if(!isPhoneLocked) {
                         context.unregisterReceiver(this);
                         final Handler handler = new Handler();
                         // Even when all the stars are aligned,
-                        // starting the service needs to be delayed because the Intent is fired *before* the app is considered in the foreground.
+                        // starting the service needs to be slightly delayed because the Intent is fired *before* the app is considered in the foreground.
                         // Each new release of Android manages to make the developer life harder.
                         // Can't wait for the next one.
                         handler.postDelayed(new Runnable() {
@@ -209,6 +213,8 @@ public class DataHandler extends BroadcastReceiver
                     }
                 }
             }, intentFilter);
+
+            // Stop here for now, the Receiver will re-trigger the whole flow when services can be started.
             return;
         }
 
