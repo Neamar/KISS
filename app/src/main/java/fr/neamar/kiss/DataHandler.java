@@ -54,7 +54,7 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "app", "contacts", "search", "settings", "shortcuts"
+            "app", "contacts", "settings", "shortcuts"
     );
     private TagsHandler tagsHandler;
     final private Context context;
@@ -104,6 +104,9 @@ public class DataHandler extends BroadcastReceiver
         ProviderEntry phoneEntry = new ProviderEntry();
         phoneEntry.provider = new PhoneProvider(context);
         this.providers.put("phone", phoneEntry);
+        ProviderEntry searchEntry = new ProviderEntry();
+        searchEntry.provider = new SearchProvider(context);
+        this.providers.put("search", searchEntry);
     }
 
     @Override

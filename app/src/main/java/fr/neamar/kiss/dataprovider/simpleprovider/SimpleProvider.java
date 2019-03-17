@@ -3,6 +3,11 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.pojo.Pojo;
 
+/**
+ * Unlike normal providers, simple providers are not Android Services but classic Android class
+ * Android Services are expensive to create, and use a lot of memory,
+ * so whenever we can, we avoid using them.
+ */
 public abstract class SimpleProvider implements IProvider {
     @Override
     public void reload() {
@@ -10,7 +15,7 @@ public abstract class SimpleProvider implements IProvider {
     }
 
     @Override
-    public boolean isLoaded() {
+    public final boolean isLoaded() {
         return true;
     }
 
