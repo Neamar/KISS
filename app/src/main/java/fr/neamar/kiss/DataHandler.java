@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
+import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -188,13 +189,19 @@ public class DataHandler extends BroadcastReceiver
             intentFilter.addAction(Intent.ACTION_USER_PRESENT);
             context.registerReceiver(new BroadcastReceiver() {
                 @Override
-                public void onReceive(Context context, Intent intent) {
+                public void onReceive(final Context context, Intent intent) {
                     KeyguardManager myKM = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
                     boolean isPhoneLocked = myKM.inKeyguardRestrictedInputMode();
                     if(!isPhoneLocked) {
-                        Log.i(TAG, "Screen turned on or unlocked, retrying to start background services");
-                        connectToProvider(name, counter + 1);
                         context.unregisterReceiver(this);
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.i(TAG, "Screen turned on or unlocked, retrying to start background services");
+                                connectToProvider(name, counter + 1);
+                            }
+                        }, 10);
                     }
                 }
             }, intentFilter);
