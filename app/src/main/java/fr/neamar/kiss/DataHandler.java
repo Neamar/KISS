@@ -178,8 +178,8 @@ public class DataHandler extends BroadcastReceiver
             // https://github.com/Neamar/KISS/issues/1154
             Log.w(TAG, "Unable to start service for " + name + ". KISS is probably not in the foreground. Service will automatically be started when KISS gets to the foreground.");
 
-            if(counter > 4) {
-                Log.e(TAG, "Already tried and failed four times to start service. Giving up.");
+            if(counter > 20) {
+                Log.e(TAG, "Already tried and failed twenty times to start service. Giving up.");
                 return;
             }
 
@@ -189,11 +189,10 @@ public class DataHandler extends BroadcastReceiver
             context.registerReceiver(new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    Log.i(TAG, "Screen turned on or unlocked, retrying to start background services");
-
                     KeyguardManager myKM = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
                     boolean isPhoneLocked = myKM.inKeyguardRestrictedInputMode();
                     if(!isPhoneLocked) {
+                        Log.i(TAG, "Screen turned on or unlocked, retrying to start background services");
                         connectToProvider(name, counter + 1);
                         context.unregisterReceiver(this);
                     }
