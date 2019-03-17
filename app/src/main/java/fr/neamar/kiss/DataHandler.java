@@ -195,6 +195,10 @@ public class DataHandler extends BroadcastReceiver
                     if(!isPhoneLocked) {
                         context.unregisterReceiver(this);
                         final Handler handler = new Handler();
+                        // Even when all the stars are aligned,
+                        // starting the service needs to be delayed because the Intent is fired *before* the app is considered in the foreground.
+                        // Each new release of Android manages to make the developer life harder.
+                        // Can't wait for the next one.
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
