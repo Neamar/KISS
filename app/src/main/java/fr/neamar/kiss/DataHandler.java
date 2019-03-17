@@ -1,6 +1,6 @@
 package fr.neamar.kiss;
 
-import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
-import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -27,7 +26,6 @@ import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
@@ -75,34 +73,6 @@ public class DataHandler extends BroadcastReceiver
         //  to bind to services)
         this.context = context.getApplicationContext();
 
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.P) {
-            init();
-        }
-        else {
-            // After Android Pie, services can't be started in the background
-            // However... KISS is a launcher, and when your device reboots, Android starts the launcher in the background
-            // This is obviously an issue, so we need to wait until screen is really on to do something
-            // https://github.com/Neamar/KISS/issues/1154
-            if (isScreenOn()) {
-                Log.v(TAG, "Screen is on, services can start normally");
-                init();
-            }
-            else {
-                Log.v(TAG, "Screen off, delaying services start.");
-                IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
-                context.registerReceiver(new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        Log.v(TAG, "Screen turned on, starting background services");
-                        init();
-                        context.unregisterReceiver(this);
-                    }
-                }, intentFilter);
-            }
-        }
-    }
-
-    private void init() {
         start = System.currentTimeMillis();
 
         IntentFilter intentFilter = new IntentFilter(MainActivity.LOAD_OVER);
@@ -121,7 +91,7 @@ public class DataHandler extends BroadcastReceiver
         // (this way, we don't need to reload the app list everytime for instance)
         for (String providerName : PROVIDER_NAMES) {
             if (prefs.getBoolean("enable-" + providerName, true)) {
-                this.connectToProvider(providerName);
+                this.connectToProvider(providerName, 0);
             }
         }
 
@@ -143,7 +113,7 @@ public class DataHandler extends BroadcastReceiver
             String providerName = key.substring(7);
             if (PROVIDER_NAMES.contains(providerName)) {
                 if (sharedPreferences.getBoolean(key, true)) {
-                    this.connectToProvider(providerName);
+                    this.connectToProvider(providerName, 0);
                 } else {
                     this.disconnectFromProvider(providerName);
                 }
@@ -179,7 +149,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
      */
-    private void connectToProvider(final String name) {
+    private void connectToProvider(final String name, final int counter) {
         // Do not continue if this provider has already been connected to
         if (this.providers.containsKey(name)) {
             return;
@@ -199,8 +169,36 @@ public class DataHandler extends BroadcastReceiver
             // of the activity
             this.context.startService(intent);
         } catch (IllegalStateException e) {
+            // When KISS is the default launcher,
+            // the system will try to start KISS in the background after a reboot
+            // however at this point we're not allowed to start services, and an IllegalStateException will be thrown
+            // We'll then add a broadcast receiver for the next time the user turns his screen on
+            // (or passes the lockscreen) to retry at this point
             // https://github.com/Neamar/KISS/issues/1130
-            Log.e("KISS", "Unable to start service for " + name + ". This is likely because a broadcast receiver was triggered and KISS is not the default home app, so services are not running and can't be started in this context.");
+            // https://github.com/Neamar/KISS/issues/1154
+            Log.w(TAG, "Unable to start service for " + name + ". KISS is probably not in the foreground. Service will automatically be started when KISS gets to the foreground.");
+
+            if(counter > 4) {
+                Log.e(TAG, "Already tried and failed four times to start service. Giving up.");
+                return;
+            }
+
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+            intentFilter.addAction(Intent.ACTION_USER_PRESENT);
+            context.registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    Log.i(TAG, "Screen turned on or unlocked, retrying to start background services");
+
+                    KeyguardManager myKM = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+                    boolean isPhoneLocked = myKM.inKeyguardRestrictedInputMode();
+                    if(!isPhoneLocked) {
+                        connectToProvider(name, counter + 1);
+                        context.unregisterReceiver(this);
+                    }
+                }
+            }, intentFilter);
             return;
         }
 
@@ -679,13 +677,6 @@ public class DataHandler extends BroadcastReceiver
         }
 
         return null;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.P)
-    private boolean isScreenOn() {
-        ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
-        ActivityManager.getMyMemoryState(appProcessInfo);
-        return (appProcessInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND || appProcessInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_VISIBLE);
     }
 
     public TagsHandler getTagsHandler() {

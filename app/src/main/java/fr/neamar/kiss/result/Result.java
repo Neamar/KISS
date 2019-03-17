@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -24,6 +22,8 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -128,12 +128,17 @@ public abstract class Result {
     }
 
     public String getSection() {
-        // get the normalized first letter of the pojo
-        // Ensure accented characters are never displayed. (É => E)
-        String ch = Character.toString((char) pojo.normalizedName.codePoints[0]);
-        // convert to uppercase otherwise lowercase a -z will be sorted
-        // after upper A-Z
-        return ch.toUpperCase();
+        try {
+            // get the normalized first letter of the pojo
+            // Ensure accented characters are never displayed. (É => E)
+            String ch = Character.toString((char) pojo.normalizedName.codePoints[0]);
+            // convert to uppercase otherwise lowercase a -z will be sorted
+            // after upper A-Z
+            return ch.toUpperCase();
+        } catch(ArrayIndexOutOfBoundsException e) {
+            // Normalized name is empty.
+            return "-";
+        }
     }
 
     /**
