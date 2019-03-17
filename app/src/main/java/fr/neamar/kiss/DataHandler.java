@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -8,13 +9,11 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
-import android.hardware.display.DisplayManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Display;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -84,7 +83,8 @@ public class DataHandler extends BroadcastReceiver
             // However... KISS is a launcher, and when your device reboots, Android starts the launcher in the background
             // This is obviously an issue, so we need to wait until screen is really on to do something
             // https://github.com/Neamar/KISS/issues/1154
-            if (screenIsOn()) {
+            if (isScreenOn()) {
+                Log.v(TAG, "Screen is on, services can start normally");
                 init();
             }
             else {
@@ -682,14 +682,10 @@ public class DataHandler extends BroadcastReceiver
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
-    private boolean screenIsOn() {
-        DisplayManager dm = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
-        for (Display display : dm.getDisplays()) {
-            if (display.getState() == Display.STATE_ON) {
-                return true;
-            }
-        }
-        return false;
+    private boolean isScreenOn() {
+        ActivityManager.RunningAppProcessInfo appProcessInfo = new ActivityManager.RunningAppProcessInfo();
+        ActivityManager.getMyMemoryState(appProcessInfo);
+        return (appProcessInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND || appProcessInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_VISIBLE);
     }
 
     public TagsHandler getTagsHandler() {
