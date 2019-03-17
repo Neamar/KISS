@@ -5,12 +5,11 @@ import android.content.pm.PackageManager;
 
 import java.util.regex.Pattern;
 
-import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
 
-public class PhoneProvider implements IProvider {
+public class PhoneProvider extends SimpleProvider {
     private static final String PHONE_SCHEME = "phone://";
     private boolean deviceIsPhone;
     private Pattern phonePattern = Pattern.compile("^[*+0-9# ]{3,}$");
@@ -26,15 +25,6 @@ public class PhoneProvider implements IProvider {
         if (deviceIsPhone && phonePattern.matcher(query).find()) {
             searcher.addResult(getResult(query));
         }
-    }
-
-    @Override
-    public void reload() {
-    }
-
-    @Override
-    public boolean isLoaded() {
-        return true;
     }
 
     @Override

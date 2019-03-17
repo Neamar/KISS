@@ -3,12 +3,10 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fr.neamar.kiss.dataprovider.IProvider;
-import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.searcher.Searcher;
 
-public class CalculatorProvider implements IProvider {
+public class CalculatorProvider extends SimpleProvider {
     private Pattern p;
 
     public CalculatorProvider() {
@@ -71,25 +69,5 @@ public class CalculatorProvider implements IProvider {
             // (try for instance 0.3 - 0.2)
             return Float.toString(f);
         }
-    }
-
-    @Override
-    public void reload() {
-        // Simple providers can't be reloaded
-    }
-
-    @Override
-    public boolean isLoaded() {
-        return true;
-    }
-
-    @Override
-    public boolean mayFindById(String id) {
-        return false;
-    }
-
-    @Override
-    public Pojo findById(String id) {
-        return null;
     }
 }
