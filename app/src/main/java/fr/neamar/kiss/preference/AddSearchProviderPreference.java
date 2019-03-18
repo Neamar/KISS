@@ -102,7 +102,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     }
 
     private boolean validateNameExists() {
-        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext()));
+        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this.getContext()));
         for (String searchProvider : availableSearchProviders) {
             String[] nameAndUrl = searchProvider.split("\\|");
             if (nameAndUrl.length == 2) {
@@ -164,7 +164,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     //persist values and disassemble views
     protected void save() {
 
-        Set<String> availableProviders = new HashSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getSearchProviders(this.getContext())));
+        Set<String> availableProviders = new HashSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this.getContext())));
         availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString().toLowerCase(Locale.ROOT));
         prefs.edit().putStringSet("available-search-providers", availableProviders).apply();
         prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).apply();
