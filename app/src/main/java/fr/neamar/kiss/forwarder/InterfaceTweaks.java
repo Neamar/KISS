@@ -6,12 +6,18 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
+import fr.neamar.kiss.utils.ViewGroupUtils;
 
 // Deals with any settings in the "User Interface" setting sub-screen
 class InterfaceTweaks extends Forwarder {
@@ -45,6 +51,7 @@ class InterfaceTweaks extends Forwarder {
     void onCreate() {
         UIColors.updateThemePrimaryColor(mainActivity);
         applyRoundedCorners(mainActivity);
+        swapKissButtonWithMenu(mainActivity);
         tintResources(mainActivity);
 
         // Transparent Search and Favorites bar
@@ -128,6 +135,22 @@ class InterfaceTweaks extends Forwarder {
                 } else {
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_dark);
                 }
+            }
+        }
+    }
+
+    private void swapKissButtonWithMenu(MainActivity mainActivity) {
+        if (prefs.getBoolean("pref-swap-kiss-button-with-menu", false)) {
+            List<View> leftHandSideViews = ViewGroupUtils.removeAndGetDirectChildren(mainActivity.rightHandSideButtonsWrapper);
+            List<View> rightHandSideViews = ViewGroupUtils.removeAndGetDirectChildren(mainActivity.leftHandSideButtonsWrapper);
+            ViewGroupUtils.addAllViews(mainActivity.rightHandSideButtonsWrapper, rightHandSideViews);
+            ViewGroupUtils.addAllViews(mainActivity.leftHandSideButtonsWrapper, leftHandSideViews);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mainActivity.whiteLauncherButton.getLayoutParams();
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 1);
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END, 1);
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_START, 0);
             }
         }
     }
