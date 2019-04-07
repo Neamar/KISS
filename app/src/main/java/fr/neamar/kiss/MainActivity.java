@@ -29,7 +29,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
@@ -102,7 +101,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * The ViewGroup that wraps the buttons at the right hand side of the searchEditText
      */
-    public RelativeLayout rightHandSideButtonsWrapper;
+    public ViewGroup rightHandSideButtonsWrapper;
     /**
      * Menu button
      */
