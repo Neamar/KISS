@@ -91,13 +91,16 @@ class ExperienceTweaks extends Forwarder {
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 float directionY = e2.getY() - e1.getY();
                 float directionX = e2.getX() - e1.getX();
-                if ( Math.abs(directionX) > Math.abs(directionY) )
+                if (Math.abs(directionX) > Math.abs(directionY)) {
                     return false;
-                if(directionY > 0) {
+                }
+                if (!isGesturesEnabled()) {
+                    return false;
+                }
+                if (directionY > 0) {
                     // Fling down: display notifications
                     displayNotificationDrawer();
-                }
-                else {
+                } else {
                     // Fling up: display keyboard
                     mainActivity.showKeyboard();
                 }
@@ -211,11 +214,10 @@ class ExperienceTweaks extends Forwarder {
             Method showStatusBar;
             if (Build.VERSION.SDK_INT >= 17) {
                 showStatusBar = statusbarManager.getMethod("expandNotificationsPanel");
-            }
-            else {
+            } else {
                 showStatusBar = statusbarManager.getMethod("expand");
             }
-            showStatusBar.invoke( sbservice );
+            showStatusBar.invoke(sbservice);
         } catch (ClassNotFoundException e1) {
             e1.printStackTrace();
         } catch (NoSuchMethodException e1) {
@@ -250,4 +252,9 @@ class ExperienceTweaks extends Forwarder {
     private boolean isKeyboardOnStartEnabled() {
         return prefs.getBoolean("display-keyboard", false);
     }
+
+    private boolean isGesturesEnabled() {
+        return prefs.getBoolean("enable-gestures", true);
+    }
+
 }
