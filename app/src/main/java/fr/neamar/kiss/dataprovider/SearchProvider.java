@@ -1,8 +1,8 @@
 package fr.neamar.kiss.dataprovider;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.webkit.URLUtil;
 
 import java.util.ArrayList;
@@ -23,6 +23,8 @@ import fr.neamar.kiss.searcher.Searcher;
 public class SearchProvider extends SimpleProvider {
     private static final String URL_REGEX = "^(?:[a-z]+://)?(?:[a-z0-9-]|[^\\x00-\\x7F])+(?:[.](?:[a-z0-9-]|[^\\x00-\\x7F])+)+.*$";
     public static final Pattern urlPattern = Pattern.compile(URL_REGEX);
+    private final SharedPreferences prefs;
+
     public static Set<String> getDefaultSearchProviders(Context context) {
         String[] defaultSearchProviders = context.getResources().getStringArray(R.array.defaultSearchProviders);
         return new HashSet<>(Arrays.asList(defaultSearchProviders));
@@ -33,6 +35,7 @@ public class SearchProvider extends SimpleProvider {
 
     public SearchProvider(Context context) {
         this.context = context.getApplicationContext();
+        this.prefs = PreferenceManager.getDefaultSharedPreferences(context);
         reload();
     }
 
@@ -61,11 +64,14 @@ public class SearchProvider extends SimpleProvider {
 
     private ArrayList<Pojo> getResults(String query) {
         ArrayList<Pojo> records = new ArrayList<>();
-        for (SearchPojo pojo : searchProviders) {
-            // Set the id, otherwise the result will be boosted since KISS will assume we've selected this search provider multiple times before"
-            pojo.id = "search://" + query;
-            pojo.query = query;
-            records.add(pojo);
+
+        if (prefs.getBoolean("enable-search", true)) {
+            for (SearchPojo pojo : searchProviders) {
+                // Set the id, otherwise the result will be boosted since KISS will assume we've selected this search provider multiple times before"
+                pojo.id = "search://" + query;
+                pojo.query = query;
+                records.add(pojo);
+            }
         }
 
         // Open URLs directly (if I type http://something.com for instance)
