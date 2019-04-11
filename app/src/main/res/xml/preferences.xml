@@ -193,6 +193,10 @@
                 android:summary="@string/icons_hide_desc"
                 android:title="@string/icons_hide_main" />
             <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="call-contacts"
+                android:title="@string/contacts_call_launcher" />
+            <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-gestures"
                 android:summary="@string/enable_gestures_desc"
@@ -246,6 +250,7 @@
                 android:key="pref-toggle-tags-list"
                 android:title="@string/pref_toggle_tags_select" />
         </PreferenceScreen>
+
     </PreferenceScreen>
 
     <PreferenceScreen

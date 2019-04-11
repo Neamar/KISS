@@ -204,8 +204,7 @@ public class ContactsResult extends Result {
         }
     }
 
-    @Override
-    public void doLaunch(Context context, View v) {
+    public void launchContactView(Context context, View v) {
         Intent viewContact = new Intent(Intent.ACTION_VIEW);
 
         viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
@@ -217,6 +216,22 @@ public class ContactsResult extends Result {
         viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         context.startActivity(viewContact);
+
+    }
+
+
+    @Override
+    public void doLaunch(Context context, View v) {
+        SharedPreferences settingPrefs = PreferenceManager.getDefaultSharedPreferences(v.getContext());
+        Boolean callContacts=settingPrefs.getBoolean("call-contacts", false);
+
+        if(!callContacts){
+            launchContactView(context,v);
+        } else {
+            launchCall(v.getContext());
+        }
+
+
     }
 
     private void launchMessaging(final Context context) {
