@@ -75,8 +75,7 @@ public class ContactsResult extends Result {
                 icon = contactIcon.getDrawable();
             }
             this.setAsyncDrawable(contactIcon);
-        }
-        else {
+        } else {
             contactIcon.setImageDrawable(null);
         }
 
@@ -223,12 +222,12 @@ public class ContactsResult extends Result {
     @Override
     public void doLaunch(Context context, View v) {
         SharedPreferences settingPrefs = PreferenceManager.getDefaultSharedPreferences(v.getContext());
-        Boolean callContacts=settingPrefs.getBoolean("call-contacts", false);
+        boolean callContactOnClick = settingPrefs.getBoolean("call-contact-on-click", false);
 
-        if(!callContacts){
-            launchContactView(context,v);
-        } else {
+        if (callContactOnClick) {
             launchCall(v.getContext());
+        } else {
+            launchContactView(context, v);
         }
 
 
@@ -259,20 +258,20 @@ public class ContactsResult extends Result {
         phoneIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Make sure we have permission to call someone as this is considered a dangerous permission
-       if(Permission.ensureCallPhonePermission(phoneIntent)) {
-           // Pre-android 23, or we already have permission
-           context.startActivity(phoneIntent);
+        if (Permission.ensureCallPhonePermission(phoneIntent)) {
+            // Pre-android 23, or we already have permission
+            context.startActivity(phoneIntent);
 
-           // Register launch in the future
-           // (animation delay)
-           Handler handler = new Handler();
-           handler.postDelayed(new Runnable() {
-               @Override
-               public void run() {
-                   recordLaunch(context);
-                   queryInterface.launchOccurred();
-               }
-           }, KissApplication.TOUCH_DELAY);
-       }
+            // Register launch in the future
+            // (animation delay)
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    recordLaunch(context);
+                    queryInterface.launchOccurred();
+                }
+            }, KissApplication.TOUCH_DELAY);
+        }
     }
 }
