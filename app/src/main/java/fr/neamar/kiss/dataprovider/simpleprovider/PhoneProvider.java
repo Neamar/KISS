@@ -3,18 +3,16 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
 
-public class PhoneProvider implements IProvider {
-    public static final String PHONE_SCHEME = "phone://";
+public class PhoneProvider extends SimpleProvider {
+    private static final String PHONE_SCHEME = "phone://";
     private boolean deviceIsPhone;
-    private Pattern phonePattern = Pattern.compile("^([0-9+ .-]{2,}|[*#]{1,3}[0-9]{1,3}[*a-zA-Z0-9]*#)$");
+    private Pattern phonePattern = Pattern.compile("^[*+0-9# ]{3,}$");
 
     public PhoneProvider(Context context) {
         PackageManager pm = context.getPackageManager();
@@ -27,15 +25,6 @@ public class PhoneProvider implements IProvider {
         if (deviceIsPhone && phonePattern.matcher(query).find()) {
             searcher.addResult(getResult(query));
         }
-    }
-
-    @Override
-    public void reload() {
-    }
-
-    @Override
-    public boolean isLoaded() {
-        return true;
     }
 
     @Override

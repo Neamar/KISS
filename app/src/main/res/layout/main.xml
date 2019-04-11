@@ -88,43 +88,48 @@
         android:elevation="2dp"
         tools:ignore="UnusedAttribute">
 
-        <ImageView
-            android:id="@+id/launcherButton"
+        <FrameLayout
+            android:id="@+id/leftHandSideButtonsWrapper"
             android:layout_width="@dimen/launcher_button_width"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:background="?attr/appSelectableItemBackground"
-            android:contentDescription="@string/main_kiss"
-            android:focusable="true"
-            android:onClick="onLauncherButtonClicked"
             android:paddingLeft="@dimen/launcher_button_padding"
-            android:paddingRight="@dimen/launcher_button_padding"
-            android:src="@drawable/ic_launcher"
-            android:tag="showMenu" />
+            android:paddingRight="@dimen/launcher_button_padding">
 
-        <ProgressBar
-            android:id="@+id/loaderBar"
-            android:layout_width="@dimen/launcher_button_width"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:indeterminate="true"
-            android:paddingLeft="@dimen/launcher_button_padding"
-            android:paddingRight="@dimen/launcher_button_padding"
-            android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/launcherButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/appSelectableItemBackground"
+                android:contentDescription="@string/main_kiss"
+                android:focusable="true"
+                android:onClick="onLauncherButtonClicked"
+                android:src="@drawable/ic_launcher"
+                android:tag="showMenu" />
+
+            <ProgressBar
+                android:id="@+id/loaderBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:indeterminate="true"
+                android:paddingLeft="@dimen/launcher_button_padding"
+                android:paddingRight="@dimen/launcher_button_padding"
+                android:visibility="invisible" />
+
+        </FrameLayout>
 
         <fr.neamar.kiss.ui.SearchEditText
             android:id="@+id/searchEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/clearButton"
-            android:layout_toLeftOf="@+id/clearButton"
-            android:layout_toEndOf="@+id/launcherButton"
-            android:layout_toRightOf="@+id/launcherButton"
+            android:layout_toStartOf="@+id/rightHandSideButtonsWrapper"
+            android:layout_toLeftOf="@+id/rightHandSideButtonsWrapper"
+            android:layout_toEndOf="@+id/leftHandSideButtonsWrapper"
+            android:layout_toRightOf="@+id/leftHandSideButtonsWrapper"
             android:layout_margin="1dp"
             android:background="?attr/searchBackgroundColor"
             android:hint="@string/ui_search_hint"
@@ -137,38 +142,40 @@
             android:textCursorDrawable="@null"
             android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/menuButton"
+        <FrameLayout
+            android:id="@+id/rightHandSideButtonsWrapper"
             android:layout_width="@dimen/launcher_button_width"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:background="?attr/appSelectableItemBackground"
-            android:contentDescription="@string/main_menu"
-            android:focusable="true"
-            android:onClick="onMenuButtonClicked"
             android:paddingLeft="@dimen/launcher_button_padding"
-            android:paddingRight="@dimen/launcher_button_padding"
-            android:src="@drawable/dots"
-            android:tint="?attr/searchColor" />
+            android:paddingRight="@dimen/launcher_button_padding">
 
-        <ImageView
-            android:id="@+id/clearButton"
-            android:layout_width="@dimen/launcher_button_width"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="?attr/appSelectableItemBackground"
-            android:contentDescription="@string/main_clear"
-            android:focusable="true"
-            android:onClick="onClearButtonClicked"
-            android:paddingLeft="@dimen/launcher_button_padding"
-            android:paddingRight="@dimen/launcher_button_padding"
-            android:src="@drawable/clear_dark"
-            android:tint="?attr/searchColor"
-            android:visibility="visible" />
+            <ImageView
+                android:id="@+id/menuButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/appSelectableItemBackground"
+                android:contentDescription="@string/main_menu"
+                android:focusable="true"
+                android:onClick="onMenuButtonClicked"
+                android:src="@drawable/dots"
+                android:tint="?attr/searchColor" />
+
+            <ImageView
+                android:id="@+id/clearButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/appSelectableItemBackground"
+                android:contentDescription="@string/main_clear"
+                android:focusable="true"
+                android:onClick="onClearButtonClicked"
+                android:src="@drawable/clear_dark"
+                android:tint="?attr/searchColor"
+                android:visibility="visible" />
+        </FrameLayout>
+
     </RelativeLayout>
 
     <ScrollView

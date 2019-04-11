@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap.CompressFormat;
+import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -54,7 +56,7 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "app", "contacts", "phone", "search", "settings", "shortcuts"
+            "app", "contacts", "settings", "shortcuts"
     );
     private TagsHandler tagsHandler;
     final private Context context;
@@ -67,12 +69,12 @@ public class DataHandler extends BroadcastReceiver
      * Initialize all providers
      */
     public DataHandler(Context context) {
-        start = System.currentTimeMillis();
-
-        // Make sure we are in the context of the main activity
+        // Make sure we are in the context of the main application
         // (otherwise we might receive an exception about broadcast listeners not being able
         //  to bind to services)
         this.context = context.getApplicationContext();
+
+        start = System.currentTimeMillis();
 
         IntentFilter intentFilter = new IntentFilter(MainActivity.LOAD_OVER);
         this.context.getApplicationContext().registerReceiver(this, intentFilter);
@@ -90,7 +92,7 @@ public class DataHandler extends BroadcastReceiver
         // (this way, we don't need to reload the app list everytime for instance)
         for (String providerName : PROVIDER_NAMES) {
             if (prefs.getBoolean("enable-" + providerName, true)) {
-                this.connectToProvider(providerName);
+                this.connectToProvider(providerName, 0);
             }
         }
 
@@ -104,6 +106,9 @@ public class DataHandler extends BroadcastReceiver
         ProviderEntry phoneEntry = new ProviderEntry();
         phoneEntry.provider = new PhoneProvider(context);
         this.providers.put("phone", phoneEntry);
+        ProviderEntry searchEntry = new ProviderEntry();
+        searchEntry.provider = new SearchProvider(context);
+        this.providers.put("search", searchEntry);
     }
 
     @Override
@@ -112,7 +117,7 @@ public class DataHandler extends BroadcastReceiver
             String providerName = key.substring(7);
             if (PROVIDER_NAMES.contains(providerName)) {
                 if (sharedPreferences.getBoolean(key, true)) {
-                    this.connectToProvider(providerName);
+                    this.connectToProvider(providerName, 0);
                 } else {
                     this.disconnectFromProvider(providerName);
                 }
@@ -148,7 +153,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
      */
-    private void connectToProvider(final String name) {
+    private void connectToProvider(final String name, final int counter) {
         // Do not continue if this provider has already been connected to
         if (this.providers.containsKey(name)) {
             return;
@@ -168,8 +173,51 @@ public class DataHandler extends BroadcastReceiver
             // of the activity
             this.context.startService(intent);
         } catch (IllegalStateException e) {
+            // When KISS is the default launcher,
+            // the system will try to start KISS in the background after a reboot
+            // however at this point we're not allowed to start services, and an IllegalStateException will be thrown
+            // We'll then add a broadcast receiver for the next time the user turns his screen on
+            // (or passes the lockscreen) to retry at this point
             // https://github.com/Neamar/KISS/issues/1130
-            Log.e("KISS", "Unable to start service for " + name + ". This is likely because a broadcast receiver was triggered and KISS is not the default home app, so services are not running and can't be started in this context.");
+            // https://github.com/Neamar/KISS/issues/1154
+            Log.w(TAG, "Unable to start service for " + name + ". KISS is probably not in the foreground. Service will automatically be started when KISS gets to the foreground.");
+
+            if(counter > 20) {
+                Log.e(TAG, "Already tried and failed twenty times to start service. Giving up.");
+                return;
+            }
+
+            // Add a receiver to get notified next time the screen is on
+            // or next time the users successfully dismisses his lock screen
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+            intentFilter.addAction(Intent.ACTION_USER_PRESENT);
+            context.registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(final Context context, Intent intent) {
+                    // Is there a lockscreen still visible to the user?
+                    // If yes, we can't start background services yet, so we'll need to wait until we get ACTION_USER_PRESENT
+                    KeyguardManager myKM = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+                    boolean isPhoneLocked = myKM.inKeyguardRestrictedInputMode();
+                    if(!isPhoneLocked) {
+                        context.unregisterReceiver(this);
+                        final Handler handler = new Handler();
+                        // Even when all the stars are aligned,
+                        // starting the service needs to be slightly delayed because the Intent is fired *before* the app is considered in the foreground.
+                        // Each new release of Android manages to make the developer life harder.
+                        // Can't wait for the next one.
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.i(TAG, "Screen turned on or unlocked, retrying to start background services");
+                                connectToProvider(name, counter + 1);
+                            }
+                        }, 10);
+                    }
+                }
+            }, intentFilter);
+
+            // Stop here for now, the Receiver will re-trigger the whole flow when services can be started.
             return;
         }
 
@@ -287,23 +335,27 @@ public class DataHandler extends BroadcastReceiver
      * @param context        android context
      * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
      * @param historyMode    Recency vs Frecency vs Frequency
+     * @param sortHistory sort history entries alphabetically
      * @param itemsToExclude Items to exclude from history
      * @return pojos in recent history
      */
-    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode, ArrayList<Pojo> itemsToExclude) {
+    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode, boolean sortHistory, ArrayList<Pojo> itemsToExclude) {
         // Pre-allocate array slots that are likely to be used based on the current maximum item
         // count
         ArrayList<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
 
+        // Max sure that we get enough items, regardless of how many may be excluded
+        int extendedItemCount = itemCount + itemsToExclude.size();
+
         // Read history
-        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, itemCount, historyMode);
+        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode, sortHistory);
 
         // Find associated items
         for (int i = 0; i < ids.size(); i++) {
             // Ask all providers if they know this id
             Pojo pojo = getPojo(ids.get(i).record);
             if (pojo != null) {
-                //Look if the pojo should get excluded
+                // Look if the pojo should get excluded
                 boolean exclude = false;
                 for (int j = 0; j < itemsToExclude.size(); j++) {
                     if (itemsToExclude.get(j).id.equals(pojo.id)) {
@@ -315,6 +367,11 @@ public class DataHandler extends BroadcastReceiver
                 if (!exclude) {
                     history.add(pojo);
                 }
+
+                // Break if maximum number of items have been retrieved
+                if (history.size() >= itemCount) {
+                    break;
+                }
             }
         }
 
@@ -323,6 +380,19 @@ public class DataHandler extends BroadcastReceiver
 
     public int getHistoryLength() {
         return DBHelper.getHistoryLength(this.context);
+    }
+
+    /**
+     * Query database for item and return its name
+     *
+     * @param id      globally unique ID, usually starts with provider scheme, e.g. "app://" or "contact://"
+     * @return name of item (i.e. app name)
+     */
+    public String getItemName(String id) {
+        // Ask all providers if they know this id
+        Pojo pojo = getPojo(id);
+
+        return (pojo != null) ? pojo.getName() : "???";
     }
 
     public boolean addShortcut(ShortcutsPojo shortcut) {

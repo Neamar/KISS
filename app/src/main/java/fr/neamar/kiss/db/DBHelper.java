@@ -6,10 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Collections;
 
+import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 
 public class DBHelper {
@@ -106,11 +110,12 @@ public class DBHelper {
     /**
      * Retrieve previous query history
      *
-     * @param context android context
-     * @param limit   max number of items to retrieve
+     * @param context     android context
+     * @param limit       max number of items to retrieve
+     * @param sortHistory sort history entries alphabetically
      * @return records with number of use
      */
-    public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit, String historyMode) {
+    public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit, String historyMode, boolean sortHistory) {
         ArrayList<ValuedHistoryRecord> records;
 
         SQLiteDatabase db = getDatabase(context);
@@ -130,6 +135,23 @@ public class DBHelper {
 
         records = readCursor(cursor);
         cursor.close();
+
+        // sort history entries alphabetically
+        if (sortHistory) {
+            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+
+            for (ValuedHistoryRecord entry : records) {
+                entry.name = dataHandler.getItemName(entry.record);
+            }
+
+            Collections.sort(records, new Comparator<ValuedHistoryRecord>() {
+                @Override
+                public int compare(ValuedHistoryRecord a, ValuedHistoryRecord b) {
+                    return a.name.compareTo(b.name);
+                }
+            });
+        }
+
         return records;
     }
 

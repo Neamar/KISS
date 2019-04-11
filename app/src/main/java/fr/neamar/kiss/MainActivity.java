@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
@@ -96,6 +97,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Utility for automatically hiding the keyboard when scrolling down
      */
     private KeyboardScrollHider hider;
+
+    /**
+     * The ViewGroup that wraps the buttons at the right hand side of the searchEditText
+     */
+    public ViewGroup rightHandSideButtonsWrapper;
     /**
      * Menu button
      */
@@ -113,10 +119,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Progress bar displayed when loading
      */
     private View loaderSpinner;
+
+    /**
+     * The ViewGroup that wraps the buttons at the left hand side of the searchEditText
+     */
+    public ViewGroup leftHandSideButtonsWrapper;
     /**
      * Launcher button, can be clicked to display all apps
      */
     public View launcherButton;
+
+    /**
+     * Launcher button's white counterpart, which appears when launcher button is clicked
+     */
+    public View whiteLauncherButton;
     /**
      * "X" button to empty the search field
      */
@@ -201,10 +217,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.listContainer = (View) this.list.getParent();
         this.emptyListView = this.findViewById(android.R.id.empty);
         this.kissBar = findViewById(R.id.mainKissbar);
+        this.rightHandSideButtonsWrapper = findViewById(R.id.rightHandSideButtonsWrapper);
         this.menuButton = findViewById(R.id.menuButton);
         this.searchEditText = findViewById(R.id.searchEditText);
         this.loaderSpinner = findViewById(R.id.loaderBar);
+        this.leftHandSideButtonsWrapper = findViewById(R.id.leftHandSideButtonsWrapper);
         this.launcherButton = findViewById(R.id.launcherButton);
+        this.whiteLauncherButton = findViewById(R.id.whiteLauncherButton);
         this.clearButton = findViewById(R.id.clearButton);
 
         /*
@@ -283,9 +302,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
         // This fix should be on ALL TextEdit Widgets !!!
         // See : https://stackoverflow.com/a/23483957
-        searchEditText.setOnDragListener( new View.OnDragListener() {
+        searchEditText.setOnDragListener(new View.OnDragListener() {
             @Override
-            public boolean onDrag( View v, DragEvent event) {
+            public boolean onDrag(View v, DragEvent event) {
                 return true;
             }
         });
@@ -605,8 +624,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private void displayKissBar(boolean display, boolean clearSearchText) {
         dismissPopup();
         // get the center for the clipping circle
-        int cx = (launcherButton.getLeft() + launcherButton.getRight()) / 2;
-        int cy = (launcherButton.getTop() + launcherButton.getBottom()) / 2;
+        ViewGroup launcherButtonWrapper = (ViewGroup) launcherButton.getParent();
+        int cx = (launcherButtonWrapper.getLeft() + launcherButtonWrapper.getRight()) / 2;
+        int cy = (launcherButtonWrapper.getTop() + launcherButtonWrapper.getBottom()) / 2;
 
         // get the final radius for the clipping circle
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
@@ -655,7 +675,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     });
                     anim.setDuration(animationDuration);
                     anim.start();
-                } catch(IllegalStateException e) {
+                } catch (IllegalStateException e) {
                     // If the view hasn't been laid out yet, we can't animate it
                     kissBar.setVisibility(View.GONE);
                 }
@@ -811,15 +831,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             mPopup.dismiss();
     }
 
-    public void showMatchingTags( String tag ) {
+    public void showMatchingTags(String tag) {
         runTask(new TagsSearcher(this, tag));
 
         clearButton.setVisibility(View.VISIBLE);
         menuButton.setVisibility(View.INVISIBLE);
     }
 
-    public void showUntagged()
-    {
+    public void showUntagged() {
         runTask(new UntaggedSearcher(this));
 
         clearButton.setVisibility(View.VISIBLE);

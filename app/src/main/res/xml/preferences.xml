@@ -25,10 +25,16 @@
             android:order="46"
             android:summary="@string/history_mode_desc"
             android:title="@string/history_mode_name" />
+        <fr.neamar.kiss.SwitchPreference
+            android:defaultValue="false"
+            android:key="sort-history"
+            android:order="47"
+            android:summary="@string/history_sort_desc"
+            android:title="@string/history_sort_name" />
         <fr.neamar.kiss.preference.FreezeHistorySwitch
             android:defaultValue="false"
             android:key="freeze-history"
-            android:order="47"
+            android:order="48"
             android:summary="@string/freeze_history_summary"
             android:title="@string/freeze_history_name" />
         <PreferenceCategory
@@ -124,6 +130,10 @@
                 android:defaultValue="true"
                 android:key="pref-rounded-bars"
                 android:title="@string/rounded_bars" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-swap-kiss-button-with-menu"
+                android:title="@string/swap_kiss_button_with_menu" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
@@ -186,6 +196,11 @@
                 android:defaultValue="false"
                 android:key="call-contacts"
                 android:title="@string/contacts_call_launcher" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="true"
+                android:key="enable-gestures"
+                android:summary="@string/enable_gestures_desc"
+                android:title="@string/enable_gestures" />
         </PreferenceCategory>
         <PreferenceScreen
             android:key="wallpaper-holder"
