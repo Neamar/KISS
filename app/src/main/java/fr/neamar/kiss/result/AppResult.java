@@ -87,7 +87,7 @@ public class AppResult extends Result {
             SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
             view.findViewById(R.id.item_notification_dot).setVisibility(notificationPrefs.contains(className.getPackageName()) ? View.VISIBLE : View.GONE);
         }
-        
+
         return view;
     }
 
