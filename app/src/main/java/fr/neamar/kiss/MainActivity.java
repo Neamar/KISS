@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -32,9 +34,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
@@ -632,6 +637,29 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                CharSequence name = "fake";
+                String description = "fake description";
+                int importance = NotificationManager.IMPORTANCE_DEFAULT;
+                NotificationChannel channel = new NotificationChannel("channel", name, importance);
+                channel.setDescription(description);
+                // Register the channel with the system; you can't change the importance
+                // or other notification behaviors after this
+                NotificationManager notificationManager = getSystemService(NotificationManager.class);
+                notificationManager.createNotificationChannel(channel);
+            }
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel")
+                    .setSmallIcon(R.drawable.call)
+                    .setContentTitle("TITLE")
+                    .setContentText("Content forever")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+            // notificationId is a unique int for each notification that you must define
+            notificationManager.notify(1, builder.build());
+
             // Display the app list
             if (searchEditText.getText().length() != 0) {
                 searchEditText.setText("");
