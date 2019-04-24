@@ -5,26 +5,36 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/result_margin_bottom"
-    android:paddingEnd="@dimen/result_margin_right"
-    android:paddingLeft="@dimen/result_margin_left"
-    android:paddingRight="@dimen/result_margin_right"
     android:paddingStart="@dimen/result_margin_left"
-    android:paddingTop="@dimen/result_margin_top">
+    android:paddingLeft="@dimen/result_margin_left"
+    android:paddingTop="@dimen/result_margin_top"
+    android:paddingEnd="@dimen/result_margin_right"
+    android:paddingRight="@dimen/result_margin_right"
+    android:paddingBottom="@dimen/result_margin_bottom">
 
     <ImageView
         android:id="@+id/item_app_icon"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="@dimen/icon_margin_bottom"
-        android:layout_marginEnd="@dimen/icon_margin_right"
-        android:layout_marginLeft="@dimen/icon_margin_left"
-        android:layout_marginRight="@dimen/icon_margin_right"
         android:layout_marginStart="@dimen/icon_margin_left"
+        android:layout_marginLeft="@dimen/icon_margin_left"
         android:layout_marginTop="@dimen/icon_margin_top"
+        android:layout_marginEnd="@dimen/icon_margin_right"
+        android:layout_marginRight="@dimen/icon_margin_right"
+        android:layout_marginBottom="@dimen/icon_margin_bottom"
         android:contentDescription="@null"
         tools:src="@drawable/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/item_notification_dot"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_alignTop="@id/item_app_icon"
+        android:layout_alignEnd="@id/item_app_icon"
+        android:layout_alignRight="@id/item_app_icon"
+        android:contentDescription="@null"
+        android:src="@drawable/notification_dot" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,9 +51,9 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingBottom="3dp"
             android:paddingEnd="2dp"
             android:paddingRight="2dp"
+            android:paddingBottom="3dp"
             android:shadowColor="?attr/resultShadowColor"
             android:shadowDx="1"
             android:shadowDy="2"
