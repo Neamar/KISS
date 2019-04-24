@@ -31,6 +31,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -81,6 +82,12 @@ public class AppResult extends Result {
         } else {
             appIcon.setImageDrawable(null);
         }
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
+            view.findViewById(R.id.item_notification_dot).setVisibility(notificationPrefs.contains(className.getPackageName()) ? View.VISIBLE : View.GONE);
+        }
+        
         return view;
     }
 
@@ -143,8 +150,8 @@ public class AppResult extends Result {
                 final int EXCLUDE_KISS_ID = 1;
                 PopupMenu popupExcludeMenu = new PopupMenu(context, parentView);
                 //Adding menu items
-                popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID,Menu.NONE, Menu.NONE,R.string.menu_exclude_history);
-                popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID,Menu.NONE, Menu.NONE,R.string.menu_exclude_kiss);
+                popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_history);
+                popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_kiss);
                 //registering popup with OnMenuItemClickListener
                 popupExcludeMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
@@ -179,7 +186,7 @@ public class AppResult extends Result {
         //remove from history
         deleteRecord(context);
         //refresh current history
-        if (!((MainActivity)context).isViewingAllApps()) {
+        if (!((MainActivity) context).isViewingAllApps()) {
             parent.removeResult(AppResult.this);
         }
         //inform user
