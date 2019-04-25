@@ -43,7 +43,6 @@ import java.util.ArrayList;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
-import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
@@ -164,13 +163,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private ForwarderManager forwarderManager;
 
-    private SharedPreferences.OnSharedPreferenceChangeListener onNotificationDisplayed = new SharedPreferences.OnSharedPreferenceChangeListener() {
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            updateSearchRecords();
-        }
-    };
-
     /**
      * Called when the activity is first created.
      */
@@ -281,11 +273,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     emptyListView.setVisibility(View.VISIBLE);
                 } else {
                     // Otherwise, display results
-                    listContainer.setVisibility(View.VISIBLE);
+                    if(listContainer.getVisibility() != View.VISIBLE) {
+                        listContainer.setVisibility(View.VISIBLE);
+                    }
                     emptyListView.setVisibility(View.GONE);
                 }
 
-                forwarderManager.onDataSetChanged();
+                // forwarderManager.onDataSetChanged();
 
             }
         });
@@ -424,19 +418,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         forwarderManager.onResume();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE).registerOnSharedPreferenceChangeListener(onNotificationDisplayed);
-        }
         super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE).unregisterOnSharedPreferenceChangeListener(onNotificationDisplayed);
-        }
-        
-        super.onPause();
     }
 
     @Override

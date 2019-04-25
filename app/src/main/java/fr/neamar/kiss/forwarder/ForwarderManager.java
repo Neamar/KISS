@@ -18,6 +18,7 @@ public class ForwarderManager extends Forwarder {
     private final Permission permissionForwarder;
     private final OreoShortcuts shortcutsForwarder;
     private final TagsMenu tagsMenu;
+    private final Notification notificationForwarder;
 
 
     public ForwarderManager(MainActivity mainActivity) {
@@ -30,6 +31,7 @@ public class ForwarderManager extends Forwarder {
         this.favoritesForwarder = new Favorites(mainActivity);
         this.permissionForwarder = new Permission(mainActivity);
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
+        this.notificationForwarder = new Notification(mainActivity);
         this.tagsMenu = new TagsMenu(mainActivity);
     }
 
@@ -39,7 +41,9 @@ public class ForwarderManager extends Forwarder {
         interfaceTweaks.onCreate();
         experienceTweaks.onCreate();
         shortcutsForwarder.onCreate();
+        notificationForwarder.onCreate();
         tagsMenu.onCreate();
+
     }
 
     public void onResume() {
@@ -54,6 +58,7 @@ public class ForwarderManager extends Forwarder {
 
     public void onStop() {
         widgetForwarder.onStop();
+        notificationForwarder.onStop();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
