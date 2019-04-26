@@ -1,10 +1,15 @@
 package fr.neamar.kiss.forwarder;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.notification.NotificationListener;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -14,9 +19,43 @@ class Notification extends Forwarder {
 
     private SharedPreferences.OnSharedPreferenceChangeListener onNotificationDisplayed = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            Log.e("WTF", "Invalidated dataset: " + key);
-            mainActivity.adapter.notifyDataSetChanged();
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String packageName) {
+            Log.e("WTF", "Invalidated dataset: " + packageName);
+            ListView list = mainActivity.list;
+
+            // A new notification was received, iterate over the currently displayed results
+            // if one of them is for the package that just received a notification,
+            // update the notification dot visual if required.
+            //
+            // This implementation should be more efficient than calling notifyDataSetInvalidated()
+            // since we only iterate over the items currently displayed in the list
+            // and do not rebuild them all, just toggle visibility if required.
+            for (int i = 0; i <= list.getLastVisiblePosition() - list.getFirstVisiblePosition(); i++) {
+                View v = list.getChildAt(i);
+                final View notificationDot = v.findViewById(R.id.item_notification_dot);
+                if (notificationDot != null && notificationDot.getTag().toString().equals(packageName)) {
+                    int currentVisibility = notificationDot.getVisibility();
+                    boolean hasNotification = notificationPreferences.contains(packageName);
+                    
+                    if(currentVisibility != View.VISIBLE && hasNotification) {
+                        // There is a notification and dot was not visible
+                        notificationDot.setVisibility(View.VISIBLE);
+                        notificationDot.setAlpha(0);
+                        notificationDot.animate().alpha(1).setListener(null);
+                    }
+                    else if(currentVisibility == View.VISIBLE && !hasNotification) {
+                        // There is no notification anymore, and dot was visible
+                        notificationDot.animate().alpha(0).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                notificationDot.setVisibility(View.GONE);
+                                notificationDot.setAlpha(1);
+                            }
+                        });
+                    }
+                }
+            }
         }
     };
 

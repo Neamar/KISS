@@ -85,7 +85,9 @@ public class AppResult extends Result {
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
-            view.findViewById(R.id.item_notification_dot).setVisibility(notificationPrefs.contains(className.getPackageName()) ? View.VISIBLE : View.GONE);
+            View notificationView = view.findViewById(R.id.item_notification_dot);
+            notificationView.setVisibility(notificationPrefs.contains(className.getPackageName()) ? View.VISIBLE : View.GONE);
+            notificationView.setTag(className.getPackageName());
         }
 
         return view;

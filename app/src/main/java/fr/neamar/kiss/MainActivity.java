@@ -273,7 +273,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     emptyListView.setVisibility(View.VISIBLE);
                 } else {
                     // Otherwise, display results
-                    if(listContainer.getVisibility() != View.VISIBLE) {
+                    if (listContainer.getVisibility() != View.VISIBLE) {
                         listContainer.setVisibility(View.VISIBLE);
                     }
                     emptyListView.setVisibility(View.GONE);
