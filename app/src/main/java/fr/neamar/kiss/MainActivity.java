@@ -35,8 +35,6 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import java.util.ArrayList;
 
@@ -650,17 +648,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 NotificationManager notificationManager = getSystemService(NotificationManager.class);
                 notificationManager.createNotificationChannel(channel);
             }
-
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel")
-                    .setSmallIcon(R.drawable.call)
-                    .setContentTitle("TITLE")
-                    .setContentText("Content forever")
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-            // notificationId is a unique int for each notification that you must define
-            notificationManager.notify(1, builder.build());
 
             // Display the app list
             if (searchEditText.getText().length() != 0) {
