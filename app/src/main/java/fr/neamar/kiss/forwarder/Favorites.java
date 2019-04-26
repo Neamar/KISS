@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 import fr.neamar.kiss.KissApplication;
@@ -122,8 +124,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < favoritesPojo.size(); i++) {
-            Pojo pojo = favoritesPojo.get(i);
-
             ImageView image;
 
             if (favoritesViews.size() <= i) {
@@ -139,9 +139,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 ((ViewGroup) mainActivity.favoritesBar).addView(image);
                 favoritesViews.add(image);
             } else {
-                image = (ImageView) favoritesViews.get(i);
+                image = favoritesViews.get(i);
             }
 
+            Pojo pojo = favoritesPojo.get(i);
             Result result = Result.fromPojo(mainActivity, pojo);
             Drawable drawable = result.getDrawable(mainActivity);
             if (drawable != null) {
@@ -187,7 +188,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
      */
     private void addDefaultAppsToFavs() {
         {
-            //Default phone call app
+            // Default phone call app
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
             phoneIntent.setData(Uri.parse("tel:0000"));
             ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
@@ -212,7 +213,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             }
         }
         {
-            //Default contacts app
+            // Default contacts app
             Intent contactsIntent = new Intent(Intent.ACTION_DEFAULT, ContactsContract.Contacts.CONTENT_URI);
             ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
@@ -225,7 +226,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         }
         {
-            //Default browser
+            // Default browser
             Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
             ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
             if (resolveInfo != null) {
@@ -248,13 +249,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
     }
 
+    @NonNull
     private Result getFavResult(int favNumber) {
-        if (favNumber >= favoritesPojo.size()) {
-            // Clicking on a favorite before everything is loaded.
-            Log.i(TAG, "Clicking on an uninitialized favorite.");
-            return null;
-        }
-
         // Favorites handling
         Pojo pojo = favoritesPojo.get(favNumber);
         return Result.fromPojo(mainActivity, pojo);

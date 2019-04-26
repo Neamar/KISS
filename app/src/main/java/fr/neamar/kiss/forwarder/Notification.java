@@ -36,7 +36,7 @@ class Notification extends Forwarder {
                 if (notificationDot != null && notificationDot.getTag().toString().equals(packageName)) {
                     int currentVisibility = notificationDot.getVisibility();
                     boolean hasNotification = notificationPreferences.contains(packageName);
-                    
+
                     if(currentVisibility != View.VISIBLE && hasNotification) {
                         // There is a notification and dot was not visible
                         notificationDot.setVisibility(View.VISIBLE);

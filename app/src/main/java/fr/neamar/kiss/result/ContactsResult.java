@@ -174,7 +174,6 @@ public class ContactsResult extends Result {
         icon = drawable;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
         synchronized (this) {
@@ -203,7 +202,7 @@ public class ContactsResult extends Result {
         }
     }
 
-    public void launchContactView(Context context, View v) {
+    private void launchContactView(Context context, View v) {
         Intent viewContact = new Intent(Intent.ACTION_VIEW);
 
         viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
