@@ -194,11 +194,11 @@ class ExperienceTweaks extends Forwarder {
         int currentInputType = mainActivity.searchEditText.getInputType();
         int requiredInputType;
 
-        if (isNonCompliantKeyboard()) {
-            requiredInputType = INPUT_TYPE_WORKAROUND;
+        if (isSuggestionsEnabled()) {
+            requiredInputType = InputType.TYPE_CLASS_TEXT;
         } else {
-            if(isKeyboardAutocompleAndSuggestionsEnabled()) {
-                requiredInputType = InputType.TYPE_CLASS_TEXT;
+            if (isNonCompliantKeyboard()) {
+                requiredInputType = INPUT_TYPE_WORKAROUND;
             } else {
                 requiredInputType = INPUT_TYPE_STANDARD;
             }
@@ -261,7 +261,7 @@ class ExperienceTweaks extends Forwarder {
     /**
      * Should the keyboard autocomplete and suggest options
      */
-    private boolean isKeyboardAutocompleAndSuggestionsEnabled() {
+    private boolean isSuggestionsEnabled() {
         return prefs.getBoolean("enable-suggestions-keyboard", false);
     }
 
