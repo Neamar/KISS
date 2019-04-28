@@ -277,7 +277,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     emptyListView.setVisibility(View.GONE);
                 }
 
-                // forwarderManager.onDataSetChanged();
+                forwarderManager.onDataSetChanged();
 
             }
         });

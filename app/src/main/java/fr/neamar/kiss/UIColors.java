@@ -71,7 +71,7 @@ public class UIColors {
         return primaryColor;
     }
 
-    public static void clearPrimaryColorCache(Context context) {
+    static void clearPrimaryColorCache(Context context) {
         primaryColor = -1;
     }
 }

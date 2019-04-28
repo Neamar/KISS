@@ -30,6 +30,7 @@ import android.widget.Toast;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -85,9 +86,12 @@ public class AppResult extends Result {
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
-            View notificationView = view.findViewById(R.id.item_notification_dot);
+            ImageView notificationView = view.findViewById(R.id.item_notification_dot);
             notificationView.setVisibility(notificationPrefs.contains(className.getPackageName()) ? View.VISIBLE : View.GONE);
             notificationView.setTag(className.getPackageName());
+
+            int primaryColor = UIColors.getPrimaryColor(context);
+            notificationView.setColorFilter(primaryColor);
         }
 
         return view;
