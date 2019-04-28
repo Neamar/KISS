@@ -4,8 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -270,10 +268,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     listContainer.setVisibility(View.GONE);
                     emptyListView.setVisibility(View.VISIBLE);
                 } else {
-                    // Otherwise, display results
-                    if (listContainer.getVisibility() != View.VISIBLE) {
-                        listContainer.setVisibility(View.VISIBLE);
-                    }
+                    listContainer.setVisibility(View.VISIBLE);
                     emptyListView.setVisibility(View.GONE);
                 }
 
@@ -637,18 +632,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         int finalRadius = Math.max(kissBar.getWidth(), kissBar.getHeight());
 
         if (display) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                CharSequence name = "fake";
-                String description = "fake description";
-                int importance = NotificationManager.IMPORTANCE_DEFAULT;
-                NotificationChannel channel = new NotificationChannel("channel", name, importance);
-                channel.setDescription(description);
-                // Register the channel with the system; you can't change the importance
-                // or other notification behaviors after this
-                NotificationManager notificationManager = getSystemService(NotificationManager.class);
-                notificationManager.createNotificationChannel(channel);
-            }
-
             // Display the app list
             if (searchEditText.getText().length() != 0) {
                 searchEditText.setText("");
