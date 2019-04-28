@@ -110,11 +110,12 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void onCreate() {
-        adjustInputType();
         mainEmptyView = mainActivity.findViewById(R.id.main_empty);
     }
 
     void onResume() {
+        adjustInputType();
+
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
@@ -196,7 +197,11 @@ class ExperienceTweaks extends Forwarder {
         if (isNonCompliantKeyboard()) {
             requiredInputType = INPUT_TYPE_WORKAROUND;
         } else {
-            requiredInputType = INPUT_TYPE_STANDARD;
+            if(isKeyboardAutocompleAndSuggestionsEnabled()) {
+                requiredInputType = InputType.TYPE_CLASS_TEXT;
+            } else {
+                requiredInputType = INPUT_TYPE_STANDARD;
+            }
         }
         if (currentInputType != requiredInputType) {
             mainActivity.searchEditText.setInputType(requiredInputType);
@@ -251,6 +256,13 @@ class ExperienceTweaks extends Forwarder {
      */
     private boolean isKeyboardOnStartEnabled() {
         return prefs.getBoolean("display-keyboard", false);
+    }
+
+    /**
+     * Should the keyboard autocomplete and suggest options
+     */
+    private boolean isKeyboardAutocompleAndSuggestionsEnabled() {
+        return prefs.getBoolean("enable-suggestions-keyboard", false);
     }
 
     private boolean isGesturesEnabled() {
