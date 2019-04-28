@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -21,7 +20,6 @@ class Notification extends Forwarder {
     private SharedPreferences.OnSharedPreferenceChangeListener onNotificationDisplayed = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String packageName) {
-            Log.e("WTF", "Invalidated dataset: " + packageName);
             ListView list = mainActivity.list;
 
             // A new notification was received, iterate over the currently displayed results
@@ -76,17 +74,19 @@ class Notification extends Forwarder {
         if(currentVisibility != View.VISIBLE && hasNotification) {
             // There is a notification and dot was not visible
             notificationDot.setVisibility(View.VISIBLE);
-            notificationDot.setAlpha(0);
-            notificationDot.animate().alpha(1).setListener(null);
+            notificationDot.setScaleX(0);
+            notificationDot.setScaleY(0);
+            notificationDot.animate().scaleX(1).scaleY(1).setListener(null);
         }
         else if(currentVisibility == View.VISIBLE && !hasNotification) {
             // There is no notification anymore, and dot was visible
-            notificationDot.animate().alpha(0).setListener(new AnimatorListenerAdapter() {
+            notificationDot.animate().scaleX(0).scaleY(0).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
                     notificationDot.setVisibility(View.GONE);
-                    notificationDot.setAlpha(1);
+                    notificationDot.setScaleX(1);
+                    notificationDot.setScaleY(1);
                 }
             });
         }

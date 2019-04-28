@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.Pojo;
@@ -173,10 +174,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 if (result instanceof AppResult) {
                     String packageName = ((AppResult) result).getPackageName();
                     notificationDot.setTag(packageName);
-                    Log.e("WTF", "PN" + packageName);
+                    int primaryColor = UIColors.getPrimaryColor(mainActivity);
+                    notificationDot.setColorFilter(primaryColor);
                     if(notificationPrefs.contains(packageName)) {
-                        Log.e("WTF", "PNVISIBVLE" + packageName);
-
                         notificationDot.setVisibility(View.VISIBLE);
                     }
                 } else {

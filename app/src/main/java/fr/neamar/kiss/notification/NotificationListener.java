@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -37,8 +36,6 @@ public class NotificationListener extends NotificationListenerService {
 
         currentNotifications.add(Integer.toString(sbn.getId()));
         prefs.edit().putStringSet(sbn.getPackageName(), currentNotifications).apply();
-
-        Log.e("WTF", "ADD Notifications for " + sbn.getPackageName() + currentNotifications.toString());
     }
 
     @Override
@@ -56,9 +53,6 @@ public class NotificationListener extends NotificationListenerService {
             editor.putStringSet(sbn.getPackageName(), currentNotifications);
         }
         editor.apply();
-
-        Log.e("WTF", "DEL Notifications for " + sbn.getPackageName() + currentNotifications.toString());
-
     }
 
     public Set<String> getCurrentNotificationsForPackage(String packageName) {
