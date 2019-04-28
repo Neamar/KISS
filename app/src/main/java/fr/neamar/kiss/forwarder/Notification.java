@@ -29,6 +29,7 @@ class Notification extends Forwarder {
             // This implementation should be more efficient than calling notifyDataSetInvalidated()
             // since we only iterate over the items currently displayed in the list
             // and do not rebuild them all, just toggle visibility if required.
+            // Also, it means we get to display an animation, and that's cool :D
             updateDots(list, list.getLastVisiblePosition() - list.getFirstVisiblePosition(), packageName);
 
             updateDots(mainActivity.favoritesBar, mainActivity.favoritesBar.getChildCount(), packageName);

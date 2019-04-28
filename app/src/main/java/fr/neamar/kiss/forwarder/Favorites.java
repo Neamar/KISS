@@ -174,13 +174,15 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 if (result instanceof AppResult) {
                     String packageName = ((AppResult) result).getPackageName();
                     notificationDot.setTag(packageName);
-                    int primaryColor = UIColors.getPrimaryColor(mainActivity);
-                    notificationDot.setColorFilter(primaryColor);
                     if(notificationPrefs.contains(packageName)) {
                         notificationDot.setVisibility(View.VISIBLE);
+                        int primaryColor = UIColors.getPrimaryColor(mainActivity);
+                        notificationDot.setColorFilter(primaryColor);
                     }
                 } else {
+                    // Ensure view is clean (might have been recycled after a drag and drop)
                     notificationDot.setTag(null);
+                    notificationDot.setVisibility(View.INVISIBLE);
                 }
 
             }

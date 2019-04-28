@@ -1,10 +1,8 @@
 package fr.neamar.kiss.notification;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 
@@ -28,33 +26,33 @@ public class NotificationListener extends NotificationListenerService {
     }
 
     @Override
-    public IBinder onBind(Intent intent) {
-        return super.onBind(intent);
-    }
-
-    @Override
     public void onListenerConnected() {
         super.onListenerConnected();
 
-        // Build a map of notifications, ordered per package
+        // Build a map of notifications currently displayed,
+        // ordered per package
         StatusBarNotification[] sbns = getActiveNotifications();
         Map<String, Set<String>> notificationsByPackage = new HashMap<>();
-        for(StatusBarNotification sbn: sbns) {
+        for (StatusBarNotification sbn : sbns) {
             String packageName = sbn.getPackageName();
-            if(!notificationsByPackage.containsKey(packageName)) {
+            if (!notificationsByPackage.containsKey(packageName)) {
                 notificationsByPackage.put(packageName, new HashSet<String>());
             }
 
             notificationsByPackage.get(packageName).add(Integer.toString(sbn.getId()));
         }
 
-        // And synchronise this map with our sharedpreferences
+        // And synchronise this map with our SharedPreferences
+        // (an easier option would have been to .clear() the SharedPreferences,
+        // but then the listeners on SharedPreferences are not properly triggered)
         SharedPreferences.Editor editor = prefs.edit();
-        for(String packageName : prefs.getAll().keySet()) {
-            if(notificationsByPackage.containsKey(packageName)) {
+        // allKeys contains all the package names either in preferences or in the current notifications
+        Set<String> allKeys = prefs.getAll().keySet();
+        allKeys.addAll(notificationsByPackage.keySet());
+        for (String packageName : allKeys) {
+            if (notificationsByPackage.containsKey(packageName)) {
                 editor.putStringSet(packageName, notificationsByPackage.get(packageName));
-            }
-            else {
+            } else {
                 editor.remove(packageName);
             }
         }
@@ -77,11 +75,10 @@ public class NotificationListener extends NotificationListenerService {
         currentNotifications.remove(Integer.toString(sbn.getId()));
 
         SharedPreferences.Editor editor = prefs.edit();
-        if(currentNotifications.size() == 0) {
+        if (currentNotifications.isEmpty()) {
             // Clean up!
             editor.remove(sbn.getPackageName());
-        }
-        else {
+        } else {
             editor.putStringSet(sbn.getPackageName(), currentNotifications);
         }
         editor.apply();
@@ -94,7 +91,7 @@ public class NotificationListener extends NotificationListenerService {
         } else {
             // The set returned by getStringSet() should NOT be modified
             // see https://developer.android.com/reference/android/content/SharedPreferences.html#getStringSet(java.lang.String,%2520java.util.Set%3Cjava.lang.String%3E)
-           return new HashSet<>(currentNotifications);
+            return new HashSet<>(currentNotifications);
         }
     }
 }
