@@ -47,7 +47,7 @@ public class NotificationListener extends NotificationListenerService {
         // but then the listeners on SharedPreferences are not properly triggered)
         SharedPreferences.Editor editor = prefs.edit();
         // allKeys contains all the package names either in preferences or in the current notifications
-        Set<String> allKeys = prefs.getAll().keySet();
+        Set<String> allKeys = new HashSet<>(prefs.getAll().keySet());
         allKeys.addAll(notificationsByPackage.keySet());
         for (String packageName : allKeys) {
             if (notificationsByPackage.containsKey(packageName)) {
