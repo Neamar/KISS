@@ -327,6 +327,24 @@ public class DataHandler extends BroadcastReceiver
     }
 
     /**
+     * Get records for this query.
+     *
+     * @param searcher the searcher currently running
+     */
+    public void requestAllRecords(Searcher searcher) {
+        for (ProviderEntry entry : this.providers.values()) {
+            if (searcher.isCancelled())
+                break;
+            if (entry.provider == null)
+                continue;
+
+            List<? extends Pojo> pojos = entry.provider.getPojos();
+            if (pojos != null)
+                searcher.addResult(pojos.toArray(new Pojo[0]));
+        }
+    }
+
+    /**
      * Return previously selected items.<br />
      * May return null if no items were ever selected (app first use)<br />
      * May return an empty set if the providers are not done building records,

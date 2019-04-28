@@ -1,5 +1,7 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
+import java.util.List;
+
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.pojo.Pojo;
 
@@ -26,6 +28,11 @@ public abstract class SimpleProvider implements IProvider {
 
     @Override
     public Pojo findById(String id) {
+        return null;
+    }
+
+    @Override
+    public List<? extends Pojo> getPojos() {
         return null;
     }
 }
