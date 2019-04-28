@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import fr.neamar.kiss.MainActivity;
@@ -30,32 +31,10 @@ class Notification extends Forwarder {
             // This implementation should be more efficient than calling notifyDataSetInvalidated()
             // since we only iterate over the items currently displayed in the list
             // and do not rebuild them all, just toggle visibility if required.
-            for (int i = 0; i <= list.getLastVisiblePosition() - list.getFirstVisiblePosition(); i++) {
-                View v = list.getChildAt(i);
-                final View notificationDot = v.findViewById(R.id.item_notification_dot);
-                if (notificationDot != null && notificationDot.getTag().toString().equals(packageName)) {
-                    int currentVisibility = notificationDot.getVisibility();
-                    boolean hasNotification = notificationPreferences.contains(packageName);
+            updateDots(list, list.getLastVisiblePosition() - list.getFirstVisiblePosition(), packageName);
 
-                    if(currentVisibility != View.VISIBLE && hasNotification) {
-                        // There is a notification and dot was not visible
-                        notificationDot.setVisibility(View.VISIBLE);
-                        notificationDot.setAlpha(0);
-                        notificationDot.animate().alpha(1).setListener(null);
-                    }
-                    else if(currentVisibility == View.VISIBLE && !hasNotification) {
-                        // There is no notification anymore, and dot was visible
-                        notificationDot.animate().alpha(0).setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                super.onAnimationEnd(animation);
-                                notificationDot.setVisibility(View.GONE);
-                                notificationDot.setAlpha(1);
-                            }
-                        });
-                    }
-                }
-            }
+            updateDots(mainActivity.favoritesBar, mainActivity.favoritesBar.getChildCount(), packageName);
+
         }
     };
 
@@ -77,6 +56,39 @@ class Notification extends Forwarder {
     void onStop() {
         if (notificationPreferences != null) {
             notificationPreferences.unregisterOnSharedPreferenceChangeListener(onNotificationDisplayed);
+        }
+    }
+
+    private void updateDots(ViewGroup vg, int childCount, String packageName) {
+        for (int i = 0; i < childCount; i++) {
+            View v = vg.getChildAt(i);
+            final View notificationDot = v.findViewById(R.id.item_notification_dot);
+            if (notificationDot != null && notificationDot.getTag().toString().equals(packageName)) {
+                boolean hasNotification = notificationPreferences.contains(packageName);
+                animateDot(notificationDot, hasNotification);
+            }
+        }
+    }
+
+    private void animateDot(final View notificationDot, Boolean hasNotification) {
+        int currentVisibility = notificationDot.getVisibility();
+
+        if(currentVisibility != View.VISIBLE && hasNotification) {
+            // There is a notification and dot was not visible
+            notificationDot.setVisibility(View.VISIBLE);
+            notificationDot.setAlpha(0);
+            notificationDot.animate().alpha(1).setListener(null);
+        }
+        else if(currentVisibility == View.VISIBLE && !hasNotification) {
+            // There is no notification anymore, and dot was visible
+            notificationDot.animate().alpha(0).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    notificationDot.setVisibility(View.GONE);
+                    notificationDot.setAlpha(1);
+                }
+            });
         }
     }
 }

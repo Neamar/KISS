@@ -2,6 +2,7 @@ package fr.neamar.kiss.forwarder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.DragEvent;
@@ -27,7 +29,9 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
@@ -42,7 +46,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     /**
      * IDs for the favorites buttons
      */
-    private ArrayList<ImageView> favoritesViews = new ArrayList<>();
+    private ArrayList<View> favoritesViews = new ArrayList<>();
 
     /**
      * Currently displayed favorites
@@ -68,6 +72,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     private boolean contextMenuShown = false;
     private int favCount = -1;
 
+    private SharedPreferences notificationPrefs = null;
+
     Favorites(MainActivity mainActivity) {
         super(mainActivity);
     }
@@ -91,6 +97,11 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             // set flag to false
             prefs.edit().putBoolean("firstRun", false).apply();
         }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            notificationPrefs = mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        }
+
     }
 
     private static Bitmap drawableToBitmap(Drawable drawable) {
@@ -124,7 +135,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < favoritesPojo.size(); i++) {
-            ImageView image;
+            View favoriteView;
 
             if (favoritesViews.size() <= i) {
                 if (layoutInflater == null) {
@@ -132,32 +143,50 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                             .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 }
                 assert layoutInflater != null;
-                image = (ImageView) layoutInflater.inflate(R.layout.favorite_item, (ViewGroup) mainActivity.favoritesBar, false);
-                image.setTag(i);
-                image.setOnDragListener(this);
-                image.setOnTouchListener(this);
-                ((ViewGroup) mainActivity.favoritesBar).addView(image);
-                favoritesViews.add(image);
+                favoriteView = layoutInflater.inflate(R.layout.favorite_item, (ViewGroup) mainActivity.favoritesBar, false);
+                favoriteView.setTag(i);
+                favoriteView.setOnDragListener(this);
+                favoriteView.setOnTouchListener(this);
+                mainActivity.favoritesBar.addView(favoriteView);
+                favoritesViews.add(favoriteView);
             } else {
-                image = favoritesViews.get(i);
+                favoriteView = favoritesViews.get(i);
             }
 
             Pojo pojo = favoritesPojo.get(i);
             Result result = Result.fromPojo(mainActivity, pojo);
             Drawable drawable = result.getDrawable(mainActivity);
+            ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
             if (drawable != null) {
                 if (result instanceof ContactsResult) {
                     Bitmap iconBitmap = drawableToBitmap(drawable);
                     drawable = new RoundedQuickContactBadge.RoundedDrawable(iconBitmap);
                 }
-                image.setImageDrawable(drawable);
+                favoriteImage.setImageDrawable(drawable);
             } else {
                 // Use a placeholder if no drawable found
-                image.setImageResource(R.drawable.ic_launcher_white);
+                favoriteImage.setImageResource(R.drawable.ic_launcher_white);
             }
 
-            image.setVisibility(View.VISIBLE);
-            image.setContentDescription(pojo.getName());
+            if(notificationPrefs != null) {
+                ImageView notificationDot = favoriteView.findViewById(R.id.item_notification_dot);
+                if (result instanceof AppResult) {
+                    String packageName = ((AppResult) result).getPackageName();
+                    notificationDot.setTag(packageName);
+                    Log.e("WTF", "PN" + packageName);
+                    if(notificationPrefs.contains(packageName)) {
+                        Log.e("WTF", "PNVISIBVLE" + packageName);
+
+                        notificationDot.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    notificationDot.setTag(null);
+                }
+
+            }
+
+            favoriteView.setVisibility(View.VISIBLE);
+            favoriteView.setContentDescription(pojo.getName());
         }
 
         // Hide empty favorites (not enough favorites yet)
@@ -178,7 +207,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     void onDataSetChanged() {
         // Do not display the external bar when viewing all apps
-        if(mainActivity.isViewingAllApps() && isExternalFavoriteBarEnabled()) {
+        if (mainActivity.isViewingAllApps() && isExternalFavoriteBarEnabled()) {
             mainActivity.favoritesBar.setVisibility(View.GONE);
         }
     }
@@ -198,7 +227,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
                 if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
                     String activityName = resolveInfo.activityInfo.name;
-                    if(packageName.equals("com.google.android.dialer")) {
+                    if (packageName.equals("com.google.android.dialer")) {
                         // Default dialer has two different activities, one when calling a phone number and one when opening the app from the launcher.
                         // (com.google.android.apps.dialer.extensions.GoogleDialtactsActivity vs. com.google.android.dialer.extensions.GoogleDialtactsActivity)
                         // (notice the .apps. in the middle)
@@ -235,7 +264,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
                 if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
                     String activityName = resolveInfo.activityInfo.name;
-                    if(packageName.equalsIgnoreCase("com.android.chrome")) {
+                    if (packageName.equalsIgnoreCase("com.android.chrome")) {
                         // Chrome has two different activities, one for Launcher and one when opening an URL.
                         // The browserIntent above resolve to the latter, which isn't exposed as a Launcher activity and thus can't be displayed
                         // This hack uses the correct resolver when the application is Chrome.
@@ -288,7 +317,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             return true;
         }
         // No need to do the extra work
-        if(isDragging) {
+        if (isDragging) {
             return true;
         }
 
@@ -298,7 +327,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             this.onClick(view);
             return true;
         }
-        if(!contextMenuShown && holdTime > LONG_PRESS_DELAY) {
+        if (!contextMenuShown && holdTime > LONG_PRESS_DELAY) {
             contextMenuShown = true;
             this.onLongClick(view);
             return true;
@@ -348,7 +377,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
             case DragEvent.ACTION_DRAG_ENDED:
                 // Only need to handle this action once.
-                if(!isDragging) {
+                if (!isDragging) {
                     return true;
                 }
                 isDragging = false;
@@ -382,8 +411,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
                 final int pos = KissApplication.getApplication(mainActivity).getDataHandler().getFavoritePosition(mainActivity, overApp.id);
                 draggedView.post(new Runnable() {
-                     @Override
-                     public void run() {
+                    @Override
+                    public void run() {
                         // Signals to a View that the drag and drop operation has concluded.
                         // If event result is set, this means the dragged view was dropped in target
                         if (event.getResult()) {
