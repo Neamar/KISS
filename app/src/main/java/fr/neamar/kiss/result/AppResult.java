@@ -10,14 +10,10 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
-import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Menu;
@@ -31,19 +27,17 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
-
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
-    public static final String GOOGLE_CALENDAR = "com.google.android.calendar";
     private final AppPojo appPojo;
     private final ComponentName className;
     private Drawable icon = null;
@@ -150,8 +144,8 @@ public class AppResult extends Result {
                 final int EXCLUDE_KISS_ID = 1;
                 PopupMenu popupExcludeMenu = new PopupMenu(context, parentView);
                 //Adding menu items
-                popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID,Menu.NONE, Menu.NONE,R.string.menu_exclude_history);
-                popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID,Menu.NONE, Menu.NONE,R.string.menu_exclude_kiss);
+                popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_history);
+                popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_kiss);
                 //registering popup with OnMenuItemClickListener
                 popupExcludeMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
@@ -186,7 +180,7 @@ public class AppResult extends Result {
         //remove from history
         deleteRecord(context);
         //refresh current history
-        if (!((MainActivity)context).isViewingAllApps()) {
+        if (!((MainActivity) context).isViewingAllApps()) {
             parent.removeResult(AppResult.this);
         }
         //inform user
@@ -287,17 +281,9 @@ public class AppResult extends Result {
     @Override
     public Drawable getDrawable(Context context) {
         synchronized (this) {
-            if (GOOGLE_CALENDAR.equals(getPackageName())) {
-                try {
-                    ComponentName cn = new ComponentName(appPojo.packageName, appPojo.activityName);
-                    Bundle metaData = context.getPackageManager().getActivityInfo(cn, PackageManager.GET_META_DATA | PackageManager.GET_UNINSTALLED_PACKAGES).metaData;
-                    Resources resourcesForApplication = context.getPackageManager().getResourcesForApplication(appPojo.packageName);
-                    int dayResId = getDayResId(metaData, resourcesForApplication);
-                    if (dayResId != 0) {
-                        icon = resourcesForApplication.getDrawable(dayResId);
-                    }
-                } catch (NameNotFoundException ignored) {
-                }
+            if (GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName)) {
+                // Google Calendar has a special treatment and displays a custom icon every day
+                icon = GoogleCalendarIcon.getDrawable(context, appPojo.activityName);
             }
 
             if (icon == null) {
@@ -307,26 +293,6 @@ public class AppResult extends Result {
 
             return icon;
         }
-    }
-
-    private int getDayResId(Bundle bundle, Resources resources) {
-        if (bundle != null) {
-            int dateArrayId = bundle.getInt(GOOGLE_CALENDAR + ".dynamic_icons_nexus_round", 0);
-            if (dateArrayId != 0) {
-                try {
-                    TypedArray dateIds = resources.obtainTypedArray(dateArrayId);
-                    int dateId = dateIds.getResourceId(getDayOfMonth(), 0);
-                    dateIds.recycle();
-                    return dateId;
-                } catch (Resources.NotFoundException ex) {
-                }
-            }
-        }
-        return 0;
-    }
-
-    private int getDayOfMonth() {
-        return Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - 1;
     }
 
     @Override
