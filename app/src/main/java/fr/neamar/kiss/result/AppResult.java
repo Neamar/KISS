@@ -10,10 +10,14 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Menu;
@@ -27,6 +31,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -37,6 +43,7 @@ import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
+    public static final String GOOGLE_CALENDAR = "com.google.android.calendar";
     private final AppPojo appPojo;
     private final ComponentName className;
     private Drawable icon = null;
@@ -117,7 +124,7 @@ public class AppResult extends Result {
             // should not happen
         }
 
-        //append root menu if available
+        // append root menu if available
         if (KissApplication.getApplication(context).getRootHandler().isRootActivated() && KissApplication.getApplication(context).getRootHandler().isRootAvailable()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_hibernate));
         }
@@ -193,7 +200,6 @@ public class AppResult extends Result {
         KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, appPojo.id);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
-
 
     private void launchEditTagsDialog(final Context context, final AppPojo app) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -281,6 +287,19 @@ public class AppResult extends Result {
     @Override
     public Drawable getDrawable(Context context) {
         synchronized (this) {
+            if (GOOGLE_CALENDAR.equals(getPackageName())) {
+                try {
+                    ComponentName cn = new ComponentName(appPojo.packageName, appPojo.activityName);
+                    Bundle metaData = context.getPackageManager().getActivityInfo(cn, PackageManager.GET_META_DATA | PackageManager.GET_UNINSTALLED_PACKAGES).metaData;
+                    Resources resourcesForApplication = context.getPackageManager().getResourcesForApplication(appPojo.packageName);
+                    int dayResId = getDayResId(metaData, resourcesForApplication);
+                    if (dayResId != 0) {
+                        icon = resourcesForApplication.getDrawable(dayResId);
+                    }
+                } catch (NameNotFoundException ignored) {
+                }
+            }
+
             if (icon == null) {
                 icon = KissApplication.getApplication(context).getIconsHandler()
                         .getDrawableIconForPackage(className, this.appPojo.userHandle);
@@ -288,6 +307,26 @@ public class AppResult extends Result {
 
             return icon;
         }
+    }
+
+    private int getDayResId(Bundle bundle, Resources resources) {
+        if (bundle != null) {
+            int dateArrayId = bundle.getInt(GOOGLE_CALENDAR + ".dynamic_icons_nexus_round", 0);
+            if (dateArrayId != 0) {
+                try {
+                    TypedArray dateIds = resources.obtainTypedArray(dateArrayId);
+                    int dateId = dateIds.getResourceId(getDayOfMonth(), 0);
+                    dateIds.recycle();
+                    return dateId;
+                } catch (Resources.NotFoundException ex) {
+                }
+            }
+        }
+        return 0;
+    }
+
+    private int getDayOfMonth() {
+        return Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - 1;
     }
 
     @Override
