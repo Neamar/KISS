@@ -1,8 +1,5 @@
 package fr.neamar.kiss.searcher;
 
-import java.util.Iterator;
-import java.util.List;
-
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
@@ -22,38 +19,33 @@ public class TagsSearcher extends Searcher
 	}
 
 	@Override
-	protected Void doInBackground(Void... voids )
-	{
-		MainActivity activity = activityWeakReference.get();
-		if ( activity == null )
-			return null;
-		List<Pojo> results = KissApplication.getApplication(activity).getDataHandler().getApplications();
-		if (results == null)
-			return null;
-		for( Iterator<Pojo> iterator = results.iterator(); iterator.hasNext(); )
-		{
-			Pojo pojo = iterator.next();
-			if ( !(pojo instanceof PojoWithTags)) {
-				iterator.remove();
+	public boolean addResult(Pojo... pojos) {
+		for (Pojo pojo : pojos) {
+			if (!(pojo instanceof PojoWithTags)) {
 				continue;
 			}
 			PojoWithTags pojoWithTags = (PojoWithTags) pojo;
-			if ( pojoWithTags.getTags() == null || pojoWithTags.getTags().isEmpty() ) {
-				iterator.remove();
+			if (pojoWithTags.getTags() == null || pojoWithTags.getTags().isEmpty()) {
 				continue;
 			}
 
-            if (!pojoWithTags.getTags().contains(query))
-                iterator.remove();
+			if (!pojoWithTags.getTags().contains(query)) {
+				continue;
+			}
 
-//			TreeSet<String> tagList = new TreeSet<>();
-//			Collections.addAll( tagList, patternTagSplit.split( pojoWithTags.getTags() ) );
-//
-//            if (!tagList.contains(this.query))
-//					iterator.remove();
+			super.addResult(pojo);
 		}
+		return false;
+	}
 
-		this.addResult(results.toArray(new Pojo[0]));
+	@Override
+	protected Void doInBackground(Void... voids) {
+		MainActivity activity = activityWeakReference.get();
+		if ( activity == null )
+			return null;
+
+		KissApplication.getApplication(activity).getDataHandler().requestAllRecords(this);
+
 		return null;
 	}
 }

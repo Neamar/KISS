@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fr.neamar.kiss.MainActivity;
@@ -106,6 +107,11 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         }
 
         return null;
+    }
+
+    @Override
+    public List<? extends Pojo> getPojos() {
+        return Collections.unmodifiableList(pojos);
     }
 
     @Override

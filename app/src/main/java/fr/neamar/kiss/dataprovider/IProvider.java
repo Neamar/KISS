@@ -1,5 +1,7 @@
 package fr.neamar.kiss.dataprovider;
 
+import java.util.List;
+
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
 
@@ -51,4 +53,11 @@ public interface IProvider {
      * @return null if not found
      */
     Pojo findById(String id);
+
+    /**
+     * Get a list of all pojos, do not modify this list!
+     *
+     * @return
+     */
+    List<? extends Pojo> getPojos();
 }
