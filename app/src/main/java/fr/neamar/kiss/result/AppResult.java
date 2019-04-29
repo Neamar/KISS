@@ -34,6 +34,7 @@ import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
@@ -134,7 +135,7 @@ public class AppResult extends Result {
             // should not happen
         }
 
-        //append root menu if available
+        // append root menu if available
         if (KissApplication.getApplication(context).getRootHandler().isRootActivated() && KissApplication.getApplication(context).getRootHandler().isRootAvailable()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_hibernate));
         }
@@ -210,7 +211,6 @@ public class AppResult extends Result {
         KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, appPojo.id);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
-
 
     private void launchEditTagsDialog(final Context context, final AppPojo app) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -298,6 +298,11 @@ public class AppResult extends Result {
     @Override
     public Drawable getDrawable(Context context) {
         synchronized (this) {
+            if (GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName)) {
+                // Google Calendar has a special treatment and displays a custom icon every day
+                icon = GoogleCalendarIcon.getDrawable(context, appPojo.activityName);
+            }
+
             if (icon == null) {
                 icon = KissApplication.getApplication(context).getIconsHandler()
                         .getDrawableIconForPackage(className, this.appPojo.userHandle);

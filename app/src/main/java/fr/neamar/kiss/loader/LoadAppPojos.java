@@ -51,7 +51,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
 
-                    String fullPackageName = user.addUserSuffixToString(appInfo.packageName, '#');
                     String id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
 
                     AppPojo app = new AppPojo(id, appInfo.packageName, activityInfo.getName(), user);
