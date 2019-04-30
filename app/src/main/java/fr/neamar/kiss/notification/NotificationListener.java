@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationListener extends NotificationListenerService {
+    public static final String TAG = "NotifListener";
     public static final String NOTIFICATION_PREFERENCES_NAME = "notifications";
 
     private SharedPreferences prefs;
@@ -28,6 +30,7 @@ public class NotificationListener extends NotificationListenerService {
     @Override
     public void onListenerConnected() {
         super.onListenerConnected();
+        Log.i(TAG, "Notification listener connected");
 
         // Build a map of notifications currently displayed,
         // ordered per package
