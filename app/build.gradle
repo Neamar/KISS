@@ -1,4 +1,16 @@
-apply plugin: 'com.android.application'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'com.android.application'
+    id 'net.ltgt.errorprone' version '0.7.1'
+}
 
 android {
     compileSdkVersion 28
@@ -24,15 +36,13 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     androidTestImplementation 'androidx.test:rules:1.1.1'
+
     implementation 'androidx.annotation:annotation:1.0.2'
+
+    errorproneJavac("com.google.errorprone:javac:9+181-r4173-1")
+    errorprone ("com.google.errorprone:error_prone_core:2.3.3")
 }
 
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-    }
+tasks.withType(JavaCompile) {
+    options.errorprone.errorproneArgs << '-Xep:MissingOverride:OFF'
 }
