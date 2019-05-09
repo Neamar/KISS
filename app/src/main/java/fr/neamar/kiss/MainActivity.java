@@ -415,16 +415,23 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onResume();
     }
 
+
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        this.unregisterReceiver(this.mReceiver);
+    protected void onPause() {
+        super.onPause();
+        forwarderManager.onPause();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         forwarderManager.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.unregisterReceiver(this.mReceiver);
     }
 
     @Override

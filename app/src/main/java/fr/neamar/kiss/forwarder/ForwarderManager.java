@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+
 import fr.neamar.kiss.MainActivity;
 
 public class ForwarderManager extends Forwarder {
@@ -41,24 +42,27 @@ public class ForwarderManager extends Forwarder {
         interfaceTweaks.onCreate();
         experienceTweaks.onCreate();
         shortcutsForwarder.onCreate();
-        notificationForwarder.onCreate();
         tagsMenu.onCreate();
 
-    }
-
-    public void onResume() {
-        interfaceTweaks.onResume();
-        experienceTweaks.onResume();
-        tagsMenu.onResume();
     }
 
     public void onStart() {
         widgetForwarder.onStart();
     }
 
+    public void onResume() {
+        interfaceTweaks.onResume();
+        experienceTweaks.onResume();
+        notificationForwarder.onResume();
+        tagsMenu.onResume();
+    }
+
+    public void onPause() {
+        notificationForwarder.onPause();
+    }
+
     public void onStop() {
         widgetForwarder.onStop();
-        notificationForwarder.onStop();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

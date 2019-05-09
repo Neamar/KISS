@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -46,13 +47,13 @@ class Notification extends Forwarder {
         }
     }
 
-    void onCreate() {
+    void onResume() {
         if (notificationPreferences != null) {
             notificationPreferences.registerOnSharedPreferenceChangeListener(onNotificationDisplayed);
         }
     }
 
-    void onStop() {
+    void onPause() {
         if (notificationPreferences != null) {
             notificationPreferences.unregisterOnSharedPreferenceChangeListener(onNotificationDisplayed);
         }
