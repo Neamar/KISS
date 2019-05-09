@@ -169,19 +169,15 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 favoriteImage.setImageResource(R.drawable.ic_launcher_white);
             }
 
-            if(notificationPrefs != null) {
+            if (notificationPrefs != null) {
                 ImageView notificationDot = favoriteView.findViewById(R.id.item_notification_dot);
+                int primaryColor = UIColors.getPrimaryColor(mainActivity);
+                notificationDot.setColorFilter(primaryColor);
+
                 if (result instanceof AppResult) {
                     String packageName = ((AppResult) result).getPackageName();
                     notificationDot.setTag(packageName);
-                    if(notificationPrefs.contains(packageName)) {
-                        notificationDot.setVisibility(View.VISIBLE);
-                        int primaryColor = UIColors.getPrimaryColor(mainActivity);
-                        notificationDot.setColorFilter(primaryColor);
-                    }
-                    else {
-                        notificationDot.setVisibility(View.GONE);
-                    }
+                    notificationDot.setVisibility(notificationPrefs.contains(packageName) ? View.VISIBLE : View.GONE);
                 } else {
                     // Ensure view is clean (might have been recycled after a drag and drop)
                     notificationDot.setTag(null);

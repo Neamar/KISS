@@ -64,11 +64,20 @@ public class NotificationListener extends NotificationListenerService {
     }
 
     @Override
+    public void onListenerDisconnected() {
+        Log.i(TAG, "Notification listener disconnected");
+
+        super.onListenerDisconnected();
+    }
+
+    @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
         Set<String> currentNotifications = getCurrentNotificationsForPackage(sbn.getPackageName());
 
         currentNotifications.add(Integer.toString(sbn.getId()));
         prefs.edit().putStringSet(sbn.getPackageName(), currentNotifications).apply();
+
+        Log.v(TAG, "Added notification for " + sbn.getPackageName() + ": " + currentNotifications.toString());
     }
 
     @Override
@@ -85,6 +94,8 @@ public class NotificationListener extends NotificationListenerService {
             editor.putStringSet(sbn.getPackageName(), currentNotifications);
         }
         editor.apply();
+
+        Log.v(TAG, "Removed notification for " + sbn.getPackageName() + ": " + currentNotifications.toString());
     }
 
     public Set<String> getCurrentNotificationsForPackage(String packageName) {
