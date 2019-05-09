@@ -57,7 +57,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     /**
      * Configuration for drag and drop
      */
-    private final int MOVE_SENSITIVITY = 5; // How much you need to move your finger to be considered "moving"
+    private final int MOVE_SENSITIVITY = 8; // How much you need to move your finger to be considered "moving"
     private final int LONG_PRESS_DELAY = 250; // How long to hold your finger in place to trigger the app menu.
 
     // Use so we don't over process on the drag events.
