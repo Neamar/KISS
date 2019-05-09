@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.webkit.URLUtil;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,7 +15,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.annotation.Nullable;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.simpleprovider.SimpleProvider;
 import fr.neamar.kiss.pojo.Pojo;
@@ -95,6 +96,7 @@ public class SearchProvider extends SimpleProvider {
     }
 
     @Nullable
+    @SuppressWarnings("StringSplitter")
     // Find the URL associated with specified providerName
     private String getProviderUrl(Set<String> searchProviders, String searchProviderName) {
         for (String nameAndUrl : searchProviders) {

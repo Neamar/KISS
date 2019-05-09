@@ -87,7 +87,6 @@ public class Permission extends Forwarder {
         } else if (requestCode == PERMISSION_CALL_PHONE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Great! Start the intent we stored for later use.
-                KissApplication kissApplication = KissApplication.getApplication(mainActivity);
                 mainActivity.startActivity(pendingIntent);
                 pendingIntent = null;
 

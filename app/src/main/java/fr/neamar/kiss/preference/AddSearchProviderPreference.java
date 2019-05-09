@@ -101,6 +101,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         return providerUrl.getText().toString().contains("%s");
     }
 
+    @SuppressWarnings("StringSplitter")
     private boolean validateNameExists() {
         Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this.getContext()));
         for (String searchProvider : availableSearchProviders) {
@@ -115,7 +116,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     }
 
     private boolean validateEmpty() {
-        return (!providerName.getText().toString().isEmpty()) && (!providerUrl.getText().toString().isEmpty());
+        return !providerName.getText().toString().isEmpty() && !providerUrl.getText().toString().isEmpty();
     }
 
     private boolean validateUrl() {
@@ -123,7 +124,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         return m.find();
     }
 
-    protected boolean validate() {
+    private boolean validate() {
 
         if (!validateEmpty()) {
             // do not close - empty strings

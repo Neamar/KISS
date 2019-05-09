@@ -47,6 +47,7 @@ public class ShortcutsResult extends Result {
     }
 
     @Override
+    @SuppressWarnings("CatchAndPrintStackTrace")
     public View display(final Context context, int position, View v, FuzzyScore fuzzyScore) {
         if (v == null)
             v = inflateFromId(context, R.layout.item_shortcut);

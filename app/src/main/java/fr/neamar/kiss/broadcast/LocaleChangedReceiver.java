@@ -10,6 +10,7 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 public class LocaleChangedReceiver extends BroadcastReceiver {
 
     @Override
+    @SuppressWarnings("CatchAndPrintStackTrace")
     public void onReceive(Context ctx, Intent intent) {
         // Only handle system broadcasts
         if (!"android.intent.action.LOCALE_CHANGED".equals(intent.getAction())) {
