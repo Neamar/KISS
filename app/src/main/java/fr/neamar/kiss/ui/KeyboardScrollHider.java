@@ -169,7 +169,7 @@ public class KeyboardScrollHider implements View.OnTouchListener {
                     animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animator) {
-                            int height = (int) (animator.getAnimatedValue());
+                            int height = (int) animator.getAnimatedValue();
                             KeyboardScrollHider.this.setListLayoutHeight(height);
                         }
                     });

@@ -57,7 +57,7 @@ public class RootHandler {
                 p.getOutputStream().write((command + "\n").getBytes(UTF_8));
             }
             //exit from su command
-            p.getOutputStream().write(("exit\n").getBytes(UTF_8));
+            p.getOutputStream().write("exit\n".getBytes(UTF_8));
             p.getOutputStream().flush();
             p.getOutputStream().close();
             int result = p.waitFor();

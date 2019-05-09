@@ -203,6 +203,7 @@ public class IconsHandler {
     /**
      * Get or generate icon for an app
      */
+    @SuppressWarnings("CatchAndPrintStackTrace")
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
         // system icons, nothing to do
         if (iconsPackPackageName.equalsIgnoreCase("default")) {
