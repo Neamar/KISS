@@ -2,6 +2,7 @@ package fr.neamar.kiss.dataprovider;
 
 import android.database.ContentObserver;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.loader.LoadContactsPojos;
@@ -12,12 +13,13 @@ import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
-
+    private final static String TAG = "ContactsProvider";
     private final ContentObserver cObserver = new ContentObserver(null) {
 
         @Override
         public void onChange(boolean selfChange) {
             //reload contacts
+            Log.i(TAG, "Contacts changed, reloading provider.");
             reload();
         }
     };
