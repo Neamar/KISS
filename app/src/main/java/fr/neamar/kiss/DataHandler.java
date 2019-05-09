@@ -15,6 +15,9 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +28,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
@@ -275,6 +276,7 @@ public class DataHandler extends BroadcastReceiver
      * Called when some event occurred that makes us believe that all data providers
      * might be ready now
      */
+    @SuppressWarnings("CatchAndPrintStackTrace")
     private void handleProviderLoaded() {
         if (this.allProvidersHaveLoaded) {
             return;
@@ -414,8 +416,6 @@ public class DataHandler extends BroadcastReceiver
     }
 
     public boolean addShortcut(ShortcutsPojo shortcut) {
-        boolean success = false;//this is here to know what info is being returned
-
         ShortcutRecord record = new ShortcutRecord();
         record.name = shortcut.getName();
         record.iconResource = shortcut.resourceName;
@@ -429,14 +429,13 @@ public class DataHandler extends BroadcastReceiver
         }
 
         DBHelper.insertShortcut(this.context, record);
-        success = true;
 
         if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
 
         Log.d(TAG, "Shortcut " + shortcut.id + " added.");
-        return success;
+        return true;
     }
 
     public void clearHistory() {
@@ -643,8 +642,6 @@ public class DataHandler extends BroadcastReceiver
             return;
         }
 
-        List<String> favAppsList = Arrays.asList(favApps.split(";"));
-
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps + id + ";").apply();
 
@@ -668,6 +665,7 @@ public class DataHandler extends BroadcastReceiver
         context.onFavoriteChange();
     }
 
+    @SuppressWarnings("StringSplitter")
     public void removeFromFavorites(UserHandle user) {
         // This is only intended for apps from foreign-profiles
         if (user.isCurrentUser()) {
@@ -700,7 +698,7 @@ public class DataHandler extends BroadcastReceiver
 
         Set<String> excludedFromHistory = getExcludedFromHistory();
 
-        if ((!frozen) && (!excludedFromHistory.contains(id))) {
+        if (!frozen && !excludedFromHistory.contains(id)) {
             DBHelper.insertHistory(this.context, currentQuery, id);
         }
     }

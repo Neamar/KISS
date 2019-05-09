@@ -37,7 +37,6 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private static final int PERMISSION_RECEIVE_SMS = 0;
     private static final int PERMISSION_READ_PHONE_STATE = 1;
 
     // Those settings require the app to restart
@@ -258,6 +257,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
+    @SuppressWarnings("StringSplitter")
     private void addCustomSearchProvidersSelect(SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
         //get stored search providers or default hard-coded values
@@ -279,6 +279,7 @@ public class SettingsActivity extends PreferenceActivity implements
         category.addPreference(multiPreference);
     }
 
+    @SuppressWarnings("StringSplitter")
     private void addCustomSearchProvidersDelete(final SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
 

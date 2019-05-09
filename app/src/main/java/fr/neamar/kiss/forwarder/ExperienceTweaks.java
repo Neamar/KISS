@@ -73,8 +73,8 @@ class ExperienceTweaks extends Forwarder {
                 if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
                     // and we're currently in minimalistic mode with no results,
                     // and we're not looking at the app list
-                    if ((mainActivity.isViewingSearchResults()) && (mainActivity.searchEditText.getText().toString().isEmpty())) {
-                        if ((mainActivity.list.getAdapter() == null) || (mainActivity.list.getAdapter().isEmpty())) {
+                    if (mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
+                        if (mainActivity.list.getAdapter() == null || mainActivity.list.getAdapter().isEmpty()) {
                             mainActivity.runTask(new HistorySearcher(mainActivity));
                         }
                     }
@@ -211,6 +211,7 @@ class ExperienceTweaks extends Forwarder {
     // Super hacky code to display notification drawer
     // Can (and will) break in any Android release.
     @SuppressLint("PrivateApi")
+    @SuppressWarnings("CatchAndPrintStackTrace")
     private void displayNotificationDrawer() {
         @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
         Class<?> statusbarManager = null;

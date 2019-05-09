@@ -64,7 +64,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     /**
      * Configuration for drag and drop
      */
-    private final int MOVE_SENSITIVITY = 5; // How much you need to move your finger to be considered "moving"
+    private final int MOVE_SENSITIVITY = 8; // How much you need to move your finger to be considered "moving"
     private final int LONG_PRESS_DELAY = 250; // How long to hold your finger in place to trigger the app menu.
 
     // Use so we don't over process on the drag events.
@@ -226,7 +226,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 String packageName = resolveInfo.activityInfo.packageName;
                 Log.i(TAG, "Dialer resolves to:" + packageName + "/" + resolveInfo.activityInfo.name);
 
-                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
+                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
                     String activityName = resolveInfo.activityInfo.name;
                     if (packageName.equals("com.google.android.dialer")) {
                         // Default dialer has two different activities, one when calling a phone number and one when opening the app from the launcher.
@@ -249,7 +249,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             if (resolveInfo != null) {
                 String packageName = resolveInfo.activityInfo.packageName;
                 Log.i(TAG, "Contacts resolves to:" + packageName);
-                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
+                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
                     KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
@@ -263,7 +263,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 String packageName = resolveInfo.activityInfo.packageName;
                 Log.i(TAG, "Browser resolves to:" + packageName);
 
-                if ((resolveInfo.activityInfo.name != null) && (!resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER))) {
+                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
                     String activityName = resolveInfo.activityInfo.name;
                     if (packageName.equalsIgnoreCase("com.android.chrome")) {
                         // Chrome has two different activities, one for Launcher and one when opening an URL.

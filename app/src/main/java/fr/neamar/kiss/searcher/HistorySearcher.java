@@ -26,7 +26,7 @@ public class HistorySearcher extends Searcher {
         // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
         // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
         try {
-            return (Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS)))).intValue();
+            return Double.valueOf(prefs.getString("number-of-display-elements", String.valueOf(DEFAULT_MAX_RESULTS))).intValue();
         } catch (NumberFormatException e) {
             return DEFAULT_MAX_RESULTS;
         }
