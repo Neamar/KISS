@@ -67,6 +67,16 @@ public class NotificationListener extends NotificationListenerService {
     public void onListenerDisconnected() {
         Log.i(TAG, "Notification listener disconnected");
 
+        // Clean up everything we have in memory to ensure we don't keep displaying trailing dots.
+        // We don't use .clear() to ensure listeners are properly called.
+        SharedPreferences.Editor editor = prefs.edit();
+        Set<String> packages = prefs.getAll().keySet();
+
+        for (String packageName : packages) {
+            editor.remove(packageName);
+        }
+        editor.apply();
+
         super.onListenerDisconnected();
     }
 
