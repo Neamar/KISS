@@ -47,7 +47,6 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private SharedPreferences prefs;
 
-    @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -154,7 +153,6 @@ public class SettingsActivity extends PreferenceActivity implements
         return excludedAppList.isEmpty();
     }
 
-    @SuppressWarnings("deprecation")
     private void addExcludedAppSettings(final SharedPreferences prefs) {
         final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
         multiPreference.setTitle(R.string.ui_excluded_apps);
@@ -192,7 +190,6 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void addExcludedFromHistoryAppSettings(final SharedPreferences prefs) {
         final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
         multiPreference.setTitle(R.string.ui_excluded_from_history_apps);
@@ -404,7 +401,6 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void fixSummaries() {
         int historyLength = KissApplication.getApplication(this).getDataHandler().getHistoryLength();
         if (historyLength > 5) {
