@@ -1,6 +1,8 @@
 package fr.neamar.kiss;
 
 import android.Manifest;
+import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -15,10 +17,18 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 
@@ -26,6 +36,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
@@ -47,7 +58,6 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private SharedPreferences prefs;
 
-    @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -118,6 +128,47 @@ public class SettingsActivity extends PreferenceActivity implements
         return super.onMenuItemSelected(featureId, item);
     }
 
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        super.onPreferenceTreeClick(preferenceScreen, preference);
+
+        // If the user has clicked on a preference screen, set up the action bar
+        if (preference instanceof PreferenceScreen) {
+            final Dialog dialog = ((PreferenceScreen) preference).getDialog();
+            ViewGroup root = (ViewGroup) dialog.getWindow().getDecorView();
+
+            Stack<ViewGroup> viewGroups = new Stack<>();
+            viewGroups.push(root);
+
+            bfs: while(!viewGroups.empty()) {
+                ViewGroup e = viewGroups.pop();
+
+                for (int i = 0; i < e.getChildCount(); i++) {
+                    View child = e.getChildAt(i);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        if (child instanceof Toolbar) {
+                            ((Toolbar) child).setNavigationOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            break bfs;
+                        }
+                    }
+
+                    if (child instanceof ViewGroup) {
+                        viewGroups.push((ViewGroup) child);
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
     private void removePreference(String parent, String category) {
         PreferenceCategory p = (PreferenceCategory) findPreference(parent);
         Preference c = findPreference(category);
@@ -154,7 +205,6 @@ public class SettingsActivity extends PreferenceActivity implements
         return excludedAppList.isEmpty();
     }
 
-    @SuppressWarnings("deprecation")
     private void addExcludedAppSettings(final SharedPreferences prefs) {
         final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
         multiPreference.setTitle(R.string.ui_excluded_apps);
@@ -192,7 +242,6 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void addExcludedFromHistoryAppSettings(final SharedPreferences prefs) {
         final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
         multiPreference.setTitle(R.string.ui_excluded_from_history_apps);
@@ -404,7 +453,6 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void fixSummaries() {
         int historyLength = KissApplication.getApplication(this).getDataHandler().getHistoryLength();
         if (historyLength > 5) {
