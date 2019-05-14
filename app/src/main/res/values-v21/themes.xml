@@ -58,6 +58,8 @@
     </style>
 
     <style name="SettingTheme" parent="AppThemeLight">
+        <item name="android:actionBarStyle">@style/SettingsActionBar</item>
+
         <item name="android:windowActionBar">true</item>
         <item name="android:windowNoTitle">false</item>
         <item name="android:windowBackground">@color/kiss_background</item>
@@ -65,6 +67,10 @@
         <item name="android:colorPrimaryDark">@color/kiss_green</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
+
+    <style name="SettingsActionBar" parent="@android:style/Widget.Material.Light.ActionBar.Solid">
+        <item name="android:displayOptions">homeAsUp|showTitle</item>
     </style>
 
     <style name="SettingThemeDark" parent="AppThemeDark">
