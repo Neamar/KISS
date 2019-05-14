@@ -60,7 +60,7 @@ public class UIColors {
             String primaryColorStr = PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", COLOR_DEFAULT_STR);
 
             // Transparent can't be displayed for text color, replace with light gray.
-            if (primaryColorStr.equals("#00000000") || primaryColorStr.equals(("#AAFFFFFF"))) {
+            if (primaryColorStr.equals("#00000000") || primaryColorStr.equals("#AAFFFFFF")) {
                 primaryColor = 0xFFBDBDBD;
             }
             else {
