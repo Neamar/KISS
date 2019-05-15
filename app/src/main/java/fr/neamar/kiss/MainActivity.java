@@ -231,6 +231,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Note that a lot of behaviors are also initialized through the forwarderManager.onCreate() call.
          */
         displayLoader(true);
+        loaderSpinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launcherButton.callOnClick();
+            }
+        });
 
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
@@ -697,7 +703,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public void updateSearchRecords() {
-        updateSearchRecords(searchEditText.getText().toString());
+        if (isViewingSearchResults())
+            updateSearchRecords(searchEditText.getText().toString());
     }
 
     /**
