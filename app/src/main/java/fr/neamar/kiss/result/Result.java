@@ -13,17 +13,20 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -72,6 +75,10 @@ public abstract class Result {
         throw new RuntimeException("Unable to create a result from POJO");
     }
 
+    public String getPojoId()
+    {
+        return pojo.id;
+    }
 
     @Override
     public String toString() {
@@ -87,6 +94,20 @@ public abstract class Result {
      * @return a view to display as item
      */
     public abstract View display(Context context, int position, View convertView, FuzzyScore fuzzyScore);
+
+    @NonNull
+    public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
+        if (favoriteView == null)
+            favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
+        Drawable drawable = getDrawable(context);
+        ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
+        if (drawable == null)
+            favoriteImage.setImageResource(R.drawable.ic_launcher_white);
+        else
+            favoriteImage.setImageDrawable(drawable);
+        favoriteView.setContentDescription(pojo.getName());
+        return favoriteView;
+    }
 
     public void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
         SpannableString enriched = new SpannableString(text);
