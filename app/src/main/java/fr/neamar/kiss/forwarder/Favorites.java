@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -134,6 +135,14 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         favCount = favoritesPojo.size();
         LayoutInflater layoutInflater = null;
 
+        int dotColor;
+        if (isExternalFavoriteBarEnabled()) {
+            dotColor = UIColors.getPrimaryColor(mainActivity);
+        }
+        else {
+            dotColor = Color.WHITE;
+        }
+
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < favoritesPojo.size(); i++) {
             View favoriteView;
@@ -171,8 +180,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
             if (notificationPrefs != null) {
                 ImageView notificationDot = favoriteView.findViewById(R.id.item_notification_dot);
-                int primaryColor = UIColors.getPrimaryColor(mainActivity);
-                notificationDot.setColorFilter(primaryColor);
+                notificationDot.setColorFilter(dotColor);
 
                 if (result instanceof AppResult) {
                     String packageName = ((AppResult) result).getPackageName();
