@@ -14,7 +14,6 @@ import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
@@ -106,6 +105,9 @@ public class SettingsActivity extends PreferenceActivity implements
             removePreference("history-hide-section", "pref-hide-navbar");
             removePreference("history-hide-section", "pref-hide-statusbar");
         }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            removePreference("advanced", "enable-notifications");
+        }
 
         addHiddenTagsTogglesInformation(prefs);
     }
@@ -170,7 +172,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void removePreference(String parent, String category) {
-        PreferenceCategory p = (PreferenceCategory) findPreference(parent);
+        PreferenceGroup p = (PreferenceGroup) findPreference(parent);
         Preference c = findPreference(category);
         p.removePreference(c);
     }

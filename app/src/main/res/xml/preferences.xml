@@ -289,7 +289,12 @@
                 android:title="@string/search_provider_reset" />
         </PreferenceCategory>
     </PreferenceScreen>
-    <PreferenceScreen android:title="@string/title_advanced">
+    <PreferenceScreen android:title="@string/title_advanced" android:key="advanced">
+        <fr.neamar.kiss.preference.NotificationPreference
+            android:defaultValue="true"
+            android:key="enable-notifications"
+            android:dialogMessage="@string/notification_dialog"
+            android:title="@string/notification_support" />
         <fr.neamar.kiss.preference.DefaultLauncherPreference
             android:dialogMessage="@string/default_launcher_warn"
             android:key="default-launcher"
