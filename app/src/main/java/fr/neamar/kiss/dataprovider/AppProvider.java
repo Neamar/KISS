@@ -186,8 +186,8 @@ public class AppProvider extends Provider<AppPojo> {
         return null;
     }
 
-    public ArrayList<Pojo> getAllApps() {
-        ArrayList<Pojo> records = new ArrayList<>(pojos.size());
+    public ArrayList<AppPojo> getAllApps() {
+        ArrayList<AppPojo> records = new ArrayList<>(pojos.size());
 
         for (AppPojo pojo : pojos) {
             pojo.relevance = 0;

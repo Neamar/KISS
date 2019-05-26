@@ -529,7 +529,7 @@ public class DataHandler extends BroadcastReceiver
      * @return pojos for all applications
      */
     @Nullable
-    public List<Pojo> getApplications() {
+    public List<AppPojo> getApplications() {
         AppProvider appProvider = getAppProvider();
         return appProvider != null ? appProvider.getAllApps() : null;
     }
