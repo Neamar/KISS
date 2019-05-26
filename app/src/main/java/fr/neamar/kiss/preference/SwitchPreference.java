@@ -1,4 +1,4 @@
-package fr.neamar.kiss;
+package fr.neamar.kiss.preference;
 
 import android.content.Context;
 import android.util.AttributeSet;
