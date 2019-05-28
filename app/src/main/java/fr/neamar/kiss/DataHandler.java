@@ -494,6 +494,14 @@ public class DataHandler extends BroadcastReceiver
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
     }
 
+    public void removeFromExcluded(AppPojo app) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcluded());
+        excluded.remove(app.getComponentName());
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
+    }
+
     public void removeFromExcluded(String packageName) {
         Set<String> excluded = getExcluded();
         Set<String> newExcluded = new HashSet<String>();
@@ -523,15 +531,26 @@ public class DataHandler extends BroadcastReceiver
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", newExcluded).apply();
     }
 
+	/**
+	 * Return all applications (including excluded)
+	 *
+	 * @return pojos for all applications
+	 */
+	@Nullable
+	public List<AppPojo> getApplications() {
+		AppProvider appProvider = getAppProvider();
+		return appProvider != null ? appProvider.getAllApps() : null;
+	}
+
     /**
      * Return all applications
      *
      * @return pojos for all applications
      */
     @Nullable
-    public List<AppPojo> getApplications() {
+    public List<AppPojo> getApplicationsNoExcluded() {
         AppProvider appProvider = getAppProvider();
-        return appProvider != null ? appProvider.getAllApps() : null;
+        return appProvider != null ? appProvider.getAllAppsNoExcluded() : null;
     }
 
     @Nullable

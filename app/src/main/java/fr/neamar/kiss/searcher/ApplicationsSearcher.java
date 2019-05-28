@@ -37,7 +37,7 @@ public class ApplicationsSearcher extends Searcher {
         if (activity == null)
             return null;
 
-        List<AppPojo> pojos = KissApplication.getApplication(activity).getDataHandler().getApplications();
+        List<AppPojo> pojos = KissApplication.getApplication(activity).getDataHandler().getApplicationsNoExcluded();
         if (pojos != null)
            this.addResult(pojos.toArray(new Pojo[0]));
         return null;

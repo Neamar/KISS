@@ -21,7 +21,7 @@ public class UntaggedSearcher extends Searcher {
         MainActivity activity = activityWeakReference.get();
         if ( activity == null )
             return null;
-        List<AppPojo> results = KissApplication.getApplication(activity).getDataHandler().getApplications();
+        List<AppPojo> results = KissApplication.getApplication(activity).getDataHandler().getApplicationsNoExcluded();
         if (results == null)
             return null;
         for(Iterator<AppPojo> iterator = results.iterator(); iterator.hasNext(); ) {

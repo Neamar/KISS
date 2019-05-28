@@ -196,6 +196,18 @@ public class AppProvider extends Provider<AppPojo> {
         return records;
     }
 
+    public ArrayList<AppPojo> getAllAppsNoExcluded() {
+        ArrayList<AppPojo> records = new ArrayList<>(pojos.size());
+
+        for (AppPojo pojo : pojos) {
+            if(pojo.excluded) continue;
+
+            pojo.relevance = 0;
+            records.add(pojo);
+        }
+        return records;
+    }
+
     public void removeApp(AppPojo appPojo) {
         pojos.remove(appPojo);
     }

@@ -2,10 +2,12 @@ package fr.neamar.kiss;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,24 +22,25 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 
-import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
-import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.TagsMenu;
+import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.preference.SwitchPreference;
 import fr.neamar.kiss.searcher.QuerySearcher;
+import fr.neamar.kiss.preference.PreferenceScreenHelper;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
 @SuppressWarnings("FragmentInjection")
@@ -95,7 +98,7 @@ public class SettingsActivity extends PreferenceActivity implements
         fixSummaries();
 
         addExcludedFromHistoryAppSettings(prefs);
-        addExcludedAppSettings(prefs);
+        addExcludedAppSettings();
 
         addCustomSearchProvidersPreferences(prefs);
 
@@ -136,36 +139,17 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onPreferenceTreeClick(preferenceScreen, preference);
 
         // If the user has clicked on a preference screen, set up the action bar
-        if (preference instanceof PreferenceScreen) {
+        if (preference instanceof PreferenceScreen && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             final Dialog dialog = ((PreferenceScreen) preference).getDialog();
-            ViewGroup root = (ViewGroup) dialog.getWindow().getDecorView();
+            Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
 
-            ArrayDeque<ViewGroup> viewGroups = new ArrayDeque<>();
-            viewGroups.push(root);
-
-            bfs: while(!viewGroups.isEmpty()) {
-                ViewGroup e = viewGroups.removeFirst();
-
-                for (int i = 0; i < e.getChildCount(); i++) {
-                    View child = e.getChildAt(i);
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        if (child instanceof Toolbar) {
-                            ((Toolbar) child).setNavigationOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    dialog.dismiss();
-                                }
-                            });
-
-                            break bfs;
-                        }
+            if (toolbar != null) {
+                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
                     }
-
-                    if (child instanceof ViewGroup) {
-                        viewGroups.addFirst((ViewGroup) child);
-                    }
-                }
+                });
             }
         }
 
@@ -178,16 +162,6 @@ public class SettingsActivity extends PreferenceActivity implements
         p.removePreference(c);
     }
 
-    private void loadExcludedAppsToPreference(MultiSelectListPreference multiSelectList) {
-        Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcluded();
-        String[] apps = excludedAppList.toArray(new String[0]);
-        Arrays.sort(apps);
-
-        multiSelectList.setEntries(apps);
-        multiSelectList.setEntryValues(apps);
-        multiSelectList.setValues(new HashSet<>(Arrays.asList(apps)));
-    }
-
     private void loadExcludedFromHistoryAppsToPreference(MultiSelectListPreference multiSelectList) {
         Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcludedFromHistory();
         String[] apps = excludedAppList.toArray(new String[0]);
@@ -198,51 +172,74 @@ public class SettingsActivity extends PreferenceActivity implements
         multiSelectList.setValues(new HashSet<>(Arrays.asList(apps)));
     }
 
-    private boolean hasNoExcludedApps() {
-        Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcluded();
-        return excludedAppList.isEmpty();
-    }
-
     private boolean hasNoExcludedFromHistoryApps() {
         Set<String> excludedAppList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getExcludedFromHistory();
         return excludedAppList.isEmpty();
     }
 
-    private void addExcludedAppSettings(final SharedPreferences prefs) {
-        final MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
-        multiPreference.setTitle(R.string.ui_excluded_apps);
-        multiPreference.setDialogTitle(R.string.ui_excluded_apps_dialog_title);
-        multiPreference.setKey("excluded_apps_ui");
-        multiPreference.setOrder(15);
+    private void addExcludedAppSettings() {
+        List<AppPojo> appList = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getApplications();
+        IconsHandler iconsHandler = KissApplication.getApplication(SettingsActivity.this).getIconsHandler();
+
+        AppPojo[] apps = appList.toArray(new AppPojo[0]);
+        Arrays.sort(apps, new PojoComparator());
+
+        final PreferenceScreen excludedAppsScreen = getPreferenceManager().createPreferenceScreen(this);
+        excludedAppsScreen.setTitle(R.string.ui_excluded_apps);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            excludedAppsScreen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Toolbar toolbar = PreferenceScreenHelper.findToolbar(excludedAppsScreen);
+                    if(toolbar != null) {
+                        toolbar.setTitle(R.string.ui_excluded_apps_dialog_title);
+                    }
+                    return false;
+                }
+            });
+        }
+
+        for (AppPojo app : apps) {
+            final ComponentName componentName = new ComponentName(app.packageName, app.activityName);
+
+            final Drawable icon = iconsHandler.getDrawableIconForPackage(componentName, app.userHandle);
+
+            SwitchPreference pref = createExcludeAppSwitch(icon, app.getName(),
+                    app.getComponentName(), app.excluded, app);
+
+            excludedAppsScreen.addPreference(pref);
+        }
+
         PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
-        category.addPreference(multiPreference);
+        category.addPreference(excludedAppsScreen);
+    }
 
-        loadExcludedAppsToPreference(multiPreference);
-        multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+    private SwitchPreference createExcludeAppSwitch(@NonNull Drawable icon, String appName,
+                                                    String mainActivityName, boolean isExcluded,
+                                                    final AppPojo app) {
+        final DataHandler dataHandler = KissApplication.getApplication(SettingsActivity.this).getDataHandler();
+
+        final SwitchPreference switchPreference = new SwitchPreference(this);
+        switchPreference.setIcon(icon);
+        switchPreference.setTitle(appName);
+        switchPreference.setSummary(mainActivityName);
+        switchPreference.setChecked(isExcluded);
+        switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
-            @SuppressWarnings("unchecked")
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                // Duplicate then save to make sure we're not editing in place
-                // (can't be done with sharedpreferences)
-                Set<String> appListToBeExcluded = new HashSet<>((HashSet<String>) newValue);
+                boolean becameExcluded = newValue != null? (Boolean) newValue : false;
 
-                prefs.edit().putStringSet("excluded-apps", appListToBeExcluded).apply();
-                loadExcludedAppsToPreference(multiPreference);
-                if (hasNoExcludedApps()) {
-                    multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
+                if(becameExcluded) {
+                    dataHandler.addToExcluded(app);
+                } else {
+                    dataHandler.removeFromExcluded(app);
                 }
 
-                final AppProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getAppProvider();
-                if (provider != null) {
-                    provider.reload();
-                }
-
-                return false;
+                return true;
             }
         });
-        if (hasNoExcludedApps()) {
-            multiPreference.setDialogMessage(R.string.ui_excluded_apps_not_found);
-        }
+        return switchPreference;
     }
 
     private void addExcludedFromHistoryAppSettings(final SharedPreferences prefs) {
