@@ -1,6 +1,7 @@
 package fr.neamar.kiss;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -223,7 +224,10 @@ public class SettingsActivity extends PreferenceActivity implements
         final SwitchPreference switchPreference = new SwitchPreference(this);
         switchPreference.setIcon(icon);
         switchPreference.setTitle(appName);
-        switchPreference.setSummary(mainActivityName);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                || getResources().getConfiguration().screenWidthDp > 420) {
+            switchPreference.setSummary(mainActivityName);
+        }
         switchPreference.setChecked(isExcluded);
         switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
