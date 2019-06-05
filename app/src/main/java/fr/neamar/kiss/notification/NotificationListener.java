@@ -1,5 +1,6 @@
 package fr.neamar.kiss.notification;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -37,6 +38,10 @@ public class NotificationListener extends NotificationListenerService {
         StatusBarNotification[] sbns = getActiveNotifications();
         Map<String, Set<String>> notificationsByPackage = new HashMap<>();
         for (StatusBarNotification sbn : sbns) {
+            if(isNotificationTrivial(sbn.getNotification())) {
+                continue;
+            }
+
             String packageName = sbn.getPackageName();
             if (!notificationsByPackage.containsKey(packageName)) {
                 notificationsByPackage.put(packageName, new HashSet<String>());
@@ -82,6 +87,10 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
+        if(isNotificationTrivial(sbn.getNotification())) {
+            return;
+        }
+
         Set<String> currentNotifications = getCurrentNotificationsForPackage(sbn.getPackageName());
 
         currentNotifications.add(Integer.toString(sbn.getId()));
@@ -92,6 +101,10 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
+        if(isNotificationTrivial(sbn.getNotification())) {
+            return;
+        }
+
         Set<String> currentNotifications = getCurrentNotificationsForPackage(sbn.getPackageName());
 
         currentNotifications.remove(Integer.toString(sbn.getId()));
@@ -117,5 +130,10 @@ public class NotificationListener extends NotificationListenerService {
             // see https://developer.android.com/reference/android/content/SharedPreferences.html#getStringSet(java.lang.String,%2520java.util.Set%3Cjava.lang.String%3E)
             return new HashSet<>(currentNotifications);
         }
+    }
+
+    // Low priority notifications should not be displayed
+    public boolean isNotificationTrivial(Notification notification) {
+        return notification.priority <= Notification.PRIORITY_MIN;
     }
 }
