@@ -38,7 +38,7 @@ public class NotificationListener extends NotificationListenerService {
         StatusBarNotification[] sbns = getActiveNotifications();
         Map<String, Set<String>> notificationsByPackage = new HashMap<>();
         for (StatusBarNotification sbn : sbns) {
-            if(notificationIsTrivial(sbn.getNotification())) {
+            if(isNotificationTrivial(sbn.getNotification())) {
                 continue;
             }
 
@@ -87,7 +87,7 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        if(notificationIsTrivial(sbn.getNotification())) {
+        if(isNotificationTrivial(sbn.getNotification())) {
             return;
         }
 
@@ -101,7 +101,7 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-        if(notificationIsTrivial(sbn.getNotification())) {
+        if(isNotificationTrivial(sbn.getNotification())) {
             return;
         }
 
@@ -133,7 +133,7 @@ public class NotificationListener extends NotificationListenerService {
     }
 
     // Low priority notifications should not be displayed
-    public boolean notificationIsTrivial(Notification notification) {
+    public boolean isNotificationTrivial(Notification notification) {
         return notification.priority <= Notification.PRIORITY_MIN;
     }
 }
