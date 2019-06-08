@@ -804,6 +804,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         dismissPopup();
+
+        searchEditText.clearFocus();
     }
 
     @Override
