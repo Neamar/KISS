@@ -54,6 +54,7 @@ public class SettingsActivity extends PreferenceActivity implements
     final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars pref-swap-kiss-button-with-menu pref-hide-circle history-hide enable-favorites-bar notification-bar-color black-notification-icons";
     final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait require-settings-update";
     private boolean requireFullRestart = false;
+    private boolean requireReloadApps = false;
 
     private SharedPreferences prefs;
 
@@ -239,6 +240,8 @@ public class SettingsActivity extends PreferenceActivity implements
                 } else {
                     dataHandler.removeFromExcluded(app);
                 }
+
+                requireReloadApps = true;
 
                 return true;
             }
@@ -436,6 +439,9 @@ public class SettingsActivity extends PreferenceActivity implements
         // Flag this, so that MainActivity get the information onResume().
         if (requireFullRestart) {
             prefs.edit().putBoolean("require-layout-update", true).apply();
+        }
+        if(requireReloadApps) {
+            KissApplication.getApplication(this).getDataHandler().getAppProvider().reload();
         }
     }
 
