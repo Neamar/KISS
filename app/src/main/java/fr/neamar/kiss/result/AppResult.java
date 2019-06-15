@@ -206,9 +206,8 @@ public class AppResult extends Result {
 
     private void excludeFromKiss(Context context, AppPojo appPojo) {
         KissApplication.getApplication(context).getDataHandler().addToExcluded(appPojo);
-        //remove app pojo from appProvider results - no need to reset handler
-        KissApplication.getApplication(context).getDataHandler().getAppProvider().removeApp(appPojo);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, appPojo.id);
+        // In case the newly excluded app was in a favorite, refresh them
+        ((MainActivity) context).onFavoriteChange();
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 

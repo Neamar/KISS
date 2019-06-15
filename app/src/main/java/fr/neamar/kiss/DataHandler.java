@@ -492,6 +492,11 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcluded());
         excluded.add(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
+        app.excluded = true;
+
+        // Ensure it's removed from favorites too
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        dataHandler.removeFromFavorites(app.id);
     }
 
     public void removeFromExcluded(AppPojo app) {
@@ -500,11 +505,12 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcluded());
         excluded.remove(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
+        app.excluded = false;
     }
 
     public void removeFromExcluded(String packageName) {
         Set<String> excluded = getExcluded();
-        Set<String> newExcluded = new HashSet<String>();
+        Set<String> newExcluded = new HashSet<>();
         for (String excludedItem : excluded) {
             if (!excludedItem.contains(packageName + "/")) {
                 newExcluded.add(excludedItem);
@@ -521,7 +527,7 @@ public class DataHandler extends BroadcastReceiver
         }
 
         Set<String> excluded = getExcluded();
-        Set<String> newExcluded = new HashSet<String>();
+        Set<String> newExcluded = new HashSet<>();
         for (String excludedItem : excluded) {
             if (!user.hasStringUserSuffix(excludedItem, '#')) {
                 newExcluded.add(excludedItem);
@@ -548,9 +554,9 @@ public class DataHandler extends BroadcastReceiver
      * @return pojos for all applications
      */
     @Nullable
-    public List<AppPojo> getApplicationsNoExcluded() {
+    public List<AppPojo> getApplicationsWithoutExcluded() {
         AppProvider appProvider = getAppProvider();
-        return appProvider != null ? appProvider.getAllAppsNoExcluded() : null;
+        return appProvider != null ? appProvider.getAllAppsWithoutExcluded() : null;
     }
 
     @Nullable
@@ -588,6 +594,7 @@ public class DataHandler extends BroadcastReceiver
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
+        assert favApps != null;
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
 
         // We might skip some later but this avoid to expand memory multiple times
@@ -614,6 +621,7 @@ public class DataHandler extends BroadcastReceiver
     public void setFavoritePosition(MainActivity context, String id, int position) {
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
+        assert favApps != null;
         List<String> favAppsList = new ArrayList<>(Arrays.asList(favApps.split(";")));
 
         int currentPos = favAppsList.indexOf(id);
@@ -638,13 +646,13 @@ public class DataHandler extends BroadcastReceiver
     /**
      * Helper function to get the position of a favorite. Used mainly by the drag and drop system to know where to place the dropped app.
      *
-     * @param context mainActivity context
      * @param id      the app you want to get the position of.
      * @return favorite position
      */
-    public int getFavoritePosition(MainActivity context, String id) {
+    public int getFavoritePosition(String id) {
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
+        assert favApps != null;
         List<String> favAppsList = new ArrayList<>(Arrays.asList(favApps.split(";")));
 
         return favAppsList.indexOf(id);
@@ -656,6 +664,7 @@ public class DataHandler extends BroadcastReceiver
                 getString("favorite-apps-list", "");
 
         // Check if we are already a fav icon
+        assert favApps != null;
         if (favApps.contains(id + ";")) {
             //shouldn't happen
             return;
@@ -667,12 +676,13 @@ public class DataHandler extends BroadcastReceiver
         context.onFavoriteChange();
     }
 
-    public void removeFromFavorites(MainActivity context, String id) {
+    public void removeFromFavorites(String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
 
         // Check if we are not already a fav icon
+        assert favApps != null;
         if (!favApps.contains(id + ";")) {
             //shouldn't happen
             return;
@@ -680,8 +690,6 @@ public class DataHandler extends BroadcastReceiver
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
-
-        context.onFavoriteChange();
     }
 
     @SuppressWarnings("StringSplitter")
@@ -746,6 +754,6 @@ public class DataHandler extends BroadcastReceiver
 
     static final class ProviderEntry {
         public IProvider provider = null;
-        public ServiceConnection connection = null;
+        ServiceConnection connection = null;
     }
 }

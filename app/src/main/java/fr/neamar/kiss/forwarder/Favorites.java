@@ -418,7 +418,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 // currentX is relative to the view not the screen, so add the current X of the view.
                 final boolean leftSide = (left + currentX < left + (width / 2));
 
-                final int pos = KissApplication.getApplication(mainActivity).getDataHandler().getFavoritePosition(mainActivity, overApp.id);
+                final int pos = KissApplication.getApplication(mainActivity).getDataHandler().getFavoritePosition(overApp.id);
                 draggedView.post(new Runnable() {
                     @Override
                     public void run() {

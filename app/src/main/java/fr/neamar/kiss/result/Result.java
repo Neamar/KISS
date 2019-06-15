@@ -19,11 +19,12 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -240,7 +241,7 @@ public abstract class Result {
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 

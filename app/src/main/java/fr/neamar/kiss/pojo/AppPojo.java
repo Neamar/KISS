@@ -11,7 +11,7 @@ public class AppPojo extends PojoWithTags {
     public final String packageName;
     public final String activityName;
     public final UserHandle userHandle;
-    public final boolean excluded;
+    public boolean excluded;
 
     public AppPojo(String id, String packageName, String activityName, UserHandle userHandle,
                    boolean isExcluded) {

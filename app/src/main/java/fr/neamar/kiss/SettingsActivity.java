@@ -1,7 +1,6 @@
 package fr.neamar.kiss;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -39,9 +38,9 @@ import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.preference.PreferenceScreenHelper;
 import fr.neamar.kiss.preference.SwitchPreference;
 import fr.neamar.kiss.searcher.QuerySearcher;
-import fr.neamar.kiss.preference.PreferenceScreenHelper;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
 @SuppressWarnings("FragmentInjection")
@@ -233,7 +232,7 @@ public class SettingsActivity extends PreferenceActivity implements
         switchPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                boolean becameExcluded = newValue != null? (Boolean) newValue : false;
+                boolean becameExcluded = newValue != null && (boolean) newValue;
 
                 if(becameExcluded) {
                     dataHandler.addToExcluded(app);
