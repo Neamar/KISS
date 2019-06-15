@@ -53,15 +53,16 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
                     String id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
 
-                    AppPojo app = new AppPojo(id, appInfo.packageName, activityInfo.getName(), user);
+                    boolean isExcluded = excludedAppList.contains(AppPojo.getComponentName(appInfo.packageName, activityInfo.getName(), user));
+
+                    AppPojo app = new AppPojo(id, appInfo.packageName, activityInfo.getName(), user,
+                            isExcluded);
 
                     app.setName(activityInfo.getLabel().toString());
 
                     app.setTags(tagsHandler.getTags(app.id));
 
-                    if (!excludedAppList.contains(app.getComponentName())) {
-                        apps.add(app);
-                    }
+                    apps.add(app);
                 }
             }
         } else {
@@ -73,14 +74,18 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             for (ResolveInfo info : manager.queryIntentActivities(mainIntent, 0)) {
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
                 String id = pojoScheme + appInfo.packageName + "/" + info.activityInfo.name;
-                AppPojo app = new AppPojo(id, appInfo.packageName, info.activityInfo.name, new UserHandle());
+                boolean isExcluded = excludedAppList.contains(
+                        AppPojo.getComponentName(appInfo.packageName, info.activityInfo.name, new UserHandle())
+                );
+
+                AppPojo app = new AppPojo(id, appInfo.packageName, info.activityInfo.name, new UserHandle(),
+                        isExcluded);
 
                 app.setName(info.loadLabel(manager).toString());
 
                 app.setTags(tagsHandler.getTags(app.id));
-                if (!excludedAppList.contains(app.getComponentName())) {
-                    apps.add(app);
-                }
+
+                apps.add(app);
             }
         }
 
