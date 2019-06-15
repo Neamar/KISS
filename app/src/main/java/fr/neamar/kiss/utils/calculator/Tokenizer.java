@@ -17,6 +17,9 @@ public class Tokenizer {
 		public static final int DIVIDE_TOKEN = 3;
 		public static final int EXP_TOKEN = 4;
 
+		public static final int UNARY_PLUS_TOKEN = 8;
+		public static final int UNARY_MINUS_TOKEN = 9;
+
 		public static final int NUMBER_TOKEN = 16;
 		public static final int PARENTHESIS_OPEN_TOKEN = 17;
 		public static final int PARENTHESIS_CLOSE_TOKEN = 18;
@@ -26,7 +29,8 @@ public class Tokenizer {
 		public final BigDecimal number;
 
 		public Token(int type) {
-			if(type != SUM_TOKEN && type != SUBTRACT_TOKEN && type != MULTIPLY_TOKEN && type != DIVIDE_TOKEN) {
+			if(type != SUM_TOKEN && type != SUBTRACT_TOKEN && type != MULTIPLY_TOKEN && type != DIVIDE_TOKEN
+					&& type != UNARY_PLUS_TOKEN && type != UNARY_MINUS_TOKEN) {
 				throw new IllegalArgumentException("Wrong constructor!");
 			}
 			this.type = type;
@@ -45,21 +49,24 @@ public class Tokenizer {
 
 		public final int getPrecedence() {
 			switch (type) {
+				case UNARY_PLUS_TOKEN:
+				case UNARY_MINUS_TOKEN:
+					return 0;
 				case SUM_TOKEN:
 				case SUBTRACT_TOKEN:
-					return 0;
+					return 1;
 				case MULTIPLY_TOKEN:
 				case DIVIDE_TOKEN:
-					return 1;
-				case EXP_TOKEN:
 					return 2;
+				case EXP_TOKEN:
+					return 3;
 				default:
 					return -1;
 			}
 		}
 	}
 
-	public static final ArrayDeque<Token> tokenize(String expression) {
+	public static ArrayDeque<Token> tokenize(String expression) {
 		ArrayDeque<Token> tokens = new ArrayDeque<>();
 
 		for (int i = 0; i < expression.length(); i++) {
@@ -69,10 +76,18 @@ public class Tokenizer {
 
 			switch (operator) {
 				case '+':
-					token = new Token(Token.SUM_TOKEN);
+					if(tokens.isEmpty() || tokens.peekLast().type != Token.NUMBER_TOKEN) {
+						token = new Token(Token.UNARY_PLUS_TOKEN);
+					} else {
+						token = new Token(Token.SUM_TOKEN);
+					}
 					break;
 				case '-':
-					token = new Token(Token.SUBTRACT_TOKEN);
+					if(tokens.isEmpty() || tokens.peekLast().type != Token.NUMBER_TOKEN) {
+						token = new Token(Token.UNARY_MINUS_TOKEN);
+					} else {
+						token = new Token(Token.SUBTRACT_TOKEN);
+					}
 					break;
 				case '*':
 				case '×':

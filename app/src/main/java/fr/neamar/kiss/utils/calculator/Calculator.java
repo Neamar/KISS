@@ -22,6 +22,13 @@ public class Calculator {
 					stack.push(token.number);
 					break;
 
+				case Tokenizer.Token.UNARY_PLUS_TOKEN:
+					//redundant: stack.push(stack.pop());
+					break;
+				case Tokenizer.Token.UNARY_MINUS_TOKEN:
+					stack.push(stack.pop().negate());
+					break;
+
 				case Tokenizer.Token.SUM_TOKEN:
 					operand2 = stack.pop();
 					operand1 = stack.pop();
