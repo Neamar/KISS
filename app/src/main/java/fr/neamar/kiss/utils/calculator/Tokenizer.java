@@ -30,6 +30,7 @@ public class Tokenizer {
 
 		public Token(int type) {
 			if(type != SUM_TOKEN && type != SUBTRACT_TOKEN && type != MULTIPLY_TOKEN && type != DIVIDE_TOKEN
+					&& type != EXP_TOKEN
 					&& type != UNARY_PLUS_TOKEN && type != UNARY_MINUS_TOKEN) {
 				throw new IllegalArgumentException("Wrong constructor!");
 			}
@@ -90,6 +91,13 @@ public class Tokenizer {
 					}
 					break;
 				case '*':
+					if(expression.charAt(i+1) != '*') {
+						token = new Token(Token.MULTIPLY_TOKEN);
+					} else {// '**'
+						i++;
+						token = new Token(Token.EXP_TOKEN);
+					}
+					break;
 				case '×':
 				case 'x':
 					token = new Token(Token.MULTIPLY_TOKEN);
@@ -98,6 +106,9 @@ public class Tokenizer {
 				case '÷':
 					token = new Token(Token.DIVIDE_TOKEN);
 					break;
+				case '^':
+					token = new Token(Token.EXP_TOKEN);
+					break;
 				case '(':
 					token = new Token(true);
 					break;
@@ -105,6 +116,7 @@ public class Tokenizer {
 					token = new Token(false);
 					break;
 				default:
+					//Numbers
 					StringBuilder number = new StringBuilder();
 
 					if(Character.isDigit(operator) || operator == '.' || operator == ',') {

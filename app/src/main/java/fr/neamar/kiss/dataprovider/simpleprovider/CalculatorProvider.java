@@ -15,7 +15,7 @@ public class CalculatorProvider extends SimpleProvider {
     private Pattern p;
 
     public CalculatorProvider() {
-        p = Pattern.compile("^(-?)([0-9.]+)\\s?([+\\-*/×x÷])\\s?(-?)([0-9.]+)$");
+        p = Pattern.compile("^(-?)([0-9.]+)\\s?([+\\-*/×x÷^])\\s?(-?)([0-9.]+)$");
     }
 
     @Override
