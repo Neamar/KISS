@@ -167,7 +167,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 new ExcludePreferenceScreen.IsExcludedCallback() {
                     @Override
                     public boolean isExcluded(@NonNull AppPojo app) {
-                        return app.excluded;
+                        return app.isExcluded();
                     }
                 },
                 new ExcludePreferenceScreen.OnExcludedListener() {
@@ -197,7 +197,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 new ExcludePreferenceScreen.IsExcludedCallback() {
                     @Override
                     public boolean isExcluded(@NonNull AppPojo app) {
-                        return app.excludedFromHistory;
+                        return app.isExcludedFromHistory();
                     }
                 },
                 new ExcludePreferenceScreen.OnExcludedListener() {

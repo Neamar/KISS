@@ -150,7 +150,7 @@ public class AppProvider extends Provider<AppPojo> {
         boolean match;
 
         for (AppPojo pojo : pojos) {
-            if(pojo.excluded) {
+            if(pojo.isExcluded()) {
                 continue;
             }
 
@@ -204,7 +204,7 @@ public class AppProvider extends Provider<AppPojo> {
         ArrayList<AppPojo> records = new ArrayList<>(pojos.size());
 
         for (AppPojo pojo : pojos) {
-            if(pojo.excluded) continue;
+            if(pojo.isExcluded()) continue;
 
             pojo.relevance = 0;
             records.add(pojo);

@@ -481,7 +481,7 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.add(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
-        app.excludedFromHistory = true;
+        app.setExcludedFromHistory(true);
     }
 
     public void removeFromExcludedFromHistory(AppPojo app) {
@@ -490,7 +490,7 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.remove(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
-        app.excludedFromHistory = false;
+        app.setExcludedFromHistory(false);
     }
 
     public void addToExcluded(AppPojo app) {
@@ -499,7 +499,7 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcluded());
         excluded.add(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
-        app.excluded = true;
+        app.setExcluded(true);
 
         // Ensure it's removed from favorites too
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
@@ -512,7 +512,7 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcluded());
         excluded.remove(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
-        app.excluded = false;
+        app.setExcluded(false);
     }
 
     public void removeFromExcluded(String packageName) {
