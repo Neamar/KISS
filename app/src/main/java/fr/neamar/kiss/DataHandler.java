@@ -355,23 +355,24 @@ public class DataHandler extends BroadcastReceiver
      * @param context        android context
      * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
      * @param historyMode    Recency vs Frecency vs Frequency
-     * @param sortHistory sort history entries alphabetically
-     * @param itemsToExclude Items to exclude from history
+     * @param sortHistory    Sort history entries alphabetically
+     * @param itemsToExcludeById Items to exclude from history by their id
      * @return pojos in recent history
      */
-    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode, boolean sortHistory, ArrayList<Pojo> itemsToExclude) {
+    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode,
+                                      boolean sortHistory, Set<String> itemsToExcludeById) {
         // Pre-allocate array slots that are likely to be used based on the current maximum item
         // count
         ArrayList<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
 
         // Max sure that we get enough items, regardless of how many may be excluded
-        int extendedItemCount = itemCount + itemsToExclude.size();
+        int extendedItemCount = itemCount + itemsToExcludeById.size();
 
         // Read history
         List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode, sortHistory);
 
         // Find associated items
-        assocLoop: for (int i = 0; i < ids.size(); i++) {
+        for (int i = 0; i < ids.size(); i++) {
             // Ask all providers if they know this id
             Pojo pojo = getPojo(ids.get(i).record);
 
@@ -379,14 +380,9 @@ public class DataHandler extends BroadcastReceiver
                 continue;
             }
 
-            // Look if the pojo should get excluded
-            for (int j = 0; j < itemsToExclude.size(); j++) {
-                if (itemsToExclude.get(j).id.equals(pojo.id)) {
-                    continue assocLoop;
-                }
+            if(itemsToExcludeById.contains(pojo.id)) {
+                continue;
             }
-
-
 
             history.add(pojo);
 
