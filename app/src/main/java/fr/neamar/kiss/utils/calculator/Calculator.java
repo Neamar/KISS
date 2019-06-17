@@ -52,7 +52,7 @@ public class Calculator {
 				case Tokenizer.Token.EXP_TOKEN:
 					operand2 = stack.pop();
 					operand1 = stack.pop();
-					stack.push(operand1.pow(operand2.intValueExact()));
+					stack.push(new BigDecimal(StrictMath.pow(operand1.doubleValue(), operand2.doubleValue())));
 					break;
 			}
 		}
