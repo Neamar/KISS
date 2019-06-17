@@ -484,6 +484,16 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.add(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
+        app.excludedFromHistory = true;
+    }
+
+    public void removeFromExcludedFromHistory(AppPojo app) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcludedFromHistory());
+        excluded.remove(app.id);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
+        app.excludedFromHistory = false;
     }
 
     public void addToExcluded(AppPojo app) {

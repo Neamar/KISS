@@ -12,15 +12,17 @@ public class AppPojo extends PojoWithTags {
     public final String activityName;
     public final UserHandle userHandle;
     public boolean excluded;
+    public boolean excludedFromHistory;
 
     public AppPojo(String id, String packageName, String activityName, UserHandle userHandle,
-                   boolean isExcluded) {
+                   boolean isExcluded, boolean isExcludedFromHistory) {
         super(id);
 
         this.packageName = packageName;
         this.activityName = activityName;
         this.userHandle = userHandle;
         this.excluded = isExcluded;
+        this.excludedFromHistory = isExcludedFromHistory;
     }
 
     public String getComponentName() {

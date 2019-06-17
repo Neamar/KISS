@@ -14,10 +14,8 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.PojoComparator;
 
@@ -28,6 +26,7 @@ public class ExcludePreferenceScreen {
 
 	public static PreferenceScreen getInstance(
 			PreferenceActivity preferenceActivity,
+			IsExcludedCallback isExcludedCallback,
 			OnExcludedListener onExcludedListener,
 			@StringRes int preferenceTitleResId,
 			final @StringRes int preferenceScreenTitleResId
@@ -63,7 +62,7 @@ public class ExcludePreferenceScreen {
 					|| preferenceActivity.getResources().getConfiguration().screenWidthDp > 420;
 
 			SwitchPreference pref = createExcludeAppSwitch(preferenceActivity, icon, app.getName(),
-					app.getComponentName(), app.excluded, app, showSummary, onExcludedListener);
+					app.getComponentName(), isExcludedCallback.isExcluded(app), app, showSummary, onExcludedListener);
 
 			excludedAppsScreen.addPreference(pref);
 		}
@@ -112,8 +111,13 @@ public class ExcludePreferenceScreen {
 	 */
 	private ExcludePreferenceScreen() {}
 
+	public interface IsExcludedCallback {
+		boolean isExcluded(final @NonNull AppPojo app);
+	}
+
 	public interface OnExcludedListener {
 		void onExcluded(final @NonNull AppPojo app);
 		void onIncluded(final @NonNull AppPojo app);
+
 	}
 }
