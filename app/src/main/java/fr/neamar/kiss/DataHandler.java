@@ -371,27 +371,28 @@ public class DataHandler extends BroadcastReceiver
         List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode, sortHistory);
 
         // Find associated items
-        for (int i = 0; i < ids.size(); i++) {
+        assocLoop: for (int i = 0; i < ids.size(); i++) {
             // Ask all providers if they know this id
             Pojo pojo = getPojo(ids.get(i).record);
-            if (pojo != null) {
-                // Look if the pojo should get excluded
-                boolean exclude = false;
-                for (int j = 0; j < itemsToExclude.size(); j++) {
-                    if (itemsToExclude.get(j).id.equals(pojo.id)) {
-                        exclude = true;
-                        break;
-                    }
-                }
 
-                if (!exclude) {
-                    history.add(pojo);
-                }
+            if (pojo == null) {
+                continue;
+            }
 
-                // Break if maximum number of items have been retrieved
-                if (history.size() >= itemCount) {
-                    break;
+            // Look if the pojo should get excluded
+            for (int j = 0; j < itemsToExclude.size(); j++) {
+                if (itemsToExclude.get(j).id.equals(pojo.id)) {
+                    continue assocLoop;
                 }
+            }
+
+
+
+            history.add(pojo);
+
+            // Break if maximum number of items have been retrieved
+            if (history.size() >= itemCount) {
+                break;
             }
         }
 
