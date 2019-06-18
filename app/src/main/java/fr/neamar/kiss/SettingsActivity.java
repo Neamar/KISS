@@ -57,13 +57,12 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String theme = prefs.getString("theme", "light");
-        switch (theme) {
-            case "amoled-dark":
-                setTheme(R.style.SettingThemeAmoledDark);
-                break;
-            case "dark":
-                setTheme(R.style.SettingThemeDark);
-                break;
+        assert theme != null;
+        if (theme.equals("amoled-dark")) {
+            setTheme(R.style.SettingThemeAmoledDark);
+        }
+        else if (theme.contains("dark")) {
+            setTheme(R.style.SettingThemeDark);
         }
 
         if (prefs.contains("require-settings-update")) {
