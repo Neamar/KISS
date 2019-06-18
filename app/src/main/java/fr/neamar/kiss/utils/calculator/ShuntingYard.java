@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 
 public class ShuntingYard {
 
-	public static ArrayDeque<Tokenizer.Token> infixToPostfix(ArrayDeque<Tokenizer.Token> infix) {
+	public static Result<ArrayDeque<Tokenizer.Token>> infixToPostfix(ArrayDeque<Tokenizer.Token> infix) {
 		ArrayDeque<Tokenizer.Token> sb = new ArrayDeque<>();
 		ArrayDeque<Tokenizer.Token> s = new ArrayDeque<>();
 
@@ -14,6 +14,10 @@ public class ShuntingYard {
 					s.push(token);
 					break;
 				case Tokenizer.Token.PARENTHESIS_CLOSE_TOKEN:
+					if(s.isEmpty()) {
+						return Result.syntacticalError();
+					}
+
 					// until '(' on stack, pop operators.
 					while (s.peek().type != Tokenizer.Token.PARENTHESIS_OPEN_TOKEN) {
 						sb.addLast(s.pop());
@@ -44,7 +48,7 @@ public class ShuntingYard {
 			sb.addLast(s.pop());
 		}
 
-		return sb;
+		return Result.result(sb);
 	}
 
 }
