@@ -355,17 +355,18 @@ public class DataHandler extends BroadcastReceiver
      * @param context        android context
      * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
      * @param historyMode    Recency vs Frecency vs Frequency
-     * @param sortHistory sort history entries alphabetically
-     * @param itemsToExclude Items to exclude from history
+     * @param sortHistory    Sort history entries alphabetically
+     * @param itemsToExcludeById Items to exclude from history by their id
      * @return pojos in recent history
      */
-    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode, boolean sortHistory, ArrayList<Pojo> itemsToExclude) {
+    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode,
+                                      boolean sortHistory, Set<String> itemsToExcludeById) {
         // Pre-allocate array slots that are likely to be used based on the current maximum item
         // count
         ArrayList<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
 
         // Max sure that we get enough items, regardless of how many may be excluded
-        int extendedItemCount = itemCount + itemsToExclude.size();
+        int extendedItemCount = itemCount + itemsToExcludeById.size();
 
         // Read history
         List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode, sortHistory);
@@ -374,24 +375,20 @@ public class DataHandler extends BroadcastReceiver
         for (int i = 0; i < ids.size(); i++) {
             // Ask all providers if they know this id
             Pojo pojo = getPojo(ids.get(i).record);
-            if (pojo != null) {
-                // Look if the pojo should get excluded
-                boolean exclude = false;
-                for (int j = 0; j < itemsToExclude.size(); j++) {
-                    if (itemsToExclude.get(j).id.equals(pojo.id)) {
-                        exclude = true;
-                        break;
-                    }
-                }
 
-                if (!exclude) {
-                    history.add(pojo);
-                }
+            if (pojo == null) {
+                continue;
+            }
 
-                // Break if maximum number of items have been retrieved
-                if (history.size() >= itemCount) {
-                    break;
-                }
+            if(itemsToExcludeById.contains(pojo.id)) {
+                continue;
+            }
+
+            history.add(pojo);
+
+            // Break if maximum number of items have been retrieved
+            if (history.size() >= itemCount) {
+                break;
             }
         }
 
@@ -484,6 +481,16 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.add(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
+        app.setExcludedFromHistory(true);
+    }
+
+    public void removeFromExcludedFromHistory(AppPojo app) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcludedFromHistory());
+        excluded.remove(app.id);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
+        app.setExcludedFromHistory(false);
     }
 
     public void addToExcluded(AppPojo app) {
@@ -492,7 +499,7 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcluded());
         excluded.add(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
-        app.excluded = true;
+        app.setExcluded(true);
 
         // Ensure it's removed from favorites too
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
@@ -505,7 +512,7 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcluded());
         excluded.remove(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
-        app.excluded = false;
+        app.setExcluded(false);
     }
 
     public void removeFromExcluded(String packageName) {
