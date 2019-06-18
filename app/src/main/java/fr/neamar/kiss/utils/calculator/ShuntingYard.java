@@ -5,50 +5,59 @@ import java.util.ArrayDeque;
 public class ShuntingYard {
 
 	public static Result<ArrayDeque<Tokenizer.Token>> infixToPostfix(ArrayDeque<Tokenizer.Token> infix) {
-		ArrayDeque<Tokenizer.Token> sb = new ArrayDeque<>();
-		ArrayDeque<Tokenizer.Token> s = new ArrayDeque<>();
+		ArrayDeque<Tokenizer.Token> outQueue = new ArrayDeque<>();
+		ArrayDeque<Tokenizer.Token> operatorStack = new ArrayDeque<>();
 
 		for (Tokenizer.Token token : infix) {
 			switch (token.type) {
-				case Tokenizer.Token.PARENTHESIS_OPEN_TOKEN:
-					s.push(token);
+				case Tokenizer.Token.NUMBER_TOKEN:
+					outQueue.add(token);
 					break;
-				case Tokenizer.Token.PARENTHESIS_CLOSE_TOKEN:
-					if(s.isEmpty()) {
-						return Result.syntacticalError();
-					}
-
-					// until '(' on stack, pop operators.
-					while (s.peek().type != Tokenizer.Token.PARENTHESIS_OPEN_TOKEN) {
-						sb.addLast(s.pop());
-					}
-					s.pop();
-					break;
-				default:
-					if (s.isEmpty()) {
-						s.push(token);
+				case Tokenizer.Token.UNARY_PLUS_TOKEN:
+				case Tokenizer.Token.UNARY_MINUS_TOKEN:
+				case Tokenizer.Token.SUM_TOKEN:
+				case Tokenizer.Token.SUBTRACT_TOKEN:
+				case Tokenizer.Token.MULTIPLY_TOKEN:
+				case Tokenizer.Token.DIVIDE_TOKEN:
+				case Tokenizer.Token.EXP_TOKEN:
+					if (operatorStack.isEmpty()) {
+						operatorStack.push(token);
 					} else {
-						while (!s.isEmpty()) {
-							int prec2 = s.peek().getPrecedence();
+						while (!operatorStack.isEmpty()) {
 							int prec1 = token.getPrecedence();
+							int prec2 = operatorStack.peek().getPrecedence();
 
-							if (prec2 > prec1 || (prec2 == prec1 && token.type == Tokenizer.Token.EXP_TOKEN)) {
-								sb.addLast(s.pop());
+							if (prec1 <= prec2) {
+								outQueue.add(operatorStack.pop());
 							} else {
 								break;
 							}
 						}
-						s.push(token);
+						operatorStack.push(token);
 					}
+					break;
+				case Tokenizer.Token.PARENTHESIS_OPEN_TOKEN:
+					operatorStack.push(token);
+					break;
+				case Tokenizer.Token.PARENTHESIS_CLOSE_TOKEN:
+					if(operatorStack.isEmpty()) {
+						return Result.syntacticalError();
+					}
+
+					// until '(' on stack, pop operators.
+					while (operatorStack.peek().type != Tokenizer.Token.PARENTHESIS_OPEN_TOKEN) {
+						outQueue.add(operatorStack.pop());
+					}
+					operatorStack.pop();
 					break;
 			}
 		}
 
-		while (!s.isEmpty()) {
-			sb.addLast(s.pop());
+		while (!operatorStack.isEmpty()) {
+			outQueue.addLast(operatorStack.pop());
 		}
 
-		return Result.result(sb);
+		return Result.result(outQueue);
 	}
 
 }

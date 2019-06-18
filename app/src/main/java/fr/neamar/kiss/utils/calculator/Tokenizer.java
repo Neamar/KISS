@@ -52,7 +52,7 @@ public class Tokenizer {
 			switch (type) {
 				case UNARY_PLUS_TOKEN:
 				case UNARY_MINUS_TOKEN:
-					return 0;
+					return 3;
 				case SUM_TOKEN:
 				case SUBTRACT_TOKEN:
 					return 1;
@@ -60,7 +60,7 @@ public class Tokenizer {
 				case DIVIDE_TOKEN:
 					return 2;
 				case EXP_TOKEN:
-					return 3;
+					return 4;
 				default:
 					return -1;
 			}

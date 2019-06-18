@@ -17,12 +17,8 @@ public class Calculator {
 	private static Result<BigDecimal> calculateExpressionThrowing(ArrayDeque<Tokenizer.Token> expression)
 			throws ArithmeticException {
 		ArrayDeque<BigDecimal> stack = new ArrayDeque<>();
-		Iterator<Tokenizer.Token> iterator = expression.descendingIterator();
 
-
-		while (iterator.hasNext()) {
-			Tokenizer.Token token = iterator.next();
-
+		for (Tokenizer.Token token : expression) {
 			BigDecimal operand2 = null;
 			BigDecimal operand1 = null;
 
@@ -32,14 +28,14 @@ public class Calculator {
 					break;
 
 				case Tokenizer.Token.UNARY_PLUS_TOKEN:
-					if(errorInExpression(true, stack)) {
+					if (errorInExpression(true, stack)) {
 						return Result.syntacticalError();
 					}
 
 					//redundant: stack.push(stack.pop());
 					break;
 				case Tokenizer.Token.UNARY_MINUS_TOKEN:
-					if(errorInExpression(true, stack)) {
+					if (errorInExpression(true, stack)) {
 						return Result.syntacticalError();
 					}
 
@@ -47,7 +43,7 @@ public class Calculator {
 					break;
 
 				case Tokenizer.Token.SUM_TOKEN:
-					if(errorInExpression(false, stack)) {
+					if (errorInExpression(false, stack)) {
 						return Result.syntacticalError();
 					}
 
@@ -56,7 +52,7 @@ public class Calculator {
 					stack.push(operand1.add(operand2));
 					break;
 				case Tokenizer.Token.SUBTRACT_TOKEN:
-					if(errorInExpression(false, stack)) {
+					if (errorInExpression(false, stack)) {
 						return Result.syntacticalError();
 					}
 
@@ -65,7 +61,7 @@ public class Calculator {
 					stack.push(operand1.subtract(operand2));
 					break;
 				case Tokenizer.Token.MULTIPLY_TOKEN:
-					if(errorInExpression(false, stack)) {
+					if (errorInExpression(false, stack)) {
 						return Result.syntacticalError();
 					}
 
@@ -74,7 +70,7 @@ public class Calculator {
 					stack.push(operand1.multiply(operand2));
 					break;
 				case Tokenizer.Token.DIVIDE_TOKEN:
-					if(errorInExpression(false, stack)) {
+					if (errorInExpression(false, stack)) {
 						return Result.syntacticalError();
 					}
 
@@ -83,7 +79,7 @@ public class Calculator {
 					stack.push(operand1.divide(operand2));
 					break;
 				case Tokenizer.Token.EXP_TOKEN:
-					if(errorInExpression(false, stack)) {
+					if (errorInExpression(false, stack)) {
 						return Result.syntacticalError();
 					}
 
