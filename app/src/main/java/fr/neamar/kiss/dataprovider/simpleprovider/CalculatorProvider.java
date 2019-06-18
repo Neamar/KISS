@@ -5,6 +5,7 @@ import java.util.ArrayDeque;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.annotation.VisibleForTesting;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.calculator.Calculator;
@@ -13,7 +14,8 @@ import fr.neamar.kiss.utils.calculator.ShuntingYard;
 import fr.neamar.kiss.utils.calculator.Tokenizer;
 
 public class CalculatorProvider extends SimpleProvider {
-    private Pattern p;
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    Pattern p;
 
     public CalculatorProvider() {
         //This should try to match as much as possible without going out of the expression,
