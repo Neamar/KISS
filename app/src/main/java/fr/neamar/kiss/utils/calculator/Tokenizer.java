@@ -3,8 +3,12 @@ package fr.neamar.kiss.utils.calculator;
 import android.view.inputmethod.InputConnection;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayDeque;
 import java.util.List;
+import java.util.Locale;
 import java.util.Stack;
 
 import androidx.annotation.NonNull;
@@ -65,9 +69,29 @@ public class Tokenizer {
 					return -1;
 			}
 		}
+
+		public final boolean isRightAssociative() {
+			switch (type) {
+				case UNARY_PLUS_TOKEN:
+				case UNARY_MINUS_TOKEN:
+					return true;
+				case SUM_TOKEN:
+				case SUBTRACT_TOKEN:
+				case MULTIPLY_TOKEN:
+				case DIVIDE_TOKEN:
+				case EXP_TOKEN:
+					return false;
+				default:
+					throw new IllegalStateException();
+			}
+		}
+
+		public final boolean isLeftAssociative() {
+			return !isRightAssociative();
+		}
 	}
 
-	public static ArrayDeque<Token> tokenize(String expression) {
+	public static Result<ArrayDeque<Token>> tokenize(String expression) {
 		ArrayDeque<Token> tokens = new ArrayDeque<>();
 
 		for (int i = 0; i < expression.length(); i++) {
@@ -77,25 +101,27 @@ public class Tokenizer {
 
 			switch (operator) {
 				case '+':
-					if(tokens.isEmpty() || tokens.peekLast().type != Token.NUMBER_TOKEN) {
-						token = new Token(Token.UNARY_PLUS_TOKEN);
-					} else {
+					if(!tokens.isEmpty() && (tokens.peekLast().type == Token.NUMBER_TOKEN
+							|| tokens.peekLast().type == Token.PARENTHESIS_CLOSE_TOKEN)) {
 						token = new Token(Token.SUM_TOKEN);
+					} else {
+						token = new Token(Token.UNARY_PLUS_TOKEN);
 					}
 					break;
 				case '-':
-					if(tokens.isEmpty() || tokens.peekLast().type != Token.NUMBER_TOKEN) {
-						token = new Token(Token.UNARY_MINUS_TOKEN);
-					} else {
+					if(!tokens.isEmpty() && (tokens.peekLast().type == Token.NUMBER_TOKEN
+							|| tokens.peekLast().type == Token.PARENTHESIS_CLOSE_TOKEN)) {
 						token = new Token(Token.SUBTRACT_TOKEN);
+					} else {
+						token = new Token(Token.UNARY_MINUS_TOKEN);
 					}
 					break;
 				case '*':
-					if(expression.charAt(i+1) != '*') {
-						token = new Token(Token.MULTIPLY_TOKEN);
-					} else {// '**'
+					if(expression.length() > i+1 && expression.charAt(i+1) == '*') {// '**'
 						i++;
 						token = new Token(Token.EXP_TOKEN);
+					} else {
+						token = new Token(Token.MULTIPLY_TOKEN);
 					}
 					break;
 				case '×':
@@ -117,15 +143,15 @@ public class Tokenizer {
 					break;
 				default:
 					//Numbers
-					StringBuilder number = new StringBuilder();
+					StringBuilder numberBuilder = new StringBuilder();
 
-					if(Character.isDigit(operator) || operator == '.' || operator == ',') {
-						number.append(operator);
+					if(checkOperatorIsPartOfNumber(operator)) {
+						numberBuilder.append(operator);
 
 						while (i+1 < expression.length()) {
 							operator = expression.charAt(i+1);
-							if(Character.isDigit(operator) || operator == '.' || operator == ',') {
-								number.append(operator);
+							if(checkOperatorIsPartOfNumber(operator)) {
+								numberBuilder.append(operator);
 								i++;
 							} else {
 								break;
@@ -133,8 +159,19 @@ public class Tokenizer {
 						}
 					}
 
-					if(number.length() != 0) {
-						token = new Token(new BigDecimal(number.toString()));
+					if(numberBuilder.length() != 0) {
+						DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getInstance();
+						decimalFormat.setParseBigDecimal(true);
+
+						BigDecimal number = null;
+
+						try {
+							number = (BigDecimal) decimalFormat.parse(numberBuilder.toString());
+						} catch (ParseException e) {
+							return Result.syntacticalError();
+						}
+
+						token = new Token(number);
 					}
 			}
 
@@ -145,6 +182,11 @@ public class Tokenizer {
 			tokens.addLast(token);
 		}
 
-		return tokens;
+		return Result.result(tokens);
+	}
+
+	private static boolean checkOperatorIsPartOfNumber(char operator) {
+		return Character.isDigit(operator) || operator == '.' || operator == ',' || operator == 'E'
+				|| operator == ' ' || operator == '\'';
 	}
 }

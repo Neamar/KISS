@@ -12,12 +12,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class CalculatorProviderTest {
-	private static final Pattern pattern = new CalculatorProvider().p;
+	private static final Pattern pattern = new CalculatorProvider().P;
 
 	@ParameterizedTest
 	@MethodSource("expressionProvider")
 	public void testOperations(String expression, String operation) {
-		Matcher matcher = pattern.matcher(expression.trim());
+		Matcher matcher = pattern.matcher(expression.replaceAll("\\s+", ""));
 		matcher.find();
 		assertThat(matcher.group(), is(operation));
 	}
@@ -27,13 +27,11 @@ public class CalculatorProviderTest {
 				Arguments.of("(1+1)", "(1+1)"),
 				Arguments.of("(1 + 1)", "(1+1)"),
 
-				Arguments.of("afsdfsds(1+1)dfsdfsd", "(1+1)"),
-				Arguments.of("aadf8-100fs", "8-100"),
-
 				Arguments.of("+1-1", "+1-1"),
 				Arguments.of("-1-1", "-1-1"),
 				Arguments.of("1*1", "1*1"),
 				Arguments.of("1/1", "1/1"),
+				Arguments.of("1**1", "1**1"),
 
 				Arguments.of("(1)/1", "(1)/1"),
 				Arguments.of("( 1 )/1", "(1)/1"),
@@ -41,7 +39,9 @@ public class CalculatorProviderTest {
 				Arguments.of("(1*1)/1", "(1*1)/1"),
 
 				Arguments.of("(1+1)/2.", "(1+1)/2."),
-				Arguments.of("89.*(1+1)/2.", "89.*(1+1)/2.")
+				Arguments.of("89.*(1+1)/2.", "89.*(1+1)/2."),
+
+				Arguments.of("8,009.*(1+1)/2.", "8,009.*(1+1)/2.")
 		);
 	}
 }

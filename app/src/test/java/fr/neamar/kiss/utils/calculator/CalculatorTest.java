@@ -1,31 +1,24 @@
 package fr.neamar.kiss.utils.calculator;
 
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.number.BigDecimalCloseTo.closeTo;
 
 public class CalculatorTest {
 	@ParameterizedTest
 	@MethodSource("operationsProvider")
 	public void testOperations(String operation, BigDecimal result) {
-		assertThat(operate(operation).result, is(result));
+		assertThat(operate(operation).result, closeTo(result, new BigDecimal(0.000001)));
 	}
 
 	private static Stream<Arguments> operationsProvider() {
@@ -79,15 +72,21 @@ public class CalculatorTest {
 	}
 
 	private Result<BigDecimal> operate(String operation) {
-		ArrayDeque<Tokenizer.Token> tokenized = Tokenizer.tokenize(operation);
-		Result<ArrayDeque<Tokenizer.Token>> posfixed = ShuntingYard.infixToPostfix(tokenized);
-
-		if(posfixed.syntacticalError) {
+		Result<ArrayDeque<Tokenizer.Token>> tokenized = Tokenizer.tokenize(operation);
+		if(tokenized.syntacticalError) {
 			return Result.syntacticalError();
-		} else if(posfixed.arithmeticalError) {
+		} else if(tokenized.arithmeticalError) {
 			return Result.arithmeticalError();
 		} else {
-			return Calculator.calculateExpression(posfixed.result);
+			Result<ArrayDeque<Tokenizer.Token>> posfixed = ShuntingYard.infixToPostfix(tokenized.result);
+
+			if (posfixed.syntacticalError) {
+				return Result.syntacticalError();
+			} else if (posfixed.arithmeticalError) {
+				return Result.arithmeticalError();
+			} else {
+				return Calculator.calculateExpression(posfixed.result);
+			}
 		}
 	}
 }

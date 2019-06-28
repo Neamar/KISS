@@ -27,7 +27,7 @@ public class ShuntingYard {
 							int prec1 = token.getPrecedence();
 							int prec2 = operatorStack.peek().getPrecedence();
 
-							if (prec1 <= prec2) {
+							if ((token.isLeftAssociative() && prec1 <= prec2) || (token.isRightAssociative() && prec1 < prec2)) {
 								outQueue.add(operatorStack.pop());
 							} else {
 								break;
@@ -47,6 +47,10 @@ public class ShuntingYard {
 					// until '(' on stack, pop operators.
 					while (operatorStack.peek().type != Tokenizer.Token.PARENTHESIS_OPEN_TOKEN) {
 						outQueue.add(operatorStack.pop());
+
+						if(operatorStack.isEmpty()) {
+							return Result.syntacticalError();
+						}
 					}
 					operatorStack.pop();
 					break;

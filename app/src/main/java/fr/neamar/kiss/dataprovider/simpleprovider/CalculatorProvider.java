@@ -1,6 +1,7 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.ArrayDeque;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,39 +16,47 @@ import fr.neamar.kiss.utils.calculator.Tokenizer;
 
 public class CalculatorProvider extends SimpleProvider {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    Pattern p;
+    final Pattern P;
+    private final NumberFormat LOCALIZED_NUMBER_FORMATTER = NumberFormat.getInstance();
 
     public CalculatorProvider() {
         //This should try to match as much as possible without going out of the expression,
         //even if the expression is not actually a computable operation.
-        p = Pattern.compile("\\(*[+\\-]?\\d*\\.?\\d+[()\\d.+\\-*/^]*\\d*\\.?\\d+\\)*");
+        P = Pattern.compile("^[\\-.,\\d+*/^'()]+$");
     }
 
     @Override
     public void requestResults(String query, Searcher searcher) {
         // Now create matcher object.
-        Matcher m = p.matcher(query.trim());
+        Matcher m = P.matcher(query.replaceAll("\\s+", ""));
         if (m.find()) {
             String operation = m.group();
 
-            ArrayDeque<Tokenizer.Token> tokenized = Tokenizer.tokenize(operation);
-            Result<ArrayDeque<Tokenizer.Token>> posfixed = ShuntingYard.infixToPostfix(tokenized);
-
+            Result<ArrayDeque<Tokenizer.Token>> tokenized = Tokenizer.tokenize(operation);
             String readableResult;
 
-            if(posfixed.syntacticalError) {
+            if(tokenized.syntacticalError) {
                 return;
-            } else if(posfixed.arithmeticalError) {
-                readableResult = "ARITHMETIC ERROR";
+            } else if(tokenized.arithmeticalError) {
+                return;
             } else {
-                Result<BigDecimal> result = Calculator.calculateExpression(posfixed.result);
+                Result<ArrayDeque<Tokenizer.Token>> posfixed = ShuntingYard.infixToPostfix(tokenized.result);
 
-                if(result.syntacticalError) {
+                if (posfixed.syntacticalError) {
                     return;
-                } else if(result.arithmeticalError) {
-                    readableResult = "ARITHMETIC ERROR";
+                } else if (posfixed.arithmeticalError) {
+                    return;
                 } else {
-                    readableResult = " = " + result.result.toPlainString();
+                    Result<BigDecimal> result = Calculator.calculateExpression(posfixed.result);
+
+                    if (result.syntacticalError) {
+                        return;
+                    } else if (result.arithmeticalError) {
+                        return;
+                    } else {
+                        String localizedNumber = LOCALIZED_NUMBER_FORMATTER.format(result.result);
+                        readableResult = " = " + localizedNumber;
+                    }
                 }
             }
 

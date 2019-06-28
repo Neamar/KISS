@@ -1,6 +1,9 @@
 package fr.neamar.kiss.utils.calculator;
 
+import android.os.Build;
+
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 
@@ -76,7 +79,7 @@ public class Calculator {
 
 					operand2 = stack.pop();
 					operand1 = stack.pop();
-					stack.push(operand1.divide(operand2));
+					stack.push(operand1.divide(operand2, MathContext.DECIMAL32));
 					break;
 				case Tokenizer.Token.EXP_TOKEN:
 					if (errorInExpression(false, stack)) {
@@ -85,7 +88,15 @@ public class Calculator {
 
 					operand2 = stack.pop();
 					operand1 = stack.pop();
-					stack.push(new BigDecimal(StrictMath.pow(operand1.doubleValue(), operand2.doubleValue())));
+
+					double pow = StrictMath.pow(operand1.doubleValue(), operand2.doubleValue());
+
+					if(!isFinite(pow)) {
+						throw new ArithmeticException("Not finite result: "
+								+ operand1.toString() + "^" + operand2.toString() + " = " + pow);
+					}
+
+					stack.push(new BigDecimal(pow));
 					break;
 			}
 		}
@@ -105,5 +116,22 @@ public class Calculator {
 			error = error || stack.size() < 2;
 		}
 		return error;
+	}
+
+	/**
+	 * Returns {@code true} if the argument is a finite floating-point
+	 * value; returns {@code false} otherwise (for NaN and infinity
+	 * arguments).
+	 *
+	 * @param d the {@code double} value to be tested
+	 * @return {@code true} if the argument is a finite
+	 * floating-point value, {@code false} otherwise.
+	 */
+	public static boolean isFinite(double d) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+		    return Double.isFinite(d);
+		} else {
+			return Math.abs(d) <= Double.MAX_VALUE;
+		}
 	}
 }
