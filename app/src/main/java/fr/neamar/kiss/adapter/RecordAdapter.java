@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -187,15 +186,12 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
         // Generate section list
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(alphaIndexer.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
-            @Override
-            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-                if(o2.getValue().equals(o1.getValue())) {
-                    return 0;
-                }
-                // We're displaying from A to Z, everything needs to be reversed
-                return o2.getValue() > o1.getValue() ? -1 : 1;
+        Collections.sort(entries, (o1, o2) -> {
+            if(o2.getValue().equals(o1.getValue())) {
+                return 0;
             }
+            // We're displaying from A to Z, everything needs to be reversed
+            return o2.getValue() > o1.getValue() ? -1 : 1;
         });
         sections = new String[entries.size()];
         for(int i = 0; i < entries.size(); i++) {
