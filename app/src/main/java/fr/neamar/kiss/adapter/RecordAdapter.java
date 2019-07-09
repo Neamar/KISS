@@ -209,7 +209,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         // that does not exist anymore.
         // It's likely there is a threading issue in our code somewhere,
         // But I was unable to find where, so the following line is a quick and dirty fix.
-        sectionIndex = Math.min(sections.length - 1, sectionIndex);
+        sectionIndex = Math.max(0, Math.min(sections.length - 1, sectionIndex));
         return alphaIndexer.get(sections[sectionIndex]);
     }
 
