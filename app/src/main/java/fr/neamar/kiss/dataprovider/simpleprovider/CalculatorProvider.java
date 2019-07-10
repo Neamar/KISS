@@ -1,12 +1,13 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
+import androidx.annotation.VisibleForTesting;
+
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayDeque;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.annotation.VisibleForTesting;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.calculator.Calculator;
@@ -63,7 +64,7 @@ public class CalculatorProvider extends SimpleProvider {
             String queryProcessed = operation + readableResult;
             SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojo.CALCULATOR_QUERY);
 
-            pojo.relevance = 100;
+            pojo.relevance = 19;
             searcher.addResult(pojo);
         }
     }
