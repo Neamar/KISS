@@ -1,3 +1,5 @@
+<!--
+
 Thanks for taking the time to make KISS better by contributing code!
 
 Before you open the pull request, please make sure that:
@@ -11,3 +13,5 @@ Before you open the pull request, please make sure that:
 You might also want to have a look at the ["Before contributing..."](https://github.com/Neamar/KISS/blob/master/CONTRIBUTING.md#before-contributing) section ;)
 
 Once again, thanks for your help! Feel free to remove all this text and start typing...
+
+-->

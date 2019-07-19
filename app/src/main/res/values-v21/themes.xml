@@ -69,15 +69,17 @@
         <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 
-    <style name="SettingsActionBar" parent="@android:style/Widget.Material.Light.ActionBar.Solid">
-        <item name="android:displayOptions">homeAsUp|showTitle</item>
-    </style>
-
     <style name="SettingThemeDark" parent="AppThemeDark">
+        <item name="android:actionBarStyle">@style/SettingsActionBar</item>
+
         <item name="android:windowActionBar">true</item>
         <item name="android:windowNoTitle">false</item>
         <item name="android:windowBackground">@color/kiss_list_background_inverse</item>
         <item name="android:colorPrimaryDark">@color/kiss_green</item>
         <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
+
+    <style name="SettingsActionBar" parent="@android:style/Widget.Material.Light.ActionBar.Solid">
+        <item name="android:displayOptions">homeAsUp|showTitle</item>
     </style>
 </resources>

@@ -24,6 +24,9 @@ jobs:
           path: app/build/reports
           destination: reports
       - run:
+          name: Run unit tests
+          command: ./gradlew testDebugUnitTest
+      - run:
           name: Generate debug APK
           command: ./gradlew assembleDebug assembleDebugAndroidTest
       - store_artifacts:

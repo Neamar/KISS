@@ -8,6 +8,7 @@ import java.util.PriorityQueue;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
 
@@ -36,7 +37,8 @@ public class ApplicationsSearcher extends Searcher {
         if (activity == null)
             return null;
 
-        List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler().getApplications();
+        List<AppPojo> pojos = KissApplication.getApplication(activity).getDataHandler().getApplicationsWithoutExcluded();
+
         if (pojos != null)
            this.addResult(pojos.toArray(new Pojo[0]));
         return null;

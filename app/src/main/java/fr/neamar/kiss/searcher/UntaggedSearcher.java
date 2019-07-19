@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoWithTags;
 
@@ -20,10 +21,10 @@ public class UntaggedSearcher extends Searcher {
         MainActivity activity = activityWeakReference.get();
         if ( activity == null )
             return null;
-        List<Pojo> results = KissApplication.getApplication(activity).getDataHandler().getApplications();
+        List<AppPojo> results = KissApplication.getApplication(activity).getDataHandler().getApplicationsWithoutExcluded();
         if (results == null)
             return null;
-        for(Iterator<Pojo> iterator = results.iterator(); iterator.hasNext(); ) {
+        for(Iterator<AppPojo> iterator = results.iterator(); iterator.hasNext(); ) {
             Pojo pojo = iterator.next();
             if (!(pojo instanceof PojoWithTags)) {
                 iterator.remove();

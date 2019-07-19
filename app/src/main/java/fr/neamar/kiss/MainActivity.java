@@ -35,6 +35,7 @@ import android.widget.TextView.OnEditorActionListener;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -804,6 +805,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         dismissPopup();
+
+        searchEditText.clearFocus();
     }
 
     @Override

@@ -75,8 +75,7 @@ public abstract class Result {
         throw new RuntimeException("Unable to create a result from POJO");
     }
 
-    public String getPojoId()
-    {
+    public String getPojoId() {
         return pojo.id;
     }
 
@@ -125,7 +124,7 @@ public abstract class Result {
     }
 
     public boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
-            TextView view, Context context) {
+                                      TextView view, Context context) {
         FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
         if (!matchInfo.match) {
@@ -156,7 +155,7 @@ public abstract class Result {
             // convert to uppercase otherwise lowercase a -z will be sorted
             // after upper A-Z
             return ch.toUpperCase();
-        } catch(ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             // Normalized name is empty.
             return "-";
         }
@@ -246,7 +245,7 @@ public abstract class Result {
 
         //Update Search to reflect favorite add, if the "exclude favorites" option is active
         MainActivity mainActivity = (MainActivity) context;
-        if(mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
+        if (mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
             mainActivity.updateSearchRecords();
         }
 
@@ -261,7 +260,7 @@ public abstract class Result {
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
@@ -315,7 +314,9 @@ public abstract class Result {
     boolean isDrawableCached() {
         return false;
     }
-    void setDrawableCache( Drawable drawable ) {}
+
+    void setDrawableCache(Drawable drawable) {
+    }
 
     void setAsyncDrawable(ImageView view) {
         // the ImageView tag will store the async task if it's running

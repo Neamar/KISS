@@ -2,11 +2,13 @@ package fr.neamar.kiss.ui;
 
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
 
@@ -22,6 +24,14 @@ public class GoogleCalendarIcon {
 
     @Nullable
     public static Drawable getDrawable(Context context, String activityName) {
+        // Do nothing if using a custom icon pack
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String currentIconPack = prefs.getString("icons-pack", "default");
+        if (!"default".equals(currentIconPack)) {
+            return null;
+        }
+
+        // Otherwise, retrieve today's icon
         PackageManager pm = context.getPackageManager();
         try {
             ComponentName cn = new ComponentName(GOOGLE_CALENDAR, activityName);

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import androidx.annotation.CallSuper;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +14,6 @@ import java.util.PriorityQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import androidx.annotation.CallSuper;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;

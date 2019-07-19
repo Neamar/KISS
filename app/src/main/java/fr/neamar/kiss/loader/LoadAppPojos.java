@@ -40,6 +40,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         }
 
         Set<String> excludedAppList = KissApplication.getApplication(ctx).getDataHandler().getExcluded();
+        Set<String> excludedFromHistoryAppList = KissApplication.getApplication(ctx).getDataHandler().getExcludedFromHistory();
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             UserManager manager = (UserManager) ctx.getSystemService(Context.USER_SERVICE);
@@ -53,15 +54,17 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
                     String id = user.addUserSuffixToString(pojoScheme + appInfo.packageName + "/" + activityInfo.getName(), '/');
 
-                    AppPojo app = new AppPojo(id, appInfo.packageName, activityInfo.getName(), user);
+                    boolean isExcluded = excludedAppList.contains(AppPojo.getComponentName(appInfo.packageName, activityInfo.getName(), user));
+                    boolean isExcludedFromHistory = excludedFromHistoryAppList.contains(id);
+
+                    AppPojo app = new AppPojo(id, appInfo.packageName, activityInfo.getName(), user,
+                            isExcluded, isExcludedFromHistory);
 
                     app.setName(activityInfo.getLabel().toString());
 
                     app.setTags(tagsHandler.getTags(app.id));
 
-                    if (!excludedAppList.contains(app.getComponentName())) {
-                        apps.add(app);
-                    }
+                    apps.add(app);
                 }
             }
         } else {
@@ -73,14 +76,19 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             for (ResolveInfo info : manager.queryIntentActivities(mainIntent, 0)) {
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
                 String id = pojoScheme + appInfo.packageName + "/" + info.activityInfo.name;
-                AppPojo app = new AppPojo(id, appInfo.packageName, info.activityInfo.name, new UserHandle());
+                boolean isExcluded = excludedAppList.contains(
+                        AppPojo.getComponentName(appInfo.packageName, info.activityInfo.name, new UserHandle())
+                );
+                boolean isExcludedFromHistory = excludedFromHistoryAppList.contains(id);
+
+                AppPojo app = new AppPojo(id, appInfo.packageName, info.activityInfo.name, new UserHandle(),
+                        isExcluded, isExcludedFromHistory);
 
                 app.setName(info.loadLabel(manager).toString());
 
                 app.setTags(tagsHandler.getTags(app.id));
-                if (!excludedAppList.contains(app.getComponentName())) {
-                    apps.add(app);
-                }
+
+                apps.add(app);
             }
         }
 
