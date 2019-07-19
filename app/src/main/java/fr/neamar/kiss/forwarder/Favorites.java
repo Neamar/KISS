@@ -394,17 +394,14 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
                 final int pos = KissApplication.getApplication(mainActivity).getDataHandler().getFavoritePosition(overApp.id);
 
-                draggedView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Signals to a View that the drag and drop operation has concluded.
-                        // If event result is set, this means the dragged view was dropped in target
-                        if (event.getResult()) {
-                            KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), leftSide ? pos - 1 : pos);
-                            mainActivity.onFavoriteChange();
-                        } else {
-                            draggedView.setVisibility(View.VISIBLE);
-                        }
+                draggedView.post(() -> {
+                    // Signals to a View that the drag and drop operation has concluded.
+                    // If event result is set, this means the dragged view was dropped in target
+                    if (event.getResult()) {
+                        KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), leftSide ? pos - 1 : pos);
+                        mainActivity.onFavoriteChange();
+                    } else {
+                        draggedView.setVisibility(View.VISIBLE);
                     }
                 });
 
