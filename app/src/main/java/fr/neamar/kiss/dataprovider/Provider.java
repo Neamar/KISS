@@ -78,6 +78,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
         // Broadcast this event
         Intent i = new Intent(MainActivity.LOAD_OVER);
+        i.putExtra(MainActivity.PROVIDER_EXTRA, this.getClass().getSimpleName());
         this.sendBroadcast(i);
     }
 

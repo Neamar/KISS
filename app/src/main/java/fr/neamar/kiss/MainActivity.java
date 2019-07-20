@@ -32,12 +32,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
+import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
@@ -62,6 +62,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
+    public static final String PROVIDER_EXTRA = "fr.neamar.summon.PROVIDER_EXTRA";
 
     private static final String TAG = "MainActivity";
 
@@ -192,17 +193,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 //noinspection ConstantConditions
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
                     updateSearchRecords();
+
+                    if(AppProvider.class.getSimpleName().equals(intent.getStringExtra(PROVIDER_EXTRA))) {
+                        onFavoriteChange();
+                    }
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     Log.v(TAG, "All providers are done loading.");
 
                     displayLoader(false);
-
-                    // Run GC once to free all the garbage accumulated during provider initialization
-                    System.gc();
                 }
-
-                // New provider might mean new favorites
-                onFavoriteChange();
             }
         };
 
