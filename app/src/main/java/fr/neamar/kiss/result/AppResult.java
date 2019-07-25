@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -11,9 +12,11 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Menu;
@@ -317,7 +320,25 @@ public class AppResult extends Result {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
                 assert launcher != null;
-                launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), v.getClipBounds(), null);
+                Rect sourceBounds = null;
+                Bundle opts =null;
+
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    // We're on a modern Android and can display activity animations
+                    // If AppResult, find the icon
+                    View potentialIcon = v.findViewById(R.id.item_app_icon);
+                    if(potentialIcon == null) {
+                        // If favorite, find the icon
+                        potentialIcon = v.findViewById(R.id.favorite);
+                    }
+
+                    if (potentialIcon != null) {
+                        // If we got an icon, we create options to get a nice animation
+                        opts = ActivityOptions.makeClipRevealAnimation(potentialIcon, 0, 0, potentialIcon.getMeasuredWidth(), potentialIcon.getMeasuredHeight()).toBundle();
+                    }
+                }
+
+                launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), sourceBounds, opts);
             } else {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_LAUNCHER);
