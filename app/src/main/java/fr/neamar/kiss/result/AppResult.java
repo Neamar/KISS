@@ -321,18 +321,20 @@ public class AppResult extends Result {
                 LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
                 assert launcher != null;
                 Rect sourceBounds = null;
-                Bundle opts =null;
+                Bundle opts = null;
 
                 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     // We're on a modern Android and can display activity animations
                     // If AppResult, find the icon
                     View potentialIcon = v.findViewById(R.id.item_app_icon);
-                    if(potentialIcon == null) {
+                    if (potentialIcon == null) {
                         // If favorite, find the icon
                         potentialIcon = v.findViewById(R.id.favorite);
                     }
 
                     if (potentialIcon != null) {
+                        sourceBounds = getViewBounds(potentialIcon);
+
                         // If we got an icon, we create options to get a nice animation
                         opts = ActivityOptions.makeClipRevealAnimation(potentialIcon, 0, 0, potentialIcon.getMeasuredWidth(), potentialIcon.getMeasuredHeight()).toBundle();
                     }
@@ -346,7 +348,7 @@ public class AppResult extends Result {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 
                 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    intent.setSourceBounds(v.getClipBounds());
+                    intent.setSourceBounds(getViewBounds(v));
                 }
 
                 context.startActivity(intent);
@@ -356,5 +358,15 @@ public class AppResult extends Result {
             // (null pointer exception can be thrown on Lollipop+ when app is missing)
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private Rect getViewBounds(View v) {
+        if (v == null) {
+            return null;
+        }
+
+        int[] l = new int[2];
+        v.getLocationOnScreen(l);
+        return new Rect(l[0], l[1], l[0] + v.getWidth(), l[1] + v.getHeight());
     }
 }
