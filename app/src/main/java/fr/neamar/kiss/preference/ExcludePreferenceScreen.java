@@ -9,11 +9,12 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -34,7 +35,13 @@ public class ExcludePreferenceScreen {
 		List<AppPojo> appList = KissApplication.getApplication(preferenceActivity).getDataHandler().getApplications();
 		IconsHandler iconsHandler = KissApplication.getApplication(preferenceActivity).getIconsHandler();
 
-		AppPojo[] apps = appList.toArray(new AppPojo[0]);
+		AppPojo[] apps;
+		if(appList != null) {
+			apps = appList.toArray(new AppPojo[0]);
+		}
+		else {
+			apps = new AppPojo[0];
+		}
 		Arrays.sort(apps, new PojoComparator());
 
 		final PreferenceScreen excludedAppsScreen = preferenceActivity.getPreferenceManager().createPreferenceScreen(preferenceActivity);
