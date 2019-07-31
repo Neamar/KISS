@@ -36,6 +36,7 @@ import fr.neamar.kiss.dataprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.CalculatorProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
@@ -110,6 +111,10 @@ public class DataHandler extends BroadcastReceiver
         ProviderEntry searchEntry = new ProviderEntry();
         searchEntry.provider = new SearchProvider(context);
         this.providers.put("search", searchEntry);
+
+        ProviderEntry tagsEntry = new ProviderEntry();
+        tagsEntry.provider = new TagsProvider();
+        this.providers.put("tags", tagsEntry);
     }
 
     @Override
@@ -631,7 +636,7 @@ public class DataHandler extends BroadcastReceiver
         return favAppsList.indexOf(id);
     }
 
-    public void addToFavorites(MainActivity context, String id) {
+    public void addToFavorites(Context context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
@@ -645,10 +650,11 @@ public class DataHandler extends BroadcastReceiver
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps + id + ";").apply();
 
-        context.onFavoriteChange();
+        if (context instanceof MainActivity)
+            ((MainActivity) context).onFavoriteChange();
     }
 
-    public void removeFromFavorites(MainActivity context, String id) {
+    public void removeFromFavorites(Context context, String id) {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
@@ -662,7 +668,8 @@ public class DataHandler extends BroadcastReceiver
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
 
-        context.onFavoriteChange();
+        if (context instanceof MainActivity)
+            ((MainActivity) context).onFavoriteChange();
     }
 
     @SuppressWarnings("StringSplitter")

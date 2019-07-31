@@ -10,9 +10,12 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Pair;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import java.util.Collections;
 
@@ -31,10 +34,11 @@ public class PhoneResult extends Result {
         this.phonePojo = phonePojo;
     }
 
+    @NonNull
     @Override
-    public View display(Context context, int position, View v, FuzzyScore fuzzyScore) {
+    public View display(Context context, int position, View v, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
         if (v == null)
-            v = inflateFromId(context, R.layout.item_phone);
+            v = inflateFromId(context, R.layout.item_phone, parent);
 
         TextView phoneText = v.findViewById(R.id.item_phone_text);
         String text = String.format(context.getString(R.string.ui_item_phone), phonePojo.phone);

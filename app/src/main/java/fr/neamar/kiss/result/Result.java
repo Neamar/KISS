@@ -13,17 +13,20 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -39,6 +42,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -67,6 +71,8 @@ public abstract class Result {
             return new PhoneResult((PhonePojo) pojo);
         else if (pojo instanceof ShortcutsPojo)
             return new ShortcutsResult((ShortcutsPojo) pojo);
+        else if (pojo instanceof TagDummyPojo)
+            return new TagDummyResult((TagDummyPojo)pojo);
 
 
         throw new RuntimeException("Unable to create a result from POJO");
@@ -83,10 +89,12 @@ public abstract class Result {
      *
      * @param context     android context
      * @param convertView a view to be recycled
-     * @param fuzzyScore
+     * @param parent      view that provides a set of LayoutParams values
+     * @param fuzzyScore  information for highlighting search result
      * @return a view to display as item
      */
-    public abstract View display(Context context, int position, View convertView, FuzzyScore fuzzyScore);
+    @NonNull
+    public abstract View display(Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
 
     public void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
         SpannableString enriched = new SpannableString(text);
@@ -252,7 +260,7 @@ public abstract class Result {
      */
     private void removeItem(Context context, RecordAdapter parent) {
         Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();
-        parent.removeResult(this);
+        parent.removeResult(context, this);
     }
 
     public final void launch(Context context, View v) {
@@ -330,13 +338,12 @@ public abstract class Result {
      *
      * @param context android context
      * @param id      id to inflate
+     * @param parent  view that provides a set of LayoutParams values
      * @return the view specified by the id
      */
-    View inflateFromId(Context context, int id) {
-        LayoutInflater vi = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        assert vi != null;
-        return vi.inflate(id, null);
+    View inflateFromId(Context context, @LayoutRes int id, @NonNull ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        return inflater.inflate(id, parent, false);
     }
 
     /**

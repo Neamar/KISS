@@ -28,7 +28,6 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class RecordAdapter extends BaseAdapter implements SectionIndexer {
-    private final Context context;
     private final QueryInterface parent;
     private FuzzyScore fuzzyScore;
 
@@ -42,8 +41,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     // List of available sections (only used for fast scroll)
     private String[] sections = new String[0];
 
-    public RecordAdapter(Context context, QueryInterface parent, ArrayList<Result> results) {
-        this.context = context;
+    public RecordAdapter(QueryInterface parent, ArrayList<Result> results) {
         this.parent = parent;
         this.results = results;
         this.fuzzyScore = null;
@@ -106,14 +104,14 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
                 convertView = null;
             }
         }
-        View view = results.get(position).display(context, results.size() - position, convertView, fuzzyScore);
+        View view = results.get(position).display(parent.getContext(), results.size() - position, convertView, parent, fuzzyScore);
         //Log.d( "TBog", "getView pos " + position + " convertView " + ((convertView == null) ? "null" : convertView.toString()) + " will return " + view.toString() );
         view.setTag(getItemViewType(position));
         return view;
     }
 
     public void onLongClick(final int pos, View v) {
-        ListPopup menu = results.get(pos).getPopupMenu(context, this, v);
+        ListPopup menu = results.get(pos).getPopupMenu(v.getContext(), this, v);
 
         //check if menu contains elements and if yes show it
         if (menu.getAdapter().getCount() > 0) {
@@ -127,7 +125,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
         try {
             result = results.get(position);
-            result.launch(context, v);
+            result.launch(v.getContext(), v);
         } catch (ArrayIndexOutOfBoundsException ignored) {
             return;
         }
@@ -146,7 +144,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
     }
 
-    public void removeResult(Result result) {
+    public void removeResult(Context context, Result result) {
         results.remove(result);
         result.deleteRecord(context);
         notifyDataSetChanged();

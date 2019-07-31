@@ -3,7 +3,6 @@ package fr.neamar.kiss.ui;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Rect;
-import androidx.annotation.StringRes;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,11 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 
+import androidx.annotation.StringRes;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
 public class ListPopup extends PopupWindow {
     private final View.OnClickListener mClickListener;
+    private final View.OnLongClickListener mLongClickListener;
+    private OnItemLongClickListener mItemLongClickListener;
     private OnItemClickListener mItemClickListener;
     private DataSetObserver mObserver;
     private ListAdapter mAdapter;
@@ -44,10 +46,24 @@ public class ListPopup extends PopupWindow {
                 }
             }
         };
+        mLongClickListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (mItemLongClickListener == null)
+                    return false;
+                LinearLayout layout = getLinearLayout();
+                int position = layout.indexOfChild(v);
+                return mItemLongClickListener.onItemLongClick(mAdapter, v, position);
+            }
+        };
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        mItemLongClickListener = onItemLongClickListener;
     }
 
     public void setVisibilityHelper(SystemUiVisibilityHelper systemUiVisibility) {
@@ -100,8 +116,14 @@ public class ListPopup extends PopupWindow {
         for (int i = 0; i < adapterCount; i += 1) {
             View view = mAdapter.getView(i, null, layout);
             layout.addView(view);
-            if (mAdapter.isEnabled(i))
+            if (mAdapter.isEnabled(i)) {
                 view.setOnClickListener(mClickListener);
+                if (mItemLongClickListener == null) {
+                    view.setLongClickable(false);
+                } else {
+                    view.setOnLongClickListener(mLongClickListener);
+                }
+            }
         }
     }
 
@@ -167,6 +189,10 @@ public class ListPopup extends PopupWindow {
 
     public interface OnItemClickListener {
         void onItemClick(ListAdapter adapter, View view, int position);
+    }
+
+    public interface OnItemLongClickListener {
+        boolean onItemLongClick(ListAdapter adapter, View view, int position);
     }
 
     public static class Item {

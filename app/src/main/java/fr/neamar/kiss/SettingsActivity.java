@@ -1,8 +1,8 @@
 package fr.neamar.kiss;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -23,15 +23,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -41,7 +38,10 @@ import java.util.Stack;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.forwarder.TagsMenu;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
@@ -58,56 +58,22 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private SharedPreferences prefs;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String theme = prefs.getString("theme", "light");
-        if (theme.contains("dark")) {
-            setTheme(R.style.SettingThemeDark);
+    /**
+     * Get tags that should be in the favorites bar
+     *
+     * @param  context to get the data handler with the actual favorites
+     * @return what we find in DataHandler
+     */
+    @NonNull
+    private static Set<String> getFavTags(Context context) {
+        ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(context).getDataHandler()
+                .getFavorites();
+        Set<String> set = new HashSet<>();
+        for (Pojo pojo : favoritesPojo) {
+            if (pojo instanceof TagDummyPojo)
+                set.add(pojo.getName());
         }
-
-        if (prefs.contains("require-settings-update")) {
-            // This flag will be used when the settings activity needs to restart,
-            // but the value will be set to true
-            // and the sharedpreferencesListener only triggers on value change
-            // so we ensure it doesn't have a value before we display the settings
-            prefs.edit().remove("require-settings-update").apply();
-        }
-
-        // Lock launcher into portrait mode
-        // Do it here to make the transition as smooth as possible
-        if (prefs.getBoolean("force-portrait", true)) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-            } else {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-        }
-
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
-
-        ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
-        setListPreferenceIconsPacksData(iconsPack);
-
-        fixSummaries();
-
-        addExcludedFromHistoryAppSettings(prefs);
-        addExcludedAppSettings(prefs);
-
-        addCustomSearchProvidersPreferences(prefs);
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            removePreference("colors-section", "black-notification-icons");
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            removePreference("history-hide-section", "pref-hide-navbar");
-            removePreference("history-hide-section", "pref-hide-statusbar");
-        }
-
-        addHiddenTagsTogglesInformation(prefs);
+        return set;
     }
 
     @Override
@@ -389,38 +355,56 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equalsIgnoreCase("available-search-providers")) {
-            addCustomSearchProvidersPreferences(prefs);
-        } else if (key.equalsIgnoreCase("selected-search-provider-names")) {
-            final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getSearchProvider();
-            if (provider != null) {
-                provider.reload();
-            }
-        } else if (key.equalsIgnoreCase("icons-pack")) {
-            KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
-        } else if (key.equalsIgnoreCase("enable-phone-history")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{android.Manifest.permission.READ_PHONE_STATE},
-                        SettingsActivity.PERMISSION_READ_PHONE_STATE);
-                return;
-            }
-            PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
-        } else if (key.equalsIgnoreCase("primary-color")) {
-            UIColors.clearPrimaryColorCache(this);
-        } else if (key.equalsIgnoreCase("number-of-display-elements")) {
-            QuerySearcher.clearMaxResultCountCache();
+    protected void onCreate(Bundle savedInstanceState) {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String theme = prefs.getString("theme", "light");
+        if (theme.contains("dark")) {
+            setTheme(R.style.SettingThemeDark);
         }
 
-        if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
-            requireFullRestart = true;
-
-            if (settingsRequiringRestartForSettingsActivity.contains(key)) {
-                // Kill this activity too, and restart
-                recreate();
-            }
+        if (prefs.contains("require-settings-update")) {
+            // This flag will be used when the settings activity needs to restart,
+            // but the value will be set to true
+            // and the sharedpreferencesListener only triggers on value change
+            // so we ensure it doesn't have a value before we display the settings
+            prefs.edit().remove("require-settings-update").apply();
         }
+
+        // Lock launcher into portrait mode
+        // Do it here to make the transition as smooth as possible
+        if (prefs.getBoolean("force-portrait", true)) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        }
+
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.preferences);
+
+        ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
+        setListPreferenceIconsPacksData(iconsPack);
+
+        fixSummaries();
+
+        addExcludedFromHistoryAppSettings(prefs);
+        addExcludedAppSettings(prefs);
+
+        addCustomSearchProvidersPreferences(prefs);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            removePreference("colors-section", "black-notification-icons");
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            removePreference("history-hide-section", "pref-hide-navbar");
+            removePreference("history-hide-section", "pref-hide-statusbar");
+        }
+
+        addHiddenTagsTogglesInformation(prefs);
+        addTagsFavInformation();
     }
 
     @Override
@@ -512,5 +496,69 @@ public class SettingsActivity extends PreferenceActivity implements
         selectListPreference.setEntries(tagArray);
         selectListPreference.setEntryValues(tagArray);
         selectListPreference.setValues(menuTags);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equalsIgnoreCase("available-search-providers")) {
+            addCustomSearchProvidersPreferences(prefs);
+        } else if (key.equalsIgnoreCase("selected-search-provider-names")) {
+            final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getSearchProvider();
+            if (provider != null) {
+                provider.reload();
+            }
+        } else if (key.equalsIgnoreCase("icons-pack")) {
+            KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
+        } else if (key.equalsIgnoreCase("enable-phone-history")) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.READ_PHONE_STATE},
+                        SettingsActivity.PERMISSION_READ_PHONE_STATE);
+                return;
+            }
+            PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
+        } else if (key.equalsIgnoreCase("primary-color")) {
+            UIColors.clearPrimaryColorCache(this);
+        } else if (key.equalsIgnoreCase("number-of-display-elements")) {
+            QuerySearcher.clearMaxResultCountCache();
+        } else if ("pref-fav-tags-list".equals(key)) {
+            // after we edit the fav tags list update DataHandler
+            Set<String> favTags = sharedPreferences.getStringSet(key, Collections.<String>emptySet());
+            DataHandler dh = KissApplication.getApplication(this).getDataHandler();
+            ArrayList<Pojo> favoritesPojo = dh.getFavorites();
+            for (Pojo pojo : favoritesPojo)
+                if (pojo instanceof TagDummyPojo && !favTags.contains(pojo.getName()))
+                    dh.removeFromFavorites(this, pojo.id);
+            for (String tagName : favTags)
+                dh.addToFavorites(this, TagsProvider.generateUniqueId(tagName));
+        }
+
+        if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
+            requireFullRestart = true;
+
+            if (settingsRequiringRestartForSettingsActivity.contains(key)) {
+                // Kill this activity too, and restart
+                recreate();
+            }
+        }
+    }
+
+    private void addTagsFavInformation() {
+        Set<String> favTags = getFavTags(getApplicationContext());
+        MultiSelectListPreference selectListPreference = (MultiSelectListPreference) findPreference("pref-fav-tags-list");
+
+        Set<String> tagsSet = KissApplication.getApplication(this)
+                .getDataHandler()
+                .getTagsHandler()
+                .getAllTagsAsSet();
+
+        // make sure we can toggle off the tags that are in the favs now
+        tagsSet.addAll(favTags);
+
+        String[] tagArray = tagsSet.toArray(new String[0]);
+        Arrays.sort(tagArray);
+        selectListPreference.setEntries(tagArray);
+        selectListPreference.setEntryValues(tagArray);
+        selectListPreference.setValues(favTags);
     }
 }

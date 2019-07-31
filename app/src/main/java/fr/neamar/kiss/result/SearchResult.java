@@ -7,9 +7,12 @@ import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -29,10 +32,11 @@ public class SearchResult extends Result {
         this.searchPojo = searchPojo;
     }
 
+    @NonNull
     @Override
-    public View display(Context context, int position, View v, FuzzyScore fuzzyScore) {
+    public View display(Context context, int position, View v, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
         if (v == null)
-            v = inflateFromId(context, R.layout.item_search);
+            v = inflateFromId(context, R.layout.item_search, parent);
 
         TextView searchText = v.findViewById(R.id.item_search_text);
         ImageView image = v.findViewById(R.id.item_search_icon);

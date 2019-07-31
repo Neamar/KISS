@@ -13,9 +13,12 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,11 +46,12 @@ public class ContactsResult extends Result {
         this.queryInterface = queryInterface;
     }
 
+    @NonNull
     @Override
-    public View display(Context context, int position, View convertView, FuzzyScore fuzzyScore) {
+    public View display(Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
         View view = convertView;
         if (convertView == null)
-            view = inflateFromId(context, R.layout.item_contact);
+            view = inflateFromId(context, R.layout.item_contact, parent);
 
         // Contact name
         TextView contactName = view.findViewById(R.id.item_contact_name);

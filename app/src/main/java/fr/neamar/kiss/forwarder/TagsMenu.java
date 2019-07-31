@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -24,6 +25,8 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.TagsHandler;
+import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
+import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.ui.ListPopup;
 
 /**
@@ -272,6 +275,20 @@ public class TagsMenu extends Forwarder {
                             break;
                     }
                 }
+            }
+        });
+        popupMenu.setOnItemLongClickListener(new ListPopup.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(ListAdapter adapter, View view, int position) {
+                Object adapterItem = adapter.getItem(position);
+                if (adapterItem instanceof TagsMenu.MenuItemTag) {
+                    TagsMenu.MenuItemTag item = (TagsMenu.MenuItemTag) adapterItem;
+                    String msg = mainActivity.getResources().getString(R.string.toast_favorites_added);
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, TagsProvider.generateUniqueId(item.tag));
+                    Toast.makeText(mainActivity, String.format(msg, item.tag), Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
             }
         });
 

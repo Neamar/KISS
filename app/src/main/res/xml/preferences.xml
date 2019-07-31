@@ -84,6 +84,10 @@
             android:defaultValue="false"
             android:key="exclude-favorites"
             android:title="@string/exclude_favorites" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/favTagsDefault"
+            android:key="pref-fav-tags-list"
+            android:title="@string/pref_fav_tags_select" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="ui-holder"
@@ -196,6 +200,11 @@
                 android:key="icons-hide"
                 android:summary="@string/icons_hide_desc"
                 android:title="@string/icons_hide_main" />
+            <fr.neamar.kiss.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-fav-tags-drawable"
+                android:summary="@string/pref_fav_tags_drawable_desc"
+                android:title="@string/pref_fav_tags_drawable" />
             <fr.neamar.kiss.SwitchPreference
                 android:defaultValue="false"
                 android:key="call-contact-on-click"
