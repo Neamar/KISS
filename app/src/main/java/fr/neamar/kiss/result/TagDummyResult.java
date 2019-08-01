@@ -15,12 +15,15 @@ import android.graphics.drawable.GradientDrawable;
 import android.preference.PreferenceManager;
 import android.text.TextPaint;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -30,27 +33,12 @@ import fr.neamar.kiss.utils.FuzzyScore;
 public class TagDummyResult extends Result {
     private static final String TAG = TagDummyResult.class.getSimpleName();
     private static final GradientDrawable gShape = new GradientDrawable();
-    private Drawable mDrawable = null;
 
     TagDummyResult(@NonNull TagDummyPojo pojo) {
         super(pojo);
     }
 
-    @Override
-    public Drawable getDrawable(Context context) {
-        if (mDrawable != null)
-            return mDrawable;
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPreferences.getBoolean("pref-fav-tags-drawable", false)) {
-            mDrawable = new BitmapDrawable(generateBitmap(context, sharedPreferences));
-        } else {
-            mDrawable = generateShape(context, sharedPreferences);
-        }
-        return mDrawable;
-    }
-
-    private Drawable generateShape(Context context, SharedPreferences sharedPreferences) {
+    private GradientDrawable getShape(Context context, SharedPreferences sharedPreferences) {
         boolean largeSearchBar = sharedPreferences.getBoolean("large-search-bar", false);
         int barSize = context.getResources().getDimensionPixelSize(largeSearchBar ? R.dimen.large_bar_height : R.dimen.bar_height);
 
@@ -127,15 +115,15 @@ public class TagDummyResult extends Result {
         paint.getTextBounds(glyph, 0, glyph.length(), b);
         canvas.drawText(glyph, 0, glyph.length(), width / 2.f - b.centerX(), height / 2.f - b.centerY(), paint);
 
-//        rectF.set(b);
-//        rectF.offset(width / 2.f - rectF.centerX(), height / 2.f - rectF.centerY());
-//        // pad the rectF so we don't touch the letter
-//        rectF.inset(rectF.width() * -.3f, rectF.height() * -.4f);
-//
-//        // stroke a rect with the bounding of the letter
-//        paint.setStyle(Paint.Style.STROKE);
-//        paint.setStrokeWidth(1.f * context.getResources().getDisplayMetrics().density);
-//        canvas.drawRoundRect(rectF, rectF.width() / 2.4f, rectF.height() / 2.4f, paint);
+        rectF.set(b);
+        rectF.offset(width / 2.f - rectF.centerX(), height / 2.f - rectF.centerY());
+        // pad the rectF so we don't touch the letter
+        rectF.inset(rectF.width() * -.3f, rectF.height() * -.4f);
+
+        // stroke a rect with the bounding of the letter
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(1.f * context.getResources().getDisplayMetrics().density);
+        canvas.drawRoundRect(rectF, rectF.width() / 2.4f, rectF.height() / 2.4f, paint);
         return bitmap;
     }
 
@@ -153,6 +141,36 @@ public class TagDummyResult extends Result {
 
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         return v;
+    }
+
+    @NonNull
+    @Override
+    public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
+        if (favoriteView == null)
+            favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_tag, parent, false);
+        ImageView favoriteIcon = favoriteView.findViewById(android.R.id.background);
+        TextView favoriteText = favoriteView.findViewById(android.R.id.text1);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (sharedPreferences.getBoolean("pref-fav-tags-drawable", false)) {
+            favoriteText.setVisibility(View.GONE);
+
+            Drawable drawable = new BitmapDrawable(generateBitmap(context, sharedPreferences));
+            favoriteIcon.setImageDrawable(drawable);
+        } else {
+            int codepoint = pojo.getName().codePointAt(0);
+            String glyph = new String(Character.toChars(codepoint));
+
+            Drawable drawable = getShape(context, sharedPreferences);
+            favoriteIcon.setImageDrawable(drawable);
+
+            favoriteText.setVisibility(View.VISIBLE);
+            favoriteText.setText(glyph);
+            favoriteText.setTextSize(TypedValue.COMPLEX_UNIT_PX, drawable.getIntrinsicHeight() / 2.f);
+        }
+
+        favoriteView.setContentDescription(pojo.getName());
+        return favoriteView;
     }
 
     @Override
