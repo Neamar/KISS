@@ -12,6 +12,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.preference.PreferenceManager;
 import android.text.TextPaint;
 import android.util.Log;
@@ -32,24 +33,31 @@ import fr.neamar.kiss.utils.FuzzyScore;
 
 public class TagDummyResult extends Result {
     private static final String TAG = TagDummyResult.class.getSimpleName();
-    private static final GradientDrawable gShape = new GradientDrawable();
+    private static Drawable gBackground = null;
 
     TagDummyResult(@NonNull TagDummyPojo pojo) {
         super(pojo);
     }
 
-    private GradientDrawable getShape(Context context, SharedPreferences sharedPreferences) {
+    private Drawable getShape(Context context, SharedPreferences sharedPreferences) {
         boolean largeSearchBar = sharedPreferences.getBoolean("large-search-bar", false);
         int barSize = context.getResources().getDimensionPixelSize(largeSearchBar ? R.dimen.large_bar_height : R.dimen.bar_height);
 
-        GradientDrawable shape = gShape;
-        shape.setShape(GradientDrawable.RECTANGLE);
-        shape.setSize(barSize, barSize);
-        float rad = barSize / 2.4f;
-        shape.setCornerRadii(new float[]{rad, rad, rad, rad, rad, rad, rad, rad});
-        shape.setColor(0xFFffffff);
+        if ( gBackground == null || gBackground.getIntrinsicWidth() != barSize || gBackground.getIntrinsicHeight() != barSize ) {
+            int inset = (int)(3.f * context.getResources().getDisplayMetrics().density);   // 3dp to px
+            barSize -= 2 * inset;   // shrink size with the inset to keep the overall size
 
-        return shape;
+            GradientDrawable shape = new GradientDrawable();
+            shape.setShape(GradientDrawable.RECTANGLE);
+            shape.setSize(barSize, barSize);
+            float rad = barSize / 2.3f;
+            shape.setCornerRadii(new float[]{rad, rad, rad, rad, rad, rad, rad, rad});
+            shape.setColor(0xFFffffff);
+
+            gBackground = new InsetDrawable(shape, inset);
+        }
+
+        return gBackground;
     }
 
     private Bitmap generateBitmap(Context context, SharedPreferences sharedPreferences) {
