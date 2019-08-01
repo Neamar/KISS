@@ -163,6 +163,7 @@ public class TagDummyResult extends Result {
 
             Drawable drawable = getShape(context, sharedPreferences);
             favoriteIcon.setImageDrawable(drawable);
+            favoriteIcon.invalidateDrawable(drawable);
 
             favoriteText.setVisibility(View.VISIBLE);
             favoriteText.setText(glyph);
