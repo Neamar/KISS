@@ -98,7 +98,7 @@ class ExperienceTweaks extends Forwarder {
                     return false;
                 }
                 if (directionY > 0) {
-                    // Fling down: display notifications
+                    // Fling down
                     switch (getGestureSwipeDownPref()) {
                         case "history":
                             mainActivity.runTask(new HistorySearcher(mainActivity));
