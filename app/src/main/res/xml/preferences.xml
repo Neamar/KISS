@@ -200,12 +200,31 @@
                 android:defaultValue="false"
                 android:key="call-contact-on-click"
                 android:title="@string/contacts_call_on_click" />
+        </PreferenceCategory>
+        <PreferenceScreen
+            android:title="@string/title_gestures">
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-gestures"
                 android:summary="@string/enable_gestures_desc"
                 android:title="@string/enable_gestures" />
-        </PreferenceCategory>
+            <ListPreference
+                android:defaultValue="keyboard"
+                android:dependency="enable-gestures"
+                android:entries="@array/gestureActionsEntries"
+                android:entryValues="@array/gestureActionsValues"
+                android:key="gestures-swipe-up"
+                android:order="46"
+                android:title="@string/gesture_swipe_up_title" />
+            <ListPreference
+                android:defaultValue="notifications"
+                android:dependency="enable-gestures"
+                android:entries="@array/gestureActionsEntries"
+                android:entryValues="@array/gestureActionsValues"
+                android:key="gestures-swipe-down"
+                android:order="46"
+                android:title="@string/gesture_swipe_down_title" />
+        </PreferenceScreen>
         <PreferenceScreen
             android:key="wallpaper-holder"
             android:title="@string/title_wallpaper">
