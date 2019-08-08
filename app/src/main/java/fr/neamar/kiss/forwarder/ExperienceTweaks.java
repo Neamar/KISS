@@ -20,7 +20,7 @@ import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
 
 // Deals with any settings in the "User Experience" setting sub-screen
-class ExperienceTweaks extends Forwarder {
+public class ExperienceTweaks extends Forwarder {
     /**
      * InputType that behaves as if the consuming IME is a standard-obeying
      * soft-keyboard
@@ -49,6 +49,8 @@ class ExperienceTweaks extends Forwarder {
 
     private View mainEmptyView;
     private final GestureDetector gd;
+    private static byte GESTURE_ACTION_SWIPE_UP = 2;       // defaulting to 2 (all apps)
+    private static byte GESTURE_ACTION_SWIPE_DOWN = 3;     // defaulting to 3 (notifications drawer)
 
     ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
@@ -98,33 +100,25 @@ class ExperienceTweaks extends Forwarder {
                     return false;
                 }
                 if (directionY > 0) {
-                    // Fling down
-                    switch (getGestureSwipeDownPref()) {
-                        case "history":
-                            mainActivity.runTask(new HistorySearcher(mainActivity));
-                            break;
-                        case "apps":
-                            mainActivity.displayKissBar(true);
-                            break;
-                        case "notifications":
-                            displayNotificationDrawer();
-                            break;
-                        case "keyboard":
-                            mainActivity.showKeyboard();
-                            break;
-                    }
+                    // Swipe down
+                    if (GESTURE_ACTION_SWIPE_DOWN == 1)
+                        mainActivity.runTask(new HistorySearcher(mainActivity));
+                    else if (GESTURE_ACTION_SWIPE_DOWN == 2)
+                        mainActivity.displayKissBar(true);
+                    else if (GESTURE_ACTION_SWIPE_DOWN == 3)
+                        displayNotificationDrawer();
+                    else
+                        mainActivity.showKeyboard();
                 } else {
-                    // Fling up
-                    switch (getGestureSwipeUpPref()) {
-                        case "history": mainActivity.runTask(new HistorySearcher(mainActivity));
-                            break;
-                        case "apps": mainActivity.displayKissBar(true);
-                            break;
-                        case "notifications": displayNotificationDrawer();
-                            break;
-                        case "keyboard": mainActivity.showKeyboard();
-                            break;
-                    }
+                    // Swipe up
+                    if (GESTURE_ACTION_SWIPE_UP == 1)
+                        mainActivity.runTask(new HistorySearcher(mainActivity));
+                    else if (GESTURE_ACTION_SWIPE_UP == 2)
+                        mainActivity.displayKissBar(true);
+                    else if (GESTURE_ACTION_SWIPE_UP == 3)
+                        displayNotificationDrawer();
+                    else
+                        mainActivity.showKeyboard();
                 }
                 return true;
             }
@@ -292,11 +286,37 @@ class ExperienceTweaks extends Forwarder {
         return prefs.getBoolean("enable-gestures", true);
     }
 
-    private String getGestureSwipeUpPref() {
-        return prefs.getString("gestures-swipe-up", "keyboard");
+    public static void updateGestureSwipeUpActionCache(String swipe_up_pref) {
+        switch (swipe_up_pref) {
+            case "history":
+                GESTURE_ACTION_SWIPE_UP = 1;
+                break;
+            case "apps":
+                GESTURE_ACTION_SWIPE_UP = 2;
+                break;
+            case "notifications":
+                GESTURE_ACTION_SWIPE_UP = 3;
+                break;
+            case "keyboard":
+                GESTURE_ACTION_SWIPE_UP = 4;
+                break;
+        }
     }
 
-    private String getGestureSwipeDownPref() {
-        return prefs.getString("gestures-swipe-down", "notifications");
+    public static void updateGestureSwipeDownActionCache(String swipe_down_pref) {
+        switch (swipe_down_pref) {
+            case "history":
+                GESTURE_ACTION_SWIPE_DOWN = 1;
+                break;
+            case "apps":
+                GESTURE_ACTION_SWIPE_DOWN = 2;
+                break;
+            case "notifications":
+                GESTURE_ACTION_SWIPE_DOWN = 3;
+                break;
+            case "keyboard":
+                GESTURE_ACTION_SWIPE_DOWN = 4;
+                break;
+        }
     }
 }

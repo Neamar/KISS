@@ -32,6 +32,7 @@ import java.util.Set;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.forwarder.ExperienceTweaks;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.preference.ExcludePreferenceScreen;
@@ -357,6 +358,12 @@ public class SettingsActivity extends PreferenceActivity implements
             UIColors.clearPrimaryColorCache(this);
         } else if (key.equalsIgnoreCase("number-of-display-elements")) {
             QuerySearcher.clearMaxResultCountCache();
+        } else if (key.equalsIgnoreCase("gestures-swipe-up")) {
+            String swipe_up_pref = prefs.getString("gestures-swipe-up", "apps");
+            ExperienceTweaks.updateGestureSwipeUpActionCache(swipe_up_pref);
+        } else if (key.equalsIgnoreCase("gestures-swipe-down")) {
+            String swipe_down_pref = prefs.getString("gestures-swipe-down", "notifications");
+            ExperienceTweaks.updateGestureSwipeDownActionCache(swipe_down_pref);
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
