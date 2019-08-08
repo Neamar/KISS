@@ -99,10 +99,32 @@ class ExperienceTweaks extends Forwarder {
                 }
                 if (directionY > 0) {
                     // Fling down: display notifications
-                    displayNotificationDrawer();
+                    switch (getGestureSwipeDownPref()) {
+                        case "history":
+                            mainActivity.runTask(new HistorySearcher(mainActivity));
+                            break;
+                        case "apps":
+                            mainActivity.displayKissBar(true);
+                            break;
+                        case "notifications":
+                            displayNotificationDrawer();
+                            break;
+                        case "keyboard":
+                            mainActivity.showKeyboard();
+                            break;
+                    }
                 } else {
-                    // Fling up: display keyboard
-                    mainActivity.showKeyboard();
+                    // Fling up
+                    switch (getGestureSwipeUpPref()) {
+                        case "history": mainActivity.runTask(new HistorySearcher(mainActivity));
+                            break;
+                        case "apps": mainActivity.displayKissBar(true);
+                            break;
+                        case "notifications": displayNotificationDrawer();
+                            break;
+                        case "keyboard": mainActivity.showKeyboard();
+                            break;
+                    }
                 }
                 return true;
             }
@@ -270,4 +292,11 @@ class ExperienceTweaks extends Forwarder {
         return prefs.getBoolean("enable-gestures", true);
     }
 
+    private String getGestureSwipeUpPref() {
+        return prefs.getString("gestures-swipe-up", "keyboard");
+    }
+
+    private String getGestureSwipeDownPref() {
+        return prefs.getString("gestures-swipe-down", "notifications");
+    }
 }
