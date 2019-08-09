@@ -359,11 +359,17 @@ public class SettingsActivity extends PreferenceActivity implements
         } else if (key.equalsIgnoreCase("number-of-display-elements")) {
             QuerySearcher.clearMaxResultCountCache();
         } else if (key.equalsIgnoreCase("gestures-swipe-up")) {
-            String swipe_up_pref = prefs.getString("gestures-swipe-up", "apps");
-            ExperienceTweaks.updateGestureSwipeUpActionCache(swipe_up_pref);
+            String pref_value = prefs.getString("gestures-swipe-up", "apps");
+            ExperienceTweaks.updateGestureActionCache("up", pref_value);
         } else if (key.equalsIgnoreCase("gestures-swipe-down")) {
-            String swipe_down_pref = prefs.getString("gestures-swipe-down", "notifications");
-            ExperienceTweaks.updateGestureSwipeDownActionCache(swipe_down_pref);
+            String pref_value = prefs.getString("gestures-swipe-down", "notifications");
+            ExperienceTweaks.updateGestureActionCache("down", pref_value);
+        } else if (key.equalsIgnoreCase("gestures-swipe-left")) {
+            String pref_value = prefs.getString("gestures-swipe-left", "none");
+            ExperienceTweaks.updateGestureActionCache("left", pref_value);
+        } else if (key.equalsIgnoreCase("gestures-swipe-right")) {
+            String pref_value = prefs.getString("gestures-swipe-right", "none");
+            ExperienceTweaks.updateGestureActionCache("right", pref_value);
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {

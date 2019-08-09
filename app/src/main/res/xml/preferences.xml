@@ -214,7 +214,6 @@
                 android:entries="@array/gestureActionsEntries"
                 android:entryValues="@array/gestureActionsValues"
                 android:key="gestures-swipe-up"
-                android:order="46"
                 android:title="@string/gesture_swipe_up_title" />
             <ListPreference
                 android:defaultValue="notifications"
@@ -222,8 +221,21 @@
                 android:entries="@array/gestureActionsEntries"
                 android:entryValues="@array/gestureActionsValues"
                 android:key="gestures-swipe-down"
-                android:order="46"
                 android:title="@string/gesture_swipe_down_title" />
+            <ListPreference
+                android:defaultValue="none"
+                android:dependency="enable-gestures"
+                android:entries="@array/gestureActionsEntries"
+                android:entryValues="@array/gestureActionsValues"
+                android:key="gestures-swipe-left"
+                android:title="@string/gesture_swipe_left_title" />
+            <ListPreference
+                android:defaultValue="none"
+                android:dependency="enable-gestures"
+                android:entries="@array/gestureActionsEntries"
+                android:entryValues="@array/gestureActionsValues"
+                android:key="gestures-swipe-right"
+                android:title="@string/gesture_swipe_right_title" />
         </PreferenceScreen>
         <PreferenceScreen
             android:key="wallpaper-holder"

@@ -51,6 +51,8 @@ public class ExperienceTweaks extends Forwarder {
     private final GestureDetector gd;
     private static byte GESTURE_ACTION_SWIPE_UP = 2;       // defaulting to 2 (all apps)
     private static byte GESTURE_ACTION_SWIPE_DOWN = 3;     // defaulting to 3 (notifications drawer)
+    private static byte GESTURE_ACTION_SWIPE_LEFT = 0;       // defaulting to 0 (no action)
+    private static byte GESTURE_ACTION_SWIPE_RIGHT = 0;     // defaulting to 0 (no action)
 
     ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
@@ -93,32 +95,62 @@ public class ExperienceTweaks extends Forwarder {
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 float directionY = e2.getY() - e1.getY();
                 float directionX = e2.getX() - e1.getX();
-                if (Math.abs(directionX) > Math.abs(directionY)) {
-                    return false;
-                }
                 if (!isGesturesEnabled()) {
                     return false;
                 }
-                if (directionY > 0) {
-                    // Swipe down
-                    if (GESTURE_ACTION_SWIPE_DOWN == 1)
-                        mainActivity.runTask(new HistorySearcher(mainActivity));
-                    else if (GESTURE_ACTION_SWIPE_DOWN == 2)
-                        mainActivity.displayKissBar(true);
-                    else if (GESTURE_ACTION_SWIPE_DOWN == 3)
-                        displayNotificationDrawer();
-                    else
-                        mainActivity.showKeyboard();
+
+                if (Math.abs(directionX) > Math.abs(directionY)) {
+                    if (directionX > 0) {
+                        // Swipe right
+                        if (GESTURE_ACTION_SWIPE_RIGHT == 1)
+                            mainActivity.runTask(new HistorySearcher(mainActivity));
+                        else if (GESTURE_ACTION_SWIPE_RIGHT == 2)
+                            mainActivity.displayKissBar(true);
+                        else if (GESTURE_ACTION_SWIPE_RIGHT == 3)
+                            displayNotificationDrawer();
+                        else if (GESTURE_ACTION_SWIPE_RIGHT == 4)
+                            mainActivity.showKeyboard();
+                        else
+                            return false;
+                    } else {
+                        // Swipe left
+                        if (GESTURE_ACTION_SWIPE_LEFT == 1)
+                            mainActivity.runTask(new HistorySearcher(mainActivity));
+                        else if (GESTURE_ACTION_SWIPE_LEFT == 2)
+                            mainActivity.displayKissBar(true);
+                        else if (GESTURE_ACTION_SWIPE_LEFT == 3)
+                            displayNotificationDrawer();
+                        else if (GESTURE_ACTION_SWIPE_LEFT == 4)
+                            mainActivity.showKeyboard();
+                        else
+                            return false;
+                    }
                 } else {
-                    // Swipe up
-                    if (GESTURE_ACTION_SWIPE_UP == 1)
-                        mainActivity.runTask(new HistorySearcher(mainActivity));
-                    else if (GESTURE_ACTION_SWIPE_UP == 2)
-                        mainActivity.displayKissBar(true);
-                    else if (GESTURE_ACTION_SWIPE_UP == 3)
-                        displayNotificationDrawer();
-                    else
-                        mainActivity.showKeyboard();
+                    if (directionY > 0) {
+                        // Swipe down
+                        if (GESTURE_ACTION_SWIPE_DOWN == 1)
+                            mainActivity.runTask(new HistorySearcher(mainActivity));
+                        else if (GESTURE_ACTION_SWIPE_DOWN == 2)
+                            mainActivity.displayKissBar(true);
+                        else if (GESTURE_ACTION_SWIPE_DOWN == 3)
+                            displayNotificationDrawer();
+                        else if (GESTURE_ACTION_SWIPE_DOWN == 4)
+                            mainActivity.showKeyboard();
+                        else
+                            return false;
+                    } else {
+                        // Swipe up
+                        if (GESTURE_ACTION_SWIPE_UP == 1)
+                            mainActivity.runTask(new HistorySearcher(mainActivity));
+                        else if (GESTURE_ACTION_SWIPE_UP == 2)
+                            mainActivity.displayKissBar(true);
+                        else if (GESTURE_ACTION_SWIPE_UP == 3)
+                            displayNotificationDrawer();
+                        else if (GESTURE_ACTION_SWIPE_UP == 4)
+                            mainActivity.showKeyboard();
+                        else
+                            return false;
+                    }
                 }
                 return true;
             }
@@ -286,37 +318,38 @@ public class ExperienceTweaks extends Forwarder {
         return prefs.getBoolean("enable-gestures", true);
     }
 
-    public static void updateGestureSwipeUpActionCache(String swipe_up_pref) {
-        switch (swipe_up_pref) {
-            case "history":
-                GESTURE_ACTION_SWIPE_UP = 1;
+    public static void updateGestureActionCache(String direction, String pref_value) {
+        byte val = gestureActionLookup(pref_value);
+
+        switch (direction) {
+            case "up":
+                GESTURE_ACTION_SWIPE_UP = val;
                 break;
-            case "apps":
-                GESTURE_ACTION_SWIPE_UP = 2;
+            case "down":
+                GESTURE_ACTION_SWIPE_DOWN = val;
                 break;
-            case "notifications":
-                GESTURE_ACTION_SWIPE_UP = 3;
+            case "left":
+                GESTURE_ACTION_SWIPE_LEFT = val;
                 break;
-            case "keyboard":
-                GESTURE_ACTION_SWIPE_UP = 4;
+            case "right":
+                GESTURE_ACTION_SWIPE_RIGHT = val;
                 break;
         }
     }
 
-    public static void updateGestureSwipeDownActionCache(String swipe_down_pref) {
-        switch (swipe_down_pref) {
+    public static byte gestureActionLookup(String description) {
+        switch (description) {
+            case "none":
+                return 0;
             case "history":
-                GESTURE_ACTION_SWIPE_DOWN = 1;
-                break;
+                return 1;
             case "apps":
-                GESTURE_ACTION_SWIPE_DOWN = 2;
-                break;
+                return 2;
             case "notifications":
-                GESTURE_ACTION_SWIPE_DOWN = 3;
-                break;
+                return 3;
             case "keyboard":
-                GESTURE_ACTION_SWIPE_DOWN = 4;
-                break;
+                return 4;
         }
+        return 0;
     }
 }
