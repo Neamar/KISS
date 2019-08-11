@@ -230,8 +230,10 @@ public class SettingsActivity extends PreferenceActivity implements
 
         removeSearchProviderSelect();
         removeSearchProviderDelete();
+        removeSearchProviderDefault();
         addCustomSearchProvidersSelect(prefs);
         addCustomSearchProvidersDelete(prefs);
+        addDefaultSearchProvider(prefs);
     }
 
     private void removeSearchProviderSelect() {
@@ -245,6 +247,14 @@ public class SettingsActivity extends PreferenceActivity implements
     private void removeSearchProviderDelete() {
         PreferenceGroup category = (PreferenceGroup) findPreference("providers");
         Preference pref = findPreference("deleting-search-providers-names");
+        if (pref != null) {
+            category.removePreference(pref);
+        }
+    }
+
+    private void removeSearchProviderDefault() {
+        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        Preference pref = findPreference("default-search-provider");
         if (pref != null) {
             category.removePreference(pref);
         }
@@ -328,6 +338,30 @@ public class SettingsActivity extends PreferenceActivity implements
         category.addPreference(multiPreference);
     }
 
+    private void addDefaultSearchProvider(final SharedPreferences prefs) {
+        ListPreference standard_pref = new ListPreference(this);
+
+        // Get selected providers to choose from
+        Set<String> selectedProviders = prefs.getStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google")));
+        String[] selectedProviderArray = new String[selectedProviders.size()];
+        int pos = 0;
+        //get names of search providers
+        for (String searchProvider : selectedProviders) {
+            selectedProviderArray[pos++] = searchProvider.split("\\|")[0];
+        }
+
+        String search_providers_title = this.getString(R.string.search_provider_default);
+        standard_pref.setTitle(search_providers_title);
+        standard_pref.setDialogTitle(search_providers_title);
+        standard_pref.setKey("default-search-provider");
+        standard_pref.setEntries(selectedProviderArray);
+        standard_pref.setEntryValues(selectedProviderArray);
+        standard_pref.setDefaultValue("Google"); // Google is standard on install
+
+        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        category.addPreference(standard_pref);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -343,6 +377,8 @@ public class SettingsActivity extends PreferenceActivity implements
             if (provider != null) {
                 provider.reload();
             }
+            removeSearchProviderDefault(); // in order to refresh default search engine choices
+            addDefaultSearchProvider(prefs);
         } else if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
         } else if (key.equalsIgnoreCase("enable-phone-history")) {
@@ -357,6 +393,11 @@ public class SettingsActivity extends PreferenceActivity implements
             UIColors.clearPrimaryColorCache(this);
         } else if (key.equalsIgnoreCase("number-of-display-elements")) {
             QuerySearcher.clearMaxResultCountCache();
+        } else if (key.equalsIgnoreCase("default-search-provider")) {
+            final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getSearchProvider();
+            if (provider != null) {
+                provider.reload();
+            }
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
