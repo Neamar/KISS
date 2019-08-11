@@ -46,11 +46,17 @@ public class SearchProvider extends SimpleProvider {
         Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google")));
         Set<String> availableProviders = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(context));
 
+        // Get default search engine
+        String default_search_engine = PreferenceManager.getDefaultSharedPreferences(context).getString("default-search-provider", "Google");
+
         for (String searchProvider : selectedProviders) {
             String url = getProviderUrl(availableProviders, searchProvider);
             SearchPojo pojo = new SearchPojo("", url, SearchPojo.SEARCH_QUERY);
             // Super low relevance, should never be displayed before anything
             pojo.relevance = -500;
+            if (searchProvider == default_search_engine)
+                pojo.relevance = -499;
+
             pojo.setName(searchProvider, false);
             if (pojo.url != null) {
                 searchProviders.add(pojo);
