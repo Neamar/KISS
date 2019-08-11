@@ -27,8 +27,8 @@ import androidx.annotation.NonNull;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.SearchProvider;
@@ -225,7 +225,7 @@ public class SettingsActivity extends PreferenceActivity implements
             // So, when null, we know it's the first time opening this setting and we can write the default value.
             // note: other preferences are initialized automatically in MainActivity.onCreate() from the preferences XML,
             // but this preference isn't defined in the XML so can't be initialized that easily.
-            prefs.edit().putStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google"))).apply();
+            prefs.edit().putStringSet("selected-search-provider-names", new TreeSet<>(Collections.singletonList("Google"))).apply();
         }
 
         removeSearchProviderSelect();
@@ -308,7 +308,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 Set<String> searchProvidersToDelete = (Set<String>) newValue;
                 Set<String> availableSearchProviders = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(SettingsActivity.this));
 
-                Set<String> updatedProviders = new HashSet<>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(SettingsActivity.this)));
+                Set<String> updatedProviders = new TreeSet<>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(SettingsActivity.this)));
 
                 for (String searchProvider : availableSearchProviders) {
                     for (String providerToDelete : searchProvidersToDelete) {
@@ -342,7 +342,7 @@ public class SettingsActivity extends PreferenceActivity implements
         ListPreference standard_pref = new ListPreference(this);
 
         // Get selected providers to choose from
-        Set<String> selectedProviders = prefs.getStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google")));
+        Set<String> selectedProviders = new TreeSet<>(prefs.getStringSet("selected-search-provider-names", new TreeSet<>(Collections.singletonList("Google"))));
         String[] selectedProviderArray = new String[selectedProviders.size()];
         int pos = 0;
         //get names of search providers
