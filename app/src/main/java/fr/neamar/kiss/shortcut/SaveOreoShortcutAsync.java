@@ -2,17 +2,15 @@ package fr.neamar.kiss.shortcut;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherApps;
-import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.UserHandle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -62,13 +60,22 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
         List<ShortcutInfo> shortcuts;
 
         try {
+
+            // fetch list of all shortcuts
             shortcuts = launcherApps.getShortcuts(shortcutQuery, UserHandle.getUserHandleForUid(applicationInfo.get().uid));
+
         } catch (SecurityException e) {
+
             e.printStackTrace();
             MainActivity mainActivity = (MainActivity) context.get();
             if (mainActivity != null) {
-                mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, R.string.cant_pin_shortcut, Toast.LENGTH_SHORT).show());
+                mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show());
+
+                // set flag to true, so we can rerun this class
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mainActivity);
+                prefs.edit().putBoolean("firstRunShortcuts", true).apply();
             }
+
             cancel(true);
             return null;
         }
@@ -89,8 +96,7 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
                 pojo.setName(shortcutInfo.getLongLabel().toString());
             } else {
                 Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
-                cancel(true);
-                return null;
+               continue;
             }
 
             final DataHandler dataHandler = this.dataHandler.get();
@@ -99,7 +105,7 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
                 return null;
             }
 
-            // Add shortcut to the DataHandler
+            // add shortcut to the DataHandler
             dataHandler.addShortcut(pojo);
         }
 
@@ -110,7 +116,7 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
     protected void onPostExecute(@NonNull Boolean success) {
         final Context context = this.context.get();
         if (context != null && success) {
-            Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_LONG).show();
 
             if (this.dataHandler.get().getShortcutsProvider() != null) {
                 this.dataHandler.get().getShortcutsProvider().reload();
