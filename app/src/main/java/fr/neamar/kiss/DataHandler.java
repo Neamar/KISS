@@ -1,6 +1,7 @@
 package fr.neamar.kiss;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -9,10 +10,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.graphics.Bitmap.CompressFormat;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -49,12 +48,8 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
-import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
-
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -442,18 +437,19 @@ public class DataHandler extends BroadcastReceiver
         return true;
     }
 
-    // TODO this could be cleaned up...
     @TargetApi(Build.VERSION_CODES.O)
     public boolean addShortcut(String packageName){
-        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 
-        LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
-        shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
-        shortcutQuery.setPackage(packageName);
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return false;
+        }
+
+        Activity activity = (Activity) context;
+
 
         List<ShortcutInfo> shortcuts;
         try {
-            shortcuts = launcherApps.getShortcuts(shortcutQuery, android.os.UserHandle.getUserHandleForUid(context.getApplicationInfo().uid));
+            shortcuts = ShortcutUtil.getShortcut(activity, packageName);
         } catch (SecurityException e) {
             e.printStackTrace();
             Toast.makeText(context, R.string.cant_pin_shortcut, Toast.LENGTH_SHORT).show();
@@ -461,24 +457,11 @@ public class DataHandler extends BroadcastReceiver
         }
 
         for (ShortcutInfo shortcutInfo : shortcuts) {
-
-            // id isn't used after being saved in the DB.
-            String id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
-
-            final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-            ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
-                    DrawableUtils.drawableToBitmap(iconDrawable));
-
-            // Name can be either in shortLabel or longLabel
-            if (shortcutInfo.getShortLabel() != null) {
-                pojo.setName(shortcutInfo.getShortLabel().toString());
-            } else if (shortcutInfo.getLongLabel() != null) {
-                pojo.setName(shortcutInfo.getLongLabel().toString());
-            } else {
-                Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
+            // Create Pojo
+            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(activity, shortcutInfo);
+            if(pojo == null){
                 continue;
             }
-
             // Add shortcut to the DataHandler
             addShortcut(pojo);
         }
@@ -502,6 +485,10 @@ public class DataHandler extends BroadcastReceiver
     }
 
     public void removeShortcuts(String packageName) {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return;
+        }
+
         DBHelper.removeShortcuts(this.context, packageName);
 
         if (this.getShortcutsProvider() != null) {

@@ -1,17 +1,15 @@
 package fr.neamar.kiss.shortcut;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.UserHandle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,14 +19,9 @@ import java.util.List;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
-import fr.neamar.kiss.utils.DrawableUtils;
-
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
+import fr.neamar.kiss.utils.ShortcutUtil;
 
 @TargetApi(Build.VERSION_CODES.O)
 public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
@@ -48,33 +41,23 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
 
-        final LauncherApps launcherApps = this.launcherApps.get();
-        if (launcherApps == null) {
+        Activity activity = (Activity) context.get();
+        if(activity == null){
             cancel(true);
             return null;
         }
 
-        LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
-        shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
-
         List<ShortcutInfo> shortcuts;
-
         try {
-
-            // fetch list of all shortcuts
-            shortcuts = launcherApps.getShortcuts(shortcutQuery, UserHandle.getUserHandleForUid(applicationInfo.get().uid));
-
+            // Fetch list of all shortcuts
+            shortcuts = ShortcutUtil.getAllShortcuts(activity);
         } catch (SecurityException e) {
-
             e.printStackTrace();
-            MainActivity mainActivity = (MainActivity) context.get();
-            if (mainActivity != null) {
-                mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show());
+            activity.runOnUiThread(() -> Toast.makeText(activity, R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show());
 
-                // set flag to true, so we can rerun this class
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mainActivity);
-                prefs.edit().putBoolean("firstRunShortcuts", true).apply();
-            }
+            // set flag to true, so we can rerun this class
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+            prefs.edit().putBoolean("firstRunShortcuts", true).apply();
 
             cancel(true);
             return null;
@@ -82,30 +65,18 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
 
         for (ShortcutInfo shortcutInfo : shortcuts) {
 
-            // id isn't used after being saved in the DB.
-            String id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
-
-            final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-            ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
-                    DrawableUtils.drawableToBitmap(iconDrawable));
-
-            // Name can be either in shortLabel or longLabel
-            if (shortcutInfo.getShortLabel() != null) {
-                pojo.setName(shortcutInfo.getShortLabel().toString());
-            } else if (shortcutInfo.getLongLabel() != null) {
-                pojo.setName(shortcutInfo.getLongLabel().toString());
-            } else {
-                Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
-               continue;
-            }
-
             final DataHandler dataHandler = this.dataHandler.get();
             if (dataHandler == null) {
                 cancel(true);
                 return null;
             }
 
-            // add shortcut to the DataHandler
+            // Create Pojo
+            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(activity, shortcutInfo);
+            if(pojo == null){
+                continue;
+            }
+            // Add shortcut to the DataHandler
             dataHandler.addShortcut(pojo);
         }
 
