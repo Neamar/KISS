@@ -24,7 +24,7 @@ import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
 @TargetApi(Build.VERSION_CODES.O)
-public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
+public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
     private final WeakReference<Context> context;
     private final WeakReference<DataHandler> dataHandler;
 
@@ -36,8 +36,8 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
 
-        Activity activity = (Activity) context.get();
-        if(activity == null){
+        Context context =  this.context.get();
+        if(context == null){
             cancel(true);
             return null;
         }
@@ -45,14 +45,16 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
         List<ShortcutInfo> shortcuts;
         try {
             // Fetch list of all shortcuts
-            shortcuts = ShortcutUtil.getAllShortcuts(activity);
+            shortcuts = ShortcutUtil.getAllShortcuts(context);
         } catch (SecurityException e) {
             e.printStackTrace();
-            activity.runOnUiThread(() -> Toast.makeText(activity, R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show());
 
-            // set flag to true, so we can rerun this class
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-            prefs.edit().putBoolean("firstRunShortcuts", true).apply();
+            // Publish progress (display toast)
+            publishProgress(-1);
+
+            // Set flag to true, so we can rerun this class
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            prefs.edit().putBoolean("first-run-shortcuts", true).apply();
 
             cancel(true);
             return null;
@@ -67,7 +69,7 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
             }
 
             // Create Pojo
-            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(activity, shortcutInfo);
+            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo);
             if(pojo == null){
                 continue;
             }
@@ -76,6 +78,13 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
         }
 
         return true;
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... progress) {
+        if(progress[0] == -1){
+            Toast.makeText(context.get(), R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

@@ -1,7 +1,6 @@
 package fr.neamar.kiss.utils;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
@@ -12,6 +11,7 @@ import android.util.Log;
 
 import java.util.List;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.shortcut.SaveOreoShortcutAsync;
 
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
@@ -21,14 +21,20 @@ public class ShortcutUtil {
 
     final static private String TAG = "ShortcutUtil";
 
-    @TargetApi(Build.VERSION_CODES.O)
-    public static List<ShortcutInfo> getAllShortcuts(Activity activity) {
-        return getShortcut(activity, null);
+    public static void buildShortcuts(Context context){
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                new SaveOreoShortcutAsync(context).execute();
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    public static List<ShortcutInfo> getShortcut(Activity activity, String packageName) {
-        LauncherApps launcherApps = (LauncherApps) activity.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+    public static List<ShortcutInfo> getAllShortcuts(Context context) {
+        return getShortcut(context, null);
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    public static List<ShortcutInfo> getShortcut(Context context, String packageName) {
+        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 
         LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
         shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
@@ -36,13 +42,13 @@ public class ShortcutUtil {
         if(!TextUtils.isEmpty(packageName)){
             shortcutQuery.setPackage(packageName);
         }
-        return launcherApps.getShortcuts(shortcutQuery, android.os.UserHandle.getUserHandleForUid(activity.getApplicationInfo().uid));
+        return launcherApps.getShortcuts(shortcutQuery, android.os.UserHandle.getUserHandleForUid(context.getApplicationInfo().uid));
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    public static ShortcutsPojo createShortcutPojo(Activity activity, ShortcutInfo shortcutInfo){
+    public static ShortcutsPojo createShortcutPojo(Context context, ShortcutInfo shortcutInfo){
 
-        LauncherApps launcherApps = (LauncherApps) activity.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
         // id isn't used after being saved in the DB.
         String id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
 

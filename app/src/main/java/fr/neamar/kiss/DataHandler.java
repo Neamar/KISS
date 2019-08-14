@@ -48,6 +48,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.shortcut.SaveOreoShortcutAsync;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -124,8 +125,16 @@ public class DataHandler extends BroadcastReceiver
             String providerName = key.substring(7);
             if (PROVIDER_NAMES.contains(providerName)) {
                 if (sharedPreferences.getBoolean(key, true)) {
+                    if("enable-shortcuts".equals(key)){
+                        // Build shortcuts
+                        ShortcutUtil.buildShortcuts(context);
+                    }
                     this.connectToProvider(providerName, 0);
                 } else {
+                    if("enable-shortcuts".equals(key)){
+                        // Delete shortcuts
+                        DBHelper.removeAllShortcuts(context);
+                    }
                     this.disconnectFromProvider(providerName);
                 }
             }
@@ -444,12 +453,9 @@ public class DataHandler extends BroadcastReceiver
             return false;
         }
 
-        Activity activity = (Activity) context;
-
-
         List<ShortcutInfo> shortcuts;
         try {
-            shortcuts = ShortcutUtil.getShortcut(activity, packageName);
+            shortcuts = ShortcutUtil.getShortcut(context, packageName);
         } catch (SecurityException e) {
             e.printStackTrace();
             Toast.makeText(context, R.string.cant_pin_shortcut, Toast.LENGTH_SHORT).show();
@@ -458,7 +464,7 @@ public class DataHandler extends BroadcastReceiver
 
         for (ShortcutInfo shortcutInfo : shortcuts) {
             // Create Pojo
-            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(activity, shortcutInfo);
+            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo);
             if(pojo == null){
                 continue;
             }
