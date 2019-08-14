@@ -212,9 +212,9 @@ public class DBHelper {
         db.insert("shortcuts", null, values);
     }
 
-    public static void removeShortcut(Context context, String name) {
+    public static void removeShortcut(Context context, String intentUri) {
         SQLiteDatabase db = getDatabase(context);
-        db.delete("shortcuts", "name = ?", new String[]{name});
+        db.delete("shortcuts", "intent_uri = ?", new String[]{intentUri});
     }
 
 

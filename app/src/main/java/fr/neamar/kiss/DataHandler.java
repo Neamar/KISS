@@ -476,14 +476,14 @@ public class DataHandler extends BroadcastReceiver
                 pojo.setName(shortcutInfo.getLongLabel().toString());
             } else {
                 Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
-                return false;
+                continue;
             }
 
             // Add shortcut to the DataHandler
             addShortcut(pojo);
         }
 
-        if (this.getShortcutsProvider() != null) {
+        if (!shortcuts.isEmpty() && this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
         return true;
@@ -494,7 +494,7 @@ public class DataHandler extends BroadcastReceiver
     }
 
     public void removeShortcut(ShortcutsPojo shortcut) {
-        DBHelper.removeShortcut(this.context, shortcut.getName());
+        DBHelper.removeShortcut(this.context, shortcut.intentUri);
 
         if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
