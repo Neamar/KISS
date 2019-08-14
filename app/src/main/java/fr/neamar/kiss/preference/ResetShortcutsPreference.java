@@ -2,6 +2,7 @@ package fr.neamar.kiss.preference;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.widget.Toast;
@@ -21,10 +22,11 @@ public class ResetShortcutsPreference extends DialogPreference {
         super.onClick(dialog, which);
         if (which == DialogInterface.BUTTON_POSITIVE) {
 
-            Toast.makeText(getContext(), R.string.shortcuts_reset_done_desc, Toast.LENGTH_LONG).show();
-
-            DBHelper.removeAllShortcuts(getContext());
-            new SaveOreoShortcutAsync(getContext()).execute();
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                DBHelper.removeAllShortcuts(getContext());
+                new SaveOreoShortcutAsync(getContext()).execute();
+                Toast.makeText(getContext(), R.string.shortcuts_reset_done_desc, Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
