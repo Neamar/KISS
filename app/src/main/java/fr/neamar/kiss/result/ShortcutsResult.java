@@ -38,6 +38,10 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
+
 public class ShortcutsResult extends Result {
     private final ShortcutsPojo shortcutPojo;
 
@@ -161,7 +165,7 @@ public class ShortcutsResult extends Result {
         LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
         query.setPackage(shortcutPojo.packageName);
         query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
-        query.setQueryFlags(LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED);
+        query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
         List<UserHandle> userHandles = launcherApps.getProfiles();
 

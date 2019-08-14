@@ -35,7 +35,7 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
             }
         }
 
-        if ("android.intent.action.PACKAGE_REMOVED".equals(action) && !replacing) {
+        if ("android.intent.action.PACKAGE_REMOVED".equals(action)) {
             // Remove all installed shortcuts
             KissApplication.getApplication(ctx).getDataHandler().removeShortcuts(packageName);
             KissApplication.getApplication(ctx).getDataHandler().removeFromExcluded(packageName);

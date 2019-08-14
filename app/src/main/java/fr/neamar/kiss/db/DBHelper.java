@@ -263,7 +263,13 @@ public class DBHelper {
         cursor.close();
 
         //remove shortcuts
-        db.delete("shortcuts", "intent_uri LIKE ?", new String[]{"%" + packageName + "%"});
+        db.delete("shortcuts", "package LIKE ?", new String[]{"%" + packageName + "%"});
+    }
+
+    public static void removeAllShortcuts(Context context) {
+        SQLiteDatabase db = getDatabase(context);
+        // delete whole table
+        db.delete("shortcuts", null, null);
     }
 
     /**

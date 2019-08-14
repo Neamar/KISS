@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import android.annotation.TargetApi;
 import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -8,12 +9,20 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.LauncherApps;
+import android.content.pm.ShortcutInfo;
+import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,7 +52,12 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
+
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -427,11 +441,54 @@ public class DataHandler extends BroadcastReceiver
 
         DBHelper.insertShortcut(this.context, record);
 
+        Log.d(TAG, "Shortcut " + shortcut.id + " added.");
+        return true;
+    }
+
+    // TODO this could be cleaned up...
+    @TargetApi(Build.VERSION_CODES.O)
+    public boolean addShortcut(String packageName){
+        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+
+        LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
+        shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
+        shortcutQuery.setPackage(packageName);
+
+        List<ShortcutInfo> shortcuts;
+        try {
+            shortcuts = launcherApps.getShortcuts(shortcutQuery, android.os.UserHandle.getUserHandleForUid(context.getApplicationInfo().uid));
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            Toast.makeText(context, R.string.cant_pin_shortcut, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        for (ShortcutInfo shortcutInfo : shortcuts) {
+
+            // id isn't used after being saved in the DB.
+            String id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
+
+            final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
+            ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
+                    DrawableUtils.drawableToBitmap(iconDrawable));
+
+            // Name can be either in shortLabel or longLabel
+            if (shortcutInfo.getShortLabel() != null) {
+                pojo.setName(shortcutInfo.getShortLabel().toString());
+            } else if (shortcutInfo.getLongLabel() != null) {
+                pojo.setName(shortcutInfo.getLongLabel().toString());
+            } else {
+                Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
+                return false;
+            }
+
+            // Add shortcut to the DataHandler
+            addShortcut(pojo);
+        }
+
         if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
-
-        Log.d(TAG, "Shortcut " + shortcut.id + " added.");
         return true;
     }
 
@@ -504,6 +561,9 @@ public class DataHandler extends BroadcastReceiver
         // Ensure it's removed from favorites too
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         dataHandler.removeFromFavorites(app.id);
+
+        //Exclude shortcuts for this app
+        removeShortcuts(app.packageName);
     }
 
     public void removeFromExcluded(AppPojo app) {
@@ -513,6 +573,9 @@ public class DataHandler extends BroadcastReceiver
         excluded.remove(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
         app.setExcluded(false);
+
+        //Add shortcuts for this app
+        addShortcut(app.packageName);
     }
 
     public void removeFromExcluded(String packageName) {
