@@ -50,69 +50,58 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
 
-        //ShortcutManager shortcutManager = applicationWeakReference.get().getSystemService(ShortcutManager.class);
-
-        //Intent shortcutIntent = new Intent(Intent.ACTION_CREATE_SHORTCUT);
-        //List<ResolveInfo> shortcutAvailablePackages = packageManager.get().queryIntentActivities(shortcutIntent, 0);
-
         final LauncherApps launcherApps = this.launcherApps.get();
         if (launcherApps == null) {
             cancel(true);
             return null;
         }
 
-        //for (ResolveInfo resolveInfo: shortcutAvailablePackages) {
+        LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
+        shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
-            LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
-            shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
-            //shortcutQuery.setPackage("com.android.contacts");
+        List<ShortcutInfo> shortcuts;
 
-            List<ShortcutInfo> shortcuts;
+        try {
+            shortcuts = launcherApps.getShortcuts(shortcutQuery, UserHandle.getUserHandleForUid(applicationInfo.get().uid));
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            MainActivity mainActivity = (MainActivity) context.get();
+            if (mainActivity != null) {
+                mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, R.string.cant_pin_shortcut, Toast.LENGTH_SHORT).show());
+            }
+            cancel(true);
+            return null;
+        }
 
-            try {
-               shortcuts = launcherApps.getShortcuts(shortcutQuery, UserHandle.getUserHandleForUid(applicationInfo.get().uid));
-            } catch (SecurityException e) {
-                e.printStackTrace();
-                MainActivity mainActivity = (MainActivity) context.get();
-                if(mainActivity != null) {
-                    mainActivity.runOnUiThread(() -> Toast.makeText(mainActivity, R.string.cant_pin_shortcut, Toast.LENGTH_SHORT).show());
-                }
+        for (ShortcutInfo shortcutInfo : shortcuts) {
+
+            // id isn't used after being saved in the DB.
+            String id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
+
+            final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
+            ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
+                    DrawableUtils.drawableToBitmap(iconDrawable));
+
+            // Name can be either in shortLabel or longLabel
+            if (shortcutInfo.getShortLabel() != null) {
+                pojo.setName(shortcutInfo.getShortLabel().toString());
+            } else if (shortcutInfo.getLongLabel() != null) {
+                pojo.setName(shortcutInfo.getLongLabel().toString());
+            } else {
+                Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
                 cancel(true);
                 return null;
             }
 
-            //shortcutManager.updateShortcuts(shortcuts);
-
-            for (ShortcutInfo shortcutInfo : shortcuts) {
-
-                // id isn't used after being saved in the DB.
-                String id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
-
-                final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-                ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
-                        DrawableUtils.drawableToBitmap(iconDrawable));
-
-                // Name can be either in shortLabel or longLabel
-                if (shortcutInfo.getShortLabel() != null) {
-                    pojo.setName(shortcutInfo.getShortLabel().toString());
-                } else if (shortcutInfo.getLongLabel() != null) {
-                    pojo.setName(shortcutInfo.getLongLabel().toString());
-                } else {
-                    Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
-                    cancel(true);
-                    return null;
-                }
-
-                final DataHandler dataHandler = this.dataHandler.get();
-                if (dataHandler == null) {
-                    cancel(true);
-                    return null;
-                }
-
-                // Add shortcut to the DataHandler
-                dataHandler.addShortcut(pojo);
+            final DataHandler dataHandler = this.dataHandler.get();
+            if (dataHandler == null) {
+                cancel(true);
+                return null;
             }
-        //}
+
+            // Add shortcut to the DataHandler
+            dataHandler.addShortcut(pojo);
+        }
 
         return true;
     }
@@ -123,7 +112,7 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
         if (context != null && success) {
             Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
 
-            if(this.dataHandler.get().getShortcutsProvider() != null){
+            if (this.dataHandler.get().getShortcutsProvider() != null) {
                 this.dataHandler.get().getShortcutsProvider().reload();
             }
         }
