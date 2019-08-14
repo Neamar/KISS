@@ -25,17 +25,12 @@ import fr.neamar.kiss.utils.ShortcutUtil;
 
 @TargetApi(Build.VERSION_CODES.O)
 public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
-    final static private String TAG = "SaveOreoShortcutAsync";
     private final WeakReference<Context> context;
     private final WeakReference<DataHandler> dataHandler;
-    private final WeakReference<LauncherApps> launcherApps;
-    private final WeakReference<ApplicationInfo> applicationInfo;
 
     public SaveOreoShortcutAsync(@NonNull Context context) {
         this.context = new WeakReference<>(context);
         this.dataHandler = new WeakReference<>(KissApplication.getApplication(context).getDataHandler());
-        this.applicationInfo = new WeakReference<>(KissApplication.getApplication(context).getApplicationInfo());
-        launcherApps = new WeakReference<>((LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE));
     }
 
     @Override
