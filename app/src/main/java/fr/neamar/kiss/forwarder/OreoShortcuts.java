@@ -10,8 +10,7 @@ public class OreoShortcuts extends Forwarder {
 
     void onCreate() {
         // Shortcuts in Android O
-        if (prefs.getBoolean("first-run-shortcuts", true) &&
-                prefs.getBoolean("enable-shortcuts", true)) {
+        if (prefs.getBoolean("first-run-shortcuts", true)) {
 
             ShortcutUtil.buildShortcuts(mainActivity);
             // Set flag to false

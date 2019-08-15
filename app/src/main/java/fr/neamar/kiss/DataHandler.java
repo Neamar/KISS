@@ -437,7 +437,7 @@ public class DataHandler extends BroadcastReceiver
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    public boolean addShortcut(String packageName){
+    public boolean addShortcut(String packageName) {
 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return false;
@@ -454,7 +454,7 @@ public class DataHandler extends BroadcastReceiver
         for (ShortcutInfo shortcutInfo : shortcuts) {
             // Create Pojo
             ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo);
-            if(pojo == null){
+            if (pojo == null) {
                 continue;
             }
             // Add shortcut to the DataHandler
@@ -490,7 +490,7 @@ public class DataHandler extends BroadcastReceiver
 
         // Remove all shortcuts from favorites for given package name
         List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, packageName);
-        for (ShortcutRecord shortcut: shortcutsList) {
+        for (ShortcutRecord shortcut : shortcutsList) {
             String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
             removeFromFavorites(id);
         }
@@ -528,11 +528,13 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.add(app.id);
 
-        // Add all shortcuts for given package name to being excluded from history
-        List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
-        for (ShortcutRecord shortcut: shortcutsList) {
-            String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
-            excluded.add(id);
+        if (ShortcutUtil.areShortcutsEnabled(context)) {
+            // Add all shortcuts for given package name to being excluded from history
+            List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
+            for (ShortcutRecord shortcut : shortcutsList) {
+                String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
+                excluded.add(id);
+            }
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
@@ -545,11 +547,13 @@ public class DataHandler extends BroadcastReceiver
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.remove(app.id);
 
-        // Remove all shortcuts for given package name to being included in history
-        List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
-        for (ShortcutRecord shortcut: shortcutsList) {
-            String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
-            excluded.remove(id);
+        if (ShortcutUtil.areShortcutsEnabled(context)) {
+            // Add all shortcuts for given package name to being included in history
+            List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
+            for (ShortcutRecord shortcut : shortcutsList) {
+                String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
+                excluded.remove(id);
+            }
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();

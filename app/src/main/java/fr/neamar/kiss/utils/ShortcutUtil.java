@@ -2,11 +2,13 @@ package fr.neamar.kiss.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserManager;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -23,8 +25,15 @@ public class ShortcutUtil {
 
     final static private String TAG = "ShortcutUtil";
 
+    public static boolean areShortcutsEnabled(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+                prefs.getBoolean("enable-shortcuts", true);
+
+    }
+
     public static void buildShortcuts(Context context){
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (areShortcutsEnabled(context)) {
                 new SaveOreoShortcutAsync(context).execute();
         }
     }
