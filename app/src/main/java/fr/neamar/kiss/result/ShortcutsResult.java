@@ -252,6 +252,7 @@ public class ShortcutsResult extends Result {
     private void launchUninstall(Context context, ShortcutsPojo shortcutPojo) {
         DataHandler dh = KissApplication.getApplication(context).getDataHandler();
         if (dh != null) {
+            dh.removeFromFavorites(shortcutPojo.id);
             dh.removeShortcut(shortcutPojo);
         }
     }
