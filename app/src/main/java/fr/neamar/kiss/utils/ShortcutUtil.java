@@ -6,11 +6,9 @@ import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.UserManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.shortcut.SaveOreoShortcutAsync;
@@ -36,11 +34,7 @@ public class ShortcutUtil {
 
     @TargetApi(Build.VERSION_CODES.O)
     public static List<ShortcutInfo> getShortcut(Context context, String packageName) {
-
-        List<ShortcutInfo> shortcutList = new ArrayList<>();
-
         LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-        UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
 
         LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
         shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
@@ -49,14 +43,7 @@ public class ShortcutUtil {
             shortcutQuery.setPackage(packageName);
         }
 
-        // Handle multi-profile
-        for (android.os.UserHandle profile : manager.getUserProfiles()) {
-            shortcutList.addAll(launcherApps.getShortcuts(shortcutQuery, profile));
-        }
-
-        //return launcherApps.getShortcuts(shortcutQuery, android.os.UserHandle.getUserHandleForUid(context.getApplicationInfo().uid));
-        //return launcherApps.getShortcuts(shortcutQuery, Process.myUserHandle());
-        return shortcutList;
+        return launcherApps.getShortcuts(shortcutQuery, android.os.UserHandle.getUserHandleForUid(context.getApplicationInfo().uid));
     }
 
     @TargetApi(Build.VERSION_CODES.O)
