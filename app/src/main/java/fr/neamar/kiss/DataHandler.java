@@ -125,16 +125,8 @@ public class DataHandler extends BroadcastReceiver
             String providerName = key.substring(7);
             if (PROVIDER_NAMES.contains(providerName)) {
                 if (sharedPreferences.getBoolean(key, true)) {
-                    if("enable-shortcuts".equals(key)){
-                        // Build shortcuts
-                        ShortcutUtil.buildShortcuts(context);
-                    }
                     this.connectToProvider(providerName, 0);
                 } else {
-                    if("enable-shortcuts".equals(key)){
-                        // Delete shortcuts
-                        DBHelper.removeAllShortcuts(context);
-                    }
                     this.disconnectFromProvider(providerName);
                 }
             }
@@ -458,7 +450,6 @@ public class DataHandler extends BroadcastReceiver
             shortcuts = ShortcutUtil.getShortcut(context, packageName);
         } catch (SecurityException e) {
             e.printStackTrace();
-            Toast.makeText(context, R.string.cant_pin_shortcut, Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -470,6 +461,8 @@ public class DataHandler extends BroadcastReceiver
             }
             // Add shortcut to the DataHandler
             addShortcut(pojo);
+
+            Log.d(TAG, "Shortcut " + pojo.id + " added.");
         }
 
         if (!shortcuts.isEmpty() && this.getShortcutsProvider() != null) {

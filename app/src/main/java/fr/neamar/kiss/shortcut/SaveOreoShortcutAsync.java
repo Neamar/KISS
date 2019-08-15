@@ -1,14 +1,12 @@
 package fr.neamar.kiss.shortcut;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
@@ -16,12 +14,15 @@ import androidx.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.Set;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.utils.ShortcutUtil;
+import fr.neamar.kiss.utils.UserHandle;
 
 @TargetApi(Build.VERSION_CODES.O)
 public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
@@ -36,8 +37,8 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
 
-        Context context =  this.context.get();
-        if(context == null){
+        Context context = this.context.get();
+        if (context == null) {
             cancel(true);
             return null;
         }
@@ -60,19 +61,33 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
             return null;
         }
 
+        final DataHandler dataHandler = this.dataHandler.get();
+        if (dataHandler == null) {
+            cancel(true);
+            return null;
+        }
+
+        Set<String> excludedAppList = dataHandler.getExcluded();
+        UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+
         for (ShortcutInfo shortcutInfo : shortcuts) {
 
-            final DataHandler dataHandler = this.dataHandler.get();
-            if (dataHandler == null) {
-                cancel(true);
-                return null;
+            UserHandle user = new UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
+            boolean isExcluded = excludedAppList.contains(AppPojo.getComponentName(shortcutInfo.getPackage(),
+                    shortcutInfo.getActivity().getClassName(), user));
+
+            // Skip shortcut if app is excluded
+            if (!excludedAppList.isEmpty() &&
+                    isExcluded) {
+                continue;
             }
 
             // Create Pojo
             ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo);
-            if(pojo == null){
+            if (pojo == null) {
                 continue;
             }
+
             // Add shortcut to the DataHandler
             dataHandler.addShortcut(pojo);
         }
@@ -82,7 +97,7 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onProgressUpdate(Integer... progress) {
-        if(progress[0] == -1){
+        if (progress[0] == -1) {
             Toast.makeText(context.get(), R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show();
         }
     }
