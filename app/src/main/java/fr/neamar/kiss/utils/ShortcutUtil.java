@@ -33,9 +33,7 @@ public class ShortcutUtil {
     }
 
     public static void buildShortcuts(Context context){
-        if (areShortcutsEnabled(context)) {
-                new SaveOreoShortcutAsync(context).execute();
-        }
+        new SaveOreoShortcutAsync(context).execute();
     }
 
     @TargetApi(Build.VERSION_CODES.O)
