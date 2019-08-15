@@ -474,6 +474,8 @@ public class DataHandler extends BroadcastReceiver
     }
 
     public void removeShortcut(ShortcutsPojo shortcut) {
+        // Also remove shortcut from favorites
+        removeFromFavorites(shortcut.id);
         DBHelper.removeShortcut(this.context, shortcut.intentUri);
 
         if (this.getShortcutsProvider() != null) {
@@ -484,6 +486,13 @@ public class DataHandler extends BroadcastReceiver
     public void removeShortcuts(String packageName) {
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
+        }
+
+        // Remove all shortcuts from favorites for given package name
+        List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, packageName);
+        for (ShortcutRecord shortcut: shortcutsList) {
+            String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
+            removeFromFavorites(id);
         }
 
         DBHelper.removeShortcuts(this.context, packageName);
