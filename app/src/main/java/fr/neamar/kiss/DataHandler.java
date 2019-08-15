@@ -527,6 +527,14 @@ public class DataHandler extends BroadcastReceiver
         // modifying in place is not supported by putStringSet()
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.add(app.id);
+
+        // Add all shortcuts for given package name to being excluded from history
+        List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
+        for (ShortcutRecord shortcut: shortcutsList) {
+            String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
+            excluded.add(id);
+        }
+
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
         app.setExcludedFromHistory(true);
     }
@@ -536,6 +544,14 @@ public class DataHandler extends BroadcastReceiver
         // modifying in place is not supported by putStringSet()
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.remove(app.id);
+
+        // Remove all shortcuts for given package name to being included in history
+        List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
+        for (ShortcutRecord shortcut: shortcutsList) {
+            String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
+            excluded.remove(id);
+        }
+
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
         app.setExcludedFromHistory(false);
     }
