@@ -491,7 +491,7 @@ public class DataHandler extends BroadcastReceiver
         // Remove all shortcuts from favorites for given package name
         List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, packageName);
         for (ShortcutRecord shortcut : shortcutsList) {
-            String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
+            String id = ShortcutUtil.generateShortcutId(shortcut.name);
             removeFromFavorites(id);
         }
 
@@ -532,7 +532,7 @@ public class DataHandler extends BroadcastReceiver
             // Add all shortcuts for given package name to being excluded from history
             List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
             for (ShortcutRecord shortcut : shortcutsList) {
-                String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
+                String id = ShortcutUtil.generateShortcutId(shortcut.name);
                 excluded.add(id);
             }
         }
@@ -551,7 +551,7 @@ public class DataHandler extends BroadcastReceiver
             // Add all shortcuts for given package name to being included in history
             List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
             for (ShortcutRecord shortcut : shortcutsList) {
-                String id = ShortcutsPojo.SCHEME + shortcut.name.toLowerCase(Locale.ROOT);
+                String id = ShortcutUtil.generateShortcutId(shortcut.name);
                 excluded.remove(id);
             }
         }

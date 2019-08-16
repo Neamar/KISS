@@ -13,6 +13,7 @@ import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.utils.ShortcutUtil;
 
 public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
 
@@ -38,7 +39,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
                 icon = BitmapFactory.decodeByteArray(shortcutRecord.icon_blob, 0, shortcutRecord.icon_blob.length);
             }
 
-            String id = ShortcutsPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
+            String id = ShortcutUtil.generateShortcutId(shortcutRecord.name);
 
             ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutRecord.packageName,
                     shortcutRecord.iconResource, shortcutRecord.intentUri, icon);

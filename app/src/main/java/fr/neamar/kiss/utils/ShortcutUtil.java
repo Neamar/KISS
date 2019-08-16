@@ -14,6 +14,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.shortcut.SaveOreoShortcutAsync;
 
@@ -25,6 +27,16 @@ public class ShortcutUtil {
 
     final static private String TAG = "ShortcutUtil";
 
+    /**
+     * @return shortcut id generated from shortcut name
+     */
+    public static String generateShortcutId(String shortcutName){
+        return ShortcutsPojo.SCHEME + shortcutName.toLowerCase(Locale.ROOT);
+    }
+
+    /**
+     * @return true if shortcuts are enabled in settings and android version is higher or equals android 8
+     */
     public static boolean areShortcutsEnabled(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
@@ -32,15 +44,25 @@ public class ShortcutUtil {
 
     }
 
+    /**
+     * Save all oreo shortcuts to DB
+     */
     public static void buildShortcuts(Context context){
         new SaveOreoShortcutAsync(context).execute();
     }
 
+
+    /**
+     * @return all shortcuts from all applications available on the device
+     */
     @TargetApi(Build.VERSION_CODES.O)
     public static List<ShortcutInfo> getAllShortcuts(Context context) {
         return getShortcut(context, null);
     }
 
+    /**
+     * @return all shortcuts for given package name
+     */
     @TargetApi(Build.VERSION_CODES.O)
     public static List<ShortcutInfo> getShortcut(Context context, String packageName) {
         List<ShortcutInfo> shortcutInfoList = new ArrayList<>();
@@ -62,6 +84,9 @@ public class ShortcutUtil {
         return shortcutInfoList;
     }
 
+    /**
+     * Create ShortcutPojo from ShortcutInfo
+     */
     @TargetApi(Build.VERSION_CODES.O)
     public static ShortcutsPojo createShortcutPojo(Context context, ShortcutInfo shortcutInfo){
 
