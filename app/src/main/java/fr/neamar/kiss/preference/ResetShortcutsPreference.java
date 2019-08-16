@@ -24,7 +24,6 @@ public class ResetShortcutsPreference extends DialogPreference {
         if (which == DialogInterface.BUTTON_POSITIVE &&
                 android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            DBHelper.removeAllShortcuts(getContext());
             ShortcutUtil.buildShortcuts(getContext());
             Toast.makeText(getContext(), R.string.shortcuts_reset_done_desc, Toast.LENGTH_LONG).show();
         }

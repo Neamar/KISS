@@ -51,7 +51,6 @@ public class ShortcutUtil {
         new SaveOreoShortcutAsync(context).execute();
     }
 
-
     /**
      * @return all shortcuts from all applications available on the device
      */

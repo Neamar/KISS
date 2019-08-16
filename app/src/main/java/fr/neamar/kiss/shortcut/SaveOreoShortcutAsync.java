@@ -19,6 +19,7 @@ import java.util.Set;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.utils.ShortcutUtil;
@@ -32,6 +33,14 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
     public SaveOreoShortcutAsync(@NonNull Context context) {
         this.context = new WeakReference<>(context);
         this.dataHandler = new WeakReference<>(KissApplication.getApplication(context).getDataHandler());
+    }
+
+    @Override
+    protected void onPreExecute() {
+        Context context = this.context.get();
+        if (context != null) {
+            DBHelper.removeAllShortcuts(context);
+        }
     }
 
     @Override
