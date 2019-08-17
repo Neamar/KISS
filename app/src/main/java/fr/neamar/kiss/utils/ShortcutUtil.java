@@ -3,7 +3,9 @@ package fr.neamar.kiss.utils;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -97,10 +99,20 @@ public class ShortcutUtil {
         ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
                 DrawableUtils.drawableToBitmap(iconDrawable));
 
+        String appName = getAppNameFromPackageName(context, shortcutInfo.getPackage());
+
         if (shortcutInfo.getShortLabel() != null) {
-            pojo.setName(shortcutInfo.getShortLabel().toString());
+            if(!TextUtils.isEmpty(appName)){
+                pojo.setName(appName + ": " + shortcutInfo.getShortLabel().toString());
+            } else {
+                pojo.setName(shortcutInfo.getShortLabel().toString());
+            }
         } else if (shortcutInfo.getLongLabel() != null) {
-            pojo.setName(shortcutInfo.getLongLabel().toString());
+            if(!TextUtils.isEmpty(appName)){
+                pojo.setName(appName + ": " + shortcutInfo.getLongLabel().toString());
+            } else {
+                pojo.setName(shortcutInfo.getLongLabel().toString());
+            }
         } else {
             Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
             return null;
@@ -108,5 +120,23 @@ public class ShortcutUtil {
 
         return pojo;
     }
+
+    /**
+     *
+     * @return App name from package name
+     */
+    public static String getAppNameFromPackageName(Context context, String Packagename) {
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            ApplicationInfo info = packageManager.getApplicationInfo(Packagename, PackageManager.GET_META_DATA);
+            String appName = (String) packageManager.getApplicationLabel(info);
+            return appName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+
 
 }
