@@ -117,9 +117,11 @@ public class ShortcutsResult extends Result {
                 shortcutIcon.setImageDrawable(appDrawable);
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
             }
+
         }
         else {
             appIcon.setImageDrawable(null);
+            shortcutIcon.setImageDrawable(null);
         }
 
         return v;
