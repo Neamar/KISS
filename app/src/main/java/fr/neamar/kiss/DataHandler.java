@@ -534,6 +534,10 @@ public class DataHandler extends BroadcastReceiver
                 String id = ShortcutUtil.generateShortcutId(shortcut.name);
                 excluded.add(id);
             }
+            // Refresh shortcuts
+            if (!shortcutsList.isEmpty() && this.getShortcutsProvider() != null) {
+                this.getShortcutsProvider().reload();
+            }
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
