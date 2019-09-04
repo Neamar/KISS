@@ -16,7 +16,7 @@ import fr.neamar.kiss.pojo.Pojo;
 public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, ArrayList<T>> {
 
     public static final ExecutorService IMAGE_EXCECUTOR
-            = new ThreadPoolExecutor(0, 2, 0L,
+            = new ThreadPoolExecutor(0, 1, 0L,
             TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
 
     final WeakReference<Context> context;
