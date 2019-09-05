@@ -699,6 +699,12 @@ public class DataHandler extends BroadcastReceiver
                 .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
     }
 
+    public void removeFromFavorites(MainActivity context, String id) {
+        removeFromFavorites(id);
+        context.onFavoriteChange();
+    }
+
+
     @SuppressWarnings("StringSplitter")
     public void removeFromFavorites(UserHandle user) {
         // This is only intended for apps from foreign-profiles
