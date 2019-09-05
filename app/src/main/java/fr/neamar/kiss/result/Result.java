@@ -261,7 +261,7 @@ public abstract class Result {
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         MainActivity mainActivity = (MainActivity) context;
         String msg = mainActivity.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(mainActivity).getDataHandler().removeFromFavorites(app.id);
+        KissApplication.getApplication(mainActivity).getDataHandler().removeFromFavorites(mainActivity, app.id);
         mainActivity.onFavoriteChange();
         Toast.makeText(mainActivity, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
