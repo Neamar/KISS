@@ -57,7 +57,8 @@ public class SearchProvider extends SimpleProvider {
             // Super low relevance, should never be displayed before anything
             pojo.relevance = -500;
             if (defaultSearchEngine.equals(searchProvider))
-                pojo.relevance = -499;
+                // Display default search engine slightly higher
+                pojo.relevance += 1;
 
             pojo.setName(searchProvider, false);
             if (pojo.url != null) {

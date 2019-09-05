@@ -60,8 +60,7 @@ public class SettingsActivity extends PreferenceActivity implements
         assert theme != null;
         if (theme.equals("amoled-dark")) {
             setTheme(R.style.SettingThemeAmoledDark);
-        }
-        else if (theme.contains("dark")) {
+        } else if (theme.contains("dark")) {
             setTheme(R.style.SettingThemeDark);
         }
 
@@ -339,7 +338,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void addDefaultSearchProvider(final SharedPreferences prefs) {
-        ListPreference standard_pref = new ListPreference(this);
+        ListPreference standardPref = new ListPreference(this);
 
         // Get selected providers to choose from
         Set<String> selectedProviders = new TreeSet<>(prefs.getStringSet("selected-search-provider-names", new TreeSet<>(Collections.singletonList("Google"))));
@@ -350,16 +349,16 @@ public class SettingsActivity extends PreferenceActivity implements
             selectedProviderArray[pos++] = searchProvider.split("\\|")[0];
         }
 
-        String search_providers_title = this.getString(R.string.search_provider_default);
-        standard_pref.setTitle(search_providers_title);
-        standard_pref.setDialogTitle(search_providers_title);
-        standard_pref.setKey("default-search-provider");
-        standard_pref.setEntries(selectedProviderArray);
-        standard_pref.setEntryValues(selectedProviderArray);
-        standard_pref.setDefaultValue("Google"); // Google is standard on install
+        String searchProvidersTitle = this.getString(R.string.search_provider_default);
+        standardPref.setTitle(searchProvidersTitle);
+        standardPref.setDialogTitle(searchProvidersTitle);
+        standardPref.setKey("default-search-provider");
+        standardPref.setEntries(selectedProviderArray);
+        standardPref.setEntryValues(selectedProviderArray);
+        standardPref.setDefaultValue("Google"); // Google is standard on install
 
         PreferenceGroup category = (PreferenceGroup) findPreference("providers");
-        category.addPreference(standard_pref);
+        category.addPreference(standardPref);
     }
 
     @Override
