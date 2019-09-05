@@ -93,21 +93,20 @@ public class TagDummyResult extends Result {
         }
         if (block == null)
             drawAsHole = false;
-        else if ("DINGBATS".equals(block.toString()))
-            drawAsHole = false;
-        else if ("EMOTICONS".equals(block.toString()))
-            drawAsHole = false;
-        else if ("MISCELLANEOUS_SYMBOLS".equals(block.toString()))
-            drawAsHole = false;
-        else if ("MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS".equals(block.toString()))
-            drawAsHole = false;
-        else if ("SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS".equals(block.toString()))
-            drawAsHole = false;
-        else if ("TRANSPORT_AND_MAP_SYMBOLS".equals(block.toString()))
-            drawAsHole = false;
-        else if (!"BASIC_LATIN".equals(block.toString())) {
-            // log untested glyphs
-            Log.d(TAG, "Codepoint " + codepoint + " with glyph " + glyph + " is in block " + block);
+        else
+        {
+            String blockString = block.toString();
+            if (    "DINGBATS".equals(blockString) ||
+                    "EMOTICONS".equals(blockString) ||
+                    "MISCELLANEOUS_SYMBOLS".equals(blockString) ||
+                    "MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS".equals(blockString) ||
+                    "SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS".equals(blockString) ||
+                    "TRANSPORT_AND_MAP_SYMBOLS".equals(blockString))
+                drawAsHole = false;
+            else if (!"BASIC_LATIN".equals(blockString)) {
+                // log untested glyphs
+                Log.d(TAG, "Codepoint " + codepoint + " with glyph " + glyph + " is in block " + block);
+            }
         }
         // we can't draw images (emoticons and symbols) using SRC_IN with transparent color, the result is a square
         if (drawAsHole) {
