@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -19,6 +20,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.ClipboardUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class SearchResult extends Result {
@@ -51,12 +53,13 @@ public class SearchResult extends Result {
             pos = text.indexOf(searchPojo.query);
             len = searchPojo.query.length();
             image.setImageResource(R.drawable.search);
-        }
-        else {
+        } else if(searchPojo.type == SearchPojo.CALCULATOR_QUERY) {
             text = searchPojo.query;
             pos = text.indexOf("=");
             len = text.length() - pos;
             image.setImageResource(R.drawable.ic_functions);
+        } else {
+            throw new IllegalArgumentException();
         }
 
         displayHighlighted(text, Collections.singletonList(new Pair<>(pos, pos + len)), searchText, context);
@@ -67,20 +70,29 @@ public class SearchResult extends Result {
 
     @Override
     public void doLaunch(Context context, View v) {
-        String query;
-        try {
-            query = URLEncoder.encode(searchPojo.query, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            query = URLEncoder.encode(searchPojo.query);
-        }
-        String urlWithQuery = searchPojo.url.replaceAll("%s|\\{q\\}", query);
-        Uri uri = Uri.parse(urlWithQuery);
-        Intent search = new Intent(Intent.ACTION_VIEW, uri);
-        search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        try {
-            context.startActivity(search);
-        } catch (android.content.ActivityNotFoundException e) {
-            Log.w("SearchResult", "Unable to run search for url: " + searchPojo.url);
+        switch (searchPojo.type) {
+            case SearchPojo.URL_QUERY:
+            case SearchPojo.SEARCH_QUERY:
+                String query;
+                try {
+                    query = URLEncoder.encode(searchPojo.query, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    query = URLEncoder.encode(searchPojo.query);
+                }
+                String urlWithQuery = searchPojo.url.replaceAll("%s|\\{q\\}", query);
+                Uri uri = Uri.parse(urlWithQuery);
+                Intent search = new Intent(Intent.ACTION_VIEW, uri);
+                search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                try {
+                    context.startActivity(search);
+                } catch (android.content.ActivityNotFoundException e) {
+                    Log.w("SearchResult", "Unable to run search for url: " + searchPojo.url);
+                }
+                break;
+            case SearchPojo.CALCULATOR_QUERY:
+                ClipboardUtils.setClipboard(context, searchPojo.query.substring(searchPojo.query.indexOf("=") + 2));
+                Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 

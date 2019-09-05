@@ -261,6 +261,7 @@
         android:key="providers"
         android:summary="@string/providers_summary"
         android:title="@string/title_providers">
+        <PreferenceCategory android:title="@string/search_results_options">
         <fr.neamar.kiss.preference.SwitchPreference
             android:defaultValue="true"
             android:key="enable-contacts"
@@ -276,7 +277,8 @@
         <fr.neamar.kiss.preference.SwitchPreference
             android:defaultValue="true"
             android:key="enable-search"
-            android:title="@string/search_name" />
+            android:title="@string/search_provider_toggle" />
+        </PreferenceCategory>
         <PreferenceCategory android:title="@string/search_name">
             <fr.neamar.kiss.preference.AddSearchProviderPreference
                 android:key="custom-search-provider-add"
@@ -285,7 +287,6 @@
             <fr.neamar.kiss.preference.ResetSearchProvidersPreference
                 android:dialogMessage="@string/search_provider_reset_desc"
                 android:key="reset"
-                android:order="11"
                 android:title="@string/search_provider_reset" />
         </PreferenceCategory>
     </PreferenceScreen>
