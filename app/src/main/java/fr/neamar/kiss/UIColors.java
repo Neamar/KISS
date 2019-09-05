@@ -10,6 +10,8 @@ import android.preference.PreferenceManager;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
+
 public class UIColors {
     public static final int COLOR_DEFAULT = 0xFF4caf50;
     // Source: https://material.io/guidelines/style/color.html#color-color-palette
@@ -60,7 +62,7 @@ public class UIColors {
             String primaryColorStr = PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", COLOR_DEFAULT_STR);
 
             // Transparent can't be displayed for text color, replace with light gray.
-            if (primaryColorStr.equals("#00000000") || primaryColorStr.equals(("#AAFFFFFF"))) {
+            if (primaryColorStr.equals("#00000000") || primaryColorStr.equals("#AAFFFFFF")) {
                 primaryColor = 0xFFBDBDBD;
             }
             else {
@@ -71,7 +73,7 @@ public class UIColors {
         return primaryColor;
     }
 
-    public static void clearPrimaryColorCache(Context context) {
+    static void clearPrimaryColorCache(Context context) {
         primaryColor = -1;
     }
 }

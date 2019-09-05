@@ -92,7 +92,16 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
         boolean success = dataHandler.addShortcut(pojo);
 
         if (success) {
-            pinItemRequest.accept();
+            try {
+                pinItemRequest.accept();
+            }
+            catch (IllegalStateException e) {
+                e.printStackTrace();
+                Context c = context.get();
+                if(c != null) {
+                    Toast.makeText(c, R.string.cant_pin_shortcut, Toast.LENGTH_SHORT).show();
+                }
+            }
         }
 
         return true;

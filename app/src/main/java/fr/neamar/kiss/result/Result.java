@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import java.lang.ref.WeakReference;
@@ -78,6 +79,9 @@ public abstract class Result {
         throw new RuntimeException("Unable to create a result from POJO");
     }
 
+    public String getPojoId() {
+        return pojo.id;
+    }
 
     @Override
     public String toString() {
@@ -96,6 +100,20 @@ public abstract class Result {
     @NonNull
     public abstract View display(Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
 
+    @NonNull
+    public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
+        if (favoriteView == null)
+            favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
+        Drawable drawable = getDrawable(context);
+        ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
+        if (drawable == null)
+            favoriteImage.setImageResource(R.drawable.ic_launcher_white);
+        else
+            favoriteImage.setImageDrawable(drawable);
+        favoriteView.setContentDescription(pojo.getName());
+        return favoriteView;
+    }
+
     public void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
         SpannableString enriched = new SpannableString(text);
         int primaryColor = UIColors.getPrimaryColor(context);
@@ -112,7 +130,7 @@ public abstract class Result {
     }
 
     public boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
-            TextView view, Context context) {
+                                      TextView view, Context context) {
         FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
         if (!matchInfo.match) {
@@ -143,7 +161,7 @@ public abstract class Result {
             // convert to uppercase otherwise lowercase a -z will be sorted
             // after upper A-Z
             return ch.toUpperCase();
-        } catch(ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             // Normalized name is empty.
             return "-";
         }
@@ -233,7 +251,7 @@ public abstract class Result {
 
         //Update Search to reflect favorite add, if the "exclude favorites" option is active
         MainActivity mainActivity = (MainActivity) context;
-        if(mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
+        if (mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
             mainActivity.updateSearchRecords();
         }
 
@@ -242,13 +260,13 @@ public abstract class Result {
 
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getApplication(context).getDataHandler().addToFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().addToFavorites(context, app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(context, app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
@@ -302,7 +320,9 @@ public abstract class Result {
     boolean isDrawableCached() {
         return false;
     }
-    void setDrawableCache( Drawable drawable ) {}
+
+    void setDrawableCache(Drawable drawable) {
+    }
 
     void setAsyncDrawable(ImageView view) {
         // the ImageView tag will store the async task if it's running

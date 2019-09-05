@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+
 import fr.neamar.kiss.MainActivity;
 
 public class ForwarderManager extends Forwarder {
@@ -18,6 +19,7 @@ public class ForwarderManager extends Forwarder {
     private final Permission permissionForwarder;
     private final OreoShortcuts shortcutsForwarder;
     private final TagsMenu tagsMenu;
+    private final Notification notificationForwarder;
 
 
     public ForwarderManager(MainActivity mainActivity) {
@@ -30,6 +32,7 @@ public class ForwarderManager extends Forwarder {
         this.favoritesForwarder = new Favorites(mainActivity);
         this.permissionForwarder = new Permission(mainActivity);
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
+        this.notificationForwarder = new Notification(mainActivity);
         this.tagsMenu = new TagsMenu(mainActivity);
     }
 
@@ -40,16 +43,22 @@ public class ForwarderManager extends Forwarder {
         experienceTweaks.onCreate();
         shortcutsForwarder.onCreate();
         tagsMenu.onCreate();
+
+    }
+
+    public void onStart() {
+        widgetForwarder.onStart();
     }
 
     public void onResume() {
         interfaceTweaks.onResume();
         experienceTweaks.onResume();
+        notificationForwarder.onResume();
         tagsMenu.onResume();
     }
 
-    public void onStart() {
-        widgetForwarder.onStart();
+    public void onPause() {
+        notificationForwarder.onPause();
     }
 
     public void onStop() {

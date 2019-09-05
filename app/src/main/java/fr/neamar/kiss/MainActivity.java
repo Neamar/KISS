@@ -32,9 +32,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import java.util.ArrayList;
-
 import androidx.annotation.NonNull;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
@@ -114,7 +116,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Favorites bar. Can be either the favorites within the KISS bar,
      * or the external favorites bar (default)
      */
-    public View favoritesBar;
+    public ViewGroup favoritesBar;
     /**
      * Progress bar displayed when loading
      */
@@ -414,16 +416,23 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onResume();
     }
 
+
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        this.unregisterReceiver(this.mReceiver);
+    protected void onPause() {
+        super.onPause();
+        forwarderManager.onPause();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         forwarderManager.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.unregisterReceiver(this.mReceiver);
     }
 
     @Override
@@ -796,6 +805,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         dismissPopup();
+
+        searchEditText.clearFocus();
     }
 
     @Override

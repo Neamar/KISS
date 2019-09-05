@@ -4,10 +4,14 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
 /**
@@ -15,10 +19,12 @@ import fr.neamar.kiss.pojo.Pojo;
  */
 public class HistorySearcher extends Searcher {
     private final SharedPreferences prefs;
+    private final Set<String> excludedFromHistory;
 
     public HistorySearcher(MainActivity activity) {
         super(activity, "<history>");
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        excludedFromHistory = KissApplication.getApplication(activity).getDataHandler().getExcludedFromHistory();
     }
 
     @Override
@@ -43,13 +49,18 @@ public class HistorySearcher extends Searcher {
         if (activity == null)
             return null;
 
-        // Gather favorites
-        ArrayList<Pojo> favoritesPojo = new ArrayList<>(0);
+        //Gather excluded
+        HashSet<String> excludedPojoById = new HashSet<>(excludedFromHistory);
+
         if (excludeFavorites) {
-            favoritesPojo = KissApplication.getApplication(activity).getDataHandler().getFavorites();
+            // Gather favorites
+            for (Pojo favoritePojo : KissApplication.getApplication(activity).getDataHandler().getFavorites()) {
+                excludedPojoById.add(favoritePojo.id);
+            }
         }
 
-        List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler().getHistory(activity, getMaxResultCount(), historyMode, sortHistory, favoritesPojo);
+        List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler()
+                .getHistory(activity, getMaxResultCount(), historyMode, sortHistory, excludedPojoById);
 
         int size = pojos.size();
         for(int i = 0; i < size; i += 1) {

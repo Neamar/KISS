@@ -22,7 +22,7 @@
         android:id="@+id/resultLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/externalFavoriteBar"
+        android:layout_above="@id/externalFavoriteBar"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="false"
@@ -60,7 +60,7 @@
         android:id="@+id/externalFavoriteBar"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:layout_above="@+id/searchEditLayout"
+        android:layout_above="@id/searchEditLayout"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
@@ -68,8 +68,10 @@
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
         android:elevation="2dp"
+        android:focusableInTouchMode="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:importantForAccessibility="no"
         tools:ignore="UnusedAttribute"
         tools:layout="@layout/favorite_item" />
 
@@ -115,8 +117,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:indeterminate="true"
-                android:paddingLeft="@dimen/launcher_button_padding"
-                android:paddingRight="@dimen/launcher_button_padding"
                 android:visibility="invisible" />
 
         </FrameLayout>
@@ -126,10 +126,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/rightHandSideButtonsWrapper"
-            android:layout_toLeftOf="@+id/rightHandSideButtonsWrapper"
-            android:layout_toEndOf="@+id/leftHandSideButtonsWrapper"
-            android:layout_toRightOf="@+id/leftHandSideButtonsWrapper"
+            android:layout_toStartOf="@id/rightHandSideButtonsWrapper"
+            android:layout_toLeftOf="@id/rightHandSideButtonsWrapper"
+            android:layout_toEndOf="@id/leftHandSideButtonsWrapper"
+            android:layout_toRightOf="@id/leftHandSideButtonsWrapper"
             android:layout_margin="1dp"
             android:background="?attr/searchBackgroundColor"
             android:hint="@string/ui_search_hint"

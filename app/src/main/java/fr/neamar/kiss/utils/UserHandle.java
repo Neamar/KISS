@@ -57,6 +57,7 @@ public class UserHandle {
         }
     }
 
+    @SuppressWarnings("CatchAndPrintStackTrace")
     public boolean hasStringUserSuffix(String string, char separator) {
         long serial = 0;
 

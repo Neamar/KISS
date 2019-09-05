@@ -86,7 +86,7 @@ public class IconsHandler {
      *
      * @param packageName Android package ID of the package to parse
      */
-    public void loadIconsPack(String packageName) {
+    void loadIconsPack(String packageName) {
 
         //clear icons pack
         iconsPackPackageName = packageName;
@@ -174,7 +174,6 @@ public class IconsHandler {
     private Bitmap loadBitmap(String drawableName) {
         int id = iconPackres.getIdentifier(drawableName, "drawable", iconsPackPackageName);
         if (id > 0) {
-            //noinspection deprecation: Resources.getDrawable(int, Theme) requires SDK 21+
             Drawable bitmap = iconPackres.getDrawable(id);
             if (bitmap instanceof BitmapDrawable) {
                 return ((BitmapDrawable) bitmap).getBitmap();
@@ -203,6 +202,7 @@ public class IconsHandler {
     /**
      * Get or generate icon for an app
      */
+    @SuppressWarnings("CatchAndPrintStackTrace")
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
         // system icons, nothing to do
         if (iconsPackPackageName.equalsIgnoreCase("default")) {
@@ -213,10 +213,9 @@ public class IconsHandler {
         if (drawable != null) { //there is a custom icon
             int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
             if (id > 0) {
-                //noinspection deprecation: Resources.getDrawable(int, Theme) requires SDK 21+
                 try {
                     return iconPackres.getDrawable(id);
-                } catch(Resources.NotFoundException e) {
+                } catch (Resources.NotFoundException e) {
                     // Unable to load icon, keep going.
                     e.printStackTrace();
                 }
@@ -308,7 +307,7 @@ public class IconsHandler {
         }
     }
 
-    public HashMap<String, String> getIconsPacks() {
+    HashMap<String, String> getIconsPacks() {
         return iconsPacks;
     }
 

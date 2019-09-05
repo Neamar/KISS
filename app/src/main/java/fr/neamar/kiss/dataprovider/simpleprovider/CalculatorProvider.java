@@ -1,73 +1,71 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
+import androidx.annotation.VisibleForTesting;
+
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.ArrayDeque;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.calculator.Calculator;
+import fr.neamar.kiss.utils.calculator.Result;
+import fr.neamar.kiss.utils.calculator.ShuntingYard;
+import fr.neamar.kiss.utils.calculator.Tokenizer;
 
 public class CalculatorProvider extends SimpleProvider {
-    private Pattern p;
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    final Pattern P;
+    private final NumberFormat LOCALIZED_NUMBER_FORMATTER = NumberFormat.getInstance();
 
     public CalculatorProvider() {
-        p = Pattern.compile("(-?)([0-9.]+)\\s?([+\\-*/×x÷])\\s?(-?)([0-9.]+)");
+        //This should try to match as much as possible without going out of the expression,
+        //even if the expression is not actually a computable operation.
+        P = Pattern.compile("^[\\-.,\\d+*/^'()]+$");
     }
 
     @Override
     public void requestResults(String query, Searcher searcher) {
         // Now create matcher object.
-        Matcher m = p.matcher(query);
+        Matcher m = P.matcher(query.replaceAll("\\s+", ""));
         if (m.find()) {
-            String operator = m.group(3);
+            String operation = m.group();
 
-            // let's go for floating point arithmetic
-            // we need to add a "0" on top of it to support ".2" => 0.2
-            // For every other case, this doesn't change the number "01" => 1
-            float lhs = Float.parseFloat("0" + m.group(2));
-            lhs = m.group(1).equals("-") ? -lhs : lhs;
-            float rhs = Float.parseFloat("0" + m.group(5));
-            rhs = m.group(4).equals("-") ? -rhs : rhs;
+            Result<ArrayDeque<Tokenizer.Token>> tokenized = Tokenizer.tokenize(operation);
+            String readableResult;
 
-            float floatResult = 0;
-            switch (operator) {
-                case "+":
-                    floatResult = lhs + rhs;
-                    break;
-                case "-":
-                    floatResult = lhs - rhs;
-                    break;
-                case "*":
-                case "×":
-                case "x":
-                    floatResult = lhs * rhs;
-                    operator = "×";
-                    break;
-                case "/":
-                case "÷":
-                    floatResult = lhs / rhs;
-                    operator = "÷";
-                    break;
-                default:
-                    floatResult = Float.POSITIVE_INFINITY;
+            if(tokenized.syntacticalError) {
+                return;
+            } else if(tokenized.arithmeticalError) {
+                return;
+            } else {
+                Result<ArrayDeque<Tokenizer.Token>> posfixed = ShuntingYard.infixToPostfix(tokenized.result);
+
+                if (posfixed.syntacticalError) {
+                    return;
+                } else if (posfixed.arithmeticalError) {
+                    return;
+                } else {
+                    Result<BigDecimal> result = Calculator.calculateExpression(posfixed.result);
+
+                    if (result.syntacticalError) {
+                        return;
+                    } else if (result.arithmeticalError) {
+                        return;
+                    } else {
+                        String localizedNumber = LOCALIZED_NUMBER_FORMATTER.format(result.result);
+                        readableResult = " = " + localizedNumber;
+                    }
+                }
             }
 
-            String queryProcessed = floatToString(lhs) + " " + operator + " "
-                    + floatToString(rhs) + " = " + floatToString(floatResult);
+            String queryProcessed = operation + readableResult;
             SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojo.CALCULATOR_QUERY);
 
-            pojo.relevance = 100;
+            pojo.relevance = 19;
             searcher.addResult(pojo);
-        }
-    }
-
-    private String floatToString(float f) {
-        // If f is an int, we don't want to display 9.0: cast to int
-        if (f == Math.round(f)) {
-            return Integer.toString(Math.round(f));
-        } else {
-            // otherwise, keep it as float, knowing that some floating-point issues can happen
-            // (try for instance 0.3 - 0.2)
-            return Float.toString(f);
         }
     }
 }

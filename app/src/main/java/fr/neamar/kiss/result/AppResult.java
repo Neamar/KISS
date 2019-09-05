@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -11,9 +12,11 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Menu;
@@ -33,7 +36,9 @@ import androidx.annotation.NonNull;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.ui.ListPopup;
@@ -86,7 +91,22 @@ public class AppResult extends Result {
         } else {
             appIcon.setImageDrawable(null);
         }
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
+            ImageView notificationView = view.findViewById(R.id.item_notification_dot);
+            notificationView.setVisibility(notificationPrefs.contains(getPackageName()) ? View.VISIBLE : View.GONE);
+            notificationView.setTag(getPackageName());
+
+            int primaryColor = UIColors.getPrimaryColor(context);
+            notificationView.setColorFilter(primaryColor);
+        }
+
         return view;
+    }
+
+    public String getPackageName() {
+        return appPojo.packageName;
     }
 
     @Override
@@ -193,9 +213,8 @@ public class AppResult extends Result {
 
     private void excludeFromKiss(Context context, AppPojo appPojo) {
         KissApplication.getApplication(context).getDataHandler().addToExcluded(appPojo);
-        //remove app pojo from appProvider results - no need to reset handler
-        KissApplication.getApplication(context).getDataHandler().getAppProvider().removeApp(appPojo);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, appPojo.id);
+        // In case the newly excluded app was in a favorite, refresh them
+        ((MainActivity) context).onFavoriteChange();
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 
@@ -305,7 +324,27 @@ public class AppResult extends Result {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
                 assert launcher != null;
-                launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), v.getClipBounds(), null);
+                Rect sourceBounds = null;
+                Bundle opts = null;
+
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    // We're on a modern Android and can display activity animations
+                    // If AppResult, find the icon
+                    View potentialIcon = v.findViewById(R.id.item_app_icon);
+                    if (potentialIcon == null) {
+                        // If favorite, find the icon
+                        potentialIcon = v.findViewById(R.id.favorite);
+                    }
+
+                    if (potentialIcon != null) {
+                        sourceBounds = getViewBounds(potentialIcon);
+
+                        // If we got an icon, we create options to get a nice animation
+                        opts = ActivityOptions.makeClipRevealAnimation(potentialIcon, 0, 0, potentialIcon.getMeasuredWidth(), potentialIcon.getMeasuredHeight()).toBundle();
+                    }
+                }
+
+                launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), sourceBounds, opts);
             } else {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -313,7 +352,7 @@ public class AppResult extends Result {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 
                 if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    intent.setSourceBounds(v.getClipBounds());
+                    intent.setSourceBounds(getViewBounds(v));
                 }
 
                 context.startActivity(intent);
@@ -323,5 +362,15 @@ public class AppResult extends Result {
             // (null pointer exception can be thrown on Lollipop+ when app is missing)
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private Rect getViewBounds(View v) {
+        if (v == null) {
+            return null;
+        }
+
+        int[] l = new int[2];
+        v.getLocationOnScreen(l);
+        return new Rect(l[0], l[1], l[0] + v.getWidth(), l[1] + v.getHeight());
     }
 }

@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
-import androidx.annotation.NonNull;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.result.AppResult;
@@ -182,13 +183,18 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         }
 
         // Generate section list
-        Set<String> sectionLetters = alphaIndexer.keySet();
-        ArrayList<String> sectionList = new ArrayList<>(sectionLetters);
-        Collections.sort(sectionList);
-        // We're displaying from A to Z, everything needs to be reversed
-        Collections.reverse(sectionList);
-        sections = new String[sectionList.size()];
-        sectionList.toArray(sections);
+        List<Map.Entry<String, Integer>> entries = new ArrayList<>(alphaIndexer.entrySet());
+        Collections.sort(entries, (o1, o2) -> {
+            if(o2.getValue().equals(o1.getValue())) {
+                return 0;
+            }
+            // We're displaying from A to Z, everything needs to be reversed
+            return o2.getValue() > o1.getValue() ? -1 : 1;
+        });
+        sections = new String[entries.size()];
+        for(int i = 0; i < entries.size(); i++) {
+            sections[i] = entries.get(i).getKey();
+        }
     }
 
     @Override
@@ -206,7 +212,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         // that does not exist anymore.
         // It's likely there is a threading issue in our code somewhere,
         // But I was unable to find where, so the following line is a quick and dirty fix.
-        sectionIndex = Math.min(sections.length - 1, sectionIndex);
+        sectionIndex = Math.max(0, Math.min(sections.length - 1, sectionIndex));
         return alphaIndexer.get(sections[sectionIndex]);
     }
 

@@ -150,6 +150,10 @@ public class AppProvider extends Provider<AppPojo> {
         boolean match;
 
         for (AppPojo pojo : pojos) {
+            if(pojo.isExcluded()) {
+                continue;
+            }
+
             matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
             match = matchInfo.match;
             pojo.relevance = matchInfo.score;
@@ -186,8 +190,8 @@ public class AppProvider extends Provider<AppPojo> {
         return null;
     }
 
-    public ArrayList<Pojo> getAllApps() {
-        ArrayList<Pojo> records = new ArrayList<>(pojos.size());
+    public ArrayList<AppPojo> getAllApps() {
+        ArrayList<AppPojo> records = new ArrayList<>(pojos.size());
 
         for (AppPojo pojo : pojos) {
             pojo.relevance = 0;
@@ -196,7 +200,15 @@ public class AppProvider extends Provider<AppPojo> {
         return records;
     }
 
-    public void removeApp(AppPojo appPojo) {
-        pojos.remove(appPojo);
+    public ArrayList<AppPojo> getAllAppsWithoutExcluded() {
+        ArrayList<AppPojo> records = new ArrayList<>(pojos.size());
+
+        for (AppPojo pojo : pojos) {
+            if(pojo.isExcluded()) continue;
+
+            pojo.relevance = 0;
+            records.add(pojo);
+        }
+        return records;
     }
 }

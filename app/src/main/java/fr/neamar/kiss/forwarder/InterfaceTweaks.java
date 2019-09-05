@@ -141,16 +141,26 @@ class InterfaceTweaks extends Forwarder {
 
     private void swapKissButtonWithMenu(MainActivity mainActivity) {
         if (prefs.getBoolean("pref-swap-kiss-button-with-menu", false)) {
+            // swap the content from the left and right button wrappers
             List<View> leftHandSideViews = ViewGroupUtils.removeAndGetDirectChildren(mainActivity.rightHandSideButtonsWrapper);
             List<View> rightHandSideViews = ViewGroupUtils.removeAndGetDirectChildren(mainActivity.leftHandSideButtonsWrapper);
             ViewGroupUtils.addAllViews(mainActivity.rightHandSideButtonsWrapper, rightHandSideViews);
             ViewGroupUtils.addAllViews(mainActivity.leftHandSideButtonsWrapper, leftHandSideViews);
+            // align whiteLauncherButton to the right
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) mainActivity.whiteLauncherButton.getLayoutParams();
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 1);
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_END, 1);
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_START, 0);
+            }
+            // align embeddedFavoritesBar to the left of whiteLauncherButton
+            layoutParams = (RelativeLayout.LayoutParams) mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams();
+            layoutParams.addRule(RelativeLayout.RIGHT_OF, 0);
+            layoutParams.addRule(RelativeLayout.LEFT_OF, mainActivity.whiteLauncherButton.getId());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                layoutParams.addRule(RelativeLayout.END_OF, 0);
+                layoutParams.addRule(RelativeLayout.START_OF, mainActivity.whiteLauncherButton.getId());
             }
         }
     }
