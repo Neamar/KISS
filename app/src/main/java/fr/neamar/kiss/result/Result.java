@@ -249,8 +249,10 @@ public abstract class Result {
                 break;
         }
 
-        //Update Search to reflect favorite add, if the "exclude favorites" option is active
         MainActivity mainActivity = (MainActivity) context;
+        //Update favorite bar
+        mainActivity.onFavoriteChange();
+        //Update Search to reflect favorite add, if the "exclude favorites" option is active
         if (mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
             mainActivity.updateSearchRecords();
         }
@@ -260,13 +262,13 @@ public abstract class Result {
 
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getApplication(context).getDataHandler().addToFavorites(context, app.id);
+        KissApplication.getApplication(context).getDataHandler().addToFavorites(app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(context, app.id);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 

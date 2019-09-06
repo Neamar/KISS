@@ -234,7 +234,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                         // and we would have to update the String below to the new default resolver
                         activityName = "com.google.android.dialer.extensions.GoogleDialtactsActivity";
                     }
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + activityName);
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + activityName);
                 }
             }
         }
@@ -246,7 +246,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 String packageName = resolveInfo.activityInfo.packageName;
                 Log.i(TAG, "Contacts resolves to:" + packageName);
                 if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + resolveInfo.activityInfo.name);
                 }
             }
 
@@ -269,10 +269,11 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                         // and we would have to update the String below to the new default resolver
                         activityName = "com.google.android.apps.chrome.Main";
                     }
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(mainActivity, "app://" + packageName + "/" + activityName);
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + activityName);
                 }
             }
         }
+        mainActivity.onFavoriteChange();
     }
 
     @Override
