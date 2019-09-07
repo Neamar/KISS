@@ -13,7 +13,7 @@ public class OreoShortcuts extends Forwarder {
         if (prefs.getBoolean("first-run-shortcuts", true) &&
                 ShortcutUtil.areShortcutsEnabled(mainActivity)) {
 
-            ShortcutUtil.buildShortcuts(mainActivity);
+            ShortcutUtil.rebuildShortcuts(mainActivity);
             // Set flag to false
             prefs.edit().putBoolean("first-run-shortcuts", false).apply();
         }

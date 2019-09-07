@@ -8,8 +8,6 @@ import android.util.AttributeSet;
 import android.widget.Toast;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.db.DBHelper;
-import fr.neamar.kiss.shortcut.SaveOreoShortcutAsync;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
 public class ResetShortcutsPreference extends DialogPreference {
@@ -24,7 +22,7 @@ public class ResetShortcutsPreference extends DialogPreference {
         if (which == DialogInterface.BUTTON_POSITIVE &&
                 android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            ShortcutUtil.buildShortcuts(getContext());
+            ShortcutUtil.rebuildShortcuts(getContext());
             Toast.makeText(getContext(), R.string.shortcuts_reset_done_desc, Toast.LENGTH_LONG).show();
         }
     }
