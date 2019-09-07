@@ -225,7 +225,7 @@ public class DBHelper {
         // String[] selectionArgs, String groupBy, String having, String
         // orderBy)
         Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
-                "package LIKE ?", new String[]{"%" + packageName + "%"}, null, null, null);
+                "package = ?", new String[]{packageName}, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -280,7 +280,7 @@ public class DBHelper {
         // String[] selectionArgs, String groupBy, String having, String
         // orderBy)
         Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
-                "intent_uri LIKE ?", new String[]{"%" + packageName + "%"}, null, null, null);
+                null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) { // remove from history
