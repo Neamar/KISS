@@ -1,11 +1,7 @@
 package fr.neamar.kiss.forwarder;
 
-import android.content.Intent;
-import android.content.pm.LauncherApps;
-import android.os.Build;
-
 import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.shortcut.SaveOreoShortcutAsync;
+import fr.neamar.kiss.utils.ShortcutUtil;
 
 public class OreoShortcuts extends Forwarder {
     OreoShortcuts(MainActivity mainActivity) {
@@ -14,14 +10,12 @@ public class OreoShortcuts extends Forwarder {
 
     void onCreate() {
         // Shortcuts in Android O
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Intent intent = mainActivity.getIntent();
-            if (intent != null) {
-                final String action = intent.getAction();
-                if (LauncherApps.ACTION_CONFIRM_PIN_SHORTCUT.equals(action)) {
-                    new SaveOreoShortcutAsync(mainActivity, intent).execute();
-                }
-            }
+        if (prefs.getBoolean("first-run-shortcuts", true) &&
+                ShortcutUtil.areShortcutsEnabled(mainActivity)) {
+
+            ShortcutUtil.rebuildShortcuts(mainActivity);
+            // Set flag to false
+            prefs.edit().putBoolean("first-run-shortcuts", false).apply();
         }
     }
 

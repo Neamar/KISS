@@ -259,9 +259,11 @@ public abstract class Result {
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
-        String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites((MainActivity) context, app.id);
-        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
+        MainActivity mainActivity = (MainActivity) context;
+        String msg = mainActivity.getResources().getString(R.string.toast_favorites_removed);
+        KissApplication.getApplication(mainActivity).getDataHandler().removeFromFavorites(mainActivity, app.id);
+        mainActivity.onFavoriteChange();
+        Toast.makeText(mainActivity, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     /**
