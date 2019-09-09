@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,8 @@ import fr.neamar.kiss.utils.UserHandle;
 
 @TargetApi(Build.VERSION_CODES.O)
 public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
+
+    private static String TAG = "SaveOreoShortcutAsync";
     private final WeakReference<Context> context;
     private final WeakReference<DataHandler> dataHandler;
 
@@ -113,9 +116,8 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onPostExecute(@NonNull Boolean success) {
-        final Context context = this.context.get();
-        if (context != null && success) {
-            Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_LONG).show();
+        if (success) {
+            Log.i(TAG, "Shortcuts added to KISS");
 
             if (this.dataHandler.get().getShortcutsProvider() != null) {
                 this.dataHandler.get().getShortcutsProvider().reload();
