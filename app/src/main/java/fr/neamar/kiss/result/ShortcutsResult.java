@@ -41,6 +41,10 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
+
 public class ShortcutsResult extends Result {
     private final ShortcutsPojo shortcutPojo;
 
@@ -117,9 +121,11 @@ public class ShortcutsResult extends Result {
                 shortcutIcon.setImageDrawable(appDrawable);
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
             }
+
         }
         else {
             appIcon.setImageDrawable(null);
+            shortcutIcon.setImageDrawable(null);
         }
 
         return v;
@@ -165,7 +171,7 @@ public class ShortcutsResult extends Result {
         LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
         query.setPackage(shortcutPojo.packageName);
         query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
-        query.setQueryFlags(LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED);
+        query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
         List<UserHandle> userHandles = launcherApps.getProfiles();
 
@@ -186,6 +192,7 @@ public class ShortcutsResult extends Result {
     ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView) {
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
+        adapter.add(new ListPopup.Item(context, R.string.menu_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
 
@@ -203,7 +210,6 @@ public class ShortcutsResult extends Result {
             case R.string.menu_tags_edit:
                 launchEditTagsDialog(context, shortcutPojo);
                 return true;
-
         }
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
@@ -247,7 +253,6 @@ public class ShortcutsResult extends Result {
 
         dialog.show();
     }
-
 
     private void launchUninstall(Context context, ShortcutsPojo shortcutPojo) {
         DataHandler dh = KissApplication.getApplication(context).getDataHandler();

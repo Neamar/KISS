@@ -1,37 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/result_margin_bottom"
-    android:paddingEnd="@dimen/result_margin_right"
-    android:paddingLeft="@dimen/result_margin_left"
-    android:paddingRight="@dimen/result_margin_right"
     android:paddingStart="@dimen/result_margin_left"
-    android:paddingTop="@dimen/result_margin_top">
+    android:paddingLeft="@dimen/result_margin_left"
+    android:paddingTop="@dimen/result_margin_top"
+    android:paddingEnd="@dimen/result_margin_right"
+    android:paddingRight="@dimen/result_margin_right"
+    android:paddingBottom="@dimen/result_margin_bottom">
 
-    <ImageView
-        android:id="@+id/item_shortcut_icon"
+    <FrameLayout
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="@dimen/icon_margin_bottom"
-        android:layout_marginEnd="@dimen/icon_margin_right"
-        android:layout_marginLeft="@dimen/icon_margin_left"
-        android:layout_marginRight="@dimen/icon_margin_right"
+        android:layout_gravity="start|center_vertical"
         android:layout_marginStart="@dimen/icon_margin_left"
+        android:layout_marginLeft="@dimen/icon_margin_left"
         android:layout_marginTop="@dimen/icon_margin_top"
-        android:contentDescription="@null"
-        tools:src="@drawable/ic_launcher" />
+        android:layout_marginEnd="@dimen/icon_margin_right"
+        android:layout_marginRight="@dimen/icon_margin_right"
+        android:layout_marginBottom="@dimen/icon_margin_bottom">
+
+        <ImageView
+            android:id="@+id/item_shortcut_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            tools:src="@drawable/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/item_app_icon"
+            android:layout_gravity="end|bottom"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@null"
+            tools:src="@drawable/ic_launcher" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/item_shortcut_icon"
-        android:layout_toRightOf="@+id/item_shortcut_icon"
+        android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -41,6 +52,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
+            android:paddingEnd="2dp"
+            android:paddingRight="2dp"
             android:paddingBottom="3dp"
             android:shadowColor="?attr/resultShadowColor"
             android:shadowDx="1"
@@ -48,6 +61,7 @@
             android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?attr/resultColor"
             android:textSize="@dimen/result_title_size"
+            tools:ignore="RtlSymmetry"
             tools:text="@string/stub_application" />
 
         <TextView
@@ -56,26 +70,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-6dp"
             android:ellipsize="end"
+            android:paddingEnd="2dp"
+            android:paddingRight="2dp"
             android:shadowColor="?attr/resultShadowColor"
             android:shadowDx="1"
             android:shadowDy="2"
             android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?android:attr/textColorSecondary"
+            android:textSize="@dimen/result_small_size"
+            tools:ignore="RtlSymmetry"
             tools:text="@string/stub_app_tag" />
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/item_app_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignBottom="@+id/item_shortcut_icon"
-        android:layout_alignEnd="@+id/item_shortcut_icon"
-        android:layout_alignRight="@+id/item_shortcut_icon"
-        android:layout_marginEnd="-4dp"
-        android:layout_marginRight="-4dp"
-        android:layout_marginTop="-4dp"
-        android:contentDescription="@null"
-        tools:src="@drawable/ic_launcher" />
-
-</RelativeLayout>
+</LinearLayout>

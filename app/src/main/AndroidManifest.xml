@@ -133,23 +133,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Intents received used to install/uninstall shortcuts from other applications -->
-        <receiver
-            android:name=".shortcut.InstallShortcutHandler"
-            android:permission="com.android.launcher.permission.INSTALL_SHORTCUT">
-            <intent-filter>
-                <action android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name=".shortcut.UninstallShortcutHandler"
-            android:permission="com.android.launcher.permission.UNINSTALL_SHORTCUT">
-            <intent-filter>
-                <action android:name="com.android.launcher.action.UNINSTALL_SHORTCUT" />
-            </intent-filter>
-        </receiver>
-
         <service android:name=".dataprovider.AppProvider" />
         <service android:name=".dataprovider.ContactsProvider" />
         <service android:name=".dataprovider.SettingsProvider" />
