@@ -2,82 +2,73 @@ package fr.neamar.kiss.shortcut;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.LauncherApps;
+import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.UserManager;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
+import java.util.Set;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.utils.ShortcutUtil;
+import fr.neamar.kiss.utils.UserHandle;
 
 @TargetApi(Build.VERSION_CODES.O)
-public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
-    final static private String TAG = "SaveOreoShortcutAsync";
+public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
+
+    private static String TAG = "SaveOreoShortcutAsync";
     private final WeakReference<Context> context;
     private final WeakReference<DataHandler> dataHandler;
-    private Intent data;
-    private final WeakReference<LauncherApps> launcherApps;
 
-    public SaveOreoShortcutAsync(@NonNull Context context, @NonNull Intent data) {
+    public SaveOreoShortcutAsync(@NonNull Context context) {
         this.context = new WeakReference<>(context);
         this.dataHandler = new WeakReference<>(KissApplication.getApplication(context).getDataHandler());
-        this.data = data;
-
-        launcherApps = new WeakReference<>((LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE));
     }
 
     @Override
     protected void onPreExecute() {
-        // Skipping mostly redundant null check for this.dataHandler
-        if (dataHandler.get().getShortcutsProvider() == null) {
-            Log.e(TAG, "Shortcuts disabled.");
-            // Skipping mostly redundant null check for this.context
-            Toast.makeText(context.get(), R.string.unable_add_shortcut, Toast.LENGTH_LONG).show();
-            cancel(true);
+        Context context = this.context.get();
+        if (context != null) {
+            DBHelper.removeAllShortcuts(context);
         }
     }
 
     @Override
     protected Boolean doInBackground(Void... voids) {
-        final LauncherApps.PinItemRequest pinItemRequest = data.getParcelableExtra(LauncherApps.EXTRA_PIN_ITEM_REQUEST);
-        final ShortcutInfo shortcutInfo = pinItemRequest.getShortcutInfo();
-        assert shortcutInfo != null;
 
-        Log.d(TAG, "Shortcut: " + shortcutInfo.getPackage() + " " + shortcutInfo.getId());
-
-        final LauncherApps launcherApps = this.launcherApps.get();
-        if (launcherApps == null) {
+        Context context = this.context.get();
+        if (context == null) {
             cancel(true);
             return null;
         }
 
-        // id isn't used after being saved in the DB.
-        String id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
+        List<ShortcutInfo> shortcuts;
+        try {
+            // Fetch list of all shortcuts
+            shortcuts = ShortcutUtil.getAllShortcuts(context);
+        } catch (SecurityException e) {
+            e.printStackTrace();
 
-        final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-        ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
-                drawableToBitmap(iconDrawable));
+            // Publish progress (display toast)
+            publishProgress(-1);
 
-        // Name can be either in shortLabel or longLabel
-        if (shortcutInfo.getShortLabel() != null) {
-            pojo.setName(shortcutInfo.getShortLabel().toString());
-        } else if (shortcutInfo.getLongLabel() != null) {
-            pojo.setName(shortcutInfo.getLongLabel().toString());
-        } else {
-            Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
+            // Set flag to true, so we can rerun this class
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            prefs.edit().putBoolean("first-run-shortcuts", true).apply();
+
             cancel(true);
             return null;
         }
@@ -88,54 +79,50 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Void, Boolean> {
             return null;
         }
 
-        // Add shortcut to the DataHandler
-        boolean success = dataHandler.addShortcut(pojo);
+        Set<String> excludedAppList = dataHandler.getExcluded();
+        UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
 
-        if (success) {
-            try {
-                pinItemRequest.accept();
+        for (ShortcutInfo shortcutInfo : shortcuts) {
+
+            UserHandle user = new UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
+            boolean isExcluded = excludedAppList.contains(AppPojo.getComponentName(shortcutInfo.getPackage(),
+                    shortcutInfo.getActivity().getClassName(), user));
+
+            // Skip shortcut if app is excluded
+            if (!excludedAppList.isEmpty() &&
+                    isExcluded) {
+                continue;
             }
-            catch (IllegalStateException e) {
-                e.printStackTrace();
-                Context c = context.get();
-                if(c != null) {
-                    Toast.makeText(c, R.string.cant_pin_shortcut, Toast.LENGTH_SHORT).show();
-                }
+
+            // Create Pojo
+            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo);
+            if (pojo == null) {
+                continue;
             }
+
+            // Add shortcut to the DataHandler
+            dataHandler.addShortcut(pojo);
         }
 
         return true;
     }
 
     @Override
-    protected void onPostExecute(@NonNull Boolean success) {
-        final Context context = this.context.get();
-        if (context != null && success) {
-            Toast.makeText(context, R.string.shortcut_added, Toast.LENGTH_SHORT).show();
+    protected void onProgressUpdate(Integer... progress) {
+        if (progress[0] == -1) {
+            Toast.makeText(context.get(), R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show();
         }
     }
 
-    // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
-    private Bitmap drawableToBitmap(Drawable drawable) {
-        Bitmap bitmap = null;
+    @Override
+    protected void onPostExecute(@NonNull Boolean success) {
+        if (success) {
+            Log.i(TAG, "Shortcuts added to KISS");
 
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if (bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
+            if (this.dataHandler.get().getShortcutsProvider() != null) {
+                this.dataHandler.get().getShortcutsProvider().reload();
             }
         }
-
-        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
     }
 
 }

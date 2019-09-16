@@ -27,8 +27,8 @@ import androidx.annotation.NonNull;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.SearchProvider;
@@ -61,8 +61,7 @@ public class SettingsActivity extends PreferenceActivity implements
         assert theme != null;
         if (theme.equals("amoled-dark")) {
             setTheme(R.style.SettingThemeAmoledDark);
-        }
-        else if (theme.contains("dark")) {
+        } else if (theme.contains("dark")) {
             setTheme(R.style.SettingThemeDark);
         }
 
@@ -226,13 +225,15 @@ public class SettingsActivity extends PreferenceActivity implements
             // So, when null, we know it's the first time opening this setting and we can write the default value.
             // note: other preferences are initialized automatically in MainActivity.onCreate() from the preferences XML,
             // but this preference isn't defined in the XML so can't be initialized that easily.
-            prefs.edit().putStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google"))).apply();
+            prefs.edit().putStringSet("selected-search-provider-names", new TreeSet<>(Collections.singletonList("Google"))).apply();
         }
 
         removeSearchProviderSelect();
         removeSearchProviderDelete();
+        removeSearchProviderDefault();
         addCustomSearchProvidersSelect(prefs);
         addCustomSearchProvidersDelete(prefs);
+        addDefaultSearchProvider(prefs);
     }
 
     private void removeSearchProviderSelect() {
@@ -251,11 +252,19 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
+    private void removeSearchProviderDefault() {
+        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        Preference pref = findPreference("default-search-provider");
+        if (pref != null) {
+            category.removePreference(pref);
+        }
+    }
+
     @SuppressWarnings("StringSplitter")
     private void addCustomSearchProvidersSelect(SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
         //get stored search providers or default hard-coded values
-        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this));
+        Set<String> availableSearchProviders = new TreeSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this)));
         String[] searchProvidersArray = new String[availableSearchProviders.size()];
         int pos = 0;
         //get names of search providers
@@ -277,7 +286,7 @@ public class SettingsActivity extends PreferenceActivity implements
     private void addCustomSearchProvidersDelete(final SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = new MultiSelectListPreference(this);
 
-        Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this));
+        Set<String> availableSearchProviders = new TreeSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this)));
         String[] searchProvidersArray = new String[availableSearchProviders.size()];
         int pos = 0;
         //get names of search providers
@@ -299,7 +308,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 Set<String> searchProvidersToDelete = (Set<String>) newValue;
                 Set<String> availableSearchProviders = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(SettingsActivity.this));
 
-                Set<String> updatedProviders = new HashSet<>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(SettingsActivity.this)));
+                Set<String> updatedProviders = new TreeSet<>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(SettingsActivity.this)));
 
                 for (String searchProvider : availableSearchProviders) {
                     for (String providerToDelete : searchProvidersToDelete) {
@@ -329,6 +338,30 @@ public class SettingsActivity extends PreferenceActivity implements
         category.addPreference(multiPreference);
     }
 
+    private void addDefaultSearchProvider(final SharedPreferences prefs) {
+        ListPreference standardPref = new ListPreference(this);
+
+        // Get selected providers to choose from
+        Set<String> selectedProviders = new TreeSet<>(prefs.getStringSet("selected-search-provider-names", new TreeSet<>(Collections.singletonList("Google"))));
+        String[] selectedProviderArray = new String[selectedProviders.size()];
+        int pos = 0;
+        //get names of search providers
+        for (String searchProvider : selectedProviders) {
+            selectedProviderArray[pos++] = searchProvider.split("\\|")[0];
+        }
+
+        String searchProvidersTitle = this.getString(R.string.search_provider_default);
+        standardPref.setTitle(searchProvidersTitle);
+        standardPref.setDialogTitle(searchProvidersTitle);
+        standardPref.setKey("default-search-provider");
+        standardPref.setEntries(selectedProviderArray);
+        standardPref.setEntryValues(selectedProviderArray);
+        standardPref.setDefaultValue("Google"); // Google is standard on install
+
+        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        category.addPreference(standardPref);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -344,6 +377,8 @@ public class SettingsActivity extends PreferenceActivity implements
             if (provider != null) {
                 provider.reload();
             }
+            removeSearchProviderDefault(); // in order to refresh default search engine choices
+            addDefaultSearchProvider(prefs);
         } else if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
         } else if (key.equalsIgnoreCase("enable-phone-history")) {
@@ -358,6 +393,11 @@ public class SettingsActivity extends PreferenceActivity implements
             UIColors.clearPrimaryColorCache(this);
         } else if (key.equalsIgnoreCase("number-of-display-elements")) {
             QuerySearcher.clearMaxResultCountCache();
+        } else if (key.equalsIgnoreCase("default-search-provider")) {
+            final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getSearchProvider();
+            if (provider != null) {
+                provider.reload();
+            }
         } else if (key.equalsIgnoreCase("gestures-swipe-up")) {
             String pref_value = prefs.getString("gestures-swipe-up", "apps");
             ExperienceTweaks.updateGestureActionCache("up", pref_value);

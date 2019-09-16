@@ -212,11 +212,38 @@ public class DBHelper {
         db.insert("shortcuts", null, values);
     }
 
-    public static void removeShortcut(Context context, String name) {
+    public static void removeShortcut(Context context, String intentUri) {
         SQLiteDatabase db = getDatabase(context);
-        db.delete("shortcuts", "name = ?", new String[]{name});
+        db.delete("shortcuts", "intent_uri = ?", new String[]{intentUri});
     }
 
+    public static ArrayList<ShortcutRecord> getShortcuts(Context context, String packageName) {
+        ArrayList<ShortcutRecord> records = new ArrayList<>();
+        SQLiteDatabase db = getDatabase(context);
+
+        // Cursor query (String table, String[] columns, String selection,
+        // String[] selectionArgs, String groupBy, String having, String
+        // orderBy)
+        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
+                "package = ?", new String[]{packageName}, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            ShortcutRecord entry = new ShortcutRecord();
+
+            entry.name = cursor.getString(0);
+            entry.packageName = cursor.getString(1);
+            entry.iconResource = cursor.getString(2);
+            entry.intentUri = cursor.getString(3);
+            entry.icon_blob = cursor.getBlob(4);
+
+            records.add(entry);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return records;
+    }
 
     public static ArrayList<ShortcutRecord> getShortcuts(Context context) {
         ArrayList<ShortcutRecord> records = new ArrayList<>();
@@ -253,7 +280,7 @@ public class DBHelper {
         // String[] selectionArgs, String groupBy, String having, String
         // orderBy)
         Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
-                "intent_uri LIKE ?", new String[]{"%" + packageName + "%"}, null, null, null);
+                null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) { // remove from history
@@ -263,7 +290,13 @@ public class DBHelper {
         cursor.close();
 
         //remove shortcuts
-        db.delete("shortcuts", "intent_uri LIKE ?", new String[]{"%" + packageName + "%"});
+        db.delete("shortcuts", "package LIKE ?", new String[]{"%" + packageName + "%"});
+    }
+
+    public static void removeAllShortcuts(Context context) {
+        SQLiteDatabase db = getDatabase(context);
+        // delete whole table
+        db.delete("shortcuts", null, null);
     }
 
     /**

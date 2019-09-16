@@ -43,14 +43,23 @@ public class SearchProvider extends SimpleProvider {
     @Override
     public void reload() {
         searchProviders.clear();
-        Set<String> selectedProviders = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google")));
-        Set<String> availableProviders = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(context));
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Set<String> selectedProviders = prefs.getStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google")));
+        Set<String> availableProviders = prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(context));
+
+        // Get default search engine
+        String defaultSearchEngine = prefs.getString("default-search-provider", "Google");
 
         for (String searchProvider : selectedProviders) {
             String url = getProviderUrl(availableProviders, searchProvider);
             SearchPojo pojo = new SearchPojo("", url, SearchPojo.SEARCH_QUERY);
             // Super low relevance, should never be displayed before anything
             pojo.relevance = -500;
+            if (defaultSearchEngine.equals(searchProvider))
+                // Display default search engine slightly higher
+                pojo.relevance += 1;
+
             pojo.setName(searchProvider, false);
             if (pojo.url != null) {
                 searchProviders.add(pojo);
