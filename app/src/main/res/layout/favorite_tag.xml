@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0px"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="?attr/appSelectableItemBackground"
+    android:padding="@dimen/favorite_padding"
+    tools:layout_height="48dp"
+    tools:layout_width="48dp">
+
+    <ImageView
+        android:id="@android:id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:contentDescription="@null"
+        tools:src="@drawable/rounded_result_layout" />
+
+
+    <TextView
+        android:id="@android:id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@color/kiss_green"
+        android:textSize="24sp"
+        tools:text="g" />
+
+</FrameLayout>

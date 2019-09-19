@@ -22,6 +22,7 @@ import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -29,6 +30,8 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -54,11 +57,12 @@ public class AppResult extends Result {
         className = new ComponentName(appPojo.packageName, appPojo.activityName);
     }
 
+    @NonNull
     @Override
-    public View display(final Context context, int position, View convertView, FuzzyScore fuzzyScore) {
+    public View display(final Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
         View view = convertView;
         if (convertView == null) {
-            view = inflateFromId(context, R.layout.item_app);
+            view = inflateFromId(context, R.layout.item_app, parent);
         }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -175,7 +179,7 @@ public class AppResult extends Result {
                                 return true;
                             case EXCLUDE_KISS_ID:
                                 // remove item since it will be hidden
-                                parent.removeResult(AppResult.this);
+                                parent.removeResult(context, AppResult.this);
                                 excludeFromKiss(context, appPojo);
                                 return true;
                         }
@@ -201,7 +205,7 @@ public class AppResult extends Result {
         deleteRecord(context);
         //refresh current history
         if (!((MainActivity) context).isViewingAllApps()) {
-            parent.removeResult(AppResult.this);
+            parent.removeResult(context, AppResult.this);
         }
         //inform user
         Toast.makeText(context, R.string.excluded_app_history_added, Toast.LENGTH_LONG).show();

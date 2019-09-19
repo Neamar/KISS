@@ -52,11 +52,12 @@ public class ContactsResult extends Result {
         this.queryInterface = queryInterface;
     }
 
+    @NonNull
     @Override
-    public View display(Context context, int position, View convertView, FuzzyScore fuzzyScore) {
+    public View display(Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
         View view = convertView;
         if (convertView == null)
-            view = inflateFromId(context, R.layout.item_contact);
+            view = inflateFromId(context, R.layout.item_contact, parent);
 
         // Contact name
         TextView contactName = view.findViewById(R.id.item_contact_name);

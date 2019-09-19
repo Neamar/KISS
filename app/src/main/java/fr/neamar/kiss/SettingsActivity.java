@@ -2,6 +2,7 @@ package fr.neamar.kiss;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -25,15 +26,20 @@ import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.preference.ExcludePreferenceScreen;
 import fr.neamar.kiss.preference.PreferenceScreenHelper;
 import fr.neamar.kiss.preference.SwitchPreference;
@@ -52,6 +58,24 @@ public class SettingsActivity extends PreferenceActivity implements
     private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
+
+    /**
+     * Get tags that should be in the favorites bar
+     *
+     * @param  context to get the data handler with the actual favorites
+     * @return what we find in DataHandler
+     */
+    @NonNull
+    private static Set<String> getFavTags(Context context) {
+        ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(context).getDataHandler()
+                .getFavorites();
+        Set<String> set = new HashSet<>();
+        for (Pojo pojo : favoritesPojo) {
+            if (pojo instanceof TagDummyPojo)
+                set.add(pojo.getName());
+        }
+        return set;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +133,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
 
         addHiddenTagsTogglesInformation(prefs);
+        addTagsFavInformation();
     }
 
     @Override
@@ -397,6 +422,16 @@ public class SettingsActivity extends PreferenceActivity implements
             if (provider != null) {
                 provider.reload();
             }
+        } else if ("pref-fav-tags-list".equals(key)) {
+            // after we edit the fav tags list update DataHandler
+            Set<String> favTags = sharedPreferences.getStringSet(key, Collections.<String>emptySet());
+            DataHandler dh = KissApplication.getApplication(this).getDataHandler();
+            ArrayList<Pojo> favoritesPojo = dh.getFavorites();
+            for (Pojo pojo : favoritesPojo)
+                if (pojo instanceof TagDummyPojo && !favTags.contains(pojo.getName()))
+                    dh.removeFromFavorites(pojo.id);
+            for (String tagName : favTags)
+                dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
@@ -498,5 +533,24 @@ public class SettingsActivity extends PreferenceActivity implements
         selectListPreference.setEntries(tagArray);
         selectListPreference.setEntryValues(tagArray);
         selectListPreference.setValues(menuTags);
+    }
+
+    private void addTagsFavInformation() {
+        Set<String> favTags = getFavTags(getApplicationContext());
+        MultiSelectListPreference selectListPreference = (MultiSelectListPreference) findPreference("pref-fav-tags-list");
+
+        Set<String> tagsSet = KissApplication.getApplication(this)
+                .getDataHandler()
+                .getTagsHandler()
+                .getAllTagsAsSet();
+
+        // make sure we can toggle off the tags that are in the favs now
+        tagsSet.addAll(favTags);
+
+        String[] tagArray = tagsSet.toArray(new String[0]);
+        Arrays.sort(tagArray);
+        selectListPreference.setEntries(tagArray);
+        selectListPreference.setEntryValues(tagArray);
+        selectListPreference.setValues(favTags);
     }
 }

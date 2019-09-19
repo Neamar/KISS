@@ -20,6 +20,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -42,6 +43,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -70,6 +72,8 @@ public abstract class Result {
             return new PhoneResult((PhonePojo) pojo);
         else if (pojo instanceof ShortcutsPojo)
             return new ShortcutsResult((ShortcutsPojo) pojo);
+        else if (pojo instanceof TagDummyPojo)
+            return new TagDummyResult((TagDummyPojo)pojo);
 
 
         throw new RuntimeException("Unable to create a result from POJO");
@@ -89,10 +93,12 @@ public abstract class Result {
      *
      * @param context     android context
      * @param convertView a view to be recycled
-     * @param fuzzyScore
+     * @param parent      view that provides a set of LayoutParams values
+     * @param fuzzyScore  information for highlighting search result
      * @return a view to display as item
      */
-    public abstract View display(Context context, int position, View convertView, FuzzyScore fuzzyScore);
+    @NonNull
+    public abstract View display(Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
 
     @NonNull
     public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
@@ -243,8 +249,10 @@ public abstract class Result {
                 break;
         }
 
-        //Update Search to reflect favorite add, if the "exclude favorites" option is active
         MainActivity mainActivity = (MainActivity) context;
+        //Update favorite bar
+        mainActivity.onFavoriteChange();
+        //Update Search to reflect favorite add, if the "exclude favorites" option is active
         if (mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
             mainActivity.updateSearchRecords();
         }
@@ -254,16 +262,14 @@ public abstract class Result {
 
     private void launchAddToFavorites(Context context, Pojo app) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getApplication(context).getDataHandler().addToFavorites((MainActivity) context, app.id);
+        KissApplication.getApplication(context).getDataHandler().addToFavorites(app.id);
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo app) {
-        MainActivity mainActivity = (MainActivity) context;
-        String msg = mainActivity.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(mainActivity).getDataHandler().removeFromFavorites(mainActivity, app.id);
-        mainActivity.onFavoriteChange();
-        Toast.makeText(mainActivity, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
+        String msg = context.getResources().getString(R.string.toast_favorites_removed);
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(app.id);
+        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -274,7 +280,7 @@ public abstract class Result {
      */
     private void removeItem(Context context, RecordAdapter parent) {
         Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();
-        parent.removeResult(this);
+        parent.removeResult(context, this);
     }
 
     public final void launch(Context context, View v) {
@@ -354,13 +360,12 @@ public abstract class Result {
      *
      * @param context android context
      * @param id      id to inflate
+     * @param parent  view that provides a set of LayoutParams values
      * @return the view specified by the id
      */
-    View inflateFromId(Context context, int id) {
-        LayoutInflater vi = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        assert vi != null;
-        return vi.inflate(id, null);
+    View inflateFromId(Context context, @LayoutRes int id, @NonNull ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        return inflater.inflate(id, parent, false);
     }
 
     /**
