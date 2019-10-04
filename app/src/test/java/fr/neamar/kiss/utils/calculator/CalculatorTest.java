@@ -11,7 +11,6 @@ import java.util.ArrayDeque;
 import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.number.BigDecimalCloseTo.closeTo;
 
 public class CalculatorTest {
@@ -58,7 +57,7 @@ public class CalculatorTest {
 				Arguments.of("2/2/2.", new BigDecimal(0.5)),
 				Arguments.of("2/(1./2)", new BigDecimal(4)),
 
-				Arguments.of("-2**2", new BigDecimal(-4)),
+				Arguments.of("-2**2", new BigDecimal(4)),
 				Arguments.of("(-2)**2", new BigDecimal(4)),
 				Arguments.of("1+1**2", new BigDecimal(2)),
 				Arguments.of("1+1^2", new BigDecimal(2)),
@@ -67,8 +66,11 @@ public class CalculatorTest {
 
 				Arguments.of("(1/3)+(1/3)", new BigDecimal(2).divide(new BigDecimal(3), MathContext.DECIMAL32)),
 
-				Arguments.of("(1/10)", new BigDecimal(1).divide(new BigDecimal(10)))
-		);
+				Arguments.of("(1/10)", new BigDecimal(1).divide(new BigDecimal(10))),
+
+				Arguments.of("-1^2", new BigDecimal(1))
+
+				);
 	}
 
 	private Result<BigDecimal> operate(String operation) {
