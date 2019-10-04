@@ -1,15 +1,9 @@
 package fr.neamar.kiss.utils.calculator;
 
-import android.view.inputmethod.InputConnection;
-
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayDeque;
-import java.util.List;
-import java.util.Locale;
-import java.util.Stack;
 
 import androidx.annotation.NonNull;
 
@@ -56,7 +50,7 @@ public class Tokenizer {
 			switch (type) {
 				case UNARY_PLUS_TOKEN:
 				case UNARY_MINUS_TOKEN:
-					return 3;
+					return 4;
 				case SUM_TOKEN:
 				case SUBTRACT_TOKEN:
 					return 1;
@@ -64,7 +58,7 @@ public class Tokenizer {
 				case DIVIDE_TOKEN:
 					return 2;
 				case EXP_TOKEN:
-					return 4;
+					return 3;
 				default:
 					return -1;
 			}
