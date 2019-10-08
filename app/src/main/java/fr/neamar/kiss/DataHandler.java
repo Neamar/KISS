@@ -457,7 +457,7 @@ public class DataHandler extends BroadcastReceiver
 
         for (ShortcutInfo shortcutInfo : shortcuts) {
             // Create Pojo
-            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo);
+            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo, true);
             if (pojo == null) {
                 continue;
             }

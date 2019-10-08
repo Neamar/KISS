@@ -20,30 +20,21 @@ import java.util.Set;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
 
 @TargetApi(Build.VERSION_CODES.O)
-public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
+public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean> {
 
-    private static String TAG = "SaveOreoShortcutAsync";
+    private static String TAG = "SaveAllOreoShortcutsAsync";
     private final WeakReference<Context> context;
     private final WeakReference<DataHandler> dataHandler;
 
-    public SaveOreoShortcutAsync(@NonNull Context context) {
+    public SaveAllOreoShortcutsAsync(@NonNull Context context) {
         this.context = new WeakReference<>(context);
         this.dataHandler = new WeakReference<>(KissApplication.getApplication(context).getDataHandler());
-    }
-
-    @Override
-    protected void onPreExecute() {
-        Context context = this.context.get();
-        if (context != null) {
-            DBHelper.removeAllShortcuts(context);
-        }
     }
 
     @Override
@@ -95,7 +86,7 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
             }
 
             // Create Pojo
-            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo);
+            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo, !shortcutInfo.isPinned());
             if (pojo == null) {
                 continue;
             }
@@ -110,7 +101,7 @@ public class SaveOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
     @Override
     protected void onProgressUpdate(Integer... progress) {
         if (progress[0] == -1) {
-            Toast.makeText(context.get(), R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show();
+            Toast.makeText(context.get(), R.string.cant_save_shortcuts, Toast.LENGTH_LONG).show();
         }
     }
 

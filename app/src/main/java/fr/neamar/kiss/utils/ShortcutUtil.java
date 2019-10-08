@@ -2,6 +2,7 @@ package fr.neamar.kiss.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherApps;
@@ -18,8 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
-import fr.neamar.kiss.shortcut.SaveOreoShortcutAsync;
+import fr.neamar.kiss.shortcut.SaveAllOreoShortcutsAsync;
+import fr.neamar.kiss.shortcut.SaveSingleOreoShortcutAsync;
 
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
@@ -49,8 +52,23 @@ public class ShortcutUtil {
     /**
      * Save all oreo shortcuts to DB
      */
-    public static void rebuildShortcuts(Context context){
-        new SaveOreoShortcutAsync(context).execute();
+    public static void addShortcuts(Context context){
+        new SaveAllOreoShortcutsAsync(context).execute();
+    }
+
+    /**
+     * Save single shortcut to DB via pin request
+     */
+    @TargetApi(Build.VERSION_CODES.O)
+    public static void addShortcut(Context context, Intent intent){
+        new SaveSingleOreoShortcutAsync(context, intent).execute();
+    }
+
+    /**
+     * Remove all shortcuts saved in the database
+     */
+    public static void removeAllShortcuts(Context context){
+        DBHelper.removeAllShortcuts(context);
     }
 
     /**
@@ -89,7 +107,7 @@ public class ShortcutUtil {
      * Create ShortcutPojo from ShortcutInfo
      */
     @TargetApi(Build.VERSION_CODES.O)
-    public static ShortcutsPojo createShortcutPojo(Context context, ShortcutInfo shortcutInfo){
+    public static ShortcutsPojo createShortcutPojo(Context context, ShortcutInfo shortcutInfo, boolean includePackageName){
 
         LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
         // id isn't used after being saved in the DB.
@@ -102,13 +120,13 @@ public class ShortcutUtil {
         String appName = getAppNameFromPackageName(context, shortcutInfo.getPackage());
 
         if (shortcutInfo.getShortLabel() != null) {
-            if(!TextUtils.isEmpty(appName)){
+            if(includePackageName && !TextUtils.isEmpty(appName)){
                 pojo.setName(appName + ": " + shortcutInfo.getShortLabel().toString());
             } else {
                 pojo.setName(shortcutInfo.getShortLabel().toString());
             }
         } else if (shortcutInfo.getLongLabel() != null) {
-            if(!TextUtils.isEmpty(appName)){
+            if(includePackageName && !TextUtils.isEmpty(appName)){
                 pojo.setName(appName + ": " + shortcutInfo.getLongLabel().toString());
             } else {
                 pojo.setName(shortcutInfo.getLongLabel().toString());
