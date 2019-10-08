@@ -67,8 +67,9 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
         // Add shortcut to the DataHandler
         if(dataHandler.addShortcut(pojo)){
             pinItemRequest.accept();
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override

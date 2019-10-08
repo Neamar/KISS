@@ -199,8 +199,16 @@ public class DBHelper {
         return records;
     }
 
-    public static void insertShortcut(Context context, ShortcutRecord shortcut) {
+    public static boolean insertShortcut(Context context, ShortcutRecord shortcut) {
         SQLiteDatabase db = getDatabase(context);
+
+        // Do not add duplicate shortcuts
+        Cursor cursor = db.query("shortcuts", new String[]{"intent_uri"},
+                "intent_uri = ?", new String[]{shortcut.intentUri}, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            return false;
+        }
+        cursor.close();
 
         ContentValues values = new ContentValues();
         values.put("name", shortcut.name);
@@ -209,7 +217,8 @@ public class DBHelper {
         values.put("intent_uri", shortcut.intentUri);
         values.put("icon_blob", shortcut.icon_blob);
 
-        db.insert("shortcuts", null, values);
+        db.insertWithOnConflict("shortcuts", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        return true;
     }
 
     public static void removeShortcut(Context context, String intentUri) {

@@ -434,10 +434,8 @@ public class DataHandler extends BroadcastReceiver
             record.icon_blob = baos.toByteArray();
         }
 
-        DBHelper.insertShortcut(this.context, record);
-
-        Log.d(TAG, "Shortcut " + shortcut.id + " added.");
-        return true;
+        Log.d(TAG, "Shortcut " + shortcut.id);
+        return DBHelper.insertShortcut(this.context, record);
     }
 
     @TargetApi(Build.VERSION_CODES.O)
