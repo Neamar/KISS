@@ -18,7 +18,7 @@ public class OreoShortcuts extends Forwarder {
             // On first run save all shortcuts
             if (prefs.getBoolean("first-run-shortcuts", true)) {
                 // Save all shortcuts
-                ShortcutUtil.addShortcuts(mainActivity);
+                ShortcutUtil.addAllShortcuts(mainActivity);
                 // Set flag to false
                 prefs.edit().putBoolean("first-run-shortcuts", false).apply();
             }

@@ -52,7 +52,7 @@ public class ShortcutUtil {
     /**
      * Save all oreo shortcuts to DB
      */
-    public static void addShortcuts(Context context){
+    public static void addAllShortcuts(Context context){
         new SaveAllOreoShortcutsAsync(context).execute();
     }
 
