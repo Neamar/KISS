@@ -217,7 +217,7 @@ public class DBHelper {
         values.put("intent_uri", shortcut.intentUri);
         values.put("icon_blob", shortcut.icon_blob);
 
-        db.insertWithOnConflict("shortcuts", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        db.insert("shortcuts", null, values);
         return true;
     }
 
