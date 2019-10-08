@@ -478,7 +478,7 @@ public class DataHandler extends BroadcastReceiver
     public void removeShortcut(ShortcutsPojo shortcut) {
         // Also remove shortcut from favorites
         removeFromFavorites(shortcut.id);
-        DBHelper.removeShortcut(this.context, shortcut.intentUri);
+        DBHelper.removeShortcut(this.context, shortcut);
 
         if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();

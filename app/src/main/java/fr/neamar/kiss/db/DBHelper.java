@@ -203,8 +203,8 @@ public class DBHelper {
         SQLiteDatabase db = getDatabase(context);
 
         // Do not add duplicate shortcuts
-        Cursor cursor = db.query("shortcuts", new String[]{"intent_uri"},
-                "intent_uri = ?", new String[]{shortcut.intentUri}, null, null, null, null);
+        Cursor cursor = db.query("shortcuts", new String[]{"package", "intent_uri"},
+                "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri}, null, null, null, null);
         if (cursor.moveToFirst()) {
             return false;
         }
@@ -221,9 +221,9 @@ public class DBHelper {
         return true;
     }
 
-    public static void removeShortcut(Context context, String intentUri) {
+    public static void removeShortcut(Context context, ShortcutsPojo shortcut) {
         SQLiteDatabase db = getDatabase(context);
-        db.delete("shortcuts", "intent_uri = ?", new String[]{intentUri});
+        db.delete("shortcuts", "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri});
     }
 
     public static ArrayList<ShortcutRecord> getShortcuts(Context context, String packageName) {
