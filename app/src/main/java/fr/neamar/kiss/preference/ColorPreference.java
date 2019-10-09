@@ -20,18 +20,14 @@ import fr.neamar.kiss.UIColors;
 
 
 public class ColorPreference extends DialogPreference implements OnColorSelectedListener {
-    public final int COLOR_TRANSPARENT = 0x00000000;
-    public final int COLOR_LIGHT_TRANSPARENT = 0xAAFFFFFF;
-    public final int COLOR_DARK_TRANSPARENT = 0xAA000000;
+    final int COLOR_TRANSPARENT = 0x00000000;
+    final int COLOR_LIGHT_TRANSPARENT = 0xAAFFFFFF;
+    final int COLOR_DARK_TRANSPARENT = 0xAA000000;
     private ColorPickerPalette palette;
 
     private int selectedColor;
 
-    public ColorPreference(Context context) {
-        this(context, null);
-    }
-
-    public ColorPreference(Context context, AttributeSet attrs) {
+    ColorPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         this.setDialogLayoutResource(R.layout.pref_color);
