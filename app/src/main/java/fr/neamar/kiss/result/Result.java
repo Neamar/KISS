@@ -20,6 +20,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,8 @@ import androidx.annotation.StringRes;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
@@ -100,16 +103,23 @@ public abstract class Result {
     @NonNull
     public abstract View display(Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
 
+    protected View loadView(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
+	    if (favoriteView == null)
+		    favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
+
+	    return favoriteView;
+    }
+
     @NonNull
     public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
         if (favoriteView == null)
-            favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
-        Drawable drawable = getDrawable(context);
-        ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
-        if (drawable == null)
+            favoriteView = loadView(context, favoriteView, parent);
+
+        final ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
+
+        setDrawableToView(favoriteImage, () -> {
             favoriteImage.setImageResource(R.drawable.ic_launcher_white);
-        else
-            favoriteImage.setImageDrawable(drawable);
+        });
         favoriteView.setContentDescription(pojo.getName());
         return favoriteView;
     }
@@ -310,49 +320,34 @@ public abstract class Result {
         this.launch(context, v);
     }
 
-    /**
-     * Return the icon for this Result, or null if non existing.
-     *
-     * @param context android context
-     */
-    public Drawable getDrawable(Context context) {
-        return null;
-    }
-
-    boolean isDrawableCached() {
-        return false;
-    }
-
-    void setDrawableCache(Drawable drawable) {
-    }
-
-    void setAsyncDrawable(ImageView view) {
-        // the ImageView tag will store the async task if it's running
-        if (view.getTag() instanceof AsyncSetImage) {
-            AsyncSetImage asyncSetImage = (AsyncSetImage) view.getTag();
-            if (this.equals(asyncSetImage.appResultWeakReference.get())) {
-                // we are already loading the icon for this
-                return;
-            } else {
-                asyncSetImage.cancel(true);
-                view.setTag(null);
+    @MainThread
+    public void setDrawableToView(ImageView view, @MainThread @Nullable Runnable onFail) {
+        if(pojo.icon == null || pojo.icon.isCancelled()) {
+            if(onFail != null) {
+                onFail.run();
             }
-        }
-        // the ImageView will store the Result after the AsyncTask finished
-        else if (this.equals(view.getTag())) {
-            ((Result) view.getTag()).setDrawableCache(view.getDrawable());
             return;
         }
-        if (isDrawableCached()) {
-            view.setImageDrawable(getDrawable(view.getContext()));
-            view.setTag(this);
-        } else {
-            view.setTag(createAsyncSetImage(view).execute());
-        }
-    }
 
-    private AsyncSetImage createAsyncSetImage(ImageView imageView) {
-        return new AsyncSetImage(imageView, this);
+        if(pojo.icon.isDone()) {
+            try {
+                view.setImageDrawable(pojo.icon.get());
+            } catch (ExecutionException | InterruptedException e) {
+               if(onFail != null) {
+                   onFail.run();
+               }
+            }
+        }
+
+        // the ImageView tag will store the async task if it's running
+        if (view.getTag() instanceof AsyncSetImage) {
+            // we are already loading the icon for this
+            return;
+        }
+
+        AsyncSetImage asyncSetImage = new AsyncSetImage(view.getContext(), view, pojo.icon, onFail);
+
+        view.setTag(asyncSetImage.execute());
     }
 
     /**
@@ -400,39 +395,55 @@ public abstract class Result {
     }
 
     static class AsyncSetImage extends AsyncTask<Void, Void, Drawable> {
+        final WeakReference<Context> contextWeakReference;
         final WeakReference<ImageView> imageViewWeakReference;
-        final WeakReference<Result> appResultWeakReference;
+        final Future<Drawable> future;
+        final @Nullable Runnable onFail;
 
-        AsyncSetImage(ImageView image, Result result) {
-            super();
+        AsyncSetImage(Context context, ImageView image, Future<Drawable> future, @Nullable Runnable onFail) {
             image.setTag(this);
             image.setImageResource(android.R.color.transparent);
+            this.contextWeakReference = new WeakReference<>(context);
             this.imageViewWeakReference = new WeakReference<>(image);
-            this.appResultWeakReference = new WeakReference<>(result);
+            this.future = future;
+            this.onFail = onFail;
         }
 
         @Override
         protected Drawable doInBackground(Void... voids) {
-            ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || image.getTag() != this) {
-                imageViewWeakReference.clear();
+            final Context context = contextWeakReference.get();
+            if(context == null) {
                 return null;
             }
-            Result result = appResultWeakReference.get();
-            if (result == null)
-                return null;
-            return result.getDrawable(image.getContext());
+
+            Drawable icon = null;
+            try {
+                icon = future.get();
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return icon;
+        }
+
+        @Override
+        protected void onCancelled() {
+            if(onFail != null) {
+                onFail.run();
+            }
         }
 
         @Override
         protected void onPostExecute(Drawable drawable) {
             ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || drawable == null) {
-                imageViewWeakReference.clear();
+            if (isCancelled() || image == null || drawable == null || image.getTag() != this) {
+                if(onFail != null) {
+                    onFail.run();
+                }
                 return;
             }
+
             image.setImageDrawable(drawable);
-            image.setTag(appResultWeakReference.get());
         }
     }
 }

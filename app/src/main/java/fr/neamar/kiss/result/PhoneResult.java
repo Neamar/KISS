@@ -100,10 +100,4 @@ public class PhoneResult extends Result {
             context.startActivity(phone);
         }
     }
-
-    @Override
-    public Drawable getDrawable(Context context) {
-        //noinspection deprecation: getDrawable(int, Theme) requires SDK 21+
-        return context.getResources().getDrawable(android.R.drawable.ic_menu_call);
-    }
 }

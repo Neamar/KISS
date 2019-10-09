@@ -21,7 +21,6 @@ import java.util.Locale;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.shortcut.SaveOreoShortcutAsync;
 
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 
@@ -97,7 +96,7 @@ public class ShortcutUtil {
 
         final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
         ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
-                DrawableUtils.drawableToBitmap(iconDrawable));
+                new CompletedFuture<>(iconDrawable));
 
         String appName = getAppNameFromPackageName(context, shortcutInfo.getPackage());
 

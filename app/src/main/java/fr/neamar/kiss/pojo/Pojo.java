@@ -1,14 +1,20 @@
 package fr.neamar.kiss.pojo;
 
+import android.graphics.drawable.Drawable;
 import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 
+import androidx.annotation.Nullable;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public abstract class Pojo {
     public static final String DEFAULT_ID = "(none)";
+
+    @Nullable
+    public final Future<Drawable> icon;
 
     // Globally unique ID.
     // Usually starts with provider scheme, e.g. "app://" or "contact://" to
@@ -24,8 +30,9 @@ public abstract class Pojo {
     // Name for this pojo, e.g. app name
     String name = "";
 
-    public Pojo(String id) {
+    public Pojo(String id, Future<Drawable> icon) {
         this.id = id;
+        this.icon = icon;
     }
 
     public String getName() {

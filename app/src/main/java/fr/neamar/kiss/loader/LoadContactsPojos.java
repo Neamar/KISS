@@ -3,22 +3,35 @@ package fr.neamar.kiss.loader;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 
+import androidx.annotation.Nullable;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.ui.RoundedQuickContactBadge;
+
+import static fr.neamar.kiss.utils.DrawableToBitmap.drawableToBitmap;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
@@ -81,15 +94,17 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     boolean starred = cur.getInt(starredIndex) != 0;
                     boolean primary = cur.getInt(isPrimaryIndex) != 0;
                     String photoId = cur.getString(photoIdIndex);
-                    Uri icon = null;
+                    Uri iconUri = null;
                     if (photoId != null) {
-                        icon = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI,
+                        iconUri = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI,
                                 Long.parseLong(photoId));
                     }
 
+                    Future<Drawable> icon = getIcon(iconUri);
+
                     ContactsPojo contact = new ContactsPojo(pojoScheme + lookupKey + phone,
-                            lookupKey, phone, normalizedPhone, icon, primary, timesContacted,
-                            starred, false);
+                            lookupKey, phone, normalizedPhone, icon, getRoundedIcon(icon),
+                            primary, timesContacted, starred, false);
 
                     contact.setName(name);
 
@@ -163,5 +178,69 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         long end = System.nanoTime();
         Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list contacts");
         return contacts;
+    }
+
+    private Future<Drawable> getIcon(Uri iconUri) {
+        FutureTask<Drawable> futureIcon = new FutureTask<>(new IconCallable(context, iconUri));
+        IMAGE_EXCECUTOR.execute(futureIcon);
+        return futureIcon;
+    }
+
+    private Future<Drawable> getRoundedIcon(Future<Drawable> icon) {
+        return new FutureTask<>(new RoundedIconCallable(icon));
+    }
+
+    private static final class IconCallable implements Callable<Drawable> {
+        private final WeakReference<Context> context;
+        @Nullable
+        private final Uri iconUri;
+
+        private IconCallable(WeakReference<Context> context, @Nullable Uri iconUri) {
+            this.context = context;
+            this.iconUri = iconUri;
+        }
+
+
+        @Override
+        public Drawable call() throws IOException {
+            final Context context = this.context.get();
+            if(context == null) {
+                return null;
+            }
+
+            if(iconUri == null) {
+                return defaultIcon(context);
+            }
+
+            InputStream inputStream = null;
+            try {
+                inputStream = context.getContentResolver().openInputStream(iconUri);
+                return Drawable.createFromStream(inputStream, null);
+            } catch (FileNotFoundException e) {
+                return defaultIcon(context);
+            } finally {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            }
+        }
+
+        private Drawable defaultIcon(Context context) {
+            return context.getResources().getDrawable(R.drawable.ic_contact);
+        }
+    }
+
+    private static final class RoundedIconCallable implements Callable<Drawable> {
+        private final Future<Drawable> futureIcon;
+
+        private RoundedIconCallable(Future<Drawable> futureIcon) {
+            this.futureIcon = futureIcon;
+        }
+
+        @Override
+        public Drawable call() throws ExecutionException, InterruptedException {
+            Bitmap iconBitmap = drawableToBitmap(futureIcon.get());
+            return new RoundedQuickContactBadge.RoundedDrawable(iconBitmap);
+        }
     }
 }

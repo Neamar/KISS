@@ -1,9 +1,12 @@
 package fr.neamar.kiss.pojo;
 
+import android.graphics.drawable.Drawable;
 import android.util.Pair;
 
+import java.sql.Driver;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
@@ -13,8 +16,8 @@ public class PojoWithTags extends Pojo {
     // Tags assigned to this pojo
     private String tags = "";
 
-    public PojoWithTags(String id) {
-        super(id);
+    public PojoWithTags(String id, Future<Drawable> icon) {
+        super(id, icon);
     }
 
     public StringNormalizer.Result getNormalizedTags() {

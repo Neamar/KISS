@@ -1,16 +1,20 @@
 package fr.neamar.kiss.pojo;
 
-import android.net.Uri;
+import android.graphics.drawable.Drawable;
+
+import java.util.concurrent.Future;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public class ContactsPojo extends Pojo {
+
     public final String lookupKey;
 
     public final String phone;
     //phone without special characters
     public final StringNormalizer.Result normalizedPhone;
-    public final Uri icon;
+
+    public final Future<Drawable> roundedIcon;
 
     // Is this a primary phone?
     public final Boolean primary;
@@ -29,13 +33,13 @@ public class ContactsPojo extends Pojo {
     private String nickname = "";
 
     public ContactsPojo(String id, String lookupKey, String phone, StringNormalizer.Result normalizedPhone,
-                        Uri icon, Boolean primary, int timesContacted, Boolean starred,
-                        Boolean homeNumber) {
-        super(id);
+                        Future<Drawable> icon, Future<Drawable> roundedIcon, Boolean primary,
+                        int timesContacted, Boolean starred, Boolean homeNumber) {
+        super(id, icon);
         this.lookupKey = lookupKey;
         this.phone = phone;
         this.normalizedPhone = normalizedPhone;
-        this.icon = icon;
+        this.roundedIcon = roundedIcon;
         this.primary = primary;
         this.timesContacted = timesContacted;
         this.starred = starred;

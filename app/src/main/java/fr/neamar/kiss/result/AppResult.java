@@ -13,7 +13,6 @@ import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,7 +39,6 @@ import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
@@ -48,7 +46,6 @@ import fr.neamar.kiss.utils.SpaceTokenizer;
 public class AppResult extends Result {
     private final AppPojo appPojo;
     private final ComponentName className;
-    private Drawable icon = null;
 
     AppResult(AppPojo appPojo) {
         super(appPojo);
@@ -84,10 +81,7 @@ public class AppResult extends Result {
 
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!prefs.getBoolean("icons-hide", false)) {
-            if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
-                icon = appIcon.getDrawable();
-            }
-            this.setAsyncDrawable(appIcon);
+            this.setDrawableToView(appIcon, null);
         } else {
             appIcon.setImageDrawable(null);
         }
@@ -289,33 +283,6 @@ public class AppResult extends Result {
         Intent intent = new Intent(Intent.ACTION_DELETE,
                 Uri.fromParts("package", app.packageName, null));
         context.startActivity(intent);
-    }
-
-    @Override
-    boolean isDrawableCached() {
-        return icon != null;
-    }
-
-    @Override
-    void setDrawableCache(Drawable drawable) {
-        icon = drawable;
-    }
-
-    @Override
-    public Drawable getDrawable(Context context) {
-        synchronized (this) {
-            if (GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName)) {
-                // Google Calendar has a special treatment and displays a custom icon every day
-                icon = GoogleCalendarIcon.getDrawable(context, appPojo.activityName);
-            }
-
-            if (icon == null) {
-                icon = KissApplication.getApplication(context).getIconsHandler()
-                        .getDrawableIconForPackage(className, this.appPojo.userHandle);
-            }
-
-            return icon;
-        }
     }
 
     @Override

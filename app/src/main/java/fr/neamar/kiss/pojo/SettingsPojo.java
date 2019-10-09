@@ -1,25 +1,25 @@
 package fr.neamar.kiss.pojo;
 
-import androidx.annotation.DrawableRes;
+import android.graphics.drawable.Drawable;
+
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 
 public class SettingsPojo extends Pojo {
     public final String settingName;
     public final String packageName;
-    public final @DrawableRes int icon;
 
-    public SettingsPojo(String id, String settingName, @DrawableRes int icon) {
-    	super(id);
+    public SettingsPojo(String id, String settingName, Future<Drawable> icon) {
+    	super(id, icon);
 
         this.settingName = settingName;
         this.packageName = "";
-        this.icon = icon;
     }
 
-    public SettingsPojo(String id, String settingName, String packageName, @DrawableRes int icon) {
-	    super(id);
+    public SettingsPojo(String id, String settingName, String packageName, Future<Drawable> icon) {
+	    super(id, icon);
 
         this.settingName = settingName;
         this.packageName = packageName;
-        this.icon = icon;
     }
 }

@@ -1,6 +1,8 @@
 package fr.neamar.kiss.pojo;
 
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+
+import java.util.concurrent.Future;
 
 public class ShortcutsPojo extends PojoWithTags {
 
@@ -10,29 +12,26 @@ public class ShortcutsPojo extends PojoWithTags {
     public final String packageName;
     public final String resourceName;
     public final String intentUri;// TODO: 15/10/18 Use boolean instead of prefix for Oreo shortcuts
-    public final Bitmap icon;
 
     public ShortcutsPojo(String id, String packageName, String resourceName, String intentUri,
-                         Bitmap icon) {
-        super(id);
+                         Future<Drawable> icon) {
+        super(id, icon);
 
         this.packageName = packageName;
         this.resourceName = resourceName;
         this.intentUri = intentUri;
-        this.icon = icon;
     }
 
     /**
      * Oreo shortcuts do not have a real intentUri, instead they have a shortcut id
      * and the Android system is responsible for safekeeping the Intent
      */
-    public ShortcutsPojo(String id, String packageName, String oreoId, Bitmap icon) {
-        super(id);
+    public ShortcutsPojo(String id, String packageName, String oreoId, Future<Drawable> icon) {
+        super(id, icon);
 
         this.packageName = packageName;
         this.resourceName = null;
         this.intentUri = ShortcutsPojo.OREO_PREFIX + oreoId;
-        this.icon = icon;
     }
 
     /**

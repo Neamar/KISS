@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -40,23 +39,13 @@ public class SettingsResult extends Result {
         ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (!prefs.getBoolean("icons-hide", false)) {
-            settingIcon.setImageDrawable(getDrawable(context));
+            setDrawableToView(settingIcon, null);
             settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
         } else {
             settingIcon.setImageDrawable(null);
         }
 
         return v;
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public Drawable getDrawable(Context context) {
-        if (settingPojo.icon != -1) {
-            return context.getResources().getDrawable(settingPojo.icon);
-        }
-
-        return null;
     }
 
     @Override

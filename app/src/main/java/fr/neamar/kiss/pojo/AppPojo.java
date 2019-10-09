@@ -1,5 +1,9 @@
 package fr.neamar.kiss.pojo;
 
+import android.graphics.drawable.Drawable;
+
+import java.util.concurrent.Future;
+
 import fr.neamar.kiss.utils.UserHandle;
 
 public class AppPojo extends PojoWithTags {
@@ -17,8 +21,8 @@ public class AppPojo extends PojoWithTags {
     private boolean excludedFromHistory;
 
     public AppPojo(String id, String packageName, String activityName, UserHandle userHandle,
-                   boolean isExcluded, boolean isExcludedFromHistory) {
-        super(id);
+                   Future<Drawable> icon, boolean isExcluded, boolean isExcludedFromHistory) {
+        super(id, icon);
 
         this.packageName = packageName;
         this.activityName = activityName;

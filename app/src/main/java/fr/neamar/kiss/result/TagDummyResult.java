@@ -143,7 +143,6 @@ public class TagDummyResult extends Result {
         ImageView image = v.findViewById(R.id.item_search_icon);
         TextView searchText = v.findViewById(R.id.item_search_text);
 
-        image.setImageDrawable(getDrawable(context));
         searchText.setText(pojo.getName());
 
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
