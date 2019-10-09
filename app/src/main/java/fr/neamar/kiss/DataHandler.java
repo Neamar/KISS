@@ -434,10 +434,8 @@ public class DataHandler extends BroadcastReceiver
             record.icon_blob = baos.toByteArray();
         }
 
-        DBHelper.insertShortcut(this.context, record);
-
-        Log.d(TAG, "Shortcut " + shortcut.id + " added.");
-        return true;
+        Log.d(TAG, "Shortcut " + shortcut.id);
+        return DBHelper.insertShortcut(this.context, record);
     }
 
     @TargetApi(Build.VERSION_CODES.O)
@@ -457,7 +455,7 @@ public class DataHandler extends BroadcastReceiver
 
         for (ShortcutInfo shortcutInfo : shortcuts) {
             // Create Pojo
-            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo);
+            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo, true);
             if (pojo == null) {
                 continue;
             }
@@ -480,7 +478,7 @@ public class DataHandler extends BroadcastReceiver
     public void removeShortcut(ShortcutsPojo shortcut) {
         // Also remove shortcut from favorites
         removeFromFavorites(shortcut.id);
-        DBHelper.removeShortcut(this.context, shortcut.intentUri);
+        DBHelper.removeShortcut(this.context, shortcut);
 
         if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
