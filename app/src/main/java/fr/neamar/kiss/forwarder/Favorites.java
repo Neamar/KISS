@@ -316,27 +316,30 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             this.onClick(view);
             return true;
         }
-        if (!contextMenuShown && holdTime > LONG_PRESS_DELAY) {
-            contextMenuShown = true;
-            this.onLongClick(view);
-            return true;
-        }
 
-        // Drag handlers
-        int intCurrentY = Math.round(motionEvent.getY());
-        int intCurrentX = Math.round(motionEvent.getX());
-        int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
-        int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
-        boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
+        if(holdTime > LONG_PRESS_DELAY) {
+            // Long press, either drag or context menu
 
-        if (hasMoved && mDragEnabled) {
-            mDragEnabled = false;
-            mainActivity.dismissPopup();
-            mainActivity.closeContextMenu();
-            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-            view.startDrag(null, shadowBuilder, view, 0);
-            view.setVisibility(View.INVISIBLE);
-            return true;
+            // Drag handlers
+            int intCurrentY = Math.round(motionEvent.getY());
+            int intCurrentX = Math.round(motionEvent.getX());
+            int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
+            int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
+            boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
+
+            if (hasMoved && mDragEnabled) {
+                mDragEnabled = false;
+                mainActivity.dismissPopup();
+                mainActivity.closeContextMenu();
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(null, shadowBuilder, view, 0);
+                view.setVisibility(View.INVISIBLE);
+                return true;
+            } else if (!contextMenuShown) {
+                contextMenuShown = true;
+                this.onLongClick(view);
+                return true;
+            }
         }
 
         return false;
