@@ -328,6 +328,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
             if (hasMoved && mDragEnabled) {
+                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                 mDragEnabled = false;
                 mainActivity.dismissPopup();
                 mainActivity.closeContextMenu();
