@@ -290,7 +290,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         ListPopup popup = viewHolder.result.getPopupMenu(mainActivity, mainActivity.adapter, v);
         mainActivity.registerPopup(popup);
         popup.show(v);
-        v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         return true;
     }
 
@@ -318,6 +317,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
 
         if(holdTime > LONG_PRESS_DELAY) {
+            view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             // Long press, either drag or context menu
 
             // Drag handlers
@@ -328,7 +328,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
             if (hasMoved && mDragEnabled) {
-                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+                if(contextMenuShown) {
+                    mainActivity.dismissPopup();
+                }
+
                 mDragEnabled = false;
                 mainActivity.dismissPopup();
                 mainActivity.closeContextMenu();
@@ -362,6 +365,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 }
                 overApp = (ViewHolder) v.getTag();
                 currentX = (event.getX() != 0.0f) ? event.getX() : currentX;
+
                 break;
 
             case DragEvent.ACTION_DRAG_ENDED:
