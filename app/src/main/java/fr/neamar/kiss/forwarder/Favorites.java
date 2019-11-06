@@ -313,11 +313,11 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         long holdTime = motionEvent.getEventTime() - startTime;
         if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             this.onClick(view);
+            view.performClick();
             return true;
         }
 
         if(holdTime > LONG_PRESS_DELAY) {
-            view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
             // Long press, either drag or context menu
 
             // Drag handlers
@@ -328,6 +328,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
             if (hasMoved && mDragEnabled) {
+                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
                 if(contextMenuShown) {
                     mainActivity.dismissPopup();
                 }
@@ -338,8 +340,11 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(null, shadowBuilder, view, 0);
                 view.setVisibility(View.INVISIBLE);
+                isDragging = true;
                 return true;
-            } else if (!contextMenuShown) {
+            } else if (!contextMenuShown && !isDragging) {
+                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
                 contextMenuShown = true;
                 this.onLongClick(view);
                 return true;
@@ -354,9 +359,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
-                isDragging = true;
-                break;
-
+                // Inform the system that we are interested in being a potential drop target
+                return true;
             case DragEvent.ACTION_DRAG_ENTERED:
             case DragEvent.ACTION_DRAG_EXITED:
             case DragEvent.ACTION_DROP:
@@ -383,12 +387,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 // Sometimes we don't trigger onDrag over another app, in which case just drop.
                 if (overApp == null) {
                     Log.w(TAG, "Wasn't dragged over an app, returning app to starting position");
-                    draggedView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            draggedView.setVisibility(View.VISIBLE);
-                        }
-                    });
+                    draggedView.post(() -> draggedView.setVisibility(View.VISIBLE));
                     break;
                 }
 
