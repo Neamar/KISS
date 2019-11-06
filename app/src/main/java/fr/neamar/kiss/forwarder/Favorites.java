@@ -73,8 +73,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
      * Globals for drag and drop support
      */
     private static long startTime = 0; // Start of the drag and drop, used for long press menu
-    private float currentX = 0.0f; // Current X position of the drag op, this is 0 on DRAG END so we keep a copy here
-    private ViewHolder overApp; // the view for the DRAG_END event is typically wrong, so we store a reference of the last dragged over app.
 
     /**
      * Configuration for drag and drop
@@ -86,6 +84,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     private boolean mDragEnabled = true;
     private boolean isDragging = false;
     private boolean contextMenuShown = false;
+    private int potentialNewIndex = -1;
     private int favCount = -1;
 
     private SharedPreferences notificationPrefs = null;
@@ -167,8 +166,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             int dotColor;
             if (isExternalFavoriteBarEnabled()) {
                 dotColor = UIColors.getPrimaryColor(mainActivity);
-            }
-            else {
+            } else {
                 dotColor = Color.WHITE;
             }
 
@@ -317,7 +315,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             return true;
         }
 
-        if(holdTime > LONG_PRESS_DELAY) {
+        if (holdTime > LONG_PRESS_DELAY) {
             // Long press, either drag or context menu
 
             // Drag handlers
@@ -327,10 +325,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
             boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
-            if (hasMoved && mDragEnabled) {
+            if (hasMoved && mDragEnabled && !isDragging) {
                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
 
-                if(contextMenuShown) {
+                if (contextMenuShown) {
                     mainActivity.dismissPopup();
                 }
 
@@ -363,57 +361,54 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 return true;
             case DragEvent.ACTION_DRAG_ENTERED:
             case DragEvent.ACTION_DRAG_EXITED:
-            case DragEvent.ACTION_DROP:
                 if (!isDragging) {
                     return true;
                 }
-                overApp = (ViewHolder) v.getTag();
-                currentX = (event.getX() != 0.0f) ? event.getX() : currentX;
 
+                if (event.getAction() == DragEvent.ACTION_DRAG_ENTERED) {
+                    View draggedView = (View) event.getLocalState();
+                    ViewGroup parent = (ViewGroup) draggedView.getParent();
+                    if (parent != v.getParent()) {
+                        break;
+                    }
+
+                    int index = parent.indexOfChild(v);
+
+                    if (potentialNewIndex != -1) {
+                        parent.removeView(draggedView);
+                        parent.addView(draggedView, index);
+                    }
+                    potentialNewIndex = index;
+                    Log.e("WTF", "POTNEW " + potentialNewIndex);
+
+                }
                 break;
+            case DragEvent.ACTION_DROP:
+                // Accept the drop, will be followed by ACTION_DRAG_ENDED
+                return true;
 
             case DragEvent.ACTION_DRAG_ENDED:
-                // Only need to handle this action once.
+                // Every drop target will receive this event, but we only need to process it one
                 if (!isDragging) {
                     return true;
                 }
-                isDragging = false;
-
-                // Reset dragging to what it should be
-                mDragEnabled = favCount > 1;
 
                 final View draggedView = (View) event.getLocalState();
 
                 // Sometimes we don't trigger onDrag over another app, in which case just drop.
-                if (overApp == null) {
-                    Log.w(TAG, "Wasn't dragged over an app, returning app to starting position");
+                if (potentialNewIndex == -1) {
+                    Log.w(TAG, "Wasn't dragged over a favorite, returning app to starting position");
                     draggedView.post(() -> draggedView.setVisibility(View.VISIBLE));
-                    break;
+                } else {
+                    final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
+
+                    KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), potentialNewIndex);
                 }
 
-                final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
-
-                int left = v.getLeft();
-                int right = v.getRight();
-                int width = right - left;
-
-                // currentX is relative to the view not the screen, so add the current X of the view.
-                final boolean leftSide = (left + currentX < left + (width / 2));
-
-                final int pos = KissApplication.getApplication(mainActivity).getDataHandler().getFavoritePosition(overApp.result.getPojoId());
-
-                draggedView.post(() -> {
-                    // Signals to a View that the drag and drop operation has concluded.
-                    // If event result is set, this means the dragged view was dropped in target
-                    if (event.getResult()) {
-                        KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), leftSide ? pos - 1 : pos);
-                        mainActivity.onFavoriteChange();
-                    } else {
-                        draggedView.setVisibility(View.VISIBLE);
-                    }
-                });
-
-                break;
+                // Reset dragging to what it should be
+                mDragEnabled = favCount > 1;
+                potentialNewIndex = -1;
+                isDragging = false;
             default:
                 break;
         }
