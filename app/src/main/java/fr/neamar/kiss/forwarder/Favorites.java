@@ -290,7 +290,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         ListPopup popup = viewHolder.result.getPopupMenu(mainActivity, mainActivity.adapter, v);
         mainActivity.registerPopup(popup);
         popup.show(v);
-        v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         return true;
     }
 
@@ -314,29 +313,42 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         long holdTime = motionEvent.getEventTime() - startTime;
         if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             this.onClick(view);
-            return true;
-        }
-        if (!contextMenuShown && holdTime > LONG_PRESS_DELAY) {
-            contextMenuShown = true;
-            this.onLongClick(view);
+            view.performClick();
             return true;
         }
 
-        // Drag handlers
-        int intCurrentY = Math.round(motionEvent.getY());
-        int intCurrentX = Math.round(motionEvent.getX());
-        int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
-        int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
-        boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
+        if(holdTime > LONG_PRESS_DELAY) {
+            // Long press, either drag or context menu
 
-        if (hasMoved && mDragEnabled) {
-            mDragEnabled = false;
-            mainActivity.dismissPopup();
-            mainActivity.closeContextMenu();
-            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-            view.startDrag(null, shadowBuilder, view, 0);
-            view.setVisibility(View.INVISIBLE);
-            return true;
+            // Drag handlers
+            int intCurrentY = Math.round(motionEvent.getY());
+            int intCurrentX = Math.round(motionEvent.getX());
+            int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
+            int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
+            boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
+
+            if (hasMoved && mDragEnabled) {
+                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
+                if(contextMenuShown) {
+                    mainActivity.dismissPopup();
+                }
+
+                mDragEnabled = false;
+                mainActivity.dismissPopup();
+                mainActivity.closeContextMenu();
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(null, shadowBuilder, view, 0);
+                view.setVisibility(View.INVISIBLE);
+                isDragging = true;
+                return true;
+            } else if (!contextMenuShown && !isDragging) {
+                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
+                contextMenuShown = true;
+                this.onLongClick(view);
+                return true;
+            }
         }
 
         return false;
@@ -347,9 +359,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
-                isDragging = true;
-                break;
-
+                // Inform the system that we are interested in being a potential drop target
+                return true;
             case DragEvent.ACTION_DRAG_ENTERED:
             case DragEvent.ACTION_DRAG_EXITED:
             case DragEvent.ACTION_DROP:
@@ -358,6 +369,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 }
                 overApp = (ViewHolder) v.getTag();
                 currentX = (event.getX() != 0.0f) ? event.getX() : currentX;
+
                 break;
 
             case DragEvent.ACTION_DRAG_ENDED:
@@ -375,12 +387,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 // Sometimes we don't trigger onDrag over another app, in which case just drop.
                 if (overApp == null) {
                     Log.w(TAG, "Wasn't dragged over an app, returning app to starting position");
-                    draggedView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            draggedView.setVisibility(View.VISIBLE);
-                        }
-                    });
+                    draggedView.post(() -> draggedView.setVisibility(View.VISIBLE));
                     break;
                 }
 
