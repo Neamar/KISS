@@ -363,7 +363,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context        android context
      * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @param historyMode    Recency vs Frecency vs Frequency
+     * @param historyMode    Recency vs Frecency vs Frequency vs Adaptive
      * @param sortHistory    Sort history entries alphabetically
      * @param itemsToExcludeById Items to exclude from history by their id
      * @return pojos in recent history

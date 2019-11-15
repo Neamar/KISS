@@ -8,7 +8,7 @@ import android.util.Log;
 class DB extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 5;
+    private final static int DB_VERSION = 6;
 
     DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -20,11 +20,16 @@ class DB extends SQLiteOpenHelper {
         database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
                 + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
         createTags(database);
+        addTimeStamps(database);
     }
 
     private void createTags(SQLiteDatabase database) {
         database.execSQL("CREATE TABLE tags ( _id INTEGER PRIMARY KEY AUTOINCREMENT, tag TEXT NOT NULL, record TEXT NOT NULL)");
         database.execSQL("CREATE INDEX idx_tags_record ON tags(record);");
+    }
+
+    private void addTimeStamps(SQLiteDatabase database) {
+        database.execSQL("ALTER TABLE history ADD COLUMN timeStamp INTEGER DEFAULT 0  NOT NULL");
     }
 
     @Override
@@ -42,6 +47,9 @@ class DB extends SQLiteOpenHelper {
                     // fall through
                 case 4:
                     createTags(database);
+                    // fall through
+                case 5:
+                    addTimeStamps(database);
                     // fall through
                 default:
                     break;
