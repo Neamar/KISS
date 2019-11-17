@@ -138,6 +138,21 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         favCount = favoritesPojo.size();
 
+        if(favCount == favoritesViews.size()) {
+            // Same number of favorites, we may be able to avoid a redraw if nothing has changed
+            boolean allSimilar = true;
+            for(int i = 0; i < favCount; i++) {
+                if(!favoritesPojo.get(i).id.equals(favoritesViews.get(i).result.getPojoId())) {
+                    allSimilar = false;
+                    break;
+                }
+            }
+
+            if(allSimilar) {
+                return;
+            }
+        }
+
         ArrayList<ViewHolder> holders = new ArrayList<>(favCount);
 
         // Don't look for items after favIds length, we won't be able to display them
