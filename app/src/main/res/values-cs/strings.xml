@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="activity_setting">Nastavení KISS</string>
-    <string name="ui_search_hint">Vyhledávat aplikace, kontanty…</string>
-    <string name="ui_item_search">%1$s Vyhledávat “%2$s”</string>
-    <string name="ui_item_phone">Hovor “%s”</string>
+    <string name="ui_search_hint">Vyhledat aplikace, kontanty, …</string>
+    <string name="ui_item_search">%1$s Vyhledat “%2$s”</string>
+    <string name="ui_item_phone">Volat “%s”</string>
     <string name="ui_item_contact_hint_message">Zpráva</string>
     <string name="ui_item_contact_hint_call">Hovor</string>
-
-    <string name="title_ui">Nastavení vzhledu</string>
+    <string name="title_ui">Uživatelské rozhraní</string>
     <string name="title_history">Nastavení historie</string>
-    <string name="title_providers">Výběr poskytovatelů</string>
+    <string name="title_providers">Nastavení vyhledávání</string>
     <string name="menu_settings">Nastavení zařízení</string>
-    <string name="ui_empty_1_sub">Aplikace, kontakty, nastavení</string>
-    <string name="ui_empty_2">Vždy zobrazovat historii.</string>
+    <string name="ui_empty_1_sub">Aplikace, kontakty, nastavení, …</string>
+    <string name="ui_empty_2">Vždy zobrazovat historii</string>
     <string name="ui_empty_2_sub">Pro rychlý přístup</string>
     <string name="ui_empty_3">Rychlý přístup k nejvíce používaným aplikacím</string>
     <string name="app_name">Spouštěč KISS</string>
-
     <string name="contacts_name">Kontakty</string>
-
-    <string name="search_name">Vyhledávání Google</string>
-
-    <string name="settings_name">Nastavení</string>
-
+    <string name="search_name">Poskytovatelé webového vyhledávání</string>
+    <string name="settings_name">Nastavení zařízení</string>
     <string name="main_clear">Vymazat text</string>
     <string name="main_menu">Nabídka</string>
     <string name="main_kiss_back">Zobrazit historii</string>
@@ -33,7 +28,6 @@
     <string name="settings_connectivity">Připojení</string>
     <string name="settings_battery">Baterie</string>
     <string name="menu_app_uninstall">Odinstalovat</string>
-
     <string name="color_picker_default_title">Vyberte barvu</string>
     <string name="color_swatch_description">Barva %1$d</string>
     <string name="color_swatch_description_selected">Barva %1$d je vybrána</string>
@@ -41,17 +35,17 @@
     <string name="title_advanced">Pokročilá nastavení</string>
     <string name="ui_empty_1">Začít hledat</string>
     <string name="ui_empty_3_sub">Spouštěč KISS se učí z vašich zvyků</string>
-    <string name="shortcuts_name">Klávesové zkratky</string>
-    <string name="main_kiss">Zobrazit oblíbené a seznam programů</string>
+    <string name="shortcuts_name">Zkratky</string>
+    <string name="main_kiss">Zobrazit seznam aplikací</string>
     <string name="reset_name">Vynulovat historii</string>
-    <string name="reset_excluded_apps_name">Obnovit vyloučené ze seznamu programů KISS</string>
+    <string name="reset_excluded_apps_name">Obnovit seznam vyloučených aplikací z KISS</string>
     <string name="reset_excluded_apps_warn">Opravdu chcete obnovit vyloučené ze seznamu programů\?</string>
-    <string name="reset_excluded_from_history_apps_name">Obnovit vyloučené ze seznamu programů v historii</string>
+    <string name="reset_excluded_from_history_apps_name">Obnovit seznam vyloučených aplikací z historie</string>
     <string name="reset_excluded_from_history_apps_warn">Opravdu chcete obnovit vyloučené ze seznamu programů historie\?</string>
     <string name="settings_excluded_apps">Vyloučené programy</string>
-    <string name="ui_excluded_apps">Zobrazit nebo upravit vyloučené z programů KISS</string>
-    <string name="ui_excluded_from_history_apps">Zobrazit nebo upravit vyloučené z programů historie</string>
-    <string name="ui_excluded_apps_dialog_title">Odznačit programy, jež chcete zahrnout</string>
+    <string name="ui_excluded_apps">Zobrazit nebo upravit aplikace vyloučené z KISS</string>
+    <string name="ui_excluded_from_history_apps">Zobrazit nebo upravit vyloučené aplikace z historie</string>
+    <string name="ui_excluded_apps_dialog_title">Označit aplikace, které chcete vyloučit</string>
     <string name="ui_excluded_apps_not_found">Nebyly vyloučeny žádné programy</string>
     <string name="reset_warn">Opravdu chcete vynulovat vaši historii\?</string>
     <string name="reset_favorites_name">Vynulovat seznam oblíbených</string>
@@ -59,4 +53,70 @@
     <string name="keyboard_name">Při spuštění zobrazit klávesnici</string>
     <string name="history_hide_desc">Skrýt historii a úvodní obrazovku, zapnout prvky</string>
     <string name="history_hide_name">Minimalistické rozhraní</string>
+    <string name="alias_phone">zavolat,volat,vytočit,telefon</string>
+    <string name="alias_contacts">kontakty,lidé,vztahy</string>
+    <string name="alias_web">internet,web,prohlížeč,net</string>
+    <string name="alias_mail">mail,email,e-mail</string>
+    <string name="alias_market">obchod,centrum aplikací,aplikace</string>
+    <string name="alias_clock">hodiny,alarm,časovač,stopky</string>
+    <string name="alias_messaging">textová zpráva,napsat,SMS,MMS</string>
+    <string name="menu_wallpaper">Aktualizovat tapetu</string>
+    <string name="application_not_found">Ups ... nepodařilo se spustit aplikaci.</string>
+    <string name="history_erased">Historie smazána.</string>
+    <string name="removed_item">Odstraněno</string>
+    <string name="menu_app_details">Informace o aplikaci</string>
+    <string name="menu_remove">Odstranit z historie</string>
+    <string name="menu_contact_copy_phone">Zkopírovat telefonní číslo</string>
+    <string name="root_mode_error">Nepodařilo se získat root práva.</string>
+    <string name="menu_app_hibernate">Hibernovat</string>
+    <string name="portrait_title">Přinutit režim na výšku</string>
+    <string name="menu_phone_create">Vytvořit kontakt</string>
+    <string name="history_onclick_name">Ukázat historii při doteku</string>
+    <string name="icons_hide_main">Skrýt ikony</string>
+    <string name="icons_hide_desc">Užitečné na pomalých zařízení</string>
+    <string name="enable_phone">Zobrazit příchozí hovory v historii</string>
+    <string name="enable_app">Zobrazit nově nainstalované aplikace v historii</string>
+    <string name="excluded_app_list_erased">Seznam vyloučených aplikací smazán.</string>
+    <string name="menu_exclude">Vyloučit aplikaci …</string>
+    <string name="menu_favorites_add">Přidat do oblíbených</string>
+    <string name="settings_nfc">NFC</string>
+    <string name="items_title" tools:ignore="PluralsCandidate">%d předmětů</string>
+    <string name="restart_name">Restartovat KISS</string>
+    <string name="restart_warn">Opravdu chcete restartovat KISS\? Pokud KISS není váš výchozí spouštěč, aplikace se pouze vypne.</string>
+    <string name="freeze_history_warn">Opravdu chcete zmrazit historii a vypnout další aktualizace\? Vaše historie se už nezmění.</string>
+    <string name="search_providers_title">Vybrat poskytovatele webového vyhledávání</string>
+    <string name="history_mode_desc">Vyberte, jak by měla být historie seřazena</string>
+    <string name="menu_shortcut_remove">Odstranit zkratku</string>
+    <string name="settings_storage">Úložiště</string>
+    <string name="settings_dev">Nastavení pro vývojáře</string>
+    <string name="settings_accessibility">Přístupnost</string>
+    <string name="keyboard_options">Nastavení klávesnice</string>
+    <string name="settings_sound">Zvuk a hlasitost</string>
+    <string name="settings_display">Zobrazení</string>
+    <string name="toast_favorites_removed">%s bylo odebráno z oblíbených</string>
+    <string name="default_launcher_title">Změnit výchozí spouštěč</string>
+    <string name="share">Sdílet s…</string>
+    <string name="main_color">Hlavní barva</string>
+    <string name="search_providers_delete">Smazat poskytovatele webového vyhledávání</string>
+    <string name="custom_search_provider">Přidat poskytovatele webového vyhledávání</string>
+    <string name="search_provider_reset">Obnovit poskytovatele webového vyhledávání</string>
+    <string name="search_provider_reset_desc">Chcete obnovit seznam poskytovatelů vyhledávání\?</string>
+    <string name="search_provider_reset_done_desc">Poskytovatelé vyhledávání byli obnoveni</string>
+    <string name="search_provider_name">Jméno poskytovatele</string>
+    <string name="search_provider_added">Poskytovatel vyhledávání byl přidán.</string>
+    <string name="search_provider_deleted">Poskytovatel(é) byli smazáni.</string>
+    <string name="search_provider_error_char">Prosím nepoužívejte znak |</string>
+    <string name="search_provider_error_url">Prosím použíjte platnou URL</string>
+    <string name="search_provider_error_exists">Poskytovatel s daným jménem již existuje</string>
+    <string name="number_of_display_items">Maximální počet výsledků ve vyhledávání a historii</string>
+    <string name="providers_summary">Upravit výsledky vyhledávání, přidat vlastní vyhledávací engine, …</string>
+    <string name="unable_add_shortcut">Nepodařilo se přidat zkratky (poskytovatel zkratek je vypnut v nastavení KISS)</string>
+    <string name="unable_to_initialize_shortcuts">Nepodařily se inicializovat zkratky. Je KISS váš výchozí spouštěč\?</string>
+    <string name="pref_hide_circle_desc">Seznam aplikací bude stále k dispozici</string>
+    <string name="menu_exclude_kiss">od KISS</string>
+    <string name="menu_exclude_history">z historie</string>
+    <string name="contacts_call_on_click">Stiskni pro zavolání kontaktu</string>
+    <string name="keyboard_suggestions">Zapnout automatické doplnění/návrhy</string>
+    <string name="search_results_options">Výsledky vyhledávání</string>
+    <string name="search_provider_toggle">Odkazy na poskytovatele webového vyhledávání</string>
 </resources>
