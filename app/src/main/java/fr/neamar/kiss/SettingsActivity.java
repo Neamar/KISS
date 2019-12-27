@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -111,16 +112,6 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
-        ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
-        setListPreferenceIconsPacksData(iconsPack);
-
-        fixSummaries();
-
-        addExcludedAppSettings();
-        addExcludedFromHistoryAppSettings();
-
-        addCustomSearchProvidersPreferences(prefs);
-
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             removePreference("colors-section", "black-notification-icons");
         }
@@ -132,8 +123,20 @@ public class SettingsActivity extends PreferenceActivity implements
             removePreference("advanced", "enable-notifications");
         }
 
-        addHiddenTagsTogglesInformation(prefs);
-        addTagsFavInformation();
+        AsyncTask.execute(() -> {
+            fixSummaries();
+
+            ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
+            setListPreferenceIconsPacksData(iconsPack);
+
+            addExcludedAppSettings();
+            addExcludedFromHistoryAppSettings();
+
+            addCustomSearchProvidersPreferences(prefs);
+
+            addHiddenTagsTogglesInformation(prefs);
+            addTagsFavInformation();
+        });
     }
 
     @Override
