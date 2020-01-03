@@ -63,7 +63,7 @@ public class SettingsActivity extends PreferenceActivity implements
     /**
      * Get tags that should be in the favorites bar
      *
-     * @param  context to get the data handler with the actual favorites
+     * @param context to get the data handler with the actual favorites
      * @return what we find in DataHandler
      */
     @NonNull
@@ -123,11 +123,14 @@ public class SettingsActivity extends PreferenceActivity implements
             removePreference("advanced", "enable-notifications");
         }
 
+        final ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
+        iconsPack.setEnabled(false);
+
         AsyncTask.execute(() -> {
             fixSummaries();
 
-            ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
             setListPreferenceIconsPacksData(iconsPack);
+            runOnUiThread(() -> iconsPack.setEnabled(true));
 
             addExcludedAppSettings();
             addExcludedFromHistoryAppSettings();
