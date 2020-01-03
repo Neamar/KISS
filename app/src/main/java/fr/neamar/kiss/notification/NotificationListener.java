@@ -132,8 +132,8 @@ public class NotificationListener extends NotificationListenerService {
         }
     }
 
-    // Low priority notifications should not be displayed
+    // Low priority and ongoing notifications should not be displayed
     public boolean isNotificationTrivial(Notification notification) {
-        return notification.priority <= Notification.PRIORITY_MIN;
+        return notification.priority <= Notification.PRIORITY_MIN || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0;
     }
 }
