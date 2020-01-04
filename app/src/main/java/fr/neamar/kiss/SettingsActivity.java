@@ -126,20 +126,29 @@ public class SettingsActivity extends PreferenceActivity implements
         final ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
         iconsPack.setEnabled(false);
 
-        AsyncTask.execute(() -> {
-            fixSummaries();
+        Runnable runnable = () -> {
+            SettingsActivity.this.fixSummaries();
 
-            setListPreferenceIconsPacksData(iconsPack);
-            runOnUiThread(() -> iconsPack.setEnabled(true));
+            SettingsActivity.this.setListPreferenceIconsPacksData(iconsPack);
+            SettingsActivity.this.runOnUiThread(() -> iconsPack.setEnabled(true));
 
-            addExcludedAppSettings();
-            addExcludedFromHistoryAppSettings();
+            SettingsActivity.this.addExcludedAppSettings();
+            SettingsActivity.this.addExcludedFromHistoryAppSettings();
 
-            addCustomSearchProvidersPreferences(prefs);
+            SettingsActivity.this.addCustomSearchProvidersPreferences(prefs);
 
-            addHiddenTagsTogglesInformation(prefs);
-            addTagsFavInformation();
-        });
+            SettingsActivity.this.addHiddenTagsTogglesInformation(prefs);
+            SettingsActivity.this.addTagsFavInformation();
+        };
+
+        if(savedInstanceState == null) {
+            // Run asynchronously to open settings fast
+            AsyncTask.execute(runnable);
+        }
+        else {
+            // Run synchronously to ensure preferences can be restored from state
+            runnable.run();
+        }
     }
 
     @Override
