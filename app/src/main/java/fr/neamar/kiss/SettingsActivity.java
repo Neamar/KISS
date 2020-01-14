@@ -141,11 +141,10 @@ public class SettingsActivity extends PreferenceActivity implements
             SettingsActivity.this.addTagsFavInformation();
         };
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             // Run asynchronously to open settings fast
             AsyncTask.execute(runnable);
-        }
-        else {
+        } else {
             // Run synchronously to ensure preferences can be restored from state
             runnable.run();
         }
