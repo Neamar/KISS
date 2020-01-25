@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
@@ -15,21 +14,17 @@ import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
 
@@ -45,23 +40,17 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     private ArrayList<ViewHolder> favoritesViews = new ArrayList<>();
 
     private static class ViewHolder {
-        @Nullable
-        View view;
+        @NonNull
+        final View view;
         @NonNull
         final Result result;
         @NonNull
         final Pojo pojo;
 
-        ViewHolder(@NonNull Result result, @NonNull Pojo pojo) {
+        ViewHolder(@NonNull Result result, @NonNull Pojo pojo, @NonNull Context context, @NonNull ViewGroup parent) {
             this.result = result;
             this.pojo = pojo;
-            view = null;
-        }
-
-        void initView(@NonNull Context context, @NonNull ViewGroup parent) {
-            // try to recycle old view (inflate is expensive)
-            view = result.inflateFavorite(context, view, parent);
-            // from this point forward view is not null
+            view = result.inflateFavorite(context, null, parent);
             view.setTag(this);
         }
     }
@@ -127,60 +116,45 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         ArrayList<ViewHolder> holders = new ArrayList<>(favCount);
 
+        ViewGroup favoritesBar = mainActivity.favoritesBar;
+        int currentFavCount = favoritesBar.getChildCount();
+
         // Don't look for items after favIds length, we won't be able to display them
-        for (Pojo favoritePojo : favoritesPojo) {
+        for (int i = 0; i < favCount; i++) {
+            Pojo favoritePojo = favoritesPojo.get(i);
             // Is there already a ViewHolder for this Pojo?
             ViewHolder viewHolder = findViewHolder(favoritePojo);
             if (viewHolder == null) {
                 // If not, build a new one
-                viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo);
-                viewHolder.initView(mainActivity, mainActivity.favoritesBar);
+                viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo, mainActivity, mainActivity.favoritesBar);
+                viewHolder.view.setOnDragListener(this);
+                viewHolder.view.setOnTouchListener(this);
             }
             holders.add(viewHolder);
+
+            // We don't have enough data in our current ViewHolder, add a new one
+            if(i >= currentFavCount) {
+                favoritesBar.addView(viewHolder.view);
+            }
+            else {
+                // Check if view is different
+                View currentView = favoritesBar.getChildAt(i);
+                if(currentView != viewHolder.view) {
+                    if(viewHolder.view.getParent() != null) {
+                        ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
+                    }
+                    favoritesBar.addView(viewHolder.view, i);
+                };
+            }
+        }
+
+        // Remove any leftover
+        for(int i = favCount; i < favoritesBar.getChildCount(); i++) {
+            favoritesBar.removeViewAt(i);
         }
 
         // release unused view holders and keep the used ones to be recycled
-        favoritesViews.clear();
-        favoritesViews.addAll(holders);
-
-        // clear the view hierarchy
-        mainActivity.favoritesBar.removeAllViews();
-
-        // add views to view hierarchy
-        for (ViewHolder viewHolder : favoritesViews) {
-            assert viewHolder.view != null;
-            mainActivity.favoritesBar.addView(viewHolder.view);
-            viewHolder.view.setOnDragListener(this);
-            viewHolder.view.setOnTouchListener(this);
-            viewHolder.view.setVisibility(View.VISIBLE);
-        }
-
-        if (notificationPrefs != null) {
-            int dotColor;
-            if (isExternalFavoriteBarEnabled()) {
-                dotColor = UIColors.getPrimaryColor(mainActivity);
-            } else {
-                dotColor = Color.WHITE;
-            }
-
-            for (ViewHolder viewHolder : favoritesViews) {
-                assert viewHolder.view != null;
-                ImageView notificationDot = viewHolder.view.findViewById(R.id.item_notification_dot);
-                if (notificationDot == null)
-                    continue;
-                notificationDot.setColorFilter(dotColor);
-
-                if (viewHolder.result instanceof AppResult) {
-                    String packageName = ((AppResult) viewHolder.result).getPackageName();
-                    notificationDot.setTag(packageName);
-                    notificationDot.setVisibility(notificationPrefs.contains(packageName) ? View.VISIBLE : View.GONE);
-                } else {
-                    // Ensure view is clean (might have been recycled after a drag and drop)
-                    notificationDot.setTag(null);
-                    notificationDot.setVisibility(View.GONE);
-                }
-            }
-        }
+        favoritesViews = holders;
 
         mDragEnabled = favCount > 1;
     }
@@ -318,9 +292,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             int intCurrentX = Math.round(motionEvent.getX());
             int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
             int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
-            /**
-             * Configuration for drag and drop
-             */
+
             // How much you need to move your finger to be considered "moving"
             int MOVE_SENSITIVITY = 8;
             boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
@@ -405,6 +377,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     // If event result is set, this means the dragged view was dropped in target
                     if (event.getResult()) {
                         KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), leftSide ? pos - 1 : pos);
+                        draggedView.post(() -> draggedView.setVisibility(View.VISIBLE));
+
                         mainActivity.onFavoriteChange();
                     } else {
                         draggedView.setVisibility(View.VISIBLE);
