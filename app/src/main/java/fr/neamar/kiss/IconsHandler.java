@@ -187,8 +187,15 @@ public class IconsHandler {
         try {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-                LauncherActivityInfo info = launcher.getActivityList(componentName.getPackageName(), userHandle.getRealHandle()).get(0);
-                return info.getBadgedIcon(0);
+                List<LauncherActivityInfo> icons = launcher.getActivityList(componentName.getPackageName(), userHandle.getRealHandle());
+                for (LauncherActivityInfo info : icons) {
+                    if (info.getComponentName().equals(componentName)) {
+                        return info.getBadgedIcon(0);
+                    }
+                }
+
+                // This should never happen, let's jsut return the first icon
+                return icons.get(0).getBadgedIcon(0);
             } else {
                 return pm.getActivityIcon(componentName);
             }
