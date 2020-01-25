@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
@@ -14,6 +15,7 @@ import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -22,8 +24,10 @@ import java.util.ArrayList;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.notification.NotificationListener;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
@@ -146,9 +150,25 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     favoritesBar.addView(viewHolder.view, i);
                 };
             }
+
+            if (notificationPrefs != null) {
+                int dotColor = isExternalFavoriteBarEnabled() ? UIColors.getPrimaryColor(mainActivity) : Color.WHITE;
+
+                ImageView notificationDot = viewHolder.view.findViewById(R.id.item_notification_dot);
+                if (notificationDot == null)
+                    // Notification-less favorites don't have a dot
+                    continue;
+                notificationDot.setColorFilter(dotColor);
+
+                if (favoritePojo instanceof AppPojo) {
+                    String packageName = ((AppPojo) favoritePojo).packageName;
+                    notificationDot.setTag(packageName);
+                    notificationDot.setVisibility(notificationPrefs.contains(packageName) ? View.VISIBLE : View.GONE);
+                }
+            }
         }
 
-        // Remove any leftover
+        // Remove any leftover views from previous renders
         for(int i = favCount; i < favoritesBar.getChildCount(); i++) {
             favoritesBar.removeViewAt(i);
         }
