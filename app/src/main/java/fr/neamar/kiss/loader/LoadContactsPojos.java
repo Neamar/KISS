@@ -8,10 +8,8 @@ import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -52,7 +50,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         ContactsContract.CommonDataKinds.Phone.STARRED,
                         ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
                         ContactsContract.Contacts.PHOTO_ID,
-                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
+                        ContactsContract.Contacts._ID}, null, null, null);
 
         // Prevent duplicates by keeping in memory encountered contacts.
         Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
@@ -66,11 +64,13 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 int starredIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED);
                 int isPrimaryIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY);
                 int photoIdIndex = cur.getColumnIndex(ContactsContract.Contacts.PHOTO_ID);
+                int contactIdIndex = cur.getColumnIndex(ContactsContract.Contacts._ID);
 
                 while (cur.moveToNext()) {
                     String lookupKey = cur.getString(lookupIndex);
-                    Integer timesContacted = cur.getInt(timesContactedIndex);
+                    int timesContacted = cur.getInt(timesContactedIndex);
                     String name = cur.getString(displayNameIndex);
+                    int contactId = cur.getInt(contactIdIndex);
 
                     String phone = cur.getString(numberIndex);
                     if (phone == null) {
@@ -87,16 +87,13 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                                 Long.parseLong(photoId));
                     }
 
-                    ContactsPojo contact = new ContactsPojo(pojoScheme + lookupKey + phone,
+                    ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone,
                             lookupKey, phone, normalizedPhone, icon, primary, timesContacted,
                             starred, false);
 
                     contact.setName(name);
 
                     if (contact.getName() != null) {
-                        //TBog: contact should have the normalized name already
-                        //contact.setName( contact.getName(), true );
-
                         if (mapContacts.containsKey(contact.lookupKey))
                             mapContacts.get(contact.lookupKey).add(contact);
                         else {
