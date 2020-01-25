@@ -103,7 +103,9 @@ public class PhoneResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-        //noinspection deprecation: getDrawable(int, Theme) requires SDK 21+
+        //noinspection: getDrawable(int, Theme) requires SDK 21+
         return context.getResources().getDrawable(android.R.drawable.ic_menu_call);
     }
+
+
 }
