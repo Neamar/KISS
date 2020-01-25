@@ -21,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -49,10 +48,13 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         @Nullable
         View view;
         @NonNull
-        Result result;
+        final Result result;
+        @NonNull
+        final Pojo pojo;
 
-        ViewHolder(@NonNull Result result) {
+        ViewHolder(@NonNull Result result, @NonNull Pojo pojo) {
             this.result = result;
+            this.pojo = pojo;
             view = null;
         }
 
@@ -65,22 +67,11 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     /**
-     * Currently displayed favorites
-     */
-    private ArrayList<Pojo> favoritesPojo = new ArrayList<>();
-
-    /**
      * Globals for drag and drop support
      */
     private static long startTime = 0; // Start of the drag and drop, used for long press menu
     private float currentX = 0.0f; // Current X position of the drag op, this is 0 on DRAG END so we keep a copy here
     private ViewHolder overApp; // the view for the DRAG_END event is typically wrong, so we store a reference of the last dragged over app.
-
-    /**
-     * Configuration for drag and drop
-     */
-    private final int MOVE_SENSITIVITY = 8; // How much you need to move your finger to be considered "moving"
-    private final int LONG_PRESS_DELAY = 250; // How long to hold your finger in place to trigger the app menu.
 
     // Use so we don't over process on the drag events.
     private boolean mDragEnabled = true;
@@ -120,34 +111,35 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     }
 
-    ViewHolder popFavViewHolder(@NonNull Result result) {
-        for (Iterator<ViewHolder> iterator = favoritesViews.iterator(); iterator.hasNext(); ) {
-            ViewHolder viewHolder = iterator.next();
-            if (result.getClass() == viewHolder.result.getClass()) {
-                iterator.remove();
-                viewHolder.result = result;
-                return viewHolder;
+    private ViewHolder findViewHolder(@NonNull Pojo pojo) {
+        for (ViewHolder vh : favoritesViews) {
+            if (vh.pojo == pojo) {
+                return vh;
             }
         }
-        return new ViewHolder(result);
+        return null;
     }
 
     void onFavoriteChange() {
-        favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler()
-                .getFavorites();
+        ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
 
         favCount = favoritesPojo.size();
 
         ArrayList<ViewHolder> holders = new ArrayList<>(favCount);
 
         // Don't look for items after favIds length, we won't be able to display them
-        for (int i = 0; i < favCount; i++) {
-            ViewHolder viewHolder = popFavViewHolder(Result.fromPojo(mainActivity, favoritesPojo.get(i)));
-            viewHolder.initView(mainActivity, mainActivity.favoritesBar);
+        for (Pojo favoritePojo : favoritesPojo) {
+            // Is there already a ViewHolder for this Pojo?
+            ViewHolder viewHolder = findViewHolder(favoritePojo);
+            if (viewHolder == null) {
+                // If not, build a new one
+                viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo);
+                viewHolder.initView(mainActivity, mainActivity.favoritesBar);
+            }
             holders.add(viewHolder);
         }
 
-        // release unused view holders and keep the used ones for recycle
+        // release unused view holders and keep the used ones to be recycled
         favoritesViews.clear();
         favoritesViews.addAll(holders);
 
@@ -167,8 +159,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             int dotColor;
             if (isExternalFavoriteBarEnabled()) {
                 dotColor = UIColors.getPrimaryColor(mainActivity);
-            }
-            else {
+            } else {
                 dotColor = Color.WHITE;
             }
 
@@ -311,13 +302,15 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         // Click handlers first
         long holdTime = motionEvent.getEventTime() - startTime;
+        // How long to hold your finger in place to trigger the app menu.
+        int LONG_PRESS_DELAY = 250;
         if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             this.onClick(view);
             view.performClick();
             return true;
         }
 
-        if(holdTime > LONG_PRESS_DELAY) {
+        if (holdTime > LONG_PRESS_DELAY) {
             // Long press, either drag or context menu
 
             // Drag handlers
@@ -325,12 +318,17 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             int intCurrentX = Math.round(motionEvent.getX());
             int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
             int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
+            /**
+             * Configuration for drag and drop
+             */
+            // How much you need to move your finger to be considered "moving"
+            int MOVE_SENSITIVITY = 8;
             boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
             if (hasMoved && mDragEnabled) {
                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
 
-                if(contextMenuShown) {
+                if (contextMenuShown) {
                     mainActivity.dismissPopup();
                 }
 
