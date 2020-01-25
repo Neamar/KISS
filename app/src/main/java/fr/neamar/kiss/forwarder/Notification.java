@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -48,13 +49,12 @@ class Notification extends Forwarder {
                 String allowedApps = Settings.Secure.getString(mainActivity.getContentResolver(), "enabled_notification_listeners");
                 if (allowedApps.contains(mainActivity.getPackageName())) {
                     notifsPrefBuilder = mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE);
-                }
-                else {
+                } else {
                     // We don't have permission, make sure the SharedPreferences is empty to avoid displaying "ghost" notifications
                     mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE).edit().clear().apply();
                 }
             } catch (Error e) {
-                e.printStackTrace();
+                Log.i("Notification", "Unable to check for notification access: " + e.toString());
             }
         }
         notificationPreferences = notifsPrefBuilder;
@@ -86,14 +86,13 @@ class Notification extends Forwarder {
     private void animateDot(final View notificationDot, Boolean hasNotification) {
         int currentVisibility = notificationDot.getVisibility();
 
-        if(currentVisibility != View.VISIBLE && hasNotification) {
+        if (currentVisibility != View.VISIBLE && hasNotification) {
             // There is a notification and dot was not visible
             notificationDot.setVisibility(View.VISIBLE);
             notificationDot.setScaleX(0);
             notificationDot.setScaleY(0);
             notificationDot.animate().scaleX(1).scaleY(1).setListener(null);
-        }
-        else if(currentVisibility == View.VISIBLE && !hasNotification) {
+        } else if (currentVisibility == View.VISIBLE && !hasNotification) {
             // There is no notification anymore, and dot was visible
             notificationDot.animate().scaleX(0).scaleY(0).setListener(new AnimatorListenerAdapter() {
                 @Override
