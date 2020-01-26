@@ -136,19 +136,19 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             holders.add(viewHolder);
 
             // We don't have enough data in our current ViewHolder, add a new one
-            if(i >= currentFavCount) {
+            if (i >= currentFavCount) {
                 favoritesBar.addView(viewHolder.view);
-            }
-            else {
+            } else {
                 // Check if view is different
                 View currentView = favoritesBar.getChildAt(i);
-                if(currentView != viewHolder.view) {
-                    if(viewHolder.view.getParent() != null) {
+                if (currentView != viewHolder.view) {
+                    if (viewHolder.view.getParent() != null) {
                         // We need to remove the view from its parent first
                         ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
                     }
                     favoritesBar.addView(viewHolder.view, i);
-                };
+                }
+                ;
             }
 
             if (notificationPrefs != null) {
@@ -169,7 +169,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
 
         // Remove any leftover views from previous renders
-        for(int i = favCount; i < favoritesBar.getChildCount(); i++) {
+        for (int i = favCount; i < favoritesBar.getChildCount(); i++) {
             View toBeDisposed = favoritesBar.getChildAt(i);
             toBeDisposed.setOnDragListener(null);
             toBeDisposed.setOnTouchListener(null);
@@ -195,73 +195,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         if (mainActivity.isViewingAllApps() && isExternalFavoriteBarEnabled()) {
             mainActivity.favoritesBar.setVisibility(View.GONE);
         }
-    }
-
-    /**
-     * On first run, fill the favorite bar with sensible defaults
-     */
-    private void addDefaultAppsToFavs() {
-        {
-            // Default phone call app
-            Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
-            phoneIntent.setData(Uri.parse("tel:0000"));
-            ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo != null) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                Log.i(TAG, "Dialer resolves to:" + packageName + "/" + resolveInfo.activityInfo.name);
-
-                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
-                    String activityName = resolveInfo.activityInfo.name;
-                    if (packageName.equals("com.google.android.dialer")) {
-                        // Default dialer has two different activities, one when calling a phone number and one when opening the app from the launcher.
-                        // (com.google.android.apps.dialer.extensions.GoogleDialtactsActivity vs. com.google.android.dialer.extensions.GoogleDialtactsActivity)
-                        // (notice the .apps. in the middle)
-                        // The phoneIntent above resolve to the former, which isn't exposed as a Launcher activity and thus can't be displayed as a favorite
-                        // This hack uses the correct resolver when the application id is the default dialer.
-                        // In terms of maintenance, if Android was to change the name of the phone's main resolver, the favorite would simply not appear
-                        // and we would have to update the String below to the new default resolver
-                        activityName = "com.google.android.dialer.extensions.GoogleDialtactsActivity";
-                    }
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + activityName);
-                }
-            }
-        }
-        {
-            // Default contacts app
-            Intent contactsIntent = new Intent(Intent.ACTION_DEFAULT, ContactsContract.Contacts.CONTENT_URI);
-            ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo != null) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                Log.i(TAG, "Contacts resolves to:" + packageName);
-                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + resolveInfo.activityInfo.name);
-                }
-            }
-
-        }
-        {
-            // Default browser
-            Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
-            ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo != null) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                Log.i(TAG, "Browser resolves to:" + packageName);
-
-                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
-                    String activityName = resolveInfo.activityInfo.name;
-                    if (packageName.equalsIgnoreCase("com.android.chrome")) {
-                        // Chrome has two different activities, one for Launcher and one when opening an URL.
-                        // The browserIntent above resolve to the latter, which isn't exposed as a Launcher activity and thus can't be displayed
-                        // This hack uses the correct resolver when the application is Chrome.
-                        // In terms of maintenance, if Chrome was to change the name of the main resolver, the favorite would simply not appear
-                        // and we would have to update the String below to the new default resolver
-                        activityName = "com.google.android.apps.chrome.Main";
-                    }
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + activityName);
-                }
-            }
-        }
-        mainActivity.onFavoriteChange();
     }
 
     @Override
@@ -332,6 +265,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 mainActivity.closeContextMenu();
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(null, shadowBuilder, view, 0);
+                Log.e("WTF", "Starting drag of " + view.toString());
                 view.setVisibility(View.INVISIBLE);
                 isDragging = true;
                 return true;
@@ -348,59 +282,66 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     @Override
-    public boolean onDrag(View v, final DragEvent event) {
+    public boolean onDrag(View targetView, final DragEvent event) {
+        final View draggedView = (View) event.getLocalState();
+
+        String[] actions = new String[]{"", "started", "location", "drop", "ended", "entered", "exited"};
+        Log.e("WTF", "Drag " + actions[event.getAction()] + " / " + ((ViewHolder) targetView.getTag()).pojo.id);
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
-                // Inform the system that we are interested in being a potential drop target
-                return true;
+                // Inform the system that we are interested in being a potential drop target,
+                // unless we're the view currently being dragged
+                return draggedView != targetView;
             case DragEvent.ACTION_DRAG_ENTERED:
-            case DragEvent.ACTION_DRAG_EXITED:
                 if (!isDragging) {
                     return true;
                 }
 
-                if (event.getAction() == DragEvent.ACTION_DRAG_ENTERED) {
-                    View draggedView = (View) event.getLocalState();
-                    ViewGroup parent = (ViewGroup) draggedView.getParent();
-                    if (parent != v.getParent()) {
-                        break;
-                    }
+                ViewGroup parent = (ViewGroup) draggedView.getParent();
 
-                    int index = parent.indexOfChild(v);
-
-                    if (potentialNewIndex != -1) {
-                        parent.removeView(draggedView);
-                        parent.addView(draggedView, index);
-                    }
-                    potentialNewIndex = index;
-                    Log.e("WTF", "POTNEW " + potentialNewIndex);
-
+                if (parent != targetView.getParent()) {
+                    Log.e("WTF", "ENTERED INVALID TARGET");
+                    break;
                 }
+
+                if (draggedView == targetView) {
+                    Log.e("WTF", "Dropping over myself, makes no sense!");
+                    return false;
+                }
+
+                int index = parent.indexOfChild(targetView);
+                Log.e("WTF", "Hovering index " + index + " on fav " + ((ViewHolder) targetView.getTag()).pojo.id);
+
+                parent.removeView(draggedView);
+                parent.post(() -> {
+                    Log.e("WTF", "Parent : " + draggedView.getParent().toString());
+                    parent.addView(draggedView, index);
+                });
+
+
+                potentialNewIndex = index;
                 break;
             case DragEvent.ACTION_DROP:
                 // Accept the drop, will be followed by ACTION_DRAG_ENDED
                 return true;
 
             case DragEvent.ACTION_DRAG_ENDED:
-                // Every drop target will receive this event, but we only need to process it one
+                // Every drop target will receive this event, but we only need to process it once
                 if (!isDragging) {
                     return true;
                 }
-
-                final View draggedView = (View) event.getLocalState();
-
                 // Sometimes we don't trigger onDrag over another app, in which case just drop.
                 if (potentialNewIndex == -1) {
                     Log.w(TAG, "Wasn't dragged over a favorite, returning app to starting position");
                     draggedView.post(() -> draggedView.setVisibility(View.VISIBLE));
                 } else {
                     final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
-
+                    int newIndex = potentialNewIndex;
                     draggedView.post(() -> {
                         // Signals to a View that the drag and drop operation has concluded.
                         // If event result is set, this means the dragged view was dropped in target
                         if (event.getResult()) {
-                            KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), potentialNewIndex);
+                            KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), newIndex);
                             draggedView.setVisibility(View.VISIBLE);
 
                             mainActivity.onFavoriteChange();
@@ -418,6 +359,74 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 break;
         }
         return true;
+    }
+
+
+    /**
+     * On first run, fill the favorite bar with sensible defaults
+     */
+    private void addDefaultAppsToFavs() {
+        {
+            // Default phone call app
+            Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
+            phoneIntent.setData(Uri.parse("tel:0000"));
+            ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfo != null) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                Log.i(TAG, "Dialer resolves to:" + packageName + "/" + resolveInfo.activityInfo.name);
+
+                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
+                    String activityName = resolveInfo.activityInfo.name;
+                    if (packageName.equals("com.google.android.dialer")) {
+                        // Default dialer has two different activities, one when calling a phone number and one when opening the app from the launcher.
+                        // (com.google.android.apps.dialer.extensions.GoogleDialtactsActivity vs. com.google.android.dialer.extensions.GoogleDialtactsActivity)
+                        // (notice the .apps. in the middle)
+                        // The phoneIntent above resolve to the former, which isn't exposed as a Launcher activity and thus can't be displayed as a favorite
+                        // This hack uses the correct resolver when the application id is the default dialer.
+                        // In terms of maintenance, if Android was to change the name of the phone's main resolver, the favorite would simply not appear
+                        // and we would have to update the String below to the new default resolver
+                        activityName = "com.google.android.dialer.extensions.GoogleDialtactsActivity";
+                    }
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + activityName);
+                }
+            }
+        }
+        {
+            // Default contacts app
+            Intent contactsIntent = new Intent(Intent.ACTION_DEFAULT, ContactsContract.Contacts.CONTENT_URI);
+            ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfo != null) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                Log.i(TAG, "Contacts resolves to:" + packageName);
+                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + resolveInfo.activityInfo.name);
+                }
+            }
+
+        }
+        {
+            // Default browser
+            Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
+            ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfo != null) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                Log.i(TAG, "Browser resolves to:" + packageName);
+
+                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
+                    String activityName = resolveInfo.activityInfo.name;
+                    if (packageName.equalsIgnoreCase("com.android.chrome")) {
+                        // Chrome has two different activities, one for Launcher and one when opening an URL.
+                        // The browserIntent above resolve to the latter, which isn't exposed as a Launcher activity and thus can't be displayed
+                        // This hack uses the correct resolver when the application is Chrome.
+                        // In terms of maintenance, if Chrome was to change the name of the main resolver, the favorite would simply not appear
+                        // and we would have to update the String below to the new default resolver
+                        activityName = "com.google.android.apps.chrome.Main";
+                    }
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + activityName);
+                }
+            }
+        }
+        mainActivity.onFavoriteChange();
     }
 }
 
