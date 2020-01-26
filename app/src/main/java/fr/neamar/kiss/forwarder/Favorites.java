@@ -149,7 +149,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     }
                     favoritesBar.addView(viewHolder.view, i);
                 }
-                ;
             }
 
             if (notificationPrefs != null) {
@@ -303,25 +302,30 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 int currentPos = (int) (favCount * x / width);
 
                 View currentChildAtPos = bar.getChildAt(currentPos);
-                if(currentChildAtPos != draggedView && potentialNewIndex != -1) {
+                if(currentChildAtPos != draggedView) {
                     bar.removeView(draggedView);
-                    bar.addView(draggedView, currentPos);
+                    try {
+                        bar.addView(draggedView, currentPos);
+                    }
+                    catch(IllegalStateException e) {
+                        // In some situations,
+                        // removeView() somehow fails (this especially happens if you start the drag and immediately moves to the left or right)
+                        // and we can't add the children back, because it still has a parent. In this case, do nothing, this should fix itself on the next iteration.
+                        potentialNewIndex = -1;
+                        return false;
+                    }
                 }
 
                 potentialNewIndex = currentPos;
+
+                return true;
             case DragEvent.ACTION_DROP:
                 // Accept the drop, will be followed by ACTION_DRAG_ENDED
                 return isDragging;
             case DragEvent.ACTION_DRAG_ENDED:
-                /*
-                // Every drop target will receive this event, but we only need to process it once
-                if (!isDragging) {
-                    return false;
-                }
                 // Sometimes we don't trigger onDrag over another app, in which case just drop.
                 if (potentialNewIndex == -1) {
                     Log.w(TAG, "Wasn't dragged over a favorite, returning app to starting position");
-                    draggedView.post(() -> draggedView.setVisibility(View.VISIBLE));
                 } else {
                     final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
                     int newIndex = potentialNewIndex;
@@ -330,20 +334,17 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                         // If event result is set, this means the dragged view was dropped in target
                         if (event.getResult()) {
                             KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), newIndex);
-                            draggedView.setVisibility(View.VISIBLE);
-
                             mainActivity.onFavoriteChange();
-                        } else {
-                            draggedView.setVisibility(View.VISIBLE);
                         }
                     });
-                }*/
-                draggedView.setVisibility(View.VISIBLE);
+                }
+
                 // Reset dragging to what it should be
+                draggedView.setVisibility(View.VISIBLE);
                 mDragEnabled = favCount > 1;
                 potentialNewIndex = -1;
                 isDragging = false;
-                return isDragging;
+                return true;
             default:
                 break;
         }
