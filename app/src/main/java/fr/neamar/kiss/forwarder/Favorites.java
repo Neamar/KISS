@@ -18,10 +18,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -29,8 +27,8 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.notification.NotificationListener;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
 
@@ -46,39 +44,25 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     private ArrayList<ViewHolder> favoritesViews = new ArrayList<>();
 
     private static class ViewHolder {
-        @Nullable
-        View view;
         @NonNull
-        Result result;
+        final View view;
+        @NonNull
+        final Result result;
+        @NonNull
+        final Pojo pojo;
 
-        ViewHolder(@NonNull Result result) {
+        ViewHolder(@NonNull Result result, @NonNull Pojo pojo, @NonNull Context context, @NonNull ViewGroup parent) {
             this.result = result;
-            view = null;
-        }
-
-        void initView(@NonNull Context context, @NonNull ViewGroup parent) {
-            // try to recycle old view (inflate is expensive)
-            view = result.inflateFavorite(context, view, parent);
-            // from this point forward view is not null
+            this.pojo = pojo;
+            view = result.inflateFavorite(context, null, parent);
             view.setTag(this);
         }
     }
 
     /**
-     * Currently displayed favorites
-     */
-    private ArrayList<Pojo> favoritesPojo = new ArrayList<>();
-
-    /**
      * Globals for drag and drop support
      */
     private static long startTime = 0; // Start of the drag and drop, used for long press menu
-
-    /**
-     * Configuration for drag and drop
-     */
-    private final int MOVE_SENSITIVITY = 8; // How much you need to move your finger to be considered "moving"
-    private final int LONG_PRESS_DELAY = 250; // How long to hold your finger in place to trigger the app menu.
 
     // Use so we don't over process on the drag events.
     private boolean mDragEnabled = true;
@@ -119,75 +103,77 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     }
 
-    ViewHolder popFavViewHolder(@NonNull Result result) {
-        for (Iterator<ViewHolder> iterator = favoritesViews.iterator(); iterator.hasNext(); ) {
-            ViewHolder viewHolder = iterator.next();
-            if (result.getClass() == viewHolder.result.getClass()) {
-                iterator.remove();
-                viewHolder.result = result;
-                return viewHolder;
+    private ViewHolder findViewHolder(@NonNull Pojo pojo) {
+        for (ViewHolder vh : favoritesViews) {
+            if (vh.pojo == pojo) {
+                return vh;
             }
         }
-        return new ViewHolder(result);
+        return null;
     }
 
     void onFavoriteChange() {
-        favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler()
-                .getFavorites();
+        ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
 
         favCount = favoritesPojo.size();
 
         ArrayList<ViewHolder> holders = new ArrayList<>(favCount);
 
+        ViewGroup favoritesBar = mainActivity.favoritesBar;
+        int currentFavCount = favoritesBar.getChildCount();
+
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < favCount; i++) {
-            ViewHolder viewHolder = popFavViewHolder(Result.fromPojo(mainActivity, favoritesPojo.get(i)));
-            viewHolder.initView(mainActivity, mainActivity.favoritesBar);
+            Pojo favoritePojo = favoritesPojo.get(i);
+            // Is there already a ViewHolder for this Pojo?
+            ViewHolder viewHolder = findViewHolder(favoritePojo);
+            if (viewHolder == null) {
+                // If not, build a new one
+                viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo, mainActivity, mainActivity.favoritesBar);
+                viewHolder.view.setOnDragListener(this);
+                viewHolder.view.setOnTouchListener(this);
+            }
             holders.add(viewHolder);
-        }
 
-        // release unused view holders and keep the used ones for recycle
-        favoritesViews.clear();
-        favoritesViews.addAll(holders);
-
-        // clear the view hierarchy
-        mainActivity.favoritesBar.removeAllViews();
-
-        // add views to view hierarchy
-        for (ViewHolder viewHolder : favoritesViews) {
-            assert viewHolder.view != null;
-            mainActivity.favoritesBar.addView(viewHolder.view);
-            viewHolder.view.setOnDragListener(this);
-            viewHolder.view.setOnTouchListener(this);
-            viewHolder.view.setVisibility(View.VISIBLE);
-        }
-
-        if (notificationPrefs != null) {
-            int dotColor;
-            if (isExternalFavoriteBarEnabled()) {
-                dotColor = UIColors.getPrimaryColor(mainActivity);
-            } else {
-                dotColor = Color.WHITE;
+            // We don't have enough data in our current ViewHolder, add a new one
+            if(i >= currentFavCount) {
+                favoritesBar.addView(viewHolder.view);
+            }
+            else {
+                // Check if view is different
+                View currentView = favoritesBar.getChildAt(i);
+                if(currentView != viewHolder.view) {
+                    if(viewHolder.view.getParent() != null) {
+                        ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
+                    }
+                    favoritesBar.addView(viewHolder.view, i);
+                };
             }
 
-            for (ViewHolder viewHolder : favoritesViews) {
-                assert viewHolder.view != null;
+            if (notificationPrefs != null) {
+                int dotColor = isExternalFavoriteBarEnabled() ? UIColors.getPrimaryColor(mainActivity) : Color.WHITE;
+
                 ImageView notificationDot = viewHolder.view.findViewById(R.id.item_notification_dot);
                 if (notificationDot == null)
+                    // Notification-less favorites don't have a dot
                     continue;
                 notificationDot.setColorFilter(dotColor);
 
-                if (viewHolder.result instanceof AppResult) {
-                    String packageName = ((AppResult) viewHolder.result).getPackageName();
+                if (favoritePojo instanceof AppPojo) {
+                    String packageName = ((AppPojo) favoritePojo).packageName;
                     notificationDot.setTag(packageName);
                     notificationDot.setVisibility(notificationPrefs.contains(packageName) ? View.VISIBLE : View.GONE);
-                } else {
-                    // Ensure view is clean (might have been recycled after a drag and drop)
-                    notificationDot.setTag(null);
-                    notificationDot.setVisibility(View.GONE);
                 }
             }
         }
+
+        // Remove any leftover views from previous renders
+        for(int i = favCount; i < favoritesBar.getChildCount(); i++) {
+            favoritesBar.removeViewAt(i);
+        }
+
+        // release unused view holders and keep the used ones to be recycled
+        favoritesViews = holders;
 
         mDragEnabled = favCount > 1;
     }
@@ -309,6 +295,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         // Click handlers first
         long holdTime = motionEvent.getEventTime() - startTime;
+        // How long to hold your finger in place to trigger the app menu.
+        int LONG_PRESS_DELAY = 250;
         if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             this.onClick(view);
             view.performClick();
@@ -323,6 +311,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             int intCurrentX = Math.round(motionEvent.getX());
             int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
             int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
+
+            // How much you need to move your finger to be considered "moving"
+            int MOVE_SENSITIVITY = 8;
             boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
 
             if (hasMoved && mDragEnabled && !isDragging) {
@@ -402,8 +393,18 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 } else {
                     final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
 
-                    KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), potentialNewIndex);
-                }
+                draggedView.post(() -> {
+                    // Signals to a View that the drag and drop operation has concluded.
+                    // If event result is set, this means the dragged view was dropped in target
+                    if (event.getResult()) {
+                        KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), potentialNewIndex);
+                        draggedView.setVisibility(View.VISIBLE);
+
+                        mainActivity.onFavoriteChange();
+                    } else {
+                        draggedView.setVisibility(View.VISIBLE);
+                    }
+                });
 
                 // Reset dragging to what it should be
                 mDragEnabled = favCount > 1;

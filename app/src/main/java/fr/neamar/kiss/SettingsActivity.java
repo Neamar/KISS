@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -62,7 +63,7 @@ public class SettingsActivity extends PreferenceActivity implements
     /**
      * Get tags that should be in the favorites bar
      *
-     * @param  context to get the data handler with the actual favorites
+     * @param context to get the data handler with the actual favorites
      * @return what we find in DataHandler
      */
     @NonNull
@@ -111,16 +112,6 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
-        ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
-        setListPreferenceIconsPacksData(iconsPack);
-
-        fixSummaries();
-
-        addExcludedAppSettings();
-        addExcludedFromHistoryAppSettings();
-
-        addCustomSearchProvidersPreferences(prefs);
-
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             removePreference("colors-section", "black-notification-icons");
         }
@@ -132,8 +123,31 @@ public class SettingsActivity extends PreferenceActivity implements
             removePreference("advanced", "enable-notifications");
         }
 
-        addHiddenTagsTogglesInformation(prefs);
-        addTagsFavInformation();
+        final ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
+        iconsPack.setEnabled(false);
+
+        Runnable runnable = () -> {
+            SettingsActivity.this.fixSummaries();
+
+            SettingsActivity.this.setListPreferenceIconsPacksData(iconsPack);
+            SettingsActivity.this.runOnUiThread(() -> iconsPack.setEnabled(true));
+
+            SettingsActivity.this.addExcludedAppSettings();
+            SettingsActivity.this.addExcludedFromHistoryAppSettings();
+
+            SettingsActivity.this.addCustomSearchProvidersPreferences(prefs);
+
+            SettingsActivity.this.addHiddenTagsTogglesInformation(prefs);
+            SettingsActivity.this.addTagsFavInformation();
+        };
+
+        if (savedInstanceState == null) {
+            // Run asynchronously to open settings fast
+            AsyncTask.execute(runnable);
+        } else {
+            // Run synchronously to ensure preferences can be restored from state
+            runnable.run();
+        }
     }
 
     @Override

@@ -238,7 +238,7 @@ public class FuzzyScore {
          */
         public int score;
         public boolean match;
-        public final ArrayList<Integer> matchedIndices;
+        final ArrayList<Integer> matchedIndices;
 
         MatchInfo() {
             matchedIndices = null;

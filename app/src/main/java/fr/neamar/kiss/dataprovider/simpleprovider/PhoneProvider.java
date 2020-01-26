@@ -23,7 +23,7 @@ public class PhoneProvider extends SimpleProvider {
     public void requestResults(String query, Searcher searcher) {
         // Append an item only if query looks like a phone number and device has phone capabilities
         if (deviceIsPhone && phonePattern.matcher(query).find()) {
-            searcher.addResult(getResult(query));
+            searcher.addResult(getResult(query, true));
         }
     }
 
@@ -33,11 +33,19 @@ public class PhoneProvider extends SimpleProvider {
     }
 
     public Pojo findById(String id) {
-        return getResult(id.replaceFirst(Pattern.quote(PHONE_SCHEME), ""));
+        return getResult(id.replaceFirst(Pattern.quote(PHONE_SCHEME), ""), false);
     }
 
-    private Pojo getResult(String phoneNumber) {
-        PhonePojo pojo = new PhonePojo(PHONE_SCHEME + phoneNumber, phoneNumber);
+    /**
+     *
+     * @param phoneNumber phone number to use in the result
+     * @param fromSearch true when we're running a search, in which case we're guaranteed to only have one result. Since we don't want this result to be animated in the adapter, set a constant id.
+     * @return a result that may have a fake id.
+     */
+    private Pojo getResult(String phoneNumber, boolean fromSearch) {
+        String historyId = PHONE_SCHEME + phoneNumber;
+        String id = fromSearch ? PHONE_SCHEME + "search" : historyId;
+        PhonePojo pojo = new PhonePojo(id, historyId, phoneNumber);
         pojo.relevance = 20;
         pojo.setName(phoneNumber, false);
         return pojo;

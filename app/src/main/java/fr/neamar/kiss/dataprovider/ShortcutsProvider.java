@@ -11,6 +11,7 @@ import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ShortcutsProvider extends Provider<ShortcutsPojo> {
+    private static boolean notifiedKissNotDefaultLauncher = false;
 
     @Override
     public void reload() {
@@ -23,7 +24,11 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
             this.initialize(new LoadShortcutsPojos(this));
         }
         catch(IllegalStateException e) {
-            Toast.makeText(this, R.string.unable_to_initialize_shortcuts, Toast.LENGTH_LONG).show();
+            if(!notifiedKissNotDefaultLauncher) {
+                // Only display this message once per process
+                Toast.makeText(this, R.string.unable_to_initialize_shortcuts, Toast.LENGTH_LONG).show();
+            }
+            notifiedKissNotDefaultLauncher = true;
             e.printStackTrace();
         }
     }

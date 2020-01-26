@@ -56,10 +56,10 @@ public class DBHelper {
      */
     public static void insertHistory(Context context, String query, String record) {
         SQLiteDatabase db = getDatabase(context);
-
         ContentValues values = new ContentValues();
         values.put("query", query);
         values.put("record", record);
+        values.put("timeStamp",System.currentTimeMillis());
         db.insert("history", null, values);
     }
 
@@ -108,6 +108,25 @@ public class DBHelper {
     }
 
     /**
+     * Get the most used history items adaptively based on a set period of time
+     *
+     * @param db The SQL db
+     * @param hours How many hours back we want to test frequency against
+     * @param limit Maximum result size
+     * @return Cursor
+     */
+    private static Cursor getHistoryByAdaptive(SQLiteDatabase db, int hours,int limit) {
+        // order history based on frequency
+        String sql = "SELECT record, count(*) FROM history " +
+                "WHERE timeStamp >= 0 "+
+                "AND timeStamp >" + (System.currentTimeMillis() - ( hours *3600000))+
+                " GROUP BY record " +
+                " ORDER BY count(*) DESC " +
+                " LIMIT " + limit;
+        return db.rawQuery(sql, null);
+    }
+
+    /**
      * Retrieve previous query history
      *
      * @param context     android context
@@ -127,6 +146,9 @@ public class DBHelper {
                 break;
             case "frequency":
                 cursor = getHistoryByFrequency(db, limit);
+                break;
+            case "adaptive":
+                cursor = getHistoryByAdaptive(db,36, limit);
                 break;
             default:
                 cursor = getHistoryByRecency(db, limit);
@@ -201,7 +223,6 @@ public class DBHelper {
 
     public static boolean insertShortcut(Context context, ShortcutRecord shortcut) {
         SQLiteDatabase db = getDatabase(context);
-
         // Do not add duplicate shortcuts
         Cursor cursor = db.query("shortcuts", new String[]{"package", "intent_uri"},
                 "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri}, null, null, null, null);
@@ -317,7 +338,6 @@ public class DBHelper {
      */
     public static void insertTagsForId(Context context, String tag, String record) {
         SQLiteDatabase db = getDatabase(context);
-
         ContentValues values = new ContentValues();
         values.put("tag", tag);
         values.put("record", record);

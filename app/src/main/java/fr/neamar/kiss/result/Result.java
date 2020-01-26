@@ -260,16 +260,16 @@ public abstract class Result {
         return false;
     }
 
-    private void launchAddToFavorites(Context context, Pojo app) {
+    private void launchAddToFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getApplication(context).getDataHandler().addToFavorites(app.id);
-        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
+        KissApplication.getApplication(context).getDataHandler().addToFavorites(pojo.getHistoryId());
+        Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
     }
 
-    private void launchRemoveFromFavorites(Context context, Pojo app) {
+    private void launchRemoveFromFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(app.id);
-        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(pojo.getHistoryId());
+        Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -375,7 +375,7 @@ public abstract class Result {
      */
     void recordLaunch(Context context) {
         // Save in history
-        KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.id);
+        KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
     }
 
     public void deleteRecord(Context context) {
