@@ -265,7 +265,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 mainActivity.closeContextMenu();
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(null, shadowBuilder, view, 0);
-                Log.e("WTF", "Starting drag of " + view.toString());
+                Log.e("WTF", "Starting drag of " + ((ViewHolder) view.getTag()).pojo.id);
                 view.setVisibility(View.INVISIBLE);
                 isDragging = true;
                 return true;
@@ -294,7 +294,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 return draggedView != targetView;
             case DragEvent.ACTION_DRAG_ENTERED:
                 if (!isDragging) {
-                    return true;
+                    return false;
                 }
 
                 ViewGroup parent = (ViewGroup) draggedView.getParent();
@@ -312,12 +312,12 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 int index = parent.indexOfChild(targetView);
                 Log.e("WTF", "Hovering index " + index + " on fav " + ((ViewHolder) targetView.getTag()).pojo.id);
 
-                parent.removeView(draggedView);
-                parent.post(() -> {
-                    Log.e("WTF", "Parent : " + draggedView.getParent().toString());
+                if(potentialNewIndex != -1) {
+                    // First DRAG_ENTERED is super buggy and always crash, ignore it.
+                    // Proper debugging should remove this if() and understand what's going on...
+                    parent.removeView(draggedView);
                     parent.addView(draggedView, index);
-                });
-
+                }
 
                 potentialNewIndex = index;
                 break;
@@ -328,7 +328,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             case DragEvent.ACTION_DRAG_ENDED:
                 // Every drop target will receive this event, but we only need to process it once
                 if (!isDragging) {
-                    return true;
+                    return false;
                 }
                 // Sometimes we don't trigger onDrag over another app, in which case just drop.
                 if (potentialNewIndex == -1) {
