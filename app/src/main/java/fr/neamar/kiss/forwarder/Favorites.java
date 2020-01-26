@@ -393,23 +393,24 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 } else {
                     final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
 
-                draggedView.post(() -> {
-                    // Signals to a View that the drag and drop operation has concluded.
-                    // If event result is set, this means the dragged view was dropped in target
-                    if (event.getResult()) {
-                        KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), potentialNewIndex);
-                        draggedView.setVisibility(View.VISIBLE);
+                    draggedView.post(() -> {
+                        // Signals to a View that the drag and drop operation has concluded.
+                        // If event result is set, this means the dragged view was dropped in target
+                        if (event.getResult()) {
+                            KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), potentialNewIndex);
+                            draggedView.setVisibility(View.VISIBLE);
 
-                        mainActivity.onFavoriteChange();
-                    } else {
-                        draggedView.setVisibility(View.VISIBLE);
-                    }
-                });
-
+                            mainActivity.onFavoriteChange();
+                        } else {
+                            draggedView.setVisibility(View.VISIBLE);
+                        }
+                    });
+                }
                 // Reset dragging to what it should be
                 mDragEnabled = favCount > 1;
                 potentialNewIndex = -1;
                 isDragging = false;
+                return true;
             default:
                 break;
         }
