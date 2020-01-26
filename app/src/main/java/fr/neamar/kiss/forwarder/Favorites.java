@@ -144,6 +144,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 View currentView = favoritesBar.getChildAt(i);
                 if(currentView != viewHolder.view) {
                     if(viewHolder.view.getParent() != null) {
+                        // We need to remove the view from its parent first
                         ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
                     }
                     favoritesBar.addView(viewHolder.view, i);
@@ -169,6 +170,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         // Remove any leftover views from previous renders
         for(int i = favCount; i < favoritesBar.getChildCount(); i++) {
+            View toBeDisposed = favoritesBar.getChildAt(i);
+            toBeDisposed.setOnDragListener(null);
+            toBeDisposed.setOnTouchListener(null);
             favoritesBar.removeViewAt(i);
         }
 
@@ -345,7 +349,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     @Override
     public boolean onDrag(View v, final DragEvent event) {
-
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
                 // Inform the system that we are interested in being a potential drop target
