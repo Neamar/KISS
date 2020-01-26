@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 
@@ -263,11 +264,13 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 mDragEnabled = false;
                 mainActivity.dismissPopup();
                 mainActivity.closeContextMenu();
+
+                mainActivity.favoritesBar.setOnDragListener(this);
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-                view.startDrag(null, shadowBuilder, view, 0);
-                Log.e("WTF", "Starting drag of " + ((ViewHolder) view.getTag()).pojo.id);
                 view.setVisibility(View.INVISIBLE);
                 isDragging = true;
+                view.startDrag(null, shadowBuilder, view, 0);
+                Log.e("WTF", "Starting drag of " + ((ViewHolder) view.getTag()).pojo.id);
                 return true;
             } else if (!contextMenuShown && !isDragging) {
                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
@@ -286,46 +289,31 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         final View draggedView = (View) event.getLocalState();
 
         String[] actions = new String[]{"", "started", "location", "drop", "ended", "entered", "exited"};
-        Log.e("WTF", "Drag " + actions[event.getAction()] + " / " + ((ViewHolder) targetView.getTag()).pojo.id);
+        Log.e("WTF", "Drag " + actions[event.getAction()] + " / " + targetView.toString());
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
-                // Inform the system that we are interested in being a potential drop target,
-                // unless we're the view currently being dragged
-                return draggedView != targetView;
+                return targetView instanceof LinearLayout;
             case DragEvent.ACTION_DRAG_ENTERED:
-                if (!isDragging) {
-                    return false;
+                return isDragging;
+            case DragEvent.ACTION_DRAG_LOCATION:
+                ViewGroup bar = ((ViewGroup) targetView);
+                float x = event.getX();
+                int width = targetView.getWidth();
+
+                int currentPos = (int) (favCount * x / width);
+
+                View currentChildAtPos = bar.getChildAt(currentPos);
+                if(currentChildAtPos != draggedView && potentialNewIndex != -1) {
+                    bar.removeView(draggedView);
+                    bar.addView(draggedView, currentPos);
                 }
 
-                ViewGroup parent = (ViewGroup) draggedView.getParent();
-
-                if (parent != targetView.getParent()) {
-                    Log.e("WTF", "ENTERED INVALID TARGET");
-                    break;
-                }
-
-                if (draggedView == targetView) {
-                    Log.e("WTF", "Dropping over myself, makes no sense!");
-                    return false;
-                }
-
-                int index = parent.indexOfChild(targetView);
-                Log.e("WTF", "Hovering index " + index + " on fav " + ((ViewHolder) targetView.getTag()).pojo.id);
-
-                if(potentialNewIndex != -1) {
-                    // First DRAG_ENTERED is super buggy and always crash, ignore it.
-                    // Proper debugging should remove this if() and understand what's going on...
-                    parent.removeView(draggedView);
-                    parent.addView(draggedView, index);
-                }
-
-                potentialNewIndex = index;
-                break;
+                potentialNewIndex = currentPos;
             case DragEvent.ACTION_DROP:
                 // Accept the drop, will be followed by ACTION_DRAG_ENDED
-                return true;
-
+                return isDragging;
             case DragEvent.ACTION_DRAG_ENDED:
+                /*
                 // Every drop target will receive this event, but we only need to process it once
                 if (!isDragging) {
                     return false;
@@ -349,16 +337,17 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                             draggedView.setVisibility(View.VISIBLE);
                         }
                     });
-                }
+                }*/
+                draggedView.setVisibility(View.VISIBLE);
                 // Reset dragging to what it should be
                 mDragEnabled = favCount > 1;
                 potentialNewIndex = -1;
                 isDragging = false;
-                return true;
+                return isDragging;
             default:
                 break;
         }
-        return true;
+        return isDragging;
     }
 
 
