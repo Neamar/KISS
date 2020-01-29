@@ -269,7 +269,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 view.setVisibility(View.INVISIBLE);
                 isDragging = true;
                 view.startDrag(null, shadowBuilder, view, 0);
-                Log.e("WTF", "Starting drag of " + ((ViewHolder) view.getTag()).pojo.id);
                 return true;
             } else if (!contextMenuShown && !isDragging) {
                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
@@ -287,8 +286,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     public boolean onDrag(View targetView, final DragEvent event) {
         final View draggedView = (View) event.getLocalState();
 
-        String[] actions = new String[]{"", "started", "location", "drop", "ended", "entered", "exited"};
-        Log.e("WTF", "Drag " + actions[event.getAction()] + " / " + targetView.toString());
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
                 return targetView instanceof LinearLayout;
