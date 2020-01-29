@@ -719,8 +719,7 @@ public class DataHandler extends BroadcastReceiver
         position = Math.min(position, favAppsList.size() - 1);
 
         favAppsList.remove(currentPos);
-        // Because we're removing ourselves from the array, positions may change, we should take that into account
-        favAppsList.add(currentPos > position ? position + 1 : position, id);
+        favAppsList.add(position, id);
         String newFavList = TextUtils.join(";", favAppsList);
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()

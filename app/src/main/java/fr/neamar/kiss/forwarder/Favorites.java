@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 
@@ -63,13 +64,12 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
      * Globals for drag and drop support
      */
     private static long startTime = 0; // Start of the drag and drop, used for long press menu
-    private float currentX = 0.0f; // Current X position of the drag op, this is 0 on DRAG END so we keep a copy here
-    private ViewHolder overApp; // the view for the DRAG_END event is typically wrong, so we store a reference of the last dragged over app.
 
     // Use so we don't over process on the drag events.
     private boolean mDragEnabled = true;
     private boolean isDragging = false;
     private boolean contextMenuShown = false;
+    private int potentialNewIndex = -1;
     private int favCount = -1;
 
     private SharedPreferences notificationPrefs = null;
@@ -137,18 +137,18 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             holders.add(viewHolder);
 
             // We don't have enough data in our current ViewHolder, add a new one
-            if(i >= currentFavCount) {
+            if (i >= currentFavCount) {
                 favoritesBar.addView(viewHolder.view);
-            }
-            else {
+            } else {
                 // Check if view is different
                 View currentView = favoritesBar.getChildAt(i);
-                if(currentView != viewHolder.view) {
-                    if(viewHolder.view.getParent() != null) {
+                if (currentView != viewHolder.view) {
+                    if (viewHolder.view.getParent() != null) {
+                        // We need to remove the view from its parent first
                         ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
                     }
                     favoritesBar.addView(viewHolder.view, i);
-                };
+                }
             }
 
             if (notificationPrefs != null) {
@@ -169,7 +169,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
 
         // Remove any leftover views from previous renders
-        for(int i = favCount; i < favoritesBar.getChildCount(); i++) {
+        for (int i = favCount; i < favoritesBar.getChildCount(); i++) {
+            View toBeDisposed = favoritesBar.getChildAt(i);
+            toBeDisposed.setOnDragListener(null);
+            toBeDisposed.setOnTouchListener(null);
             favoritesBar.removeViewAt(i);
         }
 
@@ -193,6 +196,161 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             mainActivity.favoritesBar.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        ViewHolder viewHolder = (ViewHolder) v.getTag();
+        viewHolder.result.fastLaunch(mainActivity, v);
+        v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        ViewHolder viewHolder = (ViewHolder) v.getTag();
+        ListPopup popup = viewHolder.result.getPopupMenu(mainActivity, mainActivity.adapter, v);
+        mainActivity.registerPopup(popup);
+        popup.show(v);
+        return true;
+    }
+
+    private boolean isExternalFavoriteBarEnabled() {
+        return prefs.getBoolean("enable-favorites-bar", true);
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            startTime = motionEvent.getEventTime();
+            contextMenuShown = false;
+            return true;
+        }
+        // No need to do the extra work
+        if (isDragging) {
+            return true;
+        }
+
+        // Click handlers first
+        long holdTime = motionEvent.getEventTime() - startTime;
+        // How long to hold your finger in place to trigger the app menu.
+        int LONG_PRESS_DELAY = 250;
+        if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
+            this.onClick(view);
+            view.performClick();
+            return true;
+        }
+
+        if (holdTime > LONG_PRESS_DELAY) {
+            // Long press, either drag or context menu
+
+            // Drag handlers
+            int intCurrentY = Math.round(motionEvent.getY());
+            int intCurrentX = Math.round(motionEvent.getX());
+            int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
+            int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
+
+            // How much you need to move your finger to be considered "moving"
+            int MOVE_SENSITIVITY = 8;
+            boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
+
+            if (hasMoved && mDragEnabled && !isDragging) {
+                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
+                if (contextMenuShown) {
+                    mainActivity.dismissPopup();
+                }
+
+                mDragEnabled = false;
+                mainActivity.dismissPopup();
+                mainActivity.closeContextMenu();
+
+                mainActivity.favoritesBar.setOnDragListener(this);
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.setVisibility(View.INVISIBLE);
+                isDragging = true;
+                view.startDrag(null, shadowBuilder, view, 0);
+                Log.e("WTF", "Starting drag of " + ((ViewHolder) view.getTag()).pojo.id);
+                return true;
+            } else if (!contextMenuShown && !isDragging) {
+                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
+                contextMenuShown = true;
+                this.onLongClick(view);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean onDrag(View targetView, final DragEvent event) {
+        final View draggedView = (View) event.getLocalState();
+
+        String[] actions = new String[]{"", "started", "location", "drop", "ended", "entered", "exited"};
+        Log.e("WTF", "Drag " + actions[event.getAction()] + " / " + targetView.toString());
+        switch (event.getAction()) {
+            case DragEvent.ACTION_DRAG_STARTED:
+                return targetView instanceof LinearLayout;
+            case DragEvent.ACTION_DRAG_ENTERED:
+                return isDragging;
+            case DragEvent.ACTION_DRAG_LOCATION:
+                ViewGroup bar = ((ViewGroup) targetView);
+                float x = event.getX();
+                int width = targetView.getWidth();
+
+                int currentPos = (int) (favCount * x / width);
+
+                View currentChildAtPos = bar.getChildAt(currentPos);
+                if(currentChildAtPos != draggedView) {
+                    bar.removeView(draggedView);
+                    try {
+                        bar.addView(draggedView, currentPos);
+                    }
+                    catch(IllegalStateException e) {
+                        // In some situations,
+                        // removeView() somehow fails (this especially happens if you start the drag and immediately moves to the left or right)
+                        // and we can't add the children back, because it still has a parent. In this case, do nothing, this should fix itself on the next iteration.
+                        potentialNewIndex = -1;
+                        return false;
+                    }
+                }
+
+                potentialNewIndex = currentPos;
+
+                return true;
+            case DragEvent.ACTION_DROP:
+                // Accept the drop, will be followed by ACTION_DRAG_ENDED
+                return isDragging;
+            case DragEvent.ACTION_DRAG_ENDED:
+                // Sometimes we don't trigger onDrag over another app, in which case just drop.
+                if (potentialNewIndex == -1) {
+                    Log.w(TAG, "Wasn't dragged over a favorite, returning app to starting position");
+                } else {
+                    final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
+                    int newIndex = potentialNewIndex;
+                    draggedView.post(() -> {
+                        // Signals to a View that the drag and drop operation has concluded.
+                        // If event result is set, this means the dragged view was dropped in target
+                        if (event.getResult()) {
+                            KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), newIndex);
+                            mainActivity.onFavoriteChange();
+                        }
+                    });
+                }
+
+                // Reset dragging to what it should be
+                draggedView.setVisibility(View.VISIBLE);
+                mDragEnabled = favCount > 1;
+                potentialNewIndex = -1;
+                isDragging = false;
+                return true;
+            default:
+                break;
+        }
+        return isDragging;
+    }
+
 
     /**
      * On first run, fill the favorite bar with sensible defaults
@@ -259,157 +417,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             }
         }
         mainActivity.onFavoriteChange();
-    }
-
-    @Override
-    public void onClick(View v) {
-        ViewHolder viewHolder = (ViewHolder) v.getTag();
-        viewHolder.result.fastLaunch(mainActivity, v);
-        v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-
-    }
-
-    @Override
-    public boolean onLongClick(View v) {
-        ViewHolder viewHolder = (ViewHolder) v.getTag();
-        ListPopup popup = viewHolder.result.getPopupMenu(mainActivity, mainActivity.adapter, v);
-        mainActivity.registerPopup(popup);
-        popup.show(v);
-        return true;
-    }
-
-    private boolean isExternalFavoriteBarEnabled() {
-        return prefs.getBoolean("enable-favorites-bar", true);
-    }
-
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            startTime = motionEvent.getEventTime();
-            contextMenuShown = false;
-            return true;
-        }
-        // No need to do the extra work
-        if (isDragging) {
-            return true;
-        }
-
-        // Click handlers first
-        long holdTime = motionEvent.getEventTime() - startTime;
-        // How long to hold your finger in place to trigger the app menu.
-        int LONG_PRESS_DELAY = 250;
-        if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            this.onClick(view);
-            view.performClick();
-            return true;
-        }
-
-        if (holdTime > LONG_PRESS_DELAY) {
-            // Long press, either drag or context menu
-
-            // Drag handlers
-            int intCurrentY = Math.round(motionEvent.getY());
-            int intCurrentX = Math.round(motionEvent.getX());
-            int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
-            int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
-
-            // How much you need to move your finger to be considered "moving"
-            int MOVE_SENSITIVITY = 8;
-            boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
-
-            if (hasMoved && mDragEnabled) {
-                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-
-                if (contextMenuShown) {
-                    mainActivity.dismissPopup();
-                }
-
-                mDragEnabled = false;
-                mainActivity.dismissPopup();
-                mainActivity.closeContextMenu();
-                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-                view.startDrag(null, shadowBuilder, view, 0);
-                view.setVisibility(View.INVISIBLE);
-                isDragging = true;
-                return true;
-            } else if (!contextMenuShown && !isDragging) {
-                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-
-                contextMenuShown = true;
-                this.onLongClick(view);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean onDrag(View v, final DragEvent event) {
-
-        switch (event.getAction()) {
-            case DragEvent.ACTION_DRAG_STARTED:
-                // Inform the system that we are interested in being a potential drop target
-                return true;
-            case DragEvent.ACTION_DRAG_ENTERED:
-            case DragEvent.ACTION_DRAG_EXITED:
-            case DragEvent.ACTION_DROP:
-                if (!isDragging) {
-                    return true;
-                }
-                overApp = (ViewHolder) v.getTag();
-                currentX = (event.getX() != 0.0f) ? event.getX() : currentX;
-
-                break;
-
-            case DragEvent.ACTION_DRAG_ENDED:
-                // Only need to handle this action once.
-                if (!isDragging) {
-                    return true;
-                }
-                isDragging = false;
-
-                // Reset dragging to what it should be
-                mDragEnabled = favCount > 1;
-
-                final View draggedView = (View) event.getLocalState();
-
-                // Sometimes we don't trigger onDrag over another app, in which case just drop.
-                if (overApp == null) {
-                    Log.w(TAG, "Wasn't dragged over an app, returning app to starting position");
-                    draggedView.post(() -> draggedView.setVisibility(View.VISIBLE));
-                    break;
-                }
-
-                final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
-
-                int left = v.getLeft();
-                int right = v.getRight();
-                int width = right - left;
-
-                // currentX is relative to the view not the screen, so add the current X of the view.
-                final boolean leftSide = (left + currentX < left + (width / 2));
-
-                final int pos = KissApplication.getApplication(mainActivity).getDataHandler().getFavoritePosition(overApp.result.getPojoId());
-
-                draggedView.post(() -> {
-                    // Signals to a View that the drag and drop operation has concluded.
-                    // If event result is set, this means the dragged view was dropped in target
-                    if (event.getResult()) {
-                        KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), leftSide ? pos - 1 : pos);
-                        draggedView.post(() -> draggedView.setVisibility(View.VISIBLE));
-
-                        mainActivity.onFavoriteChange();
-                    } else {
-                        draggedView.setVisibility(View.VISIBLE);
-                    }
-                });
-
-                break;
-            default:
-                break;
-        }
-        return true;
     }
 }
 
