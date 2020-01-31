@@ -47,7 +47,7 @@ class Notification extends Forwarder {
             try {
                 // Retrieve the preference iff permission has been given
                 String allowedApps = Settings.Secure.getString(mainActivity.getContentResolver(), "enabled_notification_listeners");
-                if (allowedApps.contains(mainActivity.getPackageName())) {
+                if (allowedApps != null && allowedApps.contains(mainActivity.getPackageName())) {
                     notifsPrefBuilder = mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE);
                 } else {
                     // We don't have permission, make sure the SharedPreferences is empty to avoid displaying "ghost" notifications
