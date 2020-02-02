@@ -121,7 +121,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         ArrayList<ViewHolder> holders = new ArrayList<>(favCount);
 
         ViewGroup favoritesBar = mainActivity.favoritesBar;
-        int currentFavCount = favoritesBar.getChildCount();
 
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < favCount; i++) {
@@ -136,23 +135,14 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             }
             holders.add(viewHolder);
 
-            // We don't have enough data in our current ViewHolder, add a new one
-            if (i >= currentFavCount) {
+            // Check if view is different (we get null if beyond bounds, for instance when a new favorite was added)
+            View currentView = favoritesBar.getChildAt(i);
+            if (currentView != viewHolder.view) {
                 if (viewHolder.view.getParent() != null) {
                     // We need to remove the view from its parent first
                     ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
                 }
-                favoritesBar.addView(viewHolder.view);
-            } else {
-                // Check if view is different
-                View currentView = favoritesBar.getChildAt(i);
-                if (currentView != viewHolder.view) {
-                    if (viewHolder.view.getParent() != null) {
-                        // We need to remove the view from its parent first
-                        ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
-                    }
-                    favoritesBar.addView(viewHolder.view, i);
-                }
+                favoritesBar.addView(viewHolder.view, i);
             }
 
             if (notificationPrefs != null) {
@@ -173,16 +163,15 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
 
         // Remove any leftover views from previous renders
-        for (int i = favCount; i < favoritesBar.getChildCount(); i++) {
-            View toBeDisposed = favoritesBar.getChildAt(i);
+        while (favoritesBar.getChildCount() > favCount) {
+            View toBeDisposed = favoritesBar.getChildAt(favCount);
             toBeDisposed.setOnDragListener(null);
             toBeDisposed.setOnTouchListener(null);
-            favoritesBar.removeViewAt(i);
+            favoritesBar.removeViewAt(favCount);
         }
 
-        // release unused view holders and keep the used ones to be recycled
+        // kepp viewholders in memory for future recycling
         favoritesViews = holders;
-
         mDragEnabled = favCount > 1;
     }
 
@@ -303,12 +292,11 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 int currentPos = (int) (favCount * x / width);
 
                 View currentChildAtPos = bar.getChildAt(currentPos);
-                if(currentChildAtPos != draggedView) {
+                if (currentChildAtPos != draggedView) {
                     bar.removeView(draggedView);
                     try {
                         bar.addView(draggedView, currentPos);
-                    }
-                    catch(IllegalStateException e) {
+                    } catch (IllegalStateException e) {
                         // In some situations,
                         // removeView() somehow fails (this especially happens if you start the drag and immediately moves to the left or right)
                         // and we can't add the children back, because it still has a parent. In this case, do nothing, this should fix itself on the next iteration.
@@ -330,6 +318,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 } else {
                     final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
                     int newIndex = potentialNewIndex;
+
                     draggedView.post(() -> {
                         // Signals to a View that the drag and drop operation has concluded.
                         // If event result is set, this means the dragged view was dropped in target

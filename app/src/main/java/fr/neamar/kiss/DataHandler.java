@@ -675,16 +675,13 @@ public class DataHandler extends BroadcastReceiver
      * @return favorites' pojo
      */
     public ArrayList<Pojo> getFavorites() {
-        ArrayList<Pojo> favorites = new ArrayList<>();
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
         assert favApps != null;
+
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-
-        // We might skip some later but this avoid to expand memory multiple times
-        favorites.ensureCapacity(favAppsList.size());
-
+        ArrayList<Pojo> favorites = new ArrayList<>(favAppsList.size());
         // Find associated items
         for (int i = 0; i < favAppsList.size(); i++) {
             Pojo pojo = getPojo(favAppsList.get(i));
@@ -704,21 +701,24 @@ public class DataHandler extends BroadcastReceiver
      * @param position the new position of the fav
      */
     public void setFavoritePosition(MainActivity context, String id, int position) {
-        String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
-                getString("favorite-apps-list", "");
-        assert favApps != null;
-        List<String> favAppsList = new ArrayList<>(Arrays.asList(favApps.split(";")));
+        List<Pojo> currentFavorites = getFavorites();
+        List<String> favAppsList = new ArrayList<>();
+
+        for(Pojo pojo : currentFavorites) {
+            favAppsList.add(pojo.getHistoryId());
+        }
 
         int currentPos = favAppsList.indexOf(id);
         if (currentPos == -1) {
             Log.e(TAG, "Couldn't find id in favAppsList");
             return;
         }
-        // Clamp the position so we dont just extend past the end of the array.
+        // Clamp the position so we don't just extend past the end of the array.
         position = Math.min(position, favAppsList.size() - 1);
 
         favAppsList.remove(currentPos);
         favAppsList.add(position, id);
+
         String newFavList = TextUtils.join(";", favAppsList);
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
@@ -727,23 +727,7 @@ public class DataHandler extends BroadcastReceiver
         context.onFavoriteChange();
     }
 
-    /**
-     * Helper function to get the position of a favorite. Used mainly by the drag and drop system to know where to place the dropped app.
-     *
-     * @param id      the app you want to get the position of.
-     * @return favorite position
-     */
-    public int getFavoritePosition(String id) {
-        String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
-                getString("favorite-apps-list", "");
-        assert favApps != null;
-        List<String> favAppsList = new ArrayList<>(Arrays.asList(favApps.split(";")));
-
-        return favAppsList.indexOf(id);
-    }
-
     public void addToFavorites(String id) {
-
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
 
