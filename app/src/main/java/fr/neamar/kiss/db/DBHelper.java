@@ -6,11 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Collections;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
@@ -59,8 +59,16 @@ public class DBHelper {
         ContentValues values = new ContentValues();
         values.put("query", query);
         values.put("record", record);
-        values.put("timeStamp",System.currentTimeMillis());
+        values.put("timeStamp", System.currentTimeMillis());
         db.insert("history", null, values);
+
+        if (Math.random() <= 0.005) {
+            // Roughly every 200 inserts, clean up the history of items older than 3 months
+            long twoMonthsAgo = 7776000000L; // 1000 * 60 * 60 * 24 * 30 * 3;
+            db.delete("history", "timeStamp < ?", new String[]{Long.toString(System.currentTimeMillis() - twoMonthsAgo)});
+            // And vacuum the DB for speed
+            db.execSQL("VACUUM");
+        }
     }
 
     public static void removeFromHistory(Context context, String record) {
@@ -110,16 +118,16 @@ public class DBHelper {
     /**
      * Get the most used history items adaptively based on a set period of time
      *
-     * @param db The SQL db
+     * @param db    The SQL db
      * @param hours How many hours back we want to test frequency against
      * @param limit Maximum result size
      * @return Cursor
      */
-    private static Cursor getHistoryByAdaptive(SQLiteDatabase db, int hours,int limit) {
+    private static Cursor getHistoryByAdaptive(SQLiteDatabase db, int hours, int limit) {
         // order history based on frequency
         String sql = "SELECT record, count(*) FROM history " +
-                "WHERE timeStamp >= 0 "+
-                "AND timeStamp >" + (System.currentTimeMillis() - ( hours *3600000))+
+                "WHERE timeStamp >= 0 " +
+                "AND timeStamp >" + (System.currentTimeMillis() - (hours * 3600000)) +
                 " GROUP BY record " +
                 " ORDER BY count(*) DESC " +
                 " LIMIT " + limit;
@@ -148,7 +156,7 @@ public class DBHelper {
                 cursor = getHistoryByFrequency(db, limit);
                 break;
             case "adaptive":
-                cursor = getHistoryByAdaptive(db,36, limit);
+                cursor = getHistoryByAdaptive(db, 36, limit);
                 break;
             default:
                 cursor = getHistoryByRecency(db, limit);
@@ -346,7 +354,6 @@ public class DBHelper {
 
 
     /* Delete
-     * Insert new item into history
      *
      * @param context android context
      * @param tag   query to insert
