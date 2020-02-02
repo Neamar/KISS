@@ -138,6 +138,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
             // We don't have enough data in our current ViewHolder, add a new one
             if (i >= currentFavCount) {
+                if (viewHolder.view.getParent() != null) {
+                    // We need to remove the view from its parent first
+                    ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
+                }
                 favoritesBar.addView(viewHolder.view);
             } else {
                 // Check if view is different
