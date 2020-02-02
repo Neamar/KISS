@@ -357,7 +357,7 @@ public class AppResult extends Result {
 
                 context.startActivity(intent);
             }
-        } catch (ActivityNotFoundException | NullPointerException e) {
+        } catch (ActivityNotFoundException | NullPointerException | SecurityException e) {
             // Application was just removed?
             // (null pointer exception can be thrown on Lollipop+ when app is missing)
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();

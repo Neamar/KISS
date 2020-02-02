@@ -439,18 +439,18 @@ public class DataHandler extends BroadcastReceiver
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    public boolean addShortcut(String packageName) {
+    public void addShortcut(String packageName) {
 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return false;
+            return;
         }
 
         List<ShortcutInfo> shortcuts;
         try {
             shortcuts = ShortcutUtil.getShortcut(context, packageName);
-        } catch (SecurityException e) {
+        } catch (SecurityException | IllegalStateException e) {
             e.printStackTrace();
-            return false;
+            return;
         }
 
         for (ShortcutInfo shortcutInfo : shortcuts) {
@@ -468,7 +468,6 @@ public class DataHandler extends BroadcastReceiver
         if (!shortcuts.isEmpty() && this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
-        return true;
     }
 
     public void clearHistory() {
