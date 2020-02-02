@@ -89,13 +89,13 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             mainActivity.findViewById(R.id.externalFavoriteBar).setVisibility(View.GONE);
         }
 
-        if (prefs.getBoolean("firstRun", true)) {
+        if (prefs.getBoolean("first-run-favorites", true)) {
             // It is the first run. Make sure this is not an update by checking if history is empty
             if (DBHelper.getHistoryLength(mainActivity) == 0) {
                 addDefaultAppsToFavs();
             }
             // set flag to false
-            prefs.edit().putBoolean("firstRun", false).apply();
+            prefs.edit().putBoolean("first-run-favorites", false).apply();
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
