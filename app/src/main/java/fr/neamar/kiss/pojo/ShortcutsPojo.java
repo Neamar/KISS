@@ -17,15 +17,14 @@ public class ShortcutsPojo extends PojoWithTags {
     public final String intentUri;// TODO: 15/10/18 Use boolean instead of prefix for Oreo shortcuts
     public final Bitmap icon;
 
-    public ShortcutsPojo(String id, int dbId, String packageName, String resourceName, String intentUri,
-                         Bitmap icon) {
+    public ShortcutsPojo(String id, int dbId, String packageName, String resourceName, String intentUri) {
         super(id);
 
         this.dbId = dbId;
         this.packageName = packageName;
         this.resourceName = resourceName;
         this.intentUri = intentUri;
-        this.icon = icon;
+        this.icon = null;
     }
 
     /**

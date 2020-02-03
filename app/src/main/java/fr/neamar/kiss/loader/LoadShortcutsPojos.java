@@ -1,12 +1,9 @@
 package fr.neamar.kiss.loader;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
@@ -33,16 +30,10 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
         }
         List<ShortcutRecord> records = DBHelper.getShortcuts(context.get());
         for (ShortcutRecord shortcutRecord : records) {
-            Bitmap icon = null;
-
-            if (shortcutRecord.icon_blob != null) {
-                icon = BitmapFactory.decodeByteArray(shortcutRecord.icon_blob, 0, shortcutRecord.icon_blob.length);
-            }
-
             String id = ShortcutUtil.generateShortcutId(shortcutRecord.name);
 
             ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutRecord.dbId, shortcutRecord.packageName,
-                    shortcutRecord.iconResource, shortcutRecord.intentUri, icon);
+                    shortcutRecord.iconResource, shortcutRecord.intentUri);
 
             pojo.setName(shortcutRecord.name);
             pojo.setTags(tagsHandler.getTags(pojo.id));
