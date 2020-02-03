@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -111,9 +112,9 @@ public class ShortcutsResult extends Result {
         }
 
         if (!prefs.getBoolean("icons-hide", false)) {
-
-            if (shortcutPojo.icon != null) {
-                BitmapDrawable drawable = new BitmapDrawable(context.getResources(), shortcutPojo.icon);
+            Bitmap icon = shortcutPojo.getIcon(context);
+            if (icon != null) {
+                BitmapDrawable drawable = new BitmapDrawable(context.getResources(), icon);
                 shortcutIcon.setImageDrawable(drawable);
                 appIcon.setImageDrawable(appDrawable);
             } else {
@@ -121,7 +122,6 @@ public class ShortcutsResult extends Result {
                 shortcutIcon.setImageDrawable(appDrawable);
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
             }
-
         }
         else {
             appIcon.setImageDrawable(null);

@@ -1,21 +1,27 @@
 package fr.neamar.kiss.pojo;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import fr.neamar.kiss.db.DBHelper;
 
 public class ShortcutsPojo extends PojoWithTags {
 
     public static final String SCHEME = "shortcut://";
     public static final String OREO_PREFIX = "oreo-shortcut/";
+    private final int dbId;
 
     public final String packageName;
     public final String resourceName;
     public final String intentUri;// TODO: 15/10/18 Use boolean instead of prefix for Oreo shortcuts
     public final Bitmap icon;
 
-    public ShortcutsPojo(String id, String packageName, String resourceName, String intentUri,
+    public ShortcutsPojo(String id, int dbId, String packageName, String resourceName, String intentUri,
                          Bitmap icon) {
         super(id);
 
+        this.dbId = dbId;
         this.packageName = packageName;
         this.resourceName = resourceName;
         this.intentUri = intentUri;
@@ -29,6 +35,7 @@ public class ShortcutsPojo extends PojoWithTags {
     public ShortcutsPojo(String id, String packageName, String oreoId, Bitmap icon) {
         super(id);
 
+        this.dbId = -1; // TODO: set a db ID here.
         this.packageName = packageName;
         this.resourceName = null;
         this.intentUri = ShortcutsPojo.OREO_PREFIX + oreoId;
@@ -46,5 +53,15 @@ public class ShortcutsPojo extends PojoWithTags {
     public String getOreoId() {
         // Oreo shortcuts encode their id in the unused intentUri field
         return intentUri.replace(ShortcutsPojo.OREO_PREFIX, "");
+    }
+
+    public Bitmap getIcon(Context context) {
+        byte[] iconBlob = DBHelper.getShortcutIcon(context, this.dbId);
+
+        if(iconBlob == null) {
+            return null;
+        }
+
+        return BitmapFactory.decodeByteArray(iconBlob, 0, iconBlob.length);
     }
 }
