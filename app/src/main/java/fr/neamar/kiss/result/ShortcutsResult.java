@@ -132,7 +132,7 @@ public class ShortcutsResult extends Result {
     }
 
     public Drawable getDrawable(Context context) {
-        return new BitmapDrawable(context.getResources(), shortcutPojo.icon);
+        return new BitmapDrawable(context.getResources(), shortcutPojo.getIcon(context));
     }
 
 

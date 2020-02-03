@@ -7,8 +7,6 @@ public class ShortcutRecord {
 
     public String packageName;
 
-    public String iconResource;
-
     public String intentUri;
 
     public byte[] icon_blob;

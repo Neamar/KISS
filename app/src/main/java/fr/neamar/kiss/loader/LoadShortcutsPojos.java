@@ -32,8 +32,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
         for (ShortcutRecord shortcutRecord : records) {
             String id = ShortcutUtil.generateShortcutId(shortcutRecord.name);
 
-            ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutRecord.dbId, shortcutRecord.packageName,
-                    shortcutRecord.iconResource, shortcutRecord.intentUri);
+            ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutRecord.dbId, shortcutRecord.packageName, shortcutRecord.intentUri);
 
             pojo.setName(shortcutRecord.name);
             pojo.setTags(tagsHandler.getTags(pojo.id));

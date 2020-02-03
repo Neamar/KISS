@@ -111,7 +111,6 @@ public class ShortcutUtil {
     @TargetApi(Build.VERSION_CODES.O)
     public static ShortcutRecord createShortcutRecord(Context context, ShortcutInfo shortcutInfo, boolean includePackageName){
         ShortcutRecord record = new ShortcutRecord();
-        record.iconResource = null;
         record.packageName = shortcutInfo.getPackage();
         record.intentUri = ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
 
