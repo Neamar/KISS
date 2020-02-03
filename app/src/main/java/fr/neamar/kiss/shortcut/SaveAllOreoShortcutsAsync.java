@@ -20,6 +20,7 @@ import java.util.Set;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.utils.ShortcutUtil;
@@ -86,13 +87,13 @@ public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean>
             }
 
             // Create Pojo
-            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo, !shortcutInfo.isPinned());
-            if (pojo == null) {
+            ShortcutRecord record = ShortcutUtil.createShortcutRecord(context, shortcutInfo, !shortcutInfo.isPinned());
+            if (record == null) {
                 continue;
             }
 
             // Add shortcut to the DataHandler
-            dataHandler.addShortcut(pojo);
+            dataHandler.addShortcut(record);
         }
 
         return true;

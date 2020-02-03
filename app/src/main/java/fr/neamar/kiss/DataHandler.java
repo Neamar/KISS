@@ -421,20 +421,8 @@ public class DataHandler extends BroadcastReceiver
         return (pojo != null) ? pojo.getName() : "???";
     }
 
-    public boolean addShortcut(ShortcutsPojo shortcut) {
-        ShortcutRecord record = new ShortcutRecord();
-        record.name = shortcut.getName();
-        record.iconResource = shortcut.resourceName;
-        record.packageName = shortcut.packageName;
-        record.intentUri = shortcut.intentUri;
-
-        if (shortcut.icon != null) {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            shortcut.icon.compress(CompressFormat.PNG, 100, baos);
-            record.icon_blob = baos.toByteArray();
-        }
-
-        Log.d(TAG, "Shortcut " + shortcut.id);
+    public boolean addShortcut(ShortcutRecord record) {
+        Log.d(TAG, "Adding shortcut for " + record.packageName);
         return DBHelper.insertShortcut(this.context, record);
     }
 
@@ -455,14 +443,12 @@ public class DataHandler extends BroadcastReceiver
 
         for (ShortcutInfo shortcutInfo : shortcuts) {
             // Create Pojo
-            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo, true);
-            if (pojo == null) {
+            ShortcutRecord record = ShortcutUtil.createShortcutRecord(context, shortcutInfo, true);
+            if (record == null) {
                 continue;
             }
             // Add shortcut to the DataHandler
-            addShortcut(pojo);
-
-            Log.d(TAG, "Shortcut " + pojo.id + " added.");
+            addShortcut(record);
         }
 
         if (!shortcuts.isEmpty() && this.getShortcutsProvider() != null) {

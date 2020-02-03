@@ -31,20 +31,6 @@ public class ShortcutsPojo extends PojoWithTags {
      * Oreo shortcuts do not have a real intentUri, instead they have a shortcut id
      * and the Android system is responsible for safekeeping the Intent
      */
-    public ShortcutsPojo(String id, String packageName, String oreoId, Bitmap icon) {
-        super(id);
-
-        this.dbId = -1; // TODO: set a db ID here.
-        this.packageName = packageName;
-        this.resourceName = null;
-        this.intentUri = ShortcutsPojo.OREO_PREFIX + oreoId;
-        this.icon = icon;
-    }
-
-    /**
-     * Oreo shortcuts do not have a real intentUri, instead they have a shortcut id
-     * and the Android system is responsible for safekeeping the Intent
-     */
     public boolean isOreoShortcut() {
         return intentUri.contains(ShortcutsPojo.OREO_PREFIX);
     }

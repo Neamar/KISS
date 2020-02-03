@@ -17,6 +17,7 @@ import java.lang.ref.WeakReference;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.ShortcutsPojo;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
@@ -53,8 +54,8 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
         }
 
         // Create Pojo
-        ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo, false);
-        if (pojo == null) {
+        ShortcutRecord record = ShortcutUtil.createShortcutRecord(context, shortcutInfo, false);
+        if (record == null) {
             return false;
         }
 
@@ -65,7 +66,7 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
         }
 
         // Add shortcut to the DataHandler
-        if(dataHandler.addShortcut(pojo)){
+        if(dataHandler.addShortcut(record)){
             pinItemRequest.accept();
             return true;
         }
