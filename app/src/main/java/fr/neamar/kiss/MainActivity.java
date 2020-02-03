@@ -538,7 +538,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         forwarderManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
@@ -548,10 +548,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             return true;
         }
 
-        if (view.getId() == searchEditText.getId()) {
-            if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                searchEditText.performClick();
-            }
+        if (view.getId() == searchEditText.getId() && event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+            searchEditText.performClick();
         }
         return true;
     }

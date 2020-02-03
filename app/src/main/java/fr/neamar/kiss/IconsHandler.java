@@ -140,10 +140,8 @@ public class IconsHandler {
                             }
                         }
                         //parse <scale> xml tags used as scale factor of original bitmap icon
-                        else if (xpp.getName().equals("scale")) {
-                            if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
-                                factor = Float.valueOf(xpp.getAttributeValue(0));
-                            }
+                        else if (xpp.getName().equals("scale") && xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
+                            factor = Float.valueOf(xpp.getAttributeValue(0));
                         }
                         //parse <item> xml tags for custom icons
                         if (xpp.getName().equals("item")) {

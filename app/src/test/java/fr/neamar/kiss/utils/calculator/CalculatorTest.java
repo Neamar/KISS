@@ -50,11 +50,11 @@ public class CalculatorTest {
 
 				Arguments.of("(1+2.)*2", new BigDecimal(6)),
 
-				Arguments.of("2/2/2", new BigDecimal(0.5)),
+				Arguments.of("2/2/2", new BigDecimal("0.5")),
 				Arguments.of("2/1/1", new BigDecimal(2)),
 				Arguments.of("2/(1/2)", new BigDecimal(4)),
 
-				Arguments.of("2/2/2.", new BigDecimal(0.5)),
+				Arguments.of("2/2/2.", new BigDecimal("0.5")),
 				Arguments.of("2/(1./2)", new BigDecimal(4)),
 
 				Arguments.of("-2**2", new BigDecimal(4)),
