@@ -5,8 +5,9 @@ Project maintainers are @Neamar, @Dorvaryn, @saveman71 and @Pluggi.
 
 ## Translation [![Translation status](https://hosted.weblate.org/widgets/kiss/-/shields-badge.svg)](https://hosted.weblate.org/projects/kiss/strings/)
 
-Want to help with the translation? Use https://hosted.weblate.org/projects/kiss/strings/ to collaborate on strings translation!
+Want to help with the translation? Use https://hosted.weblate.org/projects/kiss/strings/ to collaborate on strings translation. Current progress:
 
+[![Translation status](https://hosted.weblate.org/widgets/kiss/-/multi-auto.svg)](https://hosted.weblate.org/projects/kiss/strings/)
 
 ## Before contributing...
 If you submit a pull request, thanks! There are a couple rules to follow though to make it manageable:
