@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -45,6 +44,8 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.setTheme(R.style.AppThemeAmoledDark);
                 break;
         }
+
+        mainActivity.getTheme().applyStyle(R.style.OverlayPrimaryColorRed, true);
     }
 
     void onCreate() {

@@ -47,11 +47,9 @@ public class SettingsProvider extends SimpleProvider {
                 Settings.ACTION_SOUND_SETTINGS, R.drawable.setting_dev));
         pojos.add(createPojo(context.getString(R.string.settings_display),
                 Settings.ACTION_DISPLAY_SETTINGS, R.drawable.setting_dev));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (pm.hasSystemFeature(PackageManager.FEATURE_NFC)) {
-                pojos.add(createPojo(context.getString(R.string.settings_nfc),
-                        Settings.ACTION_NFC_SETTINGS, R.drawable.setting_nfc));
-            }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && pm.hasSystemFeature(PackageManager.FEATURE_NFC)) {
+            pojos.add(createPojo(context.getString(R.string.settings_nfc),
+                    Settings.ACTION_NFC_SETTINGS, R.drawable.setting_nfc));
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             pojos.add(createPojo(context.getString(R.string.settings_dev),
