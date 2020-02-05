@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
 import androidx.annotation.DrawableRes;
-import androidx.annotation.IntegerRes;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -65,13 +64,13 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
     private SettingsPojo createPojo(String name, String packageName, String settingName,
                                     @DrawableRes int resId) {
         SettingsPojo pojo = new SettingsPojo(getId(settingName), settingName, packageName, resId);
-        assingName(pojo, name);
+        assignName(pojo, name);
         return pojo;
     }
 
     private SettingsPojo createPojo(String name, String settingName, @DrawableRes  int resId) {
         SettingsPojo pojo = new SettingsPojo(getId(settingName), settingName, resId);
-        assingName(pojo, name);
+        assignName(pojo, name);
         return pojo;
     }
 
@@ -79,7 +78,7 @@ public class LoadSettingsPojos extends LoadPojos<SettingsPojo> {
         return pojoScheme + settingName.toLowerCase(Locale.ENGLISH);
     }
 
-    private void assingName(SettingsPojo pojo, String name) {
+    private void assignName(SettingsPojo pojo, String name) {
         pojo.setName(name, true);
     }
 }
