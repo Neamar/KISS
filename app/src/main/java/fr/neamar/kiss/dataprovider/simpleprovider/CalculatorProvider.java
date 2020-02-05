@@ -19,7 +19,7 @@ public class CalculatorProvider extends SimpleProvider {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     final Pattern computableRegexp;
     // A regexp to detect plain numbers (including phone numbers)
-    final Pattern numberOnlyRegexp;
+    private final Pattern numberOnlyRegexp;
     private final NumberFormat LOCALIZED_NUMBER_FORMATTER = NumberFormat.getInstance();
 
     public CalculatorProvider() {
