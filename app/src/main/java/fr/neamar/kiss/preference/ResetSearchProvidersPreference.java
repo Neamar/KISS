@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 
 public class ResetSearchProvidersPreference extends DialogPreference {
 

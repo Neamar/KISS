@@ -35,7 +35,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
-import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;

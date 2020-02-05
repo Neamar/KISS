@@ -1,4 +1,4 @@
-package fr.neamar.kiss.dataprovider;
+package fr.neamar.kiss.dataprovider.simpleprovider;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,7 +16,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.dataprovider.simpleprovider.SimpleProvider;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.searcher.Searcher;

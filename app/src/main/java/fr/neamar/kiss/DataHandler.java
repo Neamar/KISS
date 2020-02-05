@@ -35,7 +35,7 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
-import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.CalculatorProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
