@@ -9,7 +9,7 @@ buildscript {
 
 plugins {
     id 'com.android.application'
-    id "net.ltgt.errorprone" version "1.1.1"
+    id 'net.ltgt.errorprone' version '1.1.1'
 }
 
 android {
@@ -56,6 +56,6 @@ dependencies {
 
 tasks.withType(JavaCompile).configureEach {
     options.errorprone {
-        disable("MissingOverride")
+        disable('MissingOverride')
     }
 }
