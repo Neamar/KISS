@@ -9,7 +9,7 @@ buildscript {
 
 plugins {
     id 'com.android.application'
-    id 'net.ltgt.errorprone' version '0.7.1'
+    id "net.ltgt.errorprone" version "1.1.1"
 }
 
 android {
@@ -51,9 +51,11 @@ dependencies {
     testImplementation 'org.hamcrest:hamcrest-library:2.1'
 
     errorproneJavac("com.google.errorprone:javac:9+181-r4173-1")
-    errorprone ("com.google.errorprone:error_prone_core:2.3.3")
+    errorprone ("com.google.errorprone:error_prone_core:2.3.4")
 }
 
-tasks.withType(JavaCompile) {
-    options.errorprone.errorproneArgs << '-Xep:MissingOverride:OFF'
+tasks.withType(JavaCompile).configureEach {
+    options.errorprone {
+        disable("MissingOverride")
+    }
 }
