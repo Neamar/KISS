@@ -8,6 +8,7 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -49,11 +50,12 @@ public class SettingsResult extends Result {
         return v;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
         if (settingPojo.icon != -1) {
-            return context.getResources().getDrawable(settingPojo.icon);
+            Drawable response = context.getResources().getDrawable(settingPojo.icon);
+            response.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
+            return response;
         }
 
         return null;

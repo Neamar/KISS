@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.normalizer.StringNormalizer;
+import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SettingsPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -83,7 +84,6 @@ public class SettingsProvider extends SimpleProvider {
     @Override
     public void reload() {
         super.reload();
-
     }
 
     @Override
@@ -114,5 +114,34 @@ public class SettingsProvider extends SimpleProvider {
                 return;
             }
         }
+    }
+
+
+    /**
+     * Tells whether or not this provider may be able to find the pojo with
+     * specified id
+     *
+     * @param id id we're looking for
+     * @return true if the provider can handle the query ; does not guarantee it
+     * will!
+     */
+    public boolean mayFindById(String id) {
+        return id.startsWith(SCHEME);
+    }
+
+    /**
+     * Try to find a record by its id
+     *
+     * @param id id we're looking for
+     * @return null if not found
+     */
+    public Pojo findById(String id) {
+        for (Pojo pojo : pojos) {
+            if (pojo.id.equals(id)) {
+                return pojo;
+            }
+        }
+
+        return null;
     }
 }
