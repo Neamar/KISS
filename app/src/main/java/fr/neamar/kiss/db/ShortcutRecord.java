@@ -1,12 +1,11 @@
 package fr.neamar.kiss.db;
 
 public class ShortcutRecord {
+    public int dbId;
 
     public String name;
 
     public String packageName;
-
-    public String iconResource;
 
     public String intentUri;
 

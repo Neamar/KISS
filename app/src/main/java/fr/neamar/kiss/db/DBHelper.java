@@ -14,7 +14,7 @@ import java.util.Map;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class DBHelper {
     private static SQLiteDatabase database = null;
@@ -30,9 +30,9 @@ public class DBHelper {
     }
 
     private static ArrayList<ValuedHistoryRecord> readCursor(Cursor cursor) {
-        ArrayList<ValuedHistoryRecord> records = new ArrayList<>();
-
         cursor.moveToFirst();
+
+        ArrayList<ValuedHistoryRecord> records = new ArrayList<>(cursor.getCount());
         while (!cursor.isAfterLast()) {
             ValuedHistoryRecord entry = new ValuedHistoryRecord();
 
@@ -242,7 +242,7 @@ public class DBHelper {
         ContentValues values = new ContentValues();
         values.put("name", shortcut.name);
         values.put("package", shortcut.packageName);
-        values.put("icon", shortcut.iconResource);
+        values.put("icon", (String) null); // Legacy field (for shortcuts before Oreo), not used anymore (we use icon_blob).
         values.put("intent_uri", shortcut.intentUri);
         values.put("icon_blob", shortcut.icon_blob);
 
@@ -250,30 +250,31 @@ public class DBHelper {
         return true;
     }
 
-    public static void removeShortcut(Context context, ShortcutsPojo shortcut) {
+    public static void removeShortcut(Context context, ShortcutPojo shortcut) {
         SQLiteDatabase db = getDatabase(context);
         db.delete("shortcuts", "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri});
     }
 
+    /**
+     * Retrieve a list of all shortcuts for current package name, without icons.
+     */
     public static ArrayList<ShortcutRecord> getShortcuts(Context context, String packageName) {
-        ArrayList<ShortcutRecord> records = new ArrayList<>();
         SQLiteDatabase db = getDatabase(context);
 
         // Cursor query (String table, String[] columns, String selection,
         // String[] selectionArgs, String groupBy, String having, String
         // orderBy)
-        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
+        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "intent_uri"},
                 "package = ?", new String[]{packageName}, null, null, null);
-
         cursor.moveToFirst();
+
+        ArrayList<ShortcutRecord> records = new ArrayList<>();
         while (!cursor.isAfterLast()) {
             ShortcutRecord entry = new ShortcutRecord();
 
             entry.name = cursor.getString(0);
             entry.packageName = cursor.getString(1);
-            entry.iconResource = cursor.getString(2);
-            entry.intentUri = cursor.getString(3);
-            entry.icon_blob = cursor.getBlob(4);
+            entry.intentUri = cursor.getString(2);
 
             records.add(entry);
             cursor.moveToNext();
@@ -283,25 +284,27 @@ public class DBHelper {
         return records;
     }
 
+    /**
+     * Retrieve a list of all shortcuts, without icons.
+     */
     public static ArrayList<ShortcutRecord> getShortcuts(Context context) {
-        ArrayList<ShortcutRecord> records = new ArrayList<>();
         SQLiteDatabase db = getDatabase(context);
 
         // Cursor query (String table, String[] columns, String selection,
         // String[] selectionArgs, String groupBy, String having, String
         // orderBy)
-        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
+        Cursor cursor = db.query("shortcuts", new String[]{"_id", "name", "package", "intent_uri"},
                 null, null, null, null, null);
-
         cursor.moveToFirst();
+
+        ArrayList<ShortcutRecord> records = new ArrayList<>(cursor.getCount());
         while (!cursor.isAfterLast()) {
             ShortcutRecord entry = new ShortcutRecord();
 
-            entry.name = cursor.getString(0);
-            entry.packageName = cursor.getString(1);
-            entry.iconResource = cursor.getString(2);
+            entry.dbId = cursor.getInt(0);
+            entry.name = cursor.getString(1);
+            entry.packageName = cursor.getString(2);
             entry.intentUri = cursor.getString(3);
-            entry.icon_blob = cursor.getBlob(4);
 
             records.add(entry);
             cursor.moveToNext();
@@ -311,6 +314,24 @@ public class DBHelper {
         return records;
     }
 
+    public static byte[] getShortcutIcon(Context context, int dbId) {
+        SQLiteDatabase db = getDatabase(context);
+
+        // Cursor query (String table, String[] columns, String selection,
+        // String[] selectionArgs, String groupBy, String having, String
+        // orderBy)
+        Cursor cursor = db.query("shortcuts", new String[]{"icon_blob"},
+                "_id = ?", new String[]{Integer.toString(dbId)}, null, null, null);
+
+        cursor.moveToFirst();
+        byte[] iconBlob = cursor.getBlob(0);
+        cursor.close();
+        return iconBlob;
+    }
+
+    /**
+     * Remove shortcuts for a given package name
+     */
     public static void removeShortcuts(Context context, String packageName) {
         SQLiteDatabase db = getDatabase(context);
 
@@ -322,12 +343,12 @@ public class DBHelper {
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) { // remove from history
-            db.delete("history", "record = ?", new String[]{ShortcutsPojo.SCHEME + cursor.getString(0).toLowerCase(Locale.ROOT)});
+            db.delete("history", "record = ?", new String[]{ShortcutPojo.SCHEME + cursor.getString(0).toLowerCase(Locale.ROOT)});
             cursor.moveToNext();
         }
         cursor.close();
 
-        //remove shortcuts
+        // remove shortcuts
         db.delete("shortcuts", "package LIKE ?", new String[]{"%" + packageName + "%"});
     }
 

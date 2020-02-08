@@ -45,7 +45,7 @@ public class TagsHandler {
 
     public String[] getAllTagsAsArray() {
         Set<String> tags = getAllTagsAsSet();
-        return tags.toArray(new String[tags.size()]);
+        return tags.toArray(new String[0]);
     }
 
     public Set<String> getAllTagsAsSet() {

@@ -15,14 +15,14 @@ import java.util.Locale;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.SettingsPojo;
+import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class SettingsProvider extends SimpleProvider {
     private final static String SCHEME = "setting://";
     private String settingName;
-    private List<SettingsPojo> pojos;
+    private List<SettingPojo> pojos;
 
     public SettingsProvider(Context context) {
         pojos = new ArrayList<>();
@@ -60,7 +60,7 @@ public class SettingsProvider extends SimpleProvider {
         settingName = context.getString(R.string.settings_prefix).toLowerCase(Locale.ROOT);
     }
 
-    private void assignName(SettingsPojo pojo, String name) {
+    private void assignName(SettingPojo pojo, String name) {
         pojo.setName(name, true);
     }
 
@@ -68,15 +68,15 @@ public class SettingsProvider extends SimpleProvider {
         return SCHEME + settingName.toLowerCase(Locale.ENGLISH);
     }
 
-    private SettingsPojo createPojo(String name, String packageName, String settingName,
-                                    @DrawableRes int resId) {
-        SettingsPojo pojo = new SettingsPojo(getId(settingName), settingName, packageName, resId);
+    private SettingPojo createPojo(String name, String packageName, String settingName,
+                                   @DrawableRes int resId) {
+        SettingPojo pojo = new SettingPojo(getId(settingName), settingName, packageName, resId);
         assignName(pojo, name);
         return pojo;
     }
 
-    private SettingsPojo createPojo(String name, String settingName, @DrawableRes int resId) {
-        SettingsPojo pojo = new SettingsPojo(getId(settingName), settingName, resId);
+    private SettingPojo createPojo(String name, String settingName, @DrawableRes int resId) {
+        SettingPojo pojo = new SettingPojo(getId(settingName), settingName, resId);
         assignName(pojo, name);
         return pojo;
     }
@@ -98,7 +98,7 @@ public class SettingsProvider extends SimpleProvider {
         FuzzyScore.MatchInfo matchInfo;
         boolean match;
 
-        for (SettingsPojo pojo : pojos) {
+        for (SettingPojo pojo : pojos) {
             matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
             match = matchInfo.match;
             pojo.relevance = matchInfo.score;

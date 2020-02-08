@@ -10,7 +10,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
-import android.graphics.Bitmap.CompressFormat;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -21,7 +20,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -46,7 +44,7 @@ import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
@@ -424,20 +422,8 @@ public class DataHandler extends BroadcastReceiver
         return (pojo != null) ? pojo.getName() : "???";
     }
 
-    public boolean addShortcut(ShortcutsPojo shortcut) {
-        ShortcutRecord record = new ShortcutRecord();
-        record.name = shortcut.getName();
-        record.iconResource = shortcut.resourceName;
-        record.packageName = shortcut.packageName;
-        record.intentUri = shortcut.intentUri;
-
-        if (shortcut.icon != null) {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            shortcut.icon.compress(CompressFormat.PNG, 100, baos);
-            record.icon_blob = baos.toByteArray();
-        }
-
-        Log.d(TAG, "Shortcut " + shortcut.id);
+    public boolean addShortcut(ShortcutRecord record) {
+        Log.d(TAG, "Adding shortcut for " + record.packageName);
         return DBHelper.insertShortcut(this.context, record);
     }
 
@@ -458,14 +444,12 @@ public class DataHandler extends BroadcastReceiver
 
         for (ShortcutInfo shortcutInfo : shortcuts) {
             // Create Pojo
-            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo, true);
-            if (pojo == null) {
+            ShortcutRecord record = ShortcutUtil.createShortcutRecord(context, shortcutInfo, true);
+            if (record == null) {
                 continue;
             }
             // Add shortcut to the DataHandler
-            addShortcut(pojo);
-
-            Log.d(TAG, "Shortcut " + pojo.id + " added.");
+            addShortcut(record);
         }
 
         if (!shortcuts.isEmpty() && this.getShortcutsProvider() != null) {
@@ -477,7 +461,7 @@ public class DataHandler extends BroadcastReceiver
         DBHelper.clearHistory(this.context);
     }
 
-    public void removeShortcut(ShortcutsPojo shortcut) {
+    public void removeShortcut(ShortcutPojo shortcut) {
         // Also remove shortcut from favorites
         removeFromFavorites(shortcut.id);
         DBHelper.removeShortcut(this.context, shortcut);

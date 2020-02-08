@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -36,7 +37,7 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
@@ -46,9 +47,9 @@ import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 
 public class ShortcutsResult extends Result {
-    private final ShortcutsPojo shortcutPojo;
+    private final ShortcutPojo shortcutPojo;
 
-    ShortcutsResult(ShortcutsPojo shortcutPojo) {
+    ShortcutsResult(ShortcutPojo shortcutPojo) {
         super(shortcutPojo);
         this.shortcutPojo = shortcutPojo;
     }
@@ -111,9 +112,9 @@ public class ShortcutsResult extends Result {
         }
 
         if (!prefs.getBoolean("icons-hide", false)) {
-
-            if (shortcutPojo.icon != null) {
-                BitmapDrawable drawable = new BitmapDrawable(context.getResources(), shortcutPojo.icon);
+            Bitmap icon = shortcutPojo.getIcon(context);
+            if (icon != null) {
+                BitmapDrawable drawable = new BitmapDrawable(context.getResources(), icon);
                 shortcutIcon.setImageDrawable(drawable);
                 appIcon.setImageDrawable(appDrawable);
             } else {
@@ -121,7 +122,6 @@ public class ShortcutsResult extends Result {
                 shortcutIcon.setImageDrawable(appDrawable);
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
             }
-
         }
         else {
             appIcon.setImageDrawable(null);
@@ -132,7 +132,7 @@ public class ShortcutsResult extends Result {
     }
 
     public Drawable getDrawable(Context context) {
-        return new BitmapDrawable(context.getResources(), shortcutPojo.icon);
+        return new BitmapDrawable(context.getResources(), shortcutPojo.getIcon(context));
     }
 
 
@@ -214,7 +214,7 @@ public class ShortcutsResult extends Result {
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
-    private void launchEditTagsDialog(final Context context, final ShortcutsPojo pojo) {
+    private void launchEditTagsDialog(final Context context, final ShortcutPojo pojo) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
@@ -254,7 +254,7 @@ public class ShortcutsResult extends Result {
         dialog.show();
     }
 
-    private void launchUninstall(Context context, ShortcutsPojo shortcutPojo) {
+    private void launchUninstall(Context context, ShortcutPojo shortcutPojo) {
         DataHandler dh = KissApplication.getApplication(context).getDataHandler();
         if (dh != null) {
             dh.removeShortcut(shortcutPojo);

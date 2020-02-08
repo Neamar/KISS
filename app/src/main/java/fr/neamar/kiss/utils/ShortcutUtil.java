@@ -8,6 +8,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserManager;
@@ -15,16 +16,17 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import fr.neamar.kiss.db.DBHelper;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.db.ShortcutRecord;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.shortcut.SaveAllOreoShortcutsAsync;
 import fr.neamar.kiss.shortcut.SaveSingleOreoShortcutAsync;
 
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 
@@ -36,7 +38,7 @@ public class ShortcutUtil {
      * @return shortcut id generated from shortcut name
      */
     public static String generateShortcutId(String shortcutName){
-        return ShortcutsPojo.SCHEME + shortcutName.toLowerCase(Locale.ROOT);
+        return ShortcutPojo.SCHEME + shortcutName.toLowerCase(Locale.ROOT);
     }
 
     /**
@@ -107,36 +109,40 @@ public class ShortcutUtil {
      * Create ShortcutPojo from ShortcutInfo
      */
     @TargetApi(Build.VERSION_CODES.O)
-    public static ShortcutsPojo createShortcutPojo(Context context, ShortcutInfo shortcutInfo, boolean includePackageName){
+    public static ShortcutRecord createShortcutRecord(Context context, ShortcutInfo shortcutInfo, boolean includePackageName){
+        ShortcutRecord record = new ShortcutRecord();
+        record.packageName = shortcutInfo.getPackage();
+        record.intentUri = ShortcutPojo.OREO_PREFIX + shortcutInfo.getId();
 
         LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-        // id isn't used after being saved in the DB.
-        String id = ShortcutsPojo.SCHEME + ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
-
         final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-        ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutInfo.getPackage(), shortcutInfo.getId(),
-                DrawableUtils.drawableToBitmap(iconDrawable));
+        Bitmap icon = DrawableUtils.drawableToBitmap(iconDrawable);
+        if (icon != null) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            icon.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            record.icon_blob = baos.toByteArray();
+        }
 
         String appName = getAppNameFromPackageName(context, shortcutInfo.getPackage());
 
         if (shortcutInfo.getShortLabel() != null) {
             if(includePackageName && !TextUtils.isEmpty(appName)){
-                pojo.setName(appName + ": " + shortcutInfo.getShortLabel().toString());
+                record.name = appName + ": " + shortcutInfo.getShortLabel().toString();
             } else {
-                pojo.setName(shortcutInfo.getShortLabel().toString());
+                record.name = shortcutInfo.getShortLabel().toString();
             }
         } else if (shortcutInfo.getLongLabel() != null) {
             if(includePackageName && !TextUtils.isEmpty(appName)){
-                pojo.setName(appName + ": " + shortcutInfo.getLongLabel().toString());
+                record.name = appName + ": " + shortcutInfo.getLongLabel().toString();
             } else {
-                pojo.setName(shortcutInfo.getLongLabel().toString());
+                record.name =shortcutInfo.getLongLabel().toString();
             }
         } else {
-            Log.d(TAG, "Invalid shortcut " + pojo.id + ", ignoring");
+            Log.d(TAG, "Invalid shortcut for " + record.packageName + ", ignoring");
             return null;
         }
 
-        return pojo;
+        return record;
     }
 
     /**

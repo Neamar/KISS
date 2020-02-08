@@ -17,13 +17,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.SettingsPojo;
+import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class SettingsResult extends Result {
-    private final SettingsPojo settingPojo;
+    private final SettingPojo settingPojo;
 
-    SettingsResult(SettingsPojo settingPojo) {
+    SettingsResult(SettingPojo settingPojo) {
         super(settingPojo);
         this.settingPojo = settingPojo;
     }
