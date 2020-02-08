@@ -49,11 +49,12 @@ public class SettingsResult extends Result {
         return v;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
         if (settingPojo.icon != -1) {
-            return context.getResources().getDrawable(settingPojo.icon);
+            Drawable response = context.getResources().getDrawable(settingPojo.icon);
+            response.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
+            return response;
         }
 
         return null;
@@ -73,8 +74,7 @@ public class SettingsResult extends Result {
 
         try {
             context.startActivity(intent);
-        }
-        catch(ActivityNotFoundException e) {
+        } catch (ActivityNotFoundException e) {
             e.printStackTrace();
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
         }
