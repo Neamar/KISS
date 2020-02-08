@@ -6,11 +6,11 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadShortcutsPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
 
-public class ShortcutsProvider extends Provider<ShortcutsPojo> {
+public class ShortcutsProvider extends Provider<ShortcutPojo> {
     private static boolean notifiedKissNotDefaultLauncher = false;
 
     @Override
@@ -45,7 +45,7 @@ public class ShortcutsProvider extends Provider<ShortcutsPojo> {
         FuzzyScore.MatchInfo matchInfo;
         boolean match;
 
-        for (ShortcutsPojo pojo : pojos) {
+        for (ShortcutPojo pojo : pojos) {
             matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
             match = matchInfo.match;
             pojo.relevance = matchInfo.score;

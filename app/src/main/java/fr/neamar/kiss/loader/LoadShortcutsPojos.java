@@ -9,21 +9,21 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
-public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
+public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
 
     private final TagsHandler tagsHandler;
 
     public LoadShortcutsPojos(Context context) {
-        super(context, ShortcutsPojo.SCHEME);
+        super(context, ShortcutPojo.SCHEME);
         tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
     }
 
     @Override
-    protected ArrayList<ShortcutsPojo> doInBackground(Void... arg0) {
-        ArrayList<ShortcutsPojo> pojos = new ArrayList<>();
+    protected ArrayList<ShortcutPojo> doInBackground(Void... arg0) {
+        ArrayList<ShortcutPojo> pojos = new ArrayList<>();
 
         if(context.get() == null) {
             return pojos;
@@ -32,7 +32,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutsPojo> {
         for (ShortcutRecord shortcutRecord : records) {
             String id = ShortcutUtil.generateShortcutId(shortcutRecord.name);
 
-            ShortcutsPojo pojo = new ShortcutsPojo(id, shortcutRecord.dbId, shortcutRecord.packageName, shortcutRecord.intentUri);
+            ShortcutPojo pojo = new ShortcutPojo(id, shortcutRecord.dbId, shortcutRecord.packageName, shortcutRecord.intentUri);
 
             pojo.setName(shortcutRecord.name);
             pojo.setTags(tagsHandler.getTags(pojo.id));

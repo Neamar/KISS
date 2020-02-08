@@ -2,12 +2,12 @@ package fr.neamar.kiss.pojo;
 
 import androidx.annotation.DrawableRes;
 
-public class SettingsPojo extends Pojo {
+public class SettingPojo extends Pojo {
     public final String settingName;
     public final String packageName;
     public final @DrawableRes int icon;
 
-    public SettingsPojo(String id, String settingName, @DrawableRes int icon) {
+    public SettingPojo(String id, String settingName, @DrawableRes int icon) {
     	super(id);
 
         this.settingName = settingName;
@@ -15,7 +15,7 @@ public class SettingsPojo extends Pojo {
         this.icon = icon;
     }
 
-    public SettingsPojo(String id, String settingName, String packageName, @DrawableRes int icon) {
+    public SettingPojo(String id, String settingName, String packageName, @DrawableRes int icon) {
 	    super(id);
 
         this.settingName = settingName;

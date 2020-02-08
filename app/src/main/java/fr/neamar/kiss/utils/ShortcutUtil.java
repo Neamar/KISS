@@ -23,7 +23,7 @@ import java.util.Locale;
 
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.shortcut.SaveAllOreoShortcutsAsync;
 import fr.neamar.kiss.shortcut.SaveSingleOreoShortcutAsync;
 
@@ -38,7 +38,7 @@ public class ShortcutUtil {
      * @return shortcut id generated from shortcut name
      */
     public static String generateShortcutId(String shortcutName){
-        return ShortcutsPojo.SCHEME + shortcutName.toLowerCase(Locale.ROOT);
+        return ShortcutPojo.SCHEME + shortcutName.toLowerCase(Locale.ROOT);
     }
 
     /**
@@ -112,7 +112,7 @@ public class ShortcutUtil {
     public static ShortcutRecord createShortcutRecord(Context context, ShortcutInfo shortcutInfo, boolean includePackageName){
         ShortcutRecord record = new ShortcutRecord();
         record.packageName = shortcutInfo.getPackage();
-        record.intentUri = ShortcutsPojo.OREO_PREFIX + shortcutInfo.getId();
+        record.intentUri = ShortcutPojo.OREO_PREFIX + shortcutInfo.getId();
 
         LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
         final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);

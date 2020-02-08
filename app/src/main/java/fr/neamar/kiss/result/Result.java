@@ -41,8 +41,8 @@ import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
-import fr.neamar.kiss.pojo.SettingsPojo;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
@@ -66,12 +66,12 @@ public abstract class Result {
             return new ContactsResult(parent, (ContactsPojo) pojo);
         else if (pojo instanceof SearchPojo)
             return new SearchResult((SearchPojo) pojo);
-        else if (pojo instanceof SettingsPojo)
-            return new SettingsResult((SettingsPojo) pojo);
+        else if (pojo instanceof SettingPojo)
+            return new SettingsResult((SettingPojo) pojo);
         else if (pojo instanceof PhonePojo)
             return new PhoneResult((PhonePojo) pojo);
-        else if (pojo instanceof ShortcutsPojo)
-            return new ShortcutsResult((ShortcutsPojo) pojo);
+        else if (pojo instanceof ShortcutPojo)
+            return new ShortcutsResult((ShortcutPojo) pojo);
         else if (pojo instanceof TagDummyPojo)
             return new TagDummyResult((TagDummyPojo)pojo);
 
