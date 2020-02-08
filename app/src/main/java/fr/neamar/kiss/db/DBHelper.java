@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import fr.neamar.kiss.DataHandler;
@@ -334,19 +333,6 @@ public class DBHelper {
      */
     public static void removeShortcuts(Context context, String packageName) {
         SQLiteDatabase db = getDatabase(context);
-
-        // Cursor query (String table, String[] columns, String selection,
-        // String[] selectionArgs, String groupBy, String having, String
-        // orderBy)
-        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "icon", "intent_uri", "icon_blob"},
-                null, null, null, null, null);
-
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) { // remove from history
-            db.delete("history", "record = ?", new String[]{ShortcutPojo.SCHEME + cursor.getString(0).toLowerCase(Locale.ROOT)});
-            cursor.moveToNext();
-        }
-        cursor.close();
 
         // remove shortcuts
         db.delete("shortcuts", "package LIKE ?", new String[]{"%" + packageName + "%"});
