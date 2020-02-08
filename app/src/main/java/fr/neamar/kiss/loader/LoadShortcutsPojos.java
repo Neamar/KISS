@@ -23,12 +23,13 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
 
     @Override
     protected ArrayList<ShortcutPojo> doInBackground(Void... arg0) {
-        ArrayList<ShortcutPojo> pojos = new ArrayList<>();
-
         if(context.get() == null) {
-            return pojos;
+            return new ArrayList<>();
         }
+
         List<ShortcutRecord> records = DBHelper.getShortcuts(context.get());
+        ArrayList<ShortcutPojo> pojos = new ArrayList<>(records.size());
+
         for (ShortcutRecord shortcutRecord : records) {
             String id = ShortcutUtil.generateShortcutId(shortcutRecord.name);
 
