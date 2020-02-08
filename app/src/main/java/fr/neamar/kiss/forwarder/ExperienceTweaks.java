@@ -40,12 +40,7 @@ class ExperienceTweaks extends Forwarder {
     private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
 
-    private final Runnable displayKeyboardRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mainActivity.showKeyboard();
-        }
-    };
+    private final Runnable displayKeyboardRunnable = mainActivity::showKeyboard;
 
     private View mainEmptyView;
     private final GestureDetector gd;
