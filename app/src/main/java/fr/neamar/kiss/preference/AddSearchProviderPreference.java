@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 
 public class AddSearchProviderPreference extends DialogPreference {
 

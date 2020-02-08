@@ -101,7 +101,7 @@ public class StringNormalizer {
         return new Result(input.length(), codePoints.toArray(), resultMap.toArray());
     }
 
-    public static class Result implements Comparable {
+    public static class Result implements Comparable<Result> {
         private final int originalInputLastCharPosition;
         public final int[] codePoints;
         private final int[] mapPositions;
@@ -133,11 +133,10 @@ public class StringNormalizer {
         }
 
         @Override
-        public int compareTo(@NonNull Object aThat) {
+        public int compareTo(@NonNull Result that) {
             // this optimization is usually worthwhile, and can always be added
-            if (this == aThat)
+            if (this == that)
                 return 0;
-            final Result that = (Result) aThat;
 
             int result;
             int minLength = Math.min(this.codePoints.length, that.codePoints.length);
