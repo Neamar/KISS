@@ -8,7 +8,6 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -75,8 +74,7 @@ public class SettingsResult extends Result {
 
         try {
             context.startActivity(intent);
-        }
-        catch(ActivityNotFoundException e) {
+        } catch (ActivityNotFoundException e) {
             e.printStackTrace();
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
         }
