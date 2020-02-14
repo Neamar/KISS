@@ -50,6 +50,9 @@ public class SearchProvider extends SimpleProvider {
         // Get default search engine
         String defaultSearchEngine = prefs.getString("default-search-provider", "Google");
 
+        assert selectedProviders != null;
+        assert availableProviders != null;
+        assert defaultSearchEngine != null;
         for (String searchProvider : selectedProviders) {
             String url = getProviderUrl(availableProviders, searchProvider);
             SearchPojo pojo = new SearchPojo("", url, SearchPojo.SEARCH_QUERY);

@@ -292,14 +292,16 @@
             android:key="enable-search"
             android:title="@string/search_provider_toggle" />
         </PreferenceCategory>
-        <PreferenceCategory android:title="@string/search_name">
+        <PreferenceCategory android:title="@string/search_name" android:key="web-providers">
             <fr.neamar.kiss.preference.AddSearchProviderPreference
                 android:key="custom-search-provider-add"
                 android:textColor="?attr/searchColor"
+                android:order="30"
                 android:title="@string/custom_search_provider" />
             <fr.neamar.kiss.preference.ResetSearchProvidersPreference
                 android:dialogMessage="@string/search_provider_reset_desc"
                 android:key="reset"
+                android:order="40"
                 android:title="@string/search_provider_reset" />
         </PreferenceCategory>
     </PreferenceScreen>
