@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -233,24 +232,16 @@ public class AppResult extends Result {
         tagInput.setAdapter(adapter);
         builder.setView(v);
 
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                // Refresh tags for given app
-                app.setTags(tagInput.getText().toString());
-                KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
-                // Show toast message
-                String msg = context.getResources().getString(R.string.tags_confirmation_added);
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-            }
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            dialog.dismiss();
+            // Refresh tags for given app
+            app.setTags(tagInput.getText().toString().trim());
+            KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
+            // Show toast message
+            String msg = context.getResources().getString(R.string.tags_confirmation_added);
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         });
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel());
 
         AlertDialog dialog = builder.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
