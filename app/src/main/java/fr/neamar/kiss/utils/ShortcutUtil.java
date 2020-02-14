@@ -116,7 +116,7 @@ public class ShortcutUtil {
 
         LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
         final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-        Bitmap icon = DrawableUtils.drawableToBitmap(iconDrawable);
+        Bitmap icon = iconDrawable == null ? null : DrawableUtils.drawableToBitmap(iconDrawable);
         if (icon != null) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             icon.compress(Bitmap.CompressFormat.PNG, 100, baos);

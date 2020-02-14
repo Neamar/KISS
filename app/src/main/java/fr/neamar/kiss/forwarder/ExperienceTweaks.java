@@ -241,10 +241,11 @@ class ExperienceTweaks extends Forwarder {
     /**
      * Should we force the keyboard not to display suggestions?
      * (swiftkey is broken, see https://github.com/Neamar/KISS/issues/44)
+     * (same for flesky: https://github.com/Neamar/KISS/issues/1263)
      */
     private boolean isNonCompliantKeyboard() {
-        String currentKeyboard = Settings.Secure.getString(mainActivity.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);
-        return currentKeyboard.contains("swiftkey");
+        String currentKeyboard = Settings.Secure.getString(mainActivity.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD).toLowerCase();
+        return currentKeyboard.contains("swiftkey") || currentKeyboard.contains("flesky");
     }
 
     /**
