@@ -5,11 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.NonNull;
+
 class DrawableUtils {
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
-    static Bitmap drawableToBitmap(Drawable drawable) {
-        Bitmap bitmap = null;
+    static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
+        Bitmap bitmap;
 
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
