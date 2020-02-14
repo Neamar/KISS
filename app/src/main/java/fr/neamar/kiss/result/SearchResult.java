@@ -1,5 +1,7 @@
 package fr.neamar.kiss.result;
 
+import android.app.SearchManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -52,12 +54,12 @@ public class SearchResult extends Result {
             pos = text.indexOf(this.pojo.getName());
             len = this.pojo.getName().length();
             image.setImageResource(R.drawable.ic_public);
-        } else if(searchPojo.type == SearchPojo.SEARCH_QUERY){
+        } else if (searchPojo.type == SearchPojo.SEARCH_QUERY) {
             text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), searchPojo.query);
             pos = text.indexOf(searchPojo.query);
             len = searchPojo.query.length();
             image.setImageResource(R.drawable.search);
-        } else if(searchPojo.type == SearchPojo.CALCULATOR_QUERY) {
+        } else if (searchPojo.type == SearchPojo.CALCULATOR_QUERY) {
             text = searchPojo.query;
             pos = text.indexOf("=");
             len = text.length() - pos;
@@ -77,6 +79,17 @@ public class SearchResult extends Result {
         switch (searchPojo.type) {
             case SearchPojo.URL_QUERY:
             case SearchPojo.SEARCH_QUERY:
+                if (searchPojo.url.startsWith("https://encrypted.google.com")) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(SearchManager.QUERY, searchPojo.query); // query contains search string
+                        context.startActivity(intent);
+                        break;
+                    } catch (ActivityNotFoundException e) {
+                        // Google app not found, fall back to default method
+                    }
+                }
                 String query;
                 try {
                     query = URLEncoder.encode(searchPojo.query, "UTF-8");
