@@ -90,7 +90,7 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
         if (success) {
             Log.i(TAG, "Shortcut added to KISS");
 
-            ShortcutsProvider provider = this.dataHandler.get().getShortcutsProvider()
+            ShortcutsProvider provider = this.dataHandler.get().getShortcutsProvider();
             if (provider != null) {
                 provider.reload();
             }
