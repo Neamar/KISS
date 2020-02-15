@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.DataSetObserver;
 import android.os.Build;
 import android.os.Bundle;
@@ -468,7 +470,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // will hide history again)
             searchEditText.setText("");
         }
-        // No call to super.onBackPressed(), since this would quit the launcher.
+
+        // Calling super.onBackPressed() will quit the launcher, only do this if KISS is not the user's default home.
+        if (!isKissDefaultLauncher()) {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -859,5 +865,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         clearButton.setVisibility(View.VISIBLE);
         menuButton.setVisibility(View.INVISIBLE);
+    }
+
+    public boolean isKissDefaultLauncher() {
+        String homePackage;
+        try {
+            Intent i = new Intent(Intent.ACTION_MAIN);
+            i.addCategory(Intent.CATEGORY_HOME);
+            PackageManager pm = getPackageManager();
+            final ResolveInfo mInfo = pm.resolveActivity(i, PackageManager.MATCH_DEFAULT_ONLY);
+            homePackage = mInfo.activityInfo.packageName;
+        } catch (Exception e) {
+            homePackage = "unknown";
+        }
+
+        return homePackage.equals(this.getPackageName());
     }
 }
