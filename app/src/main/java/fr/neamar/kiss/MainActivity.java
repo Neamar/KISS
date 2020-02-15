@@ -58,7 +58,7 @@ import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
-public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -793,7 +793,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void hideKeyboard() {
-
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -826,12 +825,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         return isDisplayingKissBar;
     }
 
-    @Override
     public void beforeListChange() {
         list.prepareChangeAnim();
     }
 
-    @Override
     public void afterListChange() {
         list.animateChange();
     }

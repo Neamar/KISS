@@ -21,7 +21,6 @@ import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.result.Result;
 
 public abstract class Searcher extends AsyncTask<Void, Result, Void> {
-    public static int counter = 0;
     // define a different thread than the default AsyncTask thread or else we will block everything else that uses AsyncTask while we search
     public static final ExecutorService SEARCH_THREAD = Executors.newSingleThreadExecutor();
     static final int DEFAULT_MAX_RESULTS = 50;
@@ -98,19 +97,10 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             while (queue.peek() != null) {
                 results.add(Result.fromPojo(activity, queue.poll()));
             }
+
             activity.beforeListChange();
 
-            if(query.equals("a")) {
-                counter++;
-            }
-            Log.e("WTF", "Counter:" + counter);
-            if(counter < 2) {
-                activity.adapter.updateResults(results, query);
-            }
-            else {
-                activity.adapter.updateResults2(results, query);
-
-            }
+            activity.adapter.updateResults(results, query);
 
             activity.afterListChange();
         }
@@ -119,11 +109,5 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 
         long time = System.currentTimeMillis() - start;
         Log.v("Timing", "Time to run query `" + query + "` on " + getClass().getSimpleName() + " to completion: " + time + "ms");
-    }
-
-    public interface DataObserver {
-        void beforeListChange();
-
-        void afterListChange();
     }
 }
