@@ -1,8 +1,12 @@
 package fr.neamar.kiss.result;
 
+import android.app.SearchManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.util.Pair;
@@ -42,7 +46,7 @@ public class SearchResult extends Result {
 
         TextView searchText = v.findViewById(R.id.item_search_text);
         ImageView image = v.findViewById(R.id.item_search_icon);
-
+        boolean hasCustomIcon = false;
         String text;
         int pos;
         int len;
@@ -52,12 +56,31 @@ public class SearchResult extends Result {
             pos = text.indexOf(this.pojo.getName());
             len = this.pojo.getName().length();
             image.setImageResource(R.drawable.ic_public);
-        } else if(searchPojo.type == SearchPojo.SEARCH_QUERY){
+        } else if (searchPojo.type == SearchPojo.SEARCH_QUERY) {
             text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), searchPojo.query);
             pos = text.indexOf(searchPojo.query);
             len = searchPojo.query.length();
             image.setImageResource(R.drawable.search);
-        } else if(searchPojo.type == SearchPojo.CALCULATOR_QUERY) {
+            if(isGoogleSearch()) {
+                try {
+                    Drawable icon = context.getPackageManager().getApplicationIcon("com.google.android.googlequicksearchbox");
+                    image.setImageDrawable(icon);
+                    hasCustomIcon = true;
+                } catch (PackageManager.NameNotFoundException e) {
+                    // Keep default
+                }
+            }
+            if(isDuckDuckGo()) {
+                try {
+                    Drawable icon = context.getPackageManager().getApplicationIcon("com.duckduckgo.mobile.android");
+                    image.setImageDrawable(icon);
+                    hasCustomIcon = true;
+                } catch (PackageManager.NameNotFoundException e) {
+                    // Keep default
+                }
+
+            }
+        } else if (searchPojo.type == SearchPojo.CALCULATOR_QUERY) {
             text = searchPojo.query;
             pos = text.indexOf("=");
             len = text.length() - pos;
@@ -68,7 +91,9 @@ public class SearchResult extends Result {
 
         displayHighlighted(text, Collections.singletonList(new Pair<>(pos, pos + len)), searchText, context);
 
-        image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
+        if(!hasCustomIcon) {
+            image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
+        }
         return v;
     }
 
@@ -77,6 +102,17 @@ public class SearchResult extends Result {
         switch (searchPojo.type) {
             case SearchPojo.URL_QUERY:
             case SearchPojo.SEARCH_QUERY:
+                if (isGoogleSearch()) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra(SearchManager.QUERY, searchPojo.query); // query contains search string
+                        context.startActivity(intent);
+                        break;
+                    } catch (ActivityNotFoundException e) {
+                        // Google app not found, fall back to default method
+                    }
+                }
                 String query;
                 try {
                     query = URLEncoder.encode(searchPojo.query, "UTF-8");
@@ -121,5 +157,13 @@ public class SearchResult extends Result {
         }
 
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
+    }
+
+    private boolean isGoogleSearch() {
+        return searchPojo.url.startsWith("https://encrypted.google.com");
+    }
+
+    private boolean isDuckDuckGo() {
+        return searchPojo.url.startsWith("https://start.duckduckgo.com");
     }
 }

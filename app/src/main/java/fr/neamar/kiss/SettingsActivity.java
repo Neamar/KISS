@@ -315,8 +315,9 @@ public class SettingsActivity extends PreferenceActivity implements
         multiPreference.setKey("selected-search-provider-names");
         multiPreference.setEntries(searchProvidersArray);
         multiPreference.setEntryValues(searchProvidersArray);
+        multiPreference.setOrder(10);
 
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         category.addPreference(multiPreference);
     }
 
@@ -338,7 +339,8 @@ public class SettingsActivity extends PreferenceActivity implements
         multiPreference.setKey("deleting-search-providers-names");
         multiPreference.setEntries(searchProvidersArray);
         multiPreference.setEntryValues(searchProvidersArray);
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        multiPreference.setOrder(20);
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
 
         multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
@@ -395,9 +397,10 @@ public class SettingsActivity extends PreferenceActivity implements
         standardPref.setKey("default-search-provider");
         standardPref.setEntries(selectedProviderArray);
         standardPref.setEntryValues(selectedProviderArray);
+        standardPref.setOrder(0);
         standardPref.setDefaultValue("Google"); // Google is standard on install
 
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         category.addPreference(standardPref);
     }
 
