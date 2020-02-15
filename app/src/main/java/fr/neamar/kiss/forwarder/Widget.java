@@ -5,16 +5,12 @@ import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.HashMap;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -24,10 +20,8 @@ class Widget extends Forwarder {
     private static final int REQUEST_CREATE_APPWIDGET = 5;
 
     private static final int APPWIDGET_HOST_ID = 442;
-    private static final String WIDGET_PREFERENCE_ID = "fr.neamar.kiss.widgetprefs";
 
-    private SharedPreferences widgetPrefs;
-
+    private static final String WIDGET_PREF_KEY = "widget-id";
     /**
      * Widget fields
      */
@@ -46,13 +40,11 @@ class Widget extends Forwarder {
 
     void onCreate() {
         // Initialize widget manager and host, restore widgets
-        widgetPrefs = mainActivity.getSharedPreferences(WIDGET_PREFERENCE_ID, Context.MODE_PRIVATE);
-
         mAppWidgetManager = AppWidgetManager.getInstance(mainActivity);
         mAppWidgetHost = new AppWidgetHost(mainActivity, APPWIDGET_HOST_ID);
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
 
-        restoreWidgets();
+        restoreWidget();
     }
 
     void onStart() {
@@ -122,12 +114,12 @@ class Widget extends Forwarder {
     }
 
     /**
-     * Restores all previously added widgets
+     * Restores the widget if it exists
      */
-    private void restoreWidgets() {
-        HashMap<String, Integer> widgetIds = (HashMap<String, Integer>) widgetPrefs.getAll();
-        for (int appWidgetId : widgetIds.values()) {
-            addWidgetToLauncher(appWidgetId);
+    private void restoreWidget() {
+        int currentWidgetId = prefs.getInt(WIDGET_PREF_KEY, -1);
+        if(currentWidgetId != -1) {
+            addWidgetToLauncher(currentWidgetId);
         }
     }
 
@@ -137,11 +129,11 @@ class Widget extends Forwarder {
      * @param appWidgetId id of widget to add
      */
     private void addWidgetToLauncher(int appWidgetId) {
-        // only add widgets if in minimal mode (may need launcher restart when turned on)
+        // only add widgets if in minimal mode
         if (prefs.getBoolean("history-hide", true)) {
             // remove empty list view when using widgets, this would block touches on the widget
             mainActivity.emptyListView.setVisibility(View.GONE);
-            //add widget to view
+            // add widget to view
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
             if (appWidgetInfo == null) {
                 removeAllWidgets();
@@ -150,7 +142,7 @@ class Widget extends Forwarder {
             AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
             hostView.setMinimumHeight(appWidgetInfo.minHeight);
             hostView.setAppWidget(appWidgetId, appWidgetInfo);
-            if (Build.VERSION.SDK_INT > 15) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
                 hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
             }
             widgetArea.addView(hostView);
@@ -180,9 +172,7 @@ class Widget extends Forwarder {
         mAppWidgetHost.deleteAppWidgetId(appWidgetId);
         widgetArea.removeView(hostView);
         // remove widget id from persistent prefs
-        SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
-        widgetPrefsEditor.remove(String.valueOf(appWidgetId));
-        widgetPrefsEditor.apply();
+        prefs.edit().remove(WIDGET_PREF_KEY).apply();
         // only one widget allowed so widgetUsed is false now
         widgetUsed = false;
     }
@@ -194,12 +184,10 @@ class Widget extends Forwarder {
      */
     private void addAppWidget(Intent data) {
         int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
-        //add widget
+        // add widget
         addWidgetToLauncher(appWidgetId);
         // Save widget in preferences
-        SharedPreferences.Editor widgetPrefsEditor = widgetPrefs.edit();
-        widgetPrefsEditor.putInt(String.valueOf(appWidgetId), appWidgetId);
-        widgetPrefsEditor.apply();
+        prefs.edit().putInt(WIDGET_PREF_KEY, appWidgetId).apply();
     }
 
     /**
