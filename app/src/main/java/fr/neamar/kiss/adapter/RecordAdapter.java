@@ -2,7 +2,6 @@ package fr.neamar.kiss.adapter;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -97,18 +96,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     @Override
     public @NonNull
     View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        if (convertView != null) {
-            if (!(convertView.getTag() instanceof Integer))
-                convertView = null;
-            else if ((Integer) convertView.getTag() != getItemViewType(position)) {
-                // This is happening on HTC Desire X (Android 4.1.1, API 16)
-                //throw new IllegalStateException( "can't convert view from different type" );
-                convertView = null;
-            }
-        }
-        View view = results.get(position).display(parent.getContext(), results.size() - position, convertView, parent, fuzzyScore);
-        view.setTag(getItemViewType(position));
-        return view;
+        return results.get(position).display(parent.getContext(), convertView, parent, fuzzyScore);
     }
 
     public void onLongClick(final int pos, View v) {

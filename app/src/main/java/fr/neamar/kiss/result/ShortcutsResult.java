@@ -57,17 +57,17 @@ public class ShortcutsResult extends Result {
     @NonNull
     @Override
     @SuppressWarnings("CatchAndPrintStackTrace")
-    public View display(final Context context, int position, View v, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
-        if (v == null)
-            v = inflateFromId(context, R.layout.item_shortcut, parent);
+    public View display(final Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
+        if (view == null)
+            view = inflateFromId(context, R.layout.item_shortcut, parent);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        TextView shortcutName = v.findViewById(R.id.item_app_name);
+        TextView shortcutName = view.findViewById(R.id.item_app_name);
 
         displayHighlighted(shortcutPojo.normalizedName, shortcutPojo.getName(), fuzzyScore, shortcutName, context);
 
-        TextView tagsView = v.findViewById(R.id.item_app_tag);
+        TextView tagsView = view.findViewById(R.id.item_app_tag);
 
         // Hide tags view if tags are empty
         if (shortcutPojo.getTags().isEmpty()) {
@@ -79,8 +79,8 @@ public class ShortcutsResult extends Result {
             tagsView.setVisibility(View.GONE);
         }
 
-        final ImageView shortcutIcon = v.findViewById(R.id.item_shortcut_icon);
-        final ImageView appIcon = v.findViewById(R.id.item_app_icon);
+        final ImageView shortcutIcon = view.findViewById(R.id.item_shortcut_icon);
+        final ImageView appIcon = view.findViewById(R.id.item_app_icon);
 
         // Retrieve package icon for this shortcut
         final PackageManager packageManager = context.getPackageManager();
@@ -105,10 +105,10 @@ public class ShortcutsResult extends Result {
             }
         } catch (NameNotFoundException e) {
             e.printStackTrace();
-            return v;
+            return view;
         } catch (URISyntaxException e) {
             e.printStackTrace();
-            return v;
+            return view;
         }
 
         if (!prefs.getBoolean("icons-hide", false)) {
@@ -128,7 +128,7 @@ public class ShortcutsResult extends Result {
             shortcutIcon.setImageDrawable(null);
         }
 
-        return v;
+        return view;
     }
 
     public Drawable getDrawable(Context context) {

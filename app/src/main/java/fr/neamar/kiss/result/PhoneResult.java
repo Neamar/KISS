@@ -36,19 +36,19 @@ public class PhoneResult extends Result {
 
     @NonNull
     @Override
-    public View display(Context context, int position, View v, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
-        if (v == null)
-            v = inflateFromId(context, R.layout.item_phone, parent);
+    public View display(Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
+        if (view == null)
+            view = inflateFromId(context, R.layout.item_phone, parent);
 
-        TextView phoneText = v.findViewById(R.id.item_phone_text);
+        TextView phoneText = view.findViewById(R.id.item_phone_text);
         String text = String.format(context.getString(R.string.ui_item_phone), phonePojo.phone);
         int pos = text.indexOf(phonePojo.phone);
         int len = phonePojo.phone.length();
         displayHighlighted(text, Collections.singletonList(new Pair<Integer, Integer>(pos, pos + len)), phoneText, context);
 
-        ((ImageView) v.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
+        ((ImageView) view.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
 
-        return v;
+        return view;
     }
 
     @Override

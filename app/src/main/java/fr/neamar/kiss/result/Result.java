@@ -98,7 +98,7 @@ public abstract class Result {
      * @return a view to display as item
      */
     @NonNull
-    public abstract View display(Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
+    public abstract View display(Context context, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
 
     @NonNull
     public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
