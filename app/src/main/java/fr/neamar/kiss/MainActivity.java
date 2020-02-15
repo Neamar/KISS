@@ -567,8 +567,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Display KISS menu
      */
     public void onLauncherButtonClicked(View launcherButton) {
+        updateSearchRecords();
         // Display or hide the kiss bar, according to current view tag (showMenu / hideMenu).
-        displayKissBar(launcherButton.getTag().equals("showMenu"));
+        // displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
 
     @Override

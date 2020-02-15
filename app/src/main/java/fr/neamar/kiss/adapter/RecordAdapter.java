@@ -124,7 +124,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         // * to avoid a flickering -- launchOccurred will refresh the list
         // Thus TOUCH_DELAY * 3
         Handler handler = new Handler();
-        handler.postDelayed(() -> parent.launchOccurred(), KissApplication.TOUCH_DELAY * 3);
+        handler.postDelayed(parent::launchOccurred, KissApplication.TOUCH_DELAY * 3);
 
     }
 
