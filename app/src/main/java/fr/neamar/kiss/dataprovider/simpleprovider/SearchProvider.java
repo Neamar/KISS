@@ -79,8 +79,6 @@ public class SearchProvider extends SimpleProvider {
 
         if (prefs.getBoolean("enable-search", true)) {
             for (SearchPojo pojo : searchProviders) {
-                // Set the id, otherwise the result will be boosted since KISS will assume we've selected this search provider multiple times before"
-                pojo.id = "search://" + query;
                 pojo.query = query;
                 records.add(pojo);
             }
