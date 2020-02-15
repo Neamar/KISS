@@ -44,7 +44,7 @@ class Widget extends Forwarder {
         mAppWidgetHost = new AppWidgetHost(mainActivity, APPWIDGET_HOST_ID);
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
 
-        restoreWidgets();
+        restoreWidget();
     }
 
     void onStart() {
@@ -114,9 +114,9 @@ class Widget extends Forwarder {
     }
 
     /**
-     * Restores all previously added widgets
+     * Restores the widget if it exists
      */
-    private void restoreWidgets() {
+    private void restoreWidget() {
         int currentWidgetId = prefs.getInt(WIDGET_PREF_KEY, -1);
         if(currentWidgetId != -1) {
             addWidgetToLauncher(currentWidgetId);
