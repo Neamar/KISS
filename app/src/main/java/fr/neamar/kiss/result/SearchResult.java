@@ -40,12 +40,12 @@ public class SearchResult extends Result {
 
     @NonNull
     @Override
-    public View display(Context context, int position, View v, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
-        if (v == null)
-            v = inflateFromId(context, R.layout.item_search, parent);
+    public View display(Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
+        if (view == null)
+            view = inflateFromId(context, R.layout.item_search, parent);
 
-        TextView searchText = v.findViewById(R.id.item_search_text);
-        ImageView image = v.findViewById(R.id.item_search_icon);
+        TextView searchText = view.findViewById(R.id.item_search_text);
+        ImageView image = view.findViewById(R.id.item_search_icon);
         boolean hasCustomIcon = false;
         String text;
         int pos;
@@ -94,7 +94,7 @@ public class SearchResult extends Result {
         if(!hasCustomIcon) {
             image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
         }
-        return v;
+        return view;
     }
 
     @Override

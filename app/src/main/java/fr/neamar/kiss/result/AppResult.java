@@ -57,9 +57,8 @@ public class AppResult extends Result {
 
     @NonNull
     @Override
-    public View display(final Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
-        View view = convertView;
-        if (convertView == null) {
+    public View display(final Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
+        if (view == null) {
             view = inflateFromId(context, R.layout.item_app, parent);
         }
 

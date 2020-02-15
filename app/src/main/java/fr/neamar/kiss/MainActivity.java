@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
-import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -59,7 +58,7 @@ import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
-public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener, Searcher.DataObserver {
+public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -242,14 +241,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.emptyListView.setOnTouchListener(this);
 
         // Create adapter for records
-        this.adapter = new RecordAdapter(this, new ArrayList<Result>());
+        this.adapter = new RecordAdapter(this, new ArrayList<>());
         this.list.setAdapter(this.adapter);
 
-        this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                adapter.onClick(position, v);
-            }
-        });
+        this.list.setOnItemClickListener((parent, v, position, id) -> adapter.onClick(position, v));
 
         this.list.setLongClickable(true);
         this.list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -572,8 +567,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Display KISS menu
      */
     public void onLauncherButtonClicked(View launcherButton) {
+        updateSearchRecords();
         // Display or hide the kiss bar, according to current view tag (showMenu / hideMenu).
-        displayKissBar(launcherButton.getTag().equals("showMenu"));
+        // displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
 
     @Override
@@ -798,7 +794,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void hideKeyboard() {
-
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -831,12 +826,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         return isDisplayingKissBar;
     }
 
-    @Override
     public void beforeListChange() {
         list.prepareChangeAnim();
     }
 
-    @Override
     public void afterListChange() {
         list.animateChange();
     }

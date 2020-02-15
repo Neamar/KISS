@@ -18,7 +18,7 @@ import fr.neamar.kiss.pojo.Pojo;
  * @author dorvaryn
  */
 public class QuerySearcher extends Searcher {
-    public static int MAX_RESULT_COUNT = -1;
+    private static int MAX_RESULT_COUNT = -1;
     private final String trimmedQuery;
     private HashMap<String, Integer> knownIds;
     /**
