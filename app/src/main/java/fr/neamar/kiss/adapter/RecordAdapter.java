@@ -106,7 +106,6 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
             }
         }
         View view = results.get(position).display(parent.getContext(), results.size() - position, convertView, parent, fuzzyScore);
-        //Log.d( "TBog", "getView pos " + position + " convertView " + ((convertView == null) ? "null" : convertView.toString()) + " will return " + view.toString() );
         view.setTag(getItemViewType(position));
         return view;
     }
@@ -114,7 +113,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     public void onLongClick(final int pos, View v) {
         ListPopup menu = results.get(pos).getPopupMenu(v.getContext(), this, v);
 
-        //check if menu contains elements and if yes show it
+        // check if menu contains elements and if yes show it
         if (menu.getAdapter().getCount() > 0) {
             parent.registerPopup(menu);
             menu.show(v);
@@ -136,12 +135,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         // * to avoid a flickering -- launchOccurred will refresh the list
         // Thus TOUCH_DELAY * 3
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                parent.launchOccurred();
-            }
-        }, KissApplication.TOUCH_DELAY * 3);
+        handler.postDelayed(() -> parent.launchOccurred(), KissApplication.TOUCH_DELAY * 3);
 
     }
 
@@ -186,14 +180,14 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         // Generate section list
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(alphaIndexer.entrySet());
         Collections.sort(entries, (o1, o2) -> {
-            if(o2.getValue().equals(o1.getValue())) {
+            if (o2.getValue().equals(o1.getValue())) {
                 return 0;
             }
             // We're displaying from A to Z, everything needs to be reversed
             return o2.getValue() > o1.getValue() ? -1 : 1;
         });
         sections = new String[entries.size()];
-        for(int i = 0; i < entries.size(); i++) {
+        for (int i = 0; i < entries.size(); i++) {
             sections[i] = entries.get(i).getKey();
         }
     }
@@ -205,7 +199,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
     @Override
     public int getPositionForSection(int sectionIndex) {
-        if(sections.length == 0) {
+        if (sections.length == 0) {
             return 0;
         }
 

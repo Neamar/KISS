@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
-import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -242,14 +241,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.emptyListView.setOnTouchListener(this);
 
         // Create adapter for records
-        this.adapter = new RecordAdapter(this, new ArrayList<Result>());
+        this.adapter = new RecordAdapter(this, new ArrayList<>());
         this.list.setAdapter(this.adapter);
 
-        this.list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                adapter.onClick(position, v);
-            }
-        });
+        this.list.setOnItemClickListener((parent, v, position, id) -> adapter.onClick(position, v));
 
         this.list.setLongClickable(true);
         this.list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

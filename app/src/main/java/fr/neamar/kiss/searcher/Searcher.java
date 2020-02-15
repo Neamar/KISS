@@ -21,6 +21,7 @@ import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.result.Result;
 
 public abstract class Searcher extends AsyncTask<Void, Result, Void> {
+    public static int counter = 0;
     // define a different thread than the default AsyncTask thread or else we will block everything else that uses AsyncTask while we search
     public static final ExecutorService SEARCH_THREAD = Executors.newSingleThreadExecutor();
     static final int DEFAULT_MAX_RESULTS = 50;
@@ -99,7 +100,17 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             }
             activity.beforeListChange();
 
-            activity.adapter.updateResults(results, query);
+            if(query.equals("a")) {
+                counter++;
+            }
+            Log.e("WTF", "Counter:" + counter);
+            if(counter < 2) {
+                activity.adapter.updateResults(results, query);
+            }
+            else {
+                activity.adapter.updateResults2(results, query);
+
+            }
 
             activity.afterListChange();
         }
