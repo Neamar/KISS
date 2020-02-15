@@ -95,7 +95,7 @@ public class SearchProvider extends SimpleProvider {
             // (tradeoff: non https URL will break, but they shouldn't exist anymore)
             guessedUrl = guessedUrl.replace("http://", "https://");
             if (URLUtil.isValidUrl(guessedUrl)) {
-                SearchPojo pojo = new SearchPojo("", guessedUrl, SearchPojo.URL_QUERY);
+                SearchPojo pojo = new SearchPojo("search://url-access","", guessedUrl, SearchPojo.URL_QUERY);
                 pojo.relevance = 50;
                 pojo.setName(guessedUrl, false);
                 records.add(pojo);
