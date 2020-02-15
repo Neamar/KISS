@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -118,6 +117,7 @@ public class AppResult extends Result {
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
+        adapter.add(new ListPopup.Item(context, R.string.menu_app_store));
 
         try {
             // app installed under /system can't be uninstalled
@@ -155,6 +155,9 @@ public class AppResult extends Result {
             case R.string.menu_app_details:
                 launchAppDetails(context, appPojo);
                 return true;
+            case R.string.menu_app_store:
+                launchAppStore(context, appPojo);
+                return true;
             case R.string.menu_app_uninstall:
                 launchUninstall(context, appPojo);
                 return true;
@@ -170,21 +173,19 @@ public class AppResult extends Result {
                 popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_history);
                 popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_kiss);
                 //registering popup with OnMenuItemClickListener
-                popupExcludeMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getGroupId()) {
-                            case EXCLUDE_HISTORY_ID:
-                                excludeFromHistory(context, appPojo, parent);
-                                return true;
-                            case EXCLUDE_KISS_ID:
-                                // remove item since it will be hidden
-                                parent.removeResult(context, AppResult.this);
-                                excludeFromKiss(context, appPojo);
-                                return true;
-                        }
-
-                        return true;
+                popupExcludeMenu.setOnMenuItemClickListener(item -> {
+                    switch (item.getGroupId()) {
+                        case EXCLUDE_HISTORY_ID:
+                            excludeFromHistory(context, appPojo, parent);
+                            return true;
+                        case EXCLUDE_KISS_ID:
+                            // remove item since it will be hidden
+                            parent.removeResult(context, AppResult.this);
+                            excludeFromKiss(context, appPojo);
+                            return true;
                     }
+
+                    return true;
                 });
 
                 popupExcludeMenu.show();
@@ -261,6 +262,14 @@ public class AppResult extends Result {
             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                     Uri.fromParts("package", app.packageName, null));
             context.startActivity(intent);
+        }
+    }
+
+    private void launchAppStore(Context context, AppPojo app) {
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + app.packageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + app.packageName)));
         }
     }
 
