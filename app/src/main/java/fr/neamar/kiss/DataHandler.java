@@ -564,7 +564,7 @@ public class DataHandler extends BroadcastReceiver
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         dataHandler.removeFromFavorites(app.id);
 
-        //Exclude shortcuts for this app
+        // Exclude shortcuts for this app
         removeShortcuts(app.packageName);
     }
 
@@ -576,7 +576,7 @@ public class DataHandler extends BroadcastReceiver
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
         app.setExcluded(false);
 
-        //Add shortcuts for this app
+        // Add shortcuts for this app
         addShortcut(app.packageName);
     }
 

@@ -178,9 +178,7 @@ public class AppResult extends Result {
                             excludeFromHistory(context, appPojo, parent);
                             return true;
                         case EXCLUDE_KISS_ID:
-                            // remove item since it will be hidden
-                            parent.removeResult(context, AppResult.this);
-                            excludeFromKiss(context, appPojo);
+                            excludeFromKiss(context, appPojo, parent);
                             return true;
                     }
 
@@ -198,19 +196,18 @@ public class AppResult extends Result {
     }
 
     private void excludeFromHistory(Context context, AppPojo appPojo, final RecordAdapter parent) {
-        //add to excluded from history app list
-        KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
-        //remove from history
-        deleteRecord(context);
-        //refresh current history
-        if (!((MainActivity) context).isViewingAllApps()) {
-            parent.removeResult(context, AppResult.this);
-        }
-        //inform user
+        // add to excluded from history app list
+         KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
+        // remove from history
+        removeFromHistory(context);
+        // inform user
         Toast.makeText(context, R.string.excluded_app_history_added, Toast.LENGTH_LONG).show();
     }
 
-    private void excludeFromKiss(Context context, AppPojo appPojo) {
+    private void excludeFromKiss(Context context, AppPojo appPojo, final RecordAdapter parent) {
+        // remove item since it will be hidden
+        parent.removeResult(context, AppResult.this);
+
         KissApplication.getApplication(context).getDataHandler().addToExcluded(appPojo);
         // In case the newly excluded app was in a favorite, refresh them
         ((MainActivity) context).onFavoriteChange();

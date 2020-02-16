@@ -130,7 +130,6 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
     public void removeResult(Context context, Result result) {
         results.remove(result);
-        result.deleteRecord(context);
         notifyDataSetChanged();
         // Do not reset scroll, we want the remaining items to still be in vieww
         parent.temporarilyDisableTranscriptMode();

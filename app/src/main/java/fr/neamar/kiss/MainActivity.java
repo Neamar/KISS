@@ -623,7 +623,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public void onFavoriteChange() {
         forwarderManager.onFavoriteChange();
-        launchOccurred();
     }
 
     private void displayKissBar(Boolean display) {
@@ -767,7 +766,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public void temporarilyDisableTranscriptMode() {
         list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
-        // Add a message to be processaed after all current messages, to reset transcript mode to default
+        // Add a message to be processed after all current messages, to reset transcript mode to default
         list.post(() -> list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL));
     }
 
