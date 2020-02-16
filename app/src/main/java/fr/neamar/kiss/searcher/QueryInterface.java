@@ -3,7 +3,7 @@ package fr.neamar.kiss.searcher;
 import fr.neamar.kiss.ui.ListPopup;
 
 public interface QueryInterface {
-    void updateTranscriptMode(int transcriptMode);
+    void temporarilyDisableTranscriptMode();
 
     void launchOccurred();
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 
@@ -133,7 +132,8 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         results.remove(result);
         result.deleteRecord(context);
         notifyDataSetChanged();
-        updateTranscriptMode(true);
+        // Do not reset scroll, we want the remaining items to still be in vieww
+        parent.temporarilyDisableTranscriptMode();
     }
 
     public void updateResults(List<Result> results, boolean isRefresh, String query) {
@@ -144,22 +144,16 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         fuzzyScore = new FuzzyScore(queryNormalized.codePoints, true);
         notifyDataSetChanged();
 
-        updateTranscriptMode(isRefresh);
+        if(isRefresh) {
+            // We're refreshing an existing dataset, do not reset scroll!
+            parent.temporarilyDisableTranscriptMode();
+        }
     }
 
-    private void updateTranscriptMode(boolean isRefresh) {
-        if(isRefresh) {
-            parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
-        }
-        else {
-            parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-        }
-    }
 
     public void clear() {
         this.results.clear();
         notifyDataSetChanged();
-        updateTranscriptMode(false);
     }
 
     /**

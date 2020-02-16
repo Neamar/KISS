@@ -744,9 +744,30 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
+    /**
+     * transcriptMode on the listView decides when to scroll back to the first item.
+     * The value we have by default, TRANSCRIPT_MODE_ALWAYS_SCROLL, means that on every new search,
+     * (actually, on any change to the listview's adapter items)
+     * scroll is reset to the bottom, which makes sense as we want the most relevant search results
+     * to be visible first.
+     * However, when updating an existing result set (for instance to remove a record, add a tag,
+     * etc.), we don't want the scroll to be reset. When this happens, we temporarily disable
+     * the scroll mode to be disabled.
+     * However, we need to be careful here: the PullView system we use actually relies on
+     * TRANSCRIPT_MODE_ALWAYS_SCROLL being active. So we add a new message in the queur to change
+     * back the transcript mode once we've rendered the change.
+     * <p>
+     * (why is PullView dependent on this? When you show the keyboard, no event is being dispatched
+     * to our application, but if we don't reset the scroll when they keyboard appears then you
+     * could be looking at an element that isn't the latest one when you start scrolling down
+     * [which will hide the keyboard] and start a very ugly animation revealing items currently
+     * hidden. Fairly easy to test, remove the transcript mode from the XML and the .post() here,
+     * then scroll in your history, display the keyboard and scroll again on your history)
+     */
     @Override
-    public void updateTranscriptMode(int transcriptMode) {
-        list.setTranscriptMode(transcriptMode);
+    public void temporarilyDisableTranscriptMode() {
+        list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        // Add a message to be processaed after all current messages, to reset transcript mode to default
         list.post(() -> list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL));
     }
 
