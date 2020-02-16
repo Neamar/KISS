@@ -1,6 +1,6 @@
 package fr.neamar.kiss.pojo;
 
-public class PhonePojo extends Pojo {
+public final class PhonePojo extends Pojo {
     public final String phone;
     private final String historyId;
 

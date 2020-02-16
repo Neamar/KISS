@@ -4,7 +4,7 @@ import android.net.Uri;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
-public class ContactsPojo extends Pojo {
+public final class ContactsPojo extends Pojo {
     public final String lookupKey;
 
     public final String phone;

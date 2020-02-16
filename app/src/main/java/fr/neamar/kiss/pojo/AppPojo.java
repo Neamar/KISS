@@ -2,7 +2,7 @@ package fr.neamar.kiss.pojo;
 
 import fr.neamar.kiss.utils.UserHandle;
 
-public class AppPojo extends PojoWithTags {
+public final class AppPojo extends PojoWithTags {
 
     public static String getComponentName(String packageName, String activityName,
                                           UserHandle userHandle) {

@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 
 import fr.neamar.kiss.db.DBHelper;
 
-public class ShortcutPojo extends PojoWithTags {
+public final class ShortcutPojo extends PojoWithTags {
 
     public static final String SCHEME = "shortcut://";
     public static final String OREO_PREFIX = "oreo-shortcut/";
