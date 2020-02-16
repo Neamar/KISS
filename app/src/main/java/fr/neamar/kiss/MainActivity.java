@@ -771,6 +771,18 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     /**
+     * Force  set transcript mode.
+     * Be careful when using this, it's almost always better to use temporarilyDisableTranscriptMode()
+     * unless you need to deal with the keyboard appearing for something else than a search.
+     * Always make sure you call this function twice, once to disable, and once to re-enable
+     * @param transcriptMode new transcript mode to set on the list
+     */
+    @Override
+    public void updateTranscriptMode(int transcriptMode) {
+        list.setTranscriptMode(transcriptMode);
+    }
+
+    /**
      * Call this function when we're leaving the activity after clicking a search result
      * to clear the search list.
      * We can't use onPause(), since it may be called for a configuration change

@@ -149,6 +149,14 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         }
     }
 
+    /**
+     * Force set transcript mode on the list.
+     * Prefer to use `parent.temporarilyDisableTranscriptMode();`
+     */
+    public void updateTranscriptMode(int transcriptMode) {
+        parent.updateTranscriptMode(transcriptMode);
+    }
+
 
     public void clear() {
         this.results.clear();
