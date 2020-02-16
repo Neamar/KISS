@@ -250,11 +250,11 @@ public abstract class Result {
         }
 
         MainActivity mainActivity = (MainActivity) context;
-        //Update favorite bar
+        // Update favorite bar
         mainActivity.onFavoriteChange();
-        //Update Search to reflect favorite add, if the "exclude favorites" option is active
+        // Update Search to reflect favorite add, if the "exclude favorites" option is active
         if (mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
-            mainActivity.updateSearchRecords();
+            mainActivity.updateSearchRecords(true);
         }
 
         return false;
