@@ -713,13 +713,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * It will ask all the providers for data
      * This function is not called for non search-related changes! Have a look at onDataSetChanged() if that's what you're looking for :)
      *
+     * @param isRefresh whether the query is refreshing the existing result, or is a completely new query
      * @param query the query on which to search
      */
     private void updateSearchRecords(boolean isRefresh, String query) {
         resetTask();
         dismissPopup();
 
-        forwarderManager.updateSearchRecords(query);
+        forwarderManager.updateSearchRecords(isRefresh, query);
 
         if (query.isEmpty()) {
             systemUiVisibilityHelper.resetScroll();
@@ -748,17 +749,17 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * The value we have by default, TRANSCRIPT_MODE_ALWAYS_SCROLL, means that on every new search,
      * (actually, on any change to the listview's adapter items)
      * scroll is reset to the bottom, which makes sense as we want the most relevant search results
-     * to be visible first.
+     * to be visible first (searching for "ab" after "a" should reset the scroll).
      * However, when updating an existing result set (for instance to remove a record, add a tag,
      * etc.), we don't want the scroll to be reset. When this happens, we temporarily disable
-     * the scroll mode to be disabled.
+     * the scroll mode.
      * However, we need to be careful here: the PullView system we use actually relies on
-     * TRANSCRIPT_MODE_ALWAYS_SCROLL being active. So we add a new message in the queur to change
+     * TRANSCRIPT_MODE_ALWAYS_SCROLL being active. So we add a new message in the queue to change
      * back the transcript mode once we've rendered the change.
      * <p>
      * (why is PullView dependent on this? When you show the keyboard, no event is being dispatched
-     * to our application, but if we don't reset the scroll when they keyboard appears then you
-     * could be looking at an element that isn't the latest one when you start scrolling down
+     * to our application, but if we don't reset the scroll when the keyboard appears then you
+     * could be looking at an element that isn't the latest one as you start scrolling down
      * [which will hide the keyboard] and start a very ugly animation revealing items currently
      * hidden. Fairly easy to test, remove the transcript mode from the XML and the .post() here,
      * then scroll in your history, display the keyboard and scroll again on your history)

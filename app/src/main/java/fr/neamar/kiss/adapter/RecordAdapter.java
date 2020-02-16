@@ -131,7 +131,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     public void removeResult(Context context, Result result) {
         results.remove(result);
         notifyDataSetChanged();
-        // Do not reset scroll, we want the remaining items to still be in vieww
+        // Do not reset scroll, we want the remaining items to still be in view
         parent.temporarilyDisableTranscriptMode();
     }
 
