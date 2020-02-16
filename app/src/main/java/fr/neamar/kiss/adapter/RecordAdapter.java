@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 
@@ -132,20 +133,33 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         results.remove(result);
         result.deleteRecord(context);
         notifyDataSetChanged();
+        updateTranscriptMode(true);
     }
 
-    public void updateResults(List<Result> results, String query) {
+    public void updateResults(List<Result> results, boolean isRefresh, String query) {
         this.results.clear();
         this.results.addAll(results);
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
         fuzzyScore = new FuzzyScore(queryNormalized.codePoints, true);
         notifyDataSetChanged();
+
+        updateTranscriptMode(isRefresh);
+    }
+
+    private void updateTranscriptMode(boolean isRefresh) {
+        if(isRefresh) {
+            parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        }
+        else {
+            parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+        }
     }
 
     public void clear() {
         this.results.clear();
         notifyDataSetChanged();
+        updateTranscriptMode(false);
     }
 
     /**

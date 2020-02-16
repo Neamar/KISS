@@ -105,11 +105,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
 
             activity.beforeListChange();
 
-            activity.adapter.updateResults(results, query);
-
-            if (!isRefresh) {
-                activity.list.setSelection(results.size() - 1);
-            }
+            activity.adapter.updateResults(results, isRefresh, query);
 
             activity.afterListChange();
         }

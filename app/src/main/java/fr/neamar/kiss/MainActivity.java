@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -741,6 +742,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searchTask.cancel(true);
             searchTask = null;
         }
+    }
+
+    @Override
+    public void updateTranscriptMode(int transcriptMode) {
+        list.setTranscriptMode(transcriptMode);
+        list.post(() -> list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL));
     }
 
     /**
