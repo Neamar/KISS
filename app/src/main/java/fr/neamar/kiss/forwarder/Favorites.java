@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
@@ -14,6 +15,7 @@ import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -23,8 +25,10 @@ import java.util.ArrayList;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.notification.NotificationListener;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
@@ -109,20 +113,8 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         return null;
     }
 
-    private boolean isDone = false;
-
     void onFavoriteChange() {
         ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
-        favCount = favoritesPojo.size();
-
-        if(!isDone && favCount > 0) {
-            Pojo favoritePojo = favoritesPojo.get(0);
-            ViewHolder vh = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo, mainActivity, mainActivity.favoritesBar);
-            mainActivity.favoritesBar.addView(vh.view);
-        }
-        /*
-        ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
-
         favCount = favoritesPojo.size();
 
         ArrayList<ViewHolder> holders = new ArrayList<>(favCount);
@@ -180,7 +172,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         // kepp viewholders in memory for future recycling
         favoritesViews = holders;
         mDragEnabled = favCount > 1;
-         */
     }
 
     void updateSearchRecords(String query) {
@@ -201,7 +192,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     @Override
     public void onClick(View v) {
         ViewHolder viewHolder = (ViewHolder) v.getTag();
-        viewHolder.result.fastLaunch(mainActivity, v);
+        // viewHolder.result.fastLaunch(mainActivity, v);
         v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 
     }
@@ -224,11 +215,11 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             startTime = motionEvent.getEventTime();
             contextMenuShown = false;
-            return true;
+            return false;
         }
-        // No need to do the extra work
+        // No need to do any extra work while dragging
         if (isDragging) {
-            return true;
+            return false;
         }
 
         // Click handlers first
@@ -237,8 +228,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         int LONG_PRESS_DELAY = 250;
         if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             this.onClick(view);
+
             view.performClick();
-            return true;
+            return false;
         }
 
         if (holdTime > LONG_PRESS_DELAY) {
@@ -276,7 +268,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
                 contextMenuShown = true;
                 this.onLongClick(view);
-                return true;
+                return false;
             }
         }
 
