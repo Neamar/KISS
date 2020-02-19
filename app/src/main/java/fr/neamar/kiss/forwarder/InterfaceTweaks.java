@@ -56,7 +56,7 @@ class InterfaceTweaks extends Forwarder {
 
         // Transparent Search and Favorites bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (prefs.getBoolean("transparent-favorites", true)) {
+            if (prefs.getBoolean("transparent-favorites", true) && isExternalFavoriteBarEnabled()) {
                 mainActivity.favoritesBar.setBackgroundResource(android.R.color.transparent);
             }
             if (prefs.getBoolean("transparent-search", false)) {
@@ -76,7 +76,7 @@ class InterfaceTweaks extends Forwarder {
             }
         }
 
-
+        // Notification drawer icon color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (prefs.getBoolean("black-notification-icons", false)) {
                 // Apply the flag to any view, so why not the edittext!
@@ -98,6 +98,11 @@ class InterfaceTweaks extends Forwarder {
         mainActivity.findViewById(R.id.searchEditLayout).getLayoutParams().height = searchHeight;
         mainActivity.kissBar.getLayoutParams().height = searchHeight;
         mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams().height = searchHeight;
+
+        // Large favorite bar
+        if(prefs.getBoolean("large-favorites-bar", false) && isExternalFavoriteBarEnabled()) {
+            mainActivity.favoritesBar.getLayoutParams().height = res.getDimensionPixelSize(R.dimen.large_favorite_height);
+        }
     }
 
     private void applyRoundedCorners(MainActivity mainActivity) {
@@ -193,5 +198,9 @@ class InterfaceTweaks extends Forwarder {
         int shadowColor = ta.getColor(0, Color.BLACK);
         ta.recycle();
         return shadowColor;
+    }
+
+    private boolean isExternalFavoriteBarEnabled() {
+        return prefs.getBoolean("enable-favorites-bar", true);
     }
 }
