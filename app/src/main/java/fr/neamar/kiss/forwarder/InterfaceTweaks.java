@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -56,7 +57,7 @@ class InterfaceTweaks extends Forwarder {
 
         // Transparent Search and Favorites bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (prefs.getBoolean("transparent-favorites", true)) {
+            if (prefs.getBoolean("transparent-favorites", true) && isExternalFavoriteBarEnabled()) {
                 mainActivity.favoritesBar.setBackgroundResource(android.R.color.transparent);
             }
             if (prefs.getBoolean("transparent-search", false)) {
@@ -76,7 +77,14 @@ class InterfaceTweaks extends Forwarder {
             }
         }
 
+        // Large favorite bar
+        if(prefs.getBoolean("large-favorites-bar", true) && isExternalFavoriteBarEnabled()) {
+            int largePixelSize = (int) mainActivity.getResources().getDimension(R.dimen.large_favorite_height);
+            ViewGroup.LayoutParams params = mainActivity.favoritesBar.getLayoutParams();
+            params.height = largePixelSize;
+        }
 
+        // Notification drawer icon color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (prefs.getBoolean("black-notification-icons", false)) {
                 // Apply the flag to any view, so why not the edittext!
@@ -193,5 +201,9 @@ class InterfaceTweaks extends Forwarder {
         int shadowColor = ta.getColor(0, Color.BLACK);
         ta.recycle();
         return shadowColor;
+    }
+
+    private boolean isExternalFavoriteBarEnabled() {
+        return prefs.getBoolean("enable-favorites-bar", true);
     }
 }
