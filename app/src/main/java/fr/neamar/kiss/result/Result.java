@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import java.lang.ref.WeakReference;
@@ -101,9 +100,8 @@ public abstract class Result {
     public abstract View display(Context context, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
 
     @NonNull
-    public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
-        if (favoriteView == null)
-            favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
+    public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
+        View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
         Drawable drawable = getDrawable(context);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
         if (drawable == null)

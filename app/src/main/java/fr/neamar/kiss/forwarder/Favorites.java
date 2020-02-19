@@ -55,7 +55,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         ViewHolder(@NonNull Result result, @NonNull Pojo pojo, @NonNull Context context, @NonNull ViewGroup parent) {
             this.result = result;
             this.pojo = pojo;
-            view = result.inflateFavorite(context, null, parent);
+            view = result.inflateFavorite(context, parent);
             view.setTag(this);
         }
     }

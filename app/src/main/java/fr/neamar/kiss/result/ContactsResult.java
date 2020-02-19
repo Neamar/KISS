@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -213,13 +212,13 @@ public class ContactsResult extends Result {
 
     @NonNull
     @Override
-    public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
+    public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
         Drawable drawable = getDrawable(context);
         if ( drawable != null ) {
             Bitmap iconBitmap = drawableToBitmap(drawable);
             drawable = new RoundedQuickContactBadge.RoundedDrawable(iconBitmap);
         }
-        favoriteView = super.inflateFavorite(context, favoriteView, parent);
+        View favoriteView = super.inflateFavorite(context, parent);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
         favoriteImage.setImageDrawable(drawable);
         return favoriteView;
