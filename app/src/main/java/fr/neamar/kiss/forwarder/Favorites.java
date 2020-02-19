@@ -192,7 +192,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     @Override
     public void onClick(View v) {
         ViewHolder viewHolder = (ViewHolder) v.getTag();
-        // viewHolder.result.fastLaunch(mainActivity, v);
+        viewHolder.result.fastLaunch(mainActivity, v);
         v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 
     }
