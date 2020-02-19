@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -77,13 +76,6 @@ class InterfaceTweaks extends Forwarder {
             }
         }
 
-        // Large favorite bar
-        if(prefs.getBoolean("large-favorites-bar", true) && isExternalFavoriteBarEnabled()) {
-            int largePixelSize = (int) mainActivity.getResources().getDimension(R.dimen.large_favorite_height);
-            ViewGroup.LayoutParams params = mainActivity.favoritesBar.getLayoutParams();
-            params.height = largePixelSize;
-        }
-
         // Notification drawer icon color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (prefs.getBoolean("black-notification-icons", false)) {
@@ -106,6 +98,11 @@ class InterfaceTweaks extends Forwarder {
         mainActivity.findViewById(R.id.searchEditLayout).getLayoutParams().height = searchHeight;
         mainActivity.kissBar.getLayoutParams().height = searchHeight;
         mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams().height = searchHeight;
+
+        // Large favorite bar
+        if(prefs.getBoolean("large-favorites-bar", false) && isExternalFavoriteBarEnabled()) {
+            mainActivity.favoritesBar.getLayoutParams().height = res.getDimensionPixelSize(R.dimen.large_favorite_height);
+        }
     }
 
     private void applyRoundedCorners(MainActivity mainActivity) {
