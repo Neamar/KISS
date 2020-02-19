@@ -16,12 +16,13 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
@@ -178,9 +179,7 @@ public class AppResult extends Result {
                             excludeFromHistory(context, appPojo, parent);
                             return true;
                         case EXCLUDE_KISS_ID:
-                            // remove item since it will be hidden
-                            parent.removeResult(context, AppResult.this);
-                            excludeFromKiss(context, appPojo);
+                            excludeFromKiss(context, appPojo, parent);
                             return true;
                     }
 
@@ -190,7 +189,7 @@ public class AppResult extends Result {
                 popupExcludeMenu.show();
                 return true;
             case R.string.menu_tags_edit:
-                launchEditTagsDialog(context, appPojo);
+                launchEditTagsDialog(context, parent, appPojo);
                 return true;
         }
 
@@ -198,26 +197,25 @@ public class AppResult extends Result {
     }
 
     private void excludeFromHistory(Context context, AppPojo appPojo, final RecordAdapter parent) {
-        //add to excluded from history app list
-        KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
-        //remove from history
-        deleteRecord(context);
-        //refresh current history
-        if (!((MainActivity) context).isViewingAllApps()) {
-            parent.removeResult(context, AppResult.this);
-        }
-        //inform user
+        // add to excluded from history app list
+         KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
+        // remove from history
+        removeFromHistory(context);
+        // inform user
         Toast.makeText(context, R.string.excluded_app_history_added, Toast.LENGTH_LONG).show();
     }
 
-    private void excludeFromKiss(Context context, AppPojo appPojo) {
+    private void excludeFromKiss(Context context, AppPojo appPojo, final RecordAdapter parent) {
+        // remove item since it will be hidden
+        parent.removeResult(context, AppResult.this);
+
         KissApplication.getApplication(context).getDataHandler().addToExcluded(appPojo);
         // In case the newly excluded app was in a favorite, refresh them
         ((MainActivity) context).onFavoriteChange();
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 
-    private void launchEditTagsDialog(final Context context, final AppPojo app) {
+    private void launchEditTagsDialog(final Context context, RecordAdapter parent, final AppPojo app) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
@@ -228,7 +226,6 @@ public class AppResult extends Result {
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
         tagInput.setText(appPojo.getTags());
-
         tagInput.setAdapter(adapter);
         builder.setView(v);
 
@@ -240,12 +237,32 @@ public class AppResult extends Result {
             // Show toast message
             String msg = context.getResources().getString(R.string.tags_confirmation_added);
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            // We'll need to reset the list view to its previous transcript mode,
+            // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
+            // Let's wait for half a second, that's ugly but we don't have any other option :(
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+                }
+            }, 500);
         });
-        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel());
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+            dialog.cancel();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // See comment above
+                    parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+                }
+            }, 500);
 
+        });
+
+        parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
         AlertDialog dialog = builder.create();
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-
         dialog.show();
     }
 

@@ -95,9 +95,9 @@ public class ForwarderManager extends Forwarder {
         favoritesForwarder.onDataSetChanged();
     }
 
-    public void updateSearchRecords(String query) {
+    public void updateSearchRecords(boolean isRefresh, String query) {
         favoritesForwarder.updateSearchRecords(query);
-        experienceTweaks.updateSearchRecords(query);
+        experienceTweaks.updateSearchRecords(isRefresh, query);
     }
 
     public void onFavoriteChange() {

@@ -130,18 +130,33 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
     public void removeResult(Context context, Result result) {
         results.remove(result);
-        result.deleteRecord(context);
         notifyDataSetChanged();
+        // Do not reset scroll, we want the remaining items to still be in view
+        parent.temporarilyDisableTranscriptMode();
     }
 
-    public void updateResults(List<Result> results, String query) {
+    public void updateResults(List<Result> results, boolean isRefresh, String query) {
         this.results.clear();
         this.results.addAll(results);
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
         fuzzyScore = new FuzzyScore(queryNormalized.codePoints, true);
         notifyDataSetChanged();
+
+        if(isRefresh) {
+            // We're refreshing an existing dataset, do not reset scroll!
+            parent.temporarilyDisableTranscriptMode();
+        }
     }
+
+    /**
+     * Force set transcript mode on the list.
+     * Prefer to use `parent.temporarilyDisableTranscriptMode();`
+     */
+    public void updateTranscriptMode(int transcriptMode) {
+        parent.updateTranscriptMode(transcriptMode);
+    }
+
 
     public void clear() {
         this.results.clear();

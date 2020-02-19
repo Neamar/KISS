@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -192,7 +193,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onReceive(Context context, Intent intent) {
                 //noinspection ConstantConditions
                 if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
-                    updateSearchRecords();
+                    updateSearchRecords(true);
                 } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
                     Log.v(TAG, "All providers are done loading.");
 
@@ -291,7 +292,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     displayKissBar(false, false);
                 }
                 String text = s.toString();
-                updateSearchRecords(text);
+                updateSearchRecords(false, text);
                 displayClearOnInput();
             }
         });
@@ -400,7 +401,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // We need to update the history in case an external event created new items
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
-        updateSearchRecords();
+        updateSearchRecords(true);
         displayClearOnInput();
 
         if (isViewingAllApps()) {
@@ -622,7 +623,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public void onFavoriteChange() {
         forwarderManager.onFavoriteChange();
-        launchOccurred();
     }
 
     private void displayKissBar(Boolean display) {
@@ -704,8 +704,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.onDisplayKissBar(display);
     }
 
-    public void updateSearchRecords() {
-        updateSearchRecords(searchEditText.getText().toString());
+    public void updateSearchRecords(boolean isRefresh) {
+        updateSearchRecords(isRefresh, searchEditText.getText().toString());
     }
 
     /**
@@ -713,18 +713,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * It will ask all the providers for data
      * This function is not called for non search-related changes! Have a look at onDataSetChanged() if that's what you're looking for :)
      *
+     * @param isRefresh whether the query is refreshing the existing result, or is a completely new query
      * @param query the query on which to search
      */
-    private void updateSearchRecords(String query) {
+    private void updateSearchRecords(boolean isRefresh, String query) {
         resetTask();
         dismissPopup();
 
-        forwarderManager.updateSearchRecords(query);
+        forwarderManager.updateSearchRecords(isRefresh, query);
 
         if (query.isEmpty()) {
             systemUiVisibilityHelper.resetScroll();
         } else {
-            runTask(new QuerySearcher(this, query));
+            QuerySearcher querySearcher = new QuerySearcher(this, query);
+            querySearcher.setRefresh(isRefresh);
+            runTask(querySearcher);
         }
     }
 
@@ -739,6 +742,45 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searchTask.cancel(true);
             searchTask = null;
         }
+    }
+
+    /**
+     * transcriptMode on the listView decides when to scroll back to the first item.
+     * The value we have by default, TRANSCRIPT_MODE_ALWAYS_SCROLL, means that on every new search,
+     * (actually, on any change to the listview's adapter items)
+     * scroll is reset to the bottom, which makes sense as we want the most relevant search results
+     * to be visible first (searching for "ab" after "a" should reset the scroll).
+     * However, when updating an existing result set (for instance to remove a record, add a tag,
+     * etc.), we don't want the scroll to be reset. When this happens, we temporarily disable
+     * the scroll mode.
+     * However, we need to be careful here: the PullView system we use actually relies on
+     * TRANSCRIPT_MODE_ALWAYS_SCROLL being active. So we add a new message in the queue to change
+     * back the transcript mode once we've rendered the change.
+     * <p>
+     * (why is PullView dependent on this? When you show the keyboard, no event is being dispatched
+     * to our application, but if we don't reset the scroll when the keyboard appears then you
+     * could be looking at an element that isn't the latest one as you start scrolling down
+     * [which will hide the keyboard] and start a very ugly animation revealing items currently
+     * hidden. Fairly easy to test, remove the transcript mode from the XML and the .post() here,
+     * then scroll in your history, display the keyboard and scroll again on your history)
+     */
+    @Override
+    public void temporarilyDisableTranscriptMode() {
+        list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        // Add a message to be processed after all current messages, to reset transcript mode to default
+        list.post(() -> list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL));
+    }
+
+    /**
+     * Force  set transcript mode.
+     * Be careful when using this, it's almost always better to use temporarilyDisableTranscriptMode()
+     * unless you need to deal with the keyboard appearing for something else than a search.
+     * Always make sure you call this function twice, once to disable, and once to re-enable
+     * @param transcriptMode new transcript mode to set on the list
+     */
+    @Override
+    public void updateTranscriptMode(int transcriptMode) {
+        list.setTranscriptMode(transcriptMode);
     }
 
     /**

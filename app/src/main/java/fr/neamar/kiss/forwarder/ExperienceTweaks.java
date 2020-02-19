@@ -18,6 +18,7 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
+import fr.neamar.kiss.searcher.Searcher;
 
 // Deals with any settings in the "User Experience" setting sub-screen
 class ExperienceTweaks extends Forwarder {
@@ -168,7 +169,7 @@ class ExperienceTweaks extends Forwarder {
         }
     }
 
-    void updateSearchRecords(String query) {
+    void updateSearchRecords(boolean isRefresh, String query) {
         if (query.isEmpty()) {
             if (isMinimalisticModeEnabled()) {
                 mainActivity.runTask(new NullSearcher(mainActivity));
@@ -179,7 +180,9 @@ class ExperienceTweaks extends Forwarder {
                     mainActivity.favoritesBar.setVisibility(View.GONE);
                 }
             } else {
-                mainActivity.runTask(new HistorySearcher(mainActivity));
+                Searcher searcher = new HistorySearcher(mainActivity);
+                searcher.setRefresh(isRefresh);
+                mainActivity.runTask(searcher);
             }
         }
     }

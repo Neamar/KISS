@@ -239,7 +239,7 @@ public abstract class Result {
     boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId, View parentView) {
         switch (stringId) {
             case R.string.menu_remove:
-                removeItem(context, parent);
+                removeFromResultsAndHistory(context, parent);
                 return true;
             case R.string.menu_favorites_add:
                 launchAddToFavorites(context, pojo);
@@ -250,11 +250,12 @@ public abstract class Result {
         }
 
         MainActivity mainActivity = (MainActivity) context;
-        //Update favorite bar
+        // Update favorite bar
         mainActivity.onFavoriteChange();
-        //Update Search to reflect favorite add, if the "exclude favorites" option is active
+        mainActivity.launchOccurred();
+        // Update Search to reflect favorite add, if the "exclude favorites" option is active
         if (mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
-            mainActivity.updateSearchRecords();
+            mainActivity.updateSearchRecords(true);
         }
 
         return false;
@@ -278,7 +279,8 @@ public abstract class Result {
      * @param context android context
      * @param parent  adapter on which to remove the item
      */
-    private void removeItem(Context context, RecordAdapter parent) {
+    private void removeFromResultsAndHistory(Context context, RecordAdapter parent) {
+        removeFromHistory(context);
         Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();
         parent.removeResult(context, this);
     }
@@ -378,7 +380,7 @@ public abstract class Result {
         KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
     }
 
-    public void deleteRecord(Context context) {
+    void removeFromHistory(Context context) {
         DBHelper.removeFromHistory(context, pojo.id);
     }
 
