@@ -55,7 +55,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         ViewHolder(@NonNull Result result, @NonNull Pojo pojo, @NonNull Context context, @NonNull ViewGroup parent) {
             this.result = result;
             this.pojo = pojo;
-            view = result.inflateFavorite(context, null, parent);
+            view = result.inflateFavorite(context, parent);
             view.setTag(this);
         }
     }
@@ -115,7 +115,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     void onFavoriteChange() {
         ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
-
         favCount = favoritesPojo.size();
 
         ArrayList<ViewHolder> holders = new ArrayList<>(favCount);
@@ -216,11 +215,11 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             startTime = motionEvent.getEventTime();
             contextMenuShown = false;
-            return true;
+            return false;
         }
-        // No need to do the extra work
+        // No need to do any extra work while dragging
         if (isDragging) {
-            return true;
+            return false;
         }
 
         // Click handlers first
@@ -229,8 +228,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         int LONG_PRESS_DELAY = 250;
         if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
             this.onClick(view);
+
             view.performClick();
-            return true;
+            return false;
         }
 
         if (holdTime > LONG_PRESS_DELAY) {
@@ -268,7 +268,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
                 contextMenuShown = true;
                 this.onLongClick(view);
-                return true;
+                return false;
             }
         }
 

@@ -24,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -152,9 +151,8 @@ public class TagDummyResult extends Result {
 
     @NonNull
     @Override
-    public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
-        if (favoriteView == null)
-            favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_tag, parent, false);
+    public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
+        View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_tag, parent, false);
         ImageView favoriteIcon = favoriteView.findViewById(android.R.id.background);
         TextView favoriteText = favoriteView.findViewById(android.R.id.text1);
 
