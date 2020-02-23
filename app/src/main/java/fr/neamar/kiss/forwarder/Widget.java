@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -49,7 +50,13 @@ class Widget extends Forwarder {
 
     void onStart() {
         // Start listening for widget update
-        mAppWidgetHost.startListening();
+        try {
+            mAppWidgetHost.startListening();
+        }
+        catch(Resources.NotFoundException e) {
+            // Widget app was just updated?
+            // See https://github.com/Neamar/KISS/issues/959
+        }
     }
 
     void onStop() {
