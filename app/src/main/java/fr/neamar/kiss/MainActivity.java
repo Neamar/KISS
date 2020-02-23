@@ -714,9 +714,17 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * This function is not called for non search-related changes! Have a look at onDataSetChanged() if that's what you're looking for :)
      *
      * @param isRefresh whether the query is refreshing the existing result, or is a completely new query
-     * @param query the query on which to search
+     * @param query     the query on which to search
      */
     private void updateSearchRecords(boolean isRefresh, String query) {
+        if (isRefresh && isViewingAllApps()) {
+            // Refreshing while viewing all apps (for instance app installed or uninstalled in the background)
+            Searcher searcher = new ApplicationsSearcher(this);
+            searcher.setRefresh(isRefresh);
+            runTask(searcher);
+            return;
+        }
+
         resetTask();
         dismissPopup();
 
@@ -776,6 +784,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Be careful when using this, it's almost always better to use temporarilyDisableTranscriptMode()
      * unless you need to deal with the keyboard appearing for something else than a search.
      * Always make sure you call this function twice, once to disable, and once to re-enable
+     *
      * @param transcriptMode new transcript mode to set on the list
      */
     @Override
