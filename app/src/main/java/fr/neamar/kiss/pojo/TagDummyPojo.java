@@ -7,4 +7,10 @@ public final class TagDummyPojo extends Pojo {
         super(id);
         setName(id.substring(TagsProvider.SCHEME.length()), false);
     }
+
+    @Override
+    public String getHistoryId() {
+        // Should not appear in history
+        return "";
+    }
 }
