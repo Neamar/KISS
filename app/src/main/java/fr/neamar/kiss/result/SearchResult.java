@@ -4,10 +4,12 @@ import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -61,7 +63,9 @@ public class SearchResult extends Result {
             pos = text.indexOf(searchPojo.query);
             len = searchPojo.query.length();
             image.setImageResource(R.drawable.search);
-            if(isGoogleSearch()) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            boolean hideIcons = prefs.getBoolean("icons-hide", false);
+                if(isGoogleSearch() && !hideIcons) {
                 try {
                     Drawable icon = context.getPackageManager().getApplicationIcon("com.google.android.googlequicksearchbox");
                     image.setImageDrawable(icon);
@@ -70,7 +74,7 @@ public class SearchResult extends Result {
                     // Keep default
                 }
             }
-            if(isDuckDuckGo()) {
+            if(isDuckDuckGo() && !hideIcons) {
                 try {
                     Drawable icon = context.getPackageManager().getApplicationIcon("com.duckduckgo.mobile.android");
                     image.setImageDrawable(icon);
