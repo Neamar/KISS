@@ -261,13 +261,13 @@ public abstract class Result {
 
     private void launchAddToFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getApplication(context).getDataHandler().addToFavorites(pojo.getHistoryId());
+        KissApplication.getApplication(context).getDataHandler().addToFavorites(pojo.getFavoriteId());
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(pojo.getHistoryId());
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(pojo.getFavoriteId());
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
     }
 

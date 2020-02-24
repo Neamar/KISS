@@ -13,4 +13,10 @@ public final class TagDummyPojo extends Pojo {
         // Should not appear in history
         return "";
     }
+
+    @Override
+    public String getFavoriteId() {
+        // TagDummy are special, as they should appear in favorites but not in history
+        return this.id;
+    }
 }
