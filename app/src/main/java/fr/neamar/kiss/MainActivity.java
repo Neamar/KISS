@@ -42,6 +42,8 @@ import java.util.ArrayList;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.forwarder.ForwarderManager;
+import fr.neamar.kiss.forwarder.Widget;
+import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -810,12 +812,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    public void registerPopup(ListPopup popup) {
+    public void registerPopup(PopupWindow popup) {
         if (mPopup == popup)
             return;
         dismissPopup();
         mPopup = popup;
-        popup.setVisibilityHelper(systemUiVisibilityHelper);
+        if ( popup instanceof ListPopup )
+            ((ListPopup)popup).setVisibilityHelper(systemUiVisibilityHelper);
         popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -823,6 +826,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
         hider.fixScroll();
+    }
+
+    public void refreshWidget(int appWidgetId) {
+        Intent intent = new Intent();
+        intent.putExtra(android.appwidget.AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        forwarderManager.onActivityResult(Widget.REQUEST_REFRESH_APPWIDGET, RESULT_OK, intent);
     }
 
     @Override
@@ -923,5 +932,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         return homePackage.equals(this.getPackageName());
+    }
+
+    public void onWallpaperScroll(float fCurrent) {
+        forwarderManager.onWallpaperScroll(fCurrent);
     }
 }

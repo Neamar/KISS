@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fr.neamar.kiss.ui.NoTouchScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+    <fr.neamar.kiss.ui.WidgetLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|top">
+
+        <!-- put first view to left. -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_vertical|center_horizontal"
+            android:background="#7Fff0000"
+            android:text="l1"
+            app:layout_position="left" />
+
+        <!-- stack second view to left. -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_vertical|center_horizontal"
+            android:background="#7F00ff00"
+            android:text="l2"
+            app:layout_position="left" />
+
+        <!-- by default views go in the middle; use fill vertical gravity -->
+
+        <!-- also put a view on the right. -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_vertical|center_horizontal"
+            android:background="#7F0000ff"
+            android:text="r1"
+            app:layout_position="right" />
+
+        <!-- by default views go in the middle; use fill horizontal gravity -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|fill_horizontal"
+            android:background="@android:color/holo_green_dark"
+            android:text="fill-horiz" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_vertical|center_horizontal"
+            android:background="@android:color/holo_green_dark"
+            android:text="fill-vert" />
+
+        <!-- by default views go in the middle; use top-left gravity -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:background="@android:color/holo_blue_dark"
+            android:text="top-left" />
+
+        <!-- by default views go in the middle; use center gravity -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_blue_light"
+            android:text="center" />
+
+        <!-- by default views go in the middle; use bottom-right -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:background="@android:color/holo_blue_bright"
+            android:text="bottom-right" />
+
+    </fr.neamar.kiss.ui.WidgetLayout>
+</fr.neamar.kiss.ui.NoTouchScrollView>

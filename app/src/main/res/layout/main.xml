@@ -5,18 +5,21 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/widgetLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/resultLayout"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="center_horizontal">
+    <!--<fr.neamar.kiss.ui.NoTouchScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:fillViewport="true">-->
 
-    </RelativeLayout>
+        <fr.neamar.kiss.ui.WidgetLayout
+            android:id="@+id/widgetLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/resultLayout"
+            android:layout_alignParentTop="true"
+            android:gravity="center">
+
+        </fr.neamar.kiss.ui.WidgetLayout>
+    <!--</fr.neamar.kiss.ui.NoTouchScrollView>-->
 
     <FrameLayout
         android:id="@+id/resultLayout"

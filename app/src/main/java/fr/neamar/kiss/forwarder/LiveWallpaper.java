@@ -129,9 +129,11 @@ class LiveWallpaper extends Forwarder {
     }
 
     private void updateWallpaperOffset(float offset) {
+        offset = Math.max(0.f, Math.min(1.f, offset));
+        mainActivity.onWallpaperScroll(offset);
+
         android.os.IBinder iBinder = getWindowToken();
         if (iBinder != null) {
-            offset = Math.max(0.f, Math.min(1.f, offset));
             mWallpaperOffset = offset;
             mWallpaperManager.setWallpaperOffsets(iBinder, mWallpaperOffset, 0.f);
         }
