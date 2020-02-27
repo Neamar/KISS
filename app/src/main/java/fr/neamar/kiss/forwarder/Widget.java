@@ -174,6 +174,16 @@ public class Widget extends Forwarder implements WidgetMenu.OnClickListener {
         for (String appWidgetId : widgetIds.keySet()) {
             addWidgetToLauncher(Integer.parseInt(appWidgetId));
         }
+
+        // kill zombie widgets
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int[] hostWidgetIds = mAppWidgetHost.getAppWidgetIds();
+            for ( int hostWidgetId : hostWidgetIds )
+            {
+                if (!widgetIds.containsKey(String.valueOf(hostWidgetId)))
+                    mAppWidgetHost.deleteAppWidgetId(hostWidgetId);
+            }
+        }
     }
 
     /**
@@ -189,7 +199,6 @@ public class Widget extends Forwarder implements WidgetMenu.OnClickListener {
             // add widget to view
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
             if (appWidgetInfo == null) {
-                //removeAllWidgets();
                 removeAppWidget(appWidgetId);
                 return null;
             }
