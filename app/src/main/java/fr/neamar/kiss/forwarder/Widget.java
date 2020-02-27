@@ -128,6 +128,13 @@ class Widget extends Forwarder {
         if(currentWidgetId != -1) {
             addWidgetToLauncher(currentWidgetId);
         }
+        // kill zombie widgets
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int[] hostWidgetIds = mAppWidgetHost.getAppWidgetIds();
+            for ( int hostWidgetId : hostWidgetIds )
+                if (hostWidgetId != currentWidgetId)
+                    mAppWidgetHost.deleteAppWidgetId(hostWidgetId);
+        }
     }
 
     /**
