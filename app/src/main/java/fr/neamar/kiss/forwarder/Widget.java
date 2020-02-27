@@ -125,10 +125,15 @@ class Widget extends Forwarder {
      */
     private void restoreWidget() {
         int currentWidgetId = prefs.getInt(WIDGET_PREF_KEY, -1);
-        if (currentWidgetId == -1) {
-            removeAllWidgets();
-        } else {
+        if(currentWidgetId != -1) {
             addWidgetToLauncher(currentWidgetId);
+        }
+        // kill zombie widgets
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int[] hostWidgetIds = mAppWidgetHost.getAppWidgetIds();
+            for ( int hostWidgetId : hostWidgetIds )
+                if (hostWidgetId != currentWidgetId)
+                    mAppWidgetHost.deleteAppWidgetId(hostWidgetId);
         }
     }
 
@@ -167,13 +172,6 @@ class Widget extends Forwarder {
         while (widgetArea.getChildCount() > 0) {
             AppWidgetHostView widget = (AppWidgetHostView) widgetArea.getChildAt(0);
             removeAppWidget(widget);
-        }
-
-        // kill zombie widgets
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            int[] hostWidgetIds = mAppWidgetHost.getAppWidgetIds();
-            for ( int hostWidgetId : hostWidgetIds )
-                mAppWidgetHost.deleteAppWidgetId(hostWidgetId);
         }
     }
 
