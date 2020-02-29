@@ -52,8 +52,7 @@ class Widget extends Forwarder {
         // Start listening for widget update
         try {
             mAppWidgetHost.startListening();
-        }
-        catch(Resources.NotFoundException e) {
+        } catch (Resources.NotFoundException e) {
             // Widget app was just updated?
             // See https://github.com/Neamar/KISS/issues/959
         }
@@ -74,8 +73,8 @@ class Widget extends Forwarder {
                     configureAppWidget(data);
                     break;
             }
-        } else if (resultCode == Activity.RESULT_CANCELED && data != null) {
-            //if widget was not selected, delete id
+        } else if (resultCode == Activity.RESULT_CANCELED && data != null && (requestCode == REQUEST_CREATE_APPWIDGET || requestCode == REQUEST_PICK_APPWIDGET)) {
+            // if widget was not selected, delete id
             int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
             if (appWidgetId != -1) {
                 mAppWidgetHost.deleteAppWidgetId(appWidgetId);
@@ -102,7 +101,7 @@ class Widget extends Forwarder {
     }
 
     void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (prefs.getBoolean("history-hide", true)) {
+        if (prefs.getBoolean("history-hide", false)) {
             if (widgetUsed) {
                 menu.findItem(R.id.widget).setTitle(R.string.menu_widget_remove);
             } else {
@@ -125,15 +124,18 @@ class Widget extends Forwarder {
      */
     private void restoreWidget() {
         int currentWidgetId = prefs.getInt(WIDGET_PREF_KEY, -1);
-        if(currentWidgetId != -1) {
+        if (currentWidgetId != -1) {
             addWidgetToLauncher(currentWidgetId);
         }
+
         // kill zombie widgets
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             int[] hostWidgetIds = mAppWidgetHost.getAppWidgetIds();
-            for ( int hostWidgetId : hostWidgetIds )
-                if (hostWidgetId != currentWidgetId)
+            for (int hostWidgetId : hostWidgetIds) {
+                if (hostWidgetId != currentWidgetId) {
                     mAppWidgetHost.deleteAppWidgetId(hostWidgetId);
+                }
+            }
         }
     }
 
@@ -144,7 +146,7 @@ class Widget extends Forwarder {
      */
     private void addWidgetToLauncher(int appWidgetId) {
         // only add widgets if in minimal mode
-        if (prefs.getBoolean("history-hide", true)) {
+        if (prefs.getBoolean("history-hide", false)) {
             // remove empty list view when using widgets, this would block touches on the widget
             mainActivity.emptyListView.setVisibility(View.GONE);
             // add widget to view
@@ -176,7 +178,7 @@ class Widget extends Forwarder {
     }
 
     /**
-     * Removes a single widget and deletes it from persistent prefs
+     * Removes a single widget and deletes it from prefs
      *
      * @param hostView instance of a displayed widget
      */
