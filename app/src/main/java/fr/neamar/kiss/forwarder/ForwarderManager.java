@@ -77,8 +77,8 @@ public class ForwarderManager extends Forwarder {
         return widgetsForwarder.onOptionsItemSelected(item);
     }
 
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        widgetsForwarder.onCreateContextMenu(menu, v, menuInfo);
+    public void onCreateContextMenu(ContextMenu menu) {
+        widgetsForwarder.onCreateContextMenu(menu);
     }
 
     public boolean onTouch(View view, MotionEvent event) {

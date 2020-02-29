@@ -13,6 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 
@@ -22,13 +25,12 @@ class Widgets extends Forwarder {
 
     private static final int APPWIDGET_HOST_ID = 442;
 
-    private static final String WIDGET_PREF_KEY = "widget-id";
+    private static final String WIDGET_PREF_KEY = "widgets-conf";
     /**
      * Widgets fields
      */
     private AppWidgetManager mAppWidgetManager;
     private AppWidgetHost mAppWidgetHost;
-    private boolean widgetUsed = false;
 
     /**
      * View widgets are added to
@@ -45,7 +47,7 @@ class Widgets extends Forwarder {
         mAppWidgetHost = new AppWidgetHost(mainActivity, APPWIDGET_HOST_ID);
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
 
-        restoreWidget();
+        restoreWidgets();
     }
 
     void onStart() {
@@ -83,37 +85,26 @@ class Widgets extends Forwarder {
     }
 
     boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.widget) {
-            if (!widgetUsed) {
-                // request widget picker, a selection will lead to a call of onActivityResult
-                int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
-                Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
-                pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-                mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
-            } else {
-                // if we already have a widget we remove it
-                removeAllWidgets();
-            }
+        if (item.getItemId() == R.id.add_widget) {
+            // request widget picker, a selection will lead to a call of onActivityResult
+            int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
+            Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+            pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
             return true;
         }
 
         return false;
     }
 
-    void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (prefs.getBoolean("history-hide", false)) {
-            if (widgetUsed) {
-                menu.findItem(R.id.widget).setTitle(R.string.menu_widget_remove);
-            } else {
-                menu.findItem(R.id.widget).setTitle(R.string.menu_widget_add);
-            }
-        } else {
-            menu.findItem(R.id.widget).setVisible(false);
+    void onCreateContextMenu(ContextMenu menu) {
+        if (!prefs.getBoolean("history-hide", false)) {
+            menu.findItem(R.id.add_widget).setVisible(false);
         }
     }
 
     void onDataSetChanged() {
-        if (widgetUsed && mainActivity.adapter.isEmpty()) {
+        if (widgetArea.getChildCount() > 0 && mainActivity.adapter.isEmpty()) {
             // when a widget is displayed the empty list would prevent touches on the widget
             mainActivity.emptyListView.setVisibility(View.GONE);
         }
@@ -122,17 +113,27 @@ class Widgets extends Forwarder {
     /**
      * Restores the widget if it exists
      */
-    private void restoreWidget() {
-        int currentWidgetId = prefs.getInt(WIDGET_PREF_KEY, -1);
-        if (currentWidgetId != -1) {
-            addWidgetToLauncher(currentWidgetId);
+    private void restoreWidgets() {
+        String widgetsConfString = prefs.getString(WIDGET_PREF_KEY, "");
+        assert widgetsConfString != null;
+        String[] widgetsConf = widgetsConfString.split(";");
+        Set<Integer> idsUsed = new HashSet<>();
+        for (String widgetConf : widgetsConf) {
+            if(widgetConf.isEmpty()) {
+                continue;
+            }
+            String[] conf = widgetConf.split("-");
+            int id = Integer.parseInt(conf[0]);
+            int size = Integer.parseInt(conf[1]);
+            idsUsed.add(id);
+            addWidgetToLauncher(id);
         }
 
         // kill zombie widgets
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             int[] hostWidgetIds = mAppWidgetHost.getAppWidgetIds();
             for (int hostWidgetId : hostWidgetIds) {
-                if (hostWidgetId != currentWidgetId) {
+                if (!idsUsed.contains(hostWidgetId)) {
                     mAppWidgetHost.deleteAppWidgetId(hostWidgetId);
                 }
             }
@@ -152,7 +153,6 @@ class Widgets extends Forwarder {
             // add widget to view
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
             if (appWidgetInfo == null) {
-                removeAllWidgets();
                 return;
             }
             AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
@@ -163,8 +163,6 @@ class Widgets extends Forwarder {
             }
             widgetArea.addView(hostView);
         }
-        // only one widget allowed so widgetUsed is true now, even if not added to view
-        widgetUsed = true;
     }
 
     /**
@@ -190,7 +188,6 @@ class Widgets extends Forwarder {
         // remove widget id from persistent prefs
         prefs.edit().remove(WIDGET_PREF_KEY).apply();
         // only one widget allowed so widgetUsed is false now
-        widgetUsed = false;
     }
 
     /**

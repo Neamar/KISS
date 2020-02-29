@@ -360,7 +360,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-        forwarderManager.onCreateContextMenu(menu, v, menuInfo);
+        forwarderManager.onCreateContextMenu(menu);
     }
 
     @Override
