@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 
-class Widget extends Forwarder {
+class Widgets extends Forwarder {
     private static final int REQUEST_PICK_APPWIDGET = 9;
     private static final int REQUEST_CREATE_APPWIDGET = 5;
 
@@ -24,7 +24,7 @@ class Widget extends Forwarder {
 
     private static final String WIDGET_PREF_KEY = "widget-id";
     /**
-     * Widget fields
+     * Widgets fields
      */
     private AppWidgetManager mAppWidgetManager;
     private AppWidgetHost mAppWidgetHost;
@@ -35,7 +35,7 @@ class Widget extends Forwarder {
      */
     private ViewGroup widgetArea;
 
-    Widget(MainActivity mainActivity) {
+    Widgets(MainActivity mainActivity) {
         super(mainActivity);
     }
 
@@ -53,7 +53,7 @@ class Widget extends Forwarder {
         try {
             mAppWidgetHost.startListening();
         } catch (Resources.NotFoundException e) {
-            // Widget app was just updated?
+            // Widgets app was just updated?
             // See https://github.com/Neamar/KISS/issues/959
         }
     }

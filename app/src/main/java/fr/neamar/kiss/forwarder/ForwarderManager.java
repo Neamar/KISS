@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import fr.neamar.kiss.MainActivity;
 
 public class ForwarderManager extends Forwarder {
-    private final Widget widgetForwarder;
+    private final Widgets widgetsForwarder;
     private final LiveWallpaper liveWallpaperForwarder;
     private final InterfaceTweaks interfaceTweaks;
     private final ExperienceTweaks experienceTweaks;
@@ -25,7 +25,7 @@ public class ForwarderManager extends Forwarder {
     public ForwarderManager(MainActivity mainActivity) {
         super(mainActivity);
 
-        this.widgetForwarder = new Widget(mainActivity);
+        this.widgetsForwarder = new Widgets(mainActivity);
         this.interfaceTweaks = new InterfaceTweaks(mainActivity);
         this.liveWallpaperForwarder = new LiveWallpaper(mainActivity);
         this.experienceTweaks = new ExperienceTweaks(mainActivity);
@@ -38,7 +38,7 @@ public class ForwarderManager extends Forwarder {
 
     public void onCreate() {
         favoritesForwarder.onCreate();
-        widgetForwarder.onCreate();
+        widgetsForwarder.onCreate();
         interfaceTweaks.onCreate();
         experienceTweaks.onCreate();
         shortcutsForwarder.onCreate();
@@ -47,7 +47,7 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onStart() {
-        widgetForwarder.onStart();
+        widgetsForwarder.onStart();
     }
 
     public void onResume() {
@@ -62,11 +62,11 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onStop() {
-        widgetForwarder.onStop();
+        widgetsForwarder.onStop();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        widgetForwarder.onActivityResult(requestCode, resultCode, data);
+        widgetsForwarder.onActivityResult(requestCode, resultCode, data);
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
@@ -74,11 +74,11 @@ public class ForwarderManager extends Forwarder {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        return widgetForwarder.onOptionsItemSelected(item);
+        return widgetsForwarder.onOptionsItemSelected(item);
     }
 
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        widgetForwarder.onCreateContextMenu(menu, v, menuInfo);
+        widgetsForwarder.onCreateContextMenu(menu, v, menuInfo);
     }
 
     public boolean onTouch(View view, MotionEvent event) {
@@ -91,7 +91,7 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onDataSetChanged() {
-        widgetForwarder.onDataSetChanged();
+        widgetsForwarder.onDataSetChanged();
         favoritesForwarder.onDataSetChanged();
     }
 
