@@ -162,16 +162,11 @@ class Widgets extends Forwarder {
                 hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
             }
             widgetArea.addView(hostView);
-        }
-    }
-
-    /**
-     * Removes all widgets from the launcher
-     */
-    private void removeAllWidgets() {
-        while (widgetArea.getChildCount() > 0) {
-            AppWidgetHostView widget = (AppWidgetHostView) widgetArea.getChildAt(0);
-            removeAppWidget(widget);
+            mainActivity.registerForContextMenu(hostView);
+            widgetArea.setOnLongClickListener(v -> {
+                mainActivity.openContextMenu(widgetArea);
+                return true;
+            });
         }
     }
 
@@ -200,7 +195,15 @@ class Widgets extends Forwarder {
         // add widget
         addWidgetToLauncher(appWidgetId);
         // Save widget in preferences
-        prefs.edit().putInt(WIDGET_PREF_KEY, appWidgetId).apply();
+        String currentWidgetString = prefs.getString(WIDGET_PREF_KEY, "");
+        assert currentWidgetString != null;
+        if(currentWidgetString.isEmpty()) {
+            currentWidgetString = appWidgetId + "-1";
+        }
+        else {
+            currentWidgetString += ";" + appWidgetId + "-1";
+        }
+        prefs.edit().putString(WIDGET_PREF_KEY, currentWidgetString).apply();
     }
 
     /**
