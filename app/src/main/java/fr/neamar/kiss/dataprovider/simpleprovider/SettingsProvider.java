@@ -2,8 +2,10 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 
 import androidx.annotation.DrawableRes;
@@ -23,6 +25,7 @@ public class SettingsProvider extends SimpleProvider {
     private final static String SCHEME = "setting://";
     private String settingName;
     private List<SettingPojo> pojos;
+    private final SharedPreferences prefs;
 
     public SettingsProvider(Context context) {
         pojos = new ArrayList<>();
@@ -58,6 +61,9 @@ public class SettingsProvider extends SimpleProvider {
         }
 
         settingName = context.getString(R.string.settings_prefix).toLowerCase(Locale.ROOT);
+
+        this.prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
     }
 
     private void assignName(SettingPojo pojo, String name) {
@@ -88,6 +94,10 @@ public class SettingsProvider extends SimpleProvider {
 
     @Override
     public void requestResults(String query, Searcher searcher) {
+        if (!prefs.getBoolean("enable-settings", true)) {
+            return;
+        }
+
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
         if (queryNormalized.codePoints.length == 0) {
