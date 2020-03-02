@@ -8,7 +8,9 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
+import android.util.Log;
 import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,9 +164,17 @@ class Widgets extends Forwarder {
                 hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
             }
             widgetArea.addView(hostView);
-            mainActivity.registerForContextMenu(hostView);
-            widgetArea.setOnLongClickListener(v -> {
-                mainActivity.openContextMenu(widgetArea);
+            hostView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+                @Override
+                public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                    MenuInflater inflater = mainActivity.getMenuInflater();
+                    inflater.inflate(R.menu.menu_widget, menu);
+                }
+            });
+            hostView.setLongClickable(true);
+            hostView.setOnLongClickListener(v -> {
+                Log.e("WTF", "Long click");
+                mainActivity.openContextMenu(hostView);
                 return true;
             });
         }

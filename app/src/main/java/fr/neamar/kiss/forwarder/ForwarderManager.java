@@ -69,7 +69,7 @@ public class ForwarderManager extends Forwarder {
         widgetsForwarder.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         permissionForwarder.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
