@@ -323,8 +323,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     hider.fixScroll();
                     return false;
                 }
-                RecordAdapter adapter = ((RecordAdapter) list.getAdapter());
-
                 adapter.onClick(adapter.getCount() - 1, v);
 
                 return true;
