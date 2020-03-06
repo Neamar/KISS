@@ -257,7 +257,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void removeSearchProviderSelect() {
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         Preference pref = findPreference("selected-search-provider-names");
         if (pref != null) {
             category.removePreference(pref);
@@ -265,7 +265,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void removeSearchProviderDelete() {
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         Preference pref = findPreference("deleting-search-providers-names");
         if (pref != null) {
             category.removePreference(pref);
@@ -273,7 +273,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void removeSearchProviderDefault() {
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         Preference pref = findPreference("default-search-provider");
         if (pref != null) {
             category.removePreference(pref);
