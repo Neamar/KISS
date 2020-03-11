@@ -12,6 +12,8 @@ import fr.neamar.kiss.searcher.Searcher;
 public class PhoneProvider extends SimpleProvider {
     private static final String PHONE_SCHEME = "phone://";
     private boolean deviceIsPhone;
+
+    // See https://github.com/Neamar/KISS/issues/1137
     private Pattern phonePattern = Pattern.compile("^[*+0-9# ]{3,}$");
 
     public PhoneProvider(Context context) {
@@ -46,7 +48,17 @@ public class PhoneProvider extends SimpleProvider {
         String historyId = PHONE_SCHEME + phoneNumber;
         String id = fromSearch ? PHONE_SCHEME + "search" : historyId;
         PhonePojo pojo = new PhonePojo(id, historyId, phoneNumber);
-        pojo.relevance = 20;
+
+        String phoneNumberAfterFirstCharacter = phoneNumber.substring(1);
+        if(!phoneNumberAfterFirstCharacter.contains("*") && !phoneNumberAfterFirstCharacter.contains("+")) {
+            // No * and no + (except maybe as a first character), likely to be a phone number and not a Calculator expression
+            pojo.relevance = 20;
+        }
+        else {
+            // Query may be a phone number or a calculator expression, more likely to be an expression
+            // Calculator expressions have a relevance of 19, so use something lower
+            pojo.relevance = 15;
+        }
         pojo.setName(phoneNumber, false);
         return pojo;
     }
