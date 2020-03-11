@@ -130,6 +130,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 // If not, build a new one
                 viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo, mainActivity, mainActivity.favoritesBar);
                 viewHolder.view.setOnDragListener(this);
+                viewHolder.view.setOnClickListener(this); // This is normally not used, but adding it allows Talkback and accessibility users to trigger favorites
                 viewHolder.view.setOnTouchListener(this);
             }
             holders.add(viewHolder);
@@ -165,6 +166,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         while (favoritesBar.getChildCount() > favCount) {
             View toBeDisposed = favoritesBar.getChildAt(favCount);
             toBeDisposed.setOnDragListener(null);
+            toBeDisposed.setOnClickListener(null);
             toBeDisposed.setOnTouchListener(null);
             favoritesBar.removeViewAt(favCount);
         }
