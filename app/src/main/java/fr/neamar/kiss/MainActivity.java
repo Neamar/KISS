@@ -526,8 +526,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (!isViewingSearchResults()) {
             return;
         }
-        this.menuButton.showContextMenu();
-        this.menuButton.performHapticFeedback(LONG_PRESS);
+        if (!forwarderManager.onMenuButtonClicked(this.menuButton)) {
+            this.menuButton.showContextMenu();
+            this.menuButton.performHapticFeedback(LONG_PRESS);
+        }
     }
 
     @Override

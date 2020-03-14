@@ -250,6 +250,25 @@
                 android:summary="@string/wp_animate_sides_desc"
                 android:title="@string/wp_animate_sides" />
         </PreferenceScreen>
+        <PreferenceScreen android:title="@string/screen_toggle_tags">
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-tags-menu"
+                android:title="@string/pref_tags_menu" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-show-untagged"
+                android:title="@string/pref_show_untagged" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-tags-menu-dismiss"
+                android:title="@string/pref_tags_menu_dismiss" />
+            <MultiSelectListPreference
+                android:defaultValue="@array/toggleTagsDefault"
+                android:key="pref-toggle-tags-list"
+                android:title="@string/pref_toggle_tags_select" />
+        </PreferenceScreen>
+
     </PreferenceScreen>
 
     <PreferenceScreen
