@@ -63,4 +63,12 @@ public abstract class Pojo {
     public String getHistoryId() {
         return this.id;
     }
+
+    /**
+     * ID to use for favorites
+     * (may be different from the one used in the adapter for display, or for history)
+     */
+    public String getFavoriteId() {
+        return getHistoryId();
+    }
 }

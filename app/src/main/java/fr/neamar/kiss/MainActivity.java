@@ -323,8 +323,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     hider.fixScroll();
                     return false;
                 }
-                RecordAdapter adapter = ((RecordAdapter) list.getAdapter());
-
                 adapter.onClick(adapter.getCount() - 1, v);
 
                 return true;
@@ -528,10 +526,8 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (!isViewingSearchResults()) {
             return;
         }
-        if (!forwarderManager.onMenuButtonClicked(this.menuButton)) {
-            this.menuButton.showContextMenu();
-            this.menuButton.performHapticFeedback(LONG_PRESS);
-        }
+        this.menuButton.showContextMenu();
+        this.menuButton.performHapticFeedback(LONG_PRESS);
     }
 
     @Override

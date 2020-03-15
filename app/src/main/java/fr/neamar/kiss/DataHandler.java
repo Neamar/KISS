@@ -666,7 +666,6 @@ public class DataHandler extends BroadcastReceiver
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
         assert favApps != null;
-
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
         ArrayList<Pojo> favorites = new ArrayList<>(favAppsList.size());
         // Find associated items
@@ -692,7 +691,7 @@ public class DataHandler extends BroadcastReceiver
         List<String> favAppsList = new ArrayList<>();
 
         for(Pojo pojo : currentFavorites) {
-            favAppsList.add(pojo.getHistoryId());
+            favAppsList.add(pojo.getFavoriteId());
         }
 
         int currentPos = favAppsList.indexOf(id);

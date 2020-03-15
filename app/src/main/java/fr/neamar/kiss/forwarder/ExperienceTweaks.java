@@ -234,7 +234,7 @@ class ExperienceTweaks extends Forwarder {
     }
 
     private boolean isMinimalisticModeEnabledForFavorites() {
-        return prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false);
+        return prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false) && prefs.getBoolean("enable-favorites-bar", true);
     }
 
     /**

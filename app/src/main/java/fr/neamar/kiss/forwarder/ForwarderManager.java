@@ -18,7 +18,6 @@ public class ForwarderManager extends Forwarder {
     private final Favorites favoritesForwarder;
     private final Permission permissionForwarder;
     private final OreoShortcuts shortcutsForwarder;
-    private final TagsMenu tagsMenu;
     private final Notification notificationForwarder;
 
 
@@ -33,7 +32,6 @@ public class ForwarderManager extends Forwarder {
         this.permissionForwarder = new Permission(mainActivity);
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.notificationForwarder = new Notification(mainActivity);
-        this.tagsMenu = new TagsMenu(mainActivity);
     }
 
     public void onCreate() {
@@ -42,8 +40,6 @@ public class ForwarderManager extends Forwarder {
         interfaceTweaks.onCreate();
         experienceTweaks.onCreate();
         shortcutsForwarder.onCreate();
-        tagsMenu.onCreate();
-
     }
 
     public void onStart() {
@@ -54,7 +50,6 @@ public class ForwarderManager extends Forwarder {
         interfaceTweaks.onResume();
         experienceTweaks.onResume();
         notificationForwarder.onResume();
-        tagsMenu.onResume();
     }
 
     public void onPause() {
@@ -106,13 +101,5 @@ public class ForwarderManager extends Forwarder {
 
     public void onDisplayKissBar(Boolean display) {
         experienceTweaks.onDisplayKissBar(display);
-    }
-
-    public boolean onMenuButtonClicked(View menuButton) {
-        if (tagsMenu.isTagMenuEnabled()) {
-            mainActivity.registerPopup(tagsMenu.showMenu(menuButton));
-            return true;
-        }
-        return false;
     }
 }
