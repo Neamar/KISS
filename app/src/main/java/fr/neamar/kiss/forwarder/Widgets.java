@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -102,7 +103,7 @@ class Widgets extends Forwarder {
             return true;
         }
         if (item.getItemId() == R.id.remove_widget) {
-            if(widgetWithMenuCurrentlyDisplayed != null) {
+            if (widgetWithMenuCurrentlyDisplayed != null) {
                 ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
                 widgetWithMenuCurrentlyDisplayed = null;
                 serializeState();
@@ -128,7 +129,7 @@ class Widgets extends Forwarder {
 
     private void serializeState() {
         ArrayList<String> builder = new ArrayList<>(widgetArea.getChildCount());
-        for(int i = 0; i < widgetArea.getChildCount(); i++) {
+        for (int i = 0; i < widgetArea.getChildCount(); i++) {
             AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
             int appWidgetId = view.getAppWidgetId();
             builder.add(appWidgetId + "-" + "1");
@@ -162,11 +163,13 @@ class Widgets extends Forwarder {
             }
             String[] conf = widgetConf.split("-");
             int id = Integer.parseInt(conf[0]);
-            int size = Integer.parseInt(conf[1]);
+            int lineSize = Integer.parseInt(conf[1]);
             idsUsed.add(id);
             AppWidgetHostView widget = getWidget(id);
             if (widget != null) {
                 widgetArea.addView(widget);
+                Log.e("WTF", "Line size is" + lineSize);
+                setWidgetSize(widgetArea, lineSize * 2);
             }
         }
 
@@ -196,6 +199,7 @@ class Widgets extends Forwarder {
 
         AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
         hostView.setMinimumHeight(appWidgetInfo.minHeight);
+
         hostView.setAppWidget(appWidgetId, appWidgetInfo);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
             hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
@@ -215,15 +219,36 @@ class Widgets extends Forwarder {
     }
 
     /**
+     * Call this after inserting widget into a layout, to constrain its size.
+     *
+     * @param hostView widget to resize
+     * @param lineSize how many lines should be used
+     */
+    private void setWidgetSize(View hostView, int lineSize) {
+        hostView.post(() -> {
+            ViewGroup.LayoutParams params = hostView.getLayoutParams();
+            params.height = (int) (lineSize * getLineHeight());
+            hostView.setLayoutParams(params);
+        });
+    }
+
+    /**
      * Adds widget to Activity and persists it in prefs to be able to restore it
      *
      * @param data Intent holding widget id to add
      */
     private void addAppWidget(Intent data) {
         int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
+        AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+
+        float minWidgetHeight = appWidgetInfo.minHeight;
+        float lineHeight = getLineHeight();
+        int lineSize = (int) Math.ceil(minWidgetHeight / lineHeight);
         AppWidgetHostView widget = getWidget(appWidgetId);
         if (widget != null) {
             widgetArea.addView(widget);
+            Log.e("WTF", "Line size is" + lineSize);
+            setWidgetSize(widgetArea, lineSize);
         }
 
         serializeState();
@@ -238,18 +263,29 @@ class Widgets extends Forwarder {
     private void configureAppWidget(Intent data) {
         int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
 
-        AppWidgetProviderInfo appWidget =
-                mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+        AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
 
-        if (appWidget.configure != null) {
+        if (appWidgetInfo.configure != null) {
             // Launch over to configure widget, if needed.
             Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
-            intent.setComponent(appWidget.configure);
+            intent.setComponent(appWidgetInfo.configure);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             mainActivity.startActivityForResult(intent, REQUEST_CREATE_APPWIDGET);
         } else {
             // Otherwise, finish adding the widget.
             addAppWidget(data);
         }
+    }
+
+    private float getLineHeight() {
+        float dip = 48f;
+        Resources r = mainActivity.getResources();
+        float px = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dip,
+                r.getDisplayMetrics()
+        );
+
+        return px;
     }
 }
