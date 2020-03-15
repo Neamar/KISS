@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -121,13 +120,30 @@ class Widgets extends Forwarder {
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
 
             if(lineSize == 0 || (lineSize * getLineHeight() < appWidgetInfo.minHeight)) {
-                Toast.makeText(mainActivity, "Widget is already at minimal size", Toast.LENGTH_SHORT).show();
                 return true;
             }
             ViewGroup.LayoutParams params = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
             params.height = (int) (lineSize * getLineHeight());
             widgetWithMenuCurrentlyDisplayed.setLayoutParams(params);
             serializeState();
+        }
+        else if(item.getItemId() == R.id.move_up && widgetWithMenuCurrentlyDisplayed != null) {
+            ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+            int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+            if(currentIndex >= 1) {
+                parent.removeViewAt(currentIndex);
+                parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
+                serializeState();
+            }
+        }
+        else if(item.getItemId() == R.id.move_down && widgetWithMenuCurrentlyDisplayed != null) {
+            ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+            int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+            if(currentIndex < parent.getChildCount() - 1) {
+                parent.removeViewAt(currentIndex);
+                parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
+                serializeState();
+            }
         }
 
         return false;
@@ -156,8 +172,6 @@ class Widgets extends Forwarder {
         }
 
         String pref = TextUtils.join(";", builder);
-
-        Log.e("WTF", "New pref string:" + pref);
         prefs.edit().putString(WIDGET_PREF_KEY, pref).apply();
     }
 
@@ -231,6 +245,20 @@ class Widgets extends Forwarder {
         hostView.setOnCreateContextMenuListener((menu, v, menuInfo) -> {
             MenuInflater inflater = mainActivity.getMenuInflater();
             inflater.inflate(R.menu.menu_widget, menu);
+
+            // Disable items that can't be triggered
+            ViewGroup parent = (ViewGroup) hostView.getParent();
+            if(parent.indexOfChild(hostView) == 0) {
+                menu.findItem(R.id.move_up).setVisible(false);
+            }
+            if(parent.indexOfChild(hostView) == parent.getChildCount() - 1) {
+                menu.findItem(R.id.move_down).setVisible(false);
+            }
+
+            int newLineSize = Math.round(hostView.getLayoutParams().height / getLineHeight()) - 1;
+            if(newLineSize == 0 || (newLineSize * getLineHeight() < appWidgetInfo.minHeight)) {
+                menu.findItem(R.id.decrease_size).setVisible(false);
+            }
         });
         hostView.setLongClickable(true);
         hostView.setOnLongClickListener(v -> {
@@ -286,7 +314,7 @@ class Widgets extends Forwarder {
     }
 
     private float getLineHeight() {
-        float dip = 48f;
+        float dip = 50f;
         Resources r = mainActivity.getResources();
 
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
