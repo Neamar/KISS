@@ -102,30 +102,37 @@ class Widgets extends Forwarder {
             pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
             return true;
-        } else if (item.getItemId() == R.id.remove_widget && widgetWithMenuCurrentlyDisplayed != null) {
+        }
+        
+        if (item.getItemId() == R.id.remove_widget && widgetWithMenuCurrentlyDisplayed != null) {
             ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
-            widgetWithMenuCurrentlyDisplayed = null;
             serializeState();
+            widgetWithMenuCurrentlyDisplayed = null;
             return true;
         } else if (item.getItemId() == R.id.increase_size && widgetWithMenuCurrentlyDisplayed != null) {
             int lineSize = Math.round(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height / getLineHeight());
             lineSize++;
+            AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
             ViewGroup.LayoutParams params = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
             params.height = (int) (lineSize * getLineHeight());
             widgetWithMenuCurrentlyDisplayed.setLayoutParams(params);
             serializeState();
+            widgetWithMenuCurrentlyDisplayed = null;
+            return true;
         } else if (item.getItemId() == R.id.decrease_size && widgetWithMenuCurrentlyDisplayed != null) {
             int lineSize = Math.round(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height / getLineHeight());
             lineSize--;
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
-
             if(lineSize == 0 || (lineSize * getLineHeight() < appWidgetInfo.minHeight)) {
                 return true;
             }
+
             ViewGroup.LayoutParams params = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
             params.height = (int) (lineSize * getLineHeight());
             widgetWithMenuCurrentlyDisplayed.setLayoutParams(params);
             serializeState();
+            widgetWithMenuCurrentlyDisplayed = null;
+            return true;
         }
         else if(item.getItemId() == R.id.move_up && widgetWithMenuCurrentlyDisplayed != null) {
             ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
@@ -134,6 +141,8 @@ class Widgets extends Forwarder {
                 parent.removeViewAt(currentIndex);
                 parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
                 serializeState();
+                widgetWithMenuCurrentlyDisplayed = null;
+                return true;
             }
         }
         else if(item.getItemId() == R.id.move_down && widgetWithMenuCurrentlyDisplayed != null) {
@@ -143,6 +152,8 @@ class Widgets extends Forwarder {
                 parent.removeViewAt(currentIndex);
                 parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
                 serializeState();
+                widgetWithMenuCurrentlyDisplayed = null;
+                return true;
             }
         }
 
