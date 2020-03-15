@@ -16,6 +16,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -101,14 +103,31 @@ class Widgets extends Forwarder {
             pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
             return true;
-        }
-        if (item.getItemId() == R.id.remove_widget) {
-            if (widgetWithMenuCurrentlyDisplayed != null) {
-                ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
-                widgetWithMenuCurrentlyDisplayed = null;
-                serializeState();
-            }
+        } else if (item.getItemId() == R.id.remove_widget && widgetWithMenuCurrentlyDisplayed != null) {
+            ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
+            widgetWithMenuCurrentlyDisplayed = null;
+            serializeState();
             return true;
+        } else if (item.getItemId() == R.id.increase_size && widgetWithMenuCurrentlyDisplayed != null) {
+            int lineSize = Math.round(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height / getLineHeight());
+            lineSize++;
+            ViewGroup.LayoutParams params = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
+            params.height = (int) (lineSize * getLineHeight());
+            widgetWithMenuCurrentlyDisplayed.setLayoutParams(params);
+            serializeState();
+        } else if (item.getItemId() == R.id.decrease_size && widgetWithMenuCurrentlyDisplayed != null) {
+            int lineSize = Math.round(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height / getLineHeight());
+            lineSize--;
+            AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
+
+            if(lineSize == 0 || (lineSize * getLineHeight() < appWidgetInfo.minHeight)) {
+                Toast.makeText(mainActivity, "Widget is already at minimal size", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            ViewGroup.LayoutParams params = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
+            params.height = (int) (lineSize * getLineHeight());
+            widgetWithMenuCurrentlyDisplayed.setLayoutParams(params);
+            serializeState();
         }
 
         return false;
@@ -132,7 +151,8 @@ class Widgets extends Forwarder {
         for (int i = 0; i < widgetArea.getChildCount(); i++) {
             AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
             int appWidgetId = view.getAppWidgetId();
-            builder.add(appWidgetId + "-" + "1");
+            int lineSize = Math.round(view.getLayoutParams().height / getLineHeight());
+            builder.add(appWidgetId + "-" + lineSize);
         }
 
         String pref = TextUtils.join(";", builder);
@@ -165,11 +185,10 @@ class Widgets extends Forwarder {
             int id = Integer.parseInt(conf[0]);
             int lineSize = Integer.parseInt(conf[1]);
             idsUsed.add(id);
-            AppWidgetHostView widget = getWidget(id);
+            AppWidgetHostView widget = getWidget(id, lineSize);
             if (widget != null) {
-                widgetArea.addView(widget);
-                Log.e("WTF", "Line size is" + lineSize);
-                setWidgetSize(widgetArea, lineSize * 2);
+                // Add the widget into the linearlayout. LayoutParams as specified in getWidget() will be erased, so specify them again
+                widgetArea.addView(widget, LinearLayout.LayoutParams.MATCH_PARENT, widget.getLayoutParams().height);
             }
         }
 
@@ -190,7 +209,7 @@ class Widgets extends Forwarder {
      *
      * @param appWidgetId id of widget to add
      */
-    private AppWidgetHostView getWidget(int appWidgetId) {
+    private AppWidgetHostView getWidget(int appWidgetId, int lineSize) {
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
         if (appWidgetInfo == null) {
             Log.i("Widget", "Unable to retrieve widget by id " + appWidgetId);
@@ -198,11 +217,16 @@ class Widgets extends Forwarder {
         }
 
         AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
-        hostView.setMinimumHeight(appWidgetInfo.minHeight);
+
+        int height = (int) (lineSize * getLineHeight());
+        ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, height);
+        hostView.setLayoutParams(params);
+
+        hostView.setMinimumHeight(height);
 
         hostView.setAppWidget(appWidgetId, appWidgetInfo);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
+            hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, height, appWidgetInfo.minWidth, height);
         }
         hostView.setOnCreateContextMenuListener((menu, v, menuInfo) -> {
             MenuInflater inflater = mainActivity.getMenuInflater();
@@ -219,20 +243,6 @@ class Widgets extends Forwarder {
     }
 
     /**
-     * Call this after inserting widget into a layout, to constrain its size.
-     *
-     * @param hostView widget to resize
-     * @param lineSize how many lines should be used
-     */
-    private void setWidgetSize(View hostView, int lineSize) {
-        hostView.post(() -> {
-            ViewGroup.LayoutParams params = hostView.getLayoutParams();
-            params.height = (int) (lineSize * getLineHeight());
-            hostView.setLayoutParams(params);
-        });
-    }
-
-    /**
      * Adds widget to Activity and persists it in prefs to be able to restore it
      *
      * @param data Intent holding widget id to add
@@ -244,11 +254,9 @@ class Widgets extends Forwarder {
         float minWidgetHeight = appWidgetInfo.minHeight;
         float lineHeight = getLineHeight();
         int lineSize = (int) Math.ceil(minWidgetHeight / lineHeight);
-        AppWidgetHostView widget = getWidget(appWidgetId);
+        AppWidgetHostView widget = getWidget(appWidgetId, lineSize);
         if (widget != null) {
-            widgetArea.addView(widget);
-            Log.e("WTF", "Line size is" + lineSize);
-            setWidgetSize(widgetArea, lineSize);
+            widgetArea.addView(widget, LinearLayout.LayoutParams.MATCH_PARENT, widget.getLayoutParams().height);
         }
 
         serializeState();
@@ -280,12 +288,7 @@ class Widgets extends Forwarder {
     private float getLineHeight() {
         float dip = 48f;
         Resources r = mainActivity.getResources();
-        float px = TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dip,
-                r.getDisplayMetrics()
-        );
 
-        return px;
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
     }
 }
