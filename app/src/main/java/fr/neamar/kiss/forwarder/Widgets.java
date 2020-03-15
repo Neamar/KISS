@@ -29,6 +29,9 @@ class Widgets extends Forwarder {
     private static final int APPWIDGET_HOST_ID = 442;
 
     private static final String WIDGET_PREF_KEY = "widgets-conf";
+
+    private AppWidgetHostView widgetWithMenuCurrentlyDisplayed;
+
     /**
      * Widgets fields
      */
@@ -96,8 +99,16 @@ class Widgets extends Forwarder {
             mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
             return true;
         }
+        if (item.getItemId() == R.id.remove_widget) {
+            ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
+            serializeState();
+            return true;
+        }
 
         return false;
+    }
+
+    private void serializeState() {
     }
 
     void onCreateContextMenu(ContextMenu menu) {
@@ -174,26 +185,11 @@ class Widgets extends Forwarder {
             });
             hostView.setLongClickable(true);
             hostView.setOnLongClickListener(v -> {
-                Log.e("WTF", "Long click");
                 mainActivity.openContextMenu(hostView);
+                widgetWithMenuCurrentlyDisplayed = hostView;
                 return true;
             });
         }
-    }
-
-    /**
-     * Removes a single widget and deletes it from prefs
-     *
-     * @param hostView instance of a displayed widget
-     */
-    private void removeAppWidget(AppWidgetHostView hostView) {
-        // remove widget from view
-        int appWidgetId = hostView.getAppWidgetId();
-        mAppWidgetHost.deleteAppWidgetId(appWidgetId);
-        widgetArea.removeView(hostView);
-        // remove widget id from persistent prefs
-        prefs.edit().remove(WIDGET_PREF_KEY).apply();
-        // only one widget allowed so widgetUsed is false now
     }
 
     /**
