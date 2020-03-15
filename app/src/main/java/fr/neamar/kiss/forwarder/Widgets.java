@@ -8,6 +8,7 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -100,15 +102,15 @@ class Widgets extends Forwarder {
             return true;
         }
         if (item.getItemId() == R.id.remove_widget) {
-            ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
-            serializeState();
+            if(widgetWithMenuCurrentlyDisplayed != null) {
+                ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
+                widgetWithMenuCurrentlyDisplayed = null;
+                serializeState();
+            }
             return true;
         }
 
         return false;
-    }
-
-    private void serializeState() {
     }
 
     void onCreateContextMenu(ContextMenu menu) {
@@ -124,22 +126,48 @@ class Widgets extends Forwarder {
         }
     }
 
+    private void serializeState() {
+        ArrayList<String> builder = new ArrayList<>(widgetArea.getChildCount());
+        for(int i = 0; i < widgetArea.getChildCount(); i++) {
+            AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
+            int appWidgetId = view.getAppWidgetId();
+            builder.add(appWidgetId + "-" + "1");
+        }
+
+        String pref = TextUtils.join(";", builder);
+
+        Log.e("WTF", "New pref string:" + pref);
+        prefs.edit().putString(WIDGET_PREF_KEY, pref).apply();
+    }
+
     /**
-     * Restores the widget if it exists
+     * Display all widgets based on state
      */
+    @SuppressWarnings("StringSplitter")
     private void restoreWidgets() {
+        // only add widgets if in minimal mode
+        if (!prefs.getBoolean("history-hide", false)) {
+            return;
+        }
+
+        // remove empty list view when using widgets, this would block touches on the widget
+        mainActivity.emptyListView.setVisibility(View.GONE);
+        widgetArea.removeAllViews();
         String widgetsConfString = prefs.getString(WIDGET_PREF_KEY, "");
         String[] widgetsConf = widgetsConfString.split(";");
         Set<Integer> idsUsed = new HashSet<>();
         for (String widgetConf : widgetsConf) {
-            if(widgetConf.isEmpty()) {
+            if (widgetConf.isEmpty()) {
                 continue;
             }
             String[] conf = widgetConf.split("-");
             int id = Integer.parseInt(conf[0]);
             int size = Integer.parseInt(conf[1]);
             idsUsed.add(id);
-            addWidgetToLauncher(id);
+            AppWidgetHostView widget = getWidget(id);
+            if (widget != null) {
+                widgetArea.addView(widget);
+            }
         }
 
         // kill zombie widgets
@@ -154,42 +182,36 @@ class Widgets extends Forwarder {
     }
 
     /**
-     * Adds a widget to the widget area on the MainActivity
+     * Retrieve a view for specified widget,
+     * add context menu to it
      *
      * @param appWidgetId id of widget to add
      */
-    private void addWidgetToLauncher(int appWidgetId) {
-        // only add widgets if in minimal mode
-        if (prefs.getBoolean("history-hide", false)) {
-            // remove empty list view when using widgets, this would block touches on the widget
-            mainActivity.emptyListView.setVisibility(View.GONE);
-            // add widget to view
-            AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
-            if (appWidgetInfo == null) {
-                Log.i("Widget", "Unable to revtrieve widget by id");
-                return;
-            }
-            AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
-            hostView.setMinimumHeight(appWidgetInfo.minHeight);
-            hostView.setAppWidget(appWidgetId, appWidgetInfo);
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-                hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
-            }
-            widgetArea.addView(hostView);
-            hostView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-                @Override
-                public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-                    MenuInflater inflater = mainActivity.getMenuInflater();
-                    inflater.inflate(R.menu.menu_widget, menu);
-                }
-            });
-            hostView.setLongClickable(true);
-            hostView.setOnLongClickListener(v -> {
-                mainActivity.openContextMenu(hostView);
-                widgetWithMenuCurrentlyDisplayed = hostView;
-                return true;
-            });
+    private AppWidgetHostView getWidget(int appWidgetId) {
+        AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+        if (appWidgetInfo == null) {
+            Log.i("Widget", "Unable to retrieve widget by id " + appWidgetId);
+            return null;
         }
+
+        AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
+        hostView.setMinimumHeight(appWidgetInfo.minHeight);
+        hostView.setAppWidget(appWidgetId, appWidgetInfo);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, appWidgetInfo.minHeight, appWidgetInfo.minWidth, appWidgetInfo.minHeight);
+        }
+        hostView.setOnCreateContextMenuListener((menu, v, menuInfo) -> {
+            MenuInflater inflater = mainActivity.getMenuInflater();
+            inflater.inflate(R.menu.menu_widget, menu);
+        });
+        hostView.setLongClickable(true);
+        hostView.setOnLongClickListener(v -> {
+            mainActivity.openContextMenu(hostView);
+            widgetWithMenuCurrentlyDisplayed = hostView;
+            return true;
+        });
+
+        return hostView;
     }
 
     /**
@@ -199,17 +221,12 @@ class Widgets extends Forwarder {
      */
     private void addAppWidget(Intent data) {
         int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
-        // add widget
-        addWidgetToLauncher(appWidgetId);
-        // Save widget in preferences
-        String currentWidgetString = prefs.getString(WIDGET_PREF_KEY, "");
-        if(currentWidgetString.isEmpty()) {
-            currentWidgetString = appWidgetId + "-1";
+        AppWidgetHostView widget = getWidget(appWidgetId);
+        if (widget != null) {
+            widgetArea.addView(widget);
         }
-        else {
-            currentWidgetString += ";" + appWidgetId + "-1";
-        }
-        prefs.edit().putString(WIDGET_PREF_KEY, currentWidgetString).apply();
+
+        serializeState();
     }
 
     /**
