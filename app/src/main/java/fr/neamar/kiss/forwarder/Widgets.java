@@ -20,6 +20,7 @@ import java.util.Set;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.ui.WidgetHost;
 
 class Widgets extends Forwarder {
     private static final int REQUEST_PICK_APPWIDGET = 9;
@@ -46,7 +47,7 @@ class Widgets extends Forwarder {
     void onCreate() {
         // Initialize widget manager and host, restore widgets
         mAppWidgetManager = AppWidgetManager.getInstance(mainActivity);
-        mAppWidgetHost = new AppWidgetHost(mainActivity, APPWIDGET_HOST_ID);
+        mAppWidgetHost = new WidgetHost(mainActivity, APPWIDGET_HOST_ID);
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
 
         restoreWidgets();
@@ -117,7 +118,6 @@ class Widgets extends Forwarder {
      */
     private void restoreWidgets() {
         String widgetsConfString = prefs.getString(WIDGET_PREF_KEY, "");
-        assert widgetsConfString != null;
         String[] widgetsConf = widgetsConfString.split(";");
         Set<Integer> idsUsed = new HashSet<>();
         for (String widgetConf : widgetsConf) {
@@ -155,6 +155,7 @@ class Widgets extends Forwarder {
             // add widget to view
             AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
             if (appWidgetInfo == null) {
+                Log.i("Widget", "Unable to revtrieve widget by id");
                 return;
             }
             AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
@@ -206,7 +207,6 @@ class Widgets extends Forwarder {
         addWidgetToLauncher(appWidgetId);
         // Save widget in preferences
         String currentWidgetString = prefs.getString(WIDGET_PREF_KEY, "");
-        assert currentWidgetString != null;
         if(currentWidgetString.isEmpty()) {
             currentWidgetString = appWidgetId + "-1";
         }
