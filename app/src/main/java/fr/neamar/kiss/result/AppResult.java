@@ -176,7 +176,7 @@ public class AppResult extends Result {
                 popupExcludeMenu.setOnMenuItemClickListener(item -> {
                     switch (item.getGroupId()) {
                         case EXCLUDE_HISTORY_ID:
-                            excludeFromHistory(context, appPojo);
+                            excludeFromHistory(context, appPojo, parent);
                             return true;
                         case EXCLUDE_KISS_ID:
                             excludeFromKiss(context, appPojo, parent);
@@ -196,7 +196,7 @@ public class AppResult extends Result {
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
-    private void excludeFromHistory(Context context, AppPojo appPojo) {
+    private void excludeFromHistory(Context context, AppPojo appPojo, final RecordAdapter parent) {
         // add to excluded from history app list
          KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
         // remove from history
