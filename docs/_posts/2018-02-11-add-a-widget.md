@@ -25,10 +25,6 @@ From there, pick a widget, and the widget will appear on top of an empty search 
 
 ![Context menu: Enable Widget](/screenshots/example-widget.png)
 
-To remove the widget, press `⋮` again and select "Remove widget".
+To remove the widget, long-press on the widget and select "Remove widget".
 
-## Limitations
-Currently, the widget feature:
-
-* Does not allow resizing
-* Does not allow multiple widgets
+By long-pressing, you can also resize the widget and change the order between the widgets.
