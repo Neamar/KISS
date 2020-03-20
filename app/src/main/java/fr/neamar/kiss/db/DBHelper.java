@@ -322,6 +322,10 @@ public class DBHelper {
         Cursor cursor = db.query("shortcuts", new String[]{"icon_blob"},
                 "_id = ?", new String[]{Integer.toString(dbId)}, null, null, null);
 
+        if(cursor.getCount() == 0) {
+            return null;
+        }
+        
         cursor.moveToFirst();
         byte[] iconBlob = cursor.getBlob(0);
         cursor.close();
