@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -68,7 +69,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     // Use so we don't over process on the drag events.
     private boolean mDragEnabled = true;
     private boolean isDragging = false;
-    private boolean contextMenuShown = false;
     private int potentialNewIndex = -1;
     private int favCount = -1;
 
@@ -130,7 +130,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 // If not, build a new one
                 viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo, mainActivity, mainActivity.favoritesBar);
                 viewHolder.view.setOnDragListener(this);
-                viewHolder.view.setOnClickListener(this); // This is normally not used, but adding it allows Talkback and accessibility users to trigger favorites
+                viewHolder.view.setOnClickListener(this);
+                viewHolder.view.setOnLongClickListener(this);
+
                 viewHolder.view.setOnTouchListener(this);
             }
             holders.add(viewHolder);
@@ -167,6 +169,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             View toBeDisposed = favoritesBar.getChildAt(favCount);
             toBeDisposed.setOnDragListener(null);
             toBeDisposed.setOnClickListener(null);
+            toBeDisposed.setOnLongClickListener(null);
             toBeDisposed.setOnTouchListener(null);
             favoritesBar.removeViewAt(favCount);
         }
@@ -196,7 +199,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         ViewHolder viewHolder = (ViewHolder) v.getTag();
         viewHolder.result.fastLaunch(mainActivity, v);
         v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-
     }
 
     @Override
@@ -213,10 +215,13 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     @Override
+    @SuppressLint("ClickableViewAccessibility")
     public boolean onTouch(View view, MotionEvent motionEvent) {
+        // How long to hold your finger in place to trigger the app menu.
+        final int LONG_PRESS_DELAY = 250;
+
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             startTime = motionEvent.getEventTime();
-            contextMenuShown = false;
             return false;
         }
         // No need to do any extra work while dragging
@@ -224,21 +229,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             return false;
         }
 
-        // Click handlers first
         long holdTime = motionEvent.getEventTime() - startTime;
-        // How long to hold your finger in place to trigger the app menu.
-        int LONG_PRESS_DELAY = 250;
-        if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            this.onClick(view);
-
-            view.performClick();
-            return false;
-        }
 
         if (holdTime > LONG_PRESS_DELAY) {
             // Long press, either drag or context menu
-
-            // Drag handlers
             int intCurrentY = Math.round(motionEvent.getY());
             int intCurrentX = Math.round(motionEvent.getX());
             int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
@@ -251,10 +245,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             if (hasMoved && mDragEnabled && !isDragging) {
                 view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
 
-                if (contextMenuShown) {
-                    mainActivity.dismissPopup();
-                }
-
                 mDragEnabled = false;
                 mainActivity.dismissPopup();
                 mainActivity.closeContextMenu();
@@ -265,12 +255,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 isDragging = true;
                 view.startDrag(null, shadowBuilder, view, 0);
                 return true;
-            } else if (!contextMenuShown && !isDragging) {
-                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-
-                contextMenuShown = true;
-                this.onLongClick(view);
-                return false;
             }
         }
 
