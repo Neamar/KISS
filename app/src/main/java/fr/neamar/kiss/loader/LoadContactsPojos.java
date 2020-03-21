@@ -30,12 +30,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
         Context c = context.get();
-        if(c == null) {
+        if (c == null) {
             return contacts;
         }
 
         // Skip if we don't have permission to list contacts yet:(
-        if(!Permission.checkContactPermission(c)) {
+        if (!Permission.checkContactPermission(c)) {
             Permission.askContactPermission();
             return contacts;
         }
@@ -132,9 +132,38 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             nickCursor.close();
         }
 
+        Cursor imCursor = context.get().getContentResolver().query(ContactsContract.Data.CONTENT_URI
+                , new String[]{ContactsContract.Data.LOOKUP_KEY, ContactsContract.CommonDataKinds.Phone.NUMBER}
+                , ContactsContract.Data.MIMETYPE + "= ? AND " + ContactsContract.RawContacts.ACCOUNT_TYPE + "= ?"
+                , new String[]{
+                        ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE,
+                        "com.whatsapp"
+                }
+                , null);
+
+        if(imCursor != null) {
+            int lookupIndex = imCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY);
+            int phoneIndex = imCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+            while (imCursor.moveToNext()) {
+                String lookupKey = imCursor.getString(lookupIndex);
+                String phone = imCursor.getString(phoneIndex);
+
+                if (phone != null && lookupKey != null && mapContacts.containsKey(lookupKey)) {
+                    for (ContactsPojo contact : mapContacts.get(lookupKey)) {
+                        if(contact.phone.equals(phone)) {
+                            contact.hasIM = true;
+                        }
+                    }
+                }
+            }
+            imCursor.close();
+        }
+
+
+        // Find primary phones
         for (Set<ContactsPojo> phones : mapContacts.values()) {
             // Find primary phone and add this one.
-            Boolean hasPrimary = false;
+            boolean hasPrimary = false;
             for (ContactsPojo contact : phones) {
                 if (contact.primary) {
                     contacts.add(contact);
@@ -154,6 +183,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 }
             }
         }
+
         long end = System.nanoTime();
         Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list contacts");
         return contacts;

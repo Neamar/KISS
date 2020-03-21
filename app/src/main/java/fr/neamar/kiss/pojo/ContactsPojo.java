@@ -21,6 +21,9 @@ public final class ContactsPojo extends Pojo {
     // Is this number a home (local) number ?
     public final boolean homeNumber;
 
+    // Is there an IM associated?
+    public boolean hasIM = false;
+
     public StringNormalizer.Result normalizedNickname = null;
 
     private String nickname = "";
