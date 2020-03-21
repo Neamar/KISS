@@ -273,8 +273,8 @@ class Widgets extends Forwarder {
         });
         hostView.setLongClickable(true);
         hostView.setOnLongClickListener(v -> {
-            mainActivity.openContextMenu(hostView);
             widgetWithMenuCurrentlyDisplayed = hostView;
+            mainActivity.openContextMenu(hostView);
             return true;
         });
 
