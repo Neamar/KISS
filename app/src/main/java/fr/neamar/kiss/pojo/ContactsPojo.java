@@ -13,21 +13,21 @@ public final class ContactsPojo extends Pojo {
     public final Uri icon;
 
     // Is this a primary phone?
-    public final Boolean primary;
+    public final boolean primary;
 
     // Is this contact starred ?
-    public final Boolean starred;
+    public final boolean starred;
 
     // Is this number a home (local) number ?
-    public final Boolean homeNumber;
+    public final boolean homeNumber;
 
     public StringNormalizer.Result normalizedNickname = null;
 
     private String nickname = "";
 
     public ContactsPojo(String id, String lookupKey, String phone, StringNormalizer.Result normalizedPhone,
-                        Uri icon, Boolean primary, Boolean starred,
-                        Boolean homeNumber) {
+                        Uri icon, boolean primary, boolean starred,
+                        boolean homeNumber) {
         super(id);
         this.lookupKey = lookupKey;
         this.phone = phone;
