@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -150,8 +151,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                 if (phone != null && lookupKey != null && mapContacts.containsKey(lookupKey)) {
                     for (ContactsPojo contact : mapContacts.get(lookupKey)) {
-                        if(contact.phone.equals(phone)) {
+                        if(PhoneNumberUtils.compare(contact.phone.replace(" ", ""), phone)) {
                             contact.hasIM = true;
+                            break;
                         }
                     }
                 }

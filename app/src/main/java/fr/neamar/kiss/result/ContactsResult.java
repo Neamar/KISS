@@ -112,7 +112,6 @@ public class ContactsResult extends Result {
             messageButton.setVisibility(View.VISIBLE);
             phoneButton.setOnClickListener(v -> launchCall(v.getContext()));
             messageButton.setOnClickListener(v -> launchMessaging(v.getContext()));
-            imButton.setOnClickListener(v -> launchIM(v.getContext()));
 
             if (contactPojo.homeNumber)
                 messageButton.setVisibility(View.INVISIBLE);
@@ -123,6 +122,15 @@ public class ContactsResult extends Result {
             phoneButton.setVisibility(View.INVISIBLE);
             messageButton.setVisibility(View.INVISIBLE);
         }
+
+        if(contactPojo.hasIM) {
+            imButton.setVisibility(View.VISIBLE);
+            imButton.setOnClickListener(v -> launchIM(v.getContext()));
+        }
+        else {
+            imButton.setVisibility(View.GONE);
+        }
+
 
         return view;
     }
