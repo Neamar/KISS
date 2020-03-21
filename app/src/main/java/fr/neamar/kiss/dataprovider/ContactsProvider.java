@@ -79,7 +79,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             }
 
             if (match) {
-                pojo.relevance += Math.min(30, pojo.timesContacted);
+                pojo.relevance += 30;
                 if(pojo.starred) {
                     pojo.relevance += 40;
                 }

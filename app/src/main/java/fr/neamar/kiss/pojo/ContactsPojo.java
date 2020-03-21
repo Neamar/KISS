@@ -15,9 +15,6 @@ public final class ContactsPojo extends Pojo {
     // Is this a primary phone?
     public final Boolean primary;
 
-    // How many times did we phone this contact?
-    public final int timesContacted;
-
     // Is this contact starred ?
     public final Boolean starred;
 
@@ -29,7 +26,7 @@ public final class ContactsPojo extends Pojo {
     private String nickname = "";
 
     public ContactsPojo(String id, String lookupKey, String phone, StringNormalizer.Result normalizedPhone,
-                        Uri icon, Boolean primary, int timesContacted, Boolean starred,
+                        Uri icon, Boolean primary, Boolean starred,
                         Boolean homeNumber) {
         super(id);
         this.lookupKey = lookupKey;
@@ -37,7 +34,6 @@ public final class ContactsPojo extends Pojo {
         this.normalizedPhone = normalizedPhone;
         this.icon = icon;
         this.primary = primary;
-        this.timesContacted = timesContacted;
         this.starred = starred;
         this.homeNumber = homeNumber;
     }
