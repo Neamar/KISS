@@ -154,7 +154,7 @@ class ExperienceTweaks extends Forwarder {
         }
     }
 
-    void onDisplayKissBar(Boolean display) {
+    void onDisplayKissBar(boolean display) {
         if (isMinimalisticModeEnabledForFavorites() && !display) {
             mainActivity.favoritesBar.setVisibility(View.GONE);
         }

@@ -112,7 +112,6 @@ class Widgets extends Forwarder {
         } else if (item.getItemId() == R.id.increase_size && widgetWithMenuCurrentlyDisplayed != null) {
             int lineSize = Math.round(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height / getLineHeight());
             lineSize++;
-            AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
             ViewGroup.LayoutParams params = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
             params.height = (int) (lineSize * getLineHeight());
             widgetWithMenuCurrentlyDisplayed.setLayoutParams(params);

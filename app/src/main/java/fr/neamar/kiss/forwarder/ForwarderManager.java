@@ -104,7 +104,7 @@ public class ForwarderManager extends Forwarder {
         favoritesForwarder.onFavoriteChange();
     }
 
-    public void onDisplayKissBar(Boolean display) {
+    public void onDisplayKissBar(boolean display) {
         experienceTweaks.onDisplayKissBar(display);
     }
 

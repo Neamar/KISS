@@ -83,7 +83,7 @@ class Notification extends Forwarder {
         }
     }
 
-    private void animateDot(final View notificationDot, Boolean hasNotification) {
+    private void animateDot(final View notificationDot, boolean hasNotification) {
         int currentVisibility = notificationDot.getVisibility();
 
         if (currentVisibility != View.VISIBLE && hasNotification) {

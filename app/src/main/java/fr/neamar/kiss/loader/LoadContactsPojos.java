@@ -44,7 +44,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         Cursor cur = context.get().getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 new String[]{ContactsContract.Contacts.LOOKUP_KEY,
-                        ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED,
                         ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                         ContactsContract.CommonDataKinds.Phone.NUMBER,
                         ContactsContract.CommonDataKinds.Phone.STARRED,
@@ -58,7 +57,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         if (cur != null) {
             if (cur.getCount() > 0) {
                 int lookupIndex = cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
-                int timesContactedIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED);
                 int displayNameIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
                 int numberIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 int starredIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED);
@@ -68,7 +66,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                 while (cur.moveToNext()) {
                     String lookupKey = cur.getString(lookupIndex);
-                    int timesContacted = cur.getInt(timesContactedIndex);
                     String name = cur.getString(displayNameIndex);
                     int contactId = cur.getInt(contactIdIndex);
 
@@ -88,7 +85,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     }
 
                     ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone,
-                            lookupKey, phone, normalizedPhone, icon, primary, timesContacted,
+                            lookupKey, phone, normalizedPhone, icon, primary,
                             starred, false);
 
                     contact.setName(name);
