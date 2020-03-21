@@ -15,7 +15,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -90,13 +89,9 @@ public class ContactsResult extends Result {
         contactIcon.assignContactUri(Uri.withAppendedPath(
                 ContactsContract.Contacts.CONTENT_LOOKUP_URI,
                 String.valueOf(contactPojo.lookupKey)));
-        contactIcon.setExtraOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                recordLaunch(v.getContext());
-                queryInterface.launchOccurred();
-            }
+        contactIcon.setExtraOnClickListener(v -> {
+            recordLaunch(v.getContext());
+            queryInterface.launchOccurred();
         });
 
         int primaryColor = UIColors.getPrimaryColor(context);
@@ -107,25 +102,17 @@ public class ContactsResult extends Result {
         ImageButton messageButton = view.findViewById(R.id.item_contact_action_message);
         messageButton.setColorFilter(primaryColor);
 
-        PackageManager pm = context.getPackageManager();
+        // IM action
+        ImageButton imButton = view.findViewById(R.id.item_contact_action_im);
+        imButton.setColorFilter(primaryColor);
 
+        PackageManager pm = context.getPackageManager();
         if (pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
             phoneButton.setVisibility(View.VISIBLE);
             messageButton.setVisibility(View.VISIBLE);
-            phoneButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    launchCall(v.getContext());
-                }
-            });
-
-            messageButton.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    launchMessaging(v.getContext());
-                }
-            });
+            phoneButton.setOnClickListener(v -> launchCall(v.getContext()));
+            messageButton.setOnClickListener(v -> launchMessaging(v.getContext()));
+            imButton.setOnClickListener(v -> launchIM(v.getContext()));
 
             if (contactPojo.homeNumber)
                 messageButton.setVisibility(View.INVISIBLE);
@@ -161,7 +148,6 @@ public class ContactsResult extends Result {
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
-    @SuppressWarnings("deprecation")
     private void copyPhone(Context context, ContactsPojo contactPojo) {
         android.content.ClipboardManager clipboard =
                 (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -205,8 +191,7 @@ public class ContactsResult extends Result {
             }
 
             // Default icon
-            return icon = context.getResources()
-                    .getDrawable(R.drawable.ic_contact);
+            return icon = context.getResources().getDrawable(R.drawable.ic_contact);
         }
     }
 
@@ -250,8 +235,6 @@ public class ContactsResult extends Result {
         } else {
             launchContactView(context, v);
         }
-
-
     }
 
     private void launchMessaging(final Context context) {
@@ -261,14 +244,24 @@ public class ContactsResult extends Result {
         context.startActivity(i);
 
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                recordLaunch(context);
-                queryInterface.launchOccurred();
-            }
+        handler.postDelayed(() -> {
+            recordLaunch(context);
+            queryInterface.launchOccurred();
         }, KissApplication.TOUCH_DELAY);
+    }
 
+    private void launchIM(final Context context) {
+        String url = "https://api.whatsapp.com/send?phone="+contactPojo.phone;
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.setData(Uri.parse(url));
+        context.startActivity(i);
+
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            recordLaunch(context);
+            queryInterface.launchOccurred();
+        }, KissApplication.TOUCH_DELAY);
     }
 
     @SuppressLint("MissingPermission")
