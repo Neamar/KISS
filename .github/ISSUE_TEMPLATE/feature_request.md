@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest a new feature, or improve an existing feature
+about: Suggest a new feature, or an improvement to an existing feature.
 title: ''
 labels: enhancement
 assignees: ''

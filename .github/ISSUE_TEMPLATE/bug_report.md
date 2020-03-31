@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a bug in KISS
+about: Report a bug in KISS.
 title: ''
 labels: bug
 assignees: ''

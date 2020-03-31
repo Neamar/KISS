@@ -1,6 +1,6 @@
 ---
 name: Crash report
-about: Report a crash
+about: Report a crash in KISS.
 title: ''
 labels: crash
 assignees: ''
