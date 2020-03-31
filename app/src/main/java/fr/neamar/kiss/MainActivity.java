@@ -139,7 +139,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * "X" button to empty the search field
      */
-    private View clearButton;
+    public View clearButton;
 
     /**
      * Task launched on text change

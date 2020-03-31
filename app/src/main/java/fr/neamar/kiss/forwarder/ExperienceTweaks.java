@@ -72,6 +72,8 @@ class ExperienceTweaks extends Forwarder {
                     if (mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
                         if (mainActivity.list.getAdapter() == null || mainActivity.list.getAdapter().isEmpty()) {
                             mainActivity.runTask(new HistorySearcher(mainActivity));
+                            mainActivity.clearButton.setVisibility(View.VISIBLE);
+                            mainActivity.menuButton.setVisibility(View.INVISIBLE);
                         }
                     }
                 }
