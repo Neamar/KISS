@@ -665,7 +665,6 @@ public class DataHandler extends BroadcastReceiver
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
-        assert favApps != null;
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
         ArrayList<Pojo> favorites = new ArrayList<>(favAppsList.size());
         // Find associated items
