@@ -279,20 +279,17 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
                 View currentChildAtPos = bar.getChildAt(currentPos);
                 if (currentChildAtPos != draggedView) {
-                    bar.post(() -> {
-                        // Do not update the ViewGroup during the event dispatch, older Androids will crash
-                        // See #1419
-                        bar.removeView(draggedView);
-                        try {
-                            bar.addView(draggedView, currentPos);
-                        } catch (IllegalStateException e) {
-                            // In some situations,
-                            // removeView() somehow fails (this especially happens if you start the drag and immediately moves to the left or right)
-                            // and we can't add the children back, because it still has a parent. In this case, do nothing, this should fix itself on the next iteration.
-                            potentialNewIndex = -1;
-                        }
-                    });
-
+                    // Do not update the ViewGroup during the event dispatch, older Androids will crash
+                    // See #1419
+                    bar.removeView(draggedView);
+                    try {
+                        bar.addView(draggedView, currentPos);
+                    } catch (IllegalStateException e) {
+                        // In some situations,
+                        // removeView() somehow fails (this especially happens if you start the drag and immediately moves to the left or right)
+                        // and we can't add the children back, because it still has a parent. In this case, do nothing, this should fix itself on the next iteration.
+                        potentialNewIndex = -1;
+                    }
                 }
 
                 potentialNewIndex = currentPos;
@@ -320,7 +317,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 }
 
                 // Reset dragging to what it should be
-                draggedView.setVisibility(View.VISIBLE);
+                draggedView.post(() -> {
+                    draggedView.setVisibility(View.VISIBLE);
+                });
                 mDragEnabled = favCount > 1;
                 potentialNewIndex = -1;
                 isDragging = false;
