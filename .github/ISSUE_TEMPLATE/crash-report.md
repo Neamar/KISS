@@ -21,7 +21,12 @@ Steps to reproduce the crash:
 If applicable, add screenshots to help explain your problem.
 
 **Stack trace**
-If possible, please include a stack trace! You can get one by clicking on "Report", then "Details" or "More", and look for "Stack trace".
+If possible, please include a stack trace! You can get one:
+
+* by clicking on "Report" or "Send feedback" in the crash dialog, then "Details" or "More", and look for an entry called "Stack trace" -- and send a screenshot of the content
+* or by accessing your logs through `adb` (more advanced)
+* or [by taking a bug report](https://developer.android.com/studio/debug/bug-report#bugreportdevice)
+
 **Additional information**
  - App version:
  - Did the crash start happening with this version?
