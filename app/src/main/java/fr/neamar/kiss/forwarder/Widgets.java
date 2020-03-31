@@ -12,11 +12,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
-import android.view.MenuInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -33,8 +34,6 @@ class Widgets extends Forwarder {
     private static final int APPWIDGET_HOST_ID = 442;
 
     private static final String WIDGET_PREF_KEY = "widgets-conf";
-
-    private AppWidgetHostView widgetWithMenuCurrentlyDisplayed;
 
     /**
      * Widgets fields
@@ -102,58 +101,6 @@ class Widgets extends Forwarder {
             pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
             return true;
-        }
-        
-        if (item.getItemId() == R.id.remove_widget && widgetWithMenuCurrentlyDisplayed != null) {
-            ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
-            serializeState();
-            widgetWithMenuCurrentlyDisplayed = null;
-            return true;
-        } else if (item.getItemId() == R.id.increase_size && widgetWithMenuCurrentlyDisplayed != null) {
-            int lineSize = Math.round(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height / getLineHeight());
-            lineSize++;
-            ViewGroup.LayoutParams params = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
-            params.height = (int) (lineSize * getLineHeight());
-            widgetWithMenuCurrentlyDisplayed.setLayoutParams(params);
-            serializeState();
-            widgetWithMenuCurrentlyDisplayed = null;
-            return true;
-        } else if (item.getItemId() == R.id.decrease_size && widgetWithMenuCurrentlyDisplayed != null) {
-            int lineSize = Math.round(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height / getLineHeight());
-            lineSize--;
-            AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
-            if(lineSize == 0 || (lineSize * getLineHeight() < appWidgetInfo.minHeight)) {
-                return true;
-            }
-
-            ViewGroup.LayoutParams params = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
-            params.height = (int) (lineSize * getLineHeight());
-            widgetWithMenuCurrentlyDisplayed.setLayoutParams(params);
-            serializeState();
-            widgetWithMenuCurrentlyDisplayed = null;
-            return true;
-        }
-        else if(item.getItemId() == R.id.move_up && widgetWithMenuCurrentlyDisplayed != null) {
-            ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
-            int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-            if(currentIndex >= 1) {
-                parent.removeViewAt(currentIndex);
-                parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
-                serializeState();
-                widgetWithMenuCurrentlyDisplayed = null;
-                return true;
-            }
-        }
-        else if(item.getItemId() == R.id.move_down && widgetWithMenuCurrentlyDisplayed != null) {
-            ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
-            int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-            if(currentIndex < parent.getChildCount() - 1) {
-                parent.removeViewAt(currentIndex);
-                parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
-                serializeState();
-                widgetWithMenuCurrentlyDisplayed = null;
-                return true;
-            }
         }
 
         return false;
@@ -252,28 +199,84 @@ class Widgets extends Forwarder {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
             hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, height, appWidgetInfo.minWidth, height);
         }
-        hostView.setOnCreateContextMenuListener((menu, v, menuInfo) -> {
-            MenuInflater inflater = mainActivity.getMenuInflater();
-            inflater.inflate(R.menu.menu_widget, menu);
 
-            // Disable items that can't be triggered
-            ViewGroup parent = (ViewGroup) hostView.getParent();
-            if(parent.indexOfChild(hostView) == 0) {
-                menu.findItem(R.id.move_up).setVisible(false);
-            }
-            if(parent.indexOfChild(hostView) == parent.getChildCount() - 1) {
-                menu.findItem(R.id.move_down).setVisible(false);
-            }
-
-            int newLineSize = Math.round(hostView.getLayoutParams().height / getLineHeight()) - 1;
-            if(newLineSize == 0 || (newLineSize * getLineHeight() < appWidgetInfo.minHeight)) {
-                menu.findItem(R.id.decrease_size).setVisible(false);
-            }
-        });
         hostView.setLongClickable(true);
         hostView.setOnLongClickListener(v -> {
-            widgetWithMenuCurrentlyDisplayed = hostView;
-            mainActivity.openContextMenu(hostView);
+            final AppWidgetHostView widgetWithMenuCurrentlyDisplayed = hostView;
+
+            PopupMenu popup = new PopupMenu(mainActivity, v);
+            popup.inflate(R.menu.menu_widget);
+
+            Menu menu = popup.getMenu();
+            // Disable items that can't be triggered
+            final ViewGroup parent = (ViewGroup) hostView.getParent();
+            if (parent.indexOfChild(hostView) == 0) {
+                menu.findItem(R.id.move_up).setVisible(false);
+            }
+            if (parent.indexOfChild(hostView) == parent.getChildCount() - 1) {
+                menu.findItem(R.id.move_down).setVisible(false);
+            }
+            int newLineSize = Math.round(hostView.getLayoutParams().height / getLineHeight()) - 1;
+            if (newLineSize == 0 || (newLineSize * getLineHeight() < appWidgetInfo.minHeight)) {
+                menu.findItem(R.id.decrease_size).setVisible(false);
+            }
+
+            popup.setOnMenuItemClickListener(item -> {
+                popup.dismiss();
+                switch (item.getItemId()) {
+                    case R.id.remove_widget:
+                        ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
+                        serializeState();
+                        return true;
+                    case R.id.increase_size: {
+                        int lineSize1 = Math.round(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height / getLineHeight());
+                        lineSize1++;
+                        ViewGroup.LayoutParams params1 = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
+                        params1.height = (int) (lineSize1 * getLineHeight());
+                        widgetWithMenuCurrentlyDisplayed.setLayoutParams(params1);
+                        serializeState();
+                        return true;
+                    }
+                    case R.id.decrease_size: {
+                        int lineSize1 = Math.round(widgetWithMenuCurrentlyDisplayed.getLayoutParams().height / getLineHeight());
+                        lineSize1--;
+                        AppWidgetProviderInfo appWidgetInfo1 = mAppWidgetManager.getAppWidgetInfo(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
+                        if (lineSize1 == 0 || (lineSize1 * getLineHeight() < appWidgetInfo1.minHeight)) {
+                            return true;
+                        }
+
+                        ViewGroup.LayoutParams params1 = widgetWithMenuCurrentlyDisplayed.getLayoutParams();
+                        params1.height = (int) (lineSize1 * getLineHeight());
+                        widgetWithMenuCurrentlyDisplayed.setLayoutParams(params1);
+                        serializeState();
+                        return true;
+                    }
+                    case R.id.move_up: {
+                        int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+                        if (currentIndex >= 1) {
+                            parent.removeViewAt(currentIndex);
+                            parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
+                            serializeState();
+                            return true;
+                        }
+                        break;
+                    }
+                    case R.id.move_down: {
+                        int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+                        if (currentIndex < parent.getChildCount() - 1) {
+                            parent.removeViewAt(currentIndex);
+                            parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
+                            serializeState();
+                            return true;
+                        }
+                        break;
+                    }
+                }
+
+                return false;
+            });
+
+            popup.show();
             return true;
         });
 
