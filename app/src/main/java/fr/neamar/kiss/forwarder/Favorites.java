@@ -311,14 +311,13 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                         // If event result is set, this means the dragged view was dropped in target
                         if (event.getResult()) {
                             KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), newIndex);
-
-                            try {
-                                mainActivity.onFavoriteChange();
-                            }
-                            catch(IllegalStateException e) {
-                                // An animation was running. Retry later
-                                draggedView.postDelayed(mainActivity::onFavoriteChange, 300);
-                            }
+                        }
+                        
+                        try {
+                            mainActivity.onFavoriteChange();
+                        } catch (IllegalStateException e) {
+                            // An animation was running. Retry later
+                            draggedView.postDelayed(mainActivity::onFavoriteChange, 300);
                         }
                     });
                 }
