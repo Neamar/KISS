@@ -1,6 +1,7 @@
 package fr.neamar.kiss;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -18,10 +19,10 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -79,6 +80,7 @@ public class SettingsActivity extends PreferenceActivity implements
         return set;
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -164,18 +166,14 @@ public class SettingsActivity extends PreferenceActivity implements
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         super.onPreferenceTreeClick(preferenceScreen, preference);
-
         // If the user has clicked on a preference screen, set up the action bar
         if (preference instanceof PreferenceScreen && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             final Dialog dialog = ((PreferenceScreen) preference).getDialog();
             Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
 
             if (toolbar != null) {
-                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
+                toolbar.setNavigationOnClickListener(v -> {
+                    dialog.dismiss();
                 });
             }
         }
