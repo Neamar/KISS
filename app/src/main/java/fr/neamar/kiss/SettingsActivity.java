@@ -55,7 +55,8 @@ public class SettingsActivity extends PreferenceActivity implements
 
     // Those settings require the app to restart
     final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars pref-swap-kiss-button-with-menu pref-hide-circle history-hide enable-favorites-bar notification-bar-color black-notification-icons";
-    final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait require-settings-update";
+    // Those settings require a restart of the settings
+    final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait";
     private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
@@ -82,20 +83,12 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String theme = prefs.getString("theme", "light");
-        assert theme != null;
         if (theme.equals("amoled-dark")) {
             setTheme(R.style.SettingThemeAmoledDark);
         } else if (theme.contains("dark")) {
             setTheme(R.style.SettingThemeDark);
         }
 
-        if (prefs.contains("require-settings-update")) {
-            // This flag will be used when the settings activity needs to restart,
-            // but the value will be set to true
-            // and the sharedpreferencesListener only triggers on value change
-            // so we ensure it doesn't have a value before we display the settings
-            prefs.edit().remove("require-settings-update").apply();
-        }
 
         // Lock launcher into portrait mode
         // Do it here to make the transition as smooth as possible
