@@ -6,6 +6,7 @@ import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 
 public class ResetPreference extends DialogPreference {
@@ -18,7 +19,7 @@ public class ResetPreference extends DialogPreference {
     public void onClick(DialogInterface dialog, int which) {
         super.onClick(dialog, which);
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            // KissApplication.getApplication(getContext()).getDataHandler().clearHistory();
+            KissApplication.getApplication(getContext()).getDataHandler().clearHistory();
 
             this.setSummary(getContext().getString(R.string.history_erased));
 
