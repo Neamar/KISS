@@ -129,7 +129,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             if (viewHolder == null) {
                 // If not, build a new one
                 viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo, mainActivity, mainActivity.favoritesBar);
-                viewHolder.view.setOnDragListener(this);
                 viewHolder.view.setOnClickListener(this);
                 viewHolder.view.setOnLongClickListener(this);
 
@@ -167,7 +166,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         // Remove any leftover views from previous renders
         while (favoritesBar.getChildCount() > favCount) {
             View toBeDisposed = favoritesBar.getChildAt(favCount);
-            toBeDisposed.setOnDragListener(null);
             toBeDisposed.setOnClickListener(null);
             toBeDisposed.setOnLongClickListener(null);
             toBeDisposed.setOnTouchListener(null);
@@ -253,6 +251,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.setVisibility(View.INVISIBLE);
                 isDragging = true;
+                view.cancelLongPress();
                 view.startDrag(null, shadowBuilder, view, 0);
                 return true;
             }
@@ -288,12 +287,13 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                         // In some situations,
                         // removeView() somehow fails (this especially happens if you start the drag and immediately moves to the left or right)
                         // and we can't add the children back, because it still has a parent. In this case, do nothing, this should fix itself on the next iteration.
+                        // This is very likely caused by animateLayoutChange, since disabling the property fixes the issue... but also removes all animation.
                         potentialNewIndex = -1;
+                        return false;
                     }
                 }
 
                 potentialNewIndex = currentPos;
-
                 return true;
             case DragEvent.ACTION_DROP:
                 // Accept the drop, will be followed by ACTION_DRAG_ENDED
@@ -311,12 +311,21 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                         // If event result is set, this means the dragged view was dropped in target
                         if (event.getResult()) {
                             KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), newIndex);
-                            mainActivity.onFavoriteChange();
+
+                            try {
+                                mainActivity.onFavoriteChange();
+                            }
+                            catch(IllegalStateException e) {
+                                // An animation was running. Retry later
+                                draggedView.postDelayed(mainActivity::onFavoriteChange, 300);
+                            }
                         }
                     });
                 }
 
                 // Reset dragging to what it should be
+                // Need to be posted to avoid updating the ViewGroup during the event dispatch, older Androids will crash otherwise
+                // See #1419
                 draggedView.post(() -> {
                     draggedView.setVisibility(View.VISIBLE);
                 });
