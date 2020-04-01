@@ -2,9 +2,7 @@ package fr.neamar.kiss.preference;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.preference.DialogPreference;
-import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
@@ -23,12 +21,7 @@ public class ResetPreference extends DialogPreference {
         if (which == DialogInterface.BUTTON_POSITIVE) {
             KissApplication.getApplication(getContext()).getDataHandler().clearHistory();
 
-            // We'll have to redraw the list, so add a flag for MainActivity to restart
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-            // SettingsActivity will have to restart (hides the summary with history count after reset)
-            // Nothing to do for MainActivity, since updateSearchRecords() is called onResume().
-            editor.putBoolean("require-settings-update", true);
-            editor.apply();
+            this.setSummary(getContext().getString(R.string.history_erased));
 
             Toast.makeText(getContext(), R.string.history_erased, Toast.LENGTH_LONG).show();
         }

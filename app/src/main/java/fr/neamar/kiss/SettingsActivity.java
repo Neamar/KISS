@@ -1,6 +1,7 @@
 package fr.neamar.kiss;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +22,6 @@ import android.preference.PreferenceScreen;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -55,7 +55,8 @@ public class SettingsActivity extends PreferenceActivity implements
 
     // Those settings require the app to restart
     final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars pref-swap-kiss-button-with-menu pref-hide-circle history-hide enable-favorites-bar notification-bar-color black-notification-icons";
-    final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait require-settings-update";
+    // Those settings require a restart of the settings
+    final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait";
     private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
@@ -78,24 +79,17 @@ public class SettingsActivity extends PreferenceActivity implements
         return set;
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String theme = prefs.getString("theme", "light");
-        assert theme != null;
         if (theme.equals("amoled-dark")) {
             setTheme(R.style.SettingThemeAmoledDark);
         } else if (theme.contains("dark")) {
             setTheme(R.style.SettingThemeDark);
         }
 
-        if (prefs.contains("require-settings-update")) {
-            // This flag will be used when the settings activity needs to restart,
-            // but the value will be set to true
-            // and the sharedpreferencesListener only triggers on value change
-            // so we ensure it doesn't have a value before we display the settings
-            prefs.edit().remove("require-settings-update").apply();
-        }
 
         // Lock launcher into portrait mode
         // Do it here to make the transition as smooth as possible
@@ -171,18 +165,14 @@ public class SettingsActivity extends PreferenceActivity implements
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         super.onPreferenceTreeClick(preferenceScreen, preference);
-
         // If the user has clicked on a preference screen, set up the action bar
         if (preference instanceof PreferenceScreen && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             final Dialog dialog = ((PreferenceScreen) preference).getDialog();
             Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
 
             if (toolbar != null) {
-                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
+                toolbar.setNavigationOnClickListener(v -> {
+                    dialog.dismiss();
                 });
             }
         }
