@@ -299,35 +299,35 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 // Accept the drop, will be followed by ACTION_DRAG_ENDED
                 return isDragging;
             case DragEvent.ACTION_DRAG_ENDED:
-                // Sometimes we don't trigger onDrag over another app, in which case just drop.
-                if (potentialNewIndex == -1) {
-                    Log.w(TAG, "Wasn't dragged over a favorite, returning app to starting position");
-                } else {
-                    final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
-                    int newIndex = potentialNewIndex;
+                final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
+                int newIndex = potentialNewIndex;
 
-                    draggedView.post(() -> {
-                        // Signals to a View that the drag and drop operation has concluded.
-                        // If event result is set, this means the dragged view was dropped in target
-                        if (event.getResult()) {
-                            KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), newIndex);
-                        }
-                        
-                        try {
-                            mainActivity.onFavoriteChange();
-                        } catch (IllegalStateException e) {
-                            // An animation was running. Retry later
-                            draggedView.postDelayed(mainActivity::onFavoriteChange, 300);
-                        }
-                    });
-                }
-
-                // Reset dragging to what it should be
-                // Need to be posted to avoid updating the ViewGroup during the event dispatch, older Androids will crash otherwise
-                // See #1419
                 draggedView.post(() -> {
+                    // Reset dragging to what it should be
+                    // Need to be posted to avoid updating the ViewGroup during the event dispatch, older Androids will crash otherwise
+                    // See #1419
                     draggedView.setVisibility(View.VISIBLE);
+
+                    try {
+                        if (newIndex == -1) {
+                            // Sometimes we don't trigger onDrag over another app, in which case just drop.
+                            Log.w(TAG, "Wasn't dragged over a favorite, returning app to starting position");
+                            // We still need to refresh our favorites, in case one was removed and never added back (see IllegalStateException above)
+                            mainActivity.onFavoriteChange();
+                        } else {
+                            // Signals to a View that the drag and drop operation has concluded.
+                            // If event result is set, this means the dragged view was dropped in target
+                            if (event.getResult()) {
+                                KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), newIndex);
+                            }
+                        }
+                    } catch (IllegalStateException e) {
+                        // An animation was running. Retry later
+                        // (to trigger: long press a favorite while already moving your finger a little, release as soon as you get haptic feedback)
+                        draggedView.postDelayed(mainActivity::onFavoriteChange, 300);
+                    }
                 });
+
                 mDragEnabled = favCount > 1;
                 potentialNewIndex = -1;
                 isDragging = false;
