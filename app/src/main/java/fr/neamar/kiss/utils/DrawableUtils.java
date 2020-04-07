@@ -1,5 +1,6 @@
 package fr.neamar.kiss.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -42,6 +43,10 @@ public class DrawableUtils {
         return bitmap;
     }
 
+    /**
+     * Handle adaptive icons for compatible devices
+     */
+    @SuppressLint("NewApi")
     public static Drawable handleAdaptiveIcons(Context ctx, Drawable icon) {
         Bitmap outputBitmap;
         Canvas outputCanvas;
@@ -97,7 +102,10 @@ public class DrawableUtils {
         return new BitmapDrawable(ctx.getResources(), outputBitmap);
     }
 
-    // Set the icon shape for adaptive icons
+    /**
+     * Set the shape of adaptive icons
+     */
+    @SuppressLint("NewApi")
     private static void setIconShape(Canvas canvas, Paint paint, String iconsPackName) {
         int iconSize = canvas.getHeight();
 

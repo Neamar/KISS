@@ -523,6 +523,7 @@ public class SettingsActivity extends PreferenceActivity implements
         CharSequence[] entryValues;
         int i;
 
+        // Give the choice of adaptive icons to compatible devices only
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             entries = new CharSequence[iph.getIconsPacks().size() + 4];
             entryValues = new CharSequence[iph.getIconsPacks().size() + 4];
