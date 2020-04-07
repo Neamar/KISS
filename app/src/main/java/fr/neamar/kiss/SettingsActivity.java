@@ -519,12 +519,35 @@ public class SettingsActivity extends PreferenceActivity implements
     private void setListPreferenceIconsPacksData(ListPreference lp) {
         IconsHandler iph = KissApplication.getApplication(this).getIconsHandler();
 
-        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size() + 1];
-        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size() + 1];
+        CharSequence[] entries;
+        CharSequence[] entryValues;
+        int i;
 
-        int i = 0;
-        entries[0] = this.getString(R.string.icons_pack_default_name);
-        entryValues[0] = "default";
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            entries = new CharSequence[iph.getIconsPacks().size() + 4];
+            entryValues = new CharSequence[iph.getIconsPacks().size() + 4];
+
+            i = 3;
+            entries[0] = this.getString(R.string.icons_pack_default_name);
+            entryValues[0] = "default";
+
+            entries[1] = this.getString(R.string.icons_pack_squircle_name);
+            entryValues[1] = "squircle";
+
+            entries[2] = this.getString(R.string.icons_pack_square_name);
+            entryValues[2] = "square";
+
+            entries[3] = this.getString(R.string.icons_pack_circle_name);
+            entryValues[3] = "circle";
+        } else {
+            entries = new CharSequence[iph.getIconsPacks().size() + 1];
+            entryValues = new CharSequence[iph.getIconsPacks().size() + 1];
+
+            i = 0;
+            entries[0] = this.getString(R.string.icons_pack_default_name);
+            entryValues[0] = "default";
+        }
+
         for (String packageIconsPack : iph.getIconsPacks().keySet()) {
             entries[++i] = iph.getIconsPacks().get(packageIconsPack);
             entryValues[i] = packageIconsPack;

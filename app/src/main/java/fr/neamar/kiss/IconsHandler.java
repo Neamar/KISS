@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.Random;
 
 import fr.neamar.kiss.utils.UserHandle;
+import fr.neamar.kiss.utils.DrawableUtils;
 
 /**
  * Inspired from http://stackoverflow.com/questions/31490630/how-to-load-icon-from-icon-pack
@@ -95,7 +96,10 @@ public class IconsHandler {
         cacheClear();
 
         // system icons, nothing to do
-        if (iconsPackPackageName.equalsIgnoreCase("default")) {
+        if (iconsPackPackageName.equalsIgnoreCase("default")
+            || iconsPackPackageName.equalsIgnoreCase("squircle")
+            || iconsPackPackageName.equalsIgnoreCase("square")
+            || iconsPackPackageName.equalsIgnoreCase("circle")) {
             return;
         }
 
@@ -188,7 +192,17 @@ public class IconsHandler {
                 List<LauncherActivityInfo> icons = launcher.getActivityList(componentName.getPackageName(), userHandle.getRealHandle());
                 for (LauncherActivityInfo info : icons) {
                     if (info.getComponentName().equals(componentName)) {
-                        return info.getBadgedIcon(0);
+                        Drawable icon = info.getBadgedIcon(0);
+
+                        // Handle the adaptive icons
+                        if(iconsPackPackageName.equalsIgnoreCase("squircle") ||
+                            iconsPackPackageName.equalsIgnoreCase("square") ||
+                            iconsPackPackageName.equalsIgnoreCase("circle")) {
+                            return DrawableUtils.handleAdaptiveIcons(ctx, icon);
+                        }
+                        else {
+                            return icon;
+                        }
                     }
                 }
 
@@ -210,7 +224,10 @@ public class IconsHandler {
     @SuppressWarnings("CatchAndPrintStackTrace")
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
         // system icons, nothing to do
-        if (iconsPackPackageName.equalsIgnoreCase("default")) {
+        if (iconsPackPackageName.equalsIgnoreCase("default")
+            || iconsPackPackageName.equalsIgnoreCase("squircle")
+            || iconsPackPackageName.equalsIgnoreCase("square")
+            || iconsPackPackageName.equalsIgnoreCase("circle")) {
             return this.getDefaultAppDrawable(componentName, userHandle);
         }
 
