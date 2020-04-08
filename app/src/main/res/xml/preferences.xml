@@ -214,11 +214,20 @@
                 android:defaultValue="false"
                 android:key="call-contact-on-click"
                 android:title="@string/contacts_call_on_click" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="true"
-                android:key="enable-gestures"
-                android:summary="@string/enable_gestures_desc"
-                android:title="@string/enable_gestures" />
+            <ListPreference
+                android:defaultValue="display-keyboard"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-up"
+                android:summary="@string/gesture_up_desc"
+                android:title="@string/gesture_up_name" />
+            <ListPreference
+                android:defaultValue="display-notifications"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-down"
+                android:summary="@string/gesture_down_desc"
+                android:title="@string/gesture_down_name" />
         </PreferenceCategory>
         <PreferenceScreen
             android:key="wallpaper-holder"
