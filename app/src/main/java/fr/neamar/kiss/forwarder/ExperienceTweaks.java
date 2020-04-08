@@ -1,7 +1,12 @@
 package fr.neamar.kiss.forwarder;
 
+import android.accessibilityservice.AccessibilityService;
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
@@ -9,16 +14,19 @@ import android.text.InputType;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.LockAccessibilityService;
 
 // Deals with any settings in the "User Experience" setting sub-screen
 class ExperienceTweaks extends Forwarder {
@@ -63,7 +71,7 @@ class ExperienceTweaks extends Forwarder {
 
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
             @Override
-            public boolean onSingleTapUp(MotionEvent e) {
+            public boolean onSingleTapConfirmed(MotionEvent e) {
                 // if minimalistic mode is enabled,
                 // and we want to display history on touch
                 if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
@@ -86,6 +94,20 @@ class ExperienceTweaks extends Forwarder {
             }
 
             @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                if(isAccessibilityServiceEnabled(mainActivity, LockAccessibilityService.class)) {
+                    Intent intent = new Intent(LockAccessibilityService.ACTION_LOCK, null, mainActivity, LockAccessibilityService.class);
+                    mainActivity.startService(intent);
+                }
+                else {
+                    Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mainActivity.startActivity(intent);
+                }
+                return super.onDoubleTap(e);
+            }
+
+            @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
                 float directionY = e2.getY() - e1.getY();
                 float directionX = e2.getX() - e1.getX();
@@ -103,6 +125,19 @@ class ExperienceTweaks extends Forwarder {
                     mainActivity.showKeyboard();
                 }
                 return true;
+            }
+
+            private boolean isAccessibilityServiceEnabled(Context context, Class<? extends AccessibilityService> service) {
+                AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+                List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+
+                for (AccessibilityServiceInfo enabledService : enabledServices) {
+                    ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
+                    if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(service.getName()))
+                        return true;
+                }
+
+                return false;
             }
         });
     }
