@@ -54,6 +54,7 @@ class ExperienceTweaks extends Forwarder {
     private View mainEmptyView;
     private final GestureDetector gd;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
 
@@ -125,19 +126,6 @@ class ExperienceTweaks extends Forwarder {
                     mainActivity.showKeyboard();
                 }
                 return true;
-            }
-
-            private boolean isAccessibilityServiceEnabled(Context context, Class<? extends AccessibilityService> service) {
-                AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
-                List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
-
-                for (AccessibilityServiceInfo enabledService : enabledServices) {
-                    ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
-                    if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(service.getName()))
-                        return true;
-                }
-
-                return false;
             }
         });
     }
@@ -245,7 +233,7 @@ class ExperienceTweaks extends Forwarder {
     @SuppressWarnings("CatchAndPrintStackTrace")
     private void displayNotificationDrawer() {
         @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
-        Class<?> statusbarManager = null;
+        Class<?> statusbarManager;
         try {
             statusbarManager = Class.forName("android.app.StatusBarManager");
             Method showStatusBar;
@@ -302,4 +290,16 @@ class ExperienceTweaks extends Forwarder {
         return prefs.getBoolean("enable-gestures", true);
     }
 
+    private boolean isAccessibilityServiceEnabled(Context context, Class<? extends AccessibilityService> service) {
+        AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+        List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+
+        for (AccessibilityServiceInfo enabledService : enabledServices) {
+            ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
+            if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(service.getName()))
+                return true;
+        }
+
+        return false;
+    }
 }
