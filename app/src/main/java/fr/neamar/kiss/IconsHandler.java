@@ -16,12 +16,17 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+
+import androidx.annotation.NonNull;
+
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -142,7 +147,7 @@ public class IconsHandler {
                         }
                         //parse <scale> xml tags used as scale factor of original bitmap icon
                         else if (xpp.getName().equals("scale") && xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
-                            factor = Float.valueOf(xpp.getAttributeValue(0));
+                            factor = Float.parseFloat(xpp.getAttributeValue(0));
                         }
                         //parse <item> xml tags for custom icons
                         if (xpp.getName().equals("item")) {
@@ -182,6 +187,7 @@ public class IconsHandler {
     }
 
 
+    @NonNull
     private Drawable getDefaultAppDrawable(ComponentName componentName, UserHandle userHandle) {
         try {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -193,14 +199,14 @@ public class IconsHandler {
                     }
                 }
 
-                // This should never happen, let's jsut return the first icon
+                // This should never happen, let's just return the first icon
                 return icons.get(0).getBadgedIcon(0);
             } else {
                 return pm.getActivityIcon(componentName);
             }
         } catch (NameNotFoundException | IndexOutOfBoundsException e) {
             Log.e(TAG, "Unable to found component " + componentName.toString() + e);
-            return null;
+            return new ColorDrawable(Color.WHITE);
         }
     }
 
@@ -215,34 +221,49 @@ public class IconsHandler {
             return this.getDefaultAppDrawable(componentName, userHandle);
         }
 
-        String drawable = packagesDrawables.get(componentName.toString());
-        if (drawable != null) { //there is a custom icon
-            int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
-            if (id > 0) {
-                try {
-                    return iconPackres.getDrawable(id);
-                } catch (Resources.NotFoundException e) {
-                    // Unable to load icon, keep going.
-                    e.printStackTrace();
+        // Search first in cache
+        {
+            Drawable cacheIcon = cacheGetDrawable(componentName.toString());
+            if (cacheIcon != null)
+                return cacheIcon;
+        }
+
+        // check the icon pack for a resource
+        {
+            String drawable = packagesDrawables.get(componentName.toString());
+            if (drawable != null) { //there is a custom icon
+                int id = iconPackres.getIdentifier(drawable, "drawable", iconsPackPackageName);
+                if (id > 0) {
+                    try {
+                        return iconPackres.getDrawable(id);
+                    } catch (Resources.NotFoundException e) {
+                        // Unable to load icon, keep going.
+                        e.printStackTrace();
+                    }
                 }
             }
         }
 
-        // Search first in cache
-        Drawable systemIcon = cacheGetDrawable(componentName.toString());
-        if (systemIcon != null)
-            return systemIcon;
-
-        systemIcon = this.getDefaultAppDrawable(componentName, userHandle);
+        // apply icon pack back, mask and front over the system drawable
+        Drawable systemIcon = this.getDefaultAppDrawable(componentName, userHandle);
+        BitmapDrawable generated;
         if (systemIcon instanceof BitmapDrawable) {
-            Drawable generated = generateBitmap(systemIcon);
-            cacheStoreDrawable(componentName.toString(), generated);
-            return generated;
+            generated = generateBitmap((BitmapDrawable) systemIcon);
+        } else {
+            Bitmap bitmap;
+            if (systemIcon.getIntrinsicWidth() <= 0 || systemIcon.getIntrinsicHeight() <= 0)
+                bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
+            else
+                bitmap = Bitmap.createBitmap(systemIcon.getIntrinsicWidth(), systemIcon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+            systemIcon.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
+            systemIcon.draw(new Canvas(bitmap));
+            generated = generateBitmap( new BitmapDrawable(this.ctx.getResources(), bitmap) );
         }
-        return systemIcon;
+        cacheStoreDrawable(componentName.toString(), generated);
+        return generated;
     }
 
-    private Drawable generateBitmap(Drawable defaultBitmap) {
+    private BitmapDrawable generateBitmap(BitmapDrawable defaultBitmap) {
 
         // if no support images in the icon pack return the bitmap itself
         if (backImages.size() == 0) {
@@ -265,7 +286,7 @@ public class IconsHandler {
         canvas.drawBitmap(backImage, 0, 0, null);
 
         // scale original icon
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(((BitmapDrawable) defaultBitmap).getBitmap(), (int) (w * factor), (int) (h * factor), false);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(defaultBitmap.getBitmap(), (int) (w * factor), (int) (h * factor), false);
         scaledBitmap.setDensity(Bitmap.DENSITY_NONE);
 
         if (maskImage != null) {
@@ -274,7 +295,7 @@ public class IconsHandler {
             matScale.setScale(w / (float) maskImage.getWidth(), h / (float) maskImage.getHeight());
 
             // paint the bitmap with mask into the result
-            Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG |Paint.ANTI_ALIAS_FLAG);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth()) / 2f, (h - scaledBitmap.getHeight()) / 2f, null);
             canvas.drawBitmap(maskImage, matScale, paint);
@@ -363,11 +384,14 @@ public class IconsHandler {
      * {cacheDir}/icons/{icons_pack_package_name}_{key_hash}.png
      */
     private File cacheGetFileName(String key) {
-        return new File(getIconsCacheDir() + iconsPackPackageName + "_" + key.hashCode() + ".png");
+        return new File(getIconsCacheDir(), iconsPackPackageName + "_" + key.hashCode() + ".png");
     }
 
     private File getIconsCacheDir() {
-        return new File(this.ctx.getCacheDir().getPath() + "/icons/");
+        File dir = new File(this.ctx.getCacheDir(), "icons");
+        if (!dir.exists() && !dir.mkdir())
+            throw new IllegalStateException("failed to create path " + dir.getPath());
+        return dir;
     }
 
     /**
