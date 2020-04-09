@@ -41,6 +41,7 @@ import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
+import fr.neamar.kiss.utils.DrawableUtils;
 
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
@@ -115,11 +116,11 @@ public class ShortcutsResult extends Result {
             Bitmap icon = shortcutPojo.getIcon(context);
             if (icon != null) {
                 BitmapDrawable drawable = new BitmapDrawable(context.getResources(), icon);
-                shortcutIcon.setImageDrawable(drawable);
-                appIcon.setImageDrawable(appDrawable);
+                shortcutIcon.setImageDrawable(DrawableUtils.handleAdaptiveIcons(context, drawable));
+                appIcon.setImageDrawable(DrawableUtils.handleAdaptiveIcons(context, appDrawable));
             } else {
                 // No icon for this shortcut, use app icon
-                shortcutIcon.setImageDrawable(appDrawable);
+                shortcutIcon.setImageDrawable(DrawableUtils.handleAdaptiveIcons(context, appDrawable));
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
             }
         }

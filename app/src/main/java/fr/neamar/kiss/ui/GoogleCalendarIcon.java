@@ -29,10 +29,7 @@ public class GoogleCalendarIcon {
         // Do nothing if using a custom icon pack
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String currentIconPack = prefs.getString("icons-pack", "default");
-        if (!("default".equals(currentIconPack)
-              || "squircle".equals(currentIconPack)
-              || "square".equals(currentIconPack)
-              || "circle".equals(currentIconPack))) {
+        if (!("default".equals(currentIconPack) || DrawableUtils.isIconsPackAdaptive(currentIconPack))) {
             return null;
         }
 

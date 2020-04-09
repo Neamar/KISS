@@ -525,10 +525,10 @@ public class SettingsActivity extends PreferenceActivity implements
 
         // Give the choice of adaptive icons to compatible devices only
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            entries = new CharSequence[iph.getIconsPacks().size() + 4];
-            entryValues = new CharSequence[iph.getIconsPacks().size() + 4];
+            entries = new CharSequence[iph.getIconsPacks().size() + 5];
+            entryValues = new CharSequence[iph.getIconsPacks().size() + 5];
 
-            i = 3;
+            i = 4;
             entries[0] = this.getString(R.string.icons_pack_default_name);
             entryValues[0] = "default";
 
@@ -540,6 +540,9 @@ public class SettingsActivity extends PreferenceActivity implements
 
             entries[3] = this.getString(R.string.icons_pack_circle_name);
             entryValues[3] = "circle";
+
+            entries[4] = this.getString(R.string.icons_pack_teardrop_name);
+            entryValues[4] = "teardrop";
         } else {
             entries = new CharSequence[iph.getIconsPacks().size() + 1];
             entryValues = new CharSequence[iph.getIconsPacks().size() + 1];

@@ -106,7 +106,7 @@ public class DrawableUtils {
      * Set the shape of adaptive icons
      */
     @SuppressLint("NewApi")
-    private static void setIconShape(Canvas canvas, Paint paint, String iconsPackName) {
+    public static void setIconShape(Canvas canvas, Paint paint, String iconsPackName) {
         int iconSize = canvas.getHeight();
 
         if(iconsPackName.equalsIgnoreCase("squircle")) {
@@ -132,6 +132,21 @@ public class DrawableUtils {
         } else if(iconsPackName.equalsIgnoreCase("circle")) {
             int radius = iconSize / 2;
             canvas.drawCircle(radius, radius, radius, paint);
+        } else if(iconsPackName.equalsIgnoreCase("teardrop")) {
+            Path path = new Path();
+            path.addArc(0, 0, iconSize, iconSize, 90, 270);
+            path.lineTo(iconSize, iconSize*0.70f);
+            path.arcTo(iconSize*0.70f, iconSize*0.70f, iconSize, iconSize, 0, 90, false);
+            path.close();
+
+            canvas.drawPath(path, paint);
         }
+    }
+
+    public static boolean isIconsPackAdaptive(String iconsPack) {
+        return (iconsPack.equalsIgnoreCase("squircle")
+                || iconsPack.equalsIgnoreCase("square")
+                || iconsPack.equalsIgnoreCase("circle")
+                || iconsPack.equalsIgnoreCase("teardrop"));
     }
 }

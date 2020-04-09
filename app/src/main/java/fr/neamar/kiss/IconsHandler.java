@@ -96,10 +96,7 @@ public class IconsHandler {
         cacheClear();
 
         // system icons, nothing to do
-        if (iconsPackPackageName.equalsIgnoreCase("default")
-            || iconsPackPackageName.equalsIgnoreCase("squircle")
-            || iconsPackPackageName.equalsIgnoreCase("square")
-            || iconsPackPackageName.equalsIgnoreCase("circle")) {
+        if (iconsPackPackageName.equalsIgnoreCase("default") || DrawableUtils.isIconsPackAdaptive(iconsPackPackageName)) {
             return;
         }
 
@@ -195,9 +192,7 @@ public class IconsHandler {
                         Drawable icon = info.getBadgedIcon(0);
 
                         // Handle the adaptive icons
-                        if(iconsPackPackageName.equalsIgnoreCase("squircle") ||
-                            iconsPackPackageName.equalsIgnoreCase("square") ||
-                            iconsPackPackageName.equalsIgnoreCase("circle")) {
+                        if(DrawableUtils.isIconsPackAdaptive(iconsPackPackageName)) {
                             return DrawableUtils.handleAdaptiveIcons(ctx, icon);
                         }
                         else {
@@ -224,10 +219,7 @@ public class IconsHandler {
     @SuppressWarnings("CatchAndPrintStackTrace")
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
         // system icons, nothing to do
-        if (iconsPackPackageName.equalsIgnoreCase("default")
-            || iconsPackPackageName.equalsIgnoreCase("squircle")
-            || iconsPackPackageName.equalsIgnoreCase("square")
-            || iconsPackPackageName.equalsIgnoreCase("circle")) {
+        if (iconsPackPackageName.equalsIgnoreCase("default") || DrawableUtils.isIconsPackAdaptive(iconsPackPackageName)) {
             return this.getDefaultAppDrawable(componentName, userHandle);
         }
 
