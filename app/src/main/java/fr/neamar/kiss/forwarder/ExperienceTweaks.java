@@ -1,8 +1,8 @@
 package fr.neamar.kiss.forwarder;
 
-import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -73,7 +73,7 @@ class ExperienceTweaks extends Forwarder {
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
-                if(prefs.getBoolean("history-onclick", false)) {
+                if (prefs.getBoolean("history-onclick", false)) {
                     doAction("display-history");
                 }
 
@@ -82,14 +82,29 @@ class ExperienceTweaks extends Forwarder {
 
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                if(isAccessibilityServiceEnabled(mainActivity, LockAccessibilityService.class)) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                    return super.onDoubleTap(e);
+                }
+
+                if (isAccessibilityServiceEnabled(mainActivity)) {
                     Intent intent = new Intent(LockAccessibilityService.ACTION_LOCK, null, mainActivity, LockAccessibilityService.class);
                     mainActivity.startService(intent);
-                }
-                else {
-                    Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    mainActivity.startActivity(intent);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+                    builder.setMessage(R.string.enable_double_tap_to_lock);
+
+                    builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mainActivity.startActivity(intent);
+                    });
+
+                    builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+                        dialog.dismiss();
+                    });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
                 return super.onDoubleTap(e);
             }
@@ -118,7 +133,7 @@ class ExperienceTweaks extends Forwarder {
                         mainActivity.showKeyboard();
                         break;
                     case "display-apps":
-                        if(mainActivity.isViewingSearchResults()) {
+                        if (mainActivity.isViewingSearchResults()) {
                             mainActivity.displayKissBar(true);
                         }
                         break;
@@ -183,7 +198,7 @@ class ExperienceTweaks extends Forwarder {
         }
     }
 
-    void onTouch(View view, MotionEvent event) {
+    void onTouch(MotionEvent event) {
         // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
     }
@@ -303,17 +318,19 @@ class ExperienceTweaks extends Forwarder {
 
     /**
      * Are we allowed to run our AccessibilityService?
-     * @param context
-     * @param service
-     * @return
      */
-    private boolean isAccessibilityServiceEnabled(Context context, Class<? extends AccessibilityService> service) {
+    private boolean isAccessibilityServiceEnabled(Context context) {
         AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+        if (am == null) {
+            return false;
+        }
+
         List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+
 
         for (AccessibilityServiceInfo enabledService : enabledServices) {
             ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
-            if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(service.getName()))
+            if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(LockAccessibilityService.class.getName()))
                 return true;
         }
 
