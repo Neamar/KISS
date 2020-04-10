@@ -623,7 +623,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.onFavoriteChange();
     }
 
-    private void displayKissBar(Boolean display) {
+    public void displayKissBar(Boolean display) {
         this.displayKissBar(display, true);
     }
 
