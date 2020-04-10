@@ -64,22 +64,8 @@ class ExperienceTweaks extends Forwarder {
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                // if minimalistic mode is enabled,
-                // and we want to display history on touch
-                if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
-                    // and we're currently in minimalistic mode with no results,
-                    // and we're not looking at the app list
-                    if (mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
-                        if (mainActivity.list.getAdapter() == null || mainActivity.list.getAdapter().isEmpty()) {
-                            mainActivity.runTask(new HistorySearcher(mainActivity));
-                            mainActivity.clearButton.setVisibility(View.VISIBLE);
-                            mainActivity.menuButton.setVisibility(View.INVISIBLE);
-                        }
-                    }
-                }
-
-                if (isMinimalisticModeEnabledForFavorites()) {
-                    mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                if(prefs.getBoolean("history-onclick", false)) {
+                    doAction("display-history");
                 }
 
                 return super.onSingleTapConfirmed(e);
@@ -92,17 +78,46 @@ class ExperienceTweaks extends Forwarder {
                 if (Math.abs(directionX) > Math.abs(directionY)) {
                     return false;
                 }
-                if (!isGesturesEnabled()) {
-                    return false;
-                }
                 if (directionY > 0) {
-                    // Fling down: display notifications
-                    displayNotificationDrawer();
+                    doAction(prefs.getString("gesture-down", "display-notifications"));
                 } else {
-                    // Fling up: display keyboard
-                    mainActivity.showKeyboard();
+                    doAction(prefs.getString("gesture-up", "display-keyboard"));
                 }
                 return true;
+            }
+
+            private void doAction(String action) {
+                switch (action) {
+                    case "display-notifications":
+                        displayNotificationDrawer();
+                        break;
+                    case "display-keyboard":
+                        mainActivity.showKeyboard();
+                        break;
+                    case "display-apps":
+                        if(mainActivity.isViewingSearchResults()) {
+                            mainActivity.displayKissBar(true);
+                        }
+                        break;
+                    case "display-history":
+                        // if minimalistic mode is enabled,
+                        if (isMinimalisticModeEnabled()) {
+                            // and we're currently in minimalistic mode with no results,
+                            // and we're not looking at the app list
+                            if (mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
+                                if (mainActivity.list.getAdapter() == null || mainActivity.list.getAdapter().isEmpty()) {
+                                    mainActivity.runTask(new HistorySearcher(mainActivity));
+                                    mainActivity.clearButton.setVisibility(View.VISIBLE);
+                                    mainActivity.menuButton.setVisibility(View.INVISIBLE);
+                                }
+                            }
+                        }
+
+                        if (isMinimalisticModeEnabledForFavorites()) {
+                            mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                        }
+                        break;
+                }
             }
         });
     }
@@ -262,9 +277,4 @@ class ExperienceTweaks extends Forwarder {
     private boolean isSuggestionsEnabled() {
         return prefs.getBoolean("enable-suggestions-keyboard", false);
     }
-
-    private boolean isGesturesEnabled() {
-        return prefs.getBoolean("enable-gestures", true);
-    }
-
 }
