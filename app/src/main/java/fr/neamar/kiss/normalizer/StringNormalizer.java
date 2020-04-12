@@ -45,7 +45,7 @@ public class StringNormalizer {
             String decomposedCharString;
             // Is it within the basic latin range?
             // If so, we can skip the expensive call to Normalizer.normalize
-            if(codepoint < 'z') {
+            if(codepoint <= 'z') {
                 // Ascii range, no need to normalize!
                 // Add directly if it's not a dash
                 // (HYPHEN-MINUS is the only character before 'z' in one of the
