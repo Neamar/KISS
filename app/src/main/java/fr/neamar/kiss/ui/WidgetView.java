@@ -12,23 +12,36 @@ import android.view.ViewGroup;
 public class WidgetView extends AppWidgetHostView {
     private boolean mHasPerformedLongPress;
     private CheckForLongPress mPendingCheckForLongPress;
+    private float xPos;
+    private float yPos;
 
     public WidgetView(Context context) {
         super(context);
     }
 
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        // Consume any touch events for ourselves after longpress is triggered
+        // Consume any touch events for ourselves after long press is triggered
         if (mHasPerformedLongPress) {
             mHasPerformedLongPress = false;
             return true;
         }
 
-        // Watch for longpress events at this level to make sure
+        // Watch for long press events at this level to make sure
         // users can always pick up this widget
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN: {
                 postCheckForLongClick();
+                xPos = ev.getX();
+                yPos = ev.getY();
+                break;
+            }
+            case MotionEvent.ACTION_MOVE: {
+                if(Math.abs(ev.getX() - xPos) > 5 || Math.abs(ev.getY() - yPos) > 5) {
+                    mHasPerformedLongPress = false;
+                    if (mPendingCheckForLongPress != null) {
+                        removeCallbacks(mPendingCheckForLongPress);
+                    }
+                }
                 break;
             }
 
@@ -71,6 +84,16 @@ public class WidgetView extends AppWidgetHostView {
         }
         mPendingCheckForLongPress.rememberWindowAttachCount();
         postDelayed(mPendingCheckForLongPress, ViewConfiguration.getLongPressTimeout());
+    }
+
+    @Override
+    public void cancelLongPress() {
+        super.cancelLongPress();
+
+        mHasPerformedLongPress = false;
+        if (mPendingCheckForLongPress != null) {
+            removeCallbacks(mPendingCheckForLongPress);
+        }
     }
 
     @Override
