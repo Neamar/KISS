@@ -30,7 +30,7 @@ public class CalculatorTest {
 
 				Arguments.of("+1+1", new BigDecimal(2)),
 				Arguments.of("-1+1+1+1", new BigDecimal(2)),
-				Arguments.of("2+0", new BigDecimal(2)),
+				Arguments.of("2+1", new BigDecimal(2)),
 				Arguments.of("0+2", new BigDecimal(2)),
 
 				Arguments.of("0+2.", new BigDecimal(2)),
