@@ -201,6 +201,7 @@ public class AppResult extends Result {
                 launchRenameDialog(context, parent, appPojo);
                 return true;
             case R.string.menu_custom_icon:
+                launchCustomIcon();
                 return true;
         }
 
@@ -318,6 +319,11 @@ public class AppResult extends Result {
         dialog.show();
         // call after dialog got inflated (show call)
         ((TextView)dialog.findViewById(R.id.rename)).setHint(appPojo.getName());
+    }
+
+    private void launchCustomIcon()
+    {
+        //TODO: launch a DialogFragment or Activity
     }
 
     /**

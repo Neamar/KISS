@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -304,6 +305,37 @@ public class DBHelper {
                 statement.close();
             } catch (Exception e) {
                 Log.e(TAG, "Insert or Update custom app name", e);
+            }
+        }
+    }
+
+    public static void addCustomAppIcon(Context context, String componentName, Drawable drawable) {
+        SQLiteDatabase db = getDatabase(context);
+
+        long id;
+        String sql = "INSERT OR ABORT INTO custom_apps(\"component_name\", \"custom_flags\") VALUES (?,?)";
+        try {
+            SQLiteStatement statement = db.compileStatement(sql);
+            statement.bindString(1, componentName);
+            statement.bindLong(2, AppRecord.FLAG_CUSTOM_ICON);
+            id = statement.executeInsert();
+            statement.close();
+        } catch (Exception ignored) {
+            id = -1;
+        }
+        if (id == -1) {
+            sql = "UPDATE custom_apps SET custom_flags=custom_flags|? WHERE component_name=?";
+            try {
+                SQLiteStatement statement = db.compileStatement(sql);
+                statement.bindLong(1, AppRecord.FLAG_CUSTOM_ICON);
+                statement.bindString(2, componentName);
+                int count = statement.executeUpdateDelete();
+                if (count != 1) {
+                    Log.e(TAG, "Update `custom_flags` returned count=" + count);
+                }
+                statement.close();
+            } catch (Exception e) {
+                Log.e(TAG, "Insert or Update custom app icon", e);
             }
         }
     }
