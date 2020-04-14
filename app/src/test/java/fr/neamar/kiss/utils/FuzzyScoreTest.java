@@ -36,7 +36,7 @@ class FuzzyScoreTest {
                 Arguments.of("js", "js", full_word_bonus + adjacency_bonus + separator_bonus),
 
                 // Test full match start of word
-                Arguments.of("js", "js end", full_word_bonus + adjacency_bonus + separator_bonus + 4 * unmatched_letter_penalty),
+                Arguments.of("js", "js end", adjacency_bonus + separator_bonus + 4 * unmatched_letter_penalty),
                 // Test full match end of word
                 Arguments.of("js", "start js", full_word_bonus + adjacency_bonus + separator_bonus + 6 * unmatched_letter_penalty + max_leading_letter_penalty),
 
