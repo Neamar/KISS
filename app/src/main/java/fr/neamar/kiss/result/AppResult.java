@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.PopupMenu;
@@ -34,6 +35,7 @@ import androidx.annotation.NonNull;
 
 import java.util.Locale;
 
+import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -117,6 +119,8 @@ public class AppResult extends Result {
         adapter.add(new ListPopup.Item(context, R.string.menu_exclude));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
+        adapter.add(new ListPopup.Item(context, R.string.menu_app_rename));
+        adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_store));
@@ -193,6 +197,11 @@ public class AppResult extends Result {
             case R.string.menu_tags_edit:
                 launchEditTagsDialog(context, parent, appPojo);
                 return true;
+            case R.string.menu_app_rename:
+                launchRenameDialog(context, parent, appPojo);
+                return true;
+            case R.string.menu_custom_icon:
+                return true;
         }
 
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
@@ -200,7 +209,7 @@ public class AppResult extends Result {
 
     private void excludeFromHistory(Context context, AppPojo appPojo) {
         // add to excluded from history app list
-         KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
+        KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
         // remove from history
         removeFromHistory(context);
         // inform user
@@ -268,6 +277,49 @@ public class AppResult extends Result {
         dialog.show();
     }
 
+    private void launchRenameDialog(final Context context, RecordAdapter parent, final AppPojo app) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(context.getResources().getString(R.string.app_rename_title));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder.setView(R.layout.rename_dialog);
+        } else {
+            builder.setView(View.inflate(context, R.layout.rename_dialog, null));
+        }
+
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            EditText input = ((AlertDialog)dialog).findViewById(R.id.rename);
+            dialog.dismiss();
+
+            // Set new name
+            String newName = input.getText().toString().trim();
+            app.setName(newName);
+            KissApplication.getApplication(context).getDataHandler().renameApp(appPojo, newName);
+
+            // Show toast message
+            String msg = context.getResources().getString(R.string.app_rename_confirmation, app.getName());
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+            // We'll need to reset the list view to its previous transcript mode,
+            // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
+            // Let's wait for half a second, that's ugly but we don't have any other option :(
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+        });
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+            dialog.cancel();
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+
+        });
+
+        parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        // call after dialog got inflated (show call)
+        ((TextView)dialog.findViewById(R.id.rename)).setHint(appPojo.getName());
+    }
+
     /**
      * Open an activity displaying details regarding the current package
      */
@@ -328,8 +380,10 @@ public class AppResult extends Result {
             }
 
             if (icon == null) {
-                icon = KissApplication.getApplication(context).getIconsHandler()
-                        .getDrawableIconForPackage(className, this.appPojo.userHandle);
+                IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                icon = iconsHandler.getCustomIcon(appPojo.getComponentName(), appPojo.getCustomIconId());
+                if (icon == null)
+                    icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
             }
 
             return icon;

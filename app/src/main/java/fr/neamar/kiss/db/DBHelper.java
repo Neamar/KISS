@@ -3,7 +3,10 @@ package fr.neamar.kiss.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +18,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class DBHelper {
+    private static final String TAG = DBHelper.class.getSimpleName();
     private static SQLiteDatabase database = null;
 
     private DBHelper() {
@@ -247,6 +251,84 @@ public class DBHelper {
         db.delete("shortcuts", "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri});
     }
 
+//    public static boolean insertApps(Context context, Collection<AppPojo> apps)
+//    {
+//        SQLiteDatabase db = getDatabase(context);
+//        try {
+//            db.beginTransaction();
+//            String sql = "INSERT OR IGNORE INTO apps (component_name) VALUES (?)";
+//            SQLiteStatement statement = db.compileStatement(sql);
+//
+//            for (AppPojo appPojo : apps) {
+//                statement.clearBindings();
+//                statement.bindString(1, appPojo.getComponentName());
+//                statement.executeInsert();
+//            }
+//
+//            db.setTransactionSuccessful(); // This commits the transaction if there were no exceptions
+//            return true;
+//        } catch (Exception e) {
+//            Log.w("DB insert app list", e);
+//        } finally {
+//            db.endTransaction();
+//        }
+//        return false;
+//    }
+
+    public static void addCustomAppName(Context context, String componentName, String newName) {
+        SQLiteDatabase db = getDatabase(context);
+
+        long id;
+        String sql = "INSERT OR ABORT INTO custom_apps(\"name\", \"component_name\", \"custom_flags\") VALUES (?,?,?)";
+        try {
+            SQLiteStatement statement = db.compileStatement(sql);
+            statement.bindString(1, newName);
+            statement.bindString(2, componentName);
+            statement.bindLong(3, AppRecord.FLAG_CUSTOM_NAME);
+            id = statement.executeInsert();
+            statement.close();
+        } catch (Exception ignored) {
+            id = -1;
+        }
+        if (id == -1) {
+            sql = "UPDATE custom_apps SET name=?,custom_flags=custom_flags|? WHERE component_name=?";
+            try {
+                SQLiteStatement statement = db.compileStatement(sql);
+                statement.bindString(1, newName);
+                statement.bindLong(2, AppRecord.FLAG_CUSTOM_NAME);
+                statement.bindString(3, componentName);
+                int count = statement.executeUpdateDelete();
+                if (count != 1) {
+                    Log.e(TAG, "Update name count = " + count);
+                }
+                statement.close();
+            } catch (Exception e) {
+                Log.e(TAG, "Insert or Update custom app name", e);
+            }
+        }
+    }
+
+    public static HashMap<String, AppRecord> getCustomAppData(Context context) {
+        HashMap<String, AppRecord> records;
+        SQLiteDatabase db = getDatabase(context);
+        try (Cursor cursor = db.query("custom_apps", new String[]{"_id", "name", "component_name", "custom_flags"},
+                null, null, null, null, null)) {
+            records = new HashMap<>(cursor.getCount());
+            while (cursor.moveToNext()) {
+                AppRecord entry = new AppRecord();
+
+                entry.dbId = cursor.getInt(0);
+                entry.name = cursor.getString(1);
+                entry.componentName = cursor.getString(2);
+                entry.flags = cursor.getInt(3);
+
+                records.put(entry.componentName, entry);
+            }
+        }
+
+        return records;
+    }
+
     /**
      * Retrieve a list of all shortcuts for current package name, without icons.
      */
@@ -315,10 +397,10 @@ public class DBHelper {
         Cursor cursor = db.query("shortcuts", new String[]{"icon_blob"},
                 "_id = ?", new String[]{Integer.toString(dbId)}, null, null, null);
 
-        if(cursor.getCount() == 0) {
+        if (cursor.getCount() == 0) {
             return null;
         }
-        
+
         cursor.moveToFirst();
         byte[] iconBlob = cursor.getBlob(0);
         cursor.close();

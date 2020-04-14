@@ -804,6 +804,10 @@ public class DataHandler extends BroadcastReceiver
         tagsHandler = new TagsHandler(this.context);
     }
 
+    public void renameApp(AppPojo appPojo, String newName) {
+        DBHelper.addCustomAppName(context, appPojo.getComponentName(), newName);
+    }
+
     static final class ProviderEntry {
         public IProvider provider = null;
         ServiceConnection connection = null;

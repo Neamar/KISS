@@ -368,6 +368,17 @@ public class IconsHandler {
         return new File(this.ctx.getCacheDir().getPath() + "/icons/");
     }
 
+    private File customIconFileName(String componentName, int customIcon) {
+        return new File(getCustomIconsDir(), customIcon + "_" + componentName.hashCode() + ".png");
+    }
+
+    private File getCustomIconsDir() {
+        File dir = new File(this.ctx.getCacheDir(), "custom_icons");
+        if (!dir.exists() && !dir.mkdir())
+            throw new IllegalStateException("failed to create path " + dir.getPath());
+        return dir;
+    }
+
     /**
      * Clear cache
      */
@@ -384,4 +395,20 @@ public class IconsHandler {
         }
     }
 
+    public Drawable getCustomIcon(String componentName, int customIcon) {
+        if (customIcon < 0)
+            return null;
+
+        try {
+            FileInputStream fis = new FileInputStream(customIconFileName(componentName, customIcon));
+            BitmapDrawable drawable =
+                    new BitmapDrawable(this.ctx.getResources(), BitmapFactory.decodeStream(fis));
+            fis.close();
+            return drawable;
+        } catch (Exception e) {
+            Log.e(TAG, "Unable to get custom icon " + e);
+        }
+
+        return null;
+    }
 }
