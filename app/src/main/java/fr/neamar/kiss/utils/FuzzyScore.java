@@ -18,6 +18,11 @@ public class FuzzyScore {
     private final int[] patternChar;
     private final int[] patternLower;
     /**
+     * bonus if all characters match (useful for short queries)
+     * E.g. "js" should match "js" with a higher score than "John Smith"
+     */
+    private int full_word_bonus;
+    /**
      * bonus for adjacent matches
      */
     private int adjacency_bonus;
@@ -53,6 +58,7 @@ public class FuzzyScore {
             patternChar[i] = pattern[i];
             patternLower[i] = Character.toLowerCase(pattern[i]);
         }
+        full_word_bonus = 100;
         adjacency_bonus = 10;
         separator_bonus = 5;
         camel_bonus = 10;
@@ -70,28 +76,39 @@ public class FuzzyScore {
         this(pattern, false);
     }
 
-    public void setAdjacencyBonus(int adjacency_bonus) {
+    public FuzzyScore setFullWordBonus(int full_word_bonus) {
+        this.full_word_bonus = full_word_bonus;
+        return this;
+    }
+
+    public FuzzyScore setAdjacencyBonus(int adjacency_bonus) {
         this.adjacency_bonus = adjacency_bonus;
+        return this;
     }
 
-    public void setSeparatorBonus(int separator_bonus) {
+    public FuzzyScore setSeparatorBonus(int separator_bonus) {
         this.separator_bonus = separator_bonus;
+        return this;
     }
 
-    public void setCamelBonus(int camel_bonus) {
+    public FuzzyScore setCamelBonus(int camel_bonus) {
         this.camel_bonus = camel_bonus;
+        return this;
     }
 
-    public void setLeadingLetterPenalty(int leading_letter_penalty) {
+    public FuzzyScore setLeadingLetterPenalty(int leading_letter_penalty) {
         this.leading_letter_penalty = leading_letter_penalty;
+        return this;
     }
 
-    public void setMaxLeadingLetterPenalty(int max_leading_letter_penalty) {
+    public FuzzyScore setMaxLeadingLetterPenalty(int max_leading_letter_penalty) {
         this.max_leading_letter_penalty = max_leading_letter_penalty;
+        return this;
     }
 
-    public void setUnmatchedLetterPenalty(int unmatched_letter_penalty) {
+    public FuzzyScore setUnmatchedLetterPenalty(int unmatched_letter_penalty) {
         this.unmatched_letter_penalty = unmatched_letter_penalty;
+        return this;
     }
 
     /**
@@ -122,6 +139,7 @@ public class FuzzyScore {
         int patternIdx = 0;
         int strIdx = 0;
         int strLength = text.length;
+        boolean fullWord = false;
         boolean prevMatched = false;
         boolean prevLower = false;
         boolean prevSeparator = true;       // true so if first letter match gets separator bonus
@@ -147,6 +165,7 @@ public class FuzzyScore {
             int strChar = text[strIdx];
             int strLower = Character.toLowerCase(strChar);
             int strUpper = Character.toUpperCase(strChar);
+            boolean isWhitespace = Character.isWhitespace(strChar);
 
             boolean nextMatch = patternChar != null && patternLower == strLower;
             boolean rematch = bestLetter != null && bestLower == strLower;
@@ -162,6 +181,12 @@ public class FuzzyScore {
                 bestLower = null;
                 bestLetterIdx = null;
                 bestLetterScore = 0;
+            }
+
+            // Current char is a separator and we have matched all the previous characters, apply
+            // the full match bonus
+            if (isWhitespace && fullWord) {
+                score += full_word_bonus;
             }
 
             if (nextMatch || rematch) {
@@ -201,17 +226,21 @@ public class FuzzyScore {
                     bestLower = strLower;
                     bestLetterIdx = strIdx;
                     bestLetterScore = newScore;
+
+                    if (prevSeparator)
+                        fullWord = true;
                 }
 
                 prevMatched = true;
             } else {
                 score += unmatched_letter_penalty;
                 prevMatched = false;
+                fullWord = false;
             }
 
             // Includes "clever" isLetter check.
             prevLower = strChar == strLower && strLower != strUpper;
-            prevSeparator = Character.isWhitespace(strChar);
+            prevSeparator = isWhitespace;
 
             ++strIdx;
         }
@@ -222,6 +251,10 @@ public class FuzzyScore {
             if (matchInfo.matchedIndices != null) {
                 matchInfo.matchedIndices.add(bestLetterIdx);
             }
+        }
+        // Last word full match bonus
+        if (fullWord) {
+            score += full_word_bonus;
         }
 
         matchInfo.match = patternIdx == patternLength;
