@@ -1,7 +1,12 @@
 package fr.neamar.kiss.forwarder;
 
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
@@ -9,16 +14,19 @@ import android.text.InputType;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.LockAccessibilityService;
 
 // Deals with any settings in the "User Experience" setting sub-screen
 class ExperienceTweaks extends Forwarder {
@@ -46,6 +54,7 @@ class ExperienceTweaks extends Forwarder {
     private View mainEmptyView;
     private final GestureDetector gd;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
 
@@ -63,12 +72,41 @@ class ExperienceTweaks extends Forwarder {
 
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
             @Override
-            public boolean onSingleTapUp(MotionEvent e) {
-                if(prefs.getBoolean("history-onclick", false)) {
+            public boolean onSingleTapConfirmed(MotionEvent e) {
+                if (prefs.getBoolean("history-onclick", false)) {
                     doAction("display-history");
                 }
 
                 return super.onSingleTapConfirmed(e);
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                    return super.onDoubleTap(e);
+                }
+
+                if (isAccessibilityServiceEnabled(mainActivity)) {
+                    Intent intent = new Intent(LockAccessibilityService.ACTION_LOCK, null, mainActivity, LockAccessibilityService.class);
+                    mainActivity.startService(intent);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+                    builder.setMessage(R.string.enable_double_tap_to_lock);
+
+                    builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mainActivity.startActivity(intent);
+                    });
+
+                    builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+                        dialog.dismiss();
+                    });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                return super.onDoubleTap(e);
             }
 
             @Override
@@ -95,7 +133,7 @@ class ExperienceTweaks extends Forwarder {
                         mainActivity.showKeyboard();
                         break;
                     case "display-apps":
-                        if(mainActivity.isViewingSearchResults()) {
+                        if (mainActivity.isViewingSearchResults()) {
                             mainActivity.displayKissBar(true);
                         }
                         break;
@@ -160,7 +198,7 @@ class ExperienceTweaks extends Forwarder {
         }
     }
 
-    void onTouch(View view, MotionEvent event) {
+    void onTouch(MotionEvent event) {
         // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
     }
@@ -225,7 +263,7 @@ class ExperienceTweaks extends Forwarder {
     @SuppressWarnings("CatchAndPrintStackTrace")
     private void displayNotificationDrawer() {
         @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
-        Class<?> statusbarManager = null;
+        Class<?> statusbarManager;
         try {
             statusbarManager = Class.forName("android.app.StatusBarManager");
             Method showStatusBar;
@@ -276,5 +314,26 @@ class ExperienceTweaks extends Forwarder {
      */
     private boolean isSuggestionsEnabled() {
         return prefs.getBoolean("enable-suggestions-keyboard", false);
+    }
+
+    /**
+     * Are we allowed to run our AccessibilityService?
+     */
+    private boolean isAccessibilityServiceEnabled(Context context) {
+        AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+        if (am == null) {
+            return false;
+        }
+
+        List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+
+
+        for (AccessibilityServiceInfo enabledService : enabledServices) {
+            ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
+            if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(LockAccessibilityService.class.getName()))
+                return true;
+        }
+
+        return false;
     }
 }
