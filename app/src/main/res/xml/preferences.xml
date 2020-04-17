@@ -226,6 +226,10 @@
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-down"
                 android:title="@string/gesture_down_name" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="double-tap"
+                android:title="@string/double_tap_to_lock" />
         </PreferenceCategory>
         <PreferenceScreen
             android:key="wallpaper-holder"
@@ -275,9 +279,7 @@
                 android:key="pref-toggle-tags-list"
                 android:title="@string/pref_toggle_tags_select" />
         </PreferenceScreen>
-
     </PreferenceScreen>
-
     <PreferenceScreen
         android:key="providers"
         android:summary="@string/providers_summary"

@@ -72,9 +72,23 @@ class ExperienceTweaks extends Forwarder {
 
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
             @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                // Double tap disabled: display history directly
+                if(!prefs.getBoolean("double-tap", false)) {
+                    if (prefs.getBoolean("history-onclick", false)) {
+                        doAction("display-history");
+                    }
+                }
+                return super.onSingleTapUp(e);
+            }
+
+            @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
-                if (prefs.getBoolean("history-onclick", false)) {
-                    doAction("display-history");
+                // Double tap enabled: wait to confirm this is indeed a single tap, not a double tap
+                if(prefs.getBoolean("double-tap", false)) {
+                    if (prefs.getBoolean("history-onclick", false)) {
+                        doAction("display-history");
+                    }
                 }
 
                 return super.onSingleTapConfirmed(e);
@@ -83,6 +97,9 @@ class ExperienceTweaks extends Forwarder {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                    return super.onDoubleTap(e);
+                }
+                if(!prefs.getBoolean("double-tap", false)) {
                     return super.onDoubleTap(e);
                 }
 
