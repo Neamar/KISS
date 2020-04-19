@@ -15,8 +15,8 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -24,11 +24,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-
-import androidx.annotation.NonNull;
-
 import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -73,6 +72,7 @@ public class IconsHandler {
         super();
         this.ctx = ctx;
         this.pm = ctx.getPackageManager();
+        clearOldCache();
         loadAvailableIconsPacks();
         loadIconsPack();
     }
@@ -257,7 +257,7 @@ public class IconsHandler {
                 bitmap = Bitmap.createBitmap(systemIcon.getIntrinsicWidth(), systemIcon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
             systemIcon.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
             systemIcon.draw(new Canvas(bitmap));
-            generated = generateBitmap( new BitmapDrawable(this.ctx.getResources(), bitmap) );
+            generated = generateBitmap(new BitmapDrawable(this.ctx.getResources(), bitmap));
         }
         cacheStoreDrawable(componentName.toString(), generated);
         return generated;
@@ -295,7 +295,7 @@ public class IconsHandler {
             matScale.setScale(w / (float) maskImage.getWidth(), h / (float) maskImage.getHeight());
 
             // paint the bitmap with mask into the result
-            Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG |Paint.ANTI_ALIAS_FLAG);
+            Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth()) / 2f, (h - scaledBitmap.getHeight()) / 2f, null);
             canvas.drawBitmap(maskImage, matScale, paint);
@@ -400,14 +400,31 @@ public class IconsHandler {
     private void cacheClear() {
         File cacheDir = this.getIconsCacheDir();
 
-        if (!cacheDir.isDirectory())
-            return;
-
-        for (File item : cacheDir.listFiles()) {
-            if (!item.delete()) {
-                Log.w(TAG, "Failed to delete file: " + item.getAbsolutePath());
+        File[] fileList = cacheDir.listFiles();
+        if (fileList != null) {
+            for (File item : fileList) {
+                if (!item.delete()) {
+                    Log.w(TAG, "Failed to delete file: " + item.getAbsolutePath());
+                }
             }
         }
     }
 
+    // Before we fixed the cache path actually returning a folder, a lot of icons got dumped
+    // directly in ctx.getCacheDir() so we need to clean it
+    private void clearOldCache() {
+        File newCacheDir = new File(this.ctx.getCacheDir(), "icons");
+
+        if (!newCacheDir.isDirectory()) {
+            File[] fileList = ctx.getCacheDir().listFiles();
+            if (fileList != null) {
+                int count = 0;
+                for (File file : fileList) {
+                    if (file.isFile())
+                        count += file.delete() ? 1 : 0;
+                }
+                Log.i(TAG, "Removed " + count + " cache file(s) from the old path");
+            }
+        }
+    }
 }
