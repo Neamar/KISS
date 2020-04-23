@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -173,12 +172,7 @@ public class DBHelper {
                 entry.name = dataHandler.getItemName(entry.record);
             }
 
-            Collections.sort(records, new Comparator<ValuedHistoryRecord>() {
-                @Override
-                public int compare(ValuedHistoryRecord a, ValuedHistoryRecord b) {
-                    return a.name.compareTo(b.name);
-                }
-            });
+            Collections.sort(records, (a, b) -> a.name.compareToIgnoreCase(b.name));
         }
 
         return records;
