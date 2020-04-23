@@ -112,7 +112,7 @@ public abstract class Result {
         return favoriteView;
     }
 
-    public void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
+    void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
         SpannableString enriched = new SpannableString(text);
         int primaryColor = UIColors.getPrimaryColor(context);
 
@@ -127,7 +127,7 @@ public abstract class Result {
         view.setText(enriched);
     }
 
-    public boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
+    boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
                                       TextView view, Context context) {
         FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
@@ -317,6 +317,15 @@ public abstract class Result {
      */
     public Drawable getDrawable(Context context) {
         return null;
+    }
+
+    /**
+     * Does the drawable changes regularly?
+     * If so, it can't be kept in cache for long.
+     * @return true when dynamic
+     */
+    public boolean isDrawableDynamic() {
+        return false;
     }
 
     boolean isDrawableCached() {
