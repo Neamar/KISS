@@ -336,6 +336,13 @@ public class AppResult extends Result {
         }
     }
 
+
+    @Override
+    public boolean isDrawableDynamic() {
+        // The only dynamic icon is from Google Calendar
+        return GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName);
+    }
+
     @Override
     public void doLaunch(Context context, View v) {
         try {

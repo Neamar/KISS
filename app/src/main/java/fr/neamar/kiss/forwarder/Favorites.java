@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     private ArrayList<ViewHolder> favoritesViews = new ArrayList<>();
 
     private static class ViewHolder {
-        @NonNull
         final View view;
         @NonNull
         final Result result;
@@ -58,6 +58,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             this.pojo = pojo;
             view = result.inflateFavorite(context, parent);
             view.setTag(this);
+        }
+
+        boolean isReusable() {
+            return !result.isDrawableDynamic();
         }
     }
 
@@ -106,7 +110,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     private ViewHolder findViewHolder(@NonNull Pojo pojo) {
         for (ViewHolder vh : favoritesViews) {
-            if (vh.pojo == pojo) {
+            if (vh.pojo == pojo && vh.isReusable()) {
                 return vh;
             }
         }
@@ -131,9 +135,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo, mainActivity, mainActivity.favoritesBar);
                 viewHolder.view.setOnClickListener(this);
                 viewHolder.view.setOnLongClickListener(this);
-
                 viewHolder.view.setOnTouchListener(this);
             }
+
             holders.add(viewHolder);
 
             // Check if view is different (we get null if beyond bounds, for instance when a new favorite was added)
@@ -144,6 +148,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
                 }
                 favoritesBar.addView(viewHolder.view, i);
+                // Remove old current view, which is now out of date. Useful for dynamic icons to ensure only the dynamic icon is updated, and everything else remains the same
+                disposeOf(currentView);
+                favoritesBar.removeView(currentView);
             }
 
             if (notificationPrefs != null) {
@@ -165,16 +172,24 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         // Remove any leftover views from previous renders
         while (favoritesBar.getChildCount() > favCount) {
+            Log.e("WTF", "Disposing");
             View toBeDisposed = favoritesBar.getChildAt(favCount);
-            toBeDisposed.setOnClickListener(null);
-            toBeDisposed.setOnLongClickListener(null);
-            toBeDisposed.setOnTouchListener(null);
+            disposeOf(toBeDisposed);
             favoritesBar.removeViewAt(favCount);
         }
 
         // kepp viewholders in memory for future recycling
         favoritesViews = holders;
         mDragEnabled = favCount > 1;
+    }
+
+    void disposeOf(@Nullable View toBeDisposed) {
+        if(toBeDisposed == null) {
+            return;
+        }
+        toBeDisposed.setOnClickListener(null);
+        toBeDisposed.setOnLongClickListener(null);
+        toBeDisposed.setOnTouchListener(null);
     }
 
     void updateSearchRecords(String query) {
