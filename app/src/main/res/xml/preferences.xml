@@ -191,6 +191,24 @@
                 android:summary="@string/pref_hide_circle_desc"
                 android:title="@string/pref_hide_circle" />
         </PreferenceCategory>
+        <PreferenceCategory android:title="@string/gestures" android:key="gestures-holder">
+            <ListPreference
+                android:defaultValue="display-keyboard"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-up"
+                android:title="@string/gesture_up_name" />
+            <ListPreference
+                android:defaultValue="display-notifications"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-down"
+                android:title="@string/gesture_down_name" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="double-tap"
+                android:title="@string/double_tap_to_lock" />
+        </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
@@ -214,22 +232,6 @@
                 android:defaultValue="false"
                 android:key="call-contact-on-click"
                 android:title="@string/contacts_call_on_click" />
-            <ListPreference
-                android:defaultValue="display-keyboard"
-                android:entries="@array/gestureEntries"
-                android:entryValues="@array/gestureValues"
-                android:key="gesture-up"
-                android:title="@string/gesture_up_name" />
-            <ListPreference
-                android:defaultValue="display-notifications"
-                android:entries="@array/gestureEntries"
-                android:entryValues="@array/gestureValues"
-                android:key="gesture-down"
-                android:title="@string/gesture_down_name" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="false"
-                android:key="double-tap"
-                android:title="@string/double_tap_to_lock" />
         </PreferenceCategory>
         <PreferenceScreen
             android:key="wallpaper-holder"

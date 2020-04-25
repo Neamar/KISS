@@ -106,6 +106,9 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            removePreference("gestures-holder", "double-tap");
+        }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             removePreference("colors-section", "black-notification-icons");
         }
