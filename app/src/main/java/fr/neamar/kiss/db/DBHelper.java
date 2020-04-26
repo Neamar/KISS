@@ -137,10 +137,9 @@ public class DBHelper {
      *
      * @param context     android context
      * @param limit       max number of items to retrieve
-     * @param sortHistory sort history entries alphabetically
      * @return records with number of use
      */
-    public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit, String historyMode, boolean sortHistory) {
+    public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit, String historyMode) {
         ArrayList<ValuedHistoryRecord> records;
 
         SQLiteDatabase db = getDatabase(context);
@@ -165,7 +164,7 @@ public class DBHelper {
         cursor.close();
 
         // sort history entries alphabetically
-        if (sortHistory) {
+        if (historyMode.equals("alphabetically")) {
             DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
 
             for (ValuedHistoryRecord entry : records) {

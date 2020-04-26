@@ -364,13 +364,11 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context        android context
      * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @param historyMode    Recency vs Frecency vs Frequency vs Adaptive
-     * @param sortHistory    Sort history entries alphabetically
+     * @param historyMode    Recency vs Frecency vs Frequency vs Adaptive vs Alphabetically
      * @param itemsToExcludeById Items to exclude from history by their id
      * @return pojos in recent history
      */
-    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode,
-                                      boolean sortHistory, Set<String> itemsToExcludeById) {
+    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode, Set<String> itemsToExcludeById) {
         // Pre-allocate array slots that are likely to be used based on the current maximum item
         // count
         ArrayList<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
@@ -379,7 +377,7 @@ public class DataHandler extends BroadcastReceiver
         int extendedItemCount = itemCount + itemsToExcludeById.size();
 
         // Read history
-        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode, sortHistory);
+        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode);
 
         // Find associated items
         for (int i = 0; i < ids.size(); i++) {

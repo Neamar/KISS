@@ -3,15 +3,12 @@ package fr.neamar.kiss.searcher;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 
 /**
@@ -42,7 +39,6 @@ public class HistorySearcher extends Searcher {
     protected Void doInBackground(Void... voids) {
         // Ask for records
         String historyMode = prefs.getString("history-mode", "recency");
-        boolean sortHistory = prefs.getBoolean("sort-history", false);
         boolean excludeFavorites = prefs.getBoolean("exclude-favorites", false);
 
         MainActivity activity = activityWeakReference.get();
@@ -60,7 +56,7 @@ public class HistorySearcher extends Searcher {
         }
 
         List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler()
-                .getHistory(activity, getMaxResultCount(), historyMode, sortHistory, excludedPojoById);
+                .getHistory(activity, getMaxResultCount(), historyMode, excludedPojoById);
 
         int size = pojos.size();
         for(int i = 0; i < size; i += 1) {
