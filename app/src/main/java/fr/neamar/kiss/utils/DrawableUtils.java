@@ -2,15 +2,20 @@ package fr.neamar.kiss.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 
-class DrawableUtils {
+public class DrawableUtils {
+
+    private static final RectF rectF = new RectF();
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
-    static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
+    public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
         Bitmap bitmap;
 
         if (drawable instanceof BitmapDrawable) {
@@ -32,4 +37,9 @@ class DrawableUtils {
         return bitmap;
     }
 
+    public static void setIconShape(Canvas canvas, Paint paint, int shape) {
+        int iconSize = canvas.getHeight();
+        rectF.set(0f, 0f, iconSize, iconSize);
+        canvas.drawRoundRect(rectF, iconSize / 8f, iconSize / 12f, paint);
+    }
 }

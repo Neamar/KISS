@@ -61,6 +61,7 @@ class DB extends SQLiteOpenHelper {
                     // fall through
                 case 6:
                     addAppsTable(database);
+                    // fall through
                 default:
                     break;
             }

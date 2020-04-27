@@ -35,6 +35,7 @@ import androidx.annotation.NonNull;
 
 import java.util.Locale;
 
+import fr.neamar.kiss.CustomIconDialog;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -201,7 +202,7 @@ public class AppResult extends Result {
                 launchRenameDialog(context, parent, appPojo);
                 return true;
             case R.string.menu_custom_icon:
-                launchCustomIcon();
+                launchCustomIcon(context, parent);
                 return true;
         }
 
@@ -289,13 +290,13 @@ public class AppResult extends Result {
         }
 
         builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
-            EditText input = ((AlertDialog)dialog).findViewById(R.id.rename);
+            EditText input = ((AlertDialog) dialog).findViewById(R.id.rename);
             dialog.dismiss();
 
             // Set new name
             String newName = input.getText().toString().trim();
             app.setName(newName);
-            KissApplication.getApplication(context).getDataHandler().renameApp(appPojo, newName);
+            KissApplication.getApplication(context).getDataHandler().renameApp(appPojo.getComponentName(), newName);
 
             // Show toast message
             String msg = context.getResources().getString(R.string.app_rename_confirmation, app.getName());
@@ -318,12 +319,32 @@ public class AppResult extends Result {
         AlertDialog dialog = builder.create();
         dialog.show();
         // call after dialog got inflated (show call)
-        ((TextView)dialog.findViewById(R.id.rename)).setHint(appPojo.getName());
+        ((TextView) dialog.findViewById(R.id.rename)).setHint(appPojo.getName());
     }
 
-    private void launchCustomIcon()
-    {
+    private void launchCustomIcon(Context context, RecordAdapter parent) {
         //TODO: launch a DialogFragment or Activity
+        CustomIconDialog dialog = new CustomIconDialog();
+
+        // set args
+        {
+            Bundle args = new Bundle();
+            args.putString("className", className.flattenToString()); // will be converted back with ComponentName.unflattenFromString()
+            args.putParcelable("userHandle", appPojo.userHandle);
+            args.putString("componentName", appPojo.getComponentName());
+            args.putLong("customIcon", appPojo.getCustomIconId());
+            dialog.setArguments(args);
+        }
+
+        dialog.setOnConfirmListener(drawable -> {
+            if (drawable == null)
+                KissApplication.getApplication(context).getIconsHandler().restoreAppIcon(this);
+            else
+                KissApplication.getApplication(context).getIconsHandler().changeAppIcon(this, drawable);
+            //TODO: force update the icon in the view
+        });
+
+        parent.showDialog(dialog);
     }
 
     /**
@@ -457,5 +478,23 @@ public class AppResult extends Result {
         int[] l = new int[2];
         v.getLocationOnScreen(l);
         return new Rect(l[0], l[1], l[0] + v.getWidth(), l[1] + v.getHeight());
+    }
+
+    public void setCustomIcon(long dbId, Drawable drawable) {
+        appPojo.setCustomIconId(dbId);
+        setDrawableCache(drawable);
+    }
+
+    public void clearCustomIcon() {
+        appPojo.setCustomIconId(0);
+        setDrawableCache(null);
+    }
+
+    public long getCustomIcon() {
+        return appPojo.getCustomIconId();
+    }
+
+    public String getComponentName() {
+        return appPojo.getComponentName();
     }
 }

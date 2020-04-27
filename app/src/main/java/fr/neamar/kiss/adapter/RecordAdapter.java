@@ -1,5 +1,6 @@
 package fr.neamar.kiss.adapter;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.os.Handler;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.neamar.kiss.CustomIconDialog;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.result.AppResult;
@@ -228,5 +230,9 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         // so we just return the before-last section
         // See #1005
         return sections.length - 2;
+    }
+
+    public void showDialog(DialogFragment dialog) {
+        parent.showDialog(dialog);
     }
 }

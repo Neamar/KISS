@@ -15,7 +15,7 @@ public final class AppPojo extends PojoWithTags {
 
     private boolean excluded;
     private boolean excludedFromHistory;
-    private int customIconId = -1;
+    private long customIconId = 0;
 
     public AppPojo(String id, String packageName, String activityName, UserHandle userHandle,
                    boolean isExcluded, boolean isExcludedFromHistory) {
@@ -49,11 +49,11 @@ public final class AppPojo extends PojoWithTags {
         this.excludedFromHistory = excludedFromHistory;
     }
 
-    public void setCustomIconId(int iconId) {
+    public void setCustomIconId(long iconId) {
         customIconId = iconId;
     }
 
-    public int getCustomIconId()
+    public long getCustomIconId()
     {
         return customIconId;
     }

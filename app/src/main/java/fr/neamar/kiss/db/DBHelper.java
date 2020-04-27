@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteStatement;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -140,8 +142,8 @@ public class DBHelper {
     /**
      * Retrieve previous query history
      *
-     * @param context     android context
-     * @param limit       max number of items to retrieve
+     * @param context android context
+     * @param limit   max number of items to retrieve
      * @return records with number of use
      */
     public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit, String historyMode) {
@@ -309,7 +311,28 @@ public class DBHelper {
         }
     }
 
-    public static void addCustomAppIcon(Context context, String componentName, Drawable drawable) {
+
+    @Nullable
+    private static AppRecord getAppRecord(SQLiteDatabase db, String componentName) {
+        String[] selArgs = new String[]{componentName};
+        String[] columns = new String[]{"_id", "name", "component_name", "custom_flags"};
+        try (Cursor cursor = db.query("custom_apps", columns,
+                "component_name=?", selArgs, null, null, null)) {
+            if (cursor.moveToNext()) {
+                AppRecord entry = new AppRecord();
+
+                entry.dbId = cursor.getLong(0);
+                entry.name = cursor.getString(1);
+                entry.componentName = cursor.getString(2);
+                entry.flags = cursor.getInt(3);
+
+                return entry;
+            }
+        }
+        return null;
+    }
+
+    public static long addCustomAppIcon(Context context, String componentName) {
         SQLiteDatabase db = getDatabase(context);
 
         long id;
@@ -335,8 +358,67 @@ public class DBHelper {
                 }
                 statement.close();
             } catch (Exception e) {
-                Log.e(TAG, "Insert or Update custom app icon", e);
+                Log.e(TAG, "Update custom app icon", e);
             }
+            AppRecord appRecord = getAppRecord(db, componentName);
+            id = appRecord != null ? appRecord.dbId : 0;
+        }
+        return id;
+    }
+
+    public static long removeCustomAppIcon(Context context, String componentName) {
+        SQLiteDatabase db = getDatabase(context);
+        AppRecord app = getAppRecord(db, componentName);
+        if (app == null)
+            return 0;
+
+        if (app.hasCustomName()) {
+            // app has a custom name, just remove the custom icon
+            String sql = "UPDATE custom_apps SET custom_flags=custom_flags&~? WHERE component_name=?";
+            try {
+                SQLiteStatement statement = db.compileStatement(sql);
+                statement.bindLong(1, AppRecord.FLAG_CUSTOM_ICON);
+                statement.bindString(2, componentName);
+                int count = statement.executeUpdateDelete();
+                if (count != 1) {
+                    Log.e(TAG, "Update `custom_flags` returned count=" + count);
+                }
+                statement.close();
+            } catch (Exception e) {
+                Log.e(TAG, "remove custom app icon", e);
+            }
+        } else {
+            // nothing custom about this app anymore, remove entry
+            db.delete("custom_apps", "_id=?", new String[]{String.valueOf(app.dbId)});
+        }
+
+        return app.dbId;
+    }
+
+    public static void removeCustomAppName(Context context, String componentName) {
+        SQLiteDatabase db = getDatabase(context);
+        AppRecord app = getAppRecord(db, componentName);
+        if (app == null)
+            return;
+
+        if (app.hasCustomIcon()) {
+            // app has a custom icon, just remove the custom name
+            String sql = "UPDATE custom_apps SET custom_flags=custom_flags&~? WHERE component_name=?";
+            try {
+                SQLiteStatement statement = db.compileStatement(sql);
+                statement.bindLong(1, AppRecord.FLAG_CUSTOM_NAME);
+                statement.bindString(2, componentName);
+                int count = statement.executeUpdateDelete();
+                if (count != 1) {
+                    Log.e(TAG, "Update `custom_flags` returned count=" + count);
+                }
+                statement.close();
+            } catch (Exception e) {
+                Log.e(TAG, "remove custom app icon", e);
+            }
+        } else {
+            // nothing custom about this app anymore, remove entry
+            db.delete("custom_apps", "_id=?", new String[]{String.valueOf(app.dbId)});
         }
     }
 
@@ -500,4 +582,5 @@ public class DBHelper {
         return records;
 
     }
+
 }

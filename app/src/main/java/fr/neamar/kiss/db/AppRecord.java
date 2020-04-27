@@ -4,7 +4,7 @@ public class AppRecord {
     public static final int FLAG_CUSTOM_NAME = 2;
     public static final int FLAG_CUSTOM_ICON = 4;
 
-    public int dbId;
+    public long dbId;
 
     public String name;
 

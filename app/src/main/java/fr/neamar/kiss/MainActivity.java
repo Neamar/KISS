@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -821,6 +822,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
         hider.fixScroll();
+    }
+
+    @Override
+    public void showDialog(DialogFragment dialog) {
+        final View resultLayout = findViewById(R.id.resultLayout);
+        if (dialog instanceof CustomIconDialog) {
+            // We assume the mResultLayout was visible
+            resultLayout.setVisibility(View.GONE);
+            ((CustomIconDialog) dialog).setOnDismissListener(dlg -> {
+                resultLayout.setVisibility(View.VISIBLE);
+                // force icon reload by searching again; is there any better way?
+                updateSearchRecords(true);
+            });
+        }
+        dialog.show(getFragmentManager(), "dialog");
     }
 
     @Override

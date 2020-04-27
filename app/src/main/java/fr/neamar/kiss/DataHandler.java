@@ -39,6 +39,7 @@ import fr.neamar.kiss.dataprovider.simpleprovider.CalculatorProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.SettingsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
+import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
@@ -804,8 +805,21 @@ public class DataHandler extends BroadcastReceiver
         tagsHandler = new TagsHandler(this.context);
     }
 
-    public void renameApp(AppPojo appPojo, String newName) {
-        DBHelper.addCustomAppName(context, appPojo.getComponentName(), newName);
+    public void renameApp(String componentName, String newName) {
+        DBHelper.addCustomAppName(context, componentName, newName);
+    }
+
+    public void removeRenameApp(String componentName, String defaultName)
+    {
+        DBHelper.removeCustomAppName(context, componentName);
+    }
+
+    public long setCustomAppIcon(String componentName) {
+        return DBHelper.addCustomAppIcon(context, componentName);
+    }
+
+    public long removeCustomAppIcon(String componentName) {
+        return DBHelper.removeCustomAppIcon(context, componentName);
     }
 
     static final class ProviderEntry {
