@@ -29,6 +29,5 @@ Get ready to be amazed.
 Previews
 ---------------------
 
-|![Preview](https://user-images.githubusercontent.com/1615426/47822548-d6804a00-dd64-11e8-967a-0a027ae4ed40.png) | ![Preview](https://user-images.githubusercontent.com/1615426/47822549-d6804a00-dd64-11e8-9c8e-fa74881badfc.png) | ![Preview](https://user-images.githubusercontent.com/1615426/47822605-f7489f80-dd64-11e8-88a8-b5ebec461e1d.png) |
-|:-------------------:|:------------------------:|:-----------------:|
-| Slick looking homescreen :) Supports one widget! | Apps are just a few key strokes away! | Search in contacts too! (and everything is customizable) |
+|![Minimalistic interface](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Search for anything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Customize everything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png) | ![60+ settings](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png) |
+|:-------------------:|:------------------------:|:-----------------:|:-----------------:|
