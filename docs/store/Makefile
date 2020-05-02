@@ -1,20 +1,28 @@
-images = 1.svg.png 2.svg.png 3.svg.png 4.svg.png
+# Inspired from https://stackoverflow.com/a/32535737/2367848
+locales     := fr-FR en-US
+templates   := phoneScreenshots/1.svg phoneScreenshots/2.svg phoneScreenshots/3.svg phoneScreenshots/4.svg featureGraphic.svg
 
-all: $(images)
-pngcrush: $(images:.svg.png=.svg.crushed.png)
-tinypng: $(images:.svg.png=.svg.tinypng.png)
+localized_screenshots_raw = $(foreach locale, $(locales), $(addprefix ${locale}/, $(templates:.svg=.inkscape.png)))
+localized_screenshots = $(foreach locale, $(locales), $(addprefix ${locale}/, $(templates:.svg=.png)))
 
-%.svg.crushed.png: %.svg.png
-	@echo building $@ in $(dir $@) from $^
-	pngcrush -reduce -brute $^ $@
+all: $(localized_screenshots_raw)
+tinypng: $(localized_screenshots)
 
-%.svg.tinypng.png: %.svg.png
-	@echo building $@ in $(dir $@) from $^
-	curl $$(curl --silent --user api:${TINYPNG_API_KEY} --data-binary @$^ https://api.tinify.com/shrink | jq -r '.output.url') -o $@
+# eval argument is expanded twice; first by the eval function, then the results of that expansion are expanded again
+# when they are parsed as makefile syntax. This means you may need to provide extra levels of escaping for “$” characters when using eval.
+define LOCALE_rule
+$(1)/%.png: $(1)/%.inkscape.png
+	curl $$$$(curl --silent --user api:${TINYPNG_API_KEY} --data-binary @$$^ https://api.tinify.com/shrink | jq -r '.output.url') -o $$@
 
-%.svg.png: %.svg
-	@echo building $@ in $(dir $@) from $^
-	inkscape --file=$^ --export-png=$@ --export-dpi=96
+$(1)/%.inkscape.png: %.svg $(1)/screenshots.json
+	@echo The locale is $(1) and the target is $$@ in $$(dir $@) from 1: $$^ 2: $$<
+	./translate.sh $1 $$< $$@
+endef
+
+# Replace eval with info to see what eval evals to!
+$(foreach locale,$(locales),$(eval $(call LOCALE_rule,$(locale))))
+
+.PHONY: all clean
 
 clean:
-	rm -f $(images) $(images:.svg.png=.svg.tinypng.png)
+	rm -f $(localized_screenshots) $(localized_screenshots_raw)
