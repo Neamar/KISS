@@ -109,6 +109,25 @@ public class UIColors {
                 activity.getTheme().applyStyle(R.style.OverlaySeparatorDark, true);
                 break;
         }
+
+        String resultColorStyle = prefs.getString("theme-result-color", "default");
+        switch (resultColorStyle) {
+            case "light":
+                activity.getTheme().applyStyle(R.style.OverlayResultColorLight, true);
+                break;
+            case "dark":
+                activity.getTheme().applyStyle(R.style.OverlayResultColorDark, true);
+                break;
+            case "semi-light":
+                activity.getTheme().applyStyle(R.style.OverlayResultColorSemiLight, true);
+                break;
+            case "semi-dark":
+                activity.getTheme().applyStyle(R.style.OverlayResultColorSemiDark, true);
+                break;
+            case "black":
+                activity.getTheme().applyStyle(R.style.OverlayResultColorBlack, true);
+                break;
+        }
     }
 
     public static void updateThemePrimaryColor(Activity activity) {

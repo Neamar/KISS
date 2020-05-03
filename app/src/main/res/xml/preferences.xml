@@ -97,6 +97,7 @@
             android:entries="@array/themesEntries"
             android:entryValues="@array/themesValues"
             android:key="theme"
+            android:summary="%s"
             android:title="@string/theme_name" />
         <PreferenceScreen android:title="@string/theme_customisation">
             <ListPreference
@@ -113,6 +114,13 @@
                 android:key="theme-separator"
                 android:summary="%s"
                 android:title="@string/theme_separator" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/resultColorEntries"
+                android:entryValues="@array/resultColorValues"
+                android:key="theme-result-color"
+                android:summary="%s"
+                android:title="@string/theme_result_color" />
         </PreferenceScreen>
         <ListPreference
             android:defaultValue="default"
