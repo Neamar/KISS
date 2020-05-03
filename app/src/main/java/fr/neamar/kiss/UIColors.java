@@ -3,10 +3,12 @@ package fr.neamar.kiss;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -66,7 +68,7 @@ public class UIColors {
     private static int primaryColor = -1;
 
     // https://stackoverflow.com/questions/25815769/how-to-really-programmatically-change-primary-and-accent-color-in-android-loll
-    public static void applyOverlay(Activity activity) {
+    public static void applyOverlay(Activity activity, SharedPreferences prefs) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return;
         }
@@ -76,14 +78,23 @@ public class UIColors {
         int primaryColor = getPrimaryColor(activity);
 
         for (int i = 0; i < COLOR_LIST.length; i++) {
-
             if (COLOR_LIST[i] == primaryColor) {
                 int resId = OVERLAY_LIST[i];
                 if(resId != -1) {
                     activity.getTheme().applyStyle(resId, true);
                 }
-                return;
+                break;
             }
+        }
+
+        
+        String shadowStyle = prefs.getString("theme-shadow", "default");
+        Log.e("WTF", "Shadows" + shadowStyle);
+        if(shadowStyle.equals("enabled")) {
+            activity.getTheme().applyStyle(R.style.OverlayShadowEnabled, true);
+        }
+        else if(shadowStyle.equals("disabled")) {
+            activity.getTheme().applyStyle(R.style.OverlayShadowDisabled, true);
         }
     }
 

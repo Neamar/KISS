@@ -45,7 +45,7 @@ class InterfaceTweaks extends Forwarder {
                 break;
         }
 
-        UIColors.applyOverlay(mainActivity);
+        UIColors.applyOverlay(mainActivity, prefs);
     }
 
     void onCreate() {

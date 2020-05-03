@@ -98,6 +98,14 @@
             android:entryValues="@array/themesValues"
             android:key="theme"
             android:title="@string/theme_name" />
+        <PreferenceScreen android:title="@string/theme_customisation">
+            <ListPreference
+                android:defaultValue="-1"
+                android:entries="@array/shadowEntries"
+                android:entryValues="@array/shadowValues"
+                android:key="theme-shadow"
+                android:title="@string/theme_shadow" />
+        </PreferenceScreen>
         <ListPreference
             android:defaultValue="default"
             android:key="icons-pack"
