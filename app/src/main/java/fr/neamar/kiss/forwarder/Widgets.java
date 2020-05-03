@@ -28,8 +28,8 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.ui.WidgetHost;
 
 class Widgets extends Forwarder {
-    private static final int REQUEST_PICK_APPWIDGET = 9;
-    private static final int REQUEST_CREATE_APPWIDGET = 5;
+    private static final int REQUEST_APPWIDGET_PICKED = 9;
+    private static final int REQUEST_APPWIDGET_CONFIGURED = 5;
 
     private static final int APPWIDGET_HOST_ID = 442;
 
@@ -77,14 +77,14 @@ class Widgets extends Forwarder {
     void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
-                case REQUEST_CREATE_APPWIDGET:
-                    addAppWidget(data);
+                case REQUEST_APPWIDGET_CONFIGURED:
+                    Log.i("Widgets", "Widget configured");
                     break;
-                case REQUEST_PICK_APPWIDGET:
+                case REQUEST_APPWIDGET_PICKED:
                     configureAppWidget(data);
                     break;
             }
-        } else if (resultCode == Activity.RESULT_CANCELED && data != null && (requestCode == REQUEST_CREATE_APPWIDGET || requestCode == REQUEST_PICK_APPWIDGET)) {
+        } else if (resultCode == Activity.RESULT_CANCELED && data != null && (requestCode == REQUEST_APPWIDGET_CONFIGURED || requestCode == REQUEST_APPWIDGET_PICKED)) {
             // if widget was not selected, delete id
             int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
             if (appWidgetId != -1) {
@@ -99,7 +99,7 @@ class Widgets extends Forwarder {
             int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
             Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
             pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            mainActivity.startActivityForResult(pickIntent, REQUEST_PICK_APPWIDGET);
+            mainActivity.startActivityForResult(pickIntent, REQUEST_APPWIDGET_PICKED);
             return true;
         }
 
@@ -314,15 +314,15 @@ class Widgets extends Forwarder {
 
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
 
+        // Add the widget
+        addAppWidget(data);
+
         if (appWidgetInfo.configure != null) {
             // Launch over to configure widget, if needed.
             Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
             intent.setComponent(appWidgetInfo.configure);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            mainActivity.startActivityForResult(intent, REQUEST_CREATE_APPWIDGET);
-        } else {
-            // Otherwise, finish adding the widget.
-            addAppWidget(data);
+            mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
         }
     }
 
