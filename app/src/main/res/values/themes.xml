@@ -4,10 +4,12 @@
     <style name="BaseThemeLight" parent="@android:style/Theme.Holo.Light.NoActionBar">
         <item name="appSelectableItemBackground">?android:attr/selectableItemBackground</item>
         <item name="android:actionMenuTextColor">@android:color/white</item>
+        <item name="resultIconSize">@dimen/result_icon_size</item>
     </style>
 
     <style name="BaseThemeDark" parent="@android:style/Theme.Holo.NoActionBar">
         <item name="appSelectableItemBackground">?android:attr/selectableItemBackground</item>
+        <item name="resultIconSize">@dimen/result_icon_size</item>
     </style>
 
     <style name="AppThemeLight" parent="BaseThemeLight">
@@ -68,7 +70,6 @@
         <item name="android:textColor">@color/kiss_text_on_dark</item>
         <item name="android:textColorSecondary">#7f7f7f</item>
     </style>
-
 
     <style name="AppThemeTransparent" parent="AppThemeLight">
         <item name="resultColor">@color/kiss_text_on_light</item>
