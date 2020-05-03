@@ -4,12 +4,10 @@
     <style name="BaseThemeLight" parent="@android:style/Theme.Holo.Light.NoActionBar">
         <item name="appSelectableItemBackground">?android:attr/selectableItemBackground</item>
         <item name="android:actionMenuTextColor">@android:color/white</item>
-        <item name="resultIconSize">@dimen/result_icon_size</item>
     </style>
 
     <style name="BaseThemeDark" parent="@android:style/Theme.Holo.NoActionBar">
         <item name="appSelectableItemBackground">?android:attr/selectableItemBackground</item>
-        <item name="resultIconSize">@dimen/result_icon_size</item>
     </style>
 
     <style name="AppThemeLight" parent="BaseThemeLight">
@@ -145,5 +143,21 @@
     </style>
     <style name="OverlayResultColorBlack">
         <item name="resultColor">@android:color/white</item>
+    </style>
+
+    <style name="OverlayResultSizeStandard">
+        <item name="resultIconSize">@dimen/result_icon_size</item>
+        <item name="resultSubIconSize">@dimen/result_subicon_size</item>
+        <item name="resultTitleSize">@dimen/result_title_size</item>
+        <item name="resultSubtitleSize">@dimen/result_subtitle_size</item>
+        <item name="resultButtonHeight">@dimen/result_button_height</item>
+    </style>
+
+    <style name="OverlayResultSizeSmall">
+        <item name="resultIconSize">@dimen/result_icon_size_small</item>
+        <item name="resultSubIconSize">@dimen/result_subicon_size_small</item>
+        <item name="resultTitleSize">@dimen/result_title_size_small</item>
+        <item name="resultSubtitleSize">@dimen/result_subtitle_size_small</item>
+        <item name="resultButtonHeight">@dimen/result_button_height_small</item>
     </style>
 </resources>

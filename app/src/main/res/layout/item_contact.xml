@@ -42,7 +42,7 @@
         android:shadowRadius="?attr/textShadowRadius"
         android:singleLine="true"
         android:textColor="?attr/resultColor"
-        android:textSize="@dimen/result_title_size"
+        android:textSize="?attr/resultTitleSize"
         tools:ignore="RtlSymmetry"
         tools:text="@string/stub_contact" />
 
@@ -61,7 +61,7 @@
         android:shadowDy="2"
         android:shadowRadius="?attr/textShadowRadius"
         android:textColor="?android:attr/textColorSecondary"
-        android:textSize="@dimen/result_subtitle_size"
+        android:textSize="?attr/resultSubtitleSize"
         tools:ignore="RtlSymmetry"
         tools:text="@string/stub_contact_phone" />
 
@@ -83,14 +83,14 @@
         android:shadowRadius="?attr/textShadowRadius"
         android:singleLine="true"
         android:textColor="?android:attr/textColorSecondary"
-        android:textSize="@dimen/result_subtitle_size"
+        android:textSize="?attr/resultTitleSize"
         tools:ignore="RtlSymmetry"
         tools:text="@string/stub_contact_nickname" />
 
     <ImageButton
         android:id="@+id/item_contact_action_message"
         android:layout_width="48dp"
-        android:layout_height="@dimen/result_button_height"
+        android:layout_height="?attr/resultButtonHeight"
         android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/item_contact_action_phone"
         android:layout_toLeftOf="@+id/item_contact_action_phone"
@@ -101,7 +101,7 @@
     <ImageButton
         android:id="@+id/item_contact_action_phone"
         android:layout_width="48dp"
-        android:layout_height="@dimen/result_button_height"
+        android:layout_height="?attr/resultButtonHeight"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
