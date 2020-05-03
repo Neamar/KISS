@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -87,14 +86,28 @@ public class UIColors {
             }
         }
 
-        
+
         String shadowStyle = prefs.getString("theme-shadow", "default");
-        Log.e("WTF", "Shadows" + shadowStyle);
-        if(shadowStyle.equals("enabled")) {
-            activity.getTheme().applyStyle(R.style.OverlayShadowEnabled, true);
+        switch (shadowStyle) {
+            case "enabled":
+                activity.getTheme().applyStyle(R.style.OverlayShadowEnabled, true);
+                break;
+            case "disabled":
+                activity.getTheme().applyStyle(R.style.OverlayShadowDisabled, true);
+                break;
         }
-        else if(shadowStyle.equals("disabled")) {
-            activity.getTheme().applyStyle(R.style.OverlayShadowDisabled, true);
+
+        String separatorStyle = prefs.getString("theme-separator", "default");
+        switch (separatorStyle) {
+            case "disabled":
+                activity.getTheme().applyStyle(R.style.OverlaySeparatorDisabled, true);
+                break;
+            case "light":
+                activity.getTheme().applyStyle(R.style.OverlaySeparatorLight, true);
+                break;
+            case "dark":
+                activity.getTheme().applyStyle(R.style.OverlaySeparatorDark, true);
+                break;
         }
     }
 

@@ -100,11 +100,19 @@
             android:title="@string/theme_name" />
         <PreferenceScreen android:title="@string/theme_customisation">
             <ListPreference
-                android:defaultValue="-1"
+                android:defaultValue="default"
                 android:entries="@array/shadowEntries"
                 android:entryValues="@array/shadowValues"
                 android:key="theme-shadow"
+                android:summary="%s"
                 android:title="@string/theme_shadow" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/separatorEntries"
+                android:entryValues="@array/separatorValues"
+                android:key="theme-separator"
+                android:summary="%s"
+                android:title="@string/theme_separator" />
         </PreferenceScreen>
         <ListPreference
             android:defaultValue="default"
