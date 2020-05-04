@@ -15,6 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -258,27 +259,28 @@ public class IconsHandler {
         // create a bitmap for the result
         Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
+        canvas.setDensity(Bitmap.DENSITY_NONE);
 
         // draw the background first
         canvas.drawBitmap(backImage, 0, 0, null);
 
         // scale original icon
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(((BitmapDrawable) defaultBitmap).getBitmap(), (int) (w * factor), (int) (h * factor), false);
+        scaledBitmap.setDensity(Bitmap.DENSITY_NONE);
 
         if (maskImage != null) {
             // draw the scaled bitmap with mask
-            Bitmap mutableMask = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-            Canvas maskCanvas = new Canvas(mutableMask);
-            maskCanvas.drawBitmap(maskImage, 0, 0, new Paint());
+            Matrix matScale = new Matrix();
+            matScale.setScale(w / (float) maskImage.getWidth(), h / (float) maskImage.getHeight());
 
             // paint the bitmap with mask into the result
             Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-            canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth()) / 2, (h - scaledBitmap.getHeight()) / 2, null);
-            canvas.drawBitmap(mutableMask, 0, 0, paint);
+            canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth()) / 2f, (h - scaledBitmap.getHeight()) / 2f, null);
+            canvas.drawBitmap(maskImage, matScale, paint);
             paint.setXfermode(null);
         } else { // draw the scaled bitmap without mask
-            canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth()) / 2, (h - scaledBitmap.getHeight()) / 2, null);
+            canvas.drawBitmap(scaledBitmap, (w - scaledBitmap.getWidth()) / 2f, (h - scaledBitmap.getHeight()) / 2f, null);
         }
 
         // paint the front
