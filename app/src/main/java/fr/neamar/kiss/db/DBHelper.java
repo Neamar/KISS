@@ -254,30 +254,6 @@ public class DBHelper {
         db.delete("shortcuts", "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri});
     }
 
-//    public static boolean insertApps(Context context, Collection<AppPojo> apps)
-//    {
-//        SQLiteDatabase db = getDatabase(context);
-//        try {
-//            db.beginTransaction();
-//            String sql = "INSERT OR IGNORE INTO apps (component_name) VALUES (?)";
-//            SQLiteStatement statement = db.compileStatement(sql);
-//
-//            for (AppPojo appPojo : apps) {
-//                statement.clearBindings();
-//                statement.bindString(1, appPojo.getComponentName());
-//                statement.executeInsert();
-//            }
-//
-//            db.setTransactionSuccessful(); // This commits the transaction if there were no exceptions
-//            return true;
-//        } catch (Exception e) {
-//            Log.w("DB insert app list", e);
-//        } finally {
-//            db.endTransaction();
-//        }
-//        return false;
-//    }
-
     public static void addCustomAppName(Context context, String componentName, String newName) {
         SQLiteDatabase db = getDatabase(context);
 

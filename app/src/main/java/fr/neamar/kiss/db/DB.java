@@ -34,8 +34,7 @@ class DB extends SQLiteOpenHelper {
         database.execSQL("ALTER TABLE history ADD COLUMN timeStamp INTEGER DEFAULT 0  NOT NULL");
     }
 
-    private void addAppsTable(SQLiteDatabase db)
-    {
+    private void addAppsTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE custom_apps ( _id INTEGER PRIMARY KEY AUTOINCREMENT, custom_flags INTEGER DEFAULT 0, component_name TEXT NOT NULL UNIQUE, name TEXT NOT NULL DEFAULT '' )");
         db.execSQL("CREATE INDEX index_component ON custom_apps(component_name);");
     }

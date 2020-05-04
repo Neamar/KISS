@@ -53,20 +53,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         iconPackPackageName = packageName;
     }
 
-//    static class AsyncParse extends AsyncTask<IconPack, Void, IconPack> {
-//        @Override
-//        protected IconPack doInBackground(IconPack... iconPacks) {
-//            IconPack pack = iconPacks[0];
-//            pack.parseXML();
-//            return pack;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(IconPack iconPack) {
-//            iconPack.loaded = true;
-//        }
-//    }
-
     public void load(PackageManager packageManager) {
         parseXML(packageManager);
     }
@@ -89,20 +75,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         DrawableInfo drawableInfo = drawables.iterator().next();
         return drawableInfo != null ? getDrawable(drawableInfo) : null;
     }
-
-//    @Nullable
-//    DrawableInfo getComponentDrawableInfo(String componentName) {
-//        ArraySet<DrawableInfo> drawables = drawablesByComponent.get(componentName);
-//        return drawables != null ? drawables.valueAt(0) : null;
-//    }
-//
-//    @Nullable
-//    Drawable getDrawable(String drawableName) {
-//        //Note: DrawableInfo does not use the drawableId for equals or hashCode
-//        int idx = drawableList.indexOf(new DrawableInfo(drawableName, 0));
-//        DrawableInfo drawableInfo = idx >= 0 ? drawableList.valueAt(idx) : null;
-//        return drawableInfo != null ? getDrawable(drawableInfo) : null;
-//    }
 
     @Nullable
     @Override
@@ -178,7 +150,8 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
             canvas.drawBitmap(scaledBitmap, offsetLeft, offsetTop, null);
             canvas.drawBitmap(mutableMask, 0, 0, paint);
             paint.setXfermode(null);
-        } else { // draw the scaled bitmap without mask
+        } else {
+            // draw the scaled bitmap without mask
             canvas.drawBitmap(scaledBitmap, offsetLeft, offsetTop, null);
         }
 
@@ -213,10 +186,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                     int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
                                     if (drawableId != 0)
                                         backImages.add(new DrawableInfo(drawableName, drawableId));
-//                                    Bitmap iconback = loadBitmap(drawableName);
-//                                    if (iconback != null) {
-//                                        backImages.add(iconback);
-//                                    }
                                 }
                             }
                         }
@@ -227,7 +196,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
                                 if (drawableId != 0)
                                     maskImage = new DrawableInfo(drawableName, drawableId);
-                                //maskImage = loadBitmap(drawableName);
                             }
                         }
                         //parse <iconupon> xml tags used as front image of generated icons
@@ -237,7 +205,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
                                 if (drawableId != 0)
                                     frontImage = new DrawableInfo(drawableName, drawableId);
-                                //frontImage = loadBitmap(drawableName);
                             }
                         }
                         //parse <scale> xml tags used as scale factor of original bitmap icon

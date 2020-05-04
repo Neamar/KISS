@@ -40,7 +40,6 @@ import java.util.List;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.normalizer.StringNormalizer;
-import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -189,7 +188,6 @@ public class CustomIconDialog extends DialogFragment {
         }
 
         IconPack iconPack = iconsHandler.getCurrentIconPack();
-        //IIconPack systemIconPack = iconsHandler.getSystemIconPack();
 
         // add getActivityIcon(componentName)
         {
@@ -448,7 +446,6 @@ public class CustomIconDialog extends DialogFragment {
                     loader.cancel(true);
                 loader = new AsyncLoad(this);
                 loader.execute(content);
-                //icon.setImageDrawable(content.getIcon());
             }
         }
     }
