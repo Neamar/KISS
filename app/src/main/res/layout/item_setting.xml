@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/item_setting_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="?attr/resultIconSize"
+        android:layout_height="?attr/resultIconSize"
         android:layout_marginBottom="@dimen/icon_margin_bottom"
         android:layout_marginEnd="@dimen/icon_margin_right"
         android:layout_marginLeft="@dimen/icon_margin_left"
@@ -35,6 +35,7 @@
         android:shadowDx="1"
         android:shadowDy="2"
         android:shadowRadius="?attr/textShadowRadius"
+        android:textSize="?attr/resultSubtitleSize"
         android:text="@string/settings_prefix"
         android:textColor="?android:attr/textColorSecondary" />
 
@@ -51,7 +52,7 @@
         android:shadowDy="2"
         android:shadowRadius="?attr/textShadowRadius"
         android:textColor="?attr/resultColor"
-        android:textSize="@dimen/result_title_size"
+        android:textSize="?attr/resultTitleSize"
         tools:ignore="RtlHardcoded,RtlSymmetry"
         tools:text="@string/stub_setting" />
 
