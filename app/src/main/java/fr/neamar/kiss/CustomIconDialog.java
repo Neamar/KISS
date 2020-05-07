@@ -187,7 +187,8 @@ public class CustomIconDialog extends DialogFragment {
             ((TextView) quickList.findViewById(android.R.id.text1)).setText(R.string.default_icon);
         }
 
-        IconPack iconPack = iconsHandler.getCurrentIconPack();
+        IconPack iconPack = iconsHandler.getCustomIconPack();
+        IconPack systemPack = iconsHandler.getSystemIconPack();
 
         // add getActivityIcon(componentName)
         {
@@ -200,8 +201,8 @@ public class CustomIconDialog extends DialogFragment {
                 addQuickOption(R.string.custom_icon_activity, drawable, quickList);
                 if (iconPack != null)
                     addQuickOption(R.string.custom_icon_activity_with_pack, iconPack.applyBackgroundAndMask(context, drawable), quickList);
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-//                    addQuickOption(R.string.custom_icon_activity_adaptive, DrawableUtils.applyIconMaskShape(context, drawable), quickList);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    addQuickOption(R.string.custom_icon_activity_adaptive, systemPack.applyBackgroundAndMask(context, drawable), quickList);
             }
         }
 
@@ -216,8 +217,8 @@ public class CustomIconDialog extends DialogFragment {
                 addQuickOption(R.string.custom_icon_application, drawable, quickList);
                 if (iconPack != null)
                     addQuickOption(R.string.custom_icon_application_with_pack, iconPack.applyBackgroundAndMask(context, drawable), quickList);
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-//                    addQuickOption(R.string.custom_icon_application_adaptive, DrawableUtils.applyIconMaskShape(context, drawable), quickList);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    addQuickOption(R.string.custom_icon_application_adaptive, systemPack.applyBackgroundAndMask(context, drawable), quickList);
             }
         }
 
@@ -231,8 +232,8 @@ public class CustomIconDialog extends DialogFragment {
                 addQuickOption(R.string.custom_icon_badged, drawable, quickList);
                 if (iconPack != null)
                     addQuickOption(R.string.custom_icon_badged_with_pack, iconPack.applyBackgroundAndMask(context, drawable), quickList);
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-//                    addQuickOption(R.string.custom_icon_badged_adaptive, DrawableUtils.applyIconMaskShape(context, drawable), quickList);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    addQuickOption(R.string.custom_icon_badged_adaptive, systemPack.applyBackgroundAndMask(context, drawable), quickList);
                 break;
             }
         }
@@ -267,7 +268,7 @@ public class CustomIconDialog extends DialogFragment {
     private void refreshList() {
         mIconData.clear();
         IconsHandler iconsHandler = KissApplication.getApplication(getActivity()).getIconsHandler();
-        IconPack iconPack = iconsHandler.getCurrentIconPack();
+        IconPack iconPack = iconsHandler.getCustomIconPack();
         if (iconPack instanceof IconPackXML) {
             Collection<IconPackXML.DrawableInfo> drawables = ((IconPackXML) iconPack).getDrawableList();
             if (drawables != null) {

@@ -34,13 +34,16 @@ import java.util.Collections;
 import java.util.List;
 
 import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
+import fr.neamar.kiss.utils.DrawableUtils;
 
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
@@ -113,13 +116,14 @@ public class ShortcutsResult extends Result {
 
         if (!prefs.getBoolean("icons-hide", false)) {
             Bitmap icon = shortcutPojo.getIcon(context);
+            IconPack iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
             if (icon != null) {
                 BitmapDrawable drawable = new BitmapDrawable(context.getResources(), icon);
-                shortcutIcon.setImageDrawable(drawable);
-                appIcon.setImageDrawable(appDrawable);
+                shortcutIcon.setImageDrawable(iconPack.applyBackgroundAndMask(context, drawable));
+                appIcon.setImageDrawable(iconPack.applyBackgroundAndMask(context, appDrawable));
             } else {
                 // No icon for this shortcut, use app icon
-                shortcutIcon.setImageDrawable(appDrawable);
+                shortcutIcon.setImageDrawable(iconPack.applyBackgroundAndMask(context, appDrawable));
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
             }
         }

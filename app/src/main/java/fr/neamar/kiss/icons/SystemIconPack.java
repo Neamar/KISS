@@ -30,11 +30,20 @@ import fr.neamar.kiss.utils.UserHandle;
 public class SystemIconPack implements IconPack<Void> {
 
     private static final String TAG = SystemIconPack.class.getSimpleName();
+    private final String packageName;
+
+    public SystemIconPack(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public SystemIconPack() {
+        this("default");
+    }
 
     @NonNull
     @Override
     public String getPackPackageName() {
-        return "default";
+        return packageName;
     }
 
     @Override
@@ -78,8 +87,6 @@ public class SystemIconPack implements IconPack<Void> {
     @Override
     public BitmapDrawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            int shape = 0;
-
             Bitmap outputBitmap;
             Canvas outputCanvas;
             Paint outputPaint;
@@ -109,7 +116,7 @@ public class SystemIconPack implements IconPack<Void> {
                 outputPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
                 outputPaint.setShader(new BitmapShader(iconBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
 
-                DrawableUtils.setIconShape(outputCanvas, outputPaint, shape);
+                DrawableUtils.setIconShape(outputCanvas, outputPaint, getPackPackageName());
             }
             // If icon is not adaptive, put it in a white canvas to make it have a unified shape
             else {
@@ -125,7 +132,7 @@ public class SystemIconPack implements IconPack<Void> {
                 int bottomRightCorner = Math.round(0.85f * iconSize);
                 icon.setBounds(topLeftCorner, topLeftCorner, bottomRightCorner, bottomRightCorner);
 
-                DrawableUtils.setIconShape(outputCanvas, outputPaint, shape);
+                DrawableUtils.setIconShape(outputCanvas, outputPaint, getPackPackageName());
                 icon.draw(outputCanvas);
             }
             return new BitmapDrawable(ctx.getResources(), outputBitmap);

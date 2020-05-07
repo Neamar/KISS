@@ -27,6 +27,7 @@ import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.result.AppResult;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
 /**
@@ -75,7 +76,9 @@ public class IconsHandler {
         cacheClear();
 
         // system icons, nothing to do
-        if (packageName.equalsIgnoreCase("default")) {
+        if (packageName.equalsIgnoreCase("default") || DrawableUtils.isIconsPackAdaptive(packageName)) {
+            if (!packageName.equals(mSystemPack.getPackPackageName()))
+                mSystemPack = new SystemIconPack(packageName);
             return;
         }
 
@@ -91,7 +94,10 @@ public class IconsHandler {
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
         // system icons, nothing to do
         if (mIconPack == null) {
-            return mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
+            Drawable drawable = mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
+            if (drawable == null)
+                return null;
+            return mSystemPack.applyBackgroundAndMask(ctx, drawable);
         }
 
         // Check the icon pack for a resource
@@ -145,7 +151,7 @@ public class IconsHandler {
     }
 
     @Nullable
-    public IconPack getCurrentIconPack() {
+    public IconPack getCustomIconPack() {
         return mIconPack;
     }
 
@@ -154,6 +160,10 @@ public class IconsHandler {
         return mSystemPack;
     }
 
+    @NonNull
+    public IconPack getIconPack() {
+        return mIconPack != null ? mIconPack : mSystemPack;
+    }
 
     private boolean isDrawableInCache(String key) {
         File drawableFile = cacheGetFileName(key);

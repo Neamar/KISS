@@ -512,12 +512,39 @@ public class SettingsActivity extends PreferenceActivity implements
     private void setListPreferenceIconsPacksData(ListPreference lp) {
         IconsHandler iph = KissApplication.getApplication(this).getIconsHandler();
 
-        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size() + 1];
-        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size() + 1];
+        CharSequence[] entries;
+        CharSequence[] entryValues;
+        int i;
 
-        int i = 0;
-        entries[0] = this.getString(R.string.icons_pack_default_name);
-        entryValues[0] = "default";
+        // Give the choice of adaptive icons to compatible devices only
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            entries = new CharSequence[iph.getIconsPacks().size() + 5];
+            entryValues = new CharSequence[iph.getIconsPacks().size() + 5];
+
+            i = 4;
+            entries[0] = this.getString(R.string.icons_pack_default_name);
+            entryValues[0] = "default";
+
+            entries[1] = this.getString(R.string.icons_pack_squircle_name);
+            entryValues[1] = "squircle";
+
+            entries[2] = this.getString(R.string.icons_pack_square_name);
+            entryValues[2] = "square";
+
+            entries[3] = this.getString(R.string.icons_pack_circle_name);
+            entryValues[3] = "circle";
+
+            entries[4] = this.getString(R.string.icons_pack_teardrop_name);
+            entryValues[4] = "teardrop";
+        } else {
+            entries = new CharSequence[iph.getIconsPacks().size() + 1];
+            entryValues = new CharSequence[iph.getIconsPacks().size() + 1];
+
+            i = 0;
+            entries[0] = this.getString(R.string.icons_pack_default_name);
+            entryValues[0] = "default";
+        }
+
         for (String packageIconsPack : iph.getIconsPacks().keySet()) {
             entries[++i] = iph.getIconsPacks().get(packageIconsPack);
             entryValues[i] = packageIconsPack;

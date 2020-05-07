@@ -1,6 +1,7 @@
 package fr.neamar.kiss.ui;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -17,6 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.QuickContactBadge;
+import android.preference.PreferenceManager;
+
+import fr.neamar.kiss.utils.DrawableUtils;
 
 /**
  * A rounded version of {@link QuickContactBadge]
@@ -24,17 +28,21 @@ import android.widget.QuickContactBadge;
  * @author kishu27 (http://linkd.in/1laN852)
  */
 public class RoundedQuickContactBadge extends QuickContactBadge {
+    private static Context ctx;
 
     public RoundedQuickContactBadge(Context context) {
         super(context);
+        this.ctx = context;
     }
 
     public RoundedQuickContactBadge(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.ctx = context;
     }
 
     public RoundedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        this.ctx = context;
     }
 
     public static class RoundedDrawable extends Drawable {
@@ -81,7 +89,15 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         @Override
         public void draw(@NonNull Canvas canvas) {
             float radius = mDisplayBounds.height() * 0.5f;
-            canvas.drawCircle(mDisplayBounds.centerX(), mDisplayBounds.centerY(), radius, mPaint);
+
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+            String iconsPack = prefs.getString("icons-pack", "default");
+
+            if(DrawableUtils.isIconsPackAdaptive(iconsPack)) {
+                DrawableUtils.setIconShape(canvas, mPaint, iconsPack);
+            } else {
+                canvas.drawCircle(mDisplayBounds.centerX(), mDisplayBounds.centerY(), radius, mPaint);
+            }
         }
 
         @Override
