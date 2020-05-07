@@ -78,6 +78,9 @@ class ExperienceTweaks extends Forwarder {
                     if (prefs.getBoolean("history-onclick", false)) {
                         doAction("display-history");
                     }
+                    else if(isMinimalisticModeEnabledForFavorites()) {
+                        doAction("display-favorites");
+                    }
                 }
                 return super.onSingleTapUp(e);
             }
@@ -88,6 +91,9 @@ class ExperienceTweaks extends Forwarder {
                 if(prefs.getBoolean("double-tap", false)) {
                     if (prefs.getBoolean("history-onclick", false)) {
                         doAction("display-history");
+                    }
+                    else if(isMinimalisticModeEnabledForFavorites()) {
+                        doAction("display-favorites");
                     }
                 }
 
@@ -172,6 +178,10 @@ class ExperienceTweaks extends Forwarder {
                             mainActivity.favoritesBar.setVisibility(View.VISIBLE);
                         }
                         break;
+                    case "display-favorites":
+                        // Not provided as an option for the gestures, but useful if you only want to display facorites on tap,
+                        // not history.
+                        mainActivity.favoritesBar.setVisibility(View.VISIBLE);
                 }
             }
         });

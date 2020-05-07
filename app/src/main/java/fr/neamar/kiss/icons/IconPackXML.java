@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -129,26 +130,28 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         // create a bitmap for the result
         Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
+        canvas.setDensity(Bitmap.DENSITY_NONE);
 
         // draw the background first
         canvas.drawBitmap(backImage, 0, 0, null);
 
         // scale original icon
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(defaultBitmap.getBitmap(), (int) (w * factor), (int) (h * factor), false);
+        scaledBitmap.setDensity(Bitmap.DENSITY_NONE);
 
-        int offsetLeft = (w - scaledBitmap.getWidth()) / 2;
-        int offsetTop = (h - scaledBitmap.getHeight()) / 2;
+        float offsetLeft = (w - scaledBitmap.getWidth()) / 2f;
+        float offsetTop = (h - scaledBitmap.getHeight()) / 2f;
         if (maskImage != null) {
             // draw the scaled bitmap with mask
-            Bitmap mutableMask = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-            Canvas maskCanvas = new Canvas(mutableMask);
-            maskCanvas.drawBitmap(getBitmap(maskImage), 0, 0, new Paint());
+            Bitmap mask = getBitmap(maskImage);
+            Matrix matScale = new Matrix();
+            matScale.setScale(w / (float) mask.getWidth(), h / (float) mask.getHeight());
 
             // paint the bitmap with mask into the result
             Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             canvas.drawBitmap(scaledBitmap, offsetLeft, offsetTop, null);
-            canvas.drawBitmap(mutableMask, 0, 0, paint);
+            canvas.drawBitmap(mask, matScale, paint);
             paint.setXfermode(null);
         } else {
             // draw the scaled bitmap without mask

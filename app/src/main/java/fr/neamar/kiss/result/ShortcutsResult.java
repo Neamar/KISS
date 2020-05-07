@@ -126,6 +126,9 @@ public class ShortcutsResult extends Result {
                 shortcutIcon.setImageDrawable(iconPack.applyBackgroundAndMask(context, appDrawable));
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
             }
+            if(!prefs.getBoolean("subicon-visible", true)) {
+                appIcon.setVisibility(View.GONE);
+            }
         }
         else {
             appIcon.setImageDrawable(null);
