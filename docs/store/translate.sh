@@ -1,16 +1,23 @@
 #!/bin/bash
 
-# key=$(pcregrep --match-limit=1 --buffer-size=10M -o1 '>t:([^<]+)<' $2)
+# exit when any command fails
+set -euo pipefail
+
 key=$(cat $2 | perl -n -e'/>t:([^<]+)</ && print $1 and last')
-echo $key
-translation=$(cat "$1/screenshots.json" | jq -r ".$key")
 
-echo $translation
+echo "key: $key"
 
-mkdir -p $(dirname $3)
+if [ ! -z "$key" ]; then
+  if [ "$key" == "featureGraphic.subtitle" ]; then
+    translation=$(cat "../../fastlane/metadata/android/$1/short_description.txt" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+  else
+    translation=$(cat "$1.json" | jq -r ".$key")
+  fi
 
-tempfile=$(mktemp)
-cp $2 "$tempfile"
-sed -i "s/t:${key}/${translation}/g" "$tempfile"
+  echo $translation
+  sed "s/t:${key}/${translation}/g" $2 | inkscape --pipe --export-type=png --export-filename=$3 --export-dpi=96
+else
+  cat $2 | inkscape --pipe --export-type=png --export-filename=$3 --export-dpi=96
+fi
 
-inkscape "$tempfile" --export-type=png --export-filename=$3 --export-dpi=96
+
