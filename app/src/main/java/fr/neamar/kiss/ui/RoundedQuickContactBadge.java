@@ -28,21 +28,24 @@ import fr.neamar.kiss.utils.DrawableUtils;
  * @author kishu27 (http://linkd.in/1laN852)
  */
 public class RoundedQuickContactBadge extends QuickContactBadge {
-    private static Context ctx;
+    private final String iconsPack;
 
     public RoundedQuickContactBadge(Context context) {
         super(context);
-        this.ctx = context;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        iconsPack = prefs.getString("icons-pack", "default");
     }
 
     public RoundedQuickContactBadge(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.ctx = context;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        iconsPack = prefs.getString("icons-pack", "default");
     }
 
     public RoundedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        this.ctx = context;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        iconsPack = prefs.getString("icons-pack", "default");
     }
 
     public static class RoundedDrawable extends Drawable {
@@ -51,8 +54,9 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         private final BitmapShader mBitmapShader;
         private final RectF mBitmapRect;
         private final RectF mDisplayBounds;
+        private final String mIconsPack;
 
-        public RoundedDrawable(Bitmap bitmap) {
+        public RoundedDrawable(Bitmap bitmap, String iconsPack) {
             mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
             mPaint = new Paint();
@@ -62,6 +66,8 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
             mBitmapRect = new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight());
             mDisplayBounds = new RectF();
             mDisplayBounds.set(mBitmapRect);
+
+            mIconsPack = iconsPack;
         }
 
         @Override
@@ -90,11 +96,8 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
         public void draw(@NonNull Canvas canvas) {
             float radius = mDisplayBounds.height() * 0.5f;
 
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-            String iconsPack = prefs.getString("icons-pack", "default");
-
-            if(DrawableUtils.isIconsPackAdaptive(iconsPack)) {
-                DrawableUtils.setIconShape(canvas, mPaint, iconsPack);
+            if(DrawableUtils.isIconsPackAdaptive(mIconsPack)) {
+                DrawableUtils.setIconShape(canvas, mPaint, mIconsPack);
             } else {
                 canvas.drawCircle(mDisplayBounds.centerX(), mDisplayBounds.centerY(), radius, mPaint);
             }
@@ -121,7 +124,7 @@ public class RoundedQuickContactBadge extends QuickContactBadge {
     public void setImageDrawable(@Nullable Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-            drawable = new RoundedDrawable(bitmap);
+            drawable = new RoundedDrawable(bitmap, iconsPack);
         }
         super.setImageDrawable(drawable);
     }

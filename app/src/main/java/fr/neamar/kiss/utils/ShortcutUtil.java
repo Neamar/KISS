@@ -114,6 +114,7 @@ public class ShortcutUtil {
         record.packageName = shortcutInfo.getPackage();
         record.intentUri = ShortcutPojo.OREO_PREFIX + shortcutInfo.getId();
 
+        /* TODELETE */
         LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
         final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
         Bitmap icon = iconDrawable == null ? null : DrawableUtils.drawableToBitmap(iconDrawable);
@@ -122,6 +123,7 @@ public class ShortcutUtil {
             icon.compress(Bitmap.CompressFormat.PNG, 100, baos);
             record.icon_blob = baos.toByteArray();
         }
+        /* TODELETE */
 
         String appName = getAppNameFromPackageName(context, shortcutInfo.getPackage());
 

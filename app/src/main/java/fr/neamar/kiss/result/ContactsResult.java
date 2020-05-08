@@ -215,8 +215,9 @@ public class ContactsResult extends Result {
     public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
         Drawable drawable = getDrawable(context);
         if ( drawable != null ) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
             Bitmap iconBitmap = drawableToBitmap(drawable);
-            drawable = new RoundedQuickContactBadge.RoundedDrawable(iconBitmap);
+            drawable = new RoundedQuickContactBadge.RoundedDrawable(iconBitmap, prefs.getString("icons-pack", "default"));
         }
         View favoriteView = super.inflateFavorite(context, parent);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);

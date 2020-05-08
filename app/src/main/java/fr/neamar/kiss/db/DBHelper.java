@@ -313,6 +313,7 @@ public class DBHelper {
         return records;
     }
 
+    /* TODELETE */
     public static byte[] getShortcutIcon(Context context, int dbId) {
         SQLiteDatabase db = getDatabase(context);
 
@@ -327,6 +328,7 @@ public class DBHelper {
         cursor.close();
         return iconBlob;
     }
+    /* TODELETE */
 
     /**
      * Remove shortcuts for a given package name

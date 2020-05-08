@@ -47,6 +47,7 @@ import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 
+
 public class ShortcutsResult extends Result {
     private final ShortcutPojo shortcutPojo;
 
@@ -112,11 +113,11 @@ public class ShortcutsResult extends Result {
             return view;
         }
 
+
         if (!prefs.getBoolean("icons-hide", false)) {
-            Bitmap icon = shortcutPojo.getIcon(context);
-            if (icon != null) {
-                BitmapDrawable drawable = new BitmapDrawable(context.getResources(), icon);
-                shortcutIcon.setImageDrawable(DrawableUtils.handleAdaptiveIcons(context, drawable));
+            Drawable shortcutDrawable = getDrawable(context);
+            if (shortcutDrawable != null) {
+                shortcutIcon.setImageDrawable(DrawableUtils.handleAdaptiveIcons(context, shortcutDrawable));
                 appIcon.setImageDrawable(DrawableUtils.handleAdaptiveIcons(context, appDrawable));
             } else {
                 // No icon for this shortcut, use app icon
@@ -133,7 +134,38 @@ public class ShortcutsResult extends Result {
     }
 
     public Drawable getDrawable(Context context) {
-        return new BitmapDrawable(context.getResources(), shortcutPojo.getIcon(context));
+        Drawable shortcutDrawable = null;
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            assert launcherApps != null;
+
+            if (launcherApps.hasShortcutHostPermission()) {
+                LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
+                query.setPackage(shortcutPojo.packageName);
+                query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
+                query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
+
+                List<UserHandle> userHandles = launcherApps.getProfiles();
+
+                // Find the correct UserHandle, and retrieve the icon.
+                for (UserHandle userHandle : userHandles) {
+                    List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
+                    if (shortcuts != null && shortcuts.size() > 0) {
+                        shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcuts.get(0), 0);
+                    }
+                }
+            }
+        }
+        if(shortcutDrawable != null) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            String iconsPack = prefs.getString("icon-pack", "default");
+
+            if(DrawableUtils.isIconsPackAdaptive(iconsPack)) {
+                shortcutDrawable = DrawableUtils.handleAdaptiveIcons(context, shortcutDrawable);
+            }
+        }
+
+        return shortcutDrawable;
     }
 
 
