@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -289,14 +290,14 @@ public class AppResult extends Result {
             builder.setView(View.inflate(context, R.layout.rename_dialog, null));
         }
 
-        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+        builder.setPositiveButton(R.string.custom_name_rename, (dialog, which) -> {
             EditText input = ((AlertDialog) dialog).findViewById(R.id.rename);
             dialog.dismiss();
 
             // Set new name
             String newName = input.getText().toString().trim();
             app.setName(newName);
-            KissApplication.getApplication(context).getDataHandler().renameApp(appPojo.getComponentName(), newName);
+            KissApplication.getApplication(context).getDataHandler().renameApp(app.getComponentName(), newName);
 
             // Show toast message
             String msg = context.getResources().getString(R.string.app_rename_confirmation, app.getName());
@@ -308,18 +309,43 @@ public class AppResult extends Result {
             final Handler handler = new Handler();
             handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
         });
-        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
-            dialog.cancel();
+        builder.setNeutralButton(R.string.custom_name_set_default, (dialog, which) -> {
+            dialog.dismiss();
+
+            // Get initial name
+            String name = null;
+            PackageManager pm = context.getPackageManager();
+            try {
+                ApplicationInfo applicationInfo = pm.getApplicationInfo(app.packageName, 0);
+                name = applicationInfo.loadLabel(pm).toString();
+            } catch (NameNotFoundException ignored) {
+            }
+
+            // Set name
+            if (name != null) {
+                app.setName(name);
+                KissApplication.getApplication(context).getDataHandler().removeRenameApp(getComponentName(), name);
+
+                // Show toast message
+                String msg = context.getResources().getString(R.string.app_rename_confirmation, appPojo.getName());
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            }
+
             final Handler handler = new Handler();
             handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+        });
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+            dialog.cancel();
 
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
         });
 
         parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
         AlertDialog dialog = builder.create();
         dialog.show();
         // call after dialog got inflated (show call)
-        ((TextView) dialog.findViewById(R.id.rename)).setHint(appPojo.getName());
+        ((TextView) dialog.findViewById(R.id.rename)).setText(app.getName());
     }
 
     private void launchCustomIcon(Context context, RecordAdapter parent) {
