@@ -47,7 +47,6 @@ import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 
-
 public class ShortcutsResult extends Result {
     private final ShortcutPojo shortcutPojo;
 
@@ -113,15 +112,21 @@ public class ShortcutsResult extends Result {
             return view;
         }
 
-
         if (!prefs.getBoolean("icons-hide", false)) {
             Drawable shortcutDrawable = getDrawable(context);
+            String iconsPack = prefs.getString("icons-pack", "default");
+            if(DrawableUtils.isIconsPackAdaptive(iconsPack)) {
+                appDrawable = DrawableUtils.handleAdaptiveIcons(context, appDrawable);
+                if(shortcutDrawable != null) {
+                    shortcutDrawable = DrawableUtils.handleAdaptiveIcons(context, shortcutDrawable);
+                }
+            }
             if (shortcutDrawable != null) {
-                shortcutIcon.setImageDrawable(DrawableUtils.handleAdaptiveIcons(context, shortcutDrawable));
-                appIcon.setImageDrawable(DrawableUtils.handleAdaptiveIcons(context, appDrawable));
+                shortcutIcon.setImageDrawable(shortcutDrawable);
+                appIcon.setImageDrawable(appDrawable);
             } else {
                 // No icon for this shortcut, use app icon
-                shortcutIcon.setImageDrawable(DrawableUtils.handleAdaptiveIcons(context, appDrawable));
+                shortcutIcon.setImageDrawable(appDrawable);
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
             }
         }
@@ -154,14 +159,6 @@ public class ShortcutsResult extends Result {
                         shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcuts.get(0), 0);
                     }
                 }
-            }
-        }
-        if(shortcutDrawable != null) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            String iconsPack = prefs.getString("icon-pack", "default");
-
-            if(DrawableUtils.isIconsPackAdaptive(iconsPack)) {
-                shortcutDrawable = DrawableUtils.handleAdaptiveIcons(context, shortcutDrawable);
             }
         }
 
