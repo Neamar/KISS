@@ -1,5 +1,5 @@
 # Inspired from https://stackoverflow.com/a/32535737/2367848
-locales     := fr-FR en-US
+locales     := $(shell ls ../../fastlane/metadata/android/)
 templates   := phoneScreenshots/1.svg phoneScreenshots/2.svg phoneScreenshots/3.svg phoneScreenshots/4.svg featureGraphic.svg promoGraphic.svg
 
 localized_screenshots_raw = $(foreach locale, $(locales), $(addprefix build/${locale}/, $(templates:.svg=.inkscape.png)))
