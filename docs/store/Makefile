@@ -13,7 +13,7 @@ publish: $(published_screenshots)
 # eval argument is expanded twice; first by the eval function, then the results of that expansion are expanded again
 # when they are parsed as makefile syntax. This means you may need to provide extra levels of escaping for “$” characters when using eval.
 define LOCALE_rule
-../../fastlane/metadata/android/$(1)/images/%.png: $(1)/%.png
+../../fastlane/metadata/android/$(1)/images/%.png: build/$(1)/%.png
 	mkdir -p $$$$(dirname $$@)
 	cp $$^ $$@
 
