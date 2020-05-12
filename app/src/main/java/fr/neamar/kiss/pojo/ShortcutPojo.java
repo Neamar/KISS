@@ -36,6 +36,7 @@ public final class ShortcutPojo extends PojoWithTags {
         return intentUri.replace(ShortcutPojo.OREO_PREFIX, "");
     }
 
+    /* TODELETE */
     public Bitmap getIcon(Context context) {
         byte[] iconBlob = DBHelper.getShortcutIcon(context, this.dbId);
 
@@ -45,4 +46,5 @@ public final class ShortcutPojo extends PojoWithTags {
 
         return BitmapFactory.decodeByteArray(iconBlob, 0, iconBlob.length);
     }
+    /* TODELETE */
 }
