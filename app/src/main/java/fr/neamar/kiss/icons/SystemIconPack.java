@@ -14,6 +14,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.util.Log;
 import android.util.TypedValue;
@@ -126,6 +127,15 @@ public class SystemIconPack implements IconPack<Void> {
                 outputCanvas = new Canvas(outputBitmap);
                 outputPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
                 outputPaint.setColor(Color.WHITE);
+
+                // setBounds for LayerDrawable do not scale it properly and it ends up bigger then the white background shape
+                if (icon instanceof LayerDrawable) {
+                    Bitmap bitmap = Bitmap.createBitmap(icon.getIntrinsicWidth(), icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(bitmap);
+                    icon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                    icon.draw(canvas);
+                    icon = new BitmapDrawable(ctx.getResources(), bitmap);
+                }
 
                 // Shrink icon to 70% of its size so that it fits the shape
                 int topLeftCorner = Math.round(0.15f * iconSize);
