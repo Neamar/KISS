@@ -12,6 +12,9 @@ You can customize this behavior from `⋮, KISS Settings, History Settings`. Sel
 
 > Note that changing this mode will not change the search results.
 
+![History modes](/screenshots/history-modes.png)
+
+
 ## Accessed recently first
 This is the default option: the first item (closest to your thumb) will be the last one used.
 
@@ -24,6 +27,10 @@ Note that your history is automatically cleaned every 3.000 uses, so at some poi
 ## Adapted to user usage
 This option will display apps sorted by frequency, but only over the last 36 hours of usage.
 This means apps frequently used recently will appear first, and soon disappear if they're not used anymore (for instance, weekend apps vs. workdays apps)
+
+## Alphabetically
+The names says it all ;)
+This will retrieve all elements accessed recently, and display them sorted alphabetically.
 
 ## Accessed frequently recently
 Probably the most advanced sorting method.
