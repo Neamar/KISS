@@ -97,7 +97,35 @@
             android:entries="@array/themesEntries"
             android:entryValues="@array/themesValues"
             android:key="theme"
+            android:summary="%s"
             android:title="@string/theme_name" />
+        <PreferenceScreen android:title="@string/theme_customisation">
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/shadowEntries"
+                android:entryValues="@array/shadowValues"
+                android:key="theme-shadow"
+                android:summary="%s"
+                android:title="@string/theme_shadow" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/separatorEntries"
+                android:entryValues="@array/separatorValues"
+                android:key="theme-separator"
+                android:summary="%s"
+                android:title="@string/theme_separator" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/resultColorEntries"
+                android:entryValues="@array/resultColorValues"
+                android:key="theme-result-color"
+                android:summary="%s"
+                android:title="@string/theme_result_color" />
+        </PreferenceScreen>
+        <fr.neamar.kiss.preference.SwitchPreference
+            android:defaultValue="false"
+            android:key="small-results"
+            android:title="@string/small_results" />
         <ListPreference
             android:defaultValue="default"
             android:key="icons-pack"
