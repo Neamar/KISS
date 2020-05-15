@@ -68,12 +68,20 @@ public class DrawableUtils {
             Bitmap iconBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             Canvas iconCanvas = new Canvas(iconBitmap);
 
-            // Stretch adaptive layers because they are 108dp and the icon size is 48dp
-            bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize+layerOffset, iconSize+layerOffset);
-            bgDrawable.draw(iconCanvas);
+            if(bgDrawable != null) {
+                // Stretch adaptive layers because they are 108dp and the icon size is 48dp
+                bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize+layerOffset, iconSize+layerOffset);
+                bgDrawable.draw(iconCanvas);
+            } else {
+                Paint iconPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                iconPaint.setARGB(255,0,0,0);
+                iconCanvas.drawPaint(iconPaint);
+            }
 
-            fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize+layerOffset, iconSize+layerOffset);
-            fgDrawable.draw(iconCanvas);
+            if(fgDrawable != null) {
+                fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize+layerOffset, iconSize+layerOffset);
+                fgDrawable.draw(iconCanvas);
+            }
 
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
