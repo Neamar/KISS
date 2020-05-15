@@ -92,20 +92,32 @@ public class DrawableUtils {
         }
         // If icon is not adaptive, put it in a white canvas to make it have a unified shape
         else {
-            int iconSize = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48f, ctx.getResources().getDisplayMetrics()));
+            if(icon != null) {
+                // Shrink icon to 70% of its size so that it fits the shape
+                int iconSize = Math.round(1.42f*icon.getIntrinsicHeight());
+                int iconOffset = Math.round(0.21f*icon.getIntrinsicHeight());
 
-            outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-            outputCanvas = new Canvas(outputBitmap);
-            outputPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            outputPaint.setARGB(255,255,255,255);
+                outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
+                outputCanvas = new Canvas(outputBitmap);
+                outputPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                outputPaint.setARGB(255,255,255,255);
 
-            // Shrink icon to 70% of its size so that it fits the shape
-            int topLeftCorner = Math.round(0.15f*iconSize);
-            int bottomRightCorner = Math.round(0.85f*iconSize);
-            icon.setBounds(topLeftCorner, topLeftCorner, bottomRightCorner, bottomRightCorner);
+                int topLeftCorner = iconOffset;
+                int bottomRightCorner = iconSize-iconOffset;
+                icon.setBounds(topLeftCorner, topLeftCorner, bottomRightCorner, bottomRightCorner);
 
-            setIconShape(outputCanvas, outputPaint, iconsPackName);
-            icon.draw(outputCanvas);
+                setIconShape(outputCanvas, outputPaint, iconsPackName);
+                icon.draw(outputCanvas);
+            } else {
+                int iconSize = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48f, ctx.getResources().getDisplayMetrics()));
+
+                outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
+                outputCanvas = new Canvas(outputBitmap);
+                outputPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                outputPaint.setARGB(255,0,0,0);
+
+                setIconShape(outputCanvas, outputPaint, iconsPackName);
+            }
         }
         return new BitmapDrawable(ctx.getResources(), outputBitmap);
     }
