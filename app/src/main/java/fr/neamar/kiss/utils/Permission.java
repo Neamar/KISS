@@ -3,23 +3,15 @@ package fr.neamar.kiss.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import androidx.annotation.NonNull;
-
-import android.util.Log;
-import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ListIterator;
 
-import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.R;
-import fr.neamar.kiss.dataprovider.ContactsProvider;
+import androidx.annotation.NonNull;
 
 
 public class Permission {
@@ -38,19 +30,6 @@ public class Permission {
     private static WeakReference<Activity> currentActivity = new WeakReference<Activity>(null);
 
     private static ArrayList<PermissionResultListener> permissionListeners;
-
-    public static boolean checkContactPermission(Context context) {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    public static void askContactPermission() {
-        // If we don't have permission to list contacts, ask for it.
-        Activity activity = Permission.currentActivity.get();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity != null) {
-            activity.requestPermissions(new String[]{android.Manifest.permission.READ_CONTACTS},
-                    Permission.PERMISSION_READ_CONTACTS);
-        }
-    }
 
     public static boolean checkPermission(Context context, int permission) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(permissions[permission]) == PackageManager.PERMISSION_GRANTED;
@@ -82,16 +61,6 @@ public class Permission {
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         if (grantResults.length == 0) {
             return;
-        }
-
-        Activity activity = Permission.currentActivity.get();
-
-        if (requestCode == PERMISSION_READ_CONTACTS && grantResults[0] == PackageManager.PERMISSION_GRANTED && activity != null) {
-            // Great! Reload the contact provider. We're done :)
-            ContactsProvider contactsProvider = KissApplication.getApplication(activity).getDataHandler().getContactsProvider();
-            if (contactsProvider != null) {
-                contactsProvider.reload();
-            }
         }
 
         // Iterator allows to remove while iterating

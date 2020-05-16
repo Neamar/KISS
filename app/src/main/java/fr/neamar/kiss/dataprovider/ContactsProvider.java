@@ -4,13 +4,13 @@ import android.database.ContentObserver;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.Permission;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
     private final static String TAG = "ContactsProvider";
@@ -34,8 +34,16 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     public void onCreate() {
         super.onCreate();
         // register content observer if we have permission
-        if(Permission.checkContactPermission(this)) {
+        if(Permission.checkPermission(this, Permission.PERMISSION_READ_CONTACTS)) {
             getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
+        } else {
+            Permission.askPermission(Permission.PERMISSION_READ_CONTACTS, new Permission.PermissionResultListener() {
+                @Override
+                public void onGranted() {
+                    // Great! Reload the contact provider. We're done :)
+                    reload();
+                }
+            });
         }
     }
 

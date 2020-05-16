@@ -13,10 +13,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.utils.Permission;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
@@ -35,8 +35,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
 
         // Skip if we don't have permission to list contacts yet:(
-        if(!Permission.checkContactPermission(c)) {
-            Permission.askContactPermission();
+        if(!Permission.checkPermission(c, Permission.PERMISSION_READ_CONTACTS)) {
             return contacts;
         }
 
