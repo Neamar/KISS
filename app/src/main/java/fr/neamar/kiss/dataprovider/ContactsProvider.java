@@ -4,7 +4,7 @@ import android.database.ContentObserver;
 import android.provider.ContactsContract;
 import android.util.Log;
 
-import fr.neamar.kiss.forwarder.Permission;
+import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;

@@ -55,6 +55,7 @@ import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
@@ -160,6 +161,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private PopupWindow mPopup;
 
     private ForwarderManager forwarderManager;
+    private Permission permissionManager;
 
     /**
      * Called when the activity is first created.
@@ -181,6 +183,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Initialize all forwarders
          */
         forwarderManager = new ForwarderManager(this);
+        permissionManager = new Permission(this);
 
         /*
          * Initialize data handler and start loading providers
@@ -539,7 +542,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        forwarderManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        permissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override

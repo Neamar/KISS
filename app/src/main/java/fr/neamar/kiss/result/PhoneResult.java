@@ -21,7 +21,7 @@ import java.util.Collections;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.forwarder.Permission;
+import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;

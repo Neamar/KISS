@@ -32,7 +32,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.forwarder.Permission;
+import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
