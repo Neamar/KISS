@@ -1,13 +1,10 @@
 package fr.neamar.kiss.adapter;
 
 import android.content.Context;
-import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
-
-import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fr.neamar.kiss.KissApplication;
+import androidx.annotation.NonNull;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
@@ -114,18 +111,8 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
         try {
             result = results.get(position);
-            result.launch(v.getContext(), v);
-        } catch (ArrayIndexOutOfBoundsException ignored) {
-            return;
-        }
-
-        // Record the launch after some period,
-        // * to ensure the animation runs smoothly
-        // * to avoid a flickering -- launchOccurred will refresh the list
-        // Thus TOUCH_DELAY * 3
-        Handler handler = new Handler();
-        handler.postDelayed(parent::launchOccurred, KissApplication.TOUCH_DELAY * 3);
-
+            result.launch(v.getContext(), v, parent);
+        } catch (ArrayIndexOutOfBoundsException ignored) {}
     }
 
     public void removeResult(Context context, Result result) {

@@ -37,37 +37,7 @@ public class Permission {
     // to ensure classes requesting permission can access activity.requestPermission()
     private static WeakReference<Activity> currentActivity = new WeakReference<Activity>(null);
 
-    /**
-     * Sometimes, we need to wait for the user to give us permission before we can start an intent.
-     * Store the intent here for later use.
-     * Ideally, we'd want to use MainActivity to store this, but MainActivity has stateNotNeeded=true
-     * which means it's always rebuild from scratch, we can't store any state in it.
-     * This means that when we use pendingIntent, it's highly likely taht by the time we end up using it,
-     * currentMainActivity will have changed
-     */
-    private static Intent pendingIntent = null;
-
     private static ArrayList<PermissionResultListener> permissionListeners;
-
-    /**
-     * Try to start the dialer with specified intent, if we have permission already
-     * Otherwise, ask for permission and store the intent for future use;
-     *
-     * @return true if we do have permission already, false if we're asking for permission now and will handle dispatching the intent in the Forwarder
-     */
-    public static boolean ensureCallPhonePermission(Intent pendingIntent) {
-        Activity activity = Permission.currentActivity.get();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity != null && activity.checkSelfPermission(android.Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
-            activity.requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE},
-                    Permission.PERMISSION_CALL_PHONE);
-            Permission.pendingIntent = pendingIntent;
-
-            return false;
-        }
-
-        return true;
-    }
 
     public static boolean checkContactPermission(Context context) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
@@ -121,19 +91,6 @@ public class Permission {
             ContactsProvider contactsProvider = KissApplication.getApplication(activity).getDataHandler().getContactsProvider();
             if (contactsProvider != null) {
                 contactsProvider.reload();
-            }
-        } else if (requestCode == PERMISSION_CALL_PHONE && activity != null) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Great! Start the intent we stored for later use.
-                activity.startActivity(pendingIntent);
-                pendingIntent = null;
-
-                if (activity instanceof MainActivity) {
-                    // Record launch to clear search results
-                    ((MainActivity) activity).launchOccurred();
-                }
-            } else {
-                Toast.makeText(activity, R.string.permission_denied, Toast.LENGTH_SHORT).show();
             }
         }
 

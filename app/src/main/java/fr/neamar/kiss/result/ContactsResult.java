@@ -1,6 +1,5 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +10,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -22,17 +20,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import fr.neamar.kiss.KissApplication;
+import androidx.annotation.NonNull;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
@@ -40,7 +35,7 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.RoundedQuickContactBadge;
 import fr.neamar.kiss.utils.FuzzyScore;
 
-public class ContactsResult extends Result {
+public class ContactsResult extends CallResult {
     private final ContactsPojo contactPojo;
     private final QueryInterface queryInterface;
     private Drawable icon = null;
@@ -94,8 +89,7 @@ public class ContactsResult extends Result {
 
             @Override
             public void onClick(View v) {
-                recordLaunch(v.getContext());
-                queryInterface.launchOccurred();
+                recordLaunch(v.getContext(), queryInterface);
             }
         });
 
@@ -115,7 +109,8 @@ public class ContactsResult extends Result {
             phoneButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    launchCall(v.getContext());
+                    launchCall(v.getContext(), v, contactPojo.phone);
+                    recordLaunch(context, queryInterface);
                 }
             });
 
@@ -124,6 +119,7 @@ public class ContactsResult extends Result {
                 @Override
                 public void onClick(View v) {
                     launchMessaging(v.getContext());
+                    recordLaunch(context, queryInterface);
                 }
             });
 
@@ -246,12 +242,10 @@ public class ContactsResult extends Result {
         boolean callContactOnClick = settingPrefs.getBoolean("call-contact-on-click", false);
 
         if (callContactOnClick) {
-            launchCall(v.getContext());
+            launchCall(context, v, contactPojo.phone);
         } else {
             launchContactView(context, v);
         }
-
-
     }
 
     private void launchMessaging(final Context context) {
@@ -259,41 +253,6 @@ public class ContactsResult extends Result {
         Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                recordLaunch(context);
-                queryInterface.launchOccurred();
-            }
-        }, KissApplication.TOUCH_DELAY);
-
-    }
-
-    @SuppressLint("MissingPermission")
-    private void launchCall(final Context context) {
-        // Create the intent to start a phone call
-        String url = "tel:" + Uri.encode(contactPojo.phone);
-        Intent phoneIntent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
-        phoneIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        // Make sure we have permission to call someone as this is considered a dangerous permission
-        if (Permission.ensureCallPhonePermission(phoneIntent)) {
-            // Pre-android 23, or we already have permission
-            context.startActivity(phoneIntent);
-
-            // Register launch in the future
-            // (animation delay)
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    recordLaunch(context);
-                    queryInterface.launchOccurred();
-                }
-            }, KissApplication.TOUCH_DELAY);
-        }
     }
 
     private static Bitmap drawableToBitmap(Drawable drawable) {
