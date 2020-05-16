@@ -16,6 +16,7 @@ import static org.hamcrest.Matchers.not;
 
 @LargeTest
 public class FavoritesTest extends AbstractMainActivityTest {
+    @SuppressWarnings("CatchAndPrintStackTrace")
     private void enableInternalBar() {
         mActivityRule.getActivity().prefs.edit().putBoolean("enable-favorites-bar", false).apply();
         try {
