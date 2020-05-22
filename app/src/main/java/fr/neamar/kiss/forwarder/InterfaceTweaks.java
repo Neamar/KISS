@@ -85,6 +85,10 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.searchEditText.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
         }
+
+        if (prefs.getBoolean("pref-hide-search-bar-hint", false)) {
+            mainActivity.searchEditText.setHint("");
+        }
     }
 
     void onResume() {
