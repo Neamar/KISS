@@ -5,7 +5,6 @@ public final class ShortcutPojo extends PojoWithTags {
     public static final String SCHEME = "shortcut://";
     public static final String OREO_PREFIX = "oreo-shortcut/";
 
-    private final int dbId;
     public final String packageName;
     public final String intentUri;// TODO: 15/10/18 Use boolean instead of prefix for Oreo shortcuts
 
