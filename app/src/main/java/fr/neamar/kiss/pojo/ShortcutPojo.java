@@ -1,11 +1,5 @@
 package fr.neamar.kiss.pojo;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
-import fr.neamar.kiss.db.DBHelper;
-
 public final class ShortcutPojo extends PojoWithTags {
 
     public static final String SCHEME = "shortcut://";
@@ -35,16 +29,4 @@ public final class ShortcutPojo extends PojoWithTags {
         // Oreo shortcuts encode their id in the unused intentUri field
         return intentUri.replace(ShortcutPojo.OREO_PREFIX, "");
     }
-
-    /* TODELETE */
-    public Bitmap getIcon(Context context) {
-        byte[] iconBlob = DBHelper.getShortcutIcon(context, this.dbId);
-
-        if(iconBlob == null) {
-            return null;
-        }
-
-        return BitmapFactory.decodeByteArray(iconBlob, 0, iconBlob.length);
-    }
-    /* TODELETE */
 }
