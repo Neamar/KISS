@@ -29,6 +29,7 @@ class FuzzyScoreTest {
         assertThat(doFuzzy(queryNormalized.codePoints, testStringNormalized.codePoints), equalTo(result));
     }
 
+    @SuppressWarnings("unused")
     private static Stream<Arguments> testProvider() {
         return Stream.of(
                 Arguments.of("no match", "some string", 0),

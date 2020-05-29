@@ -22,6 +22,7 @@ public class CalculatorProviderTest {
 		assertThat(matcher.group(), is(operation));
 	}
 
+	@SuppressWarnings("unused")
 	private static Stream<Arguments> expressionProvider() {
 		return Stream.of(
 				Arguments.of("(1+1)", "(1+1)"),
