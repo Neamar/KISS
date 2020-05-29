@@ -8,10 +8,9 @@ public final class ShortcutPojo extends PojoWithTags {
     public final String packageName;
     public final String intentUri;// TODO: 15/10/18 Use boolean instead of prefix for Oreo shortcuts
 
-    public ShortcutPojo(String id, int dbId, String packageName, String intentUri) {
+    public ShortcutPojo(String id, String packageName, String intentUri) {
         super(id);
 
-        this.dbId = dbId;
         this.packageName = packageName;
         this.intentUri = intentUri;
     }
