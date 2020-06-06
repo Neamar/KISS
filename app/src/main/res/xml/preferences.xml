@@ -80,9 +80,13 @@
             android:key="large-favorites-bar"
             android:title="@string/large_favorites_bar" />
         <fr.neamar.kiss.preference.SwitchPreference
+            android:defaultValue="false"
+            android:key="exclude-favorites-apps"
+            android:title="@string/exclude_favorites_apps" />
+        <fr.neamar.kiss.preference.SwitchPreference
             android:defaultValue="true"
-            android:key="exclude-favorites"
-            android:title="@string/exclude_favorites" />
+            android:key="exclude-favorites-history"
+            android:title="@string/exclude_favorites_history" />
         <MultiSelectListPreference
             android:defaultValue="@array/favTagsDefault"
             android:key="pref-fav-tags-list"

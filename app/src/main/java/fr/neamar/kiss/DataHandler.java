@@ -500,10 +500,16 @@ public class DataHandler extends BroadcastReceiver
 
     @NonNull
     public Set<String> getExcluded() {
-        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps", null);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        Set<String> excluded = prefs.getStringSet("excluded-apps", null);
         if (excluded == null) {
             excluded = new HashSet<>();
             excluded.add(context.getPackageName());
+        }
+        boolean excludeFavorites = prefs.getBoolean("exclude-favorites-apps", false);
+        if (excludeFavorites) {
+            Set<String> favApps = new HashSet<String>(Arrays.asList(prefs.getString("favorite-apps-list", "").split(";")));
+            excluded.addAll(favApps);
         }
         return excluded;
     }
