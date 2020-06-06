@@ -39,7 +39,7 @@ public class HistorySearcher extends Searcher {
     protected Void doInBackground(Void... voids) {
         // Ask for records
         String historyMode = prefs.getString("history-mode", "recency");
-        boolean excludeFavorites = prefs.getBoolean("exclude-favorites", false);
+        boolean excludeFavorites = prefs.getBoolean("exclude-favorites-history", false);
 
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
