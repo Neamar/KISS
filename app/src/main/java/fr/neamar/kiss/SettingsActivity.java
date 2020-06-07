@@ -460,6 +460,8 @@ public class SettingsActivity extends PreferenceActivity implements
                     dh.removeFromFavorites(pojo.id);
             for (String tagName : favTags)
                 dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
+        } else if ("exclude-favorites-apps".equals(key)) {
+            KissApplication.getApplication(this).getDataHandler().getAppProvider().reload();
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {

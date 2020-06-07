@@ -508,6 +508,22 @@ public class DataHandler extends BroadcastReceiver
         return excluded;
     }
 
+    /**
+     * Get ids that should be excluded from apps
+     *
+     * @return set of favorite ids
+     */
+    @NonNull
+    public Set<String> getExcludedFavorites() {
+        Set<String> excludedFavorites = new HashSet<>();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        if (prefs.getBoolean("exclude-favorites-apps", false)) {
+            String favApps = prefs.getString("favorite-apps-list", "");
+            excludedFavorites.addAll(Arrays.asList(favApps.split(";")));
+        }
+        return excludedFavorites;
+    }
+
     public void addToExcludedFromHistory(AppPojo app) {
         // The set needs to be cloned and then edited,
         // modifying in place is not supported by putStringSet()
@@ -723,6 +739,8 @@ public class DataHandler extends BroadcastReceiver
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps + id + ";").apply();
+
+        getAppProvider().reload();
     }
 
     public void removeFromFavorites(String id) {
@@ -738,6 +756,8 @@ public class DataHandler extends BroadcastReceiver
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
+
+        getAppProvider().reload();
     }
 
     @SuppressWarnings("StringSplitter")
@@ -760,6 +780,8 @@ public class DataHandler extends BroadcastReceiver
 
         PreferenceManager.getDefaultSharedPreferences(this.context).edit()
                 .putString("favorite-apps-list", favApps.toString()).apply();
+
+        getAppProvider().reload();
     }
 
     /**
