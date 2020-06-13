@@ -71,7 +71,10 @@ class Widgets extends Forwarder {
 
     void onStop() {
         // Stop listening for widget update
-        mAppWidgetHost.stopListening();
+        // See https://github.com/Neamar/KISS/issues/744
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            mAppWidgetHost.stopListening();
+        }
     }
 
     void onActivityResult(int requestCode, int resultCode, Intent data) {
