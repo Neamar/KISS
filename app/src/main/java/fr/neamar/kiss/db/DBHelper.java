@@ -234,9 +234,9 @@ public class DBHelper {
         ContentValues values = new ContentValues();
         values.put("name", shortcut.name);
         values.put("package", shortcut.packageName);
-        values.put("icon", (String) null); // Legacy field (for shortcuts before Oreo), not used anymore (we use icon_blob).
+        values.put("icon", (String) null); // Legacy field (for shortcuts before Oreo), not used anymore
+        values.put("icon_blob", (String) null); // Another legacy field (icon is dynamically retrieved)
         values.put("intent_uri", shortcut.intentUri);
-        values.put("icon_blob", shortcut.icon_blob);
 
         db.insert("shortcuts", null, values);
         return true;
@@ -304,25 +304,6 @@ public class DBHelper {
         cursor.close();
 
         return records;
-    }
-
-    public static byte[] getShortcutIcon(Context context, int dbId) {
-        SQLiteDatabase db = getDatabase(context);
-
-        // Cursor query (String table, String[] columns, String selection,
-        // String[] selectionArgs, String groupBy, String having, String
-        // orderBy)
-        Cursor cursor = db.query("shortcuts", new String[]{"icon_blob"},
-                "_id = ?", new String[]{Integer.toString(dbId)}, null, null, null);
-
-        if(cursor.getCount() == 0) {
-            return null;
-        }
-        
-        cursor.moveToFirst();
-        byte[] iconBlob = cursor.getBlob(0);
-        cursor.close();
-        return iconBlob;
     }
 
     /**

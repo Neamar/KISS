@@ -15,8 +15,8 @@
 
     <ImageView
         android:id="@+id/item_search_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="?attr/resultIconSize"
+        android:layout_height="?attr/resultIconSize"
         android:layout_marginBottom="@dimen/icon_margin_bottom"
         android:layout_marginEnd="@dimen/icon_margin_right"
         android:layout_marginLeft="@dimen/icon_margin_left"
@@ -35,7 +35,7 @@
         android:shadowDy="2"
         android:shadowRadius="?attr/textShadowRadius"
         android:textColor="?attr/resultColor"
-        android:textSize="@dimen/result_title_size"
+        android:textSize="?attr/resultTitleSize"
         tools:text="@string/ui_item_search" />
 
 </LinearLayout>

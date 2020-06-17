@@ -45,7 +45,9 @@ class InterfaceTweaks extends Forwarder {
                 break;
         }
 
-        UIColors.applyOverlay(mainActivity);
+        UIColors.applyOverlay(mainActivity, prefs);
+
+        mainActivity.getTheme().applyStyle(prefs.getBoolean("small-results", false) ? R.style.OverlayResultSizeSmall : R.style.OverlayResultSizeStandard, true);
     }
 
     void onCreate() {
@@ -83,6 +85,10 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.searchEditText.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
         }
+
+        if (prefs.getBoolean("pref-hide-search-bar-hint", false)) {
+            mainActivity.searchEditText.setHint("");
+        }
     }
 
     void onResume() {
@@ -100,7 +106,7 @@ class InterfaceTweaks extends Forwarder {
         mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams().height = searchHeight;
 
         // Large favorite bar
-        if(prefs.getBoolean("large-favorites-bar", false) && isExternalFavoriteBarEnabled()) {
+        if (prefs.getBoolean("large-favorites-bar", false) && isExternalFavoriteBarEnabled()) {
             mainActivity.favoritesBar.getLayoutParams().height = res.getDimensionPixelSize(R.dimen.large_favorite_height);
         }
     }

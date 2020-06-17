@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -20,13 +21,12 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -283,18 +283,36 @@ public abstract class Result {
         parent.removeResult(context, this);
     }
 
-    public final void launch(Context context, View v) {
+    public final void launch(Context context, View v, QueryInterface queryInterface) {
         Log.i("log", "Launching " + pojo.id);
-
-        recordLaunch(context);
 
         // Launch
         doLaunch(context, v);
+
+        if (queryInterface != null) {
+            recordLaunch(context, queryInterface);
+        }
+    }
+
+    void recordLaunch(Context context, QueryInterface queryInterface) {
+        // Record the launch after some period,
+        // * to ensure the animation runs smoothly
+        // * to avoid a flickering -- launchOccurred will refresh the list
+        // Thus TOUCH_DELAY * 3
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Save in history
+                KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
+
+                queryInterface.launchOccurred();
+            }
+        }, KissApplication.TOUCH_DELAY * 3);
     }
 
     /**
-     * How to launch this record ? Most probably, will fire an intent. This
-     * function must call recordLaunch()
+     * How to launch this record ? Most probably, will fire an intent.
      *
      * @param context android context
      */
@@ -307,7 +325,7 @@ public abstract class Result {
      * @param context android context
      */
     public void fastLaunch(Context context, View v) {
-        this.launch(context, v);
+        this.launch(context, v, null);
     }
 
     /**
@@ -375,16 +393,6 @@ public abstract class Result {
     View inflateFromId(Context context, @LayoutRes int id, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
         return inflater.inflate(id, parent, false);
-    }
-
-    /**
-     * Put this item in application history
-     *
-     * @param context android context
-     */
-    void recordLaunch(Context context) {
-        // Save in history
-        KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
     }
 
     void removeFromHistory(Context context) {

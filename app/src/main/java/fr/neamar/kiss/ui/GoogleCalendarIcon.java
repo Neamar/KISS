@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 
 import java.util.Calendar;
 
+import fr.neamar.kiss.utils.DrawableUtils;
+
 /**
  * This class is used to display a custom icon for Google Calendar
  * Every day, the icon is different and display the current day
@@ -27,7 +29,7 @@ public class GoogleCalendarIcon {
         // Do nothing if using a custom icon pack
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         String currentIconPack = prefs.getString("icons-pack", "default");
-        if (!"default".equals(currentIconPack)) {
+        if (!("default".equals(currentIconPack) || DrawableUtils.isIconsPackAdaptive(currentIconPack))) {
             return null;
         }
 
@@ -39,7 +41,12 @@ public class GoogleCalendarIcon {
             Resources resourcesForApplication = pm.getResourcesForApplication(GOOGLE_CALENDAR);
             int dayResId = getDayResId(metaData, resourcesForApplication);
             if (dayResId != 0) {
-                return resourcesForApplication.getDrawable(dayResId);
+                Drawable icon = resourcesForApplication.getDrawable(dayResId);
+                if("default".equals(currentIconPack)){
+                    return icon;
+                } else {
+                    return DrawableUtils.handleAdaptiveIcons(context, icon);
+                }
             }
         } catch (PackageManager.NameNotFoundException ignored) {
         }
