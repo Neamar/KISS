@@ -2,7 +2,6 @@ package fr.neamar.kiss.adapter;
 
 import android.app.DialogFragment;
 import android.content.Context;
-import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,8 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fr.neamar.kiss.CustomIconDialog;
-import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
@@ -116,18 +113,9 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
         try {
             result = results.get(position);
-            result.launch(v.getContext(), v);
+            result.launch(v.getContext(), v, parent);
         } catch (ArrayIndexOutOfBoundsException ignored) {
-            return;
         }
-
-        // Record the launch after some period,
-        // * to ensure the animation runs smoothly
-        // * to avoid a flickering -- launchOccurred will refresh the list
-        // Thus TOUCH_DELAY * 3
-        Handler handler = new Handler();
-        handler.postDelayed(parent::launchOccurred, KissApplication.TOUCH_DELAY * 3);
-
     }
 
     public void removeResult(Context context, Result result) {
@@ -145,7 +133,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         fuzzyScore = new FuzzyScore(queryNormalized.codePoints, true);
         notifyDataSetChanged();
 
-        if(isRefresh) {
+        if (isRefresh) {
             // We're refreshing an existing dataset, do not reset scroll!
             parent.temporarilyDisableTranscriptMode();
         }

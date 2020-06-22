@@ -50,6 +50,7 @@ public class IconsHandler {
         super();
         this.ctx = ctx;
         this.pm = ctx.getPackageManager();
+        clearOldCache();
         loadAvailableIconsPacks();
         loadIconsPack();
     }
@@ -209,12 +210,15 @@ public class IconsHandler {
      * {cacheDir}/icons/{icons_pack_package_name}_{key_hash}.png
      */
     private File cacheGetFileName(String key) {
-        String iconsPackPackageName = mIconPack != null ? mIconPack.getPackPackageName() : mSystemPack.getPackPackageName();
+        String iconsPackPackageName = getIconPack().getPackPackageName();
         return new File(getIconsCacheDir(), iconsPackPackageName + "_" + key.hashCode() + ".png");
     }
 
     private File getIconsCacheDir() {
-        return new File(this.ctx.getCacheDir().getPath() + "/icons/");
+        File dir = new File(this.ctx.getCacheDir(), "icons");
+        if (!dir.exists() && !dir.mkdir())
+            throw new IllegalStateException("failed to create path " + dir.getPath());
+        return dir;
     }
 
     private File customIconFileName(String componentName, long customIcon) {
@@ -234,12 +238,30 @@ public class IconsHandler {
     private void cacheClear() {
         File cacheDir = this.getIconsCacheDir();
 
-        if (!cacheDir.isDirectory())
-            return;
+        File[] fileList = cacheDir.listFiles();
+        if (fileList != null) {
+            for (File item : fileList) {
+                if (!item.delete()) {
+                    Log.w(TAG, "Failed to delete file: " + item.getAbsolutePath());
+                }
+            }
+        }
+    }
 
-        for (File item : cacheDir.listFiles()) {
-            if (!item.delete()) {
-                Log.w(TAG, "Failed to delete file: " + item.getAbsolutePath());
+    // Before we fixed the cache path actually returning a folder, a lot of icons got dumped
+    // directly in ctx.getCacheDir() so we need to clean it
+    private void clearOldCache() {
+        File newCacheDir = new File(this.ctx.getCacheDir(), "icons");
+
+        if (!newCacheDir.isDirectory()) {
+            File[] fileList = ctx.getCacheDir().listFiles();
+            if (fileList != null) {
+                int count = 0;
+                for (File file : fileList) {
+                    if (file.isFile())
+                        count += file.delete() ? 1 : 0;
+                }
+                Log.i(TAG, "Removed " + count + " cache file(s) from the old path");
             }
         }
     }

@@ -21,7 +21,7 @@ public class LockAccessibilityService extends AccessibilityService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (ACTION_LOCK.equals(intent.getAction())) {
+        if (intent != null && ACTION_LOCK.equals(intent.getAction())) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 performGlobalAction(AccessibilityService.GLOBAL_ACTION_LOCK_SCREEN);
             }

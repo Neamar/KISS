@@ -9,6 +9,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.utils.Permission;
 
 public class ForwarderManager extends Forwarder {
     private final Widgets widgetsForwarder;
@@ -16,7 +17,6 @@ public class ForwarderManager extends Forwarder {
     private final InterfaceTweaks interfaceTweaks;
     private final ExperienceTweaks experienceTweaks;
     private final Favorites favoritesForwarder;
-    private final Permission permissionForwarder;
     private final OreoShortcuts shortcutsForwarder;
     private final TagsMenu tagsMenu;
     private final Notification notificationForwarder;
@@ -30,7 +30,6 @@ public class ForwarderManager extends Forwarder {
         this.liveWallpaperForwarder = new LiveWallpaper(mainActivity);
         this.experienceTweaks = new ExperienceTweaks(mainActivity);
         this.favoritesForwarder = new Favorites(mainActivity);
-        this.permissionForwarder = new Permission(mainActivity);
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.notificationForwarder = new Notification(mainActivity);
         this.tagsMenu = new TagsMenu(mainActivity);
@@ -67,10 +66,6 @@ public class ForwarderManager extends Forwarder {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         widgetsForwarder.onActivityResult(requestCode, resultCode, data);
-    }
-
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        permissionForwarder.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
