@@ -13,7 +13,9 @@ import android.os.UserManager;
 import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
@@ -134,44 +136,99 @@ public class AppProvider extends Provider<AppPojo> {
     }
 
     /**
+     * Translates an all- Russian string, for example, ЙЦУКЕН, into an English string QWERTY and the other way round
+     * This is meant to handle cases when user forgot to switch keyboard layout and types blindly.
+     * @param query - query to translate
+     * @return null if it should not be translated, translated query otherwise.
+     */
+    private String swapKeyboardLayoutIfNeeded(String query) {
+        String currentLanguage = Locale.getDefault().getDisplayLanguage();
+        switch(currentLanguage) {
+            case "русский":
+                String englishLetters = "qwertyuiop[]asdfghjkl;'zxcvbnm,.";
+                String russianLetters = "йцукенгшщзхъфывапролджэячсмитьбю";
+                String res = query;
+                boolean containsRussianLetters = Pattern.matches(".*\\p{InCyrillic}.*", query);
+
+                for(int i = 0; i < englishLetters.length() - 1; i++) {
+                    if(containsRussianLetters) {
+                        res = res.replace(russianLetters.charAt(i), englishLetters.charAt(i));
+                    } else {
+                        res = res.replace(englishLetters.charAt(i), russianLetters.charAt(i));
+                    }
+                }
+                return res;
+            default:
+                return null;
+        }
+    }
+
+    private FuzzyScore getFuzzyScore(String query) {
+        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
+        if (queryNormalized.codePoints.length == 0) {
+            return null;
+        }
+        return new FuzzyScore(queryNormalized.codePoints);
+    }
+
+    /**
      * @param query    The string to search for
      * @param searcher The receiver of results
      */
 
     @Override
     public void requestResults(String query, Searcher searcher) {
-        StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
+        FuzzyScore mainFuzzyScore = getFuzzyScore(query);
 
-        if (queryNormalized.codePoints.length == 0) {
+        if (mainFuzzyScore == null) {
             return;
         }
+        String keyboardSwappedQuery = swapKeyboardLayoutIfNeeded(query);
+        FuzzyScore keyboardSwappedFuzzyScore = null;
+        if(keyboardSwappedQuery != null) {
+            keyboardSwappedFuzzyScore = getFuzzyScore(keyboardSwappedQuery);
+        }
 
-        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
-        FuzzyScore.MatchInfo matchInfo;
-        boolean match;
+        //FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        //FuzzyScore fuzzyScoreKeyboardSwapped = null;
+
+        //String swappedQuery = swapKeyboardLayoutIfNeeded(query);
+
+
+        //FuzzyScore.MatchInfo matchInfo;
 
         for (AppPojo pojo : pojos) {
             if(pojo.isExcluded()) {
                 continue;
             }
 
-            matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
-            match = matchInfo.match;
-            pojo.relevance = matchInfo.score;
-
-            // check relevance for tags
-            if (pojo.getNormalizedTags() != null) {
-                matchInfo = fuzzyScore.match(pojo.getNormalizedTags().codePoints);
-                if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
-                    match = true;
-                    pojo.relevance = matchInfo.score;
-                }
+            boolean match = checkMatch(mainFuzzyScore, pojo);
+            if(!match) {
+                match = checkMatch(keyboardSwappedFuzzyScore, pojo);
             }
-
             if (match && !searcher.addResult(pojo)) {
                 return;
             }
+            //boolean translatedMatch = false;
         }
+    }
+
+    private boolean checkMatch(FuzzyScore mainFuzzyScore, AppPojo pojo) {
+        FuzzyScore.MatchInfo matchInfo;
+        boolean match;
+        matchInfo = mainFuzzyScore.match(pojo.normalizedName.codePoints);
+        match = matchInfo.match;
+        pojo.relevance = matchInfo.score;
+
+        // check relevance for tags
+        if (pojo.getNormalizedTags() != null) {
+            matchInfo = mainFuzzyScore.match(pojo.getNormalizedTags().codePoints);
+            if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
+                match = true;
+                pojo.relevance = matchInfo.score;
+            }
+        }
+        return match;
     }
 
     /**
