@@ -38,6 +38,7 @@ import android.widget.TextView.OnEditorActionListener;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -482,7 +483,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
-
+        if(keycode != KeyEvent.KEYCODE_BACK ) {
+            searchEditText.requestFocus();
+            searchEditText.dispatchKeyEvent(e);
+        }
         return super.onKeyDown(keycode, e);
     }
 
