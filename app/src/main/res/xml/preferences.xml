@@ -230,6 +230,18 @@
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-down"
                 android:title="@string/gesture_down_name" />
+            <ListPreference
+                android:defaultValue="display-apps"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-left"
+                android:title="@string/gesture_left_name" />
+            <ListPreference
+                android:defaultValue="display-apps"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-right"
+                android:title="@string/gesture_right_name" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
                 android:key="double-tap"

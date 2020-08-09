@@ -137,12 +137,17 @@ class ExperienceTweaks extends Forwarder {
                 float directionY = e2.getY() - e1.getY();
                 float directionX = e2.getX() - e1.getX();
                 if (Math.abs(directionX) > Math.abs(directionY)) {
-                    return false;
-                }
-                if (directionY > 0) {
-                    doAction(prefs.getString("gesture-down", "display-notifications"));
+                    if (directionX > 0) {
+                        doAction(prefs.getString("gesture-right", "display-apps"));
+                    } else {
+                        doAction(prefs.getString("gesture-left", "display-apps"));
+                    }
                 } else {
-                    doAction(prefs.getString("gesture-up", "display-keyboard"));
+                    if (directionY > 0) {
+                        doAction(prefs.getString("gesture-down", "display-notifications"));
+                    } else {
+                        doAction(prefs.getString("gesture-up", "display-keyboard"));
+                    }
                 }
                 return true;
             }
