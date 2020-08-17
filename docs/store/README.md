@@ -2,16 +2,17 @@
 
 Regular `make` will just export the SVGs to PNGs.
 
-# Compression
+## Dependencies
 
-If you want crushed pngs with `pngcrush` you can use `make pngcrush`.
+Inkscape 1.0+ and `jq` for JSON processing and `perl`.
+
+# Compression
 
 If you want tinyfied pngs with [tinypng](https://tinypng.com/) you can use `TINYPNG_API_KEY=YOURAPIKEY make tinypng`. Grab an API key for free at https://tinypng.com/.
 
 ## Performance
 
-`pngcrush` compresses losslessly whereas tinypng "reduces" the quality of the PNG.
-
+I tested once the performance of pngcrush vs tinypng:
 
 name | size | name | size | name | size
 -----|------|------|------|------|-----

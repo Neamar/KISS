@@ -8,15 +8,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -113,15 +110,6 @@ public class ShortcutUtil {
         ShortcutRecord record = new ShortcutRecord();
         record.packageName = shortcutInfo.getPackage();
         record.intentUri = ShortcutPojo.OREO_PREFIX + shortcutInfo.getId();
-
-        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-        final Drawable iconDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-        Bitmap icon = iconDrawable == null ? null : DrawableUtils.drawableToBitmap(iconDrawable);
-        if (icon != null) {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            icon.compress(Bitmap.CompressFormat.PNG, 100, baos);
-            record.icon_blob = baos.toByteArray();
-        }
 
         String appName = getAppNameFromPackageName(context, shortcutInfo.getPackage());
 

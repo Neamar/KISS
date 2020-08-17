@@ -38,6 +38,7 @@ import android.widget.TextView.OnEditorActionListener;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -55,6 +56,7 @@ import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
@@ -160,6 +162,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     private PopupWindow mPopup;
 
     private ForwarderManager forwarderManager;
+    private Permission permissionManager;
 
     /**
      * Called when the activity is first created.
@@ -181,6 +184,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Initialize all forwarders
          */
         forwarderManager = new ForwarderManager(this);
+        permissionManager = new Permission(this);
 
         /*
          * Initialize data handler and start loading providers
@@ -479,7 +483,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
-
+        if(keycode != KeyEvent.KEYCODE_BACK ) {
+            searchEditText.requestFocus();
+            searchEditText.dispatchKeyEvent(e);
+        }
         return super.onKeyDown(keycode, e);
     }
 
@@ -539,7 +546,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        forwarderManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        permissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override

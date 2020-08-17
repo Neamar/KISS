@@ -41,6 +41,7 @@ import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
+import fr.neamar.kiss.utils.DrawableUtils;
 
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
@@ -112,15 +113,24 @@ public class ShortcutsResult extends Result {
         }
 
         if (!prefs.getBoolean("icons-hide", false)) {
-            Bitmap icon = shortcutPojo.getIcon(context);
-            if (icon != null) {
-                BitmapDrawable drawable = new BitmapDrawable(context.getResources(), icon);
-                shortcutIcon.setImageDrawable(drawable);
+            Drawable shortcutDrawable = getDrawable(context);
+            String iconsPack = prefs.getString("icons-pack", "default");
+            if(DrawableUtils.isIconsPackAdaptive(iconsPack)) {
+                appDrawable = DrawableUtils.handleAdaptiveIcons(context, appDrawable);
+                if(shortcutDrawable != null) {
+                    shortcutDrawable = DrawableUtils.handleAdaptiveIcons(context, shortcutDrawable);
+                }
+            }
+            if (shortcutDrawable != null) {
+                shortcutIcon.setImageDrawable(shortcutDrawable);
                 appIcon.setImageDrawable(appDrawable);
             } else {
                 // No icon for this shortcut, use app icon
                 shortcutIcon.setImageDrawable(appDrawable);
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
+            }
+            if(!prefs.getBoolean("subicon-visible", true)) {
+                appIcon.setVisibility(View.GONE);
             }
         }
         else {
@@ -132,7 +142,30 @@ public class ShortcutsResult extends Result {
     }
 
     public Drawable getDrawable(Context context) {
-        return new BitmapDrawable(context.getResources(), shortcutPojo.getIcon(context));
+        Drawable shortcutDrawable = null;
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            assert launcherApps != null;
+
+            if (launcherApps.hasShortcutHostPermission()) {
+                LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
+                query.setPackage(shortcutPojo.packageName);
+                query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
+                query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
+
+                List<UserHandle> userHandles = launcherApps.getProfiles();
+
+                // Find the correct UserHandle, and retrieve the icon.
+                for (UserHandle userHandle : userHandles) {
+                    List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
+                    if (shortcuts != null && shortcuts.size() > 0) {
+                        shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcuts.get(0), 0);
+                    }
+                }
+            }
+        }
+
+        return shortcutDrawable;
     }
 
 
@@ -191,9 +224,9 @@ public class ShortcutsResult extends Result {
     @Override
     ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView) {
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
 
         return inflatePopupMenu(adapter, context);

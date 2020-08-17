@@ -2,6 +2,8 @@ package fr.neamar.kiss.utils.calculator;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.text.ParseException;
 import java.util.ArrayDeque;
 
@@ -155,12 +157,16 @@ public class Tokenizer {
 
 					if(numberBuilder.length() != 0) {
 						DecimalFormat decimalFormat = (DecimalFormat) DecimalFormat.getInstance();
+						decimalFormat.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.US));
 						decimalFormat.setParseBigDecimal(true);
 
 						BigDecimal number = null;
-
+						String numberStr = numberBuilder.toString().replace(",",".");
+						if (numberStr.matches("[^.]*\\.[^.]*\\..*")) {
+							return Result.syntacticalError(); // multiple decimal points in one token
+						}
 						try {
-							number = (BigDecimal) decimalFormat.parse(numberBuilder.toString());
+							number = (BigDecimal) decimalFormat.parse(numberStr);
 						} catch (ParseException e) {
 							return Result.syntacticalError();
 						}
