@@ -121,6 +121,13 @@
                 android:key="theme-result-color"
                 android:summary="%s"
                 android:title="@string/theme_result_color" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/wallpaperEntries"
+                android:entryValues="@array/wallpaperValues"
+                android:key="theme-wallpaper"
+                android:summary="%s"
+                android:title="@string/theme_wallpaper" />
         </PreferenceScreen>
         <fr.neamar.kiss.preference.SwitchPreference
             android:defaultValue="false"
