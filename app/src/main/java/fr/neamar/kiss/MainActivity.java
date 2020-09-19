@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.DataSetObserver;
@@ -350,6 +351,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         displayClearOnInput();
 
         systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
+
+        // For devices with hardware keyboards, give focus to search field.
+        if(getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
+            searchEditText.requestFocus();
+        }
 
         /*
          * Defer everything else to the forwarders
