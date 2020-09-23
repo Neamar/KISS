@@ -1,6 +1,7 @@
 package fr.neamar.kiss;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -20,7 +22,6 @@ import android.preference.PreferenceScreen;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -34,8 +35,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
-import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
+import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
@@ -49,20 +51,21 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 @SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
-
-    private static final int PERMISSION_READ_PHONE_STATE = 1;
-
     // Those settings require the app to restart
-    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars pref-swap-kiss-button-with-menu pref-hide-circle history-hide enable-favorites-bar notification-bar-color black-notification-icons";
-    final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait require-settings-update";
+    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars pref-swap-kiss-button-with-menu pref-hide-circle history-hide enable-favorites-bar notification-bar-color black-notification-icons icons-pack theme-shadow theme-separator theme-result-color large-favorites-bar pref-hide-search-bar-hint";
+
+    // Those settings require a restart of the settings
+    final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait";
     private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
 
+    private Permission permissionManager;
+
     /**
      * Get tags that should be in the favorites bar
      *
-     * @param  context to get the data handler with the actual favorites
+     * @param context to get the data handler with the actual favorites
      * @return what we find in DataHandler
      */
     @NonNull
@@ -77,24 +80,17 @@ public class SettingsActivity extends PreferenceActivity implements
         return set;
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String theme = prefs.getString("theme", "light");
-        assert theme != null;
         if (theme.equals("amoled-dark")) {
             setTheme(R.style.SettingThemeAmoledDark);
         } else if (theme.contains("dark")) {
             setTheme(R.style.SettingThemeDark);
         }
 
-        if (prefs.contains("require-settings-update")) {
-            // This flag will be used when the settings activity needs to restart,
-            // but the value will be set to true
-            // and the sharedpreferencesListener only triggers on value change
-            // so we ensure it doesn't have a value before we display the settings
-            prefs.edit().remove("require-settings-update").apply();
-        }
 
         // Lock launcher into portrait mode
         // Do it here to make the transition as smooth as possible
@@ -111,16 +107,9 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
-        ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
-        setListPreferenceIconsPacksData(iconsPack);
-
-        fixSummaries();
-
-        addExcludedAppSettings();
-        addExcludedFromHistoryAppSettings();
-
-        addCustomSearchProvidersPreferences(prefs);
-
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            removePreference("gestures-holder", "double-tap");
+        }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             removePreference("colors-section", "black-notification-icons");
         }
@@ -132,8 +121,33 @@ public class SettingsActivity extends PreferenceActivity implements
             removePreference("advanced", "enable-notifications");
         }
 
-        addHiddenTagsTogglesInformation(prefs);
-        addTagsFavInformation();
+        final ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
+        iconsPack.setEnabled(false);
+
+        Runnable runnable = () -> {
+            SettingsActivity.this.fixSummaries();
+
+            SettingsActivity.this.setListPreferenceIconsPacksData(iconsPack);
+            SettingsActivity.this.runOnUiThread(() -> iconsPack.setEnabled(true));
+
+            SettingsActivity.this.addExcludedAppSettings();
+            SettingsActivity.this.addExcludedFromHistoryAppSettings();
+
+            SettingsActivity.this.addCustomSearchProvidersPreferences(prefs);
+
+            SettingsActivity.this.addHiddenTagsTogglesInformation(prefs);
+            SettingsActivity.this.addTagsFavInformation();
+        };
+
+        if (savedInstanceState == null) {
+            // Run asynchronously to open settings fast
+            AsyncTask.execute(runnable);
+        } else {
+            // Run synchronously to ensure preferences can be restored from state
+            runnable.run();
+        }
+
+        permissionManager = new Permission(this);
     }
 
     @Override
@@ -157,18 +171,14 @@ public class SettingsActivity extends PreferenceActivity implements
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         super.onPreferenceTreeClick(preferenceScreen, preference);
-
         // If the user has clicked on a preference screen, set up the action bar
         if (preference instanceof PreferenceScreen && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             final Dialog dialog = ((PreferenceScreen) preference).getDialog();
             Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
 
             if (toolbar != null) {
-                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
+                toolbar.setNavigationOnClickListener(v -> {
+                    dialog.dismiss();
                 });
             }
         }
@@ -261,7 +271,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void removeSearchProviderSelect() {
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         Preference pref = findPreference("selected-search-provider-names");
         if (pref != null) {
             category.removePreference(pref);
@@ -269,7 +279,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void removeSearchProviderDelete() {
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         Preference pref = findPreference("deleting-search-providers-names");
         if (pref != null) {
             category.removePreference(pref);
@@ -277,7 +287,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void removeSearchProviderDefault() {
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         Preference pref = findPreference("default-search-provider");
         if (pref != null) {
             category.removePreference(pref);
@@ -301,8 +311,9 @@ public class SettingsActivity extends PreferenceActivity implements
         multiPreference.setKey("selected-search-provider-names");
         multiPreference.setEntries(searchProvidersArray);
         multiPreference.setEntryValues(searchProvidersArray);
+        multiPreference.setOrder(10);
 
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         category.addPreference(multiPreference);
     }
 
@@ -324,15 +335,19 @@ public class SettingsActivity extends PreferenceActivity implements
         multiPreference.setKey("deleting-search-providers-names");
         multiPreference.setEntries(searchProvidersArray);
         multiPreference.setEntryValues(searchProvidersArray);
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        multiPreference.setOrder(20);
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
 
         multiPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 Set<String> searchProvidersToDelete = (Set<String>) newValue;
-                Set<String> availableSearchProviders = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(SettingsActivity.this));
 
+                Set<String> availableSearchProviders = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(SettingsActivity.this));
                 Set<String> updatedProviders = new TreeSet<>(PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this).getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(SettingsActivity.this)));
+
+                if (availableSearchProviders == null)
+                    return false;
 
                 for (String searchProvider : availableSearchProviders) {
                     for (String providerToDelete : searchProvidersToDelete) {
@@ -381,9 +396,10 @@ public class SettingsActivity extends PreferenceActivity implements
         standardPref.setKey("default-search-provider");
         standardPref.setEntries(selectedProviderArray);
         standardPref.setEntryValues(selectedProviderArray);
+        standardPref.setOrder(0);
         standardPref.setDefaultValue("Google"); // Google is standard on install
 
-        PreferenceGroup category = (PreferenceGroup) findPreference("providers");
+        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         category.addPreference(standardPref);
     }
 
@@ -407,13 +423,25 @@ public class SettingsActivity extends PreferenceActivity implements
         } else if (key.equalsIgnoreCase("icons-pack")) {
             KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
         } else if (key.equalsIgnoreCase("enable-phone-history")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{android.Manifest.permission.READ_PHONE_STATE},
-                        SettingsActivity.PERMISSION_READ_PHONE_STATE);
-                return;
+            boolean enabled = sharedPreferences.getBoolean(key, false);
+            if (enabled && !Permission.checkPermission(SettingsActivity.this, Permission.PERMISSION_READ_PHONE_STATE)) {
+                Permission.askPermission(Permission.PERMISSION_READ_PHONE_STATE, new Permission.PermissionResultListener() {
+                    @Override
+                    public void onGranted() {
+                        PackageManagerUtils.enableComponent(SettingsActivity.this, IncomingCallHandler.class, true);
+                    }
+
+                    @Override
+                    public void onDenied() {
+                        // You don't want to give us permission, that's fine. Revert the toggle.
+                        SwitchPreference p = (SwitchPreference) findPreference(key);
+                        p.setChecked(false);
+                        Toast.makeText(SettingsActivity.this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, enabled);
             }
-            PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, sharedPreferences.getBoolean(key, false));
         } else if (key.equalsIgnoreCase("primary-color")) {
             UIColors.clearPrimaryColorCache(this);
         } else if (key.equalsIgnoreCase("number-of-display-elements")) {
@@ -459,20 +487,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (grantResults.length == 0) {
-            return;
-        }
-
-        if (requestCode == PERMISSION_READ_PHONE_STATE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
-            } else {
-                // You don't want to give us permission, that's fine. Revert the toggle.
-                SwitchPreference p = (SwitchPreference) findPreference("enable-phone-history");
-                p.setChecked(false);
-                Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
-            }
-        }
+        permissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void fixSummaries() {
@@ -502,12 +517,39 @@ public class SettingsActivity extends PreferenceActivity implements
     private void setListPreferenceIconsPacksData(ListPreference lp) {
         IconsHandler iph = KissApplication.getApplication(this).getIconsHandler();
 
-        CharSequence[] entries = new CharSequence[iph.getIconsPacks().size() + 1];
-        CharSequence[] entryValues = new CharSequence[iph.getIconsPacks().size() + 1];
+        CharSequence[] entries;
+        CharSequence[] entryValues;
+        int i;
 
-        int i = 0;
-        entries[0] = this.getString(R.string.icons_pack_default_name);
-        entryValues[0] = "default";
+        // Give the choice of adaptive icons to compatible devices only
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            entries = new CharSequence[iph.getIconsPacks().size() + 5];
+            entryValues = new CharSequence[iph.getIconsPacks().size() + 5];
+
+            i = 4;
+            entries[0] = this.getString(R.string.icons_pack_default_name);
+            entryValues[0] = "default";
+
+            entries[1] = this.getString(R.string.icons_pack_squircle_name);
+            entryValues[1] = "squircle";
+
+            entries[2] = this.getString(R.string.icons_pack_square_name);
+            entryValues[2] = "square";
+
+            entries[3] = this.getString(R.string.icons_pack_circle_name);
+            entryValues[3] = "circle";
+
+            entries[4] = this.getString(R.string.icons_pack_teardrop_name);
+            entryValues[4] = "teardrop";
+        } else {
+            entries = new CharSequence[iph.getIconsPacks().size() + 1];
+            entryValues = new CharSequence[iph.getIconsPacks().size() + 1];
+
+            i = 0;
+            entries[0] = this.getString(R.string.icons_pack_default_name);
+            entryValues[0] = "default";
+        }
+
         for (String packageIconsPack : iph.getIconsPacks().keySet()) {
             entries[++i] = iph.getIconsPacks().get(packageIconsPack);
             entryValues[i] = packageIconsPack;

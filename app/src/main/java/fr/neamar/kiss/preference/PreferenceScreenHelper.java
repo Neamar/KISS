@@ -1,6 +1,5 @@
 package fr.neamar.kiss.preference;
 
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.os.Build;
 import android.preference.PreferenceScreen;
@@ -8,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toolbar;
 
-import java.util.ArrayDeque;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
+import java.util.ArrayDeque;
 
 public final class PreferenceScreenHelper {
 	@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -28,7 +27,8 @@ public final class PreferenceScreenHelper {
 			for (int i = 0; i < e.getChildCount(); i++) {
 				View child = e.getChildAt(i);
 
-				if (child instanceof Toolbar) {//Only in LOLIPOP or higher you're going to find a Toolbar
+				if (child instanceof Toolbar) {
+					// Only in LOLLIPOP or higher you're going to find a Toolbar
 					return (Toolbar) child;
 				}
 

@@ -24,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -136,25 +135,24 @@ public class TagDummyResult extends Result {
 
     @NonNull
     @Override
-    public View display(Context context, int position, View v, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
-        if (v == null)
-            v = inflateFromId(context, R.layout.item_search, parent);
+    public View display(Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
+        if (view == null)
+            view = inflateFromId(context, R.layout.item_search, parent);
 
-        ImageView image = v.findViewById(R.id.item_search_icon);
-        TextView searchText = v.findViewById(R.id.item_search_text);
+        ImageView image = view.findViewById(R.id.item_search_icon);
+        TextView searchText = view.findViewById(R.id.item_search_text);
 
         image.setImageDrawable(getDrawable(context));
         searchText.setText(pojo.getName());
 
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
-        return v;
+        return view;
     }
 
     @NonNull
     @Override
-    public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
-        if (favoriteView == null)
-            favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_tag, parent, false);
+    public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
+        View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_tag, parent, false);
         ImageView favoriteIcon = favoriteView.findViewById(android.R.id.background);
         TextView favoriteText = favoriteView.findViewById(android.R.id.text1);
 

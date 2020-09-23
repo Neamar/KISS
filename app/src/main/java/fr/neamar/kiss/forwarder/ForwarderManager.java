@@ -9,14 +9,14 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.utils.Permission;
 
 public class ForwarderManager extends Forwarder {
-    private final Widget widgetForwarder;
+    private final Widgets widgetsForwarder;
     private final LiveWallpaper liveWallpaperForwarder;
     private final InterfaceTweaks interfaceTweaks;
     private final ExperienceTweaks experienceTweaks;
     private final Favorites favoritesForwarder;
-    private final Permission permissionForwarder;
     private final OreoShortcuts shortcutsForwarder;
     private final TagsMenu tagsMenu;
     private final Notification notificationForwarder;
@@ -25,12 +25,11 @@ public class ForwarderManager extends Forwarder {
     public ForwarderManager(MainActivity mainActivity) {
         super(mainActivity);
 
-        this.widgetForwarder = new Widget(mainActivity);
+        this.widgetsForwarder = new Widgets(mainActivity);
         this.interfaceTweaks = new InterfaceTweaks(mainActivity);
         this.liveWallpaperForwarder = new LiveWallpaper(mainActivity);
         this.experienceTweaks = new ExperienceTweaks(mainActivity);
         this.favoritesForwarder = new Favorites(mainActivity);
-        this.permissionForwarder = new Permission(mainActivity);
         this.shortcutsForwarder = new OreoShortcuts(mainActivity);
         this.notificationForwarder = new Notification(mainActivity);
         this.tagsMenu = new TagsMenu(mainActivity);
@@ -38,7 +37,7 @@ public class ForwarderManager extends Forwarder {
 
     public void onCreate() {
         favoritesForwarder.onCreate();
-        widgetForwarder.onCreate();
+        widgetsForwarder.onCreate();
         interfaceTweaks.onCreate();
         experienceTweaks.onCreate();
         shortcutsForwarder.onCreate();
@@ -47,7 +46,7 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onStart() {
-        widgetForwarder.onStart();
+        widgetsForwarder.onStart();
     }
 
     public void onResume() {
@@ -62,27 +61,23 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onStop() {
-        widgetForwarder.onStop();
+        widgetsForwarder.onStop();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        widgetForwarder.onActivityResult(requestCode, resultCode, data);
-    }
-
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        permissionForwarder.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        widgetsForwarder.onActivityResult(requestCode, resultCode, data);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        return widgetForwarder.onOptionsItemSelected(item);
+        return widgetsForwarder.onOptionsItemSelected(item);
     }
 
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        widgetForwarder.onCreateContextMenu(menu, v, menuInfo);
+    public void onCreateContextMenu(ContextMenu menu) {
+        widgetsForwarder.onCreateContextMenu(menu);
     }
 
     public boolean onTouch(View view, MotionEvent event) {
-        experienceTweaks.onTouch(view, event); // always return false anyway
+        experienceTweaks.onTouch(event);
         return liveWallpaperForwarder.onTouch(view, event);
     }
 
@@ -91,20 +86,20 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onDataSetChanged() {
-        widgetForwarder.onDataSetChanged();
+        widgetsForwarder.onDataSetChanged();
         favoritesForwarder.onDataSetChanged();
     }
 
-    public void updateSearchRecords(String query) {
+    public void updateSearchRecords(boolean isRefresh, String query) {
         favoritesForwarder.updateSearchRecords(query);
-        experienceTweaks.updateSearchRecords(query);
+        experienceTweaks.updateSearchRecords(isRefresh, query);
     }
 
     public void onFavoriteChange() {
         favoritesForwarder.onFavoriteChange();
     }
 
-    public void onDisplayKissBar(Boolean display) {
+    public void onDisplayKissBar(boolean display) {
         experienceTweaks.onDisplayKissBar(display);
     }
 

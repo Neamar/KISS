@@ -4,7 +4,7 @@ import android.net.Uri;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
-public class ContactsPojo extends Pojo {
+public final class ContactsPojo extends Pojo {
     public final String lookupKey;
 
     public final String phone;
@@ -13,31 +13,27 @@ public class ContactsPojo extends Pojo {
     public final Uri icon;
 
     // Is this a primary phone?
-    public final Boolean primary;
-
-    // How many times did we phone this contact?
-    public final int timesContacted;
+    public final boolean primary;
 
     // Is this contact starred ?
-    public final Boolean starred;
+    public final boolean starred;
 
     // Is this number a home (local) number ?
-    public final Boolean homeNumber;
+    public final boolean homeNumber;
 
     public StringNormalizer.Result normalizedNickname = null;
 
     private String nickname = "";
 
     public ContactsPojo(String id, String lookupKey, String phone, StringNormalizer.Result normalizedPhone,
-                        Uri icon, Boolean primary, int timesContacted, Boolean starred,
-                        Boolean homeNumber) {
+                        Uri icon, boolean primary, boolean starred,
+                        boolean homeNumber) {
         super(id);
         this.lookupKey = lookupKey;
         this.phone = phone;
         this.normalizedPhone = normalizedPhone;
         this.icon = icon;
         this.primary = primary;
-        this.timesContacted = timesContacted;
         this.starred = starred;
         this.homeNumber = homeNumber;
     }

@@ -17,12 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Matcher;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 
 public class AddSearchProviderPreference extends DialogPreference {
 
@@ -166,7 +165,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     protected void save() {
 
         Set<String> availableProviders = new HashSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this.getContext())));
-        availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString().toLowerCase(Locale.ROOT));
+        availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString());
         prefs.edit().putStringSet("available-search-providers", availableProviders).apply();
         prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).apply();
 

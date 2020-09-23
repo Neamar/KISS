@@ -17,7 +17,8 @@ import java.lang.ref.WeakReference;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.dataprovider.ShortcutsProvider;
+import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
 @TargetApi(Build.VERSION_CODES.O)
@@ -53,8 +54,8 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
         }
 
         // Create Pojo
-        ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo, false);
-        if (pojo == null) {
+        ShortcutRecord record = ShortcutUtil.createShortcutRecord(context, shortcutInfo, false);
+        if (record == null) {
             return false;
         }
 
@@ -65,8 +66,13 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
         }
 
         // Add shortcut to the DataHandler
-        if(dataHandler.addShortcut(pojo)){
-            pinItemRequest.accept();
+        if(dataHandler.addShortcut(record)){
+            try {
+                pinItemRequest.accept();
+            }
+            catch(IllegalStateException e) {
+                return false;
+            }
             return true;
         }
         return false;
@@ -84,8 +90,9 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
         if (success) {
             Log.i(TAG, "Shortcut added to KISS");
 
-            if (this.dataHandler.get().getShortcutsProvider() != null) {
-                this.dataHandler.get().getShortcutsProvider().reload();
+            ShortcutsProvider provider = this.dataHandler.get().getShortcutsProvider();
+            if (provider != null) {
+                provider.reload();
             }
         }
     }

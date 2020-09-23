@@ -19,13 +19,12 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
     private int mPopupCount;
 
     // This is used to emulate SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-    private final Runnable autoApplySystemUiRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (!mKeyboardVisible && !mIsScrolling && mPopupCount == 0)
-                applySystemUi();
-        }
-    };
+    private final Runnable autoApplySystemUiRunnable = this::autoApplySystemUi;
+
+    private void autoApplySystemUi() {
+        if (!mKeyboardVisible && !mIsScrolling && mPopupCount == 0)
+            applySystemUi();
+    }
 
     public SystemUiVisibilityHelper(MainActivity activity) {
         mMainActivity = activity;

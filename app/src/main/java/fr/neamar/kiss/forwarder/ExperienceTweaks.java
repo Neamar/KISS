@@ -1,7 +1,12 @@
 package fr.neamar.kiss.forwarder;
 
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
@@ -9,15 +14,19 @@ import android.text.InputType;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
+import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.LockAccessibilityService;
 
 // Deals with any settings in the "User Experience" setting sub-screen
 class ExperienceTweaks extends Forwarder {
@@ -40,16 +49,12 @@ class ExperienceTweaks extends Forwarder {
     private final static int INPUT_TYPE_WORKAROUND = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             | InputType.TYPE_TEXT_FLAG_AUTO_CORRECT;
 
-    private final Runnable displayKeyboardRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mainActivity.showKeyboard();
-        }
-    };
+    private final Runnable displayKeyboardRunnable = mainActivity::showKeyboard;
 
     private View mainEmptyView;
     private final GestureDetector gd;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
 
@@ -68,23 +73,63 @@ class ExperienceTweaks extends Forwarder {
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                // if minimalistic mode is enabled,
-                // and we want to display history on touch
-                if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onclick", false)) {
-                    // and we're currently in minimalistic mode with no results,
-                    // and we're not looking at the app list
-                    if (mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
-                        if (mainActivity.list.getAdapter() == null || mainActivity.list.getAdapter().isEmpty()) {
-                            mainActivity.runTask(new HistorySearcher(mainActivity));
-                        }
+                // Double tap disabled: display history directly
+                if(!prefs.getBoolean("double-tap", false)) {
+                    if (prefs.getBoolean("history-onclick", false)) {
+                        doAction("display-history");
+                    }
+                    else if(isMinimalisticModeEnabledForFavorites()) {
+                        doAction("display-favorites");
+                    }
+                }
+                return super.onSingleTapUp(e);
+            }
+
+            @Override
+            public boolean onSingleTapConfirmed(MotionEvent e) {
+                // Double tap enabled: wait to confirm this is indeed a single tap, not a double tap
+                if(prefs.getBoolean("double-tap", false)) {
+                    if (prefs.getBoolean("history-onclick", false)) {
+                        doAction("display-history");
+                    }
+                    else if(isMinimalisticModeEnabledForFavorites()) {
+                        doAction("display-favorites");
                     }
                 }
 
-                if (isMinimalisticModeEnabledForFavorites()) {
-                    mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                return super.onSingleTapConfirmed(e);
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                    return super.onDoubleTap(e);
+                }
+                if(!prefs.getBoolean("double-tap", false)) {
+                    return super.onDoubleTap(e);
                 }
 
-                return super.onSingleTapConfirmed(e);
+                if (isAccessibilityServiceEnabled(mainActivity)) {
+                    Intent intent = new Intent(LockAccessibilityService.ACTION_LOCK, null, mainActivity, LockAccessibilityService.class);
+                    mainActivity.startService(intent);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+                    builder.setMessage(R.string.enable_double_tap_to_lock);
+
+                    builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        mainActivity.startActivity(intent);
+                    });
+
+                    builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+                        dialog.dismiss();
+                    });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                return super.onDoubleTap(e);
             }
 
             @Override
@@ -92,19 +137,57 @@ class ExperienceTweaks extends Forwarder {
                 float directionY = e2.getY() - e1.getY();
                 float directionX = e2.getX() - e1.getX();
                 if (Math.abs(directionX) > Math.abs(directionY)) {
-                    return false;
-                }
-                if (!isGesturesEnabled()) {
-                    return false;
-                }
-                if (directionY > 0) {
-                    // Fling down: display notifications
-                    displayNotificationDrawer();
+                    if (directionX > 0) {
+                        doAction(prefs.getString("gesture-right", "display-apps"));
+                    } else {
+                        doAction(prefs.getString("gesture-left", "display-apps"));
+                    }
                 } else {
-                    // Fling up: display keyboard
-                    mainActivity.showKeyboard();
+                    if (directionY > 0) {
+                        doAction(prefs.getString("gesture-down", "display-notifications"));
+                    } else {
+                        doAction(prefs.getString("gesture-up", "display-keyboard"));
+                    }
                 }
                 return true;
+            }
+
+            private void doAction(String action) {
+                switch (action) {
+                    case "display-notifications":
+                        displayNotificationDrawer();
+                        break;
+                    case "display-keyboard":
+                        mainActivity.showKeyboard();
+                        break;
+                    case "display-apps":
+                        if (mainActivity.isViewingSearchResults()) {
+                            mainActivity.displayKissBar(true);
+                        }
+                        break;
+                    case "display-history":
+                        // if minimalistic mode is enabled,
+                        if (isMinimalisticModeEnabled()) {
+                            // and we're currently in minimalistic mode with no results,
+                            // and we're not looking at the app list
+                            if (mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
+                                if (mainActivity.list.getAdapter() == null || mainActivity.list.getAdapter().isEmpty()) {
+                                    mainActivity.runTask(new HistorySearcher(mainActivity));
+                                    mainActivity.clearButton.setVisibility(View.VISIBLE);
+                                    mainActivity.menuButton.setVisibility(View.INVISIBLE);
+                                }
+                            }
+                        }
+
+                        if (isMinimalisticModeEnabledForFavorites()) {
+                            mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                        }
+                        break;
+                    case "display-favorites":
+                        // Not provided as an option for the gestures, but useful if you only want to display facorites on tap,
+                        // not history.
+                        mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -147,7 +230,7 @@ class ExperienceTweaks extends Forwarder {
         }
     }
 
-    void onTouch(View view, MotionEvent event) {
+    void onTouch(MotionEvent event) {
         // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
     }
@@ -158,13 +241,9 @@ class ExperienceTweaks extends Forwarder {
         }
     }
 
-    void onDisplayKissBar(Boolean display) {
-        if (isMinimalisticModeEnabledForFavorites()) {
-            if (display) {
-                mainActivity.favoritesBar.setVisibility(View.VISIBLE);
-            } else {
-                mainActivity.favoritesBar.setVisibility(View.GONE);
-            }
+    void onDisplayKissBar(boolean display) {
+        if (isMinimalisticModeEnabledForFavorites() && !display) {
+            mainActivity.favoritesBar.setVisibility(View.GONE);
         }
 
         if (!display && isKeyboardOnStartEnabled()) {
@@ -173,7 +252,7 @@ class ExperienceTweaks extends Forwarder {
         }
     }
 
-    void updateSearchRecords(String query) {
+    void updateSearchRecords(boolean isRefresh, String query) {
         if (query.isEmpty()) {
             if (isMinimalisticModeEnabled()) {
                 mainActivity.runTask(new NullSearcher(mainActivity));
@@ -184,7 +263,9 @@ class ExperienceTweaks extends Forwarder {
                     mainActivity.favoritesBar.setVisibility(View.GONE);
                 }
             } else {
-                mainActivity.runTask(new HistorySearcher(mainActivity));
+                Searcher searcher = new HistorySearcher(mainActivity);
+                searcher.setRefresh(isRefresh);
+                mainActivity.runTask(searcher);
             }
         }
     }
@@ -214,7 +295,7 @@ class ExperienceTweaks extends Forwarder {
     @SuppressWarnings("CatchAndPrintStackTrace")
     private void displayNotificationDrawer() {
         @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
-        Class<?> statusbarManager = null;
+        Class<?> statusbarManager;
         try {
             statusbarManager = Class.forName("android.app.StatusBarManager");
             Method showStatusBar;
@@ -240,16 +321,17 @@ class ExperienceTweaks extends Forwarder {
     }
 
     private boolean isMinimalisticModeEnabledForFavorites() {
-        return prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false);
+        return prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false) && prefs.getBoolean("enable-favorites-bar", true);
     }
 
     /**
      * Should we force the keyboard not to display suggestions?
      * (swiftkey is broken, see https://github.com/Neamar/KISS/issues/44)
+     * (same for flesky: https://github.com/Neamar/KISS/issues/1263)
      */
     private boolean isNonCompliantKeyboard() {
-        String currentKeyboard = Settings.Secure.getString(mainActivity.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD);
-        return currentKeyboard.contains("swiftkey");
+        String currentKeyboard = Settings.Secure.getString(mainActivity.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD).toLowerCase();
+        return currentKeyboard.contains("swiftkey") || currentKeyboard.contains("flesky");
     }
 
     /**
@@ -266,8 +348,24 @@ class ExperienceTweaks extends Forwarder {
         return prefs.getBoolean("enable-suggestions-keyboard", false);
     }
 
-    private boolean isGesturesEnabled() {
-        return prefs.getBoolean("enable-gestures", true);
-    }
+    /**
+     * Are we allowed to run our AccessibilityService?
+     */
+    private boolean isAccessibilityServiceEnabled(Context context) {
+        AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+        if (am == null) {
+            return false;
+        }
 
+        List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+
+
+        for (AccessibilityServiceInfo enabledService : enabledServices) {
+            ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
+            if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(LockAccessibilityService.class.getName()))
+                return true;
+        }
+
+        return false;
+    }
 }

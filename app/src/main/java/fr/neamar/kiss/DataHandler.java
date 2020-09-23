@@ -10,7 +10,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
-import android.graphics.Bitmap.CompressFormat;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -21,7 +20,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -35,17 +33,18 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
-import fr.neamar.kiss.dataprovider.SearchProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.CalculatorProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.SettingsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
@@ -62,7 +61,7 @@ public class DataHandler extends BroadcastReceiver
      * List all known providers
      */
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
-            "app", "contacts", "settings", "shortcuts"
+            "app", "contacts", "shortcuts"
     );
     private TagsHandler tagsHandler;
     final private Context context;
@@ -115,7 +114,9 @@ public class DataHandler extends BroadcastReceiver
         ProviderEntry searchEntry = new ProviderEntry();
         searchEntry.provider = new SearchProvider(context);
         this.providers.put("search", searchEntry);
-
+        ProviderEntry settingsEntry = new ProviderEntry();
+        settingsEntry.provider = new SettingsProvider(context);
+        this.providers.put("settings", settingsEntry);
         ProviderEntry tagsEntry = new ProviderEntry();
         tagsEntry.provider = new TagsProvider();
         this.providers.put("tags", tagsEntry);
@@ -363,13 +364,11 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context        android context
      * @param itemCount      max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @param historyMode    Recency vs Frecency vs Frequency
-     * @param sortHistory    Sort history entries alphabetically
+     * @param historyMode    Recency vs Frecency vs Frequency vs Adaptive vs Alphabetically
      * @param itemsToExcludeById Items to exclude from history by their id
      * @return pojos in recent history
      */
-    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode,
-                                      boolean sortHistory, Set<String> itemsToExcludeById) {
+    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode, Set<String> itemsToExcludeById) {
         // Pre-allocate array slots that are likely to be used based on the current maximum item
         // count
         ArrayList<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
@@ -378,7 +377,7 @@ public class DataHandler extends BroadcastReceiver
         int extendedItemCount = itemCount + itemsToExcludeById.size();
 
         // Read history
-        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode, sortHistory);
+        List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode);
 
         // Find associated items
         for (int i = 0; i < ids.size(); i++) {
@@ -421,61 +420,46 @@ public class DataHandler extends BroadcastReceiver
         return (pojo != null) ? pojo.getName() : "???";
     }
 
-    public boolean addShortcut(ShortcutsPojo shortcut) {
-        ShortcutRecord record = new ShortcutRecord();
-        record.name = shortcut.getName();
-        record.iconResource = shortcut.resourceName;
-        record.packageName = shortcut.packageName;
-        record.intentUri = shortcut.intentUri;
-
-        if (shortcut.icon != null) {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            shortcut.icon.compress(CompressFormat.PNG, 100, baos);
-            record.icon_blob = baos.toByteArray();
-        }
-
-        Log.d(TAG, "Shortcut " + shortcut.id);
+    public boolean addShortcut(ShortcutRecord record) {
+        Log.d(TAG, "Adding shortcut for " + record.packageName);
         return DBHelper.insertShortcut(this.context, record);
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    public boolean addShortcut(String packageName) {
+    public void addShortcut(String packageName) {
 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return false;
+            return;
         }
 
         List<ShortcutInfo> shortcuts;
         try {
             shortcuts = ShortcutUtil.getShortcut(context, packageName);
-        } catch (SecurityException e) {
+        } catch (SecurityException | IllegalStateException e) {
             e.printStackTrace();
-            return false;
+            return;
         }
 
         for (ShortcutInfo shortcutInfo : shortcuts) {
             // Create Pojo
-            ShortcutsPojo pojo = ShortcutUtil.createShortcutPojo(context, shortcutInfo, true);
-            if (pojo == null) {
+            ShortcutRecord record = ShortcutUtil.createShortcutRecord(context, shortcutInfo, true);
+            if (record == null) {
                 continue;
             }
             // Add shortcut to the DataHandler
-            addShortcut(pojo);
-
-            Log.d(TAG, "Shortcut " + pojo.id + " added.");
+            addShortcut(record);
         }
 
         if (!shortcuts.isEmpty() && this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
-        return true;
     }
 
     public void clearHistory() {
         DBHelper.clearHistory(this.context);
     }
 
-    public void removeShortcut(ShortcutsPojo shortcut) {
+    public void removeShortcut(ShortcutPojo shortcut) {
         // Also remove shortcut from favorites
         removeFromFavorites(shortcut.id);
         DBHelper.removeShortcut(this.context, shortcut);
@@ -578,7 +562,7 @@ public class DataHandler extends BroadcastReceiver
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         dataHandler.removeFromFavorites(app.id);
 
-        //Exclude shortcuts for this app
+        // Exclude shortcuts for this app
         removeShortcuts(app.packageName);
     }
 
@@ -590,7 +574,7 @@ public class DataHandler extends BroadcastReceiver
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
         app.setExcluded(false);
 
-        //Add shortcuts for this app
+        // Add shortcuts for this app
         addShortcut(app.packageName);
     }
 
@@ -676,16 +660,11 @@ public class DataHandler extends BroadcastReceiver
      * @return favorites' pojo
      */
     public ArrayList<Pojo> getFavorites() {
-        ArrayList<Pojo> favorites = new ArrayList<>();
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
-        assert favApps != null;
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-
-        // We might skip some later but this avoid to expand memory multiple times
-        favorites.ensureCapacity(favAppsList.size());
-
+        ArrayList<Pojo> favorites = new ArrayList<>(favAppsList.size());
         // Find associated items
         for (int i = 0; i < favAppsList.size(); i++) {
             Pojo pojo = getPojo(favAppsList.get(i));
@@ -705,22 +684,24 @@ public class DataHandler extends BroadcastReceiver
      * @param position the new position of the fav
      */
     public void setFavoritePosition(MainActivity context, String id, int position) {
-        String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
-                getString("favorite-apps-list", "");
-        assert favApps != null;
-        List<String> favAppsList = new ArrayList<>(Arrays.asList(favApps.split(";")));
+        List<Pojo> currentFavorites = getFavorites();
+        List<String> favAppsList = new ArrayList<>();
+
+        for(Pojo pojo : currentFavorites) {
+            favAppsList.add(pojo.getFavoriteId());
+        }
 
         int currentPos = favAppsList.indexOf(id);
         if (currentPos == -1) {
             Log.e(TAG, "Couldn't find id in favAppsList");
             return;
         }
-        // Clamp the position so we dont just extend past the end of the array.
+        // Clamp the position so we don't just extend past the end of the array.
         position = Math.min(position, favAppsList.size() - 1);
 
         favAppsList.remove(currentPos);
-        // Because we're removing ourselves from the array, positions may change, we should take that into account
-        favAppsList.add(currentPos > position ? position + 1 : position, id);
+        favAppsList.add(position, id);
+
         String newFavList = TextUtils.join(";", favAppsList);
 
         PreferenceManager.getDefaultSharedPreferences(context).edit()
@@ -729,23 +710,7 @@ public class DataHandler extends BroadcastReceiver
         context.onFavoriteChange();
     }
 
-    /**
-     * Helper function to get the position of a favorite. Used mainly by the drag and drop system to know where to place the dropped app.
-     *
-     * @param id      the app you want to get the position of.
-     * @return favorite position
-     */
-    public int getFavoritePosition(String id) {
-        String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
-                getString("favorite-apps-list", "");
-        assert favApps != null;
-        List<String> favAppsList = new ArrayList<>(Arrays.asList(favApps.split(";")));
-
-        return favAppsList.indexOf(id);
-    }
-
     public void addToFavorites(String id) {
-
         String favApps = PreferenceManager.getDefaultSharedPreferences(context).
                 getString("favorite-apps-list", "");
 
@@ -803,6 +768,10 @@ public class DataHandler extends BroadcastReceiver
      * @param id pojo.id of item to record
      */
     public void addToHistory(String id) {
+        if(id.isEmpty()) {
+            return;
+        }
+
         boolean frozen = PreferenceManager.getDefaultSharedPreferences(context).
                 getBoolean("freeze-history", false);
 

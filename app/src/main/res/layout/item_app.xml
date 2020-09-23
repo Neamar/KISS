@@ -13,8 +13,8 @@
     android:paddingBottom="@dimen/result_margin_bottom">
 
     <FrameLayout
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="?attr/resultIconSize"
+        android:layout_height="?attr/resultIconSize"
         android:layout_gravity="start|center_vertical"
         android:layout_marginStart="@dimen/icon_margin_left"
         android:layout_marginLeft="@dimen/icon_margin_left"
@@ -54,13 +54,12 @@
             android:maxLines="1"
             android:paddingEnd="2dp"
             android:paddingRight="2dp"
-            android:paddingBottom="3dp"
             android:shadowColor="?attr/resultShadowColor"
             android:shadowDx="1"
             android:shadowDy="2"
             android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?attr/resultColor"
-            android:textSize="@dimen/result_title_size"
+            android:textSize="?attr/resultTitleSize"
             tools:ignore="RtlSymmetry"
             tools:text="@string/stub_application" />
 
@@ -68,7 +67,7 @@
             android:id="@+id/item_app_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-6dp"
+            android:layout_marginTop="-4dp"
             android:ellipsize="end"
             android:paddingEnd="2dp"
             android:paddingRight="2dp"
@@ -77,7 +76,7 @@
             android:shadowDy="2"
             android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?android:attr/textColorSecondary"
-            android:textSize="@dimen/result_small_size"
+            android:textSize="?attr/resultSubtitleSize"
             tools:ignore="RtlSymmetry"
             tools:text="@string/stub_app_tag" />
 

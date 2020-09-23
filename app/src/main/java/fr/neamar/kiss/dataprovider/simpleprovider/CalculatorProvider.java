@@ -17,20 +17,28 @@ import fr.neamar.kiss.utils.calculator.Tokenizer;
 
 public class CalculatorProvider extends SimpleProvider {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    final Pattern P;
+    final Pattern computableRegexp;
+    // A regexp to detect plain numbers (including phone numbers)
+    private final Pattern numberOnlyRegexp;
     private final NumberFormat LOCALIZED_NUMBER_FORMATTER = NumberFormat.getInstance();
 
     public CalculatorProvider() {
         //This should try to match as much as possible without going out of the expression,
         //even if the expression is not actually a computable operation.
-        P = Pattern.compile("^[\\-.,\\d+*/^'()]+$");
+        computableRegexp = Pattern.compile("^[\\-.,\\d+*/^'()]+$");
+        numberOnlyRegexp = Pattern.compile("^\\+?[.,()\\d]+$");
     }
 
     @Override
     public void requestResults(String query, Searcher searcher) {
+        String spacelessQuery = query.replaceAll("\\s+", "");
         // Now create matcher object.
-        Matcher m = P.matcher(query.replaceAll("\\s+", ""));
+        Matcher m = computableRegexp.matcher(spacelessQuery);
         if (m.find()) {
+            if(numberOnlyRegexp.matcher(spacelessQuery).find()) {
+                return;
+            }
+
             String operation = m.group();
 
             Result<ArrayDeque<Tokenizer.Token>> tokenized = Tokenizer.tokenize(operation);

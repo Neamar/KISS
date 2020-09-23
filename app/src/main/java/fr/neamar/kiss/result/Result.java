@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -20,14 +21,12 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -41,8 +40,8 @@ import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
-import fr.neamar.kiss.pojo.SettingsPojo;
-import fr.neamar.kiss.pojo.ShortcutsPojo;
+import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
@@ -66,12 +65,12 @@ public abstract class Result {
             return new ContactsResult(parent, (ContactsPojo) pojo);
         else if (pojo instanceof SearchPojo)
             return new SearchResult((SearchPojo) pojo);
-        else if (pojo instanceof SettingsPojo)
-            return new SettingsResult((SettingsPojo) pojo);
+        else if (pojo instanceof SettingPojo)
+            return new SettingsResult((SettingPojo) pojo);
         else if (pojo instanceof PhonePojo)
             return new PhoneResult((PhonePojo) pojo);
-        else if (pojo instanceof ShortcutsPojo)
-            return new ShortcutsResult((ShortcutsPojo) pojo);
+        else if (pojo instanceof ShortcutPojo)
+            return new ShortcutsResult((ShortcutPojo) pojo);
         else if (pojo instanceof TagDummyPojo)
             return new TagDummyResult((TagDummyPojo)pojo);
 
@@ -98,12 +97,11 @@ public abstract class Result {
      * @return a view to display as item
      */
     @NonNull
-    public abstract View display(Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
+    public abstract View display(Context context, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
 
     @NonNull
-    public View inflateFavorite(@NonNull Context context, @Nullable View favoriteView, @NonNull ViewGroup parent) {
-        if (favoriteView == null)
-            favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
+    public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
+        View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
         Drawable drawable = getDrawable(context);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
         if (drawable == null)
@@ -114,7 +112,7 @@ public abstract class Result {
         return favoriteView;
     }
 
-    public void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
+    void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
         SpannableString enriched = new SpannableString(text);
         int primaryColor = UIColors.getPrimaryColor(context);
 
@@ -129,7 +127,7 @@ public abstract class Result {
         view.setText(enriched);
     }
 
-    public boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
+    boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
                                       TextView view, Context context) {
         FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
@@ -239,7 +237,7 @@ public abstract class Result {
     boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId, View parentView) {
         switch (stringId) {
             case R.string.menu_remove:
-                removeItem(context, parent);
+                removeFromResultsAndHistory(context, parent);
                 return true;
             case R.string.menu_favorites_add:
                 launchAddToFavorites(context, pojo);
@@ -250,26 +248,27 @@ public abstract class Result {
         }
 
         MainActivity mainActivity = (MainActivity) context;
-        //Update favorite bar
+        // Update favorite bar
         mainActivity.onFavoriteChange();
-        //Update Search to reflect favorite add, if the "exclude favorites" option is active
+        mainActivity.launchOccurred();
+        // Update Search to reflect favorite add, if the "exclude favorites" option is active
         if (mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
-            mainActivity.updateSearchRecords();
+            mainActivity.updateSearchRecords(true);
         }
 
         return false;
     }
 
-    private void launchAddToFavorites(Context context, Pojo app) {
+    private void launchAddToFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
-        KissApplication.getApplication(context).getDataHandler().addToFavorites(app.id);
-        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
+        KissApplication.getApplication(context).getDataHandler().addToFavorites(pojo.getFavoriteId());
+        Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
     }
 
-    private void launchRemoveFromFavorites(Context context, Pojo app) {
+    private void launchRemoveFromFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
-        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(app.id);
-        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
+        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(pojo.getFavoriteId());
+        Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -278,23 +277,42 @@ public abstract class Result {
      * @param context android context
      * @param parent  adapter on which to remove the item
      */
-    private void removeItem(Context context, RecordAdapter parent) {
+    private void removeFromResultsAndHistory(Context context, RecordAdapter parent) {
+        removeFromHistory(context);
         Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();
         parent.removeResult(context, this);
     }
 
-    public final void launch(Context context, View v) {
+    public final void launch(Context context, View v, QueryInterface queryInterface) {
         Log.i("log", "Launching " + pojo.id);
-
-        recordLaunch(context);
 
         // Launch
         doLaunch(context, v);
+
+        if (queryInterface != null) {
+            recordLaunch(context, queryInterface);
+        }
+    }
+
+    void recordLaunch(Context context, QueryInterface queryInterface) {
+        // Record the launch after some period,
+        // * to ensure the animation runs smoothly
+        // * to avoid a flickering -- launchOccurred will refresh the list
+        // Thus TOUCH_DELAY * 3
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Save in history
+                KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
+
+                queryInterface.launchOccurred();
+            }
+        }, KissApplication.TOUCH_DELAY * 3);
     }
 
     /**
-     * How to launch this record ? Most probably, will fire an intent. This
-     * function must call recordLaunch()
+     * How to launch this record ? Most probably, will fire an intent.
      *
      * @param context android context
      */
@@ -307,7 +325,7 @@ public abstract class Result {
      * @param context android context
      */
     public void fastLaunch(Context context, View v) {
-        this.launch(context, v);
+        this.launch(context, v, null);
     }
 
     /**
@@ -317,6 +335,15 @@ public abstract class Result {
      */
     public Drawable getDrawable(Context context) {
         return null;
+    }
+
+    /**
+     * Does the drawable changes regularly?
+     * If so, it can't be kept in cache for long.
+     * @return true when dynamic
+     */
+    public boolean isDrawableDynamic() {
+        return false;
     }
 
     boolean isDrawableCached() {
@@ -368,17 +395,7 @@ public abstract class Result {
         return inflater.inflate(id, parent, false);
     }
 
-    /**
-     * Put this item in application history
-     *
-     * @param context android context
-     */
-    void recordLaunch(Context context) {
-        // Save in history
-        KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.id);
-    }
-
-    public void deleteRecord(Context context) {
+    void removeFromHistory(Context context) {
         DBHelper.removeFromHistory(context, pojo.id);
     }
 

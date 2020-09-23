@@ -25,12 +25,6 @@
             android:order="46"
             android:summary="@string/history_mode_desc"
             android:title="@string/history_mode_name" />
-        <fr.neamar.kiss.preference.SwitchPreference
-            android:defaultValue="false"
-            android:key="sort-history"
-            android:order="47"
-            android:summary="@string/history_sort_desc"
-            android:title="@string/history_sort_name" />
         <fr.neamar.kiss.preference.FreezeHistorySwitch
             android:defaultValue="false"
             android:key="freeze-history"
@@ -82,6 +76,11 @@
             android:title="@string/enable_favorites_bar" />
         <fr.neamar.kiss.preference.SwitchPreference
             android:defaultValue="false"
+            android:dependency="enable-favorites-bar"
+            android:key="large-favorites-bar"
+            android:title="@string/large_favorites_bar" />
+        <fr.neamar.kiss.preference.SwitchPreference
+            android:defaultValue="true"
             android:key="exclude-favorites"
             android:title="@string/exclude_favorites" />
         <MultiSelectListPreference
@@ -98,7 +97,42 @@
             android:entries="@array/themesEntries"
             android:entryValues="@array/themesValues"
             android:key="theme"
+            android:summary="%s"
             android:title="@string/theme_name" />
+        <PreferenceScreen android:title="@string/theme_customisation">
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/shadowEntries"
+                android:entryValues="@array/shadowValues"
+                android:key="theme-shadow"
+                android:summary="%s"
+                android:title="@string/theme_shadow" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/separatorEntries"
+                android:entryValues="@array/separatorValues"
+                android:key="theme-separator"
+                android:summary="%s"
+                android:title="@string/theme_separator" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/resultColorEntries"
+                android:entryValues="@array/resultColorValues"
+                android:key="theme-result-color"
+                android:summary="%s"
+                android:title="@string/theme_result_color" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/wallpaperEntries"
+                android:entryValues="@array/wallpaperValues"
+                android:key="theme-wallpaper"
+                android:summary="%s"
+                android:title="@string/theme_wallpaper" />
+        </PreferenceScreen>
+        <fr.neamar.kiss.preference.SwitchPreference
+            android:defaultValue="false"
+            android:key="small-results"
+            android:title="@string/small_results" />
         <ListPreference
             android:defaultValue="default"
             android:key="icons-pack"
@@ -138,6 +172,10 @@
                 android:defaultValue="false"
                 android:key="pref-swap-kiss-button-with-menu"
                 android:title="@string/swap_kiss_button_with_menu" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-hide-search-bar-hint"
+                android:title="@string/hide_search_bar_hint" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
@@ -186,6 +224,36 @@
                 android:summary="@string/pref_hide_circle_desc"
                 android:title="@string/pref_hide_circle" />
         </PreferenceCategory>
+        <PreferenceCategory android:title="@string/gestures" android:key="gestures-holder">
+            <ListPreference
+                android:defaultValue="display-keyboard"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-up"
+                android:title="@string/gesture_up_name" />
+            <ListPreference
+                android:defaultValue="display-notifications"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-down"
+                android:title="@string/gesture_down_name" />
+            <ListPreference
+                android:defaultValue="display-apps"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-left"
+                android:title="@string/gesture_left_name" />
+            <ListPreference
+                android:defaultValue="display-apps"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-right"
+                android:title="@string/gesture_right_name" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="double-tap"
+                android:title="@string/double_tap_to_lock" />
+        </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
@@ -195,6 +263,10 @@
                 android:defaultValue="true"
                 android:key="tags-visible"
                 android:title="@string/tags_visible" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="true"
+                android:key="subicon-visible"
+                android:title="@string/show_subicons" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
                 android:key="icons-hide"
@@ -209,11 +281,6 @@
                 android:defaultValue="false"
                 android:key="call-contact-on-click"
                 android:title="@string/contacts_call_on_click" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="true"
-                android:key="enable-gestures"
-                android:summary="@string/enable_gestures_desc"
-                android:title="@string/enable_gestures" />
         </PreferenceCategory>
         <PreferenceScreen
             android:key="wallpaper-holder"
@@ -263,9 +330,7 @@
                 android:key="pref-toggle-tags-list"
                 android:title="@string/pref_toggle_tags_select" />
         </PreferenceScreen>
-
     </PreferenceScreen>
-
     <PreferenceScreen
         android:key="providers"
         android:summary="@string/providers_summary"
@@ -284,22 +349,24 @@
             android:key="enable-shortcuts"
             android:title="@string/shortcuts_name" />
         <fr.neamar.kiss.preference.ResetShortcutsPreference
-            android:dialogMessage="@string/shortcuts_reset_desc"
+            android:dialogMessage="@string/regenerate_shortcuts_desc"
             android:key="reset"
-            android:title="@string/shortcuts_reset" />
+            android:title="@string/regenerate_shortcuts" />
         <fr.neamar.kiss.preference.SwitchPreference
             android:defaultValue="true"
             android:key="enable-search"
             android:title="@string/search_provider_toggle" />
         </PreferenceCategory>
-        <PreferenceCategory android:title="@string/search_name">
+        <PreferenceCategory android:title="@string/search_name" android:key="web-providers">
             <fr.neamar.kiss.preference.AddSearchProviderPreference
                 android:key="custom-search-provider-add"
                 android:textColor="?attr/searchColor"
+                android:order="30"
                 android:title="@string/custom_search_provider" />
             <fr.neamar.kiss.preference.ResetSearchProvidersPreference
                 android:dialogMessage="@string/search_provider_reset_desc"
                 android:key="reset"
+                android:order="40"
                 android:title="@string/search_provider_reset" />
         </PreferenceCategory>
     </PreferenceScreen>

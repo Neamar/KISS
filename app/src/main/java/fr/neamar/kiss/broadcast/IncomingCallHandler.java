@@ -39,7 +39,7 @@ public class IncomingCallHandler extends BroadcastReceiver {
 
                 ContactsPojo contactPojo = contactsProvider.findByPhone(phoneNumber);
                 if (contactPojo != null) {
-                    dataHandler.addToHistory(contactPojo.id);
+                    dataHandler.addToHistory(contactPojo.getHistoryId());
                 }
             }
         } catch (Exception e) {

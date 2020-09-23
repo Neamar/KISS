@@ -6,12 +6,10 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.neamar.kiss.MainActivity;
@@ -46,6 +44,10 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.setTheme(R.style.AppThemeAmoledDark);
                 break;
         }
+
+        UIColors.applyOverlay(mainActivity, prefs);
+
+        mainActivity.getTheme().applyStyle(prefs.getBoolean("small-results", false) ? R.style.OverlayResultSizeSmall : R.style.OverlayResultSizeStandard, true);
     }
 
     void onCreate() {
@@ -56,7 +58,7 @@ class InterfaceTweaks extends Forwarder {
 
         // Transparent Search and Favorites bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            if (prefs.getBoolean("transparent-favorites", true)) {
+            if (prefs.getBoolean("transparent-favorites", true) && isExternalFavoriteBarEnabled()) {
                 mainActivity.favoritesBar.setBackgroundResource(android.R.color.transparent);
             }
             if (prefs.getBoolean("transparent-search", false)) {
@@ -76,12 +78,16 @@ class InterfaceTweaks extends Forwarder {
             }
         }
 
-
+        // Notification drawer icon color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (prefs.getBoolean("black-notification-icons", false)) {
                 // Apply the flag to any view, so why not the edittext!
                 mainActivity.searchEditText.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
+        }
+
+        if (prefs.getBoolean("pref-hide-search-bar-hint", false)) {
+            mainActivity.searchEditText.setHint("");
         }
     }
 
@@ -98,6 +104,11 @@ class InterfaceTweaks extends Forwarder {
         mainActivity.findViewById(R.id.searchEditLayout).getLayoutParams().height = searchHeight;
         mainActivity.kissBar.getLayoutParams().height = searchHeight;
         mainActivity.findViewById(R.id.embeddedFavoritesBar).getLayoutParams().height = searchHeight;
+
+        // Large favorite bar
+        if (prefs.getBoolean("large-favorites-bar", false) && isExternalFavoriteBarEnabled()) {
+            mainActivity.favoritesBar.getLayoutParams().height = res.getDimensionPixelSize(R.dimen.large_favorite_height);
+        }
     }
 
     private void applyRoundedCorners(MainActivity mainActivity) {
@@ -176,8 +187,11 @@ class InterfaceTweaks extends Forwarder {
         // Launcher button should have the main color
         ImageView launcherButton = mainActivity.findViewById(R.id.launcherButton);
         launcherButton.setColorFilter(primaryColorOverride);
-        ProgressBar loaderBar = mainActivity.findViewById(R.id.loaderBar);
-        loaderBar.getIndeterminateDrawable().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            ProgressBar loaderBar = mainActivity.findViewById(R.id.loaderBar);
+            loaderBar.getIndeterminateDrawable().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
+        }
 
         // Kissbar background
         mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
@@ -190,5 +204,9 @@ class InterfaceTweaks extends Forwarder {
         int shadowColor = ta.getColor(0, Color.BLACK);
         ta.recycle();
         return shadowColor;
+    }
+
+    private boolean isExternalFavoriteBarEnabled() {
+        return prefs.getBoolean("enable-favorites-bar", true);
     }
 }

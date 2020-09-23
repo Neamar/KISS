@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -17,13 +16,13 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
@@ -32,6 +31,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import java.util.Locale;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -59,9 +60,8 @@ public class AppResult extends Result {
 
     @NonNull
     @Override
-    public View display(final Context context, int position, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
-        View view = convertView;
-        if (convertView == null) {
+    public View display(final Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
+        if (view == null) {
             view = inflateFromId(context, R.layout.item_app, parent);
         }
 
@@ -116,9 +116,10 @@ public class AppResult extends Result {
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_exclude));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
-        adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
+        adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
+        adapter.add(new ListPopup.Item(context, R.string.menu_app_store));
 
         try {
             // app installed under /system can't be uninstalled
@@ -156,6 +157,9 @@ public class AppResult extends Result {
             case R.string.menu_app_details:
                 launchAppDetails(context, appPojo);
                 return true;
+            case R.string.menu_app_store:
+                launchAppStore(context, appPojo);
+                return true;
             case R.string.menu_app_uninstall:
                 launchUninstall(context, appPojo);
                 return true;
@@ -171,54 +175,49 @@ public class AppResult extends Result {
                 popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_history);
                 popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_kiss);
                 //registering popup with OnMenuItemClickListener
-                popupExcludeMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getGroupId()) {
-                            case EXCLUDE_HISTORY_ID:
-                                excludeFromHistory(context, appPojo, parent);
-                                return true;
-                            case EXCLUDE_KISS_ID:
-                                // remove item since it will be hidden
-                                parent.removeResult(context, AppResult.this);
-                                excludeFromKiss(context, appPojo);
-                                return true;
-                        }
-
-                        return true;
+                popupExcludeMenu.setOnMenuItemClickListener(item -> {
+                    switch (item.getGroupId()) {
+                        case EXCLUDE_HISTORY_ID:
+                            excludeFromHistory(context, appPojo);
+                            return true;
+                        case EXCLUDE_KISS_ID:
+                            excludeFromKiss(context, appPojo, parent);
+                            return true;
                     }
+
+                    return true;
                 });
 
                 popupExcludeMenu.show();
                 return true;
             case R.string.menu_tags_edit:
-                launchEditTagsDialog(context, appPojo);
+                launchEditTagsDialog(context, parent, appPojo);
                 return true;
         }
 
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
-    private void excludeFromHistory(Context context, AppPojo appPojo, final RecordAdapter parent) {
-        //add to excluded from history app list
-        KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
-        //remove from history
-        deleteRecord(context);
-        //refresh current history
-        if (!((MainActivity) context).isViewingAllApps()) {
-            parent.removeResult(context, AppResult.this);
-        }
-        //inform user
+    private void excludeFromHistory(Context context, AppPojo appPojo) {
+        // add to excluded from history app list
+         KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
+        // remove from history
+        removeFromHistory(context);
+        // inform user
         Toast.makeText(context, R.string.excluded_app_history_added, Toast.LENGTH_LONG).show();
     }
 
-    private void excludeFromKiss(Context context, AppPojo appPojo) {
+    private void excludeFromKiss(Context context, AppPojo appPojo, final RecordAdapter parent) {
+        // remove item since it will be hidden
+        parent.removeResult(context, AppResult.this);
+
         KissApplication.getApplication(context).getDataHandler().addToExcluded(appPojo);
         // In case the newly excluded app was in a favorite, refresh them
         ((MainActivity) context).onFavoriteChange();
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 
-    private void launchEditTagsDialog(final Context context, final AppPojo app) {
+    private void launchEditTagsDialog(final Context context, RecordAdapter parent, final AppPojo app) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(context.getResources().getString(R.string.tags_add_title));
 
@@ -229,32 +228,43 @@ public class AppResult extends Result {
                 android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
         tagInput.setTokenizer(new SpaceTokenizer());
         tagInput.setText(appPojo.getTags());
-
         tagInput.setAdapter(adapter);
         builder.setView(v);
 
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                // Refresh tags for given app
-                app.setTags(tagInput.getText().toString());
-                KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
-                // Show toast message
-                String msg = context.getResources().getString(R.string.tags_confirmation_added);
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-            }
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            dialog.dismiss();
+            // Refresh tags for given app
+            app.setTags(tagInput.getText().toString().trim().toLowerCase(Locale.ROOT));
+            KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
+            // Show toast message
+            String msg = context.getResources().getString(R.string.tags_confirmation_added);
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            // We'll need to reset the list view to its previous transcript mode,
+            // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
+            // Let's wait for half a second, that's ugly but we don't have any other option :(
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+                }
+            }, 500);
         });
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+            dialog.cancel();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // See comment above
+                    parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+                }
+            }, 500);
+
         });
 
+        parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
         AlertDialog dialog = builder.create();
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-
         dialog.show();
     }
 
@@ -270,6 +280,14 @@ public class AppResult extends Result {
             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                     Uri.fromParts("package", app.packageName, null));
             context.startActivity(intent);
+        }
+    }
+
+    private void launchAppStore(Context context, AppPojo app) {
+        try {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + app.packageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + app.packageName)));
         }
     }
 
@@ -318,6 +336,13 @@ public class AppResult extends Result {
         }
     }
 
+
+    @Override
+    public boolean isDrawableDynamic() {
+        // The only dynamic icon is from Google Calendar
+        return GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName);
+    }
+
     @Override
     public void doLaunch(Context context, View v) {
         try {
@@ -357,7 +382,7 @@ public class AppResult extends Result {
 
                 context.startActivity(intent);
             }
-        } catch (ActivityNotFoundException | NullPointerException e) {
+        } catch (ActivityNotFoundException | NullPointerException | SecurityException e) {
             // Application was just removed?
             // (null pointer exception can be thrown on Lollipop+ when app is missing)
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();

@@ -1,12 +1,10 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Pair;
 import android.view.View;
@@ -15,18 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import java.util.Collections;
 
+import androidx.annotation.NonNull;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 
-public class PhoneResult extends Result {
+public class PhoneResult extends CallResult {
     private final PhonePojo phonePojo;
 
     PhoneResult(PhonePojo phonePojo) {
@@ -36,19 +32,19 @@ public class PhoneResult extends Result {
 
     @NonNull
     @Override
-    public View display(Context context, int position, View v, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
-        if (v == null)
-            v = inflateFromId(context, R.layout.item_phone, parent);
+    public View display(Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
+        if (view == null)
+            view = inflateFromId(context, R.layout.item_phone, parent);
 
-        TextView phoneText = v.findViewById(R.id.item_phone_text);
+        TextView phoneText = view.findViewById(R.id.item_phone_text);
         String text = String.format(context.getString(R.string.ui_item_phone), phonePojo.phone);
         int pos = text.indexOf(phonePojo.phone);
         int len = phonePojo.phone.length();
         displayHighlighted(text, Collections.singletonList(new Pair<Integer, Integer>(pos, pos + len)), phoneText, context);
 
-        ((ImageView) v.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
+        ((ImageView) view.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
 
-        return v;
+        return view;
     }
 
     @Override
@@ -84,26 +80,14 @@ public class PhoneResult extends Result {
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
-    @SuppressLint("MissingPermission")
     @Override
-    public void doLaunch(Context context, View v) {
-        Intent phone = new Intent(Intent.ACTION_CALL);
-        phone.setData(Uri.parse("tel:" + Uri.encode(phonePojo.phone)));
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            phone.setSourceBounds(v.getClipBounds());
-        }
-
-        phone.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        // Make sure we have permission to call someone as this is considered a dangerous permission
-        if (Permission.ensureCallPhonePermission(phone)) {
-            context.startActivity(phone);
-        }
+    public Drawable getDrawable(Context context) {
+        //noinspection: getDrawable(int, Theme) requires SDK 21+
+        return context.getResources().getDrawable(android.R.drawable.ic_menu_call);
     }
 
     @Override
-    public Drawable getDrawable(Context context) {
-        //noinspection deprecation: getDrawable(int, Theme) requires SDK 21+
-        return context.getResources().getDrawable(android.R.drawable.ic_menu_call);
+    protected void doLaunch(Context context, View v) {
+        launchCall(context, v, phonePojo.phone);
     }
 }

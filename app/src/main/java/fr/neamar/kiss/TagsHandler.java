@@ -27,11 +27,11 @@ public class TagsHandler {
     }
 
     public void setTags(String id, String tags) {
-        //remove existing tags for id
+        // remove existing tags for id
         DBHelper.deleteTagsForId(this.context, id);
-        //add to db
+        // add to db
         DBHelper.insertTagsForId(this.context, tags, id);
-        //add to cache
+        // add to cache
         tagsCache.put(id, tags);
     }
 
@@ -45,7 +45,7 @@ public class TagsHandler {
 
     public String[] getAllTagsAsArray() {
         Set<String> tags = getAllTagsAsSet();
-        return tags.toArray(new String[tags.size()]);
+        return tags.toArray(new String[0]);
     }
 
     public Set<String> getAllTagsAsSet() {

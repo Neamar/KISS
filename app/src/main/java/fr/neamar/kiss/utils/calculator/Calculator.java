@@ -5,7 +5,6 @@ import android.os.Build;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayDeque;
-import java.util.Iterator;
 
 public class Calculator {
 
@@ -17,6 +16,8 @@ public class Calculator {
 		}
 	}
 
+	// Implements the Shunting Yard algorithm
+	// https://en.wikipedia.org/wiki/Shunting-yard_algorithm
 	private static Result<BigDecimal> calculateExpressionThrowing(ArrayDeque<Tokenizer.Token> expression)
 			throws ArithmeticException {
 		ArrayDeque<BigDecimal> stack = new ArrayDeque<>();

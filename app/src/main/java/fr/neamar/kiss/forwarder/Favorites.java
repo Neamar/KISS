@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,12 +17,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -29,8 +30,8 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.notification.NotificationListener;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
 
@@ -46,46 +47,33 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     private ArrayList<ViewHolder> favoritesViews = new ArrayList<>();
 
     private static class ViewHolder {
-        @Nullable
-        View view;
+        final View view;
         @NonNull
-        Result result;
+        final Result result;
+        @NonNull
+        final Pojo pojo;
 
-        ViewHolder(@NonNull Result result) {
+        ViewHolder(@NonNull Result result, @NonNull Pojo pojo, @NonNull Context context, @NonNull ViewGroup parent) {
             this.result = result;
-            view = null;
-        }
-
-        void initView(@NonNull Context context, @NonNull ViewGroup parent) {
-            // try to recycle old view (inflate is expensive)
-            view = result.inflateFavorite(context, view, parent);
-            // from this point forward view is not null
+            this.pojo = pojo;
+            view = result.inflateFavorite(context, parent);
             view.setTag(this);
         }
-    }
 
-    /**
-     * Currently displayed favorites
-     */
-    private ArrayList<Pojo> favoritesPojo = new ArrayList<>();
+        boolean isReusable() {
+            return !result.isDrawableDynamic();
+        }
+    }
 
     /**
      * Globals for drag and drop support
      */
     private static long startTime = 0; // Start of the drag and drop, used for long press menu
-    private float currentX = 0.0f; // Current X position of the drag op, this is 0 on DRAG END so we keep a copy here
-    private ViewHolder overApp; // the view for the DRAG_END event is typically wrong, so we store a reference of the last dragged over app.
-
-    /**
-     * Configuration for drag and drop
-     */
-    private final int MOVE_SENSITIVITY = 8; // How much you need to move your finger to be considered "moving"
-    private final int LONG_PRESS_DELAY = 250; // How long to hold your finger in place to trigger the app menu.
 
     // Use so we don't over process on the drag events.
     private boolean mDragEnabled = true;
     private boolean isDragging = false;
-    private boolean contextMenuShown = false;
+    private int potentialNewIndex = -1;
     private int favCount = -1;
 
     private SharedPreferences notificationPrefs = null;
@@ -105,13 +93,13 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             mainActivity.findViewById(R.id.externalFavoriteBar).setVisibility(View.GONE);
         }
 
-        if (prefs.getBoolean("firstRun", true)) {
+        if (prefs.getBoolean("first-run-favorites", true)) {
             // It is the first run. Make sure this is not an update by checking if history is empty
             if (DBHelper.getHistoryLength(mainActivity) == 0) {
                 addDefaultAppsToFavs();
             }
             // set flag to false
-            prefs.edit().putBoolean("firstRun", false).apply();
+            prefs.edit().putBoolean("first-run-favorites", false).apply();
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
@@ -120,78 +108,88 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
     }
 
-    ViewHolder popFavViewHolder(@NonNull Result result) {
-        for (Iterator<ViewHolder> iterator = favoritesViews.iterator(); iterator.hasNext(); ) {
-            ViewHolder viewHolder = iterator.next();
-            if (result.getClass() == viewHolder.result.getClass()) {
-                iterator.remove();
-                viewHolder.result = result;
-                return viewHolder;
+    private ViewHolder findViewHolder(@NonNull Pojo pojo) {
+        for (ViewHolder vh : favoritesViews) {
+            if (vh.pojo == pojo && vh.isReusable()) {
+                return vh;
             }
         }
-        return new ViewHolder(result);
+        return null;
     }
 
     void onFavoriteChange() {
-        favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler()
-                .getFavorites();
-
+        ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
         favCount = favoritesPojo.size();
 
         ArrayList<ViewHolder> holders = new ArrayList<>(favCount);
 
+        ViewGroup favoritesBar = mainActivity.favoritesBar;
+
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < favCount; i++) {
-            ViewHolder viewHolder = popFavViewHolder(Result.fromPojo(mainActivity, favoritesPojo.get(i)));
-            viewHolder.initView(mainActivity, mainActivity.favoritesBar);
+            Pojo favoritePojo = favoritesPojo.get(i);
+            // Is there already a ViewHolder for this Pojo?
+            ViewHolder viewHolder = findViewHolder(favoritePojo);
+            if (viewHolder == null) {
+                // If not, build a new one
+                viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo, mainActivity, mainActivity.favoritesBar);
+                viewHolder.view.setOnClickListener(this);
+                viewHolder.view.setOnLongClickListener(this);
+                viewHolder.view.setOnTouchListener(this);
+            }
+
             holders.add(viewHolder);
-        }
 
-        // release unused view holders and keep the used ones for recycle
-        favoritesViews.clear();
-        favoritesViews.addAll(holders);
-
-        // clear the view hierarchy
-        mainActivity.favoritesBar.removeAllViews();
-
-        // add views to view hierarchy
-        for (ViewHolder viewHolder : favoritesViews) {
-            assert viewHolder.view != null;
-            mainActivity.favoritesBar.addView(viewHolder.view);
-            viewHolder.view.setOnDragListener(this);
-            viewHolder.view.setOnTouchListener(this);
-            viewHolder.view.setVisibility(View.VISIBLE);
-        }
-
-        if (notificationPrefs != null) {
-            int dotColor;
-            if (isExternalFavoriteBarEnabled()) {
-                dotColor = UIColors.getPrimaryColor(mainActivity);
-            }
-            else {
-                dotColor = Color.WHITE;
+            // Check if view is different (we get null if beyond bounds, for instance when a new favorite was added)
+            View currentView = favoritesBar.getChildAt(i);
+            if (currentView != viewHolder.view) {
+                if (viewHolder.view.getParent() != null) {
+                    // We need to remove the view from its parent first
+                    ((ViewGroup) viewHolder.view.getParent()).removeView(viewHolder.view);
+                }
+                favoritesBar.addView(viewHolder.view, i);
+                // Remove old current view, which is now out of date. Useful for dynamic icons to ensure only the dynamic icon is updated, and everything else remains the same
+                disposeOf(currentView);
+                favoritesBar.removeView(currentView);
             }
 
-            for (ViewHolder viewHolder : favoritesViews) {
-                assert viewHolder.view != null;
+            if (notificationPrefs != null) {
+                int dotColor = isExternalFavoriteBarEnabled() ? UIColors.getPrimaryColor(mainActivity) : Color.WHITE;
+
                 ImageView notificationDot = viewHolder.view.findViewById(R.id.item_notification_dot);
                 if (notificationDot == null)
+                    // Notification-less favorites don't have a dot
                     continue;
                 notificationDot.setColorFilter(dotColor);
 
-                if (viewHolder.result instanceof AppResult) {
-                    String packageName = ((AppResult) viewHolder.result).getPackageName();
+                if (favoritePojo instanceof AppPojo) {
+                    String packageName = ((AppPojo) favoritePojo).packageName;
                     notificationDot.setTag(packageName);
                     notificationDot.setVisibility(notificationPrefs.contains(packageName) ? View.VISIBLE : View.GONE);
-                } else {
-                    // Ensure view is clean (might have been recycled after a drag and drop)
-                    notificationDot.setTag(null);
-                    notificationDot.setVisibility(View.GONE);
                 }
             }
         }
 
+        // Remove any leftover views from previous renders
+        while (favoritesBar.getChildCount() > favCount) {
+            Log.e("WTF", "Disposing");
+            View toBeDisposed = favoritesBar.getChildAt(favCount);
+            disposeOf(toBeDisposed);
+            favoritesBar.removeViewAt(favCount);
+        }
+
+        // kepp viewholders in memory for future recycling
+        favoritesViews = holders;
         mDragEnabled = favCount > 1;
+    }
+
+    void disposeOf(@Nullable View toBeDisposed) {
+        if(toBeDisposed == null) {
+            return;
+        }
+        toBeDisposed.setOnClickListener(null);
+        toBeDisposed.setOnLongClickListener(null);
+        toBeDisposed.setOnTouchListener(null);
     }
 
     void updateSearchRecords(String query) {
@@ -208,6 +206,153 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             mainActivity.favoritesBar.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onClick(View v) {
+        ViewHolder viewHolder = (ViewHolder) v.getTag();
+        viewHolder.result.fastLaunch(mainActivity, v);
+        v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        ViewHolder viewHolder = (ViewHolder) v.getTag();
+        ListPopup popup = viewHolder.result.getPopupMenu(mainActivity, mainActivity.adapter, v);
+        mainActivity.registerPopup(popup);
+        popup.show(v);
+        return true;
+    }
+
+    private boolean isExternalFavoriteBarEnabled() {
+        return prefs.getBoolean("enable-favorites-bar", true);
+    }
+
+    @Override
+    @SuppressLint("ClickableViewAccessibility")
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        // How long to hold your finger in place to trigger the app menu.
+        final int LONG_PRESS_DELAY = 250;
+
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            startTime = motionEvent.getEventTime();
+            return false;
+        }
+        // No need to do any extra work while dragging
+        if (isDragging) {
+            return false;
+        }
+
+        long holdTime = motionEvent.getEventTime() - startTime;
+
+        if (holdTime > LONG_PRESS_DELAY) {
+            // Long press, either drag or context menu
+            int intCurrentY = Math.round(motionEvent.getY());
+            int intCurrentX = Math.round(motionEvent.getX());
+            int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
+            int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
+
+            // How much you need to move your finger to be considered "moving"
+            int MOVE_SENSITIVITY = 8;
+            boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
+
+            if (hasMoved && mDragEnabled && !isDragging) {
+                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
+                mDragEnabled = false;
+                mainActivity.dismissPopup();
+                mainActivity.closeContextMenu();
+
+                mainActivity.favoritesBar.setOnDragListener(this);
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.setVisibility(View.INVISIBLE);
+                isDragging = true;
+                view.cancelLongPress();
+                view.startDrag(null, shadowBuilder, view, 0);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean onDrag(View targetView, final DragEvent event) {
+        final View draggedView = (View) event.getLocalState();
+
+        switch (event.getAction()) {
+            case DragEvent.ACTION_DRAG_STARTED:
+                return targetView instanceof LinearLayout;
+            case DragEvent.ACTION_DRAG_ENTERED:
+                return isDragging;
+            case DragEvent.ACTION_DRAG_LOCATION:
+                ViewGroup bar = ((ViewGroup) targetView);
+                float x = event.getX();
+                int width = targetView.getWidth();
+
+                int currentPos = (int) (favCount * x / width);
+
+                View currentChildAtPos = bar.getChildAt(currentPos);
+                if (currentChildAtPos != draggedView) {
+                    // Do not update the ViewGroup during the event dispatch, older Androids will crash
+                    // See #1419
+                    bar.removeView(draggedView);
+                    try {
+                        bar.addView(draggedView, currentPos);
+                    } catch (IllegalStateException e) {
+                        // In some situations,
+                        // removeView() somehow fails (this especially happens if you start the drag and immediately moves to the left or right)
+                        // and we can't add the children back, because it still has a parent. In this case, do nothing, this should fix itself on the next iteration.
+                        // This is very likely caused by animateLayoutChange, since disabling the property fixes the issue... but also removes all animation.
+                        potentialNewIndex = -1;
+                        return false;
+                    }
+                }
+
+                potentialNewIndex = currentPos;
+                return true;
+            case DragEvent.ACTION_DROP:
+                // Accept the drop, will be followed by ACTION_DRAG_ENDED
+                return isDragging;
+            case DragEvent.ACTION_DRAG_ENDED:
+                final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
+                int newIndex = potentialNewIndex;
+
+                draggedView.post(() -> {
+                    // Reset dragging to what it should be
+                    // Need to be posted to avoid updating the ViewGroup during the event dispatch, older Androids will crash otherwise
+                    // See #1419
+                    draggedView.setVisibility(View.VISIBLE);
+
+                    try {
+                        if (newIndex == -1) {
+                            // Sometimes we don't trigger onDrag over another app, in which case just drop.
+                            Log.w(TAG, "Wasn't dragged over a favorite, returning app to starting position");
+                            // We still need to refresh our favorites, in case one was removed and never added back (see IllegalStateException above)
+                            mainActivity.onFavoriteChange();
+                        } else {
+                            // Signals to a View that the drag and drop operation has concluded.
+                            // If event result is set, this means the dragged view was dropped in target
+                            if (event.getResult()) {
+                                KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), newIndex);
+                            }
+                        }
+                    } catch (IllegalStateException e) {
+                        // An animation was running. Retry later
+                        // (to trigger: long press a favorite while already moving your finger a little, release as soon as you get haptic feedback)
+                        draggedView.postDelayed(mainActivity::onFavoriteChange, 300);
+                    }
+                });
+
+                mDragEnabled = favCount > 1;
+                potentialNewIndex = -1;
+                isDragging = false;
+                return true;
+            default:
+                break;
+        }
+        return isDragging;
+    }
+
 
     /**
      * On first run, fill the favorite bar with sensible defaults
@@ -274,150 +419,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             }
         }
         mainActivity.onFavoriteChange();
-    }
-
-    @Override
-    public void onClick(View v) {
-        ViewHolder viewHolder = (ViewHolder) v.getTag();
-        viewHolder.result.fastLaunch(mainActivity, v);
-        v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-
-    }
-
-    @Override
-    public boolean onLongClick(View v) {
-        ViewHolder viewHolder = (ViewHolder) v.getTag();
-        ListPopup popup = viewHolder.result.getPopupMenu(mainActivity, mainActivity.adapter, v);
-        mainActivity.registerPopup(popup);
-        popup.show(v);
-        return true;
-    }
-
-    private boolean isExternalFavoriteBarEnabled() {
-        return prefs.getBoolean("enable-favorites-bar", true);
-    }
-
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            startTime = motionEvent.getEventTime();
-            contextMenuShown = false;
-            return true;
-        }
-        // No need to do the extra work
-        if (isDragging) {
-            return true;
-        }
-
-        // Click handlers first
-        long holdTime = motionEvent.getEventTime() - startTime;
-        if (holdTime < LONG_PRESS_DELAY && motionEvent.getAction() == MotionEvent.ACTION_UP) {
-            this.onClick(view);
-            view.performClick();
-            return true;
-        }
-
-        if(holdTime > LONG_PRESS_DELAY) {
-            // Long press, either drag or context menu
-
-            // Drag handlers
-            int intCurrentY = Math.round(motionEvent.getY());
-            int intCurrentX = Math.round(motionEvent.getX());
-            int intStartY = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalY(0)) : intCurrentY;
-            int intStartX = motionEvent.getHistorySize() > 0 ? Math.round(motionEvent.getHistoricalX(0)) : intCurrentX;
-            boolean hasMoved = (Math.abs(intCurrentX - intStartX) > MOVE_SENSITIVITY) || (Math.abs(intCurrentY - intStartY) > MOVE_SENSITIVITY);
-
-            if (hasMoved && mDragEnabled) {
-                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-
-                if(contextMenuShown) {
-                    mainActivity.dismissPopup();
-                }
-
-                mDragEnabled = false;
-                mainActivity.dismissPopup();
-                mainActivity.closeContextMenu();
-                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
-                view.startDrag(null, shadowBuilder, view, 0);
-                view.setVisibility(View.INVISIBLE);
-                isDragging = true;
-                return true;
-            } else if (!contextMenuShown && !isDragging) {
-                view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-
-                contextMenuShown = true;
-                this.onLongClick(view);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean onDrag(View v, final DragEvent event) {
-
-        switch (event.getAction()) {
-            case DragEvent.ACTION_DRAG_STARTED:
-                // Inform the system that we are interested in being a potential drop target
-                return true;
-            case DragEvent.ACTION_DRAG_ENTERED:
-            case DragEvent.ACTION_DRAG_EXITED:
-            case DragEvent.ACTION_DROP:
-                if (!isDragging) {
-                    return true;
-                }
-                overApp = (ViewHolder) v.getTag();
-                currentX = (event.getX() != 0.0f) ? event.getX() : currentX;
-
-                break;
-
-            case DragEvent.ACTION_DRAG_ENDED:
-                // Only need to handle this action once.
-                if (!isDragging) {
-                    return true;
-                }
-                isDragging = false;
-
-                // Reset dragging to what it should be
-                mDragEnabled = favCount > 1;
-
-                final View draggedView = (View) event.getLocalState();
-
-                // Sometimes we don't trigger onDrag over another app, in which case just drop.
-                if (overApp == null) {
-                    Log.w(TAG, "Wasn't dragged over an app, returning app to starting position");
-                    draggedView.post(() -> draggedView.setVisibility(View.VISIBLE));
-                    break;
-                }
-
-                final ViewHolder draggedApp = (ViewHolder) draggedView.getTag();
-
-                int left = v.getLeft();
-                int right = v.getRight();
-                int width = right - left;
-
-                // currentX is relative to the view not the screen, so add the current X of the view.
-                final boolean leftSide = (left + currentX < left + (width / 2));
-
-                final int pos = KissApplication.getApplication(mainActivity).getDataHandler().getFavoritePosition(overApp.result.getPojoId());
-
-                draggedView.post(() -> {
-                    // Signals to a View that the drag and drop operation has concluded.
-                    // If event result is set, this means the dragged view was dropped in target
-                    if (event.getResult()) {
-                        KissApplication.getApplication(mainActivity).getDataHandler().setFavoritePosition(mainActivity, draggedApp.result.getPojoId(), leftSide ? pos - 1 : pos);
-                        mainActivity.onFavoriteChange();
-                    } else {
-                        draggedView.setVisibility(View.VISIBLE);
-                    }
-                });
-
-                break;
-            default:
-                break;
-        }
-        return true;
     }
 }
 

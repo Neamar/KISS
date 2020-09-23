@@ -8,17 +8,15 @@ import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import fr.neamar.kiss.forwarder.Permission;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.utils.Permission;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
@@ -37,8 +35,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
 
         // Skip if we don't have permission to list contacts yet:(
-        if(!Permission.checkContactPermission(c)) {
-            Permission.askContactPermission();
+        if(!Permission.checkPermission(c, Permission.PERMISSION_READ_CONTACTS)) {
             return contacts;
         }
 
@@ -46,13 +43,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         Cursor cur = context.get().getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 new String[]{ContactsContract.Contacts.LOOKUP_KEY,
-                        ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED,
                         ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
                         ContactsContract.CommonDataKinds.Phone.NUMBER,
                         ContactsContract.CommonDataKinds.Phone.STARRED,
                         ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
                         ContactsContract.Contacts.PHOTO_ID,
-                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID}, null, null, ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED + " DESC");
+                        ContactsContract.Contacts._ID}, null, null, null);
 
         // Prevent duplicates by keeping in memory encountered contacts.
         Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
@@ -60,17 +56,17 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         if (cur != null) {
             if (cur.getCount() > 0) {
                 int lookupIndex = cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
-                int timesContactedIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TIMES_CONTACTED);
                 int displayNameIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
                 int numberIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 int starredIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED);
                 int isPrimaryIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY);
                 int photoIdIndex = cur.getColumnIndex(ContactsContract.Contacts.PHOTO_ID);
+                int contactIdIndex = cur.getColumnIndex(ContactsContract.Contacts._ID);
 
                 while (cur.moveToNext()) {
                     String lookupKey = cur.getString(lookupIndex);
-                    Integer timesContacted = cur.getInt(timesContactedIndex);
                     String name = cur.getString(displayNameIndex);
+                    int contactId = cur.getInt(contactIdIndex);
 
                     String phone = cur.getString(numberIndex);
                     if (phone == null) {
@@ -87,16 +83,13 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                                 Long.parseLong(photoId));
                     }
 
-                    ContactsPojo contact = new ContactsPojo(pojoScheme + lookupKey + phone,
-                            lookupKey, phone, normalizedPhone, icon, primary, timesContacted,
+                    ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone,
+                            lookupKey, phone, normalizedPhone, icon, primary,
                             starred, false);
 
                     contact.setName(name);
 
                     if (contact.getName() != null) {
-                        //TBog: contact should have the normalized name already
-                        //contact.setName( contact.getName(), true );
-
                         if (mapContacts.containsKey(contact.lookupKey))
                             mapContacts.get(contact.lookupKey).add(contact);
                         else {

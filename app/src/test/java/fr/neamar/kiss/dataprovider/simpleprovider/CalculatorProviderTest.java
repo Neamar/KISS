@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class CalculatorProviderTest {
-	private static final Pattern pattern = new CalculatorProvider().P;
+	private static final Pattern pattern = new CalculatorProvider().computableRegexp;
 
 	@ParameterizedTest
 	@MethodSource("expressionProvider")
@@ -22,6 +22,7 @@ public class CalculatorProviderTest {
 		assertThat(matcher.group(), is(operation));
 	}
 
+	@SuppressWarnings("unused")
 	private static Stream<Arguments> expressionProvider() {
 		return Stream.of(
 				Arguments.of("(1+1)", "(1+1)"),

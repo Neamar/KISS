@@ -43,3 +43,8 @@ You're all set! You can now search on your new provider:
 
 * Qwant: `https://www.qwant.com/?q=%s`
 * Wikipedia: `https://en.wikipedia.org/w/index.php?search=%s&title=Special:Search&fulltext=1`
+
+## How to open Google in the browser?
+By default, Google searches will open in the Google app if you have it installed.
+
+If you'd rather open your default browser, you can setup a new search engine -- call it for instance "Google Browser" and use `https://google.com/search?q=%s` as described above in "Create a new search provider".

@@ -1,10 +1,5 @@
 package fr.neamar.kiss.pojo;
 
-import android.util.Pair;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public class PojoWithTags extends Pojo {
@@ -13,7 +8,7 @@ public class PojoWithTags extends Pojo {
     // Tags assigned to this pojo
     private String tags = "";
 
-    public PojoWithTags(String id) {
+    PojoWithTags(String id) {
         super(id);
     }
 

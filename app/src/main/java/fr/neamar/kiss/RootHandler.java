@@ -14,7 +14,7 @@ public class RootHandler {
     private Boolean isRootAvailable = null;
     private Boolean isRootActivated = null;
 
-    public RootHandler(Context ctx) {
+    RootHandler(Context ctx) {
         resetRootHandler(ctx);
     }
 
@@ -22,7 +22,7 @@ public class RootHandler {
         return this.isRootActivated;
     }
 
-    public void resetRootHandler(Context ctx) {
+    void resetRootHandler(Context ctx) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         isRootActivated = prefs.getBoolean("root-mode", false);
     }
@@ -65,7 +65,7 @@ public class RootHandler {
                 throw new Exception("Command execution failed " + result);
             return true;
         } catch (Exception e) {
-            Log.e("simpleExecuteCommand", " " + e);
+            Log.e("RootHandler", " " + e);
         } finally {
             if (p != null) {
                 p.destroy();

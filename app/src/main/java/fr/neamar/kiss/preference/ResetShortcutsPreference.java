@@ -28,7 +28,7 @@ public class ResetShortcutsPreference extends DialogPreference {
             // Build all shortcuts
             ShortcutUtil.addAllShortcuts(getContext());
 
-            Toast.makeText(getContext(), R.string.shortcuts_reset_done_desc, Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.regenerate_shortcuts_done, Toast.LENGTH_LONG).show();
         }
     }
 }

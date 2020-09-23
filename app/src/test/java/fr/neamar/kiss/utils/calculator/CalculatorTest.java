@@ -17,9 +17,10 @@ public class CalculatorTest {
 	@ParameterizedTest
 	@MethodSource("operationsProvider")
 	public void testOperations(String operation, BigDecimal result) {
-		assertThat(operate(operation).result, closeTo(result, new BigDecimal(0.000001)));
+		assertThat(operate(operation).result, closeTo(result, new BigDecimal("0.000001")));
 	}
 
+	@SuppressWarnings("unused")
 	private static Stream<Arguments> operationsProvider() {
 		return Stream.of(
 				Arguments.of("+1", new BigDecimal(1)),
@@ -50,11 +51,11 @@ public class CalculatorTest {
 
 				Arguments.of("(1+2.)*2", new BigDecimal(6)),
 
-				Arguments.of("2/2/2", new BigDecimal(0.5)),
+				Arguments.of("2/2/2", new BigDecimal("0.5")),
 				Arguments.of("2/1/1", new BigDecimal(2)),
 				Arguments.of("2/(1/2)", new BigDecimal(4)),
 
-				Arguments.of("2/2/2.", new BigDecimal(0.5)),
+				Arguments.of("2/2/2.", new BigDecimal("0.5")),
 				Arguments.of("2/(1./2)", new BigDecimal(4)),
 
 				Arguments.of("-2**2", new BigDecimal(4)),

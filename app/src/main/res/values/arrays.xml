@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string-array name="themesEntries">
-        <item>Light theme</item>
-        <item>Semi-transparent theme</item>
-        <item>Transparent theme</item>
-        <item>Dark theme</item>
-        <item>Dark semi-transparent theme</item>
-        <item>Dark transparent theme</item>
-        <item>AMOLED dark theme</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_semi_light</item>
+        <item>@string/theme_light_transparent</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_semi_dark</item>
+        <item>@string/theme_dark_transparent</item>
+        <item>@string/theme_amoled</item>
     </string-array>
     <string-array name="themesValues" translatable="false">
         <item>light</item>
@@ -19,21 +19,24 @@
         <item>amoled-dark</item>
     </string-array>
     <string-array name="historyModeEntries">
-        <item>Accessed recently first</item>
-        <item>Accessed frequently recently</item>
-        <item>Accessed frequently</item>
+        <item>@string/history_recency</item>
+        <item>@string/history_frecency</item>
+        <item>@string/history_frequency</item>
+        <item>@string/history_adaptive</item>
+        <item>@string/history_alphabetically</item>
     </string-array>
     <string-array name="historyModeValues" translatable="false">
         <item>recency</item>
         <item>frecency</item>
         <item>frequency</item>
+        <item>adaptive</item>
+        <item>alphabetically</item>
     </string-array>
     <string-array name="defaultSearchProviders" tools:ignore="InconsistentArrays">
         <item>Bing|https://www.bing.com/search?q=%s</item>
         <item>Ecosia|https://www.ecosia.org/search?q=%s</item>
         <item>DuckDuckGo|https://start.duckduckgo.com/?q=%s</item>
         <item>Google|https://encrypted.google.com/search?q=%s</item>
-        <item>Google (app)|https://www.google.com/search?q=%s</item>
         <item>Google Maps|https://www.google.com/maps/search/?api=1&amp;query=%s</item>
         <item>Google Play Store|https://play.google.com/store/search?q=%s</item>
         <item>YouTube|https://www.youtube.com/results?search_query=%s</item>
@@ -41,5 +44,67 @@
     <string-array name="toggleTagsDefault">
     </string-array>
     <string-array name="favTagsDefault">
+    </string-array>
+    <string-array name="gestureEntries">
+        <item>@string/gesture_do_nothing</item>
+        <item>@string/gesture_keyboard</item>
+        <item>@string/gesture_notifications</item>
+        <item>@string/gesture_apps</item>
+        <item>@string/gesture_history</item>
+    </string-array>
+    <string-array name="gestureValues" translatable="false">
+        <item>do-nothing</item>
+        <item>display-keyboard</item>
+        <item>display-notifications</item>
+        <item>display-apps</item>
+        <item>display-history</item>
+    </string-array>
+    <string-array name="shadowEntries">
+        <item>@string/theme_customize_default</item>
+        <item>@string/theme_customize_enabled</item>
+        <item>@string/theme_customize_disabled</item>
+    </string-array>
+    <string-array name="shadowValues" translatable="false">
+        <item>default</item>
+        <item>enabled</item>
+        <item>disabled</item>
+    </string-array>
+    <string-array name="separatorEntries">
+        <item>@string/theme_customize_default</item>
+        <item>@string/theme_customize_disabled</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_dark</item>
+    </string-array>
+    <string-array name="separatorValues" translatable="false">
+        <item>default</item>
+        <item>disabled</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+    <string-array name="resultColorEntries">
+        <item>@string/theme_customize_default</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_semi_light</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_semi_dark</item>
+        <item>@string/theme_amoled</item>
+    </string-array>
+    <string-array name="resultColorValues" translatable="false">
+        <item>default</item>
+        <item>light</item>
+        <item>semi-light</item>
+        <item>dark</item>
+        <item>semi-dark</item>
+        <item>black</item>
+    </string-array>
+    <string-array name="wallpaperEntries">
+        <item>@string/theme_customize_default</item>
+        <item>@string/theme_customize_enabled</item>
+        <item>@string/theme_customize_disabled</item>
+    </string-array>
+    <string-array name="wallpaperValues" translatable="false">
+        <item>default</item>
+        <item>enabled</item>
+        <item>disabled</item>
     </string-array>
 </resources>

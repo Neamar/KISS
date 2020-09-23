@@ -17,27 +17,27 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.pojo.SettingsPojo;
+import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class SettingsResult extends Result {
-    private final SettingsPojo settingPojo;
+    private final SettingPojo settingPojo;
 
-    SettingsResult(SettingsPojo settingPojo) {
+    SettingsResult(SettingPojo settingPojo) {
         super(settingPojo);
         this.settingPojo = settingPojo;
     }
 
     @NonNull
     @Override
-    public View display(Context context, int position, View v, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
-        if (v == null)
-            v = inflateFromId(context, R.layout.item_setting, parent);
+    public View display(Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
+        if (view == null)
+            view = inflateFromId(context, R.layout.item_setting, parent);
 
-        TextView settingName = v.findViewById(R.id.item_setting_name);
+        TextView settingName = view.findViewById(R.id.item_setting_name);
         displayHighlighted(settingPojo.normalizedName, settingPojo.getName(), fuzzyScore, settingName, context);
 
-        ImageView settingIcon = v.findViewById(R.id.item_setting_icon);
+        ImageView settingIcon = view.findViewById(R.id.item_setting_icon);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (!prefs.getBoolean("icons-hide", false)) {
             settingIcon.setImageDrawable(getDrawable(context));
@@ -46,14 +46,15 @@ public class SettingsResult extends Result {
             settingIcon.setImageDrawable(null);
         }
 
-        return v;
+        return view;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public Drawable getDrawable(Context context) {
         if (settingPojo.icon != -1) {
-            return context.getResources().getDrawable(settingPojo.icon);
+            Drawable response = context.getResources().getDrawable(settingPojo.icon);
+            response.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
+            return response;
         }
 
         return null;
@@ -73,8 +74,7 @@ public class SettingsResult extends Result {
 
         try {
             context.startActivity(intent);
-        }
-        catch(ActivityNotFoundException e) {
+        } catch (ActivityNotFoundException e) {
             e.printStackTrace();
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
         }
