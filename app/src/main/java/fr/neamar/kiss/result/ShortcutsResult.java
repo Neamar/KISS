@@ -12,11 +12,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserHandle;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +38,9 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
-import fr.neamar.kiss.utils.DrawableUtils;
 
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
@@ -115,9 +114,9 @@ public class ShortcutsResult extends Result {
         if (!prefs.getBoolean("icons-hide", false)) {
             Drawable shortcutDrawable = getDrawable(context);
             String iconsPack = prefs.getString("icons-pack", "default");
-            if(DrawableUtils.isIconsPackAdaptive(iconsPack)) {
+            if (DrawableUtils.isIconsPackAdaptive(iconsPack)) {
                 appDrawable = DrawableUtils.handleAdaptiveIcons(context, appDrawable);
-                if(shortcutDrawable != null) {
+                if (shortcutDrawable != null) {
                     shortcutDrawable = DrawableUtils.handleAdaptiveIcons(context, shortcutDrawable);
                 }
             }
@@ -129,11 +128,10 @@ public class ShortcutsResult extends Result {
                 shortcutIcon.setImageDrawable(appDrawable);
                 appIcon.setImageResource(android.R.drawable.ic_menu_send);
             }
-            if(!prefs.getBoolean("subicon-visible", true)) {
+            if (!prefs.getBoolean("subicon-visible", true)) {
                 appIcon.setVisibility(View.GONE);
             }
-        }
-        else {
+        } else {
             appIcon.setImageDrawable(null);
             shortcutIcon.setImageDrawable(null);
         }
@@ -143,8 +141,9 @@ public class ShortcutsResult extends Result {
 
     public Drawable getDrawable(Context context) {
         Drawable shortcutDrawable = null;
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
             assert launcherApps != null;
 
             if (launcherApps.hasShortcutHostPermission()) {
@@ -157,9 +156,11 @@ public class ShortcutsResult extends Result {
 
                 // Find the correct UserHandle, and retrieve the icon.
                 for (UserHandle userHandle : userHandles) {
-                    List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
-                    if (shortcuts != null && shortcuts.size() > 0) {
-                        shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcuts.get(0), 0);
+                    if (userManager.isUserRunning(userHandle)) {
+                        List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
+                        if (shortcuts != null && shortcuts.size() > 0) {
+                            shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcuts.get(0), 0);
+                        }
                     }
                 }
             }
