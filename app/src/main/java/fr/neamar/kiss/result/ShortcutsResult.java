@@ -194,6 +194,7 @@ public class ShortcutsResult extends Result {
     @TargetApi(Build.VERSION_CODES.O)
     private void doOreoLaunch(Context context, View v) {
         final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
         assert launcherApps != null;
 
         // Only the default launcher is allowed to start shortcuts
@@ -211,10 +212,12 @@ public class ShortcutsResult extends Result {
 
         // Find the correct UserHandle, and launch the shortcut.
         for (UserHandle userHandle : userHandles) {
-            List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
-            if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
-                launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
-                return;
+            if (userManager.isUserRunning(userHandle)) {
+                List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
+                if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
+                    launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
+                    return;
+                }
             }
         }
 
