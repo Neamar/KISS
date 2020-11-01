@@ -14,9 +14,9 @@ For instance, this is all apps on my device tagged with *Google*:
 
 This feature is disabled by default.
 
-To turn it on, navigate to `⋮, KISS Settings, User Experience, Customize tags bar`. Toggle `Enable tags menu` on.
+To turn it on, navigate to `⋮, KISS Settings, User Experience, Customize tags menu`. Toggle `Add tags in menu` on.
 
-Then, select `Tags to show on bar` and check all the tags you want to be able to filter on:
+Then, select `Tags to show in menu` and check all the tags you want to be able to filter on:
 
 ![All apps tagged Google](/screenshots/tag-bar-configure.png)
 
