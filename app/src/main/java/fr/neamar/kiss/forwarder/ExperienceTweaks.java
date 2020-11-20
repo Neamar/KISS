@@ -101,6 +101,13 @@ class ExperienceTweaks extends Forwarder {
             }
 
             @Override
+            public void onLongPress(MotionEvent e) {
+                doAction(prefs.getString("gesture-long-press", "do-nothing"));
+
+                super.onLongPress(e);
+            }
+
+            @Override
             public boolean onDoubleTap(MotionEvent e) {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
                     return super.onDoubleTap(e);
@@ -184,9 +191,13 @@ class ExperienceTweaks extends Forwarder {
                         }
                         break;
                     case "display-favorites":
-                        // Not provided as an option for the gestures, but useful if you only want to display facorites on tap,
+                        // Not provided as an option for the gestures, but useful if you only want to display favorites on tap,
                         // not history.
                         mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                        break;
+                    case "display-menu":
+                        mainActivity.openContextMenu(mainActivity.menuButton);
+                        break;
                 }
             }
         });
