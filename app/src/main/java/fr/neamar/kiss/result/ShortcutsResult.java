@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -146,7 +147,7 @@ public class ShortcutsResult extends Result {
             UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
             assert launcherApps != null;
 
-            if (launcherApps.hasShortcutHostPermission()) {
+            if (launcherApps.hasShortcutHostPermission() && !TextUtils.isEmpty(shortcutPojo.packageName)) {
                 LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
                 query.setPackage(shortcutPojo.packageName);
                 query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
@@ -203,20 +204,22 @@ public class ShortcutsResult extends Result {
             return;
         }
 
-        LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
-        query.setPackage(shortcutPojo.packageName);
-        query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
-        query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
+        if (!TextUtils.isEmpty(shortcutPojo.packageName)) {
+            LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
+            query.setPackage(shortcutPojo.packageName);
+            query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
+            query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
-        List<UserHandle> userHandles = launcherApps.getProfiles();
+            List<UserHandle> userHandles = launcherApps.getProfiles();
 
-        // Find the correct UserHandle, and launch the shortcut.
-        for (UserHandle userHandle : userHandles) {
-            if (userManager.isUserRunning(userHandle)) {
-                List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
-                if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
-                    launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
-                    return;
+            // Find the correct UserHandle, and launch the shortcut.
+            for (UserHandle userHandle : userHandles) {
+                if (userManager.isUserRunning(userHandle)) {
+                    List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
+                    if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
+                        launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
+                        return;
+                    }
                 }
             }
         }
