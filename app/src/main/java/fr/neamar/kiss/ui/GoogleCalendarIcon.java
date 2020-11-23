@@ -48,7 +48,7 @@ public class GoogleCalendarIcon {
                     return icon;
                 } else {
                     IconPack iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
-                    return iconPack.applyBackgroundAndMask(context, icon);
+                    return iconPack.applyBackgroundAndMask(context, icon, true);
                 }
             }
         } catch (PackageManager.NameNotFoundException ignored) {

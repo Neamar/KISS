@@ -137,6 +137,44 @@
             android:defaultValue="default"
             android:key="icons-pack"
             android:title="@string/icons_pack_name" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/adaptiveEntries"
+            android:entryValues="@array/adaptiveValues"
+            android:key="adaptive-shape"
+            android:title="@string/adaptive_shape_name" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:disableDependentsState="true"
+            android:key="force-adaptive"
+            android:summary="For non-adaptive icons, reduce scale and place on a white background"
+            android:title="Force adaptive icons" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="force-adaptive"
+            android:key="force-shape"
+            android:summary="Use adaptive mask on non-adaptive icons"
+            android:title="Force adaptive shape" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:disableDependentsState="true"
+            android:key="contact-pack-mask"
+            android:summary="Use icon pack mask for contacts"
+            android:title="Contacts" />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:dependency="contact-pack-mask"
+            android:entries="@array/adaptiveEntries"
+            android:entryValues="@array/adaptiveValues"
+            android:key="contacts-shape"
+            android:summary="Shape of contacts icon"
+            android:title="@string/contacts_shape_name" />
+
         <PreferenceCategory android:title="@string/colors" android:key="colors-section">
             <fr.neamar.kiss.preference.ColorPreference
                 android:key="notification-bar-color"

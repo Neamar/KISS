@@ -32,6 +32,7 @@ public class SystemIconPack implements IconPack<Void> {
 
     private static final String TAG = SystemIconPack.class.getSimpleName();
     private final String packageName;
+    private int mAdaptiveShape = DrawableUtils.SHAPE_SYSTEM;
 
     public SystemIconPack(String packageName) {
         this.packageName = packageName;
@@ -49,6 +50,14 @@ public class SystemIconPack implements IconPack<Void> {
 
     @Override
     public void load(PackageManager packageManager) {
+    }
+
+    public int getAdaptiveShape() {
+        return mAdaptiveShape;
+    }
+
+    public void setAdaptiveShape(int shape) {
+        mAdaptiveShape = shape;
     }
 
     @Nullable
@@ -86,79 +95,8 @@ public class SystemIconPack implements IconPack<Void> {
 
     @NonNull
     @Override
-    public BitmapDrawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Bitmap outputBitmap;
-            Canvas outputCanvas;
-            Paint outputPaint;
-
-            if (icon instanceof AdaptiveIconDrawable) {
-                AdaptiveIconDrawable adaptiveIcon = (AdaptiveIconDrawable) icon;
-
-                int layerSize = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 108f, ctx.getResources().getDisplayMetrics()));
-                int iconSize = Math.round(layerSize / (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction()));
-                int layerOffset = (layerSize - iconSize) / 2;
-
-                // Create a bitmap of the icon to use it as the shader of the outputBitmap
-                Bitmap iconBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-                Canvas iconCanvas = new Canvas(iconBitmap);
-
-                // Stretch adaptive layers because they are 108dp and the icon size is 48dp
-                {
-                    Drawable bgDrawable = adaptiveIcon.getBackground();
-                    if (bgDrawable != null) {
-                        bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-                        bgDrawable.draw(iconCanvas);
-                    }
-
-                    Drawable fgDrawable = adaptiveIcon.getForeground();
-                    if (fgDrawable != null) {
-                        fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-                        fgDrawable.draw(iconCanvas);
-                    }
-                }
-
-                outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-                outputCanvas = new Canvas(outputBitmap);
-                outputPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                outputPaint.setShader(new BitmapShader(iconBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
-
-                DrawableUtils.setIconShape(outputCanvas, outputPaint, getPackPackageName());
-            }
-            // If icon is not adaptive, put it in a white canvas to make it have a unified shape
-            else {
-                int iconSize = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48f, ctx.getResources().getDisplayMetrics()));
-
-                outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-                outputCanvas = new Canvas(outputBitmap);
-                outputPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                outputPaint.setColor(Color.WHITE);
-
-                // setBounds for LayerDrawable do not scale it properly and it ends up bigger then the white background shape
-                if (icon instanceof LayerDrawable) {
-                    Bitmap bitmap = Bitmap.createBitmap(icon.getIntrinsicWidth(), icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(bitmap);
-                    icon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-                    icon.draw(canvas);
-                    icon = new BitmapDrawable(ctx.getResources(), bitmap);
-                }
-
-                // Shrink icon to 70% of its size so that it fits the shape
-                int topLeftCorner = Math.round(0.15f * iconSize);
-                int bottomRightCorner = Math.round(0.85f * iconSize);
-                icon.setBounds(topLeftCorner, topLeftCorner, bottomRightCorner, bottomRightCorner);
-
-                DrawableUtils.setIconShape(outputCanvas, outputPaint, getPackPackageName());
-                icon.draw(outputCanvas);
-            }
-            return new BitmapDrawable(ctx.getResources(), outputBitmap);
-
-        }
-
-        if (icon instanceof BitmapDrawable)
-            return (BitmapDrawable) icon;
-
-        return new BitmapDrawable(ctx.getResources(), DrawableUtils.drawableToBitmap(icon));
+    public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside) {
+        return DrawableUtils.applyIconMaskShape(ctx, icon, mAdaptiveShape, fitInside);
     }
 
     @Nullable

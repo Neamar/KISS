@@ -48,14 +48,24 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     private DrawableInfo frontImage = null;
     // scale factor of an icons pack
     private float factor = 1.0f;
+    private boolean loaded = false;
 
 
     public IconPackXML(String packageName) {
         iconPackPackageName = packageName;
     }
 
+    public boolean isLoaded() {
+        return loaded;
+    }
+
     public void load(PackageManager packageManager) {
         parseXML(packageManager);
+        loaded = true;
+    }
+
+    public boolean hasMask() {
+        return maskImage != null;
     }
 
     @Override
@@ -97,7 +107,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
     @NonNull
     @Override
-    public BitmapDrawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable systemIcon) {
+    public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable systemIcon, boolean fitInside) {
         if (systemIcon instanceof BitmapDrawable) {
             return generateBitmap((BitmapDrawable) systemIcon);
         }

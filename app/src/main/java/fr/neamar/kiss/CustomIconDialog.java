@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -35,11 +36,15 @@ import androidx.annotation.StringRes;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.IconPackXML;
+import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -187,8 +192,10 @@ public class CustomIconDialog extends DialogFragment {
             ((TextView) quickList.findViewById(android.R.id.text1)).setText(R.string.default_icon);
         }
 
-        IconPack iconPack = iconsHandler.getCustomIconPack();
-        IconPack systemPack = iconsHandler.getSystemIconPack();
+        IconPackXML iconPack = iconsHandler.getCustomIconPack();
+        SystemIconPack systemPack = iconsHandler.getSystemIconPack();
+
+        Set<Bitmap> dSet = new HashSet<>(6);
 
         // add getActivityIcon(componentName)
         {
@@ -197,12 +204,14 @@ public class CustomIconDialog extends DialogFragment {
                 drawable = context.getPackageManager().getActivityIcon(cn);
             } catch (PackageManager.NameNotFoundException ignored) {
             }
-            if (drawable != null) {
+            if (drawable != null && checkDuplicateDrawable(dSet, drawable)) {
                 addQuickOption(R.string.custom_icon_activity, drawable, quickList);
-                if (iconPack != null)
-                    addQuickOption(R.string.custom_icon_activity_with_pack, iconPack.applyBackgroundAndMask(context, drawable), quickList);
+                if (iconPack != null && iconPack.hasMask())
+                    addQuickOption(R.string.custom_icon_activity_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true), quickList);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    addQuickOption(R.string.custom_icon_activity_adaptive, systemPack.applyBackgroundAndMask(context, drawable), quickList);
+                    addQuickOption(R.string.custom_icon_activity_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                if (!DrawableUtils.isAdaptiveIconDrawable(drawable))
+                    addQuickOption(R.string.custom_icon_activity_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false), quickList);
             }
         }
 
@@ -213,13 +222,15 @@ public class CustomIconDialog extends DialogFragment {
                 drawable = context.getPackageManager().getApplicationIcon(cn.getPackageName());
             } catch (PackageManager.NameNotFoundException ignored) {
             }
-            if (drawable != null) {
+            if (drawable != null && checkDuplicateDrawable(dSet, drawable)) {
                 addQuickOption(R.string.custom_icon_application, drawable, quickList);
-                if (iconPack != null)
-                    addQuickOption(R.string.custom_icon_application_with_pack, iconPack.applyBackgroundAndMask(context, drawable), quickList);
+                if (iconPack != null && iconPack.hasMask())
+                    addQuickOption(R.string.custom_icon_application_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true), quickList);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    addQuickOption(R.string.custom_icon_application_adaptive, systemPack.applyBackgroundAndMask(context, drawable), quickList);
+                    addQuickOption(R.string.custom_icon_application_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true), quickList);
             }
+            if (!DrawableUtils.isAdaptiveIconDrawable(drawable))
+                addQuickOption(R.string.custom_icon_application_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false), quickList);
         }
 
         // add Activity BadgedIcon
@@ -228,17 +239,30 @@ public class CustomIconDialog extends DialogFragment {
             List<LauncherActivityInfo> icons = launcher.getActivityList(cn.getPackageName(), userHandle.getRealHandle());
             for (LauncherActivityInfo info : icons) {
                 Drawable drawable = info.getBadgedIcon(0);
-
-                addQuickOption(R.string.custom_icon_badged, drawable, quickList);
-                if (iconPack != null)
-                    addQuickOption(R.string.custom_icon_badged_with_pack, iconPack.applyBackgroundAndMask(context, drawable), quickList);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    addQuickOption(R.string.custom_icon_badged_adaptive, systemPack.applyBackgroundAndMask(context, drawable), quickList);
-                break;
+                if (drawable != null && checkDuplicateDrawable(dSet, drawable)) {
+                    addQuickOption(R.string.custom_icon_badged, drawable, quickList);
+                    if (iconPack != null && iconPack.hasMask())
+                        addQuickOption(R.string.custom_icon_badged_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                        addQuickOption(R.string.custom_icon_badged_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                    if (!DrawableUtils.isAdaptiveIconDrawable(drawable))
+                        addQuickOption(R.string.custom_icon_badged_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false), quickList);
+                }
             }
         }
     }
 
+    private boolean checkDuplicateDrawable(Set<Bitmap> set, Drawable drawable) {
+        Bitmap b = null;
+        if (drawable instanceof BitmapDrawable)
+            b = ((BitmapDrawable) drawable).getBitmap();
+
+        if (set.contains(b))
+            return false;
+
+        set.add(b);
+        return true;
+    }
 
     private void addQuickOption(@StringRes int textId, Drawable drawable, ViewGroup parent) {
         if (!(drawable instanceof BitmapDrawable))

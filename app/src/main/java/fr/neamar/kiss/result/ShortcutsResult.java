@@ -34,14 +34,12 @@ import java.util.Collections;
 import java.util.List;
 
 import fr.neamar.kiss.DataHandler;
-import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
-import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
@@ -119,9 +117,9 @@ public class ShortcutsResult extends Result {
             IconPack iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
 
             if (appDrawable != null)
-                appDrawable = iconPack.applyBackgroundAndMask(context, appDrawable);
+                appDrawable = iconPack.applyBackgroundAndMask(context, appDrawable, true);
             if (shortcutDrawable != null)
-                shortcutDrawable = iconPack.applyBackgroundAndMask(context, shortcutDrawable);
+                shortcutDrawable = iconPack.applyBackgroundAndMask(context, shortcutDrawable, true);
 
             if (shortcutDrawable != null) {
                 shortcutIcon.setImageDrawable(shortcutDrawable);

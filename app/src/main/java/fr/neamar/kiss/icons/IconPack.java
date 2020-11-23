@@ -3,7 +3,6 @@ package fr.neamar.kiss.icons;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
@@ -27,7 +26,7 @@ public interface IconPack<DrawableInfo> {
     Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle);
 
     @NonNull
-    BitmapDrawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable defaultBitmap);
+    Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable defaultBitmap, boolean fitInside);
 
     @Nullable
     Collection<DrawableInfo> getDrawableList();

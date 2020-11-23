@@ -1,13 +1,11 @@
 package fr.neamar.kiss;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -37,7 +35,6 @@ import java.util.TreeSet;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
-import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
@@ -47,6 +44,7 @@ import fr.neamar.kiss.preference.PreferenceScreenHelper;
 import fr.neamar.kiss.preference.SwitchPreference;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.Permission;
 
 @SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
@@ -411,6 +409,8 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        KissApplication.getApplication(this).getIconsHandler().onPrefChanged(sharedPreferences);
+
         if (key.equalsIgnoreCase("available-search-providers")) {
             addCustomSearchProvidersPreferences(prefs);
         } else if (key.equalsIgnoreCase("selected-search-provider-names")) {
