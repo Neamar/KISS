@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.DataSetObserver;
@@ -39,6 +40,7 @@ import android.widget.TextView.OnEditorActionListener;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -351,6 +353,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
 
+        // For devices with hardware keyboards, give focus to search field.
+        if(getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
+            searchEditText.requestFocus();
+        }
+
         /*
          * Defer everything else to the forwarders
          */
@@ -483,7 +490,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
-
+        if(keycode != KeyEvent.KEYCODE_BACK ) {
+            searchEditText.requestFocus();
+            searchEditText.dispatchKeyEvent(e);
+        }
         return super.onKeyDown(keycode, e);
     }
 

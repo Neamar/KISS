@@ -12,12 +12,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserHandle;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -41,9 +41,9 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
-import fr.neamar.kiss.utils.DrawableUtils;
 
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
@@ -146,9 +146,10 @@ public class ShortcutsResult extends Result {
         Drawable shortcutDrawable = null;
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
             assert launcherApps != null;
 
-            if (launcherApps.hasShortcutHostPermission()) {
+            if (launcherApps.hasShortcutHostPermission() && !TextUtils.isEmpty(shortcutPojo.packageName)) {
                 LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
                 query.setPackage(shortcutPojo.packageName);
                 query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
@@ -158,9 +159,11 @@ public class ShortcutsResult extends Result {
 
                 // Find the correct UserHandle, and retrieve the icon.
                 for (UserHandle userHandle : userHandles) {
-                    List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
-                    if (shortcuts != null && shortcuts.size() > 0) {
-                        shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcuts.get(0), 0);
+                    if (userManager.isUserRunning(userHandle)) {
+                        List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
+                        if (shortcuts != null && shortcuts.size() > 0) {
+                            shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcuts.get(0), 0);
+                        }
                     }
                 }
             }
@@ -194,6 +197,7 @@ public class ShortcutsResult extends Result {
     @TargetApi(Build.VERSION_CODES.O)
     private void doOreoLaunch(Context context, View v) {
         final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
         assert launcherApps != null;
 
         // Only the default launcher is allowed to start shortcuts
@@ -202,19 +206,23 @@ public class ShortcutsResult extends Result {
             return;
         }
 
-        LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
-        query.setPackage(shortcutPojo.packageName);
-        query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
-        query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
+        if (!TextUtils.isEmpty(shortcutPojo.packageName)) {
+            LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
+            query.setPackage(shortcutPojo.packageName);
+            query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
+            query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
-        List<UserHandle> userHandles = launcherApps.getProfiles();
+            List<UserHandle> userHandles = launcherApps.getProfiles();
 
-        // Find the correct UserHandle, and launch the shortcut.
-        for (UserHandle userHandle : userHandles) {
-            List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
-            if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
-                launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
-                return;
+            // Find the correct UserHandle, and launch the shortcut.
+            for (UserHandle userHandle : userHandles) {
+                if (userManager.isUserRunning(userHandle)) {
+                    List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
+                    if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
+                        launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
+                        return;
+                    }
+                }
             }
         }
 
@@ -225,9 +233,9 @@ public class ShortcutsResult extends Result {
     @Override
     ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView) {
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
 
         return inflatePopupMenu(adapter, context);

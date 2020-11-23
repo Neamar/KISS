@@ -124,6 +124,7 @@ public class AppResult extends Result {
         adapter.add(new ListPopup.Item(context, R.string.menu_app_rename));
         adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
+        adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_store));
 

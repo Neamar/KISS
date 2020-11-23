@@ -121,6 +121,13 @@
                 android:key="theme-result-color"
                 android:summary="%s"
                 android:title="@string/theme_result_color" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/wallpaperEntries"
+                android:entryValues="@array/wallpaperValues"
+                android:key="theme-wallpaper"
+                android:summary="%s"
+                android:title="@string/theme_wallpaper" />
         </PreferenceScreen>
         <fr.neamar.kiss.preference.SwitchPreference
             android:defaultValue="false"
@@ -230,6 +237,24 @@
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-down"
                 android:title="@string/gesture_down_name" />
+            <ListPreference
+                android:defaultValue="display-apps"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-left"
+                android:title="@string/gesture_left_name" />
+            <ListPreference
+                android:defaultValue="display-apps"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-right"
+                android:title="@string/gesture_right_name" />
+            <ListPreference
+                android:defaultValue="display-apps"
+                android:entries="@array/gestureEntries"
+                android:entryValues="@array/gestureValues"
+                android:key="gesture-long-press"
+                android:title="@string/gesture_long_press_name" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
                 android:key="double-tap"

@@ -128,6 +128,16 @@ public class UIColors {
                 activity.getTheme().applyStyle(R.style.OverlayResultColorBlack, true);
                 break;
         }
+
+        String wallpaperStyle = prefs.getString("theme-wallpaper", "default");
+        switch (wallpaperStyle) {
+            case "enabled":
+                activity.getTheme().applyStyle(R.style.OverlayWallpaperEnabled, true);
+                break;
+            case "disabled":
+                activity.getTheme().applyStyle(R.style.OverlayWallpaperDisabled, true);
+                break;
+        }
     }
 
     public static void updateThemePrimaryColor(Activity activity) {
