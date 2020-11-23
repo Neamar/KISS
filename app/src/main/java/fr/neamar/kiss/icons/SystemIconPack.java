@@ -94,8 +94,6 @@ public class SystemIconPack implements IconPack<Void> {
 
             if (icon instanceof AdaptiveIconDrawable) {
                 AdaptiveIconDrawable adaptiveIcon = (AdaptiveIconDrawable) icon;
-                Drawable bgDrawable = adaptiveIcon.getBackground();
-                Drawable fgDrawable = adaptiveIcon.getForeground();
 
                 int layerSize = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 108f, ctx.getResources().getDisplayMetrics()));
                 int iconSize = Math.round(layerSize / (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction()));
@@ -106,11 +104,19 @@ public class SystemIconPack implements IconPack<Void> {
                 Canvas iconCanvas = new Canvas(iconBitmap);
 
                 // Stretch adaptive layers because they are 108dp and the icon size is 48dp
-                bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-                bgDrawable.draw(iconCanvas);
+                {
+                    Drawable bgDrawable = adaptiveIcon.getBackground();
+                    if (bgDrawable != null) {
+                        bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
+                        bgDrawable.draw(iconCanvas);
+                    }
 
-                fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-                fgDrawable.draw(iconCanvas);
+                    Drawable fgDrawable = adaptiveIcon.getForeground();
+                    if (fgDrawable != null) {
+                        fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
+                        fgDrawable.draw(iconCanvas);
+                    }
+                }
 
                 outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
                 outputCanvas = new Canvas(outputBitmap);
