@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 
+import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -70,6 +71,12 @@ public class SystemIconPack implements IconPack<Void> {
     @Override
     public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
         Drawable drawable = null;
+
+        if (componentName.getPackageName().equals(GoogleCalendarIcon.GOOGLE_CALENDAR)) {
+            drawable = GoogleCalendarIcon.getDrawable(ctx, componentName.getClassName());
+            if (drawable != null)
+                return drawable;
+        }
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);

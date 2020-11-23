@@ -50,6 +50,7 @@ public class IconsHandler {
     private boolean mForceAdaptive = false;
     private boolean mContactPackMask = false;
     private int mContactsShape = DrawableUtils.SHAPE_SYSTEM;
+    private boolean mForceShape = false;
 
 
     public IconsHandler(Context ctx) {
@@ -78,7 +79,7 @@ public class IconsHandler {
         loadIconsPack(pref.getString("icons-pack", null));
         mSystemPack.setAdaptiveShape(getAdaptiveShape(pref, "adaptive-shape"));
         mForceAdaptive = pref.getBoolean("force-adaptive", true);
-        //mForceShape = pref.getBoolean("force-shape", true);
+        mForceShape = pref.getBoolean("force-shape", true);
 
         mContactPackMask = pref.getBoolean("contact-pack-mask", true);
         mContactsShape = getAdaptiveShape(pref, "contacts-shape");
@@ -109,9 +110,7 @@ public class IconsHandler {
         cacheClear();
 
         // system icons, nothing to do
-        if (packageName.equalsIgnoreCase("default") || DrawableUtils.isIconsPackAdaptive(packageName)) {
-            if (!packageName.equals(mSystemPack.getPackPackageName()))
-                mSystemPack = new SystemIconPack(packageName);
+        if (packageName == null || packageName.equalsIgnoreCase("default")) {
             return;
         }
 
@@ -125,51 +124,57 @@ public class IconsHandler {
      */
     @SuppressWarnings("CatchAndPrintStackTrace")
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
+        final String componentString = componentName.toString();
+
+        // Search in cache
+        {
+            Drawable cacheIcon = cacheGetDrawable(componentString);
+            if (cacheIcon != null)
+                return cacheIcon;
+        }
+
         // check the icon pack for a resource
         if (mIconPack != null) {
             // just checking will make this thread wait for the icon pack to load
             if (!mIconPack.isLoaded())
                 return null;
-            String componentString = componentName.toString();
-            Drawable drawable = mIconPack.getComponentDrawable(componentString);
-            if (drawable != null) {
-                if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
+            Drawable iconPackDrawable = mIconPack.getComponentDrawable(componentString);
+            if (iconPackDrawable != null) {
+                Drawable drawable;
+
+                if (DrawableUtils.isAdaptiveIconDrawable(iconPackDrawable) || mForceAdaptive) {
                     int shape = mSystemPack.getAdaptiveShape();
-                    return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true);
+                    drawable = DrawableUtils.applyIconMaskShape(ctx, iconPackDrawable, shape, true);
                 } else
-                    return mIconPack.applyBackgroundAndMask(ctx, drawable, false);
+                    drawable = mIconPack.applyBackgroundAndMask(ctx, iconPackDrawable, false);
+                storeDrawable(cacheGetFileName(componentString), drawable);
+                return drawable;
             }
         }
 
-        // system icons, nothing to do
-        if (mIconPack == null) {
-            Drawable drawable = mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
-            if (drawable == null)
-                return null;
-            return mSystemPack.applyBackgroundAndMask(ctx, drawable, true);
-        }
-
-        // Check the icon pack for a resource
-        {
-            Drawable drawable = mIconPack.getComponentDrawable(componentName.toString());
-            if (drawable != null)
-                return drawable;
-        }
-
-        // Search in cache
-        {
-            Drawable cacheIcon = cacheGetDrawable(componentName.toString());
-            if (cacheIcon != null)
-                return cacheIcon;
-        }
-
-        // apply icon pack back, mask and front over the system drawable
+        // if icon pack doesn't have the drawable, use system drawable
         Drawable systemIcon = mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
         if (systemIcon == null)
             return null;
-        Drawable generated = mIconPack.applyBackgroundAndMask(ctx, systemIcon, true);
-        storeDrawable(cacheGetFileName(componentName.toString()), generated);
-        return generated;
+
+        // if the icon pack has a mask, use that instead of the adaptive shape
+        if (mIconPack != null && mIconPack.hasMask()) {
+            Drawable drawable = mIconPack.applyBackgroundAndMask(ctx, systemIcon, false);
+            storeDrawable(cacheGetFileName(componentString), drawable);
+            return drawable;
+        }
+
+        Drawable drawable;
+        // use adaptive shape
+        if (DrawableUtils.isAdaptiveIconDrawable(systemIcon) || mForceAdaptive)
+            drawable = mSystemPack.applyBackgroundAndMask(ctx, systemIcon, true);
+        else if (mForceShape)
+            drawable = mSystemPack.applyBackgroundAndMask(ctx, systemIcon, false);
+        else
+            drawable = systemIcon;
+
+        storeDrawable(cacheGetFileName(componentString), drawable);
+        return drawable;
     }
 
     public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {

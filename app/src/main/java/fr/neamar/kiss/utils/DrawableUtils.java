@@ -314,13 +314,6 @@ public class DrawableUtils {
         canvas.clipPath(path);
     }
 
-    public static boolean isIconsPackAdaptive(String iconsPack) {
-        return (iconsPack.equalsIgnoreCase("squircle")
-                || iconsPack.equalsIgnoreCase("square")
-                || iconsPack.equalsIgnoreCase("circle")
-                || iconsPack.equalsIgnoreCase("teardrop"));
-    }
-
     public static boolean isAdaptiveIconDrawable(Drawable drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return drawable instanceof AdaptiveIconDrawable;

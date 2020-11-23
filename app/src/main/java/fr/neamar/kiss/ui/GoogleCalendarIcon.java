@@ -28,14 +28,7 @@ public class GoogleCalendarIcon {
 
     @Nullable
     public static Drawable getDrawable(Context context, String activityName) {
-        // Do nothing if using a custom icon pack
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String currentIconPack = prefs.getString("icons-pack", "default");
-        if (!("default".equals(currentIconPack) || DrawableUtils.isIconsPackAdaptive(currentIconPack))) {
-            return null;
-        }
-
-        // Otherwise, retrieve today's icon
+        // retrieve today's icon
         PackageManager pm = context.getPackageManager();
         try {
             ComponentName cn = new ComponentName(GOOGLE_CALENDAR, activityName);
@@ -43,13 +36,7 @@ public class GoogleCalendarIcon {
             Resources resourcesForApplication = pm.getResourcesForApplication(GOOGLE_CALENDAR);
             int dayResId = getDayResId(metaData, resourcesForApplication);
             if (dayResId != 0) {
-                Drawable icon = resourcesForApplication.getDrawable(dayResId);
-                if("default".equals(currentIconPack)){
-                    return icon;
-                } else {
-                    IconPack iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
-                    return iconPack.applyBackgroundAndMask(context, icon, true);
-                }
+                return resourcesForApplication.getDrawable(dayResId);
             }
         } catch (PackageManager.NameNotFoundException ignored) {
         }
@@ -66,7 +53,7 @@ public class GoogleCalendarIcon {
                     int dateId = dateIds.getResourceId(getDayOfMonth(), 0);
                     dateIds.recycle();
                     return dateId;
-                } catch (Resources.NotFoundException ex) {
+                } catch (Resources.NotFoundException ignored) {
                 }
             }
         }
