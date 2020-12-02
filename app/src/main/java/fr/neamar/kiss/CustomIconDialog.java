@@ -49,7 +49,7 @@ import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class CustomIconDialog extends DialogFragment {
-    private List<IconData> mIconData = new ArrayList<>();
+    private final List<IconData> mIconData = new ArrayList<>();
     private Drawable mSelectedDrawable = null;
     private GridView mIconGrid;
     private TextView mSearch;

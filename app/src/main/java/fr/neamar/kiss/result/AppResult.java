@@ -120,9 +120,10 @@ public class AppResult extends Result {
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_exclude));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
-        adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_rename));
-        adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
+        // only display this option if we're using a custom icon pack, as it is not useful otherwise
+        if (KissApplication.getApplication(context).getIconsHandler().getCustomIconPack() != null)
+            adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
@@ -310,7 +311,7 @@ public class AppResult extends Result {
             final Handler handler = new Handler();
             handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
         });
-        builder.setNeutralButton(R.string.custom_name_set_default, (dialog, which) -> {
+        builder.setNegativeButton(R.string.custom_name_set_default, (dialog, which) -> {
             dialog.dismiss();
 
             // Get initial name
@@ -335,7 +336,7 @@ public class AppResult extends Result {
             final Handler handler = new Handler();
             handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
         });
-        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+        builder.setNeutralButton(android.R.string.cancel, (dialog, which) -> {
             dialog.cancel();
 
             final Handler handler = new Handler();

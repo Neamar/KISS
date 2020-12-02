@@ -71,6 +71,7 @@
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -79,37 +80,46 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/icon_margin_left"
+            android:layout_marginHorizontal="@dimen/icon_margin_right"
             android:layout_marginTop="@dimen/icon_margin_top"
-            android:layout_marginRight="@dimen/icon_margin_right"
             android:layout_marginBottom="@dimen/icon_margin_bottom"
-            android:text="@string/custom_icon_preview"
-            android:layout_marginStart="@dimen/icon_margin_left"
-            android:layout_marginEnd="@dimen/icon_margin_right" />
+            android:text="@string/custom_icon_preview" />
 
         <ImageView
             android:id="@+id/preview"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="@dimen/icon_margin_left"
+            android:layout_marginLeft="@dimen/icon_margin_left"
             android:layout_marginTop="@dimen/icon_margin_top"
             android:layout_marginEnd="@dimen/icon_margin_right"
+            android:layout_marginRight="@dimen/icon_margin_right"
             android:layout_marginBottom="@dimen/icon_margin_bottom"
-            android:src="@drawable/ic_launcher"
-            android:layout_marginLeft="@dimen/icon_margin_left"
-            android:layout_marginRight="@dimen/icon_margin_right" />
+            android:src="@drawable/ic_launcher" />
 
         <Button
             android:id="@android:id/button2"
-            android:layout_width="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/icon_margin_left"
+            android:layout_marginLeft="@dimen/icon_margin_left"
+            android:layout_marginEnd="@dimen/icon_margin_right"
+            android:layout_marginRight="@dimen/icon_margin_right"
+            android:layout_weight="1"
             android:text="@android:string/cancel"
             android:textAllCaps="false" />
 
         <Button
             android:id="@android:id/button1"
-            android:layout_width="wrap_content"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/icon_margin_left"
+            android:layout_marginLeft="@dimen/icon_margin_left"
+            android:layout_marginEnd="@dimen/icon_margin_right"
+            android:layout_marginRight="@dimen/icon_margin_right"
+            android:layout_weight="1"
             android:text="@android:string/ok"
             android:textAllCaps="false" />
 
