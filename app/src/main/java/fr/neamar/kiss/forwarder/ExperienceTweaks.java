@@ -213,7 +213,7 @@ class ExperienceTweaks extends Forwarder {
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
-        if (isKeyboardOnStartEnabled()) {
+        if (shouldShowKeyboard()) {
             // Display keyboard
             mainActivity.showKeyboard();
 
@@ -247,8 +247,12 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void onWindowFocusChanged(boolean hasFocus) {
-        if (hasFocus && isKeyboardOnStartEnabled()) {
-            mainActivity.showKeyboard();
+        if (hasFocus) {
+            if (shouldShowKeyboard()) {
+                mainActivity.showKeyboard();
+            } else {
+                mainActivity.hideKeyboard();
+            }
         }
     }
 
@@ -257,9 +261,12 @@ class ExperienceTweaks extends Forwarder {
             mainActivity.favoritesBar.setVisibility(View.GONE);
         }
 
-        if (!display && isKeyboardOnStartEnabled()) {
-            // Display keyboard
-            mainActivity.showKeyboard();
+        if (!display) {
+            if (shouldShowKeyboard()) {
+                mainActivity.showKeyboard();
+            } else {
+                mainActivity.hideKeyboard();
+            }
         }
     }
 
@@ -346,10 +353,25 @@ class ExperienceTweaks extends Forwarder {
     }
 
     /**
-     * Should the keyboard be displayed by default?
+     * Should the keyboard be displayed when opening the launcher?
      */
     private boolean isKeyboardOnStartEnabled() {
         return prefs.getBoolean("display-keyboard", false);
+    }
+
+    /**
+     * Should the keyboard be displayed when opened as an assistant?
+     */
+    private boolean isKeyboardOnAssistantStartEnabled() {
+        return prefs.getBoolean("display-keyboard-assist", false);
+    }
+
+    /**
+     * Should the keyboard be displayed?
+     */
+    private boolean shouldShowKeyboard() {
+        boolean isAssistant = mainActivity.getIntent().getAction().equalsIgnoreCase("android.intent.action.ASSIST");
+        return ((isKeyboardOnStartEnabled() && !isAssistant) || (isKeyboardOnAssistantStartEnabled() && isAssistant));
     }
 
     /**
