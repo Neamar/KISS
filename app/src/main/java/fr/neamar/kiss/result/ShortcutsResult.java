@@ -37,9 +37,9 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
+import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
-import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
@@ -114,13 +114,13 @@ public class ShortcutsResult extends Result {
 
         if (!prefs.getBoolean("icons-hide", false)) {
             Drawable shortcutDrawable = getDrawable(context);
-            String iconsPack = prefs.getString("icons-pack", "default");
-            if (DrawableUtils.isIconsPackAdaptive(iconsPack)) {
-                appDrawable = DrawableUtils.handleAdaptiveIcons(context, appDrawable);
-                if (shortcutDrawable != null) {
-                    shortcutDrawable = DrawableUtils.handleAdaptiveIcons(context, shortcutDrawable);
-                }
-            }
+            IconPack iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
+
+            if (appDrawable != null)
+                appDrawable = iconPack.applyBackgroundAndMask(context, appDrawable, true);
+            if (shortcutDrawable != null)
+                shortcutDrawable = iconPack.applyBackgroundAndMask(context, shortcutDrawable, true);
+
             if (shortcutDrawable != null) {
                 shortcutIcon.setImageDrawable(shortcutDrawable);
                 appIcon.setImageDrawable(appDrawable);

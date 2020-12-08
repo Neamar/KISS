@@ -32,7 +32,7 @@ import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 import fr.neamar.kiss.ui.ListPopup;
-import fr.neamar.kiss.ui.RoundedQuickContactBadge;
+import fr.neamar.kiss.ui.ShapedContactBadge;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class ContactsResult extends CallResult {
@@ -211,9 +211,7 @@ public class ContactsResult extends CallResult {
     public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
         Drawable drawable = getDrawable(context);
         if ( drawable != null ) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            Bitmap iconBitmap = drawableToBitmap(drawable);
-            drawable = new RoundedQuickContactBadge.RoundedDrawable(iconBitmap, prefs.getString("icons-pack", "default"));
+            drawable = ShapedContactBadge.getShapedDrawable(context, drawable);
         }
         View favoriteView = super.inflateFavorite(context, parent);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
@@ -254,27 +252,5 @@ public class ContactsResult extends CallResult {
         Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
-    }
-
-    private static Bitmap drawableToBitmap(Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if (bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
-            }
-        }
-
-        Bitmap bitmap;
-        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            // Single color bitmap will be created of 1x1 pixel
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
     }
 }

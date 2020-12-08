@@ -16,11 +16,13 @@ class DB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        database.execSQL("CREATE TABLE history ( _id INTEGER PRIMARY KEY AUTOINCREMENT, query TEXT, record TEXT NOT NULL)");
+        // `query` is a keyword so we escape it. See: https://www.sqlite.org/lang_keywords.html
+        database.execSQL("CREATE TABLE history ( _id INTEGER PRIMARY KEY AUTOINCREMENT, \"query\" TEXT, record TEXT NOT NULL)");
         database.execSQL("CREATE TABLE shortcuts ( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, package TEXT,"
                 + "icon TEXT, intent_uri TEXT NOT NULL, icon_blob BLOB)");
         createTags(database);
         addTimeStamps(database);
+        addAppsTable(database);
     }
 
     private void createTags(SQLiteDatabase database) {
@@ -30,6 +32,11 @@ class DB extends SQLiteOpenHelper {
 
     private void addTimeStamps(SQLiteDatabase database) {
         database.execSQL("ALTER TABLE history ADD COLUMN timeStamp INTEGER DEFAULT 0  NOT NULL");
+    }
+
+    private void addAppsTable(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE custom_apps ( _id INTEGER PRIMARY KEY AUTOINCREMENT, custom_flags INTEGER DEFAULT 0, component_name TEXT NOT NULL UNIQUE, name TEXT NOT NULL DEFAULT '' )");
+        db.execSQL("CREATE INDEX index_component ON custom_apps(component_name);");
     }
 
     @Override
@@ -50,6 +57,9 @@ class DB extends SQLiteOpenHelper {
                     // fall through
                 case 5:
                     addTimeStamps(database);
+                    // fall through
+                case 6:
+                    addAppsTable(database);
                     // fall through
                 default:
                     break;
