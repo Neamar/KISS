@@ -12,10 +12,13 @@ import android.os.UserManager;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
+import fr.neamar.kiss.db.AppRecord;
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -90,6 +93,17 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
                 apps.add(app);
             }
+        }
+
+        HashMap<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
+        for (AppPojo app : apps) {
+            AppRecord customApp = customApps.get(app.getComponentName());
+            if (customApp == null)
+                continue;
+            if (customApp.hasCustomName())
+                app.setName(customApp.name);
+            if (customApp.hasCustomIcon())
+                app.setCustomIconId(customApp.dbId);
         }
 
         long end = System.nanoTime();
