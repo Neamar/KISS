@@ -6,6 +6,12 @@ KISS is a *blazingly* fast launcher for android requiring nearly no memory to ru
 <a href="https://play.google.com/store/apps/details?id=fr.neamar.kiss"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="60"></a>
 
 ![CircleCI](https://img.shields.io/circleci/project/github/Neamar/KISS.svg?style=flat-square)
+[<img src="https://img.shields.io/github/v/release/Neamar/KISS.svg?logo=github&label=GitHub&style=flat-square"
+      alt="GitHub Release"/>](https://github.com/Neamar/KISS/releases)
+[<img src="https://img.shields.io/f-droid/v/fr.neamar.kiss.svg?logo=f-droid&label=F-Droid&style=flat-square"
+      alt="F-Droid Release"/>](https://f-droid.org/packages/fr.neamar.kiss)
+[<img src="https://img.shields.io/endpoint?label=Play%20Store&style=flat-square&cacheSeconds=65536&url=https%3A%2F%2Fplaystore-jsapi.herokuapp.com%2Fsep%2Ffr.neamar.kiss"
+      alt="Playstore Release"/>](https://play.google.com/store/apps/details?id=fr.neamar.kiss)
 
 Join the [beta program](https://play.google.com/apps/testing/fr.neamar.kiss/) to use the latest version of KISS.
 
