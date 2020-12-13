@@ -144,7 +144,6 @@ public class ShortcutsResult extends Result {
         Drawable shortcutDrawable = null;
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-            UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
             assert launcherApps != null;
 
             if (launcherApps.hasShortcutHostPermission() && !TextUtils.isEmpty(shortcutPojo.packageName)) {
@@ -157,11 +156,13 @@ public class ShortcutsResult extends Result {
 
                 // Find the correct UserHandle, and retrieve the icon.
                 for (UserHandle userHandle : userHandles) {
-                    if (userManager.isUserRunning(userHandle)) {
+                    try {
                         List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
                         if (shortcuts != null && shortcuts.size() > 0) {
                             shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcuts.get(0), 0);
                         }
+                    } catch (IllegalStateException ignored) {
+                        // do nothing if user is locked or not running
                     }
                 }
             }
