@@ -247,26 +247,11 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void onWindowFocusChanged(boolean hasFocus) {
-        if (hasFocus) {
-            if (shouldShowKeyboard()) {
-                mainActivity.showKeyboard();
-            } else {
-                mainActivity.hideKeyboard();
-            }
-        }
     }
 
     void onDisplayKissBar(boolean display) {
         if (isMinimalisticModeEnabledForFavorites() && !display) {
             mainActivity.favoritesBar.setVisibility(View.GONE);
-        }
-
-        if (!display) {
-            if (shouldShowKeyboard()) {
-                mainActivity.showKeyboard();
-            } else {
-                mainActivity.hideKeyboard();
-            }
         }
     }
 
