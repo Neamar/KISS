@@ -338,17 +338,10 @@ class ExperienceTweaks extends Forwarder {
     }
 
     /**
-     * Should the keyboard be displayed when opening the launcher?
+     * Should the keyboard be displayed by default?
      */
     private boolean isKeyboardOnStartEnabled() {
         return prefs.getBoolean("display-keyboard", false);
-    }
-
-    /**
-     * Should the keyboard be displayed when opened as an assistant?
-     */
-    private boolean isKeyboardOnAssistantStartEnabled() {
-        return prefs.getBoolean("display-keyboard-assist", false);
     }
 
     /**
@@ -356,7 +349,7 @@ class ExperienceTweaks extends Forwarder {
      */
     private boolean shouldShowKeyboard() {
         boolean isAssistant = mainActivity.getIntent().getAction().equalsIgnoreCase("android.intent.action.ASSIST");
-        return ((isKeyboardOnStartEnabled() && !isAssistant) || (isKeyboardOnAssistantStartEnabled() && isAssistant));
+        return (isAssistant || isKeyboardOnStartEnabled());
     }
 
     /**
