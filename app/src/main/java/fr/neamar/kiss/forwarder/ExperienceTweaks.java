@@ -213,7 +213,7 @@ class ExperienceTweaks extends Forwarder {
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
-        if (isKeyboardOnStartEnabled()) {
+        if (shouldShowKeyboard()) {
             // Display keyboard
             mainActivity.showKeyboard();
 
@@ -247,19 +247,11 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void onWindowFocusChanged(boolean hasFocus) {
-        if (hasFocus && isKeyboardOnStartEnabled()) {
-            mainActivity.showKeyboard();
-        }
     }
 
     void onDisplayKissBar(boolean display) {
         if (isMinimalisticModeEnabledForFavorites() && !display) {
             mainActivity.favoritesBar.setVisibility(View.GONE);
-        }
-
-        if (!display && isKeyboardOnStartEnabled()) {
-            // Display keyboard
-            mainActivity.showKeyboard();
         }
     }
 
@@ -350,6 +342,14 @@ class ExperienceTweaks extends Forwarder {
      */
     private boolean isKeyboardOnStartEnabled() {
         return prefs.getBoolean("display-keyboard", false);
+    }
+
+    /**
+     * Should the keyboard be displayed?
+     */
+    private boolean shouldShowKeyboard() {
+        boolean isAssistant = mainActivity.getIntent().getAction().equalsIgnoreCase("android.intent.action.ASSIST");
+        return (isAssistant || isKeyboardOnStartEnabled());
     }
 
     /**
