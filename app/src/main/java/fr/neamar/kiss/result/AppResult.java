@@ -402,6 +402,8 @@ public class AppResult extends Result {
         String msg = context.getResources().getString(R.string.toast_hibernate_completed);
         if (!KissApplication.getApplication(context).getRootHandler().hibernateApp(appPojo.packageName)) {
             msg = context.getResources().getString(R.string.toast_hibernate_error);
+        } else {
+            KissApplication.getApplication(context).getDataHandler().getAppProvider().reload();
         }
 
         Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
