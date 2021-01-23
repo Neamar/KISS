@@ -90,7 +90,8 @@
         <MultiSelectListPreference
             android:defaultValue="@array/favTagsDefault"
             android:key="pref-fav-tags-list"
-            android:title="@string/pref_fav_tags_select" />
+            android:enabled="false"
+            android:title="@string/loading" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="ui-holder"
@@ -379,7 +380,8 @@
             <MultiSelectListPreference
                 android:defaultValue="@array/toggleTagsDefault"
                 android:key="pref-toggle-tags-list"
-                android:title="@string/pref_toggle_tags_select" />
+                android:enabled="false"
+                android:title="@string/loading" />
         </PreferenceScreen>
     </PreferenceScreen>
     <PreferenceScreen
