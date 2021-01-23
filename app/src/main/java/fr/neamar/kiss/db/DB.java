@@ -8,7 +8,7 @@ import android.util.Log;
 class DB extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 7;
+    private final static int DB_VERSION = 8;
 
     DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -35,13 +35,13 @@ class DB extends SQLiteOpenHelper {
     }
 
     private void addAppsTable(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE custom_apps ( _id INTEGER PRIMARY KEY AUTOINCREMENT, custom_flags INTEGER DEFAULT 0, component_name TEXT NOT NULL UNIQUE, name TEXT NOT NULL DEFAULT '' )");
-        db.execSQL("CREATE INDEX index_component ON custom_apps(component_name);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS custom_apps ( _id INTEGER PRIMARY KEY AUTOINCREMENT, custom_flags INTEGER DEFAULT 0, component_name TEXT NOT NULL UNIQUE, name TEXT NOT NULL DEFAULT '' )");
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_component ON custom_apps(component_name);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-        Log.d("onUpgrade", "Updating database from version " + oldVersion + " to version " + newVersion);
+        Log.w("onUpgrade", "Updating database from version " + oldVersion + " to version " + newVersion);
         // See
         // http://www.drdobbs.com/database/using-sqlite-on-android/232900584
         if (oldVersion < newVersion) {
@@ -59,8 +59,28 @@ class DB extends SQLiteOpenHelper {
                     addTimeStamps(database);
                     // fall through
                 case 6:
+                case 7:
                     addAppsTable(database);
                     // fall through
+                default:
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void onDowngrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+        Log.w("onDowngrade", "Updating database from version " + oldVersion + " to version " + newVersion);
+
+        if (newVersion < oldVersion) {
+            switch (newVersion) {
+                case 7:
+                case 6:
+                    database.execSQL("DROP INDEX index_component");
+                    database.execSQL("DROP TABLE custom_apps");
+                    break;
+                case 5:
+                    throw new RuntimeException("Can't downgrade app below DB level 5");
                 default:
                     break;
             }
