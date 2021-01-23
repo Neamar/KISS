@@ -23,6 +23,11 @@
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
     <!-- Ability to uninstall an app from KISS -->
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <!-- Android 11 now makes listing apps a non-default permission
+    https://developer.android.com/training/basics/intents/package-visibility
+    -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
 
     <uses-feature
         android:name="android.hardware.telephony"
