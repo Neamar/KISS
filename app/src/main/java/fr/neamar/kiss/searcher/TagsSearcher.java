@@ -44,4 +44,9 @@ public class TagsSearcher extends Searcher {
 
         return null;
     }
+
+    @Override
+    int getMaxResultCount() {
+        return 250;
+    }
 }
