@@ -2,21 +2,18 @@ package fr.neamar.kiss.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Matrix;
 import android.graphics.RectF;
+import android.graphics.Shader.TileMode;
+import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.AdaptiveIconDrawable;
-import android.graphics.Shader.TileMode;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
@@ -143,8 +140,10 @@ public class DrawableUtils {
             Canvas iconCanvas = new Canvas(iconBitmap);
 
             // Stretch adaptive layers because they are 108dp and the icon size is 48dp
-            bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-            bgDrawable.draw(iconCanvas);
+            if(bgDrawable != null) {
+                bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
+                bgDrawable.draw(iconCanvas);
+            }
 
             fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
             fgDrawable.draw(iconCanvas);
