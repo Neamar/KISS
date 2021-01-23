@@ -11,14 +11,12 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.InputType;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -164,6 +162,9 @@ class ExperienceTweaks extends Forwarder {
                 switch (action) {
                     case "display-notifications":
                         displayNotificationDrawer();
+                        break;
+                    case "display-quicksettings":
+                        displayQuickSettings();
                         break;
                     case "display-keyboard":
                         mainActivity.showKeyboard();
@@ -312,14 +313,21 @@ class ExperienceTweaks extends Forwarder {
                 showStatusBar = statusbarManager.getMethod("expand");
             }
             showStatusBar.invoke(sbservice);
-        } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (NoSuchMethodException e1) {
-            e1.printStackTrace();
-        } catch (IllegalAccessException e1) {
-            e1.printStackTrace();
-        } catch (InvocationTargetException e1) {
-            e1.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressLint("PrivateApi")
+    @SuppressWarnings("CatchAndPrintStackTrace")
+    private void displayQuickSettings() {
+        try {
+            @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
+            Class.forName("android.app.StatusBarManager")
+                    .getMethod("expandSettingsPanel")
+                    .invoke(sbservice);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
