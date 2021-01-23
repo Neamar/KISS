@@ -73,7 +73,11 @@ class Widgets extends Forwarder {
         // Stop listening for widget update
         // See https://github.com/Neamar/KISS/issues/744
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            mAppWidgetHost.stopListening();
+            try {
+                mAppWidgetHost.stopListening();
+            } catch(NullPointerException e) {
+                // Ignore, happens on some shitty widget down the stack trace.
+            }
         }
     }
 
@@ -228,7 +232,7 @@ class Widgets extends Forwarder {
                 popup.dismiss();
                 switch (item.getItemId()) {
                     case R.id.remove_widget:
-                        ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
+                        parent.removeView(widgetWithMenuCurrentlyDisplayed);
                         serializeState();
                         return true;
                     case R.id.increase_size: {
@@ -322,10 +326,15 @@ class Widgets extends Forwarder {
 
         if (appWidgetInfo.configure != null) {
             // Launch over to configure widget, if needed.
-            Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
-            intent.setComponent(appWidgetInfo.configure);
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, REQUEST_APPWIDGET_CONFIGURED, null);
+            }
+            else {
+                Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
+                intent.setComponent(appWidgetInfo.configure);
+                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+                mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
+            }
         }
     }
 

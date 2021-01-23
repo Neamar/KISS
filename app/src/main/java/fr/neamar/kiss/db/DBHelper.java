@@ -3,7 +3,13 @@ package fr.neamar.kiss.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +21,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class DBHelper {
+    private static final String TAG = DBHelper.class.getSimpleName();
     private static SQLiteDatabase database = null;
 
     private DBHelper() {
@@ -135,8 +142,8 @@ public class DBHelper {
     /**
      * Retrieve previous query history
      *
-     * @param context     android context
-     * @param limit       max number of items to retrieve
+     * @param context android context
+     * @param limit   max number of items to retrieve
      * @return records with number of use
      */
     public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit, String historyMode) {
@@ -245,6 +252,171 @@ public class DBHelper {
     public static void removeShortcut(Context context, ShortcutPojo shortcut) {
         SQLiteDatabase db = getDatabase(context);
         db.delete("shortcuts", "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri});
+    }
+
+    public static void addCustomAppName(Context context, String componentName, String newName) {
+        SQLiteDatabase db = getDatabase(context);
+
+        long id;
+        String sql = "INSERT OR ABORT INTO custom_apps(\"name\", \"component_name\", \"custom_flags\") VALUES (?,?,?)";
+        try {
+            SQLiteStatement statement = db.compileStatement(sql);
+            statement.bindString(1, newName);
+            statement.bindString(2, componentName);
+            statement.bindLong(3, AppRecord.FLAG_CUSTOM_NAME);
+            id = statement.executeInsert();
+            statement.close();
+        } catch (Exception ignored) {
+            id = -1;
+        }
+        if (id == -1) {
+            sql = "UPDATE custom_apps SET name=?,custom_flags=custom_flags|? WHERE component_name=?";
+            try {
+                SQLiteStatement statement = db.compileStatement(sql);
+                statement.bindString(1, newName);
+                statement.bindLong(2, AppRecord.FLAG_CUSTOM_NAME);
+                statement.bindString(3, componentName);
+                int count = statement.executeUpdateDelete();
+                if (count != 1) {
+                    Log.e(TAG, "Update name count = " + count);
+                }
+                statement.close();
+            } catch (Exception e) {
+                Log.e(TAG, "Insert or Update custom app name", e);
+            }
+        }
+    }
+
+
+    @Nullable
+    private static AppRecord getAppRecord(SQLiteDatabase db, String componentName) {
+        String[] selArgs = new String[]{componentName};
+        String[] columns = new String[]{"_id", "name", "component_name", "custom_flags"};
+        try (Cursor cursor = db.query("custom_apps", columns,
+                "component_name=?", selArgs, null, null, null)) {
+            if (cursor.moveToNext()) {
+                AppRecord entry = new AppRecord();
+
+                entry.dbId = cursor.getLong(0);
+                entry.name = cursor.getString(1);
+                entry.componentName = cursor.getString(2);
+                entry.flags = cursor.getInt(3);
+
+                return entry;
+            }
+        }
+        return null;
+    }
+
+    public static long addCustomAppIcon(Context context, String componentName) {
+        SQLiteDatabase db = getDatabase(context);
+
+        long id;
+        String sql = "INSERT OR ABORT INTO custom_apps(\"component_name\", \"custom_flags\") VALUES (?,?)";
+        try {
+            SQLiteStatement statement = db.compileStatement(sql);
+            statement.bindString(1, componentName);
+            statement.bindLong(2, AppRecord.FLAG_CUSTOM_ICON);
+            id = statement.executeInsert();
+            statement.close();
+        } catch (Exception ignored) {
+            id = -1;
+        }
+        if (id == -1) {
+            sql = "UPDATE custom_apps SET custom_flags=custom_flags|? WHERE component_name=?";
+            try {
+                SQLiteStatement statement = db.compileStatement(sql);
+                statement.bindLong(1, AppRecord.FLAG_CUSTOM_ICON);
+                statement.bindString(2, componentName);
+                int count = statement.executeUpdateDelete();
+                if (count != 1) {
+                    Log.e(TAG, "Update `custom_flags` returned count=" + count);
+                }
+                statement.close();
+            } catch (Exception e) {
+                Log.e(TAG, "Update custom app icon", e);
+            }
+            AppRecord appRecord = getAppRecord(db, componentName);
+            id = appRecord != null ? appRecord.dbId : 0;
+        }
+        return id;
+    }
+
+    public static long removeCustomAppIcon(Context context, String componentName) {
+        SQLiteDatabase db = getDatabase(context);
+        AppRecord app = getAppRecord(db, componentName);
+        if (app == null)
+            return 0;
+
+        if (app.hasCustomName()) {
+            // app has a custom name, just remove the custom icon
+            String sql = "UPDATE custom_apps SET custom_flags=custom_flags&~? WHERE component_name=?";
+            try {
+                SQLiteStatement statement = db.compileStatement(sql);
+                statement.bindLong(1, AppRecord.FLAG_CUSTOM_ICON);
+                statement.bindString(2, componentName);
+                int count = statement.executeUpdateDelete();
+                if (count != 1) {
+                    Log.e(TAG, "Update `custom_flags` returned count=" + count);
+                }
+                statement.close();
+            } catch (Exception e) {
+                Log.e(TAG, "remove custom app icon", e);
+            }
+        } else {
+            // nothing custom about this app anymore, remove entry
+            db.delete("custom_apps", "_id=?", new String[]{String.valueOf(app.dbId)});
+        }
+
+        return app.dbId;
+    }
+
+    public static void removeCustomAppName(Context context, String componentName) {
+        SQLiteDatabase db = getDatabase(context);
+        AppRecord app = getAppRecord(db, componentName);
+        if (app == null)
+            return;
+
+        if (app.hasCustomIcon()) {
+            // app has a custom icon, just remove the custom name
+            String sql = "UPDATE custom_apps SET custom_flags=custom_flags&~? WHERE component_name=?";
+            try {
+                SQLiteStatement statement = db.compileStatement(sql);
+                statement.bindLong(1, AppRecord.FLAG_CUSTOM_NAME);
+                statement.bindString(2, componentName);
+                int count = statement.executeUpdateDelete();
+                if (count != 1) {
+                    Log.e(TAG, "Update `custom_flags` returned count=" + count);
+                }
+                statement.close();
+            } catch (Exception e) {
+                Log.e(TAG, "remove custom app icon", e);
+            }
+        } else {
+            // nothing custom about this app anymore, remove entry
+            db.delete("custom_apps", "_id=?", new String[]{String.valueOf(app.dbId)});
+        }
+    }
+
+    public static HashMap<String, AppRecord> getCustomAppData(Context context) {
+        HashMap<String, AppRecord> records;
+        SQLiteDatabase db = getDatabase(context);
+        try (Cursor cursor = db.query("custom_apps", new String[]{"_id", "name", "component_name", "custom_flags"},
+                null, null, null, null, null)) {
+            records = new HashMap<>(cursor.getCount());
+            while (cursor.moveToNext()) {
+                AppRecord entry = new AppRecord();
+
+                entry.dbId = cursor.getInt(0);
+                entry.name = cursor.getString(1);
+                entry.componentName = cursor.getString(2);
+                entry.flags = cursor.getInt(3);
+
+                records.put(entry.componentName, entry);
+            }
+        }
+
+        return records;
     }
 
     /**
@@ -367,4 +539,5 @@ public class DBHelper {
         return records;
 
     }
+
 }

@@ -33,10 +33,10 @@ import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
-import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.CalculatorProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.SettingsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.db.DBHelper;
@@ -103,7 +103,7 @@ public class DataHandler extends BroadcastReceiver
 
         // Some basic providers are defined directly,
         // as we don't need the overhead of a service for them
-        // Those providers don't expose a service connection,
+        // Those providers dong't expose a service connection,
         // and you can't bind / unbind to them dynamically.
         ProviderEntry calculatorEntry = new ProviderEntry();
         calculatorEntry.provider = new CalculatorProvider();
@@ -824,6 +824,22 @@ public class DataHandler extends BroadcastReceiver
 
     public void resetTagsHandler() {
         tagsHandler = new TagsHandler(this.context);
+    }
+
+    public void renameApp(String componentName, String newName) {
+        DBHelper.addCustomAppName(context, componentName, newName);
+    }
+
+    public void removeRenameApp(String componentName, String defaultName) {
+        DBHelper.removeCustomAppName(context, componentName);
+    }
+
+    public long setCustomAppIcon(String componentName) {
+        return DBHelper.addCustomAppIcon(context, componentName);
+    }
+
+    public long removeCustomAppIcon(String componentName) {
+        return DBHelper.removeCustomAppIcon(context, componentName);
     }
 
     static final class ProviderEntry {

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_background"
+    android:clipChildren="true"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="5dp">
+
+    <!-- 68dp = icon_width + 2 * margin_horizontal -->
+    <GridView
+        android:id="@+id/iconGrid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:columnWidth="68dp"
+        android:gravity="center"
+        android:horizontalSpacing="1dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="spacingWidth"
+        android:verticalSpacing="1dp"
+        tools:itemCount="20"
+        tools:listitem="@layout/custom_icon_item" />
+
+    <LinearLayout
+        android:id="@+id/searchBarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:autofillHints="application,text"
+            android:hint="@string/custom_icon_hint"
+            android:inputType="textAutoCorrect" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/quickList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- code expects the parent of @+id/defaultIcon to be a ViewGroup -->
+            <include layout="@layout/custom_icon_quick" />
+
+            <!-- more `custom_icon_quick` will be added from code -->
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/icon_margin_right"
+            android:layout_marginTop="@dimen/icon_margin_top"
+            android:layout_marginBottom="@dimen/icon_margin_bottom"
+            android:text="@string/custom_icon_preview" />
+
+        <ImageView
+            android:id="@+id/preview"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/icon_margin_left"
+            android:layout_marginLeft="@dimen/icon_margin_left"
+            android:layout_marginTop="@dimen/icon_margin_top"
+            android:layout_marginEnd="@dimen/icon_margin_right"
+            android:layout_marginRight="@dimen/icon_margin_right"
+            android:layout_marginBottom="@dimen/icon_margin_bottom"
+            android:src="@drawable/ic_launcher" />
+
+        <Button
+            android:id="@android:id/button2"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/icon_margin_left"
+            android:layout_marginLeft="@dimen/icon_margin_left"
+            android:layout_marginEnd="@dimen/icon_margin_right"
+            android:layout_marginRight="@dimen/icon_margin_right"
+            android:layout_weight="1"
+            android:text="@android:string/cancel"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@android:id/button1"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/icon_margin_left"
+            android:layout_marginLeft="@dimen/icon_margin_left"
+            android:layout_marginEnd="@dimen/icon_margin_right"
+            android:layout_marginRight="@dimen/icon_margin_right"
+            android:layout_weight="1"
+            android:text="@android:string/ok"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</LinearLayout>

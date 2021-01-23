@@ -4,11 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.DataSetObserver;
@@ -38,6 +40,7 @@ import android.widget.TextView.OnEditorActionListener;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -350,6 +353,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
 
+        // For devices with hardware keyboards, give focus to search field.
+        if(getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
+            searchEditText.requestFocus();
+        }
+
         /*
          * Defer everything else to the forwarders
          */
@@ -435,6 +443,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     protected void onNewIntent(Intent intent) {
+        //Set the intent so KISS can tell when it was launched as an assistant
+        setIntent(intent);
+
         // This is called when the user press Home again while already browsing MainActivity
         // onResume() will be called right after, hiding the kissbar if any.
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
@@ -482,7 +493,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
-
+        if(keycode != KeyEvent.KEYCODE_BACK ) {
+            searchEditText.requestFocus();
+            searchEditText.dispatchKeyEvent(e);
+        }
         return super.onKeyDown(keycode, e);
     }
 
@@ -824,6 +838,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
         hider.fixScroll();
+    }
+
+    @Override
+    public void showDialog(DialogFragment dialog) {
+        final View resultLayout = findViewById(R.id.resultLayout);
+        if (dialog instanceof CustomIconDialog) {
+            // We assume the mResultLayout was visible
+            resultLayout.setVisibility(View.GONE);
+            ((CustomIconDialog) dialog).setOnDismissListener(dlg -> {
+                resultLayout.setVisibility(View.VISIBLE);
+                // force icon reload by searching again; is there any better way?
+                updateSearchRecords(true);
+            });
+        }
+        dialog.show(getFragmentManager(), "dialog");
     }
 
     @Override

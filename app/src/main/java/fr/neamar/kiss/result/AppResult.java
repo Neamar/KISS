@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.PopupMenu;
@@ -34,6 +36,8 @@ import androidx.annotation.NonNull;
 
 import java.util.Locale;
 
+import fr.neamar.kiss.CustomIconDialog;
+import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
@@ -116,8 +120,12 @@ public class AppResult extends Result {
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_exclude));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
-        adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
+        adapter.add(new ListPopup.Item(context, R.string.menu_app_rename));
+        // only display this option if we're using a custom icon pack, as it is not useful otherwise
+        if (KissApplication.getApplication(context).getIconsHandler().getCustomIconPack() != null)
+            adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
+        adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_store));
 
@@ -193,6 +201,12 @@ public class AppResult extends Result {
             case R.string.menu_tags_edit:
                 launchEditTagsDialog(context, parent, appPojo);
                 return true;
+            case R.string.menu_app_rename:
+                launchRenameDialog(context, parent, appPojo);
+                return true;
+            case R.string.menu_custom_icon:
+                launchCustomIcon(context, parent);
+                return true;
         }
 
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
@@ -200,7 +214,7 @@ public class AppResult extends Result {
 
     private void excludeFromHistory(Context context, AppPojo appPojo) {
         // add to excluded from history app list
-         KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
+        KissApplication.getApplication(context).getDataHandler().addToExcludedFromHistory(appPojo);
         // remove from history
         removeFromHistory(context);
         // inform user
@@ -268,6 +282,99 @@ public class AppResult extends Result {
         dialog.show();
     }
 
+    private void launchRenameDialog(final Context context, RecordAdapter parent, final AppPojo app) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(context.getResources().getString(R.string.app_rename_title));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder.setView(R.layout.rename_dialog);
+        } else {
+            builder.setView(View.inflate(context, R.layout.rename_dialog, null));
+        }
+
+        builder.setPositiveButton(R.string.custom_name_rename, (dialog, which) -> {
+            EditText input = ((AlertDialog) dialog).findViewById(R.id.rename);
+            dialog.dismiss();
+
+            // Set new name
+            String newName = input.getText().toString().trim();
+            app.setName(newName);
+            KissApplication.getApplication(context).getDataHandler().renameApp(app.getComponentName(), newName);
+
+            // Show toast message
+            String msg = context.getResources().getString(R.string.app_rename_confirmation, app.getName());
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+            // We'll need to reset the list view to its previous transcript mode,
+            // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
+            // Let's wait for half a second, that's ugly but we don't have any other option :(
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+        });
+        builder.setNegativeButton(R.string.custom_name_set_default, (dialog, which) -> {
+            dialog.dismiss();
+
+            // Get initial name
+            String name = null;
+            PackageManager pm = context.getPackageManager();
+            try {
+                ApplicationInfo applicationInfo = pm.getApplicationInfo(app.packageName, 0);
+                name = applicationInfo.loadLabel(pm).toString();
+            } catch (NameNotFoundException ignored) {
+            }
+
+            // Set name
+            if (name != null) {
+                app.setName(name);
+                KissApplication.getApplication(context).getDataHandler().removeRenameApp(getComponentName(), name);
+
+                // Show toast message
+                String msg = context.getResources().getString(R.string.app_rename_confirmation, appPojo.getName());
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            }
+
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+        });
+        builder.setNeutralButton(android.R.string.cancel, (dialog, which) -> {
+            dialog.cancel();
+
+            final Handler handler = new Handler();
+            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+        });
+
+        parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        // call after dialog got inflated (show call)
+        ((TextView) dialog.findViewById(R.id.rename)).setText(app.getName());
+    }
+
+    private void launchCustomIcon(Context context, RecordAdapter parent) {
+        //TODO: launch a DialogFragment or Activity
+        CustomIconDialog dialog = new CustomIconDialog();
+
+        // set args
+        {
+            Bundle args = new Bundle();
+            args.putString("className", className.flattenToString()); // will be converted back with ComponentName.unflattenFromString()
+            args.putParcelable("userHandle", appPojo.userHandle);
+            args.putString("componentName", appPojo.getComponentName());
+            args.putLong("customIcon", appPojo.getCustomIconId());
+            dialog.setArguments(args);
+        }
+
+        dialog.setOnConfirmListener(drawable -> {
+            if (drawable == null)
+                KissApplication.getApplication(context).getIconsHandler().restoreAppIcon(this);
+            else
+                KissApplication.getApplication(context).getIconsHandler().changeAppIcon(this, drawable);
+            //TODO: force update the icon in the view
+        });
+
+        parent.showDialog(dialog);
+    }
+
     /**
      * Open an activity displaying details regarding the current package
      */
@@ -328,8 +435,10 @@ public class AppResult extends Result {
             }
 
             if (icon == null) {
-                icon = KissApplication.getApplication(context).getIconsHandler()
-                        .getDrawableIconForPackage(className, this.appPojo.userHandle);
+                IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                icon = iconsHandler.getCustomIcon(appPojo.getComponentName(), appPojo.getCustomIconId());
+                if (icon == null)
+                    icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
             }
 
             return icon;
@@ -397,5 +506,23 @@ public class AppResult extends Result {
         int[] l = new int[2];
         v.getLocationOnScreen(l);
         return new Rect(l[0], l[1], l[0] + v.getWidth(), l[1] + v.getHeight());
+    }
+
+    public void setCustomIcon(long dbId, Drawable drawable) {
+        appPojo.setCustomIconId(dbId);
+        setDrawableCache(drawable);
+    }
+
+    public void clearCustomIcon() {
+        appPojo.setCustomIconId(0);
+        setDrawableCache(null);
+    }
+
+    public long getCustomIcon() {
+        return appPojo.getCustomIconId();
+    }
+
+    public String getComponentName() {
+        return appPojo.getComponentName();
     }
 }

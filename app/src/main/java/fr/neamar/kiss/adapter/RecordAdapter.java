@@ -1,10 +1,13 @@
 package fr.neamar.kiss.adapter;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
+
+import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import androidx.annotation.NonNull;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.ContactsResult;
@@ -112,7 +114,8 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         try {
             result = results.get(position);
             result.launch(v.getContext(), v, parent);
-        } catch (ArrayIndexOutOfBoundsException ignored) {}
+        } catch (ArrayIndexOutOfBoundsException ignored) {
+        }
     }
 
     public void removeResult(Context context, Result result) {
@@ -130,7 +133,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         fuzzyScore = new FuzzyScore(queryNormalized.codePoints, true);
         notifyDataSetChanged();
 
-        if(isRefresh) {
+        if (isRefresh) {
             // We're refreshing an existing dataset, do not reset scroll!
             parent.temporarilyDisableTranscriptMode();
         }
@@ -215,5 +218,9 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         // so we just return the before-last section
         // See #1005
         return sections.length - 2;
+    }
+
+    public void showDialog(DialogFragment dialog) {
+        parent.showDialog(dialog);
     }
 }

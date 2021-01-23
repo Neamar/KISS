@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.InputType;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -101,6 +102,13 @@ class ExperienceTweaks extends Forwarder {
             }
 
             @Override
+            public void onLongPress(MotionEvent e) {
+                doAction(prefs.getString("gesture-long-press", "do-nothing"));
+
+                super.onLongPress(e);
+            }
+
+            @Override
             public boolean onDoubleTap(MotionEvent e) {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
                     return super.onDoubleTap(e);
@@ -137,12 +145,17 @@ class ExperienceTweaks extends Forwarder {
                 float directionY = e2.getY() - e1.getY();
                 float directionX = e2.getX() - e1.getX();
                 if (Math.abs(directionX) > Math.abs(directionY)) {
-                    return false;
-                }
-                if (directionY > 0) {
-                    doAction(prefs.getString("gesture-down", "display-notifications"));
+                    if (directionX > 0) {
+                        doAction(prefs.getString("gesture-right", "display-apps"));
+                    } else {
+                        doAction(prefs.getString("gesture-left", "display-apps"));
+                    }
                 } else {
-                    doAction(prefs.getString("gesture-up", "display-keyboard"));
+                    if (directionY > 0) {
+                        doAction(prefs.getString("gesture-down", "display-notifications"));
+                    } else {
+                        doAction(prefs.getString("gesture-up", "display-keyboard"));
+                    }
                 }
                 return true;
             }
@@ -154,6 +167,9 @@ class ExperienceTweaks extends Forwarder {
                         break;
                     case "display-keyboard":
                         mainActivity.showKeyboard();
+                        break;
+                    case "hide-keyboard":
+                        mainActivity.hideKeyboard();
                         break;
                     case "display-apps":
                         if (mainActivity.isViewingSearchResults()) {
@@ -179,9 +195,13 @@ class ExperienceTweaks extends Forwarder {
                         }
                         break;
                     case "display-favorites":
-                        // Not provided as an option for the gestures, but useful if you only want to display facorites on tap,
+                        // Not provided as an option for the gestures, but useful if you only want to display favorites on tap,
                         // not history.
                         mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                        break;
+                    case "display-menu":
+                        mainActivity.openContextMenu(mainActivity.menuButton);
+                        break;
                 }
             }
         });
@@ -197,7 +217,7 @@ class ExperienceTweaks extends Forwarder {
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
-        if (isKeyboardOnStartEnabled()) {
+        if (shouldShowKeyboard()) {
             // Display keyboard
             mainActivity.showKeyboard();
 
@@ -231,19 +251,11 @@ class ExperienceTweaks extends Forwarder {
     }
 
     void onWindowFocusChanged(boolean hasFocus) {
-        if (hasFocus && isKeyboardOnStartEnabled()) {
-            mainActivity.showKeyboard();
-        }
     }
 
     void onDisplayKissBar(boolean display) {
         if (isMinimalisticModeEnabledForFavorites() && !display) {
             mainActivity.favoritesBar.setVisibility(View.GONE);
-        }
-
-        if (!display && isKeyboardOnStartEnabled()) {
-            // Display keyboard
-            mainActivity.showKeyboard();
         }
     }
 
@@ -334,6 +346,14 @@ class ExperienceTweaks extends Forwarder {
      */
     private boolean isKeyboardOnStartEnabled() {
         return prefs.getBoolean("display-keyboard", false);
+    }
+
+    /**
+     * Should the keyboard be displayed?
+     */
+    private boolean shouldShowKeyboard() {
+        boolean isAssistant = mainActivity.getIntent().getAction().equalsIgnoreCase("android.intent.action.ASSIST");
+        return (isAssistant || isKeyboardOnStartEnabled());
     }
 
     /**

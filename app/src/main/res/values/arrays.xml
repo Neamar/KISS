@@ -48,26 +48,30 @@
     <string-array name="gestureEntries">
         <item>@string/gesture_do_nothing</item>
         <item>@string/gesture_keyboard</item>
+        <item>@string/gesture_hide_keyboard</item>
         <item>@string/gesture_notifications</item>
         <item>@string/gesture_apps</item>
         <item>@string/gesture_history</item>
+        <item>@string/gesture_menu</item>
     </string-array>
     <string-array name="gestureValues" translatable="false">
         <item>do-nothing</item>
         <item>display-keyboard</item>
+        <item>hide-keyboard</item>
         <item>display-notifications</item>
         <item>display-apps</item>
         <item>display-history</item>
+        <item>display-menu</item>
     </string-array>
     <string-array name="shadowEntries">
         <item>@string/theme_customize_default</item>
-        <item>@string/theme_customize_disabled</item>
         <item>@string/theme_customize_enabled</item>
+        <item>@string/theme_customize_disabled</item>
     </string-array>
     <string-array name="shadowValues" translatable="false">
         <item>default</item>
-        <item>disabled</item>
         <item>enabled</item>
+        <item>disabled</item>
     </string-array>
     <string-array name="separatorEntries">
         <item>@string/theme_customize_default</item>
@@ -97,4 +101,49 @@
         <item>semi-dark</item>
         <item>black</item>
     </string-array>
+    <string-array name="wallpaperEntries">
+        <item>@string/theme_customize_default</item>
+        <item>@string/theme_customize_enabled</item>
+        <item>@string/theme_customize_disabled</item>
+    </string-array>
+    <string-array name="wallpaperValues" translatable="false">
+        <item>default</item>
+        <item>enabled</item>
+        <item>disabled</item>
+    </string-array>
+    <string name="gesture_menu">Display menu</string>
+    <string name="gesture_hide_keyboard">Hide keyboard</string>
+
+    <!-- Names for DrawableUtils.SHAPE_*    -->
+    <string-array name="adaptiveEntries">
+        <item>System default</item>
+        <item>Circle</item>
+        <item>Square</item>
+        <item>Squircle</item>
+        <item>Rounded rectangle</item>
+        <item>Teardrop bottom-right</item>
+        <item>Teardrop bottom-left</item>
+        <item>Teardrop top-left</item>
+        <item>Teardrop top-right</item>
+        <item>Teardrop random</item>
+        <item>Hexagon</item>
+        <item>Octagon</item>
+    </string-array>
+
+    <!-- Values come from DrawableUtils.SHAPE_*    -->
+    <string-array name="adaptiveValues" translatable="false">
+        <item>0</item>  <!-- SHAPE_SYSTEM -->
+        <item>1</item>  <!-- SHAPE_CIRCLE -->
+        <item>2</item>  <!-- SHAPE_SQUARE -->
+        <item>3</item>  <!-- SHAPE_SQUIRCLE -->
+        <item>4</item>  <!-- SHAPE_ROUND_RECT -->
+        <item>5</item>  <!-- SHAPE_TEARDROP_BR -->
+        <item>6</item>  <!-- SHAPE_TEARDROP_BL -->
+        <item>7</item>  <!-- SHAPE_TEARDROP_TL -->
+        <item>8</item>  <!-- SHAPE_TEARDROP_TR -->
+        <item>9</item>  <!-- SHAPE_TEARDROP_RND -->
+        <item>10</item> <!-- SHAPE_HEXAGON -->
+        <item>11</item> <!-- SHAPE_OCTAGON -->
+    </string-array>
+
 </resources>
