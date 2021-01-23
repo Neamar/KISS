@@ -3,6 +3,8 @@ import json
 import xml.etree.ElementTree as ET
 import subprocess
 import datetime
+import pytz
+import os
 
 LOCALES_PREFIX = './metadata/android/'
 locales = [l.replace(LOCALES_PREFIX, '') for l in sorted(glob.glob(LOCALES_PREFIX + '*'))]
@@ -15,20 +17,34 @@ def get_last_change(file):
     """
     Returns the last time the file was modified on Git
     """
-    out = subprocess.check_output(['git', 'log', '-1', r'--pretty=%ci', feature_graphic_text_path]).strip()
-    return datetime.datetime.strptime(out.decode('ascii'), r"%Y-%m-%d %H:%M:%S %z")
+    try:
+        out = subprocess.check_output(['git', 'log', '-1', r'--pretty=%ci', file], stderr=subprocess.DEVNULL).strip()
+        return datetime.datetime.strptime(out.decode('ascii'), r"%Y-%m-%d %H:%M:%S %z")
+    except subprocess.CalledProcessError:
+        return pytz.UTC.localize(datetime.datetime(year=2000,month=1,day=1))
+
 
 for locale in locales:
+    ######
     # Feature graphic
-    feature_graphic_path = './graphic_templates/featureGraphic.svg'
+    ######
+    feature_graphic_template_path = './graphic_templates/featureGraphic.svg'
     feature_graphic_text_path = '%s%s/short_description.txt' % (LOCALES_PREFIX, locale)
-    text_modified_date = get_last_change(feature_graphic_text_path)
+    feature_graphic_out_path = '%s%s/images/featureGraphic.png' % (LOCALES_PREFIX, locale)
 
-    print(last_modified_date)
+    if not os.path.exists(feature_graphic_text_path):
+        continue
+
+    text_modified_date = get_last_change(feature_graphic_text_path)
+    template_modified_date = get_last_change(feature_graphic_template_path)
+    out_modified_date = get_last_change(feature_graphic_out_path)
+
+    if text_modified_date > out_modified_date or template_modified_date > out_modified_date:
+        print("Generating featureGraphic for %s" % locale)
     with open(feature_graphic_text_path) as f:
         feature_graphic_text = f.readline().strip()
 
-    with open(feature_graphic_path, 'r') as i:
+    with open(feature_graphic_template_path, 'r') as i:
         with open('/tmp/out.svg', 'w') as o:
             for l in i.readlines():
                 l = l.replace('t:featureGraphic.subtitle', feature_graphic_text)
