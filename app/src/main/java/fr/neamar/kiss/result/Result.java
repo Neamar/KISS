@@ -252,7 +252,7 @@ public abstract class Result {
         mainActivity.onFavoriteChange();
         mainActivity.launchOccurred();
         // Update Search to reflect favorite add, if the "exclude favorites" option is active
-        if (mainActivity.prefs.getBoolean("exclude-favorites", false) && mainActivity.isViewingSearchResults()) {
+        if (mainActivity.prefs.getBoolean("exclude-favorites-history", false) && mainActivity.isViewingSearchResults()) {
             mainActivity.updateSearchRecords(true);
         }
 
