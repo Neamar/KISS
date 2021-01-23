@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.InputType;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -166,6 +167,9 @@ class ExperienceTweaks extends Forwarder {
                         break;
                     case "display-keyboard":
                         mainActivity.showKeyboard();
+                        break;
+                    case "hide-keyboard":
+                        mainActivity.hideKeyboard();
                         break;
                     case "display-apps":
                         if (mainActivity.isViewingSearchResults()) {
