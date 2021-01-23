@@ -228,7 +228,7 @@ class Widgets extends Forwarder {
                 popup.dismiss();
                 switch (item.getItemId()) {
                     case R.id.remove_widget:
-                        ((ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent()).removeView(widgetWithMenuCurrentlyDisplayed);
+                        parent.removeView(widgetWithMenuCurrentlyDisplayed);
                         serializeState();
                         return true;
                     case R.id.increase_size: {
