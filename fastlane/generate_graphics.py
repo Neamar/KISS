@@ -1,0 +1,35 @@
+import glob
+import json
+import xml.etree.ElementTree as ET
+import subprocess
+import datetime
+
+LOCALES_PREFIX = './metadata/android/'
+locales = [l.replace(LOCALES_PREFIX, '') for l in sorted(glob.glob(LOCALES_PREFIX + '*'))]
+
+screenshots = ['./graphic_templates/phoneScreenshots/1.svg', './graphic_templates/phoneScreenshots/2.svg', './graphic_templates/phoneScreenshots/3.svg', './graphic_templates/phoneScreenshots/4.svg']
+graphics = ['./graphic_templates/featureGraphic.svg']
+
+
+def get_last_change(file):
+    """
+    Returns the last time the file was modified on Git
+    """
+    out = subprocess.check_output(['git', 'log', '-1', r'--pretty=%ci', feature_graphic_text_path]).strip()
+    return datetime.datetime.strptime(out.decode('ascii'), r"%Y-%m-%d %H:%M:%S %z")
+
+for locale in locales:
+    # Feature graphic
+    feature_graphic_path = './graphic_templates/featureGraphic.svg'
+    feature_graphic_text_path = '%s%s/short_description.txt' % (LOCALES_PREFIX, locale)
+    text_modified_date = get_last_change(feature_graphic_text_path)
+
+    print(last_modified_date)
+    with open(feature_graphic_text_path) as f:
+        feature_graphic_text = f.readline().strip()
+
+    with open(feature_graphic_path, 'r') as i:
+        with open('/tmp/out.svg', 'w') as o:
+            for l in i.readlines():
+                l = l.replace('t:featureGraphic.subtitle', feature_graphic_text)
+                o.write(l)
