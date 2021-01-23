@@ -73,7 +73,11 @@ class Widgets extends Forwarder {
         // Stop listening for widget update
         // See https://github.com/Neamar/KISS/issues/744
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            mAppWidgetHost.stopListening();
+            try {
+                mAppWidgetHost.stopListening();
+            } catch(NullPointerException e) {
+                // Ignore, happens on some shitty widget down the stack trace.
+            }
         }
     }
 
