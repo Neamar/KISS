@@ -42,8 +42,10 @@ for locale in locales:
     template_modified_date = get_last_change(feature_graphic_template_path)
     out_modified_date = get_last_change(feature_graphic_out_path)
 
-    if text_modified_date > out_modified_date or template_modified_date > out_modified_date:
-        print("Generating featureGraphic for %s" % locale)
+    if text_modified_date <= out_modified_date and template_modified_date <= out_modified_date:
+        continue
+
+    print("Generating featureGraphic for %s" % locale)
     with open(feature_graphic_text_path) as f:
         feature_graphic_text = f.readline().strip()
 
