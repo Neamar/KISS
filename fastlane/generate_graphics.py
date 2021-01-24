@@ -90,5 +90,6 @@ for locale in locales:
     if len(generated) > 0:
         # add phone screenshots too
         for en_us_file_name in default_screenshots:
-            if en_us_file_name not in generated:
+            screenshot_id = en_us_file_name[en_us_file_name.rindex('/')+1:-4]
+            if screenshot_id not in generated:
                 shutil.copy(en_us_file_name, en_us_file_name.replace('en-US', locale))
