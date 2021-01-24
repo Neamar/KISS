@@ -77,11 +77,13 @@ for locale in locales:
         screenshot_id = screenshot_template_path[screenshot_template_path.rindex('/')+1:-4]
         screenshot_text_path = '%s%s/screenshot_%s.txt' % (LOCALES_PREFIX, locale, screenshot_id)
         screenshot_out_path = '%s%s/images/phoneScreenshots/%s.png' % (LOCALES_PREFIX, locale, screenshot_id)
-        r = build_image(screenshot_template_path, screenshot_text_path, screenshot_out_path, 't:screenshot.text')
-        if r is False:
+
+        if not os.path.exists(screenshot_text_path):
             # at least one file missing, abort.
             shutil.rmtree('%s%s/images/phoneScreenshots' % (LOCALES_PREFIX, locale))
             break
+
+        build_image(screenshot_template_path, screenshot_text_path, screenshot_out_path, 't:screenshot.text')
         generated.append(screenshot_id)
 
 
@@ -89,5 +91,4 @@ for locale in locales:
         # add phone screenshots too
         for en_us_file_name in default_screenshots:
             if en_us_file_name not in generated:
-                print(en_us_file_name)
                 shutil.copy(en_us_file_name, en_us_file_name.replace('en-US', locale))
