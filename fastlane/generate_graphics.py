@@ -5,6 +5,7 @@ import subprocess
 import datetime
 import pytz
 import os
+import shutil
 
 LOCALES_PREFIX = './metadata/android/'
 locales = [l.replace(LOCALES_PREFIX, '') for l in sorted(glob.glob(LOCALES_PREFIX + '*'))]
@@ -19,12 +20,14 @@ def get_last_change(file):
     """
     try:
         out = subprocess.check_output(['git', 'log', '-1', r'--pretty=%ci', file], stderr=subprocess.DEVNULL).strip()
-        return datetime.datetime.strptime(out.decode('ascii'), r"%Y-%m-%d %H:%M:%S %z")
     except subprocess.CalledProcessError:
-        return pytz.UTC.localize(datetime.datetime(year=2000,month=1,day=1))
+        out = b"2020-01-01 00:00:00 +0200"
+    return datetime.datetime.strptime(out.decode('ascii'), r"%Y-%m-%d %H:%M:%S %z")
 
 
 for locale in locales:
+    os.makedirs('%s%s/images/phoneScreenshots' % (LOCALES_PREFIX, locale), exist_ok=True)
+
     ######
     # Feature graphic
     ######
@@ -49,3 +52,7 @@ for locale in locales:
             for l in i.readlines():
                 l = l.replace('t:featureGraphic.subtitle', feature_graphic_text)
                 o.write(l)
+
+    subprocess.check_output(['inkscape', '--export-type=png', '--export-filename=/tmp/out.png', '--export-dpi=96', '/tmp/out.svg'])
+
+    shutil.move("/tmp/out.png", os.getcwd() + '/' + feature_graphic_out_path.replace('./', ''))
