@@ -20,12 +20,18 @@ platform :android do
   lane :beta do
     upload_to_play_store(track: 'beta', aab: './app/release/app-release.aab')
   end
+  desc "Promote beta to production"
   lane :prod do
     # TO BE TESTED: haven't used yet. Should promote from beta to prod, but not sure about the track name. Should hopefully also update changelogs? Otherwise, check :sync
     upload_to_play_store(track_promote_to: 'release', track: 'beta')
   end
+  desc "Update current production description"
   lane :sync do
     # Synchronize current prod version (make sure number is up to date). Useful to send changelogs
     supply(version_code: 179)
+  end
+  desc "Generate images for all locales"
+  lane :images do
+    sh('python3', 'generate_graphics.py')
   end
 end

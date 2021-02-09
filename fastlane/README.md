@@ -25,12 +25,17 @@ Upload to beta channel
 ```
 fastlane android prod
 ```
-
+Promote beta to production
 ### android sync
 ```
 fastlane android sync
 ```
-
+Update current production description
+### android images
+```
+fastlane android images
+```
+Generate images for all locales
 
 ----
 
