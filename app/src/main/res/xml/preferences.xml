@@ -427,8 +427,12 @@
         <fr.neamar.kiss.preference.ExportSettingsPreference
             android:defaultValue="true"
             android:key="export-settings"
-            android:dialogMessage="@string/clipboard_warning_dialog"
             android:title="@string/export_settings" />
+        <fr.neamar.kiss.preference.ImportSettingsPreference
+            android:defaultValue="true"
+            android:key="export-settings"
+            android:dialogMessage="@string/import_settings_dialog"
+            android:title="@string/import_settings" />
     </PreferenceScreen>
     <PreferenceScreen android:title="@string/title_advanced" android:key="advanced">
         <fr.neamar.kiss.preference.NotificationPreference
