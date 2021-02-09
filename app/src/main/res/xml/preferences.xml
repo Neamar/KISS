@@ -423,6 +423,13 @@
                 android:title="@string/search_provider_reset" />
         </PreferenceCategory>
     </PreferenceScreen>
+    <PreferenceScreen android:title="@string/title_import_export" android:key="importexport">
+        <fr.neamar.kiss.preference.ExportSettingsPreference
+            android:defaultValue="true"
+            android:key="export-settings"
+            android:dialogMessage="@string/clipboard_warning_dialog"
+            android:title="@string/export_settings" />
+    </PreferenceScreen>
     <PreferenceScreen android:title="@string/title_advanced" android:key="advanced">
         <fr.neamar.kiss.preference.NotificationPreference
             android:defaultValue="true"
