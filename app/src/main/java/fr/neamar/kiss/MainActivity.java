@@ -10,9 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
 import android.database.DataSetObserver;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,8 +39,14 @@ import android.widget.TextView.OnEditorActionListener;
 
 import androidx.annotation.NonNull;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.regex.Pattern;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -362,6 +368,38 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          * Defer everything else to the forwarders
          */
         forwarderManager.onCreate();
+
+
+        SharedPreferences defaultValues = getSharedPreferences("__default__", Context.MODE_PRIVATE);
+        defaultValues.edit().clear().apply();
+        PreferenceManager.setDefaultValues(this, "__default__", Context.MODE_PRIVATE, R.xml.preferences, true);
+        JSONObject out = new JSONObject();
+        try {
+            for (Map.Entry<String, ?> entry : defaultValues.getAll().entrySet()) {
+                String key = entry.getKey();
+                if (entry.getValue() instanceof Boolean) {
+                    boolean currentValue = prefs.getBoolean(key, defaultValues.getBoolean(key, true));
+                    if (currentValue != defaultValues.getBoolean(key, true)) {
+                        out.put(key, currentValue);
+                    }
+                } else if (entry.getValue() instanceof String) {
+                    String currentValue = prefs.getString(key, defaultValues.getString(key, ""));
+                    if (!currentValue.equals(defaultValues.getString(key, ""))) {
+                        out.put(key, currentValue);
+                    }
+                } else if (entry.getValue() instanceof Set) {
+                    Set<String> currentValue = prefs.getStringSet(key, new HashSet<String>());
+                    if (!currentValue.equals(defaultValues.getStringSet(key, new HashSet<String>()))) {
+                        out.put(key, new JSONArray(currentValue));
+                    }
+                } else {
+                    Log.w("Unknown type", entry.getKey() + ":" + entry.getValue());
+                }
+            }
+        } catch(JSONException e) {
+            Log.e("WTF", "Unable to export preferences");
+        }
+        Log.e("WTF", "JSON:" + out.toString());
     }
 
     @Override
