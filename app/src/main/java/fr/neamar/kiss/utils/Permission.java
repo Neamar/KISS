@@ -8,7 +8,6 @@ import android.os.Build;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ListIterator;
 
 import androidx.annotation.NonNull;
@@ -27,7 +26,7 @@ public class Permission {
 
     // Static weak reference to the linked activity, this is sadly required
     // to ensure classes requesting permission can access activity.requestPermission()
-    private static WeakReference<Activity> currentActivity = new WeakReference<Activity>(null);
+    private static WeakReference<Activity> currentActivity = new WeakReference<>(null);
 
     private static ArrayList<PermissionResultListener> permissionListeners;
 
@@ -42,7 +41,7 @@ public class Permission {
         if (listener != null) {
             listener.permission = permission;
             if (permissionListeners == null) {
-                permissionListeners = new ArrayList<PermissionResultListener>();
+                permissionListeners = new ArrayList<>();
             }
             permissionListeners.add(listener);
         }
@@ -53,6 +52,7 @@ public class Permission {
         }
     }
 
+    @SuppressWarnings("StaticAssignmentInConstructor")
     public Permission(Activity activity) {
         // Store the latest reference to a MainActivity
         currentActivity = new WeakReference<>(activity);
@@ -82,7 +82,7 @@ public class Permission {
     public static class PermissionResultListener {
         public int permission = 0;
 
-        public void onGranted() {};
-        public void onDenied() {};
+        public void onGranted() {}
+        public void onDenied() {}
     }
 }

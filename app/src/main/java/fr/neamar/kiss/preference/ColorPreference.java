@@ -45,7 +45,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 
     private void drawPalette() {
         if (this.palette != null) {
-            this.palette.drawPalette(UIColors.COLOR_LIST, this.selectedColor);
+            this.palette.drawPalette(UIColors.getColorList(), this.selectedColor);
         }
     }
 
@@ -109,25 +109,13 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 
         // Bind click events from the custom color values
         Button button1 = view.findViewById(R.id.colorTransparentDark);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ColorPreference.this.onColorSelected(COLOR_DARK_TRANSPARENT);
-            }
-        });
+        button1.setOnClickListener(v -> ColorPreference.this.onColorSelected(COLOR_DARK_TRANSPARENT));
 
         Button button2 = view.findViewById(R.id.colorTransparentWhite);
-        button2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ColorPreference.this.onColorSelected(COLOR_LIGHT_TRANSPARENT);
-            }
-        });
+        button2.setOnClickListener(v -> ColorPreference.this.onColorSelected(COLOR_LIGHT_TRANSPARENT));
 
         Button button3 = view.findViewById(R.id.colorTransparent);
-        button3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ColorPreference.this.onColorSelected(COLOR_TRANSPARENT);
-            }
-        });
+        button3.setOnClickListener(v -> ColorPreference.this.onColorSelected(COLOR_TRANSPARENT));
 
         if(ColorPreference.this.selectedColor == COLOR_DARK_TRANSPARENT) this.selectButton(button1);
         if(ColorPreference.this.selectedColor == COLOR_LIGHT_TRANSPARENT) this.selectButton(button2);

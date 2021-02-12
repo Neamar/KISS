@@ -36,20 +36,6 @@ public class DrawableUtils {
     public static final int SHAPE_HEXAGON = 10;
     public static final int SHAPE_OCTAGON = 11;
 
-    public static final int[] SHAPE_LIST = {
-            SHAPE_SYSTEM,
-            SHAPE_CIRCLE,
-            SHAPE_SQUARE,
-            SHAPE_SQUIRCLE,
-            SHAPE_ROUND_RECT,
-            SHAPE_TEARDROP_BR,
-            SHAPE_TEARDROP_BL,
-            SHAPE_TEARDROP_TL,
-            SHAPE_TEARDROP_TR,
-            SHAPE_HEXAGON,
-            SHAPE_OCTAGON,
-    };
-
     private static final Paint PAINT = new Paint();
     private static final Path SHAPE_PATH = new Path();
     private static final RectF RECT_F = new RectF();

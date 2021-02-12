@@ -12,10 +12,10 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class UIColors {
-    public static final int COLOR_DEFAULT = 0xFF4caf50;
+    public static final int COLOR_DEFAULT = 0xFF4CAF50;
     // Source: https://material.io/guidelines/style/color.html#color-color-palette
-    public static final int[] COLOR_LIST = new int[]{
-            0xFF4CAF50,
+    private static final int[] COLOR_LIST = new int[]{
+            COLOR_DEFAULT,
             0xFFD32F2F,
             0xFFC2185B,
             0xFF7B1FA2,
@@ -187,5 +187,9 @@ public class UIColors {
 
     static void clearPrimaryColorCache(Context context) {
         primaryColor = -1;
+    }
+
+    public static int[] getColorList() {
+        return COLOR_LIST;
     }
 }

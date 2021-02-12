@@ -510,10 +510,9 @@ public class DBHelper {
     }
 
 
-    /* Delete
+    /** Delete
      *
      * @param context android context
-     * @param tag   query to insert
      * @param record  record to insert
      */
     public static void deleteTagsForId(Context context, String record) {
