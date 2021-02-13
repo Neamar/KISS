@@ -17,7 +17,7 @@ import fr.neamar.kiss.db.DBHelper;
 
 public class TagsHandler {
     private final Context context;
-    //cached tags
+    // cached tags
     private final Map<String, String> tagsCache;
 
     TagsHandler(Context context) {
@@ -55,6 +55,10 @@ public class TagsHandler {
         }
         tags.remove("");
         return tags;
+    }
+
+    public Map<String, String> getTags() {
+        return tagsCache;
     }
 
     private void addDefaultAliases() {
@@ -107,7 +111,7 @@ public class TagsHandler {
     }
 
     private void addAliasesPojo(String aliases, String app) {
-        //add aliases only if they haven't overridden by the user (not in db)
+        // add aliases only if they haven't overridden by the user (not in db)
         if (!tagsCache.containsKey(app)) {
             tagsCache.put(app, aliases.replace(",", " "));
         }

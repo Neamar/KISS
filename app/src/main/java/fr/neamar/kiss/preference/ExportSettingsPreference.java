@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
@@ -37,6 +38,8 @@ public class ExportSettingsPreference extends Preference {
         PreferenceManager.setDefaultValues(getContext(), "__default__", Context.MODE_PRIVATE, R.xml.preferences, true);
         JSONObject out = new JSONObject();
         try {
+
+            // Export settings
             for (Map.Entry<String, ?> entry : defaultValues.getAll().entrySet()) {
                 String key = entry.getKey();
                 if (entry.getValue() instanceof Boolean) {
@@ -58,6 +61,14 @@ public class ExportSettingsPreference extends Preference {
                     Log.w("Unknown type", entry.getKey() + ":" + entry.getValue());
                 }
             }
+
+            // Export tags
+            Map<String, String> tags = ((KissApplication) getContext().getApplicationContext()).getDataHandler().getTagsHandler().getTags();
+            JSONObject jsonTags = new JSONObject();
+            for (Map.Entry<String, String> entry : tags.entrySet()) {
+                jsonTags.put(entry.getKey(), entry.getValue());
+            }
+            out.put("__tags", jsonTags);
 
             ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("kiss", out.toString());
