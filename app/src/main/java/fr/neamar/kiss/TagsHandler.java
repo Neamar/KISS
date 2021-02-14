@@ -61,6 +61,11 @@ public class TagsHandler {
         return tagsCache;
     }
 
+    public void clearTags() {
+        tagsCache.clear();
+        DBHelper.deleteTags(this.context);
+    }
+
     private void addDefaultAliases() {
         final PackageManager pm = context.getPackageManager();
 
