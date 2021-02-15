@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -77,7 +76,6 @@ public class ImportSettingsPreference extends DialogPreference {
                     Iterator<?> tagKeys = tags.keys();
                     while (tagKeys.hasNext()) {
                         String id = (String) tagKeys.next();
-                        Log.e("WTF", id + ":" + tags.getString(id));
                         tagHandler.setTags(id, tags.getString(id).toLowerCase());
                     }
                     AppProvider appProvider = dataHandler.getAppProvider();
