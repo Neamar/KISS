@@ -38,7 +38,8 @@ public class ExportSettingsPreference extends Preference {
         PreferenceManager.setDefaultValues(getContext(), "__default__", Context.MODE_PRIVATE, R.xml.preferences, true);
         JSONObject out = new JSONObject();
         try {
-
+            // Min version required to read those settings
+            out.put("__v", 183);
             // Export settings
             for (Map.Entry<String, ?> entry : defaultValues.getAll().entrySet()) {
                 String key = entry.getKey();

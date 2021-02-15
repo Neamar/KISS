@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -39,9 +40,14 @@ public class ImportSettingsPreference extends DialogPreference {
             ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
             String clipboardText = clipboard.getPrimaryClip().getItemAt(0).coerceToText(getContext()).toString();
             try {
+                // Validate JSON
                 JSONObject o = new JSONObject(clipboardText);
+                if (o.getInt("__v") > BuildConfig.VERSION_CODE) {
+                    Toast.makeText(getContext(), "Please upgrade your KISS version before importing those settings.", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
-                // Reset everything to default (after validating JSON is valid)
+                // Reset everything to default
                 PreferenceManager.setDefaultValues(getContext(), R.xml.preferences, true);
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
 
