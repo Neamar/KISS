@@ -145,8 +145,10 @@ public class DrawableUtils {
                 bgDrawable.draw(iconCanvas);
             }
 
-            fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-            fgDrawable.draw(iconCanvas);
+            if (fgDrawable != null) {
+                fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
+                fgDrawable.draw(iconCanvas);
+            }
 
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
