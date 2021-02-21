@@ -128,13 +128,16 @@ public class SettingsActivity extends PreferenceActivity implements
             SettingsActivity.this.setListPreferenceIconsPacksData(iconsPack);
             SettingsActivity.this.runOnUiThread(() -> iconsPack.setEnabled(true));
 
-            SettingsActivity.this.addExcludedAppSettings();
-            SettingsActivity.this.addExcludedFromHistoryAppSettings();
-
             SettingsActivity.this.addCustomSearchProvidersPreferences(prefs);
 
             SettingsActivity.this.addHiddenTagsTogglesInformation(prefs);
             SettingsActivity.this.addTagsFavInformation();
+        };
+
+        // This is reaaally slow, and always need to run asynchronously
+        Runnable alwaysAsync = () -> {
+            SettingsActivity.this.addExcludedAppSettings();
+            SettingsActivity.this.addExcludedFromHistoryAppSettings();
         };
 
         if (savedInstanceState == null) {
@@ -144,6 +147,8 @@ public class SettingsActivity extends PreferenceActivity implements
             // Run synchronously to ensure preferences can be restored from state
             runnable.run();
         }
+        AsyncTask.execute(alwaysAsync);
+
 
         permissionManager = new Permission(this);
     }
