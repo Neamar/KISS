@@ -3,7 +3,7 @@ name: App testing
 on:
   push:
     branches:
-      - '*'
+      - '**'
 
 jobs:
   test:
@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: release
-          path: app/build/outputs/apk/release/app-release.apk
+          path: app/release/app-release.apk
