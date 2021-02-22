@@ -30,12 +30,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
         Context c = context.get();
-        if(c == null) {
+        if (c == null) {
             return contacts;
         }
 
         // Skip if we don't have permission to list contacts yet:(
-        if(!Permission.checkPermission(c, Permission.PERMISSION_READ_CONTACTS)) {
+        if (!Permission.checkPermission(c, Permission.PERMISSION_READ_CONTACTS)) {
             return contacts;
         }
 
