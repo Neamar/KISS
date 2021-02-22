@@ -119,10 +119,16 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
             } else {
                 // Before API21, you can't access values from current theme using ?attr/
-                // So we made two different drawables (#931).
+                // So we made four different drawables (#931).
                 if (getSearchBackgroundColor() == Color.WHITE) {
                     mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
                     mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
+                } else if (getSearchBackgroundColor() == Color.parseColor("#88FFFFFF")) {
+                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_light);
+                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_light);
+                } else if (getSearchBackgroundColor() == Color.parseColor("#88222222")) {
+                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_dark);
+                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_dark);
                 } else {
                     mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
                     mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
@@ -140,12 +146,15 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.listContainer.setClipToOutline(true);
             } else {
                 // Before API21, you can't access values from current theme using ?attr/
-                // So we made two different drawables (#931).
-                if (getSearchBackgroundColor() == Color.WHITE) {
+                // So we made four different drawables (#931).
+                if (getSearchBackgroundColor() == Color.WHITE)
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_light);
-                } else {
+                else if (getSearchBackgroundColor() == Color.parseColor("#88FFFFFF"))
+                    mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_semi_trans_light);
+                else if (getSearchBackgroundColor() == Color.parseColor("#88222222"))
+                    mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_semi_trans_dark);
+                else
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_dark);
-                }
             }
         }
     }
