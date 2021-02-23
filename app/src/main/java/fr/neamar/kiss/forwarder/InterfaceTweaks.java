@@ -119,7 +119,7 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
             } else {
                 // Before API21, you can't access values from current theme using ?attr/
-                // So we made four different drawables (#931).
+                // So we made different drawable for each theme (#931).
                 Resources res = mainActivity.getResources();
 
                 if (getSearchBackgroundColor() == Color.WHITE) {
@@ -131,6 +131,9 @@ class InterfaceTweaks extends Forwarder {
                 } else if (getSearchBackgroundColor() == res.getColor(R.color.kiss_background_dark_transparent)) {
                     mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_dark);
                     mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_dark);
+                } else if (getSearchBackgroundColor() == Color.BLACK) {
+                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_amoled);
+                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_amoled);
                 } else {
                     mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
                     mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
@@ -148,7 +151,7 @@ class InterfaceTweaks extends Forwarder {
                 mainActivity.listContainer.setClipToOutline(true);
             } else {
                 // Before API21, you can't access values from current theme using ?attr/
-                // So we made four different drawables (#931).
+                // So we made different drawable for each theme (#931).
                 Resources res = mainActivity.getResources();
 
                 if (getSearchBackgroundColor() == Color.WHITE)
@@ -157,6 +160,8 @@ class InterfaceTweaks extends Forwarder {
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_semi_trans_light);
                 else if (getSearchBackgroundColor() == res.getColor(R.color.kiss_background_dark_transparent))
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_semi_trans_dark);
+                else if (getSearchBackgroundColor() == Color.BLACK)
+                    mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_amoled);
                 else
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_dark);
             }
