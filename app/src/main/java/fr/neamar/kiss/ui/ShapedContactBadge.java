@@ -26,7 +26,9 @@ public class ShapedContactBadge extends QuickContactBadge {
 
     @Override
     public void setImageDrawable(@Nullable Drawable drawable) {
-        drawable = getShapedDrawable(getContext(), drawable);
+        if (drawable != null) {
+            drawable = getShapedDrawable(getContext(), drawable);
+        }
         super.setImageDrawable(drawable);
     }
 

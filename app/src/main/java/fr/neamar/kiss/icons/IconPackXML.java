@@ -237,8 +237,10 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 }
                             }
 
-                            if (drawableName == null)
+                            if (drawableName == null) {
+                                eventType = xpp.next();
                                 continue;
+                            }
                             int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
                             if (drawableId != 0) {
                                 DrawableInfo drawableInfo = new DrawableInfo(drawableName, drawableId);

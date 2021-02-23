@@ -508,7 +508,7 @@ public class DBHelper {
     }
 
 
-    /* Delete
+    /** Delete
      *
      * @param context android context
      * @param record  record to delete

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -333,7 +334,11 @@ class Widgets extends Forwarder {
                 Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
                 intent.setComponent(appWidgetInfo.configure);
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-                mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
+                try {
+                    mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
+                } catch(SecurityException e) {
+                    Toast.makeText(mainActivity,  "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

@@ -28,7 +28,9 @@ platform :android do
   desc "Update current production description"
   lane :sync do
     # Synchronize current prod version (make sure number is up to date). Useful to send changelogs
-    supply(version_code: 179)
+    # If you get an error message "badRequest: The requested language is not currently supported: und." => make sure to run this command from KISS main folder
+    # If you get "please specify :version_code" => run fastlane sync, not fastlane supply
+    supply(version_code: 183)
   end
   desc "Generate images for all locales"
   lane :images do
