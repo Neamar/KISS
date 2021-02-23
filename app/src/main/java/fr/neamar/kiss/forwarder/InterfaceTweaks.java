@@ -120,13 +120,15 @@ class InterfaceTweaks extends Forwarder {
             } else {
                 // Before API21, you can't access values from current theme using ?attr/
                 // So we made four different drawables (#931).
+                Resources res = mainActivity.getResources();
+
                 if (getSearchBackgroundColor() == Color.WHITE) {
                     mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
                     mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
-                } else if (getSearchBackgroundColor() == Color.parseColor("#88FFFFFF")) {
+                } else if (getSearchBackgroundColor() == res.getColor(R.color.kiss_background_light_transparent)) {
                     mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_light);
                     mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_light);
-                } else if (getSearchBackgroundColor() == Color.parseColor("#88222222")) {
+                } else if (getSearchBackgroundColor() == res.getColor(R.color.kiss_background_dark_transparent)) {
                     mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_dark);
                     mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_dark);
                 } else {
@@ -147,11 +149,13 @@ class InterfaceTweaks extends Forwarder {
             } else {
                 // Before API21, you can't access values from current theme using ?attr/
                 // So we made four different drawables (#931).
+                Resources res = mainActivity.getResources();
+
                 if (getSearchBackgroundColor() == Color.WHITE)
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_light);
-                else if (getSearchBackgroundColor() == Color.parseColor("#88FFFFFF"))
+                else if (getSearchBackgroundColor() == res.getColor(R.color.kiss_background_light_transparent))
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_semi_trans_light);
-                else if (getSearchBackgroundColor() == Color.parseColor("#88222222"))
+                else if (getSearchBackgroundColor() == res.getColor(R.color.kiss_background_dark_transparent))
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_semi_trans_dark);
                 else
                     mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout_pre21_dark);
