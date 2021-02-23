@@ -3,10 +3,8 @@ package fr.neamar.kiss.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -513,12 +511,22 @@ public class DBHelper {
     /** Delete
      *
      * @param context android context
-     * @param record  record to insert
+     * @param record  record to delete
      */
     public static void deleteTagsForId(Context context, String record) {
         SQLiteDatabase db = getDatabase(context);
 
         db.delete("tags", "record = ?", new String[]{record});
+    }
+
+    /* Delete all tags
+     *
+     * @param context android context
+     */
+    public static void deleteTags(Context context) {
+        SQLiteDatabase db = getDatabase(context);
+
+        db.execSQL("DELETE FROM tags;");
     }
 
     public static Map<String, String> loadTags(Context context) {
@@ -536,7 +544,6 @@ public class DBHelper {
         }
         cursor.close();
         return records;
-
     }
 
 }
