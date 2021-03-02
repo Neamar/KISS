@@ -32,6 +32,7 @@ import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
+import fr.neamar.kiss.utils.Utilities;
 
 /**
  * Inspired from http://stackoverflow.com/questions/31490630/how-to-load-icon-from-icon-pack
@@ -51,7 +52,7 @@ public class IconsHandler {
     private boolean mContactPackMask = false;
     private int mContactsShape = DrawableUtils.SHAPE_SYSTEM;
     private boolean mForceShape = false;
-
+    private Utilities.AsyncRun mLoadIconsPackTask = null;
 
     public IconsHandler(Context ctx) {
         super();
@@ -69,7 +70,7 @@ public class IconsHandler {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         onPrefChanged(prefs);
-        
+
     }
 
     /**
@@ -104,18 +105,31 @@ public class IconsHandler {
      * @param packageName Android package ID of the package to parse
      */
     void loadIconsPack(String packageName) {
-
-        //clear icons pack
-        mIconPack = null;
-        cacheClear();
-
         // system icons, nothing to do
         if (packageName == null || packageName.equalsIgnoreCase("default")) {
+            cacheClear();
+            mIconPack = null;
             return;
         }
 
-        mIconPack = new IconPackXML(packageName);
-        mIconPack.load(ctx.getPackageManager());
+        // don't reload the icon pack
+        if (mIconPack == null || !mIconPack.getPackPackageName().equals(packageName)) {
+            cacheClear();
+            if (mLoadIconsPackTask != null)
+                mLoadIconsPackTask.cancel();
+            final IconPackXML iconPack = KissApplication.iconPackCache(ctx).getIconPack(packageName);
+            // set the current icon pack
+            mIconPack = iconPack;
+            // start async loading
+            mLoadIconsPackTask = Utilities.runAsync((task) -> {
+                if (task == mLoadIconsPackTask)
+                    iconPack.load(ctx.getPackageManager());
+            }, (task) -> {
+                if (!task.isCancelled() && task == mLoadIconsPackTask) {
+                    mLoadIconsPackTask = null;
+                }
+            });
+        }
     }
 
 
