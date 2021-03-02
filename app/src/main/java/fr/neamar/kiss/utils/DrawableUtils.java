@@ -2,6 +2,7 @@ package fr.neamar.kiss.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -36,9 +37,37 @@ public class DrawableUtils {
     public static final int SHAPE_HEXAGON = 10;
     public static final int SHAPE_OCTAGON = 11;
 
+    public static final int[] SHAPE_LIST = {
+            SHAPE_SYSTEM,
+            SHAPE_CIRCLE,
+            SHAPE_SQUARE,
+            SHAPE_SQUIRCLE,
+            SHAPE_ROUND_RECT,
+            SHAPE_TEARDROP_BR,
+            SHAPE_TEARDROP_BL,
+            SHAPE_TEARDROP_TL,
+            SHAPE_TEARDROP_TR,
+            SHAPE_HEXAGON,
+            SHAPE_OCTAGON,
+    };
+
     private static final Paint PAINT = new Paint();
     private static final Path SHAPE_PATH = new Path();
     private static final RectF RECT_F = new RectF();
+
+    @NonNull
+    public static String shapeName(Context context, int shape) {
+        Resources res = context.getResources();
+        String[] values = res.getStringArray(R.array.adaptiveValues);
+        String strShape = String.valueOf(shape);
+        for (int i = 0; i < values.length; i += 1) {
+            if (strShape.equals(values[i])) {
+                String[] names = res.getStringArray(R.array.adaptiveEntries);
+                return names[i];
+            }
+        }
+        return "";
+    }
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
     public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {

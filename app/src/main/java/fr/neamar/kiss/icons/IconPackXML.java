@@ -20,7 +20,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -55,13 +57,33 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         iconPackPackageName = packageName;
     }
 
-    public boolean isLoaded() {
+    public synchronized boolean isLoaded() {
         return loaded;
     }
 
-    public void load(PackageManager packageManager) {
-        parseXML(packageManager);
+    public synchronized void load(PackageManager packageManager) {
+        if (loaded)
+            return;
+        try {
+            packResources = packageManager.getResourcesForApplication(iconPackPackageName);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "get icon pack resources" + iconPackPackageName, e);
+        }
+
+        parseXML();
         loaded = true;
+    }
+
+    public synchronized void loadDrawables(PackageManager packageManager) {
+        if (!loaded)
+            load(packageManager);
+        try {
+            packResources = packageManager.getResourcesForApplication(iconPackPackageName);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "get icon pack resources" + iconPackPackageName, e);
+        }
+
+        parseDrawableXML();
     }
 
     public boolean hasMask() {
@@ -176,12 +198,54 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         return new BitmapDrawable(packResources, result);
     }
 
-    private void parseXML(PackageManager pm) {
+    private void parseDrawableXML() {
         XmlPullParser xpp = null;
+        // search drawable.xml into icons pack apk resource folder
+        int drawableXmlId = packResources.getIdentifier("drawable", "xml", iconPackPackageName);
+        if (drawableXmlId > 0) {
+            xpp = packResources.getXml(drawableXmlId);
+        }
+        if (xpp == null)
+            return;
+        try {
+            int eventType = xpp.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                if (eventType == XmlPullParser.START_TAG) {
+                    int attrCount = xpp.getAttributeCount();
+                    switch (xpp.getName()) {
+                        case "item":
+                            for (int attrIdx = 0; attrIdx < attrCount; attrIdx += 1) {
+                                String attrName = xpp.getAttributeName(attrIdx);
+                                if (attrName.equals("drawable")) {
+                                    String drawableName = xpp.getAttributeValue(attrIdx);
+                                    int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                    if (drawableId != 0) {
+                                        DrawableInfo drawableInfo = new DrawableInfo(drawableName, drawableId);
+                                        drawableList.add(drawableInfo);
+                                    }
+                                }
+                            }
+                            break;
+                        case "category":
+                            break;
+                        default:
+                            Log.d(TAG, "ignored " + xpp.getName());
+                    }
+                }
+                eventType = xpp.next();
+            }
+        } catch (XmlPullParserException | IOException e) {
+            Log.e(TAG, "parsing drawable.xml", e);
+        }
+    }
 
+    private void parseXML() {
+        if (packResources == null)
+            return;
+
+        XmlPullParser xpp = null;
         try {
             // search appfilter.xml into icons pack apk resource folder
-            packResources = pm.getResourcesForApplication(iconPackPackageName);
             int appfilterid = packResources.getIdentifier("appfilter", "xml", iconPackPackageName);
             if (appfilterid > 0) {
                 xpp = packResources.getXml(appfilterid);
@@ -251,10 +315,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                         drawablesByComponent.put(componentName, infoSet = new HashSet<>(1));
                                     infoSet.add(drawableInfo);
                                 }
-                            } else {
-                                if (componentName == null)
-                                    componentName = "`null`";
-                                Log.w(TAG, "Drawable `" + drawableName + "` for " + componentName + " not found");
                             }
                         }
                     }
