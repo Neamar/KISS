@@ -60,11 +60,7 @@ class ExperienceTweaks extends Forwarder {
         // Lock launcher into portrait mode
         // Do it here (before initializing the view in onCreate) to make the transition as smooth as possible
         if (prefs.getBoolean("force-portrait", true)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-            } else {
-                mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
+            mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
         } else {
             mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
@@ -73,11 +69,10 @@ class ExperienceTweaks extends Forwarder {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
                 // Double tap disabled: display history directly
-                if(!prefs.getBoolean("double-tap", false)) {
+                if (!prefs.getBoolean("double-tap", false)) {
                     if (prefs.getBoolean("history-onclick", false)) {
                         doAction("display-history");
-                    }
-                    else if(isMinimalisticModeEnabledForFavorites()) {
+                    } else if (isMinimalisticModeEnabledForFavorites()) {
                         doAction("display-favorites");
                     }
                 }
@@ -87,11 +82,10 @@ class ExperienceTweaks extends Forwarder {
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
                 // Double tap enabled: wait to confirm this is indeed a single tap, not a double tap
-                if(prefs.getBoolean("double-tap", false)) {
+                if (prefs.getBoolean("double-tap", false)) {
                     if (prefs.getBoolean("history-onclick", false)) {
                         doAction("display-history");
-                    }
-                    else if(isMinimalisticModeEnabledForFavorites()) {
+                    } else if (isMinimalisticModeEnabledForFavorites()) {
                         doAction("display-favorites");
                     }
                 }
@@ -111,7 +105,7 @@ class ExperienceTweaks extends Forwarder {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
                     return super.onDoubleTap(e);
                 }
-                if(!prefs.getBoolean("double-tap", false)) {
+                if (!prefs.getBoolean("double-tap", false)) {
                     return super.onDoubleTap(e);
                 }
 
@@ -307,11 +301,7 @@ class ExperienceTweaks extends Forwarder {
         try {
             statusbarManager = Class.forName("android.app.StatusBarManager");
             Method showStatusBar;
-            if (Build.VERSION.SDK_INT >= 17) {
-                showStatusBar = statusbarManager.getMethod("expandNotificationsPanel");
-            } else {
-                showStatusBar = statusbarManager.getMethod("expand");
-            }
+            showStatusBar = statusbarManager.getMethod("expandNotificationsPanel");
             showStatusBar.invoke(sbservice);
         } catch (Exception e) {
             e.printStackTrace();

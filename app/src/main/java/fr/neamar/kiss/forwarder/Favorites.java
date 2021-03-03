@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.DragEvent;
@@ -102,9 +101,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             prefs.edit().putBoolean("first-run-favorites", false).apply();
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            notificationPrefs = mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
-        }
+        notificationPrefs = mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
 
     }
 
@@ -184,7 +181,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     void disposeOf(@Nullable View toBeDisposed) {
-        if(toBeDisposed == null) {
+        if (toBeDisposed == null) {
             return;
         }
         toBeDisposed.setOnClickListener(null);

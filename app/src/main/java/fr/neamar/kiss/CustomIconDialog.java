@@ -113,9 +113,7 @@ public class CustomIconDialog extends DialogFragment {
 
         Context context = getDialog().getContext();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            view.setClipToOutline(true);
-        }
+        view.setClipToOutline(true);
 
         mIconGrid = view.findViewById(R.id.iconGrid);
         IconAdapter iconAdapter = new IconAdapter(mIconData);
@@ -234,20 +232,18 @@ public class CustomIconDialog extends DialogFragment {
         }
 
         // add Activity BadgedIcon
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-            List<LauncherActivityInfo> icons = launcher.getActivityList(cn.getPackageName(), userHandle.getRealHandle());
-            for (LauncherActivityInfo info : icons) {
-                Drawable drawable = info.getBadgedIcon(0);
-                if (drawable != null && checkDuplicateDrawable(dSet, drawable)) {
-                    addQuickOption(R.string.custom_icon_badged, drawable, quickList);
-                    if (iconPack != null && iconPack.hasMask())
-                        addQuickOption(R.string.custom_icon_badged_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true), quickList);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        addQuickOption(R.string.custom_icon_badged_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true), quickList);
-                    if (!DrawableUtils.isAdaptiveIconDrawable(drawable))
-                        addQuickOption(R.string.custom_icon_badged_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false), quickList);
-                }
+        LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        List<LauncherActivityInfo> icons = launcher.getActivityList(cn.getPackageName(), userHandle.getRealHandle());
+        for (LauncherActivityInfo info : icons) {
+            Drawable drawable = info.getBadgedIcon(0);
+            if (drawable != null && checkDuplicateDrawable(dSet, drawable)) {
+                addQuickOption(R.string.custom_icon_badged, drawable, quickList);
+                if (iconPack != null && iconPack.hasMask())
+                    addQuickOption(R.string.custom_icon_badged_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                    addQuickOption(R.string.custom_icon_badged_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                if (!DrawableUtils.isAdaptiveIconDrawable(drawable))
+                    addQuickOption(R.string.custom_icon_badged_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false), quickList);
             }
         }
     }

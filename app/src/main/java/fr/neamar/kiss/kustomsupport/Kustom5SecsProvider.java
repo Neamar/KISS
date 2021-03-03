@@ -74,9 +74,6 @@ public class Kustom5SecsProvider extends ContentProvider {
      * @throws SecurityException
      */
     private void checkCallingPackage() throws SecurityException {
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.KITKAT) {
-            return;
-        }
         String callingPkg = getCallingPackage();
         if ("org.kustom.wallpaper".equals(callingPkg)) return;
         if ("org.kustom.widget".equals(callingPkg)) return;

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.os.Build;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -75,44 +74,41 @@ public class TagsHandler {
             addAliasesPojo(phoneAlias, phoneApp);
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
-            if (contactApp != null) {
-                String contactAlias = context.getResources().getString(R.string.alias_contacts);
-                addAliasesPojo(contactAlias, contactApp);
-            }
-
-            String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
-            if (browserApp != null) {
-                String webAlias = context.getResources().getString(R.string.alias_web);
-                addAliasesPojo(webAlias, browserApp);
-            }
-
-            String mailApp = getAppByCategory(pm, Intent.CATEGORY_APP_EMAIL);
-            if (mailApp != null) {
-                String mailAlias = context.getResources().getString(R.string.alias_mail);
-                addAliasesPojo(mailAlias, mailApp);
-            }
-
-            String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
-            if (marketApp != null) {
-                String marketAlias = context.getResources().getString(R.string.alias_market);
-                addAliasesPojo(marketAlias, marketApp);
-            }
-
-            String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
-            if (messagingApp != null) {
-                String messagingAlias = context.getResources().getString(R.string.alias_messaging);
-                addAliasesPojo(messagingAlias, messagingApp);
-            }
-
-            String clockApp = getClockApp(pm);
-            if (clockApp != null) {
-                String clockAlias = context.getResources().getString(R.string.alias_clock);
-                addAliasesPojo(clockAlias, clockApp);
-            }
+        String contactApp = getAppByCategory(pm, Intent.CATEGORY_APP_CONTACTS);
+        if (contactApp != null) {
+            String contactAlias = context.getResources().getString(R.string.alias_contacts);
+            addAliasesPojo(contactAlias, contactApp);
         }
 
+        String browserApp = getAppByCategory(pm, Intent.CATEGORY_APP_BROWSER);
+        if (browserApp != null) {
+            String webAlias = context.getResources().getString(R.string.alias_web);
+            addAliasesPojo(webAlias, browserApp);
+        }
+
+        String mailApp = getAppByCategory(pm, Intent.CATEGORY_APP_EMAIL);
+        if (mailApp != null) {
+            String mailAlias = context.getResources().getString(R.string.alias_mail);
+            addAliasesPojo(mailAlias, mailApp);
+        }
+
+        String marketApp = getAppByCategory(pm, Intent.CATEGORY_APP_MARKET);
+        if (marketApp != null) {
+            String marketAlias = context.getResources().getString(R.string.alias_market);
+            addAliasesPojo(marketAlias, marketApp);
+        }
+
+        String messagingApp = getAppByCategory(pm, Intent.CATEGORY_APP_MESSAGING);
+        if (messagingApp != null) {
+            String messagingAlias = context.getResources().getString(R.string.alias_messaging);
+            addAliasesPojo(messagingAlias, messagingApp);
+        }
+
+        String clockApp = getClockApp(pm);
+        if (clockApp != null) {
+            String clockAlias = context.getResources().getString(R.string.alias_clock);
+            addAliasesPojo(clockAlias, clockApp);
+        }
     }
 
     private void addAliasesPojo(String aliases, String app) {

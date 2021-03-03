@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -76,8 +75,8 @@ class Widgets extends Forwarder {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             try {
                 mAppWidgetHost.stopListening();
-            } catch(NullPointerException e) {
-                // Ignore, happens on some shitty widget down the stack trace.
+            } catch (NullPointerException e) {
+                // Ignore, happens on some shitty widgets down the stack trace.
             }
         }
     }
@@ -204,9 +203,7 @@ class Widgets extends Forwarder {
         hostView.setMinimumHeight(height);
 
         hostView.setAppWidget(appWidgetId, appWidgetInfo);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
-            hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, height, appWidgetInfo.minWidth, height);
-        }
+        hostView.updateAppWidgetSize(null, appWidgetInfo.minWidth, height, appWidgetInfo.minWidth, height);
 
         hostView.setLongClickable(true);
         hostView.setOnLongClickListener(v -> {
@@ -327,19 +324,7 @@ class Widgets extends Forwarder {
 
         if (appWidgetInfo.configure != null) {
             // Launch over to configure widget, if needed.
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, REQUEST_APPWIDGET_CONFIGURED, null);
-            }
-            else {
-                Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
-                intent.setComponent(appWidgetInfo.configure);
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-                try {
-                    mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
-                } catch(SecurityException e) {
-                    Toast.makeText(mainActivity,  "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
-                }
-            }
+            mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, REQUEST_APPWIDGET_CONFIGURED, null);
         }
     }
 

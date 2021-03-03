@@ -114,34 +114,8 @@ class InterfaceTweaks extends Forwarder {
     private void applyRoundedCorners(MainActivity mainActivity) {
         if (prefs.getBoolean("pref-rounded-bars", true)) {
             mainActivity.kissBar.setBackgroundResource(R.drawable.rounded_kiss_bar);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
-                mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
-            } else {
-                // Before API21, you can't access values from current theme using ?attr/
-                // So we made different drawable for each theme (#931).
-                Resources res = mainActivity.getResources();
-
-                if (getSearchBackgroundColor() == Color.WHITE) {
-                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
-                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_light);
-                } else if (getSearchBackgroundColor() == res.getColor(R.color.kiss_background_light_transparent)) {
-                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_light);
-                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_light);
-                } else if (getSearchBackgroundColor() == res.getColor(R.color.kiss_background_dark_transparent)) {
-                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_dark);
-                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_semi_trans_dark);
-                } else if (getSearchBackgroundColor() == Color.BLACK) {
-                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_amoled);
-                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_amoled);
-                } else {
-                    mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
-                    mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar_pre21_dark);
-                }
-            }
-        } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            // Tinting is not properly applied pre lollipop if there is no solid background, so we need to manually set the background color
-            mainActivity.kissBar.setBackgroundColor(UIColors.getPrimaryColor(mainActivity));
+            mainActivity.findViewById(R.id.externalFavoriteBar).setBackgroundResource(R.drawable.rounded_search_bar);
+            mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(R.drawable.rounded_search_bar);
         }
 
         if (prefs.getBoolean("pref-rounded-list", false)) {
@@ -206,10 +180,8 @@ class InterfaceTweaks extends Forwarder {
         ImageView launcherButton = mainActivity.findViewById(R.id.launcherButton);
         launcherButton.setColorFilter(primaryColorOverride);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            ProgressBar loaderBar = mainActivity.findViewById(R.id.loaderBar);
-            loaderBar.getIndeterminateDrawable().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
-        }
+        ProgressBar loaderBar = mainActivity.findViewById(R.id.loaderBar);
+        loaderBar.getIndeterminateDrawable().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
 
         // Kissbar background
         mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);

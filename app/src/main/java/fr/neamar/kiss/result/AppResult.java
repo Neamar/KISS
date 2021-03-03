@@ -19,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,15 +95,13 @@ public class AppResult extends Result {
             appIcon.setImageDrawable(null);
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
-            ImageView notificationView = view.findViewById(R.id.item_notification_dot);
-            notificationView.setVisibility(notificationPrefs.contains(getPackageName()) ? View.VISIBLE : View.GONE);
-            notificationView.setTag(getPackageName());
+        SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        ImageView notificationView = view.findViewById(R.id.item_notification_dot);
+        notificationView.setVisibility(notificationPrefs.contains(getPackageName()) ? View.VISIBLE : View.GONE);
+        notificationView.setTag(getPackageName());
 
-            int primaryColor = UIColors.getPrimaryColor(context);
-            notificationView.setColorFilter(primaryColor);
-        }
+        int primaryColor = UIColors.getPrimaryColor(context);
+        notificationView.setColorFilter(primaryColor);
 
         return view;
     }
@@ -132,22 +129,18 @@ public class AppResult extends Result {
         try {
             // app installed under /system can't be uninstalled
             boolean isSameProfile = true;
-            ApplicationInfo ai;
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-                LauncherActivityInfo info = launcher.getActivityList(this.appPojo.packageName, this.appPojo.userHandle.getRealHandle()).get(0);
-                ai = info.getApplicationInfo();
+            LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            LauncherActivityInfo info = launcher.getActivityList(this.appPojo.packageName, this.appPojo.userHandle.getRealHandle()).get(0);
+            ApplicationInfo ai = info.getApplicationInfo();
 
-                isSameProfile = this.appPojo.userHandle.isCurrentUser();
-            } else {
-                ai = context.getPackageManager().getApplicationInfo(this.appPojo.packageName, 0);
-            }
+            isSameProfile = this.appPojo.userHandle.isCurrentUser();
 
             // Need to AND the flags with SYSTEM:
             if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && isSameProfile) {
                 adapter.add(new ListPopup.Item(context, R.string.menu_app_uninstall));
             }
-        } catch (NameNotFoundException | IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
             // should not happen
         }
 
@@ -286,11 +279,7 @@ public class AppResult extends Result {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(context.getResources().getString(R.string.app_rename_title));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder.setView(R.layout.rename_dialog);
-        } else {
-            builder.setView(View.inflate(context, R.layout.rename_dialog, null));
-        }
+        builder.setView(R.layout.rename_dialog);
 
         builder.setPositiveButton(R.string.custom_name_rename, (dialog, which) -> {
             EditText input = ((AlertDialog) dialog).findViewById(R.id.rename);
@@ -379,15 +368,9 @@ public class AppResult extends Result {
      * Open an activity displaying details regarding the current package
      */
     private void launchAppDetails(Context context, AppPojo app) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-            assert launcher != null;
-            launcher.startAppDetailsActivity(className, appPojo.userHandle.getRealHandle(), null, null);
-        } else {
-            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                    Uri.fromParts("package", app.packageName, null));
-            context.startActivity(intent);
-        }
+        LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        assert launcher != null;
+        launcher.startAppDetailsActivity(className, appPojo.userHandle.getRealHandle(), null, null);
     }
 
     private void launchAppStore(Context context, AppPojo app) {
@@ -457,7 +440,6 @@ public class AppResult extends Result {
     @Override
     public void doLaunch(Context context, View v) {
         try {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
                 assert launcher != null;
                 Rect sourceBounds = null;
@@ -481,18 +463,6 @@ public class AppResult extends Result {
                 }
 
                 launcher.startMainActivity(className, appPojo.userHandle.getRealHandle(), sourceBounds, opts);
-            } else {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                intent.setComponent(className);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    intent.setSourceBounds(getViewBounds(v));
-                }
-
-                context.startActivity(intent);
-            }
         } catch (ActivityNotFoundException | NullPointerException | SecurityException e) {
             // Application was just removed?
             // (null pointer exception can be thrown on Lollipop+ when app is missing)

@@ -3,7 +3,6 @@ package fr.neamar.kiss.forwarder;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -43,19 +42,17 @@ class Notification extends Forwarder {
         super(mainActivity);
         SharedPreferences notifsPrefBuilder = null;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            try {
-                // Retrieve the preference iff permission has been given
-                String allowedApps = Settings.Secure.getString(mainActivity.getContentResolver(), "enabled_notification_listeners");
-                if (allowedApps != null && allowedApps.contains(mainActivity.getPackageName())) {
-                    notifsPrefBuilder = mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE);
-                } else {
-                    // We don't have permission, make sure the SharedPreferences is empty to avoid displaying "ghost" notifications
-                    mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE).edit().clear().apply();
-                }
-            } catch (Error e) {
-                Log.i("Notification", "Unable to check for notification access: " + e.toString());
+        try {
+            // Retrieve the preference iff permission has been given
+            String allowedApps = Settings.Secure.getString(mainActivity.getContentResolver(), "enabled_notification_listeners");
+            if (allowedApps != null && allowedApps.contains(mainActivity.getPackageName())) {
+                notifsPrefBuilder = mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE);
+            } else {
+                // We don't have permission, make sure the SharedPreferences is empty to avoid displaying "ghost" notifications
+                mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE).edit().clear().apply();
             }
+        } catch (Error e) {
+            Log.i("Notification", "Unable to check for notification access: " + e.toString());
         }
         notificationPreferences = notifsPrefBuilder;
     }

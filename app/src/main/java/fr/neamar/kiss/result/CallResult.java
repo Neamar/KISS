@@ -4,11 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.utils.Permission;
@@ -23,9 +23,7 @@ public abstract class CallResult extends Result {
     public void launchCall(Context context, View v, String phone) {
         Intent phoneIntent = new Intent(Intent.ACTION_CALL);
         phoneIntent.setData(Uri.parse("tel:" + Uri.encode(phone)));
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            phoneIntent.setSourceBounds(v.getClipBounds());
-        }
+        phoneIntent.setSourceBounds(v.getClipBounds());
 
         phoneIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

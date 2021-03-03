@@ -2,7 +2,6 @@ package fr.neamar.kiss.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EdgeEffect;
@@ -45,11 +44,7 @@ public class BottomPullEffectView extends View {
 
         // Provide new pull effect data
         this.effect.setSize(this.getWidth(), this.getHeight());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            this.effect.onPull(distance, displacement);
-        } else {
-            this.effect.onPull(distance);
-        }
+        this.effect.onPull(distance, displacement);
 
         if (!animated) {
             // Prevent more than one frame being drawn

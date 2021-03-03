@@ -182,9 +182,7 @@ public class ShortcutsResult extends Result {
             // Pre-oreo shortcuts
             try {
                 Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    intent.setSourceBounds(v.getClipBounds());
-                }
+                intent.setSourceBounds(v.getClipBounds());
 
                 context.startActivity(intent);
             } catch (Exception e) {
@@ -221,7 +219,7 @@ public class ShortcutsResult extends Result {
                     if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
                         try {
                             launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
-                        } catch(ActivityNotFoundException e) {
+                        } catch (ActivityNotFoundException e) {
                             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
                         }
                         return;

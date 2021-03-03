@@ -2,7 +2,6 @@ package fr.neamar.kiss;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,9 +24,6 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -97,11 +93,7 @@ public class SettingsActivity extends PreferenceActivity implements
         // Lock launcher into portrait mode
         // Do it here to make the transition as smooth as possible
         if (prefs.getBoolean("force-portrait", true)) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-            } else {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
         } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
@@ -114,13 +106,6 @@ public class SettingsActivity extends PreferenceActivity implements
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             removePreference("colors-section", "black-notification-icons");
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            removePreference("history-hide-section", "pref-hide-navbar");
-            removePreference("history-hide-section", "pref-hide-statusbar");
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            removePreference("advanced", "enable-notifications");
         }
 
         final ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
@@ -179,7 +164,7 @@ public class SettingsActivity extends PreferenceActivity implements
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         super.onPreferenceTreeClick(preferenceScreen, preference);
         // If the user has clicked on a preference screen, set up the action bar
-        if (preference instanceof PreferenceScreen && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (preference instanceof PreferenceScreen) {
             final Dialog dialog = ((PreferenceScreen) preference).getDialog();
             Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
 

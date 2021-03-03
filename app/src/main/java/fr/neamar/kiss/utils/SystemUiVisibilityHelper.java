@@ -1,7 +1,6 @@
 package fr.neamar.kiss.utils;
 
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -64,26 +63,16 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
     private void applySystemUi(boolean hideNavBar, boolean hideStatusBar) {
         int visibility = 0;
         if (hideNavBar) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                visibility = visibility
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
-            } else {
-                visibility = visibility
-                        | View.SYSTEM_UI_FLAG_LOW_PROFILE
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
-            }
+            visibility = visibility
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION; // hide nav bar
         }
         if (hideStatusBar) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                visibility = visibility
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN; // hide status bar
-            }
+            visibility = visibility
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN; // hide status bar
         }
         if (hideNavBar || hideStatusBar) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                visibility = visibility
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE;
-            }
+            visibility = visibility
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE;
         }
         View decorView = mMainActivity.getWindow()
                 .getDecorView();
@@ -92,9 +81,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 
     public void applyScrollSystemUi() {
         mIsScrolling = true;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            applySystemUi();
-        }
+        applySystemUi();
     }
 
     public void resetScroll() {
@@ -149,9 +136,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
 
     public void addPopup() {
         mPopupCount += 1;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            applySystemUi(false, false);
-        }
+        applySystemUi(false, false);
     }
 
     public void popPopup() {

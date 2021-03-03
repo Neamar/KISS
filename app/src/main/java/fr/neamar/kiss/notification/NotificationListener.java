@@ -15,7 +15,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationListener extends NotificationListenerService {
     public static final String TAG = "NotifListener";
     public static final String NOTIFICATION_PREFERENCES_NAME = "notifications";

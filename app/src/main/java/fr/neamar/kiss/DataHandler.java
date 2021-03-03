@@ -427,7 +427,6 @@ public class DataHandler extends BroadcastReceiver
 
     @TargetApi(Build.VERSION_CODES.O)
     public void addShortcut(String packageName) {
-
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
         }

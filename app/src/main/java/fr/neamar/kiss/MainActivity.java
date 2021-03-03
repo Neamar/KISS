@@ -353,7 +353,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
 
         // For devices with hardware keyboards, give focus to search field.
-        if(getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
+        if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
             searchEditText.requestFocus();
         }
 
@@ -492,7 +492,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
-        if(keycode != KeyEvent.KEYCODE_BACK ) {
+        if (keycode != KeyEvent.KEYCODE_BACK) {
             searchEditText.requestFocus();
             searchEditText.dispatchKeyEvent(e);
         }
@@ -667,14 +667,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
 
             // Reveal the bar
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                int animationDuration = getResources().getInteger(
-                        android.R.integer.config_shortAnimTime);
+            int animationDuration = getResources().getInteger(
+                    android.R.integer.config_shortAnimTime);
 
-                Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
-                anim.setDuration(animationDuration);
-                anim.start();
-            }
+            Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
+            anim.setDuration(animationDuration);
+            anim.start();
             kissBar.setVisibility(View.VISIBLE);
 
             // Display the alphabet on the scrollbar (#926)
@@ -682,7 +680,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             isDisplayingKissBar = false;
             // Hide the bar
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 int animationDuration = getResources().getInteger(
                         android.R.integer.config_shortAnimTime);
 
@@ -701,10 +698,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     // If the view hasn't been laid out yet, we can't animate it
                     kissBar.setVisibility(View.GONE);
                 }
-            } else {
-                // No animation before Lollipop
-                kissBar.setVisibility(View.GONE);
-            }
 
             if (clearSearchText) {
                 searchEditText.setText("");

@@ -13,7 +13,6 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayDeque;
 
 public final class PreferenceScreenHelper {
-	@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 	public static @Nullable Toolbar findToolbar(PreferenceScreen preference) {
 		final Dialog dialog = preference.getDialog();
 		ViewGroup root = (ViewGroup) dialog.getWindow().getDecorView();
