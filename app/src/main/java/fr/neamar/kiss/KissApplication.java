@@ -1,8 +1,12 @@
 package fr.neamar.kiss;
 
 import android.app.Application;
+import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+
+import fr.neamar.kiss.utils.IconPackCache;
 
 public class KissApplication extends Application {
     /**
@@ -13,9 +17,14 @@ public class KissApplication extends Application {
     private DataHandler dataHandler;
     private RootHandler rootHandler;
     private IconsHandler iconsPackHandler;
+    private final IconPackCache mIconPackCache = new IconPackCache();;
 
     public static KissApplication getApplication(Context context) {
         return (KissApplication) context.getApplicationContext();
+    }
+
+    public static IconPackCache iconPackCache(Context ctx) {
+        return getApplication(ctx).mIconPackCache;
     }
 
     public DataHandler getDataHandler() {
@@ -63,4 +72,19 @@ public class KissApplication extends Application {
         iconsPackHandler = new IconsHandler(this);
     }
 
+    /**
+     * Release memory when the UI becomes hidden or when system resources become low.
+     *
+     * @param level the memory-related event that was raised.
+     */
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+
+        if (level >= ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
+            // this is called every time the screen is off
+            SQLiteDatabase.releaseMemory();
+            mIconPackCache.clearCache(this);
+        }
+    }
 }

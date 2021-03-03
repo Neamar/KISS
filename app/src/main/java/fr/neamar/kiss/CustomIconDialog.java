@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.ComponentName;
@@ -47,6 +48,7 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
+import fr.neamar.kiss.utils.Utilities;
 
 public class CustomIconDialog extends DialogFragment {
     private final List<IconData> mIconData = new ArrayList<>();
@@ -193,6 +195,12 @@ public class CustomIconDialog extends DialogFragment {
         }
 
         IconPackXML iconPack = iconsHandler.getCustomIconPack();
+        Utilities.runAsync((t) -> iconPack.loadDrawables(context.getPackageManager()), (t) -> {
+            Activity activity = Utilities.getActivity(context);
+            if (activity != null)
+                refreshList();
+        });
+
         SystemIconPack systemPack = iconsHandler.getSystemIconPack();
 
         Set<Bitmap> dSet = new HashSet<>(6);
@@ -281,12 +289,6 @@ public class CustomIconDialog extends DialogFragment {
         text.setText(textId);
 
         parent.addView(layout);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        refreshList();
     }
 
     private void refreshList() {
@@ -454,10 +456,6 @@ public class CustomIconDialog extends DialogFragment {
                         return;
                     h.loader = null;
                     h.icon.setImageDrawable(drawable);
-                    h.icon.setScaleX(0f);
-                    h.icon.setScaleY(0f);
-                    h.icon.setRotation((drawable.hashCode() & 1) == 1 ? 180f : -180f);
-                    h.icon.animate().scaleX(1f).scaleY(1f).rotation(0f).start();
                 }
             }
 
