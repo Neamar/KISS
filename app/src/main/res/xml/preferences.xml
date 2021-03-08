@@ -133,6 +133,13 @@
                 android:key="theme-wallpaper"
                 android:summary="%s"
                 android:title="@string/theme_wallpaper" />
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/barColorEntries"
+                android:entryValues="@array/barColorValues"
+                android:key="theme-bar-color"
+                android:summary="%s"
+                android:title="@string/theme_bar_color" />
         </PreferenceScreen>
         <fr.neamar.kiss.preference.SwitchPreference
             android:defaultValue="false"

@@ -138,6 +138,25 @@ public class UIColors {
                 activity.getTheme().applyStyle(R.style.OverlayWallpaperDisabled, true);
                 break;
         }
+
+        String barColor = prefs.getString("theme-bar-color", "default");
+        switch (barColor) {
+            case "light":
+                activity.getTheme().applyStyle(R.style.OverlayBarColorLight, true);
+                break;
+            case "dark":
+                activity.getTheme().applyStyle(R.style.OverlayBarColorDark, true);
+                break;
+            case "semi-light":
+                activity.getTheme().applyStyle(R.style.OverlayBarColorSemiLight, true);
+                break;
+            case "semi-dark":
+                activity.getTheme().applyStyle(R.style.OverlayBarColorSemiDark, true);
+                break;
+            case "black":
+                activity.getTheme().applyStyle(R.style.OverlayBarColorBlack, true);
+                break;
+        }
     }
 
     public static void updateThemePrimaryColor(Activity activity) {
