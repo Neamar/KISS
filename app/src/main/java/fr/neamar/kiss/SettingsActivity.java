@@ -54,8 +54,11 @@ import fr.neamar.kiss.utils.Permission;
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
     // Those settings require the app to restart
-    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites pref-rounded-list pref-rounded-bars pref-swap-kiss-button-with-menu pref-hide-circle history-hide enable-favorites-bar notification-bar-color black-notification-icons icons-pack theme-shadow theme-separator theme-result-color large-favorites-bar pref-hide-search-bar-hint";
-
+    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites"
+            + " pref-rounded-list pref-rounded-bars pref-swap-kiss-button-with-menu pref-hide-circle history-hide"
+            + " enable-favorites-bar notification-bar-color black-notification-icons icons-pack theme-shadow"
+            + " theme-separator theme-result-color large-favorites-bar pref-hide-search-bar-hint theme-wallpaper"
+            + " theme-bar-color";
     // Those settings require a restart of the settings
     final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait";
     private boolean requireFullRestart = false;
