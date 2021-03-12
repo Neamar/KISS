@@ -150,7 +150,7 @@ public class IconsHandler {
         }
 
         // check the icon pack for a resource
-        if (mIconPack != null) {
+        if (mIconPack != null && userHandle.isCurrentUser()) {
             // just checking will make this thread wait for the icon pack to load
             if (!mIconPack.isLoaded())
                 return null;
@@ -174,7 +174,7 @@ public class IconsHandler {
             return null;
 
         // if the icon pack has a mask, use that instead of the adaptive shape
-        if (mIconPack != null && mIconPack.hasMask()) {
+        if (mIconPack != null && mIconPack.hasMask() && userHandle.isCurrentUser()) {
             Drawable drawable = mIconPack.applyBackgroundAndMask(ctx, systemIcon, false);
             storeDrawable(cacheGetFileName(cacheKey), drawable);
             return drawable;
