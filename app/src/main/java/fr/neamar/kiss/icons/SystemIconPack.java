@@ -5,19 +5,9 @@ import android.content.Context;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.graphics.drawable.AdaptiveIconDrawable;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.util.Log;
-import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -83,19 +73,28 @@ public class SystemIconPack implements IconPack<Void> {
                 List<LauncherActivityInfo> icons = launcher.getActivityList(componentName.getPackageName(), userHandle.getRealHandle());
                 for (LauncherActivityInfo info : icons) {
                     if (info.getComponentName().equals(componentName)) {
-                        drawable = info.getBadgedIcon(0);
-                        break;
+                        try {
+                            drawable = info.getBadgedIcon(0);
+                            break;
+                        } catch (SecurityException ignored) {
+                            // https://github.com/Neamar/KISS/issues/1715
+                            // not sure how to avoid it so we catch and ignore
+                        }
                     }
                 }
 
-                // This should never happen, let's just return the first icon
+                // This should never happen, let's just return the activity icon
                 if (drawable == null)
-                    drawable = icons.get(0).getBadgedIcon(0);
+                    drawable = ctx.getPackageManager().getActivityIcon(componentName);
             } else {
                 drawable = ctx.getPackageManager().getActivityIcon(componentName);
             }
+
+            // This should never happen, let's just return the generic activity icon
+            if (drawable == null)
+                drawable = ctx.getPackageManager().getDefaultActivityIcon();
         } catch (PackageManager.NameNotFoundException | IndexOutOfBoundsException e) {
-            Log.e(TAG, "Unable to find component " + componentName.toString() + e);
+            Log.e(TAG, "Unable to find component " + componentName.toShortString(), e);
         }
         return drawable;
     }
