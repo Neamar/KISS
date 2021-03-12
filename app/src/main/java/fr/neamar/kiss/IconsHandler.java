@@ -29,6 +29,7 @@ import java.util.List;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
@@ -139,10 +140,11 @@ public class IconsHandler {
     @SuppressWarnings("CatchAndPrintStackTrace")
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
         final String componentString = componentName.toString();
+        final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
 
         // Search in cache
         {
-            Drawable cacheIcon = cacheGetDrawable(componentString);
+            Drawable cacheIcon = cacheGetDrawable(cacheKey);
             if (cacheIcon != null)
                 return cacheIcon;
         }
@@ -161,7 +163,7 @@ public class IconsHandler {
                     drawable = DrawableUtils.applyIconMaskShape(ctx, iconPackDrawable, shape, true);
                 } else
                     drawable = mIconPack.applyBackgroundAndMask(ctx, iconPackDrawable, false);
-                storeDrawable(cacheGetFileName(componentString), drawable);
+                storeDrawable(cacheGetFileName(cacheKey), drawable);
                 return drawable;
             }
         }
@@ -174,7 +176,7 @@ public class IconsHandler {
         // if the icon pack has a mask, use that instead of the adaptive shape
         if (mIconPack != null && mIconPack.hasMask()) {
             Drawable drawable = mIconPack.applyBackgroundAndMask(ctx, systemIcon, false);
-            storeDrawable(cacheGetFileName(componentString), drawable);
+            storeDrawable(cacheGetFileName(cacheKey), drawable);
             return drawable;
         }
 
@@ -187,7 +189,7 @@ public class IconsHandler {
         else
             drawable = systemIcon;
 
-        storeDrawable(cacheGetFileName(componentString), drawable);
+        storeDrawable(cacheGetFileName(cacheKey), drawable);
         return drawable;
     }
 
