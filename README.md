@@ -7,7 +7,7 @@ An Android launcher not spending time and memory on stuff you'd rather do.
 Use, see, [change](CONTRIBUTING.md) and share at will; with all.
 
 From _your_ background, type the first letters of apps, contact names, or settings—and click.  
-Ones clicked more often are promoted.
+Results clicked more often are promoted.
 
 _Browsing for apps is and should be secondary_.
 
@@ -18,7 +18,7 @@ _Browsing for apps is and should be secondary_.
 [<img src="https://img.shields.io/github/v/release/Neamar/KISS.svg?logo=github&label=GitHub&style=flat-square"
       alt="GitHub Release"/>](https://github.com/Neamar/KISS/releases)
 
-Join the [beta program](https://play.google.com/apps/testing/fr.neamar.kiss/) to test the latest version. ![CircleCI](https://img.shields.io/circleci/project/github/Neamar/KISS.svg?style=flat-square)
+Join the [beta program](https://play.google.com/apps/testing/fr.neamar.kiss/) to test the latest version.
 
 |![Less interface](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Search anything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Customize everything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png) |![Settings](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png) |
 |:-------------------:|:------------------------:|:-----------------:|:-----------------:|
