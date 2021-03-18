@@ -1,39 +1,24 @@
 KISS
 ======
-KISS is a *blazingly* fast launcher for android requiring nearly no memory to run.
+An Android launcher not spending time and memory on stuff you'd rather do.
 
-[<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="60">](https://f-droid.org/app/fr.neamar.kiss)
-<a href="https://play.google.com/store/apps/details?id=fr.neamar.kiss"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="60"></a>
+[Copylefted](https://en.wikipedia.org/wiki/Copyleft) libre software, licensed [GPLv3+](https://github.com/Neamar/KISS/blob/master/LICENSE):
 
-![CircleCI](https://img.shields.io/circleci/project/github/Neamar/KISS.svg?style=flat-square)
-[<img src="https://img.shields.io/github/v/release/Neamar/KISS.svg?logo=github&label=GitHub&style=flat-square"
-      alt="GitHub Release"/>](https://github.com/Neamar/KISS/releases)
+Use, see, [change](CONTRIBUTING.md) and share at will; with all.
+
+From _your_ background, type the first letters of apps, contact names, or settings—and click.  
+Ones clicked more often are promoted.
+
+_Browsing for apps is and should be secondary_.
+
 [<img src="https://img.shields.io/f-droid/v/fr.neamar.kiss.svg?logo=f-droid&label=F-Droid&style=flat-square"
       alt="F-Droid Release"/>](https://f-droid.org/packages/fr.neamar.kiss)
 [<img src="https://img.shields.io/endpoint?label=Play%20Store&style=flat-square&labelColor=555&cacheSeconds=65536&url=https%3A%2F%2Fplaystore-jsapi.herokuapp.com%2Fsep%2Ffr.neamar.kiss"
       alt="Playstore Release"/>](https://play.google.com/store/apps/details?id=fr.neamar.kiss)
+[<img src="https://img.shields.io/github/v/release/Neamar/KISS.svg?logo=github&label=GitHub&style=flat-square"
+      alt="GitHub Release"/>](https://github.com/Neamar/KISS/releases)
 
-Join the [beta program](https://play.google.com/apps/testing/fr.neamar.kiss/) to use the latest version of KISS.
+Join the [beta program](https://play.google.com/apps/testing/fr.neamar.kiss/) to test the latest version. ![CircleCI](https://img.shields.io/circleci/project/github/Neamar/KISS.svg?style=flat-square)
 
-> See [contributing](CONTRIBUTING.md) for details on how to help with this project.
-
-
-What is it?
-------------
-KISS is a fast launcher for your Android.
-
-Search through your apps, contacts and settings lightning fast.
-No more time spent trying to find the app you want to launch: enter a few characters of the name and hit enter.
-Need to call someone? Don't meddle with the call log, just give three letters of their name and push the "phone" button.
-What you won't see is a lame grid of application icons that sit there doing NOTHING.
-
-KISS becomes smarter and smarter as you use it, pushing forward results you're more likely to select.
-
-Get ready to be amazed.
-
-
-Previews
----------------------
-
-|![Minimalistic interface](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Search for anything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Customize everything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png) | ![60+ settings](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png) |
+|![Less interface](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png) | ![Search anything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png) | ![Customize everything](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png) |![Settings](https://raw.githubusercontent.com/Neamar/KISS/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png) |
 |:-------------------:|:------------------------:|:-----------------:|:-----------------:|
