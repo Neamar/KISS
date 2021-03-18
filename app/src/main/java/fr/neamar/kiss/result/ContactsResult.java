@@ -65,6 +65,7 @@ public class ContactsResult extends CallResult {
         if (contactPojo.getNickname().isEmpty()) {
             contactNickname.setVisibility(View.GONE);
         } else {
+            contactNickname.setVisibility(View.VISIBLE);
             displayHighlighted(contactPojo.normalizedNickname, contactPojo.getNickname(), fuzzyScore, contactNickname, context);
         }
 
