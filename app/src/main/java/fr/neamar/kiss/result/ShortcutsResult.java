@@ -211,11 +211,8 @@ public class ShortcutsResult extends Result {
     private Drawable getDrawableFromOreoShortcut(Context context) {
         ShortcutInfo shortcutInfo = getShortCut(context);
         if (shortcutInfo != null) {
-            final UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-            assert userManager != null;
-
             IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            return iconsHandler.getDrawableIconForPackage(shortcutInfo.getActivity(), new fr.neamar.kiss.utils.UserHandle(userManager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle()));
+            return iconsHandler.getDrawableIconForPackage(shortcutInfo.getActivity(), new fr.neamar.kiss.utils.UserHandle());
         }
         return null;
     }
