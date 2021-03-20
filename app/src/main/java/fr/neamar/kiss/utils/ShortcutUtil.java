@@ -15,6 +15,8 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.Locale;
 
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.shortcut.SaveAllOreoShortcutsAsync;
 import fr.neamar.kiss.shortcut.SaveSingleOreoShortcutAsync;
@@ -92,7 +95,7 @@ public class ShortcutUtil {
         LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 
         LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
-        shortcutQuery.setQueryFlags(FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
+        shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
         if (!TextUtils.isEmpty(packageName)) {
             shortcutQuery.setPackage(packageName);
@@ -108,7 +111,7 @@ public class ShortcutUtil {
     /**
      * @return return a specific shortcut for given package name and id
      */
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     public static ShortcutInfo getShortCut(Context context, String packageName, String shortcutId) {
         final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
         final UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
@@ -144,6 +147,14 @@ public class ShortcutUtil {
      */
     @TargetApi(Build.VERSION_CODES.O)
     public static ShortcutRecord createShortcutRecord(Context context, ShortcutInfo shortcutInfo, boolean includePackageName) {
+        if (shortcutInfo.hasKeyFieldsOnly()) {
+            // If ShortcutInfo holds only key fields shortcut including data must be fetched
+            shortcutInfo = getShortCut(context, shortcutInfo.getPackage(), shortcutInfo.getId());
+            if (shortcutInfo == null) {
+                return null;
+            }
+        }
+
         ShortcutRecord record = new ShortcutRecord();
         record.packageName = shortcutInfo.getPackage();
         record.intentUri = ShortcutPojo.OREO_PREFIX + shortcutInfo.getId();
@@ -173,17 +184,28 @@ public class ShortcutUtil {
     /**
      * @return App name from package name
      */
-    public static String getAppNameFromPackageName(Context context, String Packagename) {
+    public static String getAppNameFromPackageName(Context context, String packageName) {
         try {
             PackageManager packageManager = context.getPackageManager();
-            ApplicationInfo info = packageManager.getApplicationInfo(Packagename, PackageManager.GET_META_DATA);
-            String appName = (String) packageManager.getApplicationLabel(info);
-            return appName;
+            ApplicationInfo info = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+            return (String) packageManager.getApplicationLabel(info);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            return "";
+            return null;
         }
     }
 
+
+    /**
+     * @param context
+     * @param shortcutInfo
+     * @return component name related to {@link ShortcutInfo}.
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static String getComponentName(Context context, ShortcutInfo shortcutInfo) {
+        UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+        fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
+        return AppPojo.getComponentName(shortcutInfo.getPackage(), shortcutInfo.getActivity().getClassName(), user);
+    }
 
 }

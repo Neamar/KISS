@@ -13,7 +13,6 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import java.net.URISyntaxException;
 import java.util.List;
@@ -203,6 +203,7 @@ public class ShortcutsResult extends Result {
         Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private ShortcutInfo getShortCut(Context context) {
         return ShortcutUtil.getShortCut(context, shortcutPojo.packageName, shortcutPojo.getOreoId());
     }

@@ -16,7 +16,6 @@ import java.util.Map;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.pojo.ShortcutPojo;
 
 public class DBHelper {
     private static final String TAG = DBHelper.class.getSimpleName();
@@ -247,9 +246,9 @@ public class DBHelper {
         return true;
     }
 
-    public static void removeShortcut(Context context, ShortcutPojo shortcut) {
+    public static void removeShortcut(Context context, String packageName, String intentUri) {
         SQLiteDatabase db = getDatabase(context);
-        db.delete("shortcuts", "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri});
+        db.delete("shortcuts", "package = ? AND intent_uri = ?", new String[]{packageName, intentUri});
     }
 
     public static void addCustomAppName(Context context, String componentName, String newName) {
@@ -426,7 +425,7 @@ public class DBHelper {
         // Cursor query (String table, String[] columns, String selection,
         // String[] selectionArgs, String groupBy, String having, String
         // orderBy)
-        Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "intent_uri"},
+        Cursor cursor = db.query("shortcuts", new String[]{"_id", "name", "package", "intent_uri"},
                 "package = ?", new String[]{packageName}, null, null, null);
         cursor.moveToFirst();
 
@@ -434,9 +433,10 @@ public class DBHelper {
         while (!cursor.isAfterLast()) {
             ShortcutRecord entry = new ShortcutRecord();
 
-            entry.name = cursor.getString(0);
-            entry.packageName = cursor.getString(1);
-            entry.intentUri = cursor.getString(2);
+            entry.dbId = cursor.getInt(0);
+            entry.name = cursor.getString(1);
+            entry.packageName = cursor.getString(2);
+            entry.intentUri = cursor.getString(3);
 
             records.add(entry);
             cursor.moveToNext();
