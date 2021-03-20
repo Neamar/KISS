@@ -2,7 +2,6 @@ package fr.neamar.kiss.result;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
@@ -35,6 +33,7 @@ import java.util.Collections;
 import java.util.List;
 
 import fr.neamar.kiss.DataHandler;
+import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -84,43 +83,50 @@ public class ShortcutsResult extends Result {
         final ImageView shortcutIcon = view.findViewById(R.id.item_shortcut_icon);
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
 
-        // Retrieve package icon for this shortcut
-        final PackageManager packageManager = context.getPackageManager();
-        Drawable appDrawable = null;
-        try {
-            Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
-            List<ResolveInfo> packages = packageManager.queryIntentActivities(intent, 0);
-            if (packages.size() > 0) {
-                ResolveInfo mainPackage = packages.get(0);
-                String packageName = mainPackage.activityInfo.applicationInfo.packageName;
-                String activityName = mainPackage.activityInfo.name;
-                ComponentName className = new ComponentName(packageName, activityName);
-                appDrawable = context.getPackageManager().getActivityIcon(className);
-            } else {
-                // Can't make sense of the intent URI (Oreo shortcut, or a shortcut from an activity that was removed from an installed app)
-                // Retrieve app icon
+        if (!prefs.getBoolean("icons-hide", false)) {
+            // Retrieve icon for this shortcut
+            final PackageManager packageManager = context.getPackageManager();
+            Drawable appDrawable = null;
+            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+
+            if (shortcutPojo.isOreoShortcut()) {
+                // Retrieve activity icon from oreo shortcut
+                appDrawable = getDrawableFromOreoShortcut(context);
+            }
+
+            if (appDrawable == null) {
+                // Retrieve activity icon by intent URI
+                try {
+                    Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
+                    List<ResolveInfo> packages = packageManager.queryIntentActivities(intent, 0);
+                    if (packages.size() > 0) {
+                        ResolveInfo mainPackage = packages.get(0);
+                        String packageName = mainPackage.activityInfo.applicationInfo.packageName;
+                        String activityName = mainPackage.activityInfo.name;
+                        ComponentName className = new ComponentName(packageName, activityName);
+                        appDrawable = iconsHandler.getDrawableIconForPackage(className, new fr.neamar.kiss.utils.UserHandle());
+                    }
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (appDrawable == null) {
+                // Retrieve app icon (no Oreo shortcut or a shortcut from an activity that was removed from an installed app)
                 try {
                     appDrawable = packageManager.getApplicationIcon(shortcutPojo.packageName);
+                    if (appDrawable != null)
+                        appDrawable = iconsHandler.getIconPack().applyBackgroundAndMask(context, appDrawable, true);
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
                 }
             }
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-            return view;
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            return view;
-        }
 
-        if (!prefs.getBoolean("icons-hide", false)) {
+            // This should never happen, let's just return the generic activity icon
+            if (appDrawable == null)
+                appDrawable = context.getPackageManager().getDefaultActivityIcon();
+
             Drawable shortcutDrawable = getDrawable(context);
-            IconPack iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
-
-            if (appDrawable != null)
-                appDrawable = iconPack.applyBackgroundAndMask(context, appDrawable, true);
-            if (shortcutDrawable != null)
-                shortcutDrawable = iconPack.applyBackgroundAndMask(context, shortcutDrawable, true);
 
             if (shortcutDrawable != null) {
                 shortcutIcon.setImageDrawable(shortcutDrawable);
@@ -146,27 +152,18 @@ public class ShortcutsResult extends Result {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
             assert launcherApps != null;
+            final UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            assert userManager != null;
 
-            if (launcherApps.hasShortcutHostPermission() && !TextUtils.isEmpty(shortcutPojo.packageName)) {
-                LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
-                query.setPackage(shortcutPojo.packageName);
-                query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
-                query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
-
-                List<UserHandle> userHandles = launcherApps.getProfiles();
-
-                // Find the correct UserHandle, and retrieve the icon.
-                for (UserHandle userHandle : userHandles) {
-                    try {
-                        List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
-                        if (shortcuts != null && shortcuts.size() > 0) {
-                            shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcuts.get(0), 0);
-                        }
-                    } catch (IllegalStateException ignored) {
-                        // do nothing if user is locked or not running
-                    }
-                }
+            ShortcutInfo shortcutInfo = getShortCutInfo(userManager, launcherApps);
+            if (shortcutInfo != null) {
+                shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
             }
+        }
+
+        if (shortcutDrawable != null) {
+            final IconPack<?> iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
+            shortcutDrawable = iconPack.applyBackgroundAndMask(context, shortcutDrawable, true);
         }
 
         return shortcutDrawable;
@@ -197,8 +194,9 @@ public class ShortcutsResult extends Result {
     @TargetApi(Build.VERSION_CODES.O)
     private void doOreoLaunch(Context context, View v) {
         final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-        UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
         assert launcherApps != null;
+        final UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+        assert userManager != null;
 
         // Only the default launcher is allowed to start shortcuts
         if (!launcherApps.hasShortcutHostPermission()) {
@@ -206,7 +204,19 @@ public class ShortcutsResult extends Result {
             return;
         }
 
-        if (!TextUtils.isEmpty(shortcutPojo.packageName)) {
+        ShortcutInfo shortcutInfo = getShortCutInfo(userManager, launcherApps);
+        if (shortcutInfo != null) {
+            launcherApps.startShortcut(shortcutInfo, v.getClipBounds(), null);
+            return;
+        }
+
+        // Application removed? Invalid shortcut? Shortcut to an app on an unmounted SD card?
+        Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private ShortcutInfo getShortCutInfo(UserManager userManager, LauncherApps launcherApps) {
+        if (launcherApps.hasShortcutHostPermission() && !TextUtils.isEmpty(shortcutPojo.packageName)) {
             LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
             query.setPackage(shortcutPojo.packageName);
             query.setShortcutIds(Collections.singletonList(shortcutPojo.getOreoId()));
@@ -219,19 +229,27 @@ public class ShortcutsResult extends Result {
                 if (userManager.isUserRunning(userHandle)) {
                     List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
                     if (shortcuts != null && shortcuts.size() > 0 && shortcuts.get(0).isEnabled()) {
-                        try {
-                            launcherApps.startShortcut(shortcuts.get(0), v.getClipBounds(), null);
-                        } catch(ActivityNotFoundException e) {
-                            Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
-                        }
-                        return;
+                        return shortcuts.get(0);
                     }
                 }
             }
         }
+        return null;
+    }
 
-        // Application removed? Invalid shortcut? Shortcut to an app on an unmounted SD card?
-        Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
+    @TargetApi(Build.VERSION_CODES.O)
+    private Drawable getDrawableFromOreoShortcut(Context context) {
+        final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        assert launcherApps != null;
+        final UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+        assert userManager != null;
+
+        ShortcutInfo shortcutInfo = getShortCutInfo(userManager, launcherApps);
+        if (shortcutInfo != null) {
+            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+            return iconsHandler.getDrawableIconForPackage(shortcutInfo.getActivity(), new fr.neamar.kiss.utils.UserHandle(userManager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle()));
+        }
+        return null;
     }
 
     @Override

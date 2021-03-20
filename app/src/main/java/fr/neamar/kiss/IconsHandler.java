@@ -139,7 +139,6 @@ public class IconsHandler {
      */
     @SuppressWarnings("CatchAndPrintStackTrace")
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
-        final String componentString = componentName.toString();
         final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
 
         // Search in cache
@@ -154,7 +153,7 @@ public class IconsHandler {
             // just checking will make this thread wait for the icon pack to load
             if (!mIconPack.isLoaded())
                 return null;
-            Drawable iconPackDrawable = mIconPack.getComponentDrawable(componentString);
+            Drawable iconPackDrawable = mIconPack.getComponentDrawable(ctx, componentName, userHandle);
             if (iconPackDrawable != null) {
                 Drawable drawable;
 
