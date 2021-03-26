@@ -8,6 +8,8 @@ import java.util.ArrayDeque;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.util.Log;
+
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.calculator.Calculator;
@@ -25,7 +27,7 @@ public class CalculatorProvider extends SimpleProvider {
     public CalculatorProvider() {
         //This should try to match as much as possible without going out of the expression,
         //even if the expression is not actually a computable operation.
-        computableRegexp = Pattern.compile("^[\\-.,\\d+*/^'()]+$");
+        computableRegexp = Pattern.compile("^[\\-.,\\d+*/^'()%]+$");
         numberOnlyRegexp = Pattern.compile("^\\+?[.,()\\d]+$");
     }
 
@@ -42,6 +44,7 @@ public class CalculatorProvider extends SimpleProvider {
             String operation = m.group();
 
             Result<ArrayDeque<Tokenizer.Token>> tokenized = Tokenizer.tokenize(operation);
+
             String readableResult;
 
             if(tokenized.syntacticalError) {

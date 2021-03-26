@@ -20,6 +20,7 @@ public class ShuntingYard {
 				case Tokenizer.Token.MULTIPLY_TOKEN:
 				case Tokenizer.Token.DIVIDE_TOKEN:
 				case Tokenizer.Token.EXP_TOKEN:
+				case Tokenizer.Token.MOD_TOKEN:
 					if (operatorStack.isEmpty()) {
 						operatorStack.push(token);
 					} else {
