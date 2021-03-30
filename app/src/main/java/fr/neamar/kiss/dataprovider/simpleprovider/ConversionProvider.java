@@ -17,6 +17,8 @@ public class ConversionProvider extends SimpleProvider {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     final Pattern distConversionRegexp;
     final Pattern volConversionRegexp;
+    final Pattern speedConversionRegexp;
+    final Pattern areaConversionRegexp;
     private final Pattern numberOnlyRegexp;
 
     public ConversionProvider() {
@@ -26,6 +28,10 @@ public class ConversionProvider extends SimpleProvider {
         distConversionRegexp = Pattern.compile("(^\\-?\\d*.?\\d+)"+distUnitRegEx+"(to)"+distUnitRegEx);
         String volUnitRegEx = "(gallons|gallon|gal|quarts|quart|qrt|qt|pints|pint|pnt|pt|ounces|ounce|oz|liters|liter|l|milliliters|milliliter|ml|cups|cup|cp|tablespoons|tablespoon|tbsp|teaspoones|teaspoon|tsp)";
         volConversionRegexp = Pattern.compile("(^\\-?\\d*.?\\d+)"+volUnitRegEx+"(to)"+volUnitRegEx);
+        String speedUnitRegEx = "(mph|m\\/h|inps|in\\/s|kph|k\\/p|mmps|mm\\/s)";
+        speedConversionRegexp = Pattern.compile("(^\\-?\\d*.?\\d+)"+speedUnitRegEx+"(to)"+speedUnitRegEx);
+        String areaUnitRegEx = "(mile\\^2||squaremiles|squaremile|mi\\^2|sqmi|squarefoot|squarefeet|sqft|ft\\^2|squareinches|squareinch|sqin|in\\^2|squaremeters|squaremeter|sqm|m\\^2)";
+        areaConversionRegexp = Pattern.compile("(^\\-?\\d*.?\\d+)"+areaUnitRegEx+"(to)"+areaUnitRegEx);
         numberOnlyRegexp = Pattern.compile("^\\+?[.,()\\d]+$");
     }
 
