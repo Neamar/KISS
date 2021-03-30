@@ -1,5 +1,7 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
+import android.util.Log;
+
 import androidx.annotation.VisibleForTesting;
 
 import java.math.BigDecimal;
@@ -25,6 +27,7 @@ public class CalculatorProvider extends SimpleProvider {
     public CalculatorProvider() {
         //This should try to match as much as possible without going out of the expression,
         //even if the expression is not actually a computable operation.
+
         computableRegexp = Pattern.compile("^[\\-.,\\d+*/^'()%]+$");
         numberOnlyRegexp = Pattern.compile("^\\+?[.,()\\d]+$");
     }
@@ -71,6 +74,7 @@ public class CalculatorProvider extends SimpleProvider {
             }
 
             String queryProcessed = operation + readableResult;
+            Log.v("Spooner", "Calc Query: `" + query);
             SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojo.CALCULATOR_QUERY);
 
             pojo.relevance = 19;
