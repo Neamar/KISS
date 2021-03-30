@@ -151,6 +151,7 @@ public class ConversionProvider extends SimpleProvider {
             switch (fromUnit){
                 case "gallons":
                 case "gallon":
+                case "gal":
                 case "g":
                     fromValml = fromVal.multiply(BigDecimal.valueOf(3785.41));
                     break;
@@ -199,11 +200,11 @@ public class ConversionProvider extends SimpleProvider {
                 default:
                     fromValml = BigDecimal.valueOf(0);
                     break;
-
             }
             switch (toUnit){
                 case "gallons":
                 case "gallon":
+                case "gal":
                 case "g":
                     toValue = fromValml.divide(BigDecimal.valueOf(3785.41), 2, RoundingMode.HALF_UP);
                     break;
@@ -232,7 +233,7 @@ public class ConversionProvider extends SimpleProvider {
                 case "milliliters":
                 case "milliliter":
                 case "ml":
-                    toValue = fromVal;
+                    toValue = fromValml;
                     break;
                 case "cups":
                 case "cup":
@@ -252,7 +253,6 @@ public class ConversionProvider extends SimpleProvider {
                 default:
                     toValue = BigDecimal.valueOf(0);
                     break;
-
             }
 
             String queryProcessed = query + " = " + toValue;
