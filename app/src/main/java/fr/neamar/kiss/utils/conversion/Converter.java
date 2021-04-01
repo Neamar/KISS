@@ -270,7 +270,7 @@ public class Converter {
                 out.append("(");
 
                 Set<Map.Entry<String, BigDecimal>> unitEntries = u.entrySet();
-                for (Map.Entry<String, BigDecimal> each : u.entrySet()) {
+                for (Map.Entry<String, BigDecimal> each : unitEntries) {
                     out.append(regExify(each.getKey()));
                     out.append("|");
                 }
