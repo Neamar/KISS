@@ -11,10 +11,11 @@ public class Converter {
     private static TreeMap<String, BigDecimal> volUnits;
     private static TreeMap<String, BigDecimal> spdUnits;
     private static TreeMap<String, BigDecimal> areaUnits;
+    private static TreeMap<String, BigDecimal> massUnits;
     private static HashMap<String, TreeMap<String, BigDecimal>> units;
 
     static {
-        //all distance units in terms of mm, conversion via google
+        //all distance units in terms of mm, conversion via google and https://www.convertunits.com
         distUnits = new TreeMap<>();
         distUnits.put("miles", BigDecimal.valueOf(1609344));
         distUnits.put("mile", BigDecimal.valueOf(1609344));
@@ -38,8 +39,65 @@ public class Converter {
         distUnits.put("centimeter", BigDecimal.valueOf(10));
         distUnits.put("cm", BigDecimal.valueOf(10));
 
-        //all volume units in terms of ml, conversion via google
+        //all volume units in terms of ml, conversion via google and https://www.convertunits.com
         volUnits = new TreeMap<>();
+        volUnits.put("cubicmiles", BigDecimal.valueOf(4168181843058500.0));
+        volUnits.put("cubicmile", BigDecimal.valueOf(4168181843058500.0));
+        volUnits.put("cumiles", BigDecimal.valueOf(4168181843058500.0));
+        volUnits.put("cumile", BigDecimal.valueOf(4168181843058500.0));
+        volUnits.put("cumi", BigDecimal.valueOf(4168181843058500.0));
+        volUnits.put("miles^3", BigDecimal.valueOf(4168181843058500.0));
+        volUnits.put("mile^3", BigDecimal.valueOf(4168181843058500.0));
+        volUnits.put("mi^3", BigDecimal.valueOf(4168181843058500.0));
+        volUnits.put("cubicfeet", BigDecimal.valueOf(28316.846711688));
+        volUnits.put("cubicfoot", BigDecimal.valueOf(28316.846711688));
+        volUnits.put("cubicft", BigDecimal.valueOf(28316.846711688));
+        volUnits.put("cufeet", BigDecimal.valueOf(28316.846711688));
+        volUnits.put("cufoot", BigDecimal.valueOf(28316.846711688));
+        volUnits.put("cuft", BigDecimal.valueOf(28316.846711688));
+        volUnits.put("feet^3", BigDecimal.valueOf(28316.846711688));
+        volUnits.put("foot^3", BigDecimal.valueOf(28316.846711688));
+        volUnits.put("ft^3", BigDecimal.valueOf(28316.846711688));
+        volUnits.put("cubicinches", BigDecimal.valueOf(16.387064069264));
+        volUnits.put("cubicinch", BigDecimal.valueOf(16.387064069264));
+        volUnits.put("cuinches", BigDecimal.valueOf(16.387064069264));
+        volUnits.put("cuinch", BigDecimal.valueOf(16.387064069264));
+        volUnits.put("cuin", BigDecimal.valueOf(16.387064069264));
+        volUnits.put("inches^3", BigDecimal.valueOf(16.387064069264));
+        volUnits.put("inch^3", BigDecimal.valueOf(16.387064069264));
+        volUnits.put("in^3", BigDecimal.valueOf(16.387064069264));
+        volUnits.put("cubickilometers", BigDecimal.valueOf(1000000000000000.0));
+        volUnits.put("cubickilometer", BigDecimal.valueOf(1000000000000000.0));
+        volUnits.put("cukilometers", BigDecimal.valueOf(1000000000000000.0));
+        volUnits.put("cukilometer", BigDecimal.valueOf(1000000000000000.0));
+        volUnits.put("cukm", BigDecimal.valueOf(1000000000000000.0));
+        volUnits.put("kilometers^3", BigDecimal.valueOf(1000000000000000.0));
+        volUnits.put("kilometer^3", BigDecimal.valueOf(1000000000000000.0));
+        volUnits.put("km^3", BigDecimal.valueOf(1000000000000000.0));
+        volUnits.put("cubicmeters", BigDecimal.valueOf(1000000));
+        volUnits.put("cubicmeter", BigDecimal.valueOf(1000000));
+        volUnits.put("cumeters", BigDecimal.valueOf(1000000));
+        volUnits.put("cumeter", BigDecimal.valueOf(1000000));
+        volUnits.put("cum", BigDecimal.valueOf(1000000));
+        volUnits.put("meters^3", BigDecimal.valueOf(1000000));
+        volUnits.put("meter^3", BigDecimal.valueOf(1000000));
+        volUnits.put("m^3", BigDecimal.valueOf(1000000));
+        volUnits.put("cubiccentimeters", BigDecimal.valueOf(1));
+        volUnits.put("cubiccentimeter", BigDecimal.valueOf(1));
+        volUnits.put("cucentimeters", BigDecimal.valueOf(1));
+        volUnits.put("cucentimeter", BigDecimal.valueOf(1));
+        volUnits.put("cucm", BigDecimal.valueOf(1));
+        volUnits.put("centimeters^3", BigDecimal.valueOf(1));
+        volUnits.put("centimeter^3", BigDecimal.valueOf(1));
+        volUnits.put("cm^3", BigDecimal.valueOf(1));
+        volUnits.put("cubicmillimeters", BigDecimal.valueOf(0.001));
+        volUnits.put("cubicmillimeter", BigDecimal.valueOf(0.001));
+        volUnits.put("cumillimeters", BigDecimal.valueOf(0.001));
+        volUnits.put("cumillimeter", BigDecimal.valueOf(0.001));
+        volUnits.put("cumm", BigDecimal.valueOf(0.001));
+        volUnits.put("millimeters^3", BigDecimal.valueOf(0.001));
+        volUnits.put("millimeter^3", BigDecimal.valueOf(0.001));
+        volUnits.put("mm^3", BigDecimal.valueOf(0.001));
         volUnits.put("gallons", BigDecimal.valueOf(3785.41));
         volUnits.put("gallon", BigDecimal.valueOf(3785.41));
         volUnits.put("gal", BigDecimal.valueOf(3785.41));
@@ -71,7 +129,7 @@ public class Converter {
         volUnits.put("teaspoon", BigDecimal.valueOf(4.9289317406874));
         volUnits.put("tsp", BigDecimal.valueOf(4.9289317406874));
 
-        //all speed units in terms of mm/s, conversion via google
+        //all speed units in terms of mm/s, conversion via google and https://www.convertunits.com
         spdUnits = new TreeMap<>();
         spdUnits.put("mph", BigDecimal.valueOf(447.04));
         spdUnits.put("m/h", BigDecimal.valueOf(447.04));
@@ -94,7 +152,7 @@ public class Converter {
         spdUnits.put("mmps", BigDecimal.valueOf(1));
         spdUnits.put("mm/s", BigDecimal.valueOf(1));
 
-        //all area units in terms of mm^2, conversion via google
+        //all area units in terms of mm^2, conversion via google and https://www.convertunits.com
         areaUnits = new TreeMap<>();
         areaUnits.put("squaremiles", BigDecimal.valueOf(2589988110000.0));
         areaUnits.put("squaremile", BigDecimal.valueOf(2589988110000.0));
@@ -151,32 +209,82 @@ public class Converter {
         areaUnits.put("millimeter^2", BigDecimal.valueOf(1));
         areaUnits.put("mm^2", BigDecimal.valueOf(1));
 
+        //all mass units in terms of mg, conversion via google and https://www.convertunits.com
+        massUnits = new TreeMap<>();
+        massUnits.put("shorttons", BigDecimal.valueOf(907184740.0));
+        massUnits.put("shortton", BigDecimal.valueOf(907184740.0));
+        massUnits.put("tons", BigDecimal.valueOf(907184740.0));
+        massUnits.put("ton", BigDecimal.valueOf(907184740.0));
+        massUnits.put("metrictons", BigDecimal.valueOf(1000000000));
+        massUnits.put("metricton", BigDecimal.valueOf(1000000000));
+        massUnits.put("longtons", BigDecimal.valueOf(1016046908.8));
+        massUnits.put("longton", BigDecimal.valueOf(1016046908.8));
+        massUnits.put("pounds", BigDecimal.valueOf(453592.37));
+        massUnits.put("pound", BigDecimal.valueOf(453592.37));
+        massUnits.put("lbs", BigDecimal.valueOf(453592.37));
+        massUnits.put("lb", BigDecimal.valueOf(453592.37));
+        massUnits.put("ounces", BigDecimal.valueOf(28349.523125));
+        massUnits.put("ounce", BigDecimal.valueOf(28349.523125));
+        massUnits.put("oz", BigDecimal.valueOf(28349.523125));
+        massUnits.put("carats", BigDecimal.valueOf(200));
+        massUnits.put("carat", BigDecimal.valueOf(200));
+        massUnits.put("caratsuk", BigDecimal.valueOf(259.19564));
+        massUnits.put("caratuk", BigDecimal.valueOf(259.19564));
+        massUnits.put("kilograms", BigDecimal.valueOf(1000000));
+        massUnits.put("kilogram", BigDecimal.valueOf(1000000));
+        massUnits.put("kg", BigDecimal.valueOf(1000000));
+        massUnits.put("grams", BigDecimal.valueOf(1000));
+        massUnits.put("gram", BigDecimal.valueOf(1000));
+        massUnits.put("g", BigDecimal.valueOf(1000));
+        massUnits.put("stones", BigDecimal.valueOf(6350293.18));
+        massUnits.put("stone", BigDecimal.valueOf(6350293.18));
+        massUnits.put("st", BigDecimal.valueOf(6350293.18));
+
+
         units = new HashMap<>();
         units.put("mile", distUnits);
         units.put("volume", volUnits);
         units.put("speed", spdUnits);
         units.put("area", areaUnits);
+        units.put("mass", massUnits);
     }
 
-    public static BigDecimal getUnit(String unitType, String unitName){
-        return units.get(unitType).get(unitName);
+    public static BigDecimal getUnit(String unitType, String unitName) {
+        if (units != null) {
+            TreeMap<String, BigDecimal> u = units.get(unitType);
+            if (u != null) {
+                BigDecimal mu = u.get(unitName);
+                if (mu != null) {
+                    return mu;
+                }
+            }
+        }
+        return BigDecimal.valueOf(0);
     }
 
     public static String getRegExUnitsString(String unitType){
-        String out = "(";
+        if (units != null) {
+            StringBuilder out = new StringBuilder();
+            out.append("(");
 
-        for (Map.Entry<String, BigDecimal> each : units.get(unitType).entrySet()){
-            out += regExify(each.getKey()) + "|";
+            TreeMap<String, BigDecimal> u = units.get(unitType);
+            if (u != null) {
+                Set<Map.Entry<String, BigDecimal>> unitEntries = u.entrySet();
+                for (Map.Entry<String, BigDecimal> each : u.entrySet()) {
+                    out.append(regExify(each.getKey()));
+                    out.append("|");
+                }
+                out.deleteCharAt(out.length() - 1);
+                out.append(")");
+
+                return out.toString();
+            }
         }
-        out = out.substring(0, out.length()-1);
-        out += ")";
-
-        return out;
+        return "()";
     }
 
     public static String regExify(String s){
-        String out = s.replaceAll("\\^", "\\\\\\^");
-        return out;
+        return s.replaceAll("\\^", "\\\\\\^");
     }
 
     public static Set<String> getTypes(){
