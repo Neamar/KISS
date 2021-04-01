@@ -74,7 +74,6 @@ public class CalculatorProvider extends SimpleProvider {
             }
 
             String queryProcessed = operation + readableResult;
-            Log.v("Spooner", "Calc Query: `" + query);
             SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojo.CALCULATOR_QUERY);
 
             pojo.relevance = 19;
