@@ -264,11 +264,11 @@ public class Converter {
 
     public static String getRegExUnitsString(String unitType){
         if (units != null) {
-            StringBuilder out = new StringBuilder();
-            out.append("(");
-
             TreeMap<String, BigDecimal> u = units.get(unitType);
             if (u != null) {
+                StringBuilder out = new StringBuilder();
+                out.append("(");
+
                 Set<Map.Entry<String, BigDecimal>> unitEntries = u.entrySet();
                 for (Map.Entry<String, BigDecimal> each : u.entrySet()) {
                     out.append(regExify(each.getKey()));
