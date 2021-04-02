@@ -58,11 +58,31 @@ public class ConversionProvider extends SimpleProvider {
                 BigDecimal fromValmin;
                 String fromUnit = m.group(2);
                 String toUnit = m.group(4);
-                BigDecimal toValue;
+                BigDecimal toValue = BigDecimal.valueOf(0);
                 Log.v("Spooner", e.getKey() +" -> " + fromVal + " " + fromUnit + " to " + toUnit);
 
-                fromValmin = fromVal.multiply(Converter.getUnit(e.getKey(), fromUnit));
-                toValue = fromValmin.divide(Converter.getUnit(e.getKey(), toUnit), MathContext.DECIMAL32);
+                if (e.getKey().equals("temp") && fromUnit != null && toUnit != null){
+                    if (fromUnit.startsWith("f") && toUnit.startsWith("c")){
+                        toValue = fromVal.subtract(BigDecimal.valueOf(32)).multiply(BigDecimal.valueOf(5.0/9), MathContext.DECIMAL32);
+                    } else if (fromUnit.startsWith("c") && toUnit.startsWith("f")) {
+                        toValue = fromVal.multiply(BigDecimal.valueOf(9.0/5)).add(BigDecimal.valueOf(32), MathContext.DECIMAL32);
+                    } else if (fromUnit.startsWith("f") && toUnit.startsWith("k")) {
+                        toValue = fromVal.subtract(BigDecimal.valueOf(32)).multiply(BigDecimal.valueOf(5.0/9), MathContext.DECIMAL32).add(BigDecimal.valueOf(255.372));
+                    } else if (fromUnit.startsWith("k") && toUnit.startsWith("f")) {
+                        toValue = fromVal.subtract(BigDecimal.valueOf(273.15)).multiply(BigDecimal.valueOf(9.0/5)).add(BigDecimal.valueOf(32), MathContext.DECIMAL32);
+                    } else if (fromUnit.startsWith("c") && toUnit.startsWith("k")) {
+                        toValue = fromVal.add(BigDecimal.valueOf(273.15));
+                    } else if (fromUnit.startsWith("k") && toUnit.startsWith("c")) {
+                        toValue = fromVal.subtract(BigDecimal.valueOf(273.15));
+                    } else if (fromUnit.startsWith(toUnit.substring(0,1))) {
+                        toValue = fromVal;
+                    }
+                } else{
+                    fromValmin = fromVal.multiply(Converter.getUnit(e.getKey(), fromUnit));
+                    toValue = fromValmin.divide(Converter.getUnit(e.getKey(), toUnit), MathContext.DECIMAL32);
+                }
+
+
 
                 String queryProcessed = query + " = " + toValue;
                 SearchPojo pojo = new SearchPojo("conversion://", queryProcessed, "", SearchPojo.CONVERSION_QUERY);

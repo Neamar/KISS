@@ -12,6 +12,7 @@ public class Converter {
     private static TreeMap<String, BigDecimal> spdUnits;
     private static TreeMap<String, BigDecimal> areaUnits;
     private static TreeMap<String, BigDecimal> massUnits;
+    private static TreeMap<String, BigDecimal> tempUnits;
     private static HashMap<String, TreeMap<String, BigDecimal>> units;
 
     static {
@@ -240,6 +241,14 @@ public class Converter {
         massUnits.put("stone", BigDecimal.valueOf(6350293.18));
         massUnits.put("st", BigDecimal.valueOf(6350293.18));
 
+        //all temp units in terms of c, conversion via google and https://www.convertunits.com
+        tempUnits = new TreeMap<>();
+        tempUnits.put("fahrenheit", BigDecimal.valueOf(0.55555555555));
+        tempUnits.put("f", BigDecimal.valueOf(0.55555555555));
+        tempUnits.put("celsius", BigDecimal.valueOf(1));
+        tempUnits.put("c", BigDecimal.valueOf(1));
+        tempUnits.put("kelvin", BigDecimal.valueOf(1));
+        tempUnits.put("k", BigDecimal.valueOf(1));
 
         units = new HashMap<>();
         units.put("mile", distUnits);
@@ -247,6 +256,7 @@ public class Converter {
         units.put("speed", spdUnits);
         units.put("area", areaUnits);
         units.put("mass", massUnits);
+        units.put("temp", tempUnits);
     }
 
     public static BigDecimal getUnit(String unitType, String unitName) {
