@@ -13,6 +13,7 @@ public class Converter {
     private static TreeMap<String, BigDecimal> areaUnits;
     private static TreeMap<String, BigDecimal> massUnits;
     private static TreeMap<String, BigDecimal> tempUnits;
+    private static TreeMap<String, BigDecimal> timeUnits;
 
     private static HashMap<String, TreeMap<String, BigDecimal>> units;
 
@@ -22,6 +23,9 @@ public class Converter {
         distUnits.put("miles", BigDecimal.valueOf(1609344));
         distUnits.put("mile", BigDecimal.valueOf(1609344));
         distUnits.put("mi", BigDecimal.valueOf(1609344));
+        distUnits.put("yards", BigDecimal.valueOf(914.4));
+        distUnits.put("yard", BigDecimal.valueOf(914.4));
+        distUnits.put("yd", BigDecimal.valueOf(914.4));
         distUnits.put("feet", BigDecimal.valueOf(304.8));
         distUnits.put("foot", BigDecimal.valueOf(304.8));
         distUnits.put("ft", BigDecimal.valueOf(304.8));
@@ -169,53 +173,74 @@ public class Converter {
         areaUnits.put("sqmi", BigDecimal.valueOf(2589988110000.0));
         areaUnits.put("mile^2", BigDecimal.valueOf(2589988110000.0));
         areaUnits.put("mi^2", BigDecimal.valueOf(2589988110000.0));
+        areaUnits.put("mi2", BigDecimal.valueOf(2589988110000.0));
+        areaUnits.put("acre", BigDecimal.valueOf(4046856422.4));
+        areaUnits.put("ac", BigDecimal.valueOf(4046856422.4));
         areaUnits.put("squarefeet", BigDecimal.valueOf(92903));
         areaUnits.put("squarefoot", BigDecimal.valueOf(92903));
         areaUnits.put("sqfeet", BigDecimal.valueOf(92903));
         areaUnits.put("sqfooft", BigDecimal.valueOf(92903));
         areaUnits.put("sqft", BigDecimal.valueOf(92903));
         areaUnits.put("feet^2", BigDecimal.valueOf(92903));
+        areaUnits.put("feet2", BigDecimal.valueOf(92903));
         areaUnits.put("foot^2", BigDecimal.valueOf(92903));
+        areaUnits.put("foot2", BigDecimal.valueOf(92903));
         areaUnits.put("ft^2", BigDecimal.valueOf(92903));
+        areaUnits.put("ft2", BigDecimal.valueOf(92903));
         areaUnits.put("squareinches", BigDecimal.valueOf(645.16));
         areaUnits.put("squareinch", BigDecimal.valueOf(645.16));
         areaUnits.put("sqinches", BigDecimal.valueOf(645.16));
         areaUnits.put("sqinch", BigDecimal.valueOf(645.16));
         areaUnits.put("sqin", BigDecimal.valueOf(645.16));
         areaUnits.put("inches^2", BigDecimal.valueOf(645.16));
+        areaUnits.put("inches2", BigDecimal.valueOf(645.16));
         areaUnits.put("inch^2", BigDecimal.valueOf(645.16));
+        areaUnits.put("inch2", BigDecimal.valueOf(645.16));
         areaUnits.put("in^2", BigDecimal.valueOf(645.16));
+        areaUnits.put("in2", BigDecimal.valueOf(645.16));
         areaUnits.put("squarekilometers", BigDecimal.valueOf(1000000000000.0));
         areaUnits.put("squarekilometer", BigDecimal.valueOf(1000000000000.0));
         areaUnits.put("sqkilometers", BigDecimal.valueOf(1000000000000.0));
         areaUnits.put("sqkilometer", BigDecimal.valueOf(1000000000000.0));
         areaUnits.put("sqkm", BigDecimal.valueOf(1000000000000.0));
         areaUnits.put("kilometers^2", BigDecimal.valueOf(1000000000000.0));
+        areaUnits.put("kilometers2", BigDecimal.valueOf(1000000000000.0));
         areaUnits.put("kilometer^2", BigDecimal.valueOf(1000000000000.0));
+        areaUnits.put("kilometer2", BigDecimal.valueOf(1000000000000.0));
         areaUnits.put("km^2", BigDecimal.valueOf(1000000000000.0));
+        areaUnits.put("km2", BigDecimal.valueOf(1000000000000.0));
         areaUnits.put("squaremeters", BigDecimal.valueOf(1000000));
         areaUnits.put("squaremeter", BigDecimal.valueOf(1000000));
         areaUnits.put("sqmeters", BigDecimal.valueOf(1000000));
         areaUnits.put("sqmeter", BigDecimal.valueOf(1000000));
         areaUnits.put("sqm", BigDecimal.valueOf(1000000));
         areaUnits.put("meters^2", BigDecimal.valueOf(1000000));
+        areaUnits.put("meters2", BigDecimal.valueOf(1000000));
         areaUnits.put("meter^2", BigDecimal.valueOf(1000000));
+        areaUnits.put("meter2", BigDecimal.valueOf(1000000));
         areaUnits.put("m^2", BigDecimal.valueOf(1000000));
+        areaUnits.put("m2", BigDecimal.valueOf(1000000));
         areaUnits.put("squarecentimeters", BigDecimal.valueOf(100));
         areaUnits.put("squarecentimeter", BigDecimal.valueOf(100));
         areaUnits.put("sqcentimeters", BigDecimal.valueOf(100));
         areaUnits.put("sqcentimeter", BigDecimal.valueOf(100));
         areaUnits.put("centimeters^2", BigDecimal.valueOf(100));
+        areaUnits.put("centimeters2", BigDecimal.valueOf(100));
         areaUnits.put("centimeter^2", BigDecimal.valueOf(100));
+        areaUnits.put("centimeter2", BigDecimal.valueOf(100));
         areaUnits.put("cm^2", BigDecimal.valueOf(100));
+        areaUnits.put("cm2", BigDecimal.valueOf(100));
         areaUnits.put("squaremillimeters", BigDecimal.valueOf(1));
         areaUnits.put("squaremillimeter", BigDecimal.valueOf(1));
         areaUnits.put("sqmillimeters", BigDecimal.valueOf(1));
         areaUnits.put("sqmillimeter", BigDecimal.valueOf(1));
         areaUnits.put("sqmm", BigDecimal.valueOf(1));
         areaUnits.put("millimeters^2", BigDecimal.valueOf(1));
+        areaUnits.put("millimeters2", BigDecimal.valueOf(1));
         areaUnits.put("millimeter^2", BigDecimal.valueOf(1));
+        areaUnits.put("millimeter2", BigDecimal.valueOf(1));
         areaUnits.put("mm^2", BigDecimal.valueOf(1));
+        areaUnits.put("mm2", BigDecimal.valueOf(1));
     }
 
     //all mass units in terms of mg, conversion via google and https://www.convertunits.com
@@ -262,6 +287,40 @@ public class Converter {
         tempUnits.put("k", BigDecimal.valueOf(1));
     }
 
+    //all time units in terms of ms, conversion via google and https://www.unitjuggler.com
+    static {
+        timeUnits = new TreeMap<>();
+        timeUnits.put("years", BigDecimal.valueOf(31556952000.0));
+        timeUnits.put("year", BigDecimal.valueOf(31556952000.0));
+        timeUnits.put("yr", BigDecimal.valueOf(31556952000.0));
+        timeUnits.put("y", BigDecimal.valueOf(31556952000.0));
+        timeUnits.put("months", BigDecimal.valueOf(2629800000.0));
+        timeUnits.put("month", BigDecimal.valueOf(2629800000.0));
+        timeUnits.put("mon", BigDecimal.valueOf(2629800000.0));
+        timeUnits.put("days", BigDecimal.valueOf(86400000.0));
+        timeUnits.put("day", BigDecimal.valueOf(86400000.0));
+        timeUnits.put("d", BigDecimal.valueOf(86400000.0));
+        timeUnits.put("hours", BigDecimal.valueOf(3600000.0));
+        timeUnits.put("hour", BigDecimal.valueOf(3600000.0));
+        timeUnits.put("hr", BigDecimal.valueOf(3600000.0));
+        timeUnits.put("h", BigDecimal.valueOf(3600000.0));
+        timeUnits.put("minutes", BigDecimal.valueOf(60000));
+        timeUnits.put("minute", BigDecimal.valueOf(60000));
+        timeUnits.put("min", BigDecimal.valueOf(60000));
+        timeUnits.put("mn", BigDecimal.valueOf(60000));
+        timeUnits.put("m", BigDecimal.valueOf(60000));
+        timeUnits.put("seconds", BigDecimal.valueOf(1000));
+        timeUnits.put("second", BigDecimal.valueOf(1000));
+        timeUnits.put("sec", BigDecimal.valueOf(1000));
+        timeUnits.put("sc", BigDecimal.valueOf(1000));
+        timeUnits.put("s", BigDecimal.valueOf(1000));
+        timeUnits.put("milliseconds", BigDecimal.valueOf(1));
+        timeUnits.put("millisec", BigDecimal.valueOf(1));
+        timeUnits.put("msecond", BigDecimal.valueOf(1));
+        timeUnits.put("msec", BigDecimal.valueOf(1));
+        timeUnits.put("ms", BigDecimal.valueOf(1));
+    }
+
     static {
         units = new HashMap<>();
         units.put("mile", distUnits);
@@ -270,6 +329,7 @@ public class Converter {
         units.put("area", areaUnits);
         units.put("mass", massUnits);
         units.put("temp", tempUnits);
+        units.put("time", timeUnits);
     }
 
     public static BigDecimal getUnit(String unitType, String unitName) {
