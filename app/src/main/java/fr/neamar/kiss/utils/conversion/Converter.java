@@ -15,8 +15,8 @@ public class Converter {
     private static TreeMap<String, BigDecimal> tempUnits;
     private static HashMap<String, TreeMap<String, BigDecimal>> units;
 
+    //all distance units in terms of mm, conversion via google and https://www.convertunits.com
     static {
-        //all distance units in terms of mm, conversion via google and https://www.convertunits.com
         distUnits = new TreeMap<>();
         distUnits.put("miles", BigDecimal.valueOf(1609344));
         distUnits.put("mile", BigDecimal.valueOf(1609344));
@@ -39,8 +39,10 @@ public class Converter {
         distUnits.put("centimeters", BigDecimal.valueOf(10));
         distUnits.put("centimeter", BigDecimal.valueOf(10));
         distUnits.put("cm", BigDecimal.valueOf(10));
+    }
 
-        //all volume units in terms of ml, conversion via google and https://www.convertunits.com
+    //all volume units in terms of ml, conversion via google and https://www.convertunits.com
+    static {
         volUnits = new TreeMap<>();
         volUnits.put("cubicmiles", BigDecimal.valueOf(4168181843058500.0));
         volUnits.put("cubicmile", BigDecimal.valueOf(4168181843058500.0));
@@ -129,8 +131,10 @@ public class Converter {
         volUnits.put("teaspoons", BigDecimal.valueOf(4.9289317406874));
         volUnits.put("teaspoon", BigDecimal.valueOf(4.9289317406874));
         volUnits.put("tsp", BigDecimal.valueOf(4.9289317406874));
+    }
 
-        //all speed units in terms of mm/s, conversion via google and https://www.convertunits.com
+    //all speed units in terms of mm/s, conversion via google and https://www.convertunits.com
+    static {
         spdUnits = new TreeMap<>();
         spdUnits.put("mph", BigDecimal.valueOf(447.04));
         spdUnits.put("m/h", BigDecimal.valueOf(447.04));
@@ -152,8 +156,10 @@ public class Converter {
         spdUnits.put("c/s", BigDecimal.valueOf(10));
         spdUnits.put("mmps", BigDecimal.valueOf(1));
         spdUnits.put("mm/s", BigDecimal.valueOf(1));
+    }
 
-        //all area units in terms of mm^2, conversion via google and https://www.convertunits.com
+    //all area units in terms of mm^2, conversion via google and https://www.convertunits.com
+    static {
         areaUnits = new TreeMap<>();
         areaUnits.put("squaremiles", BigDecimal.valueOf(2589988110000.0));
         areaUnits.put("squaremile", BigDecimal.valueOf(2589988110000.0));
@@ -209,8 +215,10 @@ public class Converter {
         areaUnits.put("millimeters^2", BigDecimal.valueOf(1));
         areaUnits.put("millimeter^2", BigDecimal.valueOf(1));
         areaUnits.put("mm^2", BigDecimal.valueOf(1));
+    }
 
-        //all mass units in terms of mg, conversion via google and https://www.convertunits.com
+    //all mass units in terms of mg, conversion via google and https://www.convertunits.com
+    static {
         massUnits = new TreeMap<>();
         massUnits.put("shorttons", BigDecimal.valueOf(907184740.0));
         massUnits.put("shortton", BigDecimal.valueOf(907184740.0));
@@ -240,8 +248,10 @@ public class Converter {
         massUnits.put("stones", BigDecimal.valueOf(6350293.18));
         massUnits.put("stone", BigDecimal.valueOf(6350293.18));
         massUnits.put("st", BigDecimal.valueOf(6350293.18));
+    }
 
-        //all temp units in terms of c, conversion via google and https://www.convertunits.com
+    //all temp units in terms of c, conversion via google and https://www.convertunits.com
+    static {
         tempUnits = new TreeMap<>();
         tempUnits.put("fahrenheit", BigDecimal.valueOf(0.55555555555));
         tempUnits.put("f", BigDecimal.valueOf(0.55555555555));
@@ -249,7 +259,9 @@ public class Converter {
         tempUnits.put("c", BigDecimal.valueOf(1));
         tempUnits.put("kelvin", BigDecimal.valueOf(1));
         tempUnits.put("k", BigDecimal.valueOf(1));
+    }
 
+    static {
         units = new HashMap<>();
         units.put("mile", distUnits);
         units.put("volume", volUnits);
