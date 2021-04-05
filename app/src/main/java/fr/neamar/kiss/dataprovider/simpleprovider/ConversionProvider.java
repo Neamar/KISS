@@ -64,7 +64,7 @@ public class ConversionProvider extends SimpleProvider {
 
                 if (e.getKey().equals("temp") && fromUnit != null && toUnit != null){
                     toValue = TemperatureConverter.convertTemp(fromUnit, fromVal, toUnit);
-                } else{
+                } else {
                     fromValmin = fromVal.multiply(Converter.getUnit(e.getKey(), fromUnit));
                     toValue = fromValmin.divide(Converter.getUnit(e.getKey(), toUnit), MathContext.DECIMAL32);
                 }

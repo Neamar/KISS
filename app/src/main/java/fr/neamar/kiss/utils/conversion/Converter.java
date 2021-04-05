@@ -7,15 +7,19 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 public class Converter {
-    private static TreeMap<String, BigDecimal> distUnits;
-    private static TreeMap<String, BigDecimal> volUnits;
-    private static TreeMap<String, BigDecimal> spdUnits;
-    private static TreeMap<String, BigDecimal> areaUnits;
-    private static TreeMap<String, BigDecimal> massUnits;
-    private static TreeMap<String, BigDecimal> tempUnits;
-    private static TreeMap<String, BigDecimal> timeUnits;
+    private static final TreeMap<String, BigDecimal> distUnits;
+    private static final TreeMap<String, BigDecimal> volUnits;
+    private static final TreeMap<String, BigDecimal> spdUnits;
+    private static final TreeMap<String, BigDecimal> areaUnits;
+    private static final TreeMap<String, BigDecimal> massUnits;
+    private static final TreeMap<String, BigDecimal> tempUnits;
+    private static final TreeMap<String, BigDecimal> timeUnits;
+    private static final TreeMap<String, BigDecimal> consumpUnits;
+    private static final TreeMap<String, BigDecimal> energyUnits;
+    private static final TreeMap<String, BigDecimal> powerUnits;
+    private static final TreeMap<String, BigDecimal> torqueUnits;
 
-    private static HashMap<String, TreeMap<String, BigDecimal>> units;
+    private static final HashMap<String, TreeMap<String, BigDecimal>> units;
 
     //all distance units in terms of mm, conversion via google and https://www.convertunits.com
     static {
@@ -295,6 +299,9 @@ public class Converter {
         massUnits.put("stones", BigDecimal.valueOf(6350293.18));
         massUnits.put("stone", BigDecimal.valueOf(6350293.18));
         massUnits.put("st", BigDecimal.valueOf(6350293.18));
+        massUnits.put("newtons", BigDecimal.valueOf(101971.6213));
+        massUnits.put("newton", BigDecimal.valueOf(101971.6213));
+        massUnits.put("n", BigDecimal.valueOf(101971.6213));
     }
 
     //all temp units in terms of c, conversion via google and https://www.convertunits.com
@@ -342,6 +349,131 @@ public class Converter {
         timeUnits.put("ms", BigDecimal.valueOf(1));
     }
 
+    //all consumption units in terms of mpg, conversion via google
+    static {
+        consumpUnits = new TreeMap<>();
+        consumpUnits.put("milespergallon", BigDecimal.valueOf(1));
+        consumpUnits.put("milepergallon", BigDecimal.valueOf(1));
+        consumpUnits.put("mperg", BigDecimal.valueOf(1));
+        consumpUnits.put("mpg", BigDecimal.valueOf(1));
+        consumpUnits.put("m/g", BigDecimal.valueOf(1));
+        consumpUnits.put("kilometersperliter", BigDecimal.valueOf(2.35215));
+        consumpUnits.put("kilometerperliter", BigDecimal.valueOf(2.35215));
+        consumpUnits.put("kmperl", BigDecimal.valueOf(2.35215));
+        consumpUnits.put("kperl", BigDecimal.valueOf(2.35215));
+        consumpUnits.put("kmpl", BigDecimal.valueOf(2.35215));
+        consumpUnits.put("kpl", BigDecimal.valueOf(2.35215));
+        consumpUnits.put("k/l", BigDecimal.valueOf(2.35215));
+    }
+
+    //all energy units in terms of watt hour, conversion via google
+    static {
+        energyUnits = new TreeMap<>();
+        energyUnits.put("joules", BigDecimal.valueOf(0.000277778));
+        energyUnits.put("joule", BigDecimal.valueOf(0.000277778));
+        energyUnits.put("j", BigDecimal.valueOf(0.000277778));
+        energyUnits.put("kilojoules", BigDecimal.valueOf(0.277778));
+        energyUnits.put("kilojoule", BigDecimal.valueOf(0.277778));
+        energyUnits.put("kj", BigDecimal.valueOf(0.277778));
+        energyUnits.put("gramcalories", BigDecimal.valueOf(0.00116222));
+        energyUnits.put("gramcalorie", BigDecimal.valueOf(0.00116222));
+        energyUnits.put("gramcal", BigDecimal.valueOf(0.00116222));
+        energyUnits.put("gramc", BigDecimal.valueOf(0.00116222));
+        energyUnits.put("gcal", BigDecimal.valueOf(0.00116222));
+        energyUnits.put("gc", BigDecimal.valueOf(0.00116222));
+        energyUnits.put("kilocalories", BigDecimal.valueOf(1.16222));
+        energyUnits.put("kilocalorie", BigDecimal.valueOf(1.16222));
+        energyUnits.put("kilocal", BigDecimal.valueOf(1.16222));
+        energyUnits.put("kcal", BigDecimal.valueOf(1.16222));
+        energyUnits.put("kc", BigDecimal.valueOf(1.16222));
+        energyUnits.put("calories", BigDecimal.valueOf(1.16222));
+        energyUnits.put("calorie", BigDecimal.valueOf(1.16222));
+        energyUnits.put("cal", BigDecimal.valueOf(1.16222));
+        energyUnits.put("c", BigDecimal.valueOf(1.16222));
+        energyUnits.put("kilowatthours", BigDecimal.valueOf(1000));
+        energyUnits.put("kilowatthour", BigDecimal.valueOf(1000));
+        energyUnits.put("kilowhours", BigDecimal.valueOf(1000));
+        energyUnits.put("kilowhour", BigDecimal.valueOf(1000));
+        energyUnits.put("kilowatth", BigDecimal.valueOf(1000));
+        energyUnits.put("kwatthours", BigDecimal.valueOf(1000));
+        energyUnits.put("kwatthour", BigDecimal.valueOf(1000));
+        energyUnits.put("kwhours", BigDecimal.valueOf(1000));
+        energyUnits.put("kwhour", BigDecimal.valueOf(1000));
+        energyUnits.put("kwh", BigDecimal.valueOf(1000));
+        energyUnits.put("watthours", BigDecimal.valueOf(1));
+        energyUnits.put("watthour", BigDecimal.valueOf(1));
+        energyUnits.put("watth", BigDecimal.valueOf(1));
+        energyUnits.put("whours", BigDecimal.valueOf(1));
+        energyUnits.put("whour", BigDecimal.valueOf(1));
+        energyUnits.put("wh", BigDecimal.valueOf(1));
+        energyUnits.put("electronvolts", BigDecimal.valueOf(1.0/2.2469435062265856E+22));
+        energyUnits.put("electronvolt", BigDecimal.valueOf(1.0/2.2469435062265856E+22));
+        energyUnits.put("electronv", BigDecimal.valueOf(1.0/2.2469435062265856E+22));
+        energyUnits.put("evolts", BigDecimal.valueOf(1.0/2.2469435062265856E+22));
+        energyUnits.put("evolt", BigDecimal.valueOf(1.0/2.2469435062265856E+22));
+        energyUnits.put("ev", BigDecimal.valueOf(1.0/2.2469435062265856E+22));
+        energyUnits.put("britishthermalunits", BigDecimal.valueOf(0.293071));
+        energyUnits.put("britishthermalunit", BigDecimal.valueOf(0.293071));
+        energyUnits.put("btus", BigDecimal.valueOf(0.293071));
+        energyUnits.put("btu", BigDecimal.valueOf(0.293071));
+        energyUnits.put("footpounds", BigDecimal.valueOf(0.000376616));
+        energyUnits.put("footpound", BigDecimal.valueOf(0.000376616));
+        energyUnits.put("footlbs", BigDecimal.valueOf(0.000376616));
+        energyUnits.put("footlb", BigDecimal.valueOf(0.000376616));
+        energyUnits.put("ftlbs", BigDecimal.valueOf(0.000376616));
+        energyUnits.put("ftlb", BigDecimal.valueOf(0.000376616));
+    }
+
+    //all power units in terms of bhp, conversion via google
+    static {
+        powerUnits = new TreeMap<>();
+        powerUnits.put("kilowatts", BigDecimal.valueOf(1.34102));
+        powerUnits.put("kilowatt", BigDecimal.valueOf(1.34102));
+        powerUnits.put("kwatts", BigDecimal.valueOf(1.34102));
+        powerUnits.put("kwatt", BigDecimal.valueOf(1.34102));
+        powerUnits.put("kilow", BigDecimal.valueOf(1.34102));
+        powerUnits.put("kw", BigDecimal.valueOf(1.34102));
+        powerUnits.put("brakehorsepower", BigDecimal.valueOf(1));
+        powerUnits.put("bhorsepower", BigDecimal.valueOf(1));
+        powerUnits.put("brakehp", BigDecimal.valueOf(1));
+        powerUnits.put("bhp", BigDecimal.valueOf(1));
+        powerUnits.put("hp", BigDecimal.valueOf(1));
+    }
+
+    //all torque units in terms of newtonmeter, conversion via google, https://www.convertunits.com, and
+    static {
+        torqueUnits = new TreeMap<>();
+        torqueUnits.put("poundfeet", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("poundfoot", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("lbfeet", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("lbfoot", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("lbft", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("footpounds", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("footpound", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("ftpound", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("footlbs", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("footlb", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("ftlb", BigDecimal.valueOf(1.3558179483314));
+        torqueUnits.put("inchpounds", BigDecimal.valueOf(0.113));
+        torqueUnits.put("inchpound", BigDecimal.valueOf(0.113));
+        torqueUnits.put("inchlbs", BigDecimal.valueOf(0.113));
+        torqueUnits.put("inchlb", BigDecimal.valueOf(0.113));
+        torqueUnits.put("inpounds", BigDecimal.valueOf(0.113));
+        torqueUnits.put("inpound", BigDecimal.valueOf(0.113));
+        torqueUnits.put("inlb", BigDecimal.valueOf(0.113));
+        torqueUnits.put("poundinches", BigDecimal.valueOf(0.113));
+        torqueUnits.put("poundinch", BigDecimal.valueOf(0.113));
+        torqueUnits.put("poundin", BigDecimal.valueOf(0.113));
+        torqueUnits.put("lbinches", BigDecimal.valueOf(0.113));
+        torqueUnits.put("lbinch", BigDecimal.valueOf(0.113));
+        torqueUnits.put("lbin", BigDecimal.valueOf(0.113));
+        torqueUnits.put("newtonmeters", BigDecimal.valueOf(1));
+        torqueUnits.put("newtonmeter", BigDecimal.valueOf(1));
+        torqueUnits.put("nmeters", BigDecimal.valueOf(1));
+        torqueUnits.put("nmeter", BigDecimal.valueOf(1));
+        torqueUnits.put("nm", BigDecimal.valueOf(1));
+    }
+
     static {
         units = new HashMap<>();
         units.put("mile", distUnits);
@@ -351,6 +483,10 @@ public class Converter {
         units.put("mass", massUnits);
         units.put("temp", tempUnits);
         units.put("time", timeUnits);
+        units.put("consumption", consumpUnits);
+        units.put("energy", energyUnits);
+        units.put("power", powerUnits);
+        units.put("torque", torqueUnits);
     }
 
     public static BigDecimal getUnit(String unitType, String unitName) {

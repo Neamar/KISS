@@ -519,7 +519,7 @@ public class DBHelper {
         db.delete("tags", "record = ?", new String[]{record});
     }
 
-    /* Delete all tags
+    /* Delete tags
      *
      * @param context android context
      */
