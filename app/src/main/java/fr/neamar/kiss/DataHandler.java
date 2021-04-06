@@ -35,7 +35,6 @@ import fr.neamar.kiss.dataprovider.IProvider;
 import fr.neamar.kiss.dataprovider.Provider;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.CalculatorProvider;
-import fr.neamar.kiss.dataprovider.simpleprovider.ConversionProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.SettingsProvider;
@@ -109,11 +108,6 @@ public class DataHandler extends BroadcastReceiver
         ProviderEntry calculatorEntry = new ProviderEntry();
         calculatorEntry.provider = new CalculatorProvider();
         this.providers.put("calculator", calculatorEntry);
-
-        ProviderEntry conversionEntry = new ProviderEntry();
-        conversionEntry.provider = new ConversionProvider();
-        this.providers.put("conversion", conversionEntry);
-
         ProviderEntry phoneEntry = new ProviderEntry();
         phoneEntry.provider = new PhoneProvider(context);
         this.providers.put("phone", phoneEntry);
