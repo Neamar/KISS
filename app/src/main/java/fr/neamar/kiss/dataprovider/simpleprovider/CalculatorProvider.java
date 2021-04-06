@@ -1,7 +1,5 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
-import android.util.Log;
-
 import androidx.annotation.VisibleForTesting;
 
 import java.math.BigDecimal;
@@ -28,7 +26,7 @@ public class CalculatorProvider extends SimpleProvider {
         //This should try to match as much as possible without going out of the expression,
         //even if the expression is not actually a computable operation.
 
-        computableRegexp = Pattern.compile("^[\\-.,\\d+*/^'()%]+$");
+        computableRegexp = Pattern.compile("^[\\-.,\\d+*/^'()]+$");
         numberOnlyRegexp = Pattern.compile("^\\+?[.,()\\d]+$");
     }
 
@@ -45,7 +43,6 @@ public class CalculatorProvider extends SimpleProvider {
             String operation = m.group();
 
             Result<ArrayDeque<Tokenizer.Token>> tokenized = Tokenizer.tokenize(operation);
-
             String readableResult;
 
             if(tokenized.syntacticalError) {
