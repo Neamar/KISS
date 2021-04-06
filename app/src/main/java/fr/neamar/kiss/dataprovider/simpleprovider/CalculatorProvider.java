@@ -40,8 +40,8 @@ public class CalculatorProvider extends SimpleProvider {
             }
 
             String operation = m.group();
-            Result<ArrayDeque<Tokenizer.Token>> tokenized = Tokenizer.tokenize(operation);
 
+            Result<ArrayDeque<Tokenizer.Token>> tokenized = Tokenizer.tokenize(operation);
             String readableResult;
 
             if(tokenized.syntacticalError) {
