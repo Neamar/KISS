@@ -19,6 +19,7 @@ public final class SearchPojo extends Pojo {
         if (type != SEARCH_QUERY && type != URL_QUERY && type != CALCULATOR_QUERY && type != CONVERSION_QUERY) {
             throw new IllegalArgumentException("Wrong type!");
         }
+
         this.query = query;
         this.url = url;
         this.type = type;
