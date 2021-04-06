@@ -137,10 +137,6 @@ public class SearchResult extends Result {
                 ClipboardUtils.setClipboard(context, searchPojo.query.substring(searchPojo.query.indexOf("=") + 2));
                 Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
                 break;
-            case SearchPojo.CONVERSION_QUERY:
-                ClipboardUtils.setClipboard(context, searchPojo.query.substring(searchPojo.query.indexOf("=") + 2));
-                Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
-                break;
         }
     }
 

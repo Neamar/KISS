@@ -4,7 +4,6 @@ public final class SearchPojo extends Pojo {
     public static final int SEARCH_QUERY = 0;
     public static final int URL_QUERY = 1;
     public static final int CALCULATOR_QUERY = 2;
-    public static final int CONVERSION_QUERY = 3;
 
     public String query;
     public final String url;
@@ -16,9 +15,10 @@ public final class SearchPojo extends Pojo {
 
     public SearchPojo(String id, String query, String url, int type) {
         super(id);
-        if (type != SEARCH_QUERY && type != URL_QUERY && type != CALCULATOR_QUERY && type != CONVERSION_QUERY) {
+        if (type != SEARCH_QUERY && type != URL_QUERY && type != CALCULATOR_QUERY) {
             throw new IllegalArgumentException("Wrong type!");
         }
+
         this.query = query;
         this.url = url;
         this.type = type;
