@@ -89,6 +89,11 @@ public class SearchResult extends Result {
             pos = text.indexOf("=");
             len = text.length() - pos;
             image.setImageResource(R.drawable.ic_functions);
+        } else if (searchPojo.type == SearchPojo.CONVERSION_QUERY) {
+            text = searchPojo.query;
+            pos = text.indexOf("=");
+            len = text.length() - pos;
+            image.setImageResource(R.drawable.ic_conversion);
         } else {
             throw new IllegalArgumentException();
         }
@@ -134,6 +139,10 @@ public class SearchResult extends Result {
                 }
                 break;
             case SearchPojo.CALCULATOR_QUERY:
+                ClipboardUtils.setClipboard(context, searchPojo.query.substring(searchPojo.query.indexOf("=") + 2));
+                Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
+                break;
+            case SearchPojo.CONVERSION_QUERY:
                 ClipboardUtils.setClipboard(context, searchPojo.query.substring(searchPojo.query.indexOf("=") + 2));
                 Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
                 break;
