@@ -16,6 +16,7 @@ public class Tokenizer {
 		public static final int MULTIPLY_TOKEN = 2;
 		public static final int DIVIDE_TOKEN = 3;
 		public static final int EXP_TOKEN = 4;
+		public static final int MOD_TOKEN = 5;
 
 		public static final int UNARY_PLUS_TOKEN = 8;
 		public static final int UNARY_MINUS_TOKEN = 9;
@@ -30,7 +31,7 @@ public class Tokenizer {
 
 		public Token(int type) {
 			if(type != SUM_TOKEN && type != SUBTRACT_TOKEN && type != MULTIPLY_TOKEN && type != DIVIDE_TOKEN
-					&& type != EXP_TOKEN
+					&& type != EXP_TOKEN && type != MOD_TOKEN
 					&& type != UNARY_PLUS_TOKEN && type != UNARY_MINUS_TOKEN) {
 				throw new IllegalArgumentException("Wrong constructor!");
 			}
@@ -58,6 +59,7 @@ public class Tokenizer {
 					return 1;
 				case MULTIPLY_TOKEN:
 				case DIVIDE_TOKEN:
+				case MOD_TOKEN:
 					return 2;
 				case EXP_TOKEN:
 					return 3;
@@ -76,6 +78,7 @@ public class Tokenizer {
 				case MULTIPLY_TOKEN:
 				case DIVIDE_TOKEN:
 				case EXP_TOKEN:
+				case MOD_TOKEN:
 					return false;
 				default:
 					throw new IllegalStateException();
@@ -130,6 +133,9 @@ public class Tokenizer {
 					break;
 				case '^':
 					token = new Token(Token.EXP_TOKEN);
+					break;
+				case '%':
+					token = new Token(Token.MOD_TOKEN);
 					break;
 				case '(':
 					token = new Token(true);
