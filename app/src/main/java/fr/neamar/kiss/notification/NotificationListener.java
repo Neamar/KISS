@@ -47,12 +47,12 @@ public class NotificationListener extends NotificationListenerService {
                 continue;
             }
 
-            String packageName = sbn.getPackageName();
-            if (!notificationsByPackage.containsKey(packageName)) {
-                notificationsByPackage.put(packageName, new HashSet<>());
+            String packageKey = getPackageKey(sbn);
+            if (!notificationsByPackage.containsKey(packageKey)) {
+                notificationsByPackage.put(packageKey, new HashSet<>());
             }
 
-            notificationsByPackage.get(packageName).add(Integer.toString(sbn.getId()));
+            notificationsByPackage.get(packageKey).add(Integer.toString(sbn.getId()));
         }
 
         // And synchronise this map with our SharedPreferences
@@ -62,11 +62,11 @@ public class NotificationListener extends NotificationListenerService {
         // allKeys contains all the package names either in preferences or in the current notifications
         Set<String> allKeys = new HashSet<>(prefs.getAll().keySet());
         allKeys.addAll(notificationsByPackage.keySet());
-        for (String packageName : allKeys) {
-            if (notificationsByPackage.containsKey(packageName)) {
-                editor.putStringSet(packageName, notificationsByPackage.get(packageName));
+        for (String packageKey : allKeys) {
+            if (notificationsByPackage.containsKey(packageKey)) {
+                editor.putStringSet(packageKey, notificationsByPackage.get(packageKey));
             } else {
-                editor.remove(packageName);
+                editor.remove(packageKey);
             }
         }
 
@@ -84,8 +84,8 @@ public class NotificationListener extends NotificationListenerService {
         SharedPreferences.Editor editor = prefs.edit();
         Set<String> packages = prefs.getAll().keySet();
 
-        for (String packageName : packages) {
-            editor.remove(packageName);
+        for (String packageKey : packages) {
+            editor.remove(packageKey);
         }
 
         editor.apply();
@@ -108,31 +108,42 @@ public class NotificationListener extends NotificationListenerService {
             return;
         }
 
-        Set<String> currentNotifications = getCurrentNotificationsForPackage(sbn.getPackageName());
+        String packageKey = getPackageKey(sbn);
+        Set<String> currentNotifications = getCurrentNotificationsForPackage(packageKey);
         if (currentNotifications.add(Integer.toString(sbn.getId()))) {
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putStringSet(sbn.getPackageName(), currentNotifications);
+            editor.putStringSet(packageKey, currentNotifications);
             editor.apply();
 
-            Log.v(TAG, "Added notification for " + sbn.getPackageName() + ": " + currentNotifications.toString());
+            Log.v(TAG, "Added notification for " + packageKey + ": " + currentNotifications.toString());
         }
     }
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-        Set<String> currentNotifications = getCurrentNotificationsForPackage(sbn.getPackageName());
+        String packageKey = getPackageKey(sbn);
+
+        Set<String> currentNotifications = getCurrentNotificationsForPackage(packageKey);
 
         if (currentNotifications.remove(Integer.toString(sbn.getId()))) {
             SharedPreferences.Editor editor = prefs.edit();
             if (currentNotifications.isEmpty()) {
                 // Clean up!
-                editor.remove(sbn.getPackageName());
+                editor.remove(packageKey);
             } else {
-                editor.putStringSet(sbn.getPackageName(), currentNotifications);
+                editor.putStringSet(packageKey, currentNotifications);
             }
             editor.apply();
 
-            Log.v(TAG, "Removed notification for " + sbn.getPackageName() + ": " + currentNotifications.toString());
+            Log.v(TAG, "Removed notification for " + packageKey + ": " + currentNotifications.toString());
+        }
+    }
+
+    private String getPackageKey(StatusBarNotification sbn) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return sbn.getUser().hashCode() + "|" + sbn.getPackageName();
+        } else {
+            return sbn.getPackageName();
         }
     }
 
@@ -149,7 +160,7 @@ public class NotificationListener extends NotificationListenerService {
 
     /**
      * Check for trivial notifications.
-     *
+     * <p>
      * From Android O notification channels controls if badges should be displayed.
      * For older versions and legacy notification channel low priority notifications, ongoing notifications
      * and group summaries should not be displayed.
