@@ -25,7 +25,7 @@ public class CalculatorProvider extends SimpleProvider {
     public CalculatorProvider() {
         //This should try to match as much as possible without going out of the expression,
         //even if the expression is not actually a computable operation.
-        computableRegexp = Pattern.compile("^[\\-.,\\d+*/^'()]+$");
+        computableRegexp = Pattern.compile("^[\\-.,\\d+*/^'()%]+$");
         numberOnlyRegexp = Pattern.compile("^\\+?[.,()\\d]+$");
     }
 

@@ -99,6 +99,15 @@ public class Calculator {
 
 					stack.push(new BigDecimal(pow));
 					break;
+				case Tokenizer.Token.MOD_TOKEN:
+					if (errorInExpression(false, stack)) {
+						return Result.syntacticalError();
+					}
+
+					operand2 = stack.pop();
+					operand1 = stack.pop();
+					stack.push(operand1.remainder(operand2, MathContext.DECIMAL32));
+					break;
 			}
 		}
 
