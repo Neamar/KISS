@@ -21,7 +21,7 @@ class Notification extends Forwarder {
 
     private SharedPreferences.OnSharedPreferenceChangeListener onNotificationDisplayed = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String packageName) {
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String packageKey) {
             ListView list = mainActivity.list;
 
             // A new notification was received, iterate over the currently displayed results
@@ -32,9 +32,9 @@ class Notification extends Forwarder {
             // since we only iterate over the items currently displayed in the list
             // and do not rebuild them all, just toggle visibility if required.
             // Also, it means we get to display an animation, and that's cool :D
-            updateDots(list, list.getLastVisiblePosition() - list.getFirstVisiblePosition() + 1, packageName);
 
-            updateDots(mainActivity.favoritesBar, mainActivity.favoritesBar.getChildCount(), packageName);
+            updateDots(list, list.getLastVisiblePosition() - list.getFirstVisiblePosition() + 1, packageKey);
+            updateDots(mainActivity.favoritesBar, mainActivity.favoritesBar.getChildCount(), packageKey);
 
         }
     };
@@ -72,12 +72,12 @@ class Notification extends Forwarder {
         }
     }
 
-    private void updateDots(ViewGroup vg, int childCount, String packageName) {
+    private void updateDots(ViewGroup vg, int childCount, String packageKey) {
         for (int i = 0; i < childCount; i++) {
             View v = vg.getChildAt(i);
             final View notificationDot = v.findViewById(R.id.item_notification_dot);
-            if (notificationDot != null && packageName.equals(notificationDot.getTag())) {
-                boolean hasNotification = notificationPreferences.contains(packageName);
+            if (notificationDot != null && packageKey.equals(notificationDot.getTag())) {
+                boolean hasNotification = notificationPreferences.contains(packageKey);
                 animateDot(notificationDot, hasNotification);
             }
         }

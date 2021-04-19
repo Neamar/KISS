@@ -163,9 +163,9 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 notificationDot.setColorFilter(dotColor);
 
                 if (favoritePojo instanceof AppPojo) {
-                    String packageName = ((AppPojo) favoritePojo).packageName;
-                    notificationDot.setTag(packageName);
-                    notificationDot.setVisibility(notificationPrefs.contains(packageName) ? View.VISIBLE : View.GONE);
+                    String packageKey = ((AppPojo) favoritePojo).getPackageKey();
+                    notificationDot.setTag(packageKey);
+                    notificationDot.setVisibility(notificationPrefs.contains(packageKey) ? View.VISIBLE : View.GONE);
                 }
             }
         }

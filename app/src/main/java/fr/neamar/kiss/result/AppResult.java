@@ -97,10 +97,12 @@ public class AppResult extends Result {
         }
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            String packageKey = getPackageKey();
+
             SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
             ImageView notificationView = view.findViewById(R.id.item_notification_dot);
-            notificationView.setVisibility(notificationPrefs.contains(getPackageName()) ? View.VISIBLE : View.GONE);
-            notificationView.setTag(getPackageName());
+            notificationView.setVisibility(notificationPrefs.contains(packageKey) ? View.VISIBLE : View.GONE);
+            notificationView.setTag(packageKey);
 
             int primaryColor = UIColors.getPrimaryColor(context);
             notificationView.setColorFilter(primaryColor);
@@ -109,8 +111,8 @@ public class AppResult extends Result {
         return view;
     }
 
-    public String getPackageName() {
-        return appPojo.packageName;
+    private String getPackageKey() {
+        return appPojo.getPackageKey();
     }
 
     @Override
