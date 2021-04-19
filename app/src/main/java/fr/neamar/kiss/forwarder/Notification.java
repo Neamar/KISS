@@ -32,8 +32,8 @@ class Notification extends Forwarder {
             // since we only iterate over the items currently displayed in the list
             // and do not rebuild them all, just toggle visibility if required.
             // Also, it means we get to display an animation, and that's cool :D
-            updateDots(list, list.getLastVisiblePosition() - list.getFirstVisiblePosition(), packageKey);
 
+            updateDots(list, list.getLastVisiblePosition() - list.getFirstVisiblePosition() + 1, packageKey);
             updateDots(mainActivity.favoritesBar, mainActivity.favoritesBar.getChildCount(), packageKey);
 
         }
