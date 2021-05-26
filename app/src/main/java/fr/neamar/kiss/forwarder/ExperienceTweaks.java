@@ -360,7 +360,7 @@ class ExperienceTweaks extends Forwarder {
      * Should the keyboard be displayed?
      */
     private boolean shouldShowKeyboard() {
-        boolean isAssistant = mainActivity.getIntent().getAction().equalsIgnoreCase("android.intent.action.ASSIST");
+        boolean isAssistant = "android.intent.action.ASSIST".equalsIgnoreCase(mainActivity.getIntent().getAction());
         return (isAssistant || isKeyboardOnStartEnabled());
     }
 
