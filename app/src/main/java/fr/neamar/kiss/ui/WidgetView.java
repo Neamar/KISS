@@ -2,6 +2,7 @@ package fr.neamar.kiss.ui;
 
 import android.appwidget.AppWidgetHostView;
 import android.content.Context;
+import android.os.Build;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class WidgetView extends AppWidgetHostView {
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
-                if(Math.abs(ev.getX() - xPos) > 5 || Math.abs(ev.getY() - yPos) > 5) {
+                if (Math.abs(ev.getX() - xPos) > 5 || Math.abs(ev.getY() - yPos) > 5) {
                     mHasPerformedLongPress = false;
                     if (mPendingCheckForLongPress != null) {
                         removeCallbacks(mPendingCheckForLongPress);
@@ -100,4 +101,14 @@ public class WidgetView extends AppWidgetHostView {
     public int getDescendantFocusability() {
         return ViewGroup.FOCUS_BLOCK_DESCENDANTS;
     }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            updateAppWidgetSize(null, w, h, w, h);
+        }
+    }
+
 }
