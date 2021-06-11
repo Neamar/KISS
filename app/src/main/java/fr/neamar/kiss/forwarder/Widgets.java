@@ -134,7 +134,7 @@ class Widgets extends Forwarder {
         for (int i = 0; i < widgetArea.getChildCount(); i++) {
             AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
             int appWidgetId = view.getAppWidgetId();
-            int lineSize = Math.round(view.getLayoutParams().height / getLineHeight());
+            int lineSize = getLineSize(view);
             builder.add(appWidgetId + "-" + lineSize);
         }
 
@@ -280,7 +280,7 @@ class Widgets extends Forwarder {
      * @return decreased line height of host view
      */
     private int getDecreasedLineHeight(AppWidgetHostView hostView) {
-        int lineSize = Math.round(hostView.getLayoutParams().height / getLineHeight()) - 1;
+        int lineSize = getLineSize(hostView) - 1;
         return (int) (lineSize * getLineHeight());
     }
 
@@ -289,7 +289,7 @@ class Widgets extends Forwarder {
      * @return increased line height of host view
      */
     private int getIncreasedLineHeight(AppWidgetHostView hostView) {
-        int lineSize = Math.round(hostView.getLayoutParams().height / getLineHeight()) + 1;
+        int lineSize = getLineSize(hostView) + 1;
         return (int) (lineSize * getLineHeight());
     }
 
@@ -339,9 +339,20 @@ class Widgets extends Forwarder {
         int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
 
+        // calculate already used lines
+        int usedLines = 0;
+        for (int i = 0; i < widgetArea.getChildCount(); i++) {
+            View view = widgetArea.getChildAt(i);
+            usedLines += getLineSize(view);
+        }
+        // calculate max available lines
+        int maxVisibleLines = (int) Math.ceil(widgetArea.getHeight() / getLineHeight());
+
+        // calculate new line size
         float minWidgetHeight = appWidgetInfo.minHeight;
         float lineHeight = getLineHeight();
-        int lineSize = (int) Math.ceil(minWidgetHeight / lineHeight);
+        int lineSize = Math.max(1, Math.min(maxVisibleLines - usedLines, (int) Math.ceil(minWidgetHeight / lineHeight)));
+
         addWidget(appWidgetId, lineSize);
 
         serializeState();
@@ -379,6 +390,17 @@ class Widgets extends Forwarder {
         }
     }
 
+    /**
+     * @param view
+     * @return calculated line size of given view
+     */
+    private int getLineSize(View view) {
+        return Math.round(view.getLayoutParams().height / getLineHeight());
+    }
+
+    /**
+     * @return line height in pixel
+     */
     private float getLineHeight() {
         float dip = 50f;
         Resources r = mainActivity.getResources();
