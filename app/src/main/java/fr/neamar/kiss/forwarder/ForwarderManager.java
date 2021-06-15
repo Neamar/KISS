@@ -6,10 +6,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-
 import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.utils.Permission;
 
 public class ForwarderManager extends Forwarder {
     private final Widgets widgetsForwarder;
@@ -46,7 +43,6 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onStart() {
-        widgetsForwarder.onStart();
     }
 
     public void onResume() {
@@ -61,7 +57,6 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onStop() {
-        widgetsForwarder.onStop();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -109,5 +104,9 @@ public class ForwarderManager extends Forwarder {
             return true;
         }
         return false;
+    }
+
+    public void onDestroy() {
+        widgetsForwarder.onDestroy();
     }
 }

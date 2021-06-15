@@ -60,28 +60,9 @@ class Widgets extends Forwarder {
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
 
         restoreWidgets();
-    }
 
-    void onStart() {
         // Start listening for widget update
-        try {
-            mAppWidgetHost.startListening();
-        } catch (Resources.NotFoundException e) {
-            // Widgets app was just updated?
-            // See https://github.com/Neamar/KISS/issues/959
-        }
-    }
-
-    void onStop() {
-        // Stop listening for widget update
-        // See https://github.com/Neamar/KISS/issues/744
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            try {
-                mAppWidgetHost.stopListening();
-            } catch(NullPointerException e) {
-                // Ignore, happens on some shitty widget down the stack trace.
-            }
-        }
+        mAppWidgetHost.startListening();
     }
 
     void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -406,5 +387,9 @@ class Widgets extends Forwarder {
         Resources r = mainActivity.getResources();
 
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
+    }
+
+    public void onDestroy() {
+        mAppWidgetHost.stopListening();
     }
 }
