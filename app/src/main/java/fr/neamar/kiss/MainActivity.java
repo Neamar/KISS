@@ -438,6 +438,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     protected void onDestroy() {
         super.onDestroy();
         this.unregisterReceiver(this.mReceiver);
+        forwarderManager.onDestroy();
     }
 
     @Override
