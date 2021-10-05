@@ -203,6 +203,12 @@ class ExperienceTweaks extends Forwarder {
                     case "display-menu":
                         mainActivity.openContextMenu(mainActivity.menuButton);
                         break;
+                    case "go-to-homescreen":
+                        mainActivity.displayKissBar(false);
+                        if (!shouldShowKeyboard()) {
+                            mainActivity.hideKeyboard();
+                        }
+                        break;
                 }
             }
         });
