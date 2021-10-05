@@ -133,10 +133,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             if (viewHolder == null) {
                 // If not, build a new one
                 viewHolder = new ViewHolder(Result.fromPojo(mainActivity, favoritePojo), favoritePojo, mainActivity, mainActivity.favoritesBar);
-                viewHolder.view.setOnClickListener(this);
-                viewHolder.view.setOnLongClickListener(this);
-                viewHolder.view.setOnTouchListener(this);
             }
+            viewHolder.view.setOnClickListener(this);
+            viewHolder.view.setOnLongClickListener(this);
+            viewHolder.view.setOnTouchListener(this);
 
             holders.add(viewHolder);
 
