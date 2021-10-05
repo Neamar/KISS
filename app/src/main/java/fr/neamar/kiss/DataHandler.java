@@ -434,7 +434,7 @@ public class DataHandler extends BroadcastReceiver
 
         List<ShortcutInfo> shortcuts;
         try {
-            shortcuts = ShortcutUtil.getShortcut(context, packageName);
+            shortcuts = ShortcutUtil.getShortcuts(context, packageName);
         } catch (SecurityException | IllegalStateException e) {
             e.printStackTrace();
             return;

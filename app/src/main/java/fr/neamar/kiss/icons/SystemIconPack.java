@@ -89,13 +89,23 @@ public class SystemIconPack implements IconPack<Void> {
             } else {
                 drawable = ctx.getPackageManager().getActivityIcon(componentName);
             }
-
-            // This should never happen, let's just return the generic activity icon
-            if (drawable == null)
-                drawable = ctx.getPackageManager().getDefaultActivityIcon();
         } catch (PackageManager.NameNotFoundException | IndexOutOfBoundsException e) {
             Log.e(TAG, "Unable to find component " + componentName.toShortString(), e);
         }
+
+        // This should never happen, let's just return the application icon
+        if (drawable == null) {
+            try {
+                drawable = ctx.getPackageManager().getApplicationIcon(componentName.getPackageName());
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.e(TAG, "Unable to find package " + componentName.getPackageName(), e);
+            }
+        }
+
+        // This should never happen, let's just return the generic activity icon
+        if (drawable == null)
+            drawable = ctx.getPackageManager().getDefaultActivityIcon();
+
         return drawable;
     }
 
