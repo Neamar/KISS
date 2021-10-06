@@ -1,6 +1,5 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +27,6 @@ import fr.neamar.kiss.utils.UserHandle;
 public class AppProvider extends Provider<AppPojo> {
 
     @Override
-    @SuppressLint("NewApi")
     public void onCreate() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Package installation/uninstallation events for the main
@@ -39,7 +37,7 @@ public class AppProvider extends Provider<AppPojo> {
             final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
             assert launcher != null;
 
-            launcher.registerCallback(new LauncherApps.Callback() {
+            launcher.registerCallback(new LauncherAppsCallback() {
                 @Override
                 public void onPackageAdded(String packageName, android.os.UserHandle user) {
                     if (!Process.myUserHandle().equals(user)) {

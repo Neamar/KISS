@@ -33,7 +33,7 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
                 String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
                 KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
                 // Add shortcut
-                KissApplication.getApplication(ctx).getDataHandler().addShortcut(packageName);
+                KissApplication.getApplication(ctx).getDataHandler().updateShortcuts(packageName);
             }
         }
 

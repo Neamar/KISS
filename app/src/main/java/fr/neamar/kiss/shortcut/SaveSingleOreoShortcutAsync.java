@@ -18,8 +18,6 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
-import fr.neamar.kiss.db.ShortcutRecord;
-import fr.neamar.kiss.utils.ShortcutUtil;
 
 @TargetApi(Build.VERSION_CODES.O)
 public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
@@ -53,29 +51,18 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
             return null;
         }
 
-        // Create Pojo
-        ShortcutRecord record = ShortcutUtil.createShortcutRecord(context, shortcutInfo, false);
-        if (record == null) {
-            return false;
-        }
-
         final DataHandler dataHandler = this.dataHandler.get();
         if (dataHandler == null) {
             cancel(true);
             return null;
         }
 
-        // Add shortcut to the DataHandler
-        if(dataHandler.addShortcut(record)){
-            try {
-                pinItemRequest.accept();
-            }
-            catch(IllegalStateException e) {
-                return false;
-            }
-            return true;
+        if (!pinItemRequest.accept()) {
+            return false;
         }
-        return false;
+
+        // Add shortcut to the DataHandler
+        return dataHandler.updateShortcut(shortcutInfo);
     }
 
     @Override
