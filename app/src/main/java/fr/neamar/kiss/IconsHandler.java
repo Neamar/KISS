@@ -25,7 +25,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import fr.neamar.kiss.db.AppRecord;
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
@@ -48,12 +51,13 @@ public class IconsHandler {
     private final PackageManager pm;
     private final Context ctx;
     private IconPackXML mIconPack = null;
-    private SystemIconPack mSystemPack = new SystemIconPack();
+    private final SystemIconPack mSystemPack = new SystemIconPack();
     private boolean mForceAdaptive = false;
     private boolean mContactPackMask = false;
     private int mContactsShape = DrawableUtils.SHAPE_SYSTEM;
     private boolean mForceShape = false;
     private Utilities.AsyncRun mLoadIconsPackTask = null;
+    private Map<String, Long> customIconIds = null;
 
     public IconsHandler(Context ctx) {
         super();
@@ -70,22 +74,31 @@ public class IconsHandler {
     private void loadIconsPack() {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
-        onPrefChanged(prefs);
-
+        onPrefChanged(prefs, "icons-pack");
     }
 
     /**
      * Set values from preferences
      */
-    public void onPrefChanged(SharedPreferences pref) {
-        loadIconsPack(pref.getString("icons-pack", null));
-        mSystemPack.setAdaptiveShape(getAdaptiveShape(pref, "adaptive-shape"));
-        mForceAdaptive = pref.getBoolean("force-adaptive", true);
-        mForceShape = pref.getBoolean("force-shape", true);
-
-        mContactPackMask = pref.getBoolean("contact-pack-mask", true);
-        mContactsShape = getAdaptiveShape(pref, "contacts-shape");
-
+    public void onPrefChanged(SharedPreferences pref, String key) {
+        if (key.equalsIgnoreCase("icons-pack")) {
+            loadIconsPack(pref.getString(key, null));
+        } else if (key.equalsIgnoreCase("adaptive-shape")) {
+            mSystemPack.setAdaptiveShape(getAdaptiveShape(pref, key));
+            cacheClear();
+        } else if (key.equalsIgnoreCase("force-adaptive")) {
+            mForceAdaptive = pref.getBoolean(key, true);
+            cacheClear();
+        } else if (key.equalsIgnoreCase("force-shape")) {
+            mForceShape = pref.getBoolean(key, true);
+            cacheClear();
+        } else if (key.equalsIgnoreCase("contact-pack-mask")) {
+            mContactPackMask = pref.getBoolean(key, true);
+            cacheClear();
+        } else if (key.equalsIgnoreCase("contacts-shape")) {
+            mContactsShape = getAdaptiveShape(pref, key);
+            cacheClear();
+        }
         //mShortcutPackMask = pref.getBoolean("shortcut-pack-mask", true);
         //mShortcutsShape = getAdaptiveShape(pref, "shortcut-shape");
 
@@ -148,48 +161,44 @@ public class IconsHandler {
                 return cacheIcon;
         }
 
+        Drawable drawable = null;
+
+        // search for custom icon
+        Map<String, Long> customIconIds = getCustomIconIds();
+        if (customIconIds.containsKey(cacheKey)) {
+            drawable = getCustomIcon(cacheKey, customIconIds.get(cacheKey));
+        }
+
         // check the icon pack for a resource
-        if (mIconPack != null && userHandle.isCurrentUser()) {
+        if (drawable == null && mIconPack != null && userHandle.isCurrentUser()) {
             // just checking will make this thread wait for the icon pack to load
             if (!mIconPack.isLoaded())
                 return null;
-            Drawable iconPackDrawable = mIconPack.getComponentDrawable(ctx, componentName, userHandle);
-            if (iconPackDrawable != null) {
-                Drawable drawable;
-
-                if (DrawableUtils.isAdaptiveIconDrawable(iconPackDrawable) || mForceAdaptive) {
-                    int shape = mSystemPack.getAdaptiveShape();
-                    drawable = DrawableUtils.applyIconMaskShape(ctx, iconPackDrawable, shape, true);
-                } else
-                    drawable = mIconPack.applyBackgroundAndMask(ctx, iconPackDrawable, false);
-                storeDrawable(cacheGetFileName(cacheKey), drawable);
-                return drawable;
-            }
+            drawable = mIconPack.getComponentDrawable(ctx, componentName, userHandle);
         }
 
-        // if icon pack doesn't have the drawable, use system drawable
-        Drawable systemIcon = mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
-        if (systemIcon == null)
+        if (drawable == null) {
+            // if icon pack doesn't have the drawable, use system drawable
+            drawable = mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
+        }
+        if (drawable == null)
             return null;
 
-        // if the icon pack has a mask, use that instead of the adaptive shape
+        Drawable drawableWithBackgroundAndMask;
         if (mIconPack != null && mIconPack.hasMask() && userHandle.isCurrentUser()) {
-            Drawable drawable = mIconPack.applyBackgroundAndMask(ctx, systemIcon, false);
-            storeDrawable(cacheGetFileName(cacheKey), drawable);
-            return drawable;
-        }
-
-        Drawable drawable;
-        // use adaptive shape
-        if (DrawableUtils.isAdaptiveIconDrawable(systemIcon) || mForceAdaptive)
-            drawable = mSystemPack.applyBackgroundAndMask(ctx, systemIcon, true);
+            // if the icon pack has a mask, use that instead of the adaptive shape
+            drawableWithBackgroundAndMask = mIconPack.applyBackgroundAndMask(ctx, drawable, false);
+        } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive)
+            // use adaptive shape
+            drawableWithBackgroundAndMask = mSystemPack.applyBackgroundAndMask(ctx, drawable, true);
         else if (mForceShape)
-            drawable = mSystemPack.applyBackgroundAndMask(ctx, systemIcon, false);
+            // use adaptive shape
+            drawableWithBackgroundAndMask = mSystemPack.applyBackgroundAndMask(ctx, drawable, false);
         else
-            drawable = systemIcon;
+            drawableWithBackgroundAndMask = drawable;
 
-        storeDrawable(cacheGetFileName(cacheKey), drawable);
-        return drawable;
+        storeDrawable(cacheGetFileName(cacheKey), drawableWithBackgroundAndMask);
+        return drawableWithBackgroundAndMask;
     }
 
     public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
@@ -322,6 +331,8 @@ public class IconsHandler {
      * Clear cache
      */
     private void cacheClear() {
+        clearCustomIconIdCache();
+
         File cacheDir = this.getIconsCacheDir();
 
         File[] fileList = cacheDir.listFiles();
@@ -382,11 +393,40 @@ public class IconsHandler {
         long customIconId = KissApplication.getApplication(ctx).getDataHandler().setCustomAppIcon(appResult.getComponentName());
         storeDrawable(customIconFileName(appResult.getComponentName(), customIconId), drawable);
         appResult.setCustomIcon(customIconId, drawable);
+        cacheClear();
     }
 
     public void restoreAppIcon(AppResult appResult) {
         long customIconId = KissApplication.getApplication(ctx).getDataHandler().removeCustomAppIcon(appResult.getComponentName());
         removeStoredDrawable(customIconFileName(appResult.getComponentName(), customIconId));
         appResult.clearCustomIcon();
+        cacheClear();
     }
+
+    /**
+     * clears cache for custom icon ids
+     */
+    private void clearCustomIconIdCache() {
+        customIconIds = null;
+    }
+
+    /**
+     * Cache for custom icon ids, maps from component name to custom icon id.
+     * Cache is built only if null.
+     *
+     * @return cache for custom icon ids
+     */
+    private Map<String, Long> getCustomIconIds() {
+        if (customIconIds == null) {
+            customIconIds = new HashMap<>();
+            Map<String, AppRecord> appData = DBHelper.getCustomAppData(ctx);
+            for (Map.Entry<String, AppRecord> entry : appData.entrySet()) {
+                if (entry.getValue().hasCustomIcon()) {
+                    customIconIds.put(entry.getKey(), entry.getValue().dbId);
+                }
+            }
+        }
+        return customIconIds;
+    }
+
 }

@@ -440,9 +440,7 @@ public class AppResult extends Result {
 
             if (icon == null) {
                 IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                icon = iconsHandler.getCustomIcon(appPojo.getComponentName(), appPojo.getCustomIconId());
-                if (icon == null)
-                    icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
+                icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
             }
 
             return icon;

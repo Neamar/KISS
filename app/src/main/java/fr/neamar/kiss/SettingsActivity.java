@@ -421,7 +421,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        KissApplication.getApplication(this).getIconsHandler().onPrefChanged(sharedPreferences);
+        KissApplication.getApplication(this).getIconsHandler().onPrefChanged(sharedPreferences, key);
 
         if (key.equalsIgnoreCase("available-search-providers")) {
             addCustomSearchProvidersPreferences(prefs);
