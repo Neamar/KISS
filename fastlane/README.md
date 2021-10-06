@@ -1,13 +1,5 @@
 fastlane documentation
 ================
-Publishing to beta in a nutshell: update versionCode in build.gradle, create a new tag, push to Github.
-Generate the aab file, then run:
-```
-fastlane android images
-fastlane android beta
-```
-
-----
 # Installation
 
 Make sure you have the latest version of the Xcode command line tools installed:
