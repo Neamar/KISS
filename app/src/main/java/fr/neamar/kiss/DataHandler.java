@@ -1,6 +1,5 @@
 package fr.neamar.kiss;
 
-import android.annotation.TargetApi;
 import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -420,14 +419,12 @@ public class DataHandler extends BroadcastReceiver
         return (pojo != null) ? pojo.getName() : "???";
     }
 
-    public boolean addShortcut(ShortcutRecord record) {
-        Log.d(TAG, "Adding shortcut for " + record.packageName);
-        return DBHelper.insertShortcut(this.context, record);
-    }
-
-    @TargetApi(Build.VERSION_CODES.O)
-    public void addShortcut(String packageName) {
-
+    /**
+     * Update stored shortcut info for all shortcuts of given packageName.
+     *
+     * @param packageName package name
+     */
+    public void updateShortcuts(String packageName) {
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
         }
@@ -440,17 +437,27 @@ public class DataHandler extends BroadcastReceiver
             return;
         }
 
-        for (ShortcutInfo shortcutInfo : shortcuts) {
-            // Create Pojo
-            ShortcutRecord record = ShortcutUtil.createShortcutRecord(context, shortcutInfo, true);
-            if (record == null) {
-                continue;
-            }
-            // Add shortcut to the DataHandler
-            addShortcut(record);
+        updateShortcuts(packageName, shortcuts);
+    }
+
+    /**
+     * Update stored shortcut info for given shortcuts.
+     *
+     * @param packageName package name
+     */
+    public void updateShortcuts(String packageName, List<ShortcutInfo> shortcuts) {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return;
         }
 
-        if (!shortcuts.isEmpty() && this.getShortcutsProvider() != null) {
+        Log.d(TAG, "Updating shortcuts for " + packageName);
+
+        boolean shortcutsUpdated = false;
+        for (ShortcutInfo shortcutInfo : shortcuts) {
+            shortcutsUpdated |= updateShortcut(shortcutInfo);
+        }
+
+        if (shortcutsUpdated && this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
     }
@@ -459,16 +466,79 @@ public class DataHandler extends BroadcastReceiver
         DBHelper.clearHistory(this.context);
     }
 
+    /**
+     * Remove shortcut for given {@link ShortcutPojo}
+     * This is used for remove of shortcut from gui.
+     *
+     * @param shortcut shortcut to be removed
+     */
     public void removeShortcut(ShortcutPojo shortcut) {
-        // Also remove shortcut from favorites
-        removeFromFavorites(shortcut.id);
-        DBHelper.removeShortcut(this.context, shortcut);
-
+        removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
         if (this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
     }
 
+    /**
+     * Update DB with given {@link ShortcutRecord}.
+     *
+     * @param shortcutInfo the shortcut to update.
+     * @return true if update was successful
+     */
+    public boolean updateShortcut(ShortcutInfo shortcutInfo) {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return false;
+        }
+        String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
+
+        // if related package is excluded from KISS then the shortcut must be excluded too
+        Set<String> excludedAppList = getExcluded();
+        if (excludedAppList.contains(componentName)) {
+            return false;
+        }
+
+        // Create Pojo
+        ShortcutRecord shortcut = ShortcutUtil.createShortcutRecord(context, shortcutInfo, !shortcutInfo.isPinned());
+
+        if (shortcut == null) {
+            return false;
+        }
+        if (shortcutInfo.isEnabled()) {
+            Log.d(TAG, "Adding shortcut for " + shortcut.packageName);
+
+            // if related package name is excluded from history, shortcut must be excluded from history too
+            Set<String> excludedFromHistoryAppList = getExcludedFromHistory();
+            if (excludedFromHistoryAppList.contains(componentName)) {
+                addToExcludedFromHistory(shortcut);
+            }
+
+            return DBHelper.insertShortcut(this.context, shortcut);
+        } else {
+            String id = ShortcutUtil.generateShortcutId(shortcut.name);
+            removeShortcut(id, shortcut.packageName, shortcut.intentUri);
+            return true;
+        }
+    }
+
+    /**
+     * Remove given shortcut from favorites and from DB
+     *
+     * @param id          KISS shortcut id, same as {@link ShortcutPojo#id}
+     * @param packageName package name, same as {@link ShortcutPojo#packageName}
+     * @param intentUri   intent to be called, same as {@link ShortcutPojo#intentUri}
+     */
+    private void removeShortcut(String id, String packageName, String intentUri) {
+        Log.d(TAG, "Removing shortcut for " + packageName);
+        // Also remove shortcut from favorites
+        removeFromFavorites(id);
+        DBHelper.removeShortcut(this.context, packageName, intentUri);
+    }
+
+    /**
+     * Removes all stored shortcuts for given packageName.
+     *
+     * @param packageName
+     */
     public void removeShortcuts(String packageName) {
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
@@ -547,6 +617,16 @@ public class DataHandler extends BroadcastReceiver
         app.setExcludedFromHistory(true);
     }
 
+    private void addToExcludedFromHistory(ShortcutRecord shortcut) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcludedFromHistory());
+        // Add given shortcut to being excluded from history
+        String id = ShortcutUtil.generateShortcutId(shortcut.name);
+        excluded.add(id);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
+    }
+
     public void removeFromExcludedFromHistory(AppPojo app) {
         // The set needs to be cloned and then edited,
         // modifying in place is not supported by putStringSet()
@@ -591,7 +671,7 @@ public class DataHandler extends BroadcastReceiver
         app.setExcluded(false);
 
         // Add shortcuts for this app
-        addShortcut(app.packageName);
+        updateShortcuts(app.packageName);
     }
 
     public void removeFromExcluded(String packageName) {
