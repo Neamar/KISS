@@ -81,33 +81,26 @@ public class IconsHandler {
      * Set values from preferences
      */
     public void onPrefChanged(SharedPreferences pref, String key) {
-        if (key.equalsIgnoreCase("icons-pack")) {
-            loadIconsPack(pref.getString(key, null));
-        } else if (key.equalsIgnoreCase("adaptive-shape")) {
-            mSystemPack.setAdaptiveShape(getAdaptiveShape(pref, key));
+        if (key.equalsIgnoreCase("icons-pack") ||
+                key.equalsIgnoreCase("adaptive-shape") ||
+                key.equalsIgnoreCase("force-adaptive") ||
+                key.equalsIgnoreCase("force-shape") ||
+                key.equalsIgnoreCase("contact-pack-mask") ||
+                key.equalsIgnoreCase("contacts-shape")) {
             cacheClear();
-        } else if (key.equalsIgnoreCase("force-adaptive")) {
-            mForceAdaptive = pref.getBoolean(key, true);
-            cacheClear();
-        } else if (key.equalsIgnoreCase("force-shape")) {
-            mForceShape = pref.getBoolean(key, true);
-            cacheClear();
-        } else if (key.equalsIgnoreCase("contact-pack-mask")) {
-            mContactPackMask = pref.getBoolean(key, true);
-            cacheClear();
-        } else if (key.equalsIgnoreCase("contacts-shape")) {
-            mContactsShape = getAdaptiveShape(pref, key);
-            cacheClear();
-        }
-        //mShortcutPackMask = pref.getBoolean("shortcut-pack-mask", true);
-        //mShortcutsShape = getAdaptiveShape(pref, "shortcut-shape");
+            loadIconsPack(pref.getString("icons-pack", null));
+            mSystemPack.setAdaptiveShape(getAdaptiveShape(pref, "adaptive-shape"));
+            mForceAdaptive = pref.getBoolean("force-adaptive", true);
+            mForceShape = pref.getBoolean("force-shape", true);
 
-        //mShortcutBadgePackMask = pref.getBoolean("shortcut-pack-badge-mask", true);
+            mContactPackMask = pref.getBoolean("contact-pack-mask", true);
+            mContactsShape = getAdaptiveShape(pref, "contacts-shape");
+        }
     }
 
     private static int getAdaptiveShape(SharedPreferences pref, String key) {
         try {
-            return Integer.parseInt(pref.getString(key, null));
+            return Integer.parseInt(pref.getString(key, String.valueOf(DrawableUtils.SHAPE_SYSTEM)));
         } catch (Exception ignored) {
         }
         return DrawableUtils.SHAPE_SYSTEM;
@@ -118,7 +111,7 @@ public class IconsHandler {
      *
      * @param packageName Android package ID of the package to parse
      */
-    void loadIconsPack(String packageName) {
+    private void loadIconsPack(String packageName) {
         // system icons, nothing to do
         if (packageName == null || packageName.equalsIgnoreCase("default")) {
             cacheClear();
@@ -184,39 +177,49 @@ public class IconsHandler {
         if (drawable == null)
             return null;
 
-        Drawable drawableWithBackgroundAndMask;
-        if (mIconPack != null && mIconPack.hasMask() && userHandle.isCurrentUser()) {
-            // if the icon pack has a mask, use that instead of the adaptive shape
-            drawableWithBackgroundAndMask = mIconPack.applyBackgroundAndMask(ctx, drawable, false);
-        } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive)
-            // use adaptive shape
-            drawableWithBackgroundAndMask = mSystemPack.applyBackgroundAndMask(ctx, drawable, true);
-        else if (mForceShape)
-            // use adaptive shape
-            drawableWithBackgroundAndMask = mSystemPack.applyBackgroundAndMask(ctx, drawable, false);
-        else
-            drawableWithBackgroundAndMask = drawable;
-
+        Drawable drawableWithBackgroundAndMask = applyIconMask(ctx, drawable, userHandle);
         storeDrawable(cacheGetFileName(cacheKey), drawableWithBackgroundAndMask);
         return drawableWithBackgroundAndMask;
     }
 
-    public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
-        if (!mContactPackMask)
-            return DrawableUtils.applyIconMaskShape(ctx, drawable, mContactsShape, false);
-        if (mIconPack != null && mIconPack.hasMask())
+    private Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable, UserHandle userHandle) {
+        if (mIconPack != null && mIconPack.hasMask() && userHandle.isCurrentUser()) {
+            // if the icon pack has a mask, use that instead of the adaptive shape
             return mIconPack.applyBackgroundAndMask(ctx, drawable, false);
-        // if pack has no mask, make it a circle
-        int size = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
-        Bitmap b = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(b);
-        Path path = new Path();
-        int h = size / 2;
-        path.addCircle(h, h, h, Path.Direction.CCW);
-        c.clipPath(path);
-        drawable.setBounds(0, 0, c.getWidth(), c.getHeight());
-        drawable.draw(c);
-        return new BitmapDrawable(ctx.getResources(), b);
+        } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
+            // use adaptive shape
+            return mSystemPack.applyBackgroundAndMask(ctx, drawable, true);
+        } else if (mForceShape) {
+            // use adaptive shape
+            return mSystemPack.applyBackgroundAndMask(ctx, drawable, false);
+        } else {
+            return drawable;
+        }
+    }
+
+    public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
+        if (mContactPackMask && mIconPack != null && mIconPack.hasMask()) {
+            // if the icon pack has a mask, use that instead of the adaptive shape
+            return mIconPack.applyBackgroundAndMask(ctx, drawable, false);
+        } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
+            // use adaptive shape
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, mContactsShape, true);
+        } else if (mContactsShape != DrawableUtils.SHAPE_SYSTEM) {
+            // use adaptive shape
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, mContactsShape, false);
+        } else {
+            // if pack has no mask, make it a circle
+            int size = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
+            Bitmap b = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+            Canvas c = new Canvas(b);
+            Path path = new Path();
+            int h = size / 2;
+            path.addCircle(h, h, h, Path.Direction.CCW);
+            c.clipPath(path);
+            drawable.setBounds(0, 0, c.getWidth(), c.getHeight());
+            drawable.draw(c);
+            return new BitmapDrawable(ctx.getResources(), b);
+        }
     }
 
     /**

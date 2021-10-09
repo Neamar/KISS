@@ -2,7 +2,6 @@ package fr.neamar.kiss;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,9 +24,6 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -432,8 +428,6 @@ public class SettingsActivity extends PreferenceActivity implements
             }
             removeSearchProviderDefault(); // in order to refresh default search engine choices
             addDefaultSearchProvider(prefs);
-        } else if (key.equalsIgnoreCase("icons-pack")) {
-            KissApplication.getApplication(this).getIconsHandler().loadIconsPack(sharedPreferences.getString(key, "default"));
         } else if (key.equalsIgnoreCase("enable-phone-history")) {
             boolean enabled = sharedPreferences.getBoolean(key, false);
             if (enabled && !Permission.checkPermission(SettingsActivity.this, Permission.PERMISSION_READ_PHONE_STATE)) {
