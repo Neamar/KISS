@@ -182,7 +182,7 @@ public class IconsHandler {
         return drawableWithBackgroundAndMask;
     }
 
-    private Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable, UserHandle userHandle) {
+    public Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable, @NonNull UserHandle userHandle) {
         if (mIconPack != null && mIconPack.hasMask() && userHandle.isCurrentUser()) {
             // if the icon pack has a mask, use that instead of the adaptive shape
             return mIconPack.applyBackgroundAndMask(ctx, drawable, false);
