@@ -34,7 +34,6 @@ import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
@@ -110,15 +109,18 @@ public class ShortcutsResult extends Result {
                 try {
                     appDrawable = packageManager.getApplicationIcon(shortcutPojo.packageName);
                     if (appDrawable != null)
-                        appDrawable = iconsHandler.getIconPack().applyBackgroundAndMask(context, appDrawable, true);
+                        appDrawable = iconsHandler.applyIconMask(context, appDrawable, new fr.neamar.kiss.utils.UserHandle());
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
                 }
             }
 
             // This should never happen, let's just return the generic activity icon
-            if (appDrawable == null)
+            if (appDrawable == null) {
                 appDrawable = context.getPackageManager().getDefaultActivityIcon();
+                if (appDrawable != null)
+                    appDrawable = iconsHandler.applyIconMask(context, appDrawable, new fr.neamar.kiss.utils.UserHandle());
+            }
 
             Drawable shortcutDrawable = getDrawable(context);
 
@@ -153,8 +155,7 @@ public class ShortcutsResult extends Result {
         }
 
         if (shortcutDrawable != null) {
-            final IconPack<?> iconPack = KissApplication.getApplication(context).getIconsHandler().getIconPack();
-            shortcutDrawable = iconPack.applyBackgroundAndMask(context, shortcutDrawable, true);
+            shortcutDrawable = KissApplication.getApplication(context).getIconsHandler().applyIconMask(context, shortcutDrawable, new fr.neamar.kiss.utils.UserHandle());
         }
 
         return shortcutDrawable;

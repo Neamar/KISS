@@ -433,16 +433,17 @@ public class AppResult extends Result {
     @Override
     public Drawable getDrawable(Context context) {
         synchronized (this) {
+            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
             if (GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName)) {
                 // Google Calendar has a special treatment and displays a custom icon every day
                 icon = GoogleCalendarIcon.getDrawable(context, appPojo.activityName);
+                if (icon != null) {
+                    icon = iconsHandler.applyIconMask(context, icon, this.appPojo.userHandle);
+                }
             }
 
             if (icon == null) {
-                IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                icon = iconsHandler.getCustomIcon(appPojo.getComponentName(), appPojo.getCustomIconId());
-                if (icon == null)
-                    icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
+                icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
             }
 
             return icon;
