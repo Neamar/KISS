@@ -308,7 +308,7 @@ class Widgets extends Forwarder {
      * @return true, if widget cannot be resized to given height
      */
     private boolean preventResizeWidget(int height, AppWidgetProviderInfo appWidgetInfo) {
-        return height <= 0 || height < Math.min(appWidgetInfo.minHeight, appWidgetInfo.minResizeHeight) || (appWidgetInfo.resizeMode & RESIZE_VERTICAL) != RESIZE_VERTICAL;
+        return height <= 0 || height < Math.min(appWidgetInfo.minHeight, appWidgetInfo.minResizeHeight);
     }
 
     /**
