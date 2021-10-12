@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
@@ -31,6 +32,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -49,7 +51,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     // front image of an icons pack
     private DrawableInfo frontImage = null;
     // scale factor of an icons pack
-    private float factor = 1.0f;
+    private float scaleFactor = 1.0f;
     private boolean loaded = false;
 
 
@@ -124,7 +126,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     @Override
     public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable systemIcon, boolean fitInside) {
         if (systemIcon instanceof BitmapDrawable) {
-            return generateBitmap((BitmapDrawable) systemIcon);
+            return generateBitmap((BitmapDrawable) systemIcon, ctx);
         }
 
         Bitmap bitmap;
@@ -134,61 +136,92 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
             bitmap = Bitmap.createBitmap(systemIcon.getIntrinsicWidth(), systemIcon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         systemIcon.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
         systemIcon.draw(new Canvas(bitmap));
-        return generateBitmap(new BitmapDrawable(ctx.getResources(), bitmap));
+        return generateBitmap(new BitmapDrawable(ctx.getResources(), bitmap), ctx);
     }
 
     @NonNull
-    private BitmapDrawable generateBitmap(@NonNull BitmapDrawable defaultBitmap) {
-
-        // if no support images in the icon pack return the bitmap itself
-        if (backImages.size() == 0) {
-            return defaultBitmap;
-        }
-
-        // select a random background image
-        Random r = new Random();
-        int backImageInd = r.nextInt(backImages.size());
-        Bitmap backImage = getBitmap(backImages.get(backImageInd));
-        int w = backImage.getWidth();
-        int h = backImage.getHeight();
-
+    private BitmapDrawable generateBitmap(@NonNull BitmapDrawable defaultDrawable, @NonNull Context ctx) {
+        // initialize dimensions
+        int w = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
+        int h = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
         // create a bitmap for the result
         Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
-        canvas.setDensity(Bitmap.DENSITY_NONE);
-
-        // draw the background first
-        canvas.drawBitmap(backImage, 0, 0, null);
-
-        // scale original icon
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(defaultBitmap.getBitmap(), (int) (w * factor), (int) (h * factor), false);
-        scaledBitmap.setDensity(Bitmap.DENSITY_NONE);
-
-        float offsetLeft = (w - scaledBitmap.getWidth()) / 2f;
-        float offsetTop = (h - scaledBitmap.getHeight()) / 2f;
-        if (maskImage != null) {
-            // draw the scaled bitmap with mask
-            Bitmap mask = getBitmap(maskImage);
-            Matrix matScale = new Matrix();
-            matScale.setScale(w / (float) mask.getWidth(), h / (float) mask.getHeight());
-
-            // paint the bitmap with mask into the result
-            Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-            canvas.drawBitmap(scaledBitmap, offsetLeft, offsetTop, null);
-            canvas.drawBitmap(mask, matScale, paint);
-            paint.setXfermode(null);
-        } else {
-            // draw the scaled bitmap without mask
-            canvas.drawBitmap(scaledBitmap, offsetLeft, offsetTop, null);
+        canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG));
+        float sanitizedScaleFactor = scaleFactor;
+        if (maskImage == null && backImages.isEmpty() && frontImage == null) {
+            // fall back to rescaling only if necessary
+            sanitizedScaleFactor = 1.0f;
         }
 
-        // paint the front
+        // draw scaled icon
+        int scaledWidth = (int) (w * sanitizedScaleFactor);
+        int scaledHeight = (int) (h * sanitizedScaleFactor);
+        Bitmap defaultBitmap = defaultDrawable.getBitmap();
+        if (scaledWidth != w || scaledHeight != h) {
+            canvas.drawBitmap(defaultBitmap, getTransformationMatrix(defaultBitmap, w, h, (w - scaledWidth) / 2f, (h - scaledHeight) / 2f), null);
+        } else {
+            canvas.drawBitmap(defaultBitmap, getResizeMatrix(defaultBitmap, w, h), null);
+        }
+
+        // mask the scaled bitmap
+        if (maskImage != null) {
+            Bitmap maskBitmap = getBitmap(maskImage);
+            Paint paint = new Paint();
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+            canvas.drawBitmap(maskBitmap, getResizeMatrix(maskBitmap, w, h), paint);
+            paint.setXfermode(null);
+        }
+
+        // draw the background
+        if (!backImages.isEmpty()) {
+            // select a random background image
+            Random r = new Random();
+            int backImageInd = r.nextInt(backImages.size());
+
+            Bitmap backImageBitmap = getBitmap(backImages.get(backImageInd));
+            Paint paint = new Paint();
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
+            canvas.drawBitmap(backImageBitmap, getResizeMatrix(backImageBitmap, w, h), paint);
+            paint.setXfermode(null);
+        }
+
+        // draw the front
         if (frontImage != null) {
-            canvas.drawBitmap(getBitmap(frontImage), 0, 0, null);
+            Bitmap frontImageBitmap = getBitmap(frontImage);
+            Paint paint = new Paint();
+            canvas.drawBitmap(frontImageBitmap, getResizeMatrix(frontImageBitmap, w, h), paint);
         }
 
         return new BitmapDrawable(packResources, result);
+    }
+
+    /**
+     * @param bitmap    bitmap to draw
+     * @param newWidth  new width of bitmap
+     * @param newHeight new height of bitmap
+     * @return resize matrix
+     */
+    private Matrix getResizeMatrix(Bitmap bitmap, int newWidth, int newHeight) {
+        return getTransformationMatrix(bitmap, newWidth, newHeight, 0f, 0f);
+    }
+
+    /**
+     * @param bitmap     bitmap to draw
+     * @param newWidth   new width of bitmap
+     * @param newHeight  new height of bitmap
+     * @param offsetLeft left offset of bitmap
+     * @param offsetTop  right offset of bitmap
+     * @return transformation matrix
+     */
+    private Matrix getTransformationMatrix(Bitmap bitmap, int newWidth, int newHeight, float offsetLeft, float offsetTop) {
+        float scaleWidth = ((float) newWidth) / bitmap.getWidth();
+        float scaleHeight = ((float) newHeight) / bitmap.getHeight();
+
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        matrix.postTranslate(offsetLeft, offsetTop);
+        return matrix;
     }
 
     private void parseDrawableXML() {
@@ -283,7 +316,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                         }
                         //parse <scale> xml tags used as scale factor of original bitmap icon
                         else if (xpp.getName().equals("scale") && xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
-                            factor = Float.parseFloat(xpp.getAttributeValue(0));
+                            scaleFactor = Float.parseFloat(xpp.getAttributeValue(0));
                         }
                         //parse <item> xml tags for custom icons
                         if (xpp.getName().equals("item")) {
