@@ -14,6 +14,7 @@ import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -41,6 +42,9 @@ import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class ShortcutsResult extends Result {
+
+    private static final String TAG = ShortcutsResult.class.getSimpleName();
+
     private final ShortcutPojo shortcutPojo;
 
     ShortcutsResult(ShortcutPojo shortcutPojo) {
@@ -50,7 +54,6 @@ public class ShortcutsResult extends Result {
 
     @NonNull
     @Override
-    @SuppressWarnings("CatchAndPrintStackTrace")
     public View display(final Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
         if (view == null)
             view = inflateFromId(context, R.layout.item_shortcut, parent);
@@ -94,13 +97,15 @@ public class ShortcutsResult extends Result {
                     List<ResolveInfo> packages = packageManager.queryIntentActivities(intent, 0);
                     if (packages.size() > 0) {
                         ResolveInfo mainPackage = packages.get(0);
-                        String packageName = mainPackage.activityInfo.applicationInfo.packageName;
+                        String packageName = mainPackage.activityInfo.packageName;
                         String activityName = mainPackage.activityInfo.name;
                         ComponentName className = new ComponentName(packageName, activityName);
                         appDrawable = iconsHandler.getDrawableIconForPackage(className, new fr.neamar.kiss.utils.UserHandle());
                     }
+                } catch (NullPointerException e) {
+                    Log.e(TAG, "Unable to get activity icon for '" + shortcutPojo.getName() + "'", e);
                 } catch (URISyntaxException e) {
-                    e.printStackTrace();
+                    Log.e(TAG, "Unable to parse uri for '" + shortcutPojo.getName() + "'", e);
                 }
             }
 
@@ -111,7 +116,7 @@ public class ShortcutsResult extends Result {
                     if (appDrawable != null)
                         appDrawable = iconsHandler.applyIconMask(context, appDrawable, new fr.neamar.kiss.utils.UserHandle());
                 } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
+                    Log.e(TAG, "Unable to find package " + shortcutPojo.packageName, e);
                 }
             }
 
@@ -212,7 +217,7 @@ public class ShortcutsResult extends Result {
     @TargetApi(Build.VERSION_CODES.O)
     private Drawable getDrawableFromOreoShortcut(Context context) {
         ShortcutInfo shortcutInfo = getShortCut(context);
-        if (shortcutInfo != null) {
+        if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
             IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
             return iconsHandler.getDrawableIconForPackage(shortcutInfo.getActivity(), new fr.neamar.kiss.utils.UserHandle());
         }
