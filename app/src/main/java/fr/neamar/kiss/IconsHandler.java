@@ -7,11 +7,8 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Path;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
@@ -209,16 +206,7 @@ public class IconsHandler {
             return DrawableUtils.applyIconMaskShape(ctx, drawable, mContactsShape, false);
         } else {
             // if pack has no mask, make it a circle
-            int size = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
-            Bitmap b = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
-            Canvas c = new Canvas(b);
-            Path path = new Path();
-            int h = size / 2;
-            path.addCircle(h, h, h, Path.Direction.CCW);
-            c.clipPath(path);
-            drawable.setBounds(0, 0, c.getWidth(), c.getHeight());
-            drawable.draw(c);
-            return new BitmapDrawable(ctx.getResources(), b);
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, DrawableUtils.SHAPE_CIRCLE, false);
         }
     }
 
