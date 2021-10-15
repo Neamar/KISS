@@ -223,6 +223,10 @@ public class KeyboardScrollHider implements View.OnTouchListener {
         });
     }
 
+    public boolean isScrolled() {
+        return (this.offsetYCurrent - this.offsetYStart) > THRESHOLD;
+    }
+
     public interface KeyboardHandler {
         void showKeyboard();
         void hideKeyboard();
