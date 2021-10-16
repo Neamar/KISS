@@ -19,9 +19,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.DragEvent;
 import android.view.KeyEvent;
@@ -105,7 +103,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Utility for automatically hiding the keyboard when scrolling down
      */
-    private KeyboardScrollHider hider;
+    public KeyboardScrollHider hider;
 
     /**
      * The ViewGroup that wraps the buttons at the right hand side of the searchEditText
@@ -246,6 +244,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
 
+        // Add layout change listener for soft keyboard detection
+        findViewById(android.R.id.content).getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                forwarderManager.onGlobalLayout();
+            }
+        });
+
         // add history popup touch listener to empty view (prevents it from not working there)
         this.emptyListView.setOnTouchListener(this);
 
@@ -346,37 +352,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 (BottomPullEffectView) this.findViewById(R.id.listEdgeEffect)
         );
         this.hider.start();
-
-        // There's no easy way to check if a soft keyboard is visible in android, but it can be safely assumed that
-        // if the root layout is significantly smaller than the screen, it's been resized for a keyboard. See here:
-        // https://stackoverflow.com/questions/2150078/how-to-check-visibility-of-software-keyboard-in-android
-        final View activityRootView = findViewById(android.R.id.content);
-        activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            public float dpToPx(Context context, float valueInDp) {
-                DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-                return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, valueInDp, metrics);
-            }
-
-            @Override
-            public void onGlobalLayout() {
-                if(prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onkeyboard", false) &&
-                   isViewingSearchResults() && searchEditText.getText().toString().isEmpty()) {
-                    int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
-                    if (heightDiff > dpToPx(getBaseContext(), 200)) {
-                        // If it's more than 200dp, it's most likely a keyboard.
-                        if (adapter == null || adapter.isEmpty()) {
-                            showHistory();
-                        }
-                    } else {
-                        // we never want this triggered because the keyboard scroller did it
-                        if (adapter != null && !adapter.isEmpty() && !hider.isScrolled()) {
-                            // reset edittext (hide history)
-                            searchEditText.setText("");
-                        }
-                    }
-                }
-            }
-        });
 
         // Enable/disable phone broadcast receiver
         PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));

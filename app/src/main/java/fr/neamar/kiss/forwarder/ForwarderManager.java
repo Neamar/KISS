@@ -59,6 +59,11 @@ public class ForwarderManager extends Forwarder {
     public void onStop() {
     }
 
+    public void onGlobalLayout()
+    {
+        experienceTweaks.onGlobalLayout();
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         widgetsForwarder.onActivityResult(requestCode, resultCode, data);
     }

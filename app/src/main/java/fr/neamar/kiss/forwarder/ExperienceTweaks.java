@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.InputType;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -253,6 +255,34 @@ class ExperienceTweaks extends Forwarder {
     void onTouch(MotionEvent event) {
         // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
+    }
+
+    private float dpToPx(Context context, float valueInDp) {
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, valueInDp, metrics);
+    }
+
+    void onGlobalLayout() {
+        // There's no easy way to check if a soft keyboard is visible in android, but it can be safely assumed that
+        // if the root layout is significantly smaller than the screen, it's been resized for a keyboard. See here:
+        // https://stackoverflow.com/questions/2150078/how-to-check-visibility-of-software-keyboard-in-android
+        if(prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onkeyboard", false) &&
+                mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
+            final View activityRootView = mainActivity.findViewById(android.R.id.content);
+            int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
+            if (heightDiff > dpToPx(mainActivity.getBaseContext(), 200)) {
+                // If it's more than 200dp, it's most likely a keyboard.
+                if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
+                    mainActivity.showHistory();
+                }
+            } else {
+                // we never want this triggered because the keyboard scroller did it
+                if (mainActivity.adapter != null && !mainActivity.adapter.isEmpty() && !mainActivity.hider.isScrolled()) {
+                    // reset edittext (hide history)
+                    mainActivity.searchEditText.setText("");
+                }
+            }
+        }
     }
 
     void onWindowFocusChanged(boolean hasFocus) {
