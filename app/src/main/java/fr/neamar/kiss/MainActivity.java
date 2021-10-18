@@ -30,6 +30,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -102,7 +103,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Utility for automatically hiding the keyboard when scrolling down
      */
-    private KeyboardScrollHider hider;
+    public KeyboardScrollHider hider;
 
     /**
      * The ViewGroup that wraps the buttons at the right hand side of the searchEditText
@@ -242,6 +243,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
+
+        // Add layout change listener for soft keyboard detection
+        findViewById(android.R.id.content).getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                forwarderManager.onGlobalLayout();
+            }
+        });
 
         // add history popup touch listener to empty view (prevents it from not working there)
         this.emptyListView.setOnTouchListener(this);
