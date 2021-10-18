@@ -157,6 +157,7 @@
                 android:entries="@array/adaptiveEntries"
                 android:entryValues="@array/adaptiveValues"
                 android:key="adaptive-shape"
+                android:summary="@string/adaptive_shape_summary"
                 android:title="@string/adaptive_shape_name" />
 
             <SwitchPreference
@@ -183,7 +184,7 @@
             <ListPreference
                 android:defaultValue="0"
                 android:dependency="contact-pack-mask"
-                android:entries="@array/adaptiveEntries"
+                android:entries="@array/adaptiveEntriesForContacts"
                 android:entryValues="@array/adaptiveValues"
                 android:key="contacts-shape"
                 android:summary="@string/contacts_shape_summary"
