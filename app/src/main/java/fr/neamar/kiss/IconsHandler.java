@@ -195,19 +195,36 @@ public class IconsHandler {
     }
 
     public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
+        final int shape = getContactsShape();
+
         if (mContactPackMask && mIconPack != null && mIconPack.hasMask()) {
             // if the icon pack has a mask, use that instead of the adaptive shape
             return mIconPack.applyBackgroundAndMask(ctx, drawable, false);
-        } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
+        } else if (DrawableUtils.isAdaptiveIconDrawable(drawable)) {
             // use adaptive shape
-            return DrawableUtils.applyIconMaskShape(ctx, drawable, mContactsShape, true);
-        } else if (mContactsShape != DrawableUtils.SHAPE_SYSTEM) {
-            // use adaptive shape
-            return DrawableUtils.applyIconMaskShape(ctx, drawable, mContactsShape, false);
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true);
         } else {
-            // if pack has no mask, make it a circle
-            return DrawableUtils.applyIconMaskShape(ctx, drawable, DrawableUtils.SHAPE_CIRCLE, false);
+            // use adaptive shape
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false);
         }
+    }
+
+    /**
+     * Get shape used for contact icons with fallbacks.
+     * If contacts shape is {@link DrawableUtils#SHAPE_SYSTEM} app shape is used.
+     * If app shape is {@link DrawableUtils#SHAPE_SYSTEM} too, used shape is a circle.
+     *
+     * @return shape
+     */
+    private int getContactsShape() {
+        int shape = mContactsShape;
+        if (shape == DrawableUtils.SHAPE_SYSTEM) {
+            shape = mSystemPack.getAdaptiveShape();
+        }
+        if (shape == DrawableUtils.SHAPE_SYSTEM) {
+            shape = DrawableUtils.SHAPE_CIRCLE;
+        }
+        return shape;
     }
 
     /**
