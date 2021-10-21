@@ -13,6 +13,7 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -218,8 +219,10 @@ public class ShortcutsResult extends Result {
     private Drawable getDrawableFromOreoShortcut(Context context) {
         ShortcutInfo shortcutInfo = getShortCut(context);
         if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
+            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
             IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            return iconsHandler.getDrawableIconForPackage(shortcutInfo.getActivity(), new fr.neamar.kiss.utils.UserHandle());
+            return iconsHandler.getDrawableIconForPackage(shortcutInfo.getActivity(), user);
         }
         return null;
     }

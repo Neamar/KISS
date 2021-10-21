@@ -15,6 +15,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
@@ -202,10 +203,14 @@ public class ShortcutUtil {
      * @return component name related to {@link ShortcutInfo}.
      */
     @RequiresApi(Build.VERSION_CODES.O)
+    @Nullable
     public static String getComponentName(Context context, ShortcutInfo shortcutInfo) {
-        UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-        fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
-        return AppPojo.getComponentName(shortcutInfo.getPackage(), shortcutInfo.getActivity().getClassName(), user);
+        if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
+            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
+            return AppPojo.getComponentName(shortcutInfo.getPackage(), shortcutInfo.getActivity().getClassName(), user);
+        }
+        return null;
     }
 
 }
