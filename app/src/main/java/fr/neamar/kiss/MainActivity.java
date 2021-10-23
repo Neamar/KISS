@@ -605,7 +605,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         return super.dispatchTouchEvent(ev);
     }
 
-    private void displayClearOnInput() {
+    public void displayClearOnInput() {
         if (searchEditText.getText().length() > 0) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
