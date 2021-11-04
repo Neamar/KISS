@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -29,7 +28,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.net.URISyntaxException;
-import java.util.List;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.IconsHandler;
@@ -39,6 +37,7 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
@@ -95,13 +94,9 @@ public class ShortcutsResult extends Result {
                 // Retrieve activity icon by intent URI
                 try {
                     Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
-                    List<ResolveInfo> packages = packageManager.queryIntentActivities(intent, 0);
-                    if (packages.size() > 0) {
-                        ResolveInfo mainPackage = packages.get(0);
-                        String packageName = mainPackage.activityInfo.packageName;
-                        String activityName = mainPackage.activityInfo.name;
-                        ComponentName className = new ComponentName(packageName, activityName);
-                        appDrawable = iconsHandler.getDrawableIconForPackage(className, new fr.neamar.kiss.utils.UserHandle());
+                    ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
+                    if (componentName != null) {
+                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), new fr.neamar.kiss.utils.UserHandle());
                     }
                 } catch (NullPointerException e) {
                     Log.e(TAG, "Unable to get activity icon for '" + shortcutPojo.getName() + "'", e);
