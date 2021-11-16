@@ -54,6 +54,7 @@ class ExperienceTweaks extends Forwarder {
 
     private View mainEmptyView;
     private final GestureDetector gd;
+    private int lastHeight = 0;
 
     @SuppressLint("SourceLockedOrientationActivity")
     ExperienceTweaks(final MainActivity mainActivity) {
@@ -266,7 +267,7 @@ class ExperienceTweaks extends Forwarder {
         // There's no easy way to check if a soft keyboard is visible in android, but it can be safely assumed that
         // if the root layout is significantly smaller than the screen, it's been resized for a keyboard. See here:
         // https://stackoverflow.com/questions/2150078/how-to-check-visibility-of-software-keyboard-in-android
-        if(prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onkeyboard", false) &&
+        if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onkeyboard", false) &&
                 mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
             final View activityRootView = mainActivity.findViewById(android.R.id.content);
             int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
@@ -274,14 +275,20 @@ class ExperienceTweaks extends Forwarder {
                 // If it's more than 200dp, it's most likely a keyboard.
                 if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
                     mainActivity.showHistory();
+                    mainActivity.displayClearOnInput();
                 }
             } else {
                 // we never want this triggered because the keyboard scroller did it
                 if (mainActivity.adapter != null && !mainActivity.adapter.isEmpty() && !mainActivity.hider.isScrolled()) {
-                    // reset edittext (hide history)
-                    mainActivity.searchEditText.setText("");
+
+                    // Only apply changes when height changes, this avoids breakage when history-ontouch is enabled or scrolled
+                    if (activityRootView.getHeight() != lastHeight) {
+                        // reset edittext (hide history)
+                        mainActivity.searchEditText.setText("");
+                    }
                 }
             }
+            lastHeight = activityRootView.getHeight();
         }
     }
 
