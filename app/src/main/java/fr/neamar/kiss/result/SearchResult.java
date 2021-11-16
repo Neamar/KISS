@@ -109,8 +109,10 @@ public class SearchResult extends Result {
 
         displayHighlighted(text, Collections.singletonList(new Pair<>(pos, pos + len)), searchText, context);
 
-        if(!hasCustomIcon) {
+        if (!hasCustomIcon) {
             image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
+        } else {
+            image.setColorFilter(null);
         }
         return view;
     }
