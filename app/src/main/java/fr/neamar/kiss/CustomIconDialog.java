@@ -306,9 +306,9 @@ public class CustomIconDialog extends DialogFragment {
                 }
             }
         }
+        ((BaseAdapter) mIconGrid.getAdapter()).notifyDataSetChanged();
         mSearch.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
         mIconGrid.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
-        ((BaseAdapter) mIconGrid.getAdapter()).notifyDataSetChanged();
     }
 
     static class IconData {
