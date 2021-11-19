@@ -22,12 +22,16 @@ Liberapay is a donation platform whose primary goal is to fund the commons, part
 <noscript><a href="https://liberapay.com/KISS/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
 </p>
 
-## Donate in Bitcoin
-In the spirit of open-source, we accept Bitcoin.
+## Crypto-donate
+In the spirit of open-source, we accept Bitcoin and Ethereum.
 
-Our Bitcoin wallet:
+### Bitcoin wallet:
 
 <p style="text-align:center; font-size: 1.5em"><tt>37jNrusScmZH6433hKztScKDEwidxKHgnH</tt></p>
+
+### Ethereum wallet
+<p style="text-align:center; font-size: 1.5em"><tt>0x3C907054FB2072a4728Fdc781055bE00aA157b52</tt></p>
+
 
 ### How will your money be used?
 KISS expenses are really minimal. Your money is likely going to be used to:
