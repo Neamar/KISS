@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
@@ -147,8 +148,9 @@ public class IconsHandler {
         // Search in cache
         {
             Drawable cacheIcon = cacheGetDrawable(cacheKey);
-            if (cacheIcon != null)
+            if (cacheIcon != null) {
                 return cacheIcon;
+            }
         }
 
         Drawable drawable = null;
@@ -182,13 +184,13 @@ public class IconsHandler {
     public Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable, @NonNull UserHandle userHandle) {
         if (mIconPack != null && mIconPack.hasMask() && userHandle.isCurrentUser()) {
             // if the icon pack has a mask, use that instead of the adaptive shape
-            return mIconPack.applyBackgroundAndMask(ctx, drawable, false);
+            return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
             // use adaptive shape
-            return mSystemPack.applyBackgroundAndMask(ctx, drawable, true);
+            return mSystemPack.applyBackgroundAndMask(ctx, drawable, true, Color.WHITE);
         } else if (mForceShape) {
             // use adaptive shape
-            return mSystemPack.applyBackgroundAndMask(ctx, drawable, false);
+            return mSystemPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         } else {
             return drawable;
         }
@@ -199,13 +201,13 @@ public class IconsHandler {
 
         if (mContactPackMask && mIconPack != null && mIconPack.hasMask()) {
             // if the icon pack has a mask, use that instead of the adaptive shape
-            return mIconPack.applyBackgroundAndMask(ctx, drawable, false);
+            return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         } else if (DrawableUtils.isAdaptiveIconDrawable(drawable)) {
             // use adaptive shape
-            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true);
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true, Color.WHITE);
         } else {
             // use adaptive shape
-            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false);
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false, Color.TRANSPARENT);
         }
     }
 

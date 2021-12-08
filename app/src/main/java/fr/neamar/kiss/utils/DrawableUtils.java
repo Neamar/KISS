@@ -63,14 +63,6 @@ public class DrawableUtils {
         return bitmap;
     }
 
-    public static Drawable applyIconMaskShape(Context ctx, Drawable icon, int shape, boolean fitInside) {
-        return applyIconMaskShape(ctx, icon, shape, fitInside, Color.WHITE);
-    }
-
-    public static Drawable applyIconMaskShape(Context ctx, Drawable icon, int shape, @ColorInt int backgroundColor) {
-        return applyIconMaskShape(ctx, icon, shape, false, backgroundColor);
-    }
-
     /**
      * Get percent of icon to use as margin. We use this to avoid clipping the image.
      *
@@ -99,9 +91,17 @@ public class DrawableUtils {
 
     /**
      * Handle adaptive icons for compatible devices
+     *
+     * @param ctx             {@link Context}
+     * @param icon            the {@link Drawable} to shape
+     * @param shape           shape to use
+     * @param fitInside       for non {@link AdaptiveIconDrawable}, the icon is resized so it fits in shape
+     * @param backgroundColor color used as background for non {@link AdaptiveIconDrawable}
+     * @return shaped icon
      */
+    @NonNull
     @SuppressLint("NewApi")
-    public static Drawable applyIconMaskShape(Context ctx, Drawable icon, int shape, boolean fitInside, @ColorInt int backgroundColor) {
+    public static Drawable applyIconMaskShape(@NonNull Context ctx, @NonNull Drawable icon, int shape, boolean fitInside, @ColorInt int backgroundColor) {
         if (shape == SHAPE_SYSTEM)
             return icon;
         if (shape == SHAPE_TEARDROP_RND)
@@ -175,7 +175,7 @@ public class DrawableUtils {
 
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
-            outputPaint.setColor(0xFF000000);
+            outputPaint.setColor(Color.BLACK);
 
             setIconShape(outputCanvas, outputPaint, shape);
         }

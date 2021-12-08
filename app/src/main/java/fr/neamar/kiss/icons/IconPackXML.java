@@ -17,6 +17,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -124,18 +125,18 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
     @NonNull
     @Override
-    public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable systemIcon, boolean fitInside) {
-        if (systemIcon instanceof BitmapDrawable) {
-            return generateBitmap((BitmapDrawable) systemIcon, ctx);
+    public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor) {
+        if (icon instanceof BitmapDrawable) {
+            return generateBitmap((BitmapDrawable) icon, ctx);
         }
 
         Bitmap bitmap;
-        if (systemIcon.getIntrinsicWidth() <= 0 || systemIcon.getIntrinsicHeight() <= 0)
+        if (icon.getIntrinsicWidth() <= 0 || icon.getIntrinsicHeight() <= 0)
             bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
         else
-            bitmap = Bitmap.createBitmap(systemIcon.getIntrinsicWidth(), systemIcon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        systemIcon.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        systemIcon.draw(new Canvas(bitmap));
+            bitmap = Bitmap.createBitmap(icon.getIntrinsicWidth(), icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        icon.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        icon.draw(new Canvas(bitmap));
         return generateBitmap(new BitmapDrawable(ctx.getResources(), bitmap), ctx);
     }
 

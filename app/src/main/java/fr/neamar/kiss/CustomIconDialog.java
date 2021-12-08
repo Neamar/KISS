@@ -10,6 +10,7 @@ import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -215,11 +216,11 @@ public class CustomIconDialog extends DialogFragment {
             if (drawable != null && checkDuplicateDrawable(dSet, drawable)) {
                 addQuickOption(R.string.custom_icon_activity, drawable, quickList);
                 if (iconPack != null && iconPack.hasMask())
-                    addQuickOption(R.string.custom_icon_activity_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                    addQuickOption(R.string.custom_icon_activity_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true, Color.WHITE), quickList);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    addQuickOption(R.string.custom_icon_activity_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                    addQuickOption(R.string.custom_icon_activity_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true, Color.WHITE), quickList);
                 if (!DrawableUtils.isAdaptiveIconDrawable(drawable))
-                    addQuickOption(R.string.custom_icon_activity_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false), quickList);
+                    addQuickOption(R.string.custom_icon_activity_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false, Color.TRANSPARENT), quickList);
             }
         }
 
@@ -233,12 +234,12 @@ public class CustomIconDialog extends DialogFragment {
             if (drawable != null && checkDuplicateDrawable(dSet, drawable)) {
                 addQuickOption(R.string.custom_icon_application, drawable, quickList);
                 if (iconPack != null && iconPack.hasMask())
-                    addQuickOption(R.string.custom_icon_application_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                    addQuickOption(R.string.custom_icon_application_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true, Color.WHITE), quickList);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    addQuickOption(R.string.custom_icon_application_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                    addQuickOption(R.string.custom_icon_application_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true, Color.WHITE), quickList);
+                if (!DrawableUtils.isAdaptiveIconDrawable(drawable))
+                    addQuickOption(R.string.custom_icon_application_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false, Color.TRANSPARENT), quickList);
             }
-            if (!DrawableUtils.isAdaptiveIconDrawable(drawable))
-                addQuickOption(R.string.custom_icon_application_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false), quickList);
         }
 
         // add Activity BadgedIcon
@@ -250,11 +251,11 @@ public class CustomIconDialog extends DialogFragment {
                 if (drawable != null && checkDuplicateDrawable(dSet, drawable)) {
                     addQuickOption(R.string.custom_icon_badged, drawable, quickList);
                     if (iconPack != null && iconPack.hasMask())
-                        addQuickOption(R.string.custom_icon_badged_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                        addQuickOption(R.string.custom_icon_badged_with_pack, iconPack.applyBackgroundAndMask(context, drawable, true, Color.WHITE), quickList);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        addQuickOption(R.string.custom_icon_badged_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true), quickList);
+                        addQuickOption(R.string.custom_icon_badged_adaptive, systemPack.applyBackgroundAndMask(context, drawable, true, Color.WHITE), quickList);
                     if (!DrawableUtils.isAdaptiveIconDrawable(drawable))
-                        addQuickOption(R.string.custom_icon_badged_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false), quickList);
+                        addQuickOption(R.string.custom_icon_badged_adaptive_fill, systemPack.applyBackgroundAndMask(context, drawable, false, Color.TRANSPARENT), quickList);
                 }
             }
         }
