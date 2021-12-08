@@ -159,7 +159,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         int scaledHeight = (int) (h * sanitizedScaleFactor);
         Bitmap defaultBitmap = defaultDrawable.getBitmap();
         if (scaledWidth != w || scaledHeight != h) {
-            canvas.drawBitmap(defaultBitmap, getTransformationMatrix(defaultBitmap, w, h, (w - scaledWidth) / 2f, (h - scaledHeight) / 2f), null);
+            canvas.drawBitmap(defaultBitmap, getTransformationMatrix(defaultBitmap, scaledWidth, scaledHeight, (w - scaledWidth) / 2f, (h - scaledHeight) / 2f), null);
         } else {
             canvas.drawBitmap(defaultBitmap, getResizeMatrix(defaultBitmap, w, h), null);
         }
