@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -51,7 +52,7 @@ public class TagDummyResult extends Result {
             shape.setSize(barSize, barSize);
             float rad = barSize / 2.3f;
             shape.setCornerRadii(new float[]{rad, rad, rad, rad, rad, rad, rad, rad});
-            shape.setColor(0xFFffffff);
+            shape.setColor(Color.WHITE);
 
             gBackground = new InsetDrawable(shape, inset);
         }
@@ -78,7 +79,7 @@ public class TagDummyResult extends Result {
         rectF.inset(1.f, 1.f);
 
         // draw a white rounded background
-        paint.setColor(0xFFffffff);
+        paint.setColor(Color.WHITE);
         canvas.drawRoundRect(rectF, width / 2.4f, height / 2.4f, paint);
 
         int codepoint = pojo.getName().codePointAt(0);
@@ -110,10 +111,10 @@ public class TagDummyResult extends Result {
         // we can't draw images (emoticons and symbols) using SRC_IN with transparent color, the result is a square
         if (drawAsHole) {
             // write text with "transparent" (create a hole in the background)
-            paint.setColor(0);
+            paint.setColor(Color.TRANSPARENT);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         } else {
-            paint.setColor(0xFFffffff);
+            paint.setColor(Color.WHITE);
         }
 
         // draw the letter in the center
