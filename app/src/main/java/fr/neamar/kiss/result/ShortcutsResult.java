@@ -2,6 +2,7 @@ package fr.neamar.kiss.result;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -197,8 +198,11 @@ public class ShortcutsResult extends Result {
 
         ShortcutInfo shortcutInfo = getShortCut(context);
         if (shortcutInfo != null) {
-            launcherApps.startShortcut(shortcutInfo, v.getClipBounds(), null);
-            return;
+            try {
+                launcherApps.startShortcut(shortcutInfo, v.getClipBounds(), null);
+                return;
+            } catch (ActivityNotFoundException | IllegalStateException ignored) {
+            }
         }
 
         // Application removed? Invalid shortcut? Shortcut to an app on an unmounted SD card?
