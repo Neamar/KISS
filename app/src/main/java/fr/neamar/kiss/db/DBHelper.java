@@ -228,12 +228,12 @@ public class DBHelper {
     public static boolean insertShortcut(Context context, ShortcutRecord shortcut) {
         SQLiteDatabase db = getDatabase(context);
         // Do not add duplicate shortcuts
-        Cursor cursor = db.query("shortcuts", new String[]{"package", "intent_uri"},
-                "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri}, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            return false;
+        try (Cursor cursor = db.query("shortcuts", new String[]{"package", "intent_uri"},
+                "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri}, null, null, null, null)) {
+            if (cursor.moveToFirst()) {
+                return false;
+            }
         }
-        cursor.close();
 
         ContentValues values = new ContentValues();
         values.put("name", shortcut.name);
