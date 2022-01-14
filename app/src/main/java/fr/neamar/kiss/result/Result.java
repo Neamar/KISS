@@ -289,9 +289,7 @@ public abstract class Result {
         // Launch
         doLaunch(context, v);
 
-        if (queryInterface != null) {
-            recordLaunch(context, queryInterface);
-        }
+        recordLaunch(context, queryInterface);
     }
 
     void recordLaunch(Context context, QueryInterface queryInterface) {
@@ -300,12 +298,10 @@ public abstract class Result {
         // * to avoid a flickering -- launchOccurred will refresh the list
         // Thus TOUCH_DELAY * 3
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Save in history
-                KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
-
+        handler.postDelayed(() -> {
+            // Save in history
+            KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
+            if (queryInterface != null) {
                 queryInterface.launchOccurred();
             }
         }, KissApplication.TOUCH_DELAY * 3);
