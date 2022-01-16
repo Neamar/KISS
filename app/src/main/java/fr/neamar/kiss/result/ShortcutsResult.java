@@ -29,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.net.URISyntaxException;
+import java.util.Locale;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.IconsHandler;
@@ -272,7 +273,7 @@ public class ShortcutsResult extends Result {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 // Refresh tags for given app
-                pojo.setTags(tagInput.getText().toString());
+                pojo.setTags(tagInput.getText().toString().trim().toLowerCase(Locale.ROOT));
                 KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
                 // Show toast message
                 String msg = context.getResources().getString(R.string.tags_confirmation_added);
