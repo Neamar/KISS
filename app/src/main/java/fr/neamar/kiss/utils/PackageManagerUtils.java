@@ -78,7 +78,7 @@ public class PackageManagerUtils {
      */
     public static ComponentName getComponentName(Context context, Intent intent) {
         ResolveInfo resolveInfo = getBestResolve(context, intent);
-        if (resolveInfo != null) {
+        if (resolveInfo != null && resolveInfo.activityInfo != null) {
             return new ComponentName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
         }
         return null;
