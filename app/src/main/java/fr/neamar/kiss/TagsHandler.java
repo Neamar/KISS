@@ -10,6 +10,7 @@ import android.os.Build;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -118,7 +119,7 @@ public class TagsHandler {
     private void addAliasesPojo(String aliases, String app) {
         // add aliases only if they haven't overridden by the user (not in db)
         if (!tagsCache.containsKey(app)) {
-            tagsCache.put(app, aliases.replace(",", " "));
+            tagsCache.put(app, aliases.replace(",", " ").trim().toLowerCase(Locale.ROOT));
         }
     }
 
