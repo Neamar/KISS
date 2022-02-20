@@ -1,11 +1,10 @@
 package fr.neamar.kiss.forwarder;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -34,6 +33,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 
 public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener, View.OnTouchListener, View.OnDragListener {
     private static final String TAG = "FavoriteForwarder";
@@ -362,63 +362,45 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             // Default phone call app
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
             phoneIntent.setData(Uri.parse("tel:0000"));
-            ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(phoneIntent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo != null) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                Log.i(TAG, "Dialer resolves to:" + packageName + "/" + resolveInfo.activityInfo.name);
-
-                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
-                    String activityName = resolveInfo.activityInfo.name;
-                    if (packageName.equals("com.google.android.dialer")) {
-                        // Default dialer has two different activities, one when calling a phone number and one when opening the app from the launcher.
-                        // (com.google.android.apps.dialer.extensions.GoogleDialtactsActivity vs. com.google.android.dialer.extensions.GoogleDialtactsActivity)
-                        // (notice the .apps. in the middle)
-                        // The phoneIntent above resolve to the former, which isn't exposed as a Launcher activity and thus can't be displayed as a favorite
-                        // This hack uses the correct resolver when the application id is the default dialer.
-                        // In terms of maintenance, if Android was to change the name of the phone's main resolver, the favorite would simply not appear
-                        // and we would have to update the String below to the new default resolver
-                        activityName = "com.google.android.dialer.extensions.GoogleDialtactsActivity";
-                    }
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + activityName);
-                }
+            ComponentName componentName = getLaunchingComponent(phoneIntent);
+            if (componentName != null) {
+                Log.i(TAG, "Dialer resolves to: " + componentName);
+                KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + componentName.getPackageName() + "/" + componentName.getClassName());
             }
         }
         {
             // Default contacts app
             Intent contactsIntent = new Intent(Intent.ACTION_DEFAULT, ContactsContract.Contacts.CONTENT_URI);
-            ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(contactsIntent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo != null) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                Log.i(TAG, "Contacts resolves to:" + packageName);
-                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + resolveInfo.activityInfo.name);
-                }
+            ComponentName componentName = getLaunchingComponent(contactsIntent);
+            if (componentName != null) {
+                Log.i(TAG, "Contacts resolves to: " + componentName);
+                KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + componentName.getPackageName() + "/" + componentName.getClassName());
             }
-
         }
         {
             // Default browser
-            Intent browserIntent = new Intent("android.intent.action.VIEW", Uri.parse("http://"));
-            ResolveInfo resolveInfo = mainActivity.getPackageManager().resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY);
-            if (resolveInfo != null) {
-                String packageName = resolveInfo.activityInfo.packageName;
-                Log.i(TAG, "Browser resolves to:" + packageName);
-
-                if (resolveInfo.activityInfo.name != null && !resolveInfo.activityInfo.name.equals(DEFAULT_RESOLVER)) {
-                    String activityName = resolveInfo.activityInfo.name;
-                    if (packageName.equalsIgnoreCase("com.android.chrome")) {
-                        // Chrome has two different activities, one for Launcher and one when opening an URL.
-                        // The browserIntent above resolve to the latter, which isn't exposed as a Launcher activity and thus can't be displayed
-                        // This hack uses the correct resolver when the application is Chrome.
-                        // In terms of maintenance, if Chrome was to change the name of the main resolver, the favorite would simply not appear
-                        // and we would have to update the String below to the new default resolver
-                        activityName = "com.google.android.apps.chrome.Main";
-                    }
-                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + packageName + "/" + activityName);
-                }
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"));
+            ComponentName componentName = getLaunchingComponent(browserIntent);
+            if (componentName != null) {
+                Log.i(TAG, "Browser resolves to: " + componentName);
+                KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + componentName.getPackageName() + "/" + componentName.getClassName());
             }
         }
         mainActivity.onFavoriteChange();
+    }
+
+    /**
+     * @param intent intent
+     * @return launching component for given intent
+     */
+    @Nullable
+    private ComponentName getLaunchingComponent(Intent intent) {
+        ComponentName componentName = PackageManagerUtils.getComponentName(mainActivity, intent);
+        ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(mainActivity, componentName);
+        if (launchingComponent != null && !launchingComponent.getClassName().equals(DEFAULT_RESOLVER)) {
+            return launchingComponent;
+        }
+        return null;
     }
 }
 
