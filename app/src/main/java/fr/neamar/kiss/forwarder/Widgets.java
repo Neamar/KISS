@@ -22,13 +22,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.ui.WidgetHost;
-
-import static android.appwidget.AppWidgetProviderInfo.RESIZE_VERTICAL;
 
 class Widgets extends Forwarder {
     private static final int REQUEST_APPWIDGET_PICKED = 9;
@@ -76,9 +75,22 @@ class Widgets extends Forwarder {
                     break;
             }
         } else if (resultCode == Activity.RESULT_CANCELED && data != null && (requestCode == REQUEST_APPWIDGET_CONFIGURED || requestCode == REQUEST_APPWIDGET_PICKED)) {
-            // if widget was not selected, delete id
+            // if widget was not selected, delete it
             int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
             if (appWidgetId != -1) {
+                // find widget views for appWidgetId
+                List<View> viewsToRemove = new ArrayList<>();
+                for (int i = 0; i < widgetArea.getChildCount(); i++) {
+                    AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
+                    if (view.getAppWidgetId() == appWidgetId) {
+                        viewsToRemove.add(view);
+                    }
+                }
+                // remove view
+                for (View viewToRemove : viewsToRemove) {
+                    widgetArea.removeView(viewToRemove);
+                }
+                // delete widget id
                 mAppWidgetHost.deleteAppWidgetId(appWidgetId);
             }
         }
@@ -111,7 +123,7 @@ class Widgets extends Forwarder {
     }
 
     private void serializeState() {
-        ArrayList<String> builder = new ArrayList<>(widgetArea.getChildCount());
+        List<String> builder = new ArrayList<>(widgetArea.getChildCount());
         for (int i = 0; i < widgetArea.getChildCount(); i++) {
             AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
             int appWidgetId = view.getAppWidgetId();
@@ -183,26 +195,27 @@ class Widgets extends Forwarder {
 
         hostView.setLongClickable(true);
         hostView.setOnLongClickListener(v -> {
-            final AppWidgetHostView widgetWithMenuCurrentlyDisplayed = hostView;
+            final AppWidgetHostView widgetWithMenuCurrentlyDisplayed = (AppWidgetHostView) v;
+            final AppWidgetProviderInfo currentAppWidgetInfo = mAppWidgetManager.getAppWidgetInfo(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
 
             PopupMenu popup = new PopupMenu(mainActivity, v);
             popup.inflate(R.menu.menu_widget);
 
             Menu menu = popup.getMenu();
             // Disable items that can't be triggered
-            final ViewGroup parent = (ViewGroup) hostView.getParent();
-            if (parent.indexOfChild(hostView) == 0) {
+            final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+            if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) == 0) {
                 menu.findItem(R.id.move_up).setVisible(false);
             }
-            if (parent.indexOfChild(hostView) == parent.getChildCount() - 1) {
+            if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) == parent.getChildCount() - 1) {
                 menu.findItem(R.id.move_down).setVisible(false);
             }
-            int decreasedLineHeight = getDecreasedLineHeight(hostView);
-            if (preventResizeWidget(decreasedLineHeight, appWidgetInfo)) {
+            int decreasedLineHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+            if (preventResizeWidget(decreasedLineHeight, currentAppWidgetInfo)) {
                 menu.findItem(R.id.decrease_size).setVisible(false);
             }
-            int increasedLineHeight = getIncreasedLineHeight(hostView);
-            if (preventResizeWidget(increasedLineHeight, appWidgetInfo)) {
+            int increasedLineHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+            if (preventResizeWidget(increasedLineHeight, currentAppWidgetInfo)) {
                 menu.findItem(R.id.increase_size).setVisible(false);
             }
 
@@ -215,13 +228,13 @@ class Widgets extends Forwarder {
                         serializeState();
                         return true;
                     case R.id.increase_size: {
-                        int height1 = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-                        resizeWidget(widgetWithMenuCurrentlyDisplayed, height1);
+                        int newHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+                        resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
                         return true;
                     }
                     case R.id.decrease_size: {
-                        int height1 = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-                        resizeWidget(widgetWithMenuCurrentlyDisplayed, height1);
+                        int newHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+                        resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
                         return true;
                     }
                     case R.id.move_up: {
@@ -308,7 +321,7 @@ class Widgets extends Forwarder {
      * @return true, if widget cannot be resized to given height
      */
     private boolean preventResizeWidget(int height, AppWidgetProviderInfo appWidgetInfo) {
-        return height <= 0 || height < Math.min(appWidgetInfo.minHeight, appWidgetInfo.minResizeHeight);
+        return height <= 0 || appWidgetInfo == null || height < Math.min(appWidgetInfo.minHeight, appWidgetInfo.minResizeHeight);
     }
 
     /**
