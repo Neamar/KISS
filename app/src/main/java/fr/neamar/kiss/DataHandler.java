@@ -419,6 +419,11 @@ public class DataHandler extends BroadcastReceiver
         return (pojo != null) ? pojo.getName() : "???";
     }
 
+    @Nullable
+    public Pojo getItemById(String id) {
+        return getPojo(id);
+    }
+
     /**
      * Update stored shortcut info for all shortcuts of given packageName.
      *
