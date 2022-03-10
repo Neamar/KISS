@@ -63,10 +63,9 @@ public class SettingsActivity extends PreferenceActivity implements
     final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait";
 
     private final static List<String> PREF_LISTS_WITH_DEPENDENCY = Arrays.asList(
-            "gesture-right",
-            "gesture-left",
-            "gesture-down",
-            "gesture-up"
+            "gesture-up", "gesture-down",
+            "gesture-left", "gesture-right",
+            "gesture-long-press"
     );
     private static Pair<CharSequence[], CharSequence[]> ItemToRunListContent = null;
 
@@ -156,6 +155,8 @@ public class SettingsActivity extends PreferenceActivity implements
             SettingsActivity.this.addExcludedFromHistoryAppSettings();
         };
 
+        reorderPreferencesWithDisplayDependency();
+
         if (savedInstanceState == null) {
             // Run asynchronously to open settings fast
             AsyncTask.execute(runnable);
@@ -176,6 +177,26 @@ public class SettingsActivity extends PreferenceActivity implements
 
 
         permissionManager = new Permission(this);
+    }
+
+    /**
+     * Because we use the order to insert preferences we need to have gaps in the original order
+     */
+    private void reorderPreferencesWithDisplayDependency() {
+        // get groups that need gaps
+        HashSet<PreferenceGroup> groups = new HashSet<>();
+        for (String gesturePref : PREF_LISTS_WITH_DEPENDENCY) {
+            Preference pref = findPreference(gesturePref);
+            groups.add(getParent(pref));
+        }
+        // set new order numbers
+        for (PreferenceGroup group : groups) {
+            int count = group.getPreferenceCount();
+            for (int idx = 0; idx < count; idx += 1) {
+                Preference pref = group.getPreference(idx);
+                pref.setOrder(idx * 10);
+            }
+        }
     }
 
     private static Pair<CharSequence[], CharSequence[]> generateItemToRunListContent(@NonNull Context context) {
@@ -218,62 +239,43 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void updateItemToRunList(String key) {
-        updateListPrefDependency(key, prefs.getString(key, null), "launch-pojo", key + "-launch-id", ItemToRunListContent);
+        synchronized (SettingsActivity.this) {
+            if (ItemToRunListContent != null)
+                updateListPrefDependency(key, prefs.getString(key, null), "launch-pojo", key + "-launch-id", ItemToRunListContent);
+        }
     }
 
     private void updateListPrefDependency(@NonNull String dependOnKey, @Nullable String dependOnValue, @NonNull String enableValue, @NonNull String listKey, @Nullable Pair<CharSequence[], CharSequence[]> listContent) {
         Preference prefEntryToRun = findPreference(listKey);
-        if (prefEntryToRun instanceof ListPreference) {
-            synchronized (SettingsActivity.this) {
-                if (listContent != null) {
-                    CharSequence[] entries = listContent.first;
-                    CharSequence[] entryValues = listContent.second;
-                    ((ListPreference) prefEntryToRun).setEntries(entries);
-                    ((ListPreference) prefEntryToRun).setEntryValues(entryValues);
-                    prefEntryToRun.setEnabled(enableValue.equals(dependOnValue));
-                    return;
-                }
-            }
-        }
-        if (prefEntryToRun == null) {
-            // the ListPreference for selecting an app is missing. Remove the option to run an app.
-            Preference pref = findPreference(dependOnKey);
-            if (pref instanceof ListPreference) {
-                removeEntryValueFromListPreference(enableValue, (ListPreference) pref);
-            }
-        } else {
-            //Log.w(TAG, "ListPreference `" + listKey + "` can't be updated");
-            prefEntryToRun.setEnabled(false);
-        }
-    }
 
-    private static void removeEntryValueFromListPreference(@NonNull String entryValueToRemove, ListPreference listPref) {
-        CharSequence[] entryValues = listPref.getEntryValues();
-        int indexToRemove = -1;
-        for (int idx = 0, entryValuesLength = entryValues.length; idx < entryValuesLength; idx++) {
-            CharSequence entryValue = entryValues[idx];
-            if (entryValueToRemove.contentEquals(entryValue)) {
-                indexToRemove = idx;
-                break;
+        if (prefEntryToRun == null && enableValue.equals(dependOnValue)) {
+            prefEntryToRun = new ListPreference(this);
+            prefEntryToRun.setKey(listKey);
+            prefEntryToRun.setTitle(R.string.gesture_launch_pojo);
+
+            Preference pref = findPreference(dependOnKey);
+            // set the list pref under the depended preference
+            prefEntryToRun.setOrder(pref.getOrder() + 1);
+
+            getParent(pref).addPreference(prefEntryToRun);
+        }
+
+        if (prefEntryToRun instanceof ListPreference) {
+            if (enableValue.equals(dependOnValue)) {
+                synchronized (SettingsActivity.this) {
+                    if (listContent != null) {
+                        CharSequence[] entries = listContent.first;
+                        CharSequence[] entryValues = listContent.second;
+                        ((ListPreference) prefEntryToRun).setEntries(entries);
+                        ((ListPreference) prefEntryToRun).setEntryValues(entryValues);
+                    }
+                }
+            } else {
+                getParent(prefEntryToRun).removePreference(prefEntryToRun);
             }
+        } else if (prefEntryToRun != null) {
+            throw new IllegalStateException("Preference `" + listKey + "` is " + prefEntryToRun.getClass() + "; should be " + ListPreference.class);
         }
-        if (indexToRemove == -1)
-            return;
-        CharSequence[] entries = listPref.getEntries();
-        final int size = entries.length;
-        final int newSize = size - 1;
-        CharSequence[] newEntries = new CharSequence[newSize];
-        CharSequence[] newEntryValues = new CharSequence[newSize];
-        if (indexToRemove > 0) {
-            System.arraycopy(entries, 0, newEntries, 0, indexToRemove);
-            System.arraycopy(entryValues, 0, newEntryValues, 0, indexToRemove);
-        }
-        if (indexToRemove < newSize) {
-            System.arraycopy(entries, indexToRemove + 1, newEntries, indexToRemove, newSize - indexToRemove);
-            System.arraycopy(entryValues, indexToRemove + 1, newEntryValues, indexToRemove, newSize - indexToRemove);
-        }
-        listPref.setEntries(newEntries);
-        listPref.setEntryValues(newEntryValues);
     }
 
     @Override
