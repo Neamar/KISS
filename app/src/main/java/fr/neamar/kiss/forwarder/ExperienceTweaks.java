@@ -22,8 +22,11 @@ import android.widget.ImageView;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
 import fr.neamar.kiss.searcher.Searcher;
@@ -78,10 +81,10 @@ class ExperienceTweaks extends Forwarder {
                 // Double tap disabled: display history directly
                 if(!prefs.getBoolean("double-tap", false)) {
                     if (prefs.getBoolean("history-onclick", false)) {
-                        doAction("display-history");
+                        doAction("single-tap", "display-history");
                     }
                     else if(isMinimalisticModeEnabledForFavorites()) {
-                        doAction("display-favorites");
+                        doAction("single-tap", "display-favorites");
                     }
                 }
                 return super.onSingleTapUp(e);
@@ -92,10 +95,10 @@ class ExperienceTweaks extends Forwarder {
                 // Double tap enabled: wait to confirm this is indeed a single tap, not a double tap
                 if(prefs.getBoolean("double-tap", false)) {
                     if (prefs.getBoolean("history-onclick", false)) {
-                        doAction("display-history");
+                        doAction("single-tap", "display-history");
                     }
                     else if(isMinimalisticModeEnabledForFavorites()) {
-                        doAction("display-favorites");
+                        doAction("single-tap", "display-favorites");
                     }
                 }
 
@@ -104,7 +107,7 @@ class ExperienceTweaks extends Forwarder {
 
             @Override
             public void onLongPress(MotionEvent e) {
-                doAction(prefs.getString("gesture-long-press", "do-nothing"));
+                doAction("gesture-long-press", prefs.getString("gesture-long-press", "do-nothing"));
 
                 super.onLongPress(e);
             }
@@ -147,21 +150,21 @@ class ExperienceTweaks extends Forwarder {
                 float directionX = e2.getX() - e1.getX();
                 if (Math.abs(directionX) > Math.abs(directionY)) {
                     if (directionX > 0) {
-                        doAction(prefs.getString("gesture-right", "display-apps"));
+                        doAction("gesture-right", prefs.getString("gesture-right", "display-apps"));
                     } else {
-                        doAction(prefs.getString("gesture-left", "display-apps"));
+                        doAction("gesture-left", prefs.getString("gesture-left", "display-apps"));
                     }
                 } else {
                     if (directionY > 0) {
-                        doAction(prefs.getString("gesture-down", "display-notifications"));
+                        doAction("gesture-down", prefs.getString("gesture-down", "display-notifications"));
                     } else {
-                        doAction(prefs.getString("gesture-up", "display-keyboard"));
+                        doAction("gesture-up", prefs.getString("gesture-up", "display-keyboard"));
                     }
                 }
                 return true;
             }
 
-            private void doAction(String action) {
+            private void doAction(String source, String action) {
                 switch (action) {
                     case "display-notifications":
                         displayNotificationDrawer();
@@ -210,6 +213,16 @@ class ExperienceTweaks extends Forwarder {
                             mainActivity.hideKeyboard();
                         }
                         break;
+                    case "launch-pojo": {
+                        String launchId = prefs.getString(source + "-launch-id", "");
+                        Pojo item = KissApplication.getApplication(mainActivity).getDataHandler().getItemById(launchId);
+                        if (item != null) {
+                            // don't send null parent if (item instanceof ContactsPojo)
+                            Result result = Result.fromPojo(null, item);
+                            result.fastLaunch(mainActivity, mainEmptyView);
+                        }
+                        break;
+                    }
                 }
             }
         });

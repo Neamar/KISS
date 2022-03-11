@@ -17,6 +17,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,11 +25,13 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -38,6 +41,7 @@ import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.preference.ExcludePreferenceScreen;
 import fr.neamar.kiss.preference.PreferenceScreenHelper;
@@ -57,6 +61,14 @@ public class SettingsActivity extends PreferenceActivity implements
             + " theme-bar-color";
     // Those settings require a restart of the settings
     final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait";
+
+    private final static List<String> PREF_LISTS_WITH_DEPENDENCY = Arrays.asList(
+            "gesture-up", "gesture-down",
+            "gesture-left", "gesture-right",
+            "gesture-long-press"
+    );
+    private static Pair<CharSequence[], CharSequence[]> ItemToRunListContent = null;
+
     private boolean requireFullRestart = false;
 
     private SharedPreferences prefs;
@@ -143,17 +155,127 @@ public class SettingsActivity extends PreferenceActivity implements
             SettingsActivity.this.addExcludedFromHistoryAppSettings();
         };
 
+        reorderPreferencesWithDisplayDependency();
+
         if (savedInstanceState == null) {
             // Run asynchronously to open settings fast
             AsyncTask.execute(runnable);
+            asyncInitItemToRunList();
         } else {
             // Run synchronously to ensure preferences can be restored from state
             runnable.run();
+            synchronized (SettingsActivity.this) {
+                if (ItemToRunListContent == null)
+                    ItemToRunListContent = generateItemToRunListContent(this);
+
+                for (String gesturePref : PREF_LISTS_WITH_DEPENDENCY) {
+                    updateItemToRunList(gesturePref);
+                }
+            }
         }
         AsyncTask.execute(alwaysAsync);
 
 
         permissionManager = new Permission(this);
+    }
+
+    /**
+     * Because we use the order to insert preferences we need to have gaps in the original order
+     */
+    private void reorderPreferencesWithDisplayDependency() {
+        // get groups that need gaps
+        HashSet<PreferenceGroup> groups = new HashSet<>();
+        for (String gesturePref : PREF_LISTS_WITH_DEPENDENCY) {
+            Preference pref = findPreference(gesturePref);
+            groups.add(getParent(pref));
+        }
+        // set new order numbers
+        for (PreferenceGroup group : groups) {
+            int count = group.getPreferenceCount();
+            for (int idx = 0; idx < count; idx += 1) {
+                Preference pref = group.getPreference(idx);
+                pref.setOrder(idx * 10);
+            }
+        }
+    }
+
+    private static Pair<CharSequence[], CharSequence[]> generateItemToRunListContent(@NonNull Context context) {
+        List<AppPojo> appPojoList = KissApplication.getApplication(context).getDataHandler().getApplications();
+        if (appPojoList == null)
+            appPojoList = Collections.emptyList();
+
+        // appPojoList is a copy of the original list; we can sort it in place
+        Collections.sort(appPojoList, new PojoComparator());
+
+        // generate entry names and entry values
+        final int appCount = appPojoList.size();
+        CharSequence[] entries = new CharSequence[appCount];
+        CharSequence[] entryValues = new CharSequence[appCount];
+        for (int idx = 0; idx < appCount; idx++) {
+            AppPojo appEntry = appPojoList.get(idx);
+            entries[idx] = appEntry.getName();
+            entryValues[idx] = appEntry.id;
+        }
+        return new Pair<>(entries, entryValues);
+    }
+
+    private void asyncInitItemToRunList() {
+        final Runnable updateLists = () -> {
+            for (String gesturePref : PREF_LISTS_WITH_DEPENDENCY)
+                updateItemToRunList(gesturePref);
+        };
+        if (ItemToRunListContent == null) {
+            AsyncTask.execute(() -> {
+                Pair<CharSequence[], CharSequence[]> content = generateItemToRunListContent(this);
+                synchronized (SettingsActivity.this) {
+                    if (ItemToRunListContent == null)
+                        ItemToRunListContent = content;
+                }
+                runOnUiThread(updateLists);
+            });
+        } else {
+            updateLists.run();
+        }
+    }
+
+    private void updateItemToRunList(String key) {
+        synchronized (SettingsActivity.this) {
+            if (ItemToRunListContent != null)
+                updateListPrefDependency(key, prefs.getString(key, null), "launch-pojo", key + "-launch-id", ItemToRunListContent);
+        }
+    }
+
+    private void updateListPrefDependency(@NonNull String dependOnKey, @Nullable String dependOnValue, @NonNull String enableValue, @NonNull String listKey, @Nullable Pair<CharSequence[], CharSequence[]> listContent) {
+        Preference prefEntryToRun = findPreference(listKey);
+
+        if (prefEntryToRun == null && enableValue.equals(dependOnValue)) {
+            prefEntryToRun = new ListPreference(this);
+            prefEntryToRun.setKey(listKey);
+            prefEntryToRun.setTitle(R.string.gesture_launch_pojo);
+
+            Preference pref = findPreference(dependOnKey);
+            // set the list pref under the depended preference
+            prefEntryToRun.setOrder(pref.getOrder() + 1);
+
+            getParent(pref).addPreference(prefEntryToRun);
+        }
+
+        if (prefEntryToRun instanceof ListPreference) {
+            if (enableValue.equals(dependOnValue)) {
+                synchronized (SettingsActivity.this) {
+                    if (listContent != null) {
+                        CharSequence[] entries = listContent.first;
+                        CharSequence[] entryValues = listContent.second;
+                        ((ListPreference) prefEntryToRun).setEntries(entries);
+                        ((ListPreference) prefEntryToRun).setEntryValues(entryValues);
+                    }
+                }
+            } else {
+                getParent(prefEntryToRun).removePreference(prefEntryToRun);
+            }
+        } else if (prefEntryToRun != null) {
+            throw new IllegalStateException("Preference `" + listKey + "` is " + prefEntryToRun.getClass() + "; should be " + ListPreference.class);
+        }
     }
 
     @Override
@@ -196,6 +318,24 @@ public class SettingsActivity extends PreferenceActivity implements
         PreferenceGroup p = (PreferenceGroup) findPreference(parent);
         Preference c = findPreference(category);
         p.removePreference(c);
+    }
+
+    private PreferenceGroup getParent(Preference preference) {
+        return getParent(getPreferenceScreen(), preference);
+    }
+
+    private static PreferenceGroup getParent(PreferenceGroup root, Preference preference) {
+        for (int i = 0; i < root.getPreferenceCount(); i++) {
+            Preference p = root.getPreference(i);
+            if (p == preference)
+                return root;
+            if (p instanceof PreferenceGroup) {
+                PreferenceGroup parent = getParent((PreferenceGroup) p, preference);
+                if (parent != null)
+                    return parent;
+            }
+        }
+        return null;
     }
 
     private void addExcludedAppSettings() {
@@ -418,6 +558,10 @@ public class SettingsActivity extends PreferenceActivity implements
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         KissApplication.getApplication(this).getIconsHandler().onPrefChanged(sharedPreferences, key);
+
+        if (PREF_LISTS_WITH_DEPENDENCY.contains(key)) {
+            updateItemToRunList(key);
+        }
 
         if (key.equalsIgnoreCase("available-search-providers")) {
             addCustomSearchProvidersPreferences(prefs);
