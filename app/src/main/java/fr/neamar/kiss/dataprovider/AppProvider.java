@@ -4,10 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.Process;
 import android.os.UserManager;
+import android.preference.PreferenceManager;
 
 import androidx.annotation.RequiresApi;
 
@@ -139,7 +141,7 @@ public class AppProvider extends Provider<AppPojo> {
     @Override
     public void requestResults(String query, Searcher searcher) {
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
-
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (queryNormalized.codePoints.length == 0) {
             return;
         }
@@ -149,7 +151,7 @@ public class AppProvider extends Provider<AppPojo> {
         boolean match;
 
         for (AppPojo pojo : pojos) {
-            if(pojo.isExcluded()) {
+            if(pojo.isExcluded() && !prefs.getBoolean("enable-excluded-apps", false)) {
                 continue;
             }
 
