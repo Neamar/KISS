@@ -333,9 +333,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 return false;
             }
 
-            if (prefs.getBoolean("default-web-search-on-enter", false)) {
+            if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
                 SearchPojo pojo = SearchProvider.getDefaultSearch(this, prefs);
-                Result.fromPojo(this, pojo).fastLaunch(this, null);
+                if (pojo != null) {
+                    Result.fromPojo(this, pojo).fastLaunch(this, null);
+                }
             } else {
                 adapter.onClick(adapter.getCount() - 1, v);
             }
