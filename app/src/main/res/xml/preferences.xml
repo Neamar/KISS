@@ -427,6 +427,10 @@
             android:defaultValue="true"
             android:key="enable-search"
             android:title="@string/search_provider_toggle" />
+        <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="enable-excluded-apps"
+                android:title="@string/excluded_apps_toggle" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/search_name" android:key="web-providers">
             <fr.neamar.kiss.preference.AddSearchProviderPreference

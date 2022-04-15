@@ -392,7 +392,7 @@ public abstract class Result {
     }
 
     void removeFromHistory(Context context) {
-        DBHelper.removeFromHistory(context, pojo.id);
+        DBHelper.removeFromHistory(context, pojo.getHistoryId());
     }
 
     /*

@@ -1,6 +1,5 @@
 package fr.neamar.kiss.shortcut;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
@@ -11,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -21,16 +21,14 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
-@TargetApi(Build.VERSION_CODES.O)
+@RequiresApi(Build.VERSION_CODES.O)
 public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean> {
 
-    private static String TAG = "SaveAllOreoShortcutsAsync";
+    private static final String TAG = SaveAllOreoShortcutsAsync.class.getSimpleName();
     private final WeakReference<Context> context;
-    private final WeakReference<DataHandler> dataHandler;
 
     public SaveAllOreoShortcutsAsync(@NonNull Context context) {
         this.context = new WeakReference<>(context);
-        this.dataHandler = new WeakReference<>(KissApplication.getApplication(context).getDataHandler());
     }
 
     @Override
@@ -60,11 +58,7 @@ public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean>
             return null;
         }
 
-        final DataHandler dataHandler = this.dataHandler.get();
-        if (dataHandler == null) {
-            cancel(true);
-            return null;
-        }
+        final DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
 
         boolean shortcutsUpdated = false;
         for (ShortcutInfo shortcutInfo : shortcuts) {
@@ -78,7 +72,10 @@ public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean>
     @Override
     protected void onProgressUpdate(Integer... progress) {
         if (progress[0] == -1) {
-            Toast.makeText(context.get(), R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show();
+            Context context = this.context.get();
+            if (context != null) {
+                Toast.makeText(context, R.string.cant_pin_shortcut, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -87,9 +84,13 @@ public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean>
         if (success) {
             Log.i(TAG, "Shortcuts added to KISS");
 
-            ShortcutsProvider provider = this.dataHandler.get().getShortcutsProvider();
-            if (provider != null) {
-                provider.reload();
+            Context context = this.context.get();
+            if (context != null) {
+                DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+                ShortcutsProvider provider = dataHandler.getShortcutsProvider();
+                if (provider != null) {
+                    provider.reload();
+                }
             }
         }
     }
