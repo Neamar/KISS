@@ -35,8 +35,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 
 import androidx.annotation.NonNull;
 
@@ -44,7 +42,11 @@ import java.util.ArrayList;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.ForwarderManager;
+import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.result.Result;
+import fr.neamar.kiss.result.SearchResult;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -315,32 +317,30 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
         // This fix should be on ALL TextEdit Widgets !!!
         // See : https://stackoverflow.com/a/23483957
-        searchEditText.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                return true;
-            }
-        });
+        searchEditText.setOnDragListener((v, event) -> true);
 
 
         // On validate, launch first record
-        searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == android.R.id.closeButton) {
-                    systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
-                    if (mPopup != null) {
-                        mPopup.dismiss();
-                        return true;
-                    }
-                    systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
-                    hider.fixScroll();
-                    return false;
+        searchEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == android.R.id.closeButton) {
+                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
+                if (mPopup != null) {
+                    mPopup.dismiss();
+                    return true;
                 }
-                adapter.onClick(adapter.getCount() - 1, v);
-
-                return true;
+                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
+                hider.fixScroll();
+                return false;
             }
+
+            if (prefs.getBoolean("default-web-search-on-enter", false)) {
+                SearchPojo pojo = SearchProvider.getDefaultSearch(this, prefs);
+                Result.fromPojo(this, pojo).fastLaunch(this, null);
+            } else {
+                adapter.onClick(adapter.getCount() - 1, v);
+            }
+
+            return true;
         });
 
         registerForContextMenu(menuButton);
