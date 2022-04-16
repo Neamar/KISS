@@ -182,11 +182,11 @@ public class SearchProvider extends SimpleProvider {
     }
 
     @Nullable
-    public static SearchPojo getDefaultSearch(final Context context, @Nullable SharedPreferences pref) {
+    public static SearchPojo getDefaultSearch(final String query, final Context context, @Nullable SharedPreferences pref) {
         pref = pref != null ? pref : PreferenceManager.getDefaultSharedPreferences(context);
         String defaultSearchEngine = pref.getString("default-search-provider", "Google");
         Set<String> availableProviders = pref.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(context));
         String url = getProviderUrl(availableProviders, defaultSearchEngine);
-        return url != null ? new SearchPojo("", url, SearchPojo.SEARCH_QUERY) : null;
+        return url != null ? new SearchPojo(query, url, SearchPojo.SEARCH_QUERY) : null;
     }
 }

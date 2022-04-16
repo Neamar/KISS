@@ -334,7 +334,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
 
             if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
-                SearchPojo pojo = SearchProvider.getDefaultSearch(this, prefs);
+                SearchPojo pojo = SearchProvider.getDefaultSearch(v.getText().toString(), this, prefs);
                 if (pojo != null) {
                     Result.fromPojo(this, pojo).fastLaunch(this, null);
                 }
