@@ -21,6 +21,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,6 +35,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 import androidx.annotation.NonNull;
 
@@ -315,32 +318,40 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
         // This fix should be on ALL TextEdit Widgets !!!
         // See : https://stackoverflow.com/a/23483957
-        searchEditText.setOnDragListener((v, event) -> true);
+        searchEditText.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                return true;
+            }
+        });
 
 
         // On validate, launch first record
-        searchEditText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == android.R.id.closeButton) {
-                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
-                if (mPopup != null) {
-                    mPopup.dismiss();
-                    return true;
+        searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == android.R.id.closeButton) {
+                    systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
+                    if (mPopup != null) {
+                        mPopup.dismiss();
+                        return true;
+                    }
+                    systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
+                    hider.fixScroll();
+                    return false;
                 }
-                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
-                hider.fixScroll();
-                return false;
-            }
 
-            if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
-                SearchPojo pojo = SearchProvider.getDefaultSearch(v.getText().toString(), this, prefs);
-                if (pojo != null) {
-                    Result.fromPojo(this, pojo).fastLaunch(this, null);
+                if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
+                    SearchPojo pojo = SearchProvider.getDefaultSearch(v.getText().toString(), this, prefs);
+                    if (pojo != null) {
+                        Result.fromPojo(this, pojo).fastLaunch(this, null);
+                    }
+                } else {
+                    adapter.onClick(adapter.getCount() - 1, v);
                 }
-            } else {
-                adapter.onClick(adapter.getCount() - 1, v);
-            }
 
-            return true;
+                return true;
+            }
         });
 
         registerForContextMenu(menuButton);
