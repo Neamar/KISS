@@ -12,6 +12,7 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.TypedValue;
@@ -71,6 +72,7 @@ public class DrawableUtils {
      */
     private static float getScaleToFit(int shape) {
         switch (shape) {
+            case SHAPE_SYSTEM:
             case SHAPE_CIRCLE:
             case SHAPE_TEARDROP_BR:
             case SHAPE_TEARDROP_BL:
@@ -102,7 +104,8 @@ public class DrawableUtils {
     @NonNull
     @SuppressLint("NewApi")
     public static Drawable applyIconMaskShape(@NonNull Context ctx, @NonNull Drawable icon, int shape, boolean fitInside, @ColorInt int backgroundColor) {
-        if (shape == SHAPE_SYSTEM)
+        if (shape == SHAPE_SYSTEM && !hasDeviceConfiguredMask())
+            // if no icon mask can be configured for device, then use icon as is
             return icon;
         if (shape == SHAPE_TEARDROP_RND)
             shape = SHAPE_TEARDROP_BR + (icon.hashCode() % 4);
@@ -188,20 +191,33 @@ public class DrawableUtils {
      * @param shape type of shape: DrawableUtils.SHAPE_*
      */
     private static void setIconShape(Canvas canvas, Paint paint, int shape) {
-        float iconSize = canvas.getHeight();
+        int iconSize = canvas.getHeight();
         Path path = SHAPE_PATH;
         path.rewind();
 
         switch (shape) {
+            case SHAPE_SYSTEM: {
+                if (hasDeviceConfiguredMask()) {
+                    // get icon mask for device
+                    AdaptiveIconDrawable drawable = new AdaptiveIconDrawable(new ColorDrawable(Color.BLACK), new ColorDrawable(Color.BLACK));
+                    drawable.setBounds(0, 0, iconSize, iconSize);
+                    path = drawable.getIconMask();
+                } else {
+                    // This should never happen, use rect so nothing is clipped
+                    path.addRect(0f, 0f, iconSize, iconSize, Path.Direction.CCW);
+                }
+                canvas.drawPath(path, paint);
+                break;
+            }
             case SHAPE_CIRCLE: {
-                int radius = (int) iconSize / 2;
+                int radius = iconSize / 2;
                 canvas.drawCircle(radius, radius, radius, paint);
 
                 path.addCircle(radius, radius, radius, Path.Direction.CCW);
                 break;
             }
             case SHAPE_SQUIRCLE: {
-                int h = (int) iconSize / 2;
+                int h = iconSize / 2;
                 float c = iconSize / 2.333f;
                 path.moveTo(h, 0f);
                 path.cubicTo(h + c, 0, iconSize, h - c, iconSize, h);
@@ -302,9 +318,13 @@ public class DrawableUtils {
     }
 
     public static boolean isAdaptiveIconDrawable(Drawable drawable) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (hasDeviceConfiguredMask()) {
             return drawable instanceof AdaptiveIconDrawable;
         }
         return false;
+    }
+
+    public static boolean hasDeviceConfiguredMask() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     }
 }
