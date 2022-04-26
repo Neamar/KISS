@@ -168,7 +168,7 @@ public class SearchProvider extends SimpleProvider {
     @Nullable
     @SuppressWarnings("StringSplitter")
     // Find the URL associated with specified providerName
-    private String getProviderUrl(Set<String> searchProviders, String searchProviderName) {
+    private static String getProviderUrl(Set<String> searchProviders, String searchProviderName) {
         for (String nameAndUrl : searchProviders) {
             if (nameAndUrl.contains(searchProviderName + "|")) {
                 String[] arrayNameAndUrl = nameAndUrl.split("\\|");
@@ -179,5 +179,14 @@ public class SearchProvider extends SimpleProvider {
             }
         }
         return null;
+    }
+
+    @Nullable
+    public static SearchPojo getDefaultSearch(final String query, final Context context, @Nullable SharedPreferences pref) {
+        pref = pref != null ? pref : PreferenceManager.getDefaultSharedPreferences(context);
+        String defaultSearchEngine = pref.getString("default-search-provider", "Google");
+        Set<String> availableProviders = pref.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(context));
+        String url = getProviderUrl(availableProviders, defaultSearchEngine);
+        return url != null ? new SearchPojo(query, url, SearchPojo.SEARCH_QUERY) : null;
     }
 }
