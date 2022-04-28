@@ -5,12 +5,6 @@
 
     <permission
         android:name="com.android.launcher.permission.INSTALL_SHORTCUT"
-        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
-        android:protectionLevel="normal" />
-
-    <permission
-        android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"
-        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
         android:protectionLevel="normal" />
 
     <!-- Self explanatory -->
@@ -69,6 +63,7 @@
             android:clearTaskOnLaunch="true"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
+            android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="user"
             android:stateNotNeeded="true"
@@ -93,6 +88,7 @@
         </activity>
         <activity
             android:name=".DummyActivity"
+            android:exported="true"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -104,6 +100,7 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/activity_setting"
+            android:exported="true"
             android:theme="@style/SettingTheme"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -136,6 +133,7 @@
         <!-- On incoming calls, add user to history -->
         <receiver
             android:name=".broadcast.IncomingCallHandler"
+            android:exported="true"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
@@ -148,6 +146,7 @@
 
         <service android:name=".notification.NotificationListener"
             android:enabled="@bool/notification_service_enabled"
+            android:exported="true"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
@@ -156,6 +155,7 @@
 
         <service
             android:name=".utils.LockAccessibilityService"
+            android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
