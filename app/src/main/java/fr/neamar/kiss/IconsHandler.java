@@ -186,7 +186,7 @@ public class IconsHandler {
             // if the icon pack has a mask, use that instead of the adaptive shape
             return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
-            // use adaptive shape
+            // use adaptive shape (with white background for non adaptive icons)
             return mSystemPack.applyBackgroundAndMask(ctx, drawable, true, Color.WHITE);
         } else if (mForceShape) {
             // use adaptive shape
@@ -203,7 +203,7 @@ public class IconsHandler {
             // if the icon pack has a mask, use that instead of the adaptive shape
             return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         } else if (DrawableUtils.isAdaptiveIconDrawable(drawable)) {
-            // use adaptive shape
+            // use adaptive shape (with white background for non adaptive icons)
             return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true, Color.WHITE);
         } else {
             // use adaptive shape

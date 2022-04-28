@@ -84,8 +84,11 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         parseDrawableXML();
     }
 
+    /**
+     * @return true, if icon pack contains any images that can mask icons
+     */
     public boolean hasMask() {
-        return maskImage != null;
+        return maskImage != null || !backImages.isEmpty() || frontImage != null;
     }
 
     @Override
@@ -125,25 +128,44 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         return DrawableUtils.drawableToBitmap(drawable);
     }
 
-    @NonNull
-    @Override
-    public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor) {
+    /**
+     * Get {@link BitmapDrawable} from {@link Drawable}
+     * Convert any drawable into a bitmap drawable with same size.
+     *
+     * @param icon any {@link Drawable}
+     * @return a {@link BitmapDrawable}
+     */
+    public BitmapDrawable getBitmapDrawable(Drawable icon) {
         if (icon instanceof BitmapDrawable) {
-            return generateBitmap((BitmapDrawable) icon, ctx);
+            return (BitmapDrawable) icon;
         }
 
+        final Canvas canvas = new Canvas();
+        canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG));
         Bitmap bitmap;
         if (icon.getIntrinsicWidth() <= 0 || icon.getIntrinsicHeight() <= 0)
             bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
         else
             bitmap = Bitmap.createBitmap(icon.getIntrinsicWidth(), icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        icon.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
-        icon.draw(new Canvas(bitmap));
-        return generateBitmap(new BitmapDrawable(ctx.getResources(), bitmap), ctx);
+        canvas.setBitmap(bitmap);
+        icon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        icon.draw(canvas);
+        return new BitmapDrawable(packResources, bitmap);
     }
 
     @NonNull
-    private BitmapDrawable generateBitmap(@NonNull BitmapDrawable defaultDrawable, @NonNull Context ctx) {
+    @Override
+    public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor) {
+        if (DrawableUtils.isAdaptiveIconDrawable(icon)) {
+            // convert AdaptiveIconDrawable to BitmapDrawable, use SHAPE_SQUARE so icon pack can be applied correctly
+            icon = DrawableUtils.applyIconMaskShape(ctx, icon, DrawableUtils.SHAPE_SQUARE, fitInside, Color.WHITE);
+        }
+        BitmapDrawable bitmapDrawable = getBitmapDrawable(icon);
+        return applyBackgroundAndMask(bitmapDrawable, ctx);
+    }
+
+    @NonNull
+    private Drawable applyBackgroundAndMask(@NonNull BitmapDrawable defaultDrawable, @NonNull Context ctx) {
         // initialize dimensions
         int w = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
         int h = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
@@ -282,7 +304,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                 int eventType = xpp.getEventType();
                 while (eventType != XmlPullParser.END_DOCUMENT) {
                     if (eventType == XmlPullParser.START_TAG) {
-                        //parse <iconback> xml tags used as backgroud of generated icons
+                        //parse <iconback> xml tags used as background of generated icons
                         if (xpp.getName().equals("iconback")) {
                             for (int i = 0; i < xpp.getAttributeCount(); i++) {
                                 if (xpp.getAttributeName(i).startsWith("img")) {
@@ -313,7 +335,10 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                         }
                         //parse <scale> xml tags used as scale factor of original bitmap icon
                         else if (xpp.getName().equals("scale") && xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
-                            scaleFactor = Float.parseFloat(xpp.getAttributeValue(0));
+                            try {
+                                scaleFactor = Float.parseFloat(xpp.getAttributeValue(0));
+                            } catch (NumberFormatException ignored) {
+                            }
                         }
                         //parse <item> xml tags for custom icons
                         if (xpp.getName().equals("item")) {

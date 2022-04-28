@@ -494,21 +494,36 @@ public class DataHandler extends BroadcastReceiver
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return false;
         }
-        String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
+        return updateShortcut(shortcutInfo, !shortcutInfo.isPinned());
+    }
 
-        // if related package is excluded from KISS then the shortcut must be excluded too
-        Set<String> excludedAppList = getExcluded();
-        if (excludedAppList.contains(componentName)) {
+    /**
+     * Update DB with given {@link ShortcutRecord}.
+     *
+     * @param shortcutInfo the shortcut to update.
+     * @param includePackageName include package name in shortcut name
+     * @return true if update was successful
+     */
+    public boolean updateShortcut(ShortcutInfo shortcutInfo, boolean includePackageName) {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return false;
         }
 
         // Create Pojo
-        ShortcutRecord shortcut = ShortcutUtil.createShortcutRecord(context, shortcutInfo, !shortcutInfo.isPinned());
+        ShortcutRecord shortcut = ShortcutUtil.createShortcutRecord(context, shortcutInfo, includePackageName);
 
         if (shortcut == null) {
             return false;
         }
         if (shortcutInfo.isEnabled()) {
+            String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
+
+            // if related package is excluded from KISS then the shortcut must be excluded too
+            Set<String> excludedAppList = getExcluded();
+            if (excludedAppList.contains(componentName)) {
+                return false;
+            }
+
             Log.d(TAG, "Adding shortcut for " + shortcut.packageName);
 
             // if related package name is excluded from history, shortcut must be excluded from history too

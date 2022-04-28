@@ -14,20 +14,19 @@ import fr.neamar.kiss.utils.ShortcutUtil;
 
 public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
 
-    private final TagsHandler tagsHandler;
-
     public LoadShortcutsPojos(Context context) {
         super(context, ShortcutPojo.SCHEME);
-        tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
     }
 
     @Override
     protected ArrayList<ShortcutPojo> doInBackground(Void... arg0) {
-        if(context.get() == null) {
+        Context context = this.context.get();
+        if (context == null) {
             return new ArrayList<>();
         }
 
-        List<ShortcutRecord> records = DBHelper.getShortcuts(context.get());
+        TagsHandler tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
+        List<ShortcutRecord> records = DBHelper.getShortcuts(context);
         ArrayList<ShortcutPojo> pojos = new ArrayList<>(records.size());
 
         for (ShortcutRecord shortcutRecord : records) {

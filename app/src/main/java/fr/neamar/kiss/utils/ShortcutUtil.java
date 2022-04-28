@@ -58,6 +58,7 @@ public class ShortcutUtil {
     /**
      * Save all oreo shortcuts to DB
      */
+    @TargetApi(Build.VERSION_CODES.O)
     public static void addAllShortcuts(Context context) {
         new SaveAllOreoShortcutsAsync(context).execute();
     }

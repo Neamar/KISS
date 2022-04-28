@@ -44,7 +44,10 @@ import java.util.ArrayList;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
+import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.ForwarderManager;
+import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
@@ -337,7 +340,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     hider.fixScroll();
                     return false;
                 }
-                adapter.onClick(adapter.getCount() - 1, v);
+
+                if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
+                    SearchPojo pojo = SearchProvider.getDefaultSearch(v.getText().toString(), MainActivity.this, prefs);
+                    if (pojo != null) {
+                        Result.fromPojo(MainActivity.this, pojo).fastLaunch(MainActivity.this, null);
+                    }
+                } else {
+                    adapter.onClick(adapter.getCount() - 1, v);
+                }
 
                 return true;
             }
