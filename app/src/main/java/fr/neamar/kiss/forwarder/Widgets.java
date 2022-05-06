@@ -211,11 +211,11 @@ class Widgets extends Forwarder {
                 menu.findItem(R.id.move_down).setVisible(false);
             }
             int decreasedLineHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-            if (preventResizeWidget(decreasedLineHeight, currentAppWidgetInfo)) {
+            if (preventDecreaseLineHeight(decreasedLineHeight, currentAppWidgetInfo)) {
                 menu.findItem(R.id.decrease_size).setVisible(false);
             }
             int increasedLineHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-            if (preventResizeWidget(increasedLineHeight, currentAppWidgetInfo)) {
+            if (preventIncreaseLineHeight(increasedLineHeight, currentAppWidgetInfo)) {
                 menu.findItem(R.id.increase_size).setVisible(false);
             }
 
@@ -306,7 +306,7 @@ class Widgets extends Forwarder {
      */
     private void resizeWidget(AppWidgetHostView hostView, int height) {
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(hostView.getAppWidgetId());
-        if (preventResizeWidget(height, appWidgetInfo)) {
+        if (preventDecreaseLineHeight(height, appWidgetInfo) && preventIncreaseLineHeight(height, appWidgetInfo)) {
             return;
         }
         setWidgetSize(hostView, height, appWidgetInfo);
@@ -320,8 +320,25 @@ class Widgets extends Forwarder {
      * @param appWidgetInfo
      * @return true, if widget cannot be resized to given height
      */
-    private boolean preventResizeWidget(int height, AppWidgetProviderInfo appWidgetInfo) {
+    private boolean preventDecreaseLineHeight(int height, AppWidgetProviderInfo appWidgetInfo) {
         return height <= 0 || appWidgetInfo == null || height < Math.min(appWidgetInfo.minHeight, appWidgetInfo.minResizeHeight);
+    }
+
+    /**
+     * Check if resize of widget is prevented.
+     *
+     * @param height        new height of widget
+     * @param appWidgetInfo
+     * @return true, if widget cannot be resized to given height
+     */
+    private boolean preventIncreaseLineHeight(int height, AppWidgetProviderInfo appWidgetInfo) {
+        if (height <= 0 || appWidgetInfo == null) {
+            return true;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            return appWidgetInfo.maxResizeHeight >= appWidgetInfo.minHeight && height > appWidgetInfo.maxResizeHeight;
+        }
+        return false;
     }
 
     /**
