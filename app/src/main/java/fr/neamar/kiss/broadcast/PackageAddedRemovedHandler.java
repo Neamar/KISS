@@ -22,22 +22,27 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
     public static void handleEvent(Context ctx, String action, String packageName, UserHandle user, boolean replacing) {
         if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
             // Insert into history new packages (not updated ones)
-            if ("android.intent.action.PACKAGE_ADDED".equals(action) && !replacing) {
-                // Add new package to history
-                Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(packageName);
-                if (launchIntent == null) {//for some plugin app
-                    return;
-                }
+            if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
+                if (replacing) {
+                    // Update shortcuts
+                    KissApplication.getApplication(ctx).getDataHandler().updateShortcuts(packageName);
+                } else {
+                    // Add new package to history
+                    Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(packageName);
+                    if (launchIntent == null) {//for some plugin app
+                        return;
+                    }
 
-                String className = launchIntent.getComponent().getClassName();
-                String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
-                KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
-                // Add shortcut
-                KissApplication.getApplication(ctx).getDataHandler().updateShortcuts(packageName);
+                    String className = launchIntent.getComponent().getClassName();
+                    String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
+                    KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
+                    // Add shortcuts
+                    KissApplication.getApplication(ctx).getDataHandler().updateAllShortcuts(packageName);
+                }
             }
         }
 
-        if ("android.intent.action.PACKAGE_REMOVED".equals(action) && !replacing) {
+        if (Intent.ACTION_PACKAGE_REMOVED.equals(action) && !replacing) {
             // Remove all installed shortcuts
             KissApplication.getApplication(ctx).getDataHandler().removeShortcuts(packageName);
             KissApplication.getApplication(ctx).getDataHandler().removeFromExcluded(packageName);

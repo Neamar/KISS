@@ -16,6 +16,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.ShortcutUtil;
 
 public class ShortcutsProvider extends Provider<ShortcutPojo> {
     private static boolean notifiedKissNotDefaultLauncher = false;
@@ -29,7 +30,8 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
             launcher.registerCallback(new LauncherAppsCallback() {
                 @Override
                 public void onShortcutsChanged(String packageName, List<ShortcutInfo> shortcuts, android.os.UserHandle user) {
-                    KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().updateShortcuts(packageName, shortcuts);
+                    List<ShortcutInfo> shortcutsToUpdate = ShortcutUtil.getShortcutsToUpdate(shortcuts);
+                    KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().updateShortcuts(shortcutsToUpdate);
                 }
             });
         }

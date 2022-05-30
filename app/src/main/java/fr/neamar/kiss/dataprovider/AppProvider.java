@@ -44,7 +44,7 @@ public class AppProvider extends Provider<AppPojo> {
                 public void onPackageAdded(String packageName, android.os.UserHandle user) {
                     if (!Process.myUserHandle().equals(user)) {
                         PackageAddedRemovedHandler.handleEvent(AppProvider.this,
-                                "android.intent.action.PACKAGE_ADDED",
+                                Intent.ACTION_PACKAGE_ADDED,
                                 packageName, new UserHandle(manager.getSerialNumberForUser(user), user), false
                         );
                     }
@@ -54,7 +54,7 @@ public class AppProvider extends Provider<AppPojo> {
                 public void onPackageChanged(String packageName, android.os.UserHandle user) {
                     if (!Process.myUserHandle().equals(user)) {
                         PackageAddedRemovedHandler.handleEvent(AppProvider.this,
-                                "android.intent.action.PACKAGE_ADDED",
+                                Intent.ACTION_PACKAGE_ADDED,
                                 packageName, new UserHandle(manager.getSerialNumberForUser(user), user), true
                         );
                     }
@@ -64,7 +64,7 @@ public class AppProvider extends Provider<AppPojo> {
                 public void onPackageRemoved(String packageName, android.os.UserHandle user) {
                     if (!Process.myUserHandle().equals(user)) {
                         PackageAddedRemovedHandler.handleEvent(AppProvider.this,
-                                "android.intent.action.PACKAGE_REMOVED",
+                                Intent.ACTION_PACKAGE_REMOVED,
                                 packageName, new UserHandle(manager.getSerialNumberForUser(user), user), false
                         );
                     }
@@ -74,7 +74,7 @@ public class AppProvider extends Provider<AppPojo> {
                 public void onPackagesAvailable(String[] packageNames, android.os.UserHandle user, boolean replacing) {
                     if (!Process.myUserHandle().equals(user)) {
                         PackageAddedRemovedHandler.handleEvent(AppProvider.this,
-                                "android.intent.action.MEDIA_MOUNTED",
+                                Intent.ACTION_MEDIA_MOUNTED,
                                 null, new UserHandle(manager.getSerialNumberForUser(user), user), false
                         );
                     }
@@ -84,7 +84,7 @@ public class AppProvider extends Provider<AppPojo> {
                 public void onPackagesUnavailable(String[] packageNames, android.os.UserHandle user, boolean replacing) {
                     if (!Process.myUserHandle().equals(user)) {
                         PackageAddedRemovedHandler.handleEvent(AppProvider.this,
-                                "android.intent.action.MEDIA_UNMOUNTED",
+                                Intent.ACTION_MEDIA_UNMOUNTED,
                                 null, new UserHandle(manager.getSerialNumberForUser(user), user), false
                         );
                     }
