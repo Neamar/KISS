@@ -429,33 +429,55 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param packageName package name
      */
-    public void updateShortcuts(String packageName) {
+    public void updateAllShortcuts(String packageName) {
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
         }
+
+        Log.d(TAG, "Updating all shortcuts for " + packageName);
 
         List<ShortcutInfo> shortcuts;
         try {
             shortcuts = ShortcutUtil.getShortcuts(context, packageName);
         } catch (SecurityException | IllegalStateException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Updating all shortcuts for " + packageName, e);
             return;
         }
 
-        updateShortcuts(packageName, shortcuts);
+        updateShortcuts(shortcuts);
     }
 
     /**
-     * Update stored shortcut info for given shortcuts.
+     * Update stored shortcut info for all programmatically created shortcuts of given packageName.
      *
      * @param packageName package name
      */
-    public void updateShortcuts(String packageName, List<ShortcutInfo> shortcuts) {
+    public void updateShortcuts(String packageName) {
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             return;
         }
 
         Log.d(TAG, "Updating shortcuts for " + packageName);
+
+        List<ShortcutInfo> shortcuts;
+        try {
+            shortcuts = ShortcutUtil.getShortcuts(context, packageName);
+        } catch (SecurityException | IllegalStateException e) {
+            Log.e(TAG, "Updating shortcuts for " + packageName, e);
+            return;
+        }
+
+        shortcuts = ShortcutUtil.getShortcutsToUpdate(shortcuts);
+        updateShortcuts(shortcuts);
+    }
+
+    /**
+     * Update stored shortcut info for given shortcuts.
+     */
+    public void updateShortcuts(List<ShortcutInfo> shortcuts) {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return;
+        }
 
         boolean shortcutsUpdated = false;
         for (ShortcutInfo shortcutInfo : shortcuts) {
@@ -691,7 +713,7 @@ public class DataHandler extends BroadcastReceiver
         app.setExcluded(false);
 
         // Add shortcuts for this app
-        updateShortcuts(app.packageName);
+        updateAllShortcuts(app.packageName);
     }
 
     public void removeFromExcluded(String packageName) {

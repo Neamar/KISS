@@ -1,5 +1,9 @@
 package fr.neamar.kiss.utils;
 
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
+import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -29,10 +33,6 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.shortcut.SaveAllOreoShortcutsAsync;
 import fr.neamar.kiss.shortcut.SaveSingleOreoShortcutAsync;
-
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
-import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 
 public class ShortcutUtil {
 
@@ -213,5 +213,32 @@ public class ShortcutUtil {
         }
         return null;
     }
+
+    /**
+     * @param shortcuts all shortcuts
+     * @return shortcuts which should be updated
+     */
+    public static List<ShortcutInfo> getShortcutsToUpdate(List<ShortcutInfo> shortcuts) {
+        List<ShortcutInfo> result = new ArrayList<>();
+        for (ShortcutInfo shortcut : shortcuts) {
+            if (isShortcutToUpdate(shortcut)) {
+                result.add(shortcut);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * @param shortcut
+     * @return true, if shortcut must be update on change of package
+     */
+    private static boolean isShortcutToUpdate(ShortcutInfo shortcut) {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            return false;
+        }
+        // do not update pinned shortcuts, this should be done by user through UI only
+        return !shortcut.isPinned();
+    }
+
 
 }
