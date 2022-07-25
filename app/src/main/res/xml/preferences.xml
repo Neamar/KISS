@@ -141,10 +141,12 @@
                 android:summary="%s"
                 android:title="@string/theme_bar_color" />
         </PreferenceScreen>
-        <fr.neamar.kiss.preference.SwitchPreference
-            android:defaultValue="false"
-            android:key="small-results"
-            android:title="@string/small_results" />
+        <ListPreference
+            android:defaultValue="default"
+            android:entries="@array/resultsSizeEntries"
+            android:entryValues="@array/resultsSizeValues"
+            android:key="results-size"
+            android:title="@string/results_size"/>
 
         <PreferenceCategory android:title="@string/icons_category" android:key="icons-section">
             <ListPreference

@@ -47,7 +47,21 @@ class InterfaceTweaks extends Forwarder {
 
         UIColors.applyOverlay(mainActivity, prefs);
 
-        mainActivity.getTheme().applyStyle(prefs.getBoolean("small-results", false) ? R.style.OverlayResultSizeSmall : R.style.OverlayResultSizeStandard, true);
+        switch (prefs.getString("results-size", "")) {
+            case "smallest":
+                mainActivity.getTheme().applyStyle(R.style.OverlayResultSizeSmallest, true);
+                break;
+            case "small":
+                mainActivity.getTheme().applyStyle(R.style.OverlayResultSizeSmall, true);
+                break;
+            case "medium":
+                mainActivity.getTheme().applyStyle(R.style.OverlayResultSizeMedium, true);
+                break;
+            case "default":
+            default:
+                mainActivity.getTheme().applyStyle(R.style.OverlayResultSizeStandard, true);
+                break;
+        }
     }
 
     void onCreate() {
