@@ -1,5 +1,6 @@
 package fr.neamar.kiss.preference;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.annotation.StyleableRes;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -64,7 +67,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         String theme = prefs.getString("theme", "light");
         //if theme is light, change the text color
         if (!theme.contains("dark")) {
-
+            @SuppressLint("ResourceType") @StyleableRes
             int[] attrs = {android.R.attr.textColor};
             TypedArray ta = getContext().obtainStyledAttributes(R.style.AppThemeLight, attrs);
 

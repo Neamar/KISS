@@ -1,5 +1,6 @@
 package fr.neamar.kiss.result;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -27,6 +28,8 @@ import java.util.List;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.annotation.StyleableRes;
+
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -400,6 +403,7 @@ public abstract class Result {
      *
      */
     int getThemeFillColor(Context context) {
+        @SuppressLint("ResourceType") @StyleableRes
         int[] attrs = new int[]{R.attr.resultColor /* index 0 */};
         TypedArray ta = context.obtainStyledAttributes(attrs);
         int color = ta.getColor(0, Color.WHITE);

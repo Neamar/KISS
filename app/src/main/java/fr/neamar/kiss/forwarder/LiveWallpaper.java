@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import android.annotation.SuppressLint;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,6 +11,8 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+
+import androidx.annotation.StyleableRes;
 
 import fr.neamar.kiss.MainActivity;
 
@@ -29,6 +32,7 @@ class LiveWallpaper extends Forwarder {
         super(mainActivity);
         TypedValue typedValue = new TypedValue();
         mainActivity.getTheme().resolveAttribute(android.R.attr.windowShowWallpaper, typedValue, true);
+        @SuppressLint("ResourceType")
         TypedArray a = mainActivity.obtainStyledAttributes(typedValue.resourceId, new int[]{android.R.attr.windowShowWallpaper});
         wallpaperIsVisible = a.getBoolean(0, true);
         a.recycle();
