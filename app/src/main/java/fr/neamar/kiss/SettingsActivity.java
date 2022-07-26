@@ -164,7 +164,7 @@ public class SettingsActivity extends PreferenceActivity implements
         } else {
             // Run synchronously to ensure preferences can be restored from state
             runnable.run();
-            synchronized (SettingsActivity.this) {
+            synchronized (SettingsActivity.class) {
                 if (ItemToRunListContent == null)
                     ItemToRunListContent = generateItemToRunListContent(this);
 
@@ -227,7 +227,7 @@ public class SettingsActivity extends PreferenceActivity implements
         if (ItemToRunListContent == null) {
             AsyncTask.execute(() -> {
                 Pair<CharSequence[], CharSequence[]> content = generateItemToRunListContent(this);
-                synchronized (SettingsActivity.this) {
+                synchronized (SettingsActivity.class) {
                     if (ItemToRunListContent == null)
                         ItemToRunListContent = content;
                 }
@@ -239,7 +239,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void updateItemToRunList(String key) {
-        synchronized (SettingsActivity.this) {
+        synchronized (SettingsActivity.class) {
             if (ItemToRunListContent != null)
                 updateListPrefDependency(key, prefs.getString(key, null), "launch-pojo", key + "-launch-id", ItemToRunListContent);
         }
@@ -262,13 +262,11 @@ public class SettingsActivity extends PreferenceActivity implements
 
         if (prefEntryToRun instanceof ListPreference) {
             if (enableValue.equals(dependOnValue)) {
-                synchronized (SettingsActivity.this) {
-                    if (listContent != null) {
-                        CharSequence[] entries = listContent.first;
-                        CharSequence[] entryValues = listContent.second;
-                        ((ListPreference) prefEntryToRun).setEntries(entries);
-                        ((ListPreference) prefEntryToRun).setEntryValues(entryValues);
-                    }
+                if (listContent != null) {
+                    CharSequence[] entries = listContent.first;
+                    CharSequence[] entryValues = listContent.second;
+                    ((ListPreference) prefEntryToRun).setEntries(entries);
+                    ((ListPreference) prefEntryToRun).setEntryValues(entryValues);
                 }
             } else {
                 getParent(prefEntryToRun).removePreference(prefEntryToRun);
