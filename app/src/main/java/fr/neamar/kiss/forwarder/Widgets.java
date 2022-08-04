@@ -1,13 +1,18 @@
 package fr.neamar.kiss.forwarder;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
@@ -19,6 +24,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,6 +41,8 @@ class Widgets extends Forwarder {
     private static final int REQUEST_APPWIDGET_CONFIGURED = 5;
 
     private static final int APPWIDGET_HOST_ID = 442;
+
+    private static final int RESULT_REQUEST_BIND = 43895;
 
     private static final String WIDGET_PREF_KEY = "widgets-conf";
 
@@ -73,6 +82,10 @@ class Widgets extends Forwarder {
                 case REQUEST_APPWIDGET_PICKED:
                     configureAppWidget(data);
                     break;
+                case RESULT_REQUEST_BIND:
+                    // TODO how handle permission denied?
+                    Log.i("Widgets", "Widget bound");
+                    break;
             }
         } else if (resultCode == Activity.RESULT_CANCELED && data != null && (requestCode == REQUEST_APPWIDGET_CONFIGURED || requestCode == REQUEST_APPWIDGET_PICKED)) {
             // if widget was not selected, delete it
@@ -93,19 +106,65 @@ class Widgets extends Forwarder {
                 // delete widget id
                 mAppWidgetHost.deleteAppWidgetId(appWidgetId);
             }
+
         }
     }
 
+
     boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.add_widget) {
-            // request widget picker, a selection will lead to a call of onActivityResult
-            int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
-            Intent pickIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
-            pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            mainActivity.startActivityForResult(pickIntent, REQUEST_APPWIDGET_PICKED);
-            return true;
+            boolean textMode = prefs.getBoolean("widget-text-mode", false);
+            if (!textMode) {
+                // request widget picker, a selection will lead to a call of onActivityResult
+                int appWidgetId = mAppWidgetHost.allocateAppWidgetId();
+                Intent pickIntent = new Intent("android.appwidget.action.APPWIDGET_PICK");
+                pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+                mainActivity.startActivityForResult(pickIntent, REQUEST_APPWIDGET_PICKED);
+                return true;
+            } else {
+                // request widget picker via custom text selection
+                List<AppWidgetProviderInfo> widgetList = mAppWidgetManager.getInstalledProviders();
+                ArrayList<String> names = new ArrayList<String>();
+                ArrayList<AppWidgetProviderInfo> providers = new ArrayList<AppWidgetProviderInfo>();
+                // get all provides and names
+                for (AppWidgetProviderInfo info : widgetList) {
+                    names.add(info.provider.getClassName());
+                    providers.add(info);
+                }
+                final Widgets t = this;
+                // Prompt user to pick a widget based on their class names
+                new AlertDialog.Builder(mainActivity).setTitle("Pick a Widget").setItems(names.toArray(new String[]{}),
+                        new DialogInterface.OnClickListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                AppWidgetProviderInfo provider = providers.get(which);
+                                if (provider != null) {
+                                    int id = mAppWidgetHost.allocateAppWidgetId();
+                                    // This requires min api 16
+                                    boolean success = mAppWidgetManager.bindAppWidgetIdIfAllowed(id, provider.provider);
+                                    Log.d("Widgets", "suc" + success);
+                                    if (success) {
+                                        // directly call onActivityResult with the selected/newly-created id.
+                                        t.onActivityResult(REQUEST_APPWIDGET_PICKED, Activity.RESULT_OK, new Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id));
+                                    } else {
+                                        List<AppWidgetProviderInfo> infos = mAppWidgetManager.getInstalledProviders();
+                                        Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_BIND);
+                                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id);
+                                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, infos.get(0).provider);
+                                        // This is the options bundle described in the preceding section.
+                                        // TODO handle this correctly
+                                        //intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_OPTIONS, infos.get(0));
+                                        mainActivity.startActivityForResult(intent, RESULT_REQUEST_BIND);
+                                    }
+                                }
+                            }
+                        }
+                ).show();
+                // We return true despite not knowing the outcome.
+                return true;
+            }
         }
-
         return false;
     }
 
@@ -387,15 +446,14 @@ class Widgets extends Forwarder {
             // Launch over to configure widget, if needed.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, REQUEST_APPWIDGET_CONFIGURED, null);
-            }
-            else {
+            } else {
                 Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
                 intent.setComponent(appWidgetInfo.configure);
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 try {
                     mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
-                } catch(SecurityException e) {
-                    Toast.makeText(mainActivity,  "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
+                } catch (SecurityException e) {
+                    Toast.makeText(mainActivity, "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
                 }
             }
         }
