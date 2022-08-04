@@ -148,10 +148,9 @@ class Widgets extends Forwarder {
                                         // directly call onActivityResult with the selected/newly-created id.
                                         t.onActivityResult(REQUEST_APPWIDGET_PICKED, Activity.RESULT_OK, new Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id));
                                     } else {
-                                        List<AppWidgetProviderInfo> infos = mAppWidgetManager.getInstalledProviders();
                                         Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_BIND);
                                         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id);
-                                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, infos.get(0).provider);
+                                        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, provider.provider);
                                         // This is the options bundle described in the preceding section.
                                         // TODO handle this correctly
                                         //intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_OPTIONS, infos.get(0));
