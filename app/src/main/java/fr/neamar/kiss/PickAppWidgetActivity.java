@@ -12,7 +12,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +32,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
@@ -39,7 +43,10 @@ public class PickAppWidgetActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        InterfaceTweaks.applyTheme(this, PreferenceManager.getDefaultSharedPreferences(this));
         setContentView(R.layout.widget_picker);
+        UIColors.updateThemePrimaryColor(this);
 
         View progressContainer = findViewById(R.id.progressContainer);
         ListView listView = findViewById(android.R.id.list);
@@ -271,7 +278,7 @@ public class PickAppWidgetActivity extends Activity {
         public View getView(int position, View convertView, ViewGroup parent) {
             final View view;
             if (convertView == null) {
-                view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.widget_picker_item, parent, false);
             } else {
                 view = convertView;
             }
@@ -313,14 +320,25 @@ public class PickAppWidgetActivity extends Activity {
                     synchronized (ViewHolder.this) {
                         icon = mDrawable != null ? mDrawable : new ColorDrawable(0);
                     }
+                    int w = icon.getIntrinsicWidth();
+                    int h = icon.getIntrinsicHeight();
+                    float aspect = (w > 0 && h > 0) ? (w / (float) h) : 1f;
                     int size = textView.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
-                    icon.setBounds(0, 0, size * 2, size);
-                    textView.setCompoundDrawables(icon, null, null, null);
+                    if (size < h)
+                        size = h;
+                    icon.setBounds(0, 0, Math.round(size * aspect), size);
+                    textView.setCompoundDrawables(null, icon, null, null);
                 });
-                textView.setText(content.getName() + "\n" + ((ItemWidget) content).info.widgetDesc);
+                String description = ((ItemWidget) content).info.widgetDesc;
+                if (!TextUtils.isEmpty(description))
+                    textView.setText(content.getName() + "\n" + description);
+                else
+                    textView.setText(content.getName());
+                textView.setGravity(Gravity.CENTER);
             } else {
                 textView.setCompoundDrawables(null, null, null, null);
                 textView.setText(content.getName());
+                textView.setGravity(Gravity.START);
             }
         }
     }
