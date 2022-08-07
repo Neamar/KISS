@@ -1,10 +1,12 @@
 package fr.neamar.kiss.utils;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Process;
+import android.os.UserManager;
 
 
 /**
@@ -35,6 +37,15 @@ public class UserHandle implements Parcelable {
             this.handle = user;
         }
     }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public UserHandle(Context context, android.os.UserHandle userHandle) {
+        final UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+        assert manager != null;
+        serial = manager.getSerialNumberForUser(userHandle);
+        handle = userHandle;
+    }
+
 
     protected UserHandle(Parcel in) {
         serial = in.readLong();
