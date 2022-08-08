@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -202,6 +201,8 @@ public class PickAppWidgetActivity extends Activity {
         final String widgetName;
         final String widgetDesc;
         final AppWidgetProviderInfo appWidgetInfo;
+        int cachedIconWidth = 0;
+        int cachedIconHeight = 0;
 
         private WidgetInfo(String app, String name, String description, AppWidgetProviderInfo appWidgetInfo) {
             this.appName = app;
@@ -275,14 +276,31 @@ public class PickAppWidgetActivity extends Activity {
         }
 
         @Override
+        public int getItemViewType(int position) {
+            return getItem(position) instanceof ItemTitle ? 1 : 0;
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return 2;
+        }
+
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final View view;
-            if (convertView == null) {
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.widget_picker_item, parent, false);
-            } else {
+            ViewHolder holder = null;
+            final int viewType = getItemViewType(position);
+            if (convertView != null && convertView.getTag() instanceof ViewHolder)
+                holder = (ViewHolder) convertView.getTag();
+            if (holder != null && holder.getViewType() == viewType) {
                 view = convertView;
+            } else {
+                int layout = R.layout.widget_picker_item;
+                if (viewType == 1)
+                    layout = R.layout.widget_picker_item_title;
+                view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+                holder = new ViewHolder(viewType, view);
             }
-            ViewHolder holder = view.getTag() instanceof ViewHolder ? (ViewHolder) view.getTag() : new ViewHolder(view);
 
             MenuItem content = getItem(position);
             holder.setContent(content);
@@ -291,14 +309,20 @@ public class PickAppWidgetActivity extends Activity {
         }
     }
 
-    private static class ViewHolder {
+    public static class ViewHolder {
+        private final int mViewType;
         private final TextView textView;
         private Utilities.AsyncRun task = null;
         private Drawable mDrawable = null;
 
-        ViewHolder(View itemView) {
+        public ViewHolder(int viewType, View itemView) {
             itemView.setTag(this);
+            mViewType = viewType;
             textView = itemView.findViewById(android.R.id.text1);
+        }
+
+        public int getViewType() {
+            return mViewType;
         }
 
         public void setContent(MenuItem content) {
@@ -306,10 +330,19 @@ public class PickAppWidgetActivity extends Activity {
                 task.cancel();
                 task = null;
             }
+            CharSequence text = content.getName();
             if (content instanceof ItemWidget) {
-                final AppWidgetProviderInfo info = ((ItemWidget) content).info.appWidgetInfo;
+                final WidgetInfo widgetInfo = ((ItemWidget) content).info;
+                // set cached icon size to help ListView scrolling
+                {
+                    int w = widgetInfo.cachedIconWidth;
+                    int h = widgetInfo.cachedIconHeight;
+                    Drawable icon = new ColorDrawable(0);
+                    icon.setBounds(0, 0, w, h);
+                    textView.setCompoundDrawables(null, icon, null, null);
+                }
                 task = Utilities.runAsync(t -> {
-                    Drawable icon = getWidgetPreview(textView.getContext(), info);
+                    Drawable icon = getWidgetPreview(textView.getContext(), widgetInfo.appWidgetInfo);
                     synchronized (ViewHolder.this) {
                         mDrawable = icon;
                     }
@@ -323,23 +356,28 @@ public class PickAppWidgetActivity extends Activity {
                     int w = icon.getIntrinsicWidth();
                     int h = icon.getIntrinsicHeight();
                     float aspect = (w > 0 && h > 0) ? (w / (float) h) : 1f;
-                    int size = textView.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
-                    if (size < h)
-                        size = h;
-                    icon.setBounds(0, 0, Math.round(size * aspect), size);
+                    int minHeight = textView.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
+                    if (h < minHeight) {
+                        h = minHeight;
+                        w = Math.round(h * aspect);
+                    }
+                    int maxWidth = textView.getWidth() - textView.getPaddingLeft() - textView.getPaddingRight();
+                    if (w > maxWidth) {
+                        w = maxWidth;
+                        h = Math.round(w / aspect);
+                    }
+                    widgetInfo.cachedIconWidth = w;
+                    widgetInfo.cachedIconHeight = h;
+                    icon.setBounds(0, 0, w, h);
                     textView.setCompoundDrawables(null, icon, null, null);
                 });
+
                 String description = ((ItemWidget) content).info.widgetDesc;
                 if (!TextUtils.isEmpty(description))
-                    textView.setText(content.getName() + "\n" + description);
-                else
-                    textView.setText(content.getName());
-                textView.setGravity(Gravity.CENTER);
-            } else {
-                textView.setCompoundDrawables(null, null, null, null);
-                textView.setText(content.getName());
-                textView.setGravity(Gravity.START);
+                    text = content.getName() + "\n" + description;
             }
+
+            textView.setText(text);
         }
     }
 }
