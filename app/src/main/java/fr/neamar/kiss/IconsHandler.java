@@ -137,16 +137,32 @@ public class IconsHandler {
         }
     }
 
+    /**
+     * Get or generate icon for an app.
+     * Uses cache and allow custom icons only if icon pack is in use.
+     *
+     * @param componentName component name
+     * @param userHandle    user handle
+     * @return drawable
+     */
+    public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
+        return getDrawableIconForPackage(componentName, userHandle, true, mIconPack != null);
+    }
 
     /**
-     * Get or generate icon for an app
+     * Get or generate icon for an app.
+     *
+     * @param componentName  component name
+     * @param userHandle     user handle
+     * @param useCache       use icon cache
+     * @param useCustomIcons use custom icons
+     * @return drawable
      */
-    @SuppressWarnings("CatchAndPrintStackTrace")
-    public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle) {
+    public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
         final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
 
         // Search in cache
-        {
+        if (useCache) {
             Drawable cacheIcon = cacheGetDrawable(cacheKey);
             if (cacheIcon != null) {
                 return cacheIcon;
@@ -156,9 +172,11 @@ public class IconsHandler {
         Drawable drawable = null;
 
         // search for custom icon
-        Map<String, Long> customIconIds = getCustomIconIds();
-        if (customIconIds.containsKey(cacheKey)) {
-            drawable = getCustomIcon(cacheKey, customIconIds.get(cacheKey));
+        if (useCustomIcons) {
+            Map<String, Long> customIconIds = getCustomIconIds();
+            if (customIconIds.containsKey(cacheKey)) {
+                drawable = getCustomIcon(cacheKey, customIconIds.get(cacheKey));
+            }
         }
 
         // check the icon pack for a resource

@@ -159,7 +159,7 @@ public class CustomIconDialog extends DialogFragment {
             mPreview = view.findViewById(R.id.preview);
             Drawable drawable = customIcon != 0 ? iconsHandler.getCustomIcon(name, customIcon) : null;
             if (drawable == null)
-                drawable = iconsHandler.getDrawableIconForPackage(cn, userHandle);
+                drawable = iconsHandler.getDrawableIconForPackage(cn, userHandle, false, false);
             mPreview.setImageDrawable(drawable);
         }
 
@@ -184,7 +184,7 @@ public class CustomIconDialog extends DialogFragment {
 
         // add default icon
         {
-            Drawable drawable = iconsHandler.getDrawableIconForPackage(cn, userHandle);
+            Drawable drawable = iconsHandler.getDrawableIconForPackage(cn, userHandle, false, false);
 
             ImageView icon = quickList.findViewById(android.R.id.icon);
             icon.setImageDrawable(drawable);
