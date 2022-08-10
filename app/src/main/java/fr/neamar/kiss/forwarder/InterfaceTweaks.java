@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -105,6 +106,15 @@ class InterfaceTweaks extends Forwarder {
 
         if (prefs.getBoolean("pref-hide-search-bar-hint", false)) {
             mainActivity.searchEditText.setHint("");
+        }
+
+        if (prefs.getBoolean("large-result-list-margins", false)) {
+            ViewGroup.LayoutParams params = mainActivity.listContainer.getLayoutParams();
+            if (params instanceof ViewGroup.MarginLayoutParams) {
+                int size = mainActivity.getResources().getDimensionPixelSize(R.dimen.list_margin_horizontal_large);
+                ((ViewGroup.MarginLayoutParams) params).leftMargin = size;
+                ((ViewGroup.MarginLayoutParams) params).rightMargin = size;
+            }
         }
     }
 
