@@ -28,6 +28,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import fr.neamar.kiss.broadcast.ProfileChangedHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
@@ -85,6 +86,12 @@ public class DataHandler extends BroadcastReceiver
 
         Intent i = new Intent(MainActivity.START_LOAD);
         this.context.sendBroadcast(i);
+
+        // Monitor changes for profiles
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            ProfileChangedHandler profileChangedHandler = new ProfileChangedHandler();
+            profileChangedHandler.register(this.context.getApplicationContext());
+        }
 
         // Monitor changes for service preferences (to automatically start and stop services)
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

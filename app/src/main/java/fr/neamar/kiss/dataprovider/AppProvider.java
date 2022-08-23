@@ -1,6 +1,5 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -11,12 +10,8 @@ import android.os.Process;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
 
-import androidx.annotation.RequiresApi;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
-import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
 import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -30,7 +25,7 @@ public class AppProvider extends Provider<AppPojo> {
 
     @Override
     public void onCreate() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Package installation/uninstallation events for the main
             // profile are still handled using PackageAddedRemovedHandler itself
             final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
@@ -90,28 +85,6 @@ public class AppProvider extends Provider<AppPojo> {
                     }
                 }
             });
-
-            // Try to clean up app-related data when profile is removed
-            IntentFilter filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_MANAGED_PROFILE_ADDED);
-            filter.addAction(Intent.ACTION_MANAGED_PROFILE_REMOVED);
-            this.registerReceiver(new BroadcastReceiver() {
-                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    if (Objects.equals(intent.getAction(), Intent.ACTION_MANAGED_PROFILE_ADDED)) {
-                        AppProvider.this.reload();
-                    } else if (Objects.equals(intent.getAction(), Intent.ACTION_MANAGED_PROFILE_REMOVED)) {
-                        android.os.UserHandle profile = intent.getParcelableExtra(Intent.EXTRA_USER);
-
-                        UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
-
-                        KissApplication.getApplication(context).getDataHandler().removeFromExcluded(user);
-                        KissApplication.getApplication(context).getDataHandler().removeFromFavorites(user);
-                        AppProvider.this.reload();
-                    }
-                }
-            }, filter);
         }
 
         // Get notified when app changes on standard user profile
