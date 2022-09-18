@@ -225,12 +225,19 @@ public class DBHelper {
         return records;
     }
 
+    /**
+     * Insert or update a shortcut into DB.
+     *
+     * @param context
+     * @param shortcut
+     * @return true, if shortcut has changed
+     */
     public static boolean insertShortcut(Context context, ShortcutRecord shortcut) {
         SQLiteDatabase db = getDatabase(context);
-        // Do not add duplicate shortcuts
-        try (Cursor cursor = db.query("shortcuts", new String[]{"package", "intent_uri"},
-                "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri}, null, null, null, null)) {
-            if (cursor.moveToFirst()) {
+        // check if any field has changed
+        try (Cursor cursor = db.query("shortcuts", new String[]{"name", "package", "intent_uri"},
+                "name = ? and package = ? AND intent_uri = ?", new String[]{shortcut.name, shortcut.packageName, shortcut.intentUri}, null, null, null, null)) {
+            if (cursor.getCount() > 0) {
                 return false;
             }
         }
@@ -242,13 +249,26 @@ public class DBHelper {
         values.put("icon_blob", (String) null); // Another legacy field (icon is dynamically retrieved)
         values.put("intent_uri", shortcut.intentUri);
 
-        db.insert("shortcuts", null, values);
+        // do not add duplicate shortcuts
+        int rowsAffected = db.update("shortcuts", values, "package = ? AND intent_uri = ?", new String[]{shortcut.packageName, shortcut.intentUri});
+        if (rowsAffected == 0) {
+            db.insert("shortcuts", null, values);
+        }
         return true;
     }
 
-    public static void removeShortcut(Context context, String packageName, String intentUri) {
+    /**
+     * Remove a shortcut from DB.
+     *
+     * @param context
+     * @param packageName
+     * @param intentUri
+     * @return true, if shortcut was removed
+     */
+    public static boolean removeShortcut(Context context, String packageName, String intentUri) {
         SQLiteDatabase db = getDatabase(context);
-        db.delete("shortcuts", "package = ? AND intent_uri = ?", new String[]{packageName, intentUri});
+        int rowsAffected = db.delete("shortcuts", "package = ? AND intent_uri = ?", new String[]{packageName, intentUri});
+        return rowsAffected > 0;
     }
 
     public static void addCustomAppName(Context context, String componentName, String newName) {

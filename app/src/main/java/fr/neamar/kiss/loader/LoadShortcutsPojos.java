@@ -1,6 +1,8 @@
 package fr.neamar.kiss.loader;
 
 import android.content.Context;
+import android.content.pm.ShortcutInfo;
+import android.os.Build;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +39,22 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             pojo.setName(shortcutRecord.name);
             pojo.setTags(tagsHandler.getTags(pojo.id));
 
-            pojos.add(pojo);
+            if (isExistingShortcut(pojo)) {
+                pojos.add(pojo);
+            }
         }
 
         return pojos;
+    }
+
+    private boolean isExistingShortcut(ShortcutPojo pojo) {
+        if (pojo.isOreoShortcut()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ShortcutInfo shortcutInfo = ShortcutUtil.getShortCut(context.get(), pojo.packageName, pojo.getOreoId());
+                return shortcutInfo != null;
+            }
+        }
+        return true;
     }
 
 }

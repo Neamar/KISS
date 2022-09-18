@@ -507,8 +507,8 @@ public class DataHandler extends BroadcastReceiver
      * @param shortcut shortcut to be removed
      */
     public void removeShortcut(ShortcutPojo shortcut) {
-        removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
-        if (this.getShortcutsProvider() != null) {
+        boolean shortcutUpdated = removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
+        if (shortcutUpdated && this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
     }
@@ -564,8 +564,7 @@ public class DataHandler extends BroadcastReceiver
             return DBHelper.insertShortcut(this.context, shortcut);
         } else {
             String id = ShortcutUtil.generateShortcutId(shortcut.name);
-            removeShortcut(id, shortcut.packageName, shortcut.intentUri);
-            return true;
+            return removeShortcut(id, shortcut.packageName, shortcut.intentUri);
         }
     }
 
@@ -575,12 +574,13 @@ public class DataHandler extends BroadcastReceiver
      * @param id          KISS shortcut id, same as {@link ShortcutPojo#id}
      * @param packageName package name, same as {@link ShortcutPojo#packageName}
      * @param intentUri   intent to be called, same as {@link ShortcutPojo#intentUri}
+     * @return true, if shortcut was removed
      */
-    private void removeShortcut(String id, String packageName, String intentUri) {
+    private boolean removeShortcut(String id, String packageName, String intentUri) {
         Log.d(TAG, "Removing shortcut for " + packageName);
         // Also remove shortcut from favorites
         removeFromFavorites(id);
-        DBHelper.removeShortcut(this.context, packageName, intentUri);
+        return DBHelper.removeShortcut(this.context, packageName, intentUri);
     }
 
     /**
