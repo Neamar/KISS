@@ -13,6 +13,7 @@ import java.util.List;
  * match("otw", "Druid of the Claw", info) = true, info.score = -3
  * match("otw", "Frostwolf Grunt", info) = true, info.score = -13
  */
+@SuppressWarnings("CanIgnoreReturnValueSuggester")
 public class FuzzyScore {
     private final int patternLength;
     private final int[] patternChar;
@@ -200,35 +201,41 @@ public class FuzzyScore {
                 }
 
                 // Apply bonus for consecutive bonuses
-                if (prevMatched && !rematch)
+                if (prevMatched && !rematch) {
                     newScore += adjacency_bonus;
+                }
 
                 // Apply bonus for matches after a separator
-                if (prevSeparator)
+                if (prevSeparator) {
                     newScore += separator_bonus;
+                }
 
                 // Apply bonus across camel case boundaries. Includes "clever" isLetter check.
-                if (prevLower && strChar == strUpper && strLower != strUpper)
+                if (prevLower && strChar == strUpper && strLower != strUpper) {
                     newScore += camel_bonus;
+                }
 
                 // Update pattern index IF the next pattern letter was matched
-                if (nextMatch)
+                if (nextMatch) {
                     ++patternIdx;
+                }
 
                 // Update best letter in text which may be for a "next" letter or a "rematch"
                 if (newScore >= bestLetterScore) {
 
                     // Apply penalty for now skipped letter
-                    if (bestLetter != null)
+                    if (bestLetter != null) {
                         score += unmatched_letter_penalty;
+                    }
 
                     bestLetter = strChar;
                     bestLower = strLower;
                     bestLetterIdx = strIdx;
                     bestLetterScore = newScore;
 
-                    if (prevSeparator)
+                    if (prevSeparator) {
                         fullWord = true;
+                    }
                 }
 
                 prevMatched = true;

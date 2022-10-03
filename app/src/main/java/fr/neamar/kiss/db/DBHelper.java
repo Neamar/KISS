@@ -129,7 +129,7 @@ public class DBHelper {
         // order history based on frequency
         String sql = "SELECT record, count(*) FROM history " +
                 "WHERE timeStamp >= 0 " +
-                "AND timeStamp >" + (System.currentTimeMillis() - (hours * 3600000)) +
+                "AND timeStamp >" + (System.currentTimeMillis() - (hours * 3600000L)) +
                 " GROUP BY record " +
                 " ORDER BY count(*) DESC " +
                 " LIMIT " + limit;
