@@ -34,10 +34,10 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     /**
      * Array list containing all the results currently displayed
      */
-    private List<Result> results;
+    private final List<Result> results;
 
     // Mapping from letter to a position (only used for fast scroll, when viewing app list)
-    private HashMap<String, Integer> alphaIndexer = new HashMap<>();
+    private final HashMap<String, Integer> alphaIndexer = new HashMap<>();
     // List of available sections (only used for fast scroll)
     private String[] sections = new String[0];
 
@@ -93,8 +93,8 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     }
 
     @Override
-    public @NonNull
-    View getView(int position, View convertView, @NonNull ViewGroup parent) {
+    @NonNull
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         return results.get(position).display(parent.getContext(), convertView, parent, fuzzyScore);
     }
 

@@ -80,7 +80,7 @@ class DB extends SQLiteOpenHelper {
                     database.execSQL("DROP TABLE custom_apps");
                     break;
                 case 5:
-                    throw new RuntimeException("Can't downgrade app below DB level 5");
+                    throw new UnsupportedOperationException("Can't downgrade app below DB level 5");
                 default:
                     break;
             }
