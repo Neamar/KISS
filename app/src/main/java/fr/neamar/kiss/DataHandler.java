@@ -102,7 +102,7 @@ public class DataHandler extends BroadcastReceiver
 
         // Some basic providers are defined directly,
         // as we don't need the overhead of a service for them
-        // Those providers dong't expose a service connection,
+        // Those providers don't expose a service connection,
         // and you can't bind / unbind to them dynamically.
         ProviderEntry calculatorEntry = new ProviderEntry();
         calculatorEntry.provider = new CalculatorProvider();
@@ -681,6 +681,10 @@ public class DataHandler extends BroadcastReceiver
             for (ShortcutRecord shortcut : shortcutsList) {
                 String id = ShortcutUtil.generateShortcutId(shortcut.name);
                 excluded.remove(id);
+            }
+            // Refresh shortcuts
+            if (!shortcutsList.isEmpty() && this.getShortcutsProvider() != null) {
+                this.getShortcutsProvider().reload();
             }
         }
 
