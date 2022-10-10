@@ -20,25 +20,23 @@ import fr.neamar.kiss.utils.UserHandle;
 public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
     public static void handleEvent(Context ctx, String action, String packageName, UserHandle user, boolean replacing) {
-        if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
-            // Insert into history new packages (not updated ones)
-            if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
-                if (replacing) {
-                    // Update shortcuts
-                    KissApplication.getApplication(ctx).getDataHandler().updateShortcuts(packageName);
-                } else {
+        if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
+            if (replacing) {
+                // Update shortcuts
+                KissApplication.getApplication(ctx).getDataHandler().updateShortcuts(packageName);
+            } else {
+                Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(packageName);
+                // launchIntent can be null for some plugin app
+                if (launchIntent != null) {
                     // Add new package to history
-                    Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(packageName);
-                    if (launchIntent == null) {//for some plugin app
-                        return;
+                    if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
+                        String className = launchIntent.getComponent().getClassName();
+                        String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
+                        KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
                     }
-
-                    String className = launchIntent.getComponent().getClassName();
-                    String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
-                    KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
-                    // Add shortcuts
-                    KissApplication.getApplication(ctx).getDataHandler().updateAllShortcuts(packageName);
                 }
+                // Add shortcuts
+                KissApplication.getApplication(ctx).getDataHandler().updateAllShortcuts(packageName);
             }
         }
 
