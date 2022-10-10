@@ -28,6 +28,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import fr.neamar.kiss.broadcast.ProfileChangedHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.dataprovider.IProvider;
@@ -85,6 +86,12 @@ public class DataHandler extends BroadcastReceiver
 
         Intent i = new Intent(MainActivity.START_LOAD);
         this.context.sendBroadcast(i);
+
+        // Monitor changes for profiles
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            ProfileChangedHandler profileChangedHandler = new ProfileChangedHandler();
+            profileChangedHandler.register(this.context.getApplicationContext());
+        }
 
         // Monitor changes for service preferences (to automatically start and stop services)
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -500,8 +507,8 @@ public class DataHandler extends BroadcastReceiver
      * @param shortcut shortcut to be removed
      */
     public void removeShortcut(ShortcutPojo shortcut) {
-        removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
-        if (this.getShortcutsProvider() != null) {
+        boolean shortcutUpdated = removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
+        if (shortcutUpdated && this.getShortcutsProvider() != null) {
             this.getShortcutsProvider().reload();
         }
     }
@@ -557,8 +564,7 @@ public class DataHandler extends BroadcastReceiver
             return DBHelper.insertShortcut(this.context, shortcut);
         } else {
             String id = ShortcutUtil.generateShortcutId(shortcut.name);
-            removeShortcut(id, shortcut.packageName, shortcut.intentUri);
-            return true;
+            return removeShortcut(id, shortcut.packageName, shortcut.intentUri);
         }
     }
 
@@ -568,12 +574,13 @@ public class DataHandler extends BroadcastReceiver
      * @param id          KISS shortcut id, same as {@link ShortcutPojo#id}
      * @param packageName package name, same as {@link ShortcutPojo#packageName}
      * @param intentUri   intent to be called, same as {@link ShortcutPojo#intentUri}
+     * @return true, if shortcut was removed
      */
-    private void removeShortcut(String id, String packageName, String intentUri) {
+    private boolean removeShortcut(String id, String packageName, String intentUri) {
         Log.d(TAG, "Removing shortcut for " + packageName);
         // Also remove shortcut from favorites
         removeFromFavorites(id);
-        DBHelper.removeShortcut(this.context, packageName, intentUri);
+        return DBHelper.removeShortcut(this.context, packageName, intentUri);
     }
 
     /**

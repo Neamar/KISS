@@ -34,10 +34,6 @@ public class KissApplication extends Application {
         return dataHandler;
     }
 
-    public void setDataHandler(DataHandler newDataHandler) {
-        dataHandler = newDataHandler;
-    }
-
     public RootHandler getRootHandler() {
         if (rootHandler == null) {
             rootHandler = new RootHandler(this);

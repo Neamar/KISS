@@ -128,7 +128,7 @@ public class ShortcutUtil {
 
             // find the correct UserHandle and get shortcut
             for (UserHandle userHandle : userHandles) {
-                if (userManager.isUserRunning(userHandle)) {
+                if (userManager.isUserRunning(userHandle) && userManager.isUserUnlocked(userHandle)) {
                     List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
                     if (shortcuts != null) {
                         for (ShortcutInfo shortcut : shortcuts) {
