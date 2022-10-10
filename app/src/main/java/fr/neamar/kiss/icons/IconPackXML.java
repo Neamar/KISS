@@ -198,7 +198,8 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         // create a bitmap for the result
         Bitmap result = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
-        canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG));
+        canvas.setDrawFilter(new PaintFlagsDrawFilter(Paint.ANTI_ALIAS_FLAG,
+                Paint.FILTER_BITMAP_FLAG));
         float sanitizedScaleFactor = scaleFactor;
         if (maskImage == null && backImages.isEmpty() && frontImage == null) {
             // fall back to rescaling only if necessary
