@@ -1,6 +1,8 @@
 package fr.neamar.kiss.forwarder;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -22,48 +24,52 @@ import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.utils.ViewGroupUtils;
 
 // Deals with any settings in the "User Interface" setting sub-screen
-class InterfaceTweaks extends Forwarder {
+public class InterfaceTweaks extends Forwarder {
     InterfaceTweaks(MainActivity mainActivity) {
         super(mainActivity);
 
         // Setting the theme needs to be done before setContentView()
+        applyTheme(mainActivity, prefs);
+    }
+
+    public static void applyTheme(Activity act, SharedPreferences prefs) {
         String theme = prefs.getString("theme", "transparent");
         switch (theme) {
             case "dark":
-                mainActivity.setTheme(R.style.AppThemeDark);
+                act.setTheme(R.style.AppThemeDark);
                 break;
             case "transparent":
-                mainActivity.setTheme(R.style.AppThemeTransparent);
+                act.setTheme(R.style.AppThemeTransparent);
                 break;
             case "semi-transparent":
-                mainActivity.setTheme(R.style.AppThemeSemiTransparent);
+                act.setTheme(R.style.AppThemeSemiTransparent);
                 break;
             case "semi-transparent-dark":
-                mainActivity.setTheme(R.style.AppThemeSemiTransparentDark);
+                act.setTheme(R.style.AppThemeSemiTransparentDark);
                 break;
             case "transparent-dark":
-                mainActivity.setTheme(R.style.AppThemeTransparentDark);
+                act.setTheme(R.style.AppThemeTransparentDark);
                 break;
             case "amoled-dark":
-                mainActivity.setTheme(R.style.AppThemeAmoledDark);
+                act.setTheme(R.style.AppThemeAmoledDark);
                 break;
         }
 
-        UIColors.applyOverlay(mainActivity, prefs);
+        UIColors.applyOverlay(act, prefs);
 
         switch (prefs.getString("results-size", "")) {
             case "smallest":
-                mainActivity.getTheme().applyStyle(R.style.OverlayResultSizeSmallest, true);
+                act.getTheme().applyStyle(R.style.OverlayResultSizeSmallest, true);
                 break;
             case "small":
-                mainActivity.getTheme().applyStyle(R.style.OverlayResultSizeSmall, true);
+                act.getTheme().applyStyle(R.style.OverlayResultSizeSmall, true);
                 break;
             case "medium":
-                mainActivity.getTheme().applyStyle(R.style.OverlayResultSizeMedium, true);
+                act.getTheme().applyStyle(R.style.OverlayResultSizeMedium, true);
                 break;
             case "default":
             default:
-                mainActivity.getTheme().applyStyle(R.style.OverlayResultSizeStandard, true);
+                act.getTheme().applyStyle(R.style.OverlayResultSizeStandard, true);
                 break;
         }
     }

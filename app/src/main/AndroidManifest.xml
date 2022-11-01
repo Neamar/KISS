@@ -112,6 +112,17 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".PickAppWidgetActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SettingTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".kustomsupport.AutoFinishTransparentActivity"
             android:theme="@style/Theme.Transparent" />
 
