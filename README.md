@@ -13,7 +13,7 @@ _Browsing for apps is and should be secondary_.
 
 [<img src="https://img.shields.io/f-droid/v/fr.neamar.kiss.svg?logo=f-droid&label=F-Droid&style=flat-square"
       alt="F-Droid Release"/>](https://f-droid.org/packages/fr.neamar.kiss)
-[<img src="https://img.shields.io/endpoint?color=blue&logo=google-play&style=flat-square&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dfr.neamar.kiss%26l%3DGoogle%2520Play%26m%3D%24version"
+[<img src="https://img.shields.io/endpoint?color=blue&logo=google-play&style=flat-square&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dfr.neamar.kiss%26l%3DGoogle%2520Play%26m%3D%24version"
       alt="Playstore Release"/>](https://play.google.com/store/apps/details?id=fr.neamar.kiss)
 [<img src="https://img.shields.io/github/v/release/Neamar/KISS.svg?logo=github&label=GitHub&style=flat-square"
       alt="GitHub Release"/>](https://github.com/Neamar/KISS/releases)
