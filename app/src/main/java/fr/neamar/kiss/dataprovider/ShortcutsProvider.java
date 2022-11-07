@@ -6,6 +6,7 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
@@ -16,22 +17,20 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
-import fr.neamar.kiss.utils.ShortcutUtil;
 
 public class ShortcutsProvider extends Provider<ShortcutPojo> {
     private static boolean notifiedKissNotDefaultLauncher = false;
 
     @Override
     public void onCreate() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
             assert launcher != null;
 
             launcher.registerCallback(new LauncherAppsCallback() {
                 @Override
                 public void onShortcutsChanged(String packageName, List<ShortcutInfo> shortcuts, android.os.UserHandle user) {
-                    List<ShortcutInfo> shortcutsToUpdate = ShortcutUtil.getShortcutsToUpdate(shortcuts);
-                    KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().updateShortcuts(shortcutsToUpdate);
+                    KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().reloadShortcuts();
                 }
             });
         }
@@ -91,11 +90,15 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
         }
     }
 
-    public Pojo findByName(String name) {
-        for (Pojo pojo : pojos) {
-            if (pojo.getName().equals(name))
-                return pojo;
+    public List<ShortcutPojo> getPinnedShortcuts() {
+        List<ShortcutPojo> records = new ArrayList<>(pojos.size());
+
+        for (ShortcutPojo pojo : pojos) {
+            if (!pojo.isPinned()) continue;
+
+            pojo.relevance = 0;
+            records.add(pojo);
         }
-        return null;
+        return records;
     }
 }

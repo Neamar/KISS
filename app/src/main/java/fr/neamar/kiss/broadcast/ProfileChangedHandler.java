@@ -11,8 +11,6 @@ import androidx.annotation.RequiresApi;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.dataprovider.AppProvider;
-import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.utils.UserHandle;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -42,14 +40,8 @@ public class ProfileChangedHandler extends BroadcastReceiver {
                 Intent.ACTION_PROFILE_INACCESSIBLE.equals(intent.getAction())) {
             DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
 
-            AppProvider appProvider = dataHandler.getAppProvider();
-            if (appProvider != null) {
-                appProvider.reload();
-            }
-            ShortcutsProvider shortcutsProvider = dataHandler.getShortcutsProvider();
-            if (shortcutsProvider != null) {
-                shortcutsProvider.reload();
-            }
+            dataHandler.reloadApps();
+            dataHandler.reloadShortcuts();
         }
     }
 

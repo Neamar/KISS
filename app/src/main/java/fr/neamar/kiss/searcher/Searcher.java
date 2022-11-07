@@ -61,9 +61,6 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             return false;
 
         Collections.addAll(this.processedPojos, pojos);
-        int maxResults = getMaxResultCount();
-        while (this.processedPojos.size() > maxResults)
-            this.processedPojos.poll();
 
         return true;
     }
@@ -98,6 +95,9 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             activity.adapter.clear();
         } else {
             PriorityQueue<Pojo> queue = this.processedPojos;
+            int maxResults = getMaxResultCount();
+            while (queue.size() > maxResults)
+                queue.poll();
             ArrayList<Result> results = new ArrayList<>(queue.size());
             while (queue.peek() != null) {
                 results.add(Result.fromPojo(activity, queue.poll()));

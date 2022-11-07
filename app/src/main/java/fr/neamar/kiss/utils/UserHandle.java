@@ -1,6 +1,5 @@
 package fr.neamar.kiss.utils;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.Parcel;
@@ -8,6 +7,7 @@ import android.os.Parcelable;
 import android.os.Process;
 import android.os.UserManager;
 
+import androidx.annotation.RequiresApi;
 
 /**
  * Wrapper class for `android.os.UserHandle` that works with all Android versions
@@ -20,7 +20,6 @@ public class UserHandle implements Parcelable {
         this(0, null);
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public UserHandle(long serial, android.os.UserHandle user) {
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
             // OS does not provide any APIs for multi-user support
@@ -38,7 +37,7 @@ public class UserHandle implements Parcelable {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public UserHandle(Context context, android.os.UserHandle userHandle) {
         final UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
         assert manager != null;
@@ -81,7 +80,7 @@ public class UserHandle implements Parcelable {
         }
     };
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public android.os.UserHandle getRealHandle() {
         if (this.handle != null) {
             return (android.os.UserHandle) this.handle;

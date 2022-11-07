@@ -18,7 +18,6 @@ import java.util.List;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -62,8 +61,10 @@ public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean>
 
         boolean shortcutsUpdated = false;
         for (ShortcutInfo shortcutInfo : shortcuts) {
-            // Add shortcut to the DataHandler
-            shortcutsUpdated |= dataHandler.updateShortcut(shortcutInfo);
+            // add pinned shortcuts, remove disabled shortcuts
+            if (shortcutInfo.isPinned() || !shortcutInfo.isEnabled()) {
+                shortcutsUpdated |= dataHandler.updateShortcut(shortcutInfo, !shortcutInfo.isPinned());
+            }
         }
 
         return shortcutsUpdated;
@@ -86,11 +87,7 @@ public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean>
 
             Context context = this.context.get();
             if (context != null) {
-                DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
-                ShortcutsProvider provider = dataHandler.getShortcutsProvider();
-                if (provider != null) {
-                    provider.reload();
-                }
+                KissApplication.getApplication(context).getDataHandler().reloadShortcuts();
             }
         }
     }
