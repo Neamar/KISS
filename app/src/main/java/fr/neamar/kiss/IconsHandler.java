@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -179,27 +180,28 @@ public class IconsHandler {
         }
 
         // check the icon pack for a resource
-        if (drawable == null && mIconPack != null && userHandle.isCurrentUser()) {
+        if (drawable == null && mIconPack != null) {
             // just checking will make this thread wait for the icon pack to load
             if (!mIconPack.isLoaded())
                 return null;
-            drawable = mIconPack.getComponentDrawable(ctx, componentName, userHandle);
+            drawable = mIconPack.getComponentDrawable(ctx, componentName);
         }
 
         if (drawable == null) {
             // if icon pack doesn't have the drawable, use system drawable
-            drawable = mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
+            drawable = mSystemPack.getComponentDrawable(ctx, componentName);
         }
         if (drawable == null)
             return null;
 
-        Drawable drawableWithBackgroundAndMask = applyIconMask(ctx, drawable, userHandle);
-        storeDrawable(cacheGetFileName(cacheKey), drawableWithBackgroundAndMask);
-        return drawableWithBackgroundAndMask;
+        drawable = applyIconMask(ctx, drawable);
+        drawable = applyBadge(drawable, userHandle);
+        storeDrawable(cacheGetFileName(cacheKey), drawable);
+        return drawable;
     }
 
-    public Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable, @NonNull UserHandle userHandle) {
-        if (mIconPack != null && mIconPack.hasMask() && userHandle.isCurrentUser()) {
+    public Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable) {
+        if (mIconPack != null && mIconPack.hasMask()) {
             // if the icon pack has a mask, use that instead of the adaptive shape
             return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
@@ -211,6 +213,16 @@ public class IconsHandler {
         } else {
             return drawable;
         }
+    }
+
+    public Drawable applyBadge(@NonNull Drawable drawable, @NonNull UserHandle userHandle) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Drawable badgedDrawable = pm.getUserBadgedIcon(drawable, userHandle.getRealHandle());
+            if (badgedDrawable != null) {
+                return badgedDrawable;
+            }
+        }
+        return drawable;
     }
 
     public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
