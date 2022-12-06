@@ -643,6 +643,15 @@ public class DataHandler extends BroadcastReceiver
         return excludedFavorites;
     }
 
+    @NonNull
+    public Set<String> getEnabledShortcutApps() {
+        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("enabled-shortcut-apps", null);
+        if (excluded == null) {
+            excluded = new HashSet<>();
+        }
+        return excluded;
+    }
+
     public void addToExcludedFromHistory(AppPojo app) {
         // The set needs to be cloned and then edited,
         // modifying in place is not supported by putStringSet()

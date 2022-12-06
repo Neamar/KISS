@@ -44,7 +44,8 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             }
         }
 
-        return pojos;
+        List<ShortcutPojo> filteredPojos = filterOnEnabledApps(pojos, context)
+        return filteredPojos;
     }
 
     private boolean isExistingShortcut(ShortcutPojo pojo) {
@@ -57,4 +58,25 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         return true;
     }
 
+    /**
+     * @return a new list which only contains shortcuts which come from apps which the
+     * user has enabled shortcuts for.
+     * Does not modify the input list.
+     */
+    private List<ShortcutPojo> filterOnEnabledApps(List<ShortcutPojo> allPojos, Context context) {
+        List<ShortcutPojo> result = new ArrayList<>();
+
+        Set<String> enabledApps = KissApplication.getApplication(ctx).getDataHandler().getEnabledShortcutApps();
+
+        if (enabledApps.size == 0) {
+            return result;
+        }
+
+        for (ShortcutPojo pojo : allPojos) {
+            if (enabledApps.contains(pojo.packageName)) {
+                result.add(pojo)
+            }
+        }
+        return result
+    }
 }

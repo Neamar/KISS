@@ -396,6 +396,41 @@ public class SettingsActivity extends PreferenceActivity implements
         category.addPreference(excludedAppsScreen);
     }
 
+    // TODO(Luke): Link this up
+//    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+//    TODO(Luke): Set "enabled-shortcut-apps" somewhere in prefs
+//    Set<String> enabledApps = prefs.getStringSet("enabled-shortcut-apps", null);
+
+    private void addEnabledShortcutAppSettings() {
+        final DataHandler dataHandler = KissApplication.getApplication(this).getDataHandler();
+
+        PreferenceScreen excludedAppsScreen = ExcludePreferenceScreen.getInstance(
+                this,
+                new ExcludePreferenceScreen.IsExcludedCallback() {
+                    @Override
+                    public boolean isExcluded(@NonNull AppPojo app) {
+                        return app.isExcluded();
+                    }
+                },
+                new ExcludePreferenceScreen.OnExcludedListener() {
+                    @Override
+                    public void onExcluded(final @NonNull AppPojo app) {
+                        dataHandler.addToExcluded(app);
+                    }
+
+                    @Override
+                    public void onIncluded(final @NonNull AppPojo app) {
+                        dataHandler.removeFromExcluded(app);
+                    }
+                },
+                R.string.ui_excluded_apps,
+                R.string.ui_excluded_apps_dialog_title
+        );
+
+        PreferenceGroup category = (PreferenceGroup) findPreference("search_results_options");
+        category.addPreference(excludedAppsScreen);
+    }
+
     private void addCustomSearchProvidersPreferences(SharedPreferences prefs) {
         if (prefs.getStringSet("selected-search-provider-names", null) == null) {
             // If null, it means this setting has never been accessed before
@@ -738,4 +773,6 @@ public class SettingsActivity extends PreferenceActivity implements
             selectListPreference.setTitle(R.string.pref_fav_tags_select);
         });
     }
+
+    private void addShortcutsEn
 }

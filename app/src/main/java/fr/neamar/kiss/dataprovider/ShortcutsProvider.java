@@ -48,9 +48,8 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
 
         try {
             this.initialize(new LoadShortcutsPojos(this));
-        }
-        catch(IllegalStateException e) {
-            if(!notifiedKissNotDefaultLauncher) {
+        } catch (IllegalStateException e) {
+            if (!notifiedKissNotDefaultLauncher) {
                 // Only display this message once per process
                 Toast.makeText(this, R.string.unable_to_initialize_shortcuts, Toast.LENGTH_LONG).show();
             }
@@ -71,7 +70,8 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
         FuzzyScore.MatchInfo matchInfo;
         boolean match;
 
-        for (ShortcutPojo pojo : pojos) {
+        List<ShortcutPojo> enabledPojos = getShortcutPojosForEnabledApps();
+        for (ShortcutPojo pojo : enabledPojos) {
             matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
             match = matchInfo.match;
             pojo.relevance = matchInfo.score;

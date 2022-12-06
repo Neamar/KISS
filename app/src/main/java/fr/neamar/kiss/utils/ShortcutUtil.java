@@ -48,6 +48,7 @@ public class ShortcutUtil {
     /**
      * @return true if shortcuts are enabled in settings and android version is higher or equals android 8
      */
+    // TODO(Luke): Rework this - it's not this simple
     public static boolean areShortcutsEnabled(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
