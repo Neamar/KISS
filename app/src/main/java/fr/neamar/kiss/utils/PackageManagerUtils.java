@@ -94,6 +94,19 @@ public class PackageManagerUtils {
     }
 
     /**
+     * @param context context
+     * @param intent  intent
+     * @return label of best matching app for given intent
+     */
+    public static String getLabel(Context context, Intent intent) {
+        ResolveInfo resolveInfo = PackageManagerUtils.getBestResolve(context, intent);
+        if (resolveInfo != null) {
+            return String.valueOf(resolveInfo.loadLabel(context.getPackageManager()));
+        }
+        return null;
+    }
+
+    /**
      * @param context       context
      * @param componentName componentName
      * @return launching component name for given component

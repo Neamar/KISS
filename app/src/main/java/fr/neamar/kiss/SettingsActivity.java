@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -49,6 +50,7 @@ import fr.neamar.kiss.preference.PreferenceScreenHelper;
 import fr.neamar.kiss.preference.SwitchPreference;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
@@ -144,6 +146,7 @@ public class SettingsActivity extends PreferenceActivity implements
             SettingsActivity.this.setListPreferenceIconsPacksData(iconsPack);
             SettingsActivity.this.runOnUiThread(() -> iconsPack.setEnabled(true));
 
+            SettingsActivity.this.addAdditionalContactsPreferences(prefs);
             SettingsActivity.this.addCustomSearchProvidersPreferences(prefs);
 
             SettingsActivity.this.addHiddenTagsTogglesInformation(prefs);
@@ -188,9 +191,37 @@ public class SettingsActivity extends PreferenceActivity implements
         }
         AsyncTask.execute(alwaysAsync);
 
-
         permissionManager = new Permission(this);
     }
+
+    private void addAdditionalContactsPreferences(SharedPreferences prefs) {
+        // get all supported mime types
+        Set<String> supportedMimeTypes = MimeTypeUtils.getSupportedMimeTypes(getApplicationContext());
+
+        // get all labels
+        MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(getApplicationContext());
+        Map<String, String> uniqueLabels = mimeTypeCache.getUniqueLabels(getApplicationContext(), supportedMimeTypes);
+
+        // get entries and values for sorted mime types
+        List<String> sortedMimeTypes = new ArrayList<>(supportedMimeTypes);
+        Collections.sort(sortedMimeTypes);
+
+        String[] mimeTypeEntries = new String[supportedMimeTypes.size()];
+        String[] mimeTypeEntryValues = new String[supportedMimeTypes.size()];
+        int pos = 0;
+        for (String mimeType : sortedMimeTypes) {
+            mimeTypeEntries[pos] = uniqueLabels.get(mimeType);
+            mimeTypeEntryValues[pos] = mimeType;
+            pos++;
+        }
+
+        MultiSelectListPreference multiPreference = (MultiSelectListPreference) findPreference("selected-contact-mime-types");
+        if (supportedMimeTypes.isEmpty()) {
+            multiPreference.setEnabled(false);
+        }
+        multiPreference.setEntries(mimeTypeEntries);
+        multiPreference.setEntryValues(mimeTypeEntryValues);
+	}
 
     /**
      * Because we use the order to insert preferences we need to have gaps in the original order
