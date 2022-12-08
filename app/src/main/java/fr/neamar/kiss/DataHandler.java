@@ -148,7 +148,12 @@ public class DataHandler extends BroadcastReceiver
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key != null && key.startsWith("enable-")) {
+        if ("selected-contact-mime-types".equals(key)) {
+            final ContactsProvider provider = getContactsProvider();
+            if (provider != null) {
+                provider.reload();
+            }
+        } else if (key != null && key.startsWith("enable-")) {
             String providerName = key.substring(7);
             if (PROVIDER_NAMES.contains(providerName)) {
                 if (sharedPreferences.getBoolean(key, true)) {

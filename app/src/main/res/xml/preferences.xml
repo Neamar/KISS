@@ -452,10 +452,16 @@
                 android:key="enable-contacts"
                 android:order="1"
                 android:title="@string/contacts_name" />
+            <MultiSelectListPreference
+                android:defaultValue="@array/contactMimeTypesDefault"
+                android:dependency="enable-contacts"
+                android:key="selected-contact-mime-types"
+                android:order="2"
+                android:title="@string/contact_mime_types_title" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-settings"
-                android:order="2"
+                android:order="3"
                 android:title="@string/settings_name" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"

@@ -26,6 +26,8 @@ public final class ContactsPojo extends Pojo {
     // nickname without special characters
     public StringNormalizer.Result normalizedNickname = null;
 
+    private ImData imData;
+
     public ContactsPojo(String id, String lookupKey, Uri icon, boolean primary, boolean starred) {
         super(id);
         this.lookupKey = lookupKey;
@@ -65,4 +67,53 @@ public final class ContactsPojo extends Pojo {
         return homeNumber;
     }
 
+    public void setIm(ImData imData) {
+        this.imData = imData;
+    }
+
+    public ImData getImData() {
+        return imData;
+    }
+
+    // TODO: move to separate class, which package?
+    public static class ImData {
+        private final long id;
+        private final String mimeType;
+
+        private String identifier;
+        // IM name without special characters
+        private StringNormalizer.Result normalizedIdentifier;
+
+        public ImData(String mimeType, long id) {
+            this.mimeType = mimeType;
+            this.id = id;
+        }
+
+        public String getIdentifier() {
+            return identifier;
+        }
+
+        public void setIdentifier(String identifier) {
+            if (identifier != null) {
+                // Set the actual user-friendly name
+                this.identifier = identifier;
+                this.normalizedIdentifier = StringNormalizer.normalizeWithResult(this.identifier, false);
+            } else {
+                this.identifier = null;
+                this.normalizedIdentifier = null;
+            }
+        }
+
+        public String getMimeType() {
+            return mimeType;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public StringNormalizer.Result getNormalizedIdentifier() {
+            return normalizedIdentifier;
+        }
+    }
 }
