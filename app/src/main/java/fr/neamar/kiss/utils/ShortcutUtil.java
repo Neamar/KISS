@@ -4,7 +4,6 @@ import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_DYNAMIC;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_MANIFEST;
 import static android.content.pm.LauncherApps.ShortcutQuery.FLAG_MATCH_PINNED;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,8 +40,8 @@ public class ShortcutUtil {
     /**
      * @return shortcut id generated from shortcut name
      */
-    public static String generateShortcutId(String shortcutName) {
-        return ShortcutPojo.SCHEME + shortcutName.toLowerCase(Locale.ROOT);
+    public static String generateShortcutId(ShortcutRecord shortcutRecord) {
+        return ShortcutPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
     }
 
     /**
@@ -50,7 +49,7 @@ public class ShortcutUtil {
      */
     public static boolean areShortcutsEnabled(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
                 prefs.getBoolean("enable-shortcuts", true);
 
     }
@@ -58,7 +57,7 @@ public class ShortcutUtil {
     /**
      * Save all oreo shortcuts to DB
      */
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     public static void addAllShortcuts(Context context) {
         new SaveAllOreoShortcutsAsync(context).execute();
     }
@@ -66,7 +65,7 @@ public class ShortcutUtil {
     /**
      * Save single shortcut to DB via pin request
      */
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     public static void addShortcut(Context context, Intent intent) {
         new SaveSingleOreoShortcutAsync(context, intent).execute();
     }
@@ -81,7 +80,7 @@ public class ShortcutUtil {
     /**
      * @return all shortcuts from all applications available on the device
      */
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     public static List<ShortcutInfo> getAllShortcuts(Context context) {
         return getShortcuts(context, null);
     }
@@ -89,7 +88,7 @@ public class ShortcutUtil {
     /**
      * @return all shortcuts for given package name
      */
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     public static List<ShortcutInfo> getShortcuts(Context context, String packageName) {
         List<ShortcutInfo> shortcutInfoList = new ArrayList<>();
 
@@ -104,7 +103,9 @@ public class ShortcutUtil {
         }
 
         for (android.os.UserHandle profile : manager.getUserProfiles()) {
-            shortcutInfoList.addAll(launcherApps.getShortcuts(shortcutQuery, profile));
+            if (manager.isUserUnlocked(profile)) {
+                shortcutInfoList.addAll(launcherApps.getShortcuts(shortcutQuery, profile));
+            }
         }
 
         return shortcutInfoList;
@@ -147,7 +148,7 @@ public class ShortcutUtil {
     /**
      * Create ShortcutPojo from ShortcutInfo
      */
-    @TargetApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     public static ShortcutRecord createShortcutRecord(Context context, ShortcutInfo shortcutInfo, boolean includePackageName) {
         if (shortcutInfo.hasKeyFieldsOnly()) {
             // If ShortcutInfo holds only key fields shortcut including data must be fetched
@@ -213,32 +214,5 @@ public class ShortcutUtil {
         }
         return null;
     }
-
-    /**
-     * @param shortcuts all shortcuts
-     * @return shortcuts which should be updated
-     */
-    public static List<ShortcutInfo> getShortcutsToUpdate(List<ShortcutInfo> shortcuts) {
-        List<ShortcutInfo> result = new ArrayList<>();
-        for (ShortcutInfo shortcut : shortcuts) {
-            if (isShortcutToUpdate(shortcut)) {
-                result.add(shortcut);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * @param shortcut
-     * @return true, if shortcut must be update on change of package
-     */
-    private static boolean isShortcutToUpdate(ShortcutInfo shortcut) {
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return false;
-        }
-        // do not update pinned shortcuts, this should be done by user through UI only
-        return !shortcut.isPinned();
-    }
-
 
 }

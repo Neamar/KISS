@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.dataprovider.AppProvider;
 
 public class LocaleChangedReceiver extends BroadcastReceiver {
 
@@ -27,9 +26,6 @@ public class LocaleChangedReceiver extends BroadcastReceiver {
             e.printStackTrace();
         }
         // Reload application list
-        final AppProvider provider = KissApplication.getApplication(ctx).getDataHandler().getAppProvider();
-        if (provider != null) {
-            provider.reload();
-        }
+        KissApplication.getApplication(ctx).getDataHandler().reloadApps();
     }
 }

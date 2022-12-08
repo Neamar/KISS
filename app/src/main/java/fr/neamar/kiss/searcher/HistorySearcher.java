@@ -1,6 +1,7 @@
 package fr.neamar.kiss.searcher;
 
 import android.content.SharedPreferences;
+import android.content.pm.ShortcutInfo;
 import android.preference.PreferenceManager;
 
 import java.util.HashSet;
@@ -9,19 +10,20 @@ import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.db.ShortcutRecord;
+import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.utils.ShortcutUtil;
 
 /**
  * Retrieve pojos from history
  */
 public class HistorySearcher extends Searcher {
     private final SharedPreferences prefs;
-    private final Set<String> excludedFromHistory;
 
     public HistorySearcher(MainActivity activity) {
         super(activity, "<history>");
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        excludedFromHistory = KissApplication.getApplication(activity).getDataHandler().getExcludedFromHistory();
     }
 
     @Override
@@ -46,7 +48,24 @@ public class HistorySearcher extends Searcher {
             return null;
 
         //Gather excluded
-        HashSet<String> excludedPojoById = new HashSet<>(excludedFromHistory);
+        Set<String> excludedFromHistory = KissApplication.getApplication(activity).getDataHandler().getExcludedFromHistory();
+        Set<String> excludedPojoById = new HashSet<>(excludedFromHistory);
+
+        // add ids of shortcuts for excluded apps
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            for (String id : excludedFromHistory) {
+                Pojo pojo = KissApplication.getApplication(activity).getDataHandler().getItemById(id);
+                if (pojo instanceof AppPojo) {
+                    List<ShortcutInfo> shortcutInfos = ShortcutUtil.getShortcuts(activity, ((AppPojo) pojo).packageName);
+                    for (ShortcutInfo shortcutInfo : shortcutInfos) {
+                        ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(activity, shortcutInfo, !shortcutInfo.isPinned());
+                        if (shortcutRecord != null) {
+                            excludedPojoById.add(ShortcutUtil.generateShortcutId(shortcutRecord));
+                        }
+                    }
+                }
+            }
+        }
 
         if (excludeFavorites) {
             // Gather favorites

@@ -88,11 +88,6 @@ public class SettingsProvider extends SimpleProvider {
     }
 
     @Override
-    public void reload() {
-        super.reload();
-    }
-
-    @Override
     public void requestResults(String query, Searcher searcher) {
         if (!prefs.getBoolean("enable-settings", true)) {
             return;

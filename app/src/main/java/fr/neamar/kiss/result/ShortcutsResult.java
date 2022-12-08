@@ -148,7 +148,7 @@ public class ShortcutsResult extends Result {
 
     public Drawable getDrawable(Context context) {
         Drawable shortcutDrawable = null;
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             ShortcutInfo shortcutInfo = getShortCut(context);
             if (shortcutInfo != null) {
                 final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
@@ -174,7 +174,7 @@ public class ShortcutsResult extends Result {
             // Pre-oreo shortcuts
             try {
                 Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                     intent.setSourceBounds(v.getClipBounds());
                 }
 
@@ -229,11 +229,15 @@ public class ShortcutsResult extends Result {
 
     @Override
     ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView) {
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        if (!this.shortcutPojo.isDynamic()) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        }
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
+        if (this.shortcutPojo.isPinned()) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
+        }
 
         return inflatePopupMenu(adapter, context);
     }
@@ -268,24 +272,16 @@ public class ShortcutsResult extends Result {
         tagInput.setAdapter(adapter);
         builder.setView(v);
 
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                // Refresh tags for given app
-                pojo.setTags(tagInput.getText().toString().trim().toLowerCase(Locale.ROOT));
-                KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
-                // Show toast message
-                String msg = context.getResources().getString(R.string.tags_confirmation_added);
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-            }
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            dialog.dismiss();
+            // Refresh tags for given app
+            pojo.setTags(tagInput.getText().toString().trim().toLowerCase(Locale.ROOT));
+            KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
+            // Show toast message
+            String msg = context.getResources().getString(R.string.tags_confirmation_added);
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         });
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel());
 
         AlertDialog dialog = builder.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
