@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -471,7 +472,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)
         // Animation can't happen in this method, since the activity is not resumed yet, so they'll happen in the onResume()
         // https://github.com/Neamar/KISS/issues/569
-        if (!searchEditText.getText().toString().isEmpty()) {
+        if (!TextUtils.isEmpty(searchEditText.getText())) {
             Log.i(TAG, "Clearing search field");
             searchEditText.setText("");
         }
@@ -836,7 +837,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void launchOccurred() {
         // We selected an item on the list,
         // now we can cleanup the filter:
-        if (!searchEditText.getText().toString().isEmpty()) {
+        if (!TextUtils.isEmpty(searchEditText.getText())) {
             searchEditText.setText("");
             displayClearOnInput();
             hideKeyboard();
