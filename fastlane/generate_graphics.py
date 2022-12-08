@@ -22,6 +22,8 @@ def get_last_change(file):
         out = subprocess.check_output(['git', 'log', '-1', r'--pretty=%ci', file]).strip()
     except subprocess.CalledProcessError:
         out = b"2020-01-01 00:00:00 +0200"
+    if out.decode('ascii') == '':
+        out = b"2020-01-01 00:00:00 +0200"
     return datetime.datetime.strptime(out.decode('ascii'), r"%Y-%m-%d %H:%M:%S %z")
 
 
