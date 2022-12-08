@@ -28,7 +28,7 @@ public class Permission {
     // to ensure classes requesting permission can access activity.requestPermission()
     private static WeakReference<Activity> currentActivity = new WeakReference<>(null);
 
-    private static ArrayList<PermissionResultListener> permissionListeners;
+    private static ArrayList<PermissionResultListener> permissionListeners = new ArrayList<>();
 
     public static boolean checkPermission(Context context, int permission) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(permissions[permission]) == PackageManager.PERMISSION_GRANTED;
@@ -40,9 +40,6 @@ public class Permission {
         }
         if (listener != null) {
             listener.permission = permission;
-            if (permissionListeners == null) {
-                permissionListeners = new ArrayList<>();
-            }
             permissionListeners.add(listener);
         }
 

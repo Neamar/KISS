@@ -95,16 +95,18 @@ public class ShortcutUtil {
         UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
         LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 
-        LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
-        shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
+        if (launcherApps.hasShortcutHostPermission()) {
+            LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
+            shortcutQuery.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
-        if (!TextUtils.isEmpty(packageName)) {
-            shortcutQuery.setPackage(packageName);
-        }
+            if (!TextUtils.isEmpty(packageName)) {
+                shortcutQuery.setPackage(packageName);
+            }
 
-        for (android.os.UserHandle profile : manager.getUserProfiles()) {
-            if (manager.isUserUnlocked(profile)) {
-                shortcutInfoList.addAll(launcherApps.getShortcuts(shortcutQuery, profile));
+            for (android.os.UserHandle profile : manager.getUserProfiles()) {
+                if (manager.isUserUnlocked(profile)) {
+                    shortcutInfoList.addAll(launcherApps.getShortcuts(shortcutQuery, profile));
+                }
             }
         }
 
