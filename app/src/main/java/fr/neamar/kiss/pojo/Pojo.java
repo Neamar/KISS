@@ -17,7 +17,7 @@ public abstract class Pojo {
     // displayed
     public int relevance = 0;
     // Name for this pojo, e.g. app name
-    String name = "";
+    private String name = "";
 
     public Pojo(String id) {
         this.id = id;

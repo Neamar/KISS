@@ -73,7 +73,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         phone = "";
                     }
 
-                    StringNormalizer.Result normalizedPhone = PhoneNormalizer.simplifyPhoneNumber(phone);
                     boolean starred = cur.getInt(starredIndex) != 0;
                     boolean primary = cur.getInt(isPrimaryIndex) != 0;
                     String photoId = cur.getString(photoIdIndex);
@@ -83,10 +82,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                                 Long.parseLong(photoId));
                     }
 
-                    ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone,
-                            lookupKey, phone, normalizedPhone, icon, primary,
-                            starred, false);
+                    ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, icon, primary, starred);
 
+                    contact.setPhone(phone, false);
                     contact.setName(name);
 
                     if (contact.getName() != null) {
@@ -146,7 +144,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             if (!hasPrimary) {
                 HashSet<String> added = new HashSet<>(phones.size());
                 for (ContactsPojo contact : phones) {
-                    if (!added.contains(contact.normalizedPhone.toString())) {
+                    if (contact.normalizedPhone != null && !added.contains(contact.normalizedPhone.toString())) {
                         added.add(contact.normalizedPhone.toString());
                         contacts.add(contact);
                     }
