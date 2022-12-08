@@ -112,7 +112,7 @@ public class ShortcutsResult extends Result {
                 try {
                     appDrawable = packageManager.getApplicationIcon(shortcutPojo.packageName);
                     if (appDrawable != null)
-                        appDrawable = iconsHandler.applyIconMask(context, appDrawable, new fr.neamar.kiss.utils.UserHandle());
+                        appDrawable = iconsHandler.applyIconMask(context, appDrawable);
                 } catch (PackageManager.NameNotFoundException e) {
                     Log.e(TAG, "Unable to find package " + shortcutPojo.packageName, e);
                 }
@@ -122,7 +122,7 @@ public class ShortcutsResult extends Result {
             if (appDrawable == null) {
                 appDrawable = context.getPackageManager().getDefaultActivityIcon();
                 if (appDrawable != null)
-                    appDrawable = iconsHandler.applyIconMask(context, appDrawable, new fr.neamar.kiss.utils.UserHandle());
+                    appDrawable = iconsHandler.applyIconMask(context, appDrawable);
             }
 
             Drawable shortcutDrawable = getDrawable(context);
@@ -158,7 +158,7 @@ public class ShortcutsResult extends Result {
         }
 
         if (shortcutDrawable != null) {
-            shortcutDrawable = KissApplication.getApplication(context).getIconsHandler().applyIconMask(context, shortcutDrawable, new fr.neamar.kiss.utils.UserHandle());
+            shortcutDrawable = KissApplication.getApplication(context).getIconsHandler().applyIconMask(context, shortcutDrawable);
         }
 
         return shortcutDrawable;
