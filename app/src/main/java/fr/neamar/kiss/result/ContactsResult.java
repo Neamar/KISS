@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -20,11 +18,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import androidx.annotation.NonNull;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -62,7 +61,7 @@ public class ContactsResult extends CallResult {
 
         // Contact nickname
         TextView contactNickname = view.findViewById(R.id.item_contact_nickname);
-        if (contactPojo.getNickname().isEmpty()) {
+        if (TextUtils.isEmpty(contactPojo.getNickname())) {
             contactNickname.setVisibility(View.GONE);
         } else {
             contactNickname.setVisibility(View.VISIBLE);
@@ -124,7 +123,7 @@ public class ContactsResult extends CallResult {
                 }
             });
 
-            if (contactPojo.homeNumber)
+            if (contactPojo.isHomeNumber())
                 messageButton.setVisibility(View.INVISIBLE);
             else
                 messageButton.setVisibility(View.VISIBLE);
@@ -211,7 +210,7 @@ public class ContactsResult extends CallResult {
     @Override
     public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
         Drawable drawable = getDrawable(context);
-        if ( drawable != null ) {
+        if (drawable != null) {
             drawable = ShapedContactBadge.getShapedDrawable(context, drawable);
         }
         View favoriteView = super.inflateFavorite(context, parent);

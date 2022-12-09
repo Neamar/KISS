@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,7 +119,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     }
 
     private boolean validateEmpty() {
-        return !providerName.getText().toString().isEmpty() && !providerUrl.getText().toString().isEmpty();
+        return !TextUtils.isEmpty(providerName.getText()) && !TextUtils.isEmpty(providerUrl.getText());
     }
 
     private boolean validateUrl() {
