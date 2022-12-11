@@ -14,8 +14,16 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withParentIndex;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.array;
+import static org.hamcrest.Matchers.both;
+import static org.hamcrest.Matchers.either;
+import static org.hamcrest.Matchers.everyItem;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.not;
 
 @LargeTest
@@ -63,6 +71,19 @@ public class MainActivityTest extends AbstractMainActivityTest {
         onView(withId(R.id.searchEditText)).perform(typeText("blahblah"));
         onView(withId(R.id.item_search_icon)).check(matches(isDisplayed()));
         onView(withId(R.id.item_search_text)).check(matches(withText("Search Google for “blahblah”")));
+    }
+
+    @Test
+    public void testCalculatorAppears() {
+        onView(withId(R.id.searchEditText)).perform(typeText("1 + 1"));
+        onView(allOf(withId(R.id.item_search_text), withText("1+1 = 2"))).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void testShortcutAppears() {
+        onView(withId(R.id.searchEditText)).perform(typeText("Google Search"));
+        onView(allOf(withId(R.id.item_app_name), withText("Google: Search"))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.item_app_name), withText("Google: Voice search"))).check(matches(isDisplayed()));
     }
 
     @Test

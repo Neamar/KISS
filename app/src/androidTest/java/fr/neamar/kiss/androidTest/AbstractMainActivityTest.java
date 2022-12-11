@@ -24,9 +24,15 @@ abstract class AbstractMainActivityTest {
     @Before
     public void setUp() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getInstrumentation().getUiAutomation().executeShellCommand(
-                    "pm grant " + mActivityRule.getActivity().getPackageName()
-                            + " android.permission.READ_CONTACTS");
+            if (shouldHaveContactPermission()) {
+                getInstrumentation().getUiAutomation().executeShellCommand(
+                        "pm grant " + mActivityRule.getActivity().getPackageName()
+                                + " android.permission.READ_CONTACTS");
+            } else {
+                getInstrumentation().getUiAutomation().executeShellCommand(
+                        "pm revoke " + mActivityRule.getActivity().getPackageName()
+                                + " android.permission.READ_CONTACTS");
+            }
         }
 
         mActivityRule.getActivity();
@@ -41,5 +47,9 @@ abstract class AbstractMainActivityTest {
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mActivityRule.getActivity().runOnUiThread(wakeUpDevice);
+    }
+
+    protected boolean shouldHaveContactPermission() {
+        return true;
     }
 }
