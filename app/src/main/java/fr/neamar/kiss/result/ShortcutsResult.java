@@ -5,11 +5,9 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
-import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -83,7 +81,6 @@ public class ShortcutsResult extends Result {
 
         if (!prefs.getBoolean("icons-hide", false)) {
             // Retrieve icon for this shortcut
-            final PackageManager packageManager = context.getPackageManager();
             Drawable appDrawable = null;
             IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
 
@@ -109,20 +106,10 @@ public class ShortcutsResult extends Result {
 
             if (appDrawable == null) {
                 // Retrieve app icon (no Oreo shortcut or a shortcut from an activity that was removed from an installed app)
-                try {
-                    appDrawable = packageManager.getApplicationIcon(shortcutPojo.packageName);
-                    if (appDrawable != null)
-                        appDrawable = iconsHandler.applyIconMask(context, appDrawable);
-                } catch (PackageManager.NameNotFoundException e) {
-                    Log.e(TAG, "Unable to find package " + shortcutPojo.packageName, e);
-                }
-            }
-
-            // This should never happen, let's just return the generic activity icon
-            if (appDrawable == null) {
-                appDrawable = context.getPackageManager().getDefaultActivityIcon();
-                if (appDrawable != null)
+                appDrawable = PackageManagerUtils.getApplicationIcon(context, shortcutPojo.packageName);
+                if (appDrawable != null) {
                     appDrawable = iconsHandler.applyIconMask(context, appDrawable);
+                }
             }
 
             Drawable shortcutDrawable = getDrawable(context);
