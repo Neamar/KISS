@@ -153,6 +153,7 @@ public class SettingsActivity extends PreferenceActivity implements
         Runnable alwaysAsync = () -> {
             SettingsActivity.this.addExcludedAppSettings();
             SettingsActivity.this.addExcludedFromHistoryAppSettings();
+            SettingsActivity.this.addExcludedShortcutAppSettings();
         };
 
         reorderPreferencesWithDisplayDependency();
@@ -398,10 +399,8 @@ public class SettingsActivity extends PreferenceActivity implements
 
     // TODO(Luke): Link this up
 //    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-//    TODO(Luke): Set "enabled-shortcut-apps" somewhere in prefs
 //    Set<String> enabledApps = prefs.getStringSet("enabled-shortcut-apps", null);
-
-    private void addEnabledShortcutAppSettings() {
+    private void addExcludedShortcutAppSettings() {
         final DataHandler dataHandler = KissApplication.getApplication(this).getDataHandler();
 
         PreferenceScreen excludedAppsScreen = ExcludePreferenceScreen.getInstance(
@@ -409,25 +408,25 @@ public class SettingsActivity extends PreferenceActivity implements
                 new ExcludePreferenceScreen.IsExcludedCallback() {
                     @Override
                     public boolean isExcluded(@NonNull AppPojo app) {
-                        return app.isExcluded();
+                        return app.isExcludedShortcuts();
                     }
                 },
                 new ExcludePreferenceScreen.OnExcludedListener() {
                     @Override
                     public void onExcluded(final @NonNull AppPojo app) {
-                        dataHandler.addToExcluded(app);
+                        dataHandler.addToExcludedShortcutApps(app);
                     }
 
                     @Override
                     public void onIncluded(final @NonNull AppPojo app) {
-                        dataHandler.removeFromExcluded(app);
+                        dataHandler.removeFromExcludedShortcutApps(app);
                     }
                 },
-                R.string.ui_excluded_apps,
+                R.string.ui_excluded_from_shortcuts_apps,
                 R.string.ui_excluded_apps_dialog_title
         );
 
-        PreferenceGroup category = (PreferenceGroup) findPreference("search_results_options");
+        PreferenceGroup category = (PreferenceGroup) findPreference("search-providers");
         category.addPreference(excludedAppsScreen);
     }
 
@@ -773,6 +772,4 @@ public class SettingsActivity extends PreferenceActivity implements
             selectListPreference.setTitle(R.string.pref_fav_tags_select);
         });
     }
-
-    private void addShortcutsEn
 }

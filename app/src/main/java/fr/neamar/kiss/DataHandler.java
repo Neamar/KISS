@@ -63,6 +63,9 @@ public class DataHandler extends BroadcastReceiver
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
             "app", "contacts", "shortcuts"
     );
+
+    final static private String PREF_KEY_EXCLUDED_SHORTCUT_APPS = "excluded-shortcut-apps";
+
     private TagsHandler tagsHandler;
     final private Context context;
     private String currentQuery;
@@ -491,8 +494,8 @@ public class DataHandler extends BroadcastReceiver
             shortcutsUpdated |= updateShortcut(shortcutInfo);
         }
 
-        if (shortcutsUpdated && this.getShortcutsProvider() != null) {
-            this.getShortcutsProvider().reload();
+        if (shortcutsUpdated) {
+            tryReloadShortcuts();
         }
     }
 
@@ -508,8 +511,8 @@ public class DataHandler extends BroadcastReceiver
      */
     public void removeShortcut(ShortcutPojo shortcut) {
         boolean shortcutUpdated = removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
-        if (shortcutUpdated && this.getShortcutsProvider() != null) {
-            this.getShortcutsProvider().reload();
+        if (shortcutUpdated) {
+            tryReloadShortcuts();
         }
     }
 
@@ -529,7 +532,7 @@ public class DataHandler extends BroadcastReceiver
     /**
      * Update DB with given {@link ShortcutRecord}.
      *
-     * @param shortcutInfo the shortcut to update.
+     * @param shortcutInfo       the shortcut to update.
      * @param includePackageName include package name in shortcut name
      * @return true if update was successful
      */
@@ -602,9 +605,7 @@ public class DataHandler extends BroadcastReceiver
 
         DBHelper.removeShortcuts(this.context, packageName);
 
-        if (this.getShortcutsProvider() != null) {
-            this.getShortcutsProvider().reload();
-        }
+        tryReloadShortcuts();
     }
 
     @NonNull
@@ -644,8 +645,8 @@ public class DataHandler extends BroadcastReceiver
     }
 
     @NonNull
-    public Set<String> getEnabledShortcutApps() {
-        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("enabled-shortcut-apps", null);
+    public Set<String> getExcludedShortcutApps() {
+        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, null);
         if (excluded == null) {
             excluded = new HashSet<>();
         }
@@ -666,8 +667,8 @@ public class DataHandler extends BroadcastReceiver
                 excluded.add(id);
             }
             // Refresh shortcuts
-            if (!shortcutsList.isEmpty() && this.getShortcutsProvider() != null) {
-                this.getShortcutsProvider().reload();
+            if (!shortcutsList.isEmpty()){
+                tryReloadShortcuts();
             }
         }
 
@@ -699,8 +700,8 @@ public class DataHandler extends BroadcastReceiver
                 excluded.remove(id);
             }
             // Refresh shortcuts
-            if (!shortcutsList.isEmpty() && this.getShortcutsProvider() != null) {
-                this.getShortcutsProvider().reload();
+            if (!shortcutsList.isEmpty()) {
+                tryReloadShortcuts();
             }
         }
 
@@ -722,6 +723,17 @@ public class DataHandler extends BroadcastReceiver
 
         // Exclude shortcuts for this app
         removeShortcuts(app.packageName);
+    }
+
+    /** Add app as an app which is not allowed to show shortcuts */
+    public void addToExcludedShortcutApps(AppPojo app) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcludedShortcutApps());
+        excluded.add(app.packageName);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
+        app.setExcludedShortcuts(true);
+        tryReloadShortcuts();
     }
 
     public void removeFromExcluded(AppPojo app) {
@@ -763,6 +775,20 @@ public class DataHandler extends BroadcastReceiver
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", newExcluded).apply();
+    }
+
+    /**
+     * Remove app from the apps which are not allowed to show shortcuts -
+     * that is to say, this app may now show shortcuts
+     */
+    public void removeFromExcludedShortcutApps(AppPojo app) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcludedShortcutApps());
+        excluded.remove(app.packageName);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
+        app.setExcludedShortcuts(false);
+        tryReloadShortcuts();
     }
 
     /**
@@ -994,6 +1020,12 @@ public class DataHandler extends BroadcastReceiver
 
     public long removeCustomAppIcon(String componentName) {
         return DBHelper.removeCustomAppIcon(context, componentName);
+    }
+
+    private void tryReloadShortcuts() {
+        if (this.getShortcutsProvider() != null) {
+            this.getShortcutsProvider().reload();
+        }
     }
 
     static final class ProviderEntry {

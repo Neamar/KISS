@@ -420,7 +420,9 @@
         android:key="providers"
         android:summary="@string/providers_summary"
         android:title="@string/title_providers">
-        <PreferenceCategory android:title="@string/search_results_options">
+        <PreferenceCategory
+            android:key="search-providers"
+            android:title="@string/search_results_options">
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-contacts"
@@ -429,6 +431,10 @@
                 android:defaultValue="true"
                 android:key="enable-settings"
                 android:title="@string/settings_name" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="true"
+                android:key="enable-shortcuts"
+                android:title="@string/shortcuts_name" />
             <fr.neamar.kiss.preference.ResetShortcutsPreference
                 android:dialogMessage="@string/regenerate_shortcuts_desc"
                 android:key="reset"

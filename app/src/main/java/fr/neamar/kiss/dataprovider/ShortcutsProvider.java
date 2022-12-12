@@ -70,8 +70,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
         FuzzyScore.MatchInfo matchInfo;
         boolean match;
 
-        List<ShortcutPojo> enabledPojos = getShortcutPojosForEnabledApps();
-        for (ShortcutPojo pojo : enabledPojos) {
+        for (ShortcutPojo pojo : pojos) {
             matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
             match = matchInfo.match;
             pojo.relevance = matchInfo.score;

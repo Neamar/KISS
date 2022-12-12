@@ -6,6 +6,7 @@ import android.os.Build;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.TagsHandler;
@@ -44,8 +45,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             }
         }
 
-        List<ShortcutPojo> filteredPojos = filterOnEnabledApps(pojos, context)
-        return filteredPojos;
+        return filterOutExcludedApps(pojos, context);
     }
 
     private boolean isExistingShortcut(ShortcutPojo pojo) {
@@ -59,24 +59,18 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
     }
 
     /**
-     * @return a new list which only contains shortcuts which come from apps which the
-     * user has enabled shortcuts for.
+     * @return a new list which filters out shortcuts which come from apps which the user
+     * has excluded shortcuts for.
      * Does not modify the input list.
      */
-    private List<ShortcutPojo> filterOnEnabledApps(List<ShortcutPojo> allPojos, Context context) {
-        List<ShortcutPojo> result = new ArrayList<>();
-
-        Set<String> enabledApps = KissApplication.getApplication(ctx).getDataHandler().getEnabledShortcutApps();
-
-        if (enabledApps.size == 0) {
-            return result;
-        }
-
+    private ArrayList<ShortcutPojo> filterOutExcludedApps(List<ShortcutPojo> allPojos, Context context) {
+        ArrayList<ShortcutPojo> result = new ArrayList<>();
+        Set<String> excludedApps = KissApplication.getApplication(context).getDataHandler().getExcludedShortcutApps();
         for (ShortcutPojo pojo : allPojos) {
-            if (enabledApps.contains(pojo.packageName)) {
-                result.add(pojo)
+            if (!excludedApps.contains(pojo.packageName)) {
+                result.add(pojo);
             }
         }
-        return result
+        return result;
     }
 }
