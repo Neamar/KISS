@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
 import fr.neamar.kiss.broadcast.ProfileChangedHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
@@ -434,71 +433,6 @@ public class DataHandler extends BroadcastReceiver
         return getPojo(id);
     }
 
-    /**
-     * Update stored shortcut info for all shortcuts of given packageName.
-     *
-     * @param packageName package name
-     */
-    public void updateAllShortcuts(String packageName) {
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return;
-        }
-
-        Log.d(TAG, "Updating all shortcuts for " + packageName);
-
-        List<ShortcutInfo> shortcuts;
-        try {
-            shortcuts = ShortcutUtil.getShortcuts(context, packageName);
-        } catch (SecurityException | IllegalStateException e) {
-            Log.e(TAG, "Updating all shortcuts for " + packageName, e);
-            return;
-        }
-
-        updateShortcuts(shortcuts);
-    }
-
-    /**
-     * Update stored shortcut info for all programmatically created shortcuts of given packageName.
-     *
-     * @param packageName package name
-     */
-    public void updateShortcuts(String packageName) {
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return;
-        }
-
-        Log.d(TAG, "Updating shortcuts for " + packageName);
-
-        List<ShortcutInfo> shortcuts;
-        try {
-            shortcuts = ShortcutUtil.getShortcuts(context, packageName);
-        } catch (SecurityException | IllegalStateException e) {
-            Log.e(TAG, "Updating shortcuts for " + packageName, e);
-            return;
-        }
-
-        shortcuts = ShortcutUtil.getShortcutsToUpdate(shortcuts);
-        updateShortcuts(shortcuts);
-    }
-
-    /**
-     * Update stored shortcut info for given shortcuts.
-     */
-    public void updateShortcuts(List<ShortcutInfo> shortcuts) {
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return;
-        }
-
-        boolean shortcutsUpdated = false;
-        for (ShortcutInfo shortcutInfo : shortcuts) {
-            shortcutsUpdated |= updateShortcut(shortcutInfo);
-        }
-
-        if (shortcutsUpdated) {
-            tryReloadShortcuts();
-        }
-    }
-
     public void clearHistory() {
         DBHelper.clearHistory(this.context);
     }
@@ -632,20 +566,6 @@ public class DataHandler extends BroadcastReceiver
         // modifying in place is not supported by putStringSet()
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.add(app.id);
-
-        if (ShortcutUtil.areShortcutsEnabled(context)) {
-            // Add all shortcuts for given package name to being excluded from history
-            List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
-            for (ShortcutRecord shortcut : shortcutsList) {
-                String id = ShortcutUtil.generateShortcutId(shortcut.name);
-                excluded.add(id);
-            }
-            // Refresh shortcuts
-            if (!shortcutsList.isEmpty()){
-                tryReloadShortcuts();
-            }
-        }
-
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
         app.setExcludedFromHistory(true);
     }
@@ -655,20 +575,6 @@ public class DataHandler extends BroadcastReceiver
         // modifying in place is not supported by putStringSet()
         Set<String> excluded = new HashSet<>(getExcludedFromHistory());
         excluded.remove(app.id);
-
-        if (ShortcutUtil.areShortcutsEnabled(context)) {
-            // Add all shortcuts for given package name to being included in history
-            List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, app.packageName);
-            for (ShortcutRecord shortcut : shortcutsList) {
-                String id = ShortcutUtil.generateShortcutId(shortcut.name);
-                excluded.remove(id);
-            }
-            // Refresh shortcuts
-            if (!shortcutsList.isEmpty()) {
-                tryReloadShortcuts();
-            }
-        }
-
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
         app.setExcludedFromHistory(false);
     }
@@ -697,7 +603,7 @@ public class DataHandler extends BroadcastReceiver
         excluded.add(app.packageName);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
         app.setExcludedShortcuts(true);
-        tryReloadShortcuts();
+        reloadShortcuts();
     }
 
     public void removeFromExcluded(AppPojo app) {
@@ -752,7 +658,7 @@ public class DataHandler extends BroadcastReceiver
         excluded.remove(app.packageName);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
         app.setExcludedShortcuts(false);
-        tryReloadShortcuts();
+        reloadShortcuts();
     }
 
     /**
@@ -1017,12 +923,6 @@ public class DataHandler extends BroadcastReceiver
 
     public long removeCustomAppIcon(String componentName) {
         return DBHelper.removeCustomAppIcon(context, componentName);
-    }
-
-    private void tryReloadShortcuts() {
-        if (this.getShortcutsProvider() != null) {
-            this.getShortcutsProvider().reload();
-        }
     }
 
     static final class ProviderEntry {
