@@ -153,6 +153,7 @@ public class SettingsActivity extends PreferenceActivity implements
         Runnable alwaysAsync = () -> {
             SettingsActivity.this.addExcludedAppSettings();
             SettingsActivity.this.addExcludedFromHistoryAppSettings();
+            SettingsActivity.this.addExcludedShortcutAppSettings();
         };
 
         reorderPreferencesWithDisplayDependency();
@@ -393,6 +394,37 @@ public class SettingsActivity extends PreferenceActivity implements
         );
 
         PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
+        category.addPreference(excludedAppsScreen);
+    }
+
+    private void addExcludedShortcutAppSettings() {
+        final DataHandler dataHandler = KissApplication.getApplication(this).getDataHandler();
+
+        PreferenceScreen excludedAppsScreen = ExcludePreferenceScreen.getInstance(
+                this,
+                new ExcludePreferenceScreen.IsExcludedCallback() {
+                    @Override
+                    public boolean isExcluded(@NonNull AppPojo app) {
+                        return app.isExcludedShortcuts();
+                    }
+                },
+                new ExcludePreferenceScreen.OnExcludedListener() {
+                    @Override
+                    public void onExcluded(final @NonNull AppPojo app) {
+                        dataHandler.addToExcludedShortcutApps(app);
+                    }
+
+                    @Override
+                    public void onIncluded(final @NonNull AppPojo app) {
+                        dataHandler.removeFromExcludedShortcutApps(app);
+                    }
+                },
+                R.string.ui_excluded_from_shortcuts_apps,
+                R.string.ui_excluded_apps_dialog_title
+        );
+
+        PreferenceGroup category = (PreferenceGroup) findPreference("search-providers");
+        excludedAppsScreen.setOrder(4);
         category.addPreference(excludedAppsScreen);
     }
 

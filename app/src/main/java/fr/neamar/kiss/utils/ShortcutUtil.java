@@ -51,7 +51,6 @@ public class ShortcutUtil {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
                 prefs.getBoolean("enable-shortcuts", true);
-
     }
 
     /**

@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
 import fr.neamar.kiss.broadcast.ProfileChangedHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
@@ -63,6 +62,9 @@ public class DataHandler extends BroadcastReceiver
     final static private List<String> PROVIDER_NAMES = Arrays.asList(
             "app", "contacts", "shortcuts"
     );
+
+    final static private String PREF_KEY_EXCLUDED_SHORTCUT_APPS = "excluded-shortcut-apps";
+
     private TagsHandler tagsHandler;
     final private Context context;
     private String currentQuery;
@@ -550,6 +552,15 @@ public class DataHandler extends BroadcastReceiver
         return excludedFavorites;
     }
 
+    @NonNull
+    public Set<String> getExcludedShortcutApps() {
+        Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, null);
+        if (excluded == null) {
+            excluded = new HashSet<>();
+        }
+        return excluded;
+    }
+
     public void addToExcludedFromHistory(AppPojo app) {
         // The set needs to be cloned and then edited,
         // modifying in place is not supported by putStringSet()
@@ -582,6 +593,17 @@ public class DataHandler extends BroadcastReceiver
 
         // Exclude shortcuts for this app
         removeShortcuts(app.packageName);
+    }
+
+    /** Add app as an app which is not allowed to show shortcuts */
+    public void addToExcludedShortcutApps(AppPojo app) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcludedShortcutApps());
+        excluded.add(app.packageName);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
+        app.setExcludedShortcuts(true);
+        reloadShortcuts();
     }
 
     public void removeFromExcluded(AppPojo app) {
@@ -623,6 +645,20 @@ public class DataHandler extends BroadcastReceiver
         }
 
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", newExcluded).apply();
+    }
+
+    /**
+     * Remove app from the apps which are not allowed to show shortcuts -
+     * that is to say, this app may show shortcuts
+     */
+    public void removeFromExcludedShortcutApps(AppPojo app) {
+        // The set needs to be cloned and then edited,
+        // modifying in place is not supported by putStringSet()
+        Set<String> excluded = new HashSet<>(getExcludedShortcutApps());
+        excluded.remove(app.packageName);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
+        app.setExcludedShortcuts(false);
+        reloadShortcuts();
     }
 
     /**

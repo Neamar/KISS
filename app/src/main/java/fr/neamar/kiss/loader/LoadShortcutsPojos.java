@@ -66,7 +66,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             }
         }
 
-        return pojos;
+        return filterOutExcludedApps(pojos, context);
     }
 
     private ShortcutPojo createPojo(ShortcutRecord shortcutRecord, TagsHandler tagsHandler, String componentName, boolean pinned, boolean dynamic) {
@@ -92,4 +92,19 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         return false;
     }
 
+    /**
+     * @return a new list which filters out shortcuts which come from apps which the user
+     * has excluded shortcuts for.
+     * Does not modify the input list.
+     */
+    private ArrayList<ShortcutPojo> filterOutExcludedApps(List<ShortcutPojo> allPojos, Context context) {
+        ArrayList<ShortcutPojo> result = new ArrayList<>();
+        Set<String> excludedApps = KissApplication.getApplication(context).getDataHandler().getExcludedShortcutApps();
+        for (ShortcutPojo pojo : allPojos) {
+            if (!excludedApps.contains(pojo.packageName)) {
+                result.add(pojo);
+            }
+        }
+        return result;
+    }
 }
