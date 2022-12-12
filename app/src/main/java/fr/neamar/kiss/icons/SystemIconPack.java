@@ -2,22 +2,18 @@ package fr.neamar.kiss.icons;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.pm.LauncherActivityInfo;
-import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.Collection;
-import java.util.List;
 
 import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class SystemIconPack implements IconPack<Void> {
@@ -54,34 +50,14 @@ public class SystemIconPack implements IconPack<Void> {
 
     @Nullable
     @Override
-    public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName) {
-        Drawable drawable = null;
-
+    public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
         if (componentName.getPackageName().equals(GoogleCalendarIcon.GOOGLE_CALENDAR)) {
-            drawable = GoogleCalendarIcon.getDrawable(ctx, componentName.getClassName());
+            Drawable drawable = GoogleCalendarIcon.getDrawable(ctx, componentName.getClassName());
             if (drawable != null)
                 return drawable;
         }
-        try {
-            drawable = ctx.getPackageManager().getActivityIcon(componentName);
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "Unable to find component " + componentName.toShortString(), e);
-        }
 
-        // This should never happen, let's just return the application icon
-        if (drawable == null) {
-            try {
-                drawable = ctx.getPackageManager().getApplicationIcon(componentName.getPackageName());
-            } catch (PackageManager.NameNotFoundException e) {
-                Log.e(TAG, "Unable to find package " + componentName.getPackageName(), e);
-            }
-        }
-
-        // This should never happen, let's just return the generic activity icon
-        if (drawable == null)
-            drawable = ctx.getPackageManager().getDefaultActivityIcon();
-
-        return drawable;
+        return PackageManagerUtils.getActivityIcon(ctx, componentName, userHandle);
     }
 
     @NonNull

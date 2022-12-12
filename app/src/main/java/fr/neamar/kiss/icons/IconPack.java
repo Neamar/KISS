@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 
 import java.util.Collection;
 
+import fr.neamar.kiss.utils.UserHandle;
+
 public interface IconPack<DrawableInfo> {
 
     @NonNull
@@ -19,7 +21,7 @@ public interface IconPack<DrawableInfo> {
     void load(PackageManager packageManager);
 
     @Nullable
-    Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName);
+    Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle);
 
     @NonNull
     Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor);

@@ -184,12 +184,12 @@ public class IconsHandler {
             // just checking will make this thread wait for the icon pack to load
             if (!mIconPack.isLoaded())
                 return null;
-            drawable = mIconPack.getComponentDrawable(ctx, componentName);
+            drawable = mIconPack.getComponentDrawable(ctx, componentName, userHandle);
         }
 
         if (drawable == null) {
             // if icon pack doesn't have the drawable, use system drawable
-            drawable = mSystemPack.getComponentDrawable(ctx, componentName);
+            drawable = mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
         }
         if (drawable == null)
             return null;

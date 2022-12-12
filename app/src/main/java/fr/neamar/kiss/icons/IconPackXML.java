@@ -39,6 +39,7 @@ import java.util.Random;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.UserHandle;
 
 public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     private final static String TAG = IconPackXML.class.getSimpleName();
@@ -109,7 +110,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
     @Nullable
     @Override
-    public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName) {
+    public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
         return getComponentDrawable(componentName.toString());
     }
 
