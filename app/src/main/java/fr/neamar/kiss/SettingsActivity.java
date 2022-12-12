@@ -397,9 +397,6 @@ public class SettingsActivity extends PreferenceActivity implements
         category.addPreference(excludedAppsScreen);
     }
 
-    // TODO(Luke): Link this up
-//    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-//    Set<String> enabledApps = prefs.getStringSet("enabled-shortcut-apps", null);
     private void addExcludedShortcutAppSettings() {
         final DataHandler dataHandler = KissApplication.getApplication(this).getDataHandler();
 
@@ -427,6 +424,7 @@ public class SettingsActivity extends PreferenceActivity implements
         );
 
         PreferenceGroup category = (PreferenceGroup) findPreference("search-providers");
+        excludedAppsScreen.setOrder(4);
         category.addPreference(excludedAppsScreen);
     }
 

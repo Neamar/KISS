@@ -426,26 +426,32 @@
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-contacts"
+                android:order="1"
                 android:title="@string/contacts_name" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-settings"
+                android:order="2"
                 android:title="@string/settings_name" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-shortcuts"
+                android:order="3"
                 android:title="@string/shortcuts_name" />
             <fr.neamar.kiss.preference.ResetShortcutsPreference
                 android:dialogMessage="@string/regenerate_shortcuts_desc"
                 android:key="reset"
+                android:order="5"
                 android:title="@string/regenerate_shortcuts" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-search"
+                android:order="6"
                 android:title="@string/search_provider_toggle" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
                 android:key="enable-excluded-apps"
+                android:order="7"
                 android:title="@string/excluded_apps_toggle" />
         </PreferenceCategory>
         <PreferenceCategory

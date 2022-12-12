@@ -779,7 +779,7 @@ public class DataHandler extends BroadcastReceiver
 
     /**
      * Remove app from the apps which are not allowed to show shortcuts -
-     * that is to say, this app may now show shortcuts
+     * that is to say, this app may show shortcuts
      */
     public void removeFromExcludedShortcutApps(AppPojo app) {
         // The set needs to be cloned and then edited,
