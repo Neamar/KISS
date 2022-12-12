@@ -453,7 +453,7 @@ public class DataHandler extends BroadcastReceiver
     /**
      * Update DB with given {@link ShortcutRecord}.
      *
-     * @param shortcutInfo       the shortcut to update.
+     * @param shortcutInfo the shortcut to update.
      * @param includePackageName include package name in shortcut name
      * @return true if update was successful
      */
