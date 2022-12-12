@@ -109,6 +109,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     }
 
     @Nullable
+    @Override
     public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
         return getComponentDrawable(componentName.toString());
     }

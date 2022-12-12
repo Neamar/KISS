@@ -2,22 +2,18 @@ package fr.neamar.kiss.icons;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.pm.LauncherActivityInfo;
-import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.Collection;
-import java.util.List;
 
 import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class SystemIconPack implements IconPack<Void> {
@@ -54,60 +50,14 @@ public class SystemIconPack implements IconPack<Void> {
 
     @Nullable
     @Override
-    public Drawable getComponentDrawable(String componentName) {
-        return null;
-    }
-
-    @Nullable
-    @Override
     public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
-        Drawable drawable = null;
-
         if (componentName.getPackageName().equals(GoogleCalendarIcon.GOOGLE_CALENDAR)) {
-            drawable = GoogleCalendarIcon.getDrawable(ctx, componentName.getClassName());
+            Drawable drawable = GoogleCalendarIcon.getDrawable(ctx, componentName.getClassName());
             if (drawable != null)
                 return drawable;
         }
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-                List<LauncherActivityInfo> icons = launcher.getActivityList(componentName.getPackageName(), userHandle.getRealHandle());
-                for (LauncherActivityInfo info : icons) {
-                    if (info.getComponentName().equals(componentName)) {
-                        try {
-                            drawable = info.getBadgedIcon(0);
-                            break;
-                        } catch (SecurityException ignored) {
-                            // https://github.com/Neamar/KISS/issues/1715
-                            // not sure how to avoid it so we catch and ignore
-                        }
-                    }
-                }
 
-                // This should never happen, let's just return the activity icon
-                if (drawable == null)
-                    drawable = ctx.getPackageManager().getActivityIcon(componentName);
-            } else {
-                drawable = ctx.getPackageManager().getActivityIcon(componentName);
-            }
-        } catch (PackageManager.NameNotFoundException | IndexOutOfBoundsException e) {
-            Log.e(TAG, "Unable to find component " + componentName.toShortString(), e);
-        }
-
-        // This should never happen, let's just return the application icon
-        if (drawable == null) {
-            try {
-                drawable = ctx.getPackageManager().getApplicationIcon(componentName.getPackageName());
-            } catch (PackageManager.NameNotFoundException e) {
-                Log.e(TAG, "Unable to find package " + componentName.getPackageName(), e);
-            }
-        }
-
-        // This should never happen, let's just return the generic activity icon
-        if (drawable == null)
-            drawable = ctx.getPackageManager().getDefaultActivityIcon();
-
-        return drawable;
+        return PackageManagerUtils.getActivityIcon(ctx, componentName, userHandle);
     }
 
     @NonNull

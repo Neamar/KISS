@@ -34,7 +34,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     public void onCreate() {
         super.onCreate();
         // register content observer if we have permission
-        if(Permission.checkPermission(this, Permission.PERMISSION_READ_CONTACTS)) {
+        if (Permission.checkPermission(this, Permission.PERMISSION_READ_CONTACTS)) {
             getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, false, cObserver);
         } else {
             Permission.askPermission(Permission.PERMISSION_READ_CONTACTS, new Permission.PermissionResultListener() {
@@ -64,12 +64,14 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
         FuzzyScore.MatchInfo matchInfo;
-        boolean match;
+        boolean match = false;
 
         for (ContactsPojo pojo : pojos) {
-            matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
-            match = matchInfo.match;
-            pojo.relevance = matchInfo.score;
+            if (pojo.normalizedName != null) {
+                matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+                match = matchInfo.match;
+                pojo.relevance = matchInfo.score;
+            }
 
             if (pojo.normalizedNickname != null) {
                 matchInfo = fuzzyScore.match(pojo.normalizedNickname.codePoints);
@@ -79,7 +81,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 }
             }
 
-            if (!match && queryNormalized.length() > 2) {
+            if (!match && queryNormalized.length() > 2 && pojo.normalizedPhone != null) {
                 // search for the phone number
                 matchInfo = fuzzyScore.match(pojo.normalizedPhone.codePoints);
                 match = matchInfo.match;
@@ -87,7 +89,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             }
 
             if (match) {
-                if(pojo.starred) {
+                if (pojo.starred) {
                     pojo.relevance += 40;
                 }
 
@@ -108,7 +110,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.simplifyPhoneNumber(phoneNumber);
 
         for (ContactsPojo pojo : pojos) {
-            if (pojo.normalizedPhone.equals(simplifiedPhoneNumber)) {
+            if (pojo.normalizedPhone != null && pojo.normalizedPhone.equals(simplifiedPhoneNumber)) {
                 return pojo;
             }
         }

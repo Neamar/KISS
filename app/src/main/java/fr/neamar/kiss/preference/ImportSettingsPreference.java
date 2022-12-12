@@ -1,5 +1,7 @@
 package fr.neamar.kiss.preference;
 
+import static android.content.Context.CLIPBOARD_SERVICE;
+
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,10 +23,6 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.TagsHandler;
-import fr.neamar.kiss.dataprovider.AppProvider;
-import fr.neamar.kiss.dataprovider.ShortcutsProvider;
-
-import static android.content.Context.CLIPBOARD_SERVICE;
 
 public class ImportSettingsPreference extends DialogPreference {
 
@@ -84,14 +82,8 @@ public class ImportSettingsPreference extends DialogPreference {
                         String id = (String) tagKeys.next();
                         tagHandler.setTags(id, tags.getString(id).toLowerCase());
                     }
-                    AppProvider appProvider = dataHandler.getAppProvider();
-                    if (appProvider != null) {
-                        appProvider.reload();
-                    }
-                    ShortcutsProvider shortcutsProvider = dataHandler.getShortcutsProvider();
-                    if(shortcutsProvider != null) {
-                        shortcutsProvider.reload();
-                    }
+                    dataHandler.reloadApps();
+                    dataHandler.reloadShortcuts();
                 }
 
                 Toast.makeText(getContext(), "Preferences imported!", Toast.LENGTH_SHORT).show();

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.preference.PreferenceManager;
 
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.dataprovider.AppProvider;
 import fr.neamar.kiss.utils.UserHandle;
 
 /**
@@ -21,10 +20,7 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
     public static void handleEvent(Context ctx, String action, String packageName, UserHandle user, boolean replacing) {
         if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
-            if (replacing) {
-                // Update shortcuts
-                KissApplication.getApplication(ctx).getDataHandler().updateShortcuts(packageName);
-            } else {
+            if (!replacing) {
                 Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(packageName);
                 // launchIntent can be null for some plugin app
                 if (launchIntent != null) {
@@ -35,8 +31,6 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
                         KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
                     }
                 }
-                // Add shortcuts
-                KissApplication.getApplication(ctx).getDataHandler().updateAllShortcuts(packageName);
             }
         }
 
@@ -49,10 +43,9 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
         KissApplication.getApplication(ctx).resetIconsHandler();
 
         // Reload application list
-        final AppProvider provider = KissApplication.getApplication(ctx).getDataHandler().getAppProvider();
-        if (provider != null) {
-            provider.reload();
-        }
+        KissApplication.getApplication(ctx).getDataHandler().reloadApps();
+        // reload shortcuts
+        KissApplication.getApplication(ctx).getDataHandler().reloadShortcuts();
     }
 
     @Override

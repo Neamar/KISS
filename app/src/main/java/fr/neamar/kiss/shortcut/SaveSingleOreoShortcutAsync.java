@@ -17,7 +17,6 @@ import java.lang.ref.WeakReference;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.dataprovider.ShortcutsProvider;
 
 @RequiresApi(Build.VERSION_CODES.O)
 public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {
@@ -77,11 +76,7 @@ public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolea
 
             Context context = this.context.get();
             if (context != null) {
-                DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
-                ShortcutsProvider provider = dataHandler.getShortcutsProvider();
-                if (provider != null) {
-                    provider.reload();
-                }
+                KissApplication.getApplication(context).getDataHandler().reloadShortcuts();
             }
         }
     }

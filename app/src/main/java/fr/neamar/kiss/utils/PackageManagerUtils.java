@@ -5,18 +5,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.LauncherActivityInfo;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import java.util.List;
 
 public class PackageManagerUtils {
 
+    private static final String TAG = PackageManagerUtils.class.getSimpleName();
+
     /**
      * Method to enable/disable a specific component
      */
-    public static void enableComponent(Context ctx, Class component, boolean enabled) {
+    public static void enableComponent(Context ctx, Class<?> component, boolean enabled) {
         PackageManager pm = ctx.getPackageManager();
         ComponentName cn = new ComponentName(ctx, component);
         pm.setComponentEnabledSetting(cn,
@@ -136,5 +145,71 @@ public class PackageManagerUtils {
         return null;
     }
 
+    /**
+     * Get activity icon by component name using launcher apps, use icon provided by package manager as fallback.
+     *
+     * @param ctx           context
+     * @param componentName component name
+     * @param userHandle    handle for current user
+     * @return icon for given componentName
+     */
+    public static Drawable getActivityIcon(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            try {
+                LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                List<LauncherActivityInfo> icons = launcher.getActivityList(componentName.getPackageName(), userHandle.getRealHandle());
+                for (LauncherActivityInfo info : icons) {
+                    if (info.getComponentName().equals(componentName)) {
+                        Drawable drawable = info.getIcon(0);
+                        if (drawable != null) {
+                            return drawable;
+                        }
+                    }
+                }
+            } catch (SecurityException e) {
+                // https://github.com/Neamar/KISS/issues/1715
+                // not sure how to avoid it so we catch and ignore
+                Log.e(TAG, "Unable to find activity icon for component " + componentName.toShortString(), e);
+            }
+        }
+
+        return getActivityIcon(ctx, componentName);
+    }
+
+    /**
+     * Get activity icon by component name using package manager.
+     *
+     * @param ctx           context
+     * @param componentName component name
+     * @return icon for given componentName
+     */
+    private static Drawable getActivityIcon(@NonNull Context ctx, @NonNull ComponentName componentName) {
+        try {
+            return ctx.getPackageManager().getActivityIcon(componentName);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Unable to find activity icon for component " + componentName.toShortString(), e);
+        }
+
+        // This should never happen, let's just return the application icon
+        return getApplicationIcon(ctx, componentName.getPackageName());
+    }
+
+    /**
+     * Get application icon by package name using package manager.
+     *
+     * @param ctx         context
+     * @param packageName package name
+     * @return icon for given packageName
+     */
+    public static Drawable getApplicationIcon(@NonNull Context ctx, @NonNull String packageName) {
+        try {
+            return ctx.getPackageManager().getApplicationIcon(packageName);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Unable to find application icon for package " + packageName, e);
+        }
+
+        // This should never happen, let's just return the generic activity icon
+        return ctx.getPackageManager().getDefaultActivityIcon();
+    }
 
 }

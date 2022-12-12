@@ -25,7 +25,7 @@ public class ResetFavoritesPreference extends DialogPreference {
                     .putString("favorite-apps-list", "").apply();
 
             try {
-                KissApplication.getApplication(getContext()).getDataHandler().getAppProvider().reload();
+                KissApplication.getApplication(getContext()).getDataHandler().reloadApps();
             }
             catch(NullPointerException e) {
                 e.printStackTrace();

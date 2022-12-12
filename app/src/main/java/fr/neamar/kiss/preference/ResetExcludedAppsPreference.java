@@ -7,8 +7,6 @@ import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
-import java.util.HashSet;
-
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 
@@ -24,7 +22,7 @@ public class ResetExcludedAppsPreference extends DialogPreference {
         if (which == DialogInterface.BUTTON_POSITIVE) {
             PreferenceManager.getDefaultSharedPreferences(getContext()).edit()
                     .putStringSet("excluded-apps", null).apply();
-            KissApplication.getApplication(getContext()).getDataHandler().getAppProvider().reload();
+            KissApplication.getApplication(getContext()).getDataHandler().reloadApps();
             Toast.makeText(getContext(), R.string.excluded_app_list_erased, Toast.LENGTH_LONG).show();
         }
 

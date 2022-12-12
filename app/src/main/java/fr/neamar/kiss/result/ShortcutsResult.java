@@ -5,11 +5,9 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
-import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -83,7 +81,6 @@ public class ShortcutsResult extends Result {
 
         if (!prefs.getBoolean("icons-hide", false)) {
             // Retrieve icon for this shortcut
-            final PackageManager packageManager = context.getPackageManager();
             Drawable appDrawable = null;
             IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
 
@@ -109,20 +106,10 @@ public class ShortcutsResult extends Result {
 
             if (appDrawable == null) {
                 // Retrieve app icon (no Oreo shortcut or a shortcut from an activity that was removed from an installed app)
-                try {
-                    appDrawable = packageManager.getApplicationIcon(shortcutPojo.packageName);
-                    if (appDrawable != null)
-                        appDrawable = iconsHandler.applyIconMask(context, appDrawable, new fr.neamar.kiss.utils.UserHandle());
-                } catch (PackageManager.NameNotFoundException e) {
-                    Log.e(TAG, "Unable to find package " + shortcutPojo.packageName, e);
+                appDrawable = PackageManagerUtils.getApplicationIcon(context, shortcutPojo.packageName);
+                if (appDrawable != null) {
+                    appDrawable = iconsHandler.applyIconMask(context, appDrawable);
                 }
-            }
-
-            // This should never happen, let's just return the generic activity icon
-            if (appDrawable == null) {
-                appDrawable = context.getPackageManager().getDefaultActivityIcon();
-                if (appDrawable != null)
-                    appDrawable = iconsHandler.applyIconMask(context, appDrawable, new fr.neamar.kiss.utils.UserHandle());
             }
 
             Drawable shortcutDrawable = getDrawable(context);
@@ -148,7 +135,7 @@ public class ShortcutsResult extends Result {
 
     public Drawable getDrawable(Context context) {
         Drawable shortcutDrawable = null;
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             ShortcutInfo shortcutInfo = getShortCut(context);
             if (shortcutInfo != null) {
                 final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
@@ -158,7 +145,7 @@ public class ShortcutsResult extends Result {
         }
 
         if (shortcutDrawable != null) {
-            shortcutDrawable = KissApplication.getApplication(context).getIconsHandler().applyIconMask(context, shortcutDrawable, new fr.neamar.kiss.utils.UserHandle());
+            shortcutDrawable = KissApplication.getApplication(context).getIconsHandler().applyIconMask(context, shortcutDrawable);
         }
 
         return shortcutDrawable;
@@ -174,7 +161,7 @@ public class ShortcutsResult extends Result {
             // Pre-oreo shortcuts
             try {
                 Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                     intent.setSourceBounds(v.getClipBounds());
                 }
 
@@ -229,11 +216,15 @@ public class ShortcutsResult extends Result {
 
     @Override
     ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView) {
-        adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        if (!this.shortcutPojo.isDynamic()) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
+        }
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
+        if (this.shortcutPojo.isPinned()) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
+        }
 
         return inflatePopupMenu(adapter, context);
     }
@@ -268,24 +259,16 @@ public class ShortcutsResult extends Result {
         tagInput.setAdapter(adapter);
         builder.setView(v);
 
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                // Refresh tags for given app
-                pojo.setTags(tagInput.getText().toString().trim().toLowerCase(Locale.ROOT));
-                KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
-                // Show toast message
-                String msg = context.getResources().getString(R.string.tags_confirmation_added);
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-            }
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            dialog.dismiss();
+            // Refresh tags for given app
+            pojo.setTags(tagInput.getText().toString().trim().toLowerCase(Locale.ROOT));
+            KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
+            // Show toast message
+            String msg = context.getResources().getString(R.string.tags_confirmation_added);
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         });
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel());
 
         AlertDialog dialog = builder.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);

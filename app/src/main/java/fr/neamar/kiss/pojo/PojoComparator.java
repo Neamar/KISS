@@ -13,9 +13,9 @@ public class PojoComparator implements Comparator<Pojo> {
         if (lhs.relevance == rhs.relevance) {
             if (lhs.normalizedName != null && rhs.normalizedName != null)
                 return lhs.normalizedName.compareTo(rhs.normalizedName);
-            else
-                return lhs.name.compareTo(rhs.name);
+            else if (lhs.getName() != null && rhs.getName() != null)
+                return lhs.getName().compareTo(rhs.getName());
         }
-        return lhs.relevance - rhs.relevance;
+        return Integer.compare(lhs.relevance, rhs.relevance);
     }
 }

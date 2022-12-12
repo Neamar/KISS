@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.GestureDetector;
@@ -188,7 +189,7 @@ class ExperienceTweaks extends Forwarder {
                         if (isMinimalisticModeEnabled()) {
                             // and we're currently in minimalistic mode with no results,
                             // and we're not looking at the app list
-                            if (mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
+                            if (mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
                                 if (mainActivity.list.getAdapter() == null || mainActivity.list.getAdapter().isEmpty()) {
                                     mainActivity.showHistory();
                                 }
@@ -281,7 +282,7 @@ class ExperienceTweaks extends Forwarder {
         // if the root layout is significantly smaller than the screen, it's been resized for a keyboard. See here:
         // https://stackoverflow.com/questions/2150078/how-to-check-visibility-of-software-keyboard-in-android
         if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onkeyboard", false) &&
-                mainActivity.isViewingSearchResults() && mainActivity.searchEditText.getText().toString().isEmpty()) {
+                mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
             final View activityRootView = mainActivity.findViewById(android.R.id.content);
             int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
             if (heightDiff > dpToPx(mainActivity.getBaseContext(), 200)) {

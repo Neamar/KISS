@@ -542,10 +542,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 }
 
                 // Reload search list
-                final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getSearchProvider();
-                if (provider != null) {
-                    provider.reload();
-                }
+                KissApplication.getApplication(SettingsActivity.this).getDataHandler().reloadSearchProvider();
                 return true;
             }
         });
@@ -596,10 +593,7 @@ public class SettingsActivity extends PreferenceActivity implements
         if (key.equalsIgnoreCase("available-search-providers")) {
             addCustomSearchProvidersPreferences(prefs);
         } else if (key.equalsIgnoreCase("selected-search-provider-names")) {
-            final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getSearchProvider();
-            if (provider != null) {
-                provider.reload();
-            }
+            KissApplication.getApplication(SettingsActivity.this).getDataHandler().reloadSearchProvider();
             removeSearchProviderDefault(); // in order to refresh default search engine choices
             addDefaultSearchProvider(prefs);
         } else if (key.equalsIgnoreCase("enable-phone-history")) {
@@ -627,10 +621,7 @@ public class SettingsActivity extends PreferenceActivity implements
         } else if (key.equalsIgnoreCase("number-of-display-elements")) {
             QuerySearcher.clearMaxResultCountCache();
         } else if (key.equalsIgnoreCase("default-search-provider")) {
-            final SearchProvider provider = KissApplication.getApplication(SettingsActivity.this).getDataHandler().getSearchProvider();
-            if (provider != null) {
-                provider.reload();
-            }
+            KissApplication.getApplication(SettingsActivity.this).getDataHandler().reloadSearchProvider();
         } else if ("pref-fav-tags-list".equals(key)) {
             // after we edit the fav tags list update DataHandler
             Set<String> favTags = sharedPreferences.getStringSet(key, Collections.<String>emptySet());
@@ -642,7 +633,7 @@ public class SettingsActivity extends PreferenceActivity implements
             for (String tagName : favTags)
                 dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
         } else if ("exclude-favorites-apps".equals(key)) {
-            KissApplication.getApplication(this).getDataHandler().getAppProvider().reload();
+            KissApplication.getApplication(this).getDataHandler().reloadApps();
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
