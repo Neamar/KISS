@@ -89,11 +89,14 @@ class Widgets extends Forwarder {
                         break;
                     case REQUEST_APPWIDGET_PICKED:
                         if (data != null) {
-                            if (!data.getBooleanExtra(PickAppWidgetActivity.EXTRA_WIDGET_BIND_ALLOWED, false))
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                            if (!data.getBooleanExtra(PickAppWidgetActivity.EXTRA_WIDGET_BIND_ALLOWED, false)) {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                     requestBindWidget(mainActivity, data);
-                                else
-                                    configureAppWidget(data);
+                                    break;
+                                }
+                            }
+                            // if binding not required we can continue with adding the widget
+                            configureAppWidget(data);
                         } else {
                             Log.i(TAG, "Widget picker failed");
                         }
