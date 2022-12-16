@@ -535,7 +535,7 @@ public class DataHandler extends BroadcastReceiver
     }
 
     /**
-     * Get ids that should be excluded from apps
+     * Get ids of favorites that should be excluded from apps/shortcuts
      *
      * @return set of favorite ids
      */
