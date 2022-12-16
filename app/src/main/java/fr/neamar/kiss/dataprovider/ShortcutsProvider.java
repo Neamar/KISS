@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
@@ -60,6 +61,8 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
 
     @Override
     public void requestResults(String query, Searcher searcher) {
+        Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
+
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
 
         if (queryNormalized.codePoints.length == 0) {
@@ -71,6 +74,11 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
         boolean match;
 
         for (ShortcutPojo pojo : pojos) {
+            // exclude favorites from results
+            if (excludedFavoriteIds.contains(pojo.getFavoriteId())) {
+                continue;
+            }
+
             matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
             match = matchInfo.match;
             pojo.relevance = matchInfo.score;

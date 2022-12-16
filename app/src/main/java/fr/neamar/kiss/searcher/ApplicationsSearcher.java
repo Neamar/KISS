@@ -2,9 +2,11 @@ package fr.neamar.kiss.searcher;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -38,14 +40,18 @@ public class ApplicationsSearcher extends Searcher {
         if (activity == null)
             return null;
 
+        Set<String> excludedFavoriteIds = KissApplication.getApplication(activity).getDataHandler().getExcludedFavorites();
+
+        // add apps
         List<AppPojo> pojos = KissApplication.getApplication(activity).getDataHandler().getApplicationsWithoutExcluded();
         if (pojos != null) {
-            this.addResult(pojos.toArray(new Pojo[0]));
+            this.addResult(getPojosWithoutFavorites(pojos, excludedFavoriteIds).toArray(new Pojo[0]));
         }
 
+        // add pinned shortcuts (PWA, ...)
         List<ShortcutPojo> shortcuts = KissApplication.getApplication(activity).getDataHandler().getPinnedShortcuts();
         if (shortcuts != null) {
-            this.addResult(shortcuts.toArray(new Pojo[0]));
+            this.addResult(getPojosWithoutFavorites(shortcuts, excludedFavoriteIds).toArray(new Pojo[0]));
         }
 
         return null;
@@ -57,4 +63,24 @@ public class ApplicationsSearcher extends Searcher {
         // Build sections for fast scrolling
         activityWeakReference.get().adapter.buildSections();
     }
+
+    /**
+     * @param pojos               list of pojos
+     * @param excludedFavoriteIds ids of favorites to exclude from pojos
+     * @return pojos without favorites
+     */
+    private <T extends Pojo> List<T> getPojosWithoutFavorites(List<T> pojos, Set<String> excludedFavoriteIds) {
+        if (excludedFavoriteIds.isEmpty()) {
+            return pojos;
+        }
+        List<T> records = new ArrayList<>(pojos.size());
+
+        for (T pojo : pojos) {
+            if (!excludedFavoriteIds.contains(pojo.getFavoriteId())) {
+                records.add(pojo);
+            }
+        }
+        return records;
+    }
+
 }
