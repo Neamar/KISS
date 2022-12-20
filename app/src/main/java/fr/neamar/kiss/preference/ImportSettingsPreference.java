@@ -34,10 +34,12 @@ public class ImportSettingsPreference extends DialogPreference {
     public void onClick(DialogInterface dialog, int which) {
         super.onClick(dialog, which);
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            // Apply changes
-            ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
-            String clipboardText = clipboard.getPrimaryClip().getItemAt(0).coerceToText(getContext()).toString();
             try {
+                // Apply changes
+                ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
+                // Can throw NullPointerException if the application doesn't have focus. Display a toast if this happens
+                String clipboardText = clipboard.getPrimaryClip().getItemAt(0).coerceToText(getContext()).toString();
+
                 // Validate JSON
                 JSONObject o = new JSONObject(clipboardText);
                 if (o.getInt("__v") > BuildConfig.VERSION_CODE) {
@@ -87,7 +89,7 @@ public class ImportSettingsPreference extends DialogPreference {
                 }
 
                 Toast.makeText(getContext(), "Preferences imported!", Toast.LENGTH_SHORT).show();
-            } catch (JSONException e) {
+            } catch (JSONException|NullPointerException e) {
                 e.printStackTrace();
                 Toast.makeText(getContext(), "Unable to import preferences", Toast.LENGTH_SHORT).show();
             }

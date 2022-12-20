@@ -11,7 +11,9 @@ import android.os.UserManager;
 import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
+import java.util.Set;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
 import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -113,6 +115,8 @@ public class AppProvider extends Provider<AppPojo> {
 
     @Override
     public void requestResults(String query, Searcher searcher) {
+        Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
+
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (queryNormalized.codePoints.length == 0) {
@@ -124,7 +128,12 @@ public class AppProvider extends Provider<AppPojo> {
         boolean match;
 
         for (AppPojo pojo : pojos) {
+            // exclude apps from results
             if(pojo.isExcluded() && !prefs.getBoolean("enable-excluded-apps", false)) {
+                continue;
+            }
+            // exclude favorites from results
+            if (excludedFavoriteIds.contains(pojo.getFavoriteId())) {
                 continue;
             }
 

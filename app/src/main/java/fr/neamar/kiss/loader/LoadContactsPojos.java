@@ -13,8 +13,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import fr.neamar.kiss.normalizer.PhoneNormalizer;
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.utils.Permission;
 
@@ -26,7 +24,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
     @Override
     protected ArrayList<ContactsPojo> doInBackground(Void... params) {
-        long start = System.nanoTime();
+        long start = System.currentTimeMillis();
 
         ArrayList<ContactsPojo> contacts = new ArrayList<>();
         Context c = context.get();
@@ -151,8 +149,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 }
             }
         }
-        long end = System.nanoTime();
-        Log.i("time", Long.toString((end - start) / 1000000) + " milliseconds to list contacts");
+        long end = System.currentTimeMillis();
+        Log.i("time", (end - start) + " milliseconds to list contacts");
         return contacts;
     }
 }
