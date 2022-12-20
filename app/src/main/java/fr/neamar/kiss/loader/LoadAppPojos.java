@@ -55,7 +55,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
                 for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
-                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), excludedAppList, excludedFromHistoryAppList);
+                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                     apps.add(app);
                 }
             }
@@ -67,7 +67,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
             for (ResolveInfo info : manager.queryIntentActivities(mainIntent, 0)) {
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
-                final AppPojo app = createPojo(new UserHandle(), appInfo.packageName, info.activityInfo.name, info.loadLabel(manager), excludedAppList, excludedFromHistoryAppList);
+                final AppPojo app = createPojo(new UserHandle(), appInfo.packageName, info.activityInfo.name, info.loadLabel(manager), excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                 apps.add(app);
             }
         }
@@ -89,13 +89,15 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         return apps;
     }
 
-    private AppPojo createPojo(UserHandle userHandle, String packageName, String activityName, CharSequence label, Set<String> excludedAppList, Set<String> excludedFromHistoryAppList) {
+    private AppPojo createPojo(UserHandle userHandle, String packageName, String activityName, CharSequence label, Set<String> excludedAppList, Set<String> excludedFromHistoryAppList, Set<String> excludedShortcutsAppList) {
         String id = userHandle.addUserSuffixToString(pojoScheme + packageName + "/" + activityName, '/');
 
         boolean isExcluded = excludedAppList.contains(AppPojo.getComponentName(packageName, activityName, userHandle));
         boolean isExcludedFromHistory = excludedFromHistoryAppList.contains(id);
+        // TODO: are we checking for 'packageName' or 'id'? Test
+        boolean isExcludedShortcuts = excludedShortcutsAppList.contains(packageName);
 
-        AppPojo app = new AppPojo(id, packageName, activityName, userHandle, isExcluded, isExcludedFromHistory);
+        AppPojo app = new AppPojo(id, packageName, activityName, userHandle, isExcluded, isExcludedFromHistory, isExcludedShortcuts);
 
         app.setName(label.toString());
 
