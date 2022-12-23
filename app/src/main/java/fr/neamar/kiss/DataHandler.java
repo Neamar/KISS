@@ -64,7 +64,7 @@ public class DataHandler extends BroadcastReceiver
             "app", "contacts", "shortcuts"
     );
 
-    final static private String PREF_KEY_EXCLUDED_SHORTCUT_APPS = "excluded-shortcut-apps";
+    public final static String PREF_KEY_EXCLUDED_SHORTCUT_APPS = "excluded-shortcut-apps";
 
     private TagsHandler tagsHandler;
     final private Context context;

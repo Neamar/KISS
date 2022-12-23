@@ -12,6 +12,10 @@ import fr.neamar.kiss.utils.ShortcutUtil;
 
 public class ResetShortcutsPreference extends DialogPreference {
 
+    public ResetShortcutsPreference(Context context) {
+        super(context, null);
+    }
+
     public ResetShortcutsPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

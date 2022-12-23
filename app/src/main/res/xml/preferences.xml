@@ -47,16 +47,20 @@
             android:key="exclude_apps_category"
             android:order="53"
             android:title="@string/settings_excluded_apps">
-            <fr.neamar.kiss.preference.ResetExcludedFromHistoryAppsPreference
-                android:dialogMessage="@string/reset_excluded_from_history_apps_warn"
-                android:key="reset-excluded-from-history-apps"
-                android:order="56"
-                android:title="@string/reset_excluded_from_history_apps_name" />
+            <!-- ExcludedAppSettings button is added here dynamically (implicit order 54) -->
+            <!-- ExcludedFromHistoryAppSettings button is added here dynamically (implicit order 55) -->
+            <!-- ExcludedShortcutAppSettings button is added here dynamically (implicit order 56) -->
             <fr.neamar.kiss.preference.ResetExcludedAppsPreference
                 android:dialogMessage="@string/reset_excluded_apps_warn"
                 android:key="reset-excluded-apps"
                 android:order="57"
                 android:title="@string/reset_excluded_apps_name" />
+            <fr.neamar.kiss.preference.ResetExcludedFromHistoryAppsPreference
+                android:dialogMessage="@string/reset_excluded_from_history_apps_warn"
+                android:key="reset-excluded-from-history-apps"
+                android:order="58"
+                android:title="@string/reset_excluded_from_history_apps_name" />
+            <!-- ResetExcludedAppShortcutsPreference button is added here dynamically (order 59) -->
         </PreferenceCategory>
 
     </PreferenceScreen>
@@ -433,16 +437,8 @@
                 android:key="enable-settings"
                 android:order="2"
                 android:title="@string/settings_name" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="true"
-                android:key="enable-shortcuts"
-                android:order="3"
-                android:title="@string/shortcuts_name" />
-            <fr.neamar.kiss.preference.ResetShortcutsPreference
-                android:dialogMessage="@string/regenerate_shortcuts_desc"
-                android:key="reset"
-                android:order="5"
-                android:title="@string/regenerate_shortcuts" />
+            <!-- Enable shortcuts switch is added here dynamically (order 3) -->
+            <!-- ResetShortcutsPreference is added here dynamically (order 5) -->
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-search"
