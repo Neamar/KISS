@@ -64,6 +64,10 @@ public class DataHandler extends BroadcastReceiver
             "app", "contacts", "shortcuts"
     );
 
+    /**
+     * Key for a preference that holds a String set of apps which are excluded from showing shortcuts.
+     * Each string in the set is the packageName of an app which may not show shortcuts.
+     */
     public final static String PREF_KEY_EXCLUDED_SHORTCUT_APPS = "excluded-shortcut-apps";
 
     private TagsHandler tagsHandler;

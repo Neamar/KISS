@@ -94,7 +94,6 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
         boolean isExcluded = excludedAppList.contains(AppPojo.getComponentName(packageName, activityName, userHandle));
         boolean isExcludedFromHistory = excludedFromHistoryAppList.contains(id);
-        // TODO: are we checking for 'packageName' or 'id'? Test
         boolean isExcludedShortcuts = excludedShortcutsAppList.contains(packageName);
 
         AppPojo app = new AppPojo(id, packageName, activityName, userHandle, isExcluded, isExcludedFromHistory, isExcludedShortcuts);
