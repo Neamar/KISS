@@ -1,5 +1,7 @@
 package fr.neamar.kiss;
 
+import static android.view.HapticFeedbackConstants.LONG_PRESS;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
@@ -61,11 +63,8 @@ import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
-import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
-
-import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
 
@@ -366,7 +365,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.hider.start();
 
         // Enable/disable phone broadcast receiver
-        PackageManagerUtils.enableComponent(this, IncomingCallHandler.class, prefs.getBoolean("enable-phone-history", false));
+        IncomingCallHandler.setEnabled(this, prefs.getBoolean("enable-phone-history", false));
 
         // Hide the "X" after the text field, instead displaying the menu button
         displayClearOnInput();

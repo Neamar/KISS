@@ -6,12 +6,11 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.ListIterator;
-
-import androidx.annotation.NonNull;
-
 
 public class Permission {
     public static final int PERMISSION_READ_CONTACTS = 0;
@@ -21,14 +20,14 @@ public class Permission {
     private static final String[] permissions = {
             Manifest.permission.READ_CONTACTS,
             Manifest.permission.CALL_PHONE,
-            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.READ_PHONE_STATE
     };
 
     // Static weak reference to the linked activity, this is sadly required
     // to ensure classes requesting permission can access activity.requestPermission()
     private static WeakReference<Activity> currentActivity = new WeakReference<>(null);
 
-    private static ArrayList<PermissionResultListener> permissionListeners = new ArrayList<>();
+    private static final ArrayList<PermissionResultListener> permissionListeners = new ArrayList<>();
 
     public static boolean checkPermission(Context context, int permission) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(permissions[permission]) == PackageManager.PERMISSION_GRANTED;

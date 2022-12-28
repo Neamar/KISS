@@ -149,6 +149,15 @@
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
+        <service
+            android:name=".broadcast.IncomingCallScreeningService"
+            android:permission="android.permission.BIND_SCREENING_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.telecom.CallScreeningService" />
+            </intent-filter>
+        </service>
+
 
         <service android:name=".dataprovider.AppProvider" />
         <service android:name=".dataprovider.ContactsProvider" />
