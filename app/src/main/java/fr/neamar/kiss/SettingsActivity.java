@@ -46,9 +46,12 @@ import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.preference.ExcludePreferenceScreen;
 import fr.neamar.kiss.preference.PreferenceScreenHelper;
+import fr.neamar.kiss.preference.ResetExcludedAppShortcutsPreference;
+import fr.neamar.kiss.preference.ResetShortcutsPreference;
 import fr.neamar.kiss.preference.SwitchPreference;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.Permission;
+import fr.neamar.kiss.utils.ShortcutUtil;
 
 @SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
@@ -151,10 +154,25 @@ public class SettingsActivity extends PreferenceActivity implements
 
         // This is reaaally slow, and always need to run asynchronously
         Runnable alwaysAsync = () -> {
+            // TODO: Note that there is a bug here with all of these settings pages:
+            //  These settings pages load the list of AppPojos from DataHandler only once.
+            //  This means that the data shown in these settings pages will be stale if the AppPojo
+            //  data stored in DataHandler is changed by elsewhere in the app.
+            //  You can easily reproduce this bug by:
+            //  1. Open the 'apps excluded from KISS' page
+            //  2. Change some values from their defaults
+            //  3. Go back and use the 'reset apps excluded from KISS' button
+            //  4. Open the 'apps excluded from KISS' page again. The data shown will be incorrect,
+            //   as it won't have refreshed for the user having reset the list.
+            //   This list will refresh if the user closes and re-opens KISS settings.
             SettingsActivity.this.addExcludedAppSettings();
             SettingsActivity.this.addExcludedFromHistoryAppSettings();
+            SettingsActivity.this.addExcludedShortcutAppSettings();
         };
 
+        addEnableShortcutsSwitch();
+        addRegenerateShortcutsPreference();
+        addResetExcludedAppShortcutsPreference();
         reorderPreferencesWithDisplayDependency();
 
         if (savedInstanceState == null) {
@@ -389,6 +407,97 @@ public class SettingsActivity extends PreferenceActivity implements
                     }
                 },
                 R.string.ui_excluded_from_history_apps,
+                R.string.ui_excluded_apps_dialog_title
+        );
+
+        PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
+        category.addPreference(excludedAppsScreen);
+    }
+
+    /**
+     * Adds the button for resetting the apps excluded from showing shortcuts,
+     * only if this device supports shortcuts
+     */
+    private void addResetExcludedAppShortcutsPreference() {
+        if(!ShortcutUtil.canDeviceShowShortcuts()) {
+            return;
+        }
+
+        ResetExcludedAppShortcutsPreference pref = new ResetExcludedAppShortcutsPreference(this);
+        pref.setKey("reset-excluded-app-shortcuts");
+        pref.setOrder(59);
+        pref.setTitle(R.string.reset_excluded_app_shortcuts_name);
+        pref.setDialogMessage(R.string.reset_excluded_app_shortcuts_warn);
+
+        PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
+        category.addPreference(pref);
+    }
+
+    /**
+     * Adds the switch for toggling whether shortcuts shown be shown,
+     * only if this device supports shortcuts
+     */
+    private void addEnableShortcutsSwitch() {
+        if(!ShortcutUtil.canDeviceShowShortcuts()) {
+            return;
+        }
+
+        SwitchPreference pref = new SwitchPreference(this);
+        pref.setDefaultValue(true);
+        pref.setKey("enable-shortcuts");
+        pref.setTitle(R.string.shortcuts_name);
+
+        PreferenceGroup category = (PreferenceGroup) findPreference("search-providers");
+        pref.setOrder(3);
+        category.addPreference(pref);
+    }
+
+    /**
+     * Adds the button for regenerating the list of shortcuts,
+     * only if this device supports shortcuts
+     */
+    private void addRegenerateShortcutsPreference() {
+        if(!ShortcutUtil.canDeviceShowShortcuts()) {
+            return;
+        }
+
+        ResetShortcutsPreference pref = new ResetShortcutsPreference(this);
+        pref.setDialogMessage(R.string.regenerate_shortcuts_desc);
+        pref.setKey("reset");
+        pref.setTitle(R.string.regenerate_shortcuts);
+
+        PreferenceGroup category = (PreferenceGroup) findPreference("search-providers");
+        pref.setOrder(5);
+        category.addPreference(pref);
+    }
+
+    private void addExcludedShortcutAppSettings() {
+        if(!ShortcutUtil.canDeviceShowShortcuts()) {
+            return;
+        }
+
+        final DataHandler dataHandler = KissApplication.getApplication(this).getDataHandler();
+
+        PreferenceScreen excludedAppsScreen = ExcludePreferenceScreen.getInstance(
+                this,
+                new ExcludePreferenceScreen.IsExcludedCallback() {
+                    @Override
+                    public boolean isExcluded(@NonNull AppPojo app) {
+                        return app.isExcludedShortcuts();
+                    }
+                },
+                new ExcludePreferenceScreen.OnExcludedListener() {
+                    @Override
+                    public void onExcluded(final @NonNull AppPojo app) {
+                        dataHandler.addToExcludedShortcutApps(app);
+                    }
+
+                    @Override
+                    public void onIncluded(final @NonNull AppPojo app) {
+                        dataHandler.removeFromExcludedShortcutApps(app);
+                    }
+                },
+                R.string.ui_excluded_from_shortcuts_apps,
                 R.string.ui_excluded_apps_dialog_title
         );
 

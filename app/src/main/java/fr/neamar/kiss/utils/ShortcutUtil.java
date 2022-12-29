@@ -45,13 +45,20 @@ public class ShortcutUtil {
     }
 
     /**
-     * @return true if shortcuts are enabled in settings and android version is higher or equals android 8
+     * @return true if this device supports shortcuts, and shortcuts are enabled in settings
      */
     public static boolean areShortcutsEnabled(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
-                prefs.getBoolean("enable-shortcuts", true);
+        return canDeviceShowShortcuts() && prefs.getBoolean("enable-shortcuts", true);
+    }
 
+    /**
+     * @return whether this device is running Android 8 (API 26) or higher.
+     * Officially shortcuts were first supported by Android 7.1 (API 25),
+     * but we use shortcut APIs only available in Android 8.
+     */
+    public static boolean canDeviceShowShortcuts() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     }
 
     /**
