@@ -3,6 +3,7 @@ package fr.neamar.kiss.broadcast;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -10,6 +11,7 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.dataprovider.ContactsProvider;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 
 public class IncomingCallHandler extends BroadcastReceiver {
 
@@ -45,5 +47,14 @@ public class IncomingCallHandler extends BroadcastReceiver {
         } catch (Exception e) {
             Log.e("Phone Receive Error", " " + e);
         }
+    }
+
+    public static void setEnabled(Context context, boolean enabled) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            PackageManagerUtils.enableComponent(context, IncomingCallHandler.class, false);
+        } else {
+            PackageManagerUtils.enableComponent(context, IncomingCallHandler.class, enabled);
+        }
+
     }
 }
