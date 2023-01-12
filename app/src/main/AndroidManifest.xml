@@ -47,11 +47,6 @@
         android:localeConfig="@xml/locales_config"
         android:fullBackupContent="@xml/backup_descriptor">
 
-        <!-- Can be removed once we target SDK 24+ -->
-        <meta-data
-            android:name="android.max_aspect"
-            android:value="3.0" />
-
         <!--
         clearTaskOnLaunch: when viewing kiss settings, display the main activity when pressing home https://github.com/Neamar/KISS/issues/117
         launchMode=singleTop: call onNewIntent() when pressing home again while already viewing main activity, also redisplay main activity when viewing full-screen contact from picture
