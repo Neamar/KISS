@@ -36,6 +36,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
@@ -145,6 +146,7 @@ public class ShortcutsResult extends Result {
         }
 
         if (shortcutDrawable != null) {
+            shortcutDrawable = DrawableUtils.getThemedDrawable(context, shortcutDrawable);
             shortcutDrawable = KissApplication.getApplication(context).getIconsHandler().applyIconMask(context, shortcutDrawable);
         }
 

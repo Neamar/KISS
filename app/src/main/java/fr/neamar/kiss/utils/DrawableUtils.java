@@ -15,12 +15,14 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UIColors;
 
 public class DrawableUtils {
 
@@ -40,6 +42,7 @@ public class DrawableUtils {
     private static final Paint PAINT = new Paint();
     private static final Path SHAPE_PATH = new Path();
     private static final RectF RECT_F = new RectF();
+    public static final String KEY_THEMED_ICONS = "themed-icons";
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
     public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
@@ -129,7 +132,7 @@ public class DrawableUtils {
             Canvas iconCanvas = new Canvas(iconBitmap);
 
             // Stretch adaptive layers because they are 108dp and the icon size is 48dp
-            if(bgDrawable != null) {
+            if (bgDrawable != null) {
                 bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
                 bgDrawable.draw(iconCanvas);
             }
@@ -327,4 +330,37 @@ public class DrawableUtils {
     public static boolean hasDeviceConfiguredMask() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     }
+
+    public static boolean hasThemedIcons() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
+    }
+
+    /**
+     * Get themed drawable if applicable
+     *
+     * @param ctx
+     * @param drawable
+     * @return themed drawable
+     */
+    public static Drawable getThemedDrawable(@NonNull Context ctx, @NonNull Drawable drawable) {
+        if (isAdaptiveIconDrawable(drawable) &&
+                hasThemedIcons() &&
+                isThemedIconEnabled(ctx)) {
+            AdaptiveIconDrawable aid = (AdaptiveIconDrawable) drawable.mutate();
+            Drawable mono = aid.getMonochrome();
+            if (mono != null) {
+                int[] colors = UIColors.getIconColors(ctx);
+                mono = mono.mutate();
+                mono.setTint(colors[1]);
+                return new AdaptiveIconDrawable(new ColorDrawable(colors[0]), mono);
+            }
+        }
+
+        return drawable;
+    }
+
+    public static boolean isThemedIconEnabled(Context ctx) {
+        return PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(KEY_THEMED_ICONS, false);
+    }
+
 }

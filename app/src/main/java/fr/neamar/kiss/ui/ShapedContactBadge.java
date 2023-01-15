@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.utils.DrawableUtils;
 
 public class ShapedContactBadge extends QuickContactBadge {
 
@@ -27,6 +28,7 @@ public class ShapedContactBadge extends QuickContactBadge {
     @Override
     public void setImageDrawable(@Nullable Drawable drawable) {
         if (drawable != null) {
+            drawable = DrawableUtils.getThemedDrawable(getContext(), drawable);
             drawable = getShapedDrawable(getContext(), drawable);
         }
         super.setImageDrawable(drawable);

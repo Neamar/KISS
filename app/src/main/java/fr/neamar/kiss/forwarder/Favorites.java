@@ -154,7 +154,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             }
 
             if (notificationPrefs != null) {
-                int dotColor = isExternalFavoriteBarEnabled() ? UIColors.getPrimaryColor(mainActivity) : Color.WHITE;
+                int dotColor = isExternalFavoriteBarEnabled() ? UIColors.getNotificationDotColor(mainActivity) : Color.WHITE;
 
                 ImageView notificationDot = viewHolder.view.findViewById(R.id.item_notification_dot);
                 if (notificationDot == null)
