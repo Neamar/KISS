@@ -155,6 +155,11 @@
         <PreferenceCategory
             android:key="icons-section"
             android:title="@string/icons_category">
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="themed-icons"
+                android:summary="@string/icons_themed_summary"
+                android:title="@string/icons_themed_name" />
             <ListPreference
                 android:defaultValue="default"
                 android:key="icons-pack"

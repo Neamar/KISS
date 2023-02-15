@@ -162,7 +162,7 @@ public class PackageManagerUtils {
                     if (info.getComponentName().equals(componentName)) {
                         Drawable drawable = info.getIcon(0);
                         if (drawable != null) {
-                            return drawable;
+                            return DrawableUtils.getThemedDrawable(ctx, drawable);
                         }
                     }
                 }
@@ -185,7 +185,8 @@ public class PackageManagerUtils {
      */
     private static Drawable getActivityIcon(@NonNull Context ctx, @NonNull ComponentName componentName) {
         try {
-            return ctx.getPackageManager().getActivityIcon(componentName);
+            Drawable drawable = ctx.getPackageManager().getActivityIcon(componentName);
+            return DrawableUtils.getThemedDrawable(ctx, drawable);
         } catch (PackageManager.NameNotFoundException e) {
             Log.e(TAG, "Unable to find activity icon for component " + componentName.toShortString(), e);
         }
@@ -203,13 +204,15 @@ public class PackageManagerUtils {
      */
     public static Drawable getApplicationIcon(@NonNull Context ctx, @NonNull String packageName) {
         try {
-            return ctx.getPackageManager().getApplicationIcon(packageName);
+            Drawable drawable = ctx.getPackageManager().getApplicationIcon(packageName);
+            return DrawableUtils.getThemedDrawable(ctx, drawable);
         } catch (PackageManager.NameNotFoundException e) {
             Log.e(TAG, "Unable to find application icon for package " + packageName, e);
         }
 
         // This should never happen, let's just return the generic activity icon
-        return ctx.getPackageManager().getDefaultActivityIcon();
+        Drawable drawable = ctx.getPackageManager().getDefaultActivityIcon();
+        return DrawableUtils.getThemedDrawable(ctx, drawable);
     }
 
 }

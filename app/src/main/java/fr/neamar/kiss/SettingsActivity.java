@@ -50,6 +50,7 @@ import fr.neamar.kiss.preference.ResetExcludedAppShortcutsPreference;
 import fr.neamar.kiss.preference.ResetShortcutsPreference;
 import fr.neamar.kiss.preference.SwitchPreference;
 import fr.neamar.kiss.searcher.QuerySearcher;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
@@ -135,6 +136,9 @@ public class SettingsActivity extends PreferenceActivity implements
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
             removePreference("advanced", "enable-notifications");
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            removePreference("icons-section", DrawableUtils.KEY_THEMED_ICONS);
         }
 
         final ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
