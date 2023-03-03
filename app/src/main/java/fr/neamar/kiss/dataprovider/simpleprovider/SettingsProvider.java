@@ -100,19 +100,15 @@ public class SettingsProvider extends SimpleProvider {
         }
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
-        FuzzyScore.MatchInfo matchInfo;
-        boolean match;
 
         for (SettingPojo pojo : pojos) {
-            matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
-            match = matchInfo.match;
-            pojo.relevance = matchInfo.score;
+            FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+            boolean match = pojo.updateMatchingRelevance(matchInfo, false);
 
             if (!match) {
                 // Match localized setting name
                 matchInfo = fuzzyScore.match(settingName);
-                match = matchInfo.match;
-                pojo.relevance = matchInfo.score;
+                match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
             if (match && !searcher.addResult(pojo)) {

@@ -1,6 +1,7 @@
 package fr.neamar.kiss.pojo;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
+import fr.neamar.kiss.utils.FuzzyScore;
 
 public abstract class Pojo {
     public static final String DEFAULT_ID = "(none)";
@@ -70,5 +71,20 @@ public abstract class Pojo {
      */
     public String getFavoriteId() {
         return getHistoryId();
+    }
+
+    /**
+     * Updates relevance of this pojo with score of given {@code matchInfo} if there is a match.
+     *
+     * @param matchInfo used for update
+     * @param matched   flag to indicate if there was already a match before. If {@code matched} is false relevance is always set to {@link fr.neamar.kiss.utils.FuzzyScore.MatchInfo#score}, else it will be only set if {@link fr.neamar.kiss.utils.FuzzyScore.MatchInfo#score} is also higher than current value of relevance.
+     * @return true, if {@link fr.neamar.kiss.utils.FuzzyScore.MatchInfo#match} is true and relevance was updated, else value of {@code matched} is returned as is
+     */
+    public boolean updateMatchingRelevance(FuzzyScore.MatchInfo matchInfo, boolean matched) {
+        if (matchInfo.match && (!matched || matchInfo.score > relevance)) {
+            this.relevance = matchInfo.score;
+            return true;
+        }
+        return matched;
     }
 }

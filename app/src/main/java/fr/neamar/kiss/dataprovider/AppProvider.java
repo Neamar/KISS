@@ -129,8 +129,6 @@ public class AppProvider extends Provider<AppPojo> {
         }
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
-        FuzzyScore.MatchInfo matchInfo;
-        boolean match;
 
         for (AppPojo pojo : pojos) {
             // exclude apps from results
@@ -142,17 +140,13 @@ public class AppProvider extends Provider<AppPojo> {
                 continue;
             }
 
-            matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
-            match = matchInfo.match;
-            pojo.relevance = matchInfo.score;
+            FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+            boolean match = pojo.updateMatchingRelevance(matchInfo, false);
 
             // check relevance for tags
             if (pojo.getNormalizedTags() != null) {
                 matchInfo = fuzzyScore.match(pojo.getNormalizedTags().codePoints);
-                if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
-                    match = true;
-                    pojo.relevance = matchInfo.score;
-                }
+                match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
             if (match && !searcher.addResult(pojo)) {
