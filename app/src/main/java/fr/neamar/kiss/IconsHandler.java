@@ -85,7 +85,8 @@ public class IconsHandler {
                 key.equalsIgnoreCase("force-adaptive") ||
                 key.equalsIgnoreCase("force-shape") ||
                 key.equalsIgnoreCase("contact-pack-mask") ||
-                key.equalsIgnoreCase("contacts-shape")) {
+                key.equalsIgnoreCase("contacts-shape") ||
+                key.equalsIgnoreCase(DrawableUtils.KEY_THEMED_ICONS)) {
             cacheClear();
             mSystemPack.setAdaptiveShape(getAdaptiveShape(pref, "adaptive-shape"));
             mForceAdaptive = pref.getBoolean("force-adaptive", true);

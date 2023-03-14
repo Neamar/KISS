@@ -3,6 +3,7 @@ package fr.neamar.kiss.preference;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -19,11 +20,7 @@ import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 
-
 public class ColorPreference extends DialogPreference implements OnColorSelectedListener {
-    private final int COLOR_TRANSPARENT = 0x00000000;
-    private final int COLOR_LIGHT_TRANSPARENT = 0xAAFFFFFF;
-    private final int COLOR_DARK_TRANSPARENT = 0xAA000000;
     private ColorPickerPalette palette;
 
     private int selectedColor;
@@ -109,18 +106,32 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         });
 
         // Bind click events from the custom color values
-        Button button1 = view.findViewById(R.id.colorTransparentDark);
-        button1.setOnClickListener(v -> ColorPreference.this.onColorSelected(COLOR_DARK_TRANSPARENT));
+        Button buttonColorTransparentDark = view.findViewById(R.id.colorTransparentDark);
+        buttonColorTransparentDark.setOnClickListener(v -> ColorPreference.this.onColorSelected(UIColors.COLOR_DARK_TRANSPARENT));
 
-        Button button2 = view.findViewById(R.id.colorTransparentWhite);
-        button2.setOnClickListener(v -> ColorPreference.this.onColorSelected(COLOR_LIGHT_TRANSPARENT));
+        Button buttonColorTransparentWhite = view.findViewById(R.id.colorTransparentWhite);
+        buttonColorTransparentWhite.setOnClickListener(v -> ColorPreference.this.onColorSelected(UIColors.COLOR_LIGHT_TRANSPARENT));
 
-        Button button3 = view.findViewById(R.id.colorTransparent);
-        button3.setOnClickListener(v -> ColorPreference.this.onColorSelected(COLOR_TRANSPARENT));
+        Button buttonColorTransparent = view.findViewById(R.id.colorTransparent);
+        buttonColorTransparent.setOnClickListener(v -> ColorPreference.this.onColorSelected(UIColors.COLOR_TRANSPARENT));
 
-        if(ColorPreference.this.selectedColor == COLOR_DARK_TRANSPARENT) this.selectButton(button1);
-        if(ColorPreference.this.selectedColor == COLOR_LIGHT_TRANSPARENT) this.selectButton(button2);
-        if(ColorPreference.this.selectedColor == COLOR_TRANSPARENT) this.selectButton(button3);
+        // show button for getting color from system if supported
+        Button buttonColorSystem = view.findViewById(R.id.colorSystem);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            buttonColorSystem.setVisibility(View.VISIBLE);
+            buttonColorSystem.setOnClickListener(v -> ColorPreference.this.onColorSelected(UIColors.COLOR_SYSTEM));
+        } else {
+            buttonColorSystem.setVisibility(View.GONE);
+        }
+
+        if (ColorPreference.this.selectedColor == UIColors.COLOR_DARK_TRANSPARENT)
+            this.selectButton(buttonColorTransparentDark);
+        if (ColorPreference.this.selectedColor == UIColors.COLOR_LIGHT_TRANSPARENT)
+            this.selectButton(buttonColorTransparentWhite);
+        if (ColorPreference.this.selectedColor == UIColors.COLOR_TRANSPARENT)
+            this.selectButton(buttonColorTransparent);
+        if (ColorPreference.this.selectedColor == UIColors.COLOR_SYSTEM)
+            this.selectButton(buttonColorSystem);
 
         return view;
     }
@@ -135,17 +146,21 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         );
 
         // This will set the correct typeface for the extra items
-        if(ColorPreference.this.selectedColor == COLOR_DARK_TRANSPARENT) {
-            Button button = view.findViewById(R.id.colorTransparentDark);
-            selectButton(button);
+        if (ColorPreference.this.selectedColor == UIColors.COLOR_DARK_TRANSPARENT) {
+            Button buttonColorTransparentDark = view.findViewById(R.id.colorTransparentDark);
+            selectButton(buttonColorTransparentDark);
         }
-        if(ColorPreference.this.selectedColor == COLOR_LIGHT_TRANSPARENT) {
-            Button button = view.findViewById(R.id.colorTransparentWhite);
-            selectButton(button);
+        if (ColorPreference.this.selectedColor == UIColors.COLOR_LIGHT_TRANSPARENT) {
+            Button buttonColorTransparentWhite = view.findViewById(R.id.colorTransparentWhite);
+            selectButton(buttonColorTransparentWhite);
         }
-        if(ColorPreference.this.selectedColor == COLOR_TRANSPARENT) {
-            Button button = view.findViewById(R.id.colorTransparent);
-            selectButton(button);
+        if (ColorPreference.this.selectedColor == UIColors.COLOR_TRANSPARENT) {
+            Button buttonColorTransparent = view.findViewById(R.id.colorTransparent);
+            selectButton(buttonColorTransparent);
+        }
+        if (ColorPreference.this.selectedColor == UIColors.COLOR_SYSTEM) {
+            Button buttonColorSystem = view.findViewById(R.id.colorSystem);
+            selectButton(buttonColorSystem);
         }
 
         this.drawPalette();

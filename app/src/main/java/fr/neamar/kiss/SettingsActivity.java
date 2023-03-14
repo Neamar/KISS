@@ -50,6 +50,7 @@ import fr.neamar.kiss.preference.ResetExcludedAppShortcutsPreference;
 import fr.neamar.kiss.preference.ResetShortcutsPreference;
 import fr.neamar.kiss.preference.SwitchPreference;
 import fr.neamar.kiss.searcher.QuerySearcher;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
@@ -61,7 +62,7 @@ public class SettingsActivity extends PreferenceActivity implements
             + " pref-rounded-list pref-rounded-bars pref-swap-kiss-button-with-menu pref-hide-circle history-hide"
             + " enable-favorites-bar notification-bar-color black-notification-icons icons-pack theme-shadow"
             + " theme-separator theme-result-color large-favorites-bar pref-hide-search-bar-hint theme-wallpaper"
-            + " theme-bar-color results-size large-result-list-margins";
+            + " theme-bar-color results-size large-result-list-margins themed-icons";
     // Those settings require a restart of the settings
     final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait";
 
@@ -135,6 +136,9 @@ public class SettingsActivity extends PreferenceActivity implements
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
             removePreference("advanced", "enable-notifications");
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            removePreference("icons-section", DrawableUtils.KEY_THEMED_ICONS);
         }
 
         final ListPreference iconsPack = (ListPreference) findPreference("icons-pack");

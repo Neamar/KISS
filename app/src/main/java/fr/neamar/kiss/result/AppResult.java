@@ -104,8 +104,8 @@ public class AppResult extends Result {
             notificationView.setVisibility(notificationPrefs.contains(packageKey) ? View.VISIBLE : View.GONE);
             notificationView.setTag(packageKey);
 
-            int primaryColor = UIColors.getPrimaryColor(context);
-            notificationView.setColorFilter(primaryColor);
+            int dotColor = UIColors.getNotificationDotColor(context);
+            notificationView.setColorFilter(dotColor);
         }
 
         return view;

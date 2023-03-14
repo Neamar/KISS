@@ -1,9 +1,13 @@
 package fr.neamar.kiss;
 
+import static android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+import static android.content.res.Configuration.UI_MODE_NIGHT_YES;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -11,8 +15,19 @@ import android.preference.PreferenceManager;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
 public class UIColors {
     public static final int COLOR_DEFAULT = 0xFF4CAF50;
+
+    public static final int COLOR_TRANSPARENT = 0x00000000;
+    public static final int COLOR_LIGHT_TRANSPARENT = 0xAAFFFFFF;
+    public static final int COLOR_DARK_TRANSPARENT = 0xAA000000;
+    public static final int COLOR_SYSTEM = 0x00FFFFFF;
+
     // Source: https://material.io/guidelines/style/color.html#color-color-palette
     private static final int[] COLOR_LIST = new int[]{
             COLOR_DEFAULT,
@@ -79,7 +94,7 @@ public class UIColors {
         for (int i = 0; i < COLOR_LIST.length; i++) {
             if (COLOR_LIST[i] == primaryColor) {
                 int resId = OVERLAY_LIST[i];
-                if(resId != -1) {
+                if (resId != -1) {
                     activity.getTheme().applyStyle(resId, true);
                 }
                 break;
@@ -183,25 +198,108 @@ public class UIColors {
     }
 
     private static int getNotificationBarColor(Context context) {
-        return Color.parseColor(
-                PreferenceManager.getDefaultSharedPreferences(context)
-                        .getString("notification-bar-color", COLOR_DEFAULT_STR)
-        );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // use accent color from system if available
+            return getColor(context, "notification-bar-color", getNotificationBarColorRes(context));
+        } else {
+            return getColor(context, "notification-bar-color");
+        }
     }
 
+    @ColorRes
+    @RequiresApi(Build.VERSION_CODES.S)
+    private static int getNotificationBarColorRes(Context context) {
+        if (isDarkMode(context)) {
+            return android.R.color.system_neutral1_800;
+        } else {
+            return android.R.color.system_neutral2_100;
+        }
+    }
+
+    /**
+     * Get primary color.
+     *
+     * @param context
+     * @return color from preferences
+     */
+    @ColorInt
     public static int getPrimaryColor(Context context) {
         if (primaryColor == -1) {
-            String primaryColorStr = PreferenceManager.getDefaultSharedPreferences(context).getString("primary-color", COLOR_DEFAULT_STR);
-
-            // Transparent can't be displayed for text color, replace with light gray.
-            if (primaryColorStr.equals("#00000000") || primaryColorStr.equals("#AAFFFFFF")) {
-                primaryColor = 0xFFBDBDBD;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                // use accent color from system if available
+                primaryColor = getColor(context, "primary-color", android.R.color.system_accent3_100);
             } else {
-                primaryColor = Color.parseColor(primaryColorStr);
+                primaryColor = getColor(context, "primary-color");
+            }
+            // Transparent can't be displayed for text color, replace with light gray.
+            if (primaryColor == COLOR_TRANSPARENT || primaryColor == COLOR_LIGHT_TRANSPARENT) {
+                primaryColor = 0xFFBDBDBD;
             }
         }
 
         return primaryColor;
+    }
+
+    /**
+     * Get color for notification dots.
+     *
+     * @param context
+     * @return color from preferences
+     */
+    @ColorInt
+    public static int getNotificationDotColor(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // use accent color from system if available
+            return getColor(context, "primary-color", getNotificationDotColorRes(context));
+        } else {
+            // fall back to primary color
+            return getPrimaryColor(context);
+        }
+    }
+
+    @ColorRes
+    @RequiresApi(Build.VERSION_CODES.S)
+    private static int getNotificationDotColorRes(Context context) {
+        if (isDarkMode(context)) {
+            return android.R.color.system_accent3_200;
+        } else {
+            return android.R.color.system_neutral2_700;
+        }
+    }
+
+    /**
+     * Get color from preferences
+     *
+     * @param context
+     * @param preferenceKey
+     * @return color from preferences, use {@link UIColors#COLOR_DEFAULT} when saved value is {@link UIColors#COLOR_SYSTEM}
+     */
+    @ColorInt
+    private static int getColor(Context context, String preferenceKey) {
+        String colorStr = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, COLOR_DEFAULT_STR);
+        int color = Color.parseColor(colorStr);
+        if (color == COLOR_SYSTEM) {
+            return COLOR_DEFAULT;
+        }
+        return color;
+    }
+
+    /**
+     * Get color from preferences.
+     *
+     * @param context
+     * @param preferenceKey
+     * @return color from preferences, use color given by {@code getColor} when saved value is {@link UIColors#COLOR_SYSTEM}
+     */
+    @ColorInt
+    @RequiresApi(api = Build.VERSION_CODES.S)
+    private static int getColor(@NonNull Context context, @NonNull String preferenceKey, @ColorRes int systemColorId) {
+        String colorStr = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, COLOR_DEFAULT_STR);
+        int color = Color.parseColor(colorStr);
+        if (color == COLOR_SYSTEM) {
+            color = context.getResources().getColor(systemColorId);
+        }
+        return color;
     }
 
     static void clearPrimaryColorCache(Context context) {
@@ -211,4 +309,33 @@ public class UIColors {
     public static int[] getColorList() {
         return COLOR_LIST;
     }
+
+
+    /**
+     * @param context
+     * @return icon colors from system
+     */
+    @RequiresApi(api = Build.VERSION_CODES.S)
+    public static int[] getIconColors(Context context) {
+        Resources res = context.getResources();
+        int[] colors = new int[2];
+        if (isDarkMode(context)) {
+            colors[0] = res.getColor(android.R.color.system_neutral1_800);
+            colors[1] = res.getColor(android.R.color.system_accent1_100);
+        } else {
+            colors[0] = res.getColor(android.R.color.system_accent1_100);
+            colors[1] = res.getColor(android.R.color.system_neutral2_700);
+        }
+        return colors;
+    }
+
+    /**
+     * @param context
+     * @return true, if dark mode is enabled
+     */
+    private static boolean isDarkMode(Context context) {
+        Resources res = context.getResources();
+        return (res.getConfiguration().uiMode & UI_MODE_NIGHT_MASK) == UI_MODE_NIGHT_YES;
+    }
+
 }
