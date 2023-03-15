@@ -63,29 +63,25 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         }
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
-        FuzzyScore.MatchInfo matchInfo;
-        boolean match = false;
 
         for (ContactsPojo pojo : pojos) {
+            FuzzyScore.MatchInfo matchInfo;
+            boolean match = false;
+
             if (pojo.normalizedName != null) {
                 matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
-                match = matchInfo.match;
-                pojo.relevance = matchInfo.score;
+                match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
             if (pojo.normalizedNickname != null) {
                 matchInfo = fuzzyScore.match(pojo.normalizedNickname.codePoints);
-                if (matchInfo.match && (!match || matchInfo.score > pojo.relevance)) {
-                    match = true;
-                    pojo.relevance = matchInfo.score;
-                }
+                match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
             if (!match && queryNormalized.length() > 2 && pojo.normalizedPhone != null) {
                 // search for the phone number
                 matchInfo = fuzzyScore.match(pojo.normalizedPhone.codePoints);
-                match = matchInfo.match;
-                pojo.relevance = matchInfo.score;
+                match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
             if (match) {
