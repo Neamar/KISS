@@ -3,7 +3,6 @@ package fr.neamar.kiss;
 import static android.content.res.Configuration.UI_MODE_NIGHT_MASK;
 import static android.content.res.Configuration.UI_MODE_NIGHT_YES;
 
-import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +15,7 @@ import android.preference.PreferenceManager;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -222,6 +222,7 @@ public class UIColors {
      * @param context
      * @return color from preferences
      */
+    @ColorInt
     public static int getPrimaryColor(Context context) {
         if (primaryColor == -1) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -245,6 +246,7 @@ public class UIColors {
      * @param context
      * @return color from preferences
      */
+    @ColorInt
     public static int getNotificationDotColor(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             // use accent color from system if available
@@ -272,6 +274,7 @@ public class UIColors {
      * @param preferenceKey
      * @return color from preferences, use {@link UIColors#COLOR_DEFAULT} when saved value is {@link UIColors#COLOR_SYSTEM}
      */
+    @ColorInt
     private static int getColor(Context context, String preferenceKey) {
         String colorStr = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, COLOR_DEFAULT_STR);
         int color = Color.parseColor(colorStr);
@@ -288,6 +291,7 @@ public class UIColors {
      * @param preferenceKey
      * @return color from preferences, use color given by {@code getColor} when saved value is {@link UIColors#COLOR_SYSTEM}
      */
+    @ColorInt
     @RequiresApi(api = Build.VERSION_CODES.S)
     private static int getColor(@NonNull Context context, @NonNull String preferenceKey, @ColorRes int systemColorId) {
         String colorStr = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, COLOR_DEFAULT_STR);

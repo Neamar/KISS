@@ -36,7 +36,8 @@ public class GoogleCalendarIcon {
             Resources resourcesForApplication = pm.getResourcesForApplication(GOOGLE_CALENDAR);
             int dayResId = getDayResId(metaData, resourcesForApplication);
             if (dayResId != 0) {
-                return resourcesForApplication.getDrawable(dayResId);
+                Drawable drawable = resourcesForApplication.getDrawable(dayResId);
+                return DrawableUtils.getThemedDrawable(context, drawable);
             }
         } catch (PackageManager.NameNotFoundException ignored) {
         }

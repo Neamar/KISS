@@ -265,9 +265,7 @@ public class FuzzyScore {
         }
 
         matchInfo.match = patternIdx == patternLength;
-        if (matchInfo.match) {
-            matchInfo.score = score;
-        }
+        matchInfo.score = score;
         return matchInfo;
     }
 
