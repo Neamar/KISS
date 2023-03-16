@@ -24,11 +24,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.pojo.TagDummyPojo;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class TagDummyResult extends Result {
@@ -52,7 +55,7 @@ public class TagDummyResult extends Result {
             shape.setSize(barSize, barSize);
             float rad = barSize / 2.3f;
             shape.setCornerRadii(new float[]{rad, rad, rad, rad, rad, rad, rad, rad});
-            shape.setColor(Color.WHITE);
+            shape.setColor(getBackgroundColor(context));
 
             gBackground = new InsetDrawable(shape, inset);
         }
@@ -79,7 +82,7 @@ public class TagDummyResult extends Result {
         rectF.inset(1.f, 1.f);
 
         // draw a white rounded background
-        paint.setColor(Color.WHITE);
+        paint.setColor(getBackgroundColor(context));
         canvas.drawRoundRect(rectF, width / 2.4f, height / 2.4f, paint);
 
         int codepoint = pojo.getName().codePointAt(0);
@@ -114,7 +117,7 @@ public class TagDummyResult extends Result {
             paint.setColor(Color.TRANSPARENT);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         } else {
-            paint.setColor(Color.WHITE);
+            paint.setColor(getTextColor(context));
         }
 
         // draw the letter in the center
@@ -128,9 +131,12 @@ public class TagDummyResult extends Result {
         rectF.inset(rectF.width() * -.3f, rectF.height() * -.4f);
 
         // stroke a rect with the bounding of the letter
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.f * context.getResources().getDisplayMetrics().density);
-        canvas.drawRoundRect(rectF, rectF.width() / 2.4f, rectF.height() / 2.4f, paint);
+        if (drawAsHole) {
+            paint.setColor(Color.TRANSPARENT);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(1.f * context.getResources().getDisplayMetrics().density);
+            canvas.drawRoundRect(rectF, rectF.width() / 2.4f, rectF.height() / 2.4f, paint);
+        }
         return bitmap;
     }
 
@@ -161,7 +167,7 @@ public class TagDummyResult extends Result {
         if (sharedPreferences.getBoolean("pref-fav-tags-drawable", false)) {
             favoriteText.setVisibility(View.GONE);
 
-            Drawable drawable = new BitmapDrawable(generateBitmap(context, sharedPreferences));
+            Drawable drawable = new BitmapDrawable(context.getResources(), generateBitmap(context, sharedPreferences));
             favoriteIcon.setImageDrawable(drawable);
         } else {
             int codepoint = pojo.getName().codePointAt(0);
@@ -172,6 +178,7 @@ public class TagDummyResult extends Result {
             favoriteIcon.invalidateDrawable(drawable);
 
             favoriteText.setVisibility(View.VISIBLE);
+            favoriteText.setTextColor(getTextColor(context));
             favoriteText.setText(glyph);
             favoriteText.setTextSize(TypedValue.COMPLEX_UNIT_PX, drawable.getIntrinsicHeight() / 2.f);
         }
@@ -184,6 +191,26 @@ public class TagDummyResult extends Result {
     protected void doLaunch(Context context, View v) {
         if (context instanceof MainActivity) {
             ((MainActivity) context).showMatchingTags(pojo.getName());
+        }
+    }
+
+    @ColorInt
+    private int getBackgroundColor(Context context) {
+        if (DrawableUtils.hasThemedIcons() &&
+                DrawableUtils.isThemedIconEnabled(context)) {
+            return UIColors.getIconColors(context)[0];
+        } else {
+            return Color.WHITE;
+        }
+    }
+
+    @ColorInt
+    private int getTextColor(Context context) {
+        if (DrawableUtils.hasThemedIcons() &&
+                DrawableUtils.isThemedIconEnabled(context)) {
+            return UIColors.getIconColors(context)[1];
+        } else {
+            return UIColors.getPrimaryColor(context);
         }
     }
 }
