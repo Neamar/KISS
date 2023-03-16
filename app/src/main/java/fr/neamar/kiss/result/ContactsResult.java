@@ -179,6 +179,12 @@ public class ContactsResult extends CallResult {
     }
 
     @Override
+    public boolean isDrawableDynamic() {
+        // drawable may change because of async loading, so return true as long as icon is not cached
+        return !isDrawableCached();
+    }
+
+    @Override
     public Drawable getDrawable(Context context) {
         synchronized (this) {
             if (isDrawableCached())
