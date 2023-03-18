@@ -315,6 +315,7 @@ public class UIColors {
      * @param context
      * @return icon colors from system
      */
+    @ColorInt
     @RequiresApi(api = Build.VERSION_CODES.S)
     public static int[] getIconColors(Context context) {
         Resources res = context.getResources();
