@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.pojo.SearchPojoType;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.calculator.Calculator;
 import fr.neamar.kiss.utils.calculator.Result;
@@ -70,7 +71,7 @@ public class CalculatorProvider extends SimpleProvider<SearchPojo> {
             }
 
             String queryProcessed = operation + readableResult;
-            SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojo.CALCULATOR_QUERY);
+            SearchPojo pojo = new SearchPojo("calculator://", queryProcessed, "", SearchPojoType.CALCULATOR_QUERY);
 
             pojo.relevance = 19;
             searcher.addResult(pojo);

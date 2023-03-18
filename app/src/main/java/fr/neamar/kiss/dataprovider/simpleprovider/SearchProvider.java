@@ -17,6 +17,7 @@ import java.util.Set;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.pojo.SearchPojoType;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.URIUtils;
 import fr.neamar.kiss.utils.URLUtils;
@@ -43,8 +44,10 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
         searchProviders.clear();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Set<String> selectedProviders = prefs.getStringSet("selected-search-provider-names", new HashSet<>(Collections.singletonList("Google")));
-        Set<String> availableProviders = prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(context));
+        Set<String> selectedProviders = prefs.getStringSet("selected-search-provider-names",
+                new HashSet<>(Collections.singletonList("Google")));
+        Set<String> availableProviders = prefs.getStringSet("available-search-providers",
+                SearchProvider.getDefaultSearchProviders(context));
 
         // Get default search engine
         String defaultSearchEngine = prefs.getString("default-search-provider", "Google");
@@ -54,7 +57,7 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
         assert defaultSearchEngine != null;
         for (String searchProvider : selectedProviders) {
             String url = getProviderUrl(availableProviders, searchProvider);
-            SearchPojo pojo = new SearchPojo("", url, SearchPojo.SEARCH_QUERY);
+            SearchPojo pojo = new SearchPojo("", url, SearchPojoType.SEARCH_QUERY);
             // Super low relevance, should never be displayed before anything
             pojo.relevance = -500;
             if (defaultSearchEngine.equals(searchProvider))
@@ -88,9 +91,10 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
             SearchPojo pojo = createUrlQuerySearchPojo(query);
             records.add(pojo);
         } else if (URIUtils.isValidUri(query, context).isValid) {
-            // Open uri directly by an app that can handle it (if i type gemini://oppen.digital/ariane/ for gemini browser)
+            // Open uri directly by an app that can handle it (if i type
+            // gemini://oppen.digital/ariane/ for gemini browser)
             // https://github.com/Neamar/KISS/issues/1786
-            SearchPojo pojo = new SearchPojo("search://uri-access", query, "", SearchPojo.URI_QUERY);
+            SearchPojo pojo = new SearchPojo("search://uri-access", query, "", SearchPojoType.URI_QUERY);
             pojo.relevance = -100;
             pojo.setName(query, false);
             records.add(pojo);
@@ -110,7 +114,8 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
     }
 
     /**
-     * create SearchPojo with type {@link SearchPojo#URI_QUERY} for direct access to url
+     * create SearchPojo with type {@link SearchPojoType#URI_QUERY} for direct
+     * access to url
      *
      * @param url
      * @return the search pojo
@@ -123,7 +128,7 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
         // (tradeoff: non https URL will break, but they shouldn't exist anymore)
         url = url.replace("http://", "https://");
 
-        SearchPojo pojo = new SearchPojo("search://url-access", "", url, SearchPojo.URL_QUERY);
+        SearchPojo pojo = new SearchPojo("search://url-access", "", url, SearchPojoType.URL_QUERY);
         pojo.relevance = 50;
         pojo.setName(url, false);
         return pojo;
@@ -146,11 +151,13 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
     }
 
     @Nullable
-    public static SearchPojo getDefaultSearch(final String query, final Context context, @Nullable SharedPreferences pref) {
+    public static SearchPojo getDefaultSearch(final String query, final Context context,
+            @Nullable SharedPreferences pref) {
         pref = pref != null ? pref : PreferenceManager.getDefaultSharedPreferences(context);
         String defaultSearchEngine = pref.getString("default-search-provider", "Google");
-        Set<String> availableProviders = pref.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(context));
+        Set<String> availableProviders = pref.getStringSet("available-search-providers",
+                SearchProvider.getDefaultSearchProviders(context));
         String url = getProviderUrl(availableProviders, defaultSearchEngine);
-        return url != null ? new SearchPojo(query, url, SearchPojo.SEARCH_QUERY) : null;
+        return url != null ? new SearchPojo(query, url, SearchPojoType.SEARCH_QUERY) : null;
     }
 }
