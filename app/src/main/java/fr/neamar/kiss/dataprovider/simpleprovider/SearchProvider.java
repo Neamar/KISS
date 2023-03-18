@@ -89,6 +89,13 @@ public class SearchProvider extends SimpleProvider {
                 records.add(pojo);
             }
         }
+        if (prefs.getBoolean("enable-search-market", true)) {
+            final String queryUri = String.format("market://search?q=%s", query);
+            SearchPojo pojo = new SearchPojo("market://search", query, queryUri, SearchPojo.SEARCH_MARKET_QUERY);
+            pojo.relevance = -100;
+            pojo.setName(query, false);
+            records.add(pojo);
+        }
 
         if (matchesUrlPattern(query) && URLUtil.isValidUrl(query)) {
             // Open valid URLs directly (if I type http://something.com for instance)
