@@ -22,6 +22,8 @@ import fr.neamar.kiss.utils.Permission;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
+    private static final String TAG = LoadContactsPojos.class.getSimpleName();
+
     public LoadContactsPojos(Context context) {
         super(context, "contact://");
     }
@@ -48,7 +50,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
 
         // Query basic contact information and keep in memory to prevent duplicates
-        Map<String, BasicContact> basicContacts = new HashMap<>();
+        long startBasicContacts = System.currentTimeMillis();
+        Map<String, Contact> basicContacts = new HashMap<>();
         Cursor contactCursor = context.get().getContentResolver().query(
                 ContactsContract.Contacts.CONTENT_URI,
                 new String[]{ContactsContract.Contacts.LOOKUP_KEY,
@@ -64,21 +67,24 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 int photoIdIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_ID);
                 int photoUriIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI);
                 while (contactCursor.moveToNext()) {
-                    BasicContact basicContact = new BasicContact(
+                    Contact contact = new Contact(
                             contactCursor.getString(lookupIndex),
                             contactCursor.getLong(contactIdIndex),
                             contactCursor.getString(displayNameIndex),
                             contactCursor.getString(photoIdIndex),
                             contactCursor.getString(photoUriIndex)
                     );
-                    basicContacts.put(basicContact.getLookupKey(), basicContact);
+                    basicContacts.put(contact.getLookupKey(), contact);
                 }
             }
             contactCursor.close();
         }
+        long endBasicContacts = System.currentTimeMillis();
+        Log.i(TAG, (endBasicContacts - startBasicContacts) + " milliseconds to load " + basicContacts.size() + " basic contacts");
 
         // Query raw contact information and keep in memory to prevent duplicates
-        Map<Long, BasicRawContact> basicRawContacts = new HashMap<>();
+        long startRawContacts = System.currentTimeMillis();
+        Map<Long, RawContact> basicRawContacts = new HashMap<>();
         Cursor rawContactCursor = context.get().getContentResolver().query(
                 ContactsContract.RawContacts.CONTENT_URI,
                 new String[]{ContactsContract.RawContacts._ID,
@@ -90,18 +96,21 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 int starredIndex = rawContactCursor.getColumnIndex(ContactsContract.RawContacts.STARRED);
                 int accountTypeIndex = rawContactCursor.getColumnIndex(ContactsContract.RawContacts.ACCOUNT_TYPE);
                 while (rawContactCursor.moveToNext()) {
-                    BasicRawContact basicRawContact = new BasicRawContact(
+                    RawContact rawContact = new RawContact(
                             rawContactCursor.getLong(rawContactIdIndex),
                             rawContactCursor.getString(accountTypeIndex),
                             rawContactCursor.getInt(starredIndex) != 0
                     );
-                    basicRawContacts.put(basicRawContact.getId(), basicRawContact);
+                    basicRawContacts.put(rawContact.getId(), rawContact);
                 }
             }
             rawContactCursor.close();
         }
+        long endRawContacts = System.currentTimeMillis();
+        Log.i(TAG, (endRawContacts - startRawContacts) + " milliseconds to load " + basicRawContacts.size() + " raw contacts");
 
         // Retrieve contacts' nicknames
+        long startNicks = System.currentTimeMillis();
         Cursor nickCursor = context.get().getContentResolver().query(
                 ContactsContract.Data.CONTENT_URI,
                 new String[]{
@@ -120,15 +129,17 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                     String nick = nickCursor.getString(nickNameIndex);
 
                     if (nick != null && lookupKey != null) {
-                        BasicContact basicContact = basicContacts.get(lookupKey);
-                        if (basicContact != null) {
-                            basicContact.setNickName(nick);
+                        Contact contact = basicContacts.get(lookupKey);
+                        if (contact != null) {
+                            contact.setNickName(nick);
                         }
                     }
                 }
             }
             nickCursor.close();
         }
+        long endNicks = System.currentTimeMillis();
+        Log.i(TAG, (endNicks - startNicks) + " milliseconds to load nicknames");
 
         // Query all mime types
         for (String mimeType : mimeTypes) {
@@ -139,15 +150,15 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 contacts.addAll(createGenericContacts(mimeType, basicContacts, basicRawContacts));
             }
             long endMimeType = System.currentTimeMillis();
-            Log.i("time", (endMimeType - startMimeType) + " milliseconds to list contacts for " + mimeType);
+            Log.i(TAG, (endMimeType - startMimeType) + " milliseconds to list contacts for " + mimeType);
         }
 
         long end = System.currentTimeMillis();
-        Log.i("time", (end - start) + " milliseconds to list all contacts");
+        Log.i(TAG, (end - start) + " milliseconds to list all " + contacts.size() + " contacts");
         return contacts;
     }
 
-    private ArrayList<ContactsPojo> createPhoneContacts(Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
+    private ArrayList<ContactsPojo> createPhoneContacts(Map<String, Contact> basicContacts, Map<Long, RawContact> basicRawContacts) {
         // Query all phone numbers
         Cursor phoneCursor = context.get().getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
@@ -168,11 +179,11 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
                 while (phoneCursor.moveToNext()) {
                     String lookupKey = phoneCursor.getString(lookupIndex);
-                    BasicContact basicContact = basicContacts.get(lookupKey);
+                    Contact basicContact = basicContacts.get(lookupKey);
                     long rawContactId = phoneCursor.getLong(rawContactIdIndex);
-                    BasicRawContact basicRawContact = basicRawContacts.get(rawContactId);
+                    RawContact rawContact = basicRawContacts.get(rawContactId);
 
-                    if (basicContact != null && basicRawContact != null) {
+                    if (basicContact != null && rawContact != null) {
                         String name = basicContact.getDisplayName();
                         long contactId = basicContact.getContactId();
 
@@ -181,7 +192,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                             phone = "";
                         }
 
-                        boolean starred = basicRawContact.isStarred();
+                        boolean starred = rawContact.isStarred();
                         boolean primary = phoneCursor.getInt(isPrimaryIndex) != 0;
                         Uri icon = basicContact.getIcon();
 
@@ -201,7 +212,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         return getFilteredContacts(mapContacts, contact -> contact.normalizedPhone.toString());
     }
 
-    private ArrayList<ContactsPojo> createGenericContacts(String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
+    private ArrayList<ContactsPojo> createGenericContacts(String mimeType, Map<String, Contact> basicContacts, Map<Long, RawContact> basicRawContacts) {
         final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(context.get());
         // Prevent duplicates by keeping in memory encountered contacts.
         Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
@@ -235,11 +246,11 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 }
                 while (mimeTypeCursor.moveToNext()) {
                     String lookupKey = mimeTypeCursor.getString(lookupIndex);
-                    BasicContact basicContact = basicContacts.get(lookupKey);
+                    Contact basicContact = basicContacts.get(lookupKey);
                     long rawContactId = mimeTypeCursor.getLong(rawContactIdIndex);
-                    BasicRawContact basicRawContact = basicRawContacts.get(rawContactId);
+                    RawContact rawContact = basicRawContacts.get(rawContactId);
 
-                    if (basicContact != null && basicRawContact != null) {
+                    if (basicContact != null && rawContact != null) {
                         long contactId = basicContact.getContactId();
                         long id = mimeTypeCursor.getLong(idIndex);
                         boolean primary = mimeTypeCursor.getInt(isPrimaryIndex) != 0;
@@ -252,7 +263,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         }
                         Uri icon = basicContact.getIcon();
 
-                        ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, lookupKey, icon, primary, basicRawContact.isStarred());
+                        ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, lookupKey, icon, primary, rawContact.isStarred());
 
                         contact.setName(basicContact.getDisplayName());
                         contact.setNickname(basicContact.getNickName());
@@ -278,12 +289,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
      */
     private void addContactToMap(ContactsPojo contact, Map<String, Set<ContactsPojo>> mapContacts) {
         if (contact.getName() != null) {
-            Set<ContactsPojo> mimeTypes = mapContacts.get(contact.lookupKey);
-            if (mimeTypes == null) {
-                mimeTypes = new HashSet<>(1);
-                mapContacts.put(contact.lookupKey, mimeTypes);
+            Set<ContactsPojo> contacts = mapContacts.get(contact.lookupKey);
+            if (contacts == null) {
+                contacts = new HashSet<>(1);
+                mapContacts.put(contact.lookupKey, contacts);
             }
-            mimeTypes.add(contact);
+            contacts.add(contact);
         }
     }
 
@@ -327,14 +338,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         return contacts;
     }
 
-    // TODO: move to separate class, which package?
     @FunctionalInterface
-    public interface IdSupplier {
+    private interface IdSupplier {
         String getId(ContactsPojo contact);
     }
 
-    // TODO: move to separate class, which package?
-    private static class BasicContact {
+    private static class Contact {
         private final String lookupKey;
         private final long contactId;
         private final String displayName;
@@ -342,7 +351,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         private final String photoUri;
         private String nickName;
 
-        private BasicContact(String lookupKey, long contactId, String displayName, String photoId, String photoUri) {
+        private Contact(String lookupKey, long contactId, String displayName, String photoId, String photoUri) {
             this.lookupKey = lookupKey;
             this.contactId = contactId;
             this.displayName = displayName;
@@ -383,13 +392,12 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         }
     }
 
-    // TODO: move to separate class, which package?
-    private static class BasicRawContact {
+    private static class RawContact {
         private final long id;
         private final String accountType;
         private final boolean starred;
 
-        private BasicRawContact(long id, String accountType, boolean starred) {
+        private RawContact(long id, String accountType, boolean starred) {
             this.id = id;
             this.accountType = accountType;
             this.starred = starred;

@@ -1,5 +1,7 @@
 package fr.neamar.kiss.utils;
 
+import static java.util.Collections.emptySet;
+
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -19,8 +21,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static java.util.Collections.emptySet;
-
 public class MimeTypeUtils {
 
     // Known android mime types that are not supported by KISS
@@ -39,6 +39,7 @@ public class MimeTypeUtils {
             ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE,
             ContactsContract.CommonDataKinds.Website.CONTENT_ITEM_TYPE
     ));
+    private static final String TAG = MimeTypeUtils.class.getSimpleName();
 
     private MimeTypeUtils() {
     }
@@ -56,27 +57,27 @@ public class MimeTypeUtils {
 
         Set<String> mimeTypes = new HashSet<>();
 
-        Cursor cursor = context.getContentResolver().query(
+        try (Cursor cursor = context.getContentResolver().query(
                 ContactsContract.Data.CONTENT_URI,
-                new String[]{ContactsContract.Data.MIMETYPE}, null, null, null);
-        if (cursor != null) {
-            if (cursor.getCount() > 0) {
-                int mimeTypeIndex = cursor.getColumnIndex(ContactsContract.Data.MIMETYPE);
-                while (cursor.moveToNext()) {
-                    String mimeType = cursor.getString(mimeTypeIndex);
-                    if (isSupportedMimeType(context, mimeType)) {
-                        mimeTypes.add(mimeType);
+                new String[]{ContactsContract.Data.MIMETYPE}, null, null, null)) {
+            if (cursor != null) {
+                if (cursor.getCount() > 0) {
+                    int mimeTypeIndex = cursor.getColumnIndex(ContactsContract.Data.MIMETYPE);
+                    while (cursor.moveToNext()) {
+                        String mimeType = cursor.getString(mimeTypeIndex);
+                        if (isSupportedMimeType(context, mimeType)) {
+                            mimeTypes.add(mimeType);
+                        }
                     }
                 }
             }
         }
-        cursor.close();
 
         // always add classic phone contacts
         mimeTypes.add(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
 
         long end = System.currentTimeMillis();
-        Log.i("time", (end - start) + " milliseconds to load " + mimeTypes.size() + " supported mime types");
+        Log.i(TAG, (end - start) + " milliseconds to load " + mimeTypes.size() + " supported mime types");
 
         return mimeTypes;
     }
@@ -107,7 +108,7 @@ public class MimeTypeUtils {
         supportedMimeTypes.retainAll(selectedMimeTypes);
 
         long end = System.currentTimeMillis();
-        Log.i("time", (end - start) + " milliseconds to load " + supportedMimeTypes.size() + " active mime types");
+        Log.i(TAG, (end - start) + " milliseconds to load " + supportedMimeTypes.size() + " active mime types");
 
         return supportedMimeTypes;
     }

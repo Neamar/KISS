@@ -452,12 +452,6 @@
                 android:key="enable-contacts"
                 android:order="1"
                 android:title="@string/contacts_name" />
-            <MultiSelectListPreference
-                android:defaultValue="@array/contactMimeTypesDefault"
-                android:dependency="enable-contacts"
-                android:key="selected-contact-mime-types"
-                android:order="2"
-                android:title="@string/contact_mime_types_title" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-settings"
@@ -525,6 +519,12 @@
             android:dialogMessage="@string/default_launcher_warn"
             android:key="default-launcher"
             android:title="@string/default_launcher_title" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/contactMimeTypesDefault"
+            android:key="selected-contact-mime-types"
+            android:order="2"
+            android:summary="@string/contact_mime_types_summary"
+            android:title="@string/contact_mime_types_title" />
         <fr.neamar.kiss.preference.RootModeSwitch
             android:defaultValue="false"
             android:key="root-mode"

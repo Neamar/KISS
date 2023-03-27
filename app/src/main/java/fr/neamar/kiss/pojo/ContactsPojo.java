@@ -75,7 +75,6 @@ public final class ContactsPojo extends Pojo {
         return imData;
     }
 
-    // TODO: move to separate class, which package?
     public static class ImData {
         private final long id;
         private final String mimeType;
