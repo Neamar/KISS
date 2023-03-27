@@ -27,7 +27,7 @@ import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
 public class SearchProvider extends SimpleProvider {
-    private static final String URL_REGEX = "^(?:[a-z]+://)?(?:[a-z0-9-]|[^\\x00-\\x7F])+(?:[.](?:[a-z0-9-]|[^\\x00-\\x7F])+)+.*$";
+    private static final String URL_REGEX = "^(?:[a-z]+://)?(?:[a-z0-9-]|[^\\x00-\\x7F])+(?:[.](?:[a-z0-9-]|[^\\x00-\\x7F])+)?.*$";
     public static final Pattern urlPattern = Pattern.compile(URL_REGEX);
     private final SharedPreferences prefs;
 
@@ -88,13 +88,6 @@ public class SearchProvider extends SimpleProvider {
                 pojo.query = query;
                 records.add(pojo);
             }
-        }
-        if (prefs.getBoolean("enable-search-market", true)) {
-            final String queryUri = String.format("market://search?q=%s", query);
-            SearchPojo pojo = new SearchPojo("market://search", query, queryUri, SearchPojo.SEARCH_MARKET_QUERY);
-            pojo.relevance = -100;
-            pojo.setName(query, false);
-            records.add(pojo);
         }
 
         if (matchesUrlPattern(query) && URLUtil.isValidUrl(query)) {

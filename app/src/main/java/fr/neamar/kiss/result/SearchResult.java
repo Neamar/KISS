@@ -103,20 +103,6 @@ public class SearchResult extends Result {
                     hasCustomIcon = true;
                 }
             }
-        } else if (searchPojo.type == SearchPojo.SEARCH_MARKET_QUERY) {
-            text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), searchPojo.query);
-            pos = text.indexOf(searchPojo.query);
-            len = searchPojo.query.length();
-            image.setImageResource(R.drawable.search);
-
-            if (!getHideIcons(context)) {
-                Intent intent = createUriIntentFromURL();
-                Drawable icon = getIconByIntent(context, intent);
-                if (icon != null) {
-                    image.setImageDrawable(icon);
-                    hasCustomIcon = true;
-                }
-            }
         } else {
             throw new IllegalArgumentException("Wrong type!");
         }
@@ -132,22 +118,12 @@ public class SearchResult extends Result {
     }
 
     /**
-     * Creates intent to start activity with given query.
-     *
-     * @return intent
-     */
-    private Intent createUriIntentFromQuery() {
-        Uri uri = Uri.parse(searchPojo.query);
-        return PackageManagerUtils.createUriIntent(uri);
-    }
-
-    /**
      * Creates intent to start activity with given uri.
      *
      * @return intent
      */
-    private Intent createUriIntentFromURL() {
-        Uri uri = Uri.parse(searchPojo.url);
+    private Intent createUriIntent() {
+        Uri uri = Uri.parse(searchPojo.query);
         return PackageManagerUtils.createUriIntent(uri);
     }
 
@@ -221,22 +197,13 @@ public class SearchResult extends Result {
                 Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
                 break;
             case SearchPojo.URI_QUERY:
-                Intent intent = createUriIntentFromQuery();
+                Intent intent = createUriIntent();
                 try {
                     context.startActivity(intent);
                 } catch (android.content.ActivityNotFoundException e) {
                     Log.w("SearchResult", "Unable to run search for uri: " + searchPojo.url);
                 }
                 break;
-            case SearchPojo.SEARCH_MARKET_QUERY:
-                Intent marketIntent = createUriIntentFromURL();
-                try {
-                    context.startActivity(marketIntent);
-                } catch (android.content.ActivityNotFoundException e) {
-                    Log.w("SearchMarketResult", "Unable to run search for market: " + searchPojo.url);
-                }
-                break;
-
         }
     }
 
