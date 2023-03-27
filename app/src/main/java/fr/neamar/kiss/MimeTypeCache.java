@@ -38,6 +38,7 @@ public class MimeTypeCache {
             "android.provider.ALTERNATE_CONTACTS_STRUCTURE",
             "android.provider.CONTACTS_STRUCTURE"
     };
+    private static final String TAG = MimeTypeCache.class.getSimpleName();
 
     // Cached componentName
     private final Map<String, ComponentName> componentNames;
@@ -109,9 +110,8 @@ public class MimeTypeCache {
             AuthenticatorDescription[] authenticatorDescriptions = ((AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE)).getAuthenticatorTypes();
             for (AuthenticatorDescription auth : authenticatorDescriptions) {
                 if (contactSyncableTypes.contains(auth.type)) {
-                    XmlResourceParser parser = loadContactsXml(context, auth.packageName);
-                    if (parser != null) {
-                        try {
+                    try (XmlResourceParser parser = loadContactsXml(context, auth.packageName)) {
+                        if (parser != null) {
                             while (parser.next() != XmlPullParser.END_DOCUMENT) {
                                 if (CONTACTS_DATA_KIND.equals(parser.getName())) {
                                     String foundMimeType = null;
@@ -131,8 +131,9 @@ public class MimeTypeCache {
                                     }
                                 }
                             }
-                        } catch (IOException | XmlPullParserException ignored) {
                         }
+                    } catch (IOException | XmlPullParserException e) {
+                        Log.e(TAG, "Unable to fetch detail data columns from accounts", e);
                     }
                 }
             }
@@ -142,7 +143,7 @@ public class MimeTypeCache {
             detailColumns.put(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Phone.NUMBER);
 
             long end = System.currentTimeMillis();
-            Log.i("time", (end - start) + " milliseconds to fetch detail data columns");
+            Log.i(TAG, (end - start) + " milliseconds to fetch detail data columns");
         }
         return detailColumns;
     }
