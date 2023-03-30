@@ -106,6 +106,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             notificationPrefs = mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
         }
 
+        onFavoriteChange();
     }
 
     private ViewHolder findViewHolder(@NonNull Pojo pojo) {

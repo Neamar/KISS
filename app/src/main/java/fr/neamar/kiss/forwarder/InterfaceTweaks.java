@@ -75,6 +75,7 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     void onCreate() {
+        UIColors.clearPrimaryColorCache(mainActivity);
         UIColors.updateThemePrimaryColor(mainActivity);
         applyRoundedCorners(mainActivity);
         swapKissButtonWithMenu(mainActivity);

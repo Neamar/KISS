@@ -227,7 +227,7 @@ public class UIColors {
         if (primaryColor == -1) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 // use accent color from system if available
-                primaryColor = getColor(context, "primary-color", android.R.color.system_accent3_100);
+                primaryColor = getColor(context, "primary-color", android.R.color.system_accent1_100);
             } else {
                 primaryColor = getColor(context, "primary-color");
             }
@@ -263,7 +263,7 @@ public class UIColors {
         if (isDarkMode(context)) {
             return android.R.color.system_accent3_200;
         } else {
-            return android.R.color.system_neutral2_700;
+            return android.R.color.system_accent3_200;
         }
     }
 
@@ -302,7 +302,7 @@ public class UIColors {
         return color;
     }
 
-    static void clearPrimaryColorCache(Context context) {
+    public static void clearPrimaryColorCache(Context context) {
         primaryColor = -1;
     }
 
