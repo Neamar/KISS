@@ -442,8 +442,9 @@ public class AppResult extends Result {
 
     @Override
     public boolean isDrawableDynamic() {
-        // The only dynamic icon is from Google Calendar
-        return GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName);
+        // drawable may change because of async loading, so return true as long as icon is not cached
+        // another dynamic icon is from Google Calendar
+        return !isDrawableCached()|| GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName);
     }
 
     @Override

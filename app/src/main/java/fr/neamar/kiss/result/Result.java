@@ -25,6 +25,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -76,7 +77,7 @@ public abstract class Result {
         else if (pojo instanceof ShortcutPojo)
             return new ShortcutsResult((ShortcutPojo) pojo);
         else if (pojo instanceof TagDummyPojo)
-            return new TagDummyResult((TagDummyPojo)pojo);
+            return new TagDummyResult((TagDummyPojo) pojo);
 
         throw new UnsupportedOperationException("Unable to create a result from POJO");
     }
@@ -105,12 +106,8 @@ public abstract class Result {
     @NonNull
     public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
         View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
-        Drawable drawable = getDrawable(context);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
-        if (drawable == null)
-            favoriteImage.setImageResource(R.drawable.ic_launcher_white);
-        else
-            favoriteImage.setImageDrawable(drawable);
+        setAsyncDrawable(favoriteImage, R.drawable.ic_launcher_white);
         favoriteView.setContentDescription(pojo.getName());
         return favoriteView;
     }
@@ -131,7 +128,7 @@ public abstract class Result {
     }
 
     boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
-                                      TextView view, Context context) {
+                               TextView view, Context context) {
         FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
         if (!matchInfo.match) {
@@ -357,6 +354,10 @@ public abstract class Result {
     }
 
     void setAsyncDrawable(ImageView view) {
+        setAsyncDrawable(view, android.R.color.transparent);
+    }
+
+    void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
         // the ImageView tag will store the async task if it's running
         if (view.getTag() instanceof AsyncSetImage) {
             AsyncSetImage asyncSetImage = (AsyncSetImage) view.getTag();
@@ -377,12 +378,12 @@ public abstract class Result {
             view.setImageDrawable(getDrawable(view.getContext()));
             view.setTag(this);
         } else {
-            view.setTag(createAsyncSetImage(view).execute());
+            view.setTag(createAsyncSetImage(view, resId).execute());
         }
     }
 
-    private AsyncSetImage createAsyncSetImage(ImageView imageView) {
-        return new AsyncSetImage(imageView, this);
+    private AsyncSetImage createAsyncSetImage(ImageView imageView, @DrawableRes int resId) {
+        return new AsyncSetImage(imageView, this, resId);
     }
 
     /**
@@ -424,10 +425,10 @@ public abstract class Result {
         final WeakReference<ImageView> imageViewWeakReference;
         final WeakReference<Result> appResultWeakReference;
 
-        AsyncSetImage(ImageView image, Result result) {
+        AsyncSetImage(ImageView image, Result result, @DrawableRes int resId) {
             super();
             image.setTag(this);
-            image.setImageResource(android.R.color.transparent);
+            image.setImageResource(resId);
             this.imageViewWeakReference = new WeakReference<>(image);
             this.appResultWeakReference = new WeakReference<>(result);
         }
