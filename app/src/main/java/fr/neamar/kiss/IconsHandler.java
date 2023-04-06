@@ -243,19 +243,16 @@ public class IconsHandler {
     public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
         final int shape = getContactsShape();
 
-        if (DrawableUtils.isAdaptiveIconDrawable(drawable)) {
-            // use adaptive shape (with white background for non adaptive icons)
-            drawable = DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true, Color.WHITE);
-        } else {
-            // use adaptive shape
-            drawable = DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false, Color.TRANSPARENT);
-        }
-
         if (mContactPackMask && mIconPack != null && mIconPack.hasMask()) {
             // if the icon pack has a mask, use that instead of the adaptive shape
-            drawable = mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
+            return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
+        } else if (DrawableUtils.isAdaptiveIconDrawable(drawable)) {
+            // use adaptive shape (with white background for non adaptive icons)
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true, Color.WHITE);
+        } else {
+            // use adaptive shape
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false, Color.TRANSPARENT);
         }
-        return drawable;
     }
 
     /**
