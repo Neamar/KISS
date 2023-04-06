@@ -183,10 +183,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     @NonNull
     @Override
     public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor) {
-        if (DrawableUtils.isAdaptiveIconDrawable(icon)) {
-            // convert AdaptiveIconDrawable to BitmapDrawable, use SHAPE_SQUARE so icon pack can be applied correctly
-            icon = DrawableUtils.applyIconMaskShape(ctx, icon, DrawableUtils.SHAPE_SQUARE, fitInside, Color.WHITE);
-        }
         BitmapDrawable bitmapDrawable = getBitmapDrawable(icon);
         return applyBackgroundAndMask(bitmapDrawable, ctx);
     }
@@ -362,10 +358,16 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                             }
                         }
                         //parse <scale> xml tags used as scale factor of original bitmap icon
-                        else if (xpp.getName().equals("scale") && xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
-                            try {
-                                scaleFactor = Float.parseFloat(xpp.getAttributeValue(0));
-                            } catch (NumberFormatException ignored) {
+                        else if (xpp.getName().equals("scale")) {
+                            String factor = xpp.getAttributeValue(null, "factor");
+                            if (factor == null && xpp.getAttributeCount() > 0) {
+                                factor = xpp.getAttributeValue(0);
+                            }
+                            if (factor != null) {
+                                try {
+                                    scaleFactor = Float.parseFloat(factor);
+                                } catch (NumberFormatException ignored) {
+                                }
                             }
                         }
                         //parse <item> xml tags for custom icons

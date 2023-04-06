@@ -186,25 +186,39 @@ public class IconsHandler {
             if (!mIconPack.isLoaded())
                 return null;
             drawable = mIconPack.getComponentDrawable(ctx, componentName, userHandle);
+            if (drawable != null) {
+                drawable = applyIconMask(ctx, drawable, true);
+            }
         }
 
         if (drawable == null) {
             // if icon pack doesn't have the drawable, use system drawable
             drawable = mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
+            if (drawable != null) {
+                drawable = applyIconMask(ctx, drawable, false);
+            }
         }
         if (drawable == null)
             return null;
 
-        drawable = applyIconMask(ctx, drawable);
         drawable = applyBadge(drawable, userHandle);
         storeDrawable(cacheGetFileName(cacheKey), drawable);
         return drawable;
     }
 
     public Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable) {
+        return applyIconMask(ctx, drawable, false);
+    }
+
+    private Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable, boolean isIconFromPack) {
         if (mIconPack != null && mIconPack.hasMask()) {
-            // if the icon pack has a mask, use that instead of the adaptive shape
-            return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
+            if (isIconFromPack) {
+                // use drawable from icon pack as is
+                return drawable;
+            } else {
+                // if the icon pack has a mask, use that instead of the adaptive shape
+                return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
+            }
         } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
             // use adaptive shape (with white background for non adaptive icons)
             return mSystemPack.applyBackgroundAndMask(ctx, drawable, true, Color.WHITE);
@@ -229,16 +243,19 @@ public class IconsHandler {
     public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
         final int shape = getContactsShape();
 
-        if (mContactPackMask && mIconPack != null && mIconPack.hasMask()) {
-            // if the icon pack has a mask, use that instead of the adaptive shape
-            return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
-        } else if (DrawableUtils.isAdaptiveIconDrawable(drawable)) {
+        if (DrawableUtils.isAdaptiveIconDrawable(drawable)) {
             // use adaptive shape (with white background for non adaptive icons)
-            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true, Color.WHITE);
+            drawable = DrawableUtils.applyIconMaskShape(ctx, drawable, shape, true, Color.WHITE);
         } else {
             // use adaptive shape
-            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false, Color.TRANSPARENT);
+            drawable = DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false, Color.TRANSPARENT);
         }
+
+        if (mContactPackMask && mIconPack != null && mIconPack.hasMask()) {
+            // if the icon pack has a mask, use that instead of the adaptive shape
+            drawable = mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
+        }
+        return drawable;
     }
 
     /**
