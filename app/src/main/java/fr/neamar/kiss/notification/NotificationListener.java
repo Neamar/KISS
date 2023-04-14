@@ -121,6 +121,10 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
+        if (sbn == null) {
+            return;
+        }
+
         String packageKey = getPackageKey(sbn);
 
         Set<String> currentNotifications = getCurrentNotificationsForPackage(packageKey);
