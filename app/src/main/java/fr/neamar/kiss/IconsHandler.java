@@ -38,7 +38,7 @@ import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
 /**
- * Inspired from http://stackoverflow.com/questions/31490630/how-to-load-icon-from-icon-pack
+ * Inspired from <a href="http://stackoverflow.com/questions/31490630/how-to-load-icon-from-icon-pack">How to load icon from icon pack</a>
  */
 
 public class IconsHandler {
@@ -175,8 +175,12 @@ public class IconsHandler {
         // search for custom icon
         if (useCustomIcons) {
             Map<String, Long> customIconIds = getCustomIconIds();
-            if (customIconIds.containsKey(cacheKey)) {
-                drawable = getCustomIcon(cacheKey, customIconIds.get(cacheKey));
+            if (customIconIds == null)
+                return null;
+            
+            Long customIconId = customIconIds.get(cacheKey);
+            if (customIconId != null) {
+                drawable = getCustomIcon(cacheKey, customIconId);
             }
         }
 
@@ -264,12 +268,12 @@ public class IconsHandler {
      */
     private void loadAvailableIconsPacks() {
 
-        List<ResolveInfo> launcherthemes = pm.queryIntentActivities(new Intent("fr.neamar.kiss.THEMES"), PackageManager.GET_META_DATA);
-        List<ResolveInfo> adwlauncherthemes = pm.queryIntentActivities(new Intent("org.adw.launcher.THEMES"), PackageManager.GET_META_DATA);
+        List<ResolveInfo> launcherThemes = pm.queryIntentActivities(new Intent("fr.neamar.kiss.THEMES"), PackageManager.GET_META_DATA);
+        List<ResolveInfo> adwLauncherThemes = pm.queryIntentActivities(new Intent("org.adw.launcher.THEMES"), PackageManager.GET_META_DATA);
 
-        launcherthemes.addAll(adwlauncherthemes);
+        launcherThemes.addAll(adwLauncherThemes);
 
-        for (ResolveInfo ri : launcherthemes) {
+        for (ResolveInfo ri : launcherThemes) {
             String packageName = ri.activityInfo.packageName;
             try {
                 ApplicationInfo ai = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
@@ -451,18 +455,22 @@ public class IconsHandler {
     }
 
     /**
-     * Cache for custom icon ids, maps from component name to custom icon id.
+     * Thread-safe cache for custom icon ids, maps from component name to custom icon id.
      * Cache is built only if null.
      *
      * @return cache for custom icon ids
      */
     private Map<String, Long> getCustomIconIds() {
         if (customIconIds == null) {
-            customIconIds = new HashMap<>();
-            Map<String, AppRecord> appData = DBHelper.getCustomAppData(ctx);
-            for (Map.Entry<String, AppRecord> entry : appData.entrySet()) {
-                if (entry.getValue().hasCustomIcon()) {
-                    customIconIds.put(entry.getKey(), entry.getValue().dbId);
+            synchronized (IconsHandler.class) {
+                if (customIconIds == null) {
+                    customIconIds = new HashMap<>();
+                    Map<String, AppRecord> appData = DBHelper.getCustomAppData(ctx);
+                    for (Map.Entry<String, AppRecord> entry : appData.entrySet()) {
+                        if (entry.getValue().hasCustomIcon()) {
+                            customIconIds.put(entry.getKey(), entry.getValue().dbId);
+                        }
+                    }
                 }
             }
         }
