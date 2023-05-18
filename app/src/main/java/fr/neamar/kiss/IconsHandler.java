@@ -56,7 +56,7 @@ public class IconsHandler {
     private int mContactsShape = DrawableUtils.SHAPE_SYSTEM;
     private boolean mForceShape = false;
     private Utilities.AsyncRun mLoadIconsPackTask = null;
-    private Map<String, Long> customIconIds = null;
+    private volatile Map<String, Long> customIconIds = null;
 
     public IconsHandler(Context ctx) {
         super();
@@ -177,7 +177,7 @@ public class IconsHandler {
             Map<String, Long> customIconIds = getCustomIconIds();
             if (customIconIds == null)
                 return null;
-            
+
             Long customIconId = customIconIds.get(cacheKey);
             if (customIconId != null) {
                 drawable = getCustomIcon(cacheKey, customIconId);
@@ -451,7 +451,9 @@ public class IconsHandler {
      * clears cache for custom icon ids
      */
     private void clearCustomIconIdCache() {
-        customIconIds = null;
+        synchronized (IconsHandler.class) {
+            customIconIds = null;
+        }
     }
 
     /**
