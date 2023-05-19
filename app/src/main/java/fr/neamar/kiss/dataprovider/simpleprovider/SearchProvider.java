@@ -86,7 +86,7 @@ public class SearchProvider extends SimpleProvider {
             // Open valid URLs directly (if I type http://something.com for instance)
             SearchPojo pojo = createUrlQuerySearchPojo(query);
             records.add(pojo);
-        } else if (URIUtils.isValidUri(query, context)) {
+        } else if (URIUtils.isValidUri(query, context).isValid) {
             // Open uri directly by an app that can handle it (if i type gemini://oppen.digital/ariane/ for gemini browser)
             // https://github.com/Neamar/KISS/issues/1786
             SearchPojo pojo = new SearchPojo("search://uri-access", query, "", SearchPojo.URI_QUERY);

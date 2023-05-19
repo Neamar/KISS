@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ import java.util.Set;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.utils.URIUtils;
+import fr.neamar.kiss.utils.URLUtils;
 
 public class AddSearchProviderPreference extends DialogPreference {
 
@@ -122,7 +124,11 @@ public class AddSearchProviderPreference extends DialogPreference {
         return !TextUtils.isEmpty(providerName.getText()) && !TextUtils.isEmpty(providerUri.getText());
     }
 
-    private boolean validateUri() {
+    private boolean validateUrl() {
+        return URLUtils.matchesUrlPattern(providerUri.getText().toString());
+    }
+
+    private URIUtils.URIValidity validateUri() {
         return URIUtils.isValidUri(providerUri.getText().toString(), getContext());
     }
 
@@ -153,15 +159,35 @@ public class AddSearchProviderPreference extends DialogPreference {
             //cancel close dialog
             return false;
         }
-        //check if a valid uri is given
-        if (!validateUri()) {
-            Toast.makeText(this.getContext(), R.string.search_provider_error_uri, Toast.LENGTH_SHORT).show();
-            //not a uri
-            return false;
-        }
         //if all validates are correct, then close dialog with close flag = true
-        return true;
 
+        // If provider submitted is submitted not more check is need
+        if (validateUrl()) {
+            return true;
+        }
+
+        //check if a valid uri is given instead valid url
+        final URIUtils.URIValidity uriResult = validateUri();
+        if (uriResult.isValid) {
+            return true;
+        }
+
+        switch (uriResult) {
+            case NOT_AN_URI:
+                Toast.makeText(this.getContext(), R.string.search_provider_error_url, Toast.LENGTH_SHORT).show();
+                //not an uri and not an url
+                return false;
+            case NO_APP_CAN_HANDLE_URI:
+                Toast.makeText(this.getContext(), R.string.search_provider_error_uri_cannot_be_handle, Toast.LENGTH_SHORT).show();
+                //valid uri but no app can handle this intent
+                return false;
+            default:
+                Log.w(this.getClass().getCanonicalName(),
+                        String.format("validate: Following error case for uriResult unmanaged : %s",
+                                uriResult)
+                );
+                return false;
+        }
     }
 
     //persist values and disassemble views
