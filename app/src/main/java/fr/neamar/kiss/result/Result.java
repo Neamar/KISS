@@ -378,7 +378,9 @@ public abstract class Result {
             view.setImageDrawable(getDrawable(view.getContext()));
             view.setTag(this);
         } else {
-            view.setTag(createAsyncSetImage(view, resId).execute());
+            // use AsyncTask.SERIAL_EXECUTOR explicitly for now
+            // TODO: make execution parallel if needed/possible
+            view.setTag(createAsyncSetImage(view, resId).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR));
         }
     }
 
