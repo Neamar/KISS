@@ -3,13 +3,11 @@ package fr.neamar.kiss.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.Shader.TileMode;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -96,6 +94,7 @@ public class DrawableUtils {
 
     /**
      * Handle adaptive icons for compatible devices
+     * Synchronized because class fields like {@link DrawableUtils#PAINT} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
      *
      * @param ctx             {@link Context}
      * @param icon            the {@link Drawable} to shape
@@ -106,7 +105,7 @@ public class DrawableUtils {
      */
     @NonNull
     @SuppressLint("NewApi")
-    public static Drawable applyIconMaskShape(@NonNull Context ctx, @NonNull Drawable icon, int shape, boolean fitInside, @ColorInt int backgroundColor) {
+    public synchronized static Drawable applyIconMaskShape(@NonNull Context ctx, @NonNull Drawable icon, int shape, boolean fitInside, @ColorInt int backgroundColor) {
         if (shape == SHAPE_SYSTEM && !hasDeviceConfiguredMask())
             // if no icon mask can be configured for device, then use icon as is
             return icon;
@@ -123,33 +122,31 @@ public class DrawableUtils {
             Drawable bgDrawable = adaptiveIcon.getBackground();
             Drawable fgDrawable = adaptiveIcon.getForeground();
 
-            int layerSize = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 108f, ctx.getResources().getDisplayMetrics()));
-            int iconSize = Math.round(layerSize / (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction()));
+            int iconSize = icon.getIntrinsicHeight();
+            if (iconSize <= 0) {
+                iconSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 72f, ctx.getResources().getDisplayMetrics());
+            }
+            int layerSize = (int) (iconSize * (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction()));
             int layerOffset = (layerSize - iconSize) / 2;
 
-            // Create a bitmap of the icon to use it as the shader of the outputBitmap
-            Bitmap iconBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-            Canvas iconCanvas = new Canvas(iconBitmap);
+            outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
+            outputCanvas = new Canvas(outputBitmap);
+            outputPaint.setColor(backgroundColor);
+
+            setIconShape(outputCanvas, outputPaint, shape);
 
             // Stretch adaptive layers because they are 108dp and the icon size is 48dp
             if (bgDrawable != null) {
                 bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-                bgDrawable.draw(iconCanvas);
+                bgDrawable.draw(outputCanvas);
             }
 
             if (fgDrawable != null) {
                 fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-                fgDrawable.draw(iconCanvas);
+                fgDrawable.draw(outputCanvas);
             }
-
-            outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-            outputCanvas = new Canvas(outputBitmap);
-
-            outputPaint.setShader(new BitmapShader(iconBitmap, TileMode.CLAMP, TileMode.CLAMP));
-            setIconShape(outputCanvas, outputPaint, shape);
-            outputPaint.setShader(null);
         }
-        // If icon is not adaptive, put it in a white canvas to make it have a unified shape
+        // If icon is not adaptive, put it in a colored canvas to make it have a unified shape
         else if (icon != null) {
             // Shrink icon fit inside the shape
             int iconSize;
@@ -170,11 +167,11 @@ public class DrawableUtils {
             outputCanvas = new Canvas(outputBitmap);
             outputPaint.setColor(backgroundColor);
 
+            setIconShape(outputCanvas, outputPaint, shape);
+
             // Shrink icon so that it fits the shape
             int bottomRightCorner = iconSize - iconOffset;
             icon.setBounds(iconOffset, iconOffset, bottomRightCorner, bottomRightCorner);
-
-            setIconShape(outputCanvas, outputPaint, shape);
             icon.draw(outputCanvas);
         } else {
             int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
@@ -190,12 +187,13 @@ public class DrawableUtils {
 
     /**
      * Set the shape of adaptive icons
+     * Synchronized because class fields like {@link DrawableUtils#SHAPE_PATH} and {@link DrawableUtils#RECT_F} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
      *
      * @param shape type of shape: DrawableUtils.SHAPE_*
      */
-    private static void setIconShape(Canvas canvas, Paint paint, int shape) {
+    private synchronized static void setIconShape(Canvas canvas, Paint paint, int shape) {
         int iconSize = canvas.getHeight();
-        Path path = SHAPE_PATH;
+        final Path path = SHAPE_PATH;
         path.rewind();
 
         switch (shape) {
@@ -204,7 +202,7 @@ public class DrawableUtils {
                     // get icon mask for device
                     AdaptiveIconDrawable drawable = new AdaptiveIconDrawable(new ColorDrawable(Color.BLACK), new ColorDrawable(Color.BLACK));
                     drawable.setBounds(0, 0, iconSize, iconSize);
-                    path = drawable.getIconMask();
+                    path.set(drawable.getIconMask());
                 } else {
                     // This should never happen, use rect so nothing is clipped
                     path.addRect(0f, 0f, iconSize, iconSize, Path.Direction.CCW);

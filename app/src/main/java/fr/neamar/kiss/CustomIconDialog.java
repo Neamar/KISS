@@ -480,7 +480,9 @@ public class CustomIconDialog extends DialogFragment {
                 if (loader != null)
                     loader.cancel(true);
                 loader = new AsyncLoad(this);
-                loader.execute(content);
+                // use AsyncTask.SERIAL_EXECUTOR explicitly for now
+                // TODO: make execution parallel if needed/possible
+                loader.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, content);
             }
         }
     }

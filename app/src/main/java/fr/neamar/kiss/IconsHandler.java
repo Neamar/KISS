@@ -206,7 +206,9 @@ public class IconsHandler {
             return null;
 
         drawable = applyBadge(drawable, userHandle);
-        storeDrawable(cacheGetFileName(cacheKey), drawable);
+        if (useCache) {
+            storeDrawable(cacheGetFileName(cacheKey), drawable);
+        }
         return drawable;
     }
 
@@ -465,7 +467,7 @@ public class IconsHandler {
      * clears cache for custom icon ids
      */
     private void clearCustomIconIdCache() {
-        synchronized (IconsHandler.class) {
+        synchronized (this) {
             customIconIds = null;
         }
     }
@@ -478,7 +480,7 @@ public class IconsHandler {
      */
     private Map<String, Long> getCustomIconIds() {
         if (customIconIds == null) {
-            synchronized (IconsHandler.class) {
+            synchronized (this) {
                 if (customIconIds == null) {
                     customIconIds = new HashMap<>();
                     Map<String, AppRecord> appData = DBHelper.getCustomAppData(ctx);
