@@ -94,7 +94,7 @@ public class DrawableUtils {
 
     /**
      * Handle adaptive icons for compatible devices
-     * Synchronized because class fields like {@link DrawableUtils#PAINT} are reused for every call, which may result in unexpected behaviour if method is called in from different threads running parallel.
+     * Synchronized because class fields like {@link DrawableUtils#PAINT} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
      *
      * @param ctx             {@link Context}
      * @param icon            the {@link Drawable} to shape
@@ -187,7 +187,7 @@ public class DrawableUtils {
 
     /**
      * Set the shape of adaptive icons
-     * Synchronized because class fields like {@link DrawableUtils#SHAPE_PATH} and {@link DrawableUtils#RECT_F} are reused for every call, which may result in unexpected behaviour if method is called in from different threads running parallel.
+     * Synchronized because class fields like {@link DrawableUtils#SHAPE_PATH} and {@link DrawableUtils#RECT_F} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
      *
      * @param shape type of shape: DrawableUtils.SHAPE_*
      */
