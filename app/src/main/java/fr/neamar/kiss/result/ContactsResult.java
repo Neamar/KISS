@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -37,7 +36,7 @@ import fr.neamar.kiss.utils.FuzzyScore;
 public class ContactsResult extends CallResult {
     private final ContactsPojo contactPojo;
     private final QueryInterface queryInterface;
-    private Drawable icon = null;
+    private volatile Drawable icon = null;
 
     ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
         super(contactPojo);
@@ -186,30 +185,26 @@ public class ContactsResult extends CallResult {
 
     @Override
     public Drawable getDrawable(Context context) {
-        synchronized (this) {
-            if (isDrawableCached())
-                return icon;
-            if (contactPojo.icon != null) {
-                InputStream inputStream = null;
-                try {
-                    inputStream = context.getContentResolver()
-                            .openInputStream(contactPojo.icon);
-                    return icon = Drawable.createFromStream(inputStream, null);
-                } catch (FileNotFoundException ignored) {
-                } finally {
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
+        if (!isDrawableCached()) {
+            synchronized (this) {
+                if (!isDrawableCached()) {
+                    if (contactPojo.icon != null) {
+                        try (InputStream inputStream = context.getContentResolver()
+                                .openInputStream(contactPojo.icon)) {
+                            icon = Drawable.createFromStream(inputStream, null);
                         } catch (IOException ignored) {
                         }
                     }
+
+                    // Default icon
+                    if (icon == null) {
+                        icon = context.getResources()
+                                .getDrawable(R.drawable.ic_contact);
+                    }
                 }
             }
-
-            // Default icon
-            return icon = context.getResources()
-                    .getDrawable(R.drawable.ic_contact);
         }
+        return icon;
     }
 
     @NonNull
