@@ -53,7 +53,7 @@ import fr.neamar.kiss.utils.SpaceTokenizer;
 public class AppResult extends Result {
     private final AppPojo appPojo;
     private final ComponentName className;
-    private Drawable icon = null;
+    private volatile Drawable icon = null;
 
     AppResult(AppPojo appPojo) {
         super(appPojo);
@@ -432,19 +432,22 @@ public class AppResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-        synchronized (this) {
-            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
-            return icon;
+        if (!isDrawableCached()) {
+            synchronized (this) {
+                if (!isDrawableCached()) {
+                    IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                    icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
+                }
+            }
         }
+        return icon;
     }
-
 
     @Override
     public boolean isDrawableDynamic() {
         // drawable may change because of async loading, so return true as long as icon is not cached
         // another dynamic icon is from Google Calendar
-        return !isDrawableCached()|| GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName);
+        return !isDrawableCached() || GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName);
     }
 
     @Override
