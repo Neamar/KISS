@@ -51,6 +51,7 @@ import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
@@ -389,7 +390,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (sharedText != null && sharedText.trim().length() > 0) {
                 searchEditText.setText(sharedText);
             } else {
-                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.shared_text_empty, Toast.LENGTH_SHORT).show();
             }
         }
 
