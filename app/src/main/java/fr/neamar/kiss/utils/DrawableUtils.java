@@ -1,6 +1,5 @@
 package fr.neamar.kiss.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -94,7 +93,6 @@ public class DrawableUtils {
 
     /**
      * Handle adaptive icons for compatible devices
-     * Synchronized because class fields like {@link DrawableUtils#PAINT} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
      *
      * @param ctx             {@link Context}
      * @param icon            the {@link Drawable} to shape
@@ -104,8 +102,7 @@ public class DrawableUtils {
      * @return shaped icon
      */
     @NonNull
-    @SuppressLint("NewApi")
-    public synchronized static Drawable applyIconMaskShape(@NonNull Context ctx, @NonNull Drawable icon, int shape, boolean fitInside, @ColorInt int backgroundColor) {
+    public static Drawable applyIconMaskShape(@NonNull Context ctx, @NonNull Drawable icon, int shape, boolean fitInside, @ColorInt int backgroundColor) {
         if (shape == SHAPE_SYSTEM && !hasDeviceConfiguredMask())
             // if no icon mask can be configured for device, then use icon as is
             return icon;
@@ -114,9 +111,6 @@ public class DrawableUtils {
 
         Bitmap outputBitmap;
         Canvas outputCanvas;
-        final Paint outputPaint = PAINT;
-        outputPaint.reset();
-        outputPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         if (isAdaptiveIconDrawable(icon)) {
             AdaptiveIconDrawable adaptiveIcon = (AdaptiveIconDrawable) icon;
             Drawable bgDrawable = adaptiveIcon.getBackground();
@@ -131,9 +125,8 @@ public class DrawableUtils {
 
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
-            outputPaint.setColor(backgroundColor);
 
-            setIconShape(outputCanvas, outputPaint, shape);
+            setIconShape(outputCanvas, backgroundColor, shape);
 
             // Stretch adaptive layers because they are 108dp and the icon size is 48dp
             if (bgDrawable != null) {
@@ -165,9 +158,8 @@ public class DrawableUtils {
 
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
-            outputPaint.setColor(backgroundColor);
 
-            setIconShape(outputCanvas, outputPaint, shape);
+            setIconShape(outputCanvas, backgroundColor, shape);
 
             // Shrink icon so that it fits the shape
             int bottomRightCorner = iconSize - iconOffset;
@@ -178,23 +170,27 @@ public class DrawableUtils {
 
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
-            outputPaint.setColor(Color.BLACK);
 
-            setIconShape(outputCanvas, outputPaint, shape);
+            setIconShape(outputCanvas, Color.BLACK, shape);
         }
         return new BitmapDrawable(ctx.getResources(), outputBitmap);
     }
 
     /**
      * Set the shape of adaptive icons
-     * Synchronized because class fields like {@link DrawableUtils#SHAPE_PATH} and {@link DrawableUtils#RECT_F} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
+     * Synchronized because class fields like {@link DrawableUtils#SHAPE_PATH}, {@link DrawableUtils#RECT_F} and {@link DrawableUtils#PAINT} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
      *
      * @param shape type of shape: DrawableUtils.SHAPE_*
      */
-    private synchronized static void setIconShape(Canvas canvas, Paint paint, int shape) {
+    private synchronized static void setIconShape(Canvas canvas, @ColorInt int backgroundColor, int shape) {
         int iconSize = canvas.getHeight();
         final Path path = SHAPE_PATH;
         path.rewind();
+
+        final Paint paint = PAINT;
+        paint.reset();
+        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(backgroundColor);
 
         switch (shape) {
             case SHAPE_SYSTEM: {
