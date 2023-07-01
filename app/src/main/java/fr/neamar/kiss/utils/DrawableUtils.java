@@ -1,5 +1,6 @@
 package fr.neamar.kiss.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -111,7 +112,7 @@ public class DrawableUtils {
 
         Bitmap outputBitmap;
         Canvas outputCanvas;
-        if (isAdaptiveIconDrawable(icon)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && isAdaptiveIconDrawable(icon)) {
             AdaptiveIconDrawable adaptiveIcon = (AdaptiveIconDrawable) icon;
             Drawable bgDrawable = adaptiveIcon.getBackground();
             Drawable fgDrawable = adaptiveIcon.getForeground();
