@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.loader.LoadShortcutsPojos;
@@ -17,9 +19,11 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.ShortcutUtil;
 
 public class ShortcutsProvider extends Provider<ShortcutPojo> {
     private static boolean notifiedKissNotDefaultLauncher = false;
+    private static final String TAG = ShortcutsProvider.class.getSimpleName();
 
     @Override
     public void onCreate() {
@@ -30,7 +34,23 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
             launcher.registerCallback(new LauncherAppsCallback() {
                 @Override
                 public void onShortcutsChanged(String packageName, List<ShortcutInfo> shortcuts, android.os.UserHandle user) {
-                    KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().reloadShortcuts();
+                    if (isAnyShortcutVisible(shortcuts)) {
+                        Log.d(TAG, "Shortcuts changed for " + packageName);
+                        KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().reloadShortcuts();
+                    }
+                }
+
+                private boolean isAnyShortcutVisible(List<ShortcutInfo> shortcuts) {
+                    DataHandler dataHandler = KissApplication.getApplication(ShortcutsProvider.this).getDataHandler();
+                    Set<String> excludedApps = dataHandler.getExcluded();
+                    Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
+
+                    for (ShortcutInfo shortcutInfo : shortcuts){
+                        if (ShortcutUtil.isShortcutVisible(ShortcutsProvider.this, shortcutInfo, excludedApps, excludedShortcutApps, null)) {
+                            return true;
+                        }
+                    }
+                    return false;
                 }
             });
         }
@@ -53,7 +73,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
                 Toast.makeText(this, R.string.unable_to_initialize_shortcuts, Toast.LENGTH_LONG).show();
             }
             notifiedKissNotDefaultLauncher = true;
-            e.printStackTrace();
+            Log.i(TAG, "Unable to initialize shortcuts", e);
         }
     }
 

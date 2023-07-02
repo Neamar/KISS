@@ -57,7 +57,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(context);
             for (ShortcutInfo shortcutInfo : shortcutInfos) {
-                if (isShortcutVisible(context, shortcutInfo, excludedApps, excludedShortcutApps, visibleShortcutIds)) {
+                if (ShortcutUtil.isShortcutVisible(context, shortcutInfo, excludedApps, excludedShortcutApps, visibleShortcutIds)) {
                     ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, !shortcutInfo.isPinned());
                     if (shortcutRecord != null) {
                         ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, ShortcutUtil.getComponentName(context, shortcutInfo), shortcutInfo.isPinned(), shortcutInfo.isDynamic());
@@ -75,25 +75,5 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         pojo.setName(shortcutRecord.name);
         pojo.setTags(tagsHandler.getTags(pojo.id));
         return pojo;
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private boolean isShortcutVisible(Context context, ShortcutInfo shortcutInfo, Set<String> excludedApps, Set<String> excludedShortcutApps, Set<String> visibleShortcutIds) {
-        if (!shortcutInfo.isEnabled()) {
-            return false;
-        }
-        String packageName = shortcutInfo.getPackage();
-        String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
-
-        // if related package is excluded from KISS then the shortcut must be excluded too
-        boolean isExcluded = excludedApps.contains(componentName) || excludedShortcutApps.contains(packageName);
-        if (isExcluded) {
-            return false;
-        }
-
-        if (shortcutInfo.isPinned()) {
-            return visibleShortcutIds.contains(shortcutInfo.getId());
-        }
-        return true;
     }
 }
