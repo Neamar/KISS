@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
@@ -35,7 +37,7 @@ import fr.neamar.kiss.shortcut.SaveSingleOreoShortcutAsync;
 
 public class ShortcutUtil {
 
-    final static private String TAG = "ShortcutUtil";
+    final static private String TAG = ShortcutUtil.class.getSimpleName();
 
     /**
      * @return shortcut id generated from shortcut name
@@ -215,13 +217,33 @@ public class ShortcutUtil {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     @Nullable
-    public static String getComponentName(Context context, ShortcutInfo shortcutInfo) {
+    public static String getComponentName(@NonNull Context context, @Nullable ShortcutInfo shortcutInfo) {
         if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
             UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
             fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
             return AppPojo.getComponentName(shortcutInfo.getPackage(), shortcutInfo.getActivity().getClassName(), user);
         }
         return null;
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static boolean isShortcutVisible(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo, @NonNull Set<String> excludedApps, @NonNull Set<String> excludedShortcutApps, @Nullable Set<String> visibleShortcutIds) {
+        if (!shortcutInfo.isEnabled()) {
+            return false;
+        }
+        String packageName = shortcutInfo.getPackage();
+        String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
+
+        // if related package is excluded from KISS then the shortcut must be excluded too
+        boolean isExcluded = excludedApps.contains(componentName) || excludedShortcutApps.contains(packageName);
+        if (isExcluded) {
+            return false;
+        }
+
+        if (visibleShortcutIds != null && shortcutInfo.isPinned()) {
+            return visibleShortcutIds.contains(shortcutInfo.getId());
+        }
+        return true;
     }
 
 }

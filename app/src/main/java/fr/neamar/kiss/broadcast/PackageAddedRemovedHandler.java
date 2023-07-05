@@ -34,18 +34,22 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
             }
         }
 
-        if (Intent.ACTION_PACKAGE_REMOVED.equals(action) && !replacing) {
-            // Remove all installed shortcuts
-            KissApplication.getApplication(ctx).getDataHandler().removeShortcuts(packageName);
-            KissApplication.getApplication(ctx).getDataHandler().removeFromExcluded(packageName);
-        }
-
         KissApplication.getApplication(ctx).resetIconsHandler();
 
-        // Reload application list
-        KissApplication.getApplication(ctx).getDataHandler().reloadApps();
-        // reload shortcuts
-        KissApplication.getApplication(ctx).getDataHandler().reloadShortcuts();
+        if (Intent.ACTION_PACKAGE_REMOVED.equals(action)) {
+            if (!replacing) {
+                // Reload application list
+                KissApplication.getApplication(ctx).getDataHandler().reloadApps();
+                // Remove all installed shortcuts
+                KissApplication.getApplication(ctx).getDataHandler().removeShortcuts(packageName);
+                KissApplication.getApplication(ctx).getDataHandler().removeFromExcluded(packageName);
+            }
+        } else {
+            // Reload application list
+            KissApplication.getApplication(ctx).getDataHandler().reloadApps();
+            // Reload shortcuts
+            KissApplication.getApplication(ctx).getDataHandler().reloadShortcuts();
+        }
     }
 
     @Override
