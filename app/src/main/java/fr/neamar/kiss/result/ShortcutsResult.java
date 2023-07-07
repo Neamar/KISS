@@ -252,12 +252,15 @@ public class ShortcutsResult extends Result {
 
     @Override
     ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView) {
-        if (!this.shortcutPojo.isDynamic()) {
+        if (!this.shortcutPojo.isDynamic() || this.shortcutPojo.isPinned()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_remove));
+        if (!this.shortcutPojo.isPinned() && this.shortcutPojo.isOreoShortcut()) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_pin));
+        }
         if (this.shortcutPojo.isPinned()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
         }
@@ -268,6 +271,9 @@ public class ShortcutsResult extends Result {
     @Override
     boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
         switch (stringId) {
+            case R.string.menu_shortcut_pin:
+                pinShortcut(context, shortcutPojo);
+                return true;
             case R.string.menu_shortcut_remove:
                 launchUninstall(context, shortcutPojo);
                 // Also remove item, since it will be uninstalled
@@ -314,9 +320,16 @@ public class ShortcutsResult extends Result {
 
     private void launchUninstall(Context context, ShortcutPojo shortcutPojo) {
         DataHandler dh = KissApplication.getApplication(context).getDataHandler();
-        if (dh != null) {
+        if (shortcutPojo.isOreoShortcut() && shortcutPojo.isPinned()) {
+            dh.unpinShortcut(shortcutPojo);
+        } else {
             dh.removeShortcut(shortcutPojo);
         }
+    }
+
+    private void pinShortcut(Context context, ShortcutPojo shortcutPojo) {
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        dataHandler.pinShortcut(shortcutPojo);
     }
 
 }

@@ -5,10 +5,7 @@ import android.content.Context;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,13 +38,9 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
 
         ArrayList<ShortcutPojo> pojos = new ArrayList<>();
 
-        Set<String> visibleShortcutIds = new HashSet<>();
         for (ShortcutRecord shortcutRecord : records) {
             ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, null, true, false);
-            if (pojo.isOreoShortcut()) {
-                // collect ids of oreo shortcuts for visibility check
-                visibleShortcutIds.add(pojo.getOreoId());
-            } else {
+            if (!pojo.isOreoShortcut()) {
                 // add older shortcuts from DB
                 pojos.add(pojo);
             }
@@ -57,7 +50,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(context);
             for (ShortcutInfo shortcutInfo : shortcutInfos) {
-                if (ShortcutUtil.isShortcutVisible(context, shortcutInfo, excludedApps, excludedShortcutApps, visibleShortcutIds)) {
+                if (ShortcutUtil.isShortcutVisible(context, shortcutInfo, excludedApps, excludedShortcutApps)) {
                     ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, !shortcutInfo.isPinned());
                     if (shortcutRecord != null) {
                         ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, ShortcutUtil.getComponentName(context, shortcutInfo), shortcutInfo.isPinned(), shortcutInfo.isDynamic());

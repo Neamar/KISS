@@ -456,6 +456,41 @@ public class DataHandler extends BroadcastReceiver
     }
 
     /**
+     * Pin shortcut for given {@link ShortcutPojo}
+     * This is used for pinning dynamic shortcut.
+     *
+     * @param shortcut shortcut to be pinned
+     * @return true, if shortcut was pinned
+     */
+    public boolean pinShortcut(ShortcutPojo shortcut) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (!shortcut.isPinned() && shortcut.isOreoShortcut()) {
+                return ShortcutUtil.pinShortcut(this.context, shortcut.packageName, shortcut.getOreoId());
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Unpin shortcut for given {@link ShortcutPojo}
+     * This is used for unpinning shortcut.
+     *
+     * @param shortcut shortcut to be unpinned
+     * @return true, if shortcut was unpinned
+     */
+    public boolean unpinShortcut(ShortcutPojo shortcut) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (shortcut.isPinned() && shortcut.isOreoShortcut()) {
+                if (ShortcutUtil.unpinShortcut(this.context, shortcut.packageName, shortcut.getOreoId())) {
+                    removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Update DB with given {@link ShortcutRecord}.
      *
      * @param shortcutInfo the shortcut to update.
