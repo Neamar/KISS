@@ -12,11 +12,11 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-import androidx.annotation.StyleableRes;
-
 import fr.neamar.kiss.MainActivity;
 
 class LiveWallpaper extends Forwarder {
+
+    private static final String TAG = LiveWallpaper.class.getSimpleName();
     private final boolean wallpaperIsVisible;
 
     private WallpaperManager mWallpaperManager;
@@ -37,7 +37,7 @@ class LiveWallpaper extends Forwarder {
         wallpaperIsVisible = a.getBoolean(0, true);
         a.recycle();
 
-        if(!wallpaperIsVisible) {
+        if (!wallpaperIsVisible) {
             return;
         }
 
@@ -53,7 +53,7 @@ class LiveWallpaper extends Forwarder {
     }
 
     boolean onTouch(View view, MotionEvent event) {
-        if(!wallpaperIsVisible) {
+        if (!wallpaperIsVisible) {
             return false;
         }
 
@@ -181,15 +181,15 @@ class LiveWallpaper extends Forwarder {
         boolean init() {
             mVelocityTracker.computeCurrentVelocity(1000 / 30);
             mVelocity = mVelocityTracker.getXVelocity();
-            //Log.d("LWP", "mVelocity=" + String.format(Locale.US, "%.2f", mVelocity));
+            //Log.d(TAG, "mVelocity=" + String.format(Locale.US, "%.2f", mVelocity));
 
             mStartOffset = mWallpaperOffset;
-            //Log.d("LWP", "mStartOffset=" + String.format(Locale.US, "%.2f", mStartOffset));
+            //Log.d(TAG, "mStartOffset=" + String.format(Locale.US, "%.2f", mStartOffset));
 
             boolean stickToSides = isPreferenceWPStickToSides();
             boolean stickToCenter = isPreferenceWPReturnCenter();
             float expectedPos = -Math.min(Math.max(mVelocity / mWindowSize.x, -.5f), .5f) + mStartOffset;
-            //Log.d("LWP", "expectedPos=" + String.format(Locale.US, "%.2f", expectedPos));
+            //Log.d(TAG, "expectedPos=" + String.format(Locale.US, "%.2f", expectedPos));
 
             // if we stick only to the center
             float leftStickPercent = -1.f;

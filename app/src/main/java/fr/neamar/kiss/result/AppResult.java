@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
+    private static final String TAG = AppResult.class.getSimpleName();
     private final AppPojo appPojo;
     private final ComponentName className;
     private volatile Drawable icon = null;
@@ -395,7 +397,7 @@ public class AppResult extends Result {
     private void launchAppStore(Context context, AppPojo app) {
         try {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + app.packageName)));
-        } catch (android.content.ActivityNotFoundException anfe) {
+        } catch (ActivityNotFoundException anfe) {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + app.packageName)));
         }
     }
@@ -490,6 +492,7 @@ public class AppResult extends Result {
                 context.startActivity(intent);
             }
         } catch (ActivityNotFoundException | NullPointerException | SecurityException e) {
+            Log.w(TAG, "Unable to launch activity", e);
             // Application was just removed?
             // (null pointer exception can be thrown on Lollipop+ when app is missing)
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();

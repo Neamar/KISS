@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -25,6 +26,8 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.TagsHandler;
 
 public class ImportSettingsPreference extends DialogPreference {
+
+    private static final String TAG = ImportSettingsPreference.class.getSimpleName();
 
     public ImportSettingsPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -89,8 +92,8 @@ public class ImportSettingsPreference extends DialogPreference {
                 }
 
                 Toast.makeText(getContext(), "Preferences imported!", Toast.LENGTH_SHORT).show();
-            } catch (JSONException|NullPointerException e) {
-                e.printStackTrace();
+            } catch (JSONException | NullPointerException e) {
+                Log.e(TAG, "Unable to import preferences", e);
                 Toast.makeText(getContext(), "Unable to import preferences", Toast.LENGTH_SHORT).show();
             }
         }

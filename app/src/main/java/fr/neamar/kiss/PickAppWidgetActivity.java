@@ -36,7 +36,7 @@ import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
 public class PickAppWidgetActivity extends Activity {
-    private static final String TAG = "PickAppWidget";
+    private static final String TAG = PickAppWidgetActivity.class.getSimpleName();
     public static final String EXTRA_WIDGET_BIND_ALLOWED = "widgetBindAllowed";
 
     @Override

@@ -44,7 +44,7 @@ public class SaveAllOreoShortcutsAsync extends AsyncTask<Void, Integer, Boolean>
             // Fetch list of all shortcuts
             shortcuts = ShortcutUtil.getAllShortcuts(context);
         } catch (SecurityException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Unable to get all shortcuts", e);
 
             // Publish progress (display toast)
             publishProgress(-1);

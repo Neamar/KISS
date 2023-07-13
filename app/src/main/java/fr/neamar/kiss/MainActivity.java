@@ -72,7 +72,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
     public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     /**
      * Adapter to display records
@@ -373,7 +373,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
 
         // For devices with hardware keyboards, give focus to search field.
-        if(getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
+        if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
             searchEditText.requestFocus();
         }
 
@@ -513,7 +513,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
-        if(keycode != KeyEvent.KEYCODE_BACK ) {
+        if (keycode != KeyEvent.KEYCODE_BACK) {
             searchEditText.requestFocus();
             searchEditText.dispatchKeyEvent(e);
         }

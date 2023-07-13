@@ -37,7 +37,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.ui.WidgetHost;
 
 class Widgets extends Forwarder {
-    private static final String TAG = "Widgets";
+    private static final String TAG = Widgets.class.getSimpleName();
     private static final int REQUEST_APPWIDGET_PICKED = 9;
     private static final int REQUEST_APPWIDGET_BOUND = 11;
     private static final int REQUEST_APPWIDGET_CONFIGURED = 5;
@@ -447,15 +447,14 @@ class Widgets extends Forwarder {
             // Launch over to configure widget, if needed.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, REQUEST_APPWIDGET_CONFIGURED, null);
-            }
-            else {
+            } else {
                 Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
                 intent.setComponent(appWidgetInfo.configure);
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 try {
                     mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
-                } catch(SecurityException e) {
-                    Toast.makeText(mainActivity,  "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
+                } catch (SecurityException e) {
+                    Toast.makeText(mainActivity, "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
                 }
             }
         }

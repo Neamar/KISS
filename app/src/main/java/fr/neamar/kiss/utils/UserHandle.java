@@ -6,6 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Process;
 import android.os.UserManager;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -13,6 +14,7 @@ import androidx.annotation.RequiresApi;
  * Wrapper class for `android.os.UserHandle` that works with all Android versions
  */
 public class UserHandle implements Parcelable {
+    private static final String TAG = UserHandle.class.getSimpleName();
     private final long serial;
     private final Parcelable handle; // android.os.UserHandle on Android 4.2 and newer
 
@@ -103,7 +105,6 @@ public class UserHandle implements Parcelable {
         }
     }
 
-    @SuppressWarnings("CatchAndPrintStackTrace")
     public boolean hasStringUserSuffix(String string, char separator) {
         long serial = 0;
 
@@ -113,7 +114,7 @@ public class UserHandle implements Parcelable {
             try {
                 serial = Long.parseLong(serialText);
             } catch (NumberFormatException e) {
-                e.printStackTrace();
+                Log.e(TAG, String.format("Unable to get suffix from string '%s' separated by '%s'", string, separator), e);
             }
         }
 

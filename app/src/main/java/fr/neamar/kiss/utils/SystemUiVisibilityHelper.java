@@ -11,6 +11,7 @@ import android.view.View;
 import fr.neamar.kiss.MainActivity;
 
 public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChangeListener {
+    private static final String TAG = SystemUiVisibilityHelper.class.getSimpleName();
     private final MainActivity mMainActivity;
     private final Handler mHandler;
     private final SharedPreferences prefs;
@@ -129,7 +130,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
         if ((visibility & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY) != 0)
             sb.append("\n SYSTEM_UI_FLAG_IMMERSIVE_STICKY");
 
-        Log.d("TBog", sb.toString());
+        Log.d(TAG, sb.toString());
 
         if ((visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0) {
             applySystemUi();
@@ -157,7 +158,7 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
     public void popPopup() {
         mPopupCount -= 1;
         if (mPopupCount < 0) {
-            Log.e("TBog", "popup count negative!");
+            Log.e(TAG, "Popup count negative!");
             mPopupCount = 0;
         }
     }
