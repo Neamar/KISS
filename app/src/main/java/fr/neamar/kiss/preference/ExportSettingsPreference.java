@@ -25,6 +25,8 @@ import static android.content.Context.CLIPBOARD_SERVICE;
 
 public class ExportSettingsPreference extends Preference {
 
+    private static final String TAG = ExportSettingsPreference.class.getSimpleName();
+
     public ExportSettingsPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -59,7 +61,7 @@ public class ExportSettingsPreference extends Preference {
                         out.put(key, new JSONArray(currentValue));
                     }
                 } else {
-                    Log.w("Unknown type", entry.getKey() + ":" + entry.getValue());
+                    Log.w(TAG, "Unknown type: " + entry.getKey() + ":" + entry.getValue());
                 }
             }
 
@@ -76,7 +78,7 @@ public class ExportSettingsPreference extends Preference {
             clipboard.setPrimaryClip(clip);
             Toast.makeText(getContext(), "Settings exported to clipboard", Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Unable to export preferences", e);
             Toast.makeText(getContext(), "Unable to export preferences", Toast.LENGTH_SHORT).show();
         } finally {
             defaultValues.edit().clear().apply();

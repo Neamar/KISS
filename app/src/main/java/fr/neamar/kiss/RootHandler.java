@@ -9,6 +9,8 @@ import java.nio.charset.Charset;
 
 public class RootHandler {
 
+    private static final String TAG = RootHandler.class.getSimpleName();
+
     private static final Charset UTF_8 = Charset.forName("UTF-8");
 
     private Boolean isRootAvailable = null;
@@ -65,7 +67,7 @@ public class RootHandler {
                 throw new Exception("Command execution failed " + result);
             return true;
         } catch (Exception e) {
-            Log.e("RootHandler", " " + e);
+            Log.e(TAG, "Unable to execute root shell", e);
         } finally {
             if (p != null) {
                 p.destroy();

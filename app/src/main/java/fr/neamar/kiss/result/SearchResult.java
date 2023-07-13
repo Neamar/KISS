@@ -37,6 +37,7 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class SearchResult extends Result {
+    private static final String TAG = SearchResult.class.getSimpleName();
     private final SearchPojo searchPojo;
 
     SearchResult(SearchPojo searchPojo) {
@@ -188,8 +189,8 @@ public class SearchResult extends Result {
                 search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 try {
                     context.startActivity(search);
-                } catch (android.content.ActivityNotFoundException e) {
-                    Log.w("SearchResult", "Unable to run search for url: " + searchPojo.url);
+                } catch (ActivityNotFoundException e) {
+                    Log.w(TAG, "Unable to run search for url: " + searchPojo.url);
                 }
                 break;
             case SearchPojo.CALCULATOR_QUERY:
@@ -200,8 +201,8 @@ public class SearchResult extends Result {
                 Intent intent = createUriIntent();
                 try {
                     context.startActivity(intent);
-                } catch (android.content.ActivityNotFoundException e) {
-                    Log.w("SearchResult", "Unable to run search for uri: " + searchPojo.url);
+                } catch (ActivityNotFoundException e) {
+                    Log.w(TAG, "Unable to run search for uri: " + searchPojo.url);
                 }
                 break;
         }

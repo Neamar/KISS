@@ -43,7 +43,7 @@ import fr.neamar.kiss.utils.Utilities;
 
 public class IconsHandler {
 
-    private static final String TAG = "IconsHandler";
+    private static final String TAG = IconsHandler.class.getSimpleName();
     // map with available icons packs
     private final HashMap<String, String> iconsPacks = new HashMap<>();
 

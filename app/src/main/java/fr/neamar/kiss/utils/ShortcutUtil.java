@@ -206,7 +206,7 @@ public class ShortcutUtil {
             ApplicationInfo info = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             return (String) packageManager.getApplicationLabel(info);
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Log.w(TAG, "Unable to get app name from package: " + packageName);
             return null;
         }
     }

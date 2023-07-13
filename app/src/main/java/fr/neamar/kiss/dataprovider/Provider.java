@@ -16,7 +16,7 @@ import fr.neamar.kiss.loader.LoadPojos;
 import fr.neamar.kiss.pojo.Pojo;
 
 public abstract class Provider<T extends Pojo> extends Service implements IProvider {
-    private final static String TAG = "Provider";
+    private final static String TAG = Provider.class.getSimpleName();
 
     /**
      * Binder given to clients
@@ -58,7 +58,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
     public void reload() {
         // Handled at subclass level
-        if(pojos.size() > 0) {
+        if (pojos.size() > 0) {
             Log.v(TAG, "Reloading provider: " + this.getClass().getSimpleName());
         }
     }
