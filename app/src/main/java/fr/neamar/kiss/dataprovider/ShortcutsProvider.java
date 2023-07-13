@@ -45,8 +45,8 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
                     Set<String> excludedApps = dataHandler.getExcluded();
                     Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
 
-                    for (ShortcutInfo shortcutInfo : shortcuts){
-                        if (ShortcutUtil.isShortcutVisible(ShortcutsProvider.this, shortcutInfo, excludedApps, excludedShortcutApps, null)) {
+                    for (ShortcutInfo shortcutInfo : shortcuts) {
+                        if (ShortcutUtil.isShortcutVisible(ShortcutsProvider.this, shortcutInfo, excludedApps, excludedShortcutApps)) {
                             return true;
                         }
                     }
