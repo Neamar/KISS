@@ -1,11 +1,7 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.webkit.URLUtil;
 
@@ -15,20 +11,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.searcher.Searcher;
-import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.URIUtils;
+import fr.neamar.kiss.utils.URLUtils;
 
 public class SearchProvider extends SimpleProvider {
-    private static final String URL_REGEX = "^(?:[a-z]+://)?(?:[a-z0-9-]|[^\\x00-\\x7F])+(?:[.](?:[a-z0-9-]|[^\\x00-\\x7F])+)+.*$";
-    public static final Pattern urlPattern = Pattern.compile(URL_REGEX);
     private final SharedPreferences prefs;
 
     public static Set<String> getDefaultSearchProviders(Context context) {
@@ -90,11 +82,11 @@ public class SearchProvider extends SimpleProvider {
             }
         }
 
-        if (matchesUrlPattern(query) && URLUtil.isValidUrl(query)) {
+        if (URLUtils.matchesUrlPattern(query) && URLUtil.isValidUrl(query)) {
             // Open valid URLs directly (if I type http://something.com for instance)
             SearchPojo pojo = createUrlQuerySearchPojo(query);
             records.add(pojo);
-        } else if (isValidUri(query)) {
+        } else if (URIUtils.isValidUri(query, context).isValid) {
             // Open uri directly by an app that can handle it (if i type gemini://oppen.digital/ariane/ for gemini browser)
             // https://github.com/Neamar/KISS/issues/1786
             SearchPojo pojo = new SearchPojo("search://uri-access", query, "", SearchPojo.URI_QUERY);
@@ -103,7 +95,7 @@ public class SearchProvider extends SimpleProvider {
             records.add(pojo);
         } else {
             // search for url pattern
-            if (matchesUrlPattern(query)) {
+            if (URLUtils.matchesUrlPattern(query)) {
                 // guess url (if I type something.com for instance)
                 String guessedUrl = URLUtil.guessUrl(query);
                 if (URLUtil.isValidUrl(guessedUrl)) {
@@ -114,15 +106,6 @@ public class SearchProvider extends SimpleProvider {
         }
 
         return records;
-    }
-
-    /**
-     * @param query
-     * @return true, if query matches pattern for url
-     */
-    private boolean matchesUrlPattern(String query) {
-        Matcher m = urlPattern.matcher(query);
-        return m.find();
     }
 
     /**
@@ -143,26 +126,6 @@ public class SearchProvider extends SimpleProvider {
         pojo.relevance = 50;
         pojo.setName(url, false);
         return pojo;
-    }
-
-    /**
-     * Check for valid uri by searching for any app that can handle it.
-     *
-     * @param query
-     * @return true, if there is any app that can handle the uri
-     */
-    private boolean isValidUri(String query) {
-        if (!URLUtil.isValidUrl(query)) {
-            Uri uri = Uri.parse(query);
-            Intent intent = PackageManagerUtils.createUriIntent(uri);
-            if (intent != null) {
-                final PackageManager packageManager = context.getPackageManager();
-                final List<ResolveInfo> receiverList = packageManager.queryIntentActivities(intent,
-                        PackageManager.MATCH_DEFAULT_ONLY);
-                return receiverList.size() > 0;
-            }
-        }
-        return false;
     }
 
     @Nullable
