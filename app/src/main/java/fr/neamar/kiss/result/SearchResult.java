@@ -58,54 +58,59 @@ public class SearchResult extends Result {
         int pos;
         int len;
 
-        if (searchPojo.type == SearchPojo.URL_QUERY) {
-            text = String.format(context.getString(R.string.ui_item_visit), this.pojo.getName());
-            pos = text.indexOf(this.pojo.getName());
-            len = this.pojo.getName().length();
-            image.setImageResource(R.drawable.ic_public);
-        } else if (searchPojo.type == SearchPojo.SEARCH_QUERY) {
-            text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), searchPojo.query);
-            pos = text.indexOf(searchPojo.query);
-            len = searchPojo.query.length();
-            image.setImageResource(R.drawable.search);
+        switch (searchPojo.type) {
+            case URL_QUERY:
+                text = String.format(context.getString(R.string.ui_item_visit), this.pojo.getName());
+                pos = text.indexOf(this.pojo.getName());
+                len = this.pojo.getName().length();
+                image.setImageResource(R.drawable.ic_public);
+                break;
+            case SEARCH_QUERY:
+                text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), searchPojo.query);
+                pos = text.indexOf(searchPojo.query);
+                len = searchPojo.query.length();
+                image.setImageResource(R.drawable.search);
 
-            boolean hideIcons = getHideIcons(context);
-            if (isGoogleSearch() && !hideIcons) {
-                Drawable icon = getIconByPackageName(context, "com.google.android.googlequicksearchbox");
-                if (icon != null) {
-                    image.setImageDrawable(icon);
-                    hasCustomIcon = true;
+                boolean hideIcons = getHideIcons(context);
+                if (isGoogleSearch() && !hideIcons) {
+                    Drawable icon = getIconByPackageName(context, "com.google.android.googlequicksearchbox");
+                    if (icon != null) {
+                        image.setImageDrawable(icon);
+                        hasCustomIcon = true;
+                    }
                 }
-            }
 
-            if (isDuckDuckGo() && !hideIcons) {
-                Drawable icon = getIconByPackageName(context, "com.duckduckgo.mobile.android");
-                if (icon != null) {
-                    image.setImageDrawable(icon);
-                    hasCustomIcon = true;
+                if (isDuckDuckGo() && !hideIcons) {
+                    Drawable icon = getIconByPackageName(context, "com.duckduckgo.mobile.android");
+                    if (icon != null) {
+                        image.setImageDrawable(icon);
+                        hasCustomIcon = true;
+                    }
                 }
-            }
-        } else if (searchPojo.type == SearchPojo.CALCULATOR_QUERY) {
-            text = searchPojo.query;
-            pos = text.indexOf("=");
-            len = text.length() - pos;
-            image.setImageResource(R.drawable.ic_functions);
-        } else if (searchPojo.type == SearchPojo.URI_QUERY) {
-            text = String.format(context.getString(R.string.ui_item_open), this.searchPojo.query);
-            pos = text.indexOf(searchPojo.query);
-            len = searchPojo.query.length();
-            image.setImageResource(R.drawable.ic_public);
+                break;
+            case CALCULATOR_QUERY:
+                text = searchPojo.query;
+                pos = text.indexOf("=");
+                len = text.length() - pos;
+                image.setImageResource(R.drawable.ic_functions);
+                break;
+            case URI_QUERY:
+                text = String.format(context.getString(R.string.ui_item_open), this.searchPojo.query);
+                pos = text.indexOf(searchPojo.query);
+                len = searchPojo.query.length();
+                image.setImageResource(R.drawable.ic_public);
 
-            if (!getHideIcons(context)) {
-                Intent intent = createUriIntent();
-                Drawable icon = getIconByIntent(context, intent);
-                if (icon != null) {
-                    image.setImageDrawable(icon);
-                    hasCustomIcon = true;
+                if (!getHideIcons(context)) {
+                    Intent intent = createUriIntent();
+                    Drawable icon = getIconByIntent(context, intent);
+                    if (icon != null) {
+                        image.setImageDrawable(icon);
+                        hasCustomIcon = true;
+                    }
                 }
-            }
-        } else {
-            throw new IllegalArgumentException("Wrong type!");
+                break;
+            default:
+                throw new IllegalArgumentException(String.format("Following type : %s isn't supported !", searchPojo.type));
         }
 
         displayHighlighted(text, Collections.singletonList(new Pair<>(pos, pos + len)), searchText, context);
@@ -164,8 +169,8 @@ public class SearchResult extends Result {
     @Override
     public void doLaunch(Context context, View v) {
         switch (searchPojo.type) {
-            case SearchPojo.URL_QUERY:
-            case SearchPojo.SEARCH_QUERY:
+            case URL_QUERY:
+            case SEARCH_QUERY:
                 if (isGoogleSearch()) {
                     try {
                         Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
@@ -193,11 +198,11 @@ public class SearchResult extends Result {
                     Log.w(TAG, "Unable to run search for url: " + searchPojo.url);
                 }
                 break;
-            case SearchPojo.CALCULATOR_QUERY:
+            case CALCULATOR_QUERY:
                 ClipboardUtils.setClipboard(context, searchPojo.query.substring(searchPojo.query.indexOf("=") + 2));
                 Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
                 break;
-            case SearchPojo.URI_QUERY:
+            case URI_QUERY:
                 Intent intent = createUriIntent();
                 try {
                     context.startActivity(intent);
