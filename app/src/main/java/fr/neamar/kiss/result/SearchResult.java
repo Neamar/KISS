@@ -70,19 +70,27 @@ public class SearchResult extends Result {
             image.setImageResource(R.drawable.search);
 
             boolean hideIcons = getHideIcons(context);
-            if (isGoogleSearch() && !hideIcons) {
-                Drawable icon = getIconByPackageName(context, "com.google.android.googlequicksearchbox");
-                if (icon != null) {
-                    image.setImageDrawable(icon);
-                    hasCustomIcon = true;
+            if (!hideIcons) {
+                if (isGoogleSearch()) {
+                    Drawable icon = getIconByPackageName(context, "com.google.android.googlequicksearchbox");
+                    if (icon != null) {
+                        image.setImageDrawable(icon);
+                        hasCustomIcon = true;
+                    }
+                } else if (isDuckDuckGo()) {
+                    Drawable icon = getIconByPackageName(context, "com.duckduckgo.mobile.android");
+                    if (icon != null) {
+                        image.setImageDrawable(icon);
+                        hasCustomIcon = true;
+                    }
                 }
-            }
-
-            if (isDuckDuckGo() && !hideIcons) {
-                Drawable icon = getIconByPackageName(context, "com.duckduckgo.mobile.android");
-                if (icon != null) {
-                    image.setImageDrawable(icon);
-                    hasCustomIcon = true;
+                if (!hasCustomIcon) {
+                    Intent intent = createSearchQueryIntent();
+                    Drawable icon = getIconByIntent(context, intent);
+                    if (icon != null) {
+                        image.setImageDrawable(icon);
+                        hasCustomIcon = true;
+                    }
                 }
             }
         } else if (searchPojo.type == SearchPojo.CALCULATOR_QUERY) {
@@ -97,7 +105,7 @@ public class SearchResult extends Result {
             image.setImageResource(R.drawable.ic_public);
 
             if (!getHideIcons(context)) {
-                Intent intent = createUriIntent();
+                Intent intent = createUriQueryIntent();
                 Drawable icon = getIconByIntent(context, intent);
                 if (icon != null) {
                     image.setImageDrawable(icon);
@@ -119,12 +127,29 @@ public class SearchResult extends Result {
     }
 
     /**
-     * Creates intent to start activity with given uri.
+     * Creates intent to start activity for given uri query.
      *
      * @return intent
      */
-    private Intent createUriIntent() {
+    private Intent createUriQueryIntent() {
         Uri uri = Uri.parse(searchPojo.query);
+        return PackageManagerUtils.createUriIntent(uri);
+    }
+
+    /**
+     * Creates intent to start activity for given search query.
+     *
+     * @return intent
+     */
+    private Intent createSearchQueryIntent() {
+        String query;
+        try {
+            query = URLEncoder.encode(searchPojo.query, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            query = URLEncoder.encode(searchPojo.query);
+        }
+        String urlWithQuery = searchPojo.url.replaceAll("%s|\\{q\\}", query);
+        Uri uri = Uri.parse(urlWithQuery);
         return PackageManagerUtils.createUriIntent(uri);
     }
 
@@ -177,16 +202,7 @@ public class SearchResult extends Result {
                         // Google app not found, fall back to default method
                     }
                 }
-                String query;
-                try {
-                    query = URLEncoder.encode(searchPojo.query, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    query = URLEncoder.encode(searchPojo.query);
-                }
-                String urlWithQuery = searchPojo.url.replaceAll("%s|\\{q\\}", query);
-                Uri uri = Uri.parse(urlWithQuery);
-                Intent search = new Intent(Intent.ACTION_VIEW, uri);
-                search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent search = createSearchQueryIntent();
                 try {
                     context.startActivity(search);
                 } catch (ActivityNotFoundException e) {
@@ -198,7 +214,7 @@ public class SearchResult extends Result {
                 Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
                 break;
             case SearchPojo.URI_QUERY:
-                Intent intent = createUriIntent();
+                Intent intent = createUriQueryIntent();
                 try {
                     context.startActivity(intent);
                 } catch (ActivityNotFoundException e) {
