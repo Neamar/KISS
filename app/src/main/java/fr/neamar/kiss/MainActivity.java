@@ -40,6 +40,7 @@ import android.widget.AdapterView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -50,6 +51,7 @@ import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.pojo.SearchPojo;
+import fr.neamar.kiss.R;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
@@ -375,6 +377,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // For devices with hardware keyboards, give focus to search field.
         if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_QWERTY || getResources().getConfiguration().keyboard == Configuration.KEYBOARD_12KEY) {
             searchEditText.requestFocus();
+        }
+
+        // Pasting shared text from Sharesheet via intent-filter into kiss search bar
+        Intent receivedIntent = getIntent();
+        String receivedIntentAction = receivedIntent.getAction();
+        String receivedIntentType = receivedIntent.getType();
+        if (Intent.ACTION_SEND.equals(action) && receivedIntentType != null && "text/plain".equals(receivedIntentType)) {
+            hideKeyboard();
+            String sharedText = receivedIntent.getStringExtra(Intent.EXTRA_TEXT);
+            // making sure the shared text is not an empty string
+            if (sharedText != null && sharedText.trim().length() > 0) {
+                searchEditText.setText(sharedText);
+            } else {
+                Toast.makeText(this, R.string.shared_text_empty, Toast.LENGTH_SHORT).show();
+            }
         }
 
         /*
