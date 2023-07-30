@@ -36,8 +36,8 @@ public class URIUtils {
     public static URIValidity isValidUri(final @NotNull String query, final @NotNull Context context) {
         if (!URLUtil.isValidUrl(query)) {
             Uri uri = Uri.parse(query);
-            Intent intent = PackageManagerUtils.createUriIntent(uri);
-            if (intent != null) {
+            if (uri.isAbsolute() && uri.getSchemeSpecificPart().length() > 2) {
+                Intent intent = PackageManagerUtils.createUriIntent(uri);
                 final PackageManager packageManager = context.getPackageManager();
                 final List<ResolveInfo> receiverList = packageManager.queryIntentActivities(intent,
                         PackageManager.MATCH_DEFAULT_ONLY);

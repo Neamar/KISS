@@ -136,13 +136,10 @@ public class PackageManagerUtils {
      * @param uri
      * @return intent
      */
-    public static Intent createUriIntent(Uri uri) {
-        if (uri.isAbsolute() && uri.getSchemeSpecificPart().length() > 2) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            return intent;
-        }
-        return null;
+    public static @NonNull Intent createUriIntent(Uri uri) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        return intent;
     }
 
     /**
