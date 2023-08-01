@@ -60,21 +60,19 @@ public class PhoneResult extends CallResult {
 
     @Override
     protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
-        switch (stringId) {
-            case R.string.menu_phone_create:
-                // Create a new contact with this phone number
-                Intent createIntent = new Intent(Intent.ACTION_INSERT);
-                createIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
-                createIntent.putExtra(ContactsContract.Intents.Insert.PHONE, phonePojo.phone);
-                createIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(createIntent);
-                return true;
-            case R.string.ui_item_contact_hint_message:
-                String url = "sms:" + phonePojo.phone;
-                Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-                messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(messageIntent);
-                return true;
+        if (stringId == R.string.menu_phone_create) {// Create a new contact with this phone number
+            Intent createIntent = new Intent(Intent.ACTION_INSERT);
+            createIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+            createIntent.putExtra(ContactsContract.Intents.Insert.PHONE, phonePojo.phone);
+            createIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(createIntent);
+            return true;
+        } else if (stringId == R.string.ui_item_contact_hint_message) {
+            String url = "sms:" + phonePojo.phone;
+            Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+            messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(messageIntent);
+            return true;
         }
 
         return super.popupMenuClickHandler(context, parent, stringId, parentView);

@@ -165,52 +165,50 @@ public class AppResult extends Result {
 
     @Override
     protected boolean popupMenuClickHandler(final Context context, final RecordAdapter parent, int stringId, View parentView) {
-        switch (stringId) {
-            case R.string.menu_app_details:
-                launchAppDetails(context, appPojo);
-                return true;
-            case R.string.menu_app_store:
-                launchAppStore(context, appPojo);
-                return true;
-            case R.string.menu_app_uninstall:
-                launchUninstall(context, appPojo);
-                return true;
-            case R.string.menu_app_hibernate:
-                hibernate(context, appPojo);
-                return true;
-            case R.string.menu_exclude:
+        if (stringId == R.string.menu_app_details) {
+            launchAppDetails(context, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_app_store) {
+            launchAppStore(context, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_app_uninstall) {
+            launchUninstall(context, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_app_hibernate) {
+            hibernate(context, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_exclude) {
+            final int EXCLUDE_HISTORY_ID = 0;
+            final int EXCLUDE_KISS_ID = 1;
+            PopupMenu popupExcludeMenu = new PopupMenu(context, parentView);
+            //Adding menu items
+            popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_history);
+            popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_kiss);
+            //registering popup with OnMenuItemClickListener
+            popupExcludeMenu.setOnMenuItemClickListener(item -> {
+                switch (item.getGroupId()) {
+                    case EXCLUDE_HISTORY_ID:
+                        excludeFromHistory(context, appPojo);
+                        return true;
+                    case EXCLUDE_KISS_ID:
+                        excludeFromKiss(context, appPojo, parent);
+                        return true;
+                }
 
-                final int EXCLUDE_HISTORY_ID = 0;
-                final int EXCLUDE_KISS_ID = 1;
-                PopupMenu popupExcludeMenu = new PopupMenu(context, parentView);
-                //Adding menu items
-                popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_history);
-                popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_kiss);
-                //registering popup with OnMenuItemClickListener
-                popupExcludeMenu.setOnMenuItemClickListener(item -> {
-                    switch (item.getGroupId()) {
-                        case EXCLUDE_HISTORY_ID:
-                            excludeFromHistory(context, appPojo);
-                            return true;
-                        case EXCLUDE_KISS_ID:
-                            excludeFromKiss(context, appPojo, parent);
-                            return true;
-                    }
+                return true;
+            });
 
-                    return true;
-                });
-
-                popupExcludeMenu.show();
-                return true;
-            case R.string.menu_tags_edit:
-                launchEditTagsDialog(context, parent, appPojo);
-                return true;
-            case R.string.menu_app_rename:
-                launchRenameDialog(context, parent, appPojo);
-                return true;
-            case R.string.menu_custom_icon:
-                launchCustomIcon(context, parent);
-                return true;
+            popupExcludeMenu.show();
+            return true;
+        } else if (stringId == R.string.menu_tags_edit) {
+            launchEditTagsDialog(context, parent, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_app_rename) {
+            launchRenameDialog(context, parent, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_custom_icon) {
+            launchCustomIcon(context, parent);
+            return true;
         }
 
         return super.popupMenuClickHandler(context, parent, stringId, parentView);

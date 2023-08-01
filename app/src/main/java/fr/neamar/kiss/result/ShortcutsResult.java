@@ -270,18 +270,17 @@ public class ShortcutsResult extends Result {
 
     @Override
     boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
-        switch (stringId) {
-            case R.string.menu_shortcut_pin:
-                pinShortcut(context, shortcutPojo);
-                return true;
-            case R.string.menu_shortcut_remove:
-                launchUninstall(context, shortcutPojo);
-                // Also remove item, since it will be uninstalled
-                parent.removeResult(context, this);
-                return true;
-            case R.string.menu_tags_edit:
-                launchEditTagsDialog(context, shortcutPojo);
-                return true;
+        if (stringId == R.string.menu_shortcut_pin) {
+            pinShortcut(context, shortcutPojo);
+            return true;
+        } else if (stringId == R.string.menu_shortcut_remove) {
+            launchUninstall(context, shortcutPojo);
+            // Also remove item, since it will be uninstalled
+            parent.removeResult(context, this);
+            return true;
+        } else if (stringId == R.string.menu_tags_edit) {
+            launchEditTagsDialog(context, shortcutPojo);
+            return true;
         }
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }

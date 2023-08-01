@@ -256,41 +256,35 @@ class Widgets extends Forwarder {
 
             popup.setOnMenuItemClickListener(item -> {
                 popup.dismiss();
-                switch (item.getItemId()) {
-                    case R.id.remove_widget:
-                        parent.removeView(widgetWithMenuCurrentlyDisplayed);
-                        mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
+                int itemId = item.getItemId();
+                if (itemId == R.id.remove_widget) {
+                    parent.removeView(widgetWithMenuCurrentlyDisplayed);
+                    mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
+                    serializeState();
+                    return true;
+                } else if (itemId == R.id.increase_size) {
+                    int newHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+                    resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+                    return true;
+                } else if (itemId == R.id.decrease_size) {
+                    int newHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+                    resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+                    return true;
+                } else if (itemId == R.id.move_up) {
+                    int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+                    if (currentIndex >= 1) {
+                        parent.removeViewAt(currentIndex);
+                        parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
                         serializeState();
                         return true;
-                    case R.id.increase_size: {
-                        int newHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-                        resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+                    }
+                } else if (itemId == R.id.move_down) {
+                    int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+                    if (currentIndex < parent.getChildCount() - 1) {
+                        parent.removeViewAt(currentIndex);
+                        parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
+                        serializeState();
                         return true;
-                    }
-                    case R.id.decrease_size: {
-                        int newHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-                        resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
-                        return true;
-                    }
-                    case R.id.move_up: {
-                        int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-                        if (currentIndex >= 1) {
-                            parent.removeViewAt(currentIndex);
-                            parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
-                            serializeState();
-                            return true;
-                        }
-                        break;
-                    }
-                    case R.id.move_down: {
-                        int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-                        if (currentIndex < parent.getChildCount() - 1) {
-                            parent.removeViewAt(currentIndex);
-                            parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
-                            serializeState();
-                            return true;
-                        }
-                        break;
                     }
                 }
 
