@@ -178,6 +178,8 @@ public class ColorPickerPalette extends TableLayout {
         ImageView view = new ImageView(getContext());
         TableRow.LayoutParams params = new TableRow.LayoutParams(mSwatchLength, mSwatchLength);
         params.setMargins(mMarginSize, mMarginSize, mMarginSize, mMarginSize);
+        params.setMarginStart(mMarginSize);
+        params.setMarginEnd(mMarginSize);
         view.setLayoutParams(params);
         return view;
     }
@@ -190,6 +192,8 @@ public class ColorPickerPalette extends TableLayout {
                 color == selectedColor, mOnColorSelectedListener);
         TableRow.LayoutParams params = new TableRow.LayoutParams(mSwatchLength, mSwatchLength);
         params.setMargins(mMarginSize, mMarginSize, mMarginSize, mMarginSize);
+        params.setMarginStart(mMarginSize);
+        params.setMarginEnd(mMarginSize);
         view.setLayoutParams(params);
         return view;
     }

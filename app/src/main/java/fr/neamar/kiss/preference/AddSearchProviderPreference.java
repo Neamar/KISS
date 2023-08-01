@@ -61,6 +61,8 @@ public class AddSearchProviderPreference extends DialogPreference {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(40, 10, 40, 0);
+        layoutParams.setMarginStart(40);
+        layoutParams.setMarginEnd(40);
 
         //add the two text fields (with margins)
         layout.addView(providerName, layoutParams);
