@@ -260,19 +260,16 @@ public class TagsMenu extends Forwarder {
                     // show only apps that match this tag
                     mainActivity.showMatchingTags(item.tag);
                 } else if (adapterItem instanceof TagsMenu.MenuItemBtn) {
-                    switch (((TagsMenu.MenuItemBtn) adapterItem).nameRes) {
-                        case R.string.ctx_menu:
-                            if (popupMenu != null)
-                                popupMenu.dismiss();
-                            popupMenu = null;
-                            anchor.showContextMenu();
-                            break;
-                        case R.string.show_history:
-                            mainActivity.showHistory();
-                            break;
-                        case R.string.show_untagged:
-                            mainActivity.showUntagged();
-                            break;
+                    int nameRes = ((TagsMenu.MenuItemBtn) adapterItem).nameRes;
+                    if (nameRes == R.string.ctx_menu) {
+                        if (popupMenu != null)
+                            popupMenu.dismiss();
+                        popupMenu = null;
+                        anchor.showContextMenu();
+                    } else if (nameRes == R.string.show_history) {
+                        mainActivity.showHistory();
+                    } else if (nameRes == R.string.show_untagged) {
+                        mainActivity.showUntagged();
                     }
                 }
             }

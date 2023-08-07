@@ -147,10 +147,9 @@ public class ContactsResult extends CallResult {
 
     @Override
     protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
-        switch (stringId) {
-            case R.string.menu_contact_copy_phone:
-                copyPhone(context, contactPojo);
-                return true;
+        if (stringId == R.string.menu_contact_copy_phone) {
+            copyPhone(context, contactPojo);
+            return true;
         }
 
         return super.popupMenuClickHandler(context, parent, stringId, parentView);

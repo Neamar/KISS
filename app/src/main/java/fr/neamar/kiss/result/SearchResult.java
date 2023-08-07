@@ -233,15 +233,14 @@ public class SearchResult extends Result {
 
     @Override
     protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
-        switch (stringId) {
-            case R.string.share:
-                Intent shareIntent = new Intent();
-                shareIntent.setAction(Intent.ACTION_SEND);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, searchPojo.query);
-                shareIntent.setType("text/plain");
-                shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(shareIntent);
-                return true;
+        if (stringId == R.string.share) {
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, searchPojo.query);
+            shareIntent.setType("text/plain");
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(shareIntent);
+            return true;
         }
 
         return super.popupMenuClickHandler(context, parent, stringId, parentView);

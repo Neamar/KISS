@@ -19,6 +19,7 @@ import android.database.DataSetObserver;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -526,21 +527,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             return true;
         }
 
-        switch (item.getItemId()) {
-            case R.id.settings:
-                startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
-                return true;
-            case R.id.wallpaper:
-                hideKeyboard();
-                Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
-                startActivity(Intent.createChooser(intent, getString(R.string.menu_wallpaper)));
-                return true;
-            case R.id.preferences:
-                startActivity(new Intent(this, SettingsActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId();
+        if (itemId == R.id.settings) {
+            startActivity(new Intent(Settings.ACTION_SETTINGS));
+            return true;
+        } else if (itemId == R.id.wallpaper) {
+            hideKeyboard();
+            Intent intent = new Intent(Intent.ACTION_SET_WALLPAPER);
+            startActivity(Intent.createChooser(intent, getString(R.string.menu_wallpaper)));
+            return true;
+        } else if (itemId == R.id.preferences) {
+            startActivity(new Intent(this, SettingsActivity.class));
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

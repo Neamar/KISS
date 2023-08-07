@@ -237,18 +237,13 @@ public abstract class Result {
      * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
      */
     boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId, View parentView) {
-        switch (stringId) {
-            case R.string.menu_remove:
-                removeFromResultsAndHistory(context, parent);
-                return true;
-            case R.string.menu_favorites_add:
-                launchAddToFavorites(context, pojo);
-                break;
-            case R.string.menu_favorites_remove:
-                launchRemoveFromFavorites(context, pojo);
-                break;
-            default:
-                break;
+        if (stringId == R.string.menu_remove) {
+            removeFromResultsAndHistory(context, parent);
+            return true;
+        } else if (stringId == R.string.menu_favorites_add) {
+            launchAddToFavorites(context, pojo);
+        } else if (stringId == R.string.menu_favorites_remove) {
+            launchRemoveFromFavorites(context, pojo);
         }
 
         MainActivity mainActivity = (MainActivity) context;
