@@ -22,6 +22,7 @@
         android:layout_marginEnd="@dimen/icon_margin_right"
         android:layout_marginRight="@dimen/icon_margin_right"
         android:layout_marginBottom="@dimen/icon_margin_bottom">
+
         <ImageView
             android:id="@+id/item_app_icon"
             android:layout_width="match_parent"
@@ -33,10 +34,10 @@
             android:id="@+id/item_notification_dot"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            tools:visibility="visible"
             android:contentDescription="@null"
-            android:src="@drawable/notification_dot" />
+            android:src="@drawable/notification_dot"
+            android:visibility="gone"
+            tools:visibility="visible" />
     </FrameLayout>
 
     <LinearLayout
@@ -59,6 +60,7 @@
             android:shadowDy="2"
             android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?attr/resultColor"
+            android:textDirection="locale"
             android:textSize="?attr/resultTitleSize"
             tools:ignore="RtlSymmetry"
             tools:text="@string/stub_application" />
@@ -76,6 +78,7 @@
             android:shadowDy="2"
             android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?android:attr/textColorSecondary"
+            android:textDirection="locale"
             android:textSize="?attr/resultSubtitleSize"
             tools:ignore="RtlSymmetry"
             tools:text="@string/stub_app_tag" />

@@ -157,7 +157,12 @@ public class ListPopup extends PopupWindow {
 
         setWidth(linearLayout.getMeasuredWidth());
 
-        int xOffset = anchor.getPaddingStart();
+        int xOffset;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            xOffset = anchor.getPaddingStart();
+        } else {
+            xOffset = anchor.getPaddingLeft();
+        }
 
         int overlapAmount = (int) (anchor.getHeight() * anchorOverlap);
         int yOffset;

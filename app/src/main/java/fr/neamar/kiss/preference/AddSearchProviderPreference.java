@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.DialogPreference;
 import android.preference.PreferenceManager;
@@ -61,8 +62,10 @@ public class AddSearchProviderPreference extends DialogPreference {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(40, 10, 40, 0);
-        layoutParams.setMarginStart(40);
-        layoutParams.setMarginEnd(40);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            layoutParams.setMarginStart(40);
+            layoutParams.setMarginEnd(40);
+        }
 
         //add the two text fields (with margins)
         layout.addView(providerName, layoutParams);
