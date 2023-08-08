@@ -118,9 +118,14 @@ public class InterfaceTweaks extends Forwarder {
         if (prefs.getBoolean("large-result-list-margins", false)) {
             ViewGroup.LayoutParams params = mainActivity.listContainer.getLayoutParams();
             if (params instanceof ViewGroup.MarginLayoutParams) {
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) params;
+
                 int size = mainActivity.getResources().getDimensionPixelSize(R.dimen.list_margin_horizontal_large);
-                ((ViewGroup.MarginLayoutParams) params).leftMargin = size;
-                ((ViewGroup.MarginLayoutParams) params).rightMargin = size;
+                marginLayoutParams.setMargins(size, marginLayoutParams.topMargin, size, marginLayoutParams.bottomMargin);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    marginLayoutParams.setMarginStart(size);
+                    marginLayoutParams.setMarginEnd(size);
+                }
             }
         }
     }
