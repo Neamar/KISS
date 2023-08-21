@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -22,17 +23,18 @@ import androidx.annotation.StyleableRes;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
+import fr.neamar.kiss.utils.URIUtils;
+import fr.neamar.kiss.utils.URLUtils;
 
 public class AddSearchProviderPreference extends DialogPreference {
 
     //Layout Fields
     private final LinearLayout layout = new LinearLayout(this.getContext());
     private final EditText providerName = new EditText(this.getContext());
-    private final EditText providerUrl = new EditText(this.getContext());
+    private final EditText providerUri = new EditText(this.getContext());
 
     private SharedPreferences prefs;
 
@@ -49,11 +51,11 @@ public class AddSearchProviderPreference extends DialogPreference {
     protected View onCreateDialogView() {
         removeViews();
         providerName.setHint(R.string.search_provider_name);
-        providerUrl.setHint(R.string.search_provider_url);
-        providerUrl.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+        providerUri.setHint(R.string.search_provider_url);
+        providerUri.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 
         providerName.setText("");
-        providerUrl.setText("");
+        providerUri.setText("");
 
         //adding margins (default is zero)
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -62,7 +64,7 @@ public class AddSearchProviderPreference extends DialogPreference {
 
         //add the two text fields (with margins)
         layout.addView(providerName, layoutParams);
-        layout.addView(providerUrl, layoutParams);
+        layout.addView(providerUri, layoutParams);
 
         // default text color is white that doesn't work well on the light themes
         String theme = prefs.getString("theme", "light");
@@ -73,7 +75,7 @@ public class AddSearchProviderPreference extends DialogPreference {
             TypedArray ta = getContext().obtainStyledAttributes(R.style.AppThemeLight, attrs);
 
             providerName.setTextColor(ta.getColor(0, Color.TRANSPARENT));
-            providerUrl.setTextColor(ta.getColor(0, Color.TRANSPARENT));
+            providerUri.setTextColor(ta.getColor(0, Color.TRANSPARENT));
             ta.recycle();
         }
 
@@ -97,11 +99,11 @@ public class AddSearchProviderPreference extends DialogPreference {
     }
 
     private boolean validatePipes() {
-        return !(providerName.getText().toString().contains("|") || providerUrl.getText().toString().contains("|"));
+        return !(providerName.getText().toString().contains("|") || providerUri.getText().toString().contains("|"));
     }
 
     private boolean validateQueryPlaceholder() {
-        return providerUrl.getText().toString().contains("%s");
+        return providerUri.getText().toString().contains("%s");
     }
 
     @SuppressWarnings("StringSplitter")
@@ -119,12 +121,15 @@ public class AddSearchProviderPreference extends DialogPreference {
     }
 
     private boolean validateEmpty() {
-        return !TextUtils.isEmpty(providerName.getText()) && !TextUtils.isEmpty(providerUrl.getText());
+        return !TextUtils.isEmpty(providerName.getText()) && !TextUtils.isEmpty(providerUri.getText());
     }
 
     private boolean validateUrl() {
-        Matcher m = SearchProvider.urlPattern.matcher(providerUrl.getText().toString());
-        return m.find();
+        return URLUtils.matchesUrlPattern(providerUri.getText().toString());
+    }
+
+    private URIUtils.URIValidity validateUri() {
+        return URIUtils.isValidUri(providerUri.getText().toString(), getContext());
     }
 
     private boolean validate() {
@@ -154,22 +159,42 @@ public class AddSearchProviderPreference extends DialogPreference {
             //cancel close dialog
             return false;
         }
-        //check if a valid url is given
-        if (!validateUrl()) {
-            Toast.makeText(this.getContext(), R.string.search_provider_error_url, Toast.LENGTH_SHORT).show();
-            //not a url
-            return false;
-        }
         //if all validates are correct, then close dialog with close flag = true
-        return true;
 
+        // If provider submitted is submitted not more check is need
+        if (validateUrl()) {
+            return true;
+        }
+
+        //check if a valid uri is given instead valid url
+        final URIUtils.URIValidity uriResult = validateUri();
+        if (uriResult.isValid) {
+            return true;
+        }
+
+        switch (uriResult) {
+            case NOT_AN_URI:
+                Toast.makeText(this.getContext(), R.string.search_provider_error_url, Toast.LENGTH_SHORT).show();
+                //not an uri and not an url
+                return false;
+            case NO_APP_CAN_HANDLE_URI:
+                Toast.makeText(this.getContext(), R.string.search_provider_error_uri_cannot_be_handle, Toast.LENGTH_SHORT).show();
+                //valid uri but no app can handle this intent
+                return false;
+            default:
+                Log.w(this.getClass().getCanonicalName(),
+                        String.format("validate: Following error case for uriResult unmanaged : %s",
+                                uriResult)
+                );
+                return false;
+        }
     }
 
     //persist values and disassemble views
     protected void save() {
 
         Set<String> availableProviders = new HashSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this.getContext())));
-        availableProviders.add(providerName.getText().toString() + "|" + providerUrl.getText().toString());
+        availableProviders.add(providerName.getText().toString() + "|" + providerUri.getText().toString());
         prefs.edit().putStringSet("available-search-providers", availableProviders).apply();
         prefs.edit().putStringSet("deleting-search-providers-names", availableProviders).apply();
 
@@ -180,8 +205,8 @@ public class AddSearchProviderPreference extends DialogPreference {
         if (providerName.getParent() != null) {
             ((ViewGroup) providerName.getParent()).removeView(providerName);
         }
-        if (providerUrl.getParent() != null) {
-            ((ViewGroup) providerUrl.getParent()).removeView(providerUrl);
+        if (providerUri.getParent() != null) {
+            ((ViewGroup) providerUri.getParent()).removeView(providerUri);
         }
         if (layout.getParent() != null) {
             ((ViewGroup) layout.getParent()).removeView(layout);

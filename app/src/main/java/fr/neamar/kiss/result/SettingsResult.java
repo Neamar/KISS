@@ -8,6 +8,7 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.utils.FuzzyScore;
 
 public class SettingsResult extends Result {
+    private static final String TAG = SettingsResult.class.getSimpleName();
     private final SettingPojo settingPojo;
 
     SettingsResult(SettingPojo settingPojo) {
@@ -75,7 +77,7 @@ public class SettingsResult extends Result {
         try {
             context.startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            e.printStackTrace();
+            Log.w(TAG, "Unable to launch activity", e);
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();
         }
     }

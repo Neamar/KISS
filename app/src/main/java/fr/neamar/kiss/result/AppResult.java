@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +52,10 @@ import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result {
+    private static final String TAG = AppResult.class.getSimpleName();
     private final AppPojo appPojo;
     private final ComponentName className;
-    private Drawable icon = null;
+    private volatile Drawable icon = null;
 
     AppResult(AppPojo appPojo) {
         super(appPojo);
@@ -163,52 +165,50 @@ public class AppResult extends Result {
 
     @Override
     protected boolean popupMenuClickHandler(final Context context, final RecordAdapter parent, int stringId, View parentView) {
-        switch (stringId) {
-            case R.string.menu_app_details:
-                launchAppDetails(context, appPojo);
-                return true;
-            case R.string.menu_app_store:
-                launchAppStore(context, appPojo);
-                return true;
-            case R.string.menu_app_uninstall:
-                launchUninstall(context, appPojo);
-                return true;
-            case R.string.menu_app_hibernate:
-                hibernate(context, appPojo);
-                return true;
-            case R.string.menu_exclude:
+        if (stringId == R.string.menu_app_details) {
+            launchAppDetails(context, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_app_store) {
+            launchAppStore(context, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_app_uninstall) {
+            launchUninstall(context, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_app_hibernate) {
+            hibernate(context, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_exclude) {
+            final int EXCLUDE_HISTORY_ID = 0;
+            final int EXCLUDE_KISS_ID = 1;
+            PopupMenu popupExcludeMenu = new PopupMenu(context, parentView);
+            //Adding menu items
+            popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_history);
+            popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_kiss);
+            //registering popup with OnMenuItemClickListener
+            popupExcludeMenu.setOnMenuItemClickListener(item -> {
+                switch (item.getGroupId()) {
+                    case EXCLUDE_HISTORY_ID:
+                        excludeFromHistory(context, appPojo);
+                        return true;
+                    case EXCLUDE_KISS_ID:
+                        excludeFromKiss(context, appPojo, parent);
+                        return true;
+                }
 
-                final int EXCLUDE_HISTORY_ID = 0;
-                final int EXCLUDE_KISS_ID = 1;
-                PopupMenu popupExcludeMenu = new PopupMenu(context, parentView);
-                //Adding menu items
-                popupExcludeMenu.getMenu().add(EXCLUDE_HISTORY_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_history);
-                popupExcludeMenu.getMenu().add(EXCLUDE_KISS_ID, Menu.NONE, Menu.NONE, R.string.menu_exclude_kiss);
-                //registering popup with OnMenuItemClickListener
-                popupExcludeMenu.setOnMenuItemClickListener(item -> {
-                    switch (item.getGroupId()) {
-                        case EXCLUDE_HISTORY_ID:
-                            excludeFromHistory(context, appPojo);
-                            return true;
-                        case EXCLUDE_KISS_ID:
-                            excludeFromKiss(context, appPojo, parent);
-                            return true;
-                    }
+                return true;
+            });
 
-                    return true;
-                });
-
-                popupExcludeMenu.show();
-                return true;
-            case R.string.menu_tags_edit:
-                launchEditTagsDialog(context, parent, appPojo);
-                return true;
-            case R.string.menu_app_rename:
-                launchRenameDialog(context, parent, appPojo);
-                return true;
-            case R.string.menu_custom_icon:
-                launchCustomIcon(context, parent);
-                return true;
+            popupExcludeMenu.show();
+            return true;
+        } else if (stringId == R.string.menu_tags_edit) {
+            launchEditTagsDialog(context, parent, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_app_rename) {
+            launchRenameDialog(context, parent, appPojo);
+            return true;
+        } else if (stringId == R.string.menu_custom_icon) {
+            launchCustomIcon(context, parent);
+            return true;
         }
 
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
@@ -395,7 +395,7 @@ public class AppResult extends Result {
     private void launchAppStore(Context context, AppPojo app) {
         try {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + app.packageName)));
-        } catch (android.content.ActivityNotFoundException anfe) {
+        } catch (ActivityNotFoundException anfe) {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + app.packageName)));
         }
     }
@@ -432,19 +432,22 @@ public class AppResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-        synchronized (this) {
-            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
-            return icon;
+        if (!isDrawableCached()) {
+            synchronized (this) {
+                if (!isDrawableCached()) {
+                    IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                    icon = iconsHandler.getDrawableIconForPackage(className, this.appPojo.userHandle);
+                }
+            }
         }
+        return icon;
     }
-
 
     @Override
     public boolean isDrawableDynamic() {
         // drawable may change because of async loading, so return true as long as icon is not cached
         // another dynamic icon is from Google Calendar
-        return !isDrawableCached()|| GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName);
+        return !isDrawableCached() || GoogleCalendarIcon.GOOGLE_CALENDAR.equals(appPojo.packageName);
     }
 
     @Override
@@ -487,6 +490,7 @@ public class AppResult extends Result {
                 context.startActivity(intent);
             }
         } catch (ActivityNotFoundException | NullPointerException | SecurityException e) {
+            Log.w(TAG, "Unable to launch activity", e);
             // Application was just removed?
             // (null pointer exception can be thrown on Lollipop+ when app is missing)
             Toast.makeText(context, R.string.application_not_found, Toast.LENGTH_LONG).show();

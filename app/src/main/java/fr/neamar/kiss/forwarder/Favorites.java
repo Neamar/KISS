@@ -36,7 +36,7 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 
 public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener, View.OnTouchListener, View.OnDragListener {
-    private static final String TAG = "FavoriteForwarder";
+    private static final String TAG = Favorites.class.getSimpleName();
 
     // Package used by Android when an Intent can be matched with more than one app
     private static final String DEFAULT_RESOLVER = "com.android.internal.app.ResolverActivity";
@@ -173,7 +173,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         // Remove any leftover views from previous renders
         while (favoritesBar.getChildCount() > favCount) {
-            Log.e("WTF", "Disposing");
+            Log.e(TAG, "Disposing leftover view");
             View toBeDisposed = favoritesBar.getChildAt(favCount);
             disposeOf(toBeDisposed);
             favoritesBar.removeViewAt(favCount);
@@ -185,7 +185,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     void disposeOf(@Nullable View toBeDisposed) {
-        if(toBeDisposed == null) {
+        if (toBeDisposed == null) {
             return;
         }
         toBeDisposed.setOnClickListener(null);

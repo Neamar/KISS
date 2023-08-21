@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 
 /**
- * Utility class for automatically hiding the keyboard when scrolling down a {@see ListView},
+ * Utility class for automatically hiding the keyboard when scrolling down a {@link android.widget.ListView},
  * keeping the position of the finger on the list stable
  */
 public class KeyboardScrollHider implements View.OnTouchListener {
@@ -229,6 +229,7 @@ public class KeyboardScrollHider implements View.OnTouchListener {
 
     public interface KeyboardHandler {
         void showKeyboard();
+
         void hideKeyboard();
 
         void applyScrollSystemUi();

@@ -15,6 +15,8 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 
 public class IncomingCallHandler extends BroadcastReceiver {
 
+    private static final String TAG = IncomingCallHandler.class.getSimpleName();
+
     @Override
     public void onReceive(final Context context, Intent intent) {
         // Only handle calls received
@@ -45,7 +47,7 @@ public class IncomingCallHandler extends BroadcastReceiver {
                 }
             }
         } catch (Exception e) {
-            Log.e("Phone Receive Error", " " + e);
+            Log.e(TAG, "Phone Receive Error", e);
         }
     }
 

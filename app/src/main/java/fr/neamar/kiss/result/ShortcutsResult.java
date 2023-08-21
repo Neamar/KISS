@@ -28,6 +28,7 @@ import androidx.annotation.RequiresApi;
 
 import java.net.URISyntaxException;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicReference;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.IconsHandler;
@@ -41,12 +42,15 @@ import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.SpaceTokenizer;
+import fr.neamar.kiss.utils.Utilities;
 
 public class ShortcutsResult extends Result {
 
     private static final String TAG = ShortcutsResult.class.getSimpleName();
 
     private final ShortcutPojo shortcutPojo;
+
+    private Utilities.AsyncRun mLoadIconTask = null;
 
     ShortcutsResult(ShortcutPojo shortcutPojo) {
         super(shortcutPojo);
@@ -81,57 +85,87 @@ public class ShortcutsResult extends Result {
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
 
         if (!prefs.getBoolean("icons-hide", false)) {
-            // Retrieve icon for this shortcut
-            Drawable appDrawable = null;
-            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-
-            if (shortcutPojo.isOreoShortcut()) {
-                // Retrieve activity icon from oreo shortcut
-                appDrawable = getDrawableFromOreoShortcut(context);
+            if (mLoadIconTask != null) {
+                mLoadIconTask.cancel();
             }
 
-            if (appDrawable == null) {
-                // Retrieve activity icon by intent URI
-                try {
-                    Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
-                    ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
-                    if (componentName != null) {
-                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), new fr.neamar.kiss.utils.UserHandle());
-                    }
-                } catch (NullPointerException e) {
-                    Log.e(TAG, "Unable to get activity icon for '" + shortcutPojo.getName() + "'", e);
-                } catch (URISyntaxException e) {
-                    Log.e(TAG, "Unable to parse uri for '" + shortcutPojo.getName() + "'", e);
-                }
-            }
+            boolean subIconVisible = prefs.getBoolean("subicon-visible", true);
 
-            if (appDrawable == null) {
-                // Retrieve app icon (no Oreo shortcut or a shortcut from an activity that was removed from an installed app)
-                appDrawable = PackageManagerUtils.getApplicationIcon(context, shortcutPojo.packageName);
-                if (appDrawable != null) {
-                    appDrawable = iconsHandler.applyIconMask(context, appDrawable);
-                }
-            }
+            AtomicReference<Drawable> appDrawable = new AtomicReference<>(null);
+            AtomicReference<Drawable> shortcutDrawable = new AtomicReference<>(null);
 
-            Drawable shortcutDrawable = getDrawable(context);
-
-            if (shortcutDrawable != null) {
-                shortcutIcon.setImageDrawable(shortcutDrawable);
-                appIcon.setImageDrawable(appDrawable);
+            // Prepare
+            shortcutIcon.setImageResource(android.R.color.transparent);
+            if (subIconVisible) {
+                appIcon.setVisibility(View.VISIBLE);
+                appIcon.setImageResource(android.R.color.transparent);
             } else {
-                // No icon for this shortcut, use app icon
-                shortcutIcon.setImageDrawable(appDrawable);
-                appIcon.setImageResource(android.R.drawable.ic_menu_send);
-            }
-            if (!prefs.getBoolean("subicon-visible", true)) {
                 appIcon.setVisibility(View.GONE);
             }
+
+            mLoadIconTask = Utilities.runAsync((task) -> {
+                if (task == mLoadIconTask) {
+                    // Retrieve icon for this shortcut
+                    appDrawable.set(getAppDrawable(context));
+                    shortcutDrawable.set(getDrawable(context));
+                }
+            }, (task) -> {
+                if (!task.isCancelled() && task == mLoadIconTask) {
+                    // set icons
+                    if (shortcutDrawable.get() != null) {
+                        shortcutIcon.setImageDrawable(shortcutDrawable.get());
+                        if (subIconVisible) {
+                            appIcon.setImageDrawable(appDrawable.get());
+                        }
+                    } else {
+                        // No icon for this shortcut, use app icon
+                        shortcutIcon.setImageDrawable(appDrawable.get());
+                        if (subIconVisible) {
+                            appIcon.setImageResource(android.R.drawable.ic_menu_send);
+                        }
+                    }
+                }
+            });
         } else {
             appIcon.setImageDrawable(null);
             shortcutIcon.setImageDrawable(null);
         }
 
         return view;
+    }
+
+    private Drawable getAppDrawable(Context context) {
+        Drawable appDrawable = null;
+        IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+
+        if (shortcutPojo.isOreoShortcut()) {
+            // Retrieve activity icon from oreo shortcut
+            appDrawable = getDrawableFromOreoShortcut(context);
+        }
+
+        if (appDrawable == null) {
+            // Retrieve activity icon by intent URI
+            try {
+                Intent intent = Intent.parseUri(shortcutPojo.intentUri, 0);
+                ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
+                if (componentName != null) {
+                    appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), new fr.neamar.kiss.utils.UserHandle());
+                }
+            } catch (NullPointerException e) {
+                Log.e(TAG, "Unable to get activity icon for '" + shortcutPojo.getName() + "'", e);
+            } catch (URISyntaxException e) {
+                Log.e(TAG, "Unable to parse uri for '" + shortcutPojo.getName() + "'", e);
+            }
+        }
+
+        if (appDrawable == null) {
+            // Retrieve app icon (no Oreo shortcut or a shortcut from an activity that was removed from an installed app)
+            appDrawable = PackageManagerUtils.getApplicationIcon(context, shortcutPojo.packageName);
+            if (appDrawable != null) {
+                appDrawable = iconsHandler.applyIconMask(context, appDrawable);
+            }
+        }
+        return appDrawable;
     }
 
     public Drawable getDrawable(Context context) {
@@ -218,12 +252,15 @@ public class ShortcutsResult extends Result {
 
     @Override
     ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView) {
-        if (!this.shortcutPojo.isDynamic()) {
+        if (!this.shortcutPojo.isDynamic() || this.shortcutPojo.isPinned()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_remove));
+        if (!this.shortcutPojo.isPinned() && this.shortcutPojo.isOreoShortcut()) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_pin));
+        }
         if (this.shortcutPojo.isPinned()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
         }
@@ -233,15 +270,17 @@ public class ShortcutsResult extends Result {
 
     @Override
     boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
-        switch (stringId) {
-            case R.string.menu_shortcut_remove:
-                launchUninstall(context, shortcutPojo);
-                // Also remove item, since it will be uninstalled
-                parent.removeResult(context, this);
-                return true;
-            case R.string.menu_tags_edit:
-                launchEditTagsDialog(context, shortcutPojo);
-                return true;
+        if (stringId == R.string.menu_shortcut_pin) {
+            pinShortcut(context, shortcutPojo);
+            return true;
+        } else if (stringId == R.string.menu_shortcut_remove) {
+            launchUninstall(context, shortcutPojo);
+            // Also remove item, since it will be uninstalled
+            parent.removeResult(context, this);
+            return true;
+        } else if (stringId == R.string.menu_tags_edit) {
+            launchEditTagsDialog(context, shortcutPojo);
+            return true;
         }
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
@@ -280,9 +319,16 @@ public class ShortcutsResult extends Result {
 
     private void launchUninstall(Context context, ShortcutPojo shortcutPojo) {
         DataHandler dh = KissApplication.getApplication(context).getDataHandler();
-        if (dh != null) {
+        if (shortcutPojo.isOreoShortcut() && shortcutPojo.isPinned()) {
+            dh.unpinShortcut(shortcutPojo);
+        } else {
             dh.removeShortcut(shortcutPojo);
         }
+    }
+
+    private void pinShortcut(Context context, ShortcutPojo shortcutPojo) {
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        dataHandler.pinShortcut(shortcutPojo);
     }
 
 }

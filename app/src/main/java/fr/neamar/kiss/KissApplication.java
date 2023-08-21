@@ -14,10 +14,10 @@ public class KissApplication extends Application {
      * Setting this value to 0 removes all animations
      */
     public static final int TOUCH_DELAY = 120;
-    private DataHandler dataHandler;
-    private RootHandler rootHandler;
-    private IconsHandler iconsPackHandler;
-    private final IconPackCache mIconPackCache = new IconPackCache();;
+    private volatile DataHandler dataHandler;
+    private volatile RootHandler rootHandler;
+    private volatile IconsHandler iconsPackHandler;
+    private final IconPackCache mIconPackCache = new IconPackCache();
 
     public static KissApplication getApplication(Context context) {
         return (KissApplication) context.getApplicationContext();
@@ -29,14 +29,22 @@ public class KissApplication extends Application {
 
     public DataHandler getDataHandler() {
         if (dataHandler == null) {
-            dataHandler = new DataHandler(this);
+            synchronized (this) {
+                if (dataHandler == null) {
+                    dataHandler = new DataHandler(this);
+                }
+            }
         }
         return dataHandler;
     }
 
     public RootHandler getRootHandler() {
         if (rootHandler == null) {
-            rootHandler = new RootHandler(this);
+            synchronized (this) {
+                if (rootHandler == null) {
+                    rootHandler = new RootHandler(this);
+                }
+            }
         }
         return rootHandler;
     }
@@ -46,10 +54,8 @@ public class KissApplication extends Application {
     }
 
     public void initDataHandler() {
-        if (dataHandler == null) {
-            dataHandler = new DataHandler(this);
-        }
-        else if(dataHandler.allProvidersHaveLoaded) {
+        DataHandler dataHandler = getDataHandler();
+        if (dataHandler != null && dataHandler.allProvidersHaveLoaded) {
             // Already loaded! We still need to fire the FULL_LOAD event
             Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
             sendBroadcast(i);
@@ -58,7 +64,11 @@ public class KissApplication extends Application {
 
     public IconsHandler getIconsHandler() {
         if (iconsPackHandler == null) {
-            iconsPackHandler = new IconsHandler(this);
+            synchronized (this) {
+                if (iconsPackHandler == null) {
+                    iconsPackHandler = new IconsHandler(this);
+                }
+            }
         }
 
         return iconsPackHandler;

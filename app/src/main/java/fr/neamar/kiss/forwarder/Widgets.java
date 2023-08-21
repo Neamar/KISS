@@ -37,7 +37,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.ui.WidgetHost;
 
 class Widgets extends Forwarder {
-    private static final String TAG = "Widgets";
+    private static final String TAG = Widgets.class.getSimpleName();
     private static final int REQUEST_APPWIDGET_PICKED = 9;
     private static final int REQUEST_APPWIDGET_BOUND = 11;
     private static final int REQUEST_APPWIDGET_CONFIGURED = 5;
@@ -256,41 +256,35 @@ class Widgets extends Forwarder {
 
             popup.setOnMenuItemClickListener(item -> {
                 popup.dismiss();
-                switch (item.getItemId()) {
-                    case R.id.remove_widget:
-                        parent.removeView(widgetWithMenuCurrentlyDisplayed);
-                        mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
+                int itemId = item.getItemId();
+                if (itemId == R.id.remove_widget) {
+                    parent.removeView(widgetWithMenuCurrentlyDisplayed);
+                    mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
+                    serializeState();
+                    return true;
+                } else if (itemId == R.id.increase_size) {
+                    int newHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+                    resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+                    return true;
+                } else if (itemId == R.id.decrease_size) {
+                    int newHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+                    resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+                    return true;
+                } else if (itemId == R.id.move_up) {
+                    int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+                    if (currentIndex >= 1) {
+                        parent.removeViewAt(currentIndex);
+                        parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
                         serializeState();
                         return true;
-                    case R.id.increase_size: {
-                        int newHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-                        resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+                    }
+                } else if (itemId == R.id.move_down) {
+                    int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+                    if (currentIndex < parent.getChildCount() - 1) {
+                        parent.removeViewAt(currentIndex);
+                        parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
+                        serializeState();
                         return true;
-                    }
-                    case R.id.decrease_size: {
-                        int newHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-                        resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
-                        return true;
-                    }
-                    case R.id.move_up: {
-                        int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-                        if (currentIndex >= 1) {
-                            parent.removeViewAt(currentIndex);
-                            parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
-                            serializeState();
-                            return true;
-                        }
-                        break;
-                    }
-                    case R.id.move_down: {
-                        int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-                        if (currentIndex < parent.getChildCount() - 1) {
-                            parent.removeViewAt(currentIndex);
-                            parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
-                            serializeState();
-                            return true;
-                        }
-                        break;
                     }
                 }
 
@@ -447,15 +441,14 @@ class Widgets extends Forwarder {
             // Launch over to configure widget, if needed.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, REQUEST_APPWIDGET_CONFIGURED, null);
-            }
-            else {
+            } else {
                 Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
                 intent.setComponent(appWidgetInfo.configure);
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 try {
                     mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
-                } catch(SecurityException e) {
-                    Toast.makeText(mainActivity,  "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
+                } catch (SecurityException e) {
+                    Toast.makeText(mainActivity, "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
                 }
             }
         }

@@ -42,7 +42,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import fr.neamar.kiss.icons.IconPack;
 import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -59,6 +58,7 @@ public class CustomIconDialog extends DialogFragment {
     private ImageView mPreview;
     private OnDismissListener mOnDismissListener = null;
     private OnConfirmListener mOnConfirmListener = null;
+    private Utilities.AsyncRun mLoadIconsPackTask = null;
 
     public interface OnDismissListener {
         void onDismiss(@NonNull CustomIconDialog dialog);
@@ -84,6 +84,7 @@ public class CustomIconDialog extends DialogFragment {
 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
+        cancelLoadIconsPackTask();
         if (mOnDismissListener != null)
             mOnDismissListener.onDismiss(this);
         super.onDismiss(dialog);
@@ -167,6 +168,7 @@ public class CustomIconDialog extends DialogFragment {
         {
             View button = view.findViewById(android.R.id.button1);
             button.setOnClickListener(v -> {
+                cancelLoadIconsPackTask();
                 if (mOnConfirmListener != null) {
                     mOnConfirmListener.onConfirm(mSelectedDrawable);
                 }
@@ -196,11 +198,20 @@ public class CustomIconDialog extends DialogFragment {
         }
 
         IconPackXML iconPack = iconsHandler.getCustomIconPack();
-        Utilities.runAsync((t) -> iconPack.loadDrawables(context.getPackageManager()), (t) -> {
-            Activity activity = Utilities.getActivity(context);
-            if (activity != null)
-                refreshList();
-        });
+        if (iconPack != null) {
+            cancelLoadIconsPackTask();
+            mLoadIconsPackTask = Utilities.runAsync((task) -> {
+                if (task == mLoadIconsPackTask) {
+                    iconPack.loadDrawables(context.getPackageManager());
+                }
+            }, (task) -> {
+                if (!task.isCancelled() && task == mLoadIconsPackTask) {
+                    Activity activity = Utilities.getActivity(context);
+                    if (activity != null)
+                        refreshList();
+                }
+            });
+        }
 
         SystemIconPack systemPack = iconsHandler.getSystemIconPack();
 
@@ -295,8 +306,8 @@ public class CustomIconDialog extends DialogFragment {
     private void refreshList() {
         mIconData.clear();
         IconsHandler iconsHandler = KissApplication.getApplication(getActivity()).getIconsHandler();
-        IconPack iconPack = iconsHandler.getCustomIconPack();
-        if (iconPack instanceof IconPackXML) {
+        IconPackXML iconPack = iconsHandler.getCustomIconPack();
+        if (iconPack != null) {
             Collection<IconPackXML.DrawableInfo> drawables = ((IconPackXML) iconPack).getDrawableList();
             if (drawables != null) {
                 StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(mSearch.getText(), true);
@@ -469,8 +480,21 @@ public class CustomIconDialog extends DialogFragment {
                 if (loader != null)
                     loader.cancel(true);
                 loader = new AsyncLoad(this);
-                loader.execute(content);
+                // use AsyncTask.SERIAL_EXECUTOR explicitly for now
+                // TODO: make execution parallel if needed/possible
+                loader.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, content);
             }
         }
     }
+
+    /**
+     * Cancel running {@link CustomIconDialog#mLoadIconsPackTask} and set to null.
+     */
+    private void cancelLoadIconsPackTask() {
+        if (mLoadIconsPackTask != null) {
+            mLoadIconsPackTask.cancel();
+            mLoadIconsPackTask = null;
+        }
+    }
+
 }

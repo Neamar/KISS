@@ -38,12 +38,12 @@ import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
 /**
- * Inspired from http://stackoverflow.com/questions/31490630/how-to-load-icon-from-icon-pack
+ * Inspired from <a href="http://stackoverflow.com/questions/31490630/how-to-load-icon-from-icon-pack">How to load icon from icon pack</a>
  */
 
 public class IconsHandler {
 
-    private static final String TAG = "IconsHandler";
+    private static final String TAG = IconsHandler.class.getSimpleName();
     // map with available icons packs
     private final HashMap<String, String> iconsPacks = new HashMap<>();
 
@@ -56,7 +56,7 @@ public class IconsHandler {
     private int mContactsShape = DrawableUtils.SHAPE_SYSTEM;
     private boolean mForceShape = false;
     private Utilities.AsyncRun mLoadIconsPackTask = null;
-    private Map<String, Long> customIconIds = null;
+    private volatile Map<String, Long> customIconIds = null;
 
     public IconsHandler(Context ctx) {
         super();
@@ -175,8 +175,12 @@ public class IconsHandler {
         // search for custom icon
         if (useCustomIcons) {
             Map<String, Long> customIconIds = getCustomIconIds();
-            if (customIconIds.containsKey(cacheKey)) {
-                drawable = getCustomIcon(cacheKey, customIconIds.get(cacheKey));
+            if (customIconIds == null)
+                return null;
+
+            Long customIconId = customIconIds.get(cacheKey);
+            if (customIconId != null) {
+                drawable = getCustomIcon(cacheKey, customIconId);
             }
         }
 
@@ -186,25 +190,41 @@ public class IconsHandler {
             if (!mIconPack.isLoaded())
                 return null;
             drawable = mIconPack.getComponentDrawable(ctx, componentName, userHandle);
+            if (drawable != null) {
+                drawable = applyIconMask(ctx, drawable, true);
+            }
         }
 
         if (drawable == null) {
             // if icon pack doesn't have the drawable, use system drawable
             drawable = mSystemPack.getComponentDrawable(ctx, componentName, userHandle);
+            if (drawable != null) {
+                drawable = applyIconMask(ctx, drawable, false);
+            }
         }
         if (drawable == null)
             return null;
 
-        drawable = applyIconMask(ctx, drawable);
         drawable = applyBadge(drawable, userHandle);
-        storeDrawable(cacheGetFileName(cacheKey), drawable);
+        if (useCache) {
+            storeDrawable(cacheGetFileName(cacheKey), drawable);
+        }
         return drawable;
     }
 
     public Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable) {
+        return applyIconMask(ctx, drawable, false);
+    }
+
+    private Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable, boolean isIconFromPack) {
         if (mIconPack != null && mIconPack.hasMask()) {
-            // if the icon pack has a mask, use that instead of the adaptive shape
-            return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
+            if (isIconFromPack) {
+                // use drawable from icon pack as is
+                return drawable;
+            } else {
+                // if the icon pack has a mask, use that instead of the adaptive shape
+                return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
+            }
         } else if (DrawableUtils.isAdaptiveIconDrawable(drawable) || mForceAdaptive) {
             // use adaptive shape (with white background for non adaptive icons)
             return mSystemPack.applyBackgroundAndMask(ctx, drawable, true, Color.WHITE);
@@ -264,12 +284,12 @@ public class IconsHandler {
      */
     private void loadAvailableIconsPacks() {
 
-        List<ResolveInfo> launcherthemes = pm.queryIntentActivities(new Intent("fr.neamar.kiss.THEMES"), PackageManager.GET_META_DATA);
-        List<ResolveInfo> adwlauncherthemes = pm.queryIntentActivities(new Intent("org.adw.launcher.THEMES"), PackageManager.GET_META_DATA);
+        List<ResolveInfo> launcherThemes = pm.queryIntentActivities(new Intent("fr.neamar.kiss.THEMES"), PackageManager.GET_META_DATA);
+        List<ResolveInfo> adwLauncherThemes = pm.queryIntentActivities(new Intent("org.adw.launcher.THEMES"), PackageManager.GET_META_DATA);
 
-        launcherthemes.addAll(adwlauncherthemes);
+        launcherThemes.addAll(adwLauncherThemes);
 
-        for (ResolveInfo ri : launcherthemes) {
+        for (ResolveInfo ri : launcherThemes) {
             String packageName = ri.activityInfo.packageName;
             try {
                 ApplicationInfo ai = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
@@ -447,22 +467,28 @@ public class IconsHandler {
      * clears cache for custom icon ids
      */
     private void clearCustomIconIdCache() {
-        customIconIds = null;
+        synchronized (this) {
+            customIconIds = null;
+        }
     }
 
     /**
-     * Cache for custom icon ids, maps from component name to custom icon id.
+     * Thread-safe cache for custom icon ids, maps from component name to custom icon id.
      * Cache is built only if null.
      *
      * @return cache for custom icon ids
      */
     private Map<String, Long> getCustomIconIds() {
         if (customIconIds == null) {
-            customIconIds = new HashMap<>();
-            Map<String, AppRecord> appData = DBHelper.getCustomAppData(ctx);
-            for (Map.Entry<String, AppRecord> entry : appData.entrySet()) {
-                if (entry.getValue().hasCustomIcon()) {
-                    customIconIds.put(entry.getKey(), entry.getValue().dbId);
+            synchronized (this) {
+                if (customIconIds == null) {
+                    customIconIds = new HashMap<>();
+                    Map<String, AppRecord> appData = DBHelper.getCustomAppData(ctx);
+                    for (Map.Entry<String, AppRecord> entry : appData.entrySet()) {
+                        if (entry.getValue().hasCustomIcon()) {
+                            customIconIds.put(entry.getKey(), entry.getValue().dbId);
+                        }
+                    }
                 }
             }
         }

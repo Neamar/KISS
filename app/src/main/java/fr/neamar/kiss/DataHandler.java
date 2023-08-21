@@ -51,7 +51,7 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
-    final static private String TAG = "DataHandler";
+    final static private String TAG = DataHandler.class.getSimpleName();
 
     /**
      * Package the providers reside in
@@ -167,7 +167,7 @@ public class DataHandler extends BroadcastReceiver
         try {
             return new Intent(this.context, Class.forName(className.toString()));
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Unable to get intent for provider name: " + name, e);
             return null;
         }
     }
@@ -299,7 +299,6 @@ public class DataHandler extends BroadcastReceiver
      * Called when some event occurred that makes us believe that all data providers
      * might be ready now
      */
-    @SuppressWarnings("CatchAndPrintStackTrace")
     private void handleProviderLoaded() {
         if (this.allProvidersHaveLoaded) {
             return;
@@ -323,7 +322,7 @@ public class DataHandler extends BroadcastReceiver
             Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
             this.context.sendBroadcast(i);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Unable to send broadcast: " + MainActivity.FULL_LOAD_OVER);
         }
     }
 
@@ -456,9 +455,44 @@ public class DataHandler extends BroadcastReceiver
     }
 
     /**
+     * Pin shortcut for given {@link ShortcutPojo}
+     * This is used for pinning dynamic shortcut.
+     *
+     * @param shortcut shortcut to be pinned
+     * @return true, if shortcut was pinned
+     */
+    public boolean pinShortcut(ShortcutPojo shortcut) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (!shortcut.isPinned() && shortcut.isOreoShortcut()) {
+                return ShortcutUtil.pinShortcut(this.context, shortcut.packageName, shortcut.getOreoId());
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Unpin shortcut for given {@link ShortcutPojo}
+     * This is used for unpinning shortcut.
+     *
+     * @param shortcut shortcut to be unpinned
+     * @return true, if shortcut was unpinned
+     */
+    public boolean unpinShortcut(ShortcutPojo shortcut) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (shortcut.isPinned() && shortcut.isOreoShortcut()) {
+                if (ShortcutUtil.unpinShortcut(this.context, shortcut.packageName, shortcut.getOreoId())) {
+                    removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Update DB with given {@link ShortcutRecord}.
      *
-     * @param shortcutInfo the shortcut to update.
+     * @param shortcutInfo       the shortcut to update.
      * @param includePackageName include package name in shortcut name
      * @return true if update was successful
      */
@@ -600,7 +634,9 @@ public class DataHandler extends BroadcastReceiver
         removeShortcuts(app.packageName);
     }
 
-    /** Add app as an app which is not allowed to show shortcuts */
+    /**
+     * Add app as an app which is not allowed to show shortcuts
+     */
     public void addToExcludedShortcutApps(AppPojo app) {
         // The set needs to be cloned and then edited,
         // modifying in place is not supported by putStringSet()

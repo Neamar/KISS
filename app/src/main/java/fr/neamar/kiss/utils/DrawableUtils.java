@@ -1,15 +1,12 @@
 package fr.neamar.kiss.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.Shader.TileMode;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -105,7 +102,6 @@ public class DrawableUtils {
      * @return shaped icon
      */
     @NonNull
-    @SuppressLint("NewApi")
     public static Drawable applyIconMaskShape(@NonNull Context ctx, @NonNull Drawable icon, int shape, boolean fitInside, @ColorInt int backgroundColor) {
         if (shape == SHAPE_SYSTEM && !hasDeviceConfiguredMask())
             // if no icon mask can be configured for device, then use icon as is
@@ -115,41 +111,35 @@ public class DrawableUtils {
 
         Bitmap outputBitmap;
         Canvas outputCanvas;
-        final Paint outputPaint = PAINT;
-        outputPaint.reset();
-        outputPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        if (isAdaptiveIconDrawable(icon)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && isAdaptiveIconDrawable(icon)) {
             AdaptiveIconDrawable adaptiveIcon = (AdaptiveIconDrawable) icon;
             Drawable bgDrawable = adaptiveIcon.getBackground();
             Drawable fgDrawable = adaptiveIcon.getForeground();
 
-            int layerSize = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 108f, ctx.getResources().getDisplayMetrics()));
-            int iconSize = Math.round(layerSize / (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction()));
+            int iconSize = icon.getIntrinsicHeight();
+            if (iconSize <= 0) {
+                iconSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 72f, ctx.getResources().getDisplayMetrics());
+            }
+            int layerSize = (int) (iconSize * (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction()));
             int layerOffset = (layerSize - iconSize) / 2;
-
-            // Create a bitmap of the icon to use it as the shader of the outputBitmap
-            Bitmap iconBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-            Canvas iconCanvas = new Canvas(iconBitmap);
-
-            // Stretch adaptive layers because they are 108dp and the icon size is 48dp
-            if (bgDrawable != null) {
-                bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-                bgDrawable.draw(iconCanvas);
-            }
-
-            if (fgDrawable != null) {
-                fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
-                fgDrawable.draw(iconCanvas);
-            }
 
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
 
-            outputPaint.setShader(new BitmapShader(iconBitmap, TileMode.CLAMP, TileMode.CLAMP));
-            setIconShape(outputCanvas, outputPaint, shape);
-            outputPaint.setShader(null);
+            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, false);
+
+            // Stretch adaptive layers because they are 108dp and the icon size is 48dp
+            if (bgDrawable != null) {
+                bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
+                bgDrawable.draw(outputCanvas);
+            }
+
+            if (fgDrawable != null) {
+                fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
+                fgDrawable.draw(outputCanvas);
+            }
         }
-        // If icon is not adaptive, put it in a white canvas to make it have a unified shape
+        // If icon is not adaptive, put it in a colored canvas to make it have a unified shape
         else if (icon != null) {
             // Shrink icon fit inside the shape
             int iconSize;
@@ -168,34 +158,33 @@ public class DrawableUtils {
 
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
-            outputPaint.setColor(backgroundColor);
+
+            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, true);
 
             // Shrink icon so that it fits the shape
             int bottomRightCorner = iconSize - iconOffset;
             icon.setBounds(iconOffset, iconOffset, bottomRightCorner, bottomRightCorner);
-
-            setIconShape(outputCanvas, outputPaint, shape);
             icon.draw(outputCanvas);
         } else {
             int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
 
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
-            outputPaint.setColor(Color.BLACK);
 
-            setIconShape(outputCanvas, outputPaint, shape);
+            setIconShapeAndDrawBackground(outputCanvas, Color.BLACK, shape, true);
         }
         return new BitmapDrawable(ctx.getResources(), outputBitmap);
     }
 
     /**
-     * Set the shape of adaptive icons
+     * Set the shape of icons and draws background.
+     * Synchronized because class fields like {@link DrawableUtils#SHAPE_PATH}, {@link DrawableUtils#RECT_F} and {@link DrawableUtils#PAINT} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
      *
      * @param shape type of shape: DrawableUtils.SHAPE_*
      */
-    private static void setIconShape(Canvas canvas, Paint paint, int shape) {
+    private synchronized static void setIconShapeAndDrawBackground(Canvas canvas, @ColorInt int backgroundColor, int shape, boolean drawBackground) {
         int iconSize = canvas.getHeight();
-        Path path = SHAPE_PATH;
+        final Path path = SHAPE_PATH;
         path.rewind();
 
         switch (shape) {
@@ -204,18 +193,15 @@ public class DrawableUtils {
                     // get icon mask for device
                     AdaptiveIconDrawable drawable = new AdaptiveIconDrawable(new ColorDrawable(Color.BLACK), new ColorDrawable(Color.BLACK));
                     drawable.setBounds(0, 0, iconSize, iconSize);
-                    path = drawable.getIconMask();
+                    path.set(drawable.getIconMask());
                 } else {
                     // This should never happen, use rect so nothing is clipped
                     path.addRect(0f, 0f, iconSize, iconSize, Path.Direction.CCW);
                 }
-                canvas.drawPath(path, paint);
                 break;
             }
             case SHAPE_CIRCLE: {
                 int radius = iconSize / 2;
-                canvas.drawCircle(radius, radius, radius, paint);
-
                 path.addCircle(radius, radius, radius, Path.Direction.CCW);
                 break;
             }
@@ -228,19 +214,13 @@ public class DrawableUtils {
                 path.cubicTo(h - c, iconSize, 0, h + c, 0, h);
                 path.cubicTo(0, h - c, h - c, 0, h, 0);
                 path.close();
-
-                canvas.drawPath(path, paint);
                 break;
             }
             case SHAPE_SQUARE:
-                canvas.drawRect(0f, 0f, iconSize, iconSize, paint);
-
                 path.addRect(0f, 0f, iconSize, iconSize, Path.Direction.CCW);
                 break;
             case SHAPE_ROUND_RECT:
                 RECT_F.set(0f, 0f, iconSize, iconSize);
-                canvas.drawRoundRect(RECT_F, iconSize / 8f, iconSize / 12f, paint);
-
                 path.addRoundRect(RECT_F, iconSize / 8f, iconSize / 12f, Path.Direction.CCW);
                 break;
             case SHAPE_TEARDROP_RND: // this is handled before we get here
@@ -251,8 +231,6 @@ public class DrawableUtils {
                 RECT_F.set(iconSize * 0.70f, iconSize * 0.70f, iconSize, iconSize);
                 path.arcTo(RECT_F, 0, 90, false);
                 path.close();
-
-                canvas.drawPath(path, paint);
                 break;
             case SHAPE_TEARDROP_BL:
                 RECT_F.set(0f, 0f, iconSize, iconSize);
@@ -261,8 +239,6 @@ public class DrawableUtils {
                 RECT_F.set(0f, iconSize * .7f, iconSize * .3f, iconSize);
                 path.arcTo(RECT_F, 90, 90, false);
                 path.close();
-
-                canvas.drawPath(path, paint);
                 break;
             case SHAPE_TEARDROP_TL:
                 RECT_F.set(0f, 0f, iconSize, iconSize);
@@ -271,8 +247,6 @@ public class DrawableUtils {
                 RECT_F.set(0f, 0f, iconSize * .3f, iconSize * .3f);
                 path.arcTo(RECT_F, 180, 90, false);
                 path.close();
-
-                canvas.drawPath(path, paint);
                 break;
             case SHAPE_TEARDROP_TR:
                 RECT_F.set(0f, 0f, iconSize, iconSize);
@@ -281,8 +255,6 @@ public class DrawableUtils {
                 RECT_F.set(iconSize * .7f, 0f, iconSize, iconSize * .3f);
                 path.arcTo(RECT_F, 270, 90, false);
                 path.close();
-
-                canvas.drawPath(path, paint);
                 break;
             case SHAPE_HEXAGON:
                 for (int deg = 0; deg < 360; deg += 60) {
@@ -294,8 +266,6 @@ public class DrawableUtils {
                         path.lineTo(x, y);
                 }
                 path.close();
-
-                canvas.drawPath(path, paint);
                 break;
             case SHAPE_OCTAGON:
                 for (int deg = 22; deg < 360; deg += 45) {
@@ -312,9 +282,15 @@ public class DrawableUtils {
                         path.lineTo(x, y);
                 }
                 path.close();
-
-                canvas.drawPath(path, paint);
                 break;
+        }
+        // draw background if applicable
+        if (drawBackground && backgroundColor != Color.TRANSPARENT) {
+            final Paint paint = PAINT;
+            paint.reset();
+            paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+            paint.setColor(backgroundColor);
+            canvas.drawPath(path, paint);
         }
         // make sure we don't draw outside the shape
         canvas.clipPath(path);

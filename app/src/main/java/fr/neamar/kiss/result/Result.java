@@ -237,18 +237,13 @@ public abstract class Result {
      * @return Works in the same way as onOptionsItemSelected, return true if the action has been handled, false otherwise
      */
     boolean popupMenuClickHandler(Context context, RecordAdapter parent, @StringRes int stringId, View parentView) {
-        switch (stringId) {
-            case R.string.menu_remove:
-                removeFromResultsAndHistory(context, parent);
-                return true;
-            case R.string.menu_favorites_add:
-                launchAddToFavorites(context, pojo);
-                break;
-            case R.string.menu_favorites_remove:
-                launchRemoveFromFavorites(context, pojo);
-                break;
-            default:
-                break;
+        if (stringId == R.string.menu_remove) {
+            removeFromResultsAndHistory(context, parent);
+            return true;
+        } else if (stringId == R.string.menu_favorites_add) {
+            launchAddToFavorites(context, pojo);
+        } else if (stringId == R.string.menu_favorites_remove) {
+            launchRemoveFromFavorites(context, pojo);
         }
 
         MainActivity mainActivity = (MainActivity) context;
@@ -358,27 +353,32 @@ public abstract class Result {
     }
 
     void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
-        // the ImageView tag will store the async task if it's running
-        if (view.getTag() instanceof AsyncSetImage) {
-            AsyncSetImage asyncSetImage = (AsyncSetImage) view.getTag();
-            if (this.equals(asyncSetImage.appResultWeakReference.get())) {
-                // we are already loading the icon for this
-                return;
-            } else {
-                asyncSetImage.cancel(true);
-                view.setTag(null);
+        // getting this called multiple times in parallel may result in empty icons
+        synchronized (this) {
+            // the ImageView tag will store the async task if it's running
+            if (view.getTag() instanceof AsyncSetImage) {
+                AsyncSetImage asyncSetImage = (AsyncSetImage) view.getTag();
+                if (this.equals(asyncSetImage.appResultWeakReference.get())) {
+                    // we are already loading the icon for this
+                    return;
+                } else {
+                    asyncSetImage.cancel(true);
+                    view.setTag(null);
+                }
             }
-        }
-        // the ImageView will store the Result after the AsyncTask finished
-        else if (this.equals(view.getTag())) {
-            ((Result) view.getTag()).setDrawableCache(view.getDrawable());
-            return;
-        }
-        if (isDrawableCached()) {
-            view.setImageDrawable(getDrawable(view.getContext()));
-            view.setTag(this);
-        } else {
-            view.setTag(createAsyncSetImage(view, resId).execute());
+            // the ImageView will store the Result after the AsyncTask finished
+            else if (this.equals(view.getTag())) {
+                ((Result) view.getTag()).setDrawableCache(view.getDrawable());
+                return;
+            }
+            if (isDrawableCached()) {
+                view.setImageDrawable(getDrawable(view.getContext()));
+                view.setTag(this);
+            } else {
+                // use AsyncTask.SERIAL_EXECUTOR explicitly for now
+                // TODO: make execution parallel if needed/possible
+                view.setTag(createAsyncSetImage(view, resId).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR));
+            }
         }
     }
 

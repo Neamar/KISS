@@ -53,8 +53,9 @@ public class QuerySearcher extends Searcher {
     public boolean addResult(Pojo... pojos) {
         // Give a boost if item was previously selected for this query
         for (Pojo pojo : pojos) {
-            if (knownIds.containsKey(pojo.id)) {
-                pojo.relevance += 25 * knownIds.get(pojo.id);
+            Integer value = knownIds.get(pojo.id);
+            if (value != null) {
+                pojo.relevance += 25 * value;
             }
         }
 

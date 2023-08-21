@@ -44,7 +44,7 @@ import fr.neamar.kiss.utils.UserHandle;
 public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     private final static String TAG = IconPackXML.class.getSimpleName();
     private final Map<String, HashSet<DrawableInfo>> drawablesByComponent = new HashMap<>(0);
-    private final HashSet<DrawableInfo> drawableList = new HashSet<>(0);
+    private final Map<String, DrawableInfo> drawableList = new HashMap<>(0);
     // instance of a resource object of an icon pack
     private Resources packResources;
     // package name of the icons pack
@@ -57,31 +57,36 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     private DrawableInfo frontImage = null;
     // scale factor of an icons pack
     private float scaleFactor = 1.0f;
-    private boolean loaded = false;
+    private volatile boolean loaded = false;
 
 
     public IconPackXML(String packageName) {
         iconPackPackageName = packageName;
     }
 
-    public synchronized boolean isLoaded() {
-        return loaded;
-    }
-
-    public synchronized void load(PackageManager packageManager) {
-        if (loaded)
-            return;
-        try {
-            packResources = packageManager.getResourcesForApplication(iconPackPackageName);
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "get icon pack resources" + iconPackPackageName, e);
+    public boolean isLoaded() {
+        synchronized (this) {
+            return loaded;
         }
-
-        parseAppFilterXML();
-        loaded = true;
     }
 
-    public synchronized void loadDrawables(PackageManager packageManager) {
+    public void load(PackageManager packageManager) {
+        if (!loaded) {
+            synchronized (this) {
+                if (!loaded) {
+                    try {
+                        packResources = packageManager.getResourcesForApplication(iconPackPackageName);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        Log.e(TAG, "get icon pack resources" + iconPackPackageName, e);
+                    }
+                    parseAppFilterXML();
+                    loaded = true;
+                }
+            }
+        }
+    }
+
+    public void loadDrawables(PackageManager packageManager) {
         load(packageManager);
         parseDrawableXML();
     }
@@ -95,7 +100,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
     @Override
     public Collection<DrawableInfo> getDrawableList() {
-        return Collections.unmodifiableCollection(drawableList);
+        return Collections.unmodifiableCollection(drawableList.values());
     }
 
     @Nullable
@@ -183,10 +188,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     @NonNull
     @Override
     public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor) {
-        if (DrawableUtils.isAdaptiveIconDrawable(icon)) {
-            // convert AdaptiveIconDrawable to BitmapDrawable, use SHAPE_SQUARE so icon pack can be applied correctly
-            icon = DrawableUtils.applyIconMaskShape(ctx, icon, DrawableUtils.SHAPE_SQUARE, fitInside, Color.WHITE);
-        }
         BitmapDrawable bitmapDrawable = getBitmapDrawable(icon);
         return applyBackgroundAndMask(bitmapDrawable, ctx);
     }
@@ -278,54 +279,65 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     }
 
     private void parseDrawableXML() {
-        if (packResources == null)
-            return;
+        synchronized (this) {
+            if (packResources == null)
+                return;
 
-        XmlPullParser xpp = null;
-        // search drawable.xml into icons pack apk resource folder
-        int drawableXmlId = packResources.getIdentifier("drawable", "xml", iconPackPackageName);
-        if (drawableXmlId > 0) {
-            xpp = packResources.getXml(drawableXmlId);
-        }
-        if (xpp == null)
-            return;
-        try {
-            int eventType = xpp.getEventType();
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-                if (eventType == XmlPullParser.START_TAG) {
-                    int attrCount = xpp.getAttributeCount();
-                    switch (xpp.getName()) {
-                        case "item":
-                            for (int attrIdx = 0; attrIdx < attrCount; attrIdx += 1) {
-                                String attrName = xpp.getAttributeName(attrIdx);
-                                if (attrName.equals("drawable")) {
-                                    String drawableName = xpp.getAttributeValue(attrIdx);
-                                    int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
-                                    if (drawableId != 0) {
-                                        DrawableInfo drawableInfo = new SimpleDrawable(drawableName, drawableId);
-                                        drawableList.add(drawableInfo);
+            XmlPullParser xpp = null;
+            // search drawable.xml into icons pack apk resource folder
+            int drawableXmlId = packResources.getIdentifier("drawable", "xml", iconPackPackageName);
+            if (drawableXmlId > 0) {
+                xpp = packResources.getXml(drawableXmlId);
+            }
+            if (xpp == null)
+                return;
+
+            long start = System.currentTimeMillis();
+            try {
+                int eventType = xpp.getEventType();
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+                    if (eventType == XmlPullParser.START_TAG) {
+                        int attrCount = xpp.getAttributeCount();
+                        switch (xpp.getName()) {
+                            case "item":
+                                for (int attrIdx = 0; attrIdx < attrCount; attrIdx += 1) {
+                                    String attrName = xpp.getAttributeName(attrIdx);
+                                    if (attrName.equals("drawable")) {
+                                        String drawableName = xpp.getAttributeValue(attrIdx);
+                                        if (!drawableList.containsKey(drawableName)) {
+                                            int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                            if (drawableId != 0) {
+                                                DrawableInfo drawableInfo = new SimpleDrawable(drawableName, drawableId);
+                                                drawableList.put(drawableName, drawableInfo);
+                                            }
+                                        }
                                     }
                                 }
-                            }
-                            break;
-                        case "category":
-                            break;
-                        default:
-                            Log.d(TAG, "ignored " + xpp.getName());
+                                break;
+                            case "category":
+                                break;
+                            default:
+                                Log.d(TAG, "ignored " + xpp.getName());
+                        }
                     }
+                    eventType = xpp.next();
                 }
-                eventType = xpp.next();
+            } catch (XmlPullParserException | IOException e) {
+                Log.e(TAG, "parsing drawable.xml", e);
             }
-        } catch (XmlPullParserException | IOException e) {
-            Log.e(TAG, "parsing drawable.xml", e);
-        }
 
+            long end = System.currentTimeMillis();
+            Log.i(TAG, (end - start) + " milliseconds to parse drawable.xml");
+        }
     }
 
     private void parseAppFilterXML() {
         if (packResources == null)
             return;
 
+        long start = System.currentTimeMillis();
+
+        Map<String, CalendarDrawable> calendarDrawablesByPrefix = new HashMap<>(0);
         try {
             XmlPullParser xpp = findAppFilterXml();
             if (xpp != null) {
@@ -362,10 +374,16 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                             }
                         }
                         //parse <scale> xml tags used as scale factor of original bitmap icon
-                        else if (xpp.getName().equals("scale") && xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("factor")) {
-                            try {
-                                scaleFactor = Float.parseFloat(xpp.getAttributeValue(0));
-                            } catch (NumberFormatException ignored) {
+                        else if (xpp.getName().equals("scale")) {
+                            String factor = xpp.getAttributeValue(null, "factor");
+                            if (factor == null && xpp.getAttributeCount() > 0) {
+                                factor = xpp.getAttributeValue(0);
+                            }
+                            if (factor != null) {
+                                try {
+                                    scaleFactor = Float.parseFloat(factor);
+                                } catch (NumberFormatException ignored) {
+                                }
                             }
                         }
                         //parse <item> xml tags for custom icons
@@ -385,20 +403,21 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 eventType = xpp.next();
                                 continue;
                             }
-                            int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
-                            if (drawableId != 0) {
-                                DrawableInfo drawableInfo = new SimpleDrawable(drawableName, drawableId);
-                                drawableList.add(drawableInfo);
-                                if (componentName != null) {
-                                    HashSet<DrawableInfo> infoSet = drawablesByComponent.get(componentName);
-                                    if (infoSet == null)
-                                        drawablesByComponent.put(componentName, infoSet = new HashSet<>(1));
-                                    infoSet.add(drawableInfo);
+                            if (!drawableList.containsKey(drawableName)) {
+                                int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                if (drawableId != 0) {
+                                    DrawableInfo drawableInfo = new SimpleDrawable(drawableName, drawableId);
+                                    drawableList.put(drawableName, drawableInfo);
                                 }
+                            }
+
+                            if (componentName != null && drawableList.containsKey(drawableName)) {
+                                HashSet<DrawableInfo> infoSet = drawablesByComponent.get(componentName);
+                                if (infoSet == null)
+                                    drawablesByComponent.put(componentName, infoSet = new HashSet<>(1));
+                                infoSet.add(drawableList.get(drawableName));
                             } else {
-                                if (componentName == null)
-                                    componentName = "`null`";
-                                Log.w(TAG, "Drawable `" + drawableName + "` for " + componentName + " not found");
+                                Log.w(TAG, "Drawable `" + drawableName + "` for component `" + componentName + "` not found");
                             }
                         }
                         //parse <calendar>
@@ -415,14 +434,19 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                             }
 
                             if (componentName != null && prefix != null) {
-                                CalendarDrawable drawableInfo = new CalendarDrawable(prefix + "1..31");
-                                for (int day = 0; day < 31; day += 1) {
-                                    String drawableName = prefix + (1 + day);
-                                    int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
-                                    if (drawableId == 0)
-                                        Log.w(TAG, "Calendar drawable `" + drawableName + "` for " + componentName + " not found");
-                                    drawableInfo.setDayDrawable(day, drawableId);
+                                if (!calendarDrawablesByPrefix.containsKey(prefix)) {
+                                    CalendarDrawable calendarDrawable = new CalendarDrawable(prefix + "1..31");
+                                    for (int day = 0; day < 31; day += 1) {
+                                        String drawableName = prefix + (1 + day);
+                                        int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                        if (drawableId == 0)
+                                            Log.w(TAG, "Calendar drawable `" + drawableName + "` for " + componentName + " not found");
+                                        calendarDrawable.setDayDrawable(day, drawableId);
+                                    }
+                                    calendarDrawablesByPrefix.put(prefix, calendarDrawable);
                                 }
+
+                                CalendarDrawable drawableInfo = calendarDrawablesByPrefix.get(prefix);
                                 HashSet<DrawableInfo> infoSet = drawablesByComponent.get(componentName);
                                 if (infoSet == null)
                                     drawablesByComponent.put(componentName, infoSet = new HashSet<>(1));
@@ -436,6 +460,9 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         } catch (IOException | XmlPullParserException e) {
             Log.e(TAG, "Error parsing appfilter.xml " + e);
         }
+
+        long end = System.currentTimeMillis();
+        Log.i(TAG, (end - start) + " milliseconds to parse appfilter.xml");
     }
 
     private XmlPullParser findAppFilterXml() throws XmlPullParserException {

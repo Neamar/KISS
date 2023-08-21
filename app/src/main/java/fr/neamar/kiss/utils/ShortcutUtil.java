@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
@@ -25,7 +26,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -35,7 +39,7 @@ import fr.neamar.kiss.shortcut.SaveSingleOreoShortcutAsync;
 
 public class ShortcutUtil {
 
-    final static private String TAG = "ShortcutUtil";
+    final static private String TAG = ShortcutUtil.class.getSimpleName();
 
     /**
      * @return shortcut id generated from shortcut intentUri (which contains the shortcut id)
@@ -202,7 +206,7 @@ public class ShortcutUtil {
             ApplicationInfo info = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             return (String) packageManager.getApplicationLabel(info);
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            Log.w(TAG, "Unable to get app name from package: " + packageName);
             return null;
         }
     }
@@ -215,7 +219,7 @@ public class ShortcutUtil {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     @Nullable
-    public static String getComponentName(Context context, ShortcutInfo shortcutInfo) {
+    public static String getComponentName(@NonNull Context context, @Nullable ShortcutInfo shortcutInfo) {
         if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
             UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
             fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
@@ -224,4 +228,67 @@ public class ShortcutUtil {
         return null;
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static boolean isShortcutVisible(@NonNull Context context, @NonNull ShortcutInfo shortcutInfo, @NonNull Set<String> excludedApps, @NonNull Set<String> excludedShortcutApps) {
+        if (!shortcutInfo.isEnabled()) {
+            return false;
+        }
+        String packageName = shortcutInfo.getPackage();
+        String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
+
+        // if related package is excluded from KISS then the shortcut must be excluded too
+        boolean isExcluded = excludedApps.contains(componentName) || excludedShortcutApps.contains(packageName);
+        return !isExcluded;
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static boolean pinShortcut(@NonNull Context context, @NonNull String packageName, @NonNull String shortcutId) {
+        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        if (launcherApps.hasShortcutHostPermission()) {
+            List<ShortcutInfo> shortcutInfos = ShortcutUtil.getShortcuts(context, packageName);
+            final ShortcutInfo shortcutToPin = shortcutInfos.stream()
+                    .filter(shortcutInfo -> !shortcutInfo.isPinned())
+                    .filter(shortcutInfo -> shortcutInfo.getId().equals(shortcutId))
+                    .findAny()
+                    .orElse(null);
+            if (shortcutToPin != null) {
+                List<String> pinnedShortcutIds = shortcutInfos.stream()
+                        .filter(ShortcutInfo::isPinned)
+                        .filter(shortcutInfo -> shortcutInfo.getUserHandle().equals(shortcutToPin.getUserHandle()))
+                        .map(ShortcutInfo::getId)
+                        .collect(Collectors.toList());
+                pinnedShortcutIds.add(shortcutId);
+
+                launcherApps.pinShortcuts(packageName, pinnedShortcutIds, shortcutToPin.getUserHandle());
+                KissApplication.getApplication(context).getDataHandler().updateShortcut(shortcutToPin, false);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static boolean unpinShortcut(@NonNull Context context, @NonNull String packageName, @NonNull String shortcutId) {
+        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        if (launcherApps.hasShortcutHostPermission()) {
+            List<ShortcutInfo> shortcutInfos = ShortcutUtil.getShortcuts(context, packageName);
+            final ShortcutInfo shortcutToUnpin = shortcutInfos.stream()
+                    .filter(shortcutInfo -> shortcutInfo.isPinned())
+                    .filter(shortcutInfo -> shortcutInfo.getId().equals(shortcutId))
+                    .findAny()
+                    .orElse(null);
+            if (shortcutToUnpin != null) {
+                List<String> pinnedShortcutIds = shortcutInfos.stream()
+                        .filter(ShortcutInfo::isPinned)
+                        .filter(shortcutInfo -> shortcutInfo.getUserHandle().equals(shortcutToUnpin.getUserHandle()))
+                        .map(ShortcutInfo::getId)
+                        .collect(Collectors.toList());
+                pinnedShortcutIds.remove(shortcutId);
+
+                launcherApps.pinShortcuts(packageName, pinnedShortcutIds, shortcutToUnpin.getUserHandle());
+                return true;
+            }
+        }
+        return false;
+    }
 }
