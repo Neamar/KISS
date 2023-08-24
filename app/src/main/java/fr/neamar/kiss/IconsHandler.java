@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -327,15 +328,14 @@ public class IconsHandler {
     }
 
     private void storeDrawable(File drawableFile, Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            FileOutputStream fos;
-            try {
-                fos = new FileOutputStream(drawableFile);
-                ((BitmapDrawable) drawable).getBitmap().compress(CompressFormat.PNG, 100, fos);
+        // convert any drawable to bitmap that can be stored
+        Bitmap bitmap = DrawableUtils.drawableToBitmap(drawable);
+        if (bitmap != null) {
+            try (FileOutputStream fos = new FileOutputStream(drawableFile)) {
+                bitmap.compress(CompressFormat.PNG, 100, fos);
                 fos.flush();
-                fos.close();
             } catch (Exception e) {
-                Log.e(TAG, "Unable to store drawable in cache " + e);
+                Log.e(TAG, "Unable to store drawable in cache ", e);
             }
         }
     }

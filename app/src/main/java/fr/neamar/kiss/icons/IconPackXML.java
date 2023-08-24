@@ -167,21 +167,12 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
      * @param icon any {@link Drawable}
      * @return a {@link BitmapDrawable}
      */
-    public BitmapDrawable getBitmapDrawable(Drawable icon) {
+    private BitmapDrawable getBitmapDrawable(Drawable icon) {
         if (icon instanceof BitmapDrawable) {
             return (BitmapDrawable) icon;
         }
 
-        final Canvas canvas = new Canvas();
-        canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG));
-        Bitmap bitmap;
-        if (icon.getIntrinsicWidth() <= 0 || icon.getIntrinsicHeight() <= 0)
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
-        else
-            bitmap = Bitmap.createBitmap(icon.getIntrinsicWidth(), icon.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        canvas.setBitmap(bitmap);
-        icon.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        icon.draw(canvas);
+        Bitmap bitmap = DrawableUtils.drawableToBitmap(icon);
         return new BitmapDrawable(packResources, bitmap);
     }
 
