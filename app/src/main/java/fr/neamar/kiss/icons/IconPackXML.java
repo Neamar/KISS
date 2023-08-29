@@ -449,7 +449,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                 }
             }
         } catch (IOException | XmlPullParserException e) {
-            Log.e(TAG, "Error parsing appfilter.xml " + e);
+            Log.e(TAG, "Error parsing appfilter.xml ", e);
         }
 
         long end = System.currentTimeMillis();

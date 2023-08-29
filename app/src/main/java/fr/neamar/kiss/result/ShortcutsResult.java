@@ -225,7 +225,8 @@ public class ShortcutsResult extends Result {
             try {
                 launcherApps.startShortcut(shortcutInfo, v.getClipBounds(), null);
                 return;
-            } catch (ActivityNotFoundException | IllegalStateException ignored) {
+            } catch (ActivityNotFoundException | IllegalStateException e) {
+                Log.w(TAG, "Unable to launch shortcut", e);
             }
         }
 

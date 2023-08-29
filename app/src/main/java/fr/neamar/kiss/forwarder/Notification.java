@@ -54,7 +54,7 @@ class Notification extends Forwarder {
                     mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE).edit().clear().apply();
                 }
             } catch (Error e) {
-                Log.i("Notification", "Unable to check for notification access: " + e.toString());
+                Log.i("Notification", "Unable to check for notification access", e);
             }
         }
         notificationPreferences = notifsPrefBuilder;
