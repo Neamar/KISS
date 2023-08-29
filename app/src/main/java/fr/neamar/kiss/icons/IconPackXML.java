@@ -118,17 +118,13 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     @Nullable
     @Override
     public Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
-        return getComponentDrawable(componentName.toString());
-    }
-
-    @Nullable
-    public Drawable getComponentDrawable(String componentName) {
-        CalendarDrawable calendar = getCalendarDrawable(componentName);
+        String componentNameStr = componentName.toString();
+        CalendarDrawable calendar = getCalendarDrawable(componentNameStr);
         if (calendar != null) {
             return getDrawable(calendar);
         }
 
-        Set<DrawableInfo> drawables = drawablesByComponent.get(componentName);
+        Set<DrawableInfo> drawables = drawablesByComponent.get(componentNameStr);
         if (drawables != null) {
             for (DrawableInfo info : drawables) {
                 Drawable drawable = getDrawable(info);
