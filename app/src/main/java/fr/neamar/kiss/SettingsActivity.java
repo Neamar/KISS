@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.role.RoleManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -39,6 +40,7 @@ import java.util.TreeSet;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
+import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
@@ -51,6 +53,7 @@ import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.ShortcutUtil;
+import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
 @SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
@@ -78,6 +81,8 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private Permission permissionManager;
 
+    private SystemUiVisibilityHelper systemUiVisibilityHelper;
+
     /**
      * Get tags that should be in the favorites bar
      *
@@ -100,13 +105,9 @@ public class SettingsActivity extends PreferenceActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String theme = prefs.getString("theme", "light");
-        if (theme.equals("amoled-dark")) {
-            setTheme(R.style.SettingThemeAmoledDark);
-        } else if (theme.contains("dark")) {
-            setTheme(R.style.SettingThemeDark);
-        }
+        InterfaceTweaks.applySettingsTheme(this, prefs);
 
+        systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
 
         // Lock launcher into portrait mode
         // Do it here to make the transition as smooth as possible
@@ -321,14 +322,26 @@ public class SettingsActivity extends PreferenceActivity implements
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         super.onPreferenceTreeClick(preferenceScreen, preference);
         // If the user has clicked on a preference screen, set up the action bar
-        if (preference instanceof PreferenceScreen && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (preference instanceof PreferenceScreen) {
             final Dialog dialog = ((PreferenceScreen) preference).getDialog();
-            Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
+            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    Log.d("a", "b");
+                }
+            });
+            UIColors.updateThemePrimaryColor(preference.getContext(), dialog);
+            if (systemUiVisibilityHelper != null) {
+                systemUiVisibilityHelper.copyVisibility(dialog.getWindow().getDecorView());
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
 
-            if (toolbar != null) {
-                toolbar.setNavigationOnClickListener(v -> {
-                    dialog.dismiss();
-                });
+                if (toolbar != null) {
+                    toolbar.setNavigationOnClickListener(v -> {
+                        dialog.dismiss();
+                    });
+                }
             }
         }
 
@@ -634,7 +647,7 @@ public class SettingsActivity extends PreferenceActivity implements
                 setPhoneHistoryEnabled(enabled);
             }
         } else if (key.equalsIgnoreCase("primary-color")) {
-            UIColors.clearPrimaryColorCache(this);
+            UIColors.clearPrimaryColorCache();
         } else if (key.equalsIgnoreCase("number-of-display-elements")) {
             QuerySearcher.clearMaxResultCountCache();
         } else if (key.equalsIgnoreCase("default-search-provider")) {
@@ -805,4 +818,11 @@ public class SettingsActivity extends PreferenceActivity implements
             return null;
         }
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        systemUiVisibilityHelper.onWindowFocusChanged(hasFocus);
+    }
+
 }

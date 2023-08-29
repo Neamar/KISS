@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
+        <ListView xmlns:tools="http://schemas.android.com/tools"
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -39,7 +39,9 @@
             android:background="?attr/listBackgroundColor"
             android:cacheColorHint="@android:color/transparent"
             android:divider="?attr/dividerDrawable"
-            android:dividerHeight="2dp" />
+            android:dividerHeight="2dp"
+            tools:listheader="@layout/widget_picker_item_title"
+            tools:listitem="@layout/widget_picker_item" />
 
         <TextView
             android:id="@+id/internalEmpty"
