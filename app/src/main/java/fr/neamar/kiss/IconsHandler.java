@@ -101,9 +101,9 @@ public class IconsHandler {
     private static int getAdaptiveShape(SharedPreferences pref, String key) {
         try {
             return Integer.parseInt(pref.getString(key, String.valueOf(DrawableUtils.SHAPE_SYSTEM)));
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            return DrawableUtils.SHAPE_SYSTEM;
         }
-        return DrawableUtils.SHAPE_SYSTEM;
     }
 
     /**
@@ -298,7 +298,7 @@ public class IconsHandler {
                 iconsPacks.put(packageName, name);
             } catch (PackageManager.NameNotFoundException e) {
                 // shouldn't happen
-                Log.e(TAG, "Unable to found package " + packageName + e);
+                Log.e(TAG, "Unable to found package " + packageName, e);
             }
         }
     }
@@ -354,7 +354,7 @@ public class IconsHandler {
             fis.close();
             return drawable;
         } catch (Exception e) {
-            Log.e(TAG, "Unable to get drawable from cache " + e);
+            Log.e(TAG, "Unable to get drawable from cache ", e);
         }
 
         return null;
@@ -434,7 +434,7 @@ public class IconsHandler {
             fis.close();
             return drawable;
         } catch (Exception e) {
-            Log.e(TAG, "Unable to get custom icon " + e);
+            Log.e(TAG, "Unable to get custom icon ", e);
         }
 
         return null;

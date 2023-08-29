@@ -10,6 +10,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class ContactsResult extends CallResult {
     private final ContactsPojo contactPojo;
     private final QueryInterface queryInterface;
     private volatile Drawable icon = null;
+    private static final String TAG = ContactsResult.class.getSimpleName();
 
     ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
         super(contactPojo);
@@ -191,7 +193,8 @@ public class ContactsResult extends CallResult {
                         try (InputStream inputStream = context.getContentResolver()
                                 .openInputStream(contactPojo.icon)) {
                             icon = Drawable.createFromStream(inputStream, null);
-                        } catch (IOException ignored) {
+                        } catch (IOException e) {
+                            Log.v(TAG, "Unable to load contact icon", e);
                         }
                     }
 

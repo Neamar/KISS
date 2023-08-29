@@ -283,7 +283,7 @@ public class DBHelper {
             statement.bindLong(3, AppRecord.FLAG_CUSTOM_NAME);
             id = statement.executeInsert();
             statement.close();
-        } catch (Exception ignored) {
+        } catch (Exception e) {
             id = -1;
         }
         if (id == -1) {
@@ -336,7 +336,7 @@ public class DBHelper {
             statement.bindLong(2, AppRecord.FLAG_CUSTOM_ICON);
             id = statement.executeInsert();
             statement.close();
-        } catch (Exception ignored) {
+        } catch (Exception e) {
             id = -1;
         }
         if (id == -1) {

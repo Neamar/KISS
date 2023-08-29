@@ -2,6 +2,7 @@ package fr.neamar.kiss.adapter;
 
 import android.app.DialogFragment;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -40,6 +41,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     private final HashMap<String, Integer> alphaIndexer = new HashMap<>();
     // List of available sections (only used for fast scroll)
     private String[] sections = new String[0];
+    private static final String TAG = RecordAdapter.class.getSimpleName();
 
     public RecordAdapter(QueryInterface parent, ArrayList<Result> results) {
         this.parent = parent;
@@ -114,7 +116,8 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         try {
             result = results.get(position);
             result.launch(v.getContext(), v, parent);
-        } catch (ArrayIndexOutOfBoundsException ignored) {
+        } catch (IndexOutOfBoundsException e) {
+            Log.v(TAG, "Unable to click", e);
         }
     }
 
