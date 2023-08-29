@@ -34,8 +34,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -43,14 +45,14 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     private final static String TAG = IconPackXML.class.getSimpleName();
-    private final Map<String, HashSet<DrawableInfo>> drawablesByComponent = new HashMap<>(0);
+    private final Map<String, Set<DrawableInfo>> drawablesByComponent = new HashMap<>(0);
     private final Map<String, DrawableInfo> drawableList = new HashMap<>(0);
     // instance of a resource object of an icon pack
     private Resources packResources;
     // package name of the icons pack
     private final String iconPackPackageName;
     // list of back images available on an icons pack
-    private final ArrayList<DrawableInfo> backImages = new ArrayList<>();
+    private final List<DrawableInfo> backImages = new ArrayList<>();
     // bitmap mask of an icons pack
     private DrawableInfo maskImage = null;
     // front image of an icons pack
@@ -105,7 +107,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
     @Nullable
     private CalendarDrawable getCalendarDrawable(@Nullable String componentName) {
-        HashSet<DrawableInfo> drawables = drawablesByComponent.get(componentName);
+        Set<DrawableInfo> drawables = drawablesByComponent.get(componentName);
         if (drawables != null)
             for (DrawableInfo info : drawables)
                 if (info instanceof CalendarDrawable)
@@ -122,34 +124,25 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     @Nullable
     public Drawable getComponentDrawable(String componentName) {
         CalendarDrawable calendar = getCalendarDrawable(componentName);
-        if (calendar != null)
+        if (calendar != null) {
             return getDrawable(calendar);
-        HashSet<DrawableInfo> drawables = drawablesByComponent.get(componentName);
-        if (drawables == null || drawables.isEmpty())
-            return null;
-        DrawableInfo drawableInfo = drawables.iterator().next();
-        return drawableInfo != null ? getDrawable(drawableInfo) : null;
-    }
+        }
 
-    @Nullable
-    @Override
-    public Drawable getDrawable(@NonNull DrawableInfo drawableInfo) {
-        if (drawableInfo instanceof SimpleDrawable) {
-            SimpleDrawable sd = (SimpleDrawable) drawableInfo;
-            try {
-                return packResources.getDrawable(sd.getResourceId());
-            } catch (Resources.NotFoundException ignored) {
-            }
-        } else if (drawableInfo instanceof CalendarDrawable) {
-            CalendarDrawable cd = (CalendarDrawable) drawableInfo;
-            // The first day of the month has value 1.
-            int dayOfMonthIdx = Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - 1;
-            try {
-                return packResources.getDrawable(cd.getDayDrawable(dayOfMonthIdx));
-            } catch (Resources.NotFoundException ignored) {
+        Set<DrawableInfo> drawables = drawablesByComponent.get(componentName);
+        if (drawables != null) {
+            for (DrawableInfo info : drawables) {
+                Drawable drawable = getDrawable(info);
+                if (drawable != null) {
+                    return drawable;
+                }
             }
         }
         return null;
+    }
+
+    @Override
+    public Drawable getDrawable(@NonNull DrawableInfo drawableInfo) {
+        return drawableInfo.getDrawable(packResources);
     }
 
     @NonNull
@@ -179,12 +172,8 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     @NonNull
     @Override
     public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor) {
-        BitmapDrawable bitmapDrawable = getBitmapDrawable(icon);
-        return applyBackgroundAndMask(bitmapDrawable, ctx);
-    }
+        BitmapDrawable defaultDrawable = getBitmapDrawable(icon);
 
-    @NonNull
-    private Drawable applyBackgroundAndMask(@NonNull BitmapDrawable defaultDrawable, @NonNull Context ctx) {
         // initialize dimensions
         int w = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
         int h = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
@@ -276,8 +265,8 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
             XmlPullParser xpp = null;
             // search drawable.xml into icons pack apk resource folder
-            int drawableXmlId = packResources.getIdentifier("drawable", "xml", iconPackPackageName);
-            if (drawableXmlId > 0) {
+            int drawableXmlId = getIdentifier("drawable", "xml");
+            if (drawableXmlId != 0) {
                 xpp = packResources.getXml(drawableXmlId);
             }
             if (xpp == null)
@@ -296,7 +285,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                     if (attrName.equals("drawable")) {
                                         String drawableName = xpp.getAttributeValue(attrIdx);
                                         if (!drawableList.containsKey(drawableName)) {
-                                            int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                            int drawableId = getIdentifier(drawableName, "drawable");
                                             if (drawableId != 0) {
                                                 DrawableInfo drawableInfo = new SimpleDrawable(drawableName, drawableId);
                                                 drawableList.put(drawableName, drawableInfo);
@@ -322,6 +311,13 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         }
     }
 
+    /**
+     * See {@link Resources#getIdentifier(String, String, String)}
+     */
+    private int getIdentifier(String name, String defType) {
+        return packResources.getIdentifier(name, defType, iconPackPackageName);
+    }
+
     private void parseAppFilterXML() {
         if (packResources == null)
             return;
@@ -340,7 +336,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                             for (int i = 0; i < xpp.getAttributeCount(); i++) {
                                 if (xpp.getAttributeName(i).startsWith("img")) {
                                     String drawableName = xpp.getAttributeValue(i);
-                                    int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                    int drawableId = getIdentifier(drawableName, "drawable");
                                     if (drawableId != 0)
                                         backImages.add(new SimpleDrawable(drawableName, drawableId));
                                 }
@@ -350,7 +346,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                         else if (xpp.getName().equals("iconmask")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
-                                int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                int drawableId = getIdentifier(drawableName, "drawable");
                                 if (drawableId != 0)
                                     maskImage = new SimpleDrawable(drawableName, drawableId);
                             }
@@ -359,7 +355,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                         else if (xpp.getName().equals("iconupon")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
-                                int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                int drawableId = getIdentifier(drawableName, "drawable");
                                 if (drawableId != 0)
                                     frontImage = new SimpleDrawable(drawableName, drawableId);
                             }
@@ -395,7 +391,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 continue;
                             }
                             if (!drawableList.containsKey(drawableName)) {
-                                int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                int drawableId = getIdentifier(drawableName, "drawable");
                                 if (drawableId != 0) {
                                     DrawableInfo drawableInfo = new SimpleDrawable(drawableName, drawableId);
                                     drawableList.put(drawableName, drawableInfo);
@@ -403,7 +399,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                             }
 
                             if (componentName != null && drawableList.containsKey(drawableName)) {
-                                HashSet<DrawableInfo> infoSet = drawablesByComponent.get(componentName);
+                                Set<DrawableInfo> infoSet = drawablesByComponent.get(componentName);
                                 if (infoSet == null)
                                     drawablesByComponent.put(componentName, infoSet = new HashSet<>(1));
                                 infoSet.add(drawableList.get(drawableName));
@@ -429,7 +425,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                     CalendarDrawable calendarDrawable = new CalendarDrawable(prefix + "1..31");
                                     for (int day = 0; day < 31; day += 1) {
                                         String drawableName = prefix + (1 + day);
-                                        int drawableId = packResources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                                        int drawableId = getIdentifier(drawableName, "drawable");
                                         if (drawableId == 0)
                                             Log.w(TAG, "Calendar drawable `" + drawableName + "` for " + componentName + " not found");
                                         calendarDrawable.setDayDrawable(day, drawableId);
@@ -438,7 +434,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                 }
 
                                 CalendarDrawable drawableInfo = calendarDrawablesByPrefix.get(prefix);
-                                HashSet<DrawableInfo> infoSet = drawablesByComponent.get(componentName);
+                                Set<DrawableInfo> infoSet = drawablesByComponent.get(componentName);
                                 if (infoSet == null)
                                     drawablesByComponent.put(componentName, infoSet = new HashSet<>(1));
                                 infoSet.add(drawableInfo);
@@ -458,14 +454,14 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
     private XmlPullParser findAppFilterXml() throws XmlPullParserException {
         // search appfilter.xml in icon pack's apk resource folder for xml files
-        int appFilterIdXml = packResources.getIdentifier("appfilter", "xml", iconPackPackageName);
-        if (appFilterIdXml > 0) {
+        int appFilterIdXml = getIdentifier("appfilter", "xml");
+        if (appFilterIdXml != 0) {
             return packResources.getXml(appFilterIdXml);
         }
 
         // search appfilter.xml in icon pack's apk resource folder for raw files (supporting icon pack studio)
-        int appFilterIdRaw = packResources.getIdentifier("appfilter", "raw", iconPackPackageName);
-        if (appFilterIdRaw > 0) {
+        int appFilterIdRaw = getIdentifier("appfilter", "raw");
+        if (appFilterIdRaw != 0) {
             InputStream input = packResources.openRawResource(appFilterIdRaw);
             XmlPullParserFactory xppf = XmlPullParserFactory.newInstance();
             XmlPullParser xpp = xppf.newPullParser();
@@ -482,7 +478,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     }
 
 
-    public static class DrawableInfo {
+    public static abstract class DrawableInfo {
         private final String drawableName;
 
         protected DrawableInfo(@NonNull String drawableName) {
@@ -492,7 +488,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (!(o instanceof DrawableInfo)) return false;
+            if (o == null || getClass() != o.getClass()) return false;
             DrawableInfo that = (DrawableInfo) o;
             return drawableName.equals(that.drawableName);
         }
@@ -505,6 +501,9 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         public String getDrawableName() {
             return drawableName;
         }
+
+        @Nullable
+        public abstract Drawable getDrawable(@NonNull Resources resources);
     }
 
     public static class SimpleDrawable extends DrawableInfo {
@@ -516,27 +515,40 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
             this.drawableId = drawableId;
         }
 
-        @DrawableRes
-        public int getResourceId() {
-            return drawableId;
+        @Override
+        @Nullable
+        public Drawable getDrawable(@NonNull Resources resources) {
+            try {
+                return resources.getDrawable(drawableId);
+            } catch (Resources.NotFoundException e) {
+                Log.w(TAG, "Unable to load resource for: " + getDrawableName(), e);
+                return null;
+            }
         }
     }
 
     public static class CalendarDrawable extends DrawableInfo {
-        private final int[] drawableForDay;
+        private final int[] drawableForDay = new int[31];
 
         protected CalendarDrawable(@NonNull String drawableName) {
             super(drawableName);
-            drawableForDay = new int[31];
+        }
+
+        @Override
+        @Nullable
+        public Drawable getDrawable(@NonNull Resources resources) {
+            // The first day of the month has value 1.
+            int dayOfMonthIdx = Calendar.getInstance().get(Calendar.DAY_OF_MONTH) - 1;
+            try {
+                return resources.getDrawable(drawableForDay[dayOfMonthIdx]);
+            } catch (Resources.NotFoundException e) {
+                Log.w(TAG, "Unable to load resource for: " + getDrawableName() + ", day " + dayOfMonthIdx, e);
+                return null;
+            }
         }
 
         public void setDayDrawable(int dayOfMonthIdx, @DrawableRes int drawableId) {
             drawableForDay[dayOfMonthIdx] = drawableId;
-        }
-
-        @DrawableRes
-        public int getDayDrawable(int dayOfMonthIdx) {
-            return drawableForDay[dayOfMonthIdx];
         }
     }
 }
