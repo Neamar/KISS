@@ -484,7 +484,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (!(o instanceof DrawableInfo)) return false;
             DrawableInfo that = (DrawableInfo) o;
             return drawableName.equals(that.drawableName);
         }
