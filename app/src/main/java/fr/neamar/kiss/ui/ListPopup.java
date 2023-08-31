@@ -3,7 +3,6 @@ package fr.neamar.kiss.ui;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Rect;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -11,6 +10,7 @@ import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 
 import androidx.annotation.StringRes;
+
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
@@ -37,7 +37,7 @@ public class ListPopup extends PopupWindow {
         mClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( dismissOnClick )
+                if (dismissOnClick)
                     dismiss();
                 if (mItemClickListener != null) {
                     LinearLayout layout = getLinearLayout();
@@ -74,7 +74,7 @@ public class ListPopup extends PopupWindow {
     @Override
     public void dismiss() {
         super.dismiss();
-        if ( mSystemUiVisibilityHelper != null )
+        if (mSystemUiVisibilityHelper != null)
             mSystemUiVisibilityHelper.popPopup();
     }
 
@@ -82,8 +82,7 @@ public class ListPopup extends PopupWindow {
         return mAdapter;
     }
 
-    public void setDismissOnItemClick(boolean dismissOnClick )
-    {
+    public void setDismissOnItemClick(boolean dismissOnClick) {
         this.dismissOnClick = dismissOnClick;
     }
 
@@ -158,19 +157,22 @@ public class ListPopup extends PopupWindow {
 
         setWidth(linearLayout.getMeasuredWidth());
 
-        int xOffset = anchorPos[0] + anchor.getPaddingLeft();
-        if (xOffset + linearLayout.getMeasuredWidth() > displayFrame.right)
-            xOffset = displayFrame.right - linearLayout.getMeasuredWidth();
+        int xOffset;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            xOffset = anchor.getPaddingStart();
+        } else {
+            xOffset = anchor.getPaddingLeft();
+        }
 
         int overlapAmount = (int) (anchor.getHeight() * anchorOverlap);
         int yOffset;
         if (distanceToBottom > linearLayout.getMeasuredHeight()) {
             // show below anchor
-            yOffset = anchorPos[1] + overlapAmount;
+            yOffset = -overlapAmount;
             setAnimationStyle(R.style.PopupAnimationTop);
         } else if (distanceToTop > distanceToBottom) {
             // show above anchor
-            yOffset = anchorPos[1] + overlapAmount - linearLayout.getMeasuredHeight();
+            yOffset = -overlapAmount - linearLayout.getMeasuredHeight();
             setAnimationStyle(R.style.PopupAnimationBottom);
             if (distanceToTop < linearLayout.getMeasuredHeight()) {
                 // enable scroll
@@ -179,12 +181,12 @@ public class ListPopup extends PopupWindow {
             }
         } else {
             // show below anchor with scroll
-            yOffset = anchorPos[1] + overlapAmount;
+            yOffset = -overlapAmount;
             setAnimationStyle(R.style.PopupAnimationTop);
             setHeight(distanceToBottom + overlapAmount);
         }
 
-        showAtLocation(anchor, Gravity.START | Gravity.TOP, xOffset, yOffset);
+        showAsDropDown(anchor, xOffset, yOffset);
     }
 
     public interface OnItemClickListener {

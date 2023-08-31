@@ -7,17 +7,18 @@
 
     <LinearLayout
         android:id="@+id/widgetLayout"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/resultLayout"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:gravity="center_horizontal">
-    </LinearLayout>
+        android:gravity="center_horizontal"
+        android:orientation="vertical" />
 
     <FrameLayout
         android:id="@+id/resultLayout"
@@ -27,7 +28,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="false"
+        android:layout_marginStart="@dimen/list_margin_horizontal"
         android:layout_marginLeft="@dimen/list_margin_horizontal"
+        android:layout_marginEnd="@dimen/list_margin_horizontal"
         android:layout_marginRight="@dimen/list_margin_horizontal"
         android:layout_marginBottom="10dp"
         android:background="?attr/listBackgroundColor"
@@ -61,7 +64,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/favorite_height"
         android:layout_above="@id/searchEditLayout"
+        android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:animateLayoutChanges="true"
@@ -82,7 +87,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:background="?attr/searchBackgroundColor"
@@ -107,7 +114,9 @@
                 android:contentDescription="@string/main_kiss"
                 android:focusable="true"
                 android:onClick="onLauncherButtonClicked"
+                android:paddingStart="@dimen/launcher_button_padding"
                 android:paddingLeft="@dimen/launcher_button_padding"
+                android:paddingEnd="@dimen/launcher_button_padding"
                 android:paddingRight="@dimen/launcher_button_padding"
                 android:src="@drawable/ic_launcher"
                 android:tag="showMenu" />
@@ -117,7 +126,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:indeterminate="true"
+                android:paddingStart="@dimen/launcher_button_padding"
                 android:paddingLeft="@dimen/launcher_button_padding"
+                android:paddingEnd="@dimen/launcher_button_padding"
                 android:paddingRight="@dimen/launcher_button_padding"
                 android:visibility="invisible" />
 
@@ -142,6 +153,7 @@
             android:textColor="?attr/searchColor"
             android:textColorHint="?android:attr/textColorSecondary"
             android:textCursorDrawable="@null"
+            android:textDirection="locale"
             android:textSize="16sp" />
 
         <FrameLayout
@@ -160,7 +172,9 @@
                 android:contentDescription="@string/main_menu"
                 android:focusable="true"
                 android:onClick="onMenuButtonClicked"
+                android:paddingStart="@dimen/launcher_button_padding"
                 android:paddingLeft="@dimen/launcher_button_padding"
+                android:paddingEnd="@dimen/launcher_button_padding"
                 android:paddingRight="@dimen/launcher_button_padding"
                 android:src="@drawable/dots"
                 android:tint="?attr/searchColor" />
@@ -173,7 +187,9 @@
                 android:contentDescription="@string/main_clear"
                 android:focusable="true"
                 android:onClick="onClearButtonClicked"
+                android:paddingStart="@dimen/launcher_button_padding"
                 android:paddingLeft="@dimen/launcher_button_padding"
+                android:paddingEnd="@dimen/launcher_button_padding"
                 android:paddingRight="@dimen/launcher_button_padding"
                 android:src="@drawable/clear_dark"
                 android:tint="?attr/searchColor"

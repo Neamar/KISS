@@ -53,14 +53,13 @@ public class TagsMenu extends Forwarder {
         return prefs.getBoolean("pref-tags-menu", false);
     }
 
-    public boolean isAutoDismiss()
-    {
+    public boolean isAutoDismiss() {
         return prefs.getBoolean("pref-tags-menu-dismiss", false);
     }
 
     private void loadTags() {
         if (isTagMenuEnabled())
-        	setTags(getPrefTags(prefs, mainActivity));
+            setTags(getPrefTags(prefs, mainActivity));
         else
             setTags(null);
     }
@@ -218,76 +217,73 @@ public class TagsMenu extends Forwarder {
     }
 
     public ListPopup showMenu(final View anchor) {
-        if (popupMenu != null) {
-            popupMenu.show(anchor, 0f);
-            return popupMenu;
-        }
+        if (popupMenu == null) {
+            Context context = anchor.getContext();
+            popupMenu = new ListPopup(context);
+            TagsMenu.MenuAdapter adapter = new TagsMenu.MenuAdapter();
 
-        Context context = anchor.getContext();
-        popupMenu = new ListPopup(context);
-        TagsMenu.MenuAdapter adapter = new TagsMenu.MenuAdapter();
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            //build menu
+            adapter.add(new TagsMenu.MenuItemTitle(context, R.string.popup_tags_title));
+            for (String tag : tagList) {
+                adapter.add(new TagsMenu.MenuItemTag(tag));
+            }
 
-        //build menu
-        adapter.add(new TagsMenu.MenuItemTitle(context, R.string.popup_tags_title));
-        for (String tag : tagList) {
-            adapter.add(new TagsMenu.MenuItemTag(tag));
-        }
+            // remember where the title should go
+            int actionsTitlePosition = adapter.getCount();
+            if (!prefs.getBoolean("history-onclick", false))
+                adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_history));
+            if (prefs.getBoolean("pref-show-untagged", false))
+                adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_untagged));
+            // insert title only if at least an action was added
+            if (actionsTitlePosition != adapter.getCount())
+                adapter.add(actionsTitlePosition, new TagsMenu.MenuItemTitle(context, R.string.popup_tags_actions));
 
-        // remember where the title should go
-        int actionsTitlePosition = adapter.getCount();
-        if (!prefs.getBoolean("history-onclick", false))
-            adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_history));
-        if (prefs.getBoolean("pref-show-untagged", false))
-            adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_untagged));
-        // insert title only if at least an action was added
-        if (actionsTitlePosition != adapter.getCount())
-            adapter.add(actionsTitlePosition, new TagsMenu.MenuItemTitle(context, R.string.popup_tags_actions));
+            adapter.add(new TagsMenu.MenuItemDivider());
+            adapter.add(new TagsMenu.MenuItemBtn(context, R.string.ctx_menu));
 
-        adapter.add(new TagsMenu.MenuItemDivider());
-        adapter.add(new TagsMenu.MenuItemBtn(context, R.string.ctx_menu));
-
-        // set popup interaction rules
-        popupMenu.setAdapter(adapter);
-        popupMenu.setDismissOnItemClick( isAutoDismiss() );
-        popupMenu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
-            @Override
-            public void onItemClick(ListAdapter adapter, View view, int position) {
-                Object adapterItem = adapter.getItem(position);
-                if (adapterItem instanceof TagsMenu.MenuItemTag) {
-                    TagsMenu.MenuItemTag item = (TagsMenu.MenuItemTag) adapterItem;
-                    // show only apps that match this tag
-                    mainActivity.showMatchingTags(item.tag);
-                } else if (adapterItem instanceof TagsMenu.MenuItemBtn) {
-                    int nameRes = ((TagsMenu.MenuItemBtn) adapterItem).nameRes;
-                    if (nameRes == R.string.ctx_menu) {
-                        if (popupMenu != null)
-                            popupMenu.dismiss();
-                        popupMenu = null;
-                        anchor.showContextMenu();
-                    } else if (nameRes == R.string.show_history) {
-                        mainActivity.showHistory();
-                    } else if (nameRes == R.string.show_untagged) {
-                        mainActivity.showUntagged();
+            // set popup interaction rules
+            popupMenu.setAdapter(adapter);
+            popupMenu.setDismissOnItemClick(isAutoDismiss());
+            popupMenu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
+                @Override
+                public void onItemClick(ListAdapter adapter, View view, int position) {
+                    Object adapterItem = adapter.getItem(position);
+                    if (adapterItem instanceof TagsMenu.MenuItemTag) {
+                        TagsMenu.MenuItemTag item = (TagsMenu.MenuItemTag) adapterItem;
+                        // show only apps that match this tag
+                        mainActivity.showMatchingTags(item.tag);
+                    } else if (adapterItem instanceof TagsMenu.MenuItemBtn) {
+                        int nameRes = ((TagsMenu.MenuItemBtn) adapterItem).nameRes;
+                        if (nameRes == R.string.ctx_menu) {
+                            if (popupMenu != null)
+                                popupMenu.dismiss();
+                            popupMenu = null;
+                            anchor.showContextMenu();
+                        } else if (nameRes == R.string.show_history) {
+                            mainActivity.showHistory();
+                        } else if (nameRes == R.string.show_untagged) {
+                            mainActivity.showUntagged();
+                        }
                     }
                 }
-            }
-        });
-        popupMenu.setOnItemLongClickListener((adapter1, view, position) -> {
-            Object adapterItem = adapter1.getItem(position);
-            if (adapterItem instanceof MenuItemTag) {
-                MenuItemTag item = (MenuItemTag) adapterItem;
-                String msg = mainActivity.getResources().getString(R.string.toast_favorites_added);
-                KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(TagsProvider.generateUniqueId(item.tag));
-                mainActivity.onFavoriteChange();
-                Toast.makeText(mainActivity, String.format(msg, item.tag), Toast.LENGTH_SHORT).show();
-                return true;
-            }
-            return false;
-        });
+            });
+            popupMenu.setOnItemLongClickListener((adapter1, view, position) -> {
+                Object adapterItem = adapter1.getItem(position);
+                if (adapterItem instanceof MenuItemTag) {
+                    MenuItemTag item = (MenuItemTag) adapterItem;
+                    String msg = mainActivity.getResources().getString(R.string.toast_favorites_added);
+                    KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(TagsProvider.generateUniqueId(item.tag));
+                    mainActivity.onFavoriteChange();
+                    Toast.makeText(mainActivity, String.format(msg, item.tag), Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            });
+        }
 
-        popupMenu.show(anchor, 0f);
+        popupMenu.show(anchor, 1.0f);
         return popupMenu;
     }
 }

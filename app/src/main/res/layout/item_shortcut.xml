@@ -32,9 +32,9 @@
 
         <ImageView
             android:id="@+id/item_app_icon"
-            android:layout_gravity="end|bottom"
             android:layout_width="?attr/resultSubIconSize"
             android:layout_height="?attr/resultSubIconSize"
+            android:layout_gravity="end|bottom"
             android:contentDescription="@null"
             tools:src="@drawable/ic_launcher" />
     </FrameLayout>
@@ -60,6 +60,7 @@
             android:shadowDy="2"
             android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?attr/resultColor"
+            android:textDirection="locale"
             android:textSize="?attr/resultTitleSize"
             tools:ignore="RtlSymmetry"
             tools:text="@string/stub_application" />
@@ -77,6 +78,7 @@
             android:shadowDy="2"
             android:shadowRadius="?attr/textShadowRadius"
             android:textColor="?android:attr/textColorSecondary"
+            android:textDirection="locale"
             android:textSize="?attr/resultSubtitleSize"
             tools:ignore="RtlSymmetry"
             tools:text="@string/stub_app_tag" />
