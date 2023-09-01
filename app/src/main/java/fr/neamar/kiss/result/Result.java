@@ -22,15 +22,16 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.ref.WeakReference;
-import java.util.List;
-
 import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.StyleableRes;
+
+import java.lang.ref.WeakReference;
+import java.util.List;
+import java.util.Locale;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
@@ -158,7 +159,7 @@ public abstract class Result {
             String ch = Character.toString((char) pojo.normalizedName.codePoints[0]);
             // convert to uppercase otherwise lowercase a -z will be sorted
             // after upper A-Z
-            return ch.toUpperCase();
+            return ch.toUpperCase(Locale.getDefault());
         } catch (ArrayIndexOutOfBoundsException e) {
             // Normalized name is empty.
             return "-";
@@ -335,6 +336,7 @@ public abstract class Result {
     /**
      * Does the drawable changes regularly?
      * If so, it can't be kept in cache for long.
+     *
      * @return true when dynamic
      */
     public boolean isDrawableDynamic() {

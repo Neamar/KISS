@@ -35,8 +35,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import java.util.Locale;
-
 import fr.neamar.kiss.CustomIconDialog;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
@@ -250,7 +248,7 @@ public class AppResult extends Result {
         builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
             dialog.dismiss();
             // Refresh tags for given app
-            app.setTags(tagInput.getText().toString().trim().toLowerCase(Locale.ROOT));
+            app.setTags(tagInput.getText().toString());
             KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
             // Show toast message
             String msg = context.getResources().getString(R.string.tags_confirmation_added);

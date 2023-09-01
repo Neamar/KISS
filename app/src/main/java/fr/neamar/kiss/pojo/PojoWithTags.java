@@ -1,5 +1,7 @@
 package fr.neamar.kiss.pojo;
 
+import java.util.Locale;
+
 import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public class PojoWithTags extends Pojo {
@@ -23,7 +25,7 @@ public class PojoWithTags extends Pojo {
     public void setTags(String tags) {
         if (tags != null) {
             // Set the actual user-friendly name
-            this.tags = tags;
+            this.tags = tags.trim().toLowerCase(Locale.getDefault());
             this.normalizedTags = StringNormalizer.normalizeWithResult(this.tags, false);
         } else {
             this.tags = null;
