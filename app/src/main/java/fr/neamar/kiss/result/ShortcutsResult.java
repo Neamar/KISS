@@ -304,7 +304,7 @@ public class ShortcutsResult extends Result {
         builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
             dialog.dismiss();
             // Refresh tags for given app
-            pojo.setTags(tagInput.getText().toString().trim().toLowerCase(Locale.ROOT));
+            pojo.setTags(tagInput.getText().toString());
             KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
             // Show toast message
             String msg = context.getResources().getString(R.string.tags_confirmation_added);

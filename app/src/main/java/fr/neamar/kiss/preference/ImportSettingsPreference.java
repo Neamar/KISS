@@ -85,7 +85,7 @@ public class ImportSettingsPreference extends DialogPreference {
                     Iterator<?> tagKeys = tags.keys();
                     while (tagKeys.hasNext()) {
                         String id = (String) tagKeys.next();
-                        tagHandler.setTags(id, tags.getString(id).toLowerCase());
+                        tagHandler.setTags(id, tags.getString(id));
                     }
                     dataHandler.reloadApps();
                     dataHandler.reloadShortcuts();

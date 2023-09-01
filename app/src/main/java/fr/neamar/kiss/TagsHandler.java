@@ -33,6 +33,8 @@ public class TagsHandler {
     }
 
     public void setTags(String id, String tags) {
+        // sanitize tags
+        tags = tags.trim().toLowerCase(Locale.getDefault());
         // remove existing tags for id
         DBHelper.deleteTagsForId(this.context, id);
         // add to db
@@ -56,8 +58,8 @@ public class TagsHandler {
 
     public Set<String> getAllTagsAsSet() {
         Set<String> tags = new HashSet<>();
-        for (Map.Entry<String, String> entry : tagsCache.entrySet()) {
-            tags.addAll(Arrays.asList(entry.getValue().split("\\s+")));
+        for (String value : tagsCache.values()) {
+            tags.addAll(Arrays.asList(value.split("\\s+")));
         }
         tags.remove("");
         return tags;
@@ -113,7 +115,7 @@ public class TagsHandler {
     private void addDefaultAlias(String aliases, String app) {
         // add aliases only if they haven't overridden by the user (not in db)
         if (!tagsCache.containsKey(app)) {
-            tagsCache.put(app, aliases.replace(",", " ").trim().toLowerCase(Locale.ROOT));
+            tagsCache.put(app, aliases.replace(",", " ").trim().toLowerCase(Locale.getDefault()));
         }
     }
 

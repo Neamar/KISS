@@ -23,6 +23,7 @@ import android.widget.ImageView;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Locale;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -398,7 +399,7 @@ class ExperienceTweaks extends Forwarder {
      * (same for flesky: https://github.com/Neamar/KISS/issues/1263)
      */
     private boolean isNonCompliantKeyboard() {
-        String currentKeyboard = Settings.Secure.getString(mainActivity.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD).toLowerCase();
+        String currentKeyboard = Settings.Secure.getString(mainActivity.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD).toLowerCase(Locale.ROOT);
         return currentKeyboard.contains("swiftkey") || currentKeyboard.contains("flesky");
     }
 
