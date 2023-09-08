@@ -17,6 +17,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -34,6 +35,7 @@ import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.result.AppResult;
+import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
@@ -213,6 +215,18 @@ public class IconsHandler {
         return drawable;
     }
 
+    @NonNull
+    public Drawable getBackgroundDrawable(@ColorInt int backgroundColor) {
+        Drawable drawable = DrawableUtils.generateBackgroundDrawable(ctx, backgroundColor);
+        return forceIconMask(drawable);
+    }
+
+    @NonNull
+    public Drawable getDrawableIconForCodepoint(int codePoint, @ColorInt int textColor, @ColorInt int backgroundColor) {
+        Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor);
+        return forceIconMask(drawable);
+    }
+
     public Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable) {
         return applyIconMask(ctx, drawable, false);
     }
@@ -259,6 +273,24 @@ public class IconsHandler {
         } else {
             // use adaptive shape
             return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false, Color.TRANSPARENT);
+        }
+    }
+
+    /**
+     * Force icon mask to be applied to given drawable.
+     *
+     * @param drawable drawable to mask
+     * @return masked drawable
+     */
+    @NonNull
+    private Drawable forceIconMask(@NonNull Drawable drawable) {
+        // apply mask
+        if (mIconPack != null && mIconPack.hasMask()) {
+            // if the icon pack has a mask, use that instead of the adaptive shape
+            return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
+        } else {
+            // use adaptive shape
+            return mSystemPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         }
     }
 
