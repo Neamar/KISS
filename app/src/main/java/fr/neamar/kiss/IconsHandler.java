@@ -27,6 +27,7 @@ import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
@@ -35,7 +36,6 @@ import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.result.AppResult;
-import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
@@ -215,16 +215,25 @@ public class IconsHandler {
         return drawable;
     }
 
-    @NonNull
     public Drawable getBackgroundDrawable(@ColorInt int backgroundColor) {
-        Drawable drawable = DrawableUtils.generateBackgroundDrawable(ctx, backgroundColor);
-        return forceIconMask(drawable);
+        // just checking will make this thread wait for the icon pack to load
+        if (mIconPack != null && !mIconPack.isLoaded()) {
+            return null;
+        }
+
+        final int shape = getShapeForGeneratingDrawable();
+        Drawable drawable = DrawableUtils.generateBackgroundDrawable(ctx, backgroundColor, shape);
+        return forceIconMask(drawable, shape);
     }
 
-    @NonNull
     public Drawable getDrawableIconForCodepoint(int codePoint, @ColorInt int textColor, @ColorInt int backgroundColor) {
-        Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor);
-        return forceIconMask(drawable);
+        // just checking will make this thread wait for the icon pack to load
+        if (mIconPack != null && !mIconPack.isLoaded()) {
+            return null;
+        }
+        final int shape = getShapeForGeneratingDrawable();
+        Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor, shape);
+        return forceIconMask(drawable, shape);
     }
 
     public Drawable applyIconMask(@NonNull Context ctx, @NonNull Drawable drawable) {
@@ -282,15 +291,14 @@ public class IconsHandler {
      * @param drawable drawable to mask
      * @return masked drawable
      */
-    @NonNull
-    private Drawable forceIconMask(@NonNull Drawable drawable) {
+    private Drawable forceIconMask(@NonNull Drawable drawable, int shape) {
         // apply mask
         if (mIconPack != null && mIconPack.hasMask()) {
             // if the icon pack has a mask, use that instead of the adaptive shape
             return mIconPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
         } else {
             // use adaptive shape
-            return mSystemPack.applyBackgroundAndMask(ctx, drawable, false, Color.TRANSPARENT);
+            return DrawableUtils.applyIconMaskShape(ctx, drawable, shape, false, Color.TRANSPARENT);
         }
     }
 
@@ -311,6 +319,30 @@ public class IconsHandler {
         }
         return shape;
     }
+
+    /**
+     * Get shape used for generating drawables with fallbacks.
+     * If icon pack has mask then {@link DrawableUtils#SHAPE_SYSTEM} is used.
+     * If shape is {@link DrawableUtils#SHAPE_SYSTEM} too and no icon mask can be configured for device, used shape is a circle.
+     *
+     * @return shape
+     */
+    private int getShapeForGeneratingDrawable() {
+        int shape = mSystemPack.getAdaptiveShape();
+        if (mIconPack != null && mIconPack.hasMask()) {
+            shape = DrawableUtils.SHAPE_SYSTEM;
+        }
+        if (shape == DrawableUtils.SHAPE_SYSTEM && !DrawableUtils.hasDeviceConfiguredMask()) {
+            shape = DrawableUtils.SHAPE_CIRCLE;
+        }
+        if (shape == DrawableUtils.SHAPE_TEARDROP_RND) {
+            Random r = new Random();
+            shape = DrawableUtils.SHAPE_TEARDROP_BR + (r.nextInt(4));
+        }
+
+        return shape;
+    }
+
 
     /**
      * Scan for installed icons packs
