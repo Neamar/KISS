@@ -11,6 +11,7 @@ import android.os.UserManager;
 import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
@@ -172,8 +173,8 @@ public class AppProvider extends Provider<AppPojo> {
         return null;
     }
 
-    public ArrayList<AppPojo> getAllApps() {
-        ArrayList<AppPojo> records = new ArrayList<>(pojos.size());
+    public List<AppPojo> getAllApps() {
+        List<AppPojo> records = new ArrayList<>(pojos.size());
 
         for (AppPojo pojo : pojos) {
             pojo.relevance = 0;
@@ -182,8 +183,8 @@ public class AppProvider extends Provider<AppPojo> {
         return records;
     }
 
-    public ArrayList<AppPojo> getAllAppsWithoutExcluded() {
-        ArrayList<AppPojo> records = new ArrayList<>(pojos.size());
+    public List<AppPojo> getAllAppsWithoutExcluded() {
+        List<AppPojo> records = new ArrayList<>(pojos.size());
 
         for (AppPojo pojo : pojos) {
             if (pojo.isExcluded()) continue;

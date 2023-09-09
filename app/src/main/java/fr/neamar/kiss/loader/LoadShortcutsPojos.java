@@ -24,7 +24,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
     }
 
     @Override
-    protected ArrayList<ShortcutPojo> doInBackground(Void... arg0) {
+    protected List<ShortcutPojo> doInBackground(Void... arg0) {
         Context context = this.context.get();
         if (context == null) {
             return new ArrayList<>();
@@ -36,7 +36,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         Set<String> excludedApps = dataHandler.getExcluded();
         Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
 
-        ArrayList<ShortcutPojo> pojos = new ArrayList<>();
+        List<ShortcutPojo> pojos = new ArrayList<>();
 
         for (ShortcutRecord shortcutRecord : records) {
             ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, null, true, false);

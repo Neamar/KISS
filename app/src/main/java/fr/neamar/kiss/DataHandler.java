@@ -380,10 +380,10 @@ public class DataHandler extends BroadcastReceiver
      * @param itemsToExcludeById Items to exclude from history by their id
      * @return pojos in recent history
      */
-    public ArrayList<Pojo> getHistory(Context context, int itemCount, String historyMode, Set<String> itemsToExcludeById) {
+    public List<Pojo> getHistory(Context context, int itemCount, String historyMode, Set<String> itemsToExcludeById) {
         // Pre-allocate array slots that are likely to be used based on the current maximum item
         // count
-        ArrayList<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
+        List<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
 
         // Max sure that we get enough items, regardless of how many may be excluded
         int extendedItemCount = itemCount + itemsToExcludeById.size();
@@ -787,12 +787,12 @@ public class DataHandler extends BroadcastReceiver
      *
      * @return favorites' pojo
      */
-    public ArrayList<Pojo> getFavorites() {
+    public List<Pojo> getFavorites() {
 
         String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
                 getString("favorite-apps-list", "");
         List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        ArrayList<Pojo> favorites = new ArrayList<>(favAppsList.size());
+        List<Pojo> favorites = new ArrayList<>(favAppsList.size());
         // Find associated items
         for (int i = 0; i < favAppsList.size(); i++) {
             Pojo pojo = getPojo(favAppsList.get(i));

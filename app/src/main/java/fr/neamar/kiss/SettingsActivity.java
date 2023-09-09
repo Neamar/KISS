@@ -87,7 +87,7 @@ public class SettingsActivity extends PreferenceActivity implements
      */
     @NonNull
     private static Set<String> getFavTags(Context context) {
-        ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(context).getDataHandler()
+        List<Pojo> favoritesPojo = KissApplication.getApplication(context).getDataHandler()
                 .getFavorites();
         Set<String> set = new HashSet<>();
         for (Pojo pojo : favoritesPojo) {
@@ -423,7 +423,7 @@ public class SettingsActivity extends PreferenceActivity implements
      * only if this device supports shortcuts
      */
     private void addResetExcludedAppShortcutsPreference() {
-        if(!ShortcutUtil.canDeviceShowShortcuts()) {
+        if (!ShortcutUtil.canDeviceShowShortcuts()) {
             return;
         }
 
@@ -442,7 +442,7 @@ public class SettingsActivity extends PreferenceActivity implements
      * only if this device supports shortcuts
      */
     private void addEnableShortcutsSwitch() {
-        if(!ShortcutUtil.canDeviceShowShortcuts()) {
+        if (!ShortcutUtil.canDeviceShowShortcuts()) {
             return;
         }
 
@@ -461,7 +461,7 @@ public class SettingsActivity extends PreferenceActivity implements
      * only if this device supports shortcuts
      */
     private void addRegenerateShortcutsPreference() {
-        if(!ShortcutUtil.canDeviceShowShortcuts()) {
+        if (!ShortcutUtil.canDeviceShowShortcuts()) {
             return;
         }
 
@@ -476,7 +476,7 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void addExcludedShortcutAppSettings() {
-        if(!ShortcutUtil.canDeviceShowShortcuts()) {
+        if (!ShortcutUtil.canDeviceShowShortcuts()) {
             return;
         }
 
@@ -707,7 +707,7 @@ public class SettingsActivity extends PreferenceActivity implements
             // after we edit the fav tags list update DataHandler
             Set<String> favTags = sharedPreferences.getStringSet(key, Collections.<String>emptySet());
             DataHandler dh = KissApplication.getApplication(this).getDataHandler();
-            ArrayList<Pojo> favoritesPojo = dh.getFavorites();
+            List<Pojo> favoritesPojo = dh.getFavorites();
             for (Pojo pojo : favoritesPojo)
                 if (pojo instanceof TagDummyPojo && !favTags.contains(pojo.getName()))
                     dh.removeFromFavorites(pojo.id);

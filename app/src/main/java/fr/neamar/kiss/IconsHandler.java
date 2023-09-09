@@ -303,7 +303,7 @@ public class IconsHandler {
         }
     }
 
-    HashMap<String, String> getIconsPacks() {
+    Map<String, String> getIconsPacks() {
         return iconsPacks;
     }
 

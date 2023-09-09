@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import fr.neamar.kiss.DataHandler;
@@ -31,10 +32,10 @@ public class DBHelper {
         return database;
     }
 
-    private static ArrayList<ValuedHistoryRecord> readCursor(Cursor cursor) {
+    private static List<ValuedHistoryRecord> readCursor(Cursor cursor) {
         cursor.moveToFirst();
 
-        ArrayList<ValuedHistoryRecord> records = new ArrayList<>(cursor.getCount());
+        List<ValuedHistoryRecord> records = new ArrayList<>(cursor.getCount());
         while (!cursor.isAfterLast()) {
             ValuedHistoryRecord entry = new ValuedHistoryRecord();
 
@@ -143,8 +144,8 @@ public class DBHelper {
      * @param limit   max number of items to retrieve
      * @return records with number of use
      */
-    public static ArrayList<ValuedHistoryRecord> getHistory(Context context, int limit, String historyMode) {
-        ArrayList<ValuedHistoryRecord> records;
+    public static List<ValuedHistoryRecord> getHistory(Context context, int limit, String historyMode) {
+        List<ValuedHistoryRecord> records;
 
         SQLiteDatabase db = getDatabase(context);
 
@@ -210,9 +211,9 @@ public class DBHelper {
      * @param query   query to run
      * @return records with number of use
      */
-    public static ArrayList<ValuedHistoryRecord> getPreviousResultsForQuery(Context context,
+    public static List<ValuedHistoryRecord> getPreviousResultsForQuery(Context context,
                                                                             String query) {
-        ArrayList<ValuedHistoryRecord> records;
+        List<ValuedHistoryRecord> records;
         SQLiteDatabase db = getDatabase(context);
 
         // Cursor query (String table, String[] columns, String selection,
@@ -415,8 +416,8 @@ public class DBHelper {
         }
     }
 
-    public static HashMap<String, AppRecord> getCustomAppData(Context context) {
-        HashMap<String, AppRecord> records;
+    public static Map<String, AppRecord> getCustomAppData(Context context) {
+        Map<String, AppRecord> records;
         SQLiteDatabase db = getDatabase(context);
         try (Cursor cursor = db.query("custom_apps", new String[]{"_id", "name", "component_name", "custom_flags"},
                 null, null, null, null, null)) {
@@ -439,7 +440,7 @@ public class DBHelper {
     /**
      * Retrieve a list of all shortcuts for current package name, without icons.
      */
-    public static ArrayList<ShortcutRecord> getShortcuts(Context context, String packageName) {
+    public static List<ShortcutRecord> getShortcuts(Context context, String packageName) {
         SQLiteDatabase db = getDatabase(context);
 
         // Cursor query (String table, String[] columns, String selection,
@@ -449,7 +450,7 @@ public class DBHelper {
                 "package = ?", new String[]{packageName}, null, null, null);
         cursor.moveToFirst();
 
-        ArrayList<ShortcutRecord> records = new ArrayList<>();
+        List<ShortcutRecord> records = new ArrayList<>();
         while (!cursor.isAfterLast()) {
             ShortcutRecord entry = new ShortcutRecord();
 
@@ -469,7 +470,7 @@ public class DBHelper {
     /**
      * Retrieve a list of all shortcuts, without icons.
      */
-    public static ArrayList<ShortcutRecord> getShortcuts(Context context) {
+    public static List<ShortcutRecord> getShortcuts(Context context) {
         SQLiteDatabase db = getDatabase(context);
 
         // Cursor query (String table, String[] columns, String selection,
@@ -479,7 +480,7 @@ public class DBHelper {
                 null, null, null, null, null);
         cursor.moveToFirst();
 
-        ArrayList<ShortcutRecord> records = new ArrayList<>(cursor.getCount());
+        List<ShortcutRecord> records = new ArrayList<>(cursor.getCount());
         while (!cursor.isAfterLast()) {
             ShortcutRecord entry = new ShortcutRecord();
 
