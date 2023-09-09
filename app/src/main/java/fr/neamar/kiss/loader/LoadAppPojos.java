@@ -12,7 +12,8 @@ import android.os.UserManager;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
@@ -32,10 +33,10 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
     }
 
     @Override
-    protected ArrayList<AppPojo> doInBackground(Void... params) {
+    protected List<AppPojo> doInBackground(Void... params) {
         long start = System.currentTimeMillis();
 
-        ArrayList<AppPojo> apps = new ArrayList<>();
+        List<AppPojo> apps = new ArrayList<>();
 
         Context ctx = context.get();
         if (ctx == null) {
@@ -72,7 +73,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             }
         }
 
-        HashMap<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
+        Map<String, AppRecord> customApps = DBHelper.getCustomAppData(ctx);
         for (AppPojo app : apps) {
             AppRecord customApp = customApps.get(app.getComponentName());
             if (customApp == null)

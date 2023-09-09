@@ -10,6 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,10 +24,10 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
     }
 
     @Override
-    protected ArrayList<ContactsPojo> doInBackground(Void... params) {
+    protected List<ContactsPojo> doInBackground(Void... params) {
         long start = System.currentTimeMillis();
 
-        ArrayList<ContactsPojo> contacts = new ArrayList<>();
+        List<ContactsPojo> contacts = new ArrayList<>();
         Context c = context.get();
         if (c == null) {
             return contacts;

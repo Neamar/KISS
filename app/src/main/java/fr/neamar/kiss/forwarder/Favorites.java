@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -119,7 +120,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     void onFavoriteChange() {
-        ArrayList<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
+        List<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
         favCount = favoritesPojo.size();
 
         ArrayList<ViewHolder> holders = new ArrayList<>(favCount);

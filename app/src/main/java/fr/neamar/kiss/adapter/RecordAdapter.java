@@ -43,7 +43,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     private String[] sections = new String[0];
     private static final String TAG = RecordAdapter.class.getSimpleName();
 
-    public RecordAdapter(QueryInterface parent, ArrayList<Result> results) {
+    public RecordAdapter(QueryInterface parent, List<Result> results) {
         this.parent = parent;
         this.results = results;
         this.fuzzyScore = null;

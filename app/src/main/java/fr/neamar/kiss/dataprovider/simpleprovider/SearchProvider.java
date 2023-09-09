@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import fr.neamar.kiss.R;
@@ -28,7 +29,7 @@ public class SearchProvider extends SimpleProvider {
         return new HashSet<>(Arrays.asList(defaultSearchProviders));
     }
 
-    private final ArrayList<SearchPojo> searchProviders = new ArrayList<>();
+    private final List<SearchPojo> searchProviders = new ArrayList<>();
     private final Context context;
 
     public SearchProvider(Context context) {
@@ -72,8 +73,8 @@ public class SearchProvider extends SimpleProvider {
         searcher.addResult(getResults(s).toArray(new Pojo[0]));
     }
 
-    private ArrayList<Pojo> getResults(String query) {
-        ArrayList<Pojo> records = new ArrayList<>();
+    private List<Pojo> getResults(String query) {
+        List<Pojo> records = new ArrayList<>();
 
         if (prefs.getBoolean("enable-search", true)) {
             for (SearchPojo pojo : searchProviders) {

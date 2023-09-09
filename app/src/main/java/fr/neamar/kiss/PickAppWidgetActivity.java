@@ -55,10 +55,10 @@ public class PickAppWidgetActivity extends Activity {
         final Context context = getApplicationContext();
         final WidgetListAdapter adapter = new WidgetListAdapter();
         listView.setAdapter(adapter);
-        final ArrayList<MenuItem> adapterList = new ArrayList<>();
+        final List<MenuItem> adapterList = new ArrayList<>();
         Utilities.runAsync(t -> {
             // get widget list
-            ArrayList<WidgetInfo> widgetList = getWidgetList(context);
+            List<WidgetInfo> widgetList = getWidgetList(context);
 
             // sort list
             Collections.sort(widgetList, (o1, o2) -> {
@@ -113,10 +113,10 @@ public class PickAppWidgetActivity extends Activity {
     }
 
     @WorkerThread
-    private static ArrayList<WidgetInfo> getWidgetList(@NonNull Context context) {
+    private static List<WidgetInfo> getWidgetList(@NonNull Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         List<AppWidgetProviderInfo> installedProviders = appWidgetManager.getInstalledProviders();
-        ArrayList<WidgetInfo> infoArrayList = new ArrayList<>(installedProviders.size());
+        List<WidgetInfo> infoList = new ArrayList<>(installedProviders.size());
         PackageManager packageManager = context.getPackageManager();
         for (AppWidgetProviderInfo providerInfo : installedProviders) {
             // get widget name
@@ -143,9 +143,9 @@ public class PickAppWidgetActivity extends Activity {
             } catch (Exception e) {
                 Log.e(TAG, "get `" + providerInfo.provider.getPackageName() + "` label");
             }
-            infoArrayList.add(new WidgetInfo(appName, label, description, providerInfo));
+            infoList.add(new WidgetInfo(appName, label, description, providerInfo));
         }
-        return infoArrayList;
+        return infoList;
     }
 
     @WorkerThread
@@ -247,7 +247,7 @@ public class PickAppWidgetActivity extends Activity {
     }
 
     private static class WidgetListAdapter extends BaseAdapter {
-        private final ArrayList<MenuItem> mList = new ArrayList<>(0);
+        private final List<MenuItem> mList = new ArrayList<>(0);
 
         public void setItems(Collection<MenuItem> list) {
             mList.clear();
