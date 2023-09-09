@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -24,11 +26,14 @@ import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.Utilities;
 
 public class TagDummyResult extends Result {
-    private static Drawable gBackground = null;
+    private static volatile Drawable gBackground = null;
 
     private volatile Drawable icon = null;
+
+    private Utilities.AsyncRun mLoadIconTask = null;
 
     TagDummyResult(@NonNull TagDummyPojo pojo) {
         super(pojo);
@@ -36,8 +41,12 @@ public class TagDummyResult extends Result {
 
     private Drawable getShape(Context context) {
         if (gBackground == null) {
-            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            gBackground = iconsHandler.getBackgroundDrawable(getBackgroundColor(context));
+            synchronized (this) {
+                if (gBackground == null) {
+                    IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                    gBackground = iconsHandler.getBackgroundDrawable(getBackgroundColor(context));
+                }
+            }
         }
 
         return gBackground;
@@ -56,7 +65,7 @@ public class TagDummyResult extends Result {
         ImageView image = view.findViewById(R.id.item_search_icon);
         TextView searchText = view.findViewById(R.id.item_search_text);
 
-        image.setImageDrawable(getDrawable(context));
+        this.setAsyncDrawable(image);
         searchText.setText(pojo.getName());
 
         image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
@@ -70,18 +79,29 @@ public class TagDummyResult extends Result {
         if (sharedPreferences.getBoolean("pref-fav-tags-drawable", false)) {
             return super.inflateFavorite(context, parent);
         } else {
+            View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_tag, parent, false);
+            ImageView favoriteIcon = favoriteView.findViewById(android.R.id.background);
+            TextView favoriteText = favoriteView.findViewById(android.R.id.text1);
+
+            favoriteIcon.setImageResource(R.drawable.ic_launcher_white);
+            AtomicReference<Drawable> backgroundDrawable = new AtomicReference<>(null);
+            mLoadIconTask = Utilities.runAsync((task) -> {
+                if (task == mLoadIconTask) {
+                    // Retrieve icon for this shortcut
+                    backgroundDrawable.set(getShape(context));
+                }
+            }, (task) -> {
+                if (!task.isCancelled() && task == mLoadIconTask) {
+                    // set icons
+                    favoriteIcon.setImageDrawable(backgroundDrawable.get());
+                    favoriteIcon.invalidateDrawable(backgroundDrawable.get());
+                }
+            });
+
             boolean largeSearchBar = sharedPreferences.getBoolean("large-search-bar", false);
             int barSize = context.getResources().getDimensionPixelSize(largeSearchBar ? R.dimen.large_bar_height : R.dimen.bar_height);
             int codepoint = pojo.getName().codePointAt(0);
             String glyph = new String(Character.toChars(codepoint));
-
-            Drawable drawable = getShape(context);
-
-            View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_tag, parent, false);
-            ImageView favoriteIcon = favoriteView.findViewById(android.R.id.background);
-            TextView favoriteText = favoriteView.findViewById(android.R.id.text1);
-            favoriteIcon.setImageDrawable(drawable);
-            favoriteIcon.invalidateDrawable(drawable);
 
             favoriteText.setVisibility(View.VISIBLE);
             favoriteText.setTextColor(getTextColor(context));
