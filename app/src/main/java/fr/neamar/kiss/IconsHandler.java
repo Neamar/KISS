@@ -36,6 +36,7 @@ import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.result.AppResult;
+import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
@@ -455,6 +456,7 @@ public class IconsHandler {
      * Clear cache
      */
     private void cacheClear() {
+        TagDummyResult.resetShape();
         clearCustomIconIdCache();
 
         File cacheDir = this.getIconsCacheDir();

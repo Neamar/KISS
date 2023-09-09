@@ -43,6 +43,10 @@ public class TagDummyResult extends Result {
         return gBackground;
     }
 
+    public static void resetShape() {
+        gBackground = null;
+    }
+
     @NonNull
     @Override
     public View display(Context context, View view, @NonNull ViewGroup parent, FuzzyScore fuzzyScore) {
