@@ -18,6 +18,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,7 +29,6 @@ import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -46,8 +46,6 @@ import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.preference.ExcludePreferenceScreen;
 import fr.neamar.kiss.preference.PreferenceScreenHelper;
-import fr.neamar.kiss.preference.ResetExcludedAppShortcutsPreference;
-import fr.neamar.kiss.preference.ResetShortcutsPreference;
 import fr.neamar.kiss.preference.SwitchPreference;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.DrawableUtils;
@@ -71,6 +69,7 @@ public class SettingsActivity extends PreferenceActivity implements
             "gesture-left", "gesture-right",
             "gesture-long-press"
     );
+    private static final String TAG = SettingsActivity.class.getSimpleName();
     private static Pair<CharSequence[], CharSequence[]> ItemToRunListContent = null;
 
     private boolean requireFullRestart = false;
@@ -140,6 +139,11 @@ public class SettingsActivity extends PreferenceActivity implements
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             removePreference("icons-section", DrawableUtils.KEY_THEMED_ICONS);
         }
+        if (!ShortcutUtil.canDeviceShowShortcuts()) {
+            removePreference("exclude_apps_category", "reset-excluded-app-shortcuts");
+            removePreference("search-providers", "enable-shortcuts");
+            removePreference("search-providers", "reset");
+        }
 
         final ListPreference iconsPack = (ListPreference) findPreference("icons-pack");
         iconsPack.setEnabled(false);
@@ -174,9 +178,6 @@ public class SettingsActivity extends PreferenceActivity implements
             SettingsActivity.this.addExcludedShortcutAppSettings();
         };
 
-        addEnableShortcutsSwitch();
-        addRegenerateShortcutsPreference();
-        addResetExcludedAppShortcutsPreference();
         reorderPreferencesWithDisplayDependency();
 
         if (savedInstanceState == null) {
@@ -334,10 +335,14 @@ public class SettingsActivity extends PreferenceActivity implements
         return false;
     }
 
-    private void removePreference(String parent, String category) {
-        PreferenceGroup p = (PreferenceGroup) findPreference(parent);
-        Preference c = findPreference(category);
-        p.removePreference(c);
+    private void removePreference(String parentKey, String key) {
+        PreferenceGroup p = (PreferenceGroup) findPreference(parentKey);
+        Preference c = p.findPreference(key);
+        if (c != null) {
+            p.removePreference(c);
+        } else {
+            Log.d(TAG, "Preference to remove not found: " + parentKey + "/" + key);
+        }
     }
 
     private PreferenceGroup getParent(Preference preference) {
@@ -418,63 +423,6 @@ public class SettingsActivity extends PreferenceActivity implements
         category.addPreference(excludedAppsScreen);
     }
 
-    /**
-     * Adds the button for resetting the apps excluded from showing shortcuts,
-     * only if this device supports shortcuts
-     */
-    private void addResetExcludedAppShortcutsPreference() {
-        if (!ShortcutUtil.canDeviceShowShortcuts()) {
-            return;
-        }
-
-        ResetExcludedAppShortcutsPreference pref = new ResetExcludedAppShortcutsPreference(this);
-        pref.setKey("reset-excluded-app-shortcuts");
-        pref.setOrder(59);
-        pref.setTitle(R.string.reset_excluded_app_shortcuts_name);
-        pref.setDialogMessage(R.string.reset_excluded_app_shortcuts_warn);
-
-        PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
-        category.addPreference(pref);
-    }
-
-    /**
-     * Adds the switch for toggling whether shortcuts shown be shown,
-     * only if this device supports shortcuts
-     */
-    private void addEnableShortcutsSwitch() {
-        if (!ShortcutUtil.canDeviceShowShortcuts()) {
-            return;
-        }
-
-        SwitchPreference pref = new SwitchPreference(this);
-        pref.setDefaultValue(true);
-        pref.setKey("enable-shortcuts");
-        pref.setTitle(R.string.shortcuts_name);
-
-        PreferenceGroup category = (PreferenceGroup) findPreference("search-providers");
-        pref.setOrder(3);
-        category.addPreference(pref);
-    }
-
-    /**
-     * Adds the button for regenerating the list of shortcuts,
-     * only if this device supports shortcuts
-     */
-    private void addRegenerateShortcutsPreference() {
-        if (!ShortcutUtil.canDeviceShowShortcuts()) {
-            return;
-        }
-
-        ResetShortcutsPreference pref = new ResetShortcutsPreference(this);
-        pref.setDialogMessage(R.string.regenerate_shortcuts_desc);
-        pref.setKey("reset");
-        pref.setTitle(R.string.regenerate_shortcuts);
-
-        PreferenceGroup category = (PreferenceGroup) findPreference("search-providers");
-        pref.setOrder(5);
-        category.addPreference(pref);
-    }
-
     private void addExcludedShortcutAppSettings() {
         if (!ShortcutUtil.canDeviceShowShortcuts()) {
             return;
@@ -528,27 +476,15 @@ public class SettingsActivity extends PreferenceActivity implements
     }
 
     private void removeSearchProviderSelect() {
-        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
-        Preference pref = findPreference("selected-search-provider-names");
-        if (pref != null) {
-            category.removePreference(pref);
-        }
+        removePreference("web-providers", "selected-search-provider-names");
     }
 
     private void removeSearchProviderDelete() {
-        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
-        Preference pref = findPreference("deleting-search-providers-names");
-        if (pref != null) {
-            category.removePreference(pref);
-        }
+        removePreference("web-providers", "deleting-search-providers-names");
     }
 
     private void removeSearchProviderDefault() {
-        PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
-        Preference pref = findPreference("default-search-provider");
-        if (pref != null) {
-            category.removePreference(pref);
-        }
+        removePreference("web-providers", "default-search-provider");
     }
 
     @SuppressWarnings("StringSplitter")
@@ -850,5 +786,23 @@ public class SettingsActivity extends PreferenceActivity implements
             selectListPreference.setEnabled(true);
             selectListPreference.setTitle(R.string.pref_fav_tags_select);
         });
+    }
+
+    /**
+     * Override to catch an exception which can crash whole app.
+     * This exception can occure when entries are added to/removed from preferences dynamically.
+     *
+     * @param key The key of the preference to retrieve.
+     * @return The {@link Preference} with the key, or null.
+     * @see PreferenceActivity#findPreference(CharSequence)
+     */
+    @Override
+    public Preference findPreference(CharSequence key) {
+        try {
+            return super.findPreference(key);
+        } catch (IndexOutOfBoundsException e) {
+            Log.e(TAG, "Unable to find preference for key:" + key);
+            return null;
+        }
     }
 }
