@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
@@ -45,19 +46,21 @@ public class MimeTypeCache {
     // Cached label
     private final Map<String, String> labels;
     // Cached detail columns
-    private Map<String, String> detailColumns;
+    private volatile Map<String, String> detailColumns;
 
 
     public MimeTypeCache() {
-        this.componentNames = new HashMap<>();
-        this.labels = new HashMap<>();
+        this.componentNames = new ConcurrentHashMap<>();
+        this.labels = new ConcurrentHashMap<>();
         this.detailColumns = null;
     }
 
     public void clearCache() {
-        this.componentNames.clear();
-        this.labels.clear();
-        this.detailColumns = null;
+        synchronized (this) {
+            this.componentNames.clear();
+            this.labels.clear();
+            this.detailColumns = null;
+        }
     }
 
     /**
@@ -94,56 +97,60 @@ public class MimeTypeCache {
      */
     public Map<String, String> fetchDetailColumns(Context context) {
         if (detailColumns == null) {
-            long start = System.currentTimeMillis();
+            synchronized (this) {
+                if (detailColumns == null) {
+                    long start = System.currentTimeMillis();
 
-            detailColumns = new HashMap<>();
+                    detailColumns = new HashMap<>();
 
-            final Set<String> contactSyncableTypes = new HashSet<>();
+                    final Set<String> contactSyncableTypes = new HashSet<>();
 
-            SyncAdapterType[] syncAdapterTypes = ContentResolver.getSyncAdapterTypes();
-            for (SyncAdapterType type : syncAdapterTypes) {
-                if (type.authority.equals(ContactsContract.AUTHORITY)) {
-                    contactSyncableTypes.add(type.accountType);
-                }
-            }
+                    SyncAdapterType[] syncAdapterTypes = ContentResolver.getSyncAdapterTypes();
+                    for (SyncAdapterType type : syncAdapterTypes) {
+                        if (type.authority.equals(ContactsContract.AUTHORITY)) {
+                            contactSyncableTypes.add(type.accountType);
+                        }
+                    }
 
-            AuthenticatorDescription[] authenticatorDescriptions = ((AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE)).getAuthenticatorTypes();
-            for (AuthenticatorDescription auth : authenticatorDescriptions) {
-                if (contactSyncableTypes.contains(auth.type)) {
-                    try (XmlResourceParser parser = loadContactsXml(context, auth.packageName)) {
-                        if (parser != null) {
-                            while (parser.next() != XmlPullParser.END_DOCUMENT) {
-                                if (CONTACTS_DATA_KIND.equals(parser.getName())) {
-                                    String foundMimeType = null;
-                                    String foundDetailColumn = null;
-                                    int attributeCount = parser.getAttributeCount();
-                                    for (int i = 0; i < attributeCount; i++) {
-                                        String attr = parser.getAttributeName(i);
-                                        String value = parser.getAttributeValue(i);
-                                        if (CONTACT_ATTR_MIME_TYPE.equals(attr)) {
-                                            foundMimeType = value;
-                                        } else if (CONTACT_ATTR_DETAIL_COLUMN.equals(attr)) {
-                                            foundDetailColumn = value;
+                    AuthenticatorDescription[] authenticatorDescriptions = ((AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE)).getAuthenticatorTypes();
+                    for (AuthenticatorDescription auth : authenticatorDescriptions) {
+                        if (contactSyncableTypes.contains(auth.type)) {
+                            try (XmlResourceParser parser = loadContactsXml(context, auth.packageName)) {
+                                if (parser != null) {
+                                    while (parser.next() != XmlPullParser.END_DOCUMENT) {
+                                        if (CONTACTS_DATA_KIND.equals(parser.getName())) {
+                                            String foundMimeType = null;
+                                            String foundDetailColumn = null;
+                                            int attributeCount = parser.getAttributeCount();
+                                            for (int i = 0; i < attributeCount; i++) {
+                                                String attr = parser.getAttributeName(i);
+                                                String value = parser.getAttributeValue(i);
+                                                if (CONTACT_ATTR_MIME_TYPE.equals(attr)) {
+                                                    foundMimeType = value;
+                                                } else if (CONTACT_ATTR_DETAIL_COLUMN.equals(attr)) {
+                                                    foundDetailColumn = value;
+                                                }
+                                            }
+                                            if (foundMimeType != null) {
+                                                detailColumns.put(foundMimeType, foundDetailColumn);
+                                            }
                                         }
                                     }
-                                    if (foundMimeType != null) {
-                                        detailColumns.put(foundMimeType, foundDetailColumn);
-                                    }
                                 }
+                            } catch (IOException | XmlPullParserException e) {
+                                Log.e(TAG, "Unable to fetch detail data columns from accounts", e);
                             }
                         }
-                    } catch (IOException | XmlPullParserException e) {
-                        Log.e(TAG, "Unable to fetch detail data columns from accounts", e);
                     }
+
+                    // Add additional data columns for known mime types
+                    detailColumns.put(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Email.ADDRESS);
+                    detailColumns.put(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Phone.NUMBER);
+
+                    long end = System.currentTimeMillis();
+                    Log.i(TAG, (end - start) + " milliseconds to fetch detail data columns");
                 }
             }
-
-            // Add additional data columns for known mime types
-            detailColumns.put(ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Email.ADDRESS);
-            detailColumns.put(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE, ContactsContract.CommonDataKinds.Phone.NUMBER);
-
-            long end = System.currentTimeMillis();
-            Log.i(TAG, (end - start) + " milliseconds to fetch detail data columns");
         }
         return detailColumns;
     }
