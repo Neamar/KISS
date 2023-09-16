@@ -41,7 +41,7 @@ public class TagDummyResult extends Result {
 
     private Drawable getShape(Context context) {
         if (gBackground == null) {
-            synchronized (this) {
+            synchronized (TagDummyResult.class) {
                 if (gBackground == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
                     gBackground = iconsHandler.getBackgroundDrawable(getBackgroundColor(context));

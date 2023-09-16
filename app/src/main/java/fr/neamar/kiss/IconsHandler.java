@@ -338,7 +338,7 @@ public class IconsHandler {
         }
         if (shape == DrawableUtils.SHAPE_TEARDROP_RND) {
             Random r = new Random();
-            shape = DrawableUtils.SHAPE_TEARDROP_BR + (r.nextInt(4));
+            shape = DrawableUtils.SHAPE_TEARDROP_BR + r.nextInt(4);
         }
 
         return shape;
