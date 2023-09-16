@@ -7,6 +7,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.AdaptiveIconDrawable;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,6 +17,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.text.TextPaint;
+import android.util.Log;
 import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
@@ -29,11 +34,11 @@ public class DrawableUtils {
     public static final int SHAPE_SQUARE = 2;
     public static final int SHAPE_SQUIRCLE = 3;
     public static final int SHAPE_ROUND_RECT = 4;
-    private static final int SHAPE_TEARDROP_BR = 5;
+    public static final int SHAPE_TEARDROP_BR = 5;
     private static final int SHAPE_TEARDROP_BL = 6;
     private static final int SHAPE_TEARDROP_TL = 7;
     private static final int SHAPE_TEARDROP_TR = 8;
-    private static final int SHAPE_TEARDROP_RND = 9;
+    public static final int SHAPE_TEARDROP_RND = 9;
     public static final int SHAPE_HEXAGON = 10;
     public static final int SHAPE_OCTAGON = 11;
 
@@ -41,6 +46,7 @@ public class DrawableUtils {
     private static final Path SHAPE_PATH = new Path();
     private static final RectF RECT_F = new RectF();
     public static final String KEY_THEMED_ICONS = "themed-icons";
+    private static final String TAG = DrawableUtils.class.getSimpleName();
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
     public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
@@ -339,6 +345,96 @@ public class DrawableUtils {
 
     public static boolean isThemedIconEnabled(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean(KEY_THEMED_ICONS, false);
+    }
+
+    @NonNull
+    public synchronized static Drawable generateBackgroundDrawable(@NonNull Context ctx, @ColorInt int backgroundColor, int shape) {
+        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape);
+        return new BitmapDrawable(ctx.getResources(), bitmap);
+    }
+
+    @NonNull
+    public static Drawable generateCodepointDrawable(@NonNull Context ctx, int codepoint, @ColorInt int textColor, @ColorInt int backgroundColor, int shape) {
+        int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
+
+        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape);
+        // create a canvas from a bitmap
+        Canvas canvas = new Canvas(bitmap);
+
+        // use StaticLayout to draw the text centered
+        TextPaint paint = new TextPaint();
+        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        paint.setTextSize(.6f * iconSize);
+
+        RectF rectF = new RectF(0, 0, iconSize, iconSize);
+
+        String glyph = new String(Character.toChars(codepoint));
+        // If the codepoint glyph is an image we can't use SRC_IN to draw it.
+        boolean drawAsHole = true;
+        Character.UnicodeBlock block = null;
+        try {
+            block = Character.UnicodeBlock.of(codepoint);
+        } catch (IllegalArgumentException ignored) {
+        }
+        if (block == null)
+            drawAsHole = false;
+        else {
+            String blockString = block.toString();
+            if (Character.UnicodeBlock.DINGBATS.toString().equals(blockString) ||
+                    "EMOTICONS".equals(blockString) ||
+                    Character.UnicodeBlock.MISCELLANEOUS_SYMBOLS.toString().equals(blockString) ||
+                    "MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS".equals(blockString) ||
+                    "SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS".equals(blockString) ||
+                    "TRANSPORT_AND_MAP_SYMBOLS".equals(blockString))
+                drawAsHole = false;
+            else if (!Character.UnicodeBlock.BASIC_LATIN.toString().equals(blockString)) {
+                // log untested glyphs
+                Log.d(TAG, "Codepoint " + codepoint + " with glyph " + glyph + " is in block " + block);
+            }
+        }
+        // we can't draw images (emoticons and symbols) using SRC_IN with transparent color, the result is a square
+        if (drawAsHole) {
+            // write text with "transparent" (create a hole in the background)
+            paint.setColor(Color.TRANSPARENT);
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        } else {
+            paint.setColor(textColor);
+        }
+
+        // draw the letter in the center
+        Rect b = new Rect();
+        paint.getTextBounds(glyph, 0, glyph.length(), b);
+        canvas.drawText(glyph, 0, glyph.length(), iconSize / 2.f - b.centerX(), iconSize / 2.f - b.centerY(), paint);
+
+        rectF.set(b);
+        rectF.offset(iconSize / 2.f - rectF.centerX(), iconSize / 2.f - rectF.centerY());
+        // pad the rectF so we don't touch the letter
+        rectF.inset(rectF.width() * -.3f, rectF.height() * -.4f);
+
+        // stroke a rect with the bounding of the letter
+        if (drawAsHole) {
+            paint.setColor(Color.TRANSPARENT);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(ctx.getResources().getDisplayMetrics().density);
+            canvas.drawRoundRect(rectF, rectF.width() / 2.4f, rectF.height() / 2.4f, paint);
+        }
+        return new BitmapDrawable(ctx.getResources(), bitmap);
+    }
+
+    @NonNull
+    private synchronized static Bitmap generateBackgroundBitmap(@NonNull Context ctx, @ColorInt int backgroundColor, int shape) {
+        int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
+        // create a canvas from a bitmap
+        Bitmap bitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+
+        if (shape == SHAPE_SYSTEM && !hasDeviceConfiguredMask()) {
+            shape = SHAPE_CIRCLE;
+        }
+
+        setIconShapeAndDrawBackground(canvas, backgroundColor, shape, true);
+
+        return bitmap;
     }
 
 }
