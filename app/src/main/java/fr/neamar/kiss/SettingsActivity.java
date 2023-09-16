@@ -27,6 +27,7 @@ import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -146,7 +147,7 @@ public class SettingsActivity extends PreferenceActivity implements
             SettingsActivity.this.setListPreferenceIconsPacksData(iconsPack);
             SettingsActivity.this.runOnUiThread(() -> iconsPack.setEnabled(true));
 
-            SettingsActivity.this.addAdditionalContactsPreferences(prefs);
+            SettingsActivity.this.setAdditionalContactsData();
             SettingsActivity.this.addCustomSearchProvidersPreferences(prefs);
 
             SettingsActivity.this.addHiddenTagsTogglesInformation(prefs);
@@ -194,7 +195,7 @@ public class SettingsActivity extends PreferenceActivity implements
         permissionManager = new Permission(this);
     }
 
-    private void addAdditionalContactsPreferences(SharedPreferences prefs) {
+    private void setAdditionalContactsData() {
         // get all supported mime types
         Set<String> supportedMimeTypes = MimeTypeUtils.getSupportedMimeTypes(getApplicationContext());
 
@@ -221,7 +222,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
         multiPreference.setEntries(mimeTypeEntries);
         multiPreference.setEntryValues(mimeTypeEntryValues);
-	}
+    }
 
     /**
      * Because we use the order to insert preferences we need to have gaps in the original order

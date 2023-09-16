@@ -94,11 +94,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             if (rawContactCursor.getCount() > 0) {
                 int rawContactIdIndex = rawContactCursor.getColumnIndex(ContactsContract.RawContacts._ID);
                 int starredIndex = rawContactCursor.getColumnIndex(ContactsContract.RawContacts.STARRED);
-                int accountTypeIndex = rawContactCursor.getColumnIndex(ContactsContract.RawContacts.ACCOUNT_TYPE);
                 while (rawContactCursor.moveToNext()) {
                     RawContact rawContact = new RawContact(
                             rawContactCursor.getLong(rawContactIdIndex),
-                            rawContactCursor.getString(accountTypeIndex),
                             rawContactCursor.getInt(starredIndex) != 0
                     );
                     basicRawContacts.put(rawContact.getId(), rawContact);
@@ -158,7 +156,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         return contacts;
     }
 
-    private ArrayList<ContactsPojo> createPhoneContacts(Map<String, Contact> basicContacts, Map<Long, RawContact> basicRawContacts) {
+    private List<ContactsPojo> createPhoneContacts(Map<String, Contact> basicContacts, Map<Long, RawContact> basicRawContacts) {
         // Query all phone numbers
         Cursor phoneCursor = context.get().getContentResolver().query(
                 ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
@@ -212,7 +210,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         return getFilteredContacts(mapContacts, contact -> contact.normalizedPhone.toString());
     }
 
-    private ArrayList<ContactsPojo> createGenericContacts(String mimeType, Map<String, Contact> basicContacts, Map<Long, RawContact> basicRawContacts) {
+    private List<ContactsPojo> createGenericContacts(String mimeType, Map<String, Contact> basicContacts, Map<Long, RawContact> basicRawContacts) {
         final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(context.get());
         // Prevent duplicates by keeping in memory encountered contacts.
         Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
@@ -307,8 +305,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
      * @param idSupplier  id supplier for identifying duplicates
      * @return filtered contacts
      */
-    private ArrayList<ContactsPojo> getFilteredContacts(Map<String, Set<ContactsPojo>> mapContacts, IdSupplier idSupplier) {
-        ArrayList<ContactsPojo> contacts = new ArrayList<>();
+    private List<ContactsPojo> getFilteredContacts(Map<String, Set<ContactsPojo>> mapContacts, IdSupplier idSupplier) {
+        List<ContactsPojo> contacts = new ArrayList<>();
         // Add phone numbers
         for (Set<ContactsPojo> mappedContacts : mapContacts.values()) {
             // Find primary phone and add this one.
@@ -394,21 +392,15 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
     private static class RawContact {
         private final long id;
-        private final String accountType;
         private final boolean starred;
 
-        private RawContact(long id, String accountType, boolean starred) {
+        private RawContact(long id, boolean starred) {
             this.id = id;
-            this.accountType = accountType;
             this.starred = starred;
         }
 
         public long getId() {
             return id;
-        }
-
-        public String getAccountType() {
-            return accountType;
         }
 
         public boolean isStarred() {
