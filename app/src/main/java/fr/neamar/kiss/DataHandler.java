@@ -558,21 +558,25 @@ public class DataHandler extends BroadcastReceiver
     @NonNull
     public Set<String> getExcludedFromHistory() {
         Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps-from-history", null);
-        if (excluded == null) {
-            excluded = new HashSet<>();
-            excluded.add("app://" + AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), new UserHandle()));
+        if (excluded != null) {
+            return new HashSet<>(excluded);
+        } else {
+            Set<String> defaultExcluded = new HashSet<>(1);
+            defaultExcluded.add("app://" + AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), new UserHandle()));
+            return defaultExcluded;
         }
-        return excluded;
     }
 
     @NonNull
     public Set<String> getExcluded() {
         Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet("excluded-apps", null);
-        if (excluded == null) {
-            excluded = new HashSet<>();
-            excluded.add(AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), new UserHandle()));
+        if (excluded != null) {
+            return new HashSet<>(excluded);
+        } else {
+            Set<String> defaultExcluded = new HashSet<>(1);
+            defaultExcluded.add(AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), new UserHandle()));
+            return defaultExcluded;
         }
-        return excluded;
     }
 
     /**
@@ -594,34 +598,29 @@ public class DataHandler extends BroadcastReceiver
     @NonNull
     public Set<String> getExcludedShortcutApps() {
         Set<String> excluded = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, null);
-        if (excluded == null) {
-            excluded = new HashSet<>();
+        if (excluded != null) {
+            return new HashSet<>(excluded);
+        } else {
+            return new HashSet<>();
         }
-        return excluded;
     }
 
     public void addToExcludedFromHistory(AppPojo app) {
-        // The set needs to be cloned and then edited,
-        // modifying in place is not supported by putStringSet()
-        Set<String> excluded = new HashSet<>(getExcludedFromHistory());
+        Set<String> excluded = getExcludedFromHistory();
         excluded.add(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
         app.setExcludedFromHistory(true);
     }
 
     public void removeFromExcludedFromHistory(AppPojo app) {
-        // The set needs to be cloned and then edited,
-        // modifying in place is not supported by putStringSet()
-        Set<String> excluded = new HashSet<>(getExcludedFromHistory());
+        Set<String> excluded = getExcludedFromHistory();
         excluded.remove(app.id);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps-from-history", excluded).apply();
         app.setExcludedFromHistory(false);
     }
 
     public void addToExcluded(AppPojo app) {
-        // The set needs to be cloned and then edited,
-        // modifying in place is not supported by putStringSet()
-        Set<String> excluded = new HashSet<>(getExcluded());
+        Set<String> excluded = getExcluded();
         excluded.add(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
         app.setExcluded(true);
@@ -638,9 +637,7 @@ public class DataHandler extends BroadcastReceiver
      * Add app as an app which is not allowed to show shortcuts
      */
     public void addToExcludedShortcutApps(AppPojo app) {
-        // The set needs to be cloned and then edited,
-        // modifying in place is not supported by putStringSet()
-        Set<String> excluded = new HashSet<>(getExcludedShortcutApps());
+        Set<String> excluded = getExcludedShortcutApps();
         excluded.add(app.packageName);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
         app.setExcludedShortcuts(true);
@@ -648,9 +645,7 @@ public class DataHandler extends BroadcastReceiver
     }
 
     public void removeFromExcluded(AppPojo app) {
-        // The set needs to be cloned and then edited,
-        // modifying in place is not supported by putStringSet()
-        Set<String> excluded = new HashSet<>(getExcluded());
+        Set<String> excluded = getExcluded();
         excluded.remove(app.getComponentName());
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet("excluded-apps", excluded).apply();
         app.setExcluded(false);
@@ -661,7 +656,7 @@ public class DataHandler extends BroadcastReceiver
 
     public void removeFromExcluded(String packageName) {
         Set<String> excluded = getExcluded();
-        Set<String> newExcluded = new HashSet<>();
+        Set<String> newExcluded = new HashSet<>(excluded.size());
         for (String excludedItem : excluded) {
             if (!excludedItem.contains(packageName + "/")) {
                 newExcluded.add(excludedItem);
@@ -678,7 +673,7 @@ public class DataHandler extends BroadcastReceiver
         }
 
         Set<String> excluded = getExcluded();
-        Set<String> newExcluded = new HashSet<>();
+        Set<String> newExcluded = new HashSet<>(excluded.size());
         for (String excludedItem : excluded) {
             if (!user.hasStringUserSuffix(excludedItem, '#')) {
                 newExcluded.add(excludedItem);
@@ -693,9 +688,7 @@ public class DataHandler extends BroadcastReceiver
      * that is to say, this app may show shortcuts
      */
     public void removeFromExcludedShortcutApps(AppPojo app) {
-        // The set needs to be cloned and then edited,
-        // modifying in place is not supported by putStringSet()
-        Set<String> excluded = new HashSet<>(getExcludedShortcutApps());
+        Set<String> excluded = getExcludedShortcutApps();
         excluded.remove(app.packageName);
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(PREF_KEY_EXCLUDED_SHORTCUT_APPS, excluded).apply();
         app.setExcludedShortcuts(false);
