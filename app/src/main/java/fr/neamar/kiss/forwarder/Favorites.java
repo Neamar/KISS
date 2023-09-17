@@ -45,16 +45,16 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     /**
      * IDs for the favorites buttons
      */
-    private ArrayList<ViewHolder> favoritesViews = new ArrayList<>();
+    private List<ViewHolder> favoritesViews = new ArrayList<>();
 
     private static class ViewHolder {
         final View view;
         @NonNull
-        final Result result;
+        final Result<?> result;
         @NonNull
         final Pojo pojo;
 
-        ViewHolder(@NonNull Result result, @NonNull Pojo pojo, @NonNull Context context, @NonNull ViewGroup parent) {
+        ViewHolder(@NonNull Result<?> result, @NonNull Pojo pojo, @NonNull Context context, @NonNull ViewGroup parent) {
             this.result = result;
             this.pojo = pojo;
             view = result.inflateFavorite(context, parent);
@@ -123,7 +123,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         List<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
         favCount = favoritesPojo.size();
 
-        ArrayList<ViewHolder> holders = new ArrayList<>(favCount);
+        List<ViewHolder> holders = new ArrayList<>(favCount);
 
         ViewGroup favoritesBar = mainActivity.favoritesBar;
 

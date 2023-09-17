@@ -219,8 +219,7 @@ class ExperienceTweaks extends Forwarder {
                         String launchId = prefs.getString(source + "-launch-id", "");
                         Pojo item = KissApplication.getApplication(mainActivity).getDataHandler().getItemById(launchId);
                         if (item != null) {
-                            // don't send null parent if (item instanceof ContactsPojo)
-                            Result result = Result.fromPojo(null, item);
+                            Result<?> result = Result.fromPojo(mainActivity, item);
                             result.fastLaunch(mainActivity, mainEmptyView);
                         }
                         break;

@@ -9,15 +9,16 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.utils.Permission;
 
-public abstract class CallResult extends Result {
-    CallResult(@NonNull Pojo pojo) {
+public abstract class CallResult<T extends Pojo> extends Result<T> {
+
+    CallResult(@NonNull T pojo) {
         super(pojo);
     }
-
 
     @SuppressLint("MissingPermission")
     public void launchCall(Context context, View v, String phone) {

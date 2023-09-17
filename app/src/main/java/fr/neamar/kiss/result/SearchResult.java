@@ -36,13 +36,12 @@ import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
-public class SearchResult extends Result {
-    private static final String TAG = SearchResult.class.getSimpleName();
-    private final SearchPojo searchPojo;
+public class SearchResult extends Result<SearchPojo> {
 
-    SearchResult(SearchPojo searchPojo) {
-        super(searchPojo);
-        this.searchPojo = searchPojo;
+    private static final String TAG = SearchResult.class.getSimpleName();
+
+    SearchResult(@NonNull SearchPojo pojo) {
+        super(pojo);
     }
 
     @NonNull
@@ -58,15 +57,15 @@ public class SearchResult extends Result {
         int pos;
         int len;
 
-        if (searchPojo.type == SearchPojo.URL_QUERY) {
+        if (pojo.type == SearchPojo.URL_QUERY) {
             text = String.format(context.getString(R.string.ui_item_visit), this.pojo.getName());
             pos = text.indexOf(this.pojo.getName());
             len = this.pojo.getName().length();
             image.setImageResource(R.drawable.ic_public);
-        } else if (searchPojo.type == SearchPojo.SEARCH_QUERY) {
-            text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), searchPojo.query);
-            pos = text.indexOf(searchPojo.query);
-            len = searchPojo.query.length();
+        } else if (pojo.type == SearchPojo.SEARCH_QUERY) {
+            text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), pojo.query);
+            pos = text.indexOf(pojo.query);
+            len = pojo.query.length();
             image.setImageResource(R.drawable.search);
 
             boolean hideIcons = getHideIcons(context);
@@ -93,15 +92,15 @@ public class SearchResult extends Result {
                     }
                 }
             }
-        } else if (searchPojo.type == SearchPojo.CALCULATOR_QUERY) {
-            text = searchPojo.query;
+        } else if (pojo.type == SearchPojo.CALCULATOR_QUERY) {
+            text = pojo.query;
             pos = text.indexOf("=");
             len = text.length() - pos;
             image.setImageResource(R.drawable.ic_functions);
-        } else if (searchPojo.type == SearchPojo.URI_QUERY) {
-            text = String.format(context.getString(R.string.ui_item_open), this.searchPojo.query);
-            pos = text.indexOf(searchPojo.query);
-            len = searchPojo.query.length();
+        } else if (pojo.type == SearchPojo.URI_QUERY) {
+            text = String.format(context.getString(R.string.ui_item_open), this.pojo.query);
+            pos = text.indexOf(pojo.query);
+            len = pojo.query.length();
             image.setImageResource(R.drawable.ic_public);
 
             if (!getHideIcons(context)) {
@@ -132,7 +131,7 @@ public class SearchResult extends Result {
      * @return intent
      */
     private Intent createUriQueryIntent() {
-        Uri uri = Uri.parse(searchPojo.query);
+        Uri uri = Uri.parse(pojo.query);
         return PackageManagerUtils.createUriIntent(uri);
     }
 
@@ -144,11 +143,11 @@ public class SearchResult extends Result {
     private Intent createSearchQueryIntent() {
         String query;
         try {
-            query = URLEncoder.encode(searchPojo.query, "UTF-8");
+            query = URLEncoder.encode(pojo.query, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            query = URLEncoder.encode(searchPojo.query);
+            query = URLEncoder.encode(pojo.query);
         }
-        String urlWithQuery = searchPojo.url.replaceAll("%s|\\{q\\}", query);
+        String urlWithQuery = pojo.url.replaceAll("%s|\\{q\\}", query);
         Uri uri = Uri.parse(urlWithQuery);
         return PackageManagerUtils.createUriIntent(uri);
     }
@@ -188,14 +187,14 @@ public class SearchResult extends Result {
 
     @Override
     public void doLaunch(Context context, View v) {
-        switch (searchPojo.type) {
+        switch (pojo.type) {
             case SearchPojo.URL_QUERY:
             case SearchPojo.SEARCH_QUERY:
                 if (isGoogleSearch()) {
                     try {
                         Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra(SearchManager.QUERY, searchPojo.query); // query contains search string
+                        intent.putExtra(SearchManager.QUERY, pojo.query); // query contains search string
                         context.startActivity(intent);
                         break;
                     } catch (ActivityNotFoundException e) {
@@ -206,11 +205,11 @@ public class SearchResult extends Result {
                 try {
                     context.startActivity(search);
                 } catch (ActivityNotFoundException e) {
-                    Log.w(TAG, "Unable to run search for url: " + searchPojo.url);
+                    Log.w(TAG, "Unable to run search for url: " + pojo.url);
                 }
                 break;
             case SearchPojo.CALCULATOR_QUERY:
-                ClipboardUtils.setClipboard(context, searchPojo.query.substring(searchPojo.query.indexOf("=") + 2));
+                ClipboardUtils.setClipboard(context, pojo.query.substring(pojo.query.indexOf("=") + 2));
                 Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
                 break;
             case SearchPojo.URI_QUERY:
@@ -218,7 +217,7 @@ public class SearchResult extends Result {
                 try {
                     context.startActivity(intent);
                 } catch (ActivityNotFoundException e) {
-                    Log.w(TAG, "Unable to run search for uri: " + searchPojo.url);
+                    Log.w(TAG, "Unable to run search for uri: " + pojo.url);
                 }
                 break;
         }
@@ -236,7 +235,7 @@ public class SearchResult extends Result {
         if (stringId == R.string.share) {
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.putExtra(Intent.EXTRA_TEXT, searchPojo.query);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, pojo.query);
             shareIntent.setType("text/plain");
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(shareIntent);
@@ -247,10 +246,10 @@ public class SearchResult extends Result {
     }
 
     private boolean isGoogleSearch() {
-        return searchPojo.url.startsWith("https://encrypted.google.com");
+        return pojo.url.startsWith("https://encrypted.google.com");
     }
 
     private boolean isDuckDuckGo() {
-        return searchPojo.url.startsWith("https://start.duckduckgo.com");
+        return pojo.url.startsWith("https://start.duckduckgo.com");
     }
 }
