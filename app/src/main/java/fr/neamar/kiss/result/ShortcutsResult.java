@@ -27,7 +27,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import java.net.URISyntaxException;
-import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 import fr.neamar.kiss.DataHandler;
@@ -175,7 +174,15 @@ public class ShortcutsResult extends Result {
             if (shortcutInfo != null) {
                 final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
                 assert launcherApps != null;
-                shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
+                try {
+                    shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
+                } catch (IllegalStateException e) {
+                    // do nothing if user is locked or not running
+                    Log.w(TAG, "Unable to get shortcut icon for '" + shortcutPojo.getName() + "', user is locked or not running", e);
+                } catch (NullPointerException e) {
+                    // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
+                    Log.e(TAG, "Unable to get shortcut icon for '" + shortcutPojo.getName() + "'", e);
+                }
             }
         }
 
@@ -226,7 +233,7 @@ public class ShortcutsResult extends Result {
                 launcherApps.startShortcut(shortcutInfo, v.getClipBounds(), null);
                 return;
             } catch (ActivityNotFoundException | IllegalStateException e) {
-                Log.w(TAG, "Unable to launch shortcut", e);
+                Log.w(TAG, "Unable to launch shortcut " + shortcutPojo.getName(), e);
             }
         }
 
