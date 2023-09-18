@@ -34,15 +34,14 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.ShapedContactBadge;
 import fr.neamar.kiss.utils.FuzzyScore;
 
-public class ContactsResult extends CallResult {
-    private final ContactsPojo contactPojo;
+public class ContactsResult extends CallResult<ContactsPojo> {
+
     private final QueryInterface queryInterface;
     private volatile Drawable icon = null;
     private static final String TAG = ContactsResult.class.getSimpleName();
 
-    ContactsResult(QueryInterface queryInterface, ContactsPojo contactPojo) {
-        super(contactPojo);
-        this.contactPojo = contactPojo;
+    ContactsResult(QueryInterface queryInterface, @NonNull ContactsPojo pojo) {
+        super(pojo);
         this.queryInterface = queryInterface;
     }
 
@@ -54,19 +53,19 @@ public class ContactsResult extends CallResult {
 
         // Contact name
         TextView contactName = view.findViewById(R.id.item_contact_name);
-        displayHighlighted(contactPojo.normalizedName, contactPojo.getName(), fuzzyScore, contactName, context);
+        displayHighlighted(pojo.normalizedName, pojo.getName(), fuzzyScore, contactName, context);
 
         // Contact phone
         TextView contactPhone = view.findViewById(R.id.item_contact_phone);
-        displayHighlighted(contactPojo.normalizedPhone, contactPojo.phone, fuzzyScore, contactPhone, context);
+        displayHighlighted(pojo.normalizedPhone, pojo.phone, fuzzyScore, contactPhone, context);
 
         // Contact nickname
         TextView contactNickname = view.findViewById(R.id.item_contact_nickname);
-        if (TextUtils.isEmpty(contactPojo.getNickname())) {
+        if (TextUtils.isEmpty(pojo.getNickname())) {
             contactNickname.setVisibility(View.GONE);
         } else {
             contactNickname.setVisibility(View.VISIBLE);
-            displayHighlighted(contactPojo.normalizedNickname, contactPojo.getNickname(), fuzzyScore, contactNickname, context);
+            displayHighlighted(pojo.normalizedNickname, pojo.getNickname(), fuzzyScore, contactNickname, context);
         }
 
         // Contact photo
@@ -75,7 +74,7 @@ public class ContactsResult extends CallResult {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (!prefs.getBoolean("icons-hide", false)) {
-            if (contactIcon.getTag() instanceof ContactsPojo && contactPojo.equals(contactIcon.getTag())) {
+            if (contactIcon.getTag() instanceof ContactsPojo && pojo.equals(contactIcon.getTag())) {
                 icon = contactIcon.getDrawable();
             }
             this.setAsyncDrawable(contactIcon);
@@ -85,7 +84,7 @@ public class ContactsResult extends CallResult {
 
         contactIcon.assignContactUri(Uri.withAppendedPath(
                 ContactsContract.Contacts.CONTENT_LOOKUP_URI,
-                String.valueOf(contactPojo.lookupKey)));
+                String.valueOf(pojo.lookupKey)));
         contactIcon.setExtraOnClickListener(new OnClickListener() {
 
             @Override
@@ -110,7 +109,7 @@ public class ContactsResult extends CallResult {
             phoneButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    launchCall(v.getContext(), v, contactPojo.phone);
+                    launchCall(v.getContext(), v, pojo.phone);
                     recordLaunch(context, queryInterface);
                 }
             });
@@ -124,7 +123,7 @@ public class ContactsResult extends CallResult {
                 }
             });
 
-            if (contactPojo.isHomeNumber())
+            if (pojo.isHomeNumber())
                 messageButton.setVisibility(View.INVISIBLE);
             else
                 messageButton.setVisibility(View.VISIBLE);
@@ -150,7 +149,7 @@ public class ContactsResult extends CallResult {
     @Override
     protected boolean popupMenuClickHandler(Context context, RecordAdapter parent, int stringId, View parentView) {
         if (stringId == R.string.menu_contact_copy_phone) {
-            copyPhone(context, contactPojo);
+            copyPhone(context, pojo);
             return true;
         }
 
@@ -158,13 +157,13 @@ public class ContactsResult extends CallResult {
     }
 
     @SuppressWarnings("deprecation")
-    private void copyPhone(Context context, ContactsPojo contactPojo) {
+    private void copyPhone(Context context, ContactsPojo pojo) {
         android.content.ClipboardManager clipboard =
                 (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         assert clipboard != null;
         android.content.ClipData clip = android.content.ClipData.newPlainText(
-                "Phone number for " + contactPojo.getName(),
-                contactPojo.phone);
+                "Phone number for " + pojo.getName(),
+                pojo.phone);
         clipboard.setPrimaryClip(clip);
     }
 
@@ -189,9 +188,9 @@ public class ContactsResult extends CallResult {
         if (!isDrawableCached()) {
             synchronized (this) {
                 if (!isDrawableCached()) {
-                    if (contactPojo.icon != null) {
+                    if (pojo.icon != null) {
                         try (InputStream inputStream = context.getContentResolver()
-                                .openInputStream(contactPojo.icon)) {
+                                .openInputStream(pojo.icon)) {
                             icon = Drawable.createFromStream(inputStream, null);
                         } catch (IOException e) {
                             Log.v(TAG, "Unable to load contact icon", e);
@@ -226,7 +225,7 @@ public class ContactsResult extends CallResult {
         Intent viewContact = new Intent(Intent.ACTION_VIEW);
 
         viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
-                String.valueOf(contactPojo.lookupKey)));
+                String.valueOf(pojo.lookupKey)));
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             viewContact.setSourceBounds(v.getClipBounds());
         }
@@ -244,14 +243,14 @@ public class ContactsResult extends CallResult {
         boolean callContactOnClick = settingPrefs.getBoolean("call-contact-on-click", false);
 
         if (callContactOnClick) {
-            launchCall(context, v, contactPojo.phone);
+            launchCall(context, v, pojo.phone);
         } else {
             launchContactView(context, v);
         }
     }
 
     private void launchMessaging(final Context context) {
-        String url = "sms:" + Uri.encode(contactPojo.phone);
+        String url = "sms:" + Uri.encode(pojo.phone);
         Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);

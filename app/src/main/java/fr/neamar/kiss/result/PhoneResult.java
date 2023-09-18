@@ -13,21 +13,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.util.Collections;
 
-import androidx.annotation.NonNull;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.PhonePojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 
-public class PhoneResult extends CallResult {
-    private final PhonePojo phonePojo;
+public class PhoneResult extends CallResult<PhonePojo> {
 
-    PhoneResult(PhonePojo phonePojo) {
-        super(phonePojo);
-        this.phonePojo = phonePojo;
+    PhoneResult(@NonNull PhonePojo pojo) {
+        super(pojo);
     }
 
     @NonNull
@@ -37,9 +36,9 @@ public class PhoneResult extends CallResult {
             view = inflateFromId(context, R.layout.item_phone, parent);
 
         TextView phoneText = view.findViewById(R.id.item_phone_text);
-        String text = String.format(context.getString(R.string.ui_item_phone), phonePojo.phone);
-        int pos = text.indexOf(phonePojo.phone);
-        int len = phonePojo.phone.length();
+        String text = String.format(context.getString(R.string.ui_item_phone), pojo.phone);
+        int pos = text.indexOf(pojo.phone);
+        int len = pojo.phone.length();
         displayHighlighted(text, Collections.singletonList(new Pair<Integer, Integer>(pos, pos + len)), phoneText, context);
 
         ((ImageView) view.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
@@ -63,12 +62,12 @@ public class PhoneResult extends CallResult {
         if (stringId == R.string.menu_phone_create) {// Create a new contact with this phone number
             Intent createIntent = new Intent(Intent.ACTION_INSERT);
             createIntent.setType(ContactsContract.Contacts.CONTENT_TYPE);
-            createIntent.putExtra(ContactsContract.Intents.Insert.PHONE, phonePojo.phone);
+            createIntent.putExtra(ContactsContract.Intents.Insert.PHONE, pojo.phone);
             createIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(createIntent);
             return true;
         } else if (stringId == R.string.ui_item_contact_hint_message) {
-            String url = "sms:" + phonePojo.phone;
+            String url = "sms:" + pojo.phone;
             Intent messageIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
             messageIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(messageIntent);
@@ -86,6 +85,6 @@ public class PhoneResult extends CallResult {
 
     @Override
     protected void doLaunch(Context context, View v) {
-        launchCall(context, v, phonePojo.phone);
+        launchCall(context, v, pojo.phone);
     }
 }

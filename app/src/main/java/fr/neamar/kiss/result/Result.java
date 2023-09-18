@@ -53,18 +53,19 @@ import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
 
-public abstract class Result {
+public abstract class Result<T extends Pojo> {
+
     /**
      * Current information pojo
      */
     @NonNull
-    final Pojo pojo;
+    protected final T pojo;
 
-    Result(@NonNull Pojo pojo) {
+    Result(@NonNull T pojo) {
         this.pojo = pojo;
     }
 
-    public static Result fromPojo(QueryInterface parent, Pojo pojo) {
+    public static Result<?> fromPojo(QueryInterface parent, @NonNull Pojo pojo) {
         if (pojo instanceof AppPojo)
             return new AppResult((AppPojo) pojo);
         else if (pojo instanceof ContactsPojo)
@@ -354,13 +355,13 @@ public abstract class Result {
         setAsyncDrawable(view, android.R.color.transparent);
     }
 
-    void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
+    <U extends Pojo> void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
         // getting this called multiple times in parallel may result in empty icons
         synchronized (this) {
             // the ImageView tag will store the async task if it's running
             if (view.getTag() instanceof AsyncSetImage) {
                 AsyncSetImage asyncSetImage = (AsyncSetImage) view.getTag();
-                if (this.equals(asyncSetImage.appResultWeakReference.get())) {
+                if (this.equals(asyncSetImage.resultWeakReference.get())) {
                     // we are already loading the icon for this
                     return;
                 } else {
@@ -370,7 +371,7 @@ public abstract class Result {
             }
             // the ImageView will store the Result after the AsyncTask finished
             else if (this.equals(view.getTag())) {
-                ((Result) view.getTag()).setDrawableCache(view.getDrawable());
+                ((Result<U>) view.getTag()).setDrawableCache(view.getDrawable());
                 return;
             }
             if (isDrawableCached()) {
@@ -425,14 +426,14 @@ public abstract class Result {
 
     static class AsyncSetImage extends AsyncTask<Void, Void, Drawable> {
         final WeakReference<ImageView> imageViewWeakReference;
-        final WeakReference<Result> appResultWeakReference;
+        final WeakReference<Result<?>> resultWeakReference;
 
-        AsyncSetImage(ImageView image, Result result, @DrawableRes int resId) {
+        AsyncSetImage(ImageView image, Result<?> result, @DrawableRes int resId) {
             super();
             image.setTag(this);
             image.setImageResource(resId);
             this.imageViewWeakReference = new WeakReference<>(image);
-            this.appResultWeakReference = new WeakReference<>(result);
+            this.resultWeakReference = new WeakReference<>(result);
         }
 
         @Override
@@ -442,7 +443,7 @@ public abstract class Result {
                 imageViewWeakReference.clear();
                 return null;
             }
-            Result result = appResultWeakReference.get();
+            Result<?> result = resultWeakReference.get();
             if (result == null) {
                 return null;
             }
@@ -457,7 +458,7 @@ public abstract class Result {
                 return;
             }
             image.setImageDrawable(drawable);
-            image.setTag(appResultWeakReference.get());
+            image.setTag(resultWeakReference.get());
         }
     }
 }

@@ -10,6 +10,7 @@ import androidx.annotation.CallSuper;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,7 +21,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoComparator;
 import fr.neamar.kiss.result.Result;
 
-public abstract class Searcher extends AsyncTask<Void, Result, Void> {
+public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
 
     private static final String TAG = Searcher.class.getSimpleName();
 
@@ -101,7 +102,7 @@ public abstract class Searcher extends AsyncTask<Void, Result, Void> {
             int maxResults = getMaxResultCount();
             while (queue.size() > maxResults)
                 queue.poll();
-            ArrayList<Result> results = new ArrayList<>(queue.size());
+            List<Result<?>> results = new ArrayList<>(queue.size());
             while (queue.peek() != null) {
                 results.add(Result.fromPojo(activity, queue.poll()));
             }

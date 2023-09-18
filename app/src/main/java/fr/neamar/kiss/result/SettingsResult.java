@@ -21,13 +21,11 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.utils.FuzzyScore;
 
-public class SettingsResult extends Result {
+public class SettingsResult extends Result<SettingPojo> {
     private static final String TAG = SettingsResult.class.getSimpleName();
-    private final SettingPojo settingPojo;
 
-    SettingsResult(SettingPojo settingPojo) {
-        super(settingPojo);
-        this.settingPojo = settingPojo;
+    SettingsResult(@NonNull SettingPojo pojo) {
+        super(pojo);
     }
 
     @NonNull
@@ -37,7 +35,7 @@ public class SettingsResult extends Result {
             view = inflateFromId(context, R.layout.item_setting, parent);
 
         TextView settingName = view.findViewById(R.id.item_setting_name);
-        displayHighlighted(settingPojo.normalizedName, settingPojo.getName(), fuzzyScore, settingName, context);
+        displayHighlighted(pojo.normalizedName, pojo.getName(), fuzzyScore, settingName, context);
 
         ImageView settingIcon = view.findViewById(R.id.item_setting_icon);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -53,8 +51,8 @@ public class SettingsResult extends Result {
 
     @Override
     public Drawable getDrawable(Context context) {
-        if (settingPojo.icon != -1) {
-            Drawable response = context.getResources().getDrawable(settingPojo.icon);
+        if (pojo.icon != -1) {
+            Drawable response = context.getResources().getDrawable(pojo.icon);
             response.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
             return response;
         }
@@ -64,9 +62,9 @@ public class SettingsResult extends Result {
 
     @Override
     public void doLaunch(Context context, View v) {
-        Intent intent = new Intent(settingPojo.settingName);
-        if (!settingPojo.packageName.isEmpty()) {
-            intent.setClassName(settingPojo.packageName, settingPojo.settingName);
+        Intent intent = new Intent(pojo.settingName);
+        if (!pojo.packageName.isEmpty()) {
+            intent.setClassName(pojo.packageName, pojo.settingName);
         }
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             intent.setSourceBounds(v.getClipBounds());

@@ -35,7 +35,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     /**
      * Array list containing all the results currently displayed
      */
-    private final List<Result> results;
+    private final List<Result<?>> results;
 
     // Mapping from letter to a position (only used for fast scroll, when viewing app list)
     private final HashMap<String, Integer> alphaIndexer = new HashMap<>();
@@ -43,7 +43,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     private String[] sections = new String[0];
     private static final String TAG = RecordAdapter.class.getSimpleName();
 
-    public RecordAdapter(QueryInterface parent, List<Result> results) {
+    public RecordAdapter(QueryInterface parent, List<Result<?>> results) {
         this.parent = parent;
         this.results = results;
         this.fuzzyScore = null;
@@ -111,7 +111,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     }
 
     public void onClick(final int position, View v) {
-        final Result result;
+        final Result<?> result;
 
         try {
             result = results.get(position);
@@ -121,14 +121,14 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         }
     }
 
-    public void removeResult(Context context, Result result) {
+    public void removeResult(Context context, Result<?> result) {
         results.remove(result);
         notifyDataSetChanged();
         // Do not reset scroll, we want the remaining items to still be in view
         parent.temporarilyDisableTranscriptMode();
     }
 
-    public void updateResults(List<Result> results, boolean isRefresh, String query) {
+    public void updateResults(List<Result<?>> results, boolean isRefresh, String query) {
         this.results.clear();
         this.results.addAll(results);
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
