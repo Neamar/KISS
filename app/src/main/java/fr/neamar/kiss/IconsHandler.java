@@ -500,7 +500,7 @@ public class IconsHandler {
             fis.close();
             return drawable;
         } catch (Exception e) {
-            Log.e(TAG, "Unable to get custom icon ", e);
+            Log.e(TAG, "Unable to get custom icon for " + componentName, e);
         }
 
         return null;
