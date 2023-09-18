@@ -42,18 +42,12 @@ public class MimeTypeCache {
     private static final String TAG = MimeTypeCache.class.getSimpleName();
 
     // Cached componentName
-    private final Map<String, ComponentName> componentNames;
+    private final Map<String, ComponentName> componentNames = new ConcurrentHashMap<>();
+
     // Cached label
-    private final Map<String, String> labels;
+    private final Map<String, String> labels = new ConcurrentHashMap<>();
     // Cached detail columns
     private volatile Map<String, String> detailColumns;
-
-
-    public MimeTypeCache() {
-        this.componentNames = new ConcurrentHashMap<>();
-        this.labels = new ConcurrentHashMap<>();
-        this.detailColumns = null;
-    }
 
     public void clearCache() {
         synchronized (this) {
