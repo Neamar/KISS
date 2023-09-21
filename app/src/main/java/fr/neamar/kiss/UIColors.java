@@ -5,6 +5,7 @@ import static android.content.res.Configuration.UI_MODE_NIGHT_YES;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -182,16 +183,34 @@ public class UIColors {
             return;
         }
 
+        updateThemePrimaryColor(notificationBarColorOverride, activity.getWindow());
+        updateThemePrimaryColor(notificationBarColorOverride, activity.getActionBar());
+
+    }
+
+    public static void updateThemePrimaryColor(Context context, Dialog dialog) {
+        int notificationBarColorOverride = getNotificationBarColor(context);
+
+        // Circuit breaker, keep default behavior.
+        if (notificationBarColorOverride == COLOR_DEFAULT) {
+            return;
+        }
+
+        updateThemePrimaryColor(notificationBarColorOverride, dialog.getWindow());
+        updateThemePrimaryColor(notificationBarColorOverride, dialog.getActionBar());
+    }
+
+    private static void updateThemePrimaryColor(int notificationBarColorOverride, Window window) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = activity.getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
             // Update status bar color
             window.setStatusBarColor(notificationBarColorOverride);
         }
+    }
 
-        ActionBar actionBar = activity.getActionBar();
+    private static void updateThemePrimaryColor(int notificationBarColorOverride, ActionBar actionBar) {
         if (actionBar != null) {
             actionBar.setBackgroundDrawable(new ColorDrawable(notificationBarColorOverride));
         }
@@ -302,7 +321,7 @@ public class UIColors {
         return color;
     }
 
-    public static void clearPrimaryColorCache(Context context) {
+    public static void clearPrimaryColorCache() {
         primaryColor = -1;
     }
 

@@ -43,9 +43,8 @@ public class PickAppWidgetActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        InterfaceTweaks.applyTheme(this, PreferenceManager.getDefaultSharedPreferences(this));
+        InterfaceTweaks.applySettingsTheme(this, PreferenceManager.getDefaultSharedPreferences(this));
         setContentView(R.layout.widget_picker);
-        UIColors.updateThemePrimaryColor(this);
 
         View progressContainer = findViewById(R.id.progressContainer);
         ListView listView = findViewById(android.R.id.list);

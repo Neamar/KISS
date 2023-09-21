@@ -32,7 +32,7 @@ public class InterfaceTweaks extends Forwarder {
         applyTheme(mainActivity, prefs);
     }
 
-    public static void applyTheme(Activity act, SharedPreferences prefs) {
+    private static void applyTheme(Activity act, SharedPreferences prefs) {
         String theme = prefs.getString("theme", "transparent");
         switch (theme) {
             case "dark":
@@ -74,8 +74,19 @@ public class InterfaceTweaks extends Forwarder {
         }
     }
 
+    public static void applySettingsTheme(Activity act, SharedPreferences prefs) {
+        String theme = prefs.getString("theme", "light");
+        if (theme.equals("amoled-dark")) {
+            act.setTheme(R.style.SettingThemeAmoledDark);
+        } else if (theme.contains("dark")) {
+            act.setTheme(R.style.SettingThemeDark);
+        }
+        UIColors.updateThemePrimaryColor(act);
+        UIColors.applyOverlay(act, prefs);
+    }
+
     void onCreate() {
-        UIColors.clearPrimaryColorCache(mainActivity);
+        UIColors.clearPrimaryColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);
         applyRoundedCorners(mainActivity);
         swapKissButtonWithMenu(mainActivity);
@@ -100,14 +111,6 @@ public class InterfaceTweaks extends Forwarder {
                 hsv[2] = hsv[2] < 0.5f ? 0f : 1f;
                 shadowColor = Color.HSVToColor(hsv);
                 mainActivity.searchEditText.setShadowLayer(3, 1, 2, shadowColor);
-            }
-        }
-
-        // Notification drawer icon color
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (prefs.getBoolean("black-notification-icons", false)) {
-                // Apply the flag to any view, so why not the edittext!
-                mainActivity.searchEditText.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
         }
 
