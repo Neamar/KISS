@@ -33,6 +33,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     private String pojoScheme = "(none)://";
 
     private long start;
+    private LoadPojos<T> loader;
 
     /**
      * (Re-)load the providers resources when the provider has been completely initialized
@@ -47,13 +48,25 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
 
     void initialize(LoadPojos<T> loader) {
+        cancelInitialize();
         start = System.currentTimeMillis();
 
         Log.i(TAG, "Starting provider: " + this.getClass().getSimpleName());
 
         loader.setProvider(this);
         this.pojoScheme = loader.getPojoScheme();
-        loader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        this.loader = (LoadPojos<T>) loader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    /**
+     * Cancel running {@link LoadPojos<T>} task and set to null.
+     */
+    private void cancelInitialize() {
+        if (this.loader != null) {
+            this.loader.cancel(false);
+            this.loader = null;
+            Log.i(TAG, "Cancelling provider: " + this.getClass().getSimpleName());
+        }
     }
 
     public void reload() {
@@ -73,8 +86,9 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         Log.i(TAG, "Time to load " + this.getClass().getSimpleName() + ": " + time + "ms");
 
         // Store results
-        this.pojos = results;
+        this.loader = null;
         this.loaded = true;
+        this.pojos = results;
 
         // Broadcast this event
         Intent i = new Intent(MainActivity.LOAD_OVER);

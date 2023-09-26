@@ -55,6 +55,9 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             for (android.os.UserHandle profile : manager.getUserProfiles()) {
                 UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
                 for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
+                    if (isCancelled()) {
+                        break;
+                    }
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
                     final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                     apps.add(app);
@@ -67,6 +70,9 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
             mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
             for (ResolveInfo info : manager.queryIntentActivities(mainIntent, 0)) {
+                if (isCancelled()) {
+                    break;
+                }
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
                 final AppPojo app = createPojo(new UserHandle(), appInfo.packageName, info.activityInfo.name, info.loadLabel(manager), excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                 apps.add(app);

@@ -24,7 +24,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
     }
 
     @Override
-    protected List<ShortcutPojo> doInBackground(Void... arg0) {
+    protected List<ShortcutPojo> doInBackground(Void... params) {
         Context context = this.context.get();
         if (context == null) {
             return new ArrayList<>();
@@ -50,6 +50,9 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(context);
             for (ShortcutInfo shortcutInfo : shortcutInfos) {
+                if (isCancelled()) {
+                    break;
+                }
                 if (ShortcutUtil.isShortcutVisible(context, shortcutInfo, excludedApps, excludedShortcutApps)) {
                     ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, !shortcutInfo.isPinned());
                     if (shortcutRecord != null) {

@@ -62,7 +62,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 int photoIdIndex = cur.getColumnIndex(ContactsContract.Contacts.PHOTO_ID);
                 int contactIdIndex = cur.getColumnIndex(ContactsContract.Contacts._ID);
 
-                while (cur.moveToNext()) {
+                while (cur.moveToNext() && !isCancelled()) {
                     String lookupKey = cur.getString(lookupIndex);
                     String name = cur.getString(displayNameIndex);
                     int contactId = cur.getInt(contactIdIndex);
@@ -114,7 +114,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             if (nickCursor.getCount() > 0) {
                 int lookupKeyIndex = nickCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY);
                 int nickNameIndex = nickCursor.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME);
-                while (nickCursor.moveToNext()) {
+                while (nickCursor.moveToNext() && !isCancelled()) {
                     String lookupKey = nickCursor.getString(lookupKeyIndex);
                     String nick = nickCursor.getString(nickNameIndex);
 
@@ -130,7 +130,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
         for (Set<ContactsPojo> phones : mapContacts.values()) {
             // Find primary phone and add this one.
-            Boolean hasPrimary = false;
+            boolean hasPrimary = false;
             for (ContactsPojo contact : phones) {
                 if (contact.primary) {
                     contacts.add(contact);
