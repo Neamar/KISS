@@ -68,7 +68,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 int displayNameIndex = contactCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
                 int photoIdIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_ID);
                 int photoUriIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI);
-                while (contactCursor.moveToNext()) {
+                while (contactCursor.moveToNext() && !isCancelled()) {
                     BasicContact basicContact = new BasicContact(
                             contactCursor.getString(lookupIndex),
                             contactCursor.getLong(contactIdIndex),
@@ -96,7 +96,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             if (rawContactCursor.getCount() > 0) {
                 int rawContactIdIndex = rawContactCursor.getColumnIndex(ContactsContract.RawContacts._ID);
                 int starredIndex = rawContactCursor.getColumnIndex(ContactsContract.RawContacts.STARRED);
-                while (rawContactCursor.moveToNext()) {
+                while (rawContactCursor.moveToNext()&& !isCancelled()) {
                     BasicRawContact basicRawContact = new BasicRawContact(
                             rawContactCursor.getLong(rawContactIdIndex),
                             rawContactCursor.getInt(starredIndex) != 0
@@ -177,7 +177,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 int numberIndex = phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 int isPrimaryIndex = phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY);
 
-                while (phoneCursor.moveToNext()) {
+                while (phoneCursor.moveToNext()&& !isCancelled()) {
                     String lookupKey = phoneCursor.getString(lookupIndex);
                     BasicContact basicContact = basicContacts.get(lookupKey);
                     long rawContactId = phoneCursor.getLong(rawContactIdIndex);
@@ -244,7 +244,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 if (detailColumn != null) {
                     detailColumnIndex = mimeTypeCursor.getColumnIndex(detailColumn);
                 }
-                while (mimeTypeCursor.moveToNext()) {
+                while (mimeTypeCursor.moveToNext()&& !isCancelled()) {
                     String lookupKey = mimeTypeCursor.getString(lookupIndex);
                     BasicContact basicContact = basicContacts.get(lookupKey);
                     long rawContactId = mimeTypeCursor.getLong(rawContactIdIndex);
@@ -313,7 +313,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         for (Set<ContactsPojo> mappedContacts : mapContacts.values()) {
             // Find primary phone and add this one.
             boolean hasPrimary = false;
-            for (ContactsPojo contact : phones) {
+            for (ContactsPojo contact : mappedContacts) {
                 if (contact.primary) {
                     contacts.add(contact);
                     hasPrimary = true;
