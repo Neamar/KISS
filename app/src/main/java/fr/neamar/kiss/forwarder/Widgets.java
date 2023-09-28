@@ -218,7 +218,7 @@ class Widgets extends Forwarder {
     private void addWidget(int appWidgetId, int lineSize) {
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
         if (appWidgetInfo == null) {
-            Log.i("Widget", "Unable to retrieve widget by id " + appWidgetId);
+            Log.i(TAG, "Unable to retrieve widget by id " + appWidgetId);
             return;
         }
 

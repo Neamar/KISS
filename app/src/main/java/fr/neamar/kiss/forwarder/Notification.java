@@ -17,6 +17,7 @@ import fr.neamar.kiss.notification.NotificationListener;
 import static android.content.Context.MODE_PRIVATE;
 
 class Notification extends Forwarder {
+    private static final String TAG = Notification.class.getSimpleName();
     private final SharedPreferences notificationPreferences;
 
     private SharedPreferences.OnSharedPreferenceChangeListener onNotificationDisplayed = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -54,7 +55,7 @@ class Notification extends Forwarder {
                     mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, MODE_PRIVATE).edit().clear().apply();
                 }
             } catch (Error e) {
-                Log.i("Notification", "Unable to check for notification access", e);
+                Log.i(TAG, "Unable to check for notification access", e);
             }
         }
         notificationPreferences = notifsPrefBuilder;
