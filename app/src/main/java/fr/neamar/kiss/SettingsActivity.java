@@ -324,12 +324,6 @@ public class SettingsActivity extends PreferenceActivity implements
         // If the user has clicked on a preference screen, set up the action bar
         if (preference instanceof PreferenceScreen) {
             final Dialog dialog = ((PreferenceScreen) preference).getDialog();
-            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialog) {
-                    Log.d("a", "b");
-                }
-            });
             UIColors.updateThemePrimaryColor(preference.getContext(), dialog);
             if (systemUiVisibilityHelper != null) {
                 systemUiVisibilityHelper.copyVisibility(dialog.getWindow().getDecorView());

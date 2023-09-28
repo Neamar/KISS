@@ -285,7 +285,7 @@ public abstract class Result<T extends Pojo> {
     }
 
     public final void launch(Context context, View v, @Nullable QueryInterface queryInterface) {
-        Log.i("log", "Launching " + pojo.id);
+        Log.i(this.getClass().getSimpleName(), "Launching " + pojo.id);
 
         // Launch
         doLaunch(context, v);

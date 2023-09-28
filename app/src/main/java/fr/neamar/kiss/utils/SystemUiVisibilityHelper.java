@@ -139,6 +139,9 @@ public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChange
         if ((visibility & View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY) != 0)
             sb.append("\n SYSTEM_UI_FLAG_IMMERSIVE_STICKY");
 
+        if ((visibility & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) != 0)
+            sb.append("\n SYSTEM_UI_FLAG_LIGHT_STATUS_BAR");
+
         Log.d(TAG, sb.toString());
 
         if ((visibility & View.SYSTEM_UI_FLAG_HIDE_NAVIGATION) != 0) {

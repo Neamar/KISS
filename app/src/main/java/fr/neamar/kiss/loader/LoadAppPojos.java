@@ -25,6 +25,7 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
 
+    private static final String TAG = LoadAppPojos.class.getSimpleName();
     private final TagsHandler tagsHandler;
 
     public LoadAppPojos(Context context) {
@@ -91,7 +92,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         }
 
         long end = System.currentTimeMillis();
-        Log.i("time", (end - start) + " milliseconds to list apps");
+        Log.i(TAG, (end - start) + " milliseconds to list apps");
 
         return apps;
     }
