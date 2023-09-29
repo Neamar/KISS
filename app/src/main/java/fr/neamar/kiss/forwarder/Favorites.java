@@ -14,6 +14,7 @@ import android.view.DragEvent;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -233,7 +234,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     @SuppressLint("ClickableViewAccessibility")
     public boolean onTouch(View view, MotionEvent motionEvent) {
         // How long to hold your finger in place to trigger the app menu.
-        final int LONG_PRESS_DELAY = 250;
+        final int LONG_PRESS_DELAY = ViewConfiguration.getLongPressTimeout();
 
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             startTime = motionEvent.getEventTime();
