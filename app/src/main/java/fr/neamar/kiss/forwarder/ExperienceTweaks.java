@@ -2,9 +2,11 @@ package fr.neamar.kiss.forwarder;
 
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ServiceInfo;
 import android.os.Build;
@@ -36,7 +38,7 @@ import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.LockAccessibilityService;
 
 // Deals with any settings in the "User Experience" setting sub-screen
-class ExperienceTweaks extends Forwarder {
+public class ExperienceTweaks extends Forwarder {
     /**
      * InputType that behaves as if the consuming IME is a standard-obeying
      * soft-keyboard
@@ -63,21 +65,12 @@ class ExperienceTweaks extends Forwarder {
     private final GestureDetector gd;
     private int lastHeight = 0;
 
-    @SuppressLint("SourceLockedOrientationActivity")
     ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
 
         // Lock launcher into portrait mode
         // Do it here (before initializing the view in onCreate) to make the transition as smooth as possible
-        if (prefs.getBoolean("force-portrait", true)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-            } else {
-                mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
-        } else {
-            mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-        }
+        setRequestedOrientation(mainActivity, prefs);
 
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
             @Override
@@ -443,5 +436,18 @@ class ExperienceTweaks extends Forwarder {
         }
 
         return false;
+    }
+
+    @SuppressLint("SourceLockedOrientationActivity")
+    public static void setRequestedOrientation(Activity activity, SharedPreferences prefs) {
+        if (prefs.getBoolean("force-portrait", true)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
+            } else {
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
+        } else {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
+        }
     }
 }

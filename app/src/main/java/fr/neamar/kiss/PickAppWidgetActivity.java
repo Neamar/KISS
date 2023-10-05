@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -31,6 +32,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import fr.neamar.kiss.forwarder.ExperienceTweaks;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
@@ -43,7 +45,13 @@ public class PickAppWidgetActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        InterfaceTweaks.applySettingsTheme(this, PreferenceManager.getDefaultSharedPreferences(this));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // Lock launcher into portrait mode
+        // Do it here to make the transition as smooth as possible
+        ExperienceTweaks.setRequestedOrientation(this, prefs);
+
+        InterfaceTweaks.applySettingsTheme(this, prefs);
         setContentView(R.layout.widget_picker);
 
         View progressContainer = findViewById(R.id.progressContainer);
