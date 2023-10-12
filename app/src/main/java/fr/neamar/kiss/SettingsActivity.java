@@ -1,13 +1,10 @@
 package fr.neamar.kiss;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.role.RoleManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -102,7 +99,6 @@ public class SettingsActivity extends PreferenceActivity implements
         return set;
     }
 
-    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
