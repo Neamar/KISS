@@ -1,13 +1,10 @@
 package fr.neamar.kiss;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.role.RoleManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -40,6 +37,7 @@ import java.util.TreeSet;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
+import fr.neamar.kiss.forwarder.ExperienceTweaks;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -101,7 +99,6 @@ public class SettingsActivity extends PreferenceActivity implements
         return set;
     }
 
-    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -111,15 +108,7 @@ public class SettingsActivity extends PreferenceActivity implements
 
         // Lock launcher into portrait mode
         // Do it here to make the transition as smooth as possible
-        if (prefs.getBoolean("force-portrait", true)) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-            } else {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
-        } else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-        }
+        ExperienceTweaks.setRequestedOrientation(this, prefs);
 
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
