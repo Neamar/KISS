@@ -735,6 +735,13 @@ public class DataHandler extends BroadcastReceiver
         return (entry != null) ? ((ContactsProvider) entry.provider) : null;
     }
 
+    public void reloadContactsProvider() {
+        ContactsProvider contactsProvider = getContactsProvider();
+        if (contactsProvider != null) {
+            contactsProvider.reload();
+        }
+    }
+
     @Nullable
     public ShortcutsProvider getShortcutsProvider() {
         ProviderEntry entry = this.providers.get("shortcuts");

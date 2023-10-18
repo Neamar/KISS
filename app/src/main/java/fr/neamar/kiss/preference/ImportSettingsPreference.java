@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.DataHandler;
@@ -44,52 +45,68 @@ public class ImportSettingsPreference extends DialogPreference {
                 String clipboardText = clipboard.getPrimaryClip().getItemAt(0).coerceToText(getContext()).toString();
 
                 // Validate JSON
-                JSONObject o = new JSONObject(clipboardText);
-                if (o.getInt("__v") > BuildConfig.VERSION_CODE) {
+                JSONObject jsonObject = new JSONObject(clipboardText);
+                if (jsonObject.getInt("__v") > BuildConfig.VERSION_CODE) {
                     Toast.makeText(getContext(), "Please upgrade your KISS version before importing those settings.", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 // Reset everything to default
-                PreferenceManager.setDefaultValues(getContext(), R.xml.preferences, true);
+                SharedPreferences oldPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                if (oldPrefs.edit().clear().commit()) {
+                    PreferenceManager.setDefaultValues(getContext(), R.xml.preferences, true);
+                }
+
+                // Set imported values
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
 
-                Iterator<?> keys = o.keys();
+                Iterator<?> keys = jsonObject.keys();
                 while (keys.hasNext()) {
                     String key = (String) keys.next();
                     if (key.startsWith("__")) {
                         continue;
                     }
 
-                    if (o.get(key) instanceof Boolean) {
-                        editor.putBoolean(key, o.getBoolean(key));
-                    } else if (o.get(key) instanceof String) {
-                        editor.putString(key, o.getString(key));
-                    } else if (o.get(key) instanceof JSONArray) {
-                        JSONArray a = o.getJSONArray(key);
-                        HashSet<String> s = new HashSet<>(a.length());
+                    Object newValue = jsonObject.get(key);
+                    if (newValue instanceof Boolean) {
+                        editor.putBoolean(key, (Boolean) newValue);
+                    } else if (newValue instanceof String) {
+                        editor.putString(key, (String) newValue);
+                    } else if (newValue instanceof JSONArray) {
+                        JSONArray a = (JSONArray) newValue;
+                        Set<String> s = new HashSet<>(a.length());
                         for (int i = 0; i < a.length(); i++) {
                             s.add(a.getString(i));
                         }
                         editor.putStringSet(key, s);
+                    } else {
+                        Log.w(TAG, "Unknown type: " + key + ":" + newValue);
                     }
                 }
-                editor.apply();
+                // always use commit to ensure that changes are saved synchronously before continuing
+                if (!editor.commit()) {
+                    Toast.makeText(getContext(), "Unable to save preferences", Toast.LENGTH_SHORT).show();
+                }
+
+                DataHandler dataHandler = ((KissApplication) getContext().getApplicationContext()).getDataHandler();
 
                 // Import tags
-                if (o.has("__tags")) {
-                    DataHandler dataHandler = ((KissApplication) getContext().getApplicationContext()).getDataHandler();
+                if (jsonObject.has("__tags")) {
                     TagsHandler tagHandler = dataHandler.getTagsHandler();
                     tagHandler.clearTags();
-                    JSONObject tags = o.getJSONObject("__tags");
+                    JSONObject tags = jsonObject.getJSONObject("__tags");
                     Iterator<?> tagKeys = tags.keys();
                     while (tagKeys.hasNext()) {
                         String id = (String) tagKeys.next();
                         tagHandler.setTags(id, tags.getString(id));
                     }
-                    dataHandler.reloadApps();
-                    dataHandler.reloadShortcuts();
                 }
+
+                // reload all providers
+                dataHandler.reloadApps();
+                dataHandler.reloadShortcuts();
+                dataHandler.reloadSearchProvider();
+                dataHandler.reloadContactsProvider();
 
                 Toast.makeText(getContext(), "Preferences imported!", Toast.LENGTH_SHORT).show();
             } catch (JSONException | NullPointerException e) {
