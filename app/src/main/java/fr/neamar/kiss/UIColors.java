@@ -78,7 +78,7 @@ public class UIColors {
             -1,
     };
 
-    private static final String COLOR_DEFAULT_STR = colorToString(COLOR_DEFAULT & 0xFFFFFF);
+    private static final String COLOR_DEFAULT_STR = colorToString(COLOR_DEFAULT);
 
     private static int primaryColor = -1;
 
