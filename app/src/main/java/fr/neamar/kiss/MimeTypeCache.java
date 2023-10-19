@@ -63,26 +63,29 @@ public class MimeTypeCache {
      * @return label for best matching app by mimetype
      */
     public String getLabel(Context context, String mimeType) {
-        if (labels.containsKey(mimeType)) {
-            return labels.get(mimeType);
+        if (!labels.containsKey(mimeType)) {
+            synchronized (this) {
+                if (labels.containsKey(mimeType)) {
+                    final Intent intent = MimeTypeUtils.getIntentByMimeType(mimeType, -1, "");
+                    String label = PackageManagerUtils.getLabel(context, intent);
+                    labels.put(mimeType, label);
+                }
+            }
         }
-
-        final Intent intent = MimeTypeUtils.getIntentByMimeType(mimeType, -1, "");
-        String label = PackageManagerUtils.getLabel(context, intent);
-        labels.put(mimeType, label);
-        return label;
+        return labels.get(mimeType);
     }
 
     public ComponentName getComponentName(Context context, String mimeType) {
-        if (componentNames.containsKey(mimeType)) {
-            return componentNames.get(mimeType);
+        if (!componentNames.containsKey(mimeType)) {
+            synchronized (this) {
+                if (!componentNames.containsKey(mimeType)) {
+                    final Intent intent = MimeTypeUtils.getIntentByMimeType(mimeType, -1, "");
+                    ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
+                    this.componentNames.put(mimeType, componentName);
+                }
+            }
         }
-
-        final Intent intent = MimeTypeUtils.getIntentByMimeType(mimeType, -1, "");
-        ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
-        this.componentNames.put(mimeType, componentName);
-
-        return componentName;
+        return componentNames.get(mimeType);
     }
 
     /**

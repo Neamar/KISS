@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -147,7 +148,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             if (ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
                 contacts.addAll(createPhoneContacts(ctx, basicContacts, basicRawContacts));
             } else {
-                contacts.addAll(createGenericContacts(mimeType, basicContacts, basicRawContacts));
+                contacts.addAll(createGenericContacts(ctx, mimeType, basicContacts, basicRawContacts));
             }
             long endMimeType = System.currentTimeMillis();
             Log.i(TAG, (endMimeType - startMimeType) + " milliseconds to list contacts for " + mimeType);
@@ -212,8 +213,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         return getFilteredContacts(mapContacts, contact -> contact.normalizedPhone.toString());
     }
 
-    private List<ContactsPojo> createGenericContacts(String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
-        final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(context.get());
+    private List<ContactsPojo> createGenericContacts(@NonNull Context ctx, String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
+        final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(ctx);
         // Prevent duplicates by keeping in memory encountered contacts.
         Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
 
@@ -223,13 +224,13 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         columns.add(ContactsContract.Data._ID);
         columns.add(ContactsContract.Data.IS_PRIMARY);
 
-        String detailColumn = mimeTypeCache.getDetailColumn(context.get(), mimeType);
+        String detailColumn = mimeTypeCache.getDetailColumn(ctx, mimeType);
         if (detailColumn != null && !columns.contains(detailColumn)) {
             columns.add(detailColumn);
         }
 
         // Query all entries by mimeType
-        Cursor mimeTypeCursor = context.get().getContentResolver().query(
+        Cursor mimeTypeCursor = ctx.getContentResolver().query(
                 ContactsContract.Data.CONTENT_URI,
                 columns.toArray(new String[]{}),
                 ContactsContract.Data.MIMETYPE + "= ?",
@@ -258,8 +259,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         if (detailColumnIndex >= 0) {
                             label = mimeTypeCursor.getString(detailColumnIndex);
                         }
-                        if (label == null) {
-                            label = mimeTypeCache.getLabel(context.get(), mimeType);
+                        if (TextUtils.isEmpty(label)) {
+                            label = mimeTypeCache.getLabel(ctx, mimeType);
                         }
                         Uri icon = basicContact.getIcon();
 
