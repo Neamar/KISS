@@ -160,24 +160,29 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (pojo.getImData() != null) {
             appIcon.setVisibility(View.VISIBLE);
-
-            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
             if (appDrawable == null) {
-                ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getImData().getMimeType());
-                if (componentName != null) {
-                    appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), this.userHandle);
-                } else {
-                    // This should never happen, let's just return the generic activity icon
-                    appDrawable = context.getPackageManager().getDefaultActivityIcon();
-                }
+                appDrawable = getAppDrawable(context);
             }
             appIcon.setImageDrawable(appDrawable);
         } else {
             appIcon.setVisibility(View.GONE);
         }
 
-
         return view;
+    }
+
+    private Drawable getAppDrawable(Context context) {
+        Drawable drawable = null;
+        ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getImData().getMimeType());
+        if (componentName != null) {
+            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+            drawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), this.userHandle);
+        }
+        if (drawable == null) {
+            // This should never happen, let's just return the generic activity icon
+            drawable = context.getPackageManager().getDefaultActivityIcon();
+        }
+        return drawable;
     }
 
     @Override
