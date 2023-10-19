@@ -7,10 +7,11 @@ package fr.neamar.kiss.pojo;
 public class RelevanceComparator extends NameComparator {
     @Override
     public int compare(Pojo lhs, Pojo rhs) {
-        int result;
-        if ((result = Integer.compare(lhs.relevance, rhs.relevance)) != 0) {
+        int result = Integer.compare(lhs.relevance, rhs.relevance);
+        if (result != 0) {
             return result;
         }
+
         return super.compare(lhs, rhs);
     }
 }

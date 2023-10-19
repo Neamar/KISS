@@ -8,17 +8,17 @@ import java.util.Comparator;
 public class NameComparator implements Comparator<Pojo> {
     @Override
     public int compare(Pojo lhs, Pojo rhs) {
-        int result;
         if (lhs.normalizedName != null && rhs.normalizedName != null) {
-            if ((result = lhs.normalizedName.compareTo(rhs.normalizedName)) != 0) {
+            int result = lhs.normalizedName.compareTo(rhs.normalizedName);
+            if (result != 0) {
                 return result;
             }
         }
+
         if (lhs.getName() != null && rhs.getName() != null) {
-            if ((result = lhs.getName().compareTo(rhs.getName())) != 0) {
-                return result;
-            }
+            return lhs.getName().compareTo(rhs.getName());
         }
+
         return 0;
     }
 }
