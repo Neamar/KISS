@@ -42,7 +42,7 @@ import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.preference.ExcludePreferenceScreen;
 import fr.neamar.kiss.preference.PreferenceScreenHelper;
@@ -218,7 +218,7 @@ public class SettingsActivity extends PreferenceActivity implements
             appPojoList = Collections.emptyList();
 
         // appPojoList is a copy of the original list; we can sort it in place
-        Collections.sort(appPojoList, new PojoComparator());
+        Collections.sort(appPojoList, new NameComparator());
 
         // generate entry names and entry values
         final int appCount = appPojoList.size();

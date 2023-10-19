@@ -12,7 +12,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 
 /**
@@ -26,7 +26,7 @@ public class ApplicationsSearcher extends Searcher {
     @Override
     PriorityQueue<Pojo> getPojoProcessor(Context context) {
         // Sort from A to Z, so reverse (last item needs to be A, listview starts at the bottom)
-        return new PriorityQueue<>(DEFAULT_MAX_RESULTS, Collections.reverseOrder(new PojoComparator()));
+        return new PriorityQueue<>(DEFAULT_MAX_RESULTS, Collections.reverseOrder(new NameComparator()));
     }
 
     @Override

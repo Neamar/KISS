@@ -1,12 +1,16 @@
 package fr.neamar.kiss.searcher;
 
+import android.content.Context;
+
 import java.util.Iterator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.PojoWithTags;
 
 public class UntaggedSearcher extends Searcher {
@@ -14,6 +18,11 @@ public class UntaggedSearcher extends Searcher {
     public UntaggedSearcher(MainActivity activity )
     {
         super( activity, "<untagged>" );
+    }
+
+    @Override
+    PriorityQueue<Pojo> getPojoProcessor(Context context) {
+        return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new NameComparator());
     }
 
     @Override
