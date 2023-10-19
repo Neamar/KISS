@@ -58,7 +58,8 @@ public class ImportSettingsPreference extends DialogPreference {
                 }
 
                 // Set imported values
-                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editor = prefs.edit();
 
                 Iterator<?> keys = jsonObject.keys();
                 while (keys.hasNext()) {
@@ -68,17 +69,24 @@ public class ImportSettingsPreference extends DialogPreference {
                     }
 
                     Object newValue = jsonObject.get(key);
+                    Object currentValue = prefs.getAll().get(key);
                     if (newValue instanceof Boolean) {
-                        editor.putBoolean(key, (Boolean) newValue);
-                    } else if (newValue instanceof String) {
-                        editor.putString(key, (String) newValue);
-                    } else if (newValue instanceof JSONArray) {
-                        JSONArray a = (JSONArray) newValue;
-                        Set<String> s = new HashSet<>(a.length());
-                        for (int i = 0; i < a.length(); i++) {
-                            s.add(a.getString(i));
+                        if (hasMatchingType(key, currentValue, Boolean.class)) {
+                            editor.putBoolean(key, (Boolean) newValue);
                         }
-                        editor.putStringSet(key, s);
+                    } else if (newValue instanceof String) {
+                        if (hasMatchingType(key, currentValue, String.class)) {
+                            editor.putString(key, (String) newValue);
+                        }
+                    } else if (newValue instanceof JSONArray) {
+                        if (hasMatchingType(key, currentValue, Set.class)) {
+                            JSONArray a = (JSONArray) newValue;
+                            Set<String> s = new HashSet<>(a.length());
+                            for (int i = 0; i < a.length(); i++) {
+                                s.add(a.getString(i));
+                            }
+                            editor.putStringSet(key, s);
+                        }
                     } else {
                         Log.w(TAG, "Unknown type: " + key + ":" + newValue);
                     }
@@ -102,7 +110,6 @@ public class ImportSettingsPreference extends DialogPreference {
                     }
                 }
 
-                // reload all providers
                 dataHandler.reloadApps();
                 dataHandler.reloadShortcuts();
                 dataHandler.reloadSearchProvider();
@@ -115,6 +122,20 @@ public class ImportSettingsPreference extends DialogPreference {
             }
         }
 
+    }
+
+    /**
+     * @param key          preference key
+     * @param currentValue current value of preference
+     * @param expectedType expected type of preference
+     * @return true, if preference value is null or preference value matches expected type
+     */
+    private boolean hasMatchingType(String key, Object currentValue, Class<?> expectedType) {
+        boolean isValid = currentValue == null || expectedType.isAssignableFrom(currentValue.getClass());
+        if (!isValid) {
+            Log.w(TAG, "Invalid type for " + key + ": expected" + currentValue.getClass().getSimpleName() + " but was " + expectedType.getSimpleName());
+        }
+        return isValid;
     }
 
 }
