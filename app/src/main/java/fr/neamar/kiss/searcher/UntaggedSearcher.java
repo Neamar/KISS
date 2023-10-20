@@ -1,15 +1,7 @@
 package fr.neamar.kiss.searcher;
 
-import android.content.Context;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.PriorityQueue;
-
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.pojo.ReversedNameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoWithTags;
 
@@ -21,31 +13,30 @@ public class UntaggedSearcher extends Searcher {
     }
 
     @Override
-    PriorityQueue<Pojo> getPojoProcessor(Context context) {
-        return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new ReversedNameComparator());
+    public boolean addResult(Pojo... pojos) {
+        for (Pojo pojo : pojos) {
+            if (!(pojo instanceof PojoWithTags)) {
+                continue;
+            }
+            PojoWithTags pojoWithTags = (PojoWithTags) pojo;
+            if (pojoWithTags.getTags() != null && !pojoWithTags.getTags().isEmpty()) {
+                continue;
+            }
+
+            super.addResult(pojo);
+        }
+        return false;
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
         MainActivity activity = activityWeakReference.get();
-        if ( activity == null )
+        if (activity == null)
             return null;
-        List<AppPojo> results = KissApplication.getApplication(activity).getDataHandler().getApplicationsWithoutExcluded();
-        if (results == null)
-            return null;
-        for(Iterator<AppPojo> iterator = results.iterator(); iterator.hasNext(); ) {
-            Pojo pojo = iterator.next();
-            if (!(pojo instanceof PojoWithTags)) {
-                iterator.remove();
-                continue;
-            }
-            PojoWithTags pojoWithTags = (PojoWithTags) pojo;
-            if (pojoWithTags.getTags() == null || pojoWithTags.getTags().isEmpty()) {
-                continue;
-            }
-            iterator.remove();
-        }
-        this.addResult(results.toArray(new Pojo[0]));
+
+        KissApplication.getApplication(activity).getDataHandler().requestAllRecords(this);
+
         return null;
     }
+
 }

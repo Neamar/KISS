@@ -1,12 +1,7 @@
 package fr.neamar.kiss.searcher;
 
-import android.content.Context;
-
-import java.util.PriorityQueue;
-
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.pojo.ReversedNameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoWithTags;
 
@@ -17,11 +12,6 @@ import fr.neamar.kiss.pojo.PojoWithTags;
 public class TagsSearcher extends Searcher {
     public TagsSearcher(MainActivity activity, String query) {
         super(activity, query == null ? "<tags>" : query);
-    }
-
-    @Override
-    PriorityQueue<Pojo> getPojoProcessor(Context context) {
-        return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new ReversedNameComparator());
     }
 
     @Override
