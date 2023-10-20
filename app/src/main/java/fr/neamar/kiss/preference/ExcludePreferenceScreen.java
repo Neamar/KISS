@@ -18,7 +18,7 @@ import java.util.List;
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.pojo.NameComparator;
 
 /**
  * Normally this would be a subclass of PreferenceScreen but PreferenceScreen is final.
@@ -42,7 +42,7 @@ public class ExcludePreferenceScreen {
 		else {
 			apps = new AppPojo[0];
 		}
-		Arrays.sort(apps, new PojoComparator());
+		Arrays.sort(apps, new NameComparator());
 
 		final PreferenceScreen excludedAppsScreen = preferenceActivity.getPreferenceManager().createPreferenceScreen(preferenceActivity);
 		excludedAppsScreen.setTitle(preferenceTitleResId);

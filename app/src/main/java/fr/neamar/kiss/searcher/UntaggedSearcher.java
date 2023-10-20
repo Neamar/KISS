@@ -1,11 +1,7 @@
 package fr.neamar.kiss.searcher;
 
-import java.util.Iterator;
-import java.util.List;
-
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
-import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoWithTags;
 
@@ -17,26 +13,30 @@ public class UntaggedSearcher extends Searcher {
     }
 
     @Override
-    protected Void doInBackground(Void... voids) {
-        MainActivity activity = activityWeakReference.get();
-        if ( activity == null )
-            return null;
-        List<AppPojo> results = KissApplication.getApplication(activity).getDataHandler().getApplicationsWithoutExcluded();
-        if (results == null)
-            return null;
-        for(Iterator<AppPojo> iterator = results.iterator(); iterator.hasNext(); ) {
-            Pojo pojo = iterator.next();
+    public boolean addResult(Pojo... pojos) {
+        for (Pojo pojo : pojos) {
             if (!(pojo instanceof PojoWithTags)) {
-                iterator.remove();
                 continue;
             }
             PojoWithTags pojoWithTags = (PojoWithTags) pojo;
-            if (pojoWithTags.getTags() == null || pojoWithTags.getTags().isEmpty()) {
+            if (pojoWithTags.getTags() != null && !pojoWithTags.getTags().isEmpty()) {
                 continue;
             }
-            iterator.remove();
+
+            super.addResult(pojo);
         }
-        this.addResult(results.toArray(new Pojo[0]));
+        return false;
+    }
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        MainActivity activity = activityWeakReference.get();
+        if (activity == null)
+            return null;
+
+        KissApplication.getApplication(activity).getDataHandler().requestAllRecords(this);
+
         return null;
     }
+
 }

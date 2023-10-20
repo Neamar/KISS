@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
-import fr.neamar.kiss.pojo.PojoComparator;
+import fr.neamar.kiss.pojo.RelevanceComparator;
 import fr.neamar.kiss.result.Result;
 
 public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
@@ -46,7 +46,7 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
     }
 
     PriorityQueue<Pojo> getPojoProcessor(Context context) {
-        return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new PojoComparator());
+        return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new RelevanceComparator());
     }
 
     int getMaxResultCount() {
