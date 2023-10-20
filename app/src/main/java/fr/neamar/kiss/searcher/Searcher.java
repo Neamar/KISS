@@ -54,9 +54,18 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
     }
 
     /**
-     * This is called from the background thread by the providers
+     * Add single pojo to results.
+     * This is called from the background thread by the providers.
      */
-    public boolean addResult(Pojo... pojos) {
+    public final boolean addResult(Pojo pojos) {
+        return addResults(Collections.singletonList(pojos));
+    }
+
+    /**
+     * Add one or more pojos to results.
+     * This is called from the background thread by the providers.
+     */
+    public boolean addResults(List<? extends Pojo> pojos) {
         if (isCancelled())
             return false;
 
@@ -64,9 +73,7 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
         if (activity == null)
             return false;
 
-        Collections.addAll(this.processedPojos, pojos);
-
-        return true;
+        return this.processedPojos.addAll(pojos);
     }
 
     @CallSuper

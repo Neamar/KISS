@@ -82,7 +82,7 @@ public class HistorySearcher extends Searcher {
             pojos.get(i).relevance = size - i;
         }
 
-        this.addResult(pojos.toArray(new Pojo[0]));
+        this.addResults(pojos);
         return null;
     }
 }

@@ -44,13 +44,13 @@ public class ApplicationsSearcher extends Searcher {
         // add apps
         List<AppPojo> pojos = KissApplication.getApplication(activity).getDataHandler().getApplicationsWithoutExcluded();
         if (pojos != null) {
-            this.addResult(getPojosWithoutFavorites(pojos, excludedFavoriteIds).toArray(new Pojo[0]));
+            this.addResults(getPojosWithoutFavorites(pojos, excludedFavoriteIds));
         }
 
         // add pinned shortcuts (PWA, ...)
         List<ShortcutPojo> shortcuts = KissApplication.getApplication(activity).getDataHandler().getPinnedShortcuts();
         if (shortcuts != null) {
-            this.addResult(getPojosWithoutFavorites(shortcuts, excludedFavoriteIds).toArray(new Pojo[0]));
+            this.addResults(getPojosWithoutFavorites(shortcuts, excludedFavoriteIds));
         }
 
         return null;

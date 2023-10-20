@@ -1,5 +1,8 @@
 package fr.neamar.kiss.searcher;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
@@ -15,7 +18,8 @@ public class TagsSearcher extends Searcher {
     }
 
     @Override
-    public boolean addResult(Pojo... pojos) {
+    public boolean addResults(List<? extends Pojo> pojos) {
+        List<Pojo> filteredPojos = new ArrayList<>();
         for (Pojo pojo : pojos) {
             if (!(pojo instanceof PojoWithTags)) {
                 continue;
@@ -29,9 +33,9 @@ public class TagsSearcher extends Searcher {
                 continue;
             }
 
-            super.addResult(pojo);
+            filteredPojos.add(pojoWithTags);
         }
-        return false;
+        return super.addResults(filteredPojos);
     }
 
     @Override
