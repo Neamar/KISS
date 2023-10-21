@@ -364,7 +364,7 @@ public class DataHandler extends BroadcastReceiver
 
             List<? extends Pojo> pojos = entry.provider.getPojos();
             if (pojos != null)
-                searcher.addResult(pojos.toArray(new Pojo[0]));
+                searcher.addResults(pojos);
         }
     }
 

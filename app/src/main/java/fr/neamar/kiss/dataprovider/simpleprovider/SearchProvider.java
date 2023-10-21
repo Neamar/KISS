@@ -70,7 +70,7 @@ public class SearchProvider extends SimpleProvider {
 
     @Override
     public void requestResults(String s, Searcher searcher) {
-        searcher.addResult(getResults(s).toArray(new Pojo[0]));
+        searcher.addResults(getResults(s));
     }
 
     private List<Pojo> getResults(String query) {

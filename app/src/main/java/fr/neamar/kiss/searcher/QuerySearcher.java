@@ -50,7 +50,7 @@ public class QuerySearcher extends Searcher {
     }
 
     @Override
-    public boolean addResult(Pojo... pojos) {
+    public boolean addResults(List<? extends Pojo> pojos) {
         // Give a boost if item was previously selected for this query
         for (Pojo pojo : pojos) {
             Integer value = knownIds.get(pojo.id);
@@ -60,7 +60,7 @@ public class QuerySearcher extends Searcher {
         }
 
         // call super implementation to update the adapter
-        return super.addResult(pojos);
+        return super.addResults(pojos);
     }
 
     /**
