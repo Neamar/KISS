@@ -626,32 +626,37 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    public void displayLoader(Boolean display) {
-        int animationDuration = getResources().getInteger(
-                android.R.integer.config_longAnimTime);
+    public void displayLoader(boolean display) {
+        if (!display) {
+            // Do not display animation if launcher button is already visible
+            if (launcherButton.getVisibility() != View.VISIBLE) {
+                launcherButton.setVisibility(View.VISIBLE);
 
-        // Do not display animation if launcher button is already visible
-        if (!display && launcherButton.getVisibility() == View.INVISIBLE) {
-            launcherButton.setVisibility(View.VISIBLE);
+                int animationDuration = getResources().getInteger(
+                        android.R.integer.config_longAnimTime);
 
-            // Animate transition from loader to launch button
+                // Animate transition from loader to launch button
+                launcherButton.animate()
+                        .alpha(1f)
+                        .setDuration(animationDuration)
+                        .setListener(null);
+                loaderSpinner.animate()
+                        .alpha(0f)
+                        .setDuration(animationDuration)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                loaderSpinner.setVisibility(View.GONE);
+                            }
+                        });
+            }
+        } else {
+            launcherButton.animate().cancel();
             launcherButton.setAlpha(0);
-            launcherButton.animate()
-                    .alpha(1f)
-                    .setDuration(animationDuration)
-                    .setListener(null);
-            loaderSpinner.animate()
-                    .alpha(0f)
-                    .setDuration(animationDuration)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            loaderSpinner.setVisibility(View.GONE);
-                            loaderSpinner.setAlpha(1);
-                        }
-                    });
-        } else if (display) {
             launcherButton.setVisibility(View.INVISIBLE);
+
+            loaderSpinner.animate().cancel();
+            loaderSpinner.setAlpha(1);
             loaderSpinner.setVisibility(View.VISIBLE);
         }
     }
@@ -660,7 +665,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         forwarderManager.onFavoriteChange();
     }
 
-    public void displayKissBar(Boolean display) {
+    public void displayKissBar(boolean display) {
         this.displayKissBar(display, true);
     }
 
