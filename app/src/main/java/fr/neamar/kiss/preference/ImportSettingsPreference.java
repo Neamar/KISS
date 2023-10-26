@@ -46,7 +46,11 @@ public class ImportSettingsPreference extends DialogPreference {
 
                 // Validate JSON
                 JSONObject jsonObject = new JSONObject(clipboardText);
-                if (jsonObject.getInt("__v") > BuildConfig.VERSION_CODE) {
+                int minVersion = jsonObject.optInt("__v", -1);
+                if (minVersion < 0) {
+                    Toast.makeText(getContext(), "Unable to import preferences, no valid version string detected.", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (minVersion > BuildConfig.VERSION_CODE) {
                     Toast.makeText(getContext(), "Please upgrade your KISS version before importing those settings.", Toast.LENGTH_LONG).show();
                     return;
                 }
