@@ -85,7 +85,7 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
         displayActivityLoader();
     }
 
-    void displayActivityLoader() {
+    protected void displayActivityLoader() {
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
             return;
@@ -93,14 +93,22 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
         activity.displayLoader(true);
     }
 
+    private void hideActivityLoader(MainActivity activity) {
+        // Loader should still be displayed until all the providers have finished loading
+        activity.displayLoader(!KissApplication.getApplication(activity).getDataHandler().allProvidersHaveLoaded);
+    }
+
     @Override
     protected void onPostExecute(Void param) {
+        if (isCancelled()) {
+            return;
+        }
+
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
             return;
 
-        // Loader should still be displayed until all the providers have finished loading
-        activity.displayLoader(!KissApplication.getApplication(activity).getDataHandler().allProvidersHaveLoaded);
+        hideActivityLoader(activity);
 
         if (this.processedPojos.isEmpty()) {
             activity.adapter.clear();
@@ -125,6 +133,15 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
 
         long time = System.currentTimeMillis() - start;
         Log.v(TAG, "Time to run query `" + query + "` on " + getClass().getSimpleName() + " to completion: " + time + "ms");
+    }
+
+    @Override
+    protected void onCancelled(Void unused) {
+        MainActivity activity = activityWeakReference.get();
+        if (activity == null)
+            return;
+
+        hideActivityLoader(activity);
     }
 
     public void setRefresh(boolean refresh) {
