@@ -84,18 +84,18 @@ public class ImportSettingsPreference extends DialogPreference {
                         }
                     } else if (newValue instanceof JSONArray) {
                         if (hasMatchingType(key, currentValue, Set.class)) {
-                            JSONArray a = (JSONArray) newValue;
-                            Set<String> s = new HashSet<>(a.length());
-                            for (int i = 0; i < a.length(); i++) {
-                                s.add(a.getString(i));
+                            JSONArray newValues = (JSONArray) newValue;
+                            Set<String> unwrappedValues = new HashSet<>(newValues.length());
+                            for (int i = 0; i < newValues.length(); i++) {
+                                unwrappedValues.add(newValues.getString(i));
                             }
-                            editor.putStringSet(key, s);
+                            editor.putStringSet(key, unwrappedValues);
                         }
                     } else {
                         Log.w(TAG, "Unknown type: " + key + ":" + newValue);
                     }
                 }
-                // always use commit to ensure that changes are saved synchronously before continuing
+                // always commit preferences to ensure that changes are saved synchronously before continuing
                 if (!editor.commit()) {
                     Toast.makeText(getContext(), "Unable to save preferences", Toast.LENGTH_SHORT).show();
                 }

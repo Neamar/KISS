@@ -75,7 +75,7 @@ public class ExportSettingsPreference extends Preference {
                 } else if (value instanceof Set) {
                     if (defaultValues.contains(key)) {
                         Set<String> defaultValue = defaultValues.getStringSet(key, new HashSet<>());
-                        Set<String> currentValue = prefs.getStringSet(key, defaultValue);
+                        Set<String> currentValue = prefs.getStringSet(key, new HashSet<>());
                         if (!currentValue.equals(defaultValue)) {
                             out.put(key, new JSONArray(currentValue));
                         }
