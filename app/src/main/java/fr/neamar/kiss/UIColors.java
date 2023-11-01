@@ -78,7 +78,7 @@ public class UIColors {
             -1,
     };
 
-    private static final String COLOR_DEFAULT_STR = String.format("#%06X", COLOR_DEFAULT & 0xFFFFFF);
+    private static final String COLOR_DEFAULT_STR = colorToString(COLOR_DEFAULT);
 
     private static int primaryColor = -1;
 
@@ -356,6 +356,14 @@ public class UIColors {
     private static boolean isDarkMode(Context context) {
         Resources res = context.getResources();
         return (res.getConfiguration().uiMode & UI_MODE_NIGHT_MASK) == UI_MODE_NIGHT_YES;
+    }
+
+    /**
+     * @param color, color to transform
+     * @return color transformed to string
+     */
+    public static String colorToString(@ColorInt int color) {
+        return String.format("#%08X", color);
     }
 
 }

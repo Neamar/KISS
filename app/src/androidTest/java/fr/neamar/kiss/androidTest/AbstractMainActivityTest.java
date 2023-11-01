@@ -1,22 +1,25 @@
 package fr.neamar.kiss.androidTest;
 
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.view.WindowManager;
 
+import androidx.test.rule.ActivityTestRule;
+
 import org.junit.Before;
 import org.junit.Rule;
 
-import androidx.test.rule.ActivityTestRule;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
-
 abstract class AbstractMainActivityTest {
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     @Before
     public void setUp() {
@@ -30,7 +33,7 @@ abstract class AbstractMainActivityTest {
 
         // Initialize to default preferences
         KissApplication.getApplication(mActivityRule.getActivity()).getDataHandler().clearHistory();
-        PreferenceManager.getDefaultSharedPreferences(mActivityRule.getActivity()).edit().clear().apply();
+        assertThat(PreferenceManager.getDefaultSharedPreferences(mActivityRule.getActivity()).edit().clear().commit(), is(true));
         PreferenceManager.setDefaultValues(mActivityRule.getActivity(), R.xml.preferences, true);
 
         // Remove lock screen

@@ -57,13 +57,13 @@ import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
     // Those settings require the app to restart
-    final static private String settingsRequiringRestart = "primary-color transparent-search transparent-favorites"
-            + " pref-rounded-list pref-rounded-bars pref-swap-kiss-button-with-menu pref-hide-circle history-hide"
-            + " enable-favorites-bar notification-bar-color black-notification-icons icons-pack theme-shadow"
-            + " theme-separator theme-result-color large-favorites-bar pref-hide-search-bar-hint theme-wallpaper"
-            + " theme-bar-color results-size large-result-list-margins themed-icons";
+    final static private List<String> settingsRequiringRestart = Arrays.asList("primary-color", "transparent-search", "transparent-favorites",
+            "pref-rounded-list", "pref-rounded-bars", "pref-swap-kiss-button-with-menu", "pref-hide-circle", "history-hide",
+            "enable-favorites-bar", "notification-bar-color", "black-notification-icons", "icons-pack", "theme-shadow",
+            "theme-separator", "theme-result-color", "large-favorites-bar", "pref-hide-search-bar-hint", "theme-wallpaper",
+            "theme-bar-color", "results-size", "large-result-list-margins", "themed-icons", null);
     // Those settings require a restart of the settings
-    final static private String settingsRequiringRestartForSettingsActivity = "theme force-portrait";
+    final static private List<String> settingsRequiringRestartForSettingsActivity = Arrays.asList("theme", "force-portrait", null);
 
     private final static List<String> PREF_LISTS_WITH_DEPENDENCY = Arrays.asList(
             "gesture-up", "gesture-down",
@@ -597,56 +597,58 @@ public class SettingsActivity extends PreferenceActivity implements
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        KissApplication.getApplication(this).getIconsHandler().onPrefChanged(sharedPreferences, key);
+        if (key != null) {
+            KissApplication.getApplication(this).getIconsHandler().onPrefChanged(sharedPreferences, key);
 
-        if (PREF_LISTS_WITH_DEPENDENCY.contains(key)) {
-            updateItemToRunList(key);
-        }
-
-        if (key.equalsIgnoreCase("available-search-providers")) {
-            addCustomSearchProvidersPreferences(prefs);
-        } else if (key.equalsIgnoreCase("selected-search-provider-names")) {
-            KissApplication.getApplication(SettingsActivity.this).getDataHandler().reloadSearchProvider();
-            removeSearchProviderDefault(); // in order to refresh default search engine choices
-            addDefaultSearchProvider(prefs);
-        } else if (key.equalsIgnoreCase("enable-phone-history")) {
-            boolean enabled = sharedPreferences.getBoolean(key, false);
-            if (enabled && !Permission.checkPermission(SettingsActivity.this, Permission.PERMISSION_READ_PHONE_STATE)) {
-                Permission.askPermission(Permission.PERMISSION_READ_PHONE_STATE, new Permission.PermissionResultListener() {
-                    @Override
-                    public void onGranted() {
-                        setPhoneHistoryEnabled(true);
-                    }
-
-                    @Override
-                    public void onDenied() {
-                        // You don't want to give us permission, that's fine. Revert the toggle.
-                        SwitchPreference p = (SwitchPreference) findPreference(key);
-                        p.setChecked(false);
-                        Toast.makeText(SettingsActivity.this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            } else {
-                setPhoneHistoryEnabled(enabled);
+            if (PREF_LISTS_WITH_DEPENDENCY.contains(key)) {
+                updateItemToRunList(key);
             }
-        } else if (key.equalsIgnoreCase("primary-color")) {
-            UIColors.clearPrimaryColorCache();
-        } else if (key.equalsIgnoreCase("number-of-display-elements")) {
-            QuerySearcher.clearMaxResultCountCache();
-        } else if (key.equalsIgnoreCase("default-search-provider")) {
-            KissApplication.getApplication(SettingsActivity.this).getDataHandler().reloadSearchProvider();
-        } else if ("pref-fav-tags-list".equals(key)) {
-            // after we edit the fav tags list update DataHandler
-            Set<String> favTags = sharedPreferences.getStringSet(key, Collections.<String>emptySet());
-            DataHandler dh = KissApplication.getApplication(this).getDataHandler();
-            List<Pojo> favoritesPojo = dh.getFavorites();
-            for (Pojo pojo : favoritesPojo)
-                if (pojo instanceof TagDummyPojo && !favTags.contains(pojo.getName()))
-                    dh.removeFromFavorites(pojo.id);
-            for (String tagName : favTags)
-                dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
-        } else if ("exclude-favorites-apps".equals(key)) {
-            KissApplication.getApplication(this).getDataHandler().reloadApps();
+
+            if (key.equalsIgnoreCase("available-search-providers")) {
+                addCustomSearchProvidersPreferences(prefs);
+            } else if (key.equalsIgnoreCase("selected-search-provider-names")) {
+                KissApplication.getApplication(SettingsActivity.this).getDataHandler().reloadSearchProvider();
+                removeSearchProviderDefault(); // in order to refresh default search engine choices
+                addDefaultSearchProvider(prefs);
+            } else if (key.equalsIgnoreCase("enable-phone-history")) {
+                boolean enabled = sharedPreferences.getBoolean(key, false);
+                if (enabled && !Permission.checkPermission(SettingsActivity.this, Permission.PERMISSION_READ_PHONE_STATE)) {
+                    Permission.askPermission(Permission.PERMISSION_READ_PHONE_STATE, new Permission.PermissionResultListener() {
+                        @Override
+                        public void onGranted() {
+                            setPhoneHistoryEnabled(true);
+                        }
+
+                        @Override
+                        public void onDenied() {
+                            // You don't want to give us permission, that's fine. Revert the toggle.
+                            SwitchPreference p = (SwitchPreference) findPreference(key);
+                            p.setChecked(false);
+                            Toast.makeText(SettingsActivity.this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    setPhoneHistoryEnabled(enabled);
+                }
+            } else if (key.equalsIgnoreCase("primary-color")) {
+                UIColors.clearPrimaryColorCache();
+            } else if (key.equalsIgnoreCase("number-of-display-elements")) {
+                QuerySearcher.clearMaxResultCountCache();
+            } else if (key.equalsIgnoreCase("default-search-provider")) {
+                KissApplication.getApplication(SettingsActivity.this).getDataHandler().reloadSearchProvider();
+            } else if ("pref-fav-tags-list".equals(key)) {
+                // after we edit the fav tags list update DataHandler
+                Set<String> favTags = sharedPreferences.getStringSet(key, Collections.<String>emptySet());
+                DataHandler dh = KissApplication.getApplication(this).getDataHandler();
+                List<Pojo> favoritesPojo = dh.getFavorites();
+                for (Pojo pojo : favoritesPojo)
+                    if (pojo instanceof TagDummyPojo && !favTags.contains(pojo.getName()))
+                        dh.removeFromFavorites(pojo.id);
+                for (String tagName : favTags)
+                    dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
+            } else if ("exclude-favorites-apps".equals(key)) {
+                KissApplication.getApplication(this).getDataHandler().reloadApps();
+            }
         }
 
         if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
@@ -677,6 +679,7 @@ public class SettingsActivity extends PreferenceActivity implements
         // Flag this, so that MainActivity get the information onResume().
         if (requireFullRestart) {
             prefs.edit().putBoolean("require-layout-update", true).apply();
+            requireFullRestart = false;
         }
     }
 

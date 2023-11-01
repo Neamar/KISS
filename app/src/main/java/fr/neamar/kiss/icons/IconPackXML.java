@@ -82,7 +82,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                     try {
                         packResources = packageManager.getResourcesForApplication(iconPackPackageName);
                     } catch (PackageManager.NameNotFoundException e) {
-                        Log.e(TAG, "get icon pack resources" + iconPackPackageName, e);
+                        Log.e(TAG, "Unable to get icon pack resources: " + iconPackPackageName, e);
                     }
                     parseAppFilterXML();
                     loaded = true;

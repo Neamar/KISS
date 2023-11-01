@@ -137,7 +137,7 @@ public class DataHandler extends BroadcastReceiver
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.startsWith("enable-")) {
+        if (key != null && key.startsWith("enable-")) {
             String providerName = key.substring(7);
             if (PROVIDER_NAMES.contains(providerName)) {
                 if (sharedPreferences.getBoolean(key, true)) {
@@ -252,7 +252,7 @@ public class DataHandler extends BroadcastReceiver
             @Override
             public void onServiceConnected(ComponentName className, IBinder service) {
                 // We've bound to LocalService, cast the IBinder and get LocalService instance
-                Provider.LocalBinder binder = (Provider.LocalBinder) service;
+                Provider<?>.LocalBinder binder = (Provider<?>.LocalBinder) service;
                 IProvider provider = binder.getService();
 
                 // Update provider info so that it contains something useful
@@ -265,7 +265,7 @@ public class DataHandler extends BroadcastReceiver
             }
 
             @Override
-            public void onServiceDisconnected(ComponentName arg0) {
+            public void onServiceDisconnected(ComponentName name) {
             }
         }, Context.BIND_AUTO_CREATE);
 
@@ -286,10 +286,14 @@ public class DataHandler extends BroadcastReceiver
         }
 
         // Disconnect from provider service
-        this.context.unbindService(entry.connection);
+        if (entry.connection != null) {
+            this.context.unbindService(entry.connection);
+        }
 
         // Stop provider service
-        this.context.stopService(new Intent(this.context, entry.provider.getClass()));
+        if (entry.provider != null) {
+            this.context.stopService(new Intent(this.context, entry.provider.getClass()));
+        }
 
         // Remove provider from list
         this.providers.remove(name);
@@ -733,6 +737,13 @@ public class DataHandler extends BroadcastReceiver
     public ContactsProvider getContactsProvider() {
         ProviderEntry entry = this.providers.get("contacts");
         return (entry != null) ? ((ContactsProvider) entry.provider) : null;
+    }
+
+    public void reloadContactsProvider() {
+        ContactsProvider contactsProvider = getContactsProvider();
+        if (contactsProvider != null) {
+            contactsProvider.reload();
+        }
     }
 
     @Nullable

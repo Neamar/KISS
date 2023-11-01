@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.DataHandler;
@@ -44,52 +45,79 @@ public class ImportSettingsPreference extends DialogPreference {
                 String clipboardText = clipboard.getPrimaryClip().getItemAt(0).coerceToText(getContext()).toString();
 
                 // Validate JSON
-                JSONObject o = new JSONObject(clipboardText);
-                if (o.getInt("__v") > BuildConfig.VERSION_CODE) {
+                JSONObject jsonObject = new JSONObject(clipboardText);
+                int minVersion = jsonObject.optInt("__v", -1);
+                if (minVersion < 0) {
+                    Toast.makeText(getContext(), "Unable to import preferences, no valid version string detected.", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (minVersion > BuildConfig.VERSION_CODE) {
                     Toast.makeText(getContext(), "Please upgrade your KISS version before importing those settings.", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 // Reset everything to default
-                PreferenceManager.setDefaultValues(getContext(), R.xml.preferences, true);
-                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                SharedPreferences oldPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                if (oldPrefs.edit().clear().commit()) {
+                    PreferenceManager.setDefaultValues(getContext(), R.xml.preferences, true);
+                }
 
-                Iterator<?> keys = o.keys();
+                // Set imported values
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editor = prefs.edit();
+
+                Iterator<?> keys = jsonObject.keys();
                 while (keys.hasNext()) {
                     String key = (String) keys.next();
                     if (key.startsWith("__")) {
                         continue;
                     }
 
-                    if (o.get(key) instanceof Boolean) {
-                        editor.putBoolean(key, o.getBoolean(key));
-                    } else if (o.get(key) instanceof String) {
-                        editor.putString(key, o.getString(key));
-                    } else if (o.get(key) instanceof JSONArray) {
-                        JSONArray a = o.getJSONArray(key);
-                        HashSet<String> s = new HashSet<>(a.length());
-                        for (int i = 0; i < a.length(); i++) {
-                            s.add(a.getString(i));
+                    Object newValue = jsonObject.get(key);
+                    Object currentValue = prefs.getAll().get(key);
+                    if (newValue instanceof Boolean) {
+                        if (hasMatchingType(key, currentValue, Boolean.class)) {
+                            editor.putBoolean(key, (Boolean) newValue);
                         }
-                        editor.putStringSet(key, s);
+                    } else if (newValue instanceof String) {
+                        if (hasMatchingType(key, currentValue, String.class)) {
+                            editor.putString(key, (String) newValue);
+                        }
+                    } else if (newValue instanceof JSONArray) {
+                        if (hasMatchingType(key, currentValue, Set.class)) {
+                            JSONArray newValues = (JSONArray) newValue;
+                            Set<String> unwrappedValues = new HashSet<>(newValues.length());
+                            for (int i = 0; i < newValues.length(); i++) {
+                                unwrappedValues.add(newValues.getString(i));
+                            }
+                            editor.putStringSet(key, unwrappedValues);
+                        }
+                    } else {
+                        Log.w(TAG, "Unknown type: " + key + ":" + newValue);
                     }
                 }
-                editor.apply();
+                // always commit preferences to ensure that changes are saved synchronously before continuing
+                if (!editor.commit()) {
+                    Toast.makeText(getContext(), "Unable to save preferences", Toast.LENGTH_SHORT).show();
+                }
+
+                DataHandler dataHandler = ((KissApplication) getContext().getApplicationContext()).getDataHandler();
 
                 // Import tags
-                if (o.has("__tags")) {
-                    DataHandler dataHandler = ((KissApplication) getContext().getApplicationContext()).getDataHandler();
+                if (jsonObject.has("__tags")) {
                     TagsHandler tagHandler = dataHandler.getTagsHandler();
                     tagHandler.clearTags();
-                    JSONObject tags = o.getJSONObject("__tags");
+                    JSONObject tags = jsonObject.getJSONObject("__tags");
                     Iterator<?> tagKeys = tags.keys();
                     while (tagKeys.hasNext()) {
                         String id = (String) tagKeys.next();
                         tagHandler.setTags(id, tags.getString(id));
                     }
-                    dataHandler.reloadApps();
-                    dataHandler.reloadShortcuts();
                 }
+
+                dataHandler.reloadApps();
+                dataHandler.reloadShortcuts();
+                dataHandler.reloadSearchProvider();
+                dataHandler.reloadContactsProvider();
 
                 Toast.makeText(getContext(), "Preferences imported!", Toast.LENGTH_SHORT).show();
             } catch (JSONException | NullPointerException e) {
@@ -98,6 +126,20 @@ public class ImportSettingsPreference extends DialogPreference {
             }
         }
 
+    }
+
+    /**
+     * @param key          preference key
+     * @param currentValue current value of preference
+     * @param expectedType expected type of preference
+     * @return true, if preference value is null or preference value matches expected type
+     */
+    private boolean hasMatchingType(String key, Object currentValue, Class<?> expectedType) {
+        boolean isValid = currentValue == null || expectedType.isAssignableFrom(currentValue.getClass());
+        if (!isValid) {
+            Log.w(TAG, "Invalid type for " + key + ": expected" + currentValue.getClass().getSimpleName() + " but was " + expectedType.getSimpleName());
+        }
+        return isValid;
     }
 
 }

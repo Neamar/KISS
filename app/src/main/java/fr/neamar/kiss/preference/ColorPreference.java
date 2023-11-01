@@ -1,6 +1,7 @@
 package fr.neamar.kiss.preference;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -25,21 +26,13 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
     private static final String TAG = ColorPreference.class.getSimpleName();
     private ColorPickerPalette palette;
 
-    private int selectedColor;
+    @ColorInt
+    private int selectedColor = UIColors.COLOR_DEFAULT;
 
     public ColorPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         this.setDialogLayoutResource(R.layout.pref_color);
-
-        // Optionally override default color value with value from preference XML
-        this.selectedColor = UIColors.COLOR_DEFAULT;
-        if (attrs != null) {
-            String value = attrs.getAttributeValue("http://schemas.android.com/apk/res/android", "defaultValue");
-            if (value != null) {
-                this.selectedColor = Color.parseColor(value);
-            }
-        }
     }
 
     private void drawPalette() {
@@ -49,14 +42,13 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
     }
 
     @Override
-    public void onColorSelected(int color) {
+    public void onColorSelected(@ColorInt int color) {
         if (color != this.selectedColor) {
             if (!this.callChangeListener(color)) {
                 return;
             }
 
-            this.selectedColor = color;
-            this.persistString(String.format("#%08X", this.selectedColor));
+            this.setColor(color);
 
             // Redraw palette to show checkmark on newly selected color before dismissing
             this.drawPalette();
@@ -64,6 +56,11 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 
         // Close the dialog
         this.getDialog().dismiss();
+    }
+
+    private void setColor(@ColorInt int color) {
+        this.selectedColor = color;
+        this.persistString(UIColors.colorToString(this.selectedColor));
     }
 
     private void selectButton(Button button) {
@@ -144,7 +141,7 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         // Set selected color value based on the actual color value currently used
         // (but fall back to default from XML)
         this.selectedColor = Color.parseColor(
-                this.getPersistedString(String.format("#%08X", this.selectedColor))
+                this.getPersistedString(UIColors.colorToString(this.selectedColor))
         );
 
         // This will set the correct typeface for the extra items
@@ -166,5 +163,19 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
         }
 
         this.drawPalette();
+    }
+
+    @Override
+    protected Object onGetDefaultValue(TypedArray a, int index) {
+        return a.getString(index);
+    }
+
+    @Override
+    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
+        if (restoreValue) {
+            setColor(Color.parseColor(getPersistedString(UIColors.colorToString(UIColors.COLOR_DEFAULT))));
+        } else {
+            setColor(defaultValue instanceof String ? Color.parseColor((String) defaultValue) : UIColors.COLOR_DEFAULT);
+        }
     }
 }
