@@ -48,10 +48,10 @@ public class ImportSettingsPreference extends DialogPreference {
                 JSONObject jsonObject = new JSONObject(clipboardText);
                 int minVersion = jsonObject.optInt("__v", -1);
                 if (minVersion < 0) {
-                    Toast.makeText(getContext(), "Unable to import preferences, no valid version string detected.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.import_settings_version_missing, Toast.LENGTH_LONG).show();
                     return;
                 } else if (minVersion > BuildConfig.VERSION_CODE) {
-                    Toast.makeText(getContext(), "Please upgrade your KISS version before importing those settings.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.import_settings_upgrade_kiss, Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -97,7 +97,7 @@ public class ImportSettingsPreference extends DialogPreference {
                 }
                 // always commit preferences to ensure that changes are saved synchronously before continuing
                 if (!editor.commit()) {
-                    Toast.makeText(getContext(), "Unable to save preferences", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.import_settings_save_not_possible, Toast.LENGTH_SHORT).show();
                 }
 
                 DataHandler dataHandler = ((KissApplication) getContext().getApplicationContext()).getDataHandler();
@@ -119,10 +119,10 @@ public class ImportSettingsPreference extends DialogPreference {
                 dataHandler.reloadSearchProvider();
                 dataHandler.reloadContactsProvider();
 
-                Toast.makeText(getContext(), "Preferences imported!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.import_settings_done, Toast.LENGTH_SHORT).show();
             } catch (JSONException | NullPointerException e) {
                 Log.e(TAG, "Unable to import preferences", e);
-                Toast.makeText(getContext(), "Unable to import preferences", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.import_settings_error, Toast.LENGTH_SHORT).show();
             }
         }
 

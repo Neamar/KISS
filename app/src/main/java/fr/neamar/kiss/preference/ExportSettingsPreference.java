@@ -16,12 +16,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 
@@ -98,10 +96,10 @@ public class ExportSettingsPreference extends Preference {
             ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("kiss", out.toString());
             clipboard.setPrimaryClip(clip);
-            Toast.makeText(getContext(), "Settings exported to clipboard", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.export_settings_done, Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
-            Log.e(TAG, "Unable to export preferences", e);
-            Toast.makeText(getContext(), "Unable to export preferences", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Unable to export settings", e);
+            Toast.makeText(getContext(), R.string.export_settings_error, Toast.LENGTH_SHORT).show();
         } finally {
             defaultValues.edit().clear().apply();
         }
