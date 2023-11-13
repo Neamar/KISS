@@ -349,15 +349,47 @@
                 android:key="double-tap"
                 android:title="@string/double_tap_to_lock" />
         </PreferenceCategory>
+        <PreferenceCategory android:title="@string/tags_category">
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="true"
+                android:key="tags-visible"
+                android:title="@string/tags_visible" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="pref-fav-tags-drawable"
+                android:summary="@string/pref_fav_tags_drawable_desc"
+                android:title="@string/pref_fav_tags_drawable" />
+            <PreferenceScreen android:title="@string/screen_toggle_tags">
+                <fr.neamar.kiss.preference.SwitchPreference
+                    android:defaultValue="false"
+                    android:key="pref-tags-menu"
+                    android:title="@string/pref_tags_menu" />
+                <fr.neamar.kiss.preference.SwitchPreference
+                    android:defaultValue="false"
+                    android:key="pref-show-untagged"
+                    android:title="@string/pref_show_untagged" />
+                <fr.neamar.kiss.preference.SwitchPreference
+                    android:defaultValue="false"
+                    android:key="pref-tags-menu-dismiss"
+                    android:title="@string/pref_tags_menu_dismiss" />
+                <MultiSelectListPreference
+                    android:defaultValue="@array/toggleTagsDefault"
+                    android:enabled="false"
+                    android:key="pref-toggle-tags-list"
+                    android:title="@string/loading" />
+            </PreferenceScreen>
+            <ListPreference
+                android:entries="@array/taggedResultSortModeEntries"
+                android:entryValues="@array/taggedResultSortModeValues"
+                android:key="tagged-result-sort-mode"
+                android:summary="@string/tagged_result_sort_mode_desc"
+                android:title="@string/tagged_result_sort_mode_name" />
+        </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
                 android:key="force-portrait"
                 android:title="@string/portrait_title" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="true"
-                android:key="tags-visible"
-                android:title="@string/tags_visible" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="subicon-visible"
@@ -367,11 +399,6 @@
                 android:key="icons-hide"
                 android:summary="@string/icons_hide_desc"
                 android:title="@string/icons_hide_main" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-fav-tags-drawable"
-                android:summary="@string/pref_fav_tags_drawable_desc"
-                android:title="@string/pref_fav_tags_drawable" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
                 android:key="call-contact-on-click"
@@ -410,25 +437,6 @@
                 android:key="wp-animate-sides"
                 android:summary="@string/wp_animate_sides_desc"
                 android:title="@string/wp_animate_sides" />
-        </PreferenceScreen>
-        <PreferenceScreen android:title="@string/screen_toggle_tags">
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-tags-menu"
-                android:title="@string/pref_tags_menu" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-show-untagged"
-                android:title="@string/pref_show_untagged" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="false"
-                android:key="pref-tags-menu-dismiss"
-                android:title="@string/pref_tags_menu_dismiss" />
-            <MultiSelectListPreference
-                android:defaultValue="@array/toggleTagsDefault"
-                android:enabled="false"
-                android:key="pref-toggle-tags-list"
-                android:title="@string/loading" />
         </PreferenceScreen>
     </PreferenceScreen>
     <PreferenceScreen

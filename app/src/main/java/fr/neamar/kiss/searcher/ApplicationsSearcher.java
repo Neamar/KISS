@@ -10,8 +10,8 @@ import java.util.Set;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.pojo.ReversedNameComparator;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.ReversedNameComparator;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 
 /**
@@ -59,8 +59,13 @@ public class ApplicationsSearcher extends Searcher {
     @Override
     protected void onPostExecute(Void param) {
         super.onPostExecute(param);
+
+        MainActivity activity = activityWeakReference.get();
+        if (activity == null)
+            return;
+
         // Build sections for fast scrolling
-        activityWeakReference.get().adapter.buildSections();
+        activity.adapter.buildSections();
     }
 
     /**

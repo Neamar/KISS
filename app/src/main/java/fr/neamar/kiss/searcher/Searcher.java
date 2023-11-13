@@ -49,7 +49,7 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
         return new PriorityQueue<>(DEFAULT_MAX_RESULTS, new RelevanceComparator());
     }
 
-    int getMaxResultCount() {
+    protected int getMaxResultCount() {
         return DEFAULT_MAX_RESULTS;
     }
 
@@ -67,10 +67,6 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
      */
     public boolean addResults(List<? extends Pojo> pojos) {
         if (isCancelled())
-            return false;
-
-        MainActivity activity = activityWeakReference.get();
-        if (activity == null)
             return false;
 
         return this.processedPojos.addAll(pojos);
