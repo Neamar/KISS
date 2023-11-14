@@ -431,22 +431,28 @@ public class DataHandler extends BroadcastReceiver
      * @param historyMode
      */
     public void applyRelevanceFromHistory(List<? extends Pojo> pojos, String historyMode) {
-        // get length of history, this is needed so there are no entries missed
-        // if only number of displayed elements is used, this will result in parts of entries to be sorted by name
-        int historyLength = getHistoryLength();
+        if ("alphabetically".equals(historyMode)) {
+            // "alphabetically" is special case because relevance needs to be set for all pojos instead of these from history.
+            // This is done by setting all relevance to zero which results in order by name from used comparator.
+            for (Pojo pojo : pojos) {
+                pojo.relevance = 0;
+            }
+        } else {
+            // Get length of history, this is needed so there are no entries missed.
+            // If only number of displayed elements is used, this will result in more entries to be sorted by name.
+            int historyLength = getHistoryLength();
 
-        Map<String, Integer> relevance = new HashMap<>();
-        if (!"alphabetically".equals(historyMode)) {
+            Map<String, Integer> relevance = new HashMap<>();
             List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, historyLength, historyMode);
             int size = ids.size();
             for (int i = 0; i < size; i++) {
                 relevance.put(ids.get(i).record, size - i);
             }
-        }
 
-        for (Pojo pojo : pojos) {
-            Integer calculated = relevance.get(pojo.id);
-            pojo.relevance = calculated != null ? calculated : 0;
+            for (Pojo pojo : pojos) {
+                Integer calculated = relevance.get(pojo.id);
+                pojo.relevance = calculated != null ? calculated : 0;
+            }
         }
     }
 
