@@ -195,13 +195,11 @@ public class DBHelper {
         // Cursor query (boolean distinct, String table, String[] columns,
         // String selection, String[] selectionArgs, String groupBy, String
         // having, String orderBy, String limit)
-        Cursor cursor = db.query(false, "history", new String[]{"COUNT(*)"}, null, null,
-                null, null, null, null);
-
-        cursor.moveToFirst();
-        int historyLength = cursor.getInt(0);
-        cursor.close();
-        return historyLength;
+        try (Cursor cursor = db.query(false, "history", new String[]{"COUNT(*)"}, null, null,
+                null, null, null, null)) {
+            cursor.moveToFirst();
+            return cursor.getInt(0);
+        }
     }
 
     /**

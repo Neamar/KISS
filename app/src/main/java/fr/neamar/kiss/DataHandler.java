@@ -360,6 +360,7 @@ public class DataHandler extends BroadcastReceiver
      * @param searcher the searcher currently running
      */
     public void requestAllRecords(Searcher searcher) {
+        List<Pojo> collectedPojos = new ArrayList<>();
         for (ProviderEntry entry : this.providers.values()) {
             if (searcher.isCancelled())
                 break;
@@ -367,9 +368,11 @@ public class DataHandler extends BroadcastReceiver
                 continue;
 
             List<? extends Pojo> pojos = entry.provider.getPojos();
-            if (pojos != null)
-                searcher.addResults(pojos);
+            if (pojos != null) {
+                collectedPojos.addAll(pojos);
+            }
         }
+        searcher.addResults(collectedPojos);
     }
 
     /**
@@ -380,11 +383,10 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param context            android context
      * @param itemCount          max number of items to retrieve, total number may be less (search or calls are not returned for instance)
-     * @param historyMode        Recency vs Frecency vs Frequency vs Adaptive vs Alphabetically
      * @param itemsToExcludeById Items to exclude from history by their id
      * @return pojos in recent history
      */
-    public List<Pojo> getHistory(Context context, int itemCount, String historyMode, Set<String> itemsToExcludeById) {
+    public List<Pojo> getHistory(Context context, int itemCount, Set<String> itemsToExcludeById) {
         // Pre-allocate array slots that are likely to be used based on the current maximum item
         // count
         List<Pojo> history = new ArrayList<>(Math.min(itemCount, 256));
@@ -393,9 +395,11 @@ public class DataHandler extends BroadcastReceiver
         int extendedItemCount = itemCount + itemsToExcludeById.size();
 
         // Read history
+        String historyMode = getHistoryMode();
         List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode);
 
         // Find associated items
+        int size = ids.size();
         for (int i = 0; i < ids.size(); i++) {
             // Ask all providers if they know this id
             Pojo pojo = getPojo(ids.get(i).record);
@@ -408,6 +412,7 @@ public class DataHandler extends BroadcastReceiver
                 continue;
             }
 
+            pojo.relevance = size - i;
             history.add(pojo);
 
             // Break if maximum number of items have been retrieved
@@ -417,6 +422,46 @@ public class DataHandler extends BroadcastReceiver
         }
 
         return history;
+    }
+
+    /**
+     * Apply relevance from history to given pojos.
+     *
+     * @param pojos       which needs to have relevance set
+     * @param historyMode
+     */
+    public void applyRelevanceFromHistory(List<? extends Pojo> pojos, String historyMode) {
+        if ("alphabetically".equals(historyMode)) {
+            // "alphabetically" is special case because relevance needs to be set for all pojos instead of these from history.
+            // This is done by setting all relevance to zero which results in order by name from used comparator.
+            for (Pojo pojo : pojos) {
+                pojo.relevance = 0;
+            }
+        } else {
+            // Get length of history, this is needed so there are no entries missed.
+            // If only number of displayed elements is used, this will result in more entries to be sorted by name.
+            int historyLength = getHistoryLength();
+
+            Map<String, Integer> relevance = new HashMap<>();
+            List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, historyLength, historyMode);
+            int size = ids.size();
+            for (int i = 0; i < size; i++) {
+                relevance.put(ids.get(i).record, size - i);
+            }
+
+            for (Pojo pojo : pojos) {
+                Integer calculated = relevance.get(pojo.id);
+                pojo.relevance = calculated != null ? calculated : 0;
+            }
+        }
+    }
+
+    /**
+     * @return history mode from settings: Recency vs Frecency vs Frequency vs Adaptive vs Alphabetically
+     */
+    public String getHistoryMode() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString("history-mode", "recency");
     }
 
     public int getHistoryLength() {

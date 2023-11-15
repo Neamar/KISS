@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.db.ShortcutRecord;
@@ -27,7 +28,7 @@ public class HistorySearcher extends Searcher {
     }
 
     @Override
-    int getMaxResultCount() {
+    protected int getMaxResultCount() {
         // Convert `"number-of-display-elements"` to double first before truncating to int to avoid
         // `java.lang.NumberFormatException` crashes for values larger than `Integer.MAX_VALUE`
         try {
@@ -40,21 +41,22 @@ public class HistorySearcher extends Searcher {
     @Override
     protected Void doInBackground(Void... voids) {
         // Ask for records
-        String historyMode = prefs.getString("history-mode", "recency");
         boolean excludeFavorites = prefs.getBoolean("exclude-favorites-history", false);
 
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
             return null;
 
+        DataHandler dataHandler = KissApplication.getApplication(activity).getDataHandler();
+
         //Gather excluded
-        Set<String> excludedFromHistory = KissApplication.getApplication(activity).getDataHandler().getExcludedFromHistory();
+        Set<String> excludedFromHistory = dataHandler.getExcludedFromHistory();
         Set<String> excludedPojoById = new HashSet<>(excludedFromHistory);
 
         // add ids of shortcuts for excluded apps
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             for (String id : excludedFromHistory) {
-                Pojo pojo = KissApplication.getApplication(activity).getDataHandler().getItemById(id);
+                Pojo pojo = dataHandler.getItemById(id);
                 if (pojo instanceof AppPojo) {
                     List<ShortcutInfo> shortcutInfos = ShortcutUtil.getShortcuts(activity, ((AppPojo) pojo).packageName);
                     for (ShortcutInfo shortcutInfo : shortcutInfos) {
@@ -69,18 +71,12 @@ public class HistorySearcher extends Searcher {
 
         if (excludeFavorites) {
             // Gather favorites
-            for (Pojo favoritePojo : KissApplication.getApplication(activity).getDataHandler().getFavorites()) {
+            for (Pojo favoritePojo : dataHandler.getFavorites()) {
                 excludedPojoById.add(favoritePojo.id);
             }
         }
 
-        List<Pojo> pojos = KissApplication.getApplication(activity).getDataHandler()
-                .getHistory(activity, getMaxResultCount(), historyMode, excludedPojoById);
-
-        int size = pojos.size();
-        for(int i = 0; i < size; i += 1) {
-            pojos.get(i).relevance = size - i;
-        }
+        List<Pojo> pojos = dataHandler.getHistory(activity, getMaxResultCount(), excludedPojoById);
 
         this.addResults(pojos);
         return null;
