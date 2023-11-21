@@ -355,7 +355,7 @@ public abstract class Result<T extends Pojo> {
         setAsyncDrawable(view, android.R.color.transparent);
     }
 
-    <U extends Pojo> void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
+    void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
         // getting this called multiple times in parallel may result in empty icons
         synchronized (this) {
             // the ImageView tag will store the async task if it's running
@@ -371,7 +371,7 @@ public abstract class Result<T extends Pojo> {
             }
             // the ImageView will store the Result after the AsyncTask finished
             else if (this.equals(view.getTag())) {
-                ((Result<U>) view.getTag()).setDrawableCache(view.getDrawable());
+                ((Result<?>) view.getTag()).setDrawableCache(view.getDrawable());
                 return;
             }
             if (isDrawableCached()) {
