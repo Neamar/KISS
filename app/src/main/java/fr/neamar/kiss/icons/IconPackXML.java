@@ -6,15 +6,14 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.ColorInt;
@@ -52,11 +51,11 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     // package name of the icons pack
     private final String iconPackPackageName;
     // list of back images available on an icons pack
-    private final List<DrawableInfo> backImages = new ArrayList<>();
+    private final List<Drawable> backImages = new ArrayList<>();
     // bitmap mask of an icons pack
-    private DrawableInfo maskImage = null;
+    private Drawable maskImage = null;
     // front image of an icons pack
-    private DrawableInfo frontImage = null;
+    private Drawable frontImage = null;
     // scale factor of an icons pack
     private float scaleFactor = 1.0f;
     private volatile boolean loaded = false;
@@ -144,14 +143,6 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         return drawableInfo.getDrawable(packResources, iconPackPackageName);
     }
 
-    @NonNull
-    private Bitmap getBitmap(@NonNull DrawableInfo drawableInfo) {
-        Drawable drawable = getDrawable(drawableInfo);
-        if (drawable == null)
-            drawable = new ColorDrawable(Color.WHITE);
-        return DrawableUtils.drawableToBitmap(drawable);
-    }
-
     /**
      * Get {@link BitmapDrawable} from {@link Drawable}
      * Convert any drawable into a bitmap drawable with same size.
@@ -199,7 +190,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
         // mask the scaled bitmap
         if (maskImage != null) {
-            Bitmap maskBitmap = getBitmap(maskImage);
+            Bitmap maskBitmap = DrawableUtils.drawableToBitmap(maskImage);
             Paint paint = new Paint();
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             canvas.drawBitmap(maskBitmap, getResizeMatrix(maskBitmap, w, h), paint);
@@ -212,7 +203,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
             Random r = new Random();
             int backImageInd = r.nextInt(backImages.size());
 
-            Bitmap backImageBitmap = getBitmap(backImages.get(backImageInd));
+            Bitmap backImageBitmap = DrawableUtils.drawableToBitmap(backImages.get(backImageInd));
             Paint paint = new Paint();
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OVER));
             canvas.drawBitmap(backImageBitmap, getResizeMatrix(backImageBitmap, w, h), paint);
@@ -221,7 +212,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
 
         // draw the front
         if (frontImage != null) {
-            Bitmap frontImageBitmap = getBitmap(frontImage);
+            Bitmap frontImageBitmap = DrawableUtils.drawableToBitmap(frontImage);
             Paint paint = new Paint();
             canvas.drawBitmap(frontImageBitmap, getResizeMatrix(frontImageBitmap, w, h), paint);
         }
@@ -332,7 +323,10 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                             for (int i = 0; i < xpp.getAttributeCount(); i++) {
                                 if (xpp.getAttributeName(i).startsWith("img")) {
                                     String drawableName = xpp.getAttributeValue(i);
-                                    backImages.add(new SimpleDrawable(drawableName));
+                                    Drawable drawable = getDrawable(new SimpleDrawable(drawableName));
+                                    if (drawable != null) {
+                                        backImages.add(drawable);
+                                    }
                                 }
                             }
                         }
@@ -340,14 +334,20 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                         else if (xpp.getName().equals("iconmask")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
-                                maskImage = new SimpleDrawable(drawableName);
+                                Drawable drawable = getDrawable(new SimpleDrawable(drawableName));
+                                if (drawable != null) {
+                                    maskImage = drawable;
+                                }
                             }
                         }
                         //parse <iconupon> xml tags used as front image of generated icons
                         else if (xpp.getName().equals("iconupon")) {
                             if (xpp.getAttributeCount() > 0 && xpp.getAttributeName(0).equals("img1")) {
                                 String drawableName = xpp.getAttributeValue(0);
-                                frontImage = new SimpleDrawable(drawableName);
+                                Drawable drawable = getDrawable(new SimpleDrawable(drawableName));
+                                if (drawable != null) {
+                                    frontImage = drawable;
+                                }
                             }
                         }
                         //parse <scale> xml tags used as scale factor of original bitmap icon
@@ -494,8 +494,11 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
             Integer drawableId = getCachedDrawableId();
             if (drawableId == null) {
                 String drawableName = getDrawableName();
-                if (drawableName != null) {
+                if (!TextUtils.isEmpty(drawableName)) {
                     drawableId = resources.getIdentifier(drawableName, "drawable", iconPackPackageName);
+                    if (drawableId == 0) {
+                        Log.w(TAG, "Unable to load resource id for: " + getDrawableName());
+                    }
                 } else {
                     drawableId = 0;
                 }
