@@ -47,6 +47,9 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
 
     private static final String TAG = ShortcutsResult.class.getSimpleName();
 
+    private volatile Drawable icon = null;
+    private volatile Drawable appDrawable = null;
+
     private Utilities.AsyncRun mLoadIconTask = null;
 
     ShortcutsResult(@NonNull ShortcutPojo pojo) {
@@ -81,47 +84,40 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
 
         if (!prefs.getBoolean("icons-hide", false)) {
+            // set shortcut icon
+            this.setAsyncDrawable(shortcutIcon);
+
+            // set app icon
             if (mLoadIconTask != null) {
                 mLoadIconTask.cancel();
+                mLoadIconTask = null;
             }
 
             boolean subIconVisible = prefs.getBoolean("subicon-visible", true);
 
             AtomicReference<Drawable> appDrawable = new AtomicReference<>(null);
-            AtomicReference<Drawable> shortcutDrawable = new AtomicReference<>(null);
 
             // Prepare
-            shortcutIcon.setImageResource(android.R.color.transparent);
             if (subIconVisible) {
                 appIcon.setVisibility(View.VISIBLE);
-                appIcon.setImageResource(android.R.color.transparent);
+                if (this.appDrawable != null) {
+                    appIcon.setImageDrawable(getAppDrawable(context));
+                } else {
+                    appIcon.setImageResource(android.R.color.transparent);
+                    mLoadIconTask = Utilities.runAsync((task) -> {
+                        if (task == mLoadIconTask) {
+                            // Retrieve icon for this shortcut
+                            appDrawable.set(getAppDrawable(context));
+                        }
+                    }, (task) -> {
+                        if (!task.isCancelled() && task == mLoadIconTask) {
+                            appIcon.setImageDrawable(appDrawable.get());
+                        }
+                    });
+                }
             } else {
                 appIcon.setVisibility(View.GONE);
             }
-
-            mLoadIconTask = Utilities.runAsync((task) -> {
-                if (task == mLoadIconTask) {
-                    // Retrieve icon for this shortcut
-                    appDrawable.set(getAppDrawable(context));
-                    shortcutDrawable.set(getDrawable(context));
-                }
-            }, (task) -> {
-                if (!task.isCancelled() && task == mLoadIconTask) {
-                    // set icons
-                    if (shortcutDrawable.get() != null) {
-                        shortcutIcon.setImageDrawable(shortcutDrawable.get());
-                        if (subIconVisible) {
-                            appIcon.setImageDrawable(appDrawable.get());
-                        }
-                    } else {
-                        // No icon for this shortcut, use app icon
-                        shortcutIcon.setImageDrawable(appDrawable.get());
-                        if (subIconVisible) {
-                            appIcon.setImageResource(android.R.drawable.ic_menu_send);
-                        }
-                    }
-                }
-            });
         } else {
             appIcon.setImageDrawable(null);
             shortcutIcon.setImageDrawable(null);
@@ -131,66 +127,86 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
     }
 
     private Drawable getAppDrawable(Context context) {
-        Drawable appDrawable = null;
-        IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-
-        if (pojo.isOreoShortcut()) {
-            // Retrieve activity icon from oreo shortcut
-            appDrawable = getDrawableFromOreoShortcut(context);
-        }
-
         if (appDrawable == null) {
-            // Retrieve activity icon by intent URI
-            try {
-                Intent intent = Intent.parseUri(pojo.intentUri, 0);
-                ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
-                if (componentName != null) {
-                    appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), new fr.neamar.kiss.utils.UserHandle());
+            synchronized (this) {
+                if (appDrawable == null) {
+                    IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+
+                    if (pojo.isOreoShortcut()) {
+                        // Retrieve activity icon from oreo shortcut
+                        appDrawable = getDrawableFromOreoShortcut(context);
+                    }
+
+                    if (appDrawable == null) {
+                        // Retrieve activity icon by intent URI
+                        try {
+                            Intent intent = Intent.parseUri(pojo.intentUri, 0);
+                            ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
+                            if (componentName != null) {
+                                appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), new fr.neamar.kiss.utils.UserHandle());
+                            }
+                        } catch (NullPointerException e) {
+                            Log.e(TAG, "Unable to get activity icon for '" + pojo.getName() + "'", e);
+                        } catch (URISyntaxException e) {
+                            Log.e(TAG, "Unable to parse uri for '" + pojo.getName() + "'", e);
+                        }
+                    }
+
+                    if (appDrawable == null) {
+                        // Retrieve app icon (no Oreo shortcut or a shortcut from an activity that was removed from an installed app)
+                        appDrawable = PackageManagerUtils.getApplicationIcon(context, pojo.packageName);
+                        if (appDrawable != null) {
+                            appDrawable = iconsHandler.applyIconMask(context, appDrawable);
+                        }
+                    }
                 }
-            } catch (NullPointerException e) {
-                Log.e(TAG, "Unable to get activity icon for '" + pojo.getName() + "'", e);
-            } catch (URISyntaxException e) {
-                Log.e(TAG, "Unable to parse uri for '" + pojo.getName() + "'", e);
-            }
-        }
-
-        if (appDrawable == null) {
-            // Retrieve app icon (no Oreo shortcut or a shortcut from an activity that was removed from an installed app)
-            appDrawable = PackageManagerUtils.getApplicationIcon(context, pojo.packageName);
-            if (appDrawable != null) {
-                appDrawable = iconsHandler.applyIconMask(context, appDrawable);
             }
         }
         return appDrawable;
     }
 
+    @Override
+    boolean isDrawableCached() {
+        return icon != null;
+    }
+
+    @Override
+    void setDrawableCache(Drawable drawable) {
+        icon = drawable;
+    }
+
     public Drawable getDrawable(Context context) {
-        Drawable shortcutDrawable = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ShortcutInfo shortcutInfo = getShortCut(context);
-            if (shortcutInfo != null) {
-                final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-                assert launcherApps != null;
-                try {
-                    shortcutDrawable = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
-                } catch (IllegalStateException e) {
-                    // do nothing if user is locked or not running
-                    Log.w(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "', user is locked or not running", e);
-                } catch (NullPointerException e) {
-                    // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
-                    Log.e(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "'", e);
+        if (!isDrawableCached()) {
+            synchronized (this) {
+                if (!isDrawableCached()) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        ShortcutInfo shortcutInfo = getShortCut(context);
+                        if (shortcutInfo != null) {
+                            final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                            assert launcherApps != null;
+                            try {
+                                icon = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
+                            } catch (IllegalStateException e) {
+                                // do nothing if user is locked or not running
+                                Log.w(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "', user is locked or not running", e);
+                            } catch (NullPointerException e) {
+                                // shortcuts may use invalid icons, see https://github.com/Neamar/KISS/issues/2158
+                                Log.e(TAG, "Unable to get shortcut icon for '" + pojo.getName() + "'", e);
+                            }
+                        }
+                    }
+                    if (icon == null) {
+                        icon = context.getResources().getDrawable(android.R.drawable.ic_menu_send);
+                    }
+                    if (icon != null) {
+                        icon = DrawableUtils.getThemedDrawable(context, icon);
+                        icon = KissApplication.getApplication(context).getIconsHandler().applyIconMask(context, icon);
+                    }
                 }
             }
         }
-
-        if (shortcutDrawable != null) {
-            shortcutDrawable = DrawableUtils.getThemedDrawable(context, shortcutDrawable);
-            shortcutDrawable = KissApplication.getApplication(context).getIconsHandler().applyIconMask(context, shortcutDrawable);
-        }
-
-        return shortcutDrawable;
+        return icon;
     }
-
 
     @Override
     protected void doLaunch(Context context, View v) {
