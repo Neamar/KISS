@@ -13,7 +13,6 @@ import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -24,6 +23,7 @@ import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicReference;
 
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
@@ -39,13 +39,15 @@ import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
+import fr.neamar.kiss.utils.Utilities;
 
 public class ContactsResult extends CallResult<ContactsPojo> {
 
     private final QueryInterface queryInterface;
     private volatile Drawable icon = null;
+    private volatile Drawable appDrawable = null;
+    private Utilities.AsyncRun mLoadIconTask = null;
     private static final String TAG = ContactsResult.class.getSimpleName();
-    private Drawable appDrawable = null;
     private final UserHandle userHandle;
 
     ContactsResult(QueryInterface queryInterface, @NonNull ContactsPojo pojo) {
@@ -104,13 +106,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         contactIcon.assignContactUri(Uri.withAppendedPath(
                 ContactsContract.Contacts.CONTENT_LOOKUP_URI,
                 String.valueOf(pojo.lookupKey)));
-        contactIcon.setExtraOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                recordLaunch(v.getContext(), queryInterface);
-            }
-        });
+        contactIcon.setExtraOnClickListener(v -> recordLaunch(v.getContext(), queryInterface));
 
         int primaryColor = UIColors.getPrimaryColor(context);
         PackageManager pm = context.getPackageManager();
@@ -160,10 +156,22 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (pojo.getImData() != null) {
             appIcon.setVisibility(View.VISIBLE);
-            if (appDrawable == null) {
-                appDrawable = getAppDrawable(context);
+            if (appDrawable != null) {
+                appIcon.setImageDrawable(appDrawable);
+            } else {
+                appIcon.setImageResource(R.drawable.ic_launcher_white);
+                AtomicReference<Drawable> appDrawable = new AtomicReference<>(null);
+                mLoadIconTask = Utilities.runAsync((task) -> {
+                    if (task == mLoadIconTask) {
+                        // Retrieve icon for this shortcut
+                        appDrawable.set(getAppDrawable(context));
+                    }
+                }, (task) -> {
+                    if (!task.isCancelled() && task == mLoadIconTask) {
+                        appIcon.setImageDrawable(appDrawable.get());
+                    }
+                });
             }
-            appIcon.setImageDrawable(appDrawable);
         } else {
             appIcon.setVisibility(View.GONE);
         }
@@ -172,17 +180,22 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     }
 
     private Drawable getAppDrawable(Context context) {
-        Drawable drawable = null;
-        ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getImData().getMimeType());
-        if (componentName != null) {
-            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            drawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), this.userHandle);
+        if (appDrawable == null) {
+            synchronized (this) {
+                if (appDrawable == null) {
+                    ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getImData().getMimeType());
+                    if (componentName != null) {
+                        IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), this.userHandle);
+                    }
+                    if (appDrawable == null) {
+                        // This should never happen, let's just return the generic activity icon
+                        appDrawable = context.getPackageManager().getDefaultActivityIcon();
+                    }
+                }
+            }
         }
-        if (drawable == null) {
-            // This should never happen, let's just return the generic activity icon
-            drawable = context.getPackageManager().getDefaultActivityIcon();
-        }
-        return drawable;
+        return appDrawable;
     }
 
     @Override
