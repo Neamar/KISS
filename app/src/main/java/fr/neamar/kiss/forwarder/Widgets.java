@@ -68,9 +68,6 @@ class Widgets extends Forwarder {
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
 
         restoreWidgets();
-
-        // Start listening for widget update
-        mAppWidgetHost.startListening();
     }
 
     private void onAppWidgetRemoved() {
@@ -488,7 +485,12 @@ class Widgets extends Forwarder {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
     }
 
-    public void onDestroy() {
+    public void onStart() {
+        // Start listening for widget update
+        mAppWidgetHost.startListening();
+    }
+
+    public void onStop() {
         mAppWidgetHost.stopListening();
     }
 }
