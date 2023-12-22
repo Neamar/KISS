@@ -213,6 +213,9 @@ class Widgets extends Forwarder {
                 }
             }
         }
+
+        // Start listening for widget update
+        mAppWidgetHost.startListening();
     }
 
     /**
@@ -303,6 +306,8 @@ class Widgets extends Forwarder {
         });
 
         widgetArea.addView(hostView);
+        // Start listening for widget update
+        mAppWidgetHost.startListening();
     }
 
     /**
@@ -490,7 +495,7 @@ class Widgets extends Forwarder {
         mAppWidgetHost.startListening();
     }
 
-    public void onStop() {
+    public void onDestroy() {
         mAppWidgetHost.stopListening();
     }
 }

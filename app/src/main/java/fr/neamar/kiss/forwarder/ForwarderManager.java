@@ -58,7 +58,6 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onStop() {
-        widgetsForwarder.onStop();
     }
 
     public void onGlobalLayout() {
@@ -113,6 +112,6 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onDestroy() {
-
+        widgetsForwarder.onDestroy();
     }
 }
