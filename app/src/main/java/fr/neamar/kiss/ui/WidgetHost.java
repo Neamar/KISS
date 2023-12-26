@@ -5,11 +5,17 @@ import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 
 public class WidgetHost extends AppWidgetHost {
 
-    public WidgetHost(Context context, int hostId) {
+    final static private String TAG = WidgetHost.class.getSimpleName();
+
+    private final WidgetProvidersUpdateCallback mWidgetsUpdateCallback;
+
+    public WidgetHost(Context context, int hostId, WidgetProvidersUpdateCallback widgetProvidersUpdateCallback) {
         super(context, hostId);
+        this.mWidgetsUpdateCallback = widgetProvidersUpdateCallback;
     }
 
     @Override
@@ -22,7 +28,9 @@ public class WidgetHost extends AppWidgetHost {
     public void startListening() {
         try {
             super.startListening();
+            Log.d(TAG, "Start listening");
         } catch (Resources.NotFoundException e) {
+            Log.d(TAG, "Start listening failed", e);
             // Widgets app was just updated?
             // See https://github.com/Neamar/KISS/issues/959
         }
@@ -35,9 +43,32 @@ public class WidgetHost extends AppWidgetHost {
         // which is ok for calls during onDestroy()
         try {
             super.stopListening();
+            Log.d(TAG, "Stop listening");
         } catch (NullPointerException e) {
             // Ignore, happens on some shitty widget down the stack trace.
+            Log.d(TAG, "Stop listening failed", e);
         }
         clearViews();
     }
+
+    @Override
+    protected void onProvidersChanged() {
+        super.onProvidersChanged();
+        Log.d(TAG, "Providers changed");
+        if (mWidgetsUpdateCallback != null) {
+            mWidgetsUpdateCallback.onProvidersUpdated();
+        }
+    }
+
+    /**
+     * Callback interface for packages list update.
+     */
+    @FunctionalInterface
+    public interface WidgetProvidersUpdateCallback {
+        /**
+         * Gets called when widget providers list changes
+         */
+        void onProvidersUpdated();
+    }
+
 }

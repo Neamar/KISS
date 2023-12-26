@@ -64,13 +64,15 @@ class Widgets extends Forwarder {
     void onCreate() {
         // Initialize widget manager and host, restore widgets
         mAppWidgetManager = AppWidgetManager.getInstance(mainActivity);
-        mAppWidgetHost = new WidgetHost(mainActivity, APPWIDGET_HOST_ID);
+        mAppWidgetHost = new WidgetHost(mainActivity, APPWIDGET_HOST_ID, this::onAppWidgetRemoved);
         widgetArea = mainActivity.findViewById(R.id.widgetLayout);
 
         restoreWidgets();
+    }
 
-        // Start listening for widget update
-        mAppWidgetHost.startListening();
+    private void onAppWidgetRemoved() {
+        restoreWidgets();
+        serializeState();
     }
 
     void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -162,8 +164,13 @@ class Widgets extends Forwarder {
         for (int i = 0; i < widgetArea.getChildCount(); i++) {
             AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
             int appWidgetId = view.getAppWidgetId();
-            int lineSize = getLineSize(view);
-            builder.add(appWidgetId + "-" + lineSize);
+            AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+            if (appWidgetInfo != null) {
+                int lineSize = getLineSize(view);
+                builder.add(appWidgetId + "-" + lineSize);
+            } else {
+                Log.w(TAG, "Unable to retrieve widget by id " + appWidgetId);
+            }
         }
 
         String pref = TextUtils.join(";", builder);
@@ -206,6 +213,9 @@ class Widgets extends Forwarder {
                 }
             }
         }
+
+        // Start listening for widget update
+        mAppWidgetHost.startListening();
     }
 
     /**
@@ -296,6 +306,8 @@ class Widgets extends Forwarder {
         });
 
         widgetArea.addView(hostView);
+        // Start listening for widget update
+        mAppWidgetHost.startListening();
     }
 
     /**
@@ -365,7 +377,7 @@ class Widgets extends Forwarder {
             return true;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            return appWidgetInfo.maxResizeHeight >= appWidgetInfo.minHeight && height > appWidgetInfo.maxResizeHeight;
+            return appWidgetInfo.maxResizeHeight >= appWidgetInfo.minHeight && getLineSize(height) > getLineSize(appWidgetInfo.maxResizeHeight);
         }
         return false;
     }
@@ -389,9 +401,7 @@ class Widgets extends Forwarder {
         int maxVisibleLines = (int) Math.ceil(widgetArea.getHeight() / getLineHeight());
 
         // calculate new line size
-        float minWidgetHeight = appWidgetInfo.minHeight;
-        float lineHeight = getLineHeight();
-        int lineSize = Math.max(1, Math.min(maxVisibleLines - usedLines, (int) Math.ceil(minWidgetHeight / lineHeight)));
+        int lineSize = Math.max(1, Math.min(maxVisibleLines - usedLines, getLineSize(appWidgetInfo.minHeight)));
 
         addWidget(appWidgetId, lineSize);
 
@@ -459,7 +469,15 @@ class Widgets extends Forwarder {
      * @return calculated line size of given view
      */
     private int getLineSize(View view) {
-        return Math.round(view.getLayoutParams().height / getLineHeight());
+        return getLineSize(view.getLayoutParams().height);
+    }
+
+    /**
+     * @param height
+     * @return calculated line size of given height
+     */
+    private int getLineSize(int height) {
+        return Math.max(1, Math.round(height / getLineHeight()));
     }
 
     /**
@@ -470,6 +488,11 @@ class Widgets extends Forwarder {
         Resources r = mainActivity.getResources();
 
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
+    }
+
+    public void onStart() {
+        // Start listening for widget update
+        mAppWidgetHost.startListening();
     }
 
     public void onDestroy() {

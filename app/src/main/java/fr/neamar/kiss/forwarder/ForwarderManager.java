@@ -43,6 +43,7 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onStart() {
+        widgetsForwarder.onStart();
     }
 
     public void onResume() {
@@ -59,8 +60,7 @@ public class ForwarderManager extends Forwarder {
     public void onStop() {
     }
 
-    public void onGlobalLayout()
-    {
+    public void onGlobalLayout() {
         experienceTweaks.onGlobalLayout();
     }
 
