@@ -138,6 +138,23 @@ public class DBHelper {
     }
 
     /**
+     * Get the history items used closest to this time of day
+     *
+     * @param db    The SQL db
+     * @param limit Maximum result size
+     * @return Cursor
+     */
+    private static Cursor getHistoryByTime(SQLiteDatabase db, int limit) {
+        String sql = "SELECT record, MAX(ABS((" + System.currentTimeMillis() + " - history.timestamp) % 86400000 - 43200000)) AS value" +
+                " FROM history" +
+                " GROUP BY record " +
+                " ORDER BY value DESC " +
+                " LIMIT " + limit;
+        return db.rawQuery(sql, null);
+    }
+
+
+    /**
      * Retrieve previous query history
      *
      * @param context android context
@@ -159,6 +176,9 @@ public class DBHelper {
                 break;
             case "adaptive":
                 cursor = getHistoryByAdaptive(db, 36, limit);
+                break;
+            case "time":
+                cursor = getHistoryByTime(db, limit);
                 break;
             default:
                 cursor = getHistoryByRecency(db, limit);
