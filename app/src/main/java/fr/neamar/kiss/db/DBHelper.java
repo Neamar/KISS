@@ -138,15 +138,24 @@ public class DBHelper {
     }
 
     /**
-     * Get the history items used closest to this time of day
+     * Get the history items used closest to this time of day, for each day old an item is it has
+     * one less hour of time weight. So we limit the number of days of history to 24 days in the
+     * WHERE clause, this should also help with speed on large histories.
+     *
+     * This is done by taking the max of a triangle waveform whose period is 24 hours, amplitude
+     * is half the milliseconds in a day and begins at currentTimeMillis() - timestamp, then offset
+     * by the time difference / 48 to diminish older history items by an hour for every day old. 48
+     * is used because the triangle wave is half amplitude (1 / 2) * (1 / 24) = 1 / 48.
      *
      * @param db    The SQL db
      * @param limit Maximum result size
      * @return Cursor
      */
     private static Cursor getHistoryByTime(SQLiteDatabase db, int limit) {
-        String sql = "SELECT record, MAX(ABS((" + System.currentTimeMillis() + " - history.timestamp) % 86400000 - 43200000)) AS value" +
+        long now = System.currentTimeMillis();
+        String sql = "SELECT record, MAX(ABS((" + now + " - timestamp) % 86400000 - 43200000) - (" + now + " - timestamp) / 48 ) AS value" +
                 " FROM history" +
+                " WHERE timestamp > " + now + " - 2073600000" +
                 " GROUP BY record " +
                 " ORDER BY value DESC " +
                 " LIMIT " + limit;
