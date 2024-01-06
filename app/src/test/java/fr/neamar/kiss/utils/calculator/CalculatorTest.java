@@ -45,11 +45,18 @@ public class CalculatorTest {
 
 				Arguments.of("(1+1.)", new BigDecimal(2)),
 
+				Arguments.of("2*2", new BigDecimal(4)),
+				Arguments.of("2×2", new BigDecimal(4)),
+				Arguments.of("2x2", new BigDecimal(4)),
+
 				Arguments.of("2*2+1", new BigDecimal(5)),
 				Arguments.of("1+2*2", new BigDecimal(5)),
 				Arguments.of("(1+2)*2", new BigDecimal(6)),
 
 				Arguments.of("(1+2.)*2", new BigDecimal(6)),
+
+				Arguments.of("2/2", new BigDecimal("1")),
+				Arguments.of("2÷2", new BigDecimal("1")),
 
 				Arguments.of("2/2/2", new BigDecimal("0.5")),
 				Arguments.of("2/1/1", new BigDecimal(2)),
@@ -70,7 +77,6 @@ public class CalculatorTest {
 				Arguments.of("(1/10)", new BigDecimal(1).divide(new BigDecimal(10))),
 
 				Arguments.of("-1^2", new BigDecimal(1))
-
 				);
 	}
 
