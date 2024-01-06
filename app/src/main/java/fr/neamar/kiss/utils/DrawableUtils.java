@@ -102,9 +102,7 @@ public class DrawableUtils {
             // if no icon mask can be configured for device, then use icon as is
             return icon;
         }
-        if (shape == IconShape.SHAPE_TEARDROP_RND) {
-            shape = shape.getFinalShape(icon.hashCode());
-        }
+        shape = shape.getFinalShape(icon.hashCode());
 
         Bitmap outputBitmap;
         Canvas outputCanvas;

@@ -1,5 +1,7 @@
 package fr.neamar.kiss.utils;
 
+import androidx.annotation.NonNull;
+
 public enum IconShape {
 
     SHAPE_SYSTEM(0),
@@ -21,6 +23,7 @@ public enum IconShape {
         this.id = id;
     }
 
+    @NonNull
     public static IconShape valueById(int shapeId) {
         for (IconShape shape : values()) {
             if (shape.getId() == shapeId) {
@@ -40,11 +43,12 @@ public enum IconShape {
                 if (!DrawableUtils.hasDeviceConfiguredMask()) {
                     return IconShape.SHAPE_CIRCLE;
                 }
-                break;
+                return this;
             case SHAPE_TEARDROP_RND:
-                IconShape[] shapes = {SHAPE_TEARDROP_BL, SHAPE_TEARDROP_BR, SHAPE_TEARDROP_TL, SHAPE_TEARDROP_TR};
-                return shapes[hash % 4];
+                IconShape[] shapes = {SHAPE_TEARDROP_BR, SHAPE_TEARDROP_BL, SHAPE_TEARDROP_TL, SHAPE_TEARDROP_TR};
+                return shapes[Math.abs(hash % 4)];
+            default:
+                return this;
         }
-        return this;
     }
 }

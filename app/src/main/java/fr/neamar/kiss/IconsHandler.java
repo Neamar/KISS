@@ -27,7 +27,6 @@ import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
@@ -225,7 +224,7 @@ public class IconsHandler {
             return null;
         }
 
-        final IconShape shape = getShapeForGeneratingDrawable();
+        final IconShape shape = getShapeForGeneratingDrawable(backgroundColor);
         Drawable drawable = DrawableUtils.generateBackgroundDrawable(ctx, backgroundColor, shape);
         return forceIconMask(drawable, shape);
     }
@@ -235,7 +234,7 @@ public class IconsHandler {
         if (mIconPack != null && !mIconPack.isLoaded()) {
             return null;
         }
-        final IconShape shape = getShapeForGeneratingDrawable();
+        final IconShape shape = getShapeForGeneratingDrawable(codePoint);
         Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor, shape);
         return forceIconMask(drawable, shape);
     }
@@ -330,23 +329,16 @@ public class IconsHandler {
      * If icon pack has mask then {@link IconShape#SHAPE_SYSTEM} is used.
      * If shape is {@link IconShape#SHAPE_SYSTEM} too and no icon mask can be configured for device, used shape is a circle.
      *
+     * @param hash, for pseudo random shape if applicable
      * @return shape
      */
     @NonNull
-    private IconShape getShapeForGeneratingDrawable() {
+    private IconShape getShapeForGeneratingDrawable(int hash) {
         IconShape shape = mSystemPack.getAdaptiveShape();
         if (mIconPack != null && mIconPack.hasMask()) {
             shape = IconShape.SHAPE_SYSTEM;
         }
-        if (shape == IconShape.SHAPE_SYSTEM && !DrawableUtils.hasDeviceConfiguredMask()) {
-            shape = IconShape.SHAPE_CIRCLE;
-        }
-        if (shape == IconShape.SHAPE_TEARDROP_RND) {
-            Random r = new Random();
-            shape = shape.getFinalShape(r.nextInt(4));
-        }
-
-        return shape;
+        return shape.getFinalShape(hash);
     }
 
 
