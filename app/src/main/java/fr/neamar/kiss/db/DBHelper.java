@@ -153,7 +153,7 @@ public class DBHelper {
      */
     private static Cursor getHistoryByTime(SQLiteDatabase db, int limit) {
         final long now = System.currentTimeMillis();
-        final long MS_24_DAYS_AGO = now - 2073600000;
+        final long MS_24_DAYS_AGO = now - 2073600000L;
         String sql = "SELECT record, MAX(ABS((" + now + " - timestamp) % 86400000 - 43200000) - (" + now + " - timestamp) / 48 ) AS value" +
                 " FROM history" +
                 " WHERE timestamp > " + MS_24_DAYS_AGO +
