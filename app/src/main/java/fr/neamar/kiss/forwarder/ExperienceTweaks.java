@@ -186,6 +186,7 @@ public class ExperienceTweaks extends Forwarder {
                             if (mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
                                 if (mainActivity.list.getAdapter() == null || mainActivity.list.getAdapter().isEmpty()) {
                                     mainActivity.showHistory();
+                                    mainActivity.showKeyboard();
                                 }
                             }
                         }
