@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import java.util.concurrent.Executor;
 
 public class Utilities {
-    final static Executor EXECUTOR_RUN_ASYNC = AsyncTask.THREAD_POOL_EXECUTOR;
 
     /**
      * Return a valid activity or null given a view
@@ -53,7 +52,26 @@ public class Utilities {
     }
 
     public static Utilities.AsyncRun runAsync(@NonNull AsyncRun.Run background, @Nullable AsyncRun.Run after) {
-        return (Utilities.AsyncRun) new Utilities.AsyncRun(background, after).executeOnExecutor(EXECUTOR_RUN_ASYNC);
+        return runAsync(background, after, getDefaultExecutor());
+    }
+
+    public static Utilities.AsyncRun runAsync(@NonNull AsyncRun.Run background, @Nullable AsyncRun.Run after, @NonNull Executor exec) {
+        return (Utilities.AsyncRun) new Utilities.AsyncRun(background, after).executeOnExecutor(exec);
+    }
+
+    /**
+     * Get default executor for async operations.
+     * From android Q AsyncTask.THREAD_POOL_EXECUTOR supports fallback if queue gets too long.
+     * Else we use more safe AsyncTask.SERIAL_EXECUTOR.
+     *
+     * @return Executor
+     */
+    public static Executor getDefaultExecutor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            return AsyncTask.THREAD_POOL_EXECUTOR;
+        } else {
+            return AsyncTask.SERIAL_EXECUTOR;
+        }
     }
 
     public static class AsyncRun extends AsyncTask<Void, Void, Void> {
