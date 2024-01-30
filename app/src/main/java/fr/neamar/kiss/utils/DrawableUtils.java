@@ -83,8 +83,9 @@ public class DrawableUtils {
                 return 0.26f;
             case SHAPE_OCTAGON:
                 return 0.25f;
+            default:
+                return 0f;
         }
-        return 0.f;
     }
 
     /**
@@ -106,7 +107,7 @@ public class DrawableUtils {
 
         Bitmap outputBitmap;
         Canvas outputCanvas;
-        if (isAdaptiveIconDrawable(icon)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && isAdaptiveIconDrawable(icon)) {
             AdaptiveIconDrawable adaptiveIcon = (AdaptiveIconDrawable) icon;
             Drawable bgDrawable = adaptiveIcon.getBackground();
             Drawable fgDrawable = adaptiveIcon.getForeground();
