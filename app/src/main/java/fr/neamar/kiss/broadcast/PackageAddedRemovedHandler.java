@@ -37,15 +37,8 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
         if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
             if (!replacing) {
                 for (String packageName : packageNames) {
-                    Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(packageName);
-                    // launchIntent can be null for some plugin app
-                    if (launchIntent != null) {
-                        // Add new package to history
-                        if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
-                            String className = launchIntent.getComponent().getClassName();
-                            String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
-                            KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
-                        }
+                    if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
+                        KissApplication.getApplication(ctx).getDataHandler().addPackageToHistory(ctx, user, packageName);
                     }
                 }
             }

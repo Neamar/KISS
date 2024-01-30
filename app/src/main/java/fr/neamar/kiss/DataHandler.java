@@ -46,6 +46,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -958,12 +959,28 @@ public class DataHandler extends BroadcastReceiver
     }
 
     /**
+     * Insert launching activity of package into history
+     *
+     * @param context     context
+     * @param userHandle  user
+     * @param packageName packageName
+     */
+    public void addPackageToHistory(Context context, UserHandle userHandle, String packageName) {
+        ComponentName componentName = PackageManagerUtils.getLaunchingComponent(context, packageName);
+        if (componentName != null) {
+            // add new package to history
+            String pojoID = userHandle.addUserSuffixToString("app://" + componentName.getPackageName() + "/" + componentName.getClassName(), '/');
+            addToHistory(pojoID);
+        }
+    }
+
+    /**
      * Insert specified ID (probably a pojo.id) into history
      *
      * @param id pojo.id of item to record
      */
     public void addToHistory(String id) {
-        if (id.isEmpty()) {
+        if (TextUtils.isEmpty(id)) {
             return;
         }
 
