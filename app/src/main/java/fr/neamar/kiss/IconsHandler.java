@@ -224,7 +224,7 @@ public class IconsHandler {
             return null;
         }
 
-        final IconShape shape = getShapeForGeneratingDrawable(backgroundColor);
+        final IconShape shape = getShapeForGeneratingDrawable();
         Drawable drawable = DrawableUtils.generateBackgroundDrawable(ctx, backgroundColor, shape);
         return forceIconMask(drawable, shape);
     }
@@ -234,7 +234,7 @@ public class IconsHandler {
         if (mIconPack != null && !mIconPack.isLoaded()) {
             return null;
         }
-        final IconShape shape = getShapeForGeneratingDrawable(codePoint);
+        final IconShape shape = getShapeForGeneratingDrawable();
         Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor, shape);
         return forceIconMask(drawable, shape);
     }
@@ -318,6 +318,7 @@ public class IconsHandler {
         if (shape == IconShape.SHAPE_SYSTEM) {
             shape = mSystemPack.getAdaptiveShape();
         }
+        // contacts have square images, so fallback to circle explicitly
         if (shape == IconShape.SHAPE_SYSTEM && !DrawableUtils.hasDeviceConfiguredMask()) {
             shape = IconShape.SHAPE_CIRCLE;
         }
@@ -329,16 +330,15 @@ public class IconsHandler {
      * If icon pack has mask then {@link IconShape#SHAPE_SYSTEM} is used.
      * If shape is {@link IconShape#SHAPE_SYSTEM} too and no icon mask can be configured for device, used shape is a circle.
      *
-     * @param hash, for pseudo random shape if applicable
      * @return shape
      */
     @NonNull
-    private IconShape getShapeForGeneratingDrawable(int hash) {
+    private IconShape getShapeForGeneratingDrawable() {
         IconShape shape = mSystemPack.getAdaptiveShape();
         if (mIconPack != null && mIconPack.hasMask()) {
             shape = IconShape.SHAPE_SYSTEM;
         }
-        return shape.getFinalShape(hash);
+        return shape;
     }
 
 

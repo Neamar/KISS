@@ -37,18 +37,4 @@ public enum IconShape {
         return id;
     }
 
-    public IconShape getFinalShape(int hash) {
-        switch (this) {
-            case SHAPE_SYSTEM:
-                if (!DrawableUtils.hasDeviceConfiguredMask()) {
-                    return IconShape.SHAPE_CIRCLE;
-                }
-                return this;
-            case SHAPE_TEARDROP_RND:
-                IconShape[] shapes = {SHAPE_TEARDROP_BR, SHAPE_TEARDROP_BL, SHAPE_TEARDROP_TL, SHAPE_TEARDROP_TR};
-                return shapes[Math.abs(hash % 4)];
-            default:
-                return this;
-        }
-    }
 }

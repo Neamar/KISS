@@ -34,6 +34,7 @@ public class DrawableUtils {
     private static final RectF RECT_F = new RectF();
     public static final String KEY_THEMED_ICONS = "themed-icons";
     private static final String TAG = DrawableUtils.class.getSimpleName();
+    private static final IconShape[] TEARDROP_SHAPES = {IconShape.SHAPE_TEARDROP_BR, IconShape.SHAPE_TEARDROP_BL, IconShape.SHAPE_TEARDROP_TL, IconShape.SHAPE_TEARDROP_TR};
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
     public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
@@ -102,7 +103,6 @@ public class DrawableUtils {
             // if no icon mask can be configured for device, then use icon as is
             return icon;
         }
-        shape = shape.getFinalShape(icon.hashCode());
 
         Bitmap outputBitmap;
         Canvas outputCanvas;
@@ -121,7 +121,7 @@ public class DrawableUtils {
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
 
-            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, false);
+            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, false, icon.hashCode());
 
             // Stretch adaptive layers because they are 108dp and the icon size is 48dp
             if (bgDrawable != null) {
@@ -154,7 +154,7 @@ public class DrawableUtils {
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
 
-            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, true);
+            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, true, icon.hashCode());
 
             // Shrink icon so that it fits the shape
             int bottomRightCorner = iconSize - iconOffset;
@@ -169,8 +169,11 @@ public class DrawableUtils {
      * Synchronized because class fields like {@link DrawableUtils#SHAPE_PATH}, {@link DrawableUtils#RECT_F} and {@link DrawableUtils#PAINT} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
      *
      * @param shape type of shape: DrawableUtils.SHAPE_*
+     * @param hash, for pseudo random shape if applicable
      */
-    private synchronized static void setIconShapeAndDrawBackground(Canvas canvas, @ColorInt int backgroundColor, @NonNull IconShape shape, boolean drawBackground) {
+    private synchronized static void setIconShapeAndDrawBackground(Canvas canvas, @ColorInt int backgroundColor, @NonNull IconShape shape, boolean drawBackground, int hash) {
+        shape = getFinalShape(shape, hash);
+
         int iconSize = canvas.getHeight();
         final Path path = SHAPE_PATH;
         path.rewind();
@@ -329,7 +332,7 @@ public class DrawableUtils {
 
     @NonNull
     public synchronized static Drawable generateBackgroundDrawable(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape) {
-        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape);
+        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape, backgroundColor);
         return new BitmapDrawable(ctx.getResources(), bitmap);
     }
 
@@ -337,7 +340,7 @@ public class DrawableUtils {
     public static Drawable generateCodepointDrawable(@NonNull Context ctx, int codepoint, @ColorInt int textColor, @ColorInt int backgroundColor, @NonNull IconShape shape) {
         int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
 
-        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape);
+        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape, codepoint);
         // create a canvas from a bitmap
         Canvas canvas = new Canvas(bitmap);
 
@@ -402,19 +405,30 @@ public class DrawableUtils {
     }
 
     @NonNull
-    private synchronized static Bitmap generateBackgroundBitmap(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape) {
+    private synchronized static Bitmap generateBackgroundBitmap(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape, int hash) {
         int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
         // create a canvas from a bitmap
         Bitmap bitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
 
-        if (shape == IconShape.SHAPE_SYSTEM && !hasDeviceConfiguredMask()) {
-            shape = IconShape.SHAPE_CIRCLE;
-        }
-
-        setIconShapeAndDrawBackground(canvas, backgroundColor, shape, true);
+        setIconShapeAndDrawBackground(canvas, backgroundColor, shape, true, hash);
 
         return bitmap;
     }
+
+    public static IconShape getFinalShape(IconShape shape, int hash) {
+        switch (shape) {
+            case SHAPE_SYSTEM:
+                if (!hasDeviceConfiguredMask()) {
+                    return IconShape.SHAPE_CIRCLE;
+                }
+                return shape;
+            case SHAPE_TEARDROP_RND:
+                return TEARDROP_SHAPES[Math.abs(hash % 4)];
+            default:
+                return shape;
+        }
+    }
+
 
 }
