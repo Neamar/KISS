@@ -125,6 +125,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
             removePreference("advanced", "enable-notifications");
+            removePreference("alternate-history-inputs-section", "enable-notification-history");
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             removePreference("icons-section", DrawableUtils.KEY_THEMED_ICONS);
