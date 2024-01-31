@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserManager;
@@ -162,6 +164,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
                 }
             }
         }
+        DrawableUtils.setDisabled(appDrawable, this.pojo.isDisabled());
         return appDrawable;
     }
 
@@ -205,6 +208,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
                 }
             }
         }
+        DrawableUtils.setDisabled(icon, this.pojo.isDisabled());
         return icon;
     }
 
