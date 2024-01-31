@@ -12,7 +12,6 @@ import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
-import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -141,7 +140,7 @@ public class ShortcutUtil {
             List<android.os.UserHandle> userHandles = launcherApps.getProfiles();
 
             // find the correct UserHandle and get shortcut
-            for (UserHandle userHandle : userHandles) {
+            for (android.os.UserHandle userHandle : userHandles) {
                 if (userManager.isUserRunning(userHandle) && userManager.isUserUnlocked(userHandle)) {
                     List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
                     if (shortcuts != null) {
@@ -175,7 +174,7 @@ public class ShortcutUtil {
         record.packageName = shortcutInfo.getPackage();
         record.intentUri = ShortcutPojo.OREO_PREFIX + shortcutInfo.getId();
 
-        String appName = getAppNameFromPackageName(context, shortcutInfo.getPackage());
+        String appName = getAppNameFromPackageName(context, shortcutInfo.getPackage(), new UserHandle(context, shortcutInfo.getUserHandle()));
 
         if (shortcutInfo.getShortLabel() != null) {
             if (includePackageName && !TextUtils.isEmpty(appName)) {
@@ -200,12 +199,12 @@ public class ShortcutUtil {
     /**
      * @return App name from package name
      */
-    public static String getAppNameFromPackageName(Context context, String packageName) {
-        try {
+    public static String getAppNameFromPackageName(Context context, String packageName, UserHandle userHandle) {
+        ApplicationInfo appInfo = PackageManagerUtils.getApplicationInfo(context, packageName, userHandle);
+        if (appInfo != null) {
             PackageManager packageManager = context.getPackageManager();
-            ApplicationInfo info = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-            return (String) packageManager.getApplicationLabel(info);
-        } catch (PackageManager.NameNotFoundException e) {
+            return packageManager.getApplicationLabel(appInfo).toString();
+        } else {
             Log.w(TAG, "Unable to get app name from package: " + packageName);
             return null;
         }

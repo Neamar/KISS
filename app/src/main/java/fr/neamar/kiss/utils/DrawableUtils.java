@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
@@ -428,6 +430,18 @@ public class DrawableUtils {
                 return TEARDROP_SHAPES[Math.abs(hash % 4)];
             default:
                 return shape;
+        }
+    }
+
+
+    public static void setDisabled(Drawable drawable, boolean disabled) {
+        if (disabled) {
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.setSaturation(0);
+            ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+            drawable.setColorFilter(filter);
+        } else {
+            drawable.setColorFilter(null);
         }
     }
 
