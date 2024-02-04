@@ -13,6 +13,7 @@ import java.util.Collection;
 
 import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.IconShape;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
@@ -20,7 +21,7 @@ public class SystemIconPack implements IconPack<Void> {
 
     private static final String TAG = SystemIconPack.class.getSimpleName();
     private final String packageName;
-    private int mAdaptiveShape = DrawableUtils.SHAPE_SYSTEM;
+    private IconShape mAdaptiveShape = IconShape.SHAPE_SYSTEM;
 
     public SystemIconPack(String packageName) {
         this.packageName = packageName;
@@ -40,11 +41,12 @@ public class SystemIconPack implements IconPack<Void> {
     public void load(PackageManager packageManager) {
     }
 
-    public int getAdaptiveShape() {
+    @NonNull
+    public IconShape getAdaptiveShape() {
         return mAdaptiveShape;
     }
 
-    public void setAdaptiveShape(int shape) {
+    public void setAdaptiveShape(@NonNull IconShape shape) {
         mAdaptiveShape = shape;
     }
 

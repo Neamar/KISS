@@ -27,7 +27,6 @@ import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
@@ -38,6 +37,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.IconShape;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
@@ -57,7 +57,7 @@ public class IconsHandler {
     private final SystemIconPack mSystemPack = new SystemIconPack();
     private boolean mForceAdaptive = false;
     private boolean mContactPackMask = false;
-    private int mContactsShape = DrawableUtils.SHAPE_SYSTEM;
+    private IconShape mContactsShape = IconShape.SHAPE_SYSTEM;
     private boolean mForceShape = false;
     private Utilities.AsyncRun mLoadIconsPackTask = null;
     private volatile Map<String, Long> customIconIds = null;
@@ -101,11 +101,13 @@ public class IconsHandler {
         }
     }
 
-    private static int getAdaptiveShape(SharedPreferences pref, String key) {
+    @NonNull
+    private static IconShape getAdaptiveShape(SharedPreferences pref, String key) {
         try {
-            return Integer.parseInt(pref.getString(key, String.valueOf(DrawableUtils.SHAPE_SYSTEM)));
+            int shapeId = Integer.parseInt(pref.getString(key, String.valueOf(IconShape.SHAPE_SYSTEM.getId())));
+            return IconShape.valueById(shapeId);
         } catch (Exception e) {
-            return DrawableUtils.SHAPE_SYSTEM;
+            return IconShape.SHAPE_SYSTEM;
         }
     }
 
@@ -222,7 +224,7 @@ public class IconsHandler {
             return null;
         }
 
-        final int shape = getShapeForGeneratingDrawable();
+        final IconShape shape = getShapeForGeneratingDrawable();
         Drawable drawable = DrawableUtils.generateBackgroundDrawable(ctx, backgroundColor, shape);
         return forceIconMask(drawable, shape);
     }
@@ -232,7 +234,7 @@ public class IconsHandler {
         if (mIconPack != null && !mIconPack.isLoaded()) {
             return null;
         }
-        final int shape = getShapeForGeneratingDrawable();
+        final IconShape shape = getShapeForGeneratingDrawable();
         Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor, shape);
         return forceIconMask(drawable, shape);
     }
@@ -272,7 +274,7 @@ public class IconsHandler {
     }
 
     public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
-        final int shape = getContactsShape();
+        final IconShape shape = getContactsShape();
 
         if (mContactPackMask && mIconPack != null && mIconPack.hasMask()) {
             // if the icon pack has a mask, use that instead of the adaptive shape
@@ -292,7 +294,7 @@ public class IconsHandler {
      * @param drawable drawable to mask
      * @return masked drawable
      */
-    private Drawable forceIconMask(@NonNull Drawable drawable, int shape) {
+    private Drawable forceIconMask(@NonNull Drawable drawable, @NonNull IconShape shape) {
         // apply mask
         if (mIconPack != null && mIconPack.hasMask()) {
             // if the icon pack has a mask, use that instead of the adaptive shape
@@ -305,42 +307,37 @@ public class IconsHandler {
 
     /**
      * Get shape used for contact icons with fallbacks.
-     * If contacts shape is {@link DrawableUtils#SHAPE_SYSTEM} app shape is used.
-     * If app shape is {@link DrawableUtils#SHAPE_SYSTEM} too and no icon mask can be configured for device, used shape is a circle.
+     * If contacts shape is {@link IconShape#SHAPE_SYSTEM} app shape is used.
+     * If app shape is {@link IconShape#SHAPE_SYSTEM} too and no icon mask can be configured for device, used shape is a circle.
      *
      * @return shape
      */
-    private int getContactsShape() {
-        int shape = mContactsShape;
-        if (shape == DrawableUtils.SHAPE_SYSTEM) {
+    @NonNull
+    private IconShape getContactsShape() {
+        IconShape shape = mContactsShape;
+        if (shape == IconShape.SHAPE_SYSTEM) {
             shape = mSystemPack.getAdaptiveShape();
         }
-        if (shape == DrawableUtils.SHAPE_SYSTEM && !DrawableUtils.hasDeviceConfiguredMask()) {
-            shape = DrawableUtils.SHAPE_CIRCLE;
+        // contacts have square images, so fallback to circle explicitly
+        if (shape == IconShape.SHAPE_SYSTEM && !DrawableUtils.hasDeviceConfiguredMask()) {
+            shape = IconShape.SHAPE_CIRCLE;
         }
         return shape;
     }
 
     /**
      * Get shape used for generating drawables with fallbacks.
-     * If icon pack has mask then {@link DrawableUtils#SHAPE_SYSTEM} is used.
-     * If shape is {@link DrawableUtils#SHAPE_SYSTEM} too and no icon mask can be configured for device, used shape is a circle.
+     * If icon pack has mask then {@link IconShape#SHAPE_SYSTEM} is used.
+     * If shape is {@link IconShape#SHAPE_SYSTEM} too and no icon mask can be configured for device, used shape is a circle.
      *
      * @return shape
      */
-    private int getShapeForGeneratingDrawable() {
-        int shape = mSystemPack.getAdaptiveShape();
+    @NonNull
+    private IconShape getShapeForGeneratingDrawable() {
+        IconShape shape = mSystemPack.getAdaptiveShape();
         if (mIconPack != null && mIconPack.hasMask()) {
-            shape = DrawableUtils.SHAPE_SYSTEM;
+            shape = IconShape.SHAPE_SYSTEM;
         }
-        if (shape == DrawableUtils.SHAPE_SYSTEM && !DrawableUtils.hasDeviceConfiguredMask()) {
-            shape = DrawableUtils.SHAPE_CIRCLE;
-        }
-        if (shape == DrawableUtils.SHAPE_TEARDROP_RND) {
-            Random r = new Random();
-            shape = DrawableUtils.SHAPE_TEARDROP_BR + r.nextInt(4);
-        }
-
         return shape;
     }
 

@@ -29,24 +29,12 @@ import fr.neamar.kiss.UIColors;
 
 public class DrawableUtils {
 
-    public static final int SHAPE_SYSTEM = 0;
-    public static final int SHAPE_CIRCLE = 1;
-    public static final int SHAPE_SQUARE = 2;
-    public static final int SHAPE_SQUIRCLE = 3;
-    public static final int SHAPE_ROUND_RECT = 4;
-    public static final int SHAPE_TEARDROP_BR = 5;
-    private static final int SHAPE_TEARDROP_BL = 6;
-    private static final int SHAPE_TEARDROP_TL = 7;
-    private static final int SHAPE_TEARDROP_TR = 8;
-    public static final int SHAPE_TEARDROP_RND = 9;
-    public static final int SHAPE_HEXAGON = 10;
-    public static final int SHAPE_OCTAGON = 11;
-
     private static final Paint PAINT = new Paint();
     private static final Path SHAPE_PATH = new Path();
     private static final RectF RECT_F = new RectF();
     public static final String KEY_THEMED_ICONS = "themed-icons";
     private static final String TAG = DrawableUtils.class.getSimpleName();
+    private static final IconShape[] TEARDROP_SHAPES = {IconShape.SHAPE_TEARDROP_BR, IconShape.SHAPE_TEARDROP_BL, IconShape.SHAPE_TEARDROP_TL, IconShape.SHAPE_TEARDROP_TR};
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
     public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
@@ -78,7 +66,7 @@ public class DrawableUtils {
      * @param shape from SHAPE_*
      * @return margin size
      */
-    private static float getScaleToFit(int shape) {
+    private static float getScaleToFit(IconShape shape) {
         switch (shape) {
             case SHAPE_SYSTEM:
             case SHAPE_CIRCLE:
@@ -95,8 +83,9 @@ public class DrawableUtils {
                 return 0.26f;
             case SHAPE_OCTAGON:
                 return 0.25f;
+            default:
+                return 0f;
         }
-        return 0.f;
     }
 
     /**
@@ -110,12 +99,11 @@ public class DrawableUtils {
      * @return shaped icon
      */
     @NonNull
-    public static Drawable applyIconMaskShape(@NonNull Context ctx, @NonNull Drawable icon, int shape, boolean fitInside, @ColorInt int backgroundColor) {
-        if (shape == SHAPE_SYSTEM && !hasDeviceConfiguredMask())
+    public static Drawable applyIconMaskShape(@NonNull Context ctx, @NonNull Drawable icon, @NonNull IconShape shape, boolean fitInside, @ColorInt int backgroundColor) {
+        if (shape == IconShape.SHAPE_SYSTEM && !hasDeviceConfiguredMask()) {
             // if no icon mask can be configured for device, then use icon as is
             return icon;
-        if (shape == SHAPE_TEARDROP_RND)
-            shape = SHAPE_TEARDROP_BR + (icon.hashCode() % 4);
+        }
 
         Bitmap outputBitmap;
         Canvas outputCanvas;
@@ -134,7 +122,7 @@ public class DrawableUtils {
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
 
-            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, false);
+            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, false, icon.hashCode());
 
             // Stretch adaptive layers because they are 108dp and the icon size is 48dp
             if (bgDrawable != null) {
@@ -148,7 +136,7 @@ public class DrawableUtils {
             }
         }
         // If icon is not adaptive, put it in a colored canvas to make it have a unified shape
-        else if (icon != null) {
+        else {
             // Shrink icon fit inside the shape
             int iconSize;
             int iconOffset = 0;
@@ -167,19 +155,12 @@ public class DrawableUtils {
             outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = new Canvas(outputBitmap);
 
-            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, true);
+            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, true, icon.hashCode());
 
             // Shrink icon so that it fits the shape
             int bottomRightCorner = iconSize - iconOffset;
             icon.setBounds(iconOffset, iconOffset, bottomRightCorner, bottomRightCorner);
             icon.draw(outputCanvas);
-        } else {
-            int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
-
-            outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-            outputCanvas = new Canvas(outputBitmap);
-
-            setIconShapeAndDrawBackground(outputCanvas, Color.BLACK, shape, true);
         }
         return new BitmapDrawable(ctx.getResources(), outputBitmap);
     }
@@ -189,8 +170,11 @@ public class DrawableUtils {
      * Synchronized because class fields like {@link DrawableUtils#SHAPE_PATH}, {@link DrawableUtils#RECT_F} and {@link DrawableUtils#PAINT} are reused for every call, which may result in unexpected behaviour if method is called from different threads running in parallel.
      *
      * @param shape type of shape: DrawableUtils.SHAPE_*
+     * @param hash, for pseudo random shape if applicable
      */
-    private synchronized static void setIconShapeAndDrawBackground(Canvas canvas, @ColorInt int backgroundColor, int shape, boolean drawBackground) {
+    private synchronized static void setIconShapeAndDrawBackground(Canvas canvas, @ColorInt int backgroundColor, @NonNull IconShape shape, boolean drawBackground, int hash) {
+        shape = getFinalShape(shape, hash);
+
         int iconSize = canvas.getHeight();
         final Path path = SHAPE_PATH;
         path.rewind();
@@ -348,16 +332,16 @@ public class DrawableUtils {
     }
 
     @NonNull
-    public synchronized static Drawable generateBackgroundDrawable(@NonNull Context ctx, @ColorInt int backgroundColor, int shape) {
-        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape);
+    public synchronized static Drawable generateBackgroundDrawable(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape) {
+        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape, backgroundColor);
         return new BitmapDrawable(ctx.getResources(), bitmap);
     }
 
     @NonNull
-    public static Drawable generateCodepointDrawable(@NonNull Context ctx, int codepoint, @ColorInt int textColor, @ColorInt int backgroundColor, int shape) {
+    public static Drawable generateCodepointDrawable(@NonNull Context ctx, int codepoint, @ColorInt int textColor, @ColorInt int backgroundColor, @NonNull IconShape shape) {
         int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
 
-        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape);
+        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape, codepoint);
         // create a canvas from a bitmap
         Canvas canvas = new Canvas(bitmap);
 
@@ -422,19 +406,30 @@ public class DrawableUtils {
     }
 
     @NonNull
-    private synchronized static Bitmap generateBackgroundBitmap(@NonNull Context ctx, @ColorInt int backgroundColor, int shape) {
+    private synchronized static Bitmap generateBackgroundBitmap(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape, int hash) {
         int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
         // create a canvas from a bitmap
         Bitmap bitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
 
-        if (shape == SHAPE_SYSTEM && !hasDeviceConfiguredMask()) {
-            shape = SHAPE_CIRCLE;
-        }
-
-        setIconShapeAndDrawBackground(canvas, backgroundColor, shape, true);
+        setIconShapeAndDrawBackground(canvas, backgroundColor, shape, true, hash);
 
         return bitmap;
     }
+
+    public static IconShape getFinalShape(IconShape shape, int hash) {
+        switch (shape) {
+            case SHAPE_SYSTEM:
+                if (!hasDeviceConfiguredMask()) {
+                    return IconShape.SHAPE_CIRCLE;
+                }
+                return shape;
+            case SHAPE_TEARDROP_RND:
+                return TEARDROP_SHAPES[Math.abs(hash % 4)];
+            default:
+                return shape;
+        }
+    }
+
 
 }
