@@ -229,7 +229,7 @@ public class PackageManagerUtils {
     @Nullable
     public static ApplicationInfo getApplicationInfo(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
         try {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
                 return launcherApps.getApplicationInfo(packageName, 0, user.getRealHandle());
             } else {
