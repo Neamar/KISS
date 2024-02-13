@@ -61,7 +61,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                         break;
                     }
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
-                    boolean disabled = PackageManagerUtils.isAppSuspended(appInfo) || manager.isQuietModeEnabled(profile);
+                    boolean disabled = PackageManagerUtils.isAppSuspended(appInfo) || isQuietModeEnabled(manager, profile);
                     final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                     apps.add(app);
                 }
@@ -98,6 +98,13 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Log.i(TAG, (end - start) + " milliseconds to list apps");
 
         return apps;
+    }
+
+    private boolean isQuietModeEnabled(UserManager manager, android.os.UserHandle profile) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return manager.isQuietModeEnabled(profile);
+        }
+        return false;
     }
 
     private AppPojo createPojo(UserHandle userHandle, String packageName, String activityName, CharSequence label, boolean disabled, Set<String> excludedAppList, Set<String> excludedFromHistoryAppList, Set<String> excludedShortcutsAppList) {
