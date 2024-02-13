@@ -16,6 +16,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.provider.Settings;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
@@ -123,8 +124,10 @@ public class SettingsActivity extends PreferenceActivity implements
             removePreference("history-hide-section", "pref-hide-navbar");
             removePreference("history-hide-section", "pref-hide-statusbar");
         }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
             removePreference("advanced", "enable-notifications");
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
             removePreference("alternate-history-inputs-section", "enable-notification-history");
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
@@ -649,6 +652,11 @@ public class SettingsActivity extends PreferenceActivity implements
                     dh.addToFavorites(TagsProvider.generateUniqueId(tagName));
             } else if ("exclude-favorites-apps".equals(key)) {
                 KissApplication.getApplication(this).getDataHandler().reloadApps();
+            } else if ("enable-notification-history".equals(key)) {
+                boolean enabled = sharedPreferences.getBoolean(key, false);
+                if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
+                }
             }
         }
 
