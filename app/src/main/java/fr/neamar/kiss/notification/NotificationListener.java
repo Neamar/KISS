@@ -210,7 +210,11 @@ public class NotificationListener extends NotificationListenerService {
             }
         }
 
-        return notification.priority <= Notification.PRIORITY_MIN || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0 || isGroupHeader(notification);
+        return notification.priority <= Notification.PRIORITY_MIN || isOngoing(notification) || isGroupHeader(notification);
+    }
+
+    private boolean isOngoing(Notification notification) {
+        return (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0;
     }
 
     private boolean isGroupHeader(Notification notification) {
