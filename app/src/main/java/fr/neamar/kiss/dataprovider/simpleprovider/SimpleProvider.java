@@ -10,7 +10,7 @@ import fr.neamar.kiss.pojo.Pojo;
  * Android Services are expensive to create, and use a lot of memory,
  * so whenever we can, we avoid using them.
  */
-public abstract class SimpleProvider implements IProvider {
+public abstract class SimpleProvider<T extends Pojo> implements IProvider<T> {
     @Override
     public void reload() {
         // Simple providers can't be reloaded
@@ -27,12 +27,12 @@ public abstract class SimpleProvider implements IProvider {
     }
 
     @Override
-    public Pojo findById(String id) {
+    public T findById(String id) {
         return null;
     }
 
     @Override
-    public List<? extends Pojo> getPojos() {
+    public List<T> getPojos() {
         return null;
     }
 }

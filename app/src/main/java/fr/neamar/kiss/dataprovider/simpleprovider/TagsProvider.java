@@ -2,11 +2,10 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 
 import java.util.Locale;
 
-import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.Searcher;
 
-public class TagsProvider extends SimpleProvider {
+public class TagsProvider extends SimpleProvider<TagDummyPojo> {
     public static final String SCHEME = "kisstag://";
 
     public static String generateUniqueId(String tag) {
@@ -24,7 +23,7 @@ public class TagsProvider extends SimpleProvider {
     }
 
     @Override
-    public Pojo findById(String id) {
+    public TagDummyPojo findById(String id) {
         return new TagDummyPojo(id);
     }
 }

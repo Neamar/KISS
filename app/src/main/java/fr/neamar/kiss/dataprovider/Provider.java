@@ -15,7 +15,7 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.loader.LoadPojos;
 import fr.neamar.kiss.pojo.Pojo;
 
-public abstract class Provider<T extends Pojo> extends Service implements IProvider {
+public abstract class Provider<T extends Pojo> extends Service implements IProvider<T> {
     private final static String TAG = Provider.class.getSimpleName();
 
     /**
@@ -25,7 +25,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     /**
      * Storage for search items used by this provider
      */
-    List<T> pojos = new ArrayList<>();
+    private List<T> pojos = new ArrayList<>();
     private boolean loaded = false;
     /**
      * Scheme used to build ids for the pojos created by this provider
@@ -71,7 +71,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
     public void reload() {
         // Handled at subclass level
-        if (pojos.size() > 0) {
+        if (!pojos.isEmpty()) {
             Log.v(TAG, "Reloading provider: " + this.getClass().getSimpleName());
         }
     }
@@ -113,8 +113,8 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      * @param id id we're looking for
      * @return null if not found
      */
-    public Pojo findById(String id) {
-        for (Pojo pojo : pojos) {
+    public T findById(String id) {
+        for (T pojo : pojos) {
             if (pojo.id.equals(id)) {
                 return pojo;
             }
@@ -124,7 +124,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     }
 
     @Override
-    public List<? extends Pojo> getPojos() {
+    public List<T> getPojos() {
         return Collections.unmodifiableList(pojos);
     }
 
@@ -145,7 +145,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      * runs in the same process as its clients, we don't need to deal with IPC.
      */
     public class LocalBinder extends Binder {
-        public IProvider getService() {
+        public IProvider<T> getService() {
             // Return this instance of the provider so that clients can call public methods
             return Provider.this;
         }

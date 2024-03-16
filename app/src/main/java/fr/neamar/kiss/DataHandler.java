@@ -253,7 +253,7 @@ public class DataHandler extends BroadcastReceiver
             public void onServiceConnected(ComponentName className, IBinder service) {
                 // We've bound to LocalService, cast the IBinder and get LocalService instance
                 Provider<?>.LocalBinder binder = (Provider<?>.LocalBinder) service;
-                IProvider provider = binder.getService();
+                IProvider<?> provider = binder.getService();
 
                 // Update provider info so that it contains something useful
                 entry.provider = provider;
@@ -1016,7 +1016,7 @@ public class DataHandler extends BroadcastReceiver
     }
 
     static final class ProviderEntry {
-        public IProvider provider = null;
+        public IProvider<?> provider = null;
         ServiceConnection connection = null;
     }
 }

@@ -16,15 +16,14 @@ import java.util.Locale;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.normalizer.StringNormalizer;
-import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
 
-public class SettingsProvider extends SimpleProvider {
+public class SettingsProvider extends SimpleProvider<SettingPojo> {
     private final static String SCHEME = "setting://";
-    private String settingName;
-    private List<SettingPojo> pojos;
+    private final String settingName;
+    private final List<SettingPojo> pojos;
     private final SharedPreferences prefs;
 
     public SettingsProvider(Context context) {
@@ -130,19 +129,4 @@ public class SettingsProvider extends SimpleProvider {
         return id.startsWith(SCHEME);
     }
 
-    /**
-     * Try to find a record by its id
-     *
-     * @param id id we're looking for
-     * @return null if not found
-     */
-    public Pojo findById(String id) {
-        for (Pojo pojo : pojos) {
-            if (pojo.id.equals(id)) {
-                return pojo;
-            }
-        }
-
-        return null;
-    }
 }

@@ -21,7 +21,7 @@ import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.URIUtils;
 import fr.neamar.kiss.utils.URLUtils;
 
-public class SearchProvider extends SimpleProvider {
+public class SearchProvider extends SimpleProvider<SearchPojo> {
     private final SharedPreferences prefs;
 
     public static Set<String> getDefaultSearchProviders(Context context) {
