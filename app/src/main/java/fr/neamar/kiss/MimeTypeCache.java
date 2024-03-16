@@ -65,7 +65,7 @@ public class MimeTypeCache {
     public String getLabel(Context context, String mimeType) {
         if (!labels.containsKey(mimeType)) {
             synchronized (this) {
-                if (labels.containsKey(mimeType)) {
+                if (!labels.containsKey(mimeType)) {
                     final Intent intent = MimeTypeUtils.getIntentByMimeType(mimeType, -1, "");
                     String label = PackageManagerUtils.getLabel(context, intent);
                     labels.put(mimeType, label);
