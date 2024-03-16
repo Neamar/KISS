@@ -15,6 +15,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.List;
 
@@ -210,6 +211,33 @@ public class PackageManagerUtils {
         // This should never happen, let's just return the generic activity icon
         Drawable drawable = ctx.getPackageManager().getDefaultActivityIcon();
         return DrawableUtils.getThemedDrawable(ctx, drawable);
+    }
+
+    public static boolean isAppSuspended(ApplicationInfo appInfo) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return (appInfo.flags & ApplicationInfo.FLAG_SUSPENDED) != 0;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isAppSuspended(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
+        final ApplicationInfo appInfo = getApplicationInfo(context, packageName, user);
+        return appInfo != null && isAppSuspended(appInfo);
+    }
+
+    @Nullable
+    public static ApplicationInfo getApplicationInfo(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                return launcherApps.getApplicationInfo(packageName, 0, user.getRealHandle());
+            } else {
+                return context.getPackageManager().getApplicationInfo(packageName, 0);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
+        }
     }
 
 }

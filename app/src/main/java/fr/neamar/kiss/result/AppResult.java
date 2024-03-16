@@ -8,10 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -46,7 +44,9 @@ import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result<AppPojo> {
@@ -130,26 +130,13 @@ public class AppResult extends Result<AppPojo> {
         adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_store));
 
-        try {
-            // app installed under /system can't be uninstalled
-            boolean isSameProfile = true;
-            ApplicationInfo ai;
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-                LauncherActivityInfo info = launcher.getActivityList(this.pojo.packageName, this.pojo.userHandle.getRealHandle()).get(0);
-                ai = info.getApplicationInfo();
+        // app installed under /system can't be uninstalled
+        boolean isSameProfile = this.pojo.userHandle.isCurrentUser();
+        ApplicationInfo ai = PackageManagerUtils.getApplicationInfo(context, this.pojo.packageName, this.pojo.userHandle);
 
-                isSameProfile = this.pojo.userHandle.isCurrentUser();
-            } else {
-                ai = context.getPackageManager().getApplicationInfo(this.pojo.packageName, 0);
-            }
-
-            // Need to AND the flags with SYSTEM:
-            if ((ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && isSameProfile) {
-                adapter.add(new ListPopup.Item(context, R.string.menu_app_uninstall));
-            }
-        } catch (NameNotFoundException | IndexOutOfBoundsException e) {
-            // should not happen
+        // Need to AND the flags with SYSTEM:
+        if (ai != null && (ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && isSameProfile) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_app_uninstall));
         }
 
         // append root menu if available
@@ -316,10 +303,9 @@ public class AppResult extends Result<AppPojo> {
             // Get initial name
             String name = null;
             PackageManager pm = context.getPackageManager();
-            try {
-                ApplicationInfo applicationInfo = pm.getApplicationInfo(app.packageName, 0);
+            ApplicationInfo applicationInfo = PackageManagerUtils.getApplicationInfo(context, app.packageName, app.userHandle);
+            if (applicationInfo != null) {
                 name = applicationInfo.loadLabel(pm).toString();
-            } catch (NameNotFoundException ignored) {
             }
 
             // Set name
@@ -437,6 +423,7 @@ public class AppResult extends Result<AppPojo> {
                 }
             }
         }
+        DrawableUtils.setDisabled(icon, this.pojo.isDisabled());
         return icon;
     }
 
