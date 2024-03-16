@@ -15,7 +15,7 @@ import fr.neamar.kiss.utils.calculator.Result;
 import fr.neamar.kiss.utils.calculator.ShuntingYard;
 import fr.neamar.kiss.utils.calculator.Tokenizer;
 
-public class CalculatorProvider extends SimpleProvider {
+public class CalculatorProvider extends SimpleProvider<SearchPojo> {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     final Pattern computableRegexp;
     // A regexp to detect plain numbers (including phone numbers)
@@ -35,7 +35,7 @@ public class CalculatorProvider extends SimpleProvider {
         // Now create matcher object.
         Matcher m = computableRegexp.matcher(spacelessQuery);
         if (m.find()) {
-            if(numberOnlyRegexp.matcher(spacelessQuery).find()) {
+            if (numberOnlyRegexp.matcher(spacelessQuery).find()) {
                 return;
             }
 
@@ -44,9 +44,9 @@ public class CalculatorProvider extends SimpleProvider {
             Result<ArrayDeque<Tokenizer.Token>> tokenized = Tokenizer.tokenize(operation);
             String readableResult;
 
-            if(tokenized.syntacticalError) {
+            if (tokenized.syntacticalError) {
                 return;
-            } else if(tokenized.arithmeticalError) {
+            } else if (tokenized.arithmeticalError) {
                 return;
             } else {
                 Result<ArrayDeque<Tokenizer.Token>> posfixed = ShuntingYard.infixToPostfix(tokenized.result);

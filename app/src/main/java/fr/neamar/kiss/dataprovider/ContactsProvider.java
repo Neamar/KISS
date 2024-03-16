@@ -64,7 +64,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
 
-        for (ContactsPojo pojo : pojos) {
+        for (ContactsPojo pojo : getPojos()) {
             FuzzyScore.MatchInfo matchInfo;
             boolean match = false;
 
@@ -105,7 +105,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     public ContactsPojo findByPhone(String phoneNumber) {
         StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.simplifyPhoneNumber(phoneNumber);
 
-        for (ContactsPojo pojo : pojos) {
+        for (ContactsPojo pojo : getPojos()) {
             if (pojo.normalizedPhone != null && pojo.normalizedPhone.equals(simplifiedPhoneNumber)) {
                 return pojo;
             }

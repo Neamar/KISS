@@ -8,7 +8,7 @@ import fr.neamar.kiss.searcher.Searcher;
 /**
  * Public interface exposed by every KISS data provider
  */
-public interface IProvider {
+public interface IProvider<T extends Pojo> {
 
     /**
      * Post search results for the given query string to the searcher
@@ -52,12 +52,12 @@ public interface IProvider {
      * @param id id we're looking for
      * @return null if not found
      */
-    Pojo findById(String id);
+    T findById(String id);
 
     /**
      * Get a list of all pojos, do not modify this list!
      *
      * @return
      */
-    List<? extends Pojo> getPojos();
+    List<T> getPojos();
 }

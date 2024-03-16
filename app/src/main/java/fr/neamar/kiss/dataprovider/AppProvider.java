@@ -19,7 +19,6 @@ import fr.neamar.kiss.broadcast.PackageAddedRemovedHandler;
 import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
@@ -131,7 +130,7 @@ public class AppProvider extends Provider<AppPojo> {
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
 
-        for (AppPojo pojo : pojos) {
+        for (AppPojo pojo : getPojos()) {
             // exclude apps from results
             if (pojo.isExcluded() && !prefs.getBoolean("enable-excluded-apps", false)) {
                 continue;
@@ -156,24 +155,8 @@ public class AppProvider extends Provider<AppPojo> {
         }
     }
 
-    /**
-     * Return a Pojo
-     *
-     * @param id we're looking for
-     * @return an AppPojo, or null
-     */
-    @Override
-    public Pojo findById(String id) {
-        for (Pojo pojo : pojos) {
-            if (pojo.id.equals(id)) {
-                return pojo;
-            }
-        }
-
-        return null;
-    }
-
     public List<AppPojo> getAllApps() {
+        List<AppPojo> pojos = getPojos();
         List<AppPojo> records = new ArrayList<>(pojos.size());
 
         for (AppPojo pojo : pojos) {
@@ -184,6 +167,7 @@ public class AppProvider extends Provider<AppPojo> {
     }
 
     public List<AppPojo> getAllAppsWithoutExcluded() {
+        List<AppPojo> pojos = getPojos();
         List<AppPojo> records = new ArrayList<>(pojos.size());
 
         for (AppPojo pojo : pojos) {

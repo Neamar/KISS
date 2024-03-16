@@ -89,7 +89,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
 
         FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
 
-        for (ShortcutPojo pojo : pojos) {
+        for (ShortcutPojo pojo : getPojos()) {
             // exclude favorites from results
             if (excludedFavoriteIds.contains(pojo.getFavoriteId())) {
                 continue;
@@ -111,6 +111,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
     }
 
     public List<ShortcutPojo> getPinnedShortcuts() {
+        List<ShortcutPojo> pojos = getPojos();
         List<ShortcutPojo> records = new ArrayList<>(pojos.size());
 
         for (ShortcutPojo pojo : pojos) {
