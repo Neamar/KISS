@@ -42,10 +42,10 @@ public class ShortcutUtil {
     final static private String TAG = ShortcutUtil.class.getSimpleName();
 
     /**
-     * @return shortcut id generated from shortcut name
+     * @return shortcut id generated from shortcut intentUri (which contains the shortcut id)
      */
     public static String generateShortcutId(ShortcutRecord shortcutRecord) {
-        return ShortcutPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
+        return ShortcutPojo.SCHEME + shortcutRecord.intentUri;
     }
 
     /**
