@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
@@ -15,16 +16,16 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.StringRes;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,6 +35,7 @@ import java.util.Set;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.PickAppWidgetActivity;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.WidgetHost;
 
 class Widgets extends Forwarder {
@@ -243,71 +245,72 @@ class Widgets extends Forwarder {
             final AppWidgetHostView widgetWithMenuCurrentlyDisplayed = (AppWidgetHostView) v;
             final AppWidgetProviderInfo currentAppWidgetInfo = mAppWidgetManager.getAppWidgetInfo(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
 
-            PopupMenu popup = new PopupMenu(mainActivity, v);
-            popup.inflate(R.menu.menu_widget);
-
-            Menu menu = popup.getMenu();
-            // Disable items that can't be triggered
-            final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
-            if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) == 0) {
-                menu.findItem(R.id.move_up).setVisible(false);
-            }
-            if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) == parent.getChildCount() - 1) {
-                menu.findItem(R.id.move_down).setVisible(false);
-            }
-            int decreasedLineHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-            if (preventDecreaseLineHeight(decreasedLineHeight, currentAppWidgetInfo)) {
-                menu.findItem(R.id.decrease_size).setVisible(false);
-            }
-            int increasedLineHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-            if (preventIncreaseLineHeight(increasedLineHeight, currentAppWidgetInfo)) {
-                menu.findItem(R.id.increase_size).setVisible(false);
-            }
-
-            popup.setOnMenuItemClickListener(item -> {
-                popup.dismiss();
-                int itemId = item.getItemId();
-                if (itemId == R.id.remove_widget) {
-                    parent.removeView(widgetWithMenuCurrentlyDisplayed);
-                    mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
-                    serializeState();
-                    return true;
-                } else if (itemId == R.id.increase_size) {
-                    int newHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-                    resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
-                    return true;
-                } else if (itemId == R.id.decrease_size) {
-                    int newHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
-                    resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
-                    return true;
-                } else if (itemId == R.id.move_up) {
-                    int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-                    if (currentIndex >= 1) {
-                        parent.removeViewAt(currentIndex);
-                        parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
-                        serializeState();
-                        return true;
-                    }
-                } else if (itemId == R.id.move_down) {
-                    int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
-                    if (currentIndex < parent.getChildCount() - 1) {
-                        parent.removeViewAt(currentIndex);
-                        parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
-                        serializeState();
-                        return true;
-                    }
-                }
-
-                return false;
+            ArrayAdapter<ListPopup.Item> popupMenuAdapter = new ArrayAdapter<>(mainActivity, R.layout.popup_list_item);
+            buildPopupMenu(mainActivity, popupMenuAdapter, currentAppWidgetInfo, widgetWithMenuCurrentlyDisplayed);
+            ListPopup popupMenu = new ListPopup(mainActivity);
+            popupMenu.setAdapter(popupMenuAdapter);
+            popupMenu.setOnItemClickListener((adapter1, view, position) -> {
+                popupMenu.dismiss();
+                @StringRes int stringId = ((ListPopup.Item) adapter1.getItem(position)).stringId;
+                popupMenuClickHandler(view.getContext(), stringId, widgetWithMenuCurrentlyDisplayed);
             });
-
-            popup.show();
+            mainActivity.registerPopup(popupMenu);
+            popupMenu.show(hostView);
             return true;
         });
 
         widgetArea.addView(hostView);
         // Start listening for widget update
         mAppWidgetHost.startListening();
+    }
+
+    private void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, AppWidgetProviderInfo currentAppWidgetInfo, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
+        final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+
+        int increasedLineHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+        if (!preventIncreaseLineHeight(increasedLineHeight, currentAppWidgetInfo)) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_size_up));
+        }
+        int decreasedLineHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+        if (!preventDecreaseLineHeight(decreasedLineHeight, currentAppWidgetInfo)) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_size_down));
+        }
+        if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) != 0) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_up));
+        }
+        if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) != parent.getChildCount() - 1) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_down));
+        }
+        adapter.add(new ListPopup.Item(context, R.string.menu_widget_remove));
+    }
+
+    private void popupMenuClickHandler(Context context, @StringRes int stringId, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
+        final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+        if (stringId == R.string.menu_widget_remove) {
+            parent.removeView(widgetWithMenuCurrentlyDisplayed);
+            mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
+            serializeState();
+        } else if (stringId == R.string.menu_size_up) {
+            int newHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+            resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+        } else if (stringId == R.string.menu_size_down) {
+            int newHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
+            resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+        } else if (stringId == R.string.menu_widget_move_up) {
+            int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+            if (currentIndex >= 1) {
+                parent.removeViewAt(currentIndex);
+                parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex - 1);
+                serializeState();
+            }
+        } else if (stringId == R.string.menu_widget_move_down) {
+            int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+            if (currentIndex < parent.getChildCount() - 1) {
+                parent.removeViewAt(currentIndex);
+                parent.addView(widgetWithMenuCurrentlyDisplayed, currentIndex + 1);
+                serializeState();
+            }
+        }
     }
 
     /**
