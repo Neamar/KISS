@@ -10,10 +10,11 @@ jobs:
     name: Run Unit Tests
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: set up Java 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
+          distribution: 'temurin'
           java-version: 11
       - name: Unit tests
         run: bash ./gradlew testDebugUnitTest --stacktrace
@@ -23,22 +24,23 @@ jobs:
     name: Generate APK
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: set up Java 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
+          distribution: 'temurin'
           java-version: 11
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
       - name: Build release APK
         run: bash ./gradlew assembleRelease --stacktrace
       - name: Upload debug APK
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: debug
           path: app/build/outputs/apk/debug/app-debug.apk
       - name: Upload release APK
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: release
           path: app/build/outputs/apk/release/app-release-unsigned.apk
