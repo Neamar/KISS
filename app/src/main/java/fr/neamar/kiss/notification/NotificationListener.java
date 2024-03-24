@@ -5,6 +5,8 @@ import android.app.NotificationChannel;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.UserManager;
+import android.preference.PreferenceManager;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
@@ -15,6 +17,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.utils.UserHandle;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationListener extends NotificationListenerService {
@@ -72,7 +77,7 @@ public class NotificationListener extends NotificationListenerService {
 
         editor.apply();
 
-        Log.v(TAG, "Refreshed all notifications for " + allKeys.toString());
+        Log.v(TAG, "Refreshed all notifications for " + allKeys);
     }
 
     @Override
@@ -115,7 +120,27 @@ public class NotificationListener extends NotificationListenerService {
             editor.putStringSet(packageKey, currentNotifications);
             editor.apply();
 
-            Log.v(TAG, "Added notification for " + packageKey + ": " + currentNotifications.toString());
+            Log.v(TAG, "Added notification for " + packageKey + ": " + currentNotifications);
+
+            addNotificationToHistory(sbn);
+        }
+    }
+
+    private void addNotificationToHistory(StatusBarNotification sbn) {
+        Context context = getBaseContext();
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-notification-history", false)) {
+            UserHandle userHandle = getUserHandle(context, sbn);
+            KissApplication.getApplication(context).getDataHandler().addPackageToHistory(context, userHandle, sbn.getPackageName());
+        }
+    }
+
+    private UserHandle getUserHandle(Context context, StatusBarNotification sbn) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            android.os.UserHandle user = sbn.getUser();
+            return new UserHandle(manager.getSerialNumberForUser(user), user);
+        } else {
+            return new UserHandle();
         }
     }
 
@@ -139,7 +164,7 @@ public class NotificationListener extends NotificationListenerService {
             }
             editor.apply();
 
-            Log.v(TAG, "Removed notification for " + packageKey + ": " + currentNotifications.toString());
+            Log.v(TAG, "Removed notification for " + packageKey + ": " + currentNotifications);
         }
     }
 
@@ -185,7 +210,11 @@ public class NotificationListener extends NotificationListenerService {
             }
         }
 
-        return notification.priority <= Notification.PRIORITY_MIN || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0 || isGroupHeader(notification);
+        return notification.priority <= Notification.PRIORITY_MIN || isOngoing(notification) || isGroupHeader(notification);
+    }
+
+    private boolean isOngoing(Notification notification) {
+        return (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0;
     }
 
     private boolean isGroupHeader(Notification notification) {
@@ -195,4 +224,5 @@ public class NotificationListener extends NotificationListenerService {
             return false;
         }
     }
+
 }
