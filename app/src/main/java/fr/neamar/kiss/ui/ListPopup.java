@@ -147,8 +147,20 @@ public class ListPopup extends PopupWindow {
         final int[] anchorPos = new int[2];
         anchor.getLocationOnScreen(anchorPos);
 
-        final int distanceToBottom = displayFrame.bottom - (anchorPos[1] + anchor.getHeight());
-        final int distanceToTop = anchorPos[1] - displayFrame.top;
+        // calculate absolute position of anchor
+        int overlapAmount = (int) (anchor.getHeight() * anchorOverlap);
+        int absoluteAnchorPos = (anchorPos[1] + anchor.getHeight()) - overlapAmount;
+        // anchor should be on visible screen
+        if (absoluteAnchorPos > displayFrame.bottom) {
+            absoluteAnchorPos = displayFrame.bottom;
+        }
+        if (absoluteAnchorPos < displayFrame.top) {
+            absoluteAnchorPos = displayFrame.top;
+        }
+        final int distanceToBottom = displayFrame.bottom - absoluteAnchorPos;
+        final int distanceToTop = absoluteAnchorPos - displayFrame.top;
+        // calculate new relative position of anchor
+        final int relativeAnchorPos = absoluteAnchorPos - (anchorPos[1] + anchor.getHeight());
 
         LinearLayout linearLayout = getLinearLayout();
 
@@ -164,26 +176,23 @@ public class ListPopup extends PopupWindow {
             xOffset = anchor.getPaddingLeft();
         }
 
-        int overlapAmount = (int) (anchor.getHeight() * anchorOverlap);
         int yOffset;
         if (distanceToBottom > linearLayout.getMeasuredHeight()) {
             // show below anchor
-            yOffset = -overlapAmount;
+            yOffset = relativeAnchorPos;
             setAnimationStyle(R.style.PopupAnimationTop);
-        } else if (distanceToTop > distanceToBottom) {
-            // show above anchor
-            yOffset = -overlapAmount - linearLayout.getMeasuredHeight();
-            setAnimationStyle(R.style.PopupAnimationBottom);
-            if (distanceToTop < linearLayout.getMeasuredHeight()) {
-                // enable scroll
-                setHeight(distanceToTop + overlapAmount);
-                yOffset += linearLayout.getMeasuredHeight() - distanceToTop - overlapAmount;
-            }
+        } else if (distanceToBottom >= distanceToTop) {
+            // show below anchor with scroll depending on menu height
+            yOffset = relativeAnchorPos;
+            int menuHeight = Math.min(distanceToBottom, linearLayout.getMeasuredHeight());
+            setHeight(menuHeight);
+            setAnimationStyle(R.style.PopupAnimationTop);
         } else {
-            // show below anchor with scroll
-            yOffset = -overlapAmount;
-            setAnimationStyle(R.style.PopupAnimationTop);
-            setHeight(distanceToBottom + overlapAmount);
+            // show above anchor with scroll depending on menu height
+            int menuHeight = Math.min(distanceToTop, linearLayout.getMeasuredHeight());
+            yOffset = relativeAnchorPos - menuHeight;
+            setHeight(menuHeight);
+            setAnimationStyle(R.style.PopupAnimationBottom);
         }
 
         showAsDropDown(anchor, xOffset, yOffset);
