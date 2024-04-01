@@ -1003,7 +1003,7 @@ public class DataHandler extends BroadcastReceiver
         DBHelper.addCustomAppName(context, componentName, newName);
     }
 
-    public void removeRenameApp(String componentName, String defaultName) {
+    public void removeRenameApp(String componentName) {
         DBHelper.removeCustomAppName(context, componentName);
     }
 
