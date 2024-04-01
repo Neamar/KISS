@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
@@ -15,6 +16,7 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.List;
 
@@ -94,6 +96,95 @@ public class PackageManagerUtils {
     }
 
     /**
+     * @param context context
+     * @param intent  intent
+     * @return label of best matching app for given intent
+     */
+    public static String getLabel(Context context, Intent intent) {
+        ResolveInfo resolveInfo = PackageManagerUtils.getBestResolve(context, intent);
+        if (resolveInfo != null) {
+            return String.valueOf(resolveInfo.loadLabel(context.getPackageManager()));
+        } else {
+            Log.w(TAG, "Unable to get label from intent: " + intent);
+            return null;
+        }
+    }
+
+    /**
+     * @param context
+     * @param packageName
+     * @param userHandle
+     * @return label from package name
+     */
+    @Nullable
+    public static String getLabel(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle userHandle) {
+        ApplicationInfo appInfo = getApplicationInfo(context, packageName, userHandle);
+        if (appInfo != null) {
+            PackageManager packageManager = context.getPackageManager();
+            return packageManager.getApplicationLabel(appInfo).toString();
+        } else {
+            Log.w(TAG, "Unable to get label from package: " + packageName);
+            return null;
+        }
+    }
+
+    @Nullable
+    public static String getLabel(@NonNull Context context, @NonNull ComponentName componentName, @NonNull UserHandle user) {
+        ActivityInfo activityInfo = getActivityInfo(context, componentName, user);
+        if (activityInfo != null) {
+            PackageManager packageManager = context.getPackageManager();
+            return activityInfo.loadLabel(packageManager).toString();
+        } else {
+            Log.w(TAG, "Unable to get label from component: " + componentName);
+            return null;
+        }
+    }
+
+    @Nullable
+    private static ApplicationInfo getApplicationInfo(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
+        try {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                return launcherApps.getApplicationInfo(packageName, 0, user.getRealHandle());
+            } else {
+                return context.getPackageManager().getApplicationInfo(packageName, 0);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
+        }
+    }
+
+    @Nullable
+    private static ActivityInfo getActivityInfo(@NonNull Context context, @NonNull ComponentName componentName, @NonNull UserHandle user) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            LauncherActivityInfo info = getLauncherActivityInfo(context, componentName, user);
+            if (info != null) {
+                return info.getActivityInfo();
+            }
+        }
+        try {
+            return context.getPackageManager().getActivityInfo(componentName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
+        }
+    }
+
+    @Nullable
+    private static LauncherActivityInfo getLauncherActivityInfo(@NonNull Context context, @NonNull ComponentName componentName, @NonNull UserHandle user) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            List<LauncherActivityInfo> activities = launcherApps.getActivityList(componentName.getPackageName(), user.getRealHandle());
+            for (LauncherActivityInfo activity : activities) {
+                if (activity.getComponentName().equals(componentName)) {
+                    return activity;
+                }
+            }
+        }
+        return null;
+    }
+
+
+    /**
      * @param context       context
      * @param componentName componentName
      * @return launching component name for given component
@@ -153,14 +244,11 @@ public class PackageManagerUtils {
     public static Drawable getActivityIcon(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             try {
-                LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-                List<LauncherActivityInfo> icons = launcher.getActivityList(componentName.getPackageName(), userHandle.getRealHandle());
-                for (LauncherActivityInfo info : icons) {
-                    if (info.getComponentName().equals(componentName)) {
-                        Drawable drawable = info.getIcon(0);
-                        if (drawable != null) {
-                            return DrawableUtils.getThemedDrawable(ctx, drawable);
-                        }
+                LauncherActivityInfo info = getLauncherActivityInfo(ctx, componentName, userHandle);
+                if (info != null) {
+                    Drawable drawable = info.getIcon(0);
+                    if (drawable != null) {
+                        return DrawableUtils.getThemedDrawable(ctx, drawable);
                     }
                 }
             } catch (SecurityException e) {

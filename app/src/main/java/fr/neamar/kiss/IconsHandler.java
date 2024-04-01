@@ -4,7 +4,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
@@ -38,6 +37,7 @@ import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.IconShape;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
@@ -354,13 +354,11 @@ public class IconsHandler {
 
         for (ResolveInfo ri : launcherThemes) {
             String packageName = ri.activityInfo.packageName;
-            try {
-                ApplicationInfo ai = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-                String name = pm.getApplicationLabel(ai).toString();
+            String name = PackageManagerUtils.getLabel(ctx, packageName, new UserHandle());
+            if (name != null) {
                 iconsPacks.put(packageName, name);
-            } catch (PackageManager.NameNotFoundException e) {
-                // shouldn't happen
-                Log.e(TAG, "Unable to found package " + packageName, e);
+            } else {
+                Log.e(TAG, "Unable to find package " + packageName);
             }
         }
     }

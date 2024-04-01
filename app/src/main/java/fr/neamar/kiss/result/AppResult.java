@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
-import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -47,6 +46,7 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 
 public class AppResult extends Result<AppPojo> {
@@ -256,23 +256,12 @@ public class AppResult extends Result<AppPojo> {
             // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
             // Let's wait for half a second, that's ugly but we don't have any other option :(
             final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-                }
-            }, 500);
+            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
         });
         builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
             dialog.cancel();
             final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // See comment above
-                    parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-                }
-            }, 500);
+            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
 
         });
 
@@ -313,22 +302,15 @@ public class AppResult extends Result<AppPojo> {
         builder.setNegativeButton(R.string.custom_name_set_default, (dialog, which) -> {
             dialog.dismiss();
 
-            // Get initial name
-            String name = null;
-            PackageManager pm = context.getPackageManager();
-            try {
-                ApplicationInfo applicationInfo = pm.getApplicationInfo(app.packageName, 0);
-                name = applicationInfo.loadLabel(pm).toString();
-            } catch (NameNotFoundException ignored) {
-            }
+            KissApplication.getApplication(context).getDataHandler().removeRenameApp(getComponentName());
 
-            // Set name
+            // Set initial name
+            String name = PackageManagerUtils.getLabel(context, new ComponentName(app.packageName, app.activityName), app.userHandle);
             if (name != null) {
                 app.setName(name);
-                KissApplication.getApplication(context).getDataHandler().removeRenameApp(getComponentName(), name);
 
                 // Show toast message
-                String msg = context.getResources().getString(R.string.app_rename_confirmation, pojo.getName());
+                String msg = context.getResources().getString(R.string.app_rename_confirmation, app.getName());
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
             }
 
