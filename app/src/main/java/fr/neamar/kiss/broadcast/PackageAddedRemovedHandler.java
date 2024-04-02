@@ -1,11 +1,19 @@
 package fr.neamar.kiss.broadcast;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.Set;
+
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
 /**
@@ -18,55 +26,89 @@ import fr.neamar.kiss.utils.UserHandle;
  */
 public class PackageAddedRemovedHandler extends BroadcastReceiver {
 
-    public static void handleEvent(Context ctx, String action, String packageName, UserHandle user, boolean replacing) {
-        if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
-            if (!replacing) {
-                Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(packageName);
-                // launchIntent can be null for some plugin app
-                if (launchIntent != null) {
-                    // Add new package to history
-                    if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
-                        String className = launchIntent.getComponent().getClassName();
-                        String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
-                        KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
-                    }
-                }
-            }
-        }
-
-        KissApplication.getApplication(ctx).resetIconsHandler();
-
-        if (Intent.ACTION_PACKAGE_REMOVED.equals(action)) {
-            if (!replacing) {
-                // Reload application list
-                KissApplication.getApplication(ctx).getDataHandler().reloadApps();
-                // Remove all installed shortcuts
-                KissApplication.getApplication(ctx).getDataHandler().removeShortcuts(packageName);
-                KissApplication.getApplication(ctx).getDataHandler().removeFromExcluded(packageName);
-            }
-        } else {
-            // Reload application list
-            KissApplication.getApplication(ctx).getDataHandler().reloadApps();
-            // Reload shortcuts
-            KissApplication.getApplication(ctx).getDataHandler().reloadShortcuts();
-        }
-    }
-
-    @Override
-    public void onReceive(Context ctx, Intent intent) {
-
-        String packageName = intent.getData().getSchemeSpecificPart();
-
-        if (packageName.equalsIgnoreCase(ctx.getPackageName())) {
+    public static void handleEvent(@NonNull Context ctx, @Nullable String action, @NonNull String[] packageNames, @NonNull UserHandle user, boolean replacing) {
+        if (packageNames.length == 1 && packageNames[0].equalsIgnoreCase(ctx.getPackageName())) {
             // When running KISS locally, sending a new version of the APK immediately triggers a "package removed" for fr.neamar.kiss,
             // There is no need to handle this event.
             // Discarding it makes startup time much faster locally as apps don't have to be loaded twice.
             return;
         }
 
+        if (Intent.ACTION_PACKAGE_ADDED.equals(action)) {
+            if (!replacing) {
+                for (String packageName : packageNames) {
+                    Intent launchIntent = ctx.getPackageManager().getLaunchIntentForPackage(packageName);
+                    // launchIntent can be null for some plugin app
+                    if (launchIntent != null) {
+                        // Add new package to history
+                        if (PreferenceManager.getDefaultSharedPreferences(ctx).getBoolean("enable-app-history", true)) {
+                            String className = launchIntent.getComponent().getClassName();
+                            String pojoID = user.addUserSuffixToString("app://" + packageName + "/" + className, '/');
+                            KissApplication.getApplication(ctx).getDataHandler().addToHistory(pojoID);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Intent.ACTION_PACKAGE_REMOVED.equals(action)) {
+            if (!replacing) {
+                KissApplication.getApplication(ctx).resetIconsHandler();
+                // Reload application list
+                KissApplication.getApplication(ctx).getDataHandler().reloadApps();
+                // Remove all installed shortcuts
+                for (String packageName : packageNames) {
+                    KissApplication.getApplication(ctx).getDataHandler().removeShortcuts(packageName);
+                    KissApplication.getApplication(ctx).getDataHandler().removeFromExcluded(packageName);
+                }
+            }
+        } else {
+            KissApplication.getApplication(ctx).resetIconsHandler();
+
+            boolean isAnyPackageVisible = isAnyPackageVisible(ctx, packageNames, user);
+            if (isAnyPackageVisible) {
+                // Reload application list
+                KissApplication.getApplication(ctx).getDataHandler().reloadApps();
+                // Reload shortcuts
+                KissApplication.getApplication(ctx).getDataHandler().reloadShortcuts();
+            }
+        }
+    }
+
+    /**
+     * @param ctx
+     * @param packageNames
+     * @param userHandle
+     * @return true, if any of packages has activity for launching and is not excluded from KISS
+     */
+    private static boolean isAnyPackageVisible(Context ctx, String[] packageNames, UserHandle userHandle) {
+        Set<String> excludedApps = KissApplication.getApplication(ctx).getDataHandler().getExcluded();
+        for (String packageName : packageNames) {
+            ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(ctx, packageName);
+            if (launchingComponent != null) {
+                boolean isExcluded = excludedApps.contains(AppPojo.getComponentName(launchingComponent.getPackageName(), launchingComponent.getClassName(), userHandle));
+                if (!isExcluded) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void onReceive(Context ctx, Intent intent) {
+        String[] packageNames = intent.getStringArrayExtra(Intent.EXTRA_CHANGED_PACKAGE_LIST);
+        if (packageNames == null && intent.getData() != null) {
+            String packageName = intent.getData().getSchemeSpecificPart();
+            packageNames = new String[]{packageName};
+        }
+        if (packageNames == null) {
+            return;
+        }
+
         handleEvent(ctx,
                 intent.getAction(),
-                packageName, new UserHandle(),
+                packageNames, new UserHandle(),
                 intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
         );
 
