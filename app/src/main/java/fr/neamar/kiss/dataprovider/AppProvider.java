@@ -6,7 +6,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.os.Build;
-import android.os.Process;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
 
@@ -28,8 +27,6 @@ public class AppProvider extends Provider<AppPojo> {
     @Override
     public void onCreate() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // Package installation/uninstallation events for the main
-            // profile are still handled using PackageAddedRemovedHandler itself
             final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
             assert manager != null;
 
@@ -39,70 +36,72 @@ public class AppProvider extends Provider<AppPojo> {
             launcher.registerCallback(new LauncherAppsCallback() {
                 @Override
                 public void onPackageAdded(String packageName, android.os.UserHandle user) {
-                    handleEvent(Intent.ACTION_PACKAGE_ADDED, packageName, user, false);
+                    handleEvent(Intent.ACTION_PACKAGE_ADDED, new String[]{packageName}, user, false);
                 }
 
                 @Override
                 public void onPackageChanged(String packageName, android.os.UserHandle user) {
-                    handleEvent(Intent.ACTION_PACKAGE_CHANGED, packageName, user, true);
+                    handleEvent(Intent.ACTION_PACKAGE_CHANGED, new String[]{packageName}, user, true);
                 }
 
                 @Override
                 public void onPackageRemoved(String packageName, android.os.UserHandle user) {
-                    handleEvent(Intent.ACTION_PACKAGE_REMOVED, packageName, user, false);
+                    handleEvent(Intent.ACTION_PACKAGE_REMOVED, new String[]{packageName}, user, false);
                 }
 
                 @Override
                 public void onPackagesAvailable(String[] packageNames, android.os.UserHandle user, boolean replacing) {
-                    handleEvent(Intent.ACTION_MEDIA_MOUNTED, null, user, replacing);
+                    handleEvent(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE, packageNames, user, replacing);
                 }
 
                 @Override
                 public void onPackagesSuspended(String[] packageNames, android.os.UserHandle user) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        handleEvent(Intent.ACTION_PACKAGES_SUSPENDED, null, user, false);
+                        handleEvent(Intent.ACTION_PACKAGES_SUSPENDED, packageNames, user, false);
                     }
                 }
 
                 @Override
                 public void onPackagesUnsuspended(String[] packageNames, android.os.UserHandle user) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        handleEvent(Intent.ACTION_PACKAGES_UNSUSPENDED, null, user, false);
+                        handleEvent(Intent.ACTION_PACKAGES_UNSUSPENDED, packageNames, user, false);
                     }
                 }
 
                 @Override
                 public void onPackagesUnavailable(String[] packageNames, android.os.UserHandle user, boolean replacing) {
-                    handleEvent(Intent.ACTION_MEDIA_UNMOUNTED, null, user, replacing);
+                    handleEvent(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE, packageNames, user, replacing);
                 }
 
-                private void handleEvent(String action, String packageName, android.os.UserHandle user, boolean replacing) {
-                    if (!Process.myUserHandle().equals(user)) {
-                        PackageAddedRemovedHandler.handleEvent(AppProvider.this,
-                                action,
-                                packageName, new UserHandle(manager.getSerialNumberForUser(user), user), replacing
-                        );
-                    }
+                private void handleEvent(String action, String[] packageNames, android.os.UserHandle user, boolean replacing) {
+                    PackageAddedRemovedHandler.handleEvent(AppProvider.this,
+                            action,
+                            packageNames, new UserHandle(manager.getSerialNumberForUser(user), user), replacing
+                    );
                 }
             });
-        }
+        } else {
+            // Get notified when app changes on standard user profile
+            PackageAddedRemovedHandler packageAddedRemovedHandler = new PackageAddedRemovedHandler();
 
-        // Get notified when app changes on standard user profile
-        IntentFilter appChangedFilter = new IntentFilter();
-        appChangedFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
-        appChangedFilter.addAction(Intent.ACTION_PACKAGE_CHANGED);
-        appChangedFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
-        appChangedFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
-        appChangedFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
-        appChangedFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
-        appChangedFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            appChangedFilter.addAction(Intent.ACTION_PACKAGES_SUSPENDED);
-            appChangedFilter.addAction(Intent.ACTION_PACKAGES_UNSUSPENDED);
+            IntentFilter appChangedFilter = new IntentFilter();
+            appChangedFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
+            appChangedFilter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+            appChangedFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
+            appChangedFilter.addDataScheme("package");
+            this.registerReceiver(packageAddedRemovedHandler, appChangedFilter);
+
+            IntentFilter mediaChangedFilter = new IntentFilter();
+            mediaChangedFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+            mediaChangedFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+            mediaChangedFilter.addDataScheme("file");
+            this.registerReceiver(packageAddedRemovedHandler, mediaChangedFilter);
+
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE);
+            intentFilter.addAction(Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE);
+            this.registerReceiver(packageAddedRemovedHandler, intentFilter);
         }
-        appChangedFilter.addDataScheme("package");
-        appChangedFilter.addDataScheme("file");
-        this.registerReceiver(new PackageAddedRemovedHandler(), appChangedFilter);
 
         super.onCreate();
     }
