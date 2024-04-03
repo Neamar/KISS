@@ -293,19 +293,29 @@ public abstract class Result<T extends Pojo> {
         recordLaunch(context, queryInterface);
     }
 
-    void recordLaunch(Context context, @Nullable QueryInterface queryInterface) {
+    protected final void recordLaunch(Context context, @Nullable QueryInterface queryInterface) {
+        // Save in history
+        if (canAddToHistory()) {
+            KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
+        }
         // Record the launch after some period,
         // * to ensure the animation runs smoothly
         // * to avoid a flickering -- launchOccurred will refresh the list
         // Thus TOUCH_DELAY * 3
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            // Save in history
-            KissApplication.getApplication(context).getDataHandler().addToHistory(pojo.getHistoryId());
             if (queryInterface != null) {
                 queryInterface.launchOccurred();
             }
         }, KissApplication.TOUCH_DELAY * 3);
+    }
+
+    /**
+     * to check if launch can be added to history
+     * @return true, if launch can be added to history
+     */
+    protected boolean canAddToHistory() {
+        return !pojo.isDisabled();
     }
 
     /**

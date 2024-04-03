@@ -82,6 +82,7 @@ public final class AppPojo extends PojoWithTags {
         }
     }
 
+    @Override
     public boolean isDisabled() {
         return disabled;
     }

@@ -50,6 +50,7 @@ public final class ShortcutPojo extends PojoWithTags {
         return dynamic;
     }
 
+    @Override
     public boolean isDisabled() {
         return disabled;
     }
