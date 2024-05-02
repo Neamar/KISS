@@ -33,7 +33,8 @@
             android:title="@string/freeze_history_name" />
         <PreferenceCategory
             android:order="50"
-            android:title="@string/alternate_history_inputs">
+            android:title="@string/alternate_history_inputs"
+            android:key="alternate-history-inputs-section">
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
                 android:key="enable-phone-history"
@@ -42,6 +43,10 @@
                 android:defaultValue="true"
                 android:key="enable-app-history"
                 android:title="@string/enable_app" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="enable-notification-history"
+                android:title="@string/enable_notification_history" />
         </PreferenceCategory>
         <PreferenceCategory
             android:key="exclude_apps_category"

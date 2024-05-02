@@ -274,7 +274,7 @@ public class ExperienceTweaks extends Forwarder {
         // There's no easy way to check if a soft keyboard is visible in android, but it can be safely assumed that
         // if the root layout is significantly smaller than the screen, it's been resized for a keyboard. See here:
         // https://stackoverflow.com/questions/2150078/how-to-check-visibility-of-software-keyboard-in-android
-        if (prefs.getBoolean("history-hide", false) && prefs.getBoolean("history-onkeyboard", false) &&
+        if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
                 mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
             final View activityRootView = mainActivity.findViewById(android.R.id.content);
             int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
@@ -382,7 +382,7 @@ public class ExperienceTweaks extends Forwarder {
     }
 
     private boolean isMinimalisticModeEnabledForFavorites() {
-        return prefs.getBoolean("history-hide", false) && prefs.getBoolean("favorites-hide", false) && prefs.getBoolean("enable-favorites-bar", true);
+        return isMinimalisticModeEnabled() && prefs.getBoolean("favorites-hide", false) && prefs.getBoolean("enable-favorites-bar", true);
     }
 
     /**
