@@ -162,6 +162,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
                 }
             }
         }
+        DrawableUtils.setDisabled(appDrawable, this.pojo.isDisabled());
         return appDrawable;
     }
 
@@ -205,6 +206,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
                 }
             }
         }
+        DrawableUtils.setDisabled(icon, this.pojo.isDisabled());
         return icon;
     }
 

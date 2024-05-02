@@ -87,4 +87,8 @@ public abstract class Pojo {
         }
         return matched;
     }
+
+    public boolean isDisabled() {
+        return false;
+    }
 }

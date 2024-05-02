@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
@@ -35,6 +38,14 @@ public class DrawableUtils {
     public static final String KEY_THEMED_ICONS = "themed-icons";
     private static final String TAG = DrawableUtils.class.getSimpleName();
     private static final IconShape[] TEARDROP_SHAPES = {IconShape.SHAPE_TEARDROP_BR, IconShape.SHAPE_TEARDROP_BL, IconShape.SHAPE_TEARDROP_TL, IconShape.SHAPE_TEARDROP_TR};
+    private static final ColorFilter DISABLED_COLOR_FILTER;
+
+    static {
+        // initialize color filter for disabled icons
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(0);
+        DISABLED_COLOR_FILTER = new ColorMatrixColorFilter(matrix);
+    }
 
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
     public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
@@ -431,5 +442,14 @@ public class DrawableUtils {
         }
     }
 
+    public static void setDisabled(Drawable drawable, boolean disabled) {
+        if (drawable != null) {
+            if (disabled) {
+                drawable.setColorFilter(DISABLED_COLOR_FILTER);
+            } else {
+                drawable.clearColorFilter();
+            }
+        }
+    }
 
 }

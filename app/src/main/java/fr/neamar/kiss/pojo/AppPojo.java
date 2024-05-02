@@ -22,9 +22,10 @@ public final class AppPojo extends PojoWithTags {
      */
     private boolean excludedShortcuts;
     private long customIconId = 0;
+    private final boolean disabled;
 
     public AppPojo(String id, String packageName, String activityName, UserHandle userHandle,
-                   boolean isExcluded, boolean isExcludedFromHistory, boolean isExcludedShortcuts) {
+                   boolean isExcluded, boolean isExcludedFromHistory, boolean isExcludedShortcuts, boolean disabled) {
         super(id);
 
         this.packageName = packageName;
@@ -34,6 +35,7 @@ public final class AppPojo extends PojoWithTags {
         this.excluded = isExcluded;
         this.excludedFromHistory = isExcludedFromHistory;
         this.excludedShortcuts = isExcludedShortcuts;
+        this.disabled = disabled;
     }
 
     public String getComponentName() {
@@ -78,5 +80,10 @@ public final class AppPojo extends PojoWithTags {
         } else {
             return packageName;
         }
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return disabled;
     }
 }

@@ -13,14 +13,16 @@ public final class ShortcutPojo extends PojoWithTags {
     private final String componentName; // related component including user, for check of excluded apps
     private final boolean pinned; // pinned shortcut
     private final boolean dynamic; // dynamic shortcut
+    private final boolean disabled;
 
-    public ShortcutPojo(ShortcutRecord shortcutRecord, String componentName, boolean pinned, boolean dynamic) {
+    public ShortcutPojo(ShortcutRecord shortcutRecord, String componentName, boolean pinned, boolean dynamic, boolean disabled) {
         super(ShortcutUtil.generateShortcutId(shortcutRecord));
         this.packageName = shortcutRecord.packageName;
         this.intentUri = shortcutRecord.intentUri;
         this.componentName = componentName;
         this.pinned = pinned;
         this.dynamic = dynamic;
+        this.disabled = disabled;
     }
 
     /**
@@ -46,5 +48,10 @@ public final class ShortcutPojo extends PojoWithTags {
 
     public boolean isDynamic() {
         return dynamic;
+    }
+
+    @Override
+    public boolean isDisabled() {
+        return disabled;
     }
 }

@@ -141,7 +141,7 @@ public class PackageManagerUtils {
     }
 
     @Nullable
-    private static ApplicationInfo getApplicationInfo(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
+    public static ApplicationInfo getApplicationInfo(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
         try {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
@@ -298,6 +298,19 @@ public class PackageManagerUtils {
         // This should never happen, let's just return the generic activity icon
         Drawable drawable = ctx.getPackageManager().getDefaultActivityIcon();
         return DrawableUtils.getThemedDrawable(ctx, drawable);
+    }
+
+    public static boolean isAppSuspended(ApplicationInfo appInfo) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return (appInfo.flags & ApplicationInfo.FLAG_SUSPENDED) != 0;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isAppSuspended(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
+        final ApplicationInfo appInfo = getApplicationInfo(context, packageName, user);
+        return appInfo != null && isAppSuspended(appInfo);
     }
 
 }

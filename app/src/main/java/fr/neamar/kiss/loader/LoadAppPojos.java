@@ -21,6 +21,7 @@ import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class LoadAppPojos extends LoadPojos<AppPojo> {
@@ -50,17 +51,18 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             UserManager manager = (UserManager) ctx.getSystemService(Context.USER_SERVICE);
-            LauncherApps launcher = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            LauncherApps launcherApps = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 
             // Handle multi-profile support introduced in Android 5 (#542)
             for (android.os.UserHandle profile : manager.getUserProfiles()) {
                 UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
-                for (LauncherActivityInfo activityInfo : launcher.getActivityList(null, profile)) {
+                for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(null, profile)) {
                     if (isCancelled()) {
                         break;
                     }
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
-                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
+                    boolean disabled = PackageManagerUtils.isAppSuspended(appInfo) || isQuietModeEnabled(manager, profile);
+                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                     apps.add(app);
                 }
             }
@@ -75,7 +77,8 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     break;
                 }
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
-                final AppPojo app = createPojo(new UserHandle(), appInfo.packageName, info.activityInfo.name, info.loadLabel(manager), excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
+                boolean disabled = PackageManagerUtils.isAppSuspended(appInfo);
+                final AppPojo app = createPojo(new UserHandle(), appInfo.packageName, info.activityInfo.name, info.loadLabel(manager), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                 apps.add(app);
             }
         }
@@ -97,14 +100,21 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         return apps;
     }
 
-    private AppPojo createPojo(UserHandle userHandle, String packageName, String activityName, CharSequence label, Set<String> excludedAppList, Set<String> excludedFromHistoryAppList, Set<String> excludedShortcutsAppList) {
+    private boolean isQuietModeEnabled(UserManager manager, android.os.UserHandle profile) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return manager.isQuietModeEnabled(profile);
+        }
+        return false;
+    }
+
+    private AppPojo createPojo(UserHandle userHandle, String packageName, String activityName, CharSequence label, boolean disabled, Set<String> excludedAppList, Set<String> excludedFromHistoryAppList, Set<String> excludedShortcutsAppList) {
         String id = userHandle.addUserSuffixToString(pojoScheme + packageName + "/" + activityName, '/');
 
         boolean isExcluded = excludedAppList.contains(AppPojo.getComponentName(packageName, activityName, userHandle));
         boolean isExcludedFromHistory = excludedFromHistoryAppList.contains(id);
         boolean isExcludedShortcuts = excludedShortcutsAppList.contains(packageName);
 
-        AppPojo app = new AppPojo(id, packageName, activityName, userHandle, isExcluded, isExcludedFromHistory, isExcludedShortcuts);
+        AppPojo app = new AppPojo(id, packageName, activityName, userHandle, isExcluded, isExcludedFromHistory, isExcludedShortcuts, disabled);
 
         app.setName(label.toString());
 

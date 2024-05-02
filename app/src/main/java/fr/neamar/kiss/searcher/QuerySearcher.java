@@ -51,11 +51,16 @@ public class QuerySearcher extends Searcher {
 
     @Override
     public boolean addResults(List<? extends Pojo> pojos) {
-        // Give a boost if item was previously selected for this query
         for (Pojo pojo : pojos) {
-            Integer value = knownIds.get(pojo.id);
-            if (value != null) {
-                pojo.relevance += 25 * value;
+            if (pojo.isDisabled()) {
+                // Give penalty for disabled items, these should not be preferred
+                pojo.relevance -= 200;
+            } else {
+                // Give a boost if item was previously selected for this query
+                Integer value = knownIds.get(pojo.id);
+                if (value != null) {
+                    pojo.relevance += 25 * value;
+                }
             }
         }
 
