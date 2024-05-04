@@ -21,6 +21,9 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UIColors {
     public static final int COLOR_DEFAULT = 0xFF4CAF50;
 
@@ -54,33 +57,41 @@ public class UIColors {
             0xFF000000
     };
 
-    private static final int[] OVERLAY_LIST = new int[]{
-            -1,
-            R.style.OverlayAccentD32F2F,
-            R.style.OverlayAccentC2185B,
-            R.style.OverlayAccent7B1FA2,
-            R.style.OverlayAccent512DA8,
-            R.style.OverlayAccent303F9F,
-            R.style.OverlayAccent1976D2,
-            R.style.OverlayAccent0288D1,
-            R.style.OverlayAccent0097A7,
-            R.style.OverlayAccent00796B,
-            R.style.OverlayAccent388E3C,
-            R.style.OverlayAccent689F38,
-            R.style.OverlayAccentAFB42B,
-            R.style.OverlayAccentFBC02D,
-            R.style.OverlayAccentFFA000,
-            R.style.OverlayAccentF57C00,
-            R.style.OverlayAccentE64A19,
-            R.style.OverlayAccent5D4037,
-            R.style.OverlayAccent616161,
-            R.style.OverlayAccent455A64,
-            -1,
-    };
+    private static final Map<Integer, Integer> OVERLAY_MAP;
 
     private static final String COLOR_DEFAULT_STR = colorToString(COLOR_DEFAULT);
 
     private static int primaryColor = -1;
+
+    static {
+        // initialize color map
+        OVERLAY_MAP = new HashMap<>();
+        OVERLAY_MAP.put(COLOR_DEFAULT, R.style.OverlayAccentDefault);
+        OVERLAY_MAP.put(0xFFD32F2F, R.style.OverlayAccentD32F2F);
+        OVERLAY_MAP.put(0xFFC2185B, R.style.OverlayAccentC2185B);
+        OVERLAY_MAP.put(0xFF7B1FA2, R.style.OverlayAccent7B1FA2);
+        OVERLAY_MAP.put(0xFF512DA8, R.style.OverlayAccent512DA8);
+        OVERLAY_MAP.put(0xFF303F9F, R.style.OverlayAccent303F9F);
+        OVERLAY_MAP.put(0xFF1976D2, R.style.OverlayAccent1976D2);
+        OVERLAY_MAP.put(0xFF0288D1, R.style.OverlayAccent0288D1);
+        OVERLAY_MAP.put(0xFF0097A7, R.style.OverlayAccent0097A7);
+        OVERLAY_MAP.put(0xFF00796B, R.style.OverlayAccent00796B);
+        OVERLAY_MAP.put(0xFF388E3C, R.style.OverlayAccent388E3C);
+        OVERLAY_MAP.put(0xFF689F38, R.style.OverlayAccent689F38);
+        OVERLAY_MAP.put(0xFFAFB42B, R.style.OverlayAccentAFB42B);
+        OVERLAY_MAP.put(0xFFFBC02D, R.style.OverlayAccentFBC02D);
+        OVERLAY_MAP.put(0xFFFFA000, R.style.OverlayAccentFFA000);
+        OVERLAY_MAP.put(0xFFF57C00, R.style.OverlayAccentF57C00);
+        OVERLAY_MAP.put(0xFFE64A19, R.style.OverlayAccentE64A19);
+        OVERLAY_MAP.put(0xFF5D4037, R.style.OverlayAccent5D4037);
+        OVERLAY_MAP.put(0xFF616161, R.style.OverlayAccent616161);
+        OVERLAY_MAP.put(0xFF455A64, R.style.OverlayAccent455A64);
+        OVERLAY_MAP.put(0xFF000000, R.style.OverlayAccentDefault);
+        OVERLAY_MAP.put(COLOR_TRANSPARENT, R.style.OverlayAccentTransparent);
+        OVERLAY_MAP.put(COLOR_LIGHT_TRANSPARENT, R.style.OverlayAccentLightTransparent);
+        OVERLAY_MAP.put(COLOR_DARK_TRANSPARENT, R.style.OverlayAccentDarkTransparent);
+        OVERLAY_MAP.put(COLOR_SYSTEM, R.style.OverlayAccentSystem);
+    }
 
     // https://stackoverflow.com/questions/25815769/how-to-really-programmatically-change-primary-and-accent-color-in-android-loll
     public static void applyOverlay(Activity activity, SharedPreferences prefs) {
@@ -90,18 +101,13 @@ public class UIColors {
 
         // We want to update the accent color for the theme.
         // Each possible accent color is defined as a custom overlay, we need to find the matching one and apply it
-        int primaryColor = getPrimaryColor(activity);
-
-        for (int i = 0; i < COLOR_LIST.length; i++) {
-            if (COLOR_LIST[i] == primaryColor) {
-                int resId = OVERLAY_LIST[i];
-                if (resId != -1) {
-                    activity.getTheme().applyStyle(resId, true);
-                }
-                break;
-            }
+        Integer overlayAccentResId = OVERLAY_MAP.get(getColorWithoutFallback(activity, "primary-color"));
+        if (overlayAccentResId == null || overlayAccentResId == -1) {
+            overlayAccentResId = OVERLAY_MAP.get(getPrimaryColor(activity));
         }
-
+        if (overlayAccentResId != null && overlayAccentResId != -1) {
+            activity.getTheme().applyStyle(overlayAccentResId, true);
+        }
 
         String shadowStyle = prefs.getString("theme-shadow", "default");
         switch (shadowStyle) {
@@ -229,7 +235,7 @@ public class UIColors {
     @RequiresApi(Build.VERSION_CODES.S)
     private static int getNotificationBarColorRes(Context context) {
         if (isDarkMode(context)) {
-            return android.R.color.system_neutral1_800;
+            return android.R.color.system_neutral1_700;
         } else {
             return android.R.color.system_neutral2_100;
         }
@@ -295,8 +301,7 @@ public class UIColors {
      */
     @ColorInt
     private static int getColor(Context context, String preferenceKey) {
-        String colorStr = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, COLOR_DEFAULT_STR);
-        int color = Color.parseColor(colorStr);
+        int color = getColorWithoutFallback(context, preferenceKey);
         if (color == COLOR_SYSTEM) {
             return COLOR_DEFAULT;
         }
@@ -313,12 +318,17 @@ public class UIColors {
     @ColorInt
     @RequiresApi(api = Build.VERSION_CODES.S)
     private static int getColor(@NonNull Context context, @NonNull String preferenceKey, @ColorRes int systemColorId) {
-        String colorStr = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, COLOR_DEFAULT_STR);
-        int color = Color.parseColor(colorStr);
+        int color = getColorWithoutFallback(context, preferenceKey);
         if (color == COLOR_SYSTEM) {
             color = context.getResources().getColor(systemColorId);
         }
         return color;
+    }
+
+    @ColorInt
+    private static int getColorWithoutFallback(Context context, String preferenceKey) {
+        String colorStr = PreferenceManager.getDefaultSharedPreferences(context).getString(preferenceKey, COLOR_DEFAULT_STR);
+        return Color.parseColor(colorStr);
     }
 
     public static void clearPrimaryColorCache() {
@@ -328,7 +338,6 @@ public class UIColors {
     public static int[] getColorList() {
         return COLOR_LIST;
     }
-
 
     /**
      * @param context
@@ -340,7 +349,7 @@ public class UIColors {
         Resources res = context.getResources();
         int[] colors = new int[2];
         if (isDarkMode(context)) {
-            colors[0] = res.getColor(android.R.color.system_neutral1_800);
+            colors[0] = res.getColor(android.R.color.system_neutral1_700);
             colors[1] = res.getColor(android.R.color.system_accent1_100);
         } else {
             colors[0] = res.getColor(android.R.color.system_accent1_100);
