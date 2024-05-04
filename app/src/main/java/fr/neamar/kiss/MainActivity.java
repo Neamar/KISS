@@ -498,6 +498,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // (which means pressing back in minimalistic mode with history displayed
             // will hide history again)
             searchEditText.setText("");
+            searchEditText.setCursorVisible(false);
         }
 
         // Calling super.onBackPressed() will quit the launcher, only do this if KISS is not the user's default home.
@@ -890,6 +891,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public void showKeyboard() {
         searchEditText.requestFocus();
+        searchEditText.setCursorVisible(true);
         InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         assert mgr != null;
         mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
@@ -910,6 +912,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         dismissPopup();
 
+        searchEditText.setCursorVisible(false);
         searchEditText.clearFocus();
     }
 
