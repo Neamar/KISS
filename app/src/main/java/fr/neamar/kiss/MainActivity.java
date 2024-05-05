@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.database.DataSetObserver;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -610,6 +611,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v instanceof SearchEditText) {
+                SearchEditText edit = ((SearchEditText) v);
+                Rect outR = new Rect();
+                edit.getGlobalVisibleRect(outR);
+                Boolean isKeyboardOpen = !outR.contains((int)ev.getRawX(), (int)ev.getRawY());
+                if (isKeyboardOpen) {
+                    edit.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
+                }
+                edit.setCursorVisible(!isKeyboardOpen);
+            }
+        }
         if (mPopup != null && ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
             dismissPopup();
             return true;
