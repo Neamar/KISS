@@ -621,7 +621,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 if (isKeyboardOpen) {
                     edit.clearFocus();
                     InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
+                    if (imm.isActive(edit)) {
+                        imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
+                    }
                 }
                 edit.setCursorVisible(!isKeyboardOpen);
             }
