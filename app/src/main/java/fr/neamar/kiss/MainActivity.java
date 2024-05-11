@@ -618,13 +618,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 Rect outR = new Rect();
                 edit.getGlobalVisibleRect(outR);
                 Boolean isKeyboardOpen = !outR.contains((int)ev.getRawX(), (int)ev.getRawY());
-                if (isKeyboardOpen) {
-                    edit.clearFocus();
-                    InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm.isActive(edit)) {
-                        imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
-                    }
-                }
                 edit.setCursorVisible(!isKeyboardOpen);
             }
         }
