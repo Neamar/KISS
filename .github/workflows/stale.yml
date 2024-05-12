@@ -10,8 +10,15 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           stale-issue-label: 'inactive'
+          stale-pr-label: 'inactive'
+          days-before-stale: 60
+          days-before-close: 14
           days-before-issue-stale: 180
           days-before-issue-close: 365
+          stale-pr-message: |-
+            This PR is inactive because it has been open 60 days with no activity.
+            Remove `inactive` label or comment or this will be closed in 14 days.'
           close-issue-message: |-
             This issue has been closed automatically. Please see https://github.com/Neamar/KISS/issues/1688 for details.
             Thank you for your contributions.
+          ascending: true
