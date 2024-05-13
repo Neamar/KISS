@@ -8,7 +8,7 @@ import fr.neamar.kiss.MainActivity;
 public class NullSearcher extends Searcher {
 
     public NullSearcher(MainActivity activity) {
-        super(activity, "<null>");
+        super(activity, "<null>", false);
     }
 
     @Override

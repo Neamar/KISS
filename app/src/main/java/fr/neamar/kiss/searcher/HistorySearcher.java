@@ -22,8 +22,8 @@ import fr.neamar.kiss.utils.ShortcutUtil;
 public class HistorySearcher extends Searcher {
     private final SharedPreferences prefs;
 
-    public HistorySearcher(MainActivity activity) {
-        super(activity, "<history>");
+    public HistorySearcher(MainActivity activity, boolean isRefresh) {
+        super(activity, "<history>", isRefresh);
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
