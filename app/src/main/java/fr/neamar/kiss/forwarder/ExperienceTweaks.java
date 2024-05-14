@@ -319,9 +319,7 @@ public class ExperienceTweaks extends Forwarder {
                     mainActivity.favoritesBar.setVisibility(View.GONE);
                 }
             } else {
-                Searcher searcher = new HistorySearcher(mainActivity);
-                searcher.setRefresh(isRefresh);
-                mainActivity.runTask(searcher);
+                mainActivity.runTask(new HistorySearcher(mainActivity, isRefresh));
             }
         }
     }

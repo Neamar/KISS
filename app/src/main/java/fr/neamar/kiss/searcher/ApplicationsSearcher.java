@@ -18,8 +18,8 @@ import fr.neamar.kiss.pojo.ShortcutPojo;
  * Returns the list of all applications on the system
  */
 public class ApplicationsSearcher extends Searcher {
-    public ApplicationsSearcher(MainActivity activity) {
-        super(activity, "<application>");
+    public ApplicationsSearcher(MainActivity activity, boolean isRefresh) {
+        super(activity, "<application>", isRefresh);
     }
 
     @Override

@@ -21,7 +21,7 @@ public abstract class PojoWithTagSearcher extends Searcher {
     private final SharedPreferences prefs;
 
     public PojoWithTagSearcher(MainActivity activity, String query) {
-        super(activity, query);
+        super(activity, query, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
