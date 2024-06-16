@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.Pojo;
@@ -30,6 +31,18 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
         return new HashSet<>(Arrays.asList(defaultSearchProviders));
     }
 
+    public static Set<String> getAvailableSearchProviders(Context context, SharedPreferences prefs) {
+        return new TreeSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(context)));
+    }
+
+    public static Set<String> getSelectedSearchProviders(SharedPreferences prefs) {
+        return new TreeSet<>(prefs.getStringSet("selected-search-provider-names", new TreeSet<>(Collections.singletonList("Google"))));
+    }
+
+    public static String getDefaultSearchProvider(SharedPreferences prefs) {
+        return prefs.getString("default-search-provider", "Google");
+    }
+
     private final List<SearchPojo> searchProviders = new ArrayList<>();
     private final Context context;
 
@@ -44,13 +57,11 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
         searchProviders.clear();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Set<String> selectedProviders = prefs.getStringSet("selected-search-provider-names",
-                new HashSet<>(Collections.singletonList("Google")));
-        Set<String> availableProviders = prefs.getStringSet("available-search-providers",
-                SearchProvider.getDefaultSearchProviders(context));
+        Set<String> selectedProviders = getSelectedSearchProviders(prefs);
+        Set<String> availableProviders = getAvailableSearchProviders(context, prefs);
 
         // Get default search engine
-        String defaultSearchEngine = prefs.getString("default-search-provider", "Google");
+        String defaultSearchEngine = getDefaultSearchProvider(prefs);
 
         assert selectedProviders != null;
         assert availableProviders != null;
@@ -154,9 +165,8 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
     public static SearchPojo getDefaultSearch(final String query, final Context context,
             @Nullable SharedPreferences pref) {
         pref = pref != null ? pref : PreferenceManager.getDefaultSharedPreferences(context);
-        String defaultSearchEngine = pref.getString("default-search-provider", "Google");
-        Set<String> availableProviders = pref.getStringSet("available-search-providers",
-                SearchProvider.getDefaultSearchProviders(context));
+        String defaultSearchEngine = getDefaultSearchProvider(pref);
+        Set<String> availableProviders = getAvailableSearchProviders(context, pref);
         String url = getProviderUrl(availableProviders, defaultSearchEngine);
         return url != null ? new SearchPojo(query, url, SearchPojoType.SEARCH_QUERY) : null;
     }
