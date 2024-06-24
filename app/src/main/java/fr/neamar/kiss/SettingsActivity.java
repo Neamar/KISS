@@ -670,6 +670,8 @@ public class SettingsActivity extends PreferenceActivity implements
                 if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                     startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                 }
+            } else if ("selected-contact-mime-types".equals(key)) {
+                getDataHandler().reloadContactsProvider();
             }
         }
 
