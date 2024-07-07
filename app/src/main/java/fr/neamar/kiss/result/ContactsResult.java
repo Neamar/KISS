@@ -70,9 +70,9 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         // Contact phone or IM identifier
         TextView contactPhone = view.findViewById(R.id.item_contact_phone);
-        if (pojo.getImData() != null && !TextUtils.isEmpty(pojo.getImData().getIdentifier())) {
+        if (pojo.getContactData() != null && !TextUtils.isEmpty(pojo.getContactData().getIdentifier())) {
             contactPhone.setVisibility(View.VISIBLE);
-            displayHighlighted(pojo.getImData().getNormalizedIdentifier(), pojo.getImData().getIdentifier(), fuzzyScore, contactPhone, context);
+            displayHighlighted(pojo.getContactData().getNormalizedIdentifier(), pojo.getContactData().getIdentifier(), fuzzyScore, contactPhone, context);
         } else if (!TextUtils.isEmpty(pojo.phone)) {
             contactPhone.setVisibility(View.VISIBLE);
             displayHighlighted(pojo.normalizedPhone, pojo.phone, fuzzyScore, contactPhone, context);
@@ -130,7 +130,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         ImageButton messageButton = view.findViewById(R.id.item_contact_action_message);
         messageButton.setColorFilter(primaryColor);
 
-        if (pojo.getImData() != null) {
+        if (pojo.getContactData() != null) {
             messageButton.setVisibility(View.VISIBLE);
             messageButton.setOnClickListener(v -> {
                 launchIm(v.getContext(), v);
@@ -154,7 +154,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         // App icon
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
-        if (pojo.getImData() != null) {
+        if (pojo.getContactData() != null) {
             appIcon.setVisibility(View.VISIBLE);
             if (appDrawable != null) {
                 appIcon.setImageDrawable(appDrawable);
@@ -183,7 +183,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         if (appDrawable == null) {
             synchronized (this) {
                 if (appDrawable == null) {
-                    ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getImData().getMimeType());
+                    ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getContactData().getMimeType());
                     if (componentName != null) {
                         IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
                         appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), this.userHandle);
@@ -319,7 +319,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     }
 
     private void launchIm(final Context context, final View v) {
-        Intent intent = MimeTypeUtils.getRegisteredIntentByMimeType(context, pojo.getImData().getMimeType(), pojo.getImData().getId(), pojo.getImData().getIdentifier());
+        Intent intent = MimeTypeUtils.getRegisteredIntentByMimeType(context, pojo.getContactData().getMimeType(), pojo.getContactData().getId(), pojo.getContactData().getIdentifier());
         if (intent != null) {
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 intent.setSourceBounds(v.getClipBounds());
