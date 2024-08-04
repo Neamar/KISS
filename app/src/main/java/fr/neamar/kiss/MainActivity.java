@@ -379,21 +379,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             searchEditText.requestFocus();
         }
 
-        // Pasting shared text from Sharesheet via intent-filter into kiss search bar
-        Intent receivedIntent = getIntent();
-        String receivedIntentAction = receivedIntent.getAction();
-        String receivedIntentType = receivedIntent.getType();
-        if (Intent.ACTION_SEND.equals(action) && receivedIntentType != null && "text/plain".equals(receivedIntentType)) {
-            hideKeyboard();
-            String sharedText = receivedIntent.getStringExtra(Intent.EXTRA_TEXT);
-            // making sure the shared text is not an empty string
-            if (sharedText != null && sharedText.trim().length() > 0) {
-                searchEditText.setText(sharedText);
-            } else {
-                Toast.makeText(this, R.string.shared_text_empty, Toast.LENGTH_SHORT).show();
-            }
-        }
-
         /*
          * Defer everything else to the forwarders
          */
@@ -454,6 +439,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         forwarderManager.onResume();
+
+        // Pasting shared text via intent-filter into kiss search bar
+        Intent receivedIntent = getIntent();
+        String receivedIntentAction = receivedIntent.getAction();
+        String receivedIntentType = receivedIntent.getType();
+        if (Intent.ACTION_SEND.equals(receivedIntentAction) && "text/plain".equals(receivedIntentType)) {
+            hideKeyboard();
+            String sharedText = receivedIntent.getStringExtra(Intent.EXTRA_TEXT);
+            // making sure the shared text is not an empty string
+            if (sharedText != null && !TextUtils.isEmpty(sharedText.trim())) {
+                searchEditText.setText(sharedText);
+            } else {
+                Toast.makeText(this, R.string.shared_text_empty, Toast.LENGTH_SHORT).show();
+            }
+        }
 
         super.onResume();
     }
