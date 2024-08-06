@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.db.HistoryMode;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.PojoWithTags;
 
@@ -60,12 +61,12 @@ public abstract class PojoWithTagSearcher extends Searcher {
     }
 
     @NonNull
-    private String getTaggedResultSortMode() {
+    private HistoryMode getTaggedResultSortMode() {
         String sortMode = prefs.getString("tagged-result-sort-mode", "default");
         if ("default".equals(sortMode)) {
-            sortMode = KissApplication.getApplication(activityWeakReference.get()).getDataHandler().getHistoryMode();
+            return KissApplication.getApplication(activityWeakReference.get()).getDataHandler().getHistoryMode();
         }
-        return sortMode;
+        return HistoryMode.valueById(sortMode);
 
     }
 

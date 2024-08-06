@@ -11,6 +11,7 @@ import java.util.Set;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
+import fr.neamar.kiss.db.HistoryMode;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
@@ -80,5 +81,25 @@ public class HistorySearcher extends Searcher {
 
         this.addResults(pojos);
         return null;
+    }
+
+    @Override
+    public boolean addResults(List<? extends Pojo> pojos) {
+        MainActivity activity = activityWeakReference.get();
+        if (activity == null) {
+            return false;
+        }
+
+        DataHandler dataHandler = KissApplication.getApplication(activity).getDataHandler();
+        if (dataHandler.getHistoryMode() != HistoryMode.ALPHABETICALLY) {
+            for (Pojo pojo : pojos) {
+                if (pojo.isDisabled()) {
+                    // Give penalty for disabled items, these should not be preferred
+                    pojo.relevance -= 200;
+                }
+            }
+        }
+
+        return super.addResults(pojos);
     }
 }

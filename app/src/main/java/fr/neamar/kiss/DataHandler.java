@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -40,9 +41,11 @@ import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.SettingsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.db.HistoryMode;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.db.ValuedHistoryRecord;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
@@ -396,7 +399,7 @@ public class DataHandler extends BroadcastReceiver
         int extendedItemCount = itemCount + itemsToExcludeById.size();
 
         // Read history
-        String historyMode = getHistoryMode();
+        HistoryMode historyMode = getHistoryMode();
         List<ValuedHistoryRecord> ids = DBHelper.getHistory(context, extendedItemCount, historyMode);
 
         // Find associated items
@@ -413,16 +416,20 @@ public class DataHandler extends BroadcastReceiver
                 continue;
             }
 
-            pojo.relevance = size - i;
-            history.add(pojo);
-
-            // Break if maximum number of items have been retrieved
-            if (history.size() >= itemCount) {
-                break;
+            if (historyMode == HistoryMode.ALPHABETICALLY) {
+                pojo.relevance = 0;
+            } else {
+                pojo.relevance = size - i;
             }
+            history.add(pojo);
         }
 
-        return history;
+        if (historyMode == HistoryMode.ALPHABETICALLY) {
+            Collections.sort(history, new NameComparator());
+        }
+
+        // return only needed items
+        return history.subList(0, Math.min(itemCount, history.size()));
     }
 
     /**
@@ -431,8 +438,8 @@ public class DataHandler extends BroadcastReceiver
      * @param pojos       which needs to have relevance set
      * @param historyMode
      */
-    public void applyRelevanceFromHistory(List<? extends Pojo> pojos, String historyMode) {
-        if ("alphabetically".equals(historyMode)) {
+    public void applyRelevanceFromHistory(List<? extends Pojo> pojos, HistoryMode historyMode) {
+        if (HistoryMode.ALPHABETICALLY == historyMode) {
             // "alphabetically" is special case because relevance needs to be set for all pojos instead of these from history.
             // This is done by setting all relevance to zero which results in order by name from used comparator.
             for (Pojo pojo : pojos) {
@@ -460,26 +467,13 @@ public class DataHandler extends BroadcastReceiver
     /**
      * @return history mode from settings: Recency vs Frecency vs Frequency vs Adaptive vs Alphabetically
      */
-    public String getHistoryMode() {
+    public HistoryMode getHistoryMode() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString("history-mode", "recency");
+        return HistoryMode.valueById(prefs.getString("history-mode", "recency"));
     }
 
     public int getHistoryLength() {
         return DBHelper.getHistoryLength(this.context);
-    }
-
-    /**
-     * Query database for item and return its name
-     *
-     * @param id globally unique ID, usually starts with provider scheme, e.g. "app://" or "contact://"
-     * @return name of item (i.e. app name)
-     */
-    public String getItemName(String id) {
-        // Ask all providers if they know this id
-        Pojo pojo = getPojo(id);
-
-        return (pojo != null) ? pojo.getName() : "???";
     }
 
     @Nullable

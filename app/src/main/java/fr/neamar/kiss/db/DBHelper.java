@@ -141,7 +141,7 @@ public class DBHelper {
      * Get the history items used closest to this time of day, for each day old an item is it has
      * one less hour of time weight. So we limit the number of days of history to 24 days in the
      * WHERE clause, this should also help with speed on large histories.
-     *
+     * <p>
      * This is done by taking the max of a triangle waveform whose period is 24 hours, amplitude
      * is half the milliseconds in a day and begins at currentTimeMillis() - timestamp, then offset
      * by the time difference / 48 to diminish older history items by an hour for every day old. 48
@@ -171,43 +171,37 @@ public class DBHelper {
      * @param limit   max number of items to retrieve
      * @return records with number of use
      */
-    public static List<ValuedHistoryRecord> getHistory(Context context, int limit, String historyMode) {
+    public static List<ValuedHistoryRecord> getHistory(Context context, int limit, HistoryMode historyMode) {
         List<ValuedHistoryRecord> records;
 
         SQLiteDatabase db = getDatabase(context);
 
         Cursor cursor;
         switch (historyMode) {
-            case "frecency":
+            case FRECENCY:
                 cursor = getHistoryByFrecency(db, limit);
                 break;
-            case "frequency":
+            case FREQUENCY:
                 cursor = getHistoryByFrequency(db, limit);
                 break;
-            case "adaptive":
+            case ADAPTIVE:
                 cursor = getHistoryByAdaptive(db, 36, limit);
                 break;
-            case "time":
+            case TIME:
                 cursor = getHistoryByTime(db, limit);
+                break;
+            case ALPHABETICALLY:
+            case RECENCY:
+                cursor = getHistoryByRecency(db, limit);
                 break;
             default:
                 cursor = getHistoryByRecency(db, limit);
+                Log.e(TAG, "Fallback to 'recency' for unknown history mode " + historyMode);
                 break;
         }
 
         records = readCursor(cursor);
         cursor.close();
-
-        // sort history entries alphabetically
-        if (historyMode.equals("alphabetically")) {
-            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
-
-            for (ValuedHistoryRecord entry : records) {
-                entry.name = dataHandler.getItemName(entry.record);
-            }
-
-            Collections.sort(records, (a, b) -> a.name.compareToIgnoreCase(b.name));
-        }
 
         return records;
     }
@@ -240,7 +234,7 @@ public class DBHelper {
      * @return records with number of use
      */
     public static List<ValuedHistoryRecord> getPreviousResultsForQuery(Context context,
-                                                                            String query) {
+                                                                       String query) {
         List<ValuedHistoryRecord> records;
         SQLiteDatabase db = getDatabase(context);
 
@@ -557,7 +551,8 @@ public class DBHelper {
     }
 
 
-    /** Delete
+    /**
+     * Delete
      *
      * @param context android context
      * @param record  record to delete
@@ -570,6 +565,7 @@ public class DBHelper {
 
     /**
      * Delete all tags
+     *
      * @param context android context
      */
     public static void deleteTags(Context context) {
