@@ -5,5 +5,4 @@ public enum SearchPojoType {
     URL_QUERY,
     CALCULATOR_QUERY,
     URI_QUERY
-    ;
 }
