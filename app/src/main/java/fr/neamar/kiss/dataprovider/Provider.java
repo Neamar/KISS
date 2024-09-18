@@ -84,7 +84,6 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         long time = System.currentTimeMillis() - start;
 
         Log.i(TAG, "Time to load " + this.getClass().getSimpleName() + ": " + time + "ms");
-
         // Store results
         this.loader = null;
         this.loaded = true;
