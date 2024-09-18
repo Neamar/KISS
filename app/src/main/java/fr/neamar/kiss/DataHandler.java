@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -84,6 +85,7 @@ public class DataHandler extends BroadcastReceiver
     /**
      * Initialize all providers
      */
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     public DataHandler(Context context) {
         // Make sure we are in the context of the main application
         // (otherwise we might receive an exception about broadcast listeners not being able

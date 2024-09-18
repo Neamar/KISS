@@ -174,6 +174,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Called when the activity is first created.
      */
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
