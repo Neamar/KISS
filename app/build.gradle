@@ -13,13 +13,18 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    defaultConfig {
+        compileSdk 34
+    }
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         applicationId 'fr.neamar.kiss'
         minSdkVersion 15
-        targetSdkVersion 33
-        versionCode 209
-        versionName "3.21.1"
+        targetSdkVersion 34
+        versionCode 210
+        versionName "3.21.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

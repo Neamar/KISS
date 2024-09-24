@@ -174,6 +174,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     /**
      * Called when the activity is first created.
      */
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -219,9 +220,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         };
 
-        this.registerReceiver(mReceiver, intentFilterLoad);
-        this.registerReceiver(mReceiver, intentFilterLoadOver);
-        this.registerReceiver(mReceiver, intentFilterFullLoadOver);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Since Android 33, we need to specify is the receiver is available from other applications
+            // For some reasons, in our case, using RECEIVER_NOT_EXPORTED means we do not get the updates from our own services?!
+            // So we export the receiver.
+            // In practice, this means other apps can trigger a refresh of search results if they want by sending a broadcast.
+            this.registerReceiver(mReceiver, intentFilterLoad, Context.RECEIVER_EXPORTED);
+            this.registerReceiver(mReceiver, intentFilterLoadOver, Context.RECEIVER_EXPORTED);
+            this.registerReceiver(mReceiver, intentFilterFullLoadOver, Context.RECEIVER_EXPORTED);
+        }
+        else {
+            this.registerReceiver(mReceiver, intentFilterLoad);
+            this.registerReceiver(mReceiver, intentFilterLoadOver);
+            this.registerReceiver(mReceiver, intentFilterFullLoadOver);
+        }
 
         /*
          * Set the view and store all useful components

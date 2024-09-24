@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -84,6 +85,7 @@ public class DataHandler extends BroadcastReceiver
     /**
      * Initialize all providers
      */
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     public DataHandler(Context context) {
         // Make sure we are in the context of the main application
         // (otherwise we might receive an exception about broadcast listeners not being able
@@ -93,7 +95,12 @@ public class DataHandler extends BroadcastReceiver
         start = System.currentTimeMillis();
 
         IntentFilter intentFilter = new IntentFilter(MainActivity.LOAD_OVER);
-        this.context.getApplicationContext().registerReceiver(this, intentFilter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.context.getApplicationContext().registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
+        }
+        else {
+            this.context.getApplicationContext().registerReceiver(this, intentFilter);
+        }
 
         Intent i = new Intent(MainActivity.START_LOAD);
         this.context.sendBroadcast(i);
@@ -188,7 +195,6 @@ public class DataHandler extends BroadcastReceiver
         }
 
         Log.v(TAG, "Connecting to " + name);
-
 
         // Find provider class for the given service name
         final Intent intent = this.providerName2Intent(name);
