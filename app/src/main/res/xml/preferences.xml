@@ -213,6 +213,15 @@
                 android:key="themed-icons"
                 android:summary="@string/icons_themed_summary"
                 android:title="@string/icons_themed_name" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="true"
+                android:key="subicon-visible"
+                android:title="@string/show_subicons" />
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="icons-hide"
+                android:summary="@string/icons_hide_desc"
+                android:title="@string/icons_hide_main" />
         </PreferenceCategory>
 
         <PreferenceCategory
@@ -396,22 +405,9 @@
                 android:key="force-portrait"
                 android:title="@string/portrait_title" />
             <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="true"
-                android:key="subicon-visible"
-                android:title="@string/show_subicons" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="false"
-                android:key="icons-hide"
-                android:summary="@string/icons_hide_desc"
-                android:title="@string/icons_hide_main" />
-            <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="false"
                 android:key="call-contact-on-click"
                 android:title="@string/contacts_call_on_click" />
-            <fr.neamar.kiss.preference.SwitchPreference
-                android:defaultValue="false"
-                android:key="always-default-web-search-on-enter"
-                android:title="@string/always_default_web_search_on_enter" />
         </PreferenceCategory>
         <PreferenceScreen
             android:key="wallpaper-holder"
@@ -495,6 +491,12 @@
                 android:key="reset"
                 android:order="40"
                 android:title="@string/search_provider_reset" />
+        </PreferenceCategory>
+        <PreferenceCategory android:title="@string/misc">
+            <fr.neamar.kiss.preference.SwitchPreference
+                android:defaultValue="false"
+                android:key="always-default-web-search-on-enter"
+                android:title="@string/always_default_web_search_on_enter" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
