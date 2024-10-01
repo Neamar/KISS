@@ -61,7 +61,7 @@ public class SettingsActivity extends PreferenceActivity implements
             "pref-rounded-list", "pref-rounded-bars", "pref-swap-kiss-button-with-menu", "pref-hide-circle", "history-hide",
             "enable-favorites-bar", "notification-bar-color", "black-notification-icons", "icons-pack", "theme-shadow",
             "theme-separator", "theme-result-color", "large-favorites-bar", "pref-hide-search-bar-hint", "theme-wallpaper",
-            "theme-bar-color", "results-size", "large-result-list-margins", "themed-icons", null);
+            "theme-bar-color", "results-size", "large-result-list-margins", "themed-icons", "icons-hide", null);
     // Those settings require a restart of the settings
     final static private List<String> settingsRequiringRestartForSettingsActivity = Arrays.asList("theme", "force-portrait", null);
 

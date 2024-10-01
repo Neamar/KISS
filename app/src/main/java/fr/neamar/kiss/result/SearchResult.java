@@ -57,20 +57,28 @@ public class SearchResult extends Result<SearchPojo> {
         int pos;
         int len;
 
+        boolean hideIcons = getHideIcons(context);
+        if (hideIcons) {
+            image.setImageDrawable(null);
+        }
+
         switch (pojo.type) {
             case URL_QUERY:
                 text = String.format(context.getString(R.string.ui_item_visit), this.pojo.getName());
                 pos = text.indexOf(this.pojo.getName());
                 len = this.pojo.getName().length();
-                image.setImageResource(R.drawable.ic_public);
+                if (!hideIcons) {
+                    image.setImageResource(R.drawable.ic_public);
+                }
                 break;
             case SEARCH_QUERY:
                 text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), pojo.query);
                 pos = text.indexOf(pojo.query);
                 len = pojo.query.length();
-                image.setImageResource(R.drawable.search);
+                if (!hideIcons) {
+                    image.setImageResource(R.drawable.search);
+                }
 
-                boolean hideIcons = getHideIcons(context);
                 if (isGoogleSearch() && !hideIcons) {
                     Drawable icon = getIconByPackageName(context, "com.google.android.googlequicksearchbox");
                     if (icon != null) {
@@ -86,7 +94,7 @@ public class SearchResult extends Result<SearchPojo> {
                     }
                 }
 
-                if (!hasCustomIcon) {
+                if (!hasCustomIcon && !hideIcons) {
                     Intent intent = createSearchQueryIntent();
                     Drawable icon = getIconByIntent(context, intent);
                     if (icon != null) {
@@ -99,15 +107,16 @@ public class SearchResult extends Result<SearchPojo> {
                 text = pojo.query;
                 pos = text.indexOf("=");
                 len = text.length() - pos;
-                image.setImageResource(R.drawable.ic_functions);
+                if (!hideIcons) {
+                    image.setImageResource(R.drawable.ic_functions);
+                }
                 break;
             case URI_QUERY:
                 text = String.format(context.getString(R.string.ui_item_open), this.pojo.query);
                 pos = text.indexOf(pojo.query);
                 len = pojo.query.length();
-                image.setImageResource(R.drawable.ic_public);
-
-                if (!getHideIcons(context)) {
+                if (!hideIcons) {
+                    image.setImageResource(R.drawable.ic_public);
                     Intent intent = createSearchQueryIntent();
                     Drawable icon = getIconByIntent(context, intent);
                     if (icon != null) {
