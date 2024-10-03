@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
+    style="@style/ResultItem"
     android:orientation="horizontal"
-    android:paddingStart="@dimen/result_margin_left"
-    android:paddingLeft="@dimen/result_margin_left"
-    android:paddingTop="@dimen/result_margin_top"
-    android:paddingEnd="@dimen/result_margin_right"
-    android:paddingRight="@dimen/result_margin_right"
-    android:paddingBottom="@dimen/result_margin_bottom"
     tools:ignore="UseCompoundDrawables">
 
     <ImageView
         android:id="@+id/item_search_icon"
-        android:layout_width="?attr/resultIconSize"
-        android:layout_height="?attr/resultIconSize"
-        android:layout_marginStart="@dimen/icon_margin_left"
-        android:layout_marginLeft="@dimen/icon_margin_left"
-        android:layout_marginTop="@dimen/icon_margin_top"
-        android:layout_marginEnd="@dimen/icon_margin_right"
-        android:layout_marginRight="@dimen/icon_margin_right"
-        android:layout_marginBottom="@dimen/icon_margin_bottom"
+        style="@style/ResultItemIcon"
         android:contentDescription="@null"
         android:src="@drawable/search" />
 
@@ -37,6 +22,7 @@
         android:textColor="?attr/resultColor"
         android:textDirection="locale"
         android:textSize="?attr/resultTitleSize"
-        tools:text="@string/ui_item_search" />
+        tools:text="@string/ui_item_search"
+        tools:ignore="UnusedAttribute" />
 
 </LinearLayout>

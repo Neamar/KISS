@@ -72,6 +72,10 @@ public class InterfaceTweaks extends Forwarder {
                 act.getTheme().applyStyle(R.style.OverlayResultSizeStandard, true);
                 break;
         }
+
+        if (prefs.getBoolean("icons-hide", false)) {
+            act.getTheme().applyStyle(R.style.OverlayResultSizeNoIcons, true);
+        }
     }
 
     public static void applySettingsTheme(Activity act, SharedPreferences prefs) {

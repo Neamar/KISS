@@ -1,31 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/ResultItem"
     android:descendantFocusability="blocksDescendants"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingStart="@dimen/result_margin_left"
-    android:paddingLeft="@dimen/result_margin_left"
-    android:paddingTop="@dimen/result_margin_top"
-    android:paddingEnd="@dimen/result_margin_right"
-    android:paddingRight="@dimen/result_margin_right"
-    android:paddingBottom="@dimen/result_margin_bottom">
+    android:orientation="horizontal">
 
     <fr.neamar.kiss.ui.ImprovedQuickContactBadge
         android:id="@+id/item_contact_icon"
-        android:layout_width="?attr/resultIconSize"
-        android:layout_height="?attr/resultIconSize"
+        style="@style/ResultItemIcon"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/icon_margin_left"
-        android:layout_marginLeft="@dimen/icon_margin_left"
-        android:layout_marginTop="@dimen/icon_margin_top"
-        android:layout_marginEnd="@dimen/icon_margin_right"
-        android:layout_marginRight="@dimen/icon_margin_right"
-        android:layout_marginBottom="@dimen/icon_margin_bottom"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_contact"
         tools:ignore="ContentDescription" />
@@ -49,7 +34,7 @@
         android:textColor="?attr/resultColor"
         android:textDirection="locale"
         android:textSize="?attr/resultTitleSize"
-        tools:ignore="RtlSymmetry"
+        tools:ignore="RtlSymmetry,UnusedAttribute"
         tools:text="@string/stub_contact" />
 
     <TextView
@@ -69,7 +54,7 @@
         android:textColor="?android:attr/textColorSecondary"
         android:textDirection="locale"
         android:textSize="?attr/resultSubtitleSize"
-        tools:ignore="RtlSymmetry"
+        tools:ignore="RtlSymmetry,UnusedAttribute"
         tools:text="@string/stub_contact_phone" />
 
     <TextView
@@ -94,7 +79,7 @@
         android:textColor="?android:attr/textColorSecondary"
         android:textDirection="locale"
         android:textSize="?attr/resultSubtitleSize"
-        tools:ignore="RtlSymmetry"
+        tools:ignore="RtlSymmetry,UnusedAttribute"
         tools:text="@string/stub_contact_nickname" />
 
     <ImageButton
