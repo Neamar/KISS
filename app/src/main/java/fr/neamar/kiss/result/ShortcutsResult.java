@@ -41,6 +41,7 @@ import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.SpaceTokenizer;
+import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
 public class ShortcutsResult extends Result<ShortcutPojo> {
@@ -143,7 +144,8 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
                             Intent intent = Intent.parseUri(pojo.intentUri, 0);
                             ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
                             if (componentName != null) {
-                                appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), new fr.neamar.kiss.utils.UserHandle());
+                                UserHandle userHandle = new UserHandle();
+                                appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, userHandle), userHandle);
                             }
                         } catch (NullPointerException e) {
                             Log.e(TAG, "Unable to get activity icon for '" + pojo.getName() + "'", e);

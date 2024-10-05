@@ -966,7 +966,7 @@ public class DataHandler extends BroadcastReceiver
      * @param packageName packageName
      */
     public void addPackageToHistory(Context context, UserHandle userHandle, String packageName) {
-        ComponentName componentName = PackageManagerUtils.getLaunchingComponent(context, packageName);
+        ComponentName componentName = PackageManagerUtils.getLaunchingComponent(context, packageName, userHandle);
         if (componentName != null) {
             // add new package to history
             String pojoID = userHandle.addUserSuffixToString("app://" + componentName.getPackageName() + "/" + componentName.getClassName(), '/');
