@@ -15,6 +15,17 @@
         android:src="@drawable/ic_contact"
         tools:ignore="ContentDescription" />
 
+    <ImageView
+        android:id="@+id/item_app_icon"
+        android:layout_width="?attr/resultSubIconSize"
+        android:layout_height="?attr/resultSubIconSize"
+        android:layout_alignEnd="@id/item_contact_icon"
+        android:layout_alignRight="@id/item_contact_icon"
+        android:layout_alignBottom="@id/item_contact_icon"
+        android:layout_gravity="end|bottom"
+        android:contentDescription="@null"
+        tools:src="@drawable/ic_launcher" />
+
     <TextView
         android:id="@+id/item_contact_name"
         android:layout_width="wrap_content"
