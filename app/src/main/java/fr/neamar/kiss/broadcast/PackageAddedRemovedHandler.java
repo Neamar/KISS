@@ -77,7 +77,7 @@ public class PackageAddedRemovedHandler extends BroadcastReceiver {
     private static boolean isAnyPackageVisible(Context ctx, String[] packageNames, UserHandle userHandle) {
         Set<String> excludedApps = KissApplication.getApplication(ctx).getDataHandler().getExcluded();
         for (String packageName : packageNames) {
-            ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(ctx, packageName);
+            ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(ctx, packageName, userHandle);
             if (launchingComponent != null) {
                 boolean isExcluded = excludedApps.contains(AppPojo.getComponentName(launchingComponent.getPackageName(), launchingComponent.getClassName(), userHandle));
                 if (!isExcluded) {

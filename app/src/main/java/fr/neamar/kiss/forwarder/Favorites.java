@@ -36,6 +36,7 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.PackageManagerUtils;
+import fr.neamar.kiss.utils.UserHandle;
 
 public class Favorites extends Forwarder implements View.OnClickListener, View.OnLongClickListener, View.OnTouchListener, View.OnDragListener {
     private static final String TAG = Favorites.class.getSimpleName();
@@ -399,7 +400,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     @Nullable
     private ComponentName getLaunchingComponent(Intent intent) {
         ComponentName componentName = PackageManagerUtils.getComponentName(mainActivity, intent);
-        ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(mainActivity, componentName);
+        ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(mainActivity, componentName, new UserHandle());
         if (launchingComponent != null && !launchingComponent.getClassName().equals(DEFAULT_RESOLVER)) {
             return launchingComponent;
         }

@@ -18,6 +18,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PackageManagerUtils {
@@ -189,11 +191,11 @@ public class PackageManagerUtils {
      * @param componentName componentName
      * @return launching component name for given component
      */
-    public static ComponentName getLaunchingComponent(Context context, ComponentName componentName) {
+    public static ComponentName getLaunchingComponent(Context context, ComponentName componentName, UserHandle user) {
         if (componentName == null) {
             return null;
         }
-        ComponentName launchingComponent = getLaunchingComponent(context, componentName.getPackageName());
+        ComponentName launchingComponent = getLaunchingComponent(context, componentName.getPackageName(), user);
         if (launchingComponent != null) {
             return launchingComponent;
         }
@@ -205,13 +207,27 @@ public class PackageManagerUtils {
      * @param packageName package name
      * @return launching component name for given package
      */
-    public static ComponentName getLaunchingComponent(Context context, String packageName) {
+    public static ComponentName getLaunchingComponent(Context context, String packageName, UserHandle user) {
         if (packageName == null) {
             return null;
         }
-        Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
-        if (launchIntent != null) {
-            return launchIntent.getComponent();
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !user.isCurrentUser()) {
+            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            List<LauncherActivityInfo> activities = launcherApps.getActivityList(packageName, user.getRealHandle());
+            if (!activities.isEmpty()) {
+                List<ComponentName> componentNames = new ArrayList<>();
+                for (LauncherActivityInfo activity : activities) {
+                    componentNames.add(activity.getComponentName());
+                }
+                Collections.sort(componentNames);
+                return componentNames.get(0);
+            }
+        } else {
+            Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+            if (launchIntent != null) {
+                return launchIntent.getComponent();
+            }
         }
         return null;
     }

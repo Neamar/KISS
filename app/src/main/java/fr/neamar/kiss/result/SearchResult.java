@@ -174,8 +174,9 @@ public class SearchResult extends Result<SearchPojo> {
     private Drawable getIconByIntent(Context context, Intent intent) {
         ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
         if (componentName != null) {
+            UserHandle userHandle = new UserHandle();
             IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            return iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), new UserHandle());
+            return iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, userHandle), userHandle);
         }
         return null;
     }
@@ -186,10 +187,11 @@ public class SearchResult extends Result<SearchPojo> {
      * @return icon, of best matching app for given package name
      */
     private Drawable getIconByPackageName(Context context, String packageName) {
-        ComponentName componentName = PackageManagerUtils.getLaunchingComponent(context, packageName);
+        UserHandle userHandle = new UserHandle();
+        ComponentName componentName = PackageManagerUtils.getLaunchingComponent(context, packageName, userHandle);
         if (componentName != null) {
             IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            return iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), new UserHandle());
+            return iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, userHandle), userHandle);
         }
         return null;
     }
