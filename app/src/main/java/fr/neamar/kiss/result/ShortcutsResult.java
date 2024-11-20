@@ -102,8 +102,8 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
                 if (appDrawable != null) {
                     appIcon.setImageDrawable(getAppDrawable(context));
                 } else {
-                    AtomicReference<Drawable> appDrawable = new AtomicReference<>(null);
                     appIcon.setImageResource(android.R.color.transparent);
+                    AtomicReference<Drawable> appDrawable = new AtomicReference<>(null);
                     mLoadIconTask = Utilities.runAsync((task) -> {
                         if (task == mLoadIconTask) {
                             // Retrieve icon for this shortcut

@@ -186,7 +186,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
                     ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getContactData().getMimeType());
                     if (componentName != null) {
                         IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName), this.userHandle);
+                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, this.userHandle), this.userHandle);
                     }
                     if (appDrawable == null) {
                         // This should never happen, let's just return the generic activity icon
@@ -218,7 +218,6 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
     }
 
-    @SuppressWarnings("deprecation")
     private void copyPhone(Context context, ContactsPojo pojo) {
         android.content.ClipboardManager clipboard =
                 (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
