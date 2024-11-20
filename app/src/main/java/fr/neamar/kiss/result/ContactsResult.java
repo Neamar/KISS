@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
@@ -48,12 +47,10 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     private volatile Drawable appDrawable = null;
     private Utilities.AsyncRun mLoadIconTask = null;
     private static final String TAG = ContactsResult.class.getSimpleName();
-    private final UserHandle userHandle;
 
     ContactsResult(QueryInterface queryInterface, @NonNull ContactsPojo pojo) {
         super(pojo);
         this.queryInterface = queryInterface;
-        this.userHandle = new UserHandle();
     }
 
     @NonNull
@@ -93,8 +90,8 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         ImprovedQuickContactBadge contactIcon = view
                 .findViewById(R.id.item_contact_icon);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!prefs.getBoolean("icons-hide", false)) {
+        boolean hideIcons = isHideIcons(context);
+        if (!hideIcons) {
             if (contactIcon.getTag() instanceof ContactsPojo && pojo.equals(contactIcon.getTag())) {
                 icon = contactIcon.getDrawable();
             }
@@ -139,7 +136,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         } else if (hasPhone) {
             messageButton.setVisibility(View.VISIBLE);
             messageButton.setOnClickListener(v -> {
-                launchMessaging(v.getContext());
+                launchMessaging(v.getContext(), v);
                 recordLaunch(context, queryInterface);
             });
 
@@ -154,7 +151,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         // App icon
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
-        if (pojo.getContactData() != null && !prefs.getBoolean("icons-hide", false)) {
+        if (pojo.getContactData() != null && !hideIcons && isSubIconVisible(context)) {
             appIcon.setVisibility(View.VISIBLE);
             if (appDrawable != null) {
                 appIcon.setImageDrawable(appDrawable);
@@ -186,7 +183,8 @@ public class ContactsResult extends CallResult<ContactsPojo> {
                     ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getContactData().getMimeType());
                     if (componentName != null) {
                         IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, this.userHandle), this.userHandle);
+                        UserHandle userHandle = new UserHandle();
+                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, userHandle), userHandle);
                     }
                     if (appDrawable == null) {
                         // This should never happen, let's just return the generic activity icon
@@ -287,16 +285,11 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
                 String.valueOf(pojo.lookupKey)));
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            viewContact.setSourceBounds(v.getClipBounds());
-        }
-
+        setSourceBounds(viewContact, v);
         viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         context.startActivity(viewContact);
-
     }
-
 
     @Override
     public void doLaunch(Context context, View v) {
@@ -310,19 +303,18 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         }
     }
 
-    private void launchMessaging(final Context context) {
+    private void launchMessaging(final Context context, final View view) {
         String url = "sms:" + Uri.encode(pojo.phone);
-        Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(i);
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        setSourceBounds(intent, view);
+        context.startActivity(intent);
     }
 
-    private void launchIm(final Context context, final View v) {
+    private void launchIm(final Context context, final View view) {
         Intent intent = MimeTypeUtils.getRegisteredIntentByMimeType(context, pojo.getContactData().getMimeType(), pojo.getContactData().getId(), pojo.getContactData().getIdentifier());
         if (intent != null) {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                intent.setSourceBounds(v.getClipBounds());
-            }
+            setSourceBounds(intent, view);
             context.startActivity(intent);
         }
     }

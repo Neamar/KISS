@@ -2,10 +2,14 @@ package fr.neamar.kiss.result;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Spannable;
@@ -471,4 +475,31 @@ public abstract class Result<T extends Pojo> {
             image.setTag(resultWeakReference.get());
         }
     }
+
+    protected boolean isHideIcons(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("icons-hide", false);
+    }
+
+    protected boolean isTagsVisible(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("tags-visible", true);
+    }
+
+    protected boolean isSubIconVisible(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("subicon-visible", true);
+    }
+
+    protected void setSourceBounds(Intent intent, View view) {
+        intent.setSourceBounds(getViewBounds(view));
+    }
+
+    protected Rect getViewBounds(View view) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            return view.getClipBounds();
+        }
+        return null;
+    }
+
 }

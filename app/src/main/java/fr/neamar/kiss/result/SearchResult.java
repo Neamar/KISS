@@ -5,11 +5,9 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -57,7 +55,7 @@ public class SearchResult extends Result<SearchPojo> {
         int pos;
         int len;
 
-        boolean hideIcons = getHideIcons(context);
+        boolean hideIcons = isHideIcons(context);
         if (hideIcons) {
             image.setImageDrawable(null);
         }
@@ -196,11 +194,6 @@ public class SearchResult extends Result<SearchPojo> {
         return null;
     }
 
-    private boolean getHideIcons(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("icons-hide", false);
-    }
-
     @Override
     public void doLaunch(Context context, View v) {
         switch (pojo.type) {
@@ -211,6 +204,7 @@ public class SearchResult extends Result<SearchPojo> {
                         Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra(SearchManager.QUERY, pojo.query); // query contains search string
+                        setSourceBounds(intent, v);
                         context.startActivity(intent);
                         break;
                     } catch (ActivityNotFoundException e) {
@@ -218,6 +212,7 @@ public class SearchResult extends Result<SearchPojo> {
                     }
                 }
                 Intent search = createSearchQueryIntent();
+                setSourceBounds(search, v);
                 try {
                     context.startActivity(search);
                 } catch (ActivityNotFoundException e) {
@@ -230,6 +225,7 @@ public class SearchResult extends Result<SearchPojo> {
                 break;
             case URI_QUERY:
                 Intent intent = createUriQueryIntent();
+                setSourceBounds(intent, v);
                 try {
                     context.startActivity(intent);
                 } catch (ActivityNotFoundException e) {

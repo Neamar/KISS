@@ -3,11 +3,8 @@ package fr.neamar.kiss.result;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +35,7 @@ public class SettingsResult extends Result<SettingPojo> {
         displayHighlighted(pojo.normalizedName, pojo.getName(), fuzzyScore, settingName, context);
 
         ImageView settingIcon = view.findViewById(R.id.item_setting_icon);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (!prefs.getBoolean("icons-hide", false)) {
+        if (!isHideIcons(context)) {
             settingIcon.setImageDrawable(getDrawable(context));
             settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
         } else {
@@ -66,10 +62,7 @@ public class SettingsResult extends Result<SettingPojo> {
         if (!pojo.packageName.isEmpty()) {
             intent.setClassName(pojo.packageName, pojo.settingName);
         }
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            intent.setSourceBounds(v.getClipBounds());
-        }
-
+        setSourceBounds(intent, v);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         try {

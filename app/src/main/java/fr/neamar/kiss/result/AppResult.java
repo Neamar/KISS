@@ -15,7 +15,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
@@ -67,8 +66,6 @@ public class AppResult extends Result<AppPojo> {
             view = inflateFromId(context, R.layout.item_app, parent);
         }
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
         TextView appName = view.findViewById(R.id.item_app_name);
 
         displayHighlighted(pojo.normalizedName, pojo.getName(), fuzzyScore, appName, context);
@@ -78,14 +75,14 @@ public class AppResult extends Result<AppPojo> {
         if (pojo.getTags().isEmpty()) {
             tagsView.setVisibility(View.GONE);
         } else if (displayHighlighted(pojo.getNormalizedTags(), pojo.getTags(),
-                fuzzyScore, tagsView, context) || prefs.getBoolean("tags-visible", true)) {
+                fuzzyScore, tagsView, context) || isTagsVisible(context)) {
             tagsView.setVisibility(View.VISIBLE);
         } else {
             tagsView.setVisibility(View.GONE);
         }
 
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
-        if (!prefs.getBoolean("icons-hide", false)) {
+        if (!isHideIcons(context)) {
             if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
                 icon = appIcon.getDrawable();
             }
@@ -448,11 +445,7 @@ public class AppResult extends Result<AppPojo> {
                 intent.addCategory(Intent.CATEGORY_LAUNCHER);
                 intent.setComponent(className);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    intent.setSourceBounds(getViewBounds(v));
-                }
-
+                setSourceBounds(intent, v);
                 context.startActivity(intent);
             }
         } catch (ActivityNotFoundException | NullPointerException | SecurityException e) {
@@ -463,14 +456,15 @@ public class AppResult extends Result<AppPojo> {
         }
     }
 
-    private Rect getViewBounds(View v) {
-        if (v == null) {
+    @Override
+    protected Rect getViewBounds(View view) {
+        if (view == null) {
             return null;
         }
 
-        int[] l = new int[2];
-        v.getLocationOnScreen(l);
-        return new Rect(l[0], l[1], l[0] + v.getWidth(), l[1] + v.getHeight());
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        return new Rect(location[0], location[1], location[0] + view.getWidth(), location[1] + view.getHeight());
     }
 
     public void setCustomIcon(long dbId, Drawable drawable) {
