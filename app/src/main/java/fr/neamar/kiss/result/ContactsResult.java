@@ -154,7 +154,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         // App icon
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
-        if (pojo.getContactData() != null) {
+        if (pojo.getContactData() != null && !prefs.getBoolean("icons-hide", false)) {
             appIcon.setVisibility(View.VISIBLE);
             if (appDrawable != null) {
                 appIcon.setImageDrawable(appDrawable);
