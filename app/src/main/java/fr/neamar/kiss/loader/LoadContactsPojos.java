@@ -5,7 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,10 +17,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.MimeTypeCache;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.pojo.ContactData;
+import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.Permission;
 
 public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
+
+    private static final String TAG = LoadContactsPojos.class.getSimpleName();
 
     public LoadContactsPojos(Context context) {
         super(context, "contact://");
@@ -28,110 +37,284 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         long start = System.currentTimeMillis();
 
         List<ContactsPojo> contacts = new ArrayList<>();
-        Context c = context.get();
-        if (c == null) {
+        Context ctx = context.get();
+        if (ctx == null) {
             return contacts;
         }
 
         // Skip if we don't have permission to list contacts yet:(
-        if (!Permission.checkPermission(c, Permission.PERMISSION_READ_CONTACTS)) {
+        if (!Permission.checkPermission(ctx, Permission.PERMISSION_READ_CONTACTS)) {
             return contacts;
         }
 
-        // Run query
-        Cursor cur = context.get().getContentResolver().query(
-                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+        // Skip if we don't have any mime types to be shown
+        Set<String> mimeTypes = MimeTypeUtils.getActiveMimeTypes(ctx);
+        if (mimeTypes.isEmpty()) {
+            return contacts;
+        }
+
+        // Query basic contact information and keep in memory to prevent duplicates
+        Map<String, BasicContact> basicContacts = new HashMap<>();
+        long startBasicContacts = System.currentTimeMillis();
+        try (Cursor contactCursor = ctx.getContentResolver().query(
+                ContactsContract.Contacts.CONTENT_URI,
                 new String[]{ContactsContract.Contacts.LOOKUP_KEY,
-                        ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-                        ContactsContract.CommonDataKinds.Phone.NUMBER,
-                        ContactsContract.CommonDataKinds.Phone.STARRED,
-                        ContactsContract.CommonDataKinds.Phone.IS_PRIMARY,
+                        ContactsContract.Contacts._ID,
+                        ContactsContract.Contacts.DISPLAY_NAME_PRIMARY,
                         ContactsContract.Contacts.PHOTO_ID,
-                        ContactsContract.Contacts._ID}, null, null, null);
-
-        // Prevent duplicates by keeping in memory encountered contacts.
-        Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
-
-        if (cur != null) {
-            if (cur.getCount() > 0) {
-                int lookupIndex = cur.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
-                int displayNameIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-                int numberIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-                int starredIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.STARRED);
-                int isPrimaryIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY);
-                int photoIdIndex = cur.getColumnIndex(ContactsContract.Contacts.PHOTO_ID);
-                int contactIdIndex = cur.getColumnIndex(ContactsContract.Contacts._ID);
-
-                while (cur.moveToNext() && !isCancelled()) {
-                    String lookupKey = cur.getString(lookupIndex);
-                    String name = cur.getString(displayNameIndex);
-                    int contactId = cur.getInt(contactIdIndex);
-
-                    String phone = cur.getString(numberIndex);
-                    if (phone == null) {
-                        phone = "";
-                    }
-
-                    boolean starred = cur.getInt(starredIndex) != 0;
-                    boolean primary = cur.getInt(isPrimaryIndex) != 0;
-                    String photoId = cur.getString(photoIdIndex);
-                    Uri icon = null;
-                    if (photoId != null) {
-                        icon = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI,
-                                Long.parseLong(photoId));
-                    }
-
-                    ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, icon, primary, starred);
-
-                    contact.setPhone(phone, false);
-                    contact.setName(name);
-
-                    if (contact.getName() != null) {
-                        if (mapContacts.containsKey(contact.lookupKey))
-                            mapContacts.get(contact.lookupKey).add(contact);
-                        else {
-                            Set<ContactsPojo> phones = new HashSet<>();
-                            phones.add(contact);
-                            mapContacts.put(contact.lookupKey, phones);
-                        }
+                        ContactsContract.Contacts.PHOTO_URI}, null, null, null)) {
+            if (contactCursor != null) {
+                if (contactCursor.getCount() > 0) {
+                    int lookupIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
+                    int contactIdIndex = contactCursor.getColumnIndex(ContactsContract.Contacts._ID);
+                    int displayNameIndex = contactCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                    int photoIdIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_ID);
+                    int photoUriIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI);
+                    while (contactCursor.moveToNext() && !isCancelled()) {
+                        BasicContact basicContact = new BasicContact(
+                                contactCursor.getString(lookupIndex),
+                                contactCursor.getLong(contactIdIndex),
+                                contactCursor.getString(displayNameIndex),
+                                contactCursor.getString(photoIdIndex),
+                                contactCursor.getString(photoUriIndex)
+                        );
+                        basicContacts.put(basicContact.getLookupKey(), basicContact);
                     }
                 }
             }
-            cur.close();
         }
+        long endBasicContacts = System.currentTimeMillis();
+        Log.i(TAG, (endBasicContacts - startBasicContacts) + " milliseconds to load " + basicContacts.size() + " basic contacts");
+
+        // Query raw contact information and keep in memory to prevent duplicates
+        Map<Long, BasicRawContact> basicRawContacts = new HashMap<>();
+        long startRawContacts = System.currentTimeMillis();
+        try (Cursor rawContactCursor = ctx.getContentResolver().query(
+                ContactsContract.RawContacts.CONTENT_URI,
+                new String[]{ContactsContract.RawContacts._ID,
+                        ContactsContract.RawContacts.ACCOUNT_TYPE,
+                        ContactsContract.RawContacts.STARRED}, null, null, null)) {
+            if (rawContactCursor != null) {
+                if (rawContactCursor.getCount() > 0) {
+                    int rawContactIdIndex = rawContactCursor.getColumnIndex(ContactsContract.RawContacts._ID);
+                    int starredIndex = rawContactCursor.getColumnIndex(ContactsContract.RawContacts.STARRED);
+                    while (rawContactCursor.moveToNext() && !isCancelled()) {
+                        BasicRawContact basicRawContact = new BasicRawContact(
+                                rawContactCursor.getLong(rawContactIdIndex),
+                                rawContactCursor.getInt(starredIndex) != 0
+                        );
+                        basicRawContacts.put(basicRawContact.getId(), basicRawContact);
+                    }
+                }
+            }
+        }
+        long endRawContacts = System.currentTimeMillis();
+        Log.i(TAG, (endRawContacts - startRawContacts) + " milliseconds to load " + basicRawContacts.size() + " raw contacts");
 
         // Retrieve contacts' nicknames
-        Cursor nickCursor = context.get().getContentResolver().query(
+        long startNicks = System.currentTimeMillis();
+        try (Cursor nickCursor = ctx.getContentResolver().query(
                 ContactsContract.Data.CONTENT_URI,
                 new String[]{
                         ContactsContract.CommonDataKinds.Nickname.NAME,
                         ContactsContract.Data.LOOKUP_KEY},
                 ContactsContract.Data.MIMETYPE + "= ?",
                 new String[]{ContactsContract.CommonDataKinds.Nickname.CONTENT_ITEM_TYPE},
-                null);
+                null)) {
+            if (nickCursor != null) {
+                if (nickCursor.getCount() > 0) {
+                    int lookupKeyIndex = nickCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY);
+                    int nickNameIndex = nickCursor.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME);
+                    while (nickCursor.moveToNext() && !isCancelled()) {
+                        String lookupKey = nickCursor.getString(lookupKeyIndex);
+                        String nick = nickCursor.getString(nickNameIndex);
 
-        if (nickCursor != null) {
-            if (nickCursor.getCount() > 0) {
-                int lookupKeyIndex = nickCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY);
-                int nickNameIndex = nickCursor.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME);
-                while (nickCursor.moveToNext() && !isCancelled()) {
-                    String lookupKey = nickCursor.getString(lookupKeyIndex);
-                    String nick = nickCursor.getString(nickNameIndex);
-
-                    if (nick != null && lookupKey != null && mapContacts.containsKey(lookupKey)) {
-                        for (ContactsPojo contact : mapContacts.get(lookupKey)) {
-                            contact.setNickname(nick);
+                        if (nick != null && lookupKey != null) {
+                            BasicContact basicContact = basicContacts.get(lookupKey);
+                            if (basicContact != null) {
+                                basicContact.setNickName(nick);
+                            }
                         }
                     }
                 }
             }
-            nickCursor.close();
+        }
+        long endNicks = System.currentTimeMillis();
+        Log.i(TAG, (endNicks - startNicks) + " milliseconds to load nicknames");
+
+        // Query all mime types
+        for (String mimeType : mimeTypes) {
+            long startMimeType = System.currentTimeMillis();
+            if (ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimeType)) {
+                contacts.addAll(createPhoneContacts(ctx, basicContacts, basicRawContacts));
+            } else {
+                contacts.addAll(createGenericContacts(ctx, mimeType, basicContacts, basicRawContacts));
+            }
+            long endMimeType = System.currentTimeMillis();
+            Log.i(TAG, (endMimeType - startMimeType) + " milliseconds to list contacts for " + mimeType);
         }
 
-        for (Set<ContactsPojo> phones : mapContacts.values()) {
+        long end = System.currentTimeMillis();
+        Log.i(TAG, (end - start) + " milliseconds to list all " + contacts.size() + " contacts");
+        return contacts;
+    }
+
+    private List<ContactsPojo> createPhoneContacts(@NonNull Context ctx, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
+
+        // Prevent duplicates by keeping in memory encountered contacts.
+        Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
+
+        // Query all phone numbers
+        try (Cursor phoneCursor = ctx.getContentResolver().query(
+                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                new String[]{ContactsContract.Contacts.LOOKUP_KEY,
+                        ContactsContract.CommonDataKinds.Phone.RAW_CONTACT_ID,
+                        ContactsContract.CommonDataKinds.Phone.NUMBER,
+                        ContactsContract.CommonDataKinds.Phone.IS_PRIMARY}, null, null, null)) {
+            if (phoneCursor != null) {
+                if (phoneCursor.getCount() > 0) {
+                    int lookupIndex = phoneCursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
+                    int rawContactIdIndex = phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.RAW_CONTACT_ID);
+                    int numberIndex = phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                    int isPrimaryIndex = phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.IS_PRIMARY);
+
+                    while (phoneCursor.moveToNext() && !isCancelled()) {
+                        String lookupKey = phoneCursor.getString(lookupIndex);
+                        BasicContact basicContact = basicContacts.get(lookupKey);
+                        long rawContactId = phoneCursor.getLong(rawContactIdIndex);
+                        BasicRawContact basicRawContact = basicRawContacts.get(rawContactId);
+
+                        if (basicContact != null && basicRawContact != null) {
+                            String name = basicContact.getDisplayName();
+                            long contactId = basicContact.getContactId();
+
+                            String phone = phoneCursor.getString(numberIndex);
+                            if (phone == null) {
+                                phone = "";
+                            }
+
+                            boolean starred = basicRawContact.isStarred();
+                            boolean primary = phoneCursor.getInt(isPrimaryIndex) != 0;
+                            Uri icon = basicContact.getIcon();
+
+                            ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, icon, primary, starred);
+                            contact.setPhone(phone, false);
+
+                            contact.setName(name);
+                            contact.setNickname(basicContact.getNickName());
+
+                            addContactToMap(contact, mapContacts);
+                        }
+                    }
+                }
+            }
+        }
+
+        return getFilteredContacts(mapContacts, contact -> contact.normalizedPhone.toString());
+    }
+
+    private List<ContactsPojo> createGenericContacts(@NonNull Context ctx, String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
+        final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(ctx);
+        // Prevent duplicates by keeping in memory encountered contacts.
+        Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
+
+        List<String> columns = new ArrayList<>();
+        columns.add(ContactsContract.Data.LOOKUP_KEY);
+        columns.add(ContactsContract.Data.RAW_CONTACT_ID);
+        columns.add(ContactsContract.Data._ID);
+        columns.add(ContactsContract.Data.IS_PRIMARY);
+
+        String detailColumn = mimeTypeCache.getDetailColumn(ctx, mimeType);
+        if (detailColumn != null && !columns.contains(detailColumn)) {
+            columns.add(detailColumn);
+        }
+
+        // Query all entries by mimeType
+        try (Cursor mimeTypeCursor = ctx.getContentResolver().query(
+                ContactsContract.Data.CONTENT_URI,
+                columns.toArray(new String[]{}),
+                ContactsContract.Data.MIMETYPE + "= ?",
+                new String[]{mimeType}, null)) {
+            if (mimeTypeCursor != null) {
+                if (mimeTypeCursor.getCount() > 0) {
+                    int lookupIndex = mimeTypeCursor.getColumnIndex(ContactsContract.Data.LOOKUP_KEY);
+                    int rawContactIdIndex = mimeTypeCursor.getColumnIndex(ContactsContract.Data.RAW_CONTACT_ID);
+                    int idIndex = mimeTypeCursor.getColumnIndex(ContactsContract.Data._ID);
+                    int isPrimaryIndex = mimeTypeCursor.getColumnIndex(ContactsContract.Data.IS_PRIMARY);
+                    int detailColumnIndex = -1;
+                    if (detailColumn != null) {
+                        detailColumnIndex = mimeTypeCursor.getColumnIndex(detailColumn);
+                    }
+                    while (mimeTypeCursor.moveToNext() && !isCancelled()) {
+                        String lookupKey = mimeTypeCursor.getString(lookupIndex);
+                        BasicContact basicContact = basicContacts.get(lookupKey);
+                        long rawContactId = mimeTypeCursor.getLong(rawContactIdIndex);
+                        BasicRawContact basicRawContact = basicRawContacts.get(rawContactId);
+
+                        if (basicContact != null && basicRawContact != null) {
+                            long contactId = basicContact.getContactId();
+                            long id = mimeTypeCursor.getLong(idIndex);
+                            boolean primary = mimeTypeCursor.getInt(isPrimaryIndex) != 0;
+                            String label = null;
+                            if (detailColumnIndex >= 0) {
+                                label = mimeTypeCursor.getString(detailColumnIndex);
+                            }
+                            if (TextUtils.isEmpty(label)) {
+                                label = mimeTypeCache.getLabel(ctx, mimeType);
+                            }
+                            Uri icon = basicContact.getIcon();
+
+                            ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, lookupKey, icon, primary, basicRawContact.isStarred());
+
+                            contact.setName(basicContact.getDisplayName());
+                            contact.setNickname(basicContact.getNickName());
+                            ContactData contactData = new ContactData(mimeType, id);
+                            contactData.setIdentifier(label);
+                            contact.setIm(contactData);
+
+                            addContactToMap(contact, mapContacts);
+                        }
+                    }
+                }
+            }
+        }
+
+        return getFilteredContacts(mapContacts, contact -> contact.getContactData().getIdentifier());
+    }
+
+    /**
+     * add contact to mapContacts, grouped by lookup key
+     *
+     * @param contact
+     * @param mapContacts
+     */
+    private void addContactToMap(ContactsPojo contact, Map<String, Set<ContactsPojo>> mapContacts) {
+        if (contact.getName() != null) {
+            Set<ContactsPojo> contacts = mapContacts.get(contact.lookupKey);
+            if (contacts == null) {
+                contacts = new HashSet<>(1);
+                mapContacts.put(contact.lookupKey, contacts);
+            }
+            contacts.add(contact);
+        }
+    }
+
+    /**
+     * Filter all contacts dependent of fields.
+     * Return primary contacts if available.
+     * If no primary contacts are available all contacts are returned.
+     *
+     * @param mapContacts all contacts grouped by lookup key
+     * @param idSupplier  id supplier for identifying duplicates
+     * @return filtered contacts
+     */
+    private List<ContactsPojo> getFilteredContacts(Map<String, Set<ContactsPojo>> mapContacts, IdSupplier idSupplier) {
+        List<ContactsPojo> contacts = new ArrayList<>();
+        // Add phone numbers
+        for (Set<ContactsPojo> mappedContacts : mapContacts.values()) {
             // Find primary phone and add this one.
             boolean hasPrimary = false;
-            for (ContactsPojo contact : phones) {
+            for (ContactsPojo contact : mappedContacts) {
                 if (contact.primary) {
                     contacts.add(contact);
                     hasPrimary = true;
@@ -141,17 +324,96 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
             // If no primary available, add all (excluding duplicates).
             if (!hasPrimary) {
-                HashSet<String> added = new HashSet<>(phones.size());
-                for (ContactsPojo contact : phones) {
-                    if (contact.normalizedPhone != null && !added.contains(contact.normalizedPhone.toString())) {
-                        added.add(contact.normalizedPhone.toString());
+                Set<String> added = new HashSet<>(mappedContacts.size());
+                for (ContactsPojo contact : mappedContacts) {
+                    String id = idSupplier.getId(contact);
+                    if (id == null) {
+                        contacts.add(contact);
+                    } else if (!added.contains(id)) {
+                        added.add(id);
                         contacts.add(contact);
                     }
                 }
             }
         }
-        long end = System.currentTimeMillis();
-        Log.i("time", (end - start) + " milliseconds to list contacts");
         return contacts;
+    }
+
+    @FunctionalInterface
+    private interface IdSupplier {
+        String getId(ContactsPojo contact);
+    }
+
+    /**
+     * Holds data from {@link ContactsContract.Contacts}
+     */
+    private static class BasicContact {
+        private final String lookupKey;
+        private final long contactId;
+        private final String displayName;
+        private final String photoId;
+        private final String photoUri;
+        private String nickName;
+
+        private BasicContact(String lookupKey, long contactId, String displayName, String photoId, String photoUri) {
+            this.lookupKey = lookupKey;
+            this.contactId = contactId;
+            this.displayName = displayName;
+            this.photoId = photoId;
+            this.photoUri = photoUri;
+        }
+
+        public String getLookupKey() {
+            return lookupKey;
+        }
+
+        public long getContactId() {
+            return contactId;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+
+        public String getNickName() {
+            return nickName;
+        }
+
+        public void setNickName(String nickName) {
+            this.nickName = nickName;
+        }
+
+        public Uri getIcon() {
+            if (photoUri != null) {
+                return Uri.parse(photoUri);
+            }
+            if (photoId != null) {
+                return ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI,
+                        Long.parseLong(photoId));
+
+            }
+            return null;
+        }
+    }
+
+    /**
+     * Holds data from {@link ContactsContract.RawContacts}
+     */
+    private static class BasicRawContact {
+        private final long id;
+        private final boolean starred;
+
+        private BasicRawContact(long id, boolean starred) {
+            this.id = id;
+            this.starred = starred;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public boolean isStarred() {
+            return starred;
+        }
     }
 }

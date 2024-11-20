@@ -26,6 +26,8 @@ public final class ContactsPojo extends Pojo {
     // nickname without special characters
     public StringNormalizer.Result normalizedNickname = null;
 
+    private ContactData contactData;
+
     public ContactsPojo(String id, String lookupKey, Uri icon, boolean primary, boolean starred) {
         super(id);
         this.lookupKey = lookupKey;
@@ -63,6 +65,14 @@ public final class ContactsPojo extends Pojo {
 
     public boolean isHomeNumber() {
         return homeNumber;
+    }
+
+    public void setIm(ContactData contactData) {
+        this.contactData = contactData;
+    }
+
+    public ContactData getContactData() {
+        return contactData;
     }
 
 }

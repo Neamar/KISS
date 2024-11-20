@@ -96,15 +96,14 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
 
             boolean subIconVisible = prefs.getBoolean("subicon-visible", true);
 
-            AtomicReference<Drawable> appDrawable = new AtomicReference<>(null);
-
             // Prepare
             if (subIconVisible) {
                 appIcon.setVisibility(View.VISIBLE);
-                if (this.appDrawable != null) {
+                if (appDrawable != null) {
                     appIcon.setImageDrawable(getAppDrawable(context));
                 } else {
                     appIcon.setImageResource(android.R.color.transparent);
+                    AtomicReference<Drawable> appDrawable = new AtomicReference<>(null);
                     mLoadIconTask = Utilities.runAsync((task) -> {
                         if (task == mLoadIconTask) {
                             // Retrieve icon for this shortcut

@@ -455,7 +455,7 @@
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-settings"
-                android:order="2"
+                android:order="3"
                 android:title="@string/settings_name" />
             <fr.neamar.kiss.preference.SwitchPreference
                 android:defaultValue="true"
@@ -519,6 +519,12 @@
             android:dialogMessage="@string/default_launcher_warn"
             android:key="default-launcher"
             android:title="@string/default_launcher_title" />
+        <MultiSelectListPreference
+            android:defaultValue="@array/contactMimeTypesDefault"
+            android:key="selected-contact-mime-types"
+            android:order="2"
+            android:summary="@string/contact_mime_types_summary"
+            android:title="@string/contact_mime_types_title" />
         <fr.neamar.kiss.preference.RootModeSwitch
             android:defaultValue="false"
             android:key="root-mode"

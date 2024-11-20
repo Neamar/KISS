@@ -84,6 +84,12 @@ public class ContactsProvider extends Provider<ContactsPojo> {
                 match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
+            if (!match && queryNormalized.length() > 2 && pojo.getContactData() != null && pojo.getContactData().getNormalizedIdentifier() != null) {
+                // search for IM identifier
+                matchInfo = fuzzyScore.match(pojo.getContactData().getNormalizedIdentifier().codePoints);
+                match = pojo.updateMatchingRelevance(matchInfo, match);
+            }
+
             if (match) {
                 if (pojo.starred) {
                     pojo.relevance += 40;
