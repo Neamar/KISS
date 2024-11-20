@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,12 +23,8 @@ public abstract class CallResult<T extends Pojo> extends Result<T> {
     public void launchCall(Context context, View v, String phone) {
         Intent phoneIntent = new Intent(Intent.ACTION_CALL);
         phoneIntent.setData(Uri.parse("tel:" + Uri.encode(phone)));
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            phoneIntent.setSourceBounds(v.getClipBounds());
-        }
-
+        setSourceBounds(phoneIntent, v);
         phoneIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
 
         // Make sure we have permission to call someone as this is considered a dangerous permission
         if (!Permission.checkPermission(context, Permission.PERMISSION_CALL_PHONE)) {

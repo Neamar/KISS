@@ -6,13 +6,11 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserManager;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,8 +61,6 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
         if (view == null)
             view = inflateFromId(context, R.layout.item_shortcut, parent);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
         TextView shortcutName = view.findViewById(R.id.item_app_name);
 
         displayHighlighted(pojo.normalizedName, pojo.getName(), fuzzyScore, shortcutName, context);
@@ -75,7 +71,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
         if (pojo.getTags().isEmpty()) {
             tagsView.setVisibility(View.GONE);
         } else if (displayHighlighted(pojo.getNormalizedTags(), pojo.getTags(),
-                fuzzyScore, tagsView, context) || prefs.getBoolean("tags-visible", true)) {
+                fuzzyScore, tagsView, context) || isTagsVisible(context)) {
             tagsView.setVisibility(View.VISIBLE);
         } else {
             tagsView.setVisibility(View.GONE);
@@ -84,7 +80,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
         final ImageView shortcutIcon = view.findViewById(R.id.item_shortcut_icon);
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
 
-        if (!prefs.getBoolean("icons-hide", false)) {
+        if (!isHideIcons(context)) {
             // set shortcut icon
             this.setAsyncDrawable(shortcutIcon);
 
@@ -94,10 +90,8 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
                 mLoadIconTask = null;
             }
 
-            boolean subIconVisible = prefs.getBoolean("subicon-visible", true);
-
             // Prepare
-            if (subIconVisible) {
+            if (isSubIconVisible(context)) {
                 appIcon.setVisibility(View.VISIBLE);
                 if (appDrawable != null) {
                     appIcon.setImageDrawable(getAppDrawable(context));
@@ -220,10 +214,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
             // Pre-oreo shortcuts
             try {
                 Intent intent = Intent.parseUri(pojo.intentUri, 0);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    intent.setSourceBounds(v.getClipBounds());
-                }
-
+                setSourceBounds(intent, v);
                 context.startActivity(intent);
             } catch (Exception e) {
                 // Application was just removed?
