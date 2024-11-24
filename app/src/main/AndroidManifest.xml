@@ -17,6 +17,8 @@
     -->
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
+    <!-- To provide access and state handling of the private space -->
+    <uses-permission android:name="android.permission.ACCESS_HIDDEN_PROFILES" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -66,6 +68,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.APP_MARKET" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.ASSIST" />
