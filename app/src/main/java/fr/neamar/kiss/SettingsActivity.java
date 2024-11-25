@@ -654,6 +654,8 @@ public class SettingsActivity extends PreferenceActivity implements
                 }
             } else if ("selected-contact-mime-types".equals(key)) {
                 getDataHandler().reloadContactsProvider();
+            } else if ("disable-private-space-shortcuts".equals(key)) {
+                getDataHandler().reloadShortcuts();
             }
         }
 
