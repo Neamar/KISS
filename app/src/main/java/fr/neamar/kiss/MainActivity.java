@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import static android.provider.Settings.Global.ANIMATOR_DURATION_SCALE;
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 import android.animation.Animator;
@@ -309,22 +310,49 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // Listen to changes
         searchEditText.addTextChangedListener(new TextWatcher() {
+
+            private String oldText = null;
+
             public void afterTextChanged(Editable s) {
-                // Auto left-trim text.
-                if (s.length() > 0 && s.charAt(0) == ' ')
-                    s.delete(0, 1);
+                int length = s.length();
+
+                // trim all whitespaces from right
+                int end = length;
+                while (end > 0 && Character.isWhitespace(s.charAt(end - 1))) {
+                    end--;
+                }
+                // keep last whitespace after char if possible
+                if (end > 0 && end < length) {
+                    end++;
+                }
+
+                // trim all whitespaces from left
+                int start = 0;
+                while (start < end && Character.isWhitespace(s.charAt(start))) {
+                    start++;
+                }
+
+                if (start > 0 || end < length) {
+                    s.replace(0, length, s.subSequence(start, end));
+                } else {
+                    // compare with text from before change and update search records if necessary
+                    String text = s.toString().trim();
+                    if (!text.equals(oldText) || text.isEmpty()) {
+                        if (isViewingAllApps()) {
+                            displayKissBar(false, false);
+                        }
+                        updateSearchRecords(false, text);
+                        displayClearOnInput();
+                    }
+                }
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // remember text before change
+                oldText = s.toString().trim();
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (isViewingAllApps()) {
-                    displayKissBar(false, false);
-                }
-                String text = s.toString();
-                updateSearchRecords(false, text);
-                displayClearOnInput();
             }
         });
 
@@ -633,7 +661,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 SearchEditText edit = ((SearchEditText) v);
                 Rect outR = new Rect();
                 edit.getGlobalVisibleRect(outR);
-                Boolean isKeyboardOpen = !outR.contains((int)ev.getRawX(), (int)ev.getRawY());
+                boolean isKeyboardOpen = !outR.contains((int) ev.getRawX(), (int) ev.getRawY());
                 edit.setCursorVisible(!isKeyboardOpen);
             }
         }
