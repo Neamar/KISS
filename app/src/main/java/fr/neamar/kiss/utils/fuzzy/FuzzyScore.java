@@ -16,6 +16,8 @@ public interface FuzzyScore {
 
     FuzzyScore setUnmatchedLetterPenalty(int unmatched_letter_penalty);
 
+    FuzzyScore setFirstLetterBonus(int first_letter_bonus);
+
     MatchInfo match(CharSequence text);
 
     MatchInfo match(int[] text);

@@ -12,7 +12,13 @@ public class MatchInfo {
      */
     public int score;
     public boolean match;
-    final ArrayList<Integer> matchedIndices;
+    final List<Integer> matchedIndices;
+
+    MatchInfo(boolean match, int score) {
+        this();
+        this.match = match;
+        this.score = score;
+    }
 
     MatchInfo() {
         matchedIndices = null;

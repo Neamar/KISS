@@ -114,6 +114,11 @@ public class FuzzyScoreV1 implements FuzzyScore {
         return this;
     }
 
+    @Override
+    public FuzzyScore setFirstLetterBonus(int first_letter_bonus) {
+        return this;
+    }
+
     /**
      * @param text string where to search
      * @return true if each character in pattern is found sequentially within text
