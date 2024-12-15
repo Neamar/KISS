@@ -13,7 +13,7 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
 
     final WeakReference<Context> context;
     String pojoScheme = "(none)://";
-    private WeakReference<Provider<T>> provider;
+    private WeakReference<Provider<T>> providerReference;
 
     LoadPojos(Context context, String pojoScheme) {
         super();
@@ -22,7 +22,7 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
     }
 
     public void setProvider(Provider<T> provider) {
-        this.provider = new WeakReference<>(provider);
+        this.providerReference = new WeakReference<>(provider);
     }
 
     public String getPojoScheme() {
@@ -32,8 +32,11 @@ public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, Li
     @Override
     protected void onPostExecute(List<T> result) {
         super.onPostExecute(result);
-        if (provider != null && !isCancelled()) {
-            provider.get().loadOver(result);
+        if (providerReference != null) {
+            Provider<T> provider = providerReference.get();
+            if (provider != null && !isCancelled()) {
+                provider.loadOver(result);
+            }
         }
     }
 

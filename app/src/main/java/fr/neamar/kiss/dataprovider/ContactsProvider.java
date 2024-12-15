@@ -1,8 +1,16 @@
 package fr.neamar.kiss.dataprovider;
 
 import android.database.ContentObserver;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
@@ -18,8 +26,26 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
         @Override
         public void onChange(boolean selfChange) {
+            Log.v(TAG, "Contact changed, reloading provider.");
+            onChange(selfChange, null);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, @Nullable Uri uri) {
+            Log.v(TAG, "Contact changed, reloading provider: " + uri);
+            onChange(selfChange, uri, 0);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, @Nullable Uri uri, int flags) {
+            Log.v(TAG, "Contact changed, reloading provider: " + uri + ", flags: " + flags);
+            onChange(selfChange, Collections.singletonList(uri), flags);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, @NonNull Collection<Uri> uris, int flags) {
             //reload contacts
-            Log.i(TAG, "Contacts changed, reloading provider.");
+            Log.v(TAG, "Contacts changed, reloading provider: " + uris + ", flags: " + flags);
             reload();
         }
     };

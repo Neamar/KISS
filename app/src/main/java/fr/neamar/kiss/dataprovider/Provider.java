@@ -64,6 +64,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     private void cancelInitialize() {
         if (this.loader != null) {
             this.loader.cancel(false);
+            this.loader.setProvider(null);
             this.loader = null;
             Log.i(TAG, "Cancelling provider: " + this.getClass().getSimpleName());
         }

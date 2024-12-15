@@ -784,14 +784,14 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @param query     the query on which to search
      */
     private void updateSearchRecords(boolean isRefresh, String query) {
+        resetTask();
+        dismissPopup();
+
         if (isRefresh && isViewingAllApps()) {
             // Refreshing while viewing all apps (for instance app installed or uninstalled in the background)
             runTask(new ApplicationsSearcher(this, isRefresh));
             return;
         }
-
-        resetTask();
-        dismissPopup();
 
         forwarderManager.updateSearchRecords(isRefresh, query);
 
