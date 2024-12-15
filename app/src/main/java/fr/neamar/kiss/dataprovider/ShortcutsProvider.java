@@ -18,8 +18,10 @@ import fr.neamar.kiss.loader.LoadShortcutsPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
-import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.ShortcutUtil;
+import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public class ShortcutsProvider extends Provider<ShortcutPojo> {
     private static boolean notifiedKissNotDefaultLauncher = false;
@@ -87,7 +89,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
 
         for (ShortcutPojo pojo : getPojos()) {
             // exclude favorites from results
@@ -95,7 +97,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
                 continue;
             }
 
-            FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+            MatchInfo matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
             boolean match = pojo.updateMatchingRelevance(matchInfo, false);
 
             // check relevance for tags

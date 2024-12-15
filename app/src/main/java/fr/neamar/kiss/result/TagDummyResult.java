@@ -25,7 +25,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.utils.DrawableUtils;
-import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.Utilities;
 
 public class TagDummyResult extends Result<TagDummyPojo> {
