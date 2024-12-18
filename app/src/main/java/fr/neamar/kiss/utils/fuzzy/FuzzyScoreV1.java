@@ -8,7 +8,6 @@ package fr.neamar.kiss.utils.fuzzy;
  * match("otw", "Druid of the Claw", info) = true, info.score = -3
  * match("otw", "Frostwolf Grunt", info) = true, info.score = -13
  */
-@SuppressWarnings("CanIgnoreReturnValueSuggester")
 public class FuzzyScoreV1 implements FuzzyScore {
     private final int patternLength;
     private final int[] patternChar;
@@ -68,10 +67,6 @@ public class FuzzyScoreV1 implements FuzzyScore {
         }
     }
 
-    public FuzzyScoreV1(int[] pattern) {
-        this(pattern, false);
-    }
-
     @Override
     public FuzzyScore setFullWordBonus(int full_word_bonus) {
         this.full_word_bonus = full_word_bonus;
@@ -121,7 +116,7 @@ public class FuzzyScoreV1 implements FuzzyScore {
 
     /**
      * @param text string where to search
-     * @return true if each character in pattern is found sequentially within text
+     * @return {@link MatchInfo}, with match set to true if each character in pattern is found sequentially within text
      */
     @Override
     public MatchInfo match(CharSequence text) {
@@ -140,7 +135,7 @@ public class FuzzyScoreV1 implements FuzzyScore {
 
     /**
      * @param text string converted to codepoints
-     * @return true if each character in pattern is found sequentially within text
+     * @return {@link MatchInfo}, with match set to true if each character in pattern is found sequentially within text
      */
     @Override
     public MatchInfo match(int[] text) {

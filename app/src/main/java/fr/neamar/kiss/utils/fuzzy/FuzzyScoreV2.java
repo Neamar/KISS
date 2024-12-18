@@ -1,12 +1,7 @@
 package fr.neamar.kiss.utils.fuzzy;
 
-import android.util.Pair;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
-import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 /**
  * A Sublime Text inspired fuzzy match algorithm
@@ -16,16 +11,10 @@ import fr.neamar.kiss.utils.fuzzy.MatchInfo;
  * match("otw", "Druid of the Claw", info) = true, info.score = -3
  * match("otw", "Frostwolf Grunt", info) = true, info.score = -13
  */
-@SuppressWarnings("CanIgnoreReturnValueSuggester")
 public class FuzzyScoreV2 implements FuzzyScore {
     private final int patternLength;
-    private final int[] patternChar;
     private final int[] patternLower;
-    /**
-     * bonus if all characters match (useful for short queries)
-     * E.g. "js" should match "js" with a higher score than "John Smith"
-     */
-    private int full_word_bonus;
+
     /**
      * bonus for adjacent matches
      */
@@ -60,19 +49,16 @@ public class FuzzyScoreV2 implements FuzzyScore {
     public FuzzyScoreV2(int[] pattern, boolean detailedMatchIndices) {
         super();
         patternLength = pattern.length;
-        patternChar = new int[patternLength];
         patternLower = new int[patternLength];
         for (int i = 0; i < patternLower.length; i += 1) {
-            patternChar[i] = pattern[i];
             patternLower[i] = Character.toLowerCase(pattern[i]);
         }
-        full_word_bonus = 100;
-        adjacency_bonus = 10;
-        separator_bonus = 5;
-        camel_bonus = 10;
-        first_letter_bonus = 5;
-        leading_letter_penalty = -3;
-        max_leading_letter_penalty = -9;
+        adjacency_bonus = 15;
+        separator_bonus = 30;
+        camel_bonus = 30;
+        first_letter_bonus = 15;
+        leading_letter_penalty = -5;
+        max_leading_letter_penalty = -15;
         unmatched_letter_penalty = -1;
         if (detailedMatchIndices) {
             matchInfo = new MatchInfo(patternLength);
@@ -81,13 +67,8 @@ public class FuzzyScoreV2 implements FuzzyScore {
         }
     }
 
-    public FuzzyScoreV2(int[] pattern) {
-        this(pattern, false);
-    }
-
     @Override
     public FuzzyScore setFullWordBonus(int full_word_bonus) {
-        this.full_word_bonus = full_word_bonus;
         return this;
     }
 
@@ -135,7 +116,7 @@ public class FuzzyScoreV2 implements FuzzyScore {
 
     /**
      * @param text string where to search
-     * @return true if each character in pattern is found sequentially within text
+     * @return {@link MatchInfo}, with match set to true if each character in pattern is found sequentially within text
      */
     @Override
     public MatchInfo match(CharSequence text) {
@@ -154,7 +135,7 @@ public class FuzzyScoreV2 implements FuzzyScore {
 
     /**
      * @param str string converted to codepoints
-     * @return true if each character in pattern is found sequentially within text
+     * @return {@link MatchInfo}, with match set to true if each character in pattern is found sequentially within text
      */
     @Override
     public MatchInfo match(int[] str) {
@@ -177,6 +158,7 @@ public class FuzzyScoreV2 implements FuzzyScore {
         this.matchInfo.score = matchInfo.score;
         this.matchInfo.match = matchInfo.match;
         if (this.matchInfo.matchedIndices != null) {
+            this.matchInfo.matchedIndices.clear();
             this.matchInfo.matchedIndices.addAll(matches);
         }
         return this.matchInfo;
@@ -193,16 +175,14 @@ public class FuzzyScoreV2 implements FuzzyScore {
             int recursionCount,
             int recursionLimit
     ) {
-        int outScore = 0;
-
         // Return if recursion limit is reached.
         if (++recursionCount >= recursionLimit) {
-            return new MatchInfo(false, outScore);
+            return MatchInfo.UNMATCHED;
         }
 
         // Return if we reached ends of strings.
         if (patternCurIndex == patternLength || strCurrIndex == str.length) {
-            return new MatchInfo(false, outScore);
+            return MatchInfo.UNMATCHED;
         }
 
         // Recursion params
@@ -216,7 +196,7 @@ public class FuzzyScoreV2 implements FuzzyScore {
             // Match found.
             if (patternLower[patternCurIndex] == Character.toLowerCase(str[strCurrIndex])) {
                 if (nextMatch >= maxMatches) {
-                    return new MatchInfo(false, outScore);
+                    return MatchInfo.UNMATCHED;
                 }
 
                 if (firstMatch && srcMatches != null) {
@@ -249,11 +229,13 @@ public class FuzzyScoreV2 implements FuzzyScore {
                 }
 
                 matches.add(strCurrIndex);
+                ++nextMatch;
                 ++patternCurIndex;
             }
             ++strCurrIndex;
         }
 
+        int outScore = 0;
         boolean matched = patternCurIndex == patternLength;
 
         if (matched) {
@@ -310,7 +292,7 @@ public class FuzzyScoreV2 implements FuzzyScore {
             // "this" score is better than recursive
             return new MatchInfo(true, outScore);
         } else {
-            return new MatchInfo(false, outScore);
+            return MatchInfo.UNMATCHED;
         }
     }
 
