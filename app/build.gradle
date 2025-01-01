@@ -9,7 +9,7 @@ buildscript {
 
 plugins {
     id 'com.android.application'
-    id 'net.ltgt.errorprone' version '3.0.1'
+    id 'net.ltgt.errorprone' version '4.1.0'
 }
 
 android {
@@ -41,6 +41,12 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+
+    lint {
+        checkAllWarnings true
+        lintConfig file('lint.xml')
+    }
+
     namespace 'fr.neamar.kiss'
 }
 
@@ -49,14 +55,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation 'androidx.test:rules:1.5.0'
 
-    implementation 'androidx.annotation:annotation:1.8.0'
+    implementation 'androidx.annotation:annotation:1.9.1'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.3'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.3'
-    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.10.3')
-    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.11.4'
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.11.4')
+    testImplementation 'org.hamcrest:hamcrest-library:3.0'
 
-    errorprone('com.google.errorprone:error_prone_core:2.29.2')
+    errorprone('com.google.errorprone:error_prone_core:2.36.0')
 }
 
 tasks.withType(JavaCompile).configureEach {
