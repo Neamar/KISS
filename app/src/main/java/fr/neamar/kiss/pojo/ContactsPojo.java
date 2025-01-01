@@ -1,6 +1,7 @@
 package fr.neamar.kiss.pojo;
 
 import android.net.Uri;
+import android.text.TextUtils;
 
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
@@ -26,6 +27,9 @@ public final class ContactsPojo extends Pojo {
     // nickname without special characters
     public StringNormalizer.Result normalizedNickname = null;
 
+    public StringNormalizer.Result normalizedNameAlternative = null;
+    public StringNormalizer.Result normalizedPhoneticName = null;
+
     private ContactData contactData;
 
     public ContactsPojo(String id, String lookupKey, Uri icon, boolean primary, boolean starred) {
@@ -41,7 +45,7 @@ public final class ContactsPojo extends Pojo {
     }
 
     public void setNickname(String nickname) {
-        if (nickname != null) {
+        if (!TextUtils.isEmpty(nickname)) {
             // Set the actual user-friendly name
             this.nickname = nickname;
             this.normalizedNickname = StringNormalizer.normalizeWithResult(this.nickname, false);
@@ -52,7 +56,7 @@ public final class ContactsPojo extends Pojo {
     }
 
     public void setPhone(String phone, boolean homeNumber) {
-        if (phone != null) {
+        if (!TextUtils.isEmpty(phone)) {
             this.phone = phone;
             this.normalizedPhone = PhoneNormalizer.simplifyPhoneNumber(phone);
             this.homeNumber = homeNumber;
@@ -75,4 +79,19 @@ public final class ContactsPojo extends Pojo {
         return contactData;
     }
 
+    public void setNameAlternative(String nameAlternative) {
+        if (!TextUtils.isEmpty(nameAlternative)) {
+            this.normalizedNameAlternative = StringNormalizer.normalizeWithResult(nameAlternative, false);
+        } else {
+            this.normalizedNameAlternative = null;
+        }
+    }
+
+    public void setPhoneticName(String phoneticName) {
+        if (!TextUtils.isEmpty(phoneticName)) {
+            this.normalizedPhoneticName = StringNormalizer.normalizeWithResult(phoneticName, false);
+        } else {
+            this.normalizedPhoneticName = null;
+        }
+    }
 }

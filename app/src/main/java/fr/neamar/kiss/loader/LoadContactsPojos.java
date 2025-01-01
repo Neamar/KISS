@@ -15,12 +15,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MimeTypeCache;
-import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.pojo.ContactData;
+import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.Permission;
 
@@ -61,13 +62,17 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                 new String[]{ContactsContract.Contacts.LOOKUP_KEY,
                         ContactsContract.Contacts._ID,
                         ContactsContract.Contacts.DISPLAY_NAME_PRIMARY,
+                        ContactsContract.Contacts.DISPLAY_NAME_ALTERNATIVE,
+                        ContactsContract.Contacts.PHONETIC_NAME,
                         ContactsContract.Contacts.PHOTO_ID,
                         ContactsContract.Contacts.PHOTO_URI}, null, null, null)) {
             if (contactCursor != null) {
                 if (contactCursor.getCount() > 0) {
                     int lookupIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
                     int contactIdIndex = contactCursor.getColumnIndex(ContactsContract.Contacts._ID);
-                    int displayNameIndex = contactCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+                    int displayNameIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY);
+                    int displayNameAlternativeIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_ALTERNATIVE);
+                    int phoneticNameIndex = contactCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHONETIC_NAME);
                     int photoIdIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_ID);
                     int photoUriIndex = contactCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_URI);
                     while (contactCursor.moveToNext() && !isCancelled()) {
@@ -75,6 +80,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                                 contactCursor.getString(lookupIndex),
                                 contactCursor.getLong(contactIdIndex),
                                 contactCursor.getString(displayNameIndex),
+                                contactCursor.getString(displayNameAlternativeIndex),
+                                contactCursor.getString(phoneticNameIndex),
                                 contactCursor.getString(photoIdIndex),
                                 contactCursor.getString(photoUriIndex)
                         );
@@ -185,7 +192,6 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                         BasicRawContact basicRawContact = basicRawContacts.get(rawContactId);
 
                         if (basicContact != null && basicRawContact != null) {
-                            String name = basicContact.getDisplayName();
                             long contactId = basicContact.getContactId();
 
                             String phone = phoneCursor.getString(numberIndex);
@@ -198,10 +204,9 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                             Uri icon = basicContact.getIcon();
 
                             ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, icon, primary, starred);
-                            contact.setPhone(phone, false);
+                            setNames(contact, basicContact);
 
-                            contact.setName(name);
-                            contact.setNickname(basicContact.getNickName());
+                            contact.setPhone(phone, false);
 
                             addContactToMap(contact, mapContacts);
                         }
@@ -265,9 +270,8 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                             Uri icon = basicContact.getIcon();
 
                             ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, lookupKey, icon, primary, basicRawContact.isStarred());
+                            setNames(contact, basicContact);
 
-                            contact.setName(basicContact.getDisplayName());
-                            contact.setNickname(basicContact.getNickName());
                             ContactData contactData = new ContactData(mimeType, id);
                             contactData.setIdentifier(label);
                             contact.setIm(contactData);
@@ -283,10 +287,26 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
     }
 
     /**
+     * set all available names to contact
+     *
+     * @param contact      the contact
+     * @param basicContact basic contact information to get names from
+     */
+    private void setNames(ContactsPojo contact, BasicContact basicContact) {
+        contact.setName(basicContact.getDisplayName());
+        if (!Objects.equals(basicContact.getDisplayName(), basicContact.getDisplayNameAlternative())) {
+            // see https://developer.android.com/reference/android/provider/ContactsContract.ContactNameColumns#DISPLAY_NAME_ALTERNATIVE
+            contact.setNameAlternative(basicContact.getDisplayNameAlternative());
+        }
+        contact.setPhoneticName(basicContact.getPhoneticName());
+        contact.setNickname(basicContact.getNickName());
+    }
+
+    /**
      * add contact to mapContacts, grouped by lookup key
      *
-     * @param contact
-     * @param mapContacts
+     * @param contact     contact to add
+     * @param mapContacts all contacts grouped by lookup key
      */
     private void addContactToMap(ContactsPojo contact, Map<String, Set<ContactsPojo>> mapContacts) {
         if (contact.getName() != null) {
@@ -351,14 +371,18 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         private final String lookupKey;
         private final long contactId;
         private final String displayName;
+        private final String displayNameAlternative;
+        private final String phoneticName;
         private final String photoId;
         private final String photoUri;
         private String nickName;
 
-        protected BasicContact(String lookupKey, long contactId, String displayName, String photoId, String photoUri) {
+        protected BasicContact(String lookupKey, long contactId, String displayName, String displayNameAlternative, String phoneticName, String photoId, String photoUri) {
             this.lookupKey = lookupKey;
             this.contactId = contactId;
             this.displayName = displayName;
+            this.displayNameAlternative = displayNameAlternative;
+            this.phoneticName = phoneticName;
             this.photoId = photoId;
             this.photoUri = photoUri;
         }
@@ -373,6 +397,14 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
 
         public String getDisplayName() {
             return displayName;
+        }
+
+        public String getDisplayNameAlternative() {
+            return displayNameAlternative;
+        }
+
+        public String getPhoneticName() {
+            return phoneticName;
         }
 
         public String getNickName() {
