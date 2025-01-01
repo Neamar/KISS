@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class WidgetHost extends AppWidgetHost {
 
-    final static private String TAG = WidgetHost.class.getSimpleName();
+    private final static String TAG = WidgetHost.class.getSimpleName();
 
     private final WidgetProvidersUpdateCallback mWidgetsUpdateCallback;
 

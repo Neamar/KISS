@@ -8,7 +8,7 @@ import android.view.ViewTreeObserver;
 import java.util.HashMap;
 
 public class AnimatedListView extends BlockableListView {
-    private final static int MOVE_DURATION = 100;
+    private static final int MOVE_DURATION = 100;
     private final HashMap<Long, ItemInfo> mItemMap = new HashMap<>();
 
     public AnimatedListView(Context context) {

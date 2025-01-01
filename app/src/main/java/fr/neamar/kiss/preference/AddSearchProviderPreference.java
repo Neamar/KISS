@@ -37,7 +37,7 @@ public class AddSearchProviderPreference extends DialogPreference {
     private final EditText providerName = new EditText(this.getContext());
     private final EditText providerUri = new EditText(this.getContext());
 
-    private SharedPreferences prefs;
+    private final SharedPreferences prefs;
 
     //Called when addPreferencesFromResource() is called. Initializes basic parameters
     public AddSearchProviderPreference(Context context, AttributeSet attrs) {
@@ -75,8 +75,8 @@ public class AddSearchProviderPreference extends DialogPreference {
         String theme = prefs.getString("theme", "light");
         //if theme is light, change the text color
         if (!theme.contains("dark")) {
-            @SuppressLint("ResourceType") @StyleableRes
-            int[] attrs = {android.R.attr.textColor};
+            @SuppressLint("ResourceType")
+            @StyleableRes int[] attrs = {android.R.attr.textColor};
             TypedArray ta = getContext().obtainStyledAttributes(R.style.AppThemeLight, attrs);
 
             providerName.setTextColor(ta.getColor(0, Color.TRANSPARENT));
@@ -187,10 +187,7 @@ public class AddSearchProviderPreference extends DialogPreference {
                 //valid uri but no app can handle this intent
                 return false;
             default:
-                Log.w(this.getClass().getCanonicalName(),
-                        String.format("validate: Following error case for uriResult unmanaged : %s",
-                                uriResult)
-                );
+                Log.w(this.getClass().getCanonicalName(),"validate: Following error case for uriResult unmanaged : " + uriResult);
                 return false;
         }
     }

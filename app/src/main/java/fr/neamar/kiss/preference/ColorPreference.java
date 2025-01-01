@@ -23,7 +23,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 
 public class ColorPreference extends DialogPreference implements OnColorSelectedListener {
-    private static final String TAG = ColorPreference.class.getSimpleName();
+    protected static final String TAG = ColorPreference.class.getSimpleName();
     private ColorPickerPalette palette;
 
     @ColorInt
@@ -94,8 +94,8 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
 
                 Log.i(TAG, "View Width:  " + view.getWidth() + " | " + view.getMeasuredWidth());
                 // Calculate number of swatches to display
-                int swatchSize = ColorPreference.this.palette.getResources().getDimensionPixelSize(R.dimen.color_swatch_small);
-                int swatchMargin = ColorPreference.this.palette.getResources().getDimensionPixelSize(R.dimen.color_swatch_margins_small);
+                int swatchSize = ColorPreference.this.getContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_small);
+                int swatchMargin = ColorPreference.this.getContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_margins_small);
                 ColorPreference.this.palette.init(ColorPickerDialog.SIZE_SMALL, view.getWidth() / (swatchSize + swatchMargin), ColorPreference.this);
 
                 // Cause redraw and (by extension) also a layout recalculation

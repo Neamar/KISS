@@ -43,7 +43,7 @@ import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
-    private final static String TAG = IconPackXML.class.getSimpleName();
+    protected static final String TAG = IconPackXML.class.getSimpleName();
     private final Map<String, Set<DrawableInfo>> drawablesByComponent = new HashMap<>(0);
     private final Map<String, DrawableInfo> drawableList = new HashMap<>(0);
     // instance of a resource object of an icon pack

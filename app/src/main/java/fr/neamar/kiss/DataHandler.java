@@ -56,16 +56,16 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class DataHandler extends BroadcastReceiver
         implements SharedPreferences.OnSharedPreferenceChangeListener {
-    final static private String TAG = DataHandler.class.getSimpleName();
+    protected static final String TAG = DataHandler.class.getSimpleName();
 
     /**
      * Package the providers reside in
      */
-    final static private String PROVIDER_PREFIX = IProvider.class.getPackage().getName() + ".";
+    private static final String PROVIDER_PREFIX = IProvider.class.getPackage().getName() + ".";
     /**
      * List all known providers
      */
-    final static private List<String> PROVIDER_NAMES = Arrays.asList(
+    private static final List<String> PROVIDER_NAMES = Arrays.asList(
             "app", "contacts", "shortcuts"
     );
 
