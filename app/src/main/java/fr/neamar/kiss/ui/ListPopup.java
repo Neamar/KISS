@@ -34,27 +34,21 @@ public class ListPopup extends PopupWindow {
         setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
         setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         mItemClickListener = null;
-        mClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (dismissOnClick)
-                    dismiss();
-                if (mItemClickListener != null) {
-                    LinearLayout layout = getLinearLayout();
-                    int position = layout.indexOfChild(v);
-                    mItemClickListener.onItemClick(mAdapter, v, position);
-                }
+        mClickListener = view -> {
+            if (dismissOnClick)
+                dismiss();
+            if (mItemClickListener != null) {
+                LinearLayout layout2 = getLinearLayout();
+                int position = layout2.indexOfChild(view);
+                mItemClickListener.onItemClick(mAdapter, view, position);
             }
         };
-        mLongClickListener = new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (mItemLongClickListener == null)
-                    return false;
-                LinearLayout layout = getLinearLayout();
-                int position = layout.indexOfChild(v);
-                return mItemLongClickListener.onItemLongClick(mAdapter, v, position);
-            }
+        mLongClickListener = view -> {
+            if (mItemLongClickListener == null)
+                return false;
+            LinearLayout layout1 = getLinearLayout();
+            int position = layout1.indexOfChild(view);
+            return mItemLongClickListener.onItemLongClick(mAdapter, view, position);
         };
     }
 

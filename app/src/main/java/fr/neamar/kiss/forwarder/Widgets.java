@@ -1,5 +1,8 @@
 package fr.neamar.kiss.forwarder;
 
+import static android.appwidget.AppWidgetProviderInfo.WIDGET_FEATURE_CONFIGURATION_OPTIONAL;
+import static android.appwidget.AppWidgetProviderInfo.WIDGET_FEATURE_RECONFIGURABLE;
+
 import android.app.Activity;
 import android.appwidget.AppWidgetHost;
 import android.appwidget.AppWidgetHostView;
@@ -43,6 +46,7 @@ class Widgets extends Forwarder {
     private static final int REQUEST_APPWIDGET_PICKED = 9;
     private static final int REQUEST_APPWIDGET_BOUND = 11;
     private static final int REQUEST_APPWIDGET_CONFIGURED = 5;
+    private static final int REQUEST_APPWIDGET_RECONFIGURED = 13;
 
     private static final int APPWIDGET_HOST_ID = 442;
 
@@ -82,11 +86,12 @@ class Widgets extends Forwarder {
             case Activity.RESULT_OK:
                 switch (requestCode) {
                     case REQUEST_APPWIDGET_CONFIGURED:
+                    case REQUEST_APPWIDGET_RECONFIGURED:
                         Log.i(TAG, "Widget configured");
                         break;
                     case REQUEST_APPWIDGET_BOUND:
                         if (data != null) {
-                            configureAppWidget(data);
+                            addAppWidget(data);
                         } else {
                             Log.i(TAG, "Widget bind failed");
                         }
@@ -100,7 +105,7 @@ class Widgets extends Forwarder {
                                 }
                             }
                             // if binding not required we can continue with adding the widget
-                            configureAppWidget(data);
+                            addAppWidget(data);
                         } else {
                             Log.i(TAG, "Widget picker failed");
                         }
@@ -113,8 +118,8 @@ class Widgets extends Forwarder {
                         requestCode == REQUEST_APPWIDGET_PICKED)
                         && data != null) {
                     // if widget was not selected, delete it
-                    int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
-                    if (appWidgetId != -1) {
+                    int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+                    if (appWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
                         // find widget views for appWidgetId
                         List<View> viewsToRemove = new ArrayList<>();
                         for (int i = 0; i < widgetArea.getChildCount(); i++) {
@@ -250,9 +255,8 @@ class Widgets extends Forwarder {
             ListPopup popupMenu = new ListPopup(mainActivity);
             popupMenu.setAdapter(popupMenuAdapter);
             popupMenu.setOnItemClickListener((adapter1, view, position) -> {
-                popupMenu.dismiss();
                 @StringRes int stringId = ((ListPopup.Item) adapter1.getItem(position)).stringId;
-                popupMenuClickHandler(view.getContext(), stringId, widgetWithMenuCurrentlyDisplayed);
+                popupMenuClickHandler(stringId, widgetWithMenuCurrentlyDisplayed);
             });
             mainActivity.registerPopup(popupMenu);
             popupMenu.show(hostView);
@@ -267,6 +271,9 @@ class Widgets extends Forwarder {
     private void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, AppWidgetProviderInfo currentAppWidgetInfo, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
         final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
 
+        if (isReconfigurable(currentAppWidgetInfo)) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_widget_settings));
+        }
         int increasedLineHeight = getIncreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
         if (!preventIncreaseLineHeight(increasedLineHeight, currentAppWidgetInfo)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_size_up));
@@ -284,9 +291,11 @@ class Widgets extends Forwarder {
         adapter.add(new ListPopup.Item(context, R.string.menu_widget_remove));
     }
 
-    private void popupMenuClickHandler(Context context, @StringRes int stringId, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
+    private void popupMenuClickHandler(@StringRes int stringId, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
         final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
-        if (stringId == R.string.menu_widget_remove) {
+        if (stringId == R.string.menu_widget_settings) {
+            reConfigureAppWidget(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
+        } else if (stringId == R.string.menu_widget_remove) {
             parent.removeView(widgetWithMenuCurrentlyDisplayed);
             mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
             serializeState();
@@ -337,7 +346,7 @@ class Widgets extends Forwarder {
      * @param hostView host view for widget
      * @param height   height of widget
      */
-    private void setWidgetSize(AppWidgetHostView hostView, int height, AppWidgetProviderInfo appWidgetInfo) {
+    private void setWidgetSize(AppWidgetHostView hostView, int height, @NonNull AppWidgetProviderInfo appWidgetInfo) {
         hostView.setMinimumHeight(height);
         hostView.setMinimumWidth(Math.min(appWidgetInfo.minWidth, appWidgetInfo.minResizeWidth));
         ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
@@ -388,12 +397,10 @@ class Widgets extends Forwarder {
     /**
      * Adds widget to Activity and persists it in prefs to be able to restore it
      *
-     * @param data Intent holding widget id to add
+     * @param appWidgetId id of widget to add
+     * @param appWidgetInfo
      */
-    private void addAppWidget(Intent data) {
-        int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
-        AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
-
+    private void addAppWidget(int appWidgetId, AppWidgetProviderInfo appWidgetInfo) {
         // calculate already used lines
         int usedLines = 0;
         for (int i = 0; i < widgetArea.getChildCount(); i++) {
@@ -413,7 +420,7 @@ class Widgets extends Forwarder {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private static void requestBindWidget(@NonNull Activity activity, @NonNull Intent data) {
-        final int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
+        final int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         final ComponentName provider = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER);
         final UserHandle profile;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -442,28 +449,70 @@ class Widgets extends Forwarder {
      *
      * @param data Intent holding widget id to configure
      */
-    private void configureAppWidget(Intent data) {
-        int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, -1);
-
+    private void addAppWidget(Intent data) {
+        int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+        if (appWidgetInfo != null) {
+            // Add the widget
+            addAppWidget(appWidgetId, appWidgetInfo);
 
-        // Add the widget
-        addAppWidget(data);
+            if (!isConfigurationOptional(appWidgetInfo)) {
+                configureAppWidget(appWidgetId, appWidgetInfo, REQUEST_APPWIDGET_CONFIGURED);
+            }
+        }
+    }
 
-        if (appWidgetInfo.configure != null) {
-            // Launch over to configure widget, if needed.
+    private void reConfigureAppWidget(int appWidgetId) {
+        AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+        configureAppWidget(appWidgetId, appWidgetInfo, REQUEST_APPWIDGET_RECONFIGURED);
+    }
+
+    private void configureAppWidget(int appWidgetId, AppWidgetProviderInfo appWidgetInfo, int requestCode) {
+        if (appWidgetInfo != null && appWidgetInfo.configure != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, REQUEST_APPWIDGET_CONFIGURED, null);
+                mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, requestCode, null);
             } else {
                 Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
                 intent.setComponent(appWidgetInfo.configure);
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 try {
-                    mainActivity.startActivityForResult(intent, REQUEST_APPWIDGET_CONFIGURED);
+                    mainActivity.startActivityForResult(intent, requestCode);
                 } catch (SecurityException e) {
                     Toast.makeText(mainActivity, "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
                 }
             }
+        }
+    }
+
+    /**
+     * A widget's configuration is optional only if it's configuration is marked as optional AND
+     * it can be reconfigured later.
+     *
+     * @param appWidgetInfo
+     * @return true, if configuration is optional
+     */
+    private boolean isConfigurationOptional(@NonNull AppWidgetProviderInfo appWidgetInfo) {
+        if (!isReconfigurable(appWidgetInfo)) {
+            return false;
+        }
+        if (appWidgetInfo.configure != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            int featureFlags = appWidgetInfo.widgetFeatures;
+            return (featureFlags & WIDGET_FEATURE_CONFIGURATION_OPTIONAL) != 0;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param appWidgetInfo
+     * @return true, if widget can be reconfigured
+     */
+    private boolean isReconfigurable(@NonNull AppWidgetProviderInfo appWidgetInfo) {
+        if (appWidgetInfo.configure != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            int featureFlags = appWidgetInfo.widgetFeatures;
+            return (featureFlags & WIDGET_FEATURE_RECONFIGURABLE) != 0;
+        } else {
+            return false;
         }
     }
 

@@ -1,5 +1,7 @@
 package fr.neamar.kiss;
 
+import static android.appwidget.AppWidgetProviderInfo.WIDGET_FEATURE_HIDE_FROM_PICKER;
+
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
@@ -126,33 +128,42 @@ public class PickAppWidgetActivity extends Activity {
         List<WidgetInfo> infoList = new ArrayList<>(installedProviders.size());
         PackageManager packageManager = context.getPackageManager();
         for (AppWidgetProviderInfo providerInfo : installedProviders) {
-            // get widget name
-            String label = null;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                label = providerInfo.loadLabel(packageManager);
-            }
-            if (label == null) {
-                label = providerInfo.label;
-            }
+            if (!isHiddenFromPicker(providerInfo)) {
+                // get widget name
+                String label = null;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    label = providerInfo.loadLabel(packageManager);
+                }
+                if (label == null) {
+                    label = providerInfo.label;
+                }
 
-            // get widget description
-            String description = null;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                CharSequence desc = providerInfo.loadDescription(context);
-                if (desc != null)
-                    description = desc.toString();
-            }
+                // get widget description
+                String description = null;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    CharSequence desc = providerInfo.loadDescription(context);
+                    if (desc != null)
+                        description = desc.toString();
+                }
 
-            String appName = providerInfo.provider.getPackageName();
-            try {
-                ApplicationInfo appInfo = packageManager.getApplicationInfo(providerInfo.provider.getPackageName(), 0);
-                appName = appInfo.loadLabel(packageManager).toString();
-            } catch (Exception e) {
-                Log.e(TAG, "get `" + providerInfo.provider.getPackageName() + "` label");
+                String appName = providerInfo.provider.getPackageName();
+                try {
+                    ApplicationInfo appInfo = packageManager.getApplicationInfo(providerInfo.provider.getPackageName(), 0);
+                    appName = appInfo.loadLabel(packageManager).toString();
+                } catch (Exception e) {
+                    Log.e(TAG, "get `" + providerInfo.provider.getPackageName() + "` label");
+                }
+                infoList.add(new WidgetInfo(appName, label, description, providerInfo));
             }
-            infoList.add(new WidgetInfo(appName, label, description, providerInfo));
         }
         return infoList;
+    }
+
+    private static boolean isHiddenFromPicker(AppWidgetProviderInfo providerInfo) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            return (providerInfo.widgetFeatures & WIDGET_FEATURE_HIDE_FROM_PICKER) != 0;
+        }
+        return false;
     }
 
     @WorkerThread
@@ -219,7 +230,7 @@ public class PickAppWidgetActivity extends Activity {
         }
     }
 
-    private interface MenuItem {
+    public interface MenuItem {
         @NonNull
         String getName();
     }
