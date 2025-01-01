@@ -3,11 +3,13 @@ package fr.neamar.kiss;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.LauncherActivityInfo;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
+import android.os.UserManager;
 import android.provider.AlarmClock;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -20,6 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import fr.neamar.kiss.db.DBHelper;
+import fr.neamar.kiss.utils.UserHandle;
 
 public class TagsHandler {
     private final Context context;
@@ -136,9 +139,28 @@ public class TagsHandler {
     private List<String> getApps(PackageManager pm, Intent lookingFor) {
         List<ResolveInfo> list = pm.queryIntentActivities(lookingFor, 0);
         List<String> apps = new ArrayList<>(list.size());
-        for (ResolveInfo resolveInfo : list) {
-            String app = "app://" + resolveInfo.activityInfo.applicationInfo.packageName + "/" + resolveInfo.activityInfo.name;
-            apps.add(app);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Set<String> packageNames = new HashSet<>();
+            for (ResolveInfo resolveInfo : list) {
+                packageNames.add(resolveInfo.activityInfo.packageName);
+            }
+
+            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            for (android.os.UserHandle profile : manager.getUserProfiles()) {
+                UserHandle userHandle = new UserHandle(manager.getSerialNumberForUser(profile), profile);
+                for (String packageName : packageNames) {
+                    for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(packageName, profile)) {
+                        String app = userHandle.addUserSuffixToString("app://" + activityInfo.getComponentName().getPackageName() + "/" + activityInfo.getComponentName().getClassName(), '/');
+                        apps.add(app);
+                    }
+                }
+            }
+        } else {
+            for (ResolveInfo resolveInfo : list) {
+                String app = "app://" + resolveInfo.activityInfo.packageName + "/" + resolveInfo.activityInfo.name;
+                apps.add(app);
+            }
         }
         return apps;
     }
