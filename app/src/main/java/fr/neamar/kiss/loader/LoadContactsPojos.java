@@ -355,7 +355,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         private final String photoUri;
         private String nickName;
 
-        private BasicContact(String lookupKey, long contactId, String displayName, String photoId, String photoUri) {
+        protected BasicContact(String lookupKey, long contactId, String displayName, String photoId, String photoUri) {
             this.lookupKey = lookupKey;
             this.contactId = contactId;
             this.displayName = displayName;
@@ -403,7 +403,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         private final long id;
         private final boolean starred;
 
-        private BasicRawContact(long id, boolean starred) {
+        protected BasicRawContact(long id, boolean starred) {
             this.id = id;
             this.starred = starred;
         }

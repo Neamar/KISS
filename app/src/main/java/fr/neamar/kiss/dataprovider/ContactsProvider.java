@@ -21,7 +21,7 @@ import fr.neamar.kiss.utils.FuzzyScore;
 import fr.neamar.kiss.utils.Permission;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
-    private final static String TAG = ContactsProvider.class.getSimpleName();
+    protected static final String TAG = ContactsProvider.class.getSimpleName();
     private final ContentObserver cObserver = new ContentObserver(null) {
 
         @Override

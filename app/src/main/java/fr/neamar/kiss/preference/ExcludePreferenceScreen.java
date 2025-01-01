@@ -32,7 +32,7 @@ public class ExcludePreferenceScreen {
 			@NonNull IsExcludedCallback isExcludedCallback,
 			@NonNull OnExcludedListener onExcludedListener,
 			@StringRes int preferenceTitleResId,
-			final @StringRes int preferenceScreenTitleResId
+			@StringRes final int preferenceScreenTitleResId
 	) {
 		List<AppPojo> appList = KissApplication.getApplication(preferenceActivity).getDataHandler().getApplications();
 		IconsHandler iconsHandler = KissApplication.getApplication(preferenceActivity).getIconsHandler();

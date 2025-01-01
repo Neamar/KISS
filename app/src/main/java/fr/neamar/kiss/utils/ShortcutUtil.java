@@ -36,7 +36,7 @@ import fr.neamar.kiss.shortcut.SaveSingleOreoShortcutAsync;
 
 public class ShortcutUtil {
 
-    final static private String TAG = ShortcutUtil.class.getSimpleName();
+    private final static String TAG = ShortcutUtil.class.getSimpleName();
 
     /**
      * @return shortcut id generated from shortcut name

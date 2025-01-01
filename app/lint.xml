@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <issue id="StaticFieldLeak" severity="error" />
+    <issue id="UnusedAttribute" severity="informational" />
+
+    <!-- reduce warnings related to translations -->
+    <issue id="Typos" severity="informational" />
+    <issue id="TypographyQuotes" severity="ignore" />
+    <issue id="DuplicateStrings" severity="informational" />
+
+    <!-- ignore until kotlin is in use -->
+    <issue id="UnknownNullness" severity="ignore" />
+</lint>
