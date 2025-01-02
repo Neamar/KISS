@@ -705,15 +705,12 @@ public class SettingsActivity extends PreferenceActivity implements
         if (historyLength < 300) {
             getPreferenceScreen().removePreference(rateApp);
         } else {
-            rateApp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                @Override
-                public boolean onPreferenceClick(Preference preference) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("market://details?id=" + getApplicationContext().getPackageName()));
-                    startActivity(intent);
+            rateApp.setOnPreferenceClickListener(preference -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("market://details?id=" + getApplicationContext().getPackageName()));
+                startActivity(intent);
 
-                    return true;
-                }
+                return true;
             });
         }
     }

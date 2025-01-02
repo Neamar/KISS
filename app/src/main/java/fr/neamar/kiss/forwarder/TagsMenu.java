@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -220,57 +219,54 @@ public class TagsMenu extends Forwarder {
         if (popupMenu == null) {
             Context context = anchor.getContext();
             popupMenu = new ListPopup(context);
-            TagsMenu.MenuAdapter adapter = new TagsMenu.MenuAdapter();
+            TagsMenu.MenuAdapter menuAdapter = new TagsMenu.MenuAdapter();
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
             //build menu
-            adapter.add(new TagsMenu.MenuItemTitle(context, R.string.popup_tags_title));
+            menuAdapter.add(new TagsMenu.MenuItemTitle(context, R.string.popup_tags_title));
             for (String tag : tagList) {
-                adapter.add(new TagsMenu.MenuItemTag(tag));
+                menuAdapter.add(new TagsMenu.MenuItemTag(tag));
             }
 
             // remember where the title should go
-            int actionsTitlePosition = adapter.getCount();
+            int actionsTitlePosition = menuAdapter.getCount();
             if (!prefs.getBoolean("history-onclick", false))
-                adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_history));
+                menuAdapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_history));
             if (prefs.getBoolean("pref-show-untagged", false))
-                adapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_untagged));
+                menuAdapter.add(new TagsMenu.MenuItemBtn(context, R.string.show_untagged));
             // insert title only if at least an action was added
-            if (actionsTitlePosition != adapter.getCount())
-                adapter.add(actionsTitlePosition, new TagsMenu.MenuItemTitle(context, R.string.popup_tags_actions));
+            if (actionsTitlePosition != menuAdapter.getCount())
+                menuAdapter.add(actionsTitlePosition, new TagsMenu.MenuItemTitle(context, R.string.popup_tags_actions));
 
-            adapter.add(new TagsMenu.MenuItemDivider());
-            adapter.add(new TagsMenu.MenuItemBtn(context, R.string.ctx_menu));
+            menuAdapter.add(new TagsMenu.MenuItemDivider());
+            menuAdapter.add(new TagsMenu.MenuItemBtn(context, R.string.ctx_menu));
 
             // set popup interaction rules
-            popupMenu.setAdapter(adapter);
+            popupMenu.setAdapter(menuAdapter);
             popupMenu.setDismissOnItemClick(isAutoDismiss());
-            popupMenu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
-                @Override
-                public void onItemClick(ListAdapter adapter, View view, int position) {
-                    Object adapterItem = adapter.getItem(position);
-                    if (adapterItem instanceof TagsMenu.MenuItemTag) {
-                        TagsMenu.MenuItemTag item = (TagsMenu.MenuItemTag) adapterItem;
-                        // show only apps that match this tag
-                        mainActivity.showMatchingTags(item.tag);
-                    } else if (adapterItem instanceof TagsMenu.MenuItemBtn) {
-                        int nameRes = ((TagsMenu.MenuItemBtn) adapterItem).nameRes;
-                        if (nameRes == R.string.ctx_menu) {
-                            if (popupMenu != null)
-                                popupMenu.dismiss();
-                            popupMenu = null;
-                            anchor.showContextMenu();
-                        } else if (nameRes == R.string.show_history) {
-                            mainActivity.showHistory();
-                        } else if (nameRes == R.string.show_untagged) {
-                            mainActivity.showUntagged();
-                        }
+            popupMenu.setOnItemClickListener((adapter, view, position) -> {
+                Object adapterItem = adapter.getItem(position);
+                if (adapterItem instanceof MenuItemTag) {
+                    MenuItemTag item = (MenuItemTag) adapterItem;
+                    // show only apps that match this tag
+                    mainActivity.showMatchingTags(item.tag);
+                } else if (adapterItem instanceof MenuItemBtn) {
+                    int nameRes = ((MenuItemBtn) adapterItem).nameRes;
+                    if (nameRes == R.string.ctx_menu) {
+                        if (popupMenu != null)
+                            popupMenu.dismiss();
+                        popupMenu = null;
+                        anchor.showContextMenu();
+                    } else if (nameRes == R.string.show_history) {
+                        mainActivity.showHistory();
+                    } else if (nameRes == R.string.show_untagged) {
+                        mainActivity.showUntagged();
                     }
                 }
             });
-            popupMenu.setOnItemLongClickListener((adapter1, view, position) -> {
-                Object adapterItem = adapter1.getItem(position);
+            popupMenu.setOnItemLongClickListener((adapter, view, position) -> {
+                Object adapterItem = adapter.getItem(position);
                 if (adapterItem instanceof MenuItemTag) {
                     MenuItemTag item = (MenuItemTag) adapterItem;
                     String msg = mainActivity.getResources().getString(R.string.toast_favorites_added);

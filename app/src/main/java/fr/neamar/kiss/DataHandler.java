@@ -240,12 +240,9 @@ public class DataHandler extends BroadcastReceiver
                         // starting the service needs to be slightly delayed because the Intent is fired *before* the app is considered in the foreground.
                         // Each new release of Android manages to make the developer life harder.
                         // Can't wait for the next one.
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.i(TAG, "Screen turned on or unlocked, retrying to start background services");
-                                connectToProvider(name, counter + 1);
-                            }
+                        handler.postDelayed(() -> {
+                            Log.i(TAG, "Screen turned on or unlocked, retrying to start background services");
+                            connectToProvider(name, counter + 1);
                         }, 10);
                     }
                 }

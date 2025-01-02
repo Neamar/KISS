@@ -20,12 +20,7 @@ public class FavoritesTest extends AbstractMainActivityTest {
     private void enableInternalBar() {
         mActivityRule.getActivity().prefs.edit().putBoolean("enable-favorites-bar", false).apply();
         try {
-            mActivityRule.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mActivityRule.getActivity().recreate();
-                }
-            });
+            mActivityRule.runOnUiThread(() -> mActivityRule.getActivity().recreate());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
