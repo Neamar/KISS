@@ -46,7 +46,8 @@ import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.DrawableUtils;
-import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
@@ -308,13 +309,13 @@ public class CustomIconDialog extends DialogFragment {
         IconsHandler iconsHandler = KissApplication.getApplication(getActivity()).getIconsHandler();
         IconPackXML iconPack = iconsHandler.getCustomIconPack();
         if (iconPack != null) {
-            Collection<IconPackXML.DrawableInfo> drawables = ((IconPackXML) iconPack).getDrawableList();
+            Collection<IconPackXML.DrawableInfo> drawables = iconPack.getDrawableList();
             if (drawables != null) {
                 StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(mSearch.getText(), true);
-                FuzzyScore fuzzyScore = new FuzzyScore(normalized.codePoints);
+                FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(getActivity(), normalized.codePoints);
                 for (IconPackXML.DrawableInfo info : drawables) {
                     if (fuzzyScore.match(info.getDrawableName()).match)
-                        mIconData.add(new IconData((IconPackXML) iconPack, info));
+                        mIconData.add(new IconData(iconPack, info));
                 }
             }
         }
