@@ -92,13 +92,10 @@ public class AddSearchProviderPreference extends DialogPreference {
         super.showDialog(state);
 
         final AlertDialog dlg = (AlertDialog) getDialog();
-        dlg.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (validate()) {
-                    save();
-                    dlg.dismiss();
-                }
+        dlg.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            if (validate()) {
+                save();
+                dlg.dismiss();
             }
         });
     }

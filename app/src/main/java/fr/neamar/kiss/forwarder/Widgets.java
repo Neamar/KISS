@@ -254,8 +254,8 @@ class Widgets extends Forwarder {
             buildPopupMenu(mainActivity, popupMenuAdapter, currentAppWidgetInfo, widgetWithMenuCurrentlyDisplayed);
             ListPopup popupMenu = new ListPopup(mainActivity);
             popupMenu.setAdapter(popupMenuAdapter);
-            popupMenu.setOnItemClickListener((adapter1, view, position) -> {
-                @StringRes int stringId = ((ListPopup.Item) adapter1.getItem(position)).stringId;
+            popupMenu.setOnItemClickListener((adapter, view, position) -> {
+                @StringRes int stringId = ((ListPopup.Item) adapter.getItem(position)).stringId;
                 popupMenuClickHandler(stringId, widgetWithMenuCurrentlyDisplayed);
             });
             mainActivity.registerPopup(popupMenu);

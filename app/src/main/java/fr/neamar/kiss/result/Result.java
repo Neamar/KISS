@@ -177,15 +177,12 @@ public abstract class Result<T extends Pojo> {
      * @return a PopupMenu object
      */
     public ListPopup getPopupMenu(final Context context, final RecordAdapter parent, final View parentView) {
-        ArrayAdapter<ListPopup.Item> adapter = new ArrayAdapter<>(context, R.layout.popup_list_item);
-        ListPopup menu = buildPopupMenu(context, adapter, parent, parentView);
+        ArrayAdapter<ListPopup.Item> popupMenuAdapter = new ArrayAdapter<>(context, R.layout.popup_list_item);
+        ListPopup menu = buildPopupMenu(context, popupMenuAdapter, parent, parentView);
 
-        menu.setOnItemClickListener(new ListPopup.OnItemClickListener() {
-            @Override
-            public void onItemClick(ListAdapter adapter, View view, int position) {
-                @StringRes int stringId = ((ListPopup.Item) adapter.getItem(position)).stringId;
-                popupMenuClickHandler(view.getContext(), parent, stringId, parentView);
-            }
+        menu.setOnItemClickListener((adapter, view, position) -> {
+            @StringRes int stringId = ((ListPopup.Item) adapter.getItem(position)).stringId;
+            popupMenuClickHandler(view.getContext(), parent, stringId, parentView);
         });
 
         return menu;

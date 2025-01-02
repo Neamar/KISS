@@ -37,13 +37,9 @@ abstract class AbstractMainActivityTest {
         PreferenceManager.setDefaultValues(mActivityRule.getActivity(), R.xml.preferences, true);
 
         // Remove lock screen
-        Runnable wakeUpDevice = new Runnable() {
-            public void run() {
-                mActivityRule.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
-                        WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            }
-        };
+        Runnable wakeUpDevice = () -> mActivityRule.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mActivityRule.getActivity().runOnUiThread(wakeUpDevice);
     }
 }

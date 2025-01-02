@@ -221,7 +221,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         };
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             // Since Android 33, we need to specify is the receiver is available from other applications
             // For some reasons, in our case, using RECEIVER_NOT_EXPORTED means we do not get the updates from our own services?!
             // So we export the receiver.
@@ -263,12 +263,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         findViewById(android.R.id.content).setOnTouchListener(this);
 
         // Add layout change listener for soft keyboard detection
-        findViewById(android.R.id.content).getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                forwarderManager.onGlobalLayout();
-            }
-        });
+        findViewById(android.R.id.content).getViewTreeObserver().addOnGlobalLayoutListener(() -> forwarderManager.onGlobalLayout());
 
         // add history popup touch listener to empty view (prevents it from not working there)
         this.emptyListView.setOnTouchListener(this);
@@ -360,40 +355,31 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
         // This fix should be on ALL TextEdit Widgets !!!
         // See : https://stackoverflow.com/a/23483957
-        searchEditText.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                return true;
-            }
-        });
-
+        searchEditText.setOnDragListener((v, event) -> true);
 
         // On validate, launch first record
-        searchEditText.setOnEditorActionListener(new OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == android.R.id.closeButton) {
-                    systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
-                    if (mPopup != null) {
-                        mPopup.dismiss();
-                        return true;
-                    }
-                    systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
-                    hider.fixScroll();
-                    return false;
+        searchEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == android.R.id.closeButton) {
+                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
+                if (mPopup != null) {
+                    mPopup.dismiss();
+                    return true;
                 }
-
-                if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
-                    SearchPojo pojo = SearchProvider.getDefaultSearch(v.getText().toString(), MainActivity.this, prefs);
-                    if (pojo != null) {
-                        Result.fromPojo(MainActivity.this, pojo).fastLaunch(MainActivity.this, null);
-                    }
-                } else {
-                    adapter.onClick(adapter.getCount() - 1, v);
-                }
-
-                return true;
+                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
+                hider.fixScroll();
+                return false;
             }
+
+            if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
+                SearchPojo pojo = SearchProvider.getDefaultSearch(v.getText().toString(), MainActivity.this, prefs);
+                if (pojo != null) {
+                    Result.fromPojo(MainActivity.this, pojo).fastLaunch(MainActivity.this, null);
+                }
+            } else {
+                adapter.onClick(adapter.getCount() - 1, v);
+            }
+
+            return true;
         });
 
         registerForContextMenu(menuButton);
@@ -907,12 +893,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         dismissPopup();
         mPopup = popup;
         popup.setVisibilityHelper(systemUiVisibilityHelper);
-        popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                MainActivity.this.mPopup = null;
-            }
-        });
+        popup.setOnDismissListener(() -> MainActivity.this.mPopup = null);
         hider.fixScroll();
     }
 
