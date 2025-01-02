@@ -29,10 +29,10 @@ public class ExcludePreferenceScreen {
 
 	public static PreferenceScreen getInstance(
 			@NonNull PreferenceActivity preferenceActivity,
-			@NonNull IsExcludedCallback isExcludedCallback,
-			@NonNull OnExcludedListener onExcludedListener,
 			@StringRes int preferenceTitleResId,
-			@StringRes final int preferenceScreenTitleResId
+			@StringRes int preferenceScreenTitleResId,
+			@NonNull IsExcludedCallback isExcludedCallback,
+			@NonNull OnExcludedListener onExcludedListener
 	) {
 		List<AppPojo> appList = KissApplication.getApplication(preferenceActivity).getDataHandler().getApplications();
 		IconsHandler iconsHandler = KissApplication.getApplication(preferenceActivity).getIconsHandler();

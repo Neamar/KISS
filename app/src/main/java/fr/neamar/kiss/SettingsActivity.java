@@ -397,12 +397,9 @@ public class SettingsActivity extends PreferenceActivity implements
 
         PreferenceScreen excludedAppsScreen = ExcludePreferenceScreen.getInstance(
                 this,
-                new ExcludePreferenceScreen.IsExcludedCallback() {
-                    @Override
-                    public boolean isExcluded(@NonNull AppPojo app) {
-                        return app.isExcluded();
-                    }
-                },
+                R.string.ui_excluded_apps,
+                R.string.ui_excluded_apps_dialog_title,
+                AppPojo::isExcluded,
                 new ExcludePreferenceScreen.OnExcludedListener() {
                     @Override
                     public void onExcluded(final @NonNull AppPojo app) {
@@ -413,9 +410,7 @@ public class SettingsActivity extends PreferenceActivity implements
                     public void onIncluded(final @NonNull AppPojo app) {
                         dataHandler.removeFromExcluded(app);
                     }
-                },
-                R.string.ui_excluded_apps,
-                R.string.ui_excluded_apps_dialog_title
+                }
         );
 
         PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
@@ -427,12 +422,9 @@ public class SettingsActivity extends PreferenceActivity implements
 
         PreferenceScreen excludedAppsScreen = ExcludePreferenceScreen.getInstance(
                 this,
-                new ExcludePreferenceScreen.IsExcludedCallback() {
-                    @Override
-                    public boolean isExcluded(@NonNull AppPojo app) {
-                        return app.isExcludedFromHistory();
-                    }
-                },
+                R.string.ui_excluded_from_history_apps,
+                R.string.ui_excluded_apps_dialog_title,
+                AppPojo::isExcludedFromHistory,
                 new ExcludePreferenceScreen.OnExcludedListener() {
                     @Override
                     public void onExcluded(final @NonNull AppPojo app) {
@@ -443,9 +435,7 @@ public class SettingsActivity extends PreferenceActivity implements
                     public void onIncluded(final @NonNull AppPojo app) {
                         dataHandler.removeFromExcludedFromHistory(app);
                     }
-                },
-                R.string.ui_excluded_from_history_apps,
-                R.string.ui_excluded_apps_dialog_title
+                }
         );
 
         PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
@@ -461,12 +451,9 @@ public class SettingsActivity extends PreferenceActivity implements
 
         PreferenceScreen excludedAppsScreen = ExcludePreferenceScreen.getInstance(
                 this,
-                new ExcludePreferenceScreen.IsExcludedCallback() {
-                    @Override
-                    public boolean isExcluded(@NonNull AppPojo app) {
-                        return app.isExcludedShortcuts();
-                    }
-                },
+                R.string.ui_excluded_from_shortcuts_apps,
+                R.string.ui_excluded_apps_dialog_title,
+                AppPojo::isExcludedShortcuts,
                 new ExcludePreferenceScreen.OnExcludedListener() {
                     @Override
                     public void onExcluded(final @NonNull AppPojo app) {
@@ -477,9 +464,7 @@ public class SettingsActivity extends PreferenceActivity implements
                     public void onIncluded(final @NonNull AppPojo app) {
                         dataHandler.removeFromExcludedShortcutApps(app);
                     }
-                },
-                R.string.ui_excluded_from_shortcuts_apps,
-                R.string.ui_excluded_apps_dialog_title
+                }
         );
 
         PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
@@ -531,9 +516,6 @@ public class SettingsActivity extends PreferenceActivity implements
 
             Set<String> availableSearchProviders = SearchProvider.getAvailableSearchProviders(this, prefs);
             Set<String> updatedProviders = SearchProvider.getAvailableSearchProviders(this, prefs);
-
-            if (availableSearchProviders == null)
-                return false;
 
             for (String searchProvider : availableSearchProviders) {
                 for (String providerToDelete : searchProvidersToDelete) {

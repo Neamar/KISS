@@ -43,4 +43,9 @@ public class BlockableListView extends ListView {
     public boolean onTouchEvent(MotionEvent ev) {
         return this.touchEventsBlocked || super.onTouchEvent(ev);
     }
+
+    @Override
+    public boolean performClick() {
+        return this.touchEventsBlocked || super.performClick();
+    }
 }

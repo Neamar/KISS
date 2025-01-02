@@ -502,7 +502,9 @@
     <PreferenceScreen
         android:key="importexport"
         android:title="@string/title_import_export">
-        <fr.neamar.kiss.preference.ExportSettingsPreference android:title="@string/export_settings" />
+        <fr.neamar.kiss.preference.ExportSettingsPreference
+            android:dialogMessage="@string/clipboard_warning_dialog"
+            android:title="@string/export_settings" />
         <fr.neamar.kiss.preference.ImportSettingsPreference
             android:dialogMessage="@string/import_settings_dialog"
             android:title="@string/import_settings" />

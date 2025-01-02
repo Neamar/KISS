@@ -7,7 +7,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -23,7 +22,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 
 public class ColorPreference extends DialogPreference implements OnColorSelectedListener {
-    protected static final String TAG = ColorPreference.class.getSimpleName();
+
     private ColorPickerPalette palette;
 
     @ColorInt
@@ -92,7 +91,6 @@ public class ColorPreference extends DialogPreference implements OnColorSelected
                     return;
                 }
 
-                Log.i(TAG, "View Width:  " + view.getWidth() + " | " + view.getMeasuredWidth());
                 // Calculate number of swatches to display
                 int swatchSize = ColorPreference.this.getContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_small);
                 int swatchMargin = ColorPreference.this.getContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_margins_small);

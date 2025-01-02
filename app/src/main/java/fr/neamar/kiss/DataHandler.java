@@ -95,7 +95,7 @@ public class DataHandler extends BroadcastReceiver
         start = System.currentTimeMillis();
 
         IntentFilter intentFilter = new IntentFilter(MainActivity.LOAD_OVER);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             this.context.getApplicationContext().registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
         }
         else {

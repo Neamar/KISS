@@ -221,7 +221,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         };
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             // Since Android 33, we need to specify is the receiver is available from other applications
             // For some reasons, in our case, using RECEIVER_NOT_EXPORTED means we do not get the updates from our own services?!
             // So we export the receiver.
