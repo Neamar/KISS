@@ -8,7 +8,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -93,6 +92,20 @@ public class ContactsProvider extends Provider<ContactsPojo> {
 
             if (pojo.normalizedName != null) {
                 matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+                match = pojo.updateMatchingRelevance(matchInfo, match);
+            }
+
+            // Match also for alternative name, see https://developer.android.com/reference/android/provider/ContactsContract.ContactNameColumns#DISPLAY_NAME_ALTERNATIVE
+            // This may result in better match but eventually some missing highlighting
+            if (pojo.normalizedNameAlternative != null) {
+                matchInfo = fuzzyScore.match(pojo.normalizedNameAlternative.codePoints);
+                match = pojo.updateMatchingRelevance(matchInfo, match);
+            }
+
+            // Match also for phonetic name
+            // This may result in better match but eventually some missing highlighting
+            if (pojo.normalizedPhoneticName != null) {
+                matchInfo = fuzzyScore.match(pojo.normalizedPhoneticName.codePoints);
                 match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
