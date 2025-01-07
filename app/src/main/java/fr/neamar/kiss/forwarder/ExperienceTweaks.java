@@ -34,7 +34,6 @@ import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.NullSearcher;
-import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.LockAccessibilityService;
 
 // Deals with any settings in the "User Experience" setting sub-screen
@@ -213,11 +212,31 @@ public class ExperienceTweaks extends Forwarder {
                         Pojo item = KissApplication.getApplication(mainActivity).getDataHandler().getItemById(launchId);
                         if (item != null) {
                             Result<?> result = Result.fromPojo(mainActivity, item);
-                            result.fastLaunch(mainActivity, mainEmptyView);
+                            result.fastLaunch(mainActivity, ExperienceTweaks.this.mainEmptyView);
                         }
                         break;
                     }
                 }
+            }
+
+            /**
+             * Are we allowed to run our AccessibilityService?
+             */
+            private boolean isAccessibilityServiceEnabled(Context context) {
+                AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+                if (am == null) {
+                    return false;
+                }
+
+                List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+
+                for (AccessibilityServiceInfo enabledService : enabledServices) {
+                    ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
+                    if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(LockAccessibilityService.class.getName()))
+                        return true;
+                }
+
+                return false;
             }
         });
     }
@@ -345,7 +364,6 @@ public class ExperienceTweaks extends Forwarder {
 
     // Super hacky code to display notification drawer
     // Can (and will) break in any Android release.
-    @SuppressLint("PrivateApi")
     private void displayNotificationDrawer() {
         @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
         Class<?> statusbarManager;
@@ -363,7 +381,6 @@ public class ExperienceTweaks extends Forwarder {
         }
     }
 
-    @SuppressLint("PrivateApi")
     private void displayQuickSettings() {
         try {
             @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
@@ -413,27 +430,6 @@ public class ExperienceTweaks extends Forwarder {
      */
     private boolean isSuggestionsEnabled() {
         return prefs.getBoolean("enable-suggestions-keyboard", false);
-    }
-
-    /**
-     * Are we allowed to run our AccessibilityService?
-     */
-    private boolean isAccessibilityServiceEnabled(Context context) {
-        AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
-        if (am == null) {
-            return false;
-        }
-
-        List<AccessibilityServiceInfo> enabledServices = am.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
-
-
-        for (AccessibilityServiceInfo enabledService : enabledServices) {
-            ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
-            if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(LockAccessibilityService.class.getName()))
-                return true;
-        }
-
-        return false;
     }
 
     @SuppressLint("SourceLockedOrientationActivity")

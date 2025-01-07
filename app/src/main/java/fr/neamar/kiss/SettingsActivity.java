@@ -399,7 +399,6 @@ public class SettingsActivity extends PreferenceActivity implements
                 this,
                 R.string.ui_excluded_apps,
                 R.string.ui_excluded_apps_dialog_title,
-                AppPojo::isExcluded,
                 new ExcludePreferenceScreen.OnExcludedListener() {
                     @Override
                     public void onExcluded(final @NonNull AppPojo app) {
@@ -410,7 +409,8 @@ public class SettingsActivity extends PreferenceActivity implements
                     public void onIncluded(final @NonNull AppPojo app) {
                         dataHandler.removeFromExcluded(app);
                     }
-                }
+                },
+                AppPojo::isExcluded
         );
 
         PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
@@ -424,7 +424,6 @@ public class SettingsActivity extends PreferenceActivity implements
                 this,
                 R.string.ui_excluded_from_history_apps,
                 R.string.ui_excluded_apps_dialog_title,
-                AppPojo::isExcludedFromHistory,
                 new ExcludePreferenceScreen.OnExcludedListener() {
                     @Override
                     public void onExcluded(final @NonNull AppPojo app) {
@@ -435,7 +434,8 @@ public class SettingsActivity extends PreferenceActivity implements
                     public void onIncluded(final @NonNull AppPojo app) {
                         dataHandler.removeFromExcludedFromHistory(app);
                     }
-                }
+                },
+                AppPojo::isExcludedFromHistory
         );
 
         PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");
@@ -453,7 +453,6 @@ public class SettingsActivity extends PreferenceActivity implements
                 this,
                 R.string.ui_excluded_from_shortcuts_apps,
                 R.string.ui_excluded_apps_dialog_title,
-                AppPojo::isExcludedShortcuts,
                 new ExcludePreferenceScreen.OnExcludedListener() {
                     @Override
                     public void onExcluded(final @NonNull AppPojo app) {
@@ -464,7 +463,8 @@ public class SettingsActivity extends PreferenceActivity implements
                     public void onIncluded(final @NonNull AppPojo app) {
                         dataHandler.removeFromExcludedShortcutApps(app);
                     }
-                }
+                },
+                AppPojo::isExcludedShortcuts
         );
 
         PreferenceGroup category = (PreferenceGroup) findPreference("exclude_apps_category");

@@ -124,7 +124,7 @@ public class SearchResult extends Result<SearchPojo> {
                 }
                 break;
             default:
-                throw new IllegalArgumentException(String.format("Following type : %s isn't supported !", pojo.type));
+                throw new IllegalArgumentException("Following type isn't supported: " + pojo.type);
         }
 
         displayHighlighted(text, Collections.singletonList(new Pair<>(pos, pos + len)), searchText, context);
