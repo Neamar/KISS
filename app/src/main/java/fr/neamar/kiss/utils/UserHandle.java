@@ -114,7 +114,7 @@ public class UserHandle implements Parcelable {
             try {
                 serial = Long.parseLong(serialText);
             } catch (NumberFormatException e) {
-                Log.e(TAG, String.format("Unable to get suffix from string '%s' separated by '%s'", string, separator), e);
+                Log.e(TAG, "Unable to get suffix from string '" + string + "' separated by '" + separator + "'", e);
             }
         }
 

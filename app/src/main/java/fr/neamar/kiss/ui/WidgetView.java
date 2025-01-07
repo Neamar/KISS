@@ -59,15 +59,15 @@ public class WidgetView extends AppWidgetHostView {
         return false;
     }
 
-    class CheckForLongPress implements Runnable {
+    protected class CheckForLongPress implements Runnable {
         private int mOriginalWindowAttachCount;
 
         public void run() {
             if ((getParent() != null) && hasWindowFocus()
                     && mOriginalWindowAttachCount == getWindowAttachCount()
-                    && !mHasPerformedLongPress) {
+                    && !WidgetView.this.mHasPerformedLongPress) {
                 if (performLongClick()) {
-                    mHasPerformedLongPress = true;
+                    WidgetView.this.mHasPerformedLongPress = true;
                 }
             }
         }

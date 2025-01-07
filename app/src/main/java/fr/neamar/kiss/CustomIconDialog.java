@@ -308,13 +308,13 @@ public class CustomIconDialog extends DialogFragment {
         IconsHandler iconsHandler = KissApplication.getApplication(getActivity()).getIconsHandler();
         IconPackXML iconPack = iconsHandler.getCustomIconPack();
         if (iconPack != null) {
-            Collection<IconPackXML.DrawableInfo> drawables = ((IconPackXML) iconPack).getDrawableList();
+            Collection<IconPackXML.DrawableInfo> drawables = iconPack.getDrawableList();
             if (drawables != null) {
                 StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(mSearch.getText(), true);
                 FuzzyScore fuzzyScore = new FuzzyScore(normalized.codePoints);
                 for (IconPackXML.DrawableInfo info : drawables) {
                     if (fuzzyScore.match(info.getDrawableName()).match)
-                        mIconData.add(new IconData((IconPackXML) iconPack, info));
+                        mIconData.add(new IconData(iconPack, info));
                 }
             }
         }
@@ -323,7 +323,7 @@ public class CustomIconDialog extends DialogFragment {
         mIconGrid.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
     }
 
-    static class IconData {
+    private static class IconData {
         final IconPackXML.DrawableInfo drawableInfo;
         final IconPackXML iconPack;
 
@@ -337,7 +337,7 @@ public class CustomIconDialog extends DialogFragment {
         }
     }
 
-    static class IconAdapter extends BaseAdapter {
+    private static class IconAdapter extends BaseAdapter {
         private final List<IconData> mIcons;
         private OnItemClickListener mOnItemClickListener = null;
 

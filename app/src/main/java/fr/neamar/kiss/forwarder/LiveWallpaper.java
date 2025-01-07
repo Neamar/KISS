@@ -1,6 +1,5 @@
 package fr.neamar.kiss.forwarder;
 
-import android.annotation.SuppressLint;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,7 +15,6 @@ import fr.neamar.kiss.MainActivity;
 
 class LiveWallpaper extends Forwarder {
 
-    private static final String TAG = LiveWallpaper.class.getSimpleName();
     private final boolean wallpaperIsVisible;
 
     private WallpaperManager mWallpaperManager;
@@ -32,7 +30,6 @@ class LiveWallpaper extends Forwarder {
         super(mainActivity);
         TypedValue typedValue = new TypedValue();
         mainActivity.getTheme().resolveAttribute(android.R.attr.windowShowWallpaper, typedValue, true);
-        @SuppressLint("ResourceType")
         TypedArray a = mainActivity.obtainStyledAttributes(typedValue.resourceId, new int[]{android.R.attr.windowShowWallpaper});
         wallpaperIsVisible = a.getBoolean(0, true);
         a.recycle();
@@ -47,7 +44,7 @@ class LiveWallpaper extends Forwarder {
         mContentView = mainActivity.findViewById(android.R.id.content);
         mWallpaperManager.setWallpaperOffsetSteps(.5f, 0.f);
         mWallpaperOffset = 0.5f; // this is the center
-        mAnimation = new LiveWallpaper.Anim();
+        mAnimation = new Anim();
         mVelocityTracker = null;
         mWindowSize = new Point(1, 1);
     }
@@ -95,7 +92,8 @@ class LiveWallpaper extends Forwarder {
                 if (mVelocityTracker != null) {
                     mVelocityTracker.addMovement(event);
 
-                    if (mAnimation.init())
+                    mVelocityTracker.computeCurrentVelocity(1000 / 30);
+                    if (mAnimation.init(isPreferenceWPStickToSides(), isPreferenceWPReturnCenter(), mVelocityTracker.getXVelocity(), mWallpaperOffset))
                         mContentView.startAnimation(mAnimation);
 
                     mVelocityTracker.recycle();
@@ -151,7 +149,7 @@ class LiveWallpaper extends Forwarder {
 
     private void sendTouchEvent(View view, MotionEvent event) {
         int pointerCount = event.getPointerCount();
-        int viewOffset[] = {0, 0};
+        int[] viewOffset = {0, 0};
         // this will not account for a rotated view
         view.getLocationOnScreen(viewOffset);
 
@@ -168,28 +166,20 @@ class LiveWallpaper extends Forwarder {
         }
     }
 
-    class Anim extends Animation {
-        float mStartOffset;
-        float mDeltaOffset;
-        float mVelocity;
+    private class Anim extends Animation {
+        float mStartOffset = 0.5f;
+        float mDeltaOffset = 0;
+        float mVelocity = 0;
 
-        Anim() {
+        protected Anim() {
             super();
             setDuration(1000);
         }
 
-        boolean init() {
-            mVelocityTracker.computeCurrentVelocity(1000 / 30);
-            mVelocity = mVelocityTracker.getXVelocity();
-            //Log.d(TAG, "mVelocity=" + String.format(Locale.US, "%.2f", mVelocity));
-
-            mStartOffset = mWallpaperOffset;
-            //Log.d(TAG, "mStartOffset=" + String.format(Locale.US, "%.2f", mStartOffset));
-
-            boolean stickToSides = isPreferenceWPStickToSides();
-            boolean stickToCenter = isPreferenceWPReturnCenter();
-            float expectedPos = -Math.min(Math.max(mVelocity / mWindowSize.x, -.5f), .5f) + mStartOffset;
-            //Log.d(TAG, "expectedPos=" + String.format(Locale.US, "%.2f", expectedPos));
+        boolean init(boolean stickToSides, boolean stickToCenter, float velocity, float wallpaperOffset) {
+            mVelocity = velocity;
+            mStartOffset = wallpaperOffset;
+            float expectedPos = -Math.min(Math.max(mVelocity / LiveWallpaper.this.mWindowSize.x, -.5f), .5f) + mStartOffset;
 
             // if we stick only to the center
             float leftStickPercent = -1.f;
@@ -221,10 +211,10 @@ class LiveWallpaper extends Forwarder {
             float fOffset = mStartOffset + mDeltaOffset * interpolatedTime;
             float velocityInterpolator = (float) Math.sqrt(interpolatedTime) * 3.f;
             if (velocityInterpolator < 1.f)
-                fOffset -= mVelocity / mWindowSize.x * velocityInterpolator;
+                fOffset -= mVelocity / LiveWallpaper.this.mWindowSize.x * velocityInterpolator;
             else
-                fOffset -= mVelocity / mWindowSize.x * (1.f - 0.5f * (velocityInterpolator - 1.f));
-            updateWallpaperOffset(fOffset);
+                fOffset -= mVelocity / LiveWallpaper.this.mWindowSize.x * (1.f - 0.5f * (velocityInterpolator - 1.f));
+            LiveWallpaper.this.updateWallpaperOffset(fOffset);
         }
     }
 }

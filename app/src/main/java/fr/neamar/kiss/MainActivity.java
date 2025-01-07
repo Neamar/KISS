@@ -1,6 +1,5 @@
 package fr.neamar.kiss;
 
-import static android.provider.Settings.Global.ANIMATOR_DURATION_SCALE;
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 import android.animation.Animator;
@@ -27,7 +26,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.DragEvent;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,13 +34,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 
 import androidx.annotation.NonNull;
 

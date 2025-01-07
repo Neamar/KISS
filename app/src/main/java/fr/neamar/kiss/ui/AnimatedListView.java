@@ -97,7 +97,7 @@ public class AnimatedListView extends BlockableListView {
         });
     }
 
-    static class ItemInfo {
+    protected static class ItemInfo {
         final int top;
         final int viewIndex;
         final boolean validated;

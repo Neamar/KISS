@@ -92,7 +92,7 @@ public class PickAppWidgetActivity extends Activity {
             Object item = parent.getAdapter().getItem(position);
             WidgetInfo info = null;
             if (item instanceof ItemWidget)
-                info = ((ItemWidget) item).info;
+                info = ((ItemWidget) item).getInfo();
             if (info == null)
                 return;
             Intent intent = getIntent();
@@ -222,7 +222,7 @@ public class PickAppWidgetActivity extends Activity {
         int cachedIconWidth = 0;
         int cachedIconHeight = 0;
 
-        private WidgetInfo(String app, String name, String description, AppWidgetProviderInfo appWidgetInfo) {
+        protected WidgetInfo(String app, String name, String description, AppWidgetProviderInfo appWidgetInfo) {
             this.appName = app;
             this.widgetName = name;
             this.widgetDesc = description;
@@ -239,7 +239,7 @@ public class PickAppWidgetActivity extends Activity {
         @NonNull
         private final String name;
 
-        private ItemTitle(@NonNull String string) {
+        protected ItemTitle(@NonNull String string) {
             this.name = string;
         }
 
@@ -253,7 +253,7 @@ public class PickAppWidgetActivity extends Activity {
     private static class ItemWidget implements MenuItem {
         private final WidgetInfo info;
 
-        public ItemWidget(@NonNull WidgetInfo info) {
+        protected ItemWidget(@NonNull WidgetInfo info) {
             this.info = info;
         }
 
@@ -262,10 +262,18 @@ public class PickAppWidgetActivity extends Activity {
         public String getName() {
             return info.widgetName;
         }
+
+        public WidgetInfo getInfo() {
+            return info;
+        }
     }
 
     private static class WidgetListAdapter extends BaseAdapter {
         private final List<MenuItem> mList = new ArrayList<>(0);
+
+        protected WidgetListAdapter() {
+            super();
+        }
 
         public void setItems(Collection<MenuItem> list) {
             mList.clear();
@@ -333,7 +341,7 @@ public class PickAppWidgetActivity extends Activity {
         private Utilities.AsyncRun task = null;
         private Drawable mDrawable = null;
 
-        public ViewHolder(int viewType, View itemView) {
+        protected ViewHolder(int viewType, View itemView) {
             itemView.setTag(this);
             mViewType = viewType;
             textView = itemView.findViewById(android.R.id.text1);
@@ -350,7 +358,7 @@ public class PickAppWidgetActivity extends Activity {
             }
             CharSequence text = content.getName();
             if (content instanceof ItemWidget) {
-                final WidgetInfo widgetInfo = ((ItemWidget) content).info;
+                final WidgetInfo widgetInfo = ((ItemWidget) content).getInfo();
                 // set cached icon size to help ListView scrolling
                 {
                     int w = widgetInfo.cachedIconWidth;
@@ -360,7 +368,7 @@ public class PickAppWidgetActivity extends Activity {
                     textView.setCompoundDrawables(null, icon, null, null);
                 }
                 task = Utilities.runAsync(t -> {
-                    Drawable icon = getWidgetPreview(textView.getContext(), widgetInfo.appWidgetInfo);
+                    Drawable icon = PickAppWidgetActivity.getWidgetPreview(textView.getContext(), widgetInfo.appWidgetInfo);
                     synchronized (ViewHolder.this) {
                         mDrawable = icon;
                     }
@@ -390,7 +398,7 @@ public class PickAppWidgetActivity extends Activity {
                     textView.setCompoundDrawables(null, icon, null, null);
                 });
 
-                String description = ((ItemWidget) content).info.widgetDesc;
+                String description = ((ItemWidget) content).getInfo().widgetDesc;
                 if (!TextUtils.isEmpty(description))
                     text = content.getName() + "\n" + description;
             }

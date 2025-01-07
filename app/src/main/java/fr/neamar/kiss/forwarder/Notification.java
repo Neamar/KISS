@@ -19,25 +19,21 @@ class Notification extends Forwarder {
     private static final String TAG = Notification.class.getSimpleName();
     private final SharedPreferences notificationPreferences;
 
-    private SharedPreferences.OnSharedPreferenceChangeListener onNotificationDisplayed = new SharedPreferences.OnSharedPreferenceChangeListener() {
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String packageKey) {
-            if (packageKey != null) {
-                final ListView list = mainActivity.list;
+    private final SharedPreferences.OnSharedPreferenceChangeListener onNotificationDisplayed = (sharedPreferences, packageKey) -> {
+        if (packageKey != null) {
+            final ListView list = mainActivity.list;
 
-                // A new notification was received, iterate over the currently displayed results
-                // if one of them is for the package that just received a notification,
-                // update the notification dot visual if required.
-                //
-                // This implementation should be more efficient than calling notifyDataSetInvalidated()
-                // since we only iterate over the items currently displayed in the list
-                // and do not rebuild them all, just toggle visibility if required.
-                // Also, it means we get to display an animation, and that's cool :D
+            // A new notification was received, iterate over the currently displayed results
+            // if one of them is for the package that just received a notification,
+            // update the notification dot visual if required.
+            //
+            // This implementation should be more efficient than calling notifyDataSetInvalidated()
+            // since we only iterate over the items currently displayed in the list
+            // and do not rebuild them all, just toggle visibility if required.
+            // Also, it means we get to display an animation, and that's cool :D
 
-                updateDots(list, list.getLastVisiblePosition() - list.getFirstVisiblePosition() + 1, packageKey);
-                updateDots(mainActivity.favoritesBar, mainActivity.favoritesBar.getChildCount(), packageKey);
-            }
-
+            updateDots(list, list.getLastVisiblePosition() - list.getFirstVisiblePosition() + 1, packageKey);
+            updateDots(mainActivity.favoritesBar, mainActivity.favoritesBar.getChildCount(), packageKey);
         }
     };
 
