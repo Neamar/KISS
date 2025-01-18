@@ -10,6 +10,7 @@ import android.provider.Settings;
 
 import androidx.annotation.DrawableRes;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -18,13 +19,15 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.SettingPojo;
 import fr.neamar.kiss.searcher.Searcher;
-import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public class SettingsProvider extends SimpleProvider<SettingPojo> {
     private final static String SCHEME = "setting://";
     private final String settingName;
     private final List<SettingPojo> pojos;
-    private final SharedPreferences prefs;
+    private final WeakReference<Context> contextReference;
 
     public SettingsProvider(Context context) {
         pojos = new ArrayList<>();
@@ -61,8 +64,7 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
 
         settingName = context.getString(R.string.settings_prefix).toLowerCase(Locale.ROOT);
 
-        this.prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
+        this.contextReference = new WeakReference<>(context);
     }
 
     private void assignName(SettingPojo pojo, String name) {
@@ -88,20 +90,25 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
 
     @Override
     public void requestResults(String query, Searcher searcher) {
+        Context context = contextReference.get();
+        if (context == null) {
+            return;
+        }
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (!prefs.getBoolean("enable-settings", true)) {
             return;
         }
 
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
-
         if (queryNormalized.codePoints.length == 0) {
             return;
         }
 
-        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(context, queryNormalized.codePoints);
 
         for (SettingPojo pojo : pojos) {
-            FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+            MatchInfo matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
             boolean match = pojo.updateMatchingRelevance(matchInfo, false);
 
             if (!match) {

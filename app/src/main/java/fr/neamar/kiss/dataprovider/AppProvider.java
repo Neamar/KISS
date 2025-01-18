@@ -19,8 +19,10 @@ import fr.neamar.kiss.loader.LoadAppPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.searcher.Searcher;
-import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
+import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public class AppProvider extends Provider<AppPojo> {
 
@@ -127,7 +129,7 @@ public class AppProvider extends Provider<AppPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
 
         for (AppPojo pojo : getPojos()) {
             // exclude apps from results
@@ -139,7 +141,7 @@ public class AppProvider extends Provider<AppPojo> {
                 continue;
             }
 
-            FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
+            MatchInfo matchInfo = fuzzyScore.match(pojo.normalizedName.codePoints);
             boolean match = pojo.updateMatchingRelevance(matchInfo, false);
 
             // check relevance for tags
