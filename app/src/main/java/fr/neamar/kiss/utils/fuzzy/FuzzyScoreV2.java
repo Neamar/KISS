@@ -58,8 +58,8 @@ public class FuzzyScoreV2 implements FuzzyScore {
         camel_bonus = 30;
         first_letter_bonus = 15;
         leading_letter_penalty = -5;
-        max_leading_letter_penalty = -15;
-        unmatched_letter_penalty = -1;
+        max_leading_letter_penalty = -30;
+        unmatched_letter_penalty = -2;
         if (detailedMatchIndices) {
             matchInfo = new MatchInfo(patternLength);
         } else {
