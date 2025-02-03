@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
-import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class SettingsResult extends Result<SettingPojo> {
     private static final String TAG = SettingsResult.class.getSimpleName();

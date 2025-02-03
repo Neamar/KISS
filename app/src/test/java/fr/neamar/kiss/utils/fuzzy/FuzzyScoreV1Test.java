@@ -1,4 +1,4 @@
-package fr.neamar.kiss.utils;
+package fr.neamar.kiss.utils.fuzzy;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +12,7 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-class FuzzyScoreTest {
+class FuzzyScoreV1Test {
     private static final int full_word_bonus = 1000000;
     private static final int adjacency_bonus  = 100000;
     private static final int separator_bonus  = 10000;
@@ -53,7 +53,7 @@ class FuzzyScoreTest {
     }
 
     private FuzzyScore createFuzzyScore(int[] query) {
-        return new FuzzyScore(query, false)
+        return new FuzzyScoreV1(query, false)
                 .setFullWordBonus(full_word_bonus)
                 .setAdjacencyBonus(adjacency_bonus)
                 .setSeparatorBonus(separator_bonus)
@@ -77,10 +77,10 @@ class FuzzyScoreTest {
         FuzzyScore fuzzyScore = createFuzzyScore(queryNormalized.codePoints);
 
         // Test full match
-        FuzzyScore.MatchInfo match1  = fuzzyScore.match(testStringNormalized1.codePoints);
+        MatchInfo match1  = fuzzyScore.match(testStringNormalized1.codePoints);
         assertThat(match1.score, equalTo(separator_bonus + adjacency_bonus + adjacency_bonus + full_word_bonus));
         // Test no match: this must result in appropriate penalty, independent of previous match
-        FuzzyScore.MatchInfo match2  = fuzzyScore.match(testStringNormalized2.codePoints);
+        MatchInfo match2  = fuzzyScore.match(testStringNormalized2.codePoints);
         assertThat(match2.score, equalTo(unmatched_letter_penalty * 5));
     }
 }
