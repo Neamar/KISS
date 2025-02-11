@@ -55,7 +55,8 @@ import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
-import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public abstract class Result<T extends Pojo> {
 
@@ -135,7 +136,7 @@ public abstract class Result<T extends Pojo> {
 
     boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
                                TextView view, Context context) {
-        FuzzyScore.MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
+        MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
         if (!matchInfo.match) {
             view.setText(text);

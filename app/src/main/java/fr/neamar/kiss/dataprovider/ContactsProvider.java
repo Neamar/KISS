@@ -16,8 +16,10 @@ import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.Searcher;
-import fr.neamar.kiss.utils.FuzzyScore;
+import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.Permission;
+import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
     protected static final String TAG = ContactsProvider.class.getSimpleName();
@@ -84,10 +86,10 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             return;
         }
 
-        FuzzyScore fuzzyScore = new FuzzyScore(queryNormalized.codePoints);
+        FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
 
         for (ContactsPojo pojo : getPojos()) {
-            FuzzyScore.MatchInfo matchInfo;
+            MatchInfo matchInfo;
             boolean match = false;
 
             if (pojo.normalizedName != null) {
