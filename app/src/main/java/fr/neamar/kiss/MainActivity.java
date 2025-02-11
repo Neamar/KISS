@@ -11,6 +11,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.LauncherApps;
+import android.content.pm.LauncherUserInfo;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -19,6 +21,8 @@ import android.database.DataSetObserver;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.Editable;
@@ -40,8 +44,11 @@ import android.widget.AdapterView;
 import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -209,6 +216,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
+                } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                    if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PROFILE_AVAILABLE)
+                        || intent.getAction().equalsIgnoreCase(Intent.ACTION_PROFILE_UNAVAILABLE)) {
+                        privateSpaceStateEvent(intent.getParcelableExtra(Intent.EXTRA_USER, UserHandle.class));
+                    }
                 }
 
                 // New provider might mean new favorites
@@ -224,6 +236,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             this.registerReceiver(mReceiver, intentFilterLoad, Context.RECEIVER_EXPORTED);
             this.registerReceiver(mReceiver, intentFilterLoadOver, Context.RECEIVER_EXPORTED);
             this.registerReceiver(mReceiver, intentFilterFullLoadOver, Context.RECEIVER_EXPORTED);
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+                IntentFilter intentFilterProfileAvailable = new IntentFilter(Intent.ACTION_PROFILE_AVAILABLE);
+                IntentFilter intentFilterProfileUnAvailable = new IntentFilter(Intent.ACTION_PROFILE_UNAVAILABLE);
+                this.registerReceiver(mReceiver, intentFilterProfileAvailable, Context.RECEIVER_EXPORTED);
+                this.registerReceiver(mReceiver, intentFilterProfileUnAvailable, Context.RECEIVER_EXPORTED);
+            }
         }
         else {
             this.registerReceiver(mReceiver, intentFilterLoad);
@@ -411,6 +429,19 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+
+        MenuItem privateSpaceItem = menu.findItem(R.id.private_space);
+        if (privateSpaceItem != null) {
+            if ((android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM)
+                || (getPrivateUser() == null)) {
+                privateSpaceItem.setVisible(false);
+            } else if (isPrivateSpaceUnlocked()) {
+                privateSpaceItem.setTitle("Lock Private Space");
+            } else {
+                privateSpaceItem.setTitle("Unlock Private Space");
+            }
+        }
+
         forwarderManager.onCreateContextMenu(menu);
     }
 
@@ -566,6 +597,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else if (itemId == R.id.preferences) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
+        } else if (itemId == R.id.private_space) {
+            switchPrivateSpaceState();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -575,7 +609,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-
         return true;
     }
 
@@ -695,6 +728,64 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             loaderSpinner.animate().cancel();
             loaderSpinner.setAlpha(1);
             loaderSpinner.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @RequiresApi(35)
+    private UserHandle getPrivateUser() {
+        final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+        assert manager != null;
+
+        final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        assert launcher != null;
+
+        List<UserHandle> users = launcher.getProfiles();
+
+        UserHandle privateUser = null;
+        for (UserHandle user : users) {
+            if (Objects.requireNonNull(launcher.getLauncherUserInfo(user)).getUserType().equalsIgnoreCase(UserManager.USER_TYPE_PROFILE_PRIVATE)) {
+                privateUser = user;
+                break;
+            }
+        }
+        return privateUser;
+    }
+
+    private boolean isPrivateSpaceUnlocked() {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            return false;
+        }
+
+        final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+        assert manager != null;
+
+        UserHandle user = getPrivateUser();
+        return !manager.isQuietModeEnabled(user);
+    }
+
+    @RequiresApi(35)
+    private void switchPrivateSpaceState() {
+        final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+        assert manager != null;
+
+        UserHandle user = getPrivateUser();
+        manager.requestQuietModeEnabled(!manager.isQuietModeEnabled(user), user);
+    }
+
+    @RequiresApi(35)
+    private void privateSpaceStateEvent(UserHandle handle) {
+        if (handle == null) {
+            return;
+        }
+
+        final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+
+        LauncherUserInfo info = launcher.getLauncherUserInfo(handle);
+        if (info != null) {
+            if (info.getUserType().equalsIgnoreCase(UserManager.USER_TYPE_PROFILE_PRIVATE)) {
+                Log.d(TAG, "Private Space state changed");
+                // TODO: Check if private space state changed and change app view accordingly
+            }
         }
     }
 
