@@ -45,6 +45,7 @@ import fr.neamar.kiss.forwarder.TagsMenu;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.NameComparator;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.preference.ExcludePreferenceScreen;
 import fr.neamar.kiss.preference.PreferenceScreenHelper;
@@ -253,15 +254,29 @@ public class SettingsActivity extends PreferenceActivity implements
         // appPojoList is a copy of the original list; we can sort it in place
         Collections.sort(appPojoList, new NameComparator());
 
+        List<ShortcutPojo> shortcutPojoList = getDataHandler().getShortcuts();
+        if (shortcutPojoList == null)
+            shortcutPojoList = Collections.emptyList();
+
+        Collections.sort(shortcutPojoList, new NameComparator());
+
         // generate entry names and entry values
         final int appCount = appPojoList.size();
-        CharSequence[] entries = new CharSequence[appCount];
-        CharSequence[] entryValues = new CharSequence[appCount];
+        final int shortcutCount =  + shortcutPojoList.size();
+        CharSequence[] entries = new CharSequence[appCount + shortcutCount];
+        CharSequence[] entryValues = new CharSequence[appCount + shortcutCount];
         for (int idx = 0; idx < appCount; idx++) {
             AppPojo appEntry = appPojoList.get(idx);
             entries[idx] = appEntry.getName();
             entryValues[idx] = appEntry.id;
         }
+
+        for (int idx = 0; idx < shortcutCount; idx++) {
+            ShortcutPojo shortcutEntry = shortcutPojoList.get(idx);
+            entries[appCount + idx] = shortcutEntry.getName();
+            entryValues[appCount + idx] = shortcutEntry.id;
+        }
+
         return new Pair<>(entries, entryValues);
     }
 
