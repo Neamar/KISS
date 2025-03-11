@@ -254,7 +254,7 @@ public class SettingsActivity extends PreferenceActivity implements
         // appPojoList is a copy of the original list; we can sort it in place
         Collections.sort(appPojoList, new NameComparator());
 
-        List<ShortcutPojo> shortcutPojoList = getDataHandler().getShortcuts();
+        List<ShortcutPojo> shortcutPojoList = getDataHandler().getPinnedShortcuts();
         if (shortcutPojoList == null)
             shortcutPojoList = Collections.emptyList();
 

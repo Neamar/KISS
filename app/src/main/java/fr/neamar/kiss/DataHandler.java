@@ -775,17 +775,6 @@ public class DataHandler extends BroadcastReceiver
         return shortcutsProvider != null ? shortcutsProvider.getPinnedShortcuts() : null;
     }
 
-    /**
-     * Return all shortcuts
-     *
-     * @return pojos for all shortcuts
-     */
-    @Nullable
-    public List<ShortcutPojo> getShortcuts() {
-        ShortcutsProvider shortcutsProvider = getShortcutsProvider();
-        return shortcutsProvider != null ? shortcutsProvider.getShortcuts() : null;
-    }
-
 
     @Nullable
     public ContactsProvider getContactsProvider() {

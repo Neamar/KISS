@@ -124,15 +124,4 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
         }
         return records;
     }
-
-    public List<ShortcutPojo> getShortcuts() {
-        List<ShortcutPojo> pojos = getPojos();
-        List<ShortcutPojo> records = new ArrayList<>(pojos.size());
-
-        for (ShortcutPojo pojo : pojos) {
-            pojo.relevance = 0;
-            records.add(pojo);
-        }
-        return records;
-    }
 }
