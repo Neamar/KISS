@@ -216,11 +216,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
                     // Run GC once to free all the garbage accumulated during provider initialization
                     System.gc();
-                } else if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                    if (intent.getAction().equalsIgnoreCase(Intent.ACTION_PROFILE_AVAILABLE)
-                        || intent.getAction().equalsIgnoreCase(Intent.ACTION_PROFILE_UNAVAILABLE)) {
-                        privateSpaceStateEvent(intent.getParcelableExtra(Intent.EXTRA_USER, UserHandle.class));
-                    }
                 }
 
                 // New provider might mean new favorites
@@ -236,12 +231,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             this.registerReceiver(mReceiver, intentFilterLoad, Context.RECEIVER_EXPORTED);
             this.registerReceiver(mReceiver, intentFilterLoadOver, Context.RECEIVER_EXPORTED);
             this.registerReceiver(mReceiver, intentFilterFullLoadOver, Context.RECEIVER_EXPORTED);
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                IntentFilter intentFilterProfileAvailable = new IntentFilter(Intent.ACTION_PROFILE_AVAILABLE);
-                IntentFilter intentFilterProfileUnAvailable = new IntentFilter(Intent.ACTION_PROFILE_UNAVAILABLE);
-                this.registerReceiver(mReceiver, intentFilterProfileAvailable, Context.RECEIVER_EXPORTED);
-                this.registerReceiver(mReceiver, intentFilterProfileUnAvailable, Context.RECEIVER_EXPORTED);
-            }
         }
         else {
             this.registerReceiver(mReceiver, intentFilterLoad);
@@ -436,9 +425,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 || (getPrivateUser() == null)) {
                 privateSpaceItem.setVisible(false);
             } else if (isPrivateSpaceUnlocked()) {
-                privateSpaceItem.setTitle("Lock Private Space");
+                privateSpaceItem.setTitle(R.string.lock_private_space);
             } else {
-                privateSpaceItem.setTitle("Unlock Private Space");
+                privateSpaceItem.setTitle(R.string.unlock_private_space);
             }
         }
 
@@ -770,23 +759,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         UserHandle user = getPrivateUser();
         manager.requestQuietModeEnabled(!manager.isQuietModeEnabled(user), user);
-    }
-
-    @RequiresApi(35)
-    private void privateSpaceStateEvent(UserHandle handle) {
-        if (handle == null) {
-            return;
-        }
-
-        final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-
-        LauncherUserInfo info = launcher.getLauncherUserInfo(handle);
-        if (info != null) {
-            if (info.getUserType().equalsIgnoreCase(UserManager.USER_TYPE_PROFILE_PRIVATE)) {
-                Log.d(TAG, "Private Space state changed");
-                // TODO: Check if private space state changed and change app view accordingly
-            }
-        }
     }
 
     public void onFavoriteChange() {
