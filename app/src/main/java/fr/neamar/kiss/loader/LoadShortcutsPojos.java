@@ -39,17 +39,69 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             return new ArrayList<>();
         }
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        List<ShortcutPojo> nonOreoPojos = fetchNonOreoPojos(context);
+        List<ShortcutPojo> oreoPojos = fetchOreoPojos(context);
 
-        List<ShortcutRecord> records = DBHelper.getShortcuts(context);
+        List<ShortcutPojo> allPojos = new ArrayList<>(nonOreoPojos);
+        allPojos.addAll(oreoPojos);
+
+        return allPojos;
+    }
+
+    // get all oreo shortcuts from system directly
+    private List<ShortcutPojo> fetchOreoPojos(Context context) {
+        List<ShortcutPojo> oreoPojos = new ArrayList<>();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+            Set<String> excludedApps = dataHandler.getExcluded();
+            Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
+            UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(context);
+
+            for (ShortcutInfo shortcutInfo : shortcutInfos) {
+                if (isCancelled()) {
+                    break;
+                }
+
+                if (ShortcutUtil.isShortcutVisible(context, shortcutInfo, excludedApps, excludedShortcutApps)) {
+                    ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo,
+                            !shortcutInfo.isPinned());
+
+                    if (shortcutRecord != null) {
+                        boolean isSuspended = PackageManagerUtils.isAppSuspended(context, shortcutInfo.getPackage(),
+                                new UserHandle(context, shortcutInfo.getUserHandle()));
+                        boolean isQuietModeEnabled = userManager.isQuietModeEnabled(shortcutInfo.getUserHandle());
+                        boolean disabled = isSuspended || isQuietModeEnabled;
+
+                        ShortcutPojo pojo = createPojo(
+                                shortcutRecord,
+                                dataHandler.getTagsHandler(),
+                                ShortcutUtil.getComponentName(context, shortcutInfo),
+                                shortcutInfo.isPinned(),
+                                shortcutInfo.isDynamic(),
+                                disabled
+                        );
+
+                        oreoPojos.add(pojo);
+                    }
+                }
+            }
+        }
+
+        return oreoPojos;
+    }
+
+    private List<ShortcutPojo> fetchNonOreoPojos(Context context) {
         DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
         TagsHandler tagsHandler = dataHandler.getTagsHandler();
-        Set<String> excludedApps = dataHandler.getExcluded();
-        Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
-
         List<ShortcutPojo> pojos = new ArrayList<>();
+        List<ShortcutRecord> records = DBHelper.getShortcuts(context);
 
         for (ShortcutRecord shortcutRecord : records) {
+            if (isCancelled()) {
+                break;
+            }
             ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, null, true, false, false);
             if (!pojo.isOreoShortcut()) {
                 // add older shortcuts from DB
@@ -57,53 +109,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             }
         }
 
-        // get all oreo shortcuts from system directly
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-            List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(context);
-            for (ShortcutInfo shortcutInfo : shortcutInfos) {
-                LauncherUserInfo info = null;
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                    info = launcherApps.getLauncherUserInfo(shortcutInfo.getUserHandle());
-                }
-                if (isCancelled()) {
-                    break;
-                }
-                if (ShortcutUtil.isShortcutVisible(context, shortcutInfo, excludedApps, excludedShortcutApps)) {
-                    ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, !shortcutInfo.isPinned());
-                    if (shortcutRecord != null) {
-                        boolean disabled = PackageManagerUtils.isAppSuspended(context, shortcutInfo.getPackage(), new UserHandle(context, shortcutInfo.getUserHandle())) || userManager.isQuietModeEnabled(shortcutInfo.getUserHandle());
-                        ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, ShortcutUtil.getComponentName(context, shortcutInfo), shortcutInfo.isPinned(), shortcutInfo.isDynamic(), disabled);
-                        if ((android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM)
-                            && (info != null)) {
-                            boolean privateSpaceShortcutsDisabled = prefs.getBoolean("disable-private-space-shortcuts", true);
-                            if (shouldAddShortcut(userManager, info, shortcutInfo.getUserHandle(),
-                                    privateSpaceShortcutsDisabled)) {
-                                pojos.add(pojo);
-                            }
-                        } else {
-                            pojos.add(pojo);
-                        }
-                    }
-                }
-            }
-        }
-
         return pojos;
-    }
-
-    @RequiresApi(35)
-    private boolean shouldAddShortcut(UserManager manager, LauncherUserInfo info,
-                                      android.os.UserHandle profile, boolean privateSpaceShortcutsDisabled) {
-        if (!info.getUserType().equalsIgnoreCase(UserManager.USER_TYPE_PROFILE_PRIVATE)) {
-            return true;
-        } else {
-            if (privateSpaceShortcutsDisabled) {
-                return false;
-            }
-            else return !isQuietModeEnabled(manager, profile);
-        }
     }
 
     private ShortcutPojo createPojo(ShortcutRecord shortcutRecord, TagsHandler tagsHandler, String componentName, boolean pinned, boolean dynamic, boolean disabled) {
@@ -111,12 +117,5 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         pojo.setName(shortcutRecord.name);
         pojo.setTags(tagsHandler.getTags(pojo.id));
         return pojo;
-    }
-
-    private boolean isQuietModeEnabled(UserManager manager, android.os.UserHandle profile) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return manager.isQuietModeEnabled(profile);
-        }
-        return false;
     }
 }
