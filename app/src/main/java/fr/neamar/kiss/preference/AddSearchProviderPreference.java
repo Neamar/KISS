@@ -104,6 +104,10 @@ public class AddSearchProviderPreference extends DialogPreference {
         return !(providerName.getText().toString().contains("|") || providerUri.getText().toString().contains("|"));
     }
 
+    private boolean isPlaceholder() {
+        return providerUri.getText().toString().equals("%s");
+    }
+
     private boolean validateQueryPlaceholder() {
         return providerUri.getText().toString().contains("%s");
     }
@@ -162,6 +166,11 @@ public class AddSearchProviderPreference extends DialogPreference {
             return false;
         }
         //if all validates are correct, then close dialog with close flag = true
+
+        // placeholder alone is valid too
+        if (isPlaceholder()) {
+            return true;
+        }
 
         // If provider submitted is submitted not more check is need
         if (validateUrl()) {
