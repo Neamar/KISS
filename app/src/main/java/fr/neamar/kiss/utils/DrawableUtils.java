@@ -27,7 +27,6 @@ import android.util.TypedValue;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
-import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 
 public class DrawableUtils {
@@ -63,9 +62,7 @@ public class DrawableUtils {
             bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         }
 
-        final Canvas canvas = new Canvas();
-        canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG));
-        canvas.setBitmap(bitmap);
+        Canvas canvas = createCanvas(bitmap);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
         return bitmap;
@@ -118,62 +115,90 @@ public class DrawableUtils {
 
         Bitmap outputBitmap;
         Canvas outputCanvas;
+
+        int maxIconSize = getMaxIconSize(ctx, icon);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && isAdaptiveIconDrawable(icon)) {
             AdaptiveIconDrawable adaptiveIcon = (AdaptiveIconDrawable) icon;
             Drawable bgDrawable = adaptiveIcon.getBackground();
             Drawable fgDrawable = adaptiveIcon.getForeground();
 
-            int iconSize = icon.getIntrinsicHeight();
-            if (iconSize <= 0) {
-                iconSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 72f, ctx.getResources().getDisplayMetrics());
-            }
-            int layerSize = (int) (iconSize * (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction()));
-            int layerOffset = (layerSize - iconSize) / 2;
+            int layerSize = (int) (maxIconSize * (1 + 2 * AdaptiveIconDrawable.getExtraInsetFraction()));
+            int layerOffset = (layerSize - maxIconSize) / 2;
 
-            outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-            outputCanvas = new Canvas(outputBitmap);
+            outputBitmap = Bitmap.createBitmap(maxIconSize, maxIconSize, Bitmap.Config.ARGB_8888);
+            outputCanvas = createCanvas(outputBitmap);
 
             setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, false, icon.hashCode());
 
             // Stretch adaptive layers because they are 108dp and the icon size is 48dp
             if (bgDrawable != null) {
-                bgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
+                bgDrawable.setBounds(-layerOffset, -layerOffset, maxIconSize + layerOffset, maxIconSize + layerOffset);
                 bgDrawable.draw(outputCanvas);
             }
 
             if (fgDrawable != null) {
-                fgDrawable.setBounds(-layerOffset, -layerOffset, iconSize + layerOffset, iconSize + layerOffset);
+                fgDrawable.setBounds(-layerOffset, -layerOffset, maxIconSize + layerOffset, maxIconSize + layerOffset);
                 fgDrawable.draw(outputCanvas);
             }
         }
         // If icon is not adaptive, put it in a colored canvas to make it have a unified shape
         else {
-            // Shrink icon fit inside the shape
-            int iconSize;
-            int iconOffset = 0;
+            float marginPercent = 0;
             if (fitInside) {
-                float marginPercent = getScaleToFit(shape);
-                int iconHeight = icon.getIntrinsicHeight();
-                if (iconHeight <= 0)
-                    iconHeight = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
-                iconSize = Math.round((1f + 2f * marginPercent) * iconHeight);
-                iconOffset = Math.round(marginPercent * iconHeight);
-            } else {
-                // we don't have antialiasing when clipping so we make the icon bigger and let the View downscale
-                iconSize = 2 * ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
+                marginPercent = getScaleToFit(shape);
             }
+            Rect bounds = getIconBounds(icon, maxIconSize, marginPercent);
 
-            outputBitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
-            outputCanvas = new Canvas(outputBitmap);
+            outputBitmap = Bitmap.createBitmap(maxIconSize, maxIconSize, Bitmap.Config.ARGB_8888);
+            outputCanvas = createCanvas(outputBitmap);
 
             setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, true, icon.hashCode());
 
             // Shrink icon so that it fits the shape
-            int bottomRightCorner = iconSize - iconOffset;
-            icon.setBounds(iconOffset, iconOffset, bottomRightCorner, bottomRightCorner);
+            icon.setBounds(bounds);
             icon.draw(outputCanvas);
         }
         return new BitmapDrawable(ctx.getResources(), outputBitmap);
+    }
+
+    private static int getMaxIconSize(Context ctx, Drawable icon) {
+        int maxIconSize = getMaxIconSize(ctx);
+        int maxIntrinsicSize = Math.max(icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+        if (maxIntrinsicSize > 0 && maxIntrinsicSize < maxIconSize) {
+            return maxIntrinsicSize;
+        }
+        return maxIconSize;
+    }
+
+    private static int getMaxIconSize(Context ctx) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 96f, ctx.getResources().getDisplayMetrics());
+    }
+
+    private static Rect getIconBounds(Drawable icon, int maxIconSize, float marginPercent) {
+        int w = icon.getIntrinsicWidth();
+        int h = icon.getIntrinsicHeight();
+
+        int margin = Math.round(maxIconSize * marginPercent);
+
+        float aspect = (w > 0 && h > 0) ? (w / (float) h) : 1f;
+        if (h > w) {
+            h = maxIconSize - margin;
+            w = Math.round(h * aspect);
+        } else {
+            w = maxIconSize - margin;
+            h = Math.round(w / aspect);
+        }
+
+        int offsetWidth = (maxIconSize - w) / 2;
+        int offsetHeight = (maxIconSize - h) / 2;
+        return new Rect(offsetWidth, offsetHeight, w + offsetWidth, h + offsetHeight);
+    }
+
+    private static Canvas createCanvas(Bitmap bitmap) {
+        Canvas canvas = new Canvas();
+        canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG));
+        canvas.setBitmap(bitmap);
+        return canvas;
     }
 
     /**
@@ -350,7 +375,7 @@ public class DrawableUtils {
 
     @NonNull
     public static Drawable generateCodepointDrawable(@NonNull Context ctx, int codepoint, @ColorInt int textColor, @ColorInt int backgroundColor, @NonNull IconShape shape) {
-        int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
+        int iconSize = getMaxIconSize(ctx);
 
         Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape, codepoint);
         // create a canvas from a bitmap
@@ -418,7 +443,7 @@ public class DrawableUtils {
 
     @NonNull
     private synchronized static Bitmap generateBackgroundBitmap(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape, int hash) {
-        int iconSize = ctx.getResources().getDimensionPixelSize(R.dimen.result_icon_size);
+        int iconSize = getMaxIconSize(ctx);
         // create a canvas from a bitmap
         Bitmap bitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
