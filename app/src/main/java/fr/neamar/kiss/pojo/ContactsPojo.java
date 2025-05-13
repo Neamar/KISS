@@ -8,6 +8,7 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 
 public final class ContactsPojo extends Pojo {
     public final String lookupKey;
+    private final long contactId;
 
     public String phone;
     //phone without special characters
@@ -32,9 +33,10 @@ public final class ContactsPojo extends Pojo {
 
     private ContactData contactData;
 
-    public ContactsPojo(String id, String lookupKey, Uri icon, boolean primary, boolean starred) {
+    public ContactsPojo(String id, String lookupKey, long contactId, Uri icon, boolean primary, boolean starred) {
         super(id);
         this.lookupKey = lookupKey;
+        this.contactId = contactId;
         this.icon = icon;
         this.primary = primary;
         this.starred = starred;
@@ -77,6 +79,10 @@ public final class ContactsPojo extends Pojo {
 
     public ContactData getContactData() {
         return contactData;
+    }
+
+    public long getContactId() {
+        return contactId;
     }
 
     public void setNameAlternative(String nameAlternative) {

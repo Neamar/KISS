@@ -283,8 +283,11 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     private void launchContactView(Context context, View v) {
         Intent viewContact = new Intent(Intent.ACTION_VIEW);
 
-        viewContact.setData(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
-                String.valueOf(pojo.lookupKey)));
+        Uri contactUri = ContactsContract.Contacts.CONTENT_LOOKUP_URI;
+        contactUri = Uri.withAppendedPath(contactUri, String.valueOf(pojo.lookupKey));
+        contactUri = Uri.withAppendedPath(contactUri, String.valueOf(pojo.getContactId()));
+
+        viewContact.setData(contactUri);
         setSourceBounds(viewContact, v);
         viewContact.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         viewContact.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
