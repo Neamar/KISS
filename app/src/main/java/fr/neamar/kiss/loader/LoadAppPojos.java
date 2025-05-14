@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.LauncherUserInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
@@ -55,6 +56,9 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
             // Handle multi-profile support introduced in Android 5 (#542)
             for (android.os.UserHandle profile : manager.getUserProfiles()) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !manager.isUserUnlocked(profile)) {
+                    continue;
+                }
                 UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
                 for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(null, profile)) {
                     if (isCancelled()) {
