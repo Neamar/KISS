@@ -104,6 +104,7 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         InterfaceTweaks.applySettingsTheme(this, prefs);
+        InterfaceTweaks.applySystemBarInsets(this.getWindow().getDecorView());
 
         systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
 
@@ -352,13 +353,13 @@ public class SettingsActivity extends PreferenceActivity implements
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
-
                 if (toolbar != null) {
                     toolbar.setNavigationOnClickListener(v -> {
                         dialog.dismiss();
                     });
                 }
             }
+            InterfaceTweaks.applySystemBarInsets(dialog.getWindow().getDecorView());
         }
 
         return false;
@@ -501,36 +502,37 @@ public class SettingsActivity extends PreferenceActivity implements
         removePreference("web-providers", "default-search-provider");
     }
 
-    @SuppressWarnings("StringSplitter")
     private void addCustomSearchProvidersSelect(SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = createCustomSearchProvidersPreference("selected-search-provider-names", R.string.search_providers_title, 10);
         PreferenceGroup category = (PreferenceGroup) findPreference("web-providers");
         category.addPreference(multiPreference);
     }
 
-    @SuppressWarnings("StringSplitter")
     private void addCustomSearchProvidersDelete(final SharedPreferences prefs) {
         MultiSelectListPreference multiPreference = createCustomSearchProvidersPreference("deleting-search-providers-names", R.string.search_providers_delete, 20);
         multiPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-            Set<String> searchProvidersToDelete = (Set<String>) newValue;
+            if (newValue instanceof Set) {
+                @SuppressWarnings("unchecked")
+                Set<String> searchProvidersToDelete = (Set<String>) newValue;
 
-            Set<String> availableSearchProviders = SearchProvider.getAvailableSearchProviders(this, prefs);
-            Set<String> updatedProviders = SearchProvider.getAvailableSearchProviders(this, prefs);
+                Set<String> availableSearchProviders = SearchProvider.getAvailableSearchProviders(this, prefs);
+                Set<String> updatedProviders = SearchProvider.getAvailableSearchProviders(this, prefs);
 
-            for (String searchProvider : availableSearchProviders) {
-                for (String providerToDelete : searchProvidersToDelete) {
-                    if (searchProvider.startsWith(providerToDelete + "|")) {
-                        updatedProviders.remove(searchProvider);
+                for (String searchProvider : availableSearchProviders) {
+                    for (String providerToDelete : searchProvidersToDelete) {
+                        if (searchProvider.startsWith(providerToDelete + "|")) {
+                            updatedProviders.remove(searchProvider);
+                        }
                     }
                 }
-            }
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putStringSet("available-search-providers", updatedProviders);
-            editor.putStringSet("deleting-search-providers-names", updatedProviders);
-            editor.apply();
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putStringSet("available-search-providers", updatedProviders);
+                editor.putStringSet("deleting-search-providers-names", updatedProviders);
+                editor.apply();
 
-            if (!searchProvidersToDelete.isEmpty()) {
-                Toast.makeText(SettingsActivity.this, R.string.search_provider_deleted, Toast.LENGTH_LONG).show();
+                if (!searchProvidersToDelete.isEmpty()) {
+                    Toast.makeText(SettingsActivity.this, R.string.search_provider_deleted, Toast.LENGTH_LONG).show();
+                }
             }
 
             return true;
