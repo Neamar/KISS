@@ -104,6 +104,7 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         InterfaceTweaks.applySettingsTheme(this, prefs);
+        InterfaceTweaks.applySystemBarInsets(this.getWindow().getDecorView());
 
         systemUiVisibilityHelper = new SystemUiVisibilityHelper(this);
 
@@ -352,13 +353,13 @@ public class SettingsActivity extends PreferenceActivity implements
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
-
                 if (toolbar != null) {
                     toolbar.setNavigationOnClickListener(v -> {
                         dialog.dismiss();
                     });
                 }
             }
+            InterfaceTweaks.applySystemBarInsets(dialog.getWindow().getDecorView());
         }
 
         return false;
