@@ -203,7 +203,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                             boolean primary = phoneCursor.getInt(isPrimaryIndex) != 0;
                             Uri icon = basicContact.getIcon();
 
-                            ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, icon, primary, starred);
+                            ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + phone, lookupKey, contactId, icon, primary, starred);
                             setNames(contact, basicContact);
 
                             contact.setPhone(phone, false);
@@ -269,7 +269,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
                             }
                             Uri icon = basicContact.getIcon();
 
-                            ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, lookupKey, icon, primary, basicRawContact.isStarred());
+                            ContactsPojo contact = new ContactsPojo(pojoScheme + contactId + '/' + MimeTypeUtils.getShortMimeType(mimeType) + '/' + id, lookupKey, contactId, icon, primary, basicRawContact.isStarred());
                             setNames(contact, basicContact);
 
                             ContactData contactData = new ContactData(mimeType, id);
