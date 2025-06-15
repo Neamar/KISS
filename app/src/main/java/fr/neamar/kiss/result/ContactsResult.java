@@ -100,9 +100,11 @@ public class ContactsResult extends CallResult<ContactsPojo> {
             contactIcon.setImageDrawable(null);
         }
 
-        contactIcon.assignContactUri(Uri.withAppendedPath(
-                ContactsContract.Contacts.CONTENT_LOOKUP_URI,
-                String.valueOf(pojo.lookupKey)));
+        Uri contactUri = ContactsContract.Contacts.CONTENT_LOOKUP_URI;
+        contactUri = Uri.withAppendedPath(contactUri, String.valueOf(pojo.lookupKey));
+        contactUri = Uri.withAppendedPath(contactUri, String.valueOf(pojo.getContactId()));
+        contactIcon.assignContactUri(contactUri);
+
         contactIcon.setExtraOnClickListener(v -> recordLaunch(v.getContext(), queryInterface));
 
         int primaryColor = UIColors.getPrimaryColor(context);
