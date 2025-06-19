@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ResultItem"
-    android:descendantFocusability="blocksDescendants"
+    tools:layout_height="56dp"
     android:orientation="horizontal">
 
     <fr.neamar.kiss.ui.ImprovedQuickContactBadge
@@ -30,10 +30,11 @@
         android:id="@+id/item_contact_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_contact_icon"
         android:layout_toStartOf="@+id/item_contact_action_message"
         android:layout_toLeftOf="@+id/item_contact_action_message"
-        android:layout_toEndOf="@+id/item_contact_icon"
-        android:layout_toRightOf="@+id/item_contact_icon"
+        android:layout_toEndOf="@id/item_contact_icon"
+        android:layout_toRightOf="@id/item_contact_icon"
         android:ellipsize="end"
         android:paddingEnd="2dp"
         android:paddingRight="2dp"
@@ -74,6 +75,7 @@
         android:id="@+id/item_contact_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/item_contact_name"
         android:layout_alignBaseline="@id/item_contact_phone"
         android:layout_alignEnd="@+id/item_contact_name"
         android:layout_alignRight="@+id/item_contact_name"
