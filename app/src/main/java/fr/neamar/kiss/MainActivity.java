@@ -932,13 +932,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             //noinspection ConstantConditions
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+            systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         }
 
-        systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         dismissPopup();
-
-        searchEditText.setCursorVisible(false);
-        searchEditText.clearFocus();
+        
+        if (view == searchEditText) {
+            searchEditText.setCursorVisible(false);
+            searchEditText.clearFocus();
+        }
     }
 
     @Override
