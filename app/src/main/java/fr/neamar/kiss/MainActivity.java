@@ -916,13 +916,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
 
     public void showKeyboard() {
-        searchEditText.requestFocus();
-        searchEditText.setCursorVisible(true);
-        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert mgr != null;
-        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
-
-        systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
+        if (searchEditText.requestFocus()) {
+            searchEditText.setCursorVisible(true);
+            InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+            systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
+        }
     }
 
     @Override
@@ -933,13 +932,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             //noinspection ConstantConditions
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+            systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         }
 
-        systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         dismissPopup();
-
-        searchEditText.setCursorVisible(false);
-        searchEditText.clearFocus();
+        
+        if (view == searchEditText) {
+            searchEditText.setCursorVisible(false);
+            searchEditText.clearFocus();
+        }
     }
 
     @Override
