@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -311,10 +312,11 @@ public class CustomIconDialog extends DialogFragment {
         if (iconPack != null) {
             Collection<IconPackXML.DrawableInfo> drawables = iconPack.getDrawableList();
             if (drawables != null) {
-                StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(mSearch.getText(), true);
+                CharSequence searchText = mSearch.getText();
+                StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(searchText, true);
                 FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(getActivity(), normalized.codePoints);
                 for (IconPackXML.DrawableInfo info : drawables) {
-                    if (fuzzyScore.match(info.getDrawableName()).match)
+                    if (TextUtils.isEmpty(searchText) || fuzzyScore.match(info.getDrawableName()).match)
                         mIconData.add(new IconData(iconPack, info));
                 }
             }

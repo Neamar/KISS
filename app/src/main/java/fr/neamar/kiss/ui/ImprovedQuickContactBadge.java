@@ -22,6 +22,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.QuickContactBadge;
 
+import androidx.annotation.RequiresApi;
+
 /**
  * A {@link QuickContactBadge} that allows setting a click listener. The base
  * class may use {@link View#setOnClickListener} internally, so this class adds
@@ -43,6 +45,12 @@ public class ImprovedQuickContactBadge extends ShapedContactBadge {
 
     public ImprovedQuickContactBadge(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init(); //Set our initialization
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public ImprovedQuickContactBadge(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         init(); //Set our initialization
     }
 
