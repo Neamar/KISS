@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.UserManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
@@ -43,9 +44,9 @@ import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.DrawableUtils;
-import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.SpaceTokenizer;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class AppResult extends Result<AppPojo> {
 
@@ -119,19 +120,33 @@ public class AppResult extends Result<AppPojo> {
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         adapter.add(new ListPopup.Item(context, R.string.menu_app_rename));
         // only display this option if we're using a custom icon pack, as it is not useful otherwise
-        if (KissApplication.getApplication(context).getIconsHandler().getCustomIconPack() != null)
+        if (KissApplication.getApplication(context).getIconsHandler().getCustomIconPack() != null) {
             adapter.add(new ListPopup.Item(context, R.string.menu_custom_icon));
+        }
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
-        adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
+        if (!pojo.isDisabled()) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_app_details));
+        }
         adapter.add(new ListPopup.Item(context, R.string.menu_app_store));
 
-        // app installed under /system can't be uninstalled
-        boolean isSameProfile = this.pojo.userHandle.isCurrentUser();
-        ApplicationInfo ai = PackageManagerUtils.getApplicationInfo(context, this.pojo.packageName, this.pojo.userHandle);
+        boolean uninstallDisabled = pojo.isDisabled();
+        if (!uninstallDisabled) {
+            // app installed under /system can't be uninstalled
+            ApplicationInfo ai = PackageManagerUtils.getApplicationInfo(context, this.pojo.packageName, this.pojo.userHandle);
+            // Need to AND the flags with SYSTEM:
+            uninstallDisabled = ai != null && (ai.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
+        }
 
-        // Need to AND the flags with SYSTEM:
-        if (ai != null && (ai.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && isSameProfile) {
+        if (!uninstallDisabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            UserManager userManager =
+                    (UserManager) context.getSystemService(Context.USER_SERVICE);
+            Bundle restrictions = userManager.getUserRestrictions(pojo.userHandle.getRealHandle());
+            uninstallDisabled = restrictions.getBoolean(UserManager.DISALLOW_APPS_CONTROL, false)
+                    || restrictions.getBoolean(UserManager.DISALLOW_UNINSTALL_APPS, false);
+        }
+
+        if (!uninstallDisabled) {
             adapter.add(new ListPopup.Item(context, R.string.menu_app_uninstall));
         }
 
@@ -379,6 +394,9 @@ public class AppResult extends Result<AppPojo> {
     private void launchUninstall(Context context, AppPojo app) {
         Intent intent = new Intent(Intent.ACTION_DELETE,
                 Uri.fromParts("package", app.packageName, null));
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            intent.putExtra(Intent.EXTRA_USER, app.userHandle.getRealHandle());
+        }
         context.startActivity(intent);
     }
 
@@ -475,10 +493,6 @@ public class AppResult extends Result<AppPojo> {
     public void clearCustomIcon() {
         pojo.setCustomIconId(0);
         setDrawableCache(null);
-    }
-
-    public long getCustomIcon() {
-        return pojo.getCustomIconId();
     }
 
     public String getComponentName() {
