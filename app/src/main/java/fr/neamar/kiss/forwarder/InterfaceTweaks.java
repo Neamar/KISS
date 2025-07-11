@@ -69,6 +69,12 @@ public class InterfaceTweaks extends Forwarder {
             case "medium":
                 act.getTheme().applyStyle(R.style.OverlayResultSizeMedium, true);
                 break;
+            case "large":
+                act.getTheme().applyStyle(R.style.OverlayResultSizeLarge, true);
+                break;
+            case "largest":
+                act.getTheme().applyStyle(R.style.OverlayResultSizeLargest, true);
+                break;
             case "default":
             default:
                 act.getTheme().applyStyle(R.style.OverlayResultSizeStandard, true);
