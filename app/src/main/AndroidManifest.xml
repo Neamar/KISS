@@ -150,7 +150,8 @@
         <service
             android:name=".broadcast.IncomingCallScreeningService"
             android:permission="android.permission.BIND_SCREENING_SERVICE"
-            android:exported="true">
+            android:exported="true"
+            tools:targetApi="24">
             <intent-filter>
                 <action android:name="android.telecom.CallScreeningService" />
             </intent-filter>
@@ -164,7 +165,8 @@
         <service android:name=".notification.NotificationListener"
             android:enabled="@bool/notification_service_enabled"
             android:exported="true"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            tools:targetApi="18">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
