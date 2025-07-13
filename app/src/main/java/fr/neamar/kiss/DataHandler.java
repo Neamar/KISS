@@ -188,7 +188,7 @@ public class DataHandler extends BroadcastReceiver
      *
      * @param name Data provider name (i.e.: `ContactsProvider` → `"contacts"`)
      */
-    private void connectToProvider(final String name, final int counter) {
+    protected void connectToProvider(final String name, final int counter) {
         // Do not continue if this provider has already been connected to
         if (this.providers.containsKey(name)) {
             return;
@@ -310,7 +310,7 @@ public class DataHandler extends BroadcastReceiver
      * Called when some event occurred that makes us believe that all data providers
      * might be ready now
      */
-    private void handleProviderLoaded() {
+    protected void handleProviderLoaded() {
         if (this.allProvidersHaveLoaded) {
             return;
         }

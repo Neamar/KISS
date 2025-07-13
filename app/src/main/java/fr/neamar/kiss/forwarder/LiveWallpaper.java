@@ -18,7 +18,7 @@ class LiveWallpaper extends Forwarder {
     private final boolean wallpaperIsVisible;
 
     private WallpaperManager mWallpaperManager;
-    private Point mWindowSize;
+    protected Point mWindowSize;
     private android.os.IBinder mWindowToken;
     private View mContentView;
     private float mLastTouchPos;
@@ -130,7 +130,7 @@ class LiveWallpaper extends Forwarder {
         return mWindowToken != null ? mWindowToken : (mWindowToken = mContentView.getWindowToken());
     }
 
-    private void updateWallpaperOffset(float offset) {
+    protected void updateWallpaperOffset(float offset) {
         android.os.IBinder iBinder = getWindowToken();
         if (iBinder != null) {
             offset = Math.max(0.f, Math.min(1.f, offset));

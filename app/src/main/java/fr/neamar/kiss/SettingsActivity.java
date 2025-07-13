@@ -669,7 +669,7 @@ public class SettingsActivity extends PreferenceActivity implements
         }
     }
 
-    private void setPhoneHistoryEnabled(boolean enabled) {
+    protected void setPhoneHistoryEnabled(boolean enabled) {
         IncomingCallHandler.setEnabled(this, enabled);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && enabled) {
             RoleManager roleManager = (RoleManager) getSystemService(ROLE_SERVICE);

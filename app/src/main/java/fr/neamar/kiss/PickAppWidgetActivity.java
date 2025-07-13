@@ -167,7 +167,7 @@ public class PickAppWidgetActivity extends Activity {
     }
 
     @WorkerThread
-    private static Drawable getWidgetPreview(@NonNull Context context, @NonNull AppWidgetProviderInfo info) {
+    protected static Drawable getWidgetPreview(@NonNull Context context, @NonNull AppWidgetProviderInfo info) {
         Drawable preview = null;
         final int density = context.getResources().getDisplayMetrics().densityDpi;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
