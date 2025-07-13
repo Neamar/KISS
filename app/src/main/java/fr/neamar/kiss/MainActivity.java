@@ -38,8 +38,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -51,7 +49,6 @@ import fr.neamar.kiss.broadcast.IncomingCallHandler;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.pojo.SearchPojo;
-import fr.neamar.kiss.R;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.ApplicationsSearcher;
 import fr.neamar.kiss.searcher.HistorySearcher;
@@ -725,7 +722,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.displayKissBar(display, true);
     }
 
-    private void displayKissBar(boolean display, boolean clearSearchText) {
+    protected void displayKissBar(boolean display, boolean clearSearchText) {
         dismissPopup();
         // get the center for the clipping circle
         ViewGroup launcherButtonWrapper = (ViewGroup) launcherButton.getParent();
@@ -811,7 +808,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @param isRefresh whether the query is refreshing the existing result, or is a completely new query
      * @param query     the query on which to search
      */
-    private void updateSearchRecords(boolean isRefresh, String query) {
+    protected void updateSearchRecords(boolean isRefresh, String query) {
         resetTask();
         dismissPopup();
 

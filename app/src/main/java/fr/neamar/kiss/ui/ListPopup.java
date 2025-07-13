@@ -102,7 +102,7 @@ public class ListPopup extends PopupWindow {
         return (LinearLayout) ((ScrollView) getContentView()).getChildAt(0);
     }
 
-    private void updateItems() {
+    protected void updateItems() {
         LinearLayout layout = getLinearLayout();
         layout.removeAllViews();
         int adapterCount = mAdapter.getCount();
@@ -246,7 +246,7 @@ public class ListPopup extends PopupWindow {
         }
     }
 
-    private class PopupDataSetObserver extends DataSetObserver {
+    protected class PopupDataSetObserver extends DataSetObserver {
         @Override
         public void onChanged() {
             if (isShowing()) {

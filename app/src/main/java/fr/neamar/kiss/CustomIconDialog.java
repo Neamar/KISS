@@ -47,10 +47,10 @@ import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.DrawableUtils;
-import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
-import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
+import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class CustomIconDialog extends DialogFragment {
     private final List<IconData> mIconData = new ArrayList<>();
@@ -305,7 +305,7 @@ public class CustomIconDialog extends DialogFragment {
         parent.addView(layout);
     }
 
-    private void refreshList() {
+    protected void refreshList() {
         mIconData.clear();
         IconsHandler iconsHandler = KissApplication.getApplication(getActivity()).getIconsHandler();
         IconPackXML iconPack = iconsHandler.getCustomIconPack();

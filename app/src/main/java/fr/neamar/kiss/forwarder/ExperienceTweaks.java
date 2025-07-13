@@ -364,7 +364,7 @@ public class ExperienceTweaks extends Forwarder {
 
     // Super hacky code to display notification drawer
     // Can (and will) break in any Android release.
-    private void displayNotificationDrawer() {
+    protected void displayNotificationDrawer() {
         @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
         Class<?> statusbarManager;
         try {
@@ -381,7 +381,7 @@ public class ExperienceTweaks extends Forwarder {
         }
     }
 
-    private void displayQuickSettings() {
+    protected void displayQuickSettings() {
         try {
             @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
             Class.forName("android.app.StatusBarManager")
@@ -392,11 +392,11 @@ public class ExperienceTweaks extends Forwarder {
         }
     }
 
-    private boolean isMinimalisticModeEnabled() {
+    protected boolean isMinimalisticModeEnabled() {
         return prefs.getBoolean("history-hide", false);
     }
 
-    private boolean isMinimalisticModeEnabledForFavorites() {
+    protected boolean isMinimalisticModeEnabledForFavorites() {
         return isMinimalisticModeEnabled() && prefs.getBoolean("favorites-hide", false) && prefs.getBoolean("enable-favorites-bar", true);
     }
 
@@ -420,7 +420,7 @@ public class ExperienceTweaks extends Forwarder {
     /**
      * Should the keyboard be displayed?
      */
-    private boolean shouldShowKeyboard() {
+    protected boolean shouldShowKeyboard() {
         boolean isAssistant = "android.intent.action.ASSIST".equalsIgnoreCase(mainActivity.getIntent().getAction());
         return (isAssistant || isKeyboardOnStartEnabled());
     }
