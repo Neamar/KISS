@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.CustomIconDialog;
 import fr.neamar.kiss.IconsHandler;
@@ -474,8 +475,9 @@ public class AppResult extends Result<AppPojo> {
         }
     }
 
+    @Nullable
     @Override
-    protected Rect getViewBounds(View view) {
+    protected Rect getViewBounds(@Nullable View view) {
         if (view == null) {
             return null;
         }

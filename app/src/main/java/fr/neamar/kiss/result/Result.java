@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -489,12 +488,13 @@ public abstract class Result<T extends Pojo> {
         return prefs.getBoolean("subicon-visible", true);
     }
 
-    protected void setSourceBounds(Intent intent, View view) {
+    protected void setSourceBounds(@NonNull Intent intent, @Nullable View view) {
         intent.setSourceBounds(getViewBounds(view));
     }
 
-    protected Rect getViewBounds(View view) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+    @Nullable
+    protected Rect getViewBounds(@Nullable View view) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && view != null) {
             return view.getClipBounds();
         }
         return null;
