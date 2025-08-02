@@ -563,7 +563,6 @@ public class SettingsActivity extends PreferenceActivity implements
         return multiPreference;
     }
 
-    @SuppressWarnings("StringSplitter")
     private void addDefaultSearchProvider(final SharedPreferences prefs) {
         ListPreference standardPref = new ListPreference(this);
 
