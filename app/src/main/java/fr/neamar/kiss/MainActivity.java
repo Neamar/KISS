@@ -965,6 +965,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         systemUiVisibilityHelper.applyScrollSystemUi();
     }
 
+    @Override
+    public boolean isAutohideKeyboardEnabled() {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        return prefs.getBoolean("autohide-keyboard", true);
+    }
+
     /**
      * Check if history / search or app list is visible
      *
