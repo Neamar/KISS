@@ -365,9 +365,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 hider.fixScroll();
                 return false;
             } else if (actionId == android.R.id.closeButton) {
-                if (isViewingAllApps()) {
-                    displayKissBar(false);
-                }
+                displayKissBar(false);
                 return true;
             }
 
@@ -973,7 +971,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     public boolean isAllowHideKeyboardEnabled() {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        return !prefs.getBoolean("allow-hide-keyboard", true);
+        return prefs.getBoolean("allow-hide-keyboard", true);
     }
 
     /**
