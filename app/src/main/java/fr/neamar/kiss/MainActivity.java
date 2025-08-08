@@ -355,7 +355,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // On validate, launch first record
         searchEditText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == android.R.id.closeButton) {
+            if (actionId == android.R.id.closeButton && isAllowHideKeyboardEnabled()) {
                 systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
                 if (mPopup != null) {
                     mPopup.dismiss();
@@ -364,6 +364,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                 systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
                 hider.fixScroll();
                 return false;
+            } else if (actionId == android.R.id.closeButton) {
+                if (isViewingAllApps()) {
+                    displayKissBar(false);
+                }
+                return true;
             }
 
             if (prefs.getBoolean("always-default-web-search-on-enter", false)) {
@@ -966,9 +971,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
-    public boolean isAutohideKeyboardEnabled() {
+    public boolean isAllowHideKeyboardEnabled() {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        return prefs.getBoolean("autohide-keyboard", true);
+        return !prefs.getBoolean("allow-hide-keyboard", true);
     }
 
     /**
