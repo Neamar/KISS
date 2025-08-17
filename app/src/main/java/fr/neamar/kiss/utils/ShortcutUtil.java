@@ -112,8 +112,11 @@ public class ShortcutUtil {
             }
 
             for (android.os.UserHandle profile : manager.getUserProfiles()) {
-                if (manager.isUserUnlocked(profile)) {
-                    shortcutInfoList.addAll(launcherApps.getShortcuts(shortcutQuery, profile));
+                if (manager.isUserRunning(profile) && manager.isUserUnlocked(profile)) {
+                    List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(shortcutQuery, profile);
+                    if (shortcuts != null) {
+                        shortcutInfoList.addAll(shortcuts);
+                    }
                 }
             }
         }
@@ -216,12 +219,17 @@ public class ShortcutUtil {
             return false;
         }
 
+        UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
         LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
         if (PackageManagerUtils.isPrivateProfile(launcherApps, shortcutInfo.getUserHandle())) {
-            UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
             if (userManager.isQuietModeEnabled(shortcutInfo.getUserHandle())) {
                 return false;
             }
+        }
+
+        if (userManager.getSerialNumberForUser(shortcutInfo.getUserHandle()) != 0) {
+            // Hide all shortcuts for apps of managed profiles. Shortcuts currently don't support multiple profiles at all!!!
+            return false;
         }
 
         String packageName = shortcutInfo.getPackage();
