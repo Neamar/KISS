@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * Source: https://github.com/willli666/Android-Trebuchet-Launcher-Standalone/blob/master/src/com/cyanogenmod/trebuchet/LauncherAppWidgetHostView.java
  */
 public class WidgetView extends AppWidgetHostView {
-    private boolean mHasPerformedLongPress;
+    protected boolean mHasPerformedLongPress;
     private CheckForLongPress mPendingCheckForLongPress;
     private float xPos;
     private float yPos;

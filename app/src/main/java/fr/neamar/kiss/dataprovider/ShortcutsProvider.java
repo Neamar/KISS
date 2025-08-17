@@ -18,14 +18,14 @@ import fr.neamar.kiss.loader.LoadShortcutsPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
-import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public class ShortcutsProvider extends Provider<ShortcutPojo> {
     private static boolean notifiedKissNotDefaultLauncher = false;
-    private static final String TAG = ShortcutsProvider.class.getSimpleName();
+    protected static final String TAG = ShortcutsProvider.class.getSimpleName();
 
     @Override
     public void onCreate() {

@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         maven {
-            url "https://plugins.gradle.org/m2/"
+            url = "https://plugins.gradle.org/m2/"
         }
         mavenCentral()
     }
@@ -9,7 +9,7 @@ buildscript {
 
 plugins {
     id 'com.android.application'
-    id 'net.ltgt.errorprone' version '4.1.0'
+    id 'net.ltgt.errorprone' version '4.3.0'
 }
 
 android {
@@ -21,14 +21,14 @@ android {
         minSdkVersion 15
         compileSdk 35
         targetSdkVersion 35
-        versionCode 211
-        versionName "3.21.3"
+        versionCode 214
+        versionName "3.22.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -36,16 +36,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     lint {
-        checkAllWarnings true
-        lintConfig file('lint.xml')
+        checkAllWarnings = true
+        lintConfig = file('lint.xml')
     }
 
-    namespace 'fr.neamar.kiss'
+    namespace = 'fr.neamar.kiss'
 }
 
 dependencies {
@@ -60,7 +60,7 @@ dependencies {
     testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.11.4')
     testImplementation 'org.hamcrest:hamcrest-library:3.0'
 
-    errorprone('com.google.errorprone:error_prone_core:2.36.0')
+    errorprone('com.google.errorprone:error_prone_core:2.40.0')
 }
 
 tasks.withType(JavaCompile).configureEach {

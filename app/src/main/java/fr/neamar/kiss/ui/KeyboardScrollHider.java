@@ -73,7 +73,7 @@ public class KeyboardScrollHider implements View.OnTouchListener {
         this.list.forceLayout();
     }
 
-    private void handleResizeDone() {
+    protected void handleResizeDone() {
         if (this.resizeDone) {
             return;
         }

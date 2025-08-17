@@ -1,6 +1,5 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -35,12 +34,12 @@ import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.DrawableUtils;
-import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.SpaceTokenizer;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class ShortcutsResult extends Result<ShortcutPojo> {
 
@@ -223,24 +222,25 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
     private void doOreoLaunch(Context context, View v) {
-        final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-        assert launcherApps != null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            assert launcherApps != null;
 
-        // Only the default launcher is allowed to start shortcuts
-        if (!launcherApps.hasShortcutHostPermission()) {
-            Toast.makeText(context, context.getString(R.string.shortcuts_no_host_permission), Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        ShortcutInfo shortcutInfo = getShortCut(context);
-        if (shortcutInfo != null) {
-            try {
-                launcherApps.startShortcut(shortcutInfo, v.getClipBounds(), null);
+            // Only the default launcher is allowed to start shortcuts
+            if (!launcherApps.hasShortcutHostPermission()) {
+                Toast.makeText(context, context.getString(R.string.shortcuts_no_host_permission), Toast.LENGTH_LONG).show();
                 return;
-            } catch (ActivityNotFoundException | IllegalStateException e) {
-                Log.w(TAG, "Unable to launch shortcut " + pojo.getName(), e);
+            }
+
+            ShortcutInfo shortcutInfo = getShortCut(context);
+            if (shortcutInfo != null) {
+                try {
+                    launcherApps.startShortcut(shortcutInfo, v.getClipBounds(), null);
+                    return;
+                } catch (ActivityNotFoundException | IllegalStateException e) {
+                    Log.w(TAG, "Unable to launch shortcut " + pojo.getName(), e);
+                }
             }
         }
 
@@ -253,14 +253,15 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
         return ShortcutUtil.getShortCut(context, pojo.packageName, pojo.getOreoId());
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
     private Drawable getDrawableFromOreoShortcut(Context context) {
-        ShortcutInfo shortcutInfo = getShortCut(context);
-        if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
-            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-            fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
-            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-            return iconsHandler.getDrawableIconForPackage(shortcutInfo.getActivity(), user);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            ShortcutInfo shortcutInfo = getShortCut(context);
+            if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
+                UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+                fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
+                IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+                return iconsHandler.getDrawableIconForPackage(shortcutInfo.getActivity(), user);
+            }
         }
         return null;
     }

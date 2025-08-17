@@ -41,6 +41,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -479,6 +480,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         forwarderManager.onResume();
 
+        // Pasting shared text via intent-filter into kiss search bar
+        Intent receivedIntent = getIntent();
+        String receivedIntentAction = receivedIntent.getAction();
+        String receivedIntentType = receivedIntent.getType();
+        if (Intent.ACTION_SEND.equals(receivedIntentAction) && "text/plain".equals(receivedIntentType)) {
+            hideKeyboard();
+            String sharedText = receivedIntent.getStringExtra(Intent.EXTRA_TEXT);
+            // making sure the shared text is not an empty string
+            if (sharedText != null && !TextUtils.isEmpty(sharedText.trim())) {
+                searchEditText.setText(sharedText);
+            } else {
+                Toast.makeText(this, R.string.shared_text_empty, Toast.LENGTH_SHORT).show();
+            }
+        }
+
         super.onResume();
     }
 
@@ -760,7 +776,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.displayKissBar(display, true);
     }
 
-    private void displayKissBar(boolean display, boolean clearSearchText) {
+    protected void displayKissBar(boolean display, boolean clearSearchText) {
         dismissPopup();
         // get the center for the clipping circle
         ViewGroup launcherButtonWrapper = (ViewGroup) launcherButton.getParent();
@@ -846,7 +862,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @param isRefresh whether the query is refreshing the existing result, or is a completely new query
      * @param query     the query on which to search
      */
-    private void updateSearchRecords(boolean isRefresh, String query) {
+    protected void updateSearchRecords(boolean isRefresh, String query) {
         resetTask();
         dismissPopup();
 
@@ -970,13 +986,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
 
     public void showKeyboard() {
-        searchEditText.requestFocus();
-        searchEditText.setCursorVisible(true);
-        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert mgr != null;
-        mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
-
-        systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
+        if (searchEditText.requestFocus()) {
+            searchEditText.setCursorVisible(true);
+            InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+            systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
+        }
     }
 
     @Override
@@ -987,13 +1002,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
             //noinspection ConstantConditions
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+            systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         }
 
-        systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         dismissPopup();
-
-        searchEditText.setCursorVisible(false);
-        searchEditText.clearFocus();
+        
+        if (view == searchEditText) {
+            searchEditText.setCursorVisible(false);
+            searchEditText.clearFocus();
+        }
     }
 
     @Override

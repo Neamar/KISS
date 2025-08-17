@@ -76,6 +76,11 @@
             <intent-filter>
                 <action android:name="android.content.pm.action.CONFIRM_PIN_SHORTCUT" />
             </intent-filter>
+            <intent-filter android:label="@string/ui_search_hint">
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
             <meta-data
                 android:name="com.android.systemui.action_assist_icon"
                 android:resource="@drawable/ic_launcher" />
@@ -94,7 +99,7 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/activity_setting"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/SettingTheme"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -147,7 +152,8 @@
         <service
             android:name=".broadcast.IncomingCallScreeningService"
             android:permission="android.permission.BIND_SCREENING_SERVICE"
-            android:exported="true">
+            android:exported="true"
+            tools:targetApi="24">
             <intent-filter>
                 <action android:name="android.telecom.CallScreeningService" />
             </intent-filter>
@@ -161,7 +167,8 @@
         <service android:name=".notification.NotificationListener"
             android:enabled="@bool/notification_service_enabled"
             android:exported="true"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            tools:targetApi="18">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
