@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
-import android.content.pm.LauncherUserInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Build;
@@ -56,10 +55,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
             // Handle multi-profile support introduced in Android 5 (#542)
             for (android.os.UserHandle profile : manager.getUserProfiles()) {
-                LauncherUserInfo info = null;
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-                    info = launcherApps.getLauncherUserInfo(profile);
-                }
+                boolean isPrivateProfile = PackageManagerUtils.isPrivateProfile(launcherApps, profile);
                 UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
                 for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(null, profile)) {
                     if (isCancelled()) {
@@ -67,17 +63,8 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     }
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
                     boolean disabled = PackageManagerUtils.isAppSuspended(appInfo) || isQuietModeEnabled(manager, profile);
-                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
-                    if ((android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM)
-                        && (info != null)) {
-                        if (!info.getUserType().equalsIgnoreCase(UserManager.USER_TYPE_PROFILE_PRIVATE)) {
-                            apps.add(app);
-                        } else {
-                            if (!isQuietModeEnabled(manager, profile)) {
-                                apps.add(app);
-                            }
-                        }
-                    } else {
+                    if (!disabled || !isPrivateProfile) {
+                        final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                         apps.add(app);
                     }
                 }

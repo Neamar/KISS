@@ -8,11 +8,13 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.LauncherUserInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.UserManager;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -327,6 +329,14 @@ public class PackageManagerUtils {
     public static boolean isAppSuspended(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
         final ApplicationInfo appInfo = getApplicationInfo(context, packageName, user);
         return appInfo != null && isAppSuspended(appInfo);
+    }
+
+    public static boolean isPrivateProfile(@NonNull LauncherApps launcherApps, @NonNull android.os.UserHandle userHandle) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            LauncherUserInfo info = launcherApps.getLauncherUserInfo(userHandle);
+            return info != null && UserManager.USER_TYPE_PROFILE_PRIVATE.equalsIgnoreCase(info.getUserType());
+        }
+        return false;
     }
 
 }

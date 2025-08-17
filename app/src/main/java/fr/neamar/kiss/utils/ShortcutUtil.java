@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
-import android.content.pm.LauncherUserInfo;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.UserManager;
@@ -217,20 +216,16 @@ public class ShortcutUtil {
             return false;
         }
 
-        String packageName = shortcutInfo.getPackage();
-        String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
-
-        LauncherUserInfo info;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        if (PackageManagerUtils.isPrivateProfile(launcherApps, shortcutInfo.getUserHandle())) {
             UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-
-            info = launcherApps.getLauncherUserInfo(shortcutInfo.getUserHandle());
-
-            if (info.getUserType().equalsIgnoreCase(UserManager.USER_TYPE_PROFILE_PRIVATE)) {
-                if (userManager.isQuietModeEnabled(shortcutInfo.getUserHandle())) return false;
+            if (userManager.isQuietModeEnabled(shortcutInfo.getUserHandle())) {
+                return false;
             }
         }
+
+        String packageName = shortcutInfo.getPackage();
+        String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
 
         // if related package is excluded from KISS then the shortcut must be excluded too
         boolean isExcluded = excludedApps.contains(componentName) || excludedShortcutApps.contains(packageName);

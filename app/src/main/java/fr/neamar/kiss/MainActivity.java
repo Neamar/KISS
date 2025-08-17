@@ -11,9 +11,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.LauncherApps;
-import android.content.pm.LauncherUserInfo;
 import android.content.SharedPreferences;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
@@ -44,11 +43,9 @@ import android.widget.AdapterView;
 import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -68,6 +65,7 @@ import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
@@ -421,10 +419,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         MenuItem privateSpaceItem = menu.findItem(R.id.private_space);
         if (privateSpaceItem != null) {
-            if ((android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM)
-                || (getPrivateUser() == null)) {
+            UserHandle privateUser = getPrivateUser();
+            if (privateUser == null) {
                 privateSpaceItem.setVisible(false);
-            } else if (isPrivateSpaceUnlocked()) {
+            } else if (isPrivateSpaceUnlocked(privateUser)) {
                 privateSpaceItem.setTitle(R.string.lock_private_space);
             } else {
                 privateSpaceItem.setTitle(R.string.unlock_private_space);
@@ -720,45 +718,38 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
     }
 
-    @RequiresApi(35)
     private UserHandle getPrivateUser() {
-        final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
-        assert manager != null;
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            assert launcher != null;
 
-        final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-        assert launcher != null;
+            List<UserHandle> users = launcher.getProfiles();
 
-        List<UserHandle> users = launcher.getProfiles();
-
-        UserHandle privateUser = null;
-        for (UserHandle user : users) {
-            if (Objects.requireNonNull(launcher.getLauncherUserInfo(user)).getUserType().equalsIgnoreCase(UserManager.USER_TYPE_PROFILE_PRIVATE)) {
-                privateUser = user;
-                break;
+            for (UserHandle user : users) {
+                if (PackageManagerUtils.isPrivateProfile(launcher, user)) {
+                    return user;
+                }
             }
         }
-        return privateUser;
+        return null;
     }
 
-    private boolean isPrivateSpaceUnlocked() {
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            return false;
+    private boolean isPrivateSpaceUnlocked(UserHandle privateUser) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+            return !manager.isQuietModeEnabled(privateUser);
         }
-
-        final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
-        assert manager != null;
-
-        UserHandle user = getPrivateUser();
-        return !manager.isQuietModeEnabled(user);
+        return false;
     }
 
-    @RequiresApi(35)
     private void switchPrivateSpaceState() {
-        final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
-        assert manager != null;
-
-        UserHandle user = getPrivateUser();
-        manager.requestQuietModeEnabled(!manager.isQuietModeEnabled(user), user);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            UserHandle user = getPrivateUser();
+            if (user != null) {
+                final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+                manager.requestQuietModeEnabled(!manager.isQuietModeEnabled(user), user);
+            }
+        }
     }
 
     public void onFavoriteChange() {
