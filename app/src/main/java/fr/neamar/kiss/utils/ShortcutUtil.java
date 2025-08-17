@@ -224,13 +224,10 @@ public class ShortcutUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
             LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-            boolean privateSpaceShortcutsDisabled = PreferenceManager.getDefaultSharedPreferences(context)
-                    .getBoolean("disable-private-space-shortcuts", true);
 
             info = launcherApps.getLauncherUserInfo(shortcutInfo.getUserHandle());
 
             if (info.getUserType().equalsIgnoreCase(UserManager.USER_TYPE_PROFILE_PRIVATE)) {
-                if (privateSpaceShortcutsDisabled) return false;
                 if (userManager.isQuietModeEnabled(shortcutInfo.getUserHandle())) return false;
             }
         }

@@ -2,15 +2,9 @@
 package fr.neamar.kiss.loader;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.LauncherApps;
-import android.content.pm.LauncherUserInfo;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.UserManager;
-import android.preference.PreferenceManager;
-
-import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.List;
