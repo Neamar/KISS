@@ -41,8 +41,12 @@ public class ShortcutUtil {
     /**
      * @return shortcut id generated from shortcut name
      */
-    public static String generateShortcutId(ShortcutRecord shortcutRecord) {
-        return ShortcutPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
+    public static String generateShortcutId(UserHandle userHandle, ShortcutRecord shortcutRecord) {
+        if (userHandle == null) {
+            return ShortcutPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
+        } else {
+            return ShortcutPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
+        }
     }
 
     /**
@@ -128,9 +132,8 @@ public class ShortcutUtil {
      * @return return a specific shortcut for given package name and id
      */
     @RequiresApi(Build.VERSION_CODES.O)
-    public static ShortcutInfo getShortCut(Context context, String packageName, String shortcutId) {
+    public static ShortcutInfo getShortCut(Context context, @NonNull android.os.UserHandle user, String packageName, String shortcutId) {
         final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-        final UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
 
         if (launcherApps.hasShortcutHostPermission() && !TextUtils.isEmpty(packageName)) {
             LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
@@ -138,17 +141,15 @@ public class ShortcutUtil {
             query.setShortcutIds(Collections.singletonList(shortcutId));
             query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
-            List<android.os.UserHandle> userHandles = launcherApps.getProfiles();
+            final UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
 
-            // find the correct UserHandle and get shortcut
-            for (android.os.UserHandle userHandle : userHandles) {
-                if (userManager.isUserRunning(userHandle) && userManager.isUserUnlocked(userHandle)) {
-                    List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, userHandle);
-                    if (shortcuts != null) {
-                        for (ShortcutInfo shortcut : shortcuts) {
-                            if (shortcut.isEnabled()) {
-                                return shortcut;
-                            }
+            // find the correct shortcut
+            if (userManager.isUserRunning(user) && userManager.isUserUnlocked(user)) {
+                List<ShortcutInfo> shortcuts = launcherApps.getShortcuts(query, user);
+                if (shortcuts != null) {
+                    for (ShortcutInfo shortcut : shortcuts) {
+                        if (shortcut.isEnabled()) {
+                            return shortcut;
                         }
                     }
                 }
@@ -165,7 +166,7 @@ public class ShortcutUtil {
     public static ShortcutRecord createShortcutRecord(Context context, ShortcutInfo shortcutInfo, boolean includePackageName) {
         if (shortcutInfo.hasKeyFieldsOnly()) {
             // If ShortcutInfo holds only key fields shortcut including data must be fetched
-            shortcutInfo = getShortCut(context, shortcutInfo.getPackage(), shortcutInfo.getId());
+            shortcutInfo = getShortCut(context, shortcutInfo.getUserHandle(), shortcutInfo.getPackage(), shortcutInfo.getId());
             if (shortcutInfo == null) {
                 return null;
             }
@@ -229,7 +230,7 @@ public class ShortcutUtil {
 
         if (userManager.getSerialNumberForUser(shortcutInfo.getUserHandle()) != 0) {
             // Hide all shortcuts for apps of managed profiles. Shortcuts currently don't support multiple profiles at all!!!
-            return false;
+            Log.d(TAG, "Found shortcut for profile: " + shortcutInfo);
         }
 
         String packageName = shortcutInfo.getPackage();

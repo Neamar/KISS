@@ -520,7 +520,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             return DBHelper.insertShortcut(this.context, shortcutRecord);
         } else {
             Log.d(TAG, "Removing shortcut for " + shortcutRecord.packageName);
-            String id = ShortcutUtil.generateShortcutId(shortcutRecord);
+            String id = ShortcutUtil.generateShortcutId(new UserHandle(context, shortcutInfo.getUserHandle()), shortcutRecord);
             return removeShortcut(id, shortcutRecord.packageName, shortcutRecord.intentUri);
         }
     }
@@ -553,7 +553,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         // Remove all shortcuts from favorites for given package name
         List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, packageName);
         for (ShortcutRecord shortcutRecord : shortcutsList) {
-            String id = ShortcutUtil.generateShortcutId(shortcutRecord);
+            String id = ShortcutUtil.generateShortcutId(new UserHandle(), shortcutRecord);
             removeFromFavorites(id);
         }
 

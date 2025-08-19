@@ -250,7 +250,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private ShortcutInfo getShortCut(Context context) {
-        return ShortcutUtil.getShortCut(context, pojo.packageName, pojo.getOreoId());
+        return ShortcutUtil.getShortCut(context, pojo.getUserHandle().getRealHandle(), pojo.packageName, pojo.getOreoId());
     }
 
     private Drawable getDrawableFromOreoShortcut(Context context) {
