@@ -1,17 +1,33 @@
 package fr.neamar.kiss.db;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.pm.ShortcutInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
+import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import fr.neamar.kiss.utils.ShortcutUtil;
+import fr.neamar.kiss.utils.UserHandle;
 
 class DB extends SQLiteOpenHelper {
 
     private final static String DB_NAME = "kiss.s3db";
-    private final static int DB_VERSION = 8;
+    private final static int DB_VERSION = 9;
+    private static final String TAG = DB.class.getSimpleName();
+
+    private final Context mContext;
 
     DB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+        this.mContext = context;
     }
 
     @Override
@@ -62,6 +78,9 @@ class DB extends SQLiteOpenHelper {
                 case 7:
                     addAppsTable(database);
                     // fall through
+                case 8:
+                    convertShortcutIds(database);
+                    // fall through
                 default:
                     break;
             }
@@ -74,6 +93,8 @@ class DB extends SQLiteOpenHelper {
 
         if (newVersion < oldVersion) {
             switch (newVersion) {
+                case 8:
+                    throw new UnsupportedOperationException("Can't downgrade app below DB level 8");
                 case 7:
                 case 6:
                     database.execSQL("DROP INDEX index_component");
@@ -84,6 +105,64 @@ class DB extends SQLiteOpenHelper {
                 default:
                     break;
             }
+        }
+    }
+
+    private void convertShortcutIds(SQLiteDatabase database) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(mContext);
+            List<ConvertShortcutInfo> shortcuts = new ArrayList<>();
+            shortcutInfos.forEach(shortcutInfo -> {
+                if (!shortcutInfo.isDynamic() || shortcutInfo.isPinned()) {
+                    ShortcutRecord shortcutRecordWithName = ShortcutUtil.createShortcutRecord(mContext, shortcutInfo, true);
+                    shortcuts.add(new ConvertShortcutInfo(UserHandle.OWNER, shortcutRecordWithName));
+                    ShortcutRecord shortcutRecordWithoutName = ShortcutUtil.createShortcutRecord(mContext, shortcutInfo, false);
+                    shortcuts.add(new ConvertShortcutInfo(UserHandle.OWNER, shortcutRecordWithoutName));
+                }
+            });
+            // convert all tags
+            shortcuts.forEach((shortcut) -> {
+                ContentValues values = new ContentValues(1);
+                values.put("record", shortcut.newId);
+                int updated = database.update("tags", values, "record=?", new String[]{shortcut.oldId});
+                if (updated > 0) {
+                    Log.v(TAG, "Updated tags: " + shortcut.oldId + " > " + shortcut.newId);
+                }
+            });
+            // convert history
+            shortcuts.forEach((shortcut) -> {
+                ContentValues values = new ContentValues(1);
+                values.put("record", shortcut.newId);
+                int updated = database.update("history", values, "record=?", new String[]{shortcut.oldId});
+                if (updated > 0) {
+                    Log.v(TAG, "Updated history: " + shortcut.oldId + " > " + shortcut.newId);
+                }
+            });
+            // convert favorites
+            String[] favoriteAppsList = PreferenceManager.getDefaultSharedPreferences(mContext)
+                    .getString("favorite-apps-list", "").split(";");
+            List<String> favorites = new ArrayList<>();
+            Collections.addAll(favorites, favoriteAppsList);
+            shortcuts.forEach((shortcut) -> {
+                int index = favorites.indexOf(shortcut.oldId);
+                if (index >= 0) {
+                    favorites.set(index, shortcut.newId);
+                    Log.v(TAG, "Updated favorite: " + shortcut.oldId + " > " + shortcut.newId);
+                }
+            });
+            PreferenceManager.getDefaultSharedPreferences(mContext).edit()
+                    .putString("favorite-apps-list", TextUtils.join(";", favorites)).commit();
+        }
+    }
+
+    private static class ConvertShortcutInfo {
+
+        private final String oldId;
+        private final String newId;
+
+        private ConvertShortcutInfo(UserHandle userHandle, ShortcutRecord shortcutRecord) {
+            this.oldId = ShortcutUtil.generateShortcutId(null, shortcutRecord);
+            this.newId = ShortcutUtil.generateShortcutId(userHandle, shortcutRecord);
         }
     }
 }
