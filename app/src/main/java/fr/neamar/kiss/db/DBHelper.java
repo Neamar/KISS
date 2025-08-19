@@ -10,13 +10,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import fr.neamar.kiss.DataHandler;
-import fr.neamar.kiss.KissApplication;
 
 public class DBHelper {
     private static final String TAG = DBHelper.class.getSimpleName();
@@ -27,7 +23,11 @@ public class DBHelper {
 
     private static SQLiteDatabase getDatabase(Context context) {
         if (database == null) {
-            database = new DB(context).getReadableDatabase();
+            synchronized (DBHelper.class) {
+                if (database == null) {
+                    database = new DB(context).getReadableDatabase();
+                }
+            }
         }
         return database;
     }
