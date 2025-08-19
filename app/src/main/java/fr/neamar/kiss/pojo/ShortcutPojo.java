@@ -2,6 +2,7 @@ package fr.neamar.kiss.pojo;
 
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.utils.ShortcutUtil;
+import fr.neamar.kiss.utils.UserHandle;
 
 public final class ShortcutPojo extends PojoWithTags {
 
@@ -14,15 +15,17 @@ public final class ShortcutPojo extends PojoWithTags {
     private final boolean pinned; // pinned shortcut
     private final boolean dynamic; // dynamic shortcut
     private final boolean disabled;
+    private final UserHandle userHandle;
 
-    public ShortcutPojo(ShortcutRecord shortcutRecord, String componentName, boolean pinned, boolean dynamic, boolean disabled) {
-        super(ShortcutUtil.generateShortcutId(shortcutRecord));
+    public ShortcutPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, String componentName, boolean pinned, boolean dynamic, boolean disabled) {
+        super(ShortcutUtil.generateShortcutId(userHandle, shortcutRecord));
         this.packageName = shortcutRecord.packageName;
         this.intentUri = shortcutRecord.intentUri;
         this.componentName = componentName;
         this.pinned = pinned;
         this.dynamic = dynamic;
         this.disabled = disabled;
+        this.userHandle = userHandle;
     }
 
     /**
@@ -53,5 +56,9 @@ public final class ShortcutPojo extends PojoWithTags {
     @Override
     public boolean isDisabled() {
         return disabled;
+    }
+
+    public UserHandle getUserHandle() {
+        return userHandle;
     }
 }
