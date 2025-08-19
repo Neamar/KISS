@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
@@ -19,6 +20,8 @@ import android.database.DataSetObserver;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.Editable;
@@ -43,6 +46,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.broadcast.IncomingCallHandler;
@@ -62,6 +66,7 @@ import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
+import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
@@ -412,6 +417,19 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
+
+        MenuItem privateSpaceItem = menu.findItem(R.id.private_space);
+        if (privateSpaceItem != null) {
+            UserHandle privateUser = getPrivateUser();
+            if (privateUser == null) {
+                privateSpaceItem.setVisible(false);
+            } else if (isPrivateSpaceUnlocked(privateUser)) {
+                privateSpaceItem.setTitle(R.string.lock_private_space);
+            } else {
+                privateSpaceItem.setTitle(R.string.unlock_private_space);
+            }
+        }
+
         forwarderManager.onCreateContextMenu(menu);
     }
 
@@ -582,6 +600,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else if (itemId == R.id.preferences) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
+        } else if (itemId == R.id.private_space) {
+            switchPrivateSpaceState();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -591,7 +612,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-
         return true;
     }
 
@@ -711,6 +731,40 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             loaderSpinner.animate().cancel();
             loaderSpinner.setAlpha(1);
             loaderSpinner.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private UserHandle getPrivateUser() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            assert launcher != null;
+
+            List<UserHandle> users = launcher.getProfiles();
+
+            for (UserHandle user : users) {
+                if (PackageManagerUtils.isPrivateProfile(launcher, user)) {
+                    return user;
+                }
+            }
+        }
+        return null;
+    }
+
+    private boolean isPrivateSpaceUnlocked(UserHandle privateUser) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+            return !manager.isQuietModeEnabled(privateUser);
+        }
+        return false;
+    }
+
+    private void switchPrivateSpaceState() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            UserHandle user = getPrivateUser();
+            if (user != null) {
+                final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+                manager.requestQuietModeEnabled(!manager.isQuietModeEnabled(user), user);
+            }
         }
     }
 

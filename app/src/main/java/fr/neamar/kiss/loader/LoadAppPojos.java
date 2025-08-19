@@ -55,6 +55,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
 
             // Handle multi-profile support introduced in Android 5 (#542)
             for (android.os.UserHandle profile : manager.getUserProfiles()) {
+                boolean isPrivateProfile = PackageManagerUtils.isPrivateProfile(launcherApps, profile);
                 UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
                 for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(null, profile)) {
                     if (isCancelled()) {
@@ -62,8 +63,10 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                     }
                     ApplicationInfo appInfo = activityInfo.getApplicationInfo();
                     boolean disabled = PackageManagerUtils.isAppSuspended(appInfo) || isQuietModeEnabled(manager, profile);
-                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
-                    apps.add(app);
+                    if (!disabled || !isPrivateProfile) {
+                        final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
+                        apps.add(app);
+                    }
                 }
             }
         } else {

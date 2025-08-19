@@ -33,38 +33,73 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             return new ArrayList<>();
         }
 
-        List<ShortcutRecord> records = DBHelper.getShortcuts(context);
-        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
-        TagsHandler tagsHandler = dataHandler.getTagsHandler();
-        Set<String> excludedApps = dataHandler.getExcluded();
-        Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
+        List<ShortcutPojo> nonOreoPojos = fetchNonOreoPojos(context);
+        List<ShortcutPojo> oreoPojos = fetchOreoPojos(context);
 
-        List<ShortcutPojo> pojos = new ArrayList<>();
+        List<ShortcutPojo> allPojos = new ArrayList<>(nonOreoPojos);
+        allPojos.addAll(oreoPojos);
 
-        for (ShortcutRecord shortcutRecord : records) {
-            ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, null, true, false, false);
-            if (!pojo.isOreoShortcut()) {
-                // add older shortcuts from DB
-                pojos.add(pojo);
-            }
-        }
+        return allPojos;
+    }
 
-        // get all oreo shortcuts from system directly
+    // get all oreo shortcuts from system directly
+    private List<ShortcutPojo> fetchOreoPojos(Context context) {
+        List<ShortcutPojo> oreoPojos = new ArrayList<>();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+            Set<String> excludedApps = dataHandler.getExcluded();
+            Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
             UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
             List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(context);
+
             for (ShortcutInfo shortcutInfo : shortcutInfos) {
                 if (isCancelled()) {
                     break;
                 }
+
                 if (ShortcutUtil.isShortcutVisible(context, shortcutInfo, excludedApps, excludedShortcutApps)) {
-                    ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo, !shortcutInfo.isPinned());
+                    ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(context, shortcutInfo,
+                            !shortcutInfo.isPinned());
+
                     if (shortcutRecord != null) {
-                        boolean disabled = PackageManagerUtils.isAppSuspended(context, shortcutInfo.getPackage(), new UserHandle(context, shortcutInfo.getUserHandle())) || userManager.isQuietModeEnabled(shortcutInfo.getUserHandle());
-                        ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, ShortcutUtil.getComponentName(context, shortcutInfo), shortcutInfo.isPinned(), shortcutInfo.isDynamic(), disabled);
-                        pojos.add(pojo);
+                        boolean isSuspended = PackageManagerUtils.isAppSuspended(context, shortcutInfo.getPackage(),
+                                new UserHandle(context, shortcutInfo.getUserHandle()));
+                        boolean isQuietModeEnabled = userManager.isQuietModeEnabled(shortcutInfo.getUserHandle());
+                        boolean disabled = isSuspended || isQuietModeEnabled;
+
+                        ShortcutPojo pojo = createPojo(
+                                shortcutRecord,
+                                dataHandler.getTagsHandler(),
+                                ShortcutUtil.getComponentName(context, shortcutInfo),
+                                shortcutInfo.isPinned(),
+                                shortcutInfo.isDynamic(),
+                                disabled
+                        );
+
+                        oreoPojos.add(pojo);
                     }
                 }
+            }
+        }
+
+        return oreoPojos;
+    }
+
+    private List<ShortcutPojo> fetchNonOreoPojos(Context context) {
+        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
+        TagsHandler tagsHandler = dataHandler.getTagsHandler();
+        List<ShortcutPojo> pojos = new ArrayList<>();
+        List<ShortcutRecord> records = DBHelper.getShortcuts(context);
+
+        for (ShortcutRecord shortcutRecord : records) {
+            if (isCancelled()) {
+                break;
+            }
+            ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, null, true, false, false);
+            if (!pojo.isOreoShortcut()) {
+                // add older shortcuts from DB
+                pojos.add(pojo);
             }
         }
 
