@@ -284,11 +284,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         });
 
-        // Display empty list view when having no results
         this.adapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
                 super.onChanged();
+                // Display empty list view when having no results
                 if (adapter.isEmpty()) {
                     // Display help text when no results available
                     listContainer.setVisibility(View.GONE);
@@ -299,8 +299,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
                     emptyListView.setVisibility(View.GONE);
                 }
 
-                forwarderManager.onDataSetChanged();
+                // Open the first result if there is only a single result and the preference is set.
+                if (prefs.getBoolean("search_open_single_result", false) && adapter.getCount() == 1) {
+                    adapter.onClick(0, searchEditText);
+                }
 
+                forwarderManager.onDataSetChanged();
             }
         });
 
