@@ -215,7 +215,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
             }
         }
 
-        return getFilteredContacts(mapContacts, contact -> contact.normalizedPhone.toString());
+        return getFilteredContacts(mapContacts, contact -> contact.normalizedPhone == null ? null : contact.normalizedPhone.toString());
     }
 
     private List<ContactsPojo> createGenericContacts(@NonNull Context ctx, String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
