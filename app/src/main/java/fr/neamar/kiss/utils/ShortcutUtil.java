@@ -207,8 +207,7 @@ public class ShortcutUtil {
     @Nullable
     public static String getComponentName(@NonNull Context context, @Nullable ShortcutInfo shortcutInfo) {
         if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
-            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-            fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
+            UserHandle user = new UserHandle(context, shortcutInfo.getUserHandle());
             return AppPojo.getComponentName(shortcutInfo.getPackage(), shortcutInfo.getActivity().getClassName(), user);
         }
         return null;

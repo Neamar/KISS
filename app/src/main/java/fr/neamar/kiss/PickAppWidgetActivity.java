@@ -210,7 +210,7 @@ public class PickAppWidgetActivity extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             userHandle = new UserHandle(context, info.getProfile());
         } else
-            userHandle = new UserHandle();
+            userHandle = UserHandle.OWNER;
         return KissApplication.getApplication(context).getIconsHandler().getDrawableIconForPackage(info.provider, userHandle);
     }
 

@@ -5,7 +5,6 @@ import android.app.NotificationChannel;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
@@ -136,11 +135,9 @@ public class NotificationListener extends NotificationListenerService {
 
     private UserHandle getUserHandle(Context context, StatusBarNotification sbn) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-            android.os.UserHandle user = sbn.getUser();
-            return new UserHandle(manager.getSerialNumberForUser(user), user);
+            return new UserHandle(context, sbn.getUser());
         } else {
-            return new UserHandle();
+            return UserHandle.OWNER;
         }
     }
 

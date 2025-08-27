@@ -86,4 +86,8 @@ public final class AppPojo extends PojoWithTags {
     public boolean isDisabled() {
         return disabled;
     }
+
+    public UserHandle getUserHandle() {
+        return userHandle;
+    }
 }

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
-import android.os.UserManager;
 
 import androidx.annotation.RequiresApi;
 
@@ -25,8 +24,7 @@ public class ProfileChangedHandler extends BroadcastReceiver {
 
             // Package installation/uninstallation events for the main
             // profile are still handled using PackageAddedRemovedHandler
-            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-            UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
+            UserHandle user = new UserHandle(context, profile);
 
             DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
             dataHandler.removeFromExcluded(user);
