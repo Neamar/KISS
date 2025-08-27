@@ -13,6 +13,7 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -569,7 +570,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             return new HashSet<>(excluded);
         } else {
             Set<String> defaultExcluded = new HashSet<>(1);
-            defaultExcluded.add("app://" + AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), new UserHandle()));
+            defaultExcluded.add("app://" + AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), UserHandle.OWNER));
             return defaultExcluded;
         }
     }
@@ -581,7 +582,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             return new HashSet<>(excluded);
         } else {
             Set<String> defaultExcluded = new HashSet<>(1);
-            defaultExcluded.add(AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), new UserHandle()));
+            defaultExcluded.add(AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), UserHandle.OWNER));
             return defaultExcluded;
         }
     }

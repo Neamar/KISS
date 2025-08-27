@@ -185,8 +185,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
                     ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getContactData().getMimeType());
                     if (componentName != null) {
                         IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                        UserHandle userHandle = new UserHandle();
-                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, userHandle), userHandle);
+                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle()), pojo.getUserHandle());
                     }
                     if (appDrawable == null) {
                         // This should never happen, let's just return the generic activity icon
