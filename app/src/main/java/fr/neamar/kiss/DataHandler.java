@@ -554,7 +554,12 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         // Remove all shortcuts from favorites for given package name
         List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, packageName);
         for (ShortcutRecord shortcutRecord : shortcutsList) {
-            String id = ShortcutUtil.generateShortcutId(new UserHandle(), shortcutRecord);
+            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            for (android.os.UserHandle user : manager.getUserProfiles()) {
+                String id = ShortcutUtil.generateShortcutId(new UserHandle(context, user), shortcutRecord);
+                removeFromFavorites(id);
+            }
+            String id = ShortcutUtil.generateShortcutId(null, shortcutRecord);
             removeFromFavorites(id);
         }
 
