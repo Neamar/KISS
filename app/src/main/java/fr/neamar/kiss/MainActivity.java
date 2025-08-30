@@ -201,7 +201,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             public void onReceive(Context context, Intent intent) {
                 if (LOAD_OVER.equalsIgnoreCase(intent.getAction())) {
                     updateSearchRecords();
-                    if (!KissApplication.getApplication(context).getDataHandler().isAllProvidersHaveLoaded()) {
+                    if (!KissApplication.getApplication(context).getDataHandler().isAllProvidersLoaded()) {
                         displayLoader(true);
                     } else {
                         Log.v(TAG, "All providers are done loading.");
@@ -460,7 +460,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         dismissPopup();
 
-        if (KissApplication.getApplication(this).getDataHandler().isAllProvidersHaveLoaded()) {
+        if (KissApplication.getApplication(this).getDataHandler().isAllProvidersLoaded()) {
             displayLoader(false);
             onFavoriteChange();
         }

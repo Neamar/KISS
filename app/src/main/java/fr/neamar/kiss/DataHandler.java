@@ -294,7 +294,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         this.context.sendBroadcast(loadOver);
     }
 
-    public boolean isAllProvidersHaveLoaded() {
+    public boolean isAllProvidersLoaded() {
         for (ProviderEntry entry : this.providers.values()) {
             if (entry.provider == null || !entry.provider.isLoaded()) {
                 return false;

@@ -92,7 +92,7 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
 
     private void hideActivityLoader(MainActivity activity) {
         // Loader should still be displayed until all the providers have finished loading
-        activity.displayLoader(!KissApplication.getApplication(activity).getDataHandler().isAllProvidersHaveLoaded());
+        activity.displayLoader(!KissApplication.getApplication(activity).getDataHandler().isAllProvidersLoaded());
     }
 
     @Override
