@@ -61,7 +61,6 @@ import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.searcher.TagsSearcher;
 import fr.neamar.kiss.searcher.UntaggedSearcher;
 import fr.neamar.kiss.ui.AnimatedListView;
-import fr.neamar.kiss.ui.BottomPullEffectView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
@@ -73,7 +72,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
-    public static final String FULL_LOAD_OVER = "fr.neamar.summon.FULL_LOAD_OVER";
 
     protected static final String TAG = MainActivity.class.getSimpleName();
 
@@ -198,20 +196,23 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
          */
         IntentFilter intentFilterLoad = new IntentFilter(START_LOAD);
         IntentFilter intentFilterLoadOver = new IntentFilter(LOAD_OVER);
-        IntentFilter intentFilterFullLoadOver = new IntentFilter(FULL_LOAD_OVER);
         mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                //noinspection ConstantConditions
-                if (intent.getAction().equalsIgnoreCase(LOAD_OVER)) {
+                if (LOAD_OVER.equalsIgnoreCase(intent.getAction())) {
                     updateSearchRecords();
-                } else if (intent.getAction().equalsIgnoreCase(FULL_LOAD_OVER)) {
-                    Log.v(TAG, "All providers are done loading.");
+                    if (!KissApplication.getApplication(context).getDataHandler().isAllProvidersHaveLoaded()) {
+                        displayLoader(true);
+                    } else {
+                        Log.v(TAG, "All providers are done loading.");
 
-                    displayLoader(false);
+                        displayLoader(false);
 
-                    // Run GC once to free all the garbage accumulated during provider initialization
-                    System.gc();
+                        // Run GC once to free all the garbage accumulated during provider initialization
+                        System.gc();
+                    }
+                } else if (START_LOAD.equalsIgnoreCase(intent.getAction())) {
+                    displayLoader(true);
                 }
 
                 // New provider might mean new favorites
@@ -226,12 +227,10 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             // In practice, this means other apps can trigger a refresh of search results if they want by sending a broadcast.
             this.registerReceiver(mReceiver, intentFilterLoad, Context.RECEIVER_EXPORTED);
             this.registerReceiver(mReceiver, intentFilterLoadOver, Context.RECEIVER_EXPORTED);
-            this.registerReceiver(mReceiver, intentFilterFullLoadOver, Context.RECEIVER_EXPORTED);
         }
         else {
             this.registerReceiver(mReceiver, intentFilterLoad);
             this.registerReceiver(mReceiver, intentFilterLoadOver);
-            this.registerReceiver(mReceiver, intentFilterFullLoadOver);
         }
 
         /*
@@ -386,7 +385,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Hide the keyboard.
         this.hider = new KeyboardScrollHider(this,
                 this.list,
-                (BottomPullEffectView) this.findViewById(R.id.listEdgeEffect)
+                this.findViewById(R.id.listEdgeEffect)
         );
         this.hider.start();
 

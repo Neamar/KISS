@@ -54,8 +54,7 @@ import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
 
-public class DataHandler extends BroadcastReceiver
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeListener {
     protected static final String TAG = DataHandler.class.getSimpleName();
 
     /**
@@ -79,7 +78,6 @@ public class DataHandler extends BroadcastReceiver
     final private Context context;
     private String currentQuery;
     private final Map<String, ProviderEntry> providers = new HashMap<>();
-    private long start;
 
     /**
      * Initialize all providers
@@ -91,18 +89,8 @@ public class DataHandler extends BroadcastReceiver
         //  to bind to services)
         this.context = context.getApplicationContext();
 
-        start = System.currentTimeMillis();
-
-        IntentFilter intentFilter = new IntentFilter(MainActivity.LOAD_OVER);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            this.context.getApplicationContext().registerReceiver(this, intentFilter, Context.RECEIVER_EXPORTED);
-        }
-        else {
-            this.context.getApplicationContext().registerReceiver(this, intentFilter);
-        }
-
-        Intent i = new Intent(MainActivity.START_LOAD);
-        this.context.sendBroadcast(i);
+        Intent startLoad = new Intent(MainActivity.START_LOAD);
+        this.context.sendBroadcast(startLoad);
 
         // Monitor changes for profiles
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -143,6 +131,10 @@ public class DataHandler extends BroadcastReceiver
         ProviderEntry tagsEntry = new ProviderEntry();
         tagsEntry.provider = new TagsProvider();
         this.providers.put("tags", tagsEntry);
+
+        // Some basic providers already loaded! We need to fire the LOAD_OVER event.
+        Intent loadOver = new Intent(MainActivity.LOAD_OVER);
+        this.context.sendBroadcast(loadOver);
     }
 
     @Override
@@ -261,15 +253,10 @@ public class DataHandler extends BroadcastReceiver
             public void onServiceConnected(ComponentName className, IBinder service) {
                 // We've bound to LocalService, cast the IBinder and get LocalService instance
                 Provider<?>.LocalBinder binder = (Provider<?>.LocalBinder) service;
-                IProvider<?> provider = binder.getService();
 
                 // Update provider info so that it contains something useful
-                entry.provider = provider;
+                entry.provider = binder.getService();
                 entry.connection = this;
-
-                if (provider.isLoaded()) {
-                    handleProviderLoaded();
-                }
             }
 
             @Override
@@ -284,8 +271,10 @@ public class DataHandler extends BroadcastReceiver
      * @param name Data provider name (i.e.: `AppProvider` → `"app"`)
      */
     private void disconnectFromProvider(String name) {
+        // Remove provider from list
+        ProviderEntry entry = this.providers.remove(name);
+
         // Skip already disconnected services
-        ProviderEntry entry = this.providers.get(name);
         if (entry == null) {
             return;
         }
@@ -300,8 +289,9 @@ public class DataHandler extends BroadcastReceiver
             this.context.stopService(new Intent(this.context, entry.provider.getClass()));
         }
 
-        // Remove provider from list
-        this.providers.remove(name);
+        // Providers changed! We need to fire the LOAD_OVER event.
+        Intent loadOver = new Intent(MainActivity.LOAD_OVER);
+        this.context.sendBroadcast(loadOver);
     }
 
     public boolean isAllProvidersHaveLoaded() {
@@ -311,34 +301,6 @@ public class DataHandler extends BroadcastReceiver
             }
         }
         return true;
-    }
-
-    /**
-     * Called when some event occurred that makes us believe that all data providers
-     * might be ready now
-     */
-    protected void handleProviderLoaded() {
-        if (!isAllProvidersHaveLoaded()) {
-            return;
-        }
-
-        long time = System.currentTimeMillis() - start;
-        Log.v(TAG, "Time to load all providers: " + time + "ms");
-
-        // Broadcast the fact that the new providers list is ready
-        try {
-            this.context.unregisterReceiver(this);
-            Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
-            this.context.sendBroadcast(i);
-        } catch (IllegalArgumentException e) {
-            Log.e(TAG, "Unable to send broadcast: " + MainActivity.FULL_LOAD_OVER);
-        }
-    }
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        // A provider finished loading and contacted us
-        this.handleProviderLoaded();
     }
 
     /**
