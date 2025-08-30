@@ -79,7 +79,7 @@ public class DataHandler extends BroadcastReceiver
     final private Context context;
     private String currentQuery;
     private final Map<String, ProviderEntry> providers = new HashMap<>();
-    public boolean allProvidersHaveLoaded = false;
+    private boolean allProvidersHaveLoaded = false;
     private long start;
 
     /**
@@ -252,7 +252,9 @@ public class DataHandler extends BroadcastReceiver
             return;
         }
 
+        // Add empty provider object to list of providers
         final ProviderEntry entry = new ProviderEntry();
+        this.providers.put(name, entry);
 
         // Connect and bind to provider service
         this.context.bindService(intent, new ServiceConnection() {
@@ -275,9 +277,6 @@ public class DataHandler extends BroadcastReceiver
             public void onServiceDisconnected(ComponentName name) {
             }
         }, Context.BIND_AUTO_CREATE);
-
-        // Add empty provider object to list of providers
-        this.providers.put(name, entry);
     }
 
     /**
@@ -306,12 +305,16 @@ public class DataHandler extends BroadcastReceiver
         this.providers.remove(name);
     }
 
+    public boolean isAllProvidersHaveLoaded() {
+        return allProvidersHaveLoaded;
+    }
+
     /**
      * Called when some event occurred that makes us believe that all data providers
      * might be ready now
      */
     protected void handleProviderLoaded() {
-        if (this.allProvidersHaveLoaded) {
+        if (isAllProvidersHaveLoaded()) {
             return;
         }
 

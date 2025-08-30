@@ -26,7 +26,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
      * Storage for search items used by this provider
      */
     private List<T> pojos = new ArrayList<>();
-    private boolean loaded = false;
+
     /**
      * Scheme used to build ids for the pojos created by this provider
      */
@@ -34,6 +34,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
     private long start;
     private LoadPojos<T> loader;
+    private boolean loaded = false;
 
     /**
      * (Re-)load the providers resources when the provider has been completely initialized
@@ -46,6 +47,11 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
         this.reload();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cancelInitialize();
+    }
 
     void initialize(LoadPojos<T> loader) {
         cancelInitialize();
@@ -66,6 +72,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
             this.loader.cancel(false);
             this.loader.setProvider(null);
             this.loader = null;
+            this.loaded = false;
             Log.i(TAG, "Cancelling provider: " + this.getClass().getSimpleName());
         }
     }
@@ -86,6 +93,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
 
         Log.i(TAG, "Time to load " + this.getClass().getSimpleName() + ": " + time + "ms");
         // Store results
+        this.loader.setProvider(null);
         this.loader = null;
         this.loaded = true;
         this.pojos = results;

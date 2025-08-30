@@ -39,7 +39,6 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -182,8 +181,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
 
-        KissApplication.getApplication(this).initDataHandler();
-
         /*
          * Initialize preferences
          */
@@ -257,8 +254,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         /*
          * Initialize components behavior
          * Note that a lot of behaviors are also initialized through the forwarderManager.onCreate() call.
+         * {@code initDataHandler} must be called after {@link MainActivity#displayLoader(boolean)} and after {@link MainActivity#mReceiver} is registered.
+         * If {@code dataHandler} is already existing at this point this may result in undefined behaviour.
          */
         displayLoader(true);
+        KissApplication.getApplication(this).initDataHandler();
 
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
@@ -276,12 +276,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         this.list.setOnItemClickListener((parent, v, position, id) -> adapter.onClick(position, v));
 
         this.list.setLongClickable(true);
-        this.list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View v, int pos, long id) {
-                ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
-                return true;
-            }
+        this.list.setOnItemLongClickListener((parent, v, pos, id) -> {
+            ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
+            return true;
         });
 
         // Display empty list view when having no results
@@ -464,7 +461,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         dismissPopup();
 
-        if (KissApplication.getApplication(this).getDataHandler().allProvidersHaveLoaded) {
+        if (KissApplication.getApplication(this).getDataHandler().isAllProvidersHaveLoaded()) {
             displayLoader(false);
             onFavoriteChange();
         }

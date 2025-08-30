@@ -5,10 +5,14 @@ import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import fr.neamar.kiss.utils.IconPackCache;
 
 public class KissApplication extends Application {
+
+    private static final String TAG = KissApplication.class.getSimpleName();
+
     /**
      * Number of ms to wait, after a click occurred, to record a launch
      * Setting this value to 0 removes all animations
@@ -55,8 +59,11 @@ public class KissApplication extends Application {
     }
 
     public void initDataHandler() {
+        if (dataHandler != null) {
+            Log.w(TAG, "dataHandler already instantiated");
+        }
         DataHandler dataHandler = getDataHandler();
-        if (dataHandler != null && dataHandler.allProvidersHaveLoaded) {
+        if (dataHandler != null && dataHandler.isAllProvidersHaveLoaded()) {
             // Already loaded! We still need to fire the FULL_LOAD event
             Intent i = new Intent(MainActivity.FULL_LOAD_OVER);
             sendBroadcast(i);
