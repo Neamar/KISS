@@ -79,7 +79,6 @@ public class DataHandler extends BroadcastReceiver
     final private Context context;
     private String currentQuery;
     private final Map<String, ProviderEntry> providers = new HashMap<>();
-    private boolean allProvidersHaveLoaded = false;
     private long start;
 
     /**
@@ -306,7 +305,12 @@ public class DataHandler extends BroadcastReceiver
     }
 
     public boolean isAllProvidersHaveLoaded() {
-        return allProvidersHaveLoaded;
+        for (ProviderEntry entry : this.providers.values()) {
+            if (entry.provider == null || !entry.provider.isLoaded()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -314,21 +318,12 @@ public class DataHandler extends BroadcastReceiver
      * might be ready now
      */
     protected void handleProviderLoaded() {
-        if (isAllProvidersHaveLoaded()) {
+        if (!isAllProvidersHaveLoaded()) {
             return;
-        }
-
-        // Make sure that all providers are fully connected
-        for (ProviderEntry entry : this.providers.values()) {
-            if (entry.provider == null || !entry.provider.isLoaded()) {
-                return;
-            }
         }
 
         long time = System.currentTimeMillis() - start;
         Log.v(TAG, "Time to load all providers: " + time + "ms");
-
-        this.allProvidersHaveLoaded = true;
 
         // Broadcast the fact that the new providers list is ready
         try {
