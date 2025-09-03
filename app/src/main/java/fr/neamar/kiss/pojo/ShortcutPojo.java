@@ -58,6 +58,7 @@ public final class ShortcutPojo extends PojoWithTags {
         return disabled;
     }
 
+    @Override
     public UserHandle getUserHandle() {
         return userHandle;
     }
