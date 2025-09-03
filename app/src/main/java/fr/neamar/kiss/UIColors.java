@@ -214,6 +214,9 @@ public class UIColors {
             // Update status bar color
             window.setStatusBarColor(notificationBarColorOverride);
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.setNavigationBarContrastEnforced(false);
+        }
     }
 
     private static void updateThemePrimaryColor(int notificationBarColorOverride, ActionBar actionBar) {
@@ -223,7 +226,9 @@ public class UIColors {
     }
 
     private static int getNotificationBarColor(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            return COLOR_TRANSPARENT;
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             // use accent color from system if available
             return getColor(context, "notification-bar-color", getNotificationBarColorRes(context));
         } else {

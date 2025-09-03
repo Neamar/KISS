@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId 'fr.neamar.kiss'
         minSdkVersion 15
-        compileSdk 35
+        compileSdkVersion 35
         targetSdkVersion 35
         versionCode 215
         versionName "3.22.2"
@@ -60,7 +60,7 @@ dependencies {
     testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.11.4')
     testImplementation 'org.hamcrest:hamcrest-library:3.0'
 
-    errorprone('com.google.errorprone:error_prone_core:2.40.0')
+    errorprone('com.google.errorprone:error_prone_core:2.41.0')
 }
 
 tasks.withType(JavaCompile).configureEach {
