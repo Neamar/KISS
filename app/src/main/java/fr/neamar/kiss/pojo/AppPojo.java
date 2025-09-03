@@ -87,6 +87,7 @@ public final class AppPojo extends PojoWithTags {
         return disabled;
     }
 
+    @Override
     public UserHandle getUserHandle() {
         return userHandle;
     }
