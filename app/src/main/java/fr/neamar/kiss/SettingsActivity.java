@@ -134,6 +134,9 @@ public class SettingsActivity extends PreferenceActivity implements
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             removePreference("icons-section", DrawableUtils.KEY_THEMED_ICONS);
         }
+        if (Build.VERSION.SDK_INT >=Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            removePreference("colors-section", "notification-bar-color");
+        }
         if (!ShortcutUtil.canDeviceShowShortcuts()) {
             removePreference("exclude_apps_category", "reset-excluded-app-shortcuts");
             removePreference("search-providers", "enable-shortcuts");
