@@ -54,6 +54,7 @@ import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.ClipboardUtils;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
@@ -181,8 +182,13 @@ public abstract class Result<T extends Pojo> {
         ListPopup menu = buildPopupMenu(context, popupMenuAdapter, parent, parentView);
 
         menu.setOnItemClickListener((adapter, view, position) -> {
-            @StringRes int stringId = ((ListPopup.Item) adapter.getItem(position)).stringId;
-            popupMenuClickHandler(view.getContext(), parent, stringId, parentView);
+            ListPopup.Item item = (ListPopup.Item) adapter.getItem(position);
+            @StringRes int stringId = item.stringId;
+            boolean handled = popupMenuClickHandler(view.getContext(), parent, stringId, parentView);
+            if (!handled && stringId == 0) {
+                ClipboardUtils.setClipboard(view.getContext(), "Copied Text", item.toString());
+                Toast.makeText(context, R.string.copy_confirmation, Toast.LENGTH_SHORT).show();
+            }
         });
 
         return menu;
@@ -246,17 +252,10 @@ public abstract class Result<T extends Pojo> {
             return true;
         } else if (stringId == R.string.menu_favorites_add) {
             launchAddToFavorites(context, pojo);
+            return true;
         } else if (stringId == R.string.menu_favorites_remove) {
             launchRemoveFromFavorites(context, pojo);
-        }
-
-        MainActivity mainActivity = (MainActivity) context;
-        // Update favorite bar
-        mainActivity.onFavoriteChange();
-        mainActivity.launchOccurred();
-        // Update Search to reflect favorite add, if the "exclude favorites" option is active
-        if (mainActivity.prefs.getBoolean("exclude-favorites-history", false) && mainActivity.isViewingSearchResults()) {
-            mainActivity.updateSearchRecords();
+            return true;
         }
 
         return false;
@@ -266,12 +265,27 @@ public abstract class Result<T extends Pojo> {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
         KissApplication.getApplication(context).getDataHandler().addToFavorites(pojo.getFavoriteId());
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
+        favoritesChanged(context);
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
         KissApplication.getApplication(context).getDataHandler().removeFromFavorites(pojo.getFavoriteId());
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
+        favoritesChanged(context);
+    }
+
+    private void favoritesChanged(Context context) {
+        if (context instanceof MainActivity) {
+            MainActivity mainActivity = (MainActivity) context;
+            // Update favorite bar
+            mainActivity.onFavoriteChange();
+            mainActivity.launchOccurred();
+            // Update Search to reflect favorite add, if the "exclude favorites" option is active
+            if (mainActivity.prefs.getBoolean("exclude-favorites-history", false) && mainActivity.isViewingSearchResults()) {
+                mainActivity.updateSearchRecords();
+            }
+        }
     }
 
     /**

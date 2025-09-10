@@ -1,9 +1,5 @@
 package fr.neamar.kiss.preference;
 
-import static android.content.Context.CLIPBOARD_SERVICE;
-
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -23,6 +19,7 @@ import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.utils.ClipboardUtils;
 
 public class ExportSettingsPreference extends DialogPreference {
 
@@ -96,9 +93,7 @@ public class ExportSettingsPreference extends DialogPreference {
                 }
                 out.put("__tags", jsonTags);
 
-                ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("kiss", out.toString());
-                clipboard.setPrimaryClip(clip);
+                ClipboardUtils.setClipboard(getContext(), "kiss", out.toString());
                 Toast.makeText(getContext(), R.string.export_settings_done, Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 Log.e(TAG, "Unable to export settings", e);
