@@ -16,6 +16,7 @@ import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.AppPojo;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.utils.ShortcutUtil;
+import fr.neamar.kiss.utils.UserHandle;
 
 /**
  * Retrieve pojos from history
@@ -63,7 +64,7 @@ public class HistorySearcher extends Searcher {
                     for (ShortcutInfo shortcutInfo : shortcutInfos) {
                         ShortcutRecord shortcutRecord = ShortcutUtil.createShortcutRecord(activity, shortcutInfo, !shortcutInfo.isPinned());
                         if (shortcutRecord != null) {
-                            excludedPojoById.add(ShortcutUtil.generateShortcutId(shortcutRecord));
+                            excludedPojoById.add(ShortcutUtil.generateShortcutId(new UserHandle(activity, shortcutInfo.getUserHandle()), shortcutRecord));
                         }
                     }
                 }

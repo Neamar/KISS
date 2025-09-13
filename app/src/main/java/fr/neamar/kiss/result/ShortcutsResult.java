@@ -9,7 +9,6 @@ import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.UserManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,7 +135,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
                             Intent intent = Intent.parseUri(pojo.intentUri, 0);
                             ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
                             if (componentName != null) {
-                                UserHandle userHandle = new UserHandle();
+                                UserHandle userHandle = pojo.getUserHandle();
                                 appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, userHandle), userHandle);
                             }
                         } catch (NullPointerException e) {
@@ -250,15 +249,14 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private ShortcutInfo getShortCut(Context context) {
-        return ShortcutUtil.getShortCut(context, pojo.packageName, pojo.getOreoId());
+        return ShortcutUtil.getShortCut(context, pojo.getUserHandle().getRealHandle(), pojo.packageName, pojo.getOreoId());
     }
 
     private Drawable getDrawableFromOreoShortcut(Context context) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             ShortcutInfo shortcutInfo = getShortCut(context);
             if (shortcutInfo != null && shortcutInfo.getActivity() != null) {
-                UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-                fr.neamar.kiss.utils.UserHandle user = new fr.neamar.kiss.utils.UserHandle(manager.getSerialNumberForUser(shortcutInfo.getUserHandle()), shortcutInfo.getUserHandle());
+                UserHandle user = new UserHandle(context, shortcutInfo.getUserHandle());
                 IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
                 return iconsHandler.getDrawableIconForPackage(shortcutInfo.getActivity(), user);
             }

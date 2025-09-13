@@ -69,6 +69,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
                         boolean disabled = isSuspended || isQuietModeEnabled;
 
                         ShortcutPojo pojo = createPojo(
+                                new UserHandle(context, shortcutInfo.getUserHandle()),
                                 shortcutRecord,
                                 dataHandler.getTagsHandler(),
                                 ShortcutUtil.getComponentName(context, shortcutInfo),
@@ -96,7 +97,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             if (isCancelled()) {
                 break;
             }
-            ShortcutPojo pojo = createPojo(shortcutRecord, tagsHandler, null, true, false, false);
+            ShortcutPojo pojo = createPojo(null, shortcutRecord, tagsHandler, null, true, false, false);
             if (!pojo.isOreoShortcut()) {
                 // add older shortcuts from DB
                 pojos.add(pojo);
@@ -106,8 +107,8 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
         return pojos;
     }
 
-    private ShortcutPojo createPojo(ShortcutRecord shortcutRecord, TagsHandler tagsHandler, String componentName, boolean pinned, boolean dynamic, boolean disabled) {
-        ShortcutPojo pojo = new ShortcutPojo(shortcutRecord, componentName, pinned, dynamic, disabled);
+    private ShortcutPojo createPojo(UserHandle userHandle, ShortcutRecord shortcutRecord, TagsHandler tagsHandler, String componentName, boolean pinned, boolean dynamic, boolean disabled) {
+        ShortcutPojo pojo = new ShortcutPojo(userHandle, shortcutRecord, componentName, pinned, dynamic, disabled);
         pojo.setName(shortcutRecord.name);
         pojo.setTags(tagsHandler.getTags(pojo.id));
         return pojo;

@@ -16,7 +16,14 @@ public class NameComparator implements Comparator<Pojo> {
         }
 
         if (lhs.getName() != null && rhs.getName() != null) {
-            return lhs.getName().compareTo(rhs.getName());
+            int result = lhs.getName().compareTo(rhs.getName());
+            if (result != 0) {
+                return result;
+            }
+        }
+
+        if (lhs.getUserHandle() != null && rhs.getUserHandle() != null) {
+            return lhs.getUserHandle().compareTo(rhs.getUserHandle());
         }
 
         return 0;

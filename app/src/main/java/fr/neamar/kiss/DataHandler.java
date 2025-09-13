@@ -13,6 +13,7 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -520,7 +521,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             return DBHelper.insertShortcut(this.context, shortcutRecord);
         } else {
             Log.d(TAG, "Removing shortcut for " + shortcutRecord.packageName);
-            String id = ShortcutUtil.generateShortcutId(shortcutRecord);
+            String id = ShortcutUtil.generateShortcutId(new UserHandle(context, shortcutInfo.getUserHandle()), shortcutRecord);
             return removeShortcut(id, shortcutRecord.packageName, shortcutRecord.intentUri);
         }
     }
@@ -553,7 +554,12 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         // Remove all shortcuts from favorites for given package name
         List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, packageName);
         for (ShortcutRecord shortcutRecord : shortcutsList) {
-            String id = ShortcutUtil.generateShortcutId(shortcutRecord);
+            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            for (android.os.UserHandle user : manager.getUserProfiles()) {
+                String id = ShortcutUtil.generateShortcutId(new UserHandle(context, user), shortcutRecord);
+                removeFromFavorites(id);
+            }
+            String id = ShortcutUtil.generateShortcutId(null, shortcutRecord);
             removeFromFavorites(id);
         }
 
@@ -569,7 +575,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             return new HashSet<>(excluded);
         } else {
             Set<String> defaultExcluded = new HashSet<>(1);
-            defaultExcluded.add("app://" + AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), new UserHandle()));
+            defaultExcluded.add("app://" + AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), UserHandle.OWNER));
             return defaultExcluded;
         }
     }
@@ -581,7 +587,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             return new HashSet<>(excluded);
         } else {
             Set<String> defaultExcluded = new HashSet<>(1);
-            defaultExcluded.add(AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), new UserHandle()));
+            defaultExcluded.add(AppPojo.getComponentName(context.getPackageName(), MainActivity.class.getName(), UserHandle.OWNER));
             return defaultExcluded;
         }
     }
