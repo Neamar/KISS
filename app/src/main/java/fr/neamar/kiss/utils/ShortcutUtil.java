@@ -227,11 +227,6 @@ public class ShortcutUtil {
             }
         }
 
-        if (userManager.getSerialNumberForUser(shortcutInfo.getUserHandle()) != 0) {
-            // Hide all shortcuts for apps of managed profiles. Shortcuts currently don't support multiple profiles at all!!!
-            Log.d(TAG, "Found shortcut for profile: " + shortcutInfo);
-        }
-
         String packageName = shortcutInfo.getPackage();
         String componentName = ShortcutUtil.getComponentName(context, shortcutInfo);
 
