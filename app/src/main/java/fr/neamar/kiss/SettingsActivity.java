@@ -764,7 +764,6 @@ public class SettingsActivity extends PreferenceActivity implements
         // Enable the preference
         runOnUiThread(() -> {
             selectListPreference.setEnabled(true);
-            selectListPreference.setTitle(R.string.pref_toggle_tags_select);
         });
     }
 
@@ -788,7 +787,6 @@ public class SettingsActivity extends PreferenceActivity implements
         // Enable the preference
         runOnUiThread(() -> {
             selectListPreference.setEnabled(true);
-            selectListPreference.setTitle(R.string.pref_fav_tags_select);
         });
     }
 
