@@ -354,7 +354,7 @@ public class IconsHandler {
 
         for (ResolveInfo ri : launcherThemes) {
             String packageName = ri.activityInfo.packageName;
-            String name = PackageManagerUtils.getLabel(ctx, packageName, new UserHandle());
+            String name = PackageManagerUtils.getLabel(ctx, packageName, UserHandle.OWNER);
             if (name != null) {
                 iconsPacks.put(packageName, name);
             } else {
