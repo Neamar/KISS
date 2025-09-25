@@ -1,6 +1,7 @@
 package fr.neamar.kiss.pojo;
 
 import fr.neamar.kiss.normalizer.StringNormalizer;
+import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public abstract class Pojo {
@@ -90,5 +91,9 @@ public abstract class Pojo {
 
     public boolean isDisabled() {
         return false;
+    }
+
+    public UserHandle getUserHandle() {
+        return UserHandle.OWNER;
     }
 }

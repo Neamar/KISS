@@ -13,12 +13,14 @@ import androidx.annotation.RequiresApi;
 /**
  * Wrapper class for `android.os.UserHandle` that works with all Android versions
  */
-public class UserHandle implements Parcelable {
+public class UserHandle implements Parcelable, Comparable<UserHandle> {
     private static final String TAG = UserHandle.class.getSimpleName();
     private final long serial;
     private final Parcelable handle; // android.os.UserHandle on Android 4.2 and newer
 
-    public UserHandle() {
+    public static UserHandle OWNER = new UserHandle();
+
+    private UserHandle() {
         this(0, null);
     }
 
@@ -129,5 +131,14 @@ public class UserHandle implements Parcelable {
         }
 
         return (serial == this.serial);
+    }
+
+
+    @Override
+    public int compareTo(UserHandle that) {
+        if (this == that)
+            return 0;
+
+        return Long.compare(this.serial, that.serial);
     }
 }

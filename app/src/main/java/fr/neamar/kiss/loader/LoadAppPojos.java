@@ -81,7 +81,7 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
                 }
                 ApplicationInfo appInfo = info.activityInfo.applicationInfo;
                 boolean disabled = PackageManagerUtils.isAppSuspended(appInfo);
-                final AppPojo app = createPojo(new UserHandle(), appInfo.packageName, info.activityInfo.name, info.loadLabel(manager), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
+                final AppPojo app = createPojo(UserHandle.OWNER, appInfo.packageName, info.activityInfo.name, info.loadLabel(manager), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
                 apps.add(app);
             }
         }

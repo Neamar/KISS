@@ -34,11 +34,11 @@ import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.ShapedContactBadge;
-import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
+import fr.neamar.kiss.utils.ClipboardUtils;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
-import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
+import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class ContactsResult extends CallResult<ContactsPojo> {
 
@@ -185,8 +185,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
                     ComponentName componentName = KissApplication.getMimeTypeCache(context).getComponentName(context, pojo.getContactData().getMimeType());
                     if (componentName != null) {
                         IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
-                        UserHandle userHandle = new UserHandle();
-                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, userHandle), userHandle);
+                        appDrawable = iconsHandler.getDrawableIconForPackage(PackageManagerUtils.getLaunchingComponent(context, componentName, pojo.getUserHandle()), pojo.getUserHandle());
                     }
                     if (appDrawable == null) {
                         // This should never happen, let's just return the generic activity icon
@@ -219,13 +218,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     }
 
     private void copyPhone(Context context, ContactsPojo pojo) {
-        android.content.ClipboardManager clipboard =
-                (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        assert clipboard != null;
-        android.content.ClipData clip = android.content.ClipData.newPlainText(
-                "Phone number for " + pojo.getName(),
-                pojo.phone);
-        clipboard.setPrimaryClip(clip);
+        ClipboardUtils.setClipboard(context, "Phone number for " + pojo.getName(), pojo.phone);
     }
 
     @Override

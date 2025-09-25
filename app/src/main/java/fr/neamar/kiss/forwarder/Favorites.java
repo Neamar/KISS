@@ -400,7 +400,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     @Nullable
     private ComponentName getLaunchingComponent(Intent intent) {
         ComponentName componentName = PackageManagerUtils.getComponentName(mainActivity, intent);
-        ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(mainActivity, componentName, new UserHandle());
+        ComponentName launchingComponent = PackageManagerUtils.getLaunchingComponent(mainActivity, componentName, UserHandle.OWNER);
         if (launchingComponent != null && !launchingComponent.getClassName().equals(DEFAULT_RESOLVER)) {
             return launchingComponent;
         }
