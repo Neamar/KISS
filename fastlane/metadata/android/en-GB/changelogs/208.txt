@@ -1,8 +1,13 @@
-Fixed crashes (settings, shortcuts, export/import).
-Stable loading & shortcut handling.
-Improved icon pack loading & tag icon shapes.
-Correct app name in settings.
-Light text in custom icon dialog.
-Favorites follow Android long-press delay.
-"Add widget" not locked to portrait.
-Added sort mode option for results by tag.
+* Fix crash when repeatedly opening settings
+* Fix app name shown in settings
+* Fix export and import of settings
+* Fix unpredictable order of results when shown by tag, e.g. from favourites
+* Mitigate crash because of broken shortcuts
+* Mitigate crash because of frequent shortcut changes
+* Mitigate spinner running forever on app start
+* Improved loading of icon packs
+* Icons for tags now have same shape as other icons
+* Show light text in dialog for custom icons
+* Favourites list now uses long press delay from Android (@syphyr)
+* Orientation of `Add widget` screen is no longer set to portrait
+* Add setting for sort mode of results when shown by tag.
