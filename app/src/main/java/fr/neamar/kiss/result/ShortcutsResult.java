@@ -272,10 +272,10 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_tags_edit));
         adapter.add(new ListPopup.Item(context, R.string.menu_remove));
-        if (!this.pojo.isPinned() && this.pojo.isOreoShortcut()) {
+        if (!this.pojo.isPinned() && this.pojo.isOreoShortcut() && !PackageManagerUtils.isPrivateProfile(context, this.pojo.getUserHandle())) {
             adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_pin));
         }
-        if (this.pojo.isPinned()) {
+        if (this.pojo.isPinned() && !PackageManagerUtils.isPrivateProfile(context, this.pojo.getUserHandle())) {
             adapter.add(new ListPopup.Item(context, R.string.menu_shortcut_remove));
         }
 
@@ -333,11 +333,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
 
     private void launchUninstall(Context context, ShortcutPojo pojo) {
         DataHandler dh = KissApplication.getApplication(context).getDataHandler();
-        if (pojo.isOreoShortcut() && pojo.isPinned()) {
-            dh.unpinShortcut(pojo);
-        } else {
-            dh.removeShortcut(pojo);
-        }
+        dh.unpinShortcut(pojo);
     }
 
     private void pinShortcut(Context context, ShortcutPojo pojo) {
