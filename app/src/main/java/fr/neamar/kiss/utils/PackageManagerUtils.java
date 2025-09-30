@@ -331,6 +331,14 @@ public class PackageManagerUtils {
         return appInfo != null && isAppSuspended(appInfo);
     }
 
+    public static boolean isPrivateProfile(@NonNull Context context, @NonNull UserHandle userHandle) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            return isPrivateProfile(launcherApps, userHandle.getRealHandle());
+        }
+        return false;
+    }
+
     public static boolean isPrivateProfile(@NonNull LauncherApps launcherApps, @NonNull android.os.UserHandle userHandle) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             LauncherUserInfo info = launcherApps.getLauncherUserInfo(userHandle);

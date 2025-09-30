@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.Handler;
@@ -30,6 +31,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import fr.neamar.kiss.broadcast.ProfileChangedHandler;
 import fr.neamar.kiss.dataprovider.AppProvider;
@@ -455,7 +457,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      *
      * @param shortcut shortcut to be removed
      */
-    public void removeShortcut(ShortcutPojo shortcut) {
+    private void removeShortcut(ShortcutPojo shortcut) {
         boolean shortcutUpdated = removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
         if (shortcutUpdated) {
             reloadShortcuts();
@@ -471,8 +473,24 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      */
     public boolean pinShortcut(ShortcutPojo shortcut) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            if (!shortcut.isPinned() && shortcut.isOreoShortcut()) {
-                return ShortcutUtil.pinShortcut(this.context, shortcut.packageName, shortcut.getOreoId());
+            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            if (shortcut.isOreoShortcut() &&
+                    launcherApps.hasShortcutHostPermission() &&
+                    !PackageManagerUtils.isPrivateProfile(launcherApps, shortcut.getUserHandle().getRealHandle())) {
+                ShortcutInfo shortcutToPin = ShortcutUtil.getShortCut(context, shortcut.getUserHandle().getRealHandle(), shortcut.packageName, shortcut.getOreoId());
+                if (shortcutToPin != null) {
+                    List<ShortcutInfo> shortcutInfos = ShortcutUtil.getShortcuts(context, shortcut.packageName);
+                    List<String> pinnedShortcutIds = shortcutInfos.stream()
+                            .filter(ShortcutInfo::isPinned)
+                            .filter(shortcutInfo -> shortcutInfo.getUserHandle().equals(shortcutToPin.getUserHandle()))
+                            .map(ShortcutInfo::getId)
+                            .collect(Collectors.toList());
+                    pinnedShortcutIds.add(shortcutToPin.getId());
+
+                    launcherApps.pinShortcuts(shortcut.packageName, pinnedShortcutIds, shortcutToPin.getUserHandle());
+                    updateShortcut(shortcutToPin, false);
+                    return true;
+                }
             }
         }
         return false;
@@ -486,9 +504,24 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      * @return true, if shortcut was unpinned
      */
     public boolean unpinShortcut(ShortcutPojo shortcut) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            if (shortcut.isPinned() && shortcut.isOreoShortcut()) {
-                if (ShortcutUtil.unpinShortcut(this.context, shortcut.packageName, shortcut.getOreoId())) {
+        if (!shortcut.isOreoShortcut()) {
+            removeShortcut(shortcut);
+        } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            if (shortcut.isOreoShortcut() &&
+                    launcherApps.hasShortcutHostPermission() &&
+                    !PackageManagerUtils.isPrivateProfile(launcherApps, shortcut.getUserHandle().getRealHandle())) {
+                ShortcutInfo shortcutToUnpin = ShortcutUtil.getShortCut(context, shortcut.getUserHandle().getRealHandle(), shortcut.packageName, shortcut.getOreoId());
+                if (shortcutToUnpin != null) {
+                    List<ShortcutInfo> shortcutInfos = ShortcutUtil.getShortcuts(context, shortcut.packageName);
+                    List<String> pinnedShortcutIds = shortcutInfos.stream()
+                            .filter(ShortcutInfo::isPinned)
+                            .filter(shortcutInfo -> shortcutInfo.getUserHandle().equals(shortcutToUnpin.getUserHandle()))
+                            .map(ShortcutInfo::getId)
+                            .collect(Collectors.toList());
+                    pinnedShortcutIds.remove(shortcutToUnpin.getId());
+
+                    launcherApps.pinShortcuts(shortcut.packageName, pinnedShortcutIds, shortcutToUnpin.getUserHandle());
                     removeShortcut(shortcut.id, shortcut.packageName, shortcut.intentUri);
                     return true;
                 }

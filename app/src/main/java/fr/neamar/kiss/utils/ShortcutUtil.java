@@ -24,9 +24,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.ShortcutRecord;
 import fr.neamar.kiss.pojo.AppPojo;
@@ -233,56 +231,5 @@ public class ShortcutUtil {
         // if related package is excluded from KISS then the shortcut must be excluded too
         boolean isExcluded = excludedApps.contains(componentName) || excludedShortcutApps.contains(packageName);
         return !isExcluded;
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    public static boolean pinShortcut(@NonNull Context context, @NonNull String packageName, @NonNull String shortcutId) {
-        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-        if (launcherApps.hasShortcutHostPermission()) {
-            List<ShortcutInfo> shortcutInfos = ShortcutUtil.getShortcuts(context, packageName);
-            final ShortcutInfo shortcutToPin = shortcutInfos.stream()
-                    .filter(shortcutInfo -> !shortcutInfo.isPinned())
-                    .filter(shortcutInfo -> shortcutInfo.getId().equals(shortcutId))
-                    .findAny()
-                    .orElse(null);
-            if (shortcutToPin != null) {
-                List<String> pinnedShortcutIds = shortcutInfos.stream()
-                        .filter(ShortcutInfo::isPinned)
-                        .filter(shortcutInfo -> shortcutInfo.getUserHandle().equals(shortcutToPin.getUserHandle()))
-                        .map(ShortcutInfo::getId)
-                        .collect(Collectors.toList());
-                pinnedShortcutIds.add(shortcutId);
-
-                launcherApps.pinShortcuts(packageName, pinnedShortcutIds, shortcutToPin.getUserHandle());
-                KissApplication.getApplication(context).getDataHandler().updateShortcut(shortcutToPin, false);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    public static boolean unpinShortcut(@NonNull Context context, @NonNull String packageName, @NonNull String shortcutId) {
-        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-        if (launcherApps.hasShortcutHostPermission()) {
-            List<ShortcutInfo> shortcutInfos = ShortcutUtil.getShortcuts(context, packageName);
-            final ShortcutInfo shortcutToUnpin = shortcutInfos.stream()
-                    .filter(shortcutInfo -> shortcutInfo.isPinned())
-                    .filter(shortcutInfo -> shortcutInfo.getId().equals(shortcutId))
-                    .findAny()
-                    .orElse(null);
-            if (shortcutToUnpin != null) {
-                List<String> pinnedShortcutIds = shortcutInfos.stream()
-                        .filter(ShortcutInfo::isPinned)
-                        .filter(shortcutInfo -> shortcutInfo.getUserHandle().equals(shortcutToUnpin.getUserHandle()))
-                        .map(ShortcutInfo::getId)
-                        .collect(Collectors.toList());
-                pinnedShortcutIds.remove(shortcutId);
-
-                launcherApps.pinShortcuts(packageName, pinnedShortcutIds, shortcutToUnpin.getUserHandle());
-                return true;
-            }
-        }
-        return false;
     }
 }
