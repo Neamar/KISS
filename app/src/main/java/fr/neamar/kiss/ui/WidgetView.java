@@ -3,9 +3,13 @@ package fr.neamar.kiss.ui;
 import android.appwidget.AppWidgetHostView;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
+import android.util.SizeF;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+
+import java.util.Collections;
 
 /**
  * Source: https://github.com/willli666/Android-Trebuchet-Launcher-Standalone/blob/master/src/com/cyanogenmod/trebuchet/LauncherAppWidgetHostView.java
@@ -106,12 +110,16 @@ public class WidgetView extends AppWidgetHostView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             // calculate size in dips
             float density = getResources().getDisplayMetrics().density;
             int widthDips = (int) (w / density);
             int heightDips = (int) (h / density);
-            updateAppWidgetSize(null, widthDips, heightDips, widthDips, heightDips);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                updateAppWidgetSize(Bundle.EMPTY, Collections.singletonList(new SizeF(widthDips, heightDips)));
+            } else {
+                updateAppWidgetSize(null, widthDips, heightDips, widthDips, heightDips);
+            }
         }
     }
 }

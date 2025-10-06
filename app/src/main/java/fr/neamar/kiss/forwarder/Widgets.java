@@ -52,6 +52,8 @@ class Widgets extends Forwarder {
 
     private static final String WIDGET_PREF_KEY = "widgets-conf";
 
+    private static final int INITIAL_WIDGET_LINE_SIZE = 2;
+
     /**
      * Widgets fields
      */
@@ -374,7 +376,7 @@ class Widgets extends Forwarder {
      * @return true, if widget cannot be resized to given height
      */
     private boolean preventDecreaseLineHeight(int height, AppWidgetProviderInfo appWidgetInfo) {
-        return height <= 0 || appWidgetInfo == null || height < Math.min(appWidgetInfo.minHeight, appWidgetInfo.minResizeHeight);
+        return height <= 0 || appWidgetInfo == null || height < Math.min(getMinHeight(appWidgetInfo), appWidgetInfo.minResizeHeight);
     }
 
     /**
@@ -410,10 +412,14 @@ class Widgets extends Forwarder {
         // calculate max available lines
         int maxVisibleLines = (int) Math.ceil(widgetArea.getHeight() / getLineHeight());
 
-        // calculate new line size
-        int lineSize = Math.max(1, Math.min(maxVisibleLines - usedLines, getLineSize(appWidgetInfo.minHeight)));
+        // calculate initial size for new widget
+        int initialLineSize = getLineSize(getMinHeight(appWidgetInfo));
+        if (initialLineSize < INITIAL_WIDGET_LINE_SIZE && !preventIncreaseLineHeight((int) ((INITIAL_WIDGET_LINE_SIZE - 1) * getLineHeight()), appWidgetInfo)) {
+            initialLineSize = INITIAL_WIDGET_LINE_SIZE;
+        }
+        initialLineSize = Math.max(1, Math.min(maxVisibleLines - usedLines, initialLineSize));
 
-        addWidget(appWidgetId, lineSize);
+        addWidget(appWidgetId, initialLineSize);
 
         serializeState();
     }
@@ -529,7 +535,7 @@ class Widgets extends Forwarder {
      * @return calculated line size of given height
      */
     private int getLineSize(int height) {
-        return Math.max(1, Math.round(height / getLineHeight()));
+        return Math.max(1, (int) Math.ceil(height / getLineHeight()));
     }
 
     /**
@@ -540,6 +546,17 @@ class Widgets extends Forwarder {
         Resources r = mainActivity.getResources();
 
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
+    }
+
+    private int getMinHeight(AppWidgetProviderInfo appWidgetInfo) {
+        float lineHeight = getLineHeight();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && appWidgetInfo.targetCellHeight > 0) {
+            return (int) (appWidgetInfo.targetCellHeight * lineHeight);
+        } else if (appWidgetInfo.minHeight == 0) {
+            return 0;
+        } else {
+            return (int) (getLineSize(appWidgetInfo.minHeight) * lineHeight);
+        }
     }
 
     public void onStart() {
