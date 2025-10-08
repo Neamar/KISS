@@ -137,6 +137,9 @@ public class PickAppWidgetActivity extends Activity {
                 if (label == null) {
                     label = providerInfo.label;
                 }
+                if (label == null) {
+                    label = providerInfo.provider.flattenToShortString();
+                }
 
                 // get widget description
                 String description = null;
