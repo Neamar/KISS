@@ -117,15 +117,15 @@ public class AppProvider extends Provider<AppPojo> {
 
     @Override
     public void requestResults(String query, Searcher searcher) {
-        Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
-
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (queryNormalized.codePoints.length == 0) {
             return;
         }
 
         FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+
+        Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         for (AppPojo pojo : getPojos()) {
             // exclude apps from results
