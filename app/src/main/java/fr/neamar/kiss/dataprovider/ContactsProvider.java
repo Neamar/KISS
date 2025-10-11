@@ -87,6 +87,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
         }
 
         FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+        FuzzyScore phoneScore = FuzzyFactory.createFuzzyScore(this, PhoneNormalizer.simplifyPhoneNumber(query).codePoints);
 
         for (ContactsPojo pojo : getPojos()) {
             MatchInfo matchInfo;
@@ -119,6 +120,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
             if (!match && queryNormalized.length() > 2 && pojo.normalizedPhone != null) {
                 // search for the phone number
                 matchInfo = fuzzyScore.match(pojo.normalizedPhone.codePoints);
+                match = pojo.updateMatchingRelevance(matchInfo, match);
+            }
+            if (!match && queryNormalized.length() > 2 && pojo.normalizedPhone != null) {
+                // search for the phone number
+                matchInfo = phoneScore.match(pojo.normalizedPhone.codePoints);
                 match = pojo.updateMatchingRelevance(matchInfo, match);
             }
 
