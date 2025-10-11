@@ -3,6 +3,7 @@ package fr.neamar.kiss.result;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
@@ -79,7 +80,7 @@ public abstract class ResultWithTags<T extends PojoWithTags> extends Result<T> {
 
     protected void displayTags(Context context, FuzzyScore fuzzyScore, TextView tagsView) {
         // Hide tags view if tags are empty
-        if (pojo.getTags().isEmpty()) {
+        if (TextUtils.isEmpty(pojo.getTags())) {
             tagsView.setVisibility(View.GONE);
         } else if (displayHighlighted(pojo.getNormalizedTags(), pojo.getTags(),
                 fuzzyScore, tagsView, context) || isTagsVisible(context)) {

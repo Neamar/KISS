@@ -1,5 +1,7 @@
 package fr.neamar.kiss.searcher;
 
+import android.text.TextUtils;
+
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.PojoWithTags;
 
@@ -13,7 +15,7 @@ public class TagsSearcher extends PojoWithTagSearcher {
 
     @Override
     protected boolean acceptPojo(PojoWithTags pojoWithTags) {
-        return pojoWithTags.getTags() != null && pojoWithTags.getTags().contains(query);
+        return !TextUtils.isEmpty(pojoWithTags.getTags()) && pojoWithTags.getTags().contains(query);
     }
 
 }

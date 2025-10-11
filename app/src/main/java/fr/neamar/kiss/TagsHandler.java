@@ -10,6 +10,7 @@ import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.UserManager;
 import android.provider.AlarmClock;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
@@ -37,7 +38,11 @@ public class TagsHandler {
 
     public void setTags(String id, String tags) {
         // sanitize tags
-        tags = tags.trim().toLowerCase(Locale.getDefault());
+        if (!TextUtils.isEmpty(tags)) {
+            tags = tags.trim().toLowerCase(Locale.getDefault());
+        } else {
+            tags = "";
+        }
         // remove existing tags for id
         DBHelper.deleteTagsForId(this.context, id);
         // add to db
@@ -62,9 +67,10 @@ public class TagsHandler {
     public Set<String> getAllTagsAsSet() {
         Set<String> tags = new HashSet<>();
         for (String value : tagsCache.values()) {
-            tags.addAll(Arrays.asList(value.split("\\s+")));
+            if (!TextUtils.isEmpty(value)) {
+                tags.addAll(Arrays.asList(value.split("\\s+")));
+            }
         }
-        tags.remove("");
         return tags;
     }
 
