@@ -5,13 +5,18 @@ import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
 public class PhoneNormalizer {
+    public static String convertKeypadLettersToDigits(String phoneNumber) {
+        return PhoneNumberUtils.convertKeypadLettersToDigits(phoneNumber);
+    }
+
     public static StringNormalizer.Result simplifyPhoneNumber(String phoneNumber) {
         if (TextUtils.isEmpty(phoneNumber)) {
             return StringNormalizer.Result.EMPTY;
         }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             phoneNumber = PhoneNumberUtils.normalizeNumber(phoneNumber);
+        } else {
+            phoneNumber = convertKeypadLettersToDigits(phoneNumber);
         }
 
         // This is done manually for performance reason,

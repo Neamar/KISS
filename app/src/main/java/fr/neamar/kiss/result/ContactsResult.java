@@ -29,7 +29,6 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
-import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
@@ -73,8 +72,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
             displayHighlighted(pojo.getContactData().getNormalizedIdentifier(), pojo.getContactData().getIdentifier(), fuzzyScore, contactPhone, context);
         } else if (!TextUtils.isEmpty(pojo.phone)) {
             contactPhone.setVisibility(View.VISIBLE);
-            StringNormalizer.Result normalizedPhone = StringNormalizer.normalizeWithResult(pojo.phone, false);
-            displayHighlighted(normalizedPhone, pojo.phone, fuzzyScore, contactPhone, context);
+            displayHighlighted(pojo.normalizedPhone, pojo.phone, fuzzyScore, contactPhone, context);
         } else {
             contactPhone.setVisibility(View.GONE);
         }
