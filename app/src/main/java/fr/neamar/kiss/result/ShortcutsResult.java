@@ -1,6 +1,5 @@
 package fr.neamar.kiss.result;
 
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,10 +11,8 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,12 +32,11 @@ import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
-import fr.neamar.kiss.utils.SpaceTokenizer;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
-public class ShortcutsResult extends Result<ShortcutPojo> {
+public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
 
     private static final String TAG = ShortcutsResult.class.getSimpleName();
 
@@ -64,16 +60,7 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
         displayHighlighted(pojo.normalizedName, pojo.getName(), fuzzyScore, shortcutName, context);
 
         TextView tagsView = view.findViewById(R.id.item_app_tag);
-
-        // Hide tags view if tags are empty
-        if (pojo.getTags().isEmpty()) {
-            tagsView.setVisibility(View.GONE);
-        } else if (displayHighlighted(pojo.getNormalizedTags(), pojo.getTags(),
-                fuzzyScore, tagsView, context) || isTagsVisible(context)) {
-            tagsView.setVisibility(View.VISIBLE);
-        } else {
-            tagsView.setVisibility(View.GONE);
-        }
+        displayTags(context, fuzzyScore, tagsView);
 
         final ImageView shortcutIcon = view.findViewById(R.id.item_shortcut_icon);
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
@@ -292,43 +279,8 @@ public class ShortcutsResult extends Result<ShortcutPojo> {
             // Also remove item, since it will be uninstalled
             parent.removeResult(context, this);
             return true;
-        } else if (stringId == R.string.menu_tags_edit) {
-            launchEditTagsDialog(context, pojo);
-            return true;
         }
         return super.popupMenuClickHandler(context, parent, stringId, parentView);
-    }
-
-    private void launchEditTagsDialog(final Context context, final ShortcutPojo pojo) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(context.getResources().getString(R.string.tags_add_title));
-
-        // Create the tag dialog
-        final View v = View.inflate(context, R.layout.tags_dialog, null);
-        final MultiAutoCompleteTextView tagInput = v.findViewById(R.id.tag_input);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
-                android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
-        tagInput.setTokenizer(new SpaceTokenizer());
-        tagInput.setText(pojo.getTags());
-
-        tagInput.setAdapter(adapter);
-        builder.setView(v);
-
-        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
-            dialog.dismiss();
-            // Refresh tags for given app
-            pojo.setTags(tagInput.getText().toString());
-            KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(pojo.id, pojo.getTags());
-            // Show toast message
-            String msg = context.getResources().getString(R.string.tags_confirmation_added);
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-        });
-        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel());
-
-        AlertDialog dialog = builder.create();
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-
-        dialog.show();
     }
 
     private void launchUninstall(Context context, ShortcutPojo pojo) {

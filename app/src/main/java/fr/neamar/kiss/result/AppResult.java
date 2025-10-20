@@ -25,7 +25,6 @@ import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,10 +45,9 @@ import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
-import fr.neamar.kiss.utils.SpaceTokenizer;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
-public class AppResult extends Result<AppPojo> {
+public class AppResult extends ResultWithTags<AppPojo> {
 
     private static final String TAG = AppResult.class.getSimpleName();
     private final ComponentName className;
@@ -73,15 +71,7 @@ public class AppResult extends Result<AppPojo> {
         displayHighlighted(pojo.normalizedName, pojo.getName(), fuzzyScore, appName, context);
 
         TextView tagsView = view.findViewById(R.id.item_app_tag);
-        // Hide tags view if tags are empty
-        if (pojo.getTags().isEmpty()) {
-            tagsView.setVisibility(View.GONE);
-        } else if (displayHighlighted(pojo.getNormalizedTags(), pojo.getTags(),
-                fuzzyScore, tagsView, context) || isTagsVisible(context)) {
-            tagsView.setVisibility(View.VISIBLE);
-        } else {
-            tagsView.setVisibility(View.GONE);
-        }
+        displayTags(context, fuzzyScore, tagsView);
 
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!isHideIcons(context)) {
@@ -196,9 +186,6 @@ public class AppResult extends Result<AppPojo> {
 
             popupExcludeMenu.show();
             return true;
-        } else if (stringId == R.string.menu_tags_edit) {
-            launchEditTagsDialog(context, parent, pojo);
-            return true;
         } else if (stringId == R.string.menu_app_rename) {
             launchRenameDialog(context, parent, pojo);
             return true;
@@ -227,46 +214,6 @@ public class AppResult extends Result<AppPojo> {
         // In case the newly excluded app was in a favorite, refresh them
         ((MainActivity) context).onFavoriteChange();
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
-    }
-
-    private void launchEditTagsDialog(final Context context, RecordAdapter parent, final AppPojo app) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(context.getResources().getString(R.string.tags_add_title));
-
-        // Create the tag dialog
-        final View v = View.inflate(context, R.layout.tags_dialog, null);
-        final MultiAutoCompleteTextView tagInput = v.findViewById(R.id.tag_input);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
-                android.R.layout.simple_dropdown_item_1line, KissApplication.getApplication(context).getDataHandler().getTagsHandler().getAllTagsAsArray());
-        tagInput.setTokenizer(new SpaceTokenizer());
-        tagInput.setText(app.getTags());
-        tagInput.setAdapter(adapter);
-        builder.setView(v);
-
-        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
-            dialog.dismiss();
-            // Refresh tags for given app
-            app.setTags(tagInput.getText().toString());
-            KissApplication.getApplication(context).getDataHandler().getTagsHandler().setTags(app.id, app.getTags());
-            // Show toast message
-            String msg = context.getResources().getString(R.string.tags_confirmation_added);
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-            // We'll need to reset the list view to its previous transcript mode,
-            // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
-            // Let's wait for half a second, that's ugly but we don't have any other option :(
-            final Handler handler = new Handler();
-            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
-        });
-        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
-            dialog.cancel();
-            final Handler handler = new Handler();
-            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
-
-        });
-
-        parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
     private void launchRenameDialog(final Context context, RecordAdapter parent, final AppPojo app) {
