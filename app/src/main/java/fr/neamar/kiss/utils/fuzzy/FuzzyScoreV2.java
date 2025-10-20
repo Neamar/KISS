@@ -140,7 +140,7 @@ public class FuzzyScoreV2 implements FuzzyScore {
     @Override
     public MatchInfo match(int[] str) {
         int recursionCount = 0;
-        int recursionLimit = 10;
+        int recursionLimit = 7; // originally 10
         int maxMatches = Math.min(patternLength, str.length);
         List<Integer> matches = new ArrayList<>();
 
