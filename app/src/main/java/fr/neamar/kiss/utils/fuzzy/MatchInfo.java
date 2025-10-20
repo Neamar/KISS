@@ -16,7 +16,7 @@ public class MatchInfo {
     public boolean match;
     final List<Integer> matchedIndices;
 
-    MatchInfo(boolean match, int score) {
+    public MatchInfo(boolean match, int score) {
         this();
         this.match = match;
         this.score = score;
