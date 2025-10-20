@@ -66,7 +66,7 @@ public abstract class Result<T extends Pojo> {
     @NonNull
     protected final T pojo;
 
-    Result(@NonNull T pojo) {
+    protected Result(@NonNull T pojo) {
         this.pojo = pojo;
     }
 
