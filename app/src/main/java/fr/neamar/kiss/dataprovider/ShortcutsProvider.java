@@ -81,15 +81,14 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
 
     @Override
     public void requestResults(String query, Searcher searcher) {
-        Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
-
         StringNormalizer.Result queryNormalized = StringNormalizer.normalizeWithResult(query, false);
-
         if (queryNormalized.codePoints.length == 0) {
             return;
         }
 
         FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(this, queryNormalized.codePoints);
+
+        Set<String> excludedFavoriteIds = KissApplication.getApplication(this).getDataHandler().getExcludedFavorites();
 
         for (ShortcutPojo pojo : getPojos()) {
             // exclude favorites from results

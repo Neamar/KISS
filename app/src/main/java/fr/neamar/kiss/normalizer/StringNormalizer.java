@@ -1,5 +1,7 @@
 package fr.neamar.kiss.normalizer;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 
 import java.nio.CharBuffer;
@@ -35,6 +37,10 @@ public class StringNormalizer {
      * string position
      */
     public static Result normalizeWithResult(CharSequence input, boolean makeLowercase) {
+        if (TextUtils.isEmpty(input)) {
+            return StringNormalizer.Result.EMPTY;
+        }
+
         int numCodePoints = Character.codePointCount(input, 0, input.length());
         IntSequenceBuilder codePoints = new IntSequenceBuilder(numCodePoints);
         IntSequenceBuilder resultMap = new IntSequenceBuilder(numCodePoints);
@@ -102,6 +108,7 @@ public class StringNormalizer {
     }
 
     public static class Result implements Comparable<Result> {
+        public static final Result EMPTY = new Result(0, new int[]{}, new int[]{});
         private final int originalInputLastCharPosition;
         public final int[] codePoints;
         private final int[] mapPositions;

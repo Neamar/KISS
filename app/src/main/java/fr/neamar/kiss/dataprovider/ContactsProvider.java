@@ -16,9 +16,9 @@ import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
-import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public class ContactsProvider extends Provider<ContactsPojo> {
@@ -144,7 +144,7 @@ public class ContactsProvider extends Provider<ContactsPojo> {
      * If many contacts match, the one most often contacted will be returned
      *
      * @param phoneNumber phone number to find (will be normalized)
-     * @return a contactpojo, or null.
+     * @return a ContactsPojo, or null.
      */
     public ContactsPojo findByPhone(String phoneNumber) {
         StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.simplifyPhoneNumber(phoneNumber);

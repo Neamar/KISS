@@ -59,7 +59,7 @@ public final class ContactsPojo extends Pojo {
 
     public void setPhone(String phone, boolean homeNumber) {
         if (!TextUtils.isEmpty(phone)) {
-            this.phone = phone;
+            this.phone = PhoneNormalizer.convertKeypadLettersToDigits(phone);
             this.normalizedPhone = PhoneNormalizer.simplifyPhoneNumber(phone);
             this.homeNumber = homeNumber;
         } else {
