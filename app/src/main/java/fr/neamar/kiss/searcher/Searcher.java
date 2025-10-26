@@ -25,12 +25,39 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
 
     private static final String TAG = Searcher.class.getSimpleName();
 
+    /**
+     * Possible types of search
+     */
+    public enum Type {
+        APPLICATION,
+        QUERY,
+        NULL,
+        HISTORY,
+        TAGGED,
+        UNTAGGED
+    }
+
+    /**
+     * Callback for when search is done.
+     */
+    @FunctionalInterface
+    public interface SearchDoneCallback {
+        /**
+         * Execute when search is done.
+         *
+         * @param isCancelled true if search was cancelled
+         */
+        void execute(Searcher searcher, boolean isCancelled);
+    }
+
     // define a different thread than the default AsyncTask thread or else we will block everything else that uses AsyncTask while we search
     public static final ExecutorService SEARCH_THREAD = Executors.newSingleThreadExecutor();
-    static final int DEFAULT_MAX_RESULTS = 50;
-    final WeakReference<MainActivity> activityWeakReference;
+    protected static final int DEFAULT_MAX_RESULTS = 50;
+    protected final WeakReference<MainActivity> activityWeakReference;
     private final PriorityQueue<Pojo> processedPojos;
     private long start;
+    private SearchDoneCallback searchDoneCallback;
+
     /**
      * Set to true when we are simply refreshing current results (scroll will not be reset)
      * When false, we reset the scroll back to the last item in the list
@@ -38,7 +65,7 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
     private final boolean isRefresh;
     protected final String query;
 
-    Searcher(MainActivity activity, String query, boolean isRefresh) {
+    protected Searcher(MainActivity activity, String query, boolean isRefresh) {
         super();
         this.isRefresh = isRefresh;
         this.query = query == null ? null : query.trim();
@@ -105,8 +132,6 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
         if (activity == null)
             return;
 
-        hideActivityLoader(activity);
-
         if (this.processedPojos.isEmpty()) {
             activity.adapter.clear();
         } else {
@@ -126,18 +151,32 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
             activity.afterListChange();
         }
 
-        activity.resetTask();
+        searchDone(false);
+
+        hideActivityLoader(activity);
 
         long time = System.currentTimeMillis() - start;
-        Log.v(TAG, "Time to run query `" + query + "` on " + getClass().getSimpleName() + " to completion: " + time + "ms");
+        Log.v(TAG, "Time to run query `" + query + "` on " + getClass().getSimpleName() + " to completion: " + time + "ms (isRefresh=" + isRefresh + ")");
+    }
+
+    private void searchDone(boolean isCancelled) {
+        if (searchDoneCallback != null) {
+            searchDoneCallback.execute(this, isCancelled);
+        }
     }
 
     @Override
     protected void onCancelled(Void unused) {
+        searchDone(true);
+
         MainActivity activity = activityWeakReference.get();
         if (activity == null)
             return;
 
         hideActivityLoader(activity);
+    }
+
+    public void setSearchDoneCallback(SearchDoneCallback searchDoneCallback) {
+        this.searchDoneCallback = searchDoneCallback;
     }
 }

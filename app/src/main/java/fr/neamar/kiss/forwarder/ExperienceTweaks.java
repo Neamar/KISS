@@ -32,8 +32,7 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
-import fr.neamar.kiss.searcher.HistorySearcher;
-import fr.neamar.kiss.searcher.NullSearcher;
+import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.LockAccessibilityService;
 
 // Deals with any settings in the "User Experience" setting sub-screen
@@ -327,10 +326,12 @@ public class ExperienceTweaks extends Forwarder {
         }
     }
 
-    void updateSearchRecords(boolean isRefresh, String query) {
-        if (query.isEmpty()) {
+    void updateSearchRecords(String query) {
+        if (mainActivity.isViewingAllApps()) {
+            mainActivity.search(Searcher.Type.APPLICATION, query, false);
+        } else if (TextUtils.isEmpty(query)) {
             if (isMinimalisticModeEnabled()) {
-                mainActivity.runTask(new NullSearcher(mainActivity));
+                mainActivity.search(Searcher.Type.NULL, query, false);
                 // By default, help text is displayed -- not in minimalistic mode.
                 mainEmptyView.setVisibility(View.GONE);
 
@@ -338,7 +339,7 @@ public class ExperienceTweaks extends Forwarder {
                     mainActivity.favoritesBar.setVisibility(View.GONE);
                 }
             } else {
-                mainActivity.runTask(new HistorySearcher(mainActivity, isRefresh));
+                mainActivity.showHistory();
             }
         }
     }

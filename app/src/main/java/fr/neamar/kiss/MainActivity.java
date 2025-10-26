@@ -53,13 +53,9 @@ import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.forwarder.ForwarderManager;
 import fr.neamar.kiss.pojo.SearchPojo;
 import fr.neamar.kiss.result.Result;
-import fr.neamar.kiss.searcher.ApplicationsSearcher;
-import fr.neamar.kiss.searcher.HistorySearcher;
 import fr.neamar.kiss.searcher.QueryInterface;
-import fr.neamar.kiss.searcher.QuerySearcher;
+import fr.neamar.kiss.searcher.SearchHandler;
 import fr.neamar.kiss.searcher.Searcher;
-import fr.neamar.kiss.searcher.TagsSearcher;
-import fr.neamar.kiss.searcher.UntaggedSearcher;
 import fr.neamar.kiss.ui.AnimatedListView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
@@ -148,11 +144,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * "X" button to empty the search field
      */
     public View clearButton;
-
-    /**
-     * Task launched on text change
-     */
-    private Searcher searchTask;
 
     /**
      * SystemUiVisibility helper
@@ -430,7 +421,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
-    public boolean onContextItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
         return onOptionsItemSelected(item);
     }
 
@@ -467,7 +458,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
         // We need to update the history in case an external event created new items
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
-        updateSearchRecords();
+        updateSearchRecords(false, searchEditText.getText().toString());
         displayClearOnInput();
 
         if (isViewingAllApps()) {
@@ -579,7 +570,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (forwarderManager.onOptionsItemSelected(item)) {
             return true;
         }
@@ -787,12 +778,12 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (!TextUtils.isEmpty(searchEditText.getText())) {
                 clearSearchText();
             }
-            resetTask();
+            cancelSearch();
 
             // Needs to be done after setting the text content to empty
             isDisplayingKissBar = true;
 
-            runTask(new ApplicationsSearcher(MainActivity.this, false));
+            updateSearchRecords(false, searchEditText.getText().toString());
 
             // Reveal the bar
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -859,35 +850,30 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * @param query     the query on which to search
      */
     protected void updateSearchRecords(boolean isRefresh, String query) {
-        resetTask();
+        cancelSearch();
         dismissPopup();
 
-        if (isRefresh && isViewingAllApps()) {
-            // Refreshing while viewing all apps (for instance app installed or uninstalled in the background)
-            runTask(new ApplicationsSearcher(this, isRefresh));
+        if (isRefresh) {
+            // Refreshing (for instance app installed or uninstalled in the background, profile unlocked, ...)
+            search(Searcher.Type.APPLICATION, query, true);
             return;
         }
 
-        forwarderManager.updateSearchRecords(isRefresh, query);
+        forwarderManager.updateSearchRecords(query);
 
-        if (query.isEmpty()) {
+        if (TextUtils.isEmpty(query)) {
             systemUiVisibilityHelper.resetScroll();
         } else {
-            runTask(new QuerySearcher(this, query, isRefresh));
+            search(Searcher.Type.QUERY, query, false);
         }
     }
 
-    public void runTask(Searcher task) {
-        resetTask();
-        searchTask = task;
-        searchTask.executeOnExecutor(Searcher.SEARCH_THREAD);
+    public void search(@NonNull Searcher.Type type, String query, boolean isRefresh) {
+        SearchHandler.getInstance().search(type, this, query, isRefresh);
     }
 
-    public void resetTask() {
-        if (searchTask != null) {
-            searchTask.cancel(true);
-            searchTask = null;
-        }
+    private void cancelSearch() {
+        SearchHandler.getInstance().cancelSearch();
     }
 
     /**
@@ -1042,21 +1028,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     public void showMatchingTags(String tag) {
-        runTask(new TagsSearcher(this, tag));
+        search(Searcher.Type.TAGGED, tag, false);
 
         clearButton.setVisibility(View.VISIBLE);
         menuButton.setVisibility(View.INVISIBLE);
     }
 
     public void showUntagged() {
-        runTask(new UntaggedSearcher(this));
+        search(Searcher.Type.UNTAGGED, null, false);
 
         clearButton.setVisibility(View.VISIBLE);
         menuButton.setVisibility(View.INVISIBLE);
     }
 
     public void showHistory() {
-        runTask(new HistorySearcher(this, false));
+        search(Searcher.Type.HISTORY, null, false);
 
         clearButton.setVisibility(View.VISIBLE);
         menuButton.setVisibility(View.INVISIBLE);
