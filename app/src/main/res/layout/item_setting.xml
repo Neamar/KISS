@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ResultItem"
+    tools:layout_height="@dimen/result_height"
     android:orientation="horizontal">
 
     <ImageView
@@ -9,6 +10,8 @@
         style="@style/ResultItemIcon"
         android:contentDescription="@null"
         android:scaleType="centerInside"
+        tools:layout_height="@dimen/result_icon_size"
+        tools:layout_width="@dimen/result_icon_size"
         tools:src="@android:drawable/ic_menu_manage" />
 
     <TextView
@@ -24,6 +27,7 @@
         android:textColor="?android:attr/textColorSecondary"
         android:textDirection="locale"
         android:textSize="?attr/resultSubtitleSize"
+        tools:textSize="@dimen/result_subtitle_size"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -43,6 +47,7 @@
         android:textDirection="locale"
         android:textIsSelectable="false"
         android:textSize="?attr/resultTitleSize"
+        tools:textSize="@dimen/result_title_size"
         tools:ignore="RtlHardcoded,RtlSymmetry,UnusedAttribute"
         tools:text="@string/stub_setting" />
 
