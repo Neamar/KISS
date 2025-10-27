@@ -59,7 +59,7 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
 
         displayHighlighted(pojo.normalizedName, pojo.getName(), fuzzyScore, shortcutName, context);
 
-        TextView tagsView = view.findViewById(R.id.item_app_tag);
+        TextView tagsView = view.findViewById(R.id.item_shortcut_tag);
         displayTags(context, fuzzyScore, tagsView);
 
         final ImageView shortcutIcon = view.findViewById(R.id.item_shortcut_icon);

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ResultItem"
+    tools:layout_height="@dimen/result_height"
     android:orientation="horizontal"
     tools:ignore="UseCompoundDrawables">
 
@@ -9,7 +10,9 @@
         android:id="@+id/item_search_icon"
         style="@style/ResultItemIcon"
         android:contentDescription="@null"
-        android:src="@drawable/search" />
+        android:src="@drawable/search"
+        tools:layout_height="@dimen/result_icon_size"
+        tools:layout_width="@dimen/result_icon_size" />
 
     <TextView
         android:id="@+id/item_search_text"
@@ -23,6 +26,7 @@
         android:textDirection="locale"
         android:textIsSelectable="false"
         android:textSize="?attr/resultTitleSize"
+        tools:textSize="@dimen/result_title_size"
         tools:text="@string/ui_item_search"
         tools:ignore="UnusedAttribute" />
 

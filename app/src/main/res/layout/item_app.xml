@@ -2,11 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ResultItem"
+    tools:layout_height="@dimen/result_height"
     android:orientation="horizontal">
 
     <FrameLayout
         style="@style/ResultItemIcon"
-        android:layout_gravity="start|center_vertical">
+        android:layout_gravity="start|center_vertical"
+        tools:layout_height="@dimen/result_icon_size"
+        tools:layout_width="@dimen/result_icon_size">
 
         <ImageView
             android:id="@+id/item_app_icon"
@@ -23,6 +26,8 @@
             android:contentDescription="@null"
             android:src="@drawable/notification_dot"
             android:visibility="gone"
+            tools:layout_height="@dimen/result_notification_dot_size"
+            tools:layout_width="@dimen/result_notification_dot_size"
             tools:visibility="visible" />
     </FrameLayout>
 
@@ -49,6 +54,7 @@
             android:textDirection="locale"
             android:textIsSelectable="false"
             android:textSize="?attr/resultTitleSize"
+            tools:textSize="@dimen/result_title_size"
             tools:ignore="RtlSymmetry,UnusedAttribute"
             tools:text="@string/stub_application" />
 
@@ -56,7 +62,6 @@
             android:id="@+id/item_app_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-4dp"
             android:ellipsize="end"
             android:paddingEnd="2dp"
             android:paddingRight="2dp"
@@ -68,6 +73,7 @@
             android:textDirection="locale"
             android:textIsSelectable="false"
             android:textSize="?attr/resultSubtitleSize"
+            tools:textSize="@dimen/result_subtitle_size"
             tools:ignore="RtlSymmetry,UnusedAttribute"
             tools:text="@string/stub_app_tag" />
 

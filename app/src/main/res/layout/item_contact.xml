@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ResultItem"
-    tools:layout_height="56dp"
+    tools:layout_height="@dimen/result_height"
     android:orientation="horizontal">
 
     <fr.neamar.kiss.ui.ImprovedQuickContactBadge
@@ -13,7 +13,9 @@
         android:layout_centerVertical="true"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_contact"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,UnusedAttribute"
+        tools:layout_height="@dimen/result_icon_size"
+        tools:layout_width="@dimen/result_icon_size" />
 
     <ImageView
         android:id="@+id/item_app_icon"
@@ -24,6 +26,8 @@
         android:layout_alignBottom="@id/item_contact_icon"
         android:layout_gravity="end|bottom"
         android:contentDescription="@null"
+        tools:layout_height="@dimen/result_subicon_size"
+        tools:layout_width="@dimen/result_subicon_size"
         tools:src="@drawable/ic_launcher" />
 
     <TextView
@@ -46,6 +50,7 @@
         android:textDirection="locale"
         android:textIsSelectable="false"
         android:textSize="?attr/resultTitleSize"
+        tools:textSize="@dimen/result_title_size"
         tools:ignore="RtlSymmetry,UnusedAttribute"
         tools:text="@string/stub_contact" />
 
@@ -67,6 +72,7 @@
         android:textDirection="locale"
         android:textIsSelectable="false"
         android:textSize="?attr/resultSubtitleSize"
+        tools:textSize="@dimen/result_subtitle_size"
         tools:ignore="RtlSymmetry,UnusedAttribute"
         tools:text="@string/stub_contact_phone" />
 
@@ -94,6 +100,7 @@
         android:textDirection="locale"
         android:textIsSelectable="false"
         android:textSize="?attr/resultSubtitleSize"
+        tools:textSize="@dimen/result_subtitle_size"
         tools:ignore="RtlSymmetry,UnusedAttribute"
         tools:text="@string/stub_contact_nickname" />
 
