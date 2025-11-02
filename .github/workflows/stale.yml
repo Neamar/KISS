@@ -6,7 +6,7 @@ jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v9
+      - uses: actions/stale@v10
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           stale-issue-label: 'inactive'
@@ -21,4 +21,5 @@ jobs:
           close-issue-message: |-
             This issue has been closed automatically. Please see https://github.com/Neamar/KISS/issues/1688 for details.
             Thank you for your contributions.
+          sort-by: updated
           ascending: true
