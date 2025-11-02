@@ -38,3 +38,8 @@ Probably the most advanced sorting method.
 This one will sort apps based on your frequency, but also factor in time since last use.
 
 Formula is `frequency * recency` where `frequency = #launches_for_app / #all_launches` and `recency = 1 / position_of_app_in_recent_history`.
+
+## Accessed at same time of day
+This option will sort items by used most at current time of day.
+If you use an app regularly at 8 am, it will be ranked higher in history every day around 8 am.
+If time goes on or the app is not used at all, it will be ranked lower and will disappear after some days. 
