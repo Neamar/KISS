@@ -6,7 +6,7 @@ description: "A quick description of available themes."
 type: Document
 ---
 
-KISS comes with 6 pre-defined themes:
+KISS comes with 7 pre-defined themes:
 
 * Light theme, which is the theme enabled by default
 * Semi-transparent theme, a small deviation from the light theme which lets you see part of your wallpaper
@@ -14,6 +14,7 @@ KISS comes with 6 pre-defined themes:
 * Dark theme, if you like vampires and low luminosity
 * Dark-semi-transparent theme, to dim your wallpaper
 * Dark transparent theme, for really light wallpapers
+* AMOLED dark, almost black theme
 
 Not all themes will work correctly with all wallpapers, make sure you pick a theme that you like, and that doesn't block legibility!
 
@@ -38,3 +39,6 @@ Below is a preview of the built-in themes.
 
 ## Dark transparent theme
 ![Dark transparent theme](/screenshots/dark-transparent-theme.png)
+
+## AMOLED dark
+![Dark transparent theme](/screenshots/amoled-dark-theme.png)
