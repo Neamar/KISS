@@ -55,7 +55,7 @@ public class InterfaceTweaks extends Forwarder {
             case "amoled-dark":
                 act.setTheme(R.style.AppThemeAmoledDark);
                 break;
-            case "e-ink mode":
+            case "high-contrast":
                 act.setTheme(R.style.AppThemeEInk);
                 break;
         }
