@@ -41,7 +41,7 @@ public class ExportSettingsPreference extends DialogPreference {
             JSONObject out = new JSONObject();
             try {
                 // Min version required to read those settings
-                out.put("__v", 183);
+                out.put("__v", 217);
 
                 Set<String> keys = new HashSet<>();
                 keys.addAll(defaultValues.getAll().keySet());

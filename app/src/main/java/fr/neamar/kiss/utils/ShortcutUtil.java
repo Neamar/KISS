@@ -43,7 +43,7 @@ public class ShortcutUtil {
         if (userHandle == null) {
             return ShortcutPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
         } else {
-            return ShortcutPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
+            return userHandle.addUserSuffixToString(ShortcutPojo.SCHEME + shortcutRecord.packageName + "/" + shortcutRecord.intentUri, '/');
         }
     }
 
