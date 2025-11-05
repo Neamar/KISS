@@ -106,7 +106,6 @@ public class InterfaceTweaks extends Forwarder {
             act.setTheme(R.style.SettingThemeDark);
         }
         UIColors.updateThemePrimaryColor(act);
-        UIColors.applyOverlay(act, prefs);
     }
 
     void onCreate() {
