@@ -269,6 +269,13 @@
                 android:defaultValue="false"
                 android:key="large-result-list-margins"
                 android:title="@string/large_result_list_margins" />
+            <MultiSelectListPreference
+                android:defaultValue="@array/resultHighlightingDefault"
+                android:entries="@array/resultHighlightingEntries"
+                android:entryValues="@array/resultHighlightingValues"
+                android:key="pref-result-highlighting"
+                android:title="@string/pref_result_highlighting"
+                android:summary="@string/pref_result_highlighting_summary"/>
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen

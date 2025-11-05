@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -15,6 +16,8 @@ import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -33,8 +36,10 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleableRes;
 
 import java.lang.ref.WeakReference;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
@@ -121,15 +126,24 @@ public abstract class Result<T extends Pojo> {
 
     void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
         SpannableString enriched = new SpannableString(text);
+        Set<String> resultHighlighting = PreferenceManager.getDefaultSharedPreferences(context)
+                .getStringSet("pref-result-highlighting", Collections.singleton("color"));
         int primaryColor = UIColors.getPrimaryColor(context);
 
-        for (Pair<Integer, Integer> position : positions) {
-            enriched.setSpan(
-                    new ForegroundColorSpan(primaryColor),
-                    position.first,
-                    position.second,
-                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
-            );
+        if (!resultHighlighting.isEmpty()) {
+            for (Pair<Integer, Integer> position : positions) {
+                for (String highlight : resultHighlighting) {
+                    Object span = createSpan(highlight, primaryColor);
+                    if (span != null) {
+                        enriched.setSpan(
+                                span,
+                                position.first,
+                                position.second,
+                                Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                        );
+                    }
+                }
+            }
         }
         view.setText(enriched);
     }
@@ -143,19 +157,23 @@ public abstract class Result<T extends Pojo> {
             return false;
         }
 
-        SpannableString enriched = new SpannableString(text);
-        int primaryColor = UIColors.getPrimaryColor(context);
-
-        for (Pair<Integer, Integer> position : matchInfo.getMatchedSequences()) {
-            enriched.setSpan(
-                    new ForegroundColorSpan(primaryColor),
-                    normalized.mapPosition(position.first),
-                    normalized.mapPosition(position.second),
-                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
-            );
-        }
-        view.setText(enriched);
+        displayHighlighted(text, matchInfo.getMatchedSequences(), view, context);
         return true;
+    }
+
+    private Object createSpan(String highlight, int primaryColor) {
+        switch (highlight) {
+            case "color":
+                return new ForegroundColorSpan(primaryColor);
+            case "bold":
+                return new StyleSpan(Typeface.BOLD);
+            case "italic":
+                return new StyleSpan(Typeface.ITALIC);
+            case "underline":
+                return new UnderlineSpan();
+            default:
+                return null;
+        }
     }
 
     public String getSection() {
