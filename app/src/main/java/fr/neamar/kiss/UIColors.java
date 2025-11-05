@@ -159,6 +159,9 @@ public class UIColors {
             case "disabled":
                 activity.getTheme().applyStyle(R.style.OverlayWallpaperDisabled, true);
                 break;
+            case "disabled-light":
+                activity.getTheme().applyStyle(R.style.OverlayWallpaperDisabledLight, true);
+                break;
         }
 
         String barColor = prefs.getString("theme-bar-color", "default");
