@@ -93,8 +93,9 @@ class DB extends SQLiteOpenHelper {
 
         if (newVersion < oldVersion) {
             switch (newVersion) {
-                case 7:
+                case 8:
                     throw new UnsupportedOperationException("Can't downgrade app below DB level " + (newVersion + 1));
+                case 7:
                 case 6:
                     database.execSQL("DROP INDEX index_component");
                     database.execSQL("DROP TABLE custom_apps");
