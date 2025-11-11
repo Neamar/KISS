@@ -17,8 +17,12 @@ _Browsing for apps is and should be secondary_.
       alt="Playstore Release"/>](https://play.google.com/store/apps/details?id=fr.neamar.kiss)
 [<img src="https://img.shields.io/github/v/release/Neamar/KISS.svg?logo=github&label=GitHub&style=flat-square"
       alt="GitHub Release"/>](https://github.com/Neamar/KISS/releases)
+[<img src="https://hosted.weblate.org/widget/kiss/svg-badge.svg"
+      alt="Translation status"/>](https://hosted.weblate.org/engage/kiss/)
 
 Join the [beta program](https://play.google.com/apps/testing/fr.neamar.kiss/) to test the latest version.
+
+Join the [Hosted Weblate](https://hosted.weblate.org/engage/kiss/) translation platform to help translate the app.
 
 Public Telegram chat: https://t.me/joinchat/_eDeAIQJU1FlNjM0
 
