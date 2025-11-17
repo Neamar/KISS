@@ -1,12 +1,9 @@
 package fr.neamar.kiss.loader;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.UserManager;
 import android.util.Log;
@@ -49,40 +46,23 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Set<String> excludedFromHistoryAppList = KissApplication.getApplication(ctx).getDataHandler().getExcludedFromHistory();
         Set<String> excludedShortcutsAppList = KissApplication.getApplication(ctx).getDataHandler().getExcludedShortcutApps();
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            UserManager manager = (UserManager) ctx.getSystemService(Context.USER_SERVICE);
-            LauncherApps launcherApps = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        UserManager manager = (UserManager) ctx.getSystemService(Context.USER_SERVICE);
+        LauncherApps launcherApps = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
 
-            // Handle multi-profile support introduced in Android 5 (#542)
-            for (android.os.UserHandle profile : manager.getUserProfiles()) {
-                boolean isPrivateProfile = PackageManagerUtils.isPrivateProfile(launcherApps, profile);
-                UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
-                for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(null, profile)) {
-                    if (isCancelled()) {
-                        break;
-                    }
-                    ApplicationInfo appInfo = activityInfo.getApplicationInfo();
-                    boolean disabled = PackageManagerUtils.isAppSuspended(appInfo) || isQuietModeEnabled(manager, profile);
-                    if (!disabled || !isPrivateProfile) {
-                        final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
-                        apps.add(app);
-                    }
-                }
-            }
-        } else {
-            PackageManager manager = ctx.getPackageManager();
-
-            Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-            mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-            for (ResolveInfo info : manager.queryIntentActivities(mainIntent, 0)) {
+        // Handle multi-profile support introduced in Android 5 (#542)
+        for (android.os.UserHandle profile : manager.getUserProfiles()) {
+            boolean isPrivateProfile = PackageManagerUtils.isPrivateProfile(launcherApps, profile);
+            UserHandle user = new UserHandle(manager.getSerialNumberForUser(profile), profile);
+            for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(null, profile)) {
                 if (isCancelled()) {
                     break;
                 }
-                ApplicationInfo appInfo = info.activityInfo.applicationInfo;
-                boolean disabled = PackageManagerUtils.isAppSuspended(appInfo);
-                final AppPojo app = createPojo(UserHandle.OWNER, appInfo.packageName, info.activityInfo.name, info.loadLabel(manager), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
-                apps.add(app);
+                ApplicationInfo appInfo = activityInfo.getApplicationInfo();
+                boolean disabled = PackageManagerUtils.isAppSuspended(appInfo) || isQuietModeEnabled(manager, profile);
+                if (!disabled || !isPrivateProfile) {
+                    final AppPojo app = createPojo(user, appInfo.packageName, activityInfo.getName(), activityInfo.getLabel(), disabled, excludedAppList, excludedFromHistoryAppList, excludedShortcutsAppList);
+                    apps.add(app);
+                }
             }
         }
 

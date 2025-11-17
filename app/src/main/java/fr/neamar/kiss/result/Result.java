@@ -10,7 +10,6 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Spannable;
@@ -554,7 +553,7 @@ public abstract class Result<T extends Pojo> {
 
     @Nullable
     protected Rect getViewBounds(@Nullable View view) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 && view != null) {
+        if (view != null) {
             return view.getClipBounds();
         }
         return null;

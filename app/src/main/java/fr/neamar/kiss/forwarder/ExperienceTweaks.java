@@ -436,11 +436,7 @@ public class ExperienceTweaks extends Forwarder {
     @SuppressLint("SourceLockedOrientationActivity")
     public static void setRequestedOrientation(Activity activity, SharedPreferences prefs) {
         if (prefs.getBoolean("force-portrait", true)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-            } else {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
         } else {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }

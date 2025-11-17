@@ -175,13 +175,11 @@ public class PackageManagerUtils {
 
     @Nullable
     private static LauncherActivityInfo getLauncherActivityInfo(@NonNull Context context, @NonNull ComponentName componentName, @NonNull UserHandle user) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-            List<LauncherActivityInfo> activities = launcherApps.getActivityList(componentName.getPackageName(), user.getRealHandle());
-            for (LauncherActivityInfo activity : activities) {
-                if (activity.getComponentName().equals(componentName)) {
-                    return activity;
-                }
+        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        List<LauncherActivityInfo> activities = launcherApps.getActivityList(componentName.getPackageName(), user.getRealHandle());
+        for (LauncherActivityInfo activity : activities) {
+            if (activity.getComponentName().equals(componentName)) {
+                return activity;
             }
         }
         return null;
@@ -214,7 +212,7 @@ public class PackageManagerUtils {
             return null;
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !user.isCurrentUser()) {
+        if (!user.isCurrentUser()) {
             LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
             List<LauncherActivityInfo> activities = launcherApps.getActivityList(packageName, user.getRealHandle());
             if (!activities.isEmpty()) {
@@ -260,20 +258,18 @@ public class PackageManagerUtils {
      * @return icon for given componentName
      */
     public static Drawable getActivityIcon(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            try {
-                LauncherActivityInfo info = getLauncherActivityInfo(ctx, componentName, userHandle);
-                if (info != null) {
-                    Drawable drawable = info.getIcon(0);
-                    if (drawable != null) {
-                        return DrawableUtils.getThemedDrawable(ctx, drawable);
-                    }
+        try {
+            LauncherActivityInfo info = getLauncherActivityInfo(ctx, componentName, userHandle);
+            if (info != null) {
+                Drawable drawable = info.getIcon(0);
+                if (drawable != null) {
+                    return DrawableUtils.getThemedDrawable(ctx, drawable);
                 }
-            } catch (SecurityException e) {
-                // https://github.com/Neamar/KISS/issues/1715
-                // not sure how to avoid it so we catch and ignore
-                Log.e(TAG, "Unable to find activity icon for component " + componentName.toShortString(), e);
             }
+        } catch (SecurityException e) {
+            // https://github.com/Neamar/KISS/issues/1715
+            // not sure how to avoid it so we catch and ignore
+            Log.e(TAG, "Unable to find activity icon for component " + componentName.toShortString(), e);
         }
 
         return getActivityIcon(ctx, componentName);
@@ -332,11 +328,8 @@ public class PackageManagerUtils {
     }
 
     public static boolean isPrivateProfile(@NonNull Context context, @NonNull UserHandle userHandle) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-            return isPrivateProfile(launcherApps, userHandle.getRealHandle());
-        }
-        return false;
+        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        return isPrivateProfile(launcherApps, userHandle.getRealHandle());
     }
 
     public static boolean isPrivateProfile(@NonNull LauncherApps launcherApps, @NonNull android.os.UserHandle userHandle) {

@@ -1,5 +1,6 @@
 package fr.neamar.kiss.normalizer;
 
+import android.os.Build;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 

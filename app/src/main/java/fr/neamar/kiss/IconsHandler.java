@@ -12,7 +12,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -264,13 +263,7 @@ public class IconsHandler {
     }
 
     public Drawable applyBadge(@NonNull Drawable drawable, @NonNull UserHandle userHandle) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Drawable badgedDrawable = pm.getUserBadgedIcon(drawable, userHandle.getRealHandle());
-            if (badgedDrawable != null) {
-                return badgedDrawable;
-            }
-        }
-        return drawable;
+        return pm.getUserBadgedIcon(drawable, userHandle.getRealHandle());
     }
 
     public Drawable applyContactMask(@NonNull Context ctx, @NonNull Drawable drawable) {
@@ -378,7 +371,7 @@ public class IconsHandler {
     }
 
     @NonNull
-    public IconPack getIconPack() {
+    public IconPack<?> getIconPack() {
         return mIconPack != null ? mIconPack : mSystemPack;
     }
 

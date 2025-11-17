@@ -96,10 +96,8 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         this.context.sendBroadcast(startLoad);
 
         // Monitor changes for profiles
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ProfileChangedHandler profileChangedHandler = new ProfileChangedHandler();
-            profileChangedHandler.register(this.context.getApplicationContext());
-        }
+        ProfileChangedHandler profileChangedHandler = new ProfileChangedHandler();
+        profileChangedHandler.register(this.context.getApplicationContext());
 
         // Monitor changes for service preferences (to automatically start and stop services)
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

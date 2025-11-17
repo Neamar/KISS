@@ -3,7 +3,6 @@ package fr.neamar.kiss.preference;
 import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.widget.Toolbar;
@@ -49,21 +48,16 @@ public class ExcludePreferenceScreen {
 		final PreferenceScreen excludedAppsScreen = preferenceActivity.getPreferenceManager().createPreferenceScreen(preferenceActivity);
 		excludedAppsScreen.setTitle(preferenceTitleResId);
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			excludedAppsScreen.setOnPreferenceClickListener(preference -> {
-				Toolbar toolbar = PreferenceScreenHelper.findToolbar(excludedAppsScreen);
-				if (toolbar != null) {
-					toolbar.setTitle(preferenceScreenTitleResId);
-				}
-				return false;
-			});
-		}
-
-		final boolean showSummary = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-				|| preferenceActivity.getResources().getConfiguration().screenWidthDp > 420;
+        excludedAppsScreen.setOnPreferenceClickListener(preference -> {
+            Toolbar toolbar = PreferenceScreenHelper.findToolbar(excludedAppsScreen);
+            if (toolbar != null) {
+                toolbar.setTitle(preferenceScreenTitleResId);
+            }
+            return false;
+        });
 
 		for (AppPojo app : apps) {
-			SwitchPreference pref = createExcludeAppSwitch(preferenceActivity, iconsHandler, isExcludedCallback, app, showSummary, onExcludedListener);
+			SwitchPreference pref = createExcludeAppSwitch(preferenceActivity, iconsHandler, isExcludedCallback, app, onExcludedListener);
 
 			excludedAppsScreen.addPreference(pref);
 		}
@@ -76,7 +70,6 @@ public class ExcludePreferenceScreen {
 			@NonNull IconsHandler iconsHandler,
 			@NonNull IsExcludedCallback isExcludedCallback,
 			final @NonNull AppPojo app,
-			boolean showSummary,
 			@NonNull final OnExcludedListener onExcludedListener
 	) {
 		final SwitchPreference switchPreference = new SwitchPreference(context);
@@ -93,9 +86,8 @@ public class ExcludePreferenceScreen {
 		});
 
 		switchPreference.setTitle(app.getName());
-		if (showSummary) {
-			switchPreference.setSummary(app.getComponentName());
-		}
+        switchPreference.setSummary(app.getComponentName());
+
 		switchPreference.setChecked(isExcludedCallback.isExcluded(app));
 		switchPreference.setOnPreferenceChangeListener(
 				(preference, newValue) -> {

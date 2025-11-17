@@ -95,9 +95,6 @@ public class UIColors {
 
     // https://stackoverflow.com/questions/25815769/how-to-really-programmatically-change-primary-and-accent-color-in-android-loll
     public static void applyOverlay(Activity activity, SharedPreferences prefs) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return;
-        }
 
         // We want to update the accent color for the theme.
         // Each possible accent color is defined as a custom overlay, we need to find the matching one and apply it
@@ -210,13 +207,12 @@ public class UIColors {
     }
 
     private static void updateThemePrimaryColor(int notificationBarColorOverride, Window window) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-            // Update status bar color
-            window.setStatusBarColor(notificationBarColorOverride);
-        }
+        // Update status bar color
+        window.setStatusBarColor(notificationBarColorOverride);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.setNavigationBarContrastEnforced(false);
         }

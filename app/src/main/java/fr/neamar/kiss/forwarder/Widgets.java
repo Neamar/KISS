@@ -24,10 +24,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 
 import java.util.ArrayList;
@@ -101,10 +99,8 @@ class Widgets extends Forwarder {
                     case REQUEST_APPWIDGET_PICKED:
                         if (data != null) {
                             if (!data.getBooleanExtra(PickAppWidgetActivity.EXTRA_WIDGET_BIND_ALLOWED, false)) {
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                    requestBindWidget(mainActivity, data);
-                                    break;
-                                }
+                                requestBindWidget(mainActivity, data);
+                                break;
                             }
                             // if binding not required we can continue with adding the widget
                             addAppWidget(data);
@@ -424,16 +420,11 @@ class Widgets extends Forwarder {
         serializeState();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private static void requestBindWidget(@NonNull Activity activity, @NonNull Intent data) {
         final int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         final ComponentName provider = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER);
         final UserHandle profile;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            profile = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
-        } else {
-            profile = null;
-        }
+        profile = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
 
         new Handler().postDelayed(() -> {
             Log.d(TAG, "asking for permission");
@@ -441,9 +432,7 @@ class Widgets extends Forwarder {
             Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_BIND);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, provider);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, profile);
-            }
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, profile);
 
             activity.startActivityForResult(intent, REQUEST_APPWIDGET_BOUND);
         }, 500);
@@ -475,18 +464,7 @@ class Widgets extends Forwarder {
 
     private void configureAppWidget(int appWidgetId, AppWidgetProviderInfo appWidgetInfo, int requestCode) {
         if (appWidgetInfo != null && appWidgetInfo.configure != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, requestCode, null);
-            } else {
-                Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_CONFIGURE);
-                intent.setComponent(appWidgetInfo.configure);
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-                try {
-                    mainActivity.startActivityForResult(intent, requestCode);
-                } catch (SecurityException e) {
-                    Toast.makeText(mainActivity, "KISS doesn't have permission to setup this widget. Believe this is a bug? Please open an issue at https://github.com/Neamar/KISS/issues", Toast.LENGTH_LONG).show();
-                }
-            }
+            mAppWidgetHost.startAppWidgetConfigureActivityForResult(mainActivity, appWidgetId, 0, requestCode, null);
         }
     }
 

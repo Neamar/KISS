@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 
@@ -53,14 +52,12 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
                 Settings.ACTION_SOUND_SETTINGS, R.drawable.setting_dev));
         pojos.add(createPojo(context.getString(R.string.settings_display),
                 Settings.ACTION_DISPLAY_SETTINGS, R.drawable.setting_dev));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && pm.hasSystemFeature(PackageManager.FEATURE_NFC)) {
+        if (pm.hasSystemFeature(PackageManager.FEATURE_NFC)) {
             pojos.add(createPojo(context.getString(R.string.settings_nfc),
                     Settings.ACTION_NFC_SETTINGS, R.drawable.setting_nfc));
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            pojos.add(createPojo(context.getString(R.string.settings_dev),
-                    Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS, R.drawable.setting_dev));
-        }
+        pojos.add(createPojo(context.getString(R.string.settings_dev),
+                Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS, R.drawable.setting_dev));
 
         settingName = context.getString(R.string.settings_prefix).toLowerCase(Locale.ROOT);
 
