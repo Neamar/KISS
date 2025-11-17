@@ -1,13 +1,11 @@
 package fr.neamar.kiss.normalizer;
 
-import android.os.Build;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
+import fr.neamar.kiss.utils.PhoneUtils;
+
 public class PhoneNormalizer {
-    public static String convertKeypadLettersToDigits(String phoneNumber) {
-        return PhoneNumberUtils.convertKeypadLettersToDigits(phoneNumber);
-    }
 
     /**
      * Normalize phone number by removing all characters other than digits.
@@ -18,12 +16,11 @@ public class PhoneNormalizer {
      * @param phoneNumber the number to be normalized.
      * @return the normalized number.
      */
-    public static StringNormalizer.Result simplifyPhoneNumber(String phoneNumber) {
+    public static StringNormalizer.Result normalizeWithResult(String phoneNumber) {
         if (TextUtils.isEmpty(phoneNumber)) {
             return StringNormalizer.Result.EMPTY;
         }
-
-        phoneNumber = convertKeypadLettersToDigits(phoneNumber);
+        phoneNumber = PhoneUtils.convertKeypadLettersToDigits(phoneNumber);
 
         // This is done manually for performance reason,
         // But the algorithm is just a regexp replacement of "[-.():/ ]" with ""
