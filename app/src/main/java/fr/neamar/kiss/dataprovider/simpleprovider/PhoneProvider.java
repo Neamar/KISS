@@ -2,6 +2,7 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.util.Patterns;
 
 import java.util.regex.Pattern;
 
@@ -23,7 +24,7 @@ public class PhoneProvider extends SimpleProvider<PhonePojo> {
     @Override
     public void requestResults(String query, Searcher searcher) {
         // Append an item only if query looks like a phone number and device has phone capabilities
-        if (deviceIsPhone && PHONE_PATTERN.matcher(query).find()) {
+        if (deviceIsPhone && (PHONE_PATTERN.matcher(query).matches() || Patterns.PHONE.matcher(query).matches())) {
             searcher.addResult(getResult(query, true));
         }
     }
