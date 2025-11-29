@@ -162,11 +162,16 @@ public class KeyboardScrollHider implements View.OnTouchListener {
                 this.lastMotionEvent = null;
 
                 if (!this.resizeDone) {
+                    // Hide the keyboard if the user has scrolled down by about half a result item
+                    if (isScrolled()) {
+                        this.handler.hideKeyboard();
+                    }
                     ValueAnimator animator = ValueAnimator.ofInt(
                             this.list.getHeight(),
                             this.listParent.getHeight()
                     );
-                    animator.setDuration(250);
+                    int animationDuration = v.getContext().getResources().getInteger(android.R.integer.config_shortAnimTime);
+                    animator.setDuration(animationDuration);
                     animator.setInterpolator(new AccelerateInterpolator());
                     animator.addUpdateListener(animation -> {
                         int height = (int) animation.getAnimatedValue();
@@ -203,9 +208,7 @@ public class KeyboardScrollHider implements View.OnTouchListener {
                 break;
         }
 
-        // Hide the keyboard if the user has scrolled down by about half a result item
         if (isScrolled()) {
-            this.handler.hideKeyboard();
             this.handler.applyScrollSystemUi();
         }
 

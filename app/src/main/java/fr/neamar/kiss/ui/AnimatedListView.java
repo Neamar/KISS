@@ -8,7 +8,7 @@ import android.view.ViewTreeObserver;
 import java.util.HashMap;
 
 public class AnimatedListView extends BlockableListView {
-    private static final int MOVE_DURATION = 100;
+
     protected final HashMap<Long, ItemInfo> mItemMap = new HashMap<>();
 
     public AnimatedListView(Context context) {
@@ -47,6 +47,8 @@ public class AnimatedListView extends BlockableListView {
         if (!observer.isAlive())
             return;
 
+        int animationDuration = getContext().getResources().getInteger(android.R.integer.config_shortAnimTime);
+
         // postpone animation to after the layout is computed and views are rebound
         observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
@@ -63,11 +65,13 @@ public class AnimatedListView extends BlockableListView {
                     int position = firstVisiblePosition + i;
                     long itemId = getAdapter().getItemId(position);
                     View child = listView.getChildAt(i);
-                    int topAfterLayout = child.getTop();
-                    int delta;
-                    if (mItemMap.containsKey(itemId)) {
-                        int topBeforeLayout = mItemMap.get(itemId).top;
+                    int delta = 0;
+                    ItemInfo itemInfo = mItemMap.get(itemId);
+
+                    if (itemInfo != null) {
+                        int topBeforeLayout = itemInfo.top;
                         // this view may have moved
+                        int topAfterLayout = child.getTop();
                         delta = topBeforeLayout - topAfterLayout;
                     } else {
                         // this is a new view
@@ -75,19 +79,17 @@ public class AnimatedListView extends BlockableListView {
                             // the first visible position can slide from the top
                             delta = -child.getHeight() - listView.getDividerHeight();
                         } else {
-                            delta = 0;
-
                             // animate new views
                             child.setScaleY(0.f);
                             child.animate()
-                                    .setDuration(MOVE_DURATION)
+                                    .setDuration(animationDuration)
                                     .scaleY(1.f);
                         }
                     }
                     if (delta != 0) {
                         child.setTranslationY(delta);
                         child.animate()
-                                .setDuration(MOVE_DURATION)
+                                .setDuration(animationDuration)
                                 .translationY(0);
                     }
                 }
