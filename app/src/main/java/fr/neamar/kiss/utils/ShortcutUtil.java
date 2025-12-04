@@ -39,7 +39,7 @@ public class ShortcutUtil {
     /**
      * @return shortcut id generated from shortcut name
      */
-    public static String generateShortcutId(UserHandle userHandle, ShortcutRecord shortcutRecord) {
+    public static String generateShortcutId(UserHandle userHandle, @NonNull ShortcutRecord shortcutRecord) {
         if (userHandle == null) {
             return ShortcutPojo.SCHEME + shortcutRecord.name.toLowerCase(Locale.ROOT);
         } else {
@@ -161,6 +161,7 @@ public class ShortcutUtil {
      * Create ShortcutPojo from ShortcutInfo
      */
     @RequiresApi(Build.VERSION_CODES.O)
+    @Nullable
     public static ShortcutRecord createShortcutRecord(Context context, ShortcutInfo shortcutInfo, boolean includePackageName) {
         if (shortcutInfo.hasKeyFieldsOnly()) {
             // If ShortcutInfo holds only key fields shortcut including data must be fetched

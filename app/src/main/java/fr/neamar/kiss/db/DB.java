@@ -10,6 +10,8 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -113,10 +115,12 @@ class DB extends SQLiteOpenHelper {
             List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(mContext);
             List<ConvertShortcutInfo> shortcuts = new ArrayList<>();
             shortcutInfos.forEach(shortcutInfo -> {
-                if (!shortcutInfo.isDynamic() || shortcutInfo.isPinned()) {
-                    ShortcutRecord shortcutRecordWithName = ShortcutUtil.createShortcutRecord(mContext, shortcutInfo, true);
+                ShortcutRecord shortcutRecordWithName = ShortcutUtil.createShortcutRecord(mContext, shortcutInfo, true);
+                if (shortcutRecordWithName != null) {
                     shortcuts.add(new ConvertShortcutInfo(UserHandle.OWNER, shortcutRecordWithName));
-                    ShortcutRecord shortcutRecordWithoutName = ShortcutUtil.createShortcutRecord(mContext, shortcutInfo, false);
+                }
+                ShortcutRecord shortcutRecordWithoutName = ShortcutUtil.createShortcutRecord(mContext, shortcutInfo, false);
+                if (shortcutRecordWithoutName != null) {
                     shortcuts.add(new ConvertShortcutInfo(UserHandle.OWNER, shortcutRecordWithoutName));
                 }
             });
@@ -157,10 +161,10 @@ class DB extends SQLiteOpenHelper {
 
     private static class ConvertShortcutInfo {
 
-        private final String oldId;
-        private final String newId;
+        final String oldId;
+        final String newId;
 
-        private ConvertShortcutInfo(UserHandle userHandle, ShortcutRecord shortcutRecord) {
+        ConvertShortcutInfo(UserHandle userHandle, @NonNull ShortcutRecord shortcutRecord) {
             this.oldId = ShortcutUtil.generateShortcutId(null, shortcutRecord);
             this.newId = ShortcutUtil.generateShortcutId(userHandle, shortcutRecord);
         }
