@@ -36,6 +36,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleableRes;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -124,23 +125,26 @@ public abstract class Result<T extends Pojo> {
         return favoriteView;
     }
 
-    void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
+    protected void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
         SpannableString enriched = new SpannableString(text);
         Set<String> resultHighlighting = PreferenceManager.getDefaultSharedPreferences(context)
                 .getStringSet("pref-result-highlighting", Collections.singleton("color"));
-        int primaryColor = UIColors.getPrimaryColor(context);
 
         if (!resultHighlighting.isEmpty()) {
+            int primaryColor = UIColors.getPrimaryColor(context);
+            int len = text.length();
             for (Pair<Integer, Integer> position : positions) {
-                for (String highlight : resultHighlighting) {
-                    Object span = createSpan(highlight, primaryColor);
-                    if (span != null) {
-                        enriched.setSpan(
-                                span,
-                                position.first,
-                                position.second,
-                                Spannable.SPAN_INCLUSIVE_INCLUSIVE
-                        );
+                if (position.first <= len) {
+                    for (String highlight : resultHighlighting) {
+                        Object span = createSpan(highlight, primaryColor);
+                        if (span != null) {
+                            enriched.setSpan(
+                                    span,
+                                    position.first,
+                                    Math.min(position.second, len),
+                                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                            );
+                        }
                     }
                 }
             }
@@ -148,7 +152,7 @@ public abstract class Result<T extends Pojo> {
         view.setText(enriched);
     }
 
-    boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
+    protected boolean displayHighlighted(StringNormalizer.Result normalized, String text, FuzzyScore fuzzyScore,
                                TextView view, Context context) {
         MatchInfo matchInfo = fuzzyScore.match(normalized.codePoints);
 
@@ -157,8 +161,31 @@ public abstract class Result<T extends Pojo> {
             return false;
         }
 
-        displayHighlighted(text, matchInfo.getMatchedSequences(), view, context);
+        displayHighlighted(text, getMatchedSequences(matchInfo, normalized), view, context);
         return true;
+    }
+
+    private List<Pair<Integer, Integer>> getMatchedSequences(MatchInfo matchInfo, StringNormalizer.Result normalized) {
+        List<Integer> matchedIndices = matchInfo.getMatchedIndices();
+        if (matchedIndices == null) {
+            return Collections.emptyList();
+        }
+
+        // compute pair match indices
+        List<Pair<Integer, Integer>> positions = new ArrayList<>(matchedIndices.size());
+        int start = matchedIndices.get(0);
+        int end = start + 1;
+        for (int i = 1; i < matchedIndices.size(); i += 1) {
+            if (end == matchedIndices.get(i)) {
+                end += 1;
+            } else {
+                positions.add(new Pair<>(normalized.mapPosition(start), normalized.mapPosition(end)));
+                start = matchedIndices.get(i);
+                end = start + 1;
+            }
+        }
+        positions.add(new Pair<>(normalized.mapPosition(start), normalized.mapPosition(end)));
+        return positions;
     }
 
     private Object createSpan(String highlight, int primaryColor) {
