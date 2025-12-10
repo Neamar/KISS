@@ -1,0 +1,49 @@
+name: Upload app to releases
+
+# https://docs.github.com/en/webhooks/webhook-events-and-payloads#release
+on:
+  release:
+    types: [edited, published]
+
+concurrency:
+  # Concurrency group that uses the workflow name and PR number if available
+  # or commit SHA as a fallback. If a new workflow is triggered under that
+  # concurrency group while a previous workflow is running it will be canceled.
+  group: ${{ github.workflow }}-${{ github.ref || github.event.release.tag_name || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  # create app and upload it to the published release
+  upload:
+    runs-on: ubuntu-latest
+    env:
+      ARCHIVE_NAME: ${{ github.event.repository.name }}-${{ github.event.release.tag_name }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v5
+
+      - name: Create Release Directory
+        run: mkdir -p release
+
+      - name: Validate
+        run: |
+          bash ./gradlew lint --stacktrace
+          bash ./gradlew testDebugUnitTest --stacktrace
+
+      - name: Build APKs
+        run: |
+          bash ./gradlew assembleDebug --stacktrace
+          bash ./gradlew assembleRelease --stacktrace
+          cp "app/build/outputs/apk/debug/app-debug.apk" "release/"
+          cp "app/build/outputs/apk/release/app-release-unsigned.apk" "release/"
+
+      - name: Upload Files
+        run: >
+          gh release upload
+          --clobber "${{ github.event.release.tag_name }}"
+          --repo "${{ github.repository }}"
+          release/*
