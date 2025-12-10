@@ -5,6 +5,10 @@ on:
     branches:
       - '**'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.sha }}
+  cancel-in-progress: ${{ !contains(github.ref, 'master') }}
+
 jobs:
   test:
     name: Run Unit Tests
