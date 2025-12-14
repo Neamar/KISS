@@ -989,7 +989,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         }
 
         dismissPopup();
-        
+
         if (view == searchEditText) {
             searchEditText.setCursorVisible(false);
             searchEditText.clearFocus();
