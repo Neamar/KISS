@@ -97,11 +97,11 @@ public class MainActivityTest extends AbstractMainActivityTest {
     public void testKissBarDisplayed() {
         // Sanity check
         onView(withId(R.id.mainKissbar)).check(matches(not(isDisplayed())));
-        onView(allOf(withId(R.id.item_app_name), withText("Settings"))).check(doesNotExist());
+        onView(allOf(withId(R.id.item_app_name), withText("Files"))).check(doesNotExist());
 
         onView(withId(R.id.launcherButton)).perform(click());
         onView(withId(R.id.mainKissbar)).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.item_app_name), withText("Settings"))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.item_app_name), withText("Files"))).check(matches(isDisplayed()));
     }
 
     @Test
