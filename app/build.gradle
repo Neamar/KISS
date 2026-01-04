@@ -18,7 +18,7 @@ android {
     }
     defaultConfig {
         applicationId 'fr.neamar.kiss'
-        minSdkVersion 15
+        minSdkVersion 21
         compileSdkVersion 35
         targetSdkVersion 35
         versionCode 219
@@ -36,8 +36,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     lint {
@@ -49,9 +49,9 @@ android {
 }
 
 dependencies {
-    androidTestImplementation 'androidx.test:runner:1.5.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation 'androidx.test:rules:1.5.0'
+    androidTestImplementation 'androidx.test:runner:1.7.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
+    androidTestImplementation 'androidx.test:rules:1.7.0'
 
     implementation 'androidx.annotation:annotation:1.9.1'
 
@@ -60,7 +60,7 @@ dependencies {
     testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.11.4')
     testImplementation 'org.hamcrest:hamcrest-library:3.0'
 
-    errorprone('com.google.errorprone:error_prone_core:2.41.0')
+    errorprone('com.google.errorprone:error_prone_core:2.45.0')
 }
 
 tasks.withType(JavaCompile).configureEach {
