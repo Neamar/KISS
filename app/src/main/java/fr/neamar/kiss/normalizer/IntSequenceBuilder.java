@@ -54,4 +54,8 @@ class IntSequenceBuilder {
 
         return data;
     }
+
+    public int size() {
+        return size;
+    }
 }

@@ -8,6 +8,15 @@ public class PhoneNormalizer {
         return PhoneNumberUtils.convertKeypadLettersToDigits(phoneNumber);
     }
 
+    /**
+     * Normalize phone number by removing all characters other than digits.
+     * If the given phone number contains keypad letters, these will be converted to digits first.
+     * <p>
+     * Works similar to {@link PhoneNumberUtils#normalizeNumber(String)}
+     *
+     * @param phoneNumber the number to be normalized.
+     * @return the normalized number.
+     */
     public static StringNormalizer.Result simplifyPhoneNumber(String phoneNumber) {
         if (TextUtils.isEmpty(phoneNumber)) {
             return StringNormalizer.Result.EMPTY;
@@ -25,8 +34,8 @@ public class PhoneNormalizer {
         int i = 0;
         for (int iterCodePoint = 0; iterCodePoint < numCodePoints; iterCodePoint += 1) {
             int c = Character.codePointAt(phoneNumber, i);
-
-            if (c != ' ' && c != '-' && c != '.' && c != '(' && c != ')' && c != ':' && c != '/') {
+            int digit = Character.digit(c, 10);
+            if (digit != -1 || (codePoints.size() == 0 && c == '+')) {
                 codePoints.add(c);
                 resultMap.add(i);
             }
