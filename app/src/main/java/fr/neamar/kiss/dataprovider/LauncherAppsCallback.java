@@ -1,6 +1,5 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.annotation.SuppressLint;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
@@ -14,7 +13,6 @@ import java.util.List;
  * Empty implementation of LauncherApps.Callback so we do not need to override all methods when
  * only parts of LauncherApps.Callback are needed.
  */
-@SuppressLint("NewApi")
 public class LauncherAppsCallback extends LauncherApps.Callback {
     @Override
     public void onPackageRemoved(String packageName, UserHandle user) {

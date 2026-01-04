@@ -7,13 +7,15 @@ import android.os.Process;
 import android.os.UserManager;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 /**
  * Wrapper class for `android.os.UserHandle` that works with all Android versions
  */
 public class UserHandle implements Parcelable, Comparable<UserHandle> {
     private static final String TAG = UserHandle.class.getSimpleName();
     private final long serial;
-    private final Parcelable handle; // android.os.UserHandle on Android 4.2 and newer
+    private final android.os.UserHandle handle; // android.os.UserHandle on Android 4.2 and newer
 
     public static UserHandle OWNER = new UserHandle();
 
@@ -65,7 +67,7 @@ public class UserHandle implements Parcelable, Comparable<UserHandle> {
         return 0;
     }
 
-    public static final Creator<UserHandle> CREATOR = new Creator<UserHandle>() {
+    public static final Creator<UserHandle> CREATOR = new Creator<>() {
         @Override
         public UserHandle createFromParcel(Parcel in) {
             return new UserHandle(in);
@@ -77,9 +79,10 @@ public class UserHandle implements Parcelable, Comparable<UserHandle> {
         }
     };
 
+    @NonNull
     public android.os.UserHandle getRealHandle() {
         if (this.handle != null) {
-            return (android.os.UserHandle) this.handle;
+            return this.handle;
         } else {
             return Process.myUserHandle();
         }
@@ -102,7 +105,7 @@ public class UserHandle implements Parcelable, Comparable<UserHandle> {
     public boolean hasStringUserSuffix(String string, char separator) {
         long serial = 0;
 
-        int index = string.lastIndexOf((int) separator);
+        int index = string.lastIndexOf(separator);
         if (index > -1) {
             String serialText = string.substring(index);
             try {

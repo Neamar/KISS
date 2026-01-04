@@ -56,13 +56,13 @@ public class ExcludePreferenceScreen {
             return false;
         });
 
-		for (AppPojo app : apps) {
+        for (AppPojo app : apps) {
 			SwitchPreference pref = createExcludeAppSwitch(preferenceActivity, iconsHandler, isExcludedCallback, app, onExcludedListener);
 
 			excludedAppsScreen.addPreference(pref);
 		}
 
-		return excludedAppsScreen;
+        return excludedAppsScreen;
 	}
 
 	private static SwitchPreference createExcludeAppSwitch(
@@ -86,7 +86,7 @@ public class ExcludePreferenceScreen {
 		});
 
 		switchPreference.setTitle(app.getName());
-        switchPreference.setSummary(app.getComponentName());
+		switchPreference.setSummary(app.getComponentName());
 
 		switchPreference.setChecked(isExcludedCallback.isExcluded(app));
 		switchPreference.setOnPreferenceChangeListener(
