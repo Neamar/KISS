@@ -25,7 +25,6 @@ public final class PreferenceScreenHelper {
 				View child = e.getChildAt(i);
 
 				if (child instanceof Toolbar) {
-					// Only in LOLLIPOP or higher you're going to find a Toolbar
 					return (Toolbar) child;
 				}
 

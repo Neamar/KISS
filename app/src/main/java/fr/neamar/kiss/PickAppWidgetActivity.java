@@ -99,8 +99,7 @@ public class PickAppWidgetActivity extends Activity {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
             if (appWidgetId != 0) {
-                boolean bindAllowed = true;
-                bindAllowed = appWidgetManager.bindAppWidgetIdIfAllowed(appWidgetId, info.appWidgetInfo.getProfile(), info.appWidgetInfo.provider, null);
+                boolean bindAllowed = appWidgetManager.bindAppWidgetIdIfAllowed(appWidgetId, info.appWidgetInfo.getProfile(), info.appWidgetInfo.provider, null);
 
                 intent.putExtra(EXTRA_WIDGET_BIND_ALLOWED, bindAllowed);
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.appWidgetInfo.provider);
