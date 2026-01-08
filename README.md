@@ -1,6 +1,6 @@
 KISS
 ======
-An Android launcher not spending time and memory on stuff you'd rather do.
+An Android launcher not spending time and memory on stuff you'd rather do .
 
 [Copylefted](https://en.wikipedia.org/wiki/Copyleft) libre software, licensed [GPLv3+](https://github.com/Neamar/KISS/blob/master/LICENSE):
 
