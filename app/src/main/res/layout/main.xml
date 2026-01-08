@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -172,7 +173,7 @@
                 android:paddingEnd="@dimen/launcher_button_padding"
                 android:paddingRight="@dimen/launcher_button_padding"
                 android:src="@drawable/dots"
-                android:tint="?attr/searchColor" />
+                app:tint="?attr/searchColor" />
 
             <ImageView
                 android:id="@+id/clearButton"
@@ -187,8 +188,8 @@
                 android:paddingEnd="@dimen/launcher_button_padding"
                 android:paddingRight="@dimen/launcher_button_padding"
                 android:src="@drawable/clear_dark"
-                android:tint="?attr/searchColor"
-                android:visibility="visible" />
+                android:visibility="visible"
+                app:tint="?attr/searchColor" />
         </FrameLayout>
 
     </RelativeLayout>

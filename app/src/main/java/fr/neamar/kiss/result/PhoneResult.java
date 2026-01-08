@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.Collections;
 
@@ -79,8 +80,7 @@ public class PhoneResult extends CallResult<PhonePojo> {
 
     @Override
     public Drawable getDrawable(Context context) {
-        //noinspection: getDrawable(int, Theme) requires SDK 21+
-        return context.getResources().getDrawable(android.R.drawable.ic_menu_call);
+        return ResourcesCompat.getDrawable(context.getResources(), android.R.drawable.ic_menu_call, context.getTheme());
     }
 
     @Override

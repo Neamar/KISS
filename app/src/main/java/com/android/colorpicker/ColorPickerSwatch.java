@@ -24,6 +24,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import fr.neamar.kiss.R;
 
 /**
@@ -52,7 +54,7 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
 
     private void setColor(int color) {
         Drawable[] colorDrawable = new Drawable[]
-                {getContext().getResources().getDrawable(R.drawable.color_picker_swatch)};
+                {ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.color_picker_swatch, getContext().getTheme())};
         mSwatchImage.setImageDrawable(new ColorStateDrawable(colorDrawable, color));
     }
 

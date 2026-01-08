@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.net.URISyntaxException;
 import java.util.concurrent.atomic.AtomicReference;
@@ -177,7 +178,7 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
                         }
                     }
                     if (icon == null) {
-                        icon = context.getResources().getDrawable(android.R.drawable.ic_menu_send);
+                        icon = ResourcesCompat.getDrawable(context.getResources(), android.R.drawable.ic_menu_send, context.getTheme());
                     }
                     if (icon != null) {
                         icon = DrawableUtils.getThemedDrawable(context, icon);
