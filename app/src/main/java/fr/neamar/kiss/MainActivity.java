@@ -692,8 +692,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             if (launcherButton.getVisibility() != View.VISIBLE) {
                 launcherButton.setVisibility(View.VISIBLE);
 
-                int animationDuration = getResources().getInteger(
-                        android.R.integer.config_longAnimTime);
+                int animationDuration = getResources().getInteger(android.R.integer.config_longAnimTime);
 
                 // Animate transition from loader to launch button
                 launcherButton.animate()
@@ -786,14 +785,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             updateSearchRecords(false, searchEditText.getText().toString());
 
             // Reveal the bar
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                int animationDuration = getResources().getInteger(
-                        android.R.integer.config_shortAnimTime);
+            int animationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-                Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
-                anim.setDuration(animationDuration);
-                anim.start();
-            }
+            Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, 0, finalRadius);
+            anim.setDuration(animationDuration);
+            anim.start();
             kissBar.setVisibility(View.VISIBLE);
 
             // Display the alphabet on the scrollbar (#926)
@@ -801,27 +797,21 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         } else {
             isDisplayingKissBar = false;
             // Hide the bar
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                int animationDuration = getResources().getInteger(
-                        android.R.integer.config_shortAnimTime);
+            int animationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-                try {
-                    Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, finalRadius, 0);
-                    anim.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            kissBar.setVisibility(View.GONE);
-                            super.onAnimationEnd(animation);
-                        }
-                    });
-                    anim.setDuration(animationDuration);
-                    anim.start();
-                } catch (IllegalStateException e) {
-                    // If the view hasn't been laid out yet, we can't animate it
-                    kissBar.setVisibility(View.GONE);
-                }
-            } else {
-                // No animation before Lollipop
+            try {
+                Animator anim = ViewAnimationUtils.createCircularReveal(kissBar, cx, cy, finalRadius, 0);
+                anim.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        kissBar.setVisibility(View.GONE);
+                        super.onAnimationEnd(animation);
+                    }
+                });
+                anim.setDuration(animationDuration);
+                anim.start();
+            } catch (IllegalStateException e) {
+                // If the view hasn't been laid out yet, we can't animate it
                 kissBar.setVisibility(View.GONE);
             }
 

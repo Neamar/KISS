@@ -23,7 +23,6 @@ import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Locale;
 
@@ -366,17 +365,11 @@ public class ExperienceTweaks extends Forwarder {
     // Super hacky code to display notification drawer
     // Can (and will) break in any Android release.
     protected void displayNotificationDrawer() {
-        @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
-        Class<?> statusbarManager;
         try {
-            statusbarManager = Class.forName("android.app.StatusBarManager");
-            Method showStatusBar;
-            if (Build.VERSION.SDK_INT >= 17) {
-                showStatusBar = statusbarManager.getMethod("expandNotificationsPanel");
-            } else {
-                showStatusBar = statusbarManager.getMethod("expand");
-            }
-            showStatusBar.invoke(sbservice);
+            @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
+            Class.forName("android.app.StatusBarManager")
+                    .getMethod("expandNotificationsPanel")
+                    .invoke(sbservice);
         } catch (Exception e) {
             Log.e(TAG, "Unable to display notification drawer", e);
         }
@@ -436,11 +429,7 @@ public class ExperienceTweaks extends Forwarder {
     @SuppressLint("SourceLockedOrientationActivity")
     public static void setRequestedOrientation(Activity activity, SharedPreferences prefs) {
         if (prefs.getBoolean("force-portrait", true)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
-            } else {
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT);
         } else {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }

@@ -99,20 +99,11 @@ public class PickAppWidgetActivity extends Activity {
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
             if (appWidgetId != 0) {
-                boolean bindAllowed = true;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    bindAllowed = appWidgetManager.bindAppWidgetIdIfAllowed(appWidgetId, info.appWidgetInfo.getProfile(), info.appWidgetInfo.provider, null);
-                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    bindAllowed = appWidgetManager.bindAppWidgetIdIfAllowed(appWidgetId, info.appWidgetInfo.provider);
-                }
+                boolean bindAllowed = appWidgetManager.bindAppWidgetIdIfAllowed(appWidgetId, info.appWidgetInfo.getProfile(), info.appWidgetInfo.provider, null);
 
                 intent.putExtra(EXTRA_WIDGET_BIND_ALLOWED, bindAllowed);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.appWidgetInfo.provider);
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, info.appWidgetInfo.getProfile());
-                }
+                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.appWidgetInfo.provider);
+                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, info.appWidgetInfo.getProfile());
                 setResult(RESULT_OK, intent);
             } else {
                 setResult(RESULT_CANCELED, intent);
@@ -130,10 +121,7 @@ public class PickAppWidgetActivity extends Activity {
         for (AppWidgetProviderInfo providerInfo : installedProviders) {
             if (!isHiddenFromPicker(providerInfo)) {
                 // get widget name
-                String label = null;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    label = providerInfo.loadLabel(packageManager);
-                }
+                String label = providerInfo.loadLabel(packageManager);
                 if (label == null) {
                     label = providerInfo.label;
                 }
@@ -171,17 +159,12 @@ public class PickAppWidgetActivity extends Activity {
 
     @WorkerThread
     protected static Drawable getWidgetPreview(@NonNull Context context, @NonNull AppWidgetProviderInfo info) {
-        Drawable preview = null;
         final int density = context.getResources().getDisplayMetrics().densityDpi;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            preview = info.loadPreviewImage(context, density);
-        }
+        Drawable preview = info.loadPreviewImage(context, density);
         if (preview != null)
             return preview;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            preview = info.loadIcon(context, density);
-        }
+        preview = info.loadIcon(context, density);
         if (preview != null)
             return preview;
 
@@ -209,11 +192,7 @@ public class PickAppWidgetActivity extends Activity {
                 return preview;
         }
 
-        final UserHandle userHandle;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            userHandle = new UserHandle(context, info.getProfile());
-        } else
-            userHandle = UserHandle.OWNER;
+        final UserHandle userHandle = new UserHandle(context, info.getProfile());
         return KissApplication.getApplication(context).getIconsHandler().getDrawableIconForPackage(info.provider, userHandle);
     }
 

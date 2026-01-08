@@ -17,12 +17,9 @@ package fr.neamar.kiss.ui;
  */
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.QuickContactBadge;
-
-import androidx.annotation.RequiresApi;
 
 /**
  * A {@link QuickContactBadge} that allows setting a click listener. The base
@@ -48,7 +45,6 @@ public class ImprovedQuickContactBadge extends ShapedContactBadge {
         init(); //Set our initialization
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public ImprovedQuickContactBadge(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(); //Set our initialization
@@ -71,9 +67,7 @@ public class ImprovedQuickContactBadge extends ShapedContactBadge {
      * Hide the overlay
      */
     private void init() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setOverlay(null);
-        }
+        setOverlay(null);
     }
 
 }

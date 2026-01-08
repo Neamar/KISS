@@ -16,7 +16,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.UserManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -83,17 +82,15 @@ public class AppResult extends ResultWithTags<AppPojo> {
             appIcon.setImageDrawable(null);
         }
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            String packageKey = getPackageKey();
+        String packageKey = getPackageKey();
 
-            SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
-            ImageView notificationView = view.findViewById(R.id.item_notification_dot);
-            notificationView.setVisibility(notificationPrefs.contains(packageKey) ? View.VISIBLE : View.GONE);
-            notificationView.setTag(packageKey);
+        SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        ImageView notificationView = view.findViewById(R.id.item_notification_dot);
+        notificationView.setVisibility(notificationPrefs.contains(packageKey) ? View.VISIBLE : View.GONE);
+        notificationView.setTag(packageKey);
 
-            int dotColor = UIColors.getNotificationDotColor(context);
-            notificationView.setColorFilter(dotColor);
-        }
+        int dotColor = UIColors.getNotificationDotColor(context);
+        notificationView.setColorFilter(dotColor);
 
         return view;
     }
@@ -129,7 +126,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
             uninstallDisabled = ai != null && (ai.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
         }
 
-        if (!uninstallDisabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (!uninstallDisabled) {
             UserManager userManager =
                     (UserManager) context.getSystemService(Context.USER_SERVICE);
             Bundle restrictions = userManager.getUserRestrictions(pojo.userHandle.getRealHandle());
@@ -220,11 +217,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(context.getResources().getString(R.string.app_rename_title));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder.setView(R.layout.rename_dialog);
-        } else {
-            builder.setView(View.inflate(context, R.layout.rename_dialog, null));
-        }
+        builder.setView(R.layout.rename_dialog);
 
         builder.setPositiveButton(R.string.custom_name_rename, (dialog, which) -> {
             EditText input = ((AlertDialog) dialog).findViewById(R.id.rename);
@@ -306,15 +299,9 @@ public class AppResult extends ResultWithTags<AppPojo> {
      * Open an activity displaying details regarding the current package
      */
     private void launchAppDetails(Context context, AppPojo app) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-            assert launcher != null;
-            launcher.startAppDetailsActivity(className, pojo.userHandle.getRealHandle(), null, null);
-        } else {
-            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                    Uri.fromParts("package", app.packageName, null));
-            context.startActivity(intent);
-        }
+        LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        assert launcher != null;
+        launcher.startAppDetailsActivity(className, pojo.userHandle.getRealHandle(), null, null);
     }
 
     private void launchAppStore(Context context, AppPojo app) {
@@ -342,9 +329,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
     private void launchUninstall(Context context, AppPojo app) {
         Intent intent = new Intent(Intent.ACTION_DELETE,
                 Uri.fromParts("package", app.packageName, null));
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            intent.putExtra(Intent.EXTRA_USER, app.userHandle.getRealHandle());
-        }
+        intent.putExtra(Intent.EXTRA_USER, app.userHandle.getRealHandle());
         context.startActivity(intent);
     }
 
@@ -382,38 +367,29 @@ public class AppResult extends ResultWithTags<AppPojo> {
     @Override
     public void doLaunch(Context context, View v) {
         try {
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-                assert launcher != null;
-                Rect sourceBounds = null;
-                Bundle opts = null;
+            LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            assert launcher != null;
+            Rect sourceBounds = null;
+            Bundle opts = null;
 
-                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    // We're on a modern Android and can display activity animations
-                    // If AppResult, find the icon
-                    View potentialIcon = v.findViewById(R.id.item_app_icon);
-                    if (potentialIcon == null) {
-                        // If favorite, find the icon
-                        potentialIcon = v.findViewById(R.id.favorite);
-                    }
-
-                    if (potentialIcon != null) {
-                        sourceBounds = getViewBounds(potentialIcon);
-
-                        // If we got an icon, we create options to get a nice animation
-                        opts = ActivityOptions.makeClipRevealAnimation(potentialIcon, 0, 0, potentialIcon.getMeasuredWidth(), potentialIcon.getMeasuredHeight()).toBundle();
-                    }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                // We're on a modern Android and can display activity animations
+                // If AppResult, find the icon
+                View potentialIcon = v.findViewById(R.id.item_app_icon);
+                if (potentialIcon == null) {
+                    // If favorite, find the icon
+                    potentialIcon = v.findViewById(R.id.favorite);
                 }
 
-                launcher.startMainActivity(className, pojo.userHandle.getRealHandle(), sourceBounds, opts);
-            } else {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                intent.setComponent(className);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-                setSourceBounds(intent, v);
-                context.startActivity(intent);
+                if (potentialIcon != null) {
+                    sourceBounds = getViewBounds(potentialIcon);
+
+                    // If we got an icon, we create options to get a nice animation
+                    opts = ActivityOptions.makeClipRevealAnimation(potentialIcon, 0, 0, potentialIcon.getMeasuredWidth(), potentialIcon.getMeasuredHeight()).toBundle();
+                }
             }
+
+            launcher.startMainActivity(className, pojo.userHandle.getRealHandle(), sourceBounds, opts);
         } catch (ActivityNotFoundException | NullPointerException | SecurityException e) {
             Log.w(TAG, "Unable to launch activity", e);
             // Application was just removed?

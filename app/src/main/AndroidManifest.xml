@@ -165,10 +165,9 @@
         <service android:name=".dataprovider.ShortcutsProvider" />
 
         <service android:name=".notification.NotificationListener"
-            android:enabled="@bool/notification_service_enabled"
+            android:enabled="true"
             android:exported="true"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
-            tools:targetApi="18">
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>

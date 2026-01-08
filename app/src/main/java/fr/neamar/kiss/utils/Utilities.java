@@ -39,10 +39,8 @@ public class Utilities {
                 if (act.isFinishing()) {
                     return null;
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    if (act.isDestroyed()) {
-                        return null;
-                    }
+                if (act.isDestroyed()) {
+                    return null;
                 }
                 return act;
             }

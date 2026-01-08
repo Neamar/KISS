@@ -1,19 +1,16 @@
 package fr.neamar.kiss.preference;
 
 import android.app.Dialog;
-import android.os.Build;
 import android.preference.PreferenceScreen;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import java.util.ArrayDeque;
 
 public final class PreferenceScreenHelper {
-	@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 	public static @Nullable Toolbar findToolbar(PreferenceScreen preference) {
 		final Dialog dialog = preference.getDialog();
 		ViewGroup root = (ViewGroup) dialog.getWindow().getDecorView();
@@ -28,7 +25,6 @@ public final class PreferenceScreenHelper {
 				View child = e.getChildAt(i);
 
 				if (child instanceof Toolbar) {
-					// Only in LOLLIPOP or higher you're going to find a Toolbar
 					return (Toolbar) child;
 				}
 

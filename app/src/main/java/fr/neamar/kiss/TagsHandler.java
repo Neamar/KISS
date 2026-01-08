@@ -7,7 +7,6 @@ import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.os.Build;
 import android.os.UserManager;
 import android.provider.AlarmClock;
 import android.text.TextUtils;
@@ -145,27 +144,20 @@ public class TagsHandler {
     private List<String> getApps(PackageManager pm, Intent lookingFor) {
         List<ResolveInfo> list = pm.queryIntentActivities(lookingFor, 0);
         List<String> apps = new ArrayList<>(list.size());
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Set<String> packageNames = new HashSet<>();
-            for (ResolveInfo resolveInfo : list) {
-                packageNames.add(resolveInfo.activityInfo.packageName);
-            }
+        Set<String> packageNames = new HashSet<>();
+        for (ResolveInfo resolveInfo : list) {
+            packageNames.add(resolveInfo.activityInfo.packageName);
+        }
 
-            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
-            for (android.os.UserHandle profile : manager.getUserProfiles()) {
-                UserHandle userHandle = new UserHandle(manager.getSerialNumberForUser(profile), profile);
-                for (String packageName : packageNames) {
-                    for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(packageName, profile)) {
-                        String app = userHandle.addUserSuffixToString("app://" + activityInfo.getComponentName().getPackageName() + "/" + activityInfo.getComponentName().getClassName(), '/');
-                        apps.add(app);
-                    }
+        UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        for (android.os.UserHandle profile : manager.getUserProfiles()) {
+            UserHandle userHandle = new UserHandle(manager.getSerialNumberForUser(profile), profile);
+            for (String packageName : packageNames) {
+                for (LauncherActivityInfo activityInfo : launcherApps.getActivityList(packageName, profile)) {
+                    String app = userHandle.addUserSuffixToString("app://" + activityInfo.getComponentName().getPackageName() + "/" + activityInfo.getComponentName().getClassName(), '/');
+                    apps.add(app);
                 }
-            }
-        } else {
-            for (ResolveInfo resolveInfo : list) {
-                String app = "app://" + resolveInfo.activityInfo.packageName + "/" + resolveInfo.activityInfo.name;
-                apps.add(app);
             }
         }
         return apps;
@@ -176,11 +168,9 @@ public class TagsHandler {
         List<String> clockApps = new ArrayList<>();
 
         // check for clock by intent
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Intent alarmClockIntent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
-            List<String> appsByIntent = getApps(pm, alarmClockIntent);
-            clockApps.addAll(appsByIntent);
-        }
+        Intent alarmClockIntent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+        List<String> appsByIntent = getApps(pm, alarmClockIntent);
+        clockApps.addAll(appsByIntent);
 
         // Known clock implementations
         // See http://stackoverflow.com/questions/3590955/intent-to-launch-the-clock-application-on-android

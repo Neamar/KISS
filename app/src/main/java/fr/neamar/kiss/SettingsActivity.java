@@ -121,15 +121,8 @@ public class SettingsActivity extends PreferenceActivity implements
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             removePreference("colors-section", "black-notification-icons");
         }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            removePreference("history-hide-section", "pref-hide-navbar");
-            removePreference("history-hide-section", "pref-hide-statusbar");
-        }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
             removePreference("advanced", "enable-notifications");
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            removePreference("alternate-history-inputs-section", "enable-notification-history");
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             removePreference("icons-section", DrawableUtils.KEY_THEMED_ICONS);
@@ -354,13 +347,11 @@ public class SettingsActivity extends PreferenceActivity implements
             if (systemUiVisibilityHelper != null) {
                 systemUiVisibilityHelper.copyVisibility(dialog.getWindow().getDecorView());
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
-                if (toolbar != null) {
-                    toolbar.setNavigationOnClickListener(v -> {
-                        dialog.dismiss();
-                    });
-                }
+            Toolbar toolbar = PreferenceScreenHelper.findToolbar((PreferenceScreen) preference);
+            if (toolbar != null) {
+                toolbar.setNavigationOnClickListener(v -> {
+                    dialog.dismiss();
+                });
             }
             InterfaceTweaks.applySystemBarInsets(dialog.getWindow().getDecorView());
         }

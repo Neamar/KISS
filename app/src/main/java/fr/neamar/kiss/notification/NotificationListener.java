@@ -10,8 +10,6 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -20,7 +18,6 @@ import java.util.Set;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.utils.UserHandle;
 
-@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationListener extends NotificationListenerService {
     public static final String TAG = NotificationListener.class.getSimpleName();
     public static final String NOTIFICATION_PREFERENCES_NAME = "notifications";
@@ -134,11 +131,7 @@ public class NotificationListener extends NotificationListenerService {
     }
 
     private UserHandle getUserHandle(Context context, StatusBarNotification sbn) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return new UserHandle(context, sbn.getUser());
-        } else {
-            return UserHandle.OWNER;
-        }
+        return new UserHandle(context, sbn.getUser());
     }
 
     @Override
@@ -166,11 +159,7 @@ public class NotificationListener extends NotificationListenerService {
     }
 
     private String getPackageKey(StatusBarNotification sbn) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return sbn.getUser().hashCode() + "|" + sbn.getPackageName();
-        } else {
-            return sbn.getPackageName();
-        }
+        return sbn.getUser().hashCode() + "|" + sbn.getPackageName();
     }
 
     public Set<String> getCurrentNotificationsForPackage(String packageName) {
@@ -215,11 +204,7 @@ public class NotificationListener extends NotificationListenerService {
     }
 
     private boolean isGroupHeader(Notification notification) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            return (notification.flags & Notification.FLAG_GROUP_SUMMARY) != 0;
-        } else {
-            return false;
-        }
+        return (notification.flags & Notification.FLAG_GROUP_SUMMARY) != 0;
     }
 
 }

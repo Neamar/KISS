@@ -110,16 +110,14 @@ public class WidgetView extends AppWidgetHostView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            // calculate size in dips
-            float density = getResources().getDisplayMetrics().density;
-            int widthDips = (int) (w / density);
-            int heightDips = (int) (h / density);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                updateAppWidgetSize(Bundle.EMPTY, Collections.singletonList(new SizeF(widthDips, heightDips)));
-            } else {
-                updateAppWidgetSize(null, widthDips, heightDips, widthDips, heightDips);
-            }
+        // calculate size in dips
+        float density = getResources().getDisplayMetrics().density;
+        int widthDips = (int) (w / density);
+        int heightDips = (int) (h / density);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            updateAppWidgetSize(Bundle.EMPTY, Collections.singletonList(new SizeF(widthDips, heightDips)));
+        } else {
+            updateAppWidgetSize(null, widthDips, heightDips, widthDips, heightDips);
         }
     }
 }

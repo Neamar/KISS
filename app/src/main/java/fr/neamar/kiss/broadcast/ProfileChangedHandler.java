@@ -6,13 +6,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
-
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.utils.UserHandle;
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class ProfileChangedHandler extends BroadcastReceiver {
 
     @Override
