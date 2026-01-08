@@ -1,11 +1,12 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.preference.PreferenceManager;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class AppProvider extends Provider<AppPojo> {
 
     @Override
     public void onCreate() {
-        final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        final LauncherApps launcher = ContextCompat.getSystemService(this, LauncherApps.class);
         assert launcher != null;
 
         launcher.registerCallback(new LauncherAppsCallback() {

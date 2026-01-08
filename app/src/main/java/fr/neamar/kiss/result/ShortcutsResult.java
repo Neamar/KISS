@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.net.URISyntaxException;
@@ -164,7 +165,7 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         ShortcutInfo shortcutInfo = getShortCut(context);
                         if (shortcutInfo != null) {
-                            final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                            final LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
                             assert launcherApps != null;
                             try {
                                 icon = launcherApps.getShortcutIconDrawable(shortcutInfo, 0);
@@ -211,7 +212,7 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
 
     private void doOreoLaunch(Context context, View v) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            final LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
             assert launcherApps != null;
 
             // Only the default launcher is allowed to start shortcuts

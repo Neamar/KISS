@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -221,7 +223,7 @@ public class ExperienceTweaks extends Forwarder {
              * Are we allowed to run our AccessibilityService?
              */
             private boolean isAccessibilityServiceEnabled(Context context) {
-                AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+                AccessibilityManager am = ContextCompat.getSystemService(context, AccessibilityManager.class);
                 if (am == null) {
                     return false;
                 }

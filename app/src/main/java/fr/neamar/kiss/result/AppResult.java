@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import fr.neamar.kiss.CustomIconDialog;
 import fr.neamar.kiss.IconsHandler;
@@ -127,8 +128,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
         }
 
         if (!uninstallDisabled) {
-            UserManager userManager =
-                    (UserManager) context.getSystemService(Context.USER_SERVICE);
+            UserManager userManager = ContextCompat.getSystemService(context, UserManager.class);
             Bundle restrictions = userManager.getUserRestrictions(pojo.userHandle.getRealHandle());
             uninstallDisabled = restrictions.getBoolean(UserManager.DISALLOW_APPS_CONTROL, false)
                     || restrictions.getBoolean(UserManager.DISALLOW_UNINSTALL_APPS, false);
@@ -299,7 +299,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
      * Open an activity displaying details regarding the current package
      */
     private void launchAppDetails(Context context, AppPojo app) {
-        LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        LauncherApps launcher = ContextCompat.getSystemService(context, LauncherApps.class);
         assert launcher != null;
         launcher.startAppDetailsActivity(className, pojo.userHandle.getRealHandle(), null, null);
     }
@@ -367,7 +367,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
     @Override
     public void doLaunch(Context context, View v) {
         try {
-            LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            LauncherApps launcher = ContextCompat.getSystemService(context, LauncherApps.class);
             assert launcher != null;
             Rect sourceBounds = null;
             Bundle opts = null;

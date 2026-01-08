@@ -18,6 +18,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,8 +103,8 @@ public class ShortcutUtil {
     public static List<ShortcutInfo> getShortcuts(Context context, String packageName) {
         List<ShortcutInfo> shortcutInfoList = new ArrayList<>();
 
-        UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        UserManager manager = ContextCompat.getSystemService(context, UserManager.class);
+        LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
 
         if (launcherApps.hasShortcutHostPermission()) {
             LauncherApps.ShortcutQuery shortcutQuery = new LauncherApps.ShortcutQuery();
@@ -131,7 +132,7 @@ public class ShortcutUtil {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     public static ShortcutInfo getShortCut(Context context, @NonNull android.os.UserHandle user, String packageName, String shortcutId) {
-        final LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        final LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
 
         if (launcherApps.hasShortcutHostPermission() && !TextUtils.isEmpty(packageName)) {
             LauncherApps.ShortcutQuery query = new LauncherApps.ShortcutQuery();
@@ -139,7 +140,7 @@ public class ShortcutUtil {
             query.setShortcutIds(Collections.singletonList(shortcutId));
             query.setQueryFlags(FLAG_MATCH_DYNAMIC | FLAG_MATCH_MANIFEST | FLAG_MATCH_PINNED);
 
-            final UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            final UserManager userManager = ContextCompat.getSystemService(context, UserManager.class);
 
             // find the correct shortcut
             if (userManager.isUserRunning(user) && userManager.isUserUnlocked(user)) {
@@ -218,8 +219,8 @@ public class ShortcutUtil {
             return false;
         }
 
-        UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        UserManager userManager = ContextCompat.getSystemService(context, UserManager.class);
+        LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
         if (PackageManagerUtils.isPrivateProfile(launcherApps, shortcutInfo.getUserHandle())) {
             if (userManager.isQuietModeEnabled(shortcutInfo.getUserHandle())) {
                 return false;

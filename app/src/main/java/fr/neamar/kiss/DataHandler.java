@@ -1,6 +1,5 @@
 package fr.neamar.kiss;
 
-import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -21,6 +20,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,7 +85,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     /**
      * Initialize all providers
      */
-    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     public DataHandler(Context context) {
         // Make sure we are in the context of the main application
         // (otherwise we might receive an exception about broadcast listeners not being able
@@ -223,7 +222,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
                 public void onReceive(final Context context, Intent intent) {
                     // Is there a lockscreen still visible to the user?
                     // If yes, we can't start background services yet, so we'll need to wait until we get ACTION_USER_PRESENT
-                    KeyguardManager myKM = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+                    KeyguardManager myKM = ContextCompat.getSystemService(context, KeyguardManager.class);
                     boolean isPhoneLocked = myKM.inKeyguardRestrictedInputMode();
                     if (!isPhoneLocked) {
                         context.unregisterReceiver(this);
@@ -471,7 +470,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      */
     public boolean pinShortcut(ShortcutPojo shortcut) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
             if (shortcut.isOreoShortcut() &&
                     launcherApps.hasShortcutHostPermission() &&
                     !PackageManagerUtils.isPrivateProfile(launcherApps, shortcut.getUserHandle().getRealHandle())) {
@@ -505,7 +504,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         if (!shortcut.isOreoShortcut()) {
             removeShortcut(shortcut);
         } else if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
             if (shortcut.isOreoShortcut() &&
                     launcherApps.hasShortcutHostPermission() &&
                     !PackageManagerUtils.isPrivateProfile(launcherApps, shortcut.getUserHandle().getRealHandle())) {
@@ -585,7 +584,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         // Remove all shortcuts from favorites for given package name
         List<ShortcutRecord> shortcutsList = DBHelper.getShortcuts(context, packageName);
         for (ShortcutRecord shortcutRecord : shortcutsList) {
-            UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            UserManager manager = ContextCompat.getSystemService(context, UserManager.class);
             for (android.os.UserHandle user : manager.getUserProfiles()) {
                 String id = ShortcutUtil.generateShortcutId(new UserHandle(context, user), shortcutRecord);
                 removeFromFavorites(id);

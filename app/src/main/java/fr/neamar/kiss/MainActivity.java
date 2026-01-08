@@ -42,6 +42,7 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     /**
      * Called when the activity is first created.
      */
-    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -220,18 +220,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         };
         getOnBackPressedDispatcher().addCallback(onBackPressedCallback);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Since Android 33, we need to specify is the receiver is available from other applications
-            // For some reasons, in our case, using RECEIVER_NOT_EXPORTED means we do not get the updates from our own services?!
-            // So we export the receiver.
-            // In practice, this means other apps can trigger a refresh of search results if they want by sending a broadcast.
-            this.registerReceiver(mReceiver, intentFilterLoad, Context.RECEIVER_EXPORTED);
-            this.registerReceiver(mReceiver, intentFilterLoadOver, Context.RECEIVER_EXPORTED);
-        }
-        else {
-            this.registerReceiver(mReceiver, intentFilterLoad);
-            this.registerReceiver(mReceiver, intentFilterLoadOver);
-        }
+        ContextCompat.registerReceiver(this, mReceiver, intentFilterLoad, ContextCompat.RECEIVER_EXPORTED);
+        ContextCompat.registerReceiver(this, mReceiver, intentFilterLoadOver, ContextCompat.RECEIVER_EXPORTED);
 
         /*
          * Set the view and store all useful components
@@ -695,7 +685,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     private UserHandle getPrivateUser() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            final LauncherApps launcher = ContextCompat.getSystemService(this, LauncherApps.class);
             assert launcher != null;
 
             List<UserHandle> users = launcher.getProfiles();
@@ -711,7 +701,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     private boolean isPrivateSpaceUnlocked(UserHandle privateUser) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+            final UserManager manager = ContextCompat.getSystemService(this, UserManager.class);
             return !manager.isQuietModeEnabled(privateUser);
         }
         return false;
@@ -721,7 +711,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             UserHandle user = getPrivateUser();
             if (user != null) {
-                final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+                final UserManager manager = ContextCompat.getSystemService(this, UserManager.class);
                 manager.requestQuietModeEnabled(!manager.isQuietModeEnabled(user), user);
             }
         }
@@ -944,7 +934,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
-            InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager inputManager = ContextCompat.getSystemService(this, InputMethodManager.class);
             //noinspection ConstantConditions
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 

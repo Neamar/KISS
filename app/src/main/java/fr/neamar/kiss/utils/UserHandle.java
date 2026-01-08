@@ -8,6 +8,7 @@ import android.os.UserManager;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 /**
  * Wrapper class for `android.os.UserHandle` that works with all Android versions
@@ -43,7 +44,7 @@ public class UserHandle implements Parcelable, Comparable<UserHandle> {
             this.serial = 0;
             this.handle = null;
         } else {
-            final UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            final UserManager manager = ContextCompat.getSystemService(context, UserManager.class);
             assert manager != null;
             // Store the given user handle
             this.serial = manager.getSerialNumberForUser(userHandle);
