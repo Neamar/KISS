@@ -270,6 +270,16 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             return true;
         });
 
+        // Clear text content when touching the cross button
+        clearButton.setOnClickListener(v -> clearSearchText());
+
+        // Display menu
+        menuButton.setOnClickListener(this::onMenuButtonClicked);
+
+        // Display KISS menu
+        launcherButton.setOnClickListener(this::onLauncherButtonClicked);
+        whiteLauncherButton.setOnClickListener(this::onLauncherButtonClicked);
+
         // Display empty list view when having no results
         this.adapter.registerDataSetObserver(new DataSetObserver() {
             @Override
@@ -566,15 +576,15 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      *
      * @param menuButton "kebab" menu (3 dots)
      */
-    public void onMenuButtonClicked(View menuButton) {
+    private void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
         // To fix this, we discard any click event occurring when the kissbar is displayed
         if (!isViewingSearchResults()) {
             return;
         }
-        if (!forwarderManager.onMenuButtonClicked(this.menuButton)) {
-            this.menuButton.showContextMenu();
-            this.menuButton.performHapticFeedback(LONG_PRESS);
+        if (!forwarderManager.onMenuButtonClicked(menuButton)) {
+            menuButton.showContextMenu();
+            menuButton.performHapticFeedback(LONG_PRESS);
         }
     }
 
@@ -603,17 +613,9 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     /**
-     * Clear text content when touching the cross button
-     */
-    @SuppressWarnings("UnusedParameters")
-    public void onClearButtonClicked(View clearButton) {
-        clearSearchText();
-    }
-
-    /**
      * Display KISS menu
      */
-    public void onLauncherButtonClicked(View launcherButton) {
+    private void onLauncherButtonClicked(View launcherButton) {
         // Display or hide the kiss bar, according to current view tag (showMenu / hideMenu).
         displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
