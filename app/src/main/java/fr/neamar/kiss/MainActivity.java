@@ -501,17 +501,15 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             mPopup.dismiss();
         } else if (isViewingAllApps()) {
             displayKissBar(false);
-        } else {
+        } else if (!TextUtils.isEmpty(searchEditText.getText()) || isKissDefaultLauncher()) {
             // If no kissmenu, empty the search bar
             // (this will trigger a new event if the search bar was already empty)
             // (which means pressing back in minimalistic mode with history displayed
             // will hide history again)
             clearSearchText();
-        }
-
-        // Calling super.onBackPressed() will quit the launcher, only do this if KISS is not the user's default home.
-        if (!isKissDefaultLauncher()) {
-//            super.onBackPressed();
+        } else {
+            // close activity only when not default launcher and searchEditText is empty
+            finish();
         }
     }
 
@@ -523,7 +521,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
-        if (keycode != KeyEvent.KEYCODE_BACK) {
+        if (!e.isSystem()) {
             searchEditText.requestFocus();
             searchEditText.dispatchKeyEvent(e);
         }
