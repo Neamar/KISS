@@ -2,7 +2,6 @@ package fr.neamar.kiss;
 
 import static android.appwidget.AppWidgetProviderInfo.WIDGET_FEATURE_HIDE_FROM_PICKER;
 
-import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
@@ -28,6 +27,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,7 +39,7 @@ import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 
-public class PickAppWidgetActivity extends Activity {
+public class PickAppWidgetActivity extends AppCompatActivity {
     private static final String TAG = PickAppWidgetActivity.class.getSimpleName();
     public static final String EXTRA_WIDGET_BIND_ALLOWED = "widgetBindAllowed";
 

@@ -98,11 +98,29 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     public static void applySettingsTheme(Activity act, SharedPreferences prefs) {
-        String theme = prefs.getString("theme", "light");
-        if (theme.equals("amoled-dark")) {
-            act.setTheme(R.style.SettingThemeAmoledDark);
-        } else if (theme.contains("dark")) {
-            act.setTheme(R.style.SettingThemeDark);
+        String theme = prefs.getString("theme", "transparent");
+        switch (theme) {
+            case "dark":
+                act.setTheme(R.style.SettingThemeDark);
+                break;
+            case "transparent":
+                act.setTheme(R.style.SettingTheme);
+                break;
+            case "semi-transparent":
+                act.setTheme(R.style.SettingTheme);
+                break;
+            case "semi-transparent-dark":
+                act.setTheme(R.style.SettingThemeDark);
+                break;
+            case "transparent-dark":
+                act.setTheme(R.style.SettingThemeDark);
+                break;
+            case "amoled-dark":
+                act.setTheme(R.style.SettingThemeAmoledDark);
+                break;
+            default: // "light"
+                act.setTheme(R.style.SettingTheme);
+                break;
         }
         UIColors.updateThemePrimaryColor(act);
     }

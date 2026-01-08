@@ -237,7 +237,7 @@ class Widgets extends Forwarder {
             return;
         }
 
-        AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity, appWidgetId, appWidgetInfo);
+        AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity.getApplicationContext(), appWidgetId, appWidgetInfo);
 
         int height = (int) (lineSize * getLineHeight());
         hostView.setAppWidget(appWidgetId, appWidgetInfo);
