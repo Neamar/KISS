@@ -369,7 +369,7 @@ public class PickAppWidgetActivity extends Activity {
                         h = minHeight;
                         w = Math.round(h * aspect);
                     }
-                    int maxWidth = textView.getWidth() - textView.getPaddingLeft() - textView.getPaddingRight();
+                    int maxWidth = textView.getWidth() - textView.getPaddingStart() - textView.getPaddingEnd();
                     if (w > maxWidth) {
                         w = maxWidth;
                         h = Math.round(w / aspect);
