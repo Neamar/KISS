@@ -53,7 +53,7 @@ public class PickAppWidgetActivity extends AppCompatActivity {
         // Do it here to make the transition as smooth as possible
         ExperienceTweaks.setRequestedOrientation(this, prefs);
 
-        InterfaceTweaks.applySettingsTheme(this, prefs);
+        InterfaceTweaks.applyTheme(this, prefs);
         setContentView(R.layout.widget_picker);
 
         View progressContainer = findViewById(R.id.progressContainer);

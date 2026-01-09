@@ -33,7 +33,7 @@ public class InterfaceTweaks extends Forwarder {
         applyTheme(mainActivity, prefs);
     }
 
-    private static void applyTheme(Activity act, SharedPreferences prefs) {
+    public static void applyTheme(Activity act, SharedPreferences prefs) {
         String theme = prefs.getString("theme", "transparent");
         switch (theme) {
             case "dark":
