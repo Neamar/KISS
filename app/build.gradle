@@ -46,6 +46,17 @@ android {
         lintConfig = file('lint.xml')
     }
 
+    testOptions {
+        animationsDisabled = false
+        unitTests {
+            all {
+                testLogging {
+                    exceptionFormat = "full"
+                }
+            }
+        }
+    }
+
     namespace = 'fr.neamar.kiss'
 }
 
