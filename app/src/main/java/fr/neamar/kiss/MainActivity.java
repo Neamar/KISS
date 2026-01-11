@@ -24,9 +24,7 @@ import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -63,6 +61,7 @@ import fr.neamar.kiss.ui.SearchEditText;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
+import fr.neamar.kiss.utils.TrimmingTextChangedListener;
 
 public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
 
@@ -292,53 +291,13 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         });
 
         // Listen to changes
-        searchEditText.addTextChangedListener(new TextWatcher() {
-
-            private String oldText = null;
-
-            public void afterTextChanged(Editable s) {
-                int length = s.length();
-
-                // trim all whitespaces from right
-                int end = length;
-                while (end > 0 && Character.isWhitespace(s.charAt(end - 1))) {
-                    end--;
-                }
-                // keep last whitespace after char if possible
-                if (end > 0 && end < length) {
-                    end++;
-                }
-
-                // trim all whitespaces from left
-                int start = 0;
-                while (start < end && Character.isWhitespace(s.charAt(start))) {
-                    start++;
-                }
-
-                if (start > 0 || end < length) {
-                    s.replace(0, length, s.subSequence(start, end));
-                } else {
-                    // compare with text from before change and update search records if necessary
-                    String text = s.toString().trim();
-                    if (!text.equals(oldText) || text.isEmpty()) {
-                        if (isViewingAllApps()) {
-                            displayKissBar(false, false);
-                        }
-                        updateSearchRecords(false, text);
-                        displayClearOnInput();
-                    }
-                }
+        searchEditText.addTextChangedListener(new TrimmingTextChangedListener((changedText) -> {
+            if (isViewingAllApps()) {
+                displayKissBar(false, false);
             }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // remember text before change
-                oldText = s.toString().trim();
-            }
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-        });
-
+            updateSearchRecords(false, changedText);
+            displayClearOnInput();
+        }, true));
 
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
         // This fix should be on ALL TextEdit Widgets !!!
