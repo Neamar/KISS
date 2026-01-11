@@ -56,7 +56,6 @@
         -->
         <activity
             android:name=".MainActivity"
-            android:noHistory="true"
             android:clearTaskOnLaunch="true"
             android:excludeFromRecents="true"
             android:exported="true"
@@ -100,14 +99,11 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:noHistory="true"
             android:label="@string/activity_setting"
+            android:excludeFromRecents="true"
             android:exported="false"
             android:theme="@style/SettingTheme"
             android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -115,15 +111,11 @@
         </activity>
         <activity
             android:name=".PickAppWidgetActivity"
-            android:noHistory="true"
+            android:excludeFromRecents="true"
             android:exported="false"
             android:label="@string/menu_widget_add"
-            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
             android:theme="@style/SettingTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".kustomsupport.AutoFinishTransparentActivity"

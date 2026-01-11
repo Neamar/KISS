@@ -6,6 +6,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+
 import fr.neamar.kiss.MainActivity;
 
 public class ForwarderManager extends Forwarder {
@@ -64,7 +66,7 @@ public class ForwarderManager extends Forwarder {
         experienceTweaks.onGlobalLayout();
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         widgetsForwarder.onActivityResult(requestCode, resultCode, data);
     }
 

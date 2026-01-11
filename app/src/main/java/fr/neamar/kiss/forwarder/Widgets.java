@@ -26,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ class Widgets extends Forwarder {
         serializeState();
     }
 
-    void onActivityResult(int requestCode, int resultCode, Intent data) {
+    void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch (resultCode) {
             case Activity.RESULT_OK:
                 switch (requestCode) {
@@ -423,8 +424,7 @@ class Widgets extends Forwarder {
     private static void requestBindWidget(@NonNull Activity activity, @NonNull Intent data) {
         final int appWidgetId = data.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         final ComponentName provider = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER);
-        final UserHandle profile;
-        profile = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
+        final UserHandle profile = data.getParcelableExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
 
         new Handler().postDelayed(() -> {
             Log.d(TAG, "asking for permission");
