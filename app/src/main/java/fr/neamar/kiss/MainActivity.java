@@ -924,7 +924,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     public void showKeyboard() {
         if (searchEditText.requestFocus()) {
             searchEditText.setCursorVisible(true);
-            InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager mgr = ContextCompat.getSystemService(this, InputMethodManager.class);
             mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
             systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
         }
