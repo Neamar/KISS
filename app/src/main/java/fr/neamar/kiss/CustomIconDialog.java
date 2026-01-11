@@ -17,9 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +45,7 @@ import fr.neamar.kiss.icons.IconPackXML;
 import fr.neamar.kiss.icons.SystemIconPack;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.TrimmingTextChangedListener;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
@@ -131,20 +130,7 @@ public class CustomIconDialog extends DialogFragment {
         });
 
         mSearch = view.findViewById(R.id.search);
-        mSearch.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {
-                // Auto left-trim text.
-                if (s.length() > 0 && s.charAt(0) == ' ')
-                    s.delete(0, 1);
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mSearch.post(() -> refreshList());
-            }
-        });
+        mSearch.addTextChangedListener(new TrimmingTextChangedListener(changedText -> mSearch.post(this::refreshList), false));
 
         Bundle args = getArguments() != null ? getArguments() : new Bundle();
         @Nullable
