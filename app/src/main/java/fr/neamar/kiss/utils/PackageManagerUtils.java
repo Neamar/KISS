@@ -91,6 +91,7 @@ public class PackageManagerUtils {
      * @param intent  intent
      * @return component name of best matching app for given intent
      */
+    @Nullable
     public static ComponentName getComponentName(Context context, Intent intent) {
         ResolveInfo resolveInfo = getBestResolve(context, intent);
         if (resolveInfo != null && resolveInfo.activityInfo != null) {
@@ -104,6 +105,7 @@ public class PackageManagerUtils {
      * @param intent  intent
      * @return label of best matching app for given intent
      */
+    @Nullable
     public static String getLabel(Context context, Intent intent) {
         ResolveInfo resolveInfo = PackageManagerUtils.getBestResolve(context, intent);
         if (resolveInfo != null) {
