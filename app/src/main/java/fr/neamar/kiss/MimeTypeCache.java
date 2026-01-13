@@ -15,6 +15,9 @@ import android.content.res.XmlResourceParser;
 import android.provider.ContactsContract;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -62,26 +65,32 @@ public class MimeTypeCache {
      * @param mimeType
      * @return label for best matching app by mimetype
      */
-    public String getLabel(Context context, String mimeType) {
+    @Nullable
+    public String getLabel(@NonNull Context context, @NonNull String mimeType) {
         if (!labels.containsKey(mimeType)) {
             synchronized (this) {
                 if (!labels.containsKey(mimeType)) {
                     final Intent intent = MimeTypeUtils.getIntentByMimeType(mimeType, -1, "");
                     String label = PackageManagerUtils.getLabel(context, intent);
-                    labels.put(mimeType, label);
+                    if (label != null) {
+                        labels.put(mimeType, label);
+                    }
                 }
             }
         }
         return labels.get(mimeType);
     }
 
-    public ComponentName getComponentName(Context context, String mimeType) {
+    @Nullable
+    public ComponentName getComponentName(@NonNull Context context, @NonNull String mimeType) {
         if (!componentNames.containsKey(mimeType)) {
             synchronized (this) {
                 if (!componentNames.containsKey(mimeType)) {
                     final Intent intent = MimeTypeUtils.getIntentByMimeType(mimeType, -1, "");
                     ComponentName componentName = PackageManagerUtils.getComponentName(context, intent);
-                    this.componentNames.put(mimeType, componentName);
+                    if (componentName != null) {
+                        this.componentNames.put(mimeType, componentName);
+                    }
                 }
             }
         }
@@ -92,7 +101,7 @@ public class MimeTypeCache {
      * @param context
      * @return all mime types and related data columns from contact sync adapters
      */
-    public Map<String, String> fetchDetailColumns(Context context) {
+    private Map<String, String> fetchDetailColumns(Context context) {
         if (detailColumns == null) {
             synchronized (this) {
                 if (detailColumns == null) {
@@ -161,7 +170,7 @@ public class MimeTypeCache {
      * @return XmlResourceParser for contacts.xml, null if nothing found
      */
     @SuppressLint("WrongConstant")
-    public XmlResourceParser loadContactsXml(Context context, String packageName) {
+    private XmlResourceParser loadContactsXml(Context context, String packageName) {
         final PackageManager pm = context.getPackageManager();
         final Intent intent = new Intent("android.content.SyncAdapter").setPackage(packageName);
         final List<ResolveInfo> intentServices = pm.queryIntentServices(intent,
@@ -190,6 +199,7 @@ public class MimeTypeCache {
      * @param mimeType
      * @return related detail data column for mime type
      */
+    @Nullable
     public String getDetailColumn(Context context, String mimeType) {
         Map<String, String> detailColumns = fetchDetailColumns(context);
         return detailColumns.get(mimeType);
@@ -258,6 +268,8 @@ public class MimeTypeCache {
                     // no prefix !?
                     label += " (" + MimeTypeUtils.getShortMimeType(mimeType) + ")";
                 }
+            } else if (label == null) {
+                label = "(" + MimeTypeUtils.getShortMimeType(mimeType) + ")";
             }
             uniqueLabels.put(mimeType, label);
         }

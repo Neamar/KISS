@@ -218,7 +218,7 @@ public class LoadContactsPojos extends LoadPojos<ContactsPojo> {
         return getFilteredContacts(mapContacts, contact -> contact.normalizedPhone == null ? null : contact.normalizedPhone.toString());
     }
 
-    private List<ContactsPojo> createGenericContacts(@NonNull Context ctx, String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
+    private List<ContactsPojo> createGenericContacts(@NonNull Context ctx, @NonNull String mimeType, Map<String, BasicContact> basicContacts, Map<Long, BasicRawContact> basicRawContacts) {
         final MimeTypeCache mimeTypeCache = KissApplication.getMimeTypeCache(ctx);
         // Prevent duplicates by keeping in memory encountered contacts.
         Map<String, Set<ContactsPojo>> mapContacts = new HashMap<>();
