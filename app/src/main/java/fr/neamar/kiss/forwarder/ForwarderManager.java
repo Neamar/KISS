@@ -20,7 +20,6 @@ public class ForwarderManager extends Forwarder {
     private final TagsMenu tagsMenu;
     private final Notification notificationForwarder;
 
-
     public ForwarderManager(MainActivity mainActivity) {
         super(mainActivity);
 
@@ -41,7 +40,6 @@ public class ForwarderManager extends Forwarder {
         experienceTweaks.onCreate();
         shortcutsForwarder.onCreate();
         tagsMenu.onCreate();
-
     }
 
     public void onStart() {
@@ -56,14 +54,11 @@ public class ForwarderManager extends Forwarder {
     }
 
     public void onPause() {
+        experienceTweaks.onPause();
         notificationForwarder.onPause();
     }
 
     public void onStop() {
-    }
-
-    public void onGlobalLayout() {
-        experienceTweaks.onGlobalLayout();
     }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -106,11 +101,7 @@ public class ForwarderManager extends Forwarder {
     }
 
     public boolean onMenuButtonClicked(View menuButton) {
-        if (tagsMenu.isTagMenuEnabled()) {
-            mainActivity.registerPopup(tagsMenu.showMenu(menuButton));
-            return true;
-        }
-        return false;
+        return tagsMenu.onMenuButtonClicked(menuButton);
     }
 
     public void onDestroy() {

@@ -48,7 +48,7 @@ public class TagsMenu extends Forwarder {
         loadTags();
     }
 
-    public boolean isTagMenuEnabled() {
+    private boolean isTagMenuEnabled() {
         return prefs.getBoolean("pref-tags-menu", false);
     }
 
@@ -89,6 +89,14 @@ public class TagsMenu extends Forwarder {
         tagList.clear();
         if (list != null)
             tagList.addAll(list);
+    }
+
+    public boolean onMenuButtonClicked(View menuButton) {
+        if (isTagMenuEnabled()) {
+            mainActivity.registerPopup(showMenu(menuButton));
+            return true;
+        }
+        return false;
     }
 
     interface MenuItem {
@@ -215,7 +223,7 @@ public class TagsMenu extends Forwarder {
         }
     }
 
-    public ListPopup showMenu(final View anchor) {
+    private ListPopup showMenu(final View anchor) {
         if (popupMenu == null) {
             Context context = anchor.getContext();
             popupMenu = new ListPopup(context);

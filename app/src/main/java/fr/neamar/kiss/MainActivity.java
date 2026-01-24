@@ -253,9 +253,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
 
-        // Add layout change listener for soft keyboard detection
-        findViewById(android.R.id.content).getViewTreeObserver().addOnGlobalLayoutListener(() -> forwarderManager.onGlobalLayout());
-
         // add history popup touch listener to empty view (prevents it from not working there)
         this.emptyListView.setOnTouchListener(this);
 
