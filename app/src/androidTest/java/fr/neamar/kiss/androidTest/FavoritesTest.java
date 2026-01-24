@@ -16,7 +16,6 @@ import fr.neamar.kiss.R;
 
 @LargeTest
 public class FavoritesTest extends AbstractMainActivityTest {
-    @SuppressWarnings("CatchAndPrintStackTrace")
     private void enableInternalBar() {
         mActivityRule.getScenario().onActivity(activity -> {
             activity.prefs.edit().putBoolean("enable-favorites-bar", false).apply();

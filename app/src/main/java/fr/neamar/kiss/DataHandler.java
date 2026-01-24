@@ -923,7 +923,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         }
     }
 
-    @SuppressWarnings("StringSplitter")
     public void removeFromFavorites(UserHandle user) {
         // This is only intended for apps from foreign-profiles
         if (user.isCurrentUser()) {

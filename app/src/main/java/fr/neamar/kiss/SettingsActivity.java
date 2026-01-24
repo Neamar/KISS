@@ -57,7 +57,6 @@ import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
-@SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = SettingsActivity.class.getSimpleName();

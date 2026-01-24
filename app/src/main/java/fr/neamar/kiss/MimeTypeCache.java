@@ -2,7 +2,6 @@ package fr.neamar.kiss;
 
 import android.accounts.AccountManager;
 import android.accounts.AuthenticatorDescription;
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -17,7 +16,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.core.content.ContextCompat;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -171,7 +169,6 @@ public class MimeTypeCache {
      * @param packageName
      * @return XmlResourceParser for contacts.xml, null if nothing found
      */
-    @SuppressLint("WrongConstant")
     private XmlResourceParser loadContactsXml(Context context, String packageName) {
         final PackageManager pm = context.getPackageManager();
         final Intent intent = new Intent("android.content.SyncAdapter").setPackage(packageName);

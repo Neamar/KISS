@@ -49,7 +49,6 @@ public class Permission {
         }
     }
 
-    @SuppressWarnings("StaticAssignmentInConstructor")
     public Permission(Activity activity) {
         // Store the latest reference to a MainActivity
         currentActivity = new WeakReference<>(activity);

@@ -1,6 +1,9 @@
 package fr.neamar.kiss.utils.calculator;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.number.BigDecimalCloseTo.closeTo;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -10,9 +13,6 @@ import java.math.MathContext;
 import java.util.ArrayDeque;
 import java.util.stream.Stream;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.number.BigDecimalCloseTo.closeTo;
-
 public class CalculatorTest {
 	@ParameterizedTest
 	@MethodSource("operationsProvider")
@@ -20,7 +20,6 @@ public class CalculatorTest {
 		assertThat(operate(operation).result, closeTo(result, new BigDecimal("0.000001")));
 	}
 
-	@SuppressWarnings("unused")
 	private static Stream<Arguments> operationsProvider() {
 		return Stream.of(
 				Arguments.of("+1", new BigDecimal(1)),

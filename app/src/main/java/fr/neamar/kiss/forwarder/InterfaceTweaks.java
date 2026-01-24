@@ -1,6 +1,5 @@
 package fr.neamar.kiss.forwarder;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -243,8 +242,7 @@ public class InterfaceTweaks extends Forwarder {
 
     private int getSearchBackgroundColor() {
         // get theme shadow color
-        @SuppressLint("ResourceType") @StyleableRes
-        int[] attrs = new int[]{R.attr.searchBackgroundColor /* index 0 */};
+        @StyleableRes int[] attrs = new int[]{R.attr.searchBackgroundColor};
         TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
         int shadowColor = ta.getColor(0, Color.BLACK);
         ta.recycle();

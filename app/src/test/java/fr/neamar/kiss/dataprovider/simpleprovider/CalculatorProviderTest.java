@@ -1,5 +1,8 @@
 package fr.neamar.kiss.dataprovider.simpleprovider;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -7,9 +10,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 public class CalculatorProviderTest {
 	private static final Pattern pattern = new CalculatorProvider().computableRegexp;
@@ -22,7 +22,6 @@ public class CalculatorProviderTest {
 		assertThat(matcher.group(), is(operation));
 	}
 
-	@SuppressWarnings("unused")
 	private static Stream<Arguments> expressionProvider() {
 		return Stream.of(
 				Arguments.of("(1+1)", "(1+1)"),

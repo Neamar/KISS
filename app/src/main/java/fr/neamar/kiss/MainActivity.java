@@ -4,7 +4,6 @@ import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
 import android.app.DialogFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -402,7 +401,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      * Restart if required,
      * Hide the kissbar by default
      */
-    @SuppressLint("CommitPrefEdits")
     protected void onResume() {
         Log.d(TAG, "onResume()");
 

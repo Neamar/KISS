@@ -50,7 +50,6 @@ public class KeyboardScrollHider implements View.OnTouchListener {
     /**
      *
      */
-    @SuppressWarnings("unused")
     public void stop() {
         this.list.setOnTouchListener(null);
         this.handleResizeDone();

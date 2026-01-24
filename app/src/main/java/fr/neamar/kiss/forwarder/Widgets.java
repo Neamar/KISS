@@ -198,7 +198,6 @@ class Widgets extends Forwarder {
     /**
      * Display all widgets based on state
      */
-    @SuppressWarnings("StringSplitter")
     private void restoreWidgets() {
         // only add widgets if in minimal mode
         if (!prefs.getBoolean("history-hide", false)) {

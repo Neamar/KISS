@@ -1,6 +1,5 @@
 package fr.neamar.kiss.forwarder;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -185,7 +184,6 @@ public class TagsMenu extends Forwarder {
             return position;
         }
 
-        @SuppressLint("ViewHolder")
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             TagsMenu.MenuItem item = getItem(position);

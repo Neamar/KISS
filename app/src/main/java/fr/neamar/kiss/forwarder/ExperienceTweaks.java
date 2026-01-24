@@ -354,7 +354,8 @@ public class ExperienceTweaks extends Forwarder {
     // Can (and will) break in any Android release.
     protected void displayNotificationDrawer() {
         try {
-            @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
+            @SuppressLint("WrongConstant")
+            Object sbservice = mainActivity.getSystemService("statusbar");
             Class.forName("android.app.StatusBarManager")
                     .getMethod("expandNotificationsPanel")
                     .invoke(sbservice);
@@ -365,7 +366,8 @@ public class ExperienceTweaks extends Forwarder {
 
     protected void displayQuickSettings() {
         try {
-            @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
+            @SuppressLint("WrongConstant")
+            Object sbservice = mainActivity.getSystemService("statusbar");
             Class.forName("android.app.StatusBarManager")
                     .getMethod("expandSettingsPanel")
                     .invoke(sbservice);
