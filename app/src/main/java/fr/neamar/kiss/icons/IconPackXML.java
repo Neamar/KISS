@@ -20,6 +20,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -516,7 +517,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
             try {
                 int drawableId = getDrawableId(resources, iconPackPackageName);
                 if (drawableId != 0) {
-                    return resources.getDrawable(drawableId);
+                    return ResourcesCompat.getDrawable(resources, drawableId, null);
                 }
             } catch (Resources.NotFoundException e) {
                 Log.w(TAG, "Unable to load resource for: " + getDrawableName(), e);

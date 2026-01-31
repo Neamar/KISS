@@ -1,7 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
 import android.app.WallpaperManager;
-import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.util.TypedValue;
@@ -10,6 +9,8 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
+
+import androidx.core.content.ContextCompat;
 
 import fr.neamar.kiss.MainActivity;
 
@@ -38,7 +39,7 @@ class LiveWallpaper extends Forwarder {
             return;
         }
 
-        mWallpaperManager = (WallpaperManager) mainActivity.getSystemService(Context.WALLPAPER_SERVICE);
+        mWallpaperManager = ContextCompat.getSystemService(mainActivity, WallpaperManager.class);
         assert mWallpaperManager != null;
 
         mContentView = mainActivity.findViewById(android.R.id.content);

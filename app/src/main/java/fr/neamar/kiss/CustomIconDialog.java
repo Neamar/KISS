@@ -33,6 +33,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -240,7 +241,7 @@ public class CustomIconDialog extends DialogFragment {
         }
 
         // add Activity BadgedIcon
-        LauncherApps launcher = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        LauncherApps launcher = ContextCompat.getSystemService(context, LauncherApps.class);
         List<LauncherActivityInfo> icons = launcher.getActivityList(cn.getPackageName(), userHandle.getRealHandle());
         for (LauncherActivityInfo info : icons) {
             Drawable drawable = info.getBadgedIcon(0);

@@ -1,7 +1,5 @@
 package fr.neamar.kiss.preference;
 
-import static android.content.Context.CLIPBOARD_SERVICE;
-
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +9,8 @@ import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +40,7 @@ public class ImportSettingsPreference extends DialogPreference {
         if (which == DialogInterface.BUTTON_POSITIVE) {
             try {
                 // Apply changes
-                ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
+                ClipboardManager clipboard = ContextCompat.getSystemService(getContext(), ClipboardManager.class);
                 // Can throw NullPointerException if the application doesn't have focus. Display a toast if this happens
                 String clipboardText = clipboard.getPrimaryClip().getItemAt(0).coerceToText(getContext()).toString();
 

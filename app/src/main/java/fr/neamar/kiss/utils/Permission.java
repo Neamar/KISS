@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class Permission {
     private static final ArrayList<PermissionResultListener> permissionListeners = new ArrayList<>();
 
     public static boolean checkPermission(Context context, int permission) {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.checkSelfPermission(permissions[permission]) == PackageManager.PERMISSION_GRANTED;
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || ContextCompat.checkSelfPermission(context, permissions[permission]) == PackageManager.PERMISSION_GRANTED;
     }
 
     public static void askPermission(int permission, PermissionResultListener listener) {
@@ -48,7 +49,6 @@ public class Permission {
         }
     }
 
-    @SuppressWarnings("StaticAssignmentInConstructor")
     public Permission(Activity activity) {
         // Store the latest reference to a MainActivity
         currentActivity = new WeakReference<>(activity);

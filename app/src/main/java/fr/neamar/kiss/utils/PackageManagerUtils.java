@@ -19,6 +19,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -150,7 +151,7 @@ public class PackageManagerUtils {
     public static ApplicationInfo getApplicationInfo(@NonNull Context context, @NonNull String packageName, @NonNull UserHandle user) {
         try {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+                LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
                 return launcherApps.getApplicationInfo(packageName, 0, user.getRealHandle());
             } else {
                 return context.getPackageManager().getApplicationInfo(packageName, 0);
@@ -177,7 +178,7 @@ public class PackageManagerUtils {
 
     @Nullable
     private static LauncherActivityInfo getLauncherActivityInfo(@NonNull Context context, @NonNull ComponentName componentName, @NonNull UserHandle user) {
-        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
         List<LauncherActivityInfo> activities = launcherApps.getActivityList(componentName.getPackageName(), user.getRealHandle());
         for (LauncherActivityInfo activity : activities) {
             if (activity.getComponentName().equals(componentName)) {
@@ -215,7 +216,7 @@ public class PackageManagerUtils {
         }
 
         if (!user.isCurrentUser()) {
-            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
             List<LauncherActivityInfo> activities = launcherApps.getActivityList(packageName, user.getRealHandle());
             if (!activities.isEmpty()) {
                 List<ComponentName> componentNames = new ArrayList<>();
@@ -330,7 +331,7 @@ public class PackageManagerUtils {
     }
 
     public static boolean isPrivateProfile(@NonNull Context context, @NonNull UserHandle userHandle) {
-        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
         return isPrivateProfile(launcherApps, userHandle.getRealHandle());
     }
 

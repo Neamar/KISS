@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/preferences"
         android:icon="@drawable/ic_launcher"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/activity_setting" />
+        android:title="@string/activity_setting"
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/wallpaper"
-        android:showAsAction="never"
-        android:title="@string/menu_wallpaper" />
+        android:title="@string/menu_wallpaper"
+        app:showAsAction="never" />
     <item
         android:id="@+id/add_widget"
-        android:showAsAction="never"
-        android:title="@string/menu_widget_add" />
+        android:title="@string/menu_widget_add"
+        app:showAsAction="never" />
     <item
         android:id="@+id/settings"
-        android:showAsAction="never"
-        android:title="@string/menu_settings" />
+        android:title="@string/menu_settings"
+        app:showAsAction="never" />
     <item
         android:id="@+id/private_space"
-        android:showAsAction="never"
-        android:title="@string/menu_private_space" />
-
+        android:title="@string/menu_private_space"
+        app:showAsAction="never" />
 </menu>

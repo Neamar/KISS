@@ -27,6 +27,7 @@ import android.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,25 +57,26 @@ import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 
-@SuppressWarnings("FragmentInjection")
 public class SettingsActivity extends PreferenceActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
+    private static final String TAG = SettingsActivity.class.getSimpleName();
+    private static final int REQUEST_CALL_SCREENING_APP = 1;
+
     // Those settings require the app to restart
-    final static private List<String> settingsRequiringRestart = Arrays.asList("primary-color", "transparent-search", "transparent-favorites",
+    private static final List<String> SETTINGS_REQUIRING_RESTART = Arrays.asList("primary-color", "transparent-search", "transparent-favorites",
             "pref-rounded-list", "pref-rounded-bars", "pref-swap-kiss-button-with-menu", "pref-hide-circle", "history-hide",
             "enable-favorites-bar", "notification-bar-color", "black-notification-icons", "icons-pack", "theme-shadow",
             "theme-separator", "theme-result-color", "large-favorites-bar", "pref-hide-search-bar-hint", "theme-wallpaper",
             "theme-bar-color", "results-size", "large-result-list-margins", "themed-icons", "icons-hide", null);
     // Those settings require a restart of the settings
-    final static private List<String> settingsRequiringRestartForSettingsActivity = Arrays.asList("theme", "force-portrait", null);
+    private static final List<String> SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY = Arrays.asList("theme", "force-portrait", null);
 
-    private final static List<String> PREF_LISTS_WITH_DEPENDENCY = Arrays.asList(
+    private static final List<String> PREF_LISTS_WITH_DEPENDENCY = Arrays.asList(
             "gesture-up", "gesture-down",
             "gesture-left", "gesture-right",
             "gesture-long-press"
     );
-    private static final String TAG = SettingsActivity.class.getSimpleName();
-    private static Pair<CharSequence[], CharSequence[]> ItemToRunListContent = null;
+    private static Pair<CharSequence[], CharSequence[]> itemToRunListContent = null;
 
     private boolean requireFullRestart = false;
 
@@ -180,8 +182,8 @@ public class SettingsActivity extends PreferenceActivity implements
             // Run synchronously to ensure preferences can be restored from state
             runnable.run();
             synchronized (SettingsActivity.class) {
-                if (ItemToRunListContent == null)
-                    ItemToRunListContent = generateItemToRunListContent();
+                if (itemToRunListContent == null)
+                    itemToRunListContent = generateItemToRunListContent();
 
                 for (String gesturePref : PREF_LISTS_WITH_DEPENDENCY) {
                     updateItemToRunList(gesturePref);
@@ -267,12 +269,12 @@ public class SettingsActivity extends PreferenceActivity implements
             for (String gesturePref : PREF_LISTS_WITH_DEPENDENCY)
                 updateItemToRunList(gesturePref);
         };
-        if (ItemToRunListContent == null) {
+        if (itemToRunListContent == null) {
             AsyncTask.execute(() -> {
                 Pair<CharSequence[], CharSequence[]> content = generateItemToRunListContent();
                 synchronized (SettingsActivity.class) {
-                    if (ItemToRunListContent == null)
-                        ItemToRunListContent = content;
+                    if (itemToRunListContent == null)
+                        itemToRunListContent = content;
                 }
                 runOnUiThread(updateLists);
             });
@@ -283,8 +285,8 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private void updateItemToRunList(String key) {
         synchronized (SettingsActivity.class) {
-            if (ItemToRunListContent != null)
-                updateListPrefDependency(key, prefs.getString(key, null), "launch-pojo", key + "-launch-id", ItemToRunListContent);
+            if (itemToRunListContent != null)
+                updateListPrefDependency(key, prefs.getString(key, null), "launch-pojo", key + "-launch-id", itemToRunListContent);
         }
     }
 
@@ -652,10 +654,10 @@ public class SettingsActivity extends PreferenceActivity implements
             }
         }
 
-        if (settingsRequiringRestart.contains(key) || settingsRequiringRestartForSettingsActivity.contains(key)) {
+        if (SETTINGS_REQUIRING_RESTART.contains(key) || SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY.contains(key)) {
             requireFullRestart = true;
 
-            if (settingsRequiringRestartForSettingsActivity.contains(key)) {
+            if (SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY.contains(key)) {
                 // Kill this activity too, and restart
                 recreate();
             }
@@ -665,9 +667,9 @@ public class SettingsActivity extends PreferenceActivity implements
     protected void setPhoneHistoryEnabled(boolean enabled) {
         IncomingCallHandler.setEnabled(this, enabled);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && enabled) {
-            RoleManager roleManager = (RoleManager) getSystemService(ROLE_SERVICE);
+            RoleManager roleManager = ContextCompat.getSystemService(this, RoleManager.class);
             Intent intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_CALL_SCREENING);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, REQUEST_CALL_SCREENING_APP);
         }
     }
 

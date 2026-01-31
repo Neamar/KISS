@@ -12,6 +12,7 @@ import android.provider.AlarmClock;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -149,8 +150,8 @@ public class TagsHandler {
             packageNames.add(resolveInfo.activityInfo.packageName);
         }
 
-        UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-        LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        UserManager manager = ContextCompat.getSystemService(context, UserManager.class);
+        LauncherApps launcherApps = ContextCompat.getSystemService(context, LauncherApps.class);
         for (android.os.UserHandle profile : manager.getUserProfiles()) {
             UserHandle userHandle = new UserHandle(manager.getSerialNumberForUser(profile), profile);
             for (String packageName : packageNames) {

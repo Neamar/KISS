@@ -32,7 +32,6 @@ class FuzzyScoreV2Test {
         assertThat(result.score, equalTo(score));
     }
 
-    @SuppressWarnings("unused")
     private static Stream<Arguments> testProvider() {
         return Stream.of(
                 Arguments.of("no match", "some string", 0, false),

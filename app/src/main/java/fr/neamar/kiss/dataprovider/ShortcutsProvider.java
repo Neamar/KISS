@@ -1,11 +1,12 @@
 package fr.neamar.kiss.dataprovider;
 
-import android.content.Context;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
     @Override
     public void onCreate() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            final LauncherApps launcher = ContextCompat.getSystemService(this, LauncherApps.class);
             assert launcher != null;
 
             launcher.registerCallback(new LauncherAppsCallback() {

@@ -1,6 +1,5 @@
 package fr.neamar.kiss.forwarder;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -230,7 +229,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
     }
 
     @Override
-    @SuppressLint("ClickableViewAccessibility")
     public boolean onTouch(View view, MotionEvent motionEvent) {
         // How long to hold your finger in place to trigger the app menu.
         final int LONG_PRESS_DELAY = ViewConfiguration.getLongPressTimeout();

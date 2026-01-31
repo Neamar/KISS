@@ -1,11 +1,5 @@
 package fr.neamar.kiss.androidTest;
 
-import androidx.test.filters.LargeTest;
-
-import org.junit.Test;
-
-import fr.neamar.kiss.R;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
@@ -14,17 +8,23 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.not;
 
+import androidx.test.filters.LargeTest;
+
+import org.junit.Test;
+
+import fr.neamar.kiss.R;
+
 @LargeTest
 public class FavoritesTest extends AbstractMainActivityTest {
-    @SuppressWarnings("CatchAndPrintStackTrace")
     private void enableInternalBar() {
-        mActivityRule.getActivity().prefs.edit().putBoolean("enable-favorites-bar", false).apply();
-        try {
-            mActivityRule.runOnUiThread(() -> mActivityRule.getActivity().recreate());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        mActivityRule.getActivity();
+        mActivityRule.getScenario().onActivity(activity -> {
+            activity.prefs.edit().putBoolean("enable-favorites-bar", false).apply();
+            try {
+                activity.runOnUiThread(activity::recreate);
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        });
     }
 
     @Test

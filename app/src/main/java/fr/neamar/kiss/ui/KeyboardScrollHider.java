@@ -17,7 +17,7 @@ public class KeyboardScrollHider implements View.OnTouchListener {
     private final static int THRESHOLD = 24;
 
     private final KeyboardHandler handler;
-    private final BlockableListView list;
+    protected final BlockableListView list;
     private final View listParent;
     private final BottomPullEffectView pullEffect;
     private int listHeightInitial = 0;
@@ -50,7 +50,6 @@ public class KeyboardScrollHider implements View.OnTouchListener {
     /**
      *
      */
-    @SuppressWarnings("unused")
     public void stop() {
         this.list.setOnTouchListener(null);
         this.handleResizeDone();

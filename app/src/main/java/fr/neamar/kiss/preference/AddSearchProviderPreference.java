@@ -1,6 +1,5 @@
 package fr.neamar.kiss.preference;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -72,8 +71,7 @@ public class AddSearchProviderPreference extends DialogPreference {
         String theme = prefs.getString("theme", "light");
         //if theme is light, change the text color
         if (!theme.contains("dark")) {
-            @SuppressLint("ResourceType")
-            @StyleableRes int[] attrs = {android.R.attr.textColor};
+            @StyleableRes int[] attrs = new int[]{android.R.attr.textColor};
             TypedArray ta = getContext().obtainStyledAttributes(R.style.AppThemeLight, attrs);
 
             providerName.setTextColor(ta.getColor(0, Color.TRANSPARENT));
@@ -109,7 +107,6 @@ public class AddSearchProviderPreference extends DialogPreference {
         return providerUri.getText().toString().contains("%s");
     }
 
-    @SuppressWarnings("StringSplitter")
     private boolean validateNameExists() {
         Set<String> availableSearchProviders = prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(this.getContext()));
         for (String searchProvider : availableSearchProviders) {

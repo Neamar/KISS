@@ -1,6 +1,5 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,7 +18,6 @@ public abstract class CallResult<T extends Pojo> extends Result<T> {
         super(pojo);
     }
 
-    @SuppressLint("MissingPermission")
     public void launchCall(Context context, View v, String phone) {
         Intent phoneIntent = new Intent(Intent.ACTION_CALL);
         phoneIntent.setData(Uri.parse("tel:" + Uri.encode(phone)));
