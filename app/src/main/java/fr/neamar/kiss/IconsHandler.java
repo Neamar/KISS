@@ -12,12 +12,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -356,7 +356,7 @@ public class IconsHandler {
         }
     }
 
-    Map<String, String> getIconsPacks() {
+    public Map<String, String> getIconsPacks() {
         return iconsPacks;
     }
 

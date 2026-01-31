@@ -1,6 +1,6 @@
 package fr.neamar.kiss.searcher;
 
-import android.app.DialogFragment;
+import androidx.fragment.app.DialogFragment;
 
 import fr.neamar.kiss.ui.ListPopup;
 

@@ -3,16 +3,12 @@ package fr.neamar.kiss;
 import static android.content.res.Configuration.UI_MODE_NIGHT_MASK;
 import static android.content.res.Configuration.UI_MODE_NIGHT_YES;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -21,6 +17,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -96,16 +93,7 @@ public class UIColors {
 
     // https://stackoverflow.com/questions/25815769/how-to-really-programmatically-change-primary-and-accent-color-in-android-loll
     public static void applyOverlay(Activity activity, SharedPreferences prefs) {
-
-        // We want to update the accent color for the theme.
-        // Each possible accent color is defined as a custom overlay, we need to find the matching one and apply it
-        Integer overlayAccentResId = OVERLAY_MAP.get(getColorWithoutFallback(activity, "primary-color"));
-        if (overlayAccentResId == null || overlayAccentResId == -1) {
-            overlayAccentResId = OVERLAY_MAP.get(getPrimaryColor(activity));
-        }
-        if (overlayAccentResId != null && overlayAccentResId != -1) {
-            activity.getTheme().applyStyle(overlayAccentResId, true);
-        }
+        applyAccentColor(activity);
 
         String shadowStyle = prefs.getString("theme-shadow", "default");
         switch (shadowStyle) {
@@ -182,6 +170,18 @@ public class UIColors {
         }
     }
 
+    public static void applyAccentColor(Context context) {
+        // We want to update the accent color for the theme.
+        // Each possible accent color is defined as a custom overlay, we need to find the matching one and apply it
+        Integer overlayAccentResId = OVERLAY_MAP.get(getColorWithoutFallback(context, "primary-color"));
+        if (overlayAccentResId == null || overlayAccentResId == -1) {
+            overlayAccentResId = OVERLAY_MAP.get(getPrimaryColor(context));
+        }
+        if (overlayAccentResId != null && overlayAccentResId != -1) {
+            context.getTheme().applyStyle(overlayAccentResId, true);
+        }
+    }
+
     public static void updateThemePrimaryColor(Activity activity) {
         int notificationBarColorOverride = getNotificationBarColor(activity);
 
@@ -191,20 +191,6 @@ public class UIColors {
         }
 
         updateThemePrimaryColor(notificationBarColorOverride, activity.getWindow());
-        updateThemePrimaryColor(notificationBarColorOverride, activity.getActionBar());
-
-    }
-
-    public static void updateThemePrimaryColor(Context context, Dialog dialog) {
-        int notificationBarColorOverride = getNotificationBarColor(context);
-
-        // Circuit breaker, keep default behavior.
-        if (notificationBarColorOverride == COLOR_DEFAULT) {
-            return;
-        }
-
-        updateThemePrimaryColor(notificationBarColorOverride, dialog.getWindow());
-        updateThemePrimaryColor(notificationBarColorOverride, dialog.getActionBar());
     }
 
     private static void updateThemePrimaryColor(int notificationBarColorOverride, Window window) {
@@ -216,12 +202,6 @@ public class UIColors {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.setNavigationBarContrastEnforced(false);
-        }
-    }
-
-    private static void updateThemePrimaryColor(int notificationBarColorOverride, ActionBar actionBar) {
-        if (actionBar != null) {
-            actionBar.setBackgroundDrawable(new ColorDrawable(notificationBarColorOverride));
         }
     }
 

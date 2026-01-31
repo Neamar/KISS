@@ -2,13 +2,13 @@ package fr.neamar.kiss.broadcast;
 
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.telecom.Call;
 import android.telecom.CallScreeningService;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.preference.PreferenceManager;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;

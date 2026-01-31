@@ -2,10 +2,10 @@ package fr.neamar.kiss.dataprovider.simpleprovider;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.webkit.URLUtil;
 
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -101,7 +101,7 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
             // Open valid URLs directly (if I type http://something.com for instance)
             SearchPojo pojo = createUrlQuerySearchPojo(query);
             records.add(pojo);
-        } else if (URIUtils.isValidUri(query, context).isValid) {
+        } else if (URIUtils.isValidUri(query, context).isValid()) {
             // Open uri directly by an app that can handle it (if i type
             // gemini://oppen.digital/ariane/ for gemini browser)
             // https://github.com/Neamar/KISS/issues/1786

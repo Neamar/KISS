@@ -2,8 +2,9 @@ package fr.neamar.kiss;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import java.nio.charset.Charset;
 
