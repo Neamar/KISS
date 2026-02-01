@@ -44,6 +44,7 @@ import fr.neamar.kiss.dataprovider.simpleprovider.PhoneProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.SettingsProvider;
 import fr.neamar.kiss.dataprovider.simpleprovider.TagsProvider;
+import fr.neamar.kiss.dataprovider.simpleprovider.TimerProvider;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.db.HistoryMode;
 import fr.neamar.kiss.db.ShortcutRecord;
@@ -119,6 +120,13 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         ProviderEntry calculatorEntry = new ProviderEntry();
         calculatorEntry.provider = new CalculatorProvider();
         this.providers.put("calculator", calculatorEntry);
+        
+        if (prefs.getBoolean("enable-timer", true)) {
+            ProviderEntry timerEntry = new ProviderEntry();
+            timerEntry.provider = new TimerProvider();
+            this.providers.put("timer", timerEntry);
+        }
+
         ProviderEntry phoneEntry = new ProviderEntry();
         phoneEntry.provider = new PhoneProvider(context);
         this.providers.put("phone", phoneEntry);
@@ -146,6 +154,14 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
                     this.connectToProvider(providerName, 0);
                 } else {
                     this.disconnectFromProvider(providerName);
+                }
+            } else if ("timer".equals(providerName)) {
+                if (sharedPreferences.getBoolean(key, true)) {
+                    ProviderEntry timerEntry = new ProviderEntry();
+                    timerEntry.provider = new TimerProvider();
+                    this.providers.put("timer", timerEntry);
+                } else {
+                    this.providers.remove("timer");
                 }
             }
         }
