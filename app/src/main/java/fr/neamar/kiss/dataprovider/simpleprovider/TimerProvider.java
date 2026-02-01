@@ -11,10 +11,11 @@ public class TimerProvider extends SimpleProvider<SearchPojo> {
     private final Pattern timerRegexp;
 
     public TimerProvider() {
-        // Matches strings like "1h 30m 10s" or "5m" or "30s"
+        // Matches strings like "1.5h 30m 10s" or "5m" or "30s" or ".25m"
         // Case insensitive.
         // Expects order: hours, minutes, seconds. All optional, but at least one must be present for the logic check.
-        timerRegexp = Pattern.compile("^(?:\\s*(\\d+)\\s*h)?(?:\\s*(\\d+)\\s*m)?(?:\\s*(\\d+)\\s*s)?\\s*$", Pattern.CASE_INSENSITIVE);
+        // Supports decimal numbers.
+        timerRegexp = Pattern.compile("^(?:\\s*([0-9]*\\.?[0-9]+)\\s*h)?(?:\\s*([0-9]*\\.?[0-9]+)\\s*m)?(?:\\s*([0-9]*\\.?[0-9]+)\\s*s)?\\s*$", Pattern.CASE_INSENSITIVE);
     }
 
     @Override
@@ -34,21 +35,25 @@ public class TimerProvider extends SimpleProvider<SearchPojo> {
                 return;
             }
 
-            int hours = hoursStr != null ? Integer.parseInt(hoursStr) : 0;
-            int minutes = minutesStr != null ? Integer.parseInt(minutesStr) : 0;
-            int seconds = secondsStr != null ? Integer.parseInt(secondsStr) : 0;
+            double hours = hoursStr != null ? Double.parseDouble(hoursStr) : 0;
+            double minutes = minutesStr != null ? Double.parseDouble(minutesStr) : 0;
+            double seconds = secondsStr != null ? Double.parseDouble(secondsStr) : 0;
 
-            long totalSeconds = hours * 3600L + minutes * 60L + seconds;
+            long totalSeconds = (long) Math.ceil(hours * 3600 + minutes * 60 + seconds);
             
             if (totalSeconds == 0 || totalSeconds > Integer.MAX_VALUE) {
                 return;
             }
+
+            long displayHours = totalSeconds / 3600;
+            long displayMinutes = (totalSeconds % 3600) / 60;
+            long displaySeconds = totalSeconds % 60;
             
             // Build the display string
             StringBuilder display = new StringBuilder("Start timer: ");
-            if (hours > 0) display.append(hours).append("h ");
-            if (minutes > 0) display.append(minutes).append("m ");
-            if (seconds > 0) display.append(seconds).append("s");
+            if (displayHours > 0) display.append(displayHours).append("h ");
+            if (displayMinutes > 0) display.append(displayMinutes).append("m ");
+            if (displaySeconds > 0) display.append(displaySeconds).append("s");
 
             // Create the Pojo
             // We store the total seconds in the URL field for easy retrieval
