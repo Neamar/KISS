@@ -4,8 +4,6 @@ import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -40,7 +38,11 @@ import android.widget.AbsListView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +65,7 @@ import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
 import fr.neamar.kiss.utils.TrimmingTextChangedListener;
 
-public class MainActivity extends Activity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
+public class MainActivity extends AppCompatActivity implements QueryInterface, KeyboardScrollHider.KeyboardHandler, View.OnTouchListener {
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
@@ -159,11 +161,11 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private ForwarderManager forwarderManager;
     private Permission permissionManager;
+    private OnBackPressedCallback onBackPressedCallback;
 
     /**
      * Called when the activity is first created.
      */
-    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -210,18 +212,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             }
         };
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Since Android 33, we need to specify is the receiver is available from other applications
-            // For some reasons, in our case, using RECEIVER_NOT_EXPORTED means we do not get the updates from our own services?!
-            // So we export the receiver.
-            // In practice, this means other apps can trigger a refresh of search results if they want by sending a broadcast.
-            this.registerReceiver(mReceiver, intentFilterLoad, Context.RECEIVER_EXPORTED);
-            this.registerReceiver(mReceiver, intentFilterLoadOver, Context.RECEIVER_EXPORTED);
-        }
-        else {
-            this.registerReceiver(mReceiver, intentFilterLoad);
-            this.registerReceiver(mReceiver, intentFilterLoadOver);
-        }
+        this.onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                MainActivity.this.handleOnBackPressed();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(onBackPressedCallback);
+
+        ContextCompat.registerReceiver(this, mReceiver, intentFilterLoad, ContextCompat.RECEIVER_EXPORTED);
+        ContextCompat.registerReceiver(this, mReceiver, intentFilterLoadOver, ContextCompat.RECEIVER_EXPORTED);
 
         /*
          * Set the view and store all useful components
@@ -252,9 +252,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Add touch listener for history popup to root view
         findViewById(android.R.id.content).setOnTouchListener(this);
 
-        // Add layout change listener for soft keyboard detection
-        findViewById(android.R.id.content).getViewTreeObserver().addOnGlobalLayoutListener(() -> forwarderManager.onGlobalLayout());
-
         // add history popup touch listener to empty view (prevents it from not working there)
         this.emptyListView.setOnTouchListener(this);
 
@@ -269,6 +266,16 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
             return true;
         });
+
+        // Clear text content when touching the cross button
+        clearButton.setOnClickListener(v -> clearSearchText());
+
+        // Display menu
+        menuButton.setOnClickListener(this::onMenuButtonClicked);
+
+        // Display KISS menu
+        launcherButton.setOnClickListener(this::onLauncherButtonClicked);
+        whiteLauncherButton.setOnClickListener(this::onLauncherButtonClicked);
 
         // Display empty list view when having no results
         this.adapter.registerDataSetObserver(new DataSetObserver() {
@@ -394,7 +401,6 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      * Restart if required,
      * Hide the kissbar by default
      */
-    @SuppressLint("CommitPrefEdits")
     protected void onResume() {
         Log.d(TAG, "onResume()");
 
@@ -460,12 +466,15 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        onBackPressedCallback.remove();
         this.unregisterReceiver(this.mReceiver);
         forwarderManager.onDestroy();
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
         //Set the intent so KISS can tell when it was launched as an assistant
         setIntent(intent);
 
@@ -493,23 +502,20 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         searchEditText.setCursorVisible(false);
     }
 
-    @Override
-    public void onBackPressed() {
+    private void handleOnBackPressed() {
         if (mPopup != null) {
             mPopup.dismiss();
         } else if (isViewingAllApps()) {
             displayKissBar(false);
-        } else {
+        } else if (!TextUtils.isEmpty(searchEditText.getText()) || isKissDefaultLauncher()) {
             // If no kissmenu, empty the search bar
             // (this will trigger a new event if the search bar was already empty)
             // (which means pressing back in minimalistic mode with history displayed
             // will hide history again)
             clearSearchText();
-        }
-
-        // Calling super.onBackPressed() will quit the launcher, only do this if KISS is not the user's default home.
-        if (!isKissDefaultLauncher()) {
-            super.onBackPressed();
+        } else {
+            // close activity only when not default launcher and searchEditText is empty
+            finish();
         }
     }
 
@@ -521,7 +527,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
             menuButton.performHapticFeedback(LONG_PRESS);
             return true;
         }
-        if (keycode != KeyEvent.KEYCODE_BACK) {
+        if (!e.isSystem()) {
             searchEditText.requestFocus();
             searchEditText.dispatchKeyEvent(e);
         }
@@ -566,26 +572,28 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
      *
      * @param menuButton "kebab" menu (3 dots)
      */
-    public void onMenuButtonClicked(View menuButton) {
+    private void onMenuButtonClicked(View menuButton) {
         // When the kiss bar is displayed, the button can still be clicked in a few areas (due to favorite margin)
         // To fix this, we discard any click event occurring when the kissbar is displayed
         if (!isViewingSearchResults()) {
             return;
         }
-        if (!forwarderManager.onMenuButtonClicked(this.menuButton)) {
-            this.menuButton.showContextMenu();
-            this.menuButton.performHapticFeedback(LONG_PRESS);
+        if (!forwarderManager.onMenuButtonClicked(menuButton)) {
+            menuButton.showContextMenu();
+            menuButton.performHapticFeedback(LONG_PRESS);
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         forwarderManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         permissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
@@ -601,17 +609,9 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     }
 
     /**
-     * Clear text content when touching the cross button
-     */
-    @SuppressWarnings("UnusedParameters")
-    public void onClearButtonClicked(View clearButton) {
-        clearSearchText();
-    }
-
-    /**
      * Display KISS menu
      */
-    public void onLauncherButtonClicked(View launcherButton) {
+    private void onLauncherButtonClicked(View launcherButton) {
         // Display or hide the kiss bar, according to current view tag (showMenu / hideMenu).
         displayKissBar(launcherButton.getTag().equals("showMenu"));
     }
@@ -681,7 +681,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private UserHandle getPrivateUser() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            final LauncherApps launcher = (LauncherApps) this.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+            final LauncherApps launcher = ContextCompat.getSystemService(this, LauncherApps.class);
             assert launcher != null;
 
             List<UserHandle> users = launcher.getProfiles();
@@ -697,7 +697,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
 
     private boolean isPrivateSpaceUnlocked(UserHandle privateUser) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+            final UserManager manager = ContextCompat.getSystemService(this, UserManager.class);
             return !manager.isQuietModeEnabled(privateUser);
         }
         return false;
@@ -707,7 +707,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             UserHandle user = getPrivateUser();
             if (user != null) {
-                final UserManager manager = (UserManager) this.getSystemService(Context.USER_SERVICE);
+                final UserManager manager = ContextCompat.getSystemService(this, UserManager.class);
                 manager.requestQuietModeEnabled(!manager.isQuietModeEnabled(user), user);
             }
         }
@@ -919,7 +919,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
     public void showKeyboard() {
         if (searchEditText.requestFocus()) {
             searchEditText.setCursorVisible(true);
-            InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager mgr = ContextCompat.getSystemService(this, InputMethodManager.class);
             mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
             systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
         }
@@ -930,7 +930,7 @@ public class MainActivity extends Activity implements QueryInterface, KeyboardSc
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
-            InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager inputManager = ContextCompat.getSystemService(this, InputMethodManager.class);
             //noinspection ConstantConditions
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 

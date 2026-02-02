@@ -1,6 +1,5 @@
 package fr.neamar.kiss.result;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -481,8 +480,7 @@ public abstract class Result<T extends Pojo> {
      *
      */
     int getThemeFillColor(Context context) {
-        @SuppressLint("ResourceType") @StyleableRes
-        int[] attrs = new int[]{R.attr.resultColor /* index 0 */};
+        @StyleableRes int[] attrs = new int[]{R.attr.resultColor};
         TypedArray ta = context.obtainStyledAttributes(attrs);
         int color = ta.getColor(0, Color.WHITE);
         ta.recycle();

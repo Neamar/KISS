@@ -3,9 +3,10 @@ package fr.neamar.kiss.ui;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
-import android.widget.EditText;
 
-public class SearchEditText extends EditText {
+import androidx.appcompat.widget.AppCompatEditText;
+
+public class SearchEditText extends AppCompatEditText {
     private OnEditorActionListener mEditorListener;
 
     public SearchEditText(Context context) {

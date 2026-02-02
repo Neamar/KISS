@@ -16,7 +16,6 @@
 
 package com.android.colorpicker;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -24,12 +23,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import fr.neamar.kiss.R;
 
 /**
  * Creates a circular swatch of a specified color.  Adds a checkmark if marked as checked.
  */
-@SuppressLint("ViewConstructor")
 public class ColorPickerSwatch extends FrameLayout implements View.OnClickListener {
     private final int mColor;
     private final ImageView mSwatchImage;
@@ -52,7 +52,7 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
 
     private void setColor(int color) {
         Drawable[] colorDrawable = new Drawable[]
-                {getContext().getResources().getDrawable(R.drawable.color_picker_swatch)};
+                {ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.color_picker_swatch, getContext().getTheme())};
         mSwatchImage.setImageDrawable(new ColorStateDrawable(colorDrawable, color));
     }
 

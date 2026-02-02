@@ -1,6 +1,5 @@
 package fr.neamar.kiss.forwarder;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -33,7 +32,7 @@ public class InterfaceTweaks extends Forwarder {
         applyTheme(mainActivity, prefs);
     }
 
-    private static void applyTheme(Activity act, SharedPreferences prefs) {
+    public static void applyTheme(Activity act, SharedPreferences prefs) {
         String theme = prefs.getString("theme", "transparent");
         switch (theme) {
             case "dark":
@@ -98,11 +97,29 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     public static void applySettingsTheme(Activity act, SharedPreferences prefs) {
-        String theme = prefs.getString("theme", "light");
-        if (theme.equals("amoled-dark")) {
-            act.setTheme(R.style.SettingThemeAmoledDark);
-        } else if (theme.contains("dark")) {
-            act.setTheme(R.style.SettingThemeDark);
+        String theme = prefs.getString("theme", "transparent");
+        switch (theme) {
+            case "dark":
+                act.setTheme(R.style.SettingThemeDark);
+                break;
+            case "transparent":
+                act.setTheme(R.style.SettingTheme);
+                break;
+            case "semi-transparent":
+                act.setTheme(R.style.SettingTheme);
+                break;
+            case "semi-transparent-dark":
+                act.setTheme(R.style.SettingThemeDark);
+                break;
+            case "transparent-dark":
+                act.setTheme(R.style.SettingThemeDark);
+                break;
+            case "amoled-dark":
+                act.setTheme(R.style.SettingThemeAmoledDark);
+                break;
+            default: // "light"
+                act.setTheme(R.style.SettingTheme);
+                break;
         }
         UIColors.updateThemePrimaryColor(act);
     }
@@ -225,8 +242,7 @@ public class InterfaceTweaks extends Forwarder {
 
     private int getSearchBackgroundColor() {
         // get theme shadow color
-        @SuppressLint("ResourceType") @StyleableRes
-        int[] attrs = new int[]{R.attr.searchBackgroundColor /* index 0 */};
+        @StyleableRes int[] attrs = new int[]{R.attr.searchBackgroundColor};
         TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
         int shadowColor = ta.getColor(0, Color.BLACK);
         ta.recycle();

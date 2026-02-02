@@ -8,6 +8,8 @@ import android.os.Build;
 import android.os.UserManager;
 import android.util.Log;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,8 +48,8 @@ public class LoadAppPojos extends LoadPojos<AppPojo> {
         Set<String> excludedFromHistoryAppList = KissApplication.getApplication(ctx).getDataHandler().getExcludedFromHistory();
         Set<String> excludedShortcutsAppList = KissApplication.getApplication(ctx).getDataHandler().getExcludedShortcutApps();
 
-        UserManager manager = (UserManager) ctx.getSystemService(Context.USER_SERVICE);
-        LauncherApps launcherApps = (LauncherApps) ctx.getSystemService(Context.LAUNCHER_APPS_SERVICE);
+        UserManager manager = ContextCompat.getSystemService(ctx, UserManager.class);
+        LauncherApps launcherApps = ContextCompat.getSystemService(ctx, LauncherApps.class);
 
         // Handle multi-profile support introduced in Android 5 (#542)
         for (android.os.UserHandle profile : manager.getUserProfiles()) {

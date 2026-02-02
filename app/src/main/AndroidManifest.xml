@@ -45,6 +45,7 @@
         android:resizeableActivity="true"
         android:localeConfig="@xml/locales_config"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_descriptor">
 
         <!--
@@ -99,12 +100,10 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/activity_setting"
+            android:excludeFromRecents="true"
             android:exported="false"
             android:theme="@style/SettingTheme"
             android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -112,14 +111,11 @@
         </activity>
         <activity
             android:name=".PickAppWidgetActivity"
+            android:excludeFromRecents="true"
             android:exported="false"
             android:label="@string/menu_widget_add"
-            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity"
             android:theme="@style/SettingTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".kustomsupport.AutoFinishTransparentActivity"

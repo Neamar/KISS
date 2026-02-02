@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
@@ -48,7 +49,7 @@ public class SettingsResult extends Result<SettingPojo> {
     @Override
     public Drawable getDrawable(Context context) {
         if (pojo.icon != -1) {
-            Drawable response = context.getResources().getDrawable(pojo.icon);
+            Drawable response = ResourcesCompat.getDrawable(context.getResources(), pojo.icon, context.getTheme());
             response.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
             return response;
         }

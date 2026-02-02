@@ -20,6 +20,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -324,7 +325,7 @@ public class UIColors {
     private static int getColor(@NonNull Context context, @NonNull String preferenceKey, @ColorRes int systemColorId) {
         int color = getColorWithoutFallback(context, preferenceKey);
         if (color == COLOR_SYSTEM) {
-            color = context.getResources().getColor(systemColorId);
+            color = ContextCompat.getColor(context, systemColorId);
         }
         return color;
     }
@@ -353,11 +354,11 @@ public class UIColors {
         Resources res = context.getResources();
         int[] colors = new int[2];
         if (isDarkMode(context)) {
-            colors[0] = res.getColor(android.R.color.system_neutral1_700);
-            colors[1] = res.getColor(android.R.color.system_accent1_100);
+            colors[0] = ContextCompat.getColor(context, android.R.color.system_neutral1_700);
+            colors[1] = ContextCompat.getColor(context, android.R.color.system_accent1_100);
         } else {
-            colors[0] = res.getColor(android.R.color.system_accent1_100);
-            colors[1] = res.getColor(android.R.color.system_neutral2_700);
+            colors[0] = ContextCompat.getColor(context, android.R.color.system_accent1_100);
+            colors[1] = ContextCompat.getColor(context, android.R.color.system_neutral2_700);
         }
         return colors;
     }

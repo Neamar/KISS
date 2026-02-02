@@ -6,6 +6,8 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.UserManager;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -50,7 +52,7 @@ public class LoadShortcutsPojos extends LoadPojos<ShortcutPojo> {
             DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
             Set<String> excludedApps = dataHandler.getExcluded();
             Set<String> excludedShortcutApps = dataHandler.getExcludedShortcutApps();
-            UserManager userManager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+            UserManager userManager = ContextCompat.getSystemService(context, UserManager.class);
             List<ShortcutInfo> shortcutInfos = ShortcutUtil.getAllShortcuts(context);
 
             for (ShortcutInfo shortcutInfo : shortcutInfos) {

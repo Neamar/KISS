@@ -14,14 +14,14 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.List;
 import java.util.Locale;
@@ -32,6 +32,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.ui.KeyboardManager;
 import fr.neamar.kiss.utils.LockAccessibilityService;
 
 // Deals with any settings in the "User Experience" setting sub-screen
@@ -60,7 +61,7 @@ public class ExperienceTweaks extends Forwarder {
 
     private View mainEmptyView;
     private final GestureDetector gd;
-    private int lastHeight = 0;
+    private final KeyboardManager keyboardManager;
 
     ExperienceTweaks(final MainActivity mainActivity) {
         super(mainActivity);
@@ -221,7 +222,7 @@ public class ExperienceTweaks extends Forwarder {
              * Are we allowed to run our AccessibilityService?
              */
             private boolean isAccessibilityServiceEnabled(Context context) {
-                AccessibilityManager am = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+                AccessibilityManager am = ContextCompat.getSystemService(context, AccessibilityManager.class);
                 if (am == null) {
                     return false;
                 }
@@ -237,6 +238,8 @@ public class ExperienceTweaks extends Forwarder {
                 return false;
             }
         });
+
+        keyboardManager = new KeyboardManager(mainActivity);
     }
 
     void onCreate() {
@@ -244,6 +247,25 @@ public class ExperienceTweaks extends Forwarder {
     }
 
     void onResume() {
+        keyboardManager.registerKeyboardListener((keyboardIsVisible) -> {
+            if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
+                    mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
+                if (keyboardIsVisible) {
+                    // If it's more than 200dp, it's most likely a keyboard.
+                    if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
+                        mainActivity.showHistory();
+                        mainActivity.displayClearOnInput();
+                    }
+                } else {
+                    // we never want this triggered because the keyboard scroller did it
+                    if (mainActivity.adapter != null && !mainActivity.adapter.isEmpty() && !mainActivity.hider.isScrolled()) {
+                        // reset edittext (hide history)
+                        mainActivity.clearSearchText();
+                    }
+                }
+            }
+        }, mainActivity.findViewById(android.R.id.content));
+
         adjustInputType();
 
         // Activity manifest specifies stateAlwaysHidden as windowSoftInputMode
@@ -280,40 +302,6 @@ public class ExperienceTweaks extends Forwarder {
     void onTouch(MotionEvent event) {
         // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
-    }
-
-    private float dpToPx(Context context, float valueInDp) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, valueInDp, metrics);
-    }
-
-    void onGlobalLayout() {
-        // There's no easy way to check if a soft keyboard is visible in android, but it can be safely assumed that
-        // if the root layout is significantly smaller than the screen, it's been resized for a keyboard. See here:
-        // https://stackoverflow.com/questions/2150078/how-to-check-visibility-of-software-keyboard-in-android
-        if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
-                mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
-            final View activityRootView = mainActivity.findViewById(android.R.id.content);
-            int heightDiff = activityRootView.getRootView().getHeight() - activityRootView.getHeight();
-            if (heightDiff > dpToPx(mainActivity.getBaseContext(), 200)) {
-                // If it's more than 200dp, it's most likely a keyboard.
-                if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
-                    mainActivity.showHistory();
-                    mainActivity.displayClearOnInput();
-                }
-            } else {
-                // we never want this triggered because the keyboard scroller did it
-                if (mainActivity.adapter != null && !mainActivity.adapter.isEmpty() && !mainActivity.hider.isScrolled()) {
-
-                    // Only apply changes when height changes, this avoids breakage when history-ontouch is enabled or scrolled
-                    if (activityRootView.getHeight() != lastHeight) {
-                        // reset edittext (hide history)
-                        mainActivity.searchEditText.setText("");
-                    }
-                }
-            }
-            lastHeight = activityRootView.getHeight();
-        }
     }
 
     void onWindowFocusChanged(boolean hasFocus) {
@@ -366,7 +354,8 @@ public class ExperienceTweaks extends Forwarder {
     // Can (and will) break in any Android release.
     protected void displayNotificationDrawer() {
         try {
-            @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
+            @SuppressLint("WrongConstant")
+            Object sbservice = mainActivity.getSystemService("statusbar");
             Class.forName("android.app.StatusBarManager")
                     .getMethod("expandNotificationsPanel")
                     .invoke(sbservice);
@@ -377,7 +366,8 @@ public class ExperienceTweaks extends Forwarder {
 
     protected void displayQuickSettings() {
         try {
-            @SuppressLint("WrongConstant") Object sbservice = mainActivity.getSystemService("statusbar");
+            @SuppressLint("WrongConstant")
+            Object sbservice = mainActivity.getSystemService("statusbar");
             Class.forName("android.app.StatusBarManager")
                     .getMethod("expandSettingsPanel")
                     .invoke(sbservice);
@@ -433,5 +423,9 @@ public class ExperienceTweaks extends Forwarder {
         } else {
             activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
         }
+    }
+
+    public void onPause() {
+        keyboardManager.unregisterKeyboardListener();
     }
 }

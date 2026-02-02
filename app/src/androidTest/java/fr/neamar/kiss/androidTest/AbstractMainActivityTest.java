@@ -8,7 +8,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.view.WindowManager;
 
-import androidx.test.rule.ActivityTestRule;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,34 +19,34 @@ import fr.neamar.kiss.R;
 
 abstract class AbstractMainActivityTest {
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityScenarioRule<MainActivity> mActivityRule = new ActivityScenarioRule<>(MainActivity.class);
 
     @Before
     public void setUp() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (shouldHaveContactPermission()) {
-                getInstrumentation().getUiAutomation().executeShellCommand(
-                        "pm grant " + mActivityRule.getActivity().getPackageName()
-                                + " android.permission.READ_CONTACTS");
-            } else {
-                getInstrumentation().getUiAutomation().executeShellCommand(
-                        "pm revoke " + mActivityRule.getActivity().getPackageName()
-                                + " android.permission.READ_CONTACTS");
+        mActivityRule.getScenario().onActivity(activity -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (shouldHaveContactPermission()) {
+                    getInstrumentation().getUiAutomation().executeShellCommand(
+                            "pm grant " + activity.getPackageName()
+                                    + " android.permission.READ_CONTACTS");
+                } else {
+                    getInstrumentation().getUiAutomation().executeShellCommand(
+                            "pm revoke " + activity.getPackageName()
+                                    + " android.permission.READ_CONTACTS");
+                }
             }
-        }
 
-        mActivityRule.getActivity();
+            // Initialize to default preferences
+            KissApplication.getApplication(activity).getDataHandler().clearHistory();
+            assertThat(PreferenceManager.getDefaultSharedPreferences(activity).edit().clear().commit(), is(true));
+            PreferenceManager.setDefaultValues(activity, R.xml.preferences, true);
 
-        // Initialize to default preferences
-        KissApplication.getApplication(mActivityRule.getActivity()).getDataHandler().clearHistory();
-        assertThat(PreferenceManager.getDefaultSharedPreferences(mActivityRule.getActivity()).edit().clear().commit(), is(true));
-        PreferenceManager.setDefaultValues(mActivityRule.getActivity(), R.xml.preferences, true);
-
-        // Remove lock screen
-        Runnable wakeUpDevice = () -> mActivityRule.getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
-                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        mActivityRule.getActivity().runOnUiThread(wakeUpDevice);
+            // Remove lock screen
+            Runnable wakeUpDevice = () -> activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            activity.runOnUiThread(wakeUpDevice);
+        });
     }
 
     protected boolean shouldHaveContactPermission() {

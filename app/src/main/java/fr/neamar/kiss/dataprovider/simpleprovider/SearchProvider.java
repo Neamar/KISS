@@ -146,7 +146,6 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
     }
 
     @Nullable
-    @SuppressWarnings("StringSplitter")
     // Find the URL associated with specified providerName
     private static String getProviderUrl(Set<String> searchProviders, String searchProviderName) {
         for (String nameAndUrl : searchProviders) {
