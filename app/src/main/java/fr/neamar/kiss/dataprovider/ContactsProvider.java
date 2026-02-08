@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import fr.neamar.kiss.loader.LoadContactsPojos;
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
@@ -151,16 +150,9 @@ public class ContactsProvider extends Provider<ContactsPojo> {
     public ContactsPojo findByPhone(String phoneNumber) {
         StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.normalizeWithResult(phoneNumber);
 
-        List<ContactsPojo> pojos = getPojos();
-        for (ContactsPojo pojo : pojos) {
-            if (pojo.normalizedPhone != null && pojo.normalizedPhone.equals(simplifiedPhoneNumber)) {
-                return pojo;
-            }
-        }
-
         PhoneUtils phoneUtils = new PhoneUtils(this);
-        for (ContactsPojo pojo : pojos) {
-            if (pojo.normalizedPhone != null && phoneUtils.areSamePhoneNumber(pojo.normalizedPhone.toString(), simplifiedPhoneNumber.toString())) {
+        for (ContactsPojo pojo : getPojos()) {
+            if (pojo.normalizedPhone != null && phoneUtils.areSamePhoneNumber(pojo.normalizedPhone, simplifiedPhoneNumber)) {
                 return pojo;
             }
         }

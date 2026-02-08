@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 
 import java.util.regex.Pattern;
 
+import fr.neamar.kiss.normalizer.StringNormalizer;
+
 public class PhoneUtils {
 
     // See https://github.com/Neamar/KISS/issues/1137
@@ -32,15 +34,19 @@ public class PhoneUtils {
         return phoneNumber;
     }
 
-    public boolean areSamePhoneNumber(String number1, String number2) {
+    public boolean areSamePhoneNumber(@NonNull StringNormalizer.Result number1, @NonNull StringNormalizer.Result number2) {
+        if (number1.equals(number2)) {
+            return true;
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             if (TextUtils.isEmpty(countryIso)) {
                 return false;
             } else {
-                return PhoneNumberUtils.areSamePhoneNumber(number1, number2, countryIso);
+                return PhoneNumberUtils.areSamePhoneNumber(number1.toString(), number2.toString(), countryIso);
             }
         } else {
-            return PhoneNumberUtils.compare(number1, number2);
+            return PhoneNumberUtils.compare(number1.toString(), number2.toString());
         }
     }
 
