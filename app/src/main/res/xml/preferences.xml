@@ -231,11 +231,13 @@
             android:key="colors-section"
             android:title="@string/colors">
             <fr.neamar.kiss.preference.ColorPreference
-                android:key="notification-bar-color"
-                android:title="@string/notification_bar_color" />
-            <fr.neamar.kiss.preference.ColorPreference
+                android:dialogTitle="@string/color_picker_default_title"
                 android:key="primary-color"
                 android:title="@string/main_color" />
+            <fr.neamar.kiss.preference.ColorPreference
+                android:dialogTitle="@string/color_picker_default_title"
+                android:key="notification-bar-color"
+                android:title="@string/notification_bar_color" />
             <SwitchPreference
                 android:key="black-notification-icons"
                 android:title="@string/black_notification_icons" />
