@@ -53,6 +53,9 @@ public class InterfaceTweaks extends Forwarder {
             case "amoled-dark":
                 act.setTheme(R.style.AppThemeAmoledDark);
                 break;
+            case "high-contrast":
+                act.setTheme(R.style.AppThemeEInk);
+                break;
         }
 
         UIColors.applyOverlay(act, prefs);
