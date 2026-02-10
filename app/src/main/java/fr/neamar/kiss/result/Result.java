@@ -222,7 +222,7 @@ public abstract class Result<T extends Pojo> {
      */
     public ListPopup getPopupMenu(final Context context, final RecordAdapter parent, final View parentView) {
         ArrayAdapter<ListPopup.Item> popupMenuAdapter = new ArrayAdapter<>(context, R.layout.popup_list_item);
-        ListPopup menu = buildPopupMenu(context, popupMenuAdapter, parent, parentView);
+        ListPopup menu = buildPopupMenu(context, popupMenuAdapter);
 
         menu.setOnItemClickListener((adapter, view, position) -> {
             ListPopup.Item item = (ListPopup.Item) adapter.getItem(position);
@@ -242,7 +242,7 @@ public abstract class Result<T extends Pojo> {
      *
      * @return an inflated, listener-free PopupMenu
      */
-    ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView) {
+    ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
         adapter.add(new ListPopup.Item(context, R.string.menu_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));

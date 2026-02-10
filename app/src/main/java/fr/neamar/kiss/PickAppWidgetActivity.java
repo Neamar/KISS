@@ -32,6 +32,7 @@ import androidx.preference.PreferenceManager;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import fr.neamar.kiss.forwarder.ExperienceTweaks;
@@ -70,9 +71,7 @@ public class PickAppWidgetActivity extends AppCompatActivity {
             List<WidgetInfo> widgetList = getWidgetList(context);
 
             // sort list
-            Collections.sort(widgetList, (o1, o2) -> {
-                return o1.appName.compareTo(o2.appName);
-            });
+            Collections.sort(widgetList, Comparator.comparing(o -> o.appName));
 
             // assuming the list is sorted by apps, add titles with app name
             String lastApp = null;

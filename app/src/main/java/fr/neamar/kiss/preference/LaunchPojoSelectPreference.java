@@ -1,14 +1,11 @@
 package fr.neamar.kiss.preference;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceManager;
 
 import java.util.Collections;
 import java.util.List;

@@ -47,7 +47,7 @@ public class MimeTypeUtils {
 
     /**
      * @param context
-     * @return a list of all supported mime types from existing contacts
+     * @return a set of all supported mime types from existing contacts
      */
     public static Set<String> getSupportedMimeTypes(Context context) {
         if (!Permission.checkPermission(context, Permission.PERMISSION_READ_CONTACTS)) {
@@ -97,7 +97,7 @@ public class MimeTypeUtils {
 
     /**
      * @param context
-     * @return a list of all mime types that should be shown
+     * @return a set of all mime types that should be shown
      */
     public static Set<String> getActiveMimeTypes(Context context) {
         long start = System.currentTimeMillis();
@@ -167,7 +167,7 @@ public class MimeTypeUtils {
         final PackageManager packageManager = context.getPackageManager();
         final List<ResolveInfo> receiverList = packageManager.queryIntentActivities(intent,
                 PackageManager.MATCH_DEFAULT_ONLY);
-        return receiverList.size() > 0;
+        return !receiverList.isEmpty();
     }
 
     /**

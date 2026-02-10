@@ -13,7 +13,6 @@ import androidx.preference.PreferenceManager;
 import java.util.Set;
 
 import fr.neamar.kiss.R;
-import fr.neamar.kiss.SettingsFragment;
 import fr.neamar.kiss.dataprovider.simpleprovider.SearchProvider;
 
 public class DeleteCustomSearchProvidersPreference extends CustomSearchProvidersPreference implements Preference.OnPreferenceChangeListener {

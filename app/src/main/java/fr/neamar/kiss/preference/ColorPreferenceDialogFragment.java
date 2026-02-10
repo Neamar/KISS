@@ -138,7 +138,7 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
     }
 
     @Override
-    protected void onBindDialogView(View view) {
+    protected void onBindDialogView(@NonNull View view) {
         super.onBindDialogView(view);
 
         // This will set the correct typeface for the extra items

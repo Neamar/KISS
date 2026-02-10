@@ -260,20 +260,10 @@ public class UIColors {
     public static int getNotificationDotColor(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             // use accent color from system if available
-            return getColor(context, "primary-color", getNotificationDotColorRes(context));
+            return getColor(context, "primary-color", android.R.color.system_accent3_200);
         } else {
             // fall back to primary color
             return getPrimaryColor(context);
-        }
-    }
-
-    @ColorRes
-    @RequiresApi(Build.VERSION_CODES.S)
-    private static int getNotificationDotColorRes(Context context) {
-        if (isDarkMode(context)) {
-            return android.R.color.system_accent3_200;
-        } else {
-            return android.R.color.system_accent3_200;
         }
     }
 
@@ -331,7 +321,6 @@ public class UIColors {
     @ColorInt
     @RequiresApi(api = Build.VERSION_CODES.S)
     public static int[] getIconColors(Context context) {
-        Resources res = context.getResources();
         int[] colors = new int[2];
         if (isDarkMode(context)) {
             colors[0] = ContextCompat.getColor(context, android.R.color.system_neutral1_700);

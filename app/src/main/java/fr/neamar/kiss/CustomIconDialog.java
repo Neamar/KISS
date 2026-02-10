@@ -260,7 +260,7 @@ public class CustomIconDialog extends DialogFragment {
         if (!(drawable instanceof BitmapDrawable))
             return;
 
-        ViewGroup layout = (ViewGroup) LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_icon_quick, parent, false);
+        ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.custom_icon_quick, parent, false);
         ImageView icon = layout.findViewById(android.R.id.icon);
         TextView text = layout.findViewById(android.R.id.text1);
 
@@ -277,14 +277,14 @@ public class CustomIconDialog extends DialogFragment {
 
     protected void refreshList() {
         mIconData.clear();
-        IconsHandler iconsHandler = KissApplication.getApplication(getActivity()).getIconsHandler();
+        IconsHandler iconsHandler = KissApplication.getApplication(requireContext()).getIconsHandler();
         IconPackXML iconPack = iconsHandler.getCustomIconPack();
         if (iconPack != null) {
             Collection<IconPackXML.DrawableInfo> drawables = iconPack.getDrawableList();
             if (drawables != null) {
                 CharSequence searchText = mSearch.getText();
                 StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(searchText, true);
-                FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(getActivity(), normalized.codePoints);
+                FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(requireContext(), normalized.codePoints);
                 for (IconPackXML.DrawableInfo info : drawables) {
                     if (TextUtils.isEmpty(searchText) || fuzzyScore.match(info.getDrawableName()).match)
                         mIconData.add(new IconData(iconPack, info));
@@ -377,9 +377,6 @@ public class CustomIconDialog extends DialogFragment {
             int yOffset = 0;
             Rect gvr = new Rect();
 
-            //View parent = (View) v.getParent();
-            //int parentHeight = parent.getHeight();
-
             if (v.getGlobalVisibleRect(gvr)) {
                 View root = v.getRootView();
 
@@ -411,11 +408,11 @@ public class CustomIconDialog extends DialogFragment {
         }
 
         static class ViewHolder {
-            ImageView icon;
+            private final ImageView icon;
             AsyncLoad loader = null;
 
             static class AsyncLoad extends AsyncTask<IconData, Void, Drawable> {
-                WeakReference<ViewHolder> holder;
+                private final WeakReference<ViewHolder> holder;
 
                 AsyncLoad(ViewHolder holder) {
                     this.holder = new WeakReference<>(holder);

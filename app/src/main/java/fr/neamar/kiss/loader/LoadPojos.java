@@ -12,7 +12,7 @@ import fr.neamar.kiss.pojo.Pojo;
 public abstract class LoadPojos<T extends Pojo> extends AsyncTask<Void, Void, List<T>> {
 
     final WeakReference<Context> context;
-    String pojoScheme = "(none)://";
+    final String pojoScheme;
     private WeakReference<Provider<T>> providerReference;
 
     LoadPojos(Context context, String pojoScheme) {

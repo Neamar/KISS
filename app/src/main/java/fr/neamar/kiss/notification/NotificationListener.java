@@ -92,7 +92,7 @@ public class NotificationListener extends NotificationListenerService {
 
         editor.apply();
 
-        Log.v(TAG, "Removed all notifications for " + packages.toString());
+        Log.v(TAG, "Removed all notifications for " + packages);
 
         super.onListenerDisconnected();
     }
@@ -176,7 +176,7 @@ public class NotificationListener extends NotificationListenerService {
 
     /**
      * Check for trivial notifications.
-     *
+     * <p>
      * From Android O notification channels controls if badges should be displayed.
      * For older versions and legacy notification channel low priority notifications, ongoing notifications
      * and group summaries should not be displayed.

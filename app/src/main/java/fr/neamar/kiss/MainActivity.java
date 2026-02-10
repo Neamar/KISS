@@ -458,12 +458,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        forwarderManager.onStop();
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         onBackPressedCallback.remove();

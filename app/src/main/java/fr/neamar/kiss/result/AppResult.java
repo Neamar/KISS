@@ -101,7 +101,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
     }
 
     @Override
-    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView) {
+    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
         if (!(context instanceof MainActivity) || ((MainActivity) context).isViewingSearchResults()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_remove));
         }
