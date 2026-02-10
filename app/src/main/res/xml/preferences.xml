@@ -159,13 +159,38 @@
                 android:summary="%s"
                 android:title="@string/theme_bar_color" />
         </PreferenceScreen>
-        <ListPreference
-            android:defaultValue="default"
-            android:entries="@array/resultsSizeEntries"
-            android:entryValues="@array/resultsSizeValues"
-            android:key="results-size"
-            android:title="@string/results_size" />
-
+        <PreferenceCategory
+            android:key="results-section"
+            android:title="@string/search_results_options">
+            <ListPreference
+                android:defaultValue="default"
+                android:entries="@array/resultsSizeEntries"
+                android:entryValues="@array/resultsSizeValues"
+                android:key="results-size"
+                android:title="@string/results_size" />
+            <MultiSelectListPreference
+                android:defaultValue="@array/resultHighlightingDefault"
+                android:entries="@array/resultHighlightingEntries"
+                android:entryValues="@array/resultHighlightingValues"
+                android:key="pref-result-highlighting"
+                android:title="@string/pref_result_highlighting"
+                android:summary="@string/pref_result_highlighting_summary"/>
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:key="colors-section"
+            android:title="@string/colors">
+            <fr.neamar.kiss.preference.ColorPreference
+                android:dialogTitle="@string/color_picker_default_title"
+                android:key="primary-color"
+                android:title="@string/main_color" />
+            <fr.neamar.kiss.preference.ColorPreference
+                android:dialogTitle="@string/color_picker_default_title"
+                android:key="notification-bar-color"
+                android:title="@string/notification_bar_color" />
+            <SwitchPreference
+                android:key="black-notification-icons"
+                android:title="@string/black_notification_icons" />
+        </PreferenceCategory>
         <PreferenceCategory
             android:key="icons-section"
             android:title="@string/icons_category">
@@ -226,22 +251,6 @@
                 android:summary="@string/icons_hide_desc"
                 android:title="@string/icons_hide_main" />
         </PreferenceCategory>
-
-        <PreferenceCategory
-            android:key="colors-section"
-            android:title="@string/colors">
-            <fr.neamar.kiss.preference.ColorPreference
-                android:dialogTitle="@string/color_picker_default_title"
-                android:key="primary-color"
-                android:title="@string/main_color" />
-            <fr.neamar.kiss.preference.ColorPreference
-                android:dialogTitle="@string/color_picker_default_title"
-                android:key="notification-bar-color"
-                android:title="@string/notification_bar_color" />
-            <SwitchPreference
-                android:key="black-notification-icons"
-                android:title="@string/black_notification_icons" />
-        </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
             <SwitchPreference
                 android:key="transparent-search"
@@ -274,13 +283,6 @@
                 android:defaultValue="false"
                 android:key="large-result-list-margins"
                 android:title="@string/large_result_list_margins" />
-            <MultiSelectListPreference
-                android:defaultValue="@array/resultHighlightingDefault"
-                android:entries="@array/resultHighlightingEntries"
-                android:entryValues="@array/resultHighlightingValues"
-                android:key="pref-result-highlighting"
-                android:title="@string/pref_result_highlighting"
-                android:summary="@string/pref_result_highlighting_summary"/>
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen

@@ -97,7 +97,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             removePreference("exclude_apps_category", "edit-excluded-app-shortcuts");
             removePreference("exclude_apps_category", "reset-excluded-app-shortcuts");
             removePreference("search-providers", "enable-shortcuts");
-            removePreference("search-providers", "reset-search-providers");
+            removePreference("search-providers", "reset-shortcuts");
         }
 
         updateItemsToRun();

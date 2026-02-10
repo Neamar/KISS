@@ -32,6 +32,17 @@ public class RootModeSwitch extends SwitchPreference {
     }
 
     @Override
+    protected void onSetInitialValue(Object defaultValue) {
+        if (KissApplication.getApplication(getContext()).getRootHandler().isRootAvailable()) {
+            super.onSetInitialValue(defaultValue);
+            setEnabled(true);
+        } else {
+            super.onSetInitialValue(false);
+            setEnabled(false);
+        }
+    }
+
+    @Override
     protected void onClick() {
         if (!isChecked() && !KissApplication.getApplication(getContext()).getRootHandler().isRootAvailable()) {
             //show error dialog
