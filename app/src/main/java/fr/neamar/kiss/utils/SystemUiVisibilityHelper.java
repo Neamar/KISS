@@ -5,9 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+
+import androidx.preference.PreferenceManager;
 
 public class SystemUiVisibilityHelper implements View.OnSystemUiVisibilityChangeListener {
     private static final String TAG = SystemUiVisibilityHelper.class.getSimpleName();

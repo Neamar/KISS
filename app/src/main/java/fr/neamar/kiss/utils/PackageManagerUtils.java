@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class PackageManagerUtils {
 
@@ -199,10 +200,7 @@ public class PackageManagerUtils {
             return null;
         }
         ComponentName launchingComponent = getLaunchingComponent(context, componentName.getPackageName(), user);
-        if (launchingComponent != null) {
-            return launchingComponent;
-        }
-        return componentName;
+        return Objects.requireNonNullElse(launchingComponent, componentName);
     }
 
     /**

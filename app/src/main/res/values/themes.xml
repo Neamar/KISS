@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="BaseThemeLight" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:colorPrimary">@color/kiss_green</item>
-        <item name="android:colorPrimaryDark">@color/kiss_green</item>
-        <item name="android:colorAccent">@color/kiss_green</item>
+    <style name="BaseTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/kiss_green</item>
+        <item name="colorPrimaryDark">@color/kiss_green</item>
+        <item name="colorAccent">@color/kiss_green</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="appSelectableItemBackground">?android:attr/selectableItemBackgroundBorderless</item>
         <item name="textShadowRadius">0</item>
     </style>
 
-    <style name="BaseThemeDark" parent="@style/Theme.AppCompat.NoActionBar">
-        <item name="android:colorPrimary">@color/kiss_green</item>
-        <item name="android:colorPrimaryDark">@color/kiss_green</item>
-        <item name="android:colorAccent">@color/kiss_green</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="appSelectableItemBackground">?android:attr/selectableItemBackgroundBorderless</item>
-        <item name="textShadowRadius">0</item>
-    </style>
-
-    <style name="AppThemeLight" parent="BaseThemeLight">
+    <style name="AppThemeLight" parent="BaseTheme">
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:textColor">@android:color/black</item>
@@ -35,7 +26,7 @@
         <item name="dividerDrawable">@drawable/list_separator_light</item>
     </style>
 
-    <style name="AppThemeDark" parent="BaseThemeDark">
+    <style name="AppThemeDark" parent="BaseTheme">
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:textColor">@color/kiss_text_on_dark</item>
@@ -51,7 +42,7 @@
         <item name="dividerDrawable">@drawable/list_separator_dark</item>
     </style>
 
-    <style name="AppThemeAmoledDark" parent="BaseThemeDark">
+    <style name="AppThemeAmoledDark" parent="BaseTheme">
         <item name="android:windowShowWallpaper">false</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:textColor">@color/kiss_text_on_dark</item>
@@ -72,7 +63,14 @@
         <item name="resultShadowColor">@android:color/black</item>
         <item name="listBackgroundColor">@android:color/transparent</item>
         <item name="dividerDrawable">@null</item>
-        <item name="android:colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="textShadowRadius">3</item>
+    </style>
+
+    <style name="AppThemeTransparentDark" parent="AppThemeDark">
+        <item name="listBackgroundColor">@android:color/transparent</item>
+        <item name="dividerDrawable">@null</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="textShadowRadius">3</item>
     </style>
 
@@ -81,7 +79,7 @@
         <item name="listBackgroundColor">@color/kiss_background_light_transparent</item>
         <item name="searchBackgroundColor">@color/kiss_background_light_transparent</item>
         <item name="dividerDrawable">@null</item>
-        <item name="android:colorPrimaryDark">@color/kiss_green_semitransparent</item>
+        <item name="colorPrimaryDark">@color/kiss_green_semitransparent</item>
         <item name="textShadowRadius">3</item>
     </style>
 
@@ -91,40 +89,24 @@
         <item name="listBackgroundColor">@color/kiss_background_dark_transparent</item>
         <item name="searchBackgroundColor">@color/kiss_background_dark_transparent</item>
         <item name="dividerDrawable">@null</item>
-        <item name="android:colorPrimaryDark">@color/kiss_green_semitransparent</item>
-        <item name="textShadowRadius">3</item>
-    </style>
-
-    <style name="AppThemeTransparentDark" parent="AppThemeDark">
-        <item name="listBackgroundColor">@android:color/transparent</item>
-        <item name="dividerDrawable">@null</item>
-        <item name="android:colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@color/kiss_green_semitransparent</item>
         <item name="textShadowRadius">3</item>
     </style>
 
     <style name="SettingTheme" parent="AppThemeLight">
-        <item name="android:actionBarStyle">@style/SettingsActionBar</item>
-
-        <item name="android:windowActionBar">true</item>
-        <item name="android:windowNoTitle">false</item>
         <item name="android:windowBackground">@color/kiss_background</item>
         <item name="android:textColorSecondary">#7f7f7f</item>
-        <item name="android:colorPrimaryDark">@color/kiss_green</item>
-        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@color/kiss_green</item>
         <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 
     <style name="SettingThemeDark" parent="AppThemeDark">
-        <item name="android:actionBarStyle">@style/SettingsActionBar</item>
-
-        <item name="android:windowActionBar">true</item>
-        <item name="android:windowNoTitle">false</item>
         <item name="android:windowBackground">@color/kiss_list_background_inverse</item>
-        <item name="android:colorPrimaryDark">@color/kiss_green</item>
+        <item name="colorPrimaryDark">@color/kiss_green</item>
         <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 
-    <style name="SettingThemeAmoledDark" parent="SettingThemeDark">
+    <style name="SettingThemeAmoledDark" parent="AppThemeAmoledDark">
         <item name="android:windowShowWallpaper">false</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:textColor">@color/kiss_text_on_dark</item>
@@ -272,103 +254,103 @@
     </style>
 
     <style name="OverlayAccentDefault">
-        <item name="android:colorAccent">@color/kiss_green</item>
-        <item name="android:colorPrimary">@color/kiss_green</item>
+        <item name="colorAccent">@color/kiss_green</item>
+        <item name="colorPrimary">@color/kiss_green</item>
     </style>
 
     <style name="OverlayAccentD32F2F">
-        <item name="android:colorAccent">#D32F2F</item>
-        <item name="android:colorPrimary">#D32F2F</item>
+        <item name="colorAccent">#D32F2F</item>
+        <item name="colorPrimary">#D32F2F</item>
     </style>
 
     <style name="OverlayAccentC2185B">
-        <item name="android:colorAccent">#C2185B</item>
-        <item name="android:colorPrimary">#C2185B</item>
+        <item name="colorAccent">#C2185B</item>
+        <item name="colorPrimary">#C2185B</item>
     </style>
 
     <style name="OverlayAccent7B1FA2">
-        <item name="android:colorAccent">#7B1FA2</item>
-        <item name="android:colorPrimary">#7B1FA2</item>
+        <item name="colorAccent">#7B1FA2</item>
+        <item name="colorPrimary">#7B1FA2</item>
     </style>
 
     <style name="OverlayAccent512DA8">
-        <item name="android:colorAccent">#512DA8</item>
-        <item name="android:colorPrimary">#512DA8</item>
+        <item name="colorAccent">#512DA8</item>
+        <item name="colorPrimary">#512DA8</item>
     </style>
 
     <style name="OverlayAccent303F9F">
-        <item name="android:colorAccent">#303F9F</item>
-        <item name="android:colorPrimary">#303F9F</item>
+        <item name="colorAccent">#303F9F</item>
+        <item name="colorPrimary">#303F9F</item>
     </style>
 
     <style name="OverlayAccent1976D2">
-        <item name="android:colorAccent">#1976D2</item>
-        <item name="android:colorPrimary">#1976D2</item>
+        <item name="colorAccent">#1976D2</item>
+        <item name="colorPrimary">#1976D2</item>
     </style>
 
     <style name="OverlayAccent0288D1">
-        <item name="android:colorAccent">#0288D1</item>
-        <item name="android:colorPrimary">#0288D1</item>
+        <item name="colorAccent">#0288D1</item>
+        <item name="colorPrimary">#0288D1</item>
     </style>
 
     <style name="OverlayAccent0097A7">
-        <item name="android:colorAccent">#0097A7</item>
-        <item name="android:colorPrimary">#0097A7</item>
+        <item name="colorAccent">#0097A7</item>
+        <item name="colorPrimary">#0097A7</item>
     </style>
 
     <style name="OverlayAccent00796B">
-        <item name="android:colorAccent">#00796B</item>
-        <item name="android:colorPrimary">#00796B</item>
+        <item name="colorAccent">#00796B</item>
+        <item name="colorPrimary">#00796B</item>
     </style>
 
     <style name="OverlayAccent388E3C">
-        <item name="android:colorAccent">#388E3C</item>
-        <item name="android:colorPrimary">#388E3C</item>
+        <item name="colorAccent">#388E3C</item>
+        <item name="colorPrimary">#388E3C</item>
     </style>
 
     <style name="OverlayAccent689F38">
-        <item name="android:colorAccent">#689F38</item>
-        <item name="android:colorPrimary">#689F38</item>
+        <item name="colorAccent">#689F38</item>
+        <item name="colorPrimary">#689F38</item>
     </style>
 
     <style name="OverlayAccentAFB42B">
-        <item name="android:colorAccent">#AFB42B</item>
-        <item name="android:colorPrimary">#AFB42B</item>
+        <item name="colorAccent">#AFB42B</item>
+        <item name="colorPrimary">#AFB42B</item>
     </style>
 
     <style name="OverlayAccentFBC02D">
-        <item name="android:colorAccent">#FBC02D</item>
-        <item name="android:colorPrimary">#FBC02D</item>
+        <item name="colorAccent">#FBC02D</item>
+        <item name="colorPrimary">#FBC02D</item>
     </style>
 
     <style name="OverlayAccentFFA000">
-        <item name="android:colorAccent">#FFA000</item>
-        <item name="android:colorPrimary">#FFA000</item>
+        <item name="colorAccent">#FFA000</item>
+        <item name="colorPrimary">#FFA000</item>
     </style>
 
     <style name="OverlayAccentF57C00">
-        <item name="android:colorAccent">#F57C00</item>
-        <item name="android:colorPrimary">#F57C00</item>
+        <item name="colorAccent">#F57C00</item>
+        <item name="colorPrimary">#F57C00</item>
     </style>
 
     <style name="OverlayAccentE64A19">
-        <item name="android:colorAccent">#E64A19</item>
-        <item name="android:colorPrimary">#E64A19</item>
+        <item name="colorAccent">#E64A19</item>
+        <item name="colorPrimary">#E64A19</item>
     </style>
 
     <style name="OverlayAccent5D4037">
-        <item name="android:colorAccent">#5D4037</item>
-        <item name="android:colorPrimary">#5D4037</item>
+        <item name="colorAccent">#5D4037</item>
+        <item name="colorPrimary">#5D4037</item>
     </style>
 
     <style name="OverlayAccent616161">
-        <item name="android:colorAccent">#616161</item>
-        <item name="android:colorPrimary">#616161</item>
+        <item name="colorAccent">#616161</item>
+        <item name="colorPrimary">#616161</item>
     </style>
 
     <style name="OverlayAccent455A64">
-        <item name="android:colorAccent">#455A64</item>
-        <item name="android:colorPrimary">#455A64</item>
+        <item name="colorAccent">#455A64</item>
+        <item name="colorPrimary">#455A64</item>
     </style>
     <style name="OverlayAccentTransparent" parent="OverlayAccentDefault">
     </style>
@@ -381,6 +363,6 @@
 
     <style name="SettingsActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="android:displayOptions">homeAsUp|showTitle</item>
-        <item name="android:background">@color/kiss_green</item>
+        <item name="android:background">?attr/colorPrimary</item>
     </style>
 </resources>

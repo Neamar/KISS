@@ -25,7 +25,7 @@ public class PhoneUtils {
     }
 
     public String format(String phoneNumber) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !TextUtils.isEmpty(countryIso)) {
+        if (!TextUtils.isEmpty(countryIso)) {
             String formattedPhone = PhoneNumberUtils.formatNumber(phoneNumber, countryIso);
             if (!TextUtils.isEmpty(formattedPhone)) {
                 return formattedPhone;

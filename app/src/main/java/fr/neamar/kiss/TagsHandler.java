@@ -166,12 +166,11 @@ public class TagsHandler {
 
     @NonNull
     private List<String> getClockApps(PackageManager pm) {
-        List<String> clockApps = new ArrayList<>();
 
         // check for clock by intent
         Intent alarmClockIntent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
         List<String> appsByIntent = getApps(pm, alarmClockIntent);
-        clockApps.addAll(appsByIntent);
+        List<String> clockApps = new ArrayList<>(appsByIntent);
 
         // Known clock implementations
         // See http://stackoverflow.com/questions/3590955/intent-to-launch-the-clock-application-on-android

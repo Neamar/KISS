@@ -1,13 +1,13 @@
 package fr.neamar.kiss.utils.calculator;
 
+import androidx.annotation.NonNull;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Locale;
 import java.text.ParseException;
 import java.util.ArrayDeque;
-
-import androidx.annotation.NonNull;
+import java.util.Locale;
 
 public class Tokenizer {
 	public static final class Token {
@@ -49,7 +49,7 @@ public class Tokenizer {
 			this.number = null;
 		}
 
-		public final int getPrecedence() {
+        public int getPrecedence() {
 			switch (type) {
 				case UNARY_PLUS_TOKEN:
 				case UNARY_MINUS_TOKEN:
@@ -68,7 +68,7 @@ public class Tokenizer {
 			}
 		}
 
-		public final boolean isRightAssociative() {
+        public boolean isRightAssociative() {
 			switch (type) {
 				case UNARY_PLUS_TOKEN:
 				case UNARY_MINUS_TOKEN:
@@ -85,7 +85,7 @@ public class Tokenizer {
 			}
 		}
 
-		public final boolean isLeftAssociative() {
+        public boolean isLeftAssociative() {
 			return !isRightAssociative();
 		}
 	}
@@ -166,7 +166,7 @@ public class Tokenizer {
 						decimalFormat.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.US));
 						decimalFormat.setParseBigDecimal(true);
 
-						BigDecimal number = null;
+                        BigDecimal number;
 						String numberStr = numberBuilder.toString().replace(",",".");
 						if (numberStr.matches("[^.]*\\.[^.]*\\..*")) {
 							return Result.syntacticalError(); // multiple decimal points in one token

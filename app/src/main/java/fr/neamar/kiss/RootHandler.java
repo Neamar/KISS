@@ -2,16 +2,15 @@ package fr.neamar.kiss;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
-import java.nio.charset.Charset;
+import androidx.preference.PreferenceManager;
+
+import java.nio.charset.StandardCharsets;
 
 public class RootHandler {
 
     private static final String TAG = RootHandler.class.getSimpleName();
-
-    private static final Charset UTF_8 = Charset.forName("UTF-8");
 
     private Boolean isRootAvailable = null;
     private Boolean isRootActivated = null;
@@ -55,11 +54,11 @@ public class RootHandler {
         try {
             p = Runtime.getRuntime().exec("su");
             //put command
-            if (command != null && !command.trim().equals("")) {
-                p.getOutputStream().write((command + "\n").getBytes(UTF_8));
+            if (command != null && !command.trim().isEmpty()) {
+                p.getOutputStream().write((command + "\n").getBytes(StandardCharsets.UTF_8));
             }
             //exit from su command
-            p.getOutputStream().write("exit\n".getBytes(UTF_8));
+            p.getOutputStream().write("exit\n".getBytes(StandardCharsets.UTF_8));
             p.getOutputStream().flush();
             p.getOutputStream().close();
             int result = p.waitFor();
@@ -67,7 +66,7 @@ public class RootHandler {
                 throw new Exception("Command execution failed " + result);
             return true;
         } catch (Exception e) {
-            Log.e(TAG, "Unable to execute root shell", e);
+            Log.d(TAG, "Unable to execute root shell", e);
         } finally {
             if (p != null) {
                 p.destroy();

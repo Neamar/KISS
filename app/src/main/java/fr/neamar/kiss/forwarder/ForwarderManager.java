@@ -58,9 +58,6 @@ public class ForwarderManager extends Forwarder {
         notificationForwarder.onPause();
     }
 
-    public void onStop() {
-    }
-
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         widgetsForwarder.onActivityResult(requestCode, resultCode, data);
     }

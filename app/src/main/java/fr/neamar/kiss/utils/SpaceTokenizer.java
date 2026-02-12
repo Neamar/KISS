@@ -7,7 +7,7 @@ import android.widget.MultiAutoCompleteTextView;
 
 /**
  * Created by saveman71 on 12/17/16
- * From http://stackoverflow.com/a/4596652/2367848.
+ * From <a href="http://stackoverflow.com/a/4596652/2367848">http://stackoverflow.com/a/4596652/2367848</a>.
  */
 
 public class SpaceTokenizer implements MultiAutoCompleteTextView.Tokenizer {

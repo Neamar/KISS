@@ -2,7 +2,8 @@ package fr.neamar.kiss.searcher;
 
 import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import java.util.HashSet;
 import java.util.List;

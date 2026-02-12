@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EdgeEffect;
 
+import androidx.annotation.NonNull;
+
 /**
  * View that renders that over-scroll/"pulled too far" effect
  * <p>
@@ -78,7 +80,7 @@ public class BottomPullEffectView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
 
         if (this.effect == null) {

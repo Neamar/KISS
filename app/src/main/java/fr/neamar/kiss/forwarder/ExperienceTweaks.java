@@ -21,6 +21,8 @@ import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import java.util.List;
@@ -72,7 +74,7 @@ public class ExperienceTweaks extends Forwarder {
 
         gd = new GestureDetector(mainActivity, new GestureDetector.SimpleOnGestureListener() {
             @Override
-            public boolean onSingleTapUp(MotionEvent e) {
+            public boolean onSingleTapUp(@NonNull MotionEvent e) {
                 // Double tap disabled: display history directly
                 if (!prefs.getBoolean("double-tap", false)) {
                     if (prefs.getBoolean("history-onclick", false)) {
@@ -85,7 +87,7 @@ public class ExperienceTweaks extends Forwarder {
             }
 
             @Override
-            public boolean onSingleTapConfirmed(MotionEvent e) {
+            public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
                 // Double tap enabled: wait to confirm this is indeed a single tap, not a double tap
                 if (prefs.getBoolean("double-tap", false)) {
                     if (prefs.getBoolean("history-onclick", false)) {
@@ -99,14 +101,14 @@ public class ExperienceTweaks extends Forwarder {
             }
 
             @Override
-            public void onLongPress(MotionEvent e) {
+            public void onLongPress(@NonNull MotionEvent e) {
                 doAction("gesture-long-press", prefs.getString("gesture-long-press", "do-nothing"));
 
                 super.onLongPress(e);
             }
 
             @Override
-            public boolean onDoubleTap(MotionEvent e) {
+            public boolean onDoubleTap(@NonNull MotionEvent e) {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
                     return super.onDoubleTap(e);
                 }
@@ -138,7 +140,10 @@ public class ExperienceTweaks extends Forwarder {
             }
 
             @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            public boolean onFling(@Nullable MotionEvent e1, @NonNull MotionEvent e2, float velocityX, float velocityY) {
+                if (e1 == null) {
+                    return false;
+                }
                 float directionY = e2.getY() - e1.getY();
                 float directionX = e2.getX() - e1.getX();
                 if (Math.abs(directionX) > Math.abs(directionY)) {
@@ -386,8 +391,8 @@ public class ExperienceTweaks extends Forwarder {
 
     /**
      * Should we force the keyboard not to display suggestions?
-     * (swiftkey is broken, see https://github.com/Neamar/KISS/issues/44)
-     * (same for flesky: https://github.com/Neamar/KISS/issues/1263)
+     * (swiftkey is broken, see <a href="https://github.com/Neamar/KISS/issues/44">https://github.com/Neamar/KISS/issues/44</a>)
+     * (same for flesky: <a href="https://github.com/Neamar/KISS/issues/1263">https://github.com/Neamar/KISS/issues/1263</a>)
      */
     private boolean isNonCompliantKeyboard() {
         String currentKeyboard = Settings.Secure.getString(mainActivity.getContentResolver(), Settings.Secure.DEFAULT_INPUT_METHOD).toLowerCase(Locale.ROOT);
