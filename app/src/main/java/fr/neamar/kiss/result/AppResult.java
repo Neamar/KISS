@@ -75,9 +75,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
 
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (!isHideIcons(context)) {
-            if (appIcon.getTag() instanceof ComponentName && className.equals(appIcon.getTag())) {
-                icon = appIcon.getDrawable();
-            }
             this.setAsyncDrawable(appIcon);
         } else {
             appIcon.setImageDrawable(null);
