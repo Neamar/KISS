@@ -13,7 +13,6 @@ import androidx.preference.SwitchPreference;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -100,14 +99,13 @@ public class ExcludeAppSettingsFragment extends PreferenceFragmentCompat {
     ) {
         final SwitchPreference switchPreference = new SwitchPreference(context);
 
-        AtomicReference<Drawable> icon = new AtomicReference<>(null);
         switchPreference.setIcon(R.drawable.ic_launcher_white);
         Utilities.runAsync((task) -> {
             final ComponentName componentName = new ComponentName(app.packageName, app.activityName);
-            icon.set(iconsHandler.getDrawableIconForPackage(componentName, app.userHandle));
-        }, (task) -> {
+            return iconsHandler.getDrawableIconForPackage(componentName, app.userHandle);
+        }, (task, result) -> {
             if (!task.isCancelled()) {
-                switchPreference.setIcon(icon.get());
+                switchPreference.setIcon((Drawable) result);
             }
         });
 

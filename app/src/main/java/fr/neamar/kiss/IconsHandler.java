@@ -58,7 +58,7 @@ public class IconsHandler {
     private boolean mContactPackMask = false;
     private IconShape mContactsShape = IconShape.SHAPE_SYSTEM;
     private boolean mForceShape = false;
-    private Utilities.AsyncRun mLoadIconsPackTask = null;
+    private Utilities.AsyncRun<Drawable> mLoadIconsPackTask = null;
     private volatile Map<String, Long> customIconIds = null;
 
     public IconsHandler(Context ctx) {
@@ -133,9 +133,11 @@ public class IconsHandler {
             mIconPack = iconPack;
             // start async loading
             mLoadIconsPackTask = Utilities.runAsync((task) -> {
-                if (task == mLoadIconsPackTask)
+                if (task == mLoadIconsPackTask) {
                     iconPack.load(ctx.getPackageManager());
-            }, (task) -> {
+                }
+                return null;
+            }, (task, result) -> {
                 if (!task.isCancelled() && task == mLoadIconsPackTask) {
                     mLoadIconsPackTask = null;
                 }

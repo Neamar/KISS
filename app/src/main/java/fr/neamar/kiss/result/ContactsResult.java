@@ -23,7 +23,6 @@ import androidx.preference.PreferenceManager;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.atomic.AtomicReference;
 
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
@@ -38,7 +37,6 @@ import fr.neamar.kiss.ui.ShapedContactBadge;
 import fr.neamar.kiss.utils.ClipboardUtils;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
-import fr.neamar.kiss.utils.Utilities;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class ContactsResult extends CallResult<ContactsPojo> {
@@ -46,7 +44,6 @@ public class ContactsResult extends CallResult<ContactsPojo> {
     private final QueryInterface queryInterface;
     private volatile Drawable icon = null;
     private volatile Drawable appDrawable = null;
-    private Utilities.AsyncRun mLoadIconTask = null;
     private static final String TAG = ContactsResult.class.getSimpleName();
 
     ContactsResult(QueryInterface queryInterface, @NonNull ContactsPojo pojo) {
@@ -93,9 +90,6 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         boolean hideIcons = isHideIcons(context);
         if (!hideIcons) {
-            if (contactIcon.getTag() instanceof ContactsPojo && pojo.equals(contactIcon.getTag())) {
-                icon = contactIcon.getDrawable();
-            }
             this.setAsyncDrawable(contactIcon);
         } else {
             contactIcon.setImageDrawable(null);
@@ -156,22 +150,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         final ImageView appIcon = view.findViewById(R.id.item_app_icon);
         if (pojo.getContactData() != null && !hideIcons && isSubIconVisible(context)) {
             appIcon.setVisibility(View.VISIBLE);
-            if (appDrawable != null) {
-                appIcon.setImageDrawable(appDrawable);
-            } else {
-                appIcon.setImageResource(R.drawable.ic_launcher_white);
-                AtomicReference<Drawable> appDrawable = new AtomicReference<>(null);
-                mLoadIconTask = Utilities.runAsync((task) -> {
-                    if (task == mLoadIconTask) {
-                        // Retrieve icon for this shortcut
-                        appDrawable.set(getAppDrawable(context));
-                    }
-                }, (task) -> {
-                    if (!task.isCancelled() && task == mLoadIconTask) {
-                        appIcon.setImageDrawable(appDrawable.get());
-                    }
-                });
-            }
+            setAsyncDrawable(appIcon, R.drawable.ic_launcher_white, false, () -> appDrawable != null, this::getAppDrawable, (drawable) -> appDrawable = drawable);
         } else {
             appIcon.setVisibility(View.GONE);
         }
@@ -229,7 +208,9 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
     @Override
     void setDrawableCache(Drawable drawable) {
-        icon = drawable;
+        synchronized (this) {
+            icon = drawable;
+        }
     }
 
     @Override

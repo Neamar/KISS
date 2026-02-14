@@ -82,7 +82,8 @@ public class PickAppWidgetActivity extends AppCompatActivity {
                 }
                 adapterList.add(new ItemWidget(item));
             }
-        }, t -> {
+            return null;
+        }, (task, result) -> {
             progressContainer.setVisibility(View.GONE);
             adapter.setItems(adapterList);
         });
@@ -319,8 +320,7 @@ public class PickAppWidgetActivity extends AppCompatActivity {
     public static class ViewHolder {
         private final int mViewType;
         private final TextView textView;
-        private Utilities.AsyncRun task = null;
-        private Drawable mDrawable = null;
+        private Utilities.AsyncRun<Drawable> task = null;
 
         protected ViewHolder(int viewType, View itemView) {
             itemView.setTag(this);
@@ -348,18 +348,9 @@ public class PickAppWidgetActivity extends AppCompatActivity {
                     icon.setBounds(0, 0, w, h);
                     textView.setCompoundDrawables(null, icon, null, null);
                 }
-                task = Utilities.runAsync(t -> {
-                    Drawable icon = PickAppWidgetActivity.getWidgetPreview(textView.getContext(), widgetInfo.appWidgetInfo);
-                    synchronized (ViewHolder.this) {
-                        mDrawable = icon;
-                    }
-                }, t -> {
+                task = Utilities.runAsync(t -> PickAppWidgetActivity.getWidgetPreview(textView.getContext(), widgetInfo.appWidgetInfo), (t, icon) -> {
                     if (t.isCancelled())
                         return;
-                    final Drawable icon;
-                    synchronized (ViewHolder.this) {
-                        icon = mDrawable != null ? mDrawable : new ColorDrawable(0);
-                    }
                     int w = icon.getIntrinsicWidth();
                     int h = icon.getIntrinsicHeight();
                     float aspect = (w > 0 && h > 0) ? (w / (float) h) : 1f;

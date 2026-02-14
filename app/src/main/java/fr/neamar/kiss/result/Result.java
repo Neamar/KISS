@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -33,12 +32,14 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleableRes;
 import androidx.preference.PreferenceManager;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
@@ -59,10 +60,14 @@ import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.ClipboardUtils;
+import fr.neamar.kiss.utils.Utilities;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public abstract class Result<T extends Pojo> {
+
+    private static final String TAG = Result.class.getSimpleName();
+    private static final int TAG_RUNNING_TASK = R.id.item_app_icon;
 
     /**
      * Current information pojo
@@ -118,7 +123,9 @@ public abstract class Result<T extends Pojo> {
     public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
         View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
-        setAsyncDrawable(favoriteImage, R.drawable.ic_launcher_white);
+        // TODO: check why setAsyncDrawable results in some missing favorite icons, meanwhile use setImageDrawable directly
+//        setAsyncDrawable(favoriteImage, R.drawable.ic_launcher_white);
+        favoriteImage.setImageDrawable(getDrawable(context));
         favoriteView.setContentDescription(pojo.getName());
         return favoriteView;
     }
@@ -420,42 +427,57 @@ public abstract class Result<T extends Pojo> {
     void setDrawableCache(Drawable drawable) {
     }
 
-    void setAsyncDrawable(ImageView view) {
+    protected void setAsyncDrawable(ImageView view) {
         setAsyncDrawable(view, android.R.color.transparent);
     }
 
-    void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
-        // getting this called multiple times in parallel may result in empty icons
-        synchronized (this) {
-            // the ImageView tag will store the async task if it's running
-            if (view.getTag() instanceof AsyncSetImage) {
-                AsyncSetImage asyncSetImage = (AsyncSetImage) view.getTag();
-                if (this.equals(asyncSetImage.resultWeakReference.get())) {
-                    // we are already loading the icon for this
-                    return;
-                } else {
-                    asyncSetImage.cancel(true);
-                    view.setTag(null);
+    private void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
+        setAsyncDrawable(view, resId, false, this::isDrawableCached, this::getDrawable, this::setDrawableCache);
+    }
+
+    protected void setAsyncDrawable(@NonNull ImageView imageView,
+                                    @DrawableRes int defaultResId,
+                                    boolean invalidateDrawable,
+                                    @NonNull Supplier<Boolean> isCachedSupplier,
+                                    @NonNull Function<Context, Drawable> drawableGetter,
+                                    @NonNull Consumer<Drawable> cachedDrawableSetter) {
+        Utilities.AsyncRun<Drawable> taskToCancel = getTask(imageView);
+        if (taskToCancel != null) {
+            if (!taskToCancel.isCancelled()) {
+                taskToCancel.cancel();
+            }
+            imageView.setTag(TAG_RUNNING_TASK, null);
+        }
+
+        if (isCachedSupplier.get()) {
+            imageView.setImageDrawable(drawableGetter.apply(imageView.getContext()));
+            imageView.setTag(TAG_RUNNING_TASK, null);
+        } else {
+            imageView.setImageResource(defaultResId);
+            Utilities.AsyncRun<Drawable> newTask = Utilities.runAsync((task) -> {
+                if (task.isCancelled()) {
+                    return null;
                 }
-            }
-            // the ImageView will store the Result after the AsyncTask finished
-            else if (this.equals(view.getTag())) {
-                ((Result<?>) view.getTag()).setDrawableCache(view.getDrawable());
-                return;
-            }
-            if (isDrawableCached()) {
-                view.setImageDrawable(getDrawable(view.getContext()));
-                view.setTag(this);
-            } else {
-                // use AsyncTask.SERIAL_EXECUTOR explicitly for now
-                // TODO: make execution parallel if needed/possible
-                view.setTag(createAsyncSetImage(view, resId).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR));
-            }
+                return drawableGetter.apply(imageView.getContext());
+            }, (task, drawable) -> {
+                if (task.isCancelled() || drawable == null) {
+                    Log.w(TAG, "Cannot set drawable for " + getPojoId());
+                } else {
+                    imageView.setTag(TAG_RUNNING_TASK, null);
+                    cachedDrawableSetter.accept(drawable);
+                    imageView.setImageDrawable(drawable);
+                    if (invalidateDrawable) {
+                        imageView.invalidateDrawable(drawable);
+                    }
+                }
+            });
+            imageView.setTag(TAG_RUNNING_TASK, newTask);
         }
     }
 
-    private AsyncSetImage createAsyncSetImage(ImageView imageView, @DrawableRes int resId) {
-        return new AsyncSetImage(imageView, this, resId);
+    private Utilities.AsyncRun<Drawable> getTask(ImageView view) {
+        Object tag = view.getTag(TAG_RUNNING_TASK);
+        return tag instanceof Utilities.AsyncRun ? (Utilities.AsyncRun<Drawable>) tag : null;
     }
 
     /**
@@ -490,44 +512,6 @@ public abstract class Result<T extends Pojo> {
     public long getUniqueId() {
         // we can consider hashCode unique enough in this context
         return this.pojo.id.hashCode();
-    }
-
-    static class AsyncSetImage extends AsyncTask<Void, Void, Drawable> {
-        final WeakReference<ImageView> imageViewWeakReference;
-        final WeakReference<Result<?>> resultWeakReference;
-
-        AsyncSetImage(ImageView image, Result<?> result, @DrawableRes int resId) {
-            super();
-            image.setTag(this);
-            image.setImageResource(resId);
-            this.imageViewWeakReference = new WeakReference<>(image);
-            this.resultWeakReference = new WeakReference<>(result);
-        }
-
-        @Override
-        protected Drawable doInBackground(Void... voids) {
-            ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || image.getTag() != this) {
-                imageViewWeakReference.clear();
-                return null;
-            }
-            Result<?> result = resultWeakReference.get();
-            if (result == null) {
-                return null;
-            }
-            return result.getDrawable(image.getContext());
-        }
-
-        @Override
-        protected void onPostExecute(Drawable drawable) {
-            ImageView image = imageViewWeakReference.get();
-            if (isCancelled() || image == null || drawable == null) {
-                imageViewWeakReference.clear();
-                return;
-            }
-            image.setImageDrawable(drawable);
-            image.setTag(resultWeakReference.get());
-        }
     }
 
     protected boolean isHideIcons(Context context) {
