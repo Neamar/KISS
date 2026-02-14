@@ -16,8 +16,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
-import java.util.concurrent.atomic.AtomicReference;
-
 import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MainActivity;
@@ -25,15 +23,12 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.utils.DrawableUtils;
-import fr.neamar.kiss.utils.Utilities;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class TagDummyResult extends Result<TagDummyPojo> {
     private static volatile Drawable gBackground = null;
 
     private volatile Drawable icon = null;
-
-    private Utilities.AsyncRun mLoadIconTask = null;
 
     TagDummyResult(@NonNull TagDummyPojo pojo) {
         super(pojo);
@@ -83,20 +78,7 @@ public class TagDummyResult extends Result<TagDummyPojo> {
             ImageView favoriteIcon = favoriteView.findViewById(android.R.id.background);
             TextView favoriteText = favoriteView.findViewById(android.R.id.text1);
 
-            favoriteIcon.setImageResource(R.drawable.ic_launcher_white);
-            AtomicReference<Drawable> backgroundDrawable = new AtomicReference<>(null);
-            mLoadIconTask = Utilities.runAsync((task) -> {
-                if (task == mLoadIconTask) {
-                    // Retrieve icon for this shortcut
-                    backgroundDrawable.set(getShape(context));
-                }
-            }, (task) -> {
-                if (!task.isCancelled() && task == mLoadIconTask) {
-                    // set icons
-                    favoriteIcon.setImageDrawable(backgroundDrawable.get());
-                    favoriteIcon.invalidateDrawable(backgroundDrawable.get());
-                }
-            });
+            setAsyncDrawable(favoriteIcon, R.drawable.ic_launcher_white, true, () -> gBackground != null, () -> getShape(context), (drawable) -> {});
 
             boolean largeSearchBar = sharedPreferences.getBoolean("large-search-bar", false);
             int barSize = context.getResources().getDimensionPixelSize(largeSearchBar ? R.dimen.large_bar_height : R.dimen.bar_height);
