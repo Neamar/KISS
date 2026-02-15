@@ -59,7 +59,7 @@ public class CustomIconDialog extends DialogFragment {
     private ImageView mPreview;
     private OnDismissListener mOnDismissListener = null;
     private OnConfirmListener mOnConfirmListener = null;
-    private Utilities.AsyncRun mLoadIconsPackTask = null;
+    private Utilities.AsyncRun<Void> mLoadIconsPackTask = null;
 
     public interface OnDismissListener {
         void onDismiss(@NonNull CustomIconDialog dialog);
@@ -178,7 +178,8 @@ public class CustomIconDialog extends DialogFragment {
                 if (task == mLoadIconsPackTask) {
                     iconPack.loadDrawables(context.getPackageManager());
                 }
-            }, (task) -> {
+                return null;
+            }, (task, result) -> {
                 if (!task.isCancelled() && task == mLoadIconsPackTask) {
                     Activity activity = Utilities.getActivity(context);
                     if (activity != null)

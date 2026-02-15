@@ -22,7 +22,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import java.net.URISyntaxException;
-import java.util.concurrent.atomic.AtomicReference;
 
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.IconsHandler;
@@ -35,7 +34,6 @@ import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.UserHandle;
-import fr.neamar.kiss.utils.Utilities;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
@@ -44,8 +42,6 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
 
     private volatile Drawable icon = null;
     private volatile Drawable appDrawable = null;
-
-    private Utilities.AsyncRun mLoadIconTask = null;
 
     ShortcutsResult(@NonNull ShortcutPojo pojo) {
         super(pojo);
@@ -71,31 +67,10 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
             // set shortcut icon
             this.setAsyncDrawable(shortcutIcon);
 
-            // set app icon
-            if (mLoadIconTask != null) {
-                mLoadIconTask.cancel();
-                mLoadIconTask = null;
-            }
-
             // Prepare
             if (isSubIconVisible(context)) {
                 appIcon.setVisibility(View.VISIBLE);
-                if (appDrawable != null) {
-                    appIcon.setImageDrawable(getAppDrawable(context));
-                } else {
-                    appIcon.setImageResource(android.R.color.transparent);
-                    AtomicReference<Drawable> appDrawable = new AtomicReference<>(null);
-                    mLoadIconTask = Utilities.runAsync((task) -> {
-                        if (task == mLoadIconTask) {
-                            // Retrieve icon for this shortcut
-                            appDrawable.set(getAppDrawable(context));
-                        }
-                    }, (task) -> {
-                        if (!task.isCancelled() && task == mLoadIconTask) {
-                            appIcon.setImageDrawable(appDrawable.get());
-                        }
-                    });
-                }
+                setAsyncDrawable(appIcon, android.R.color.transparent, false, () -> appDrawable != null, this::getAppDrawable, (drawable) -> appDrawable = drawable);
             } else {
                 appIcon.setVisibility(View.GONE);
             }
@@ -155,7 +130,9 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
 
     @Override
     void setDrawableCache(Drawable drawable) {
-        icon = drawable;
+        synchronized (this) {
+            icon = drawable;
+        }
     }
 
     public Drawable getDrawable(Context context) {

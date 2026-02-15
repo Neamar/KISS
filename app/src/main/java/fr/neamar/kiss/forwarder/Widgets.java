@@ -98,6 +98,7 @@ class Widgets extends Forwarder {
             case Activity.RESULT_OK:
                 if (data != null) {
                     if (!data.getBooleanExtra(PickAppWidgetActivity.EXTRA_WIDGET_BIND_ALLOWED, false)) {
+                        Log.w(TAG, "Widget bind not allowed");
                         requestBindWidget(data);
                         break;
                     }
@@ -464,6 +465,8 @@ class Widgets extends Forwarder {
             if (!isConfigurationOptional(appWidgetInfo)) {
                 configureAppWidget(appWidgetId, appWidgetInfo, REQUEST_APPWIDGET_CONFIGURED);
             }
+        } else {
+            Log.w(TAG, "Add widget not possible");
         }
     }
 
