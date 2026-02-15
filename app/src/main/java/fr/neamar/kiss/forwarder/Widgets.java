@@ -41,6 +41,7 @@ import fr.neamar.kiss.PickAppWidgetActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.WidgetHost;
+import fr.neamar.kiss.ui.WidgetStackView;
 
 class Widgets extends Forwarder {
     private static final String TAG = Widgets.class.getSimpleName();
@@ -65,6 +66,11 @@ class Widgets extends Forwarder {
     private ViewGroup widgetArea;
     private ActivityResultLauncher<Intent> requestAppWidgetPicked;
     private ActivityResultLauncher<Intent> requestAppWidgetBound;
+
+    /**
+     * Map to track which stack a widget belongs to
+     */
+    private final java.util.Map<AppWidgetHostView, WidgetStackView> widgetStacks = new java.util.HashMap<>();
 
     Widgets(MainActivity mainActivity) {
         super(mainActivity);
@@ -179,16 +185,45 @@ class Widgets extends Forwarder {
     }
 
     private void serializeState() {
-        List<String> builder = new ArrayList<>(widgetArea.getChildCount());
+        List<String> builder = new ArrayList<>();
+        Set<WidgetStackView> processedStacks = new HashSet<>();
+        
         for (int i = 0; i < widgetArea.getChildCount(); i++) {
-            AppWidgetHostView view = (AppWidgetHostView) widgetArea.getChildAt(i);
-            int appWidgetId = view.getAppWidgetId();
-            AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
-            if (appWidgetInfo != null) {
-                int lineSize = getLineSize(view);
-                builder.add(appWidgetId + "-" + lineSize);
-            } else {
-                Log.w(TAG, "Unable to retrieve widget by id " + appWidgetId);
+            View child = widgetArea.getChildAt(i);
+            
+            if (child instanceof WidgetStackView) {
+                WidgetStackView stack = (WidgetStackView) child;
+                if (processedStacks.contains(stack)) {
+                    continue;
+                }
+                processedStacks.add(stack);
+                
+                // Serialize stack: [id1-lineSize1,id2-lineSize2,...]
+                List<String> stackWidgets = new ArrayList<>();
+                for (AppWidgetHostView widget : stack.getWidgets()) {
+                    int appWidgetId = widget.getAppWidgetId();
+                    AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+                    if (appWidgetInfo != null) {
+                        int lineSize = getLineSize(widget);
+                        stackWidgets.add(appWidgetId + "-" + lineSize);
+                    }
+                }
+                if (!stackWidgets.isEmpty()) {
+                    builder.add("[" + TextUtils.join(",", stackWidgets) + "]");
+                }
+            } else if (child instanceof AppWidgetHostView) {
+                AppWidgetHostView view = (AppWidgetHostView) child;
+                // Only serialize if not in a stack
+                if (!widgetStacks.containsKey(view)) {
+                    int appWidgetId = view.getAppWidgetId();
+                    AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
+                    if (appWidgetInfo != null) {
+                        int lineSize = getLineSize(view);
+                        builder.add(appWidgetId + "-" + lineSize);
+                    } else {
+                        Log.w(TAG, "Unable to retrieve widget by id " + appWidgetId);
+                    }
+                }
             }
         }
 
@@ -208,18 +243,62 @@ class Widgets extends Forwarder {
         // remove empty list view when using widgets, this would block touches on the widget
         mainActivity.emptyListView.setVisibility(View.GONE);
         widgetArea.removeAllViews();
+        widgetStacks.clear();
+        
         String widgetsConfString = prefs.getString(WIDGET_PREF_KEY, "");
         String[] widgetsConf = widgetsConfString.split(";");
         Set<Integer> idsUsed = new HashSet<>();
+        
         for (String widgetConf : widgetsConf) {
             if (widgetConf.isEmpty()) {
                 continue;
             }
-            String[] conf = widgetConf.split("-");
-            int id = Integer.parseInt(conf[0]);
-            int lineSize = Integer.parseInt(conf[1]);
-            idsUsed.add(id);
-            addWidget(id, lineSize);
+            
+            // Check if this is a stack (starts with [ and ends with ])
+            if (widgetConf.startsWith("[") && widgetConf.endsWith("]")) {
+                // Parse stack: [id1-lineSize1,id2-lineSize2,...]
+                String stackContent = widgetConf.substring(1, widgetConf.length() - 1);
+                String[] stackWidgets = stackContent.split(",");
+                
+                if (stackWidgets.length > 0) {
+                    WidgetStackView stack = new WidgetStackView(mainActivity);
+                    int maxLineSize = 0;
+                    
+                    for (String stackWidget : stackWidgets) {
+                        if (stackWidget.isEmpty()) {
+                            continue;
+                        }
+                        String[] conf = stackWidget.split("-");
+                        int id = Integer.parseInt(conf[0]);
+                        int lineSize = Integer.parseInt(conf[1]);
+                        idsUsed.add(id);
+                        
+                        AppWidgetHostView widget = createWidgetView(id, lineSize);
+                        if (widget != null) {
+                            stack.addWidget(widget);
+                            widgetStacks.put(widget, stack);
+                            maxLineSize = Math.max(maxLineSize, lineSize);
+                        }
+                    }
+                    
+                    if (stack.getWidgetCount() > 0) {
+                        // Set stack size based on largest widget
+                        ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT, 
+                            (int) (maxLineSize * getLineHeight())
+                        );
+                        stack.setLayoutParams(params);
+                        widgetArea.addView(stack);
+                    }
+                }
+            } else {
+                // Regular widget: id-lineSize
+                String[] conf = widgetConf.split("-");
+                int id = Integer.parseInt(conf[0]);
+                int lineSize = Integer.parseInt(conf[1]);
+                idsUsed.add(id);
+                addWidget(id, lineSize);
+            }
         }
 
         // kill zombie widgets
@@ -237,17 +316,13 @@ class Widgets extends Forwarder {
     }
 
     /**
-     * Retrieve a view for specified widget,
-     * add context menu to it
-     *
-     * @param appWidgetId id of widget to add
-     * @param lineSize    height of widget given in lines
+     * Create a widget view (used for both regular widgets and stacked widgets)
      */
-    private void addWidget(int appWidgetId, int lineSize) {
+    private AppWidgetHostView createWidgetView(int appWidgetId, int lineSize) {
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(appWidgetId);
         if (appWidgetInfo == null) {
             Log.i(TAG, "Unable to retrieve widget by id " + appWidgetId);
-            return;
+            return null;
         }
 
         AppWidgetHostView hostView = mAppWidgetHost.createView(mainActivity.getApplicationContext(), appWidgetId, appWidgetInfo);
@@ -274,13 +349,29 @@ class Widgets extends Forwarder {
             return true;
         });
 
-        widgetArea.addView(hostView);
-        // Start listening for widget update
-        mAppWidgetHost.startListening();
+        return hostView;
+    }
+
+    /**
+     * Retrieve a view for specified widget,
+     * add context menu to it
+     *
+     * @param appWidgetId id of widget to add
+     * @param lineSize    height of widget given in lines
+     */
+    private void addWidget(int appWidgetId, int lineSize) {
+        AppWidgetHostView hostView = createWidgetView(appWidgetId, lineSize);
+        if (hostView != null) {
+            widgetArea.addView(hostView);
+            // Start listening for widget update
+            mAppWidgetHost.startListening();
+        }
     }
 
     private void buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, AppWidgetProviderInfo currentAppWidgetInfo, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
         final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+        final boolean isInStack = widgetStacks.containsKey(widgetWithMenuCurrentlyDisplayed);
+        final WidgetStackView stack = widgetStacks.get(widgetWithMenuCurrentlyDisplayed);
 
         if (isReconfigurable(currentAppWidgetInfo)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_widget_settings));
@@ -293,21 +384,59 @@ class Widgets extends Forwarder {
         if (!preventDecreaseLineHeight(decreasedLineHeight, currentAppWidgetInfo)) {
             adapter.add(new ListPopup.Item(context, R.string.menu_size_down));
         }
-        if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) != 0) {
-            adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_up));
+        
+        // Stack/unstack options
+        if (isInStack && stack != null && stack.getWidgetCount() > 1) {
+            adapter.add(new ListPopup.Item(context, R.string.menu_widget_unstack));
+        } else if (!isInStack) {
+            // Find adjacent widget to stack with
+            int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
+            if (currentIndex > 0) {
+                View prevSibling = parent.getChildAt(currentIndex - 1);
+                if (prevSibling instanceof AppWidgetHostView && !widgetStacks.containsKey(prevSibling)) {
+                    adapter.add(new ListPopup.Item(context, R.string.menu_widget_stack_above));
+                } else if (prevSibling instanceof WidgetStackView) {
+                    adapter.add(new ListPopup.Item(context, R.string.menu_widget_stack_above));
+                }
+            }
+            if (currentIndex < parent.getChildCount() - 1) {
+                View nextSibling = parent.getChildAt(currentIndex + 1);
+                if (nextSibling instanceof AppWidgetHostView && !widgetStacks.containsKey(nextSibling)) {
+                    adapter.add(new ListPopup.Item(context, R.string.menu_widget_stack_below));
+                } else if (nextSibling instanceof WidgetStackView) {
+                    adapter.add(new ListPopup.Item(context, R.string.menu_widget_stack_below));
+                }
+            }
         }
-        if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) != parent.getChildCount() - 1) {
-            adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_down));
+        
+        if (!isInStack) {
+            if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) != 0) {
+                adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_up));
+            }
+            if (parent.indexOfChild(widgetWithMenuCurrentlyDisplayed) != parent.getChildCount() - 1) {
+                adapter.add(new ListPopup.Item(context, R.string.menu_widget_move_down));
+            }
         }
         adapter.add(new ListPopup.Item(context, R.string.menu_widget_remove));
     }
 
     private void popupMenuClickHandler(@StringRes int stringId, AppWidgetHostView widgetWithMenuCurrentlyDisplayed) {
         final ViewGroup parent = (ViewGroup) widgetWithMenuCurrentlyDisplayed.getParent();
+        final boolean isInStack = widgetStacks.containsKey(widgetWithMenuCurrentlyDisplayed);
+        final WidgetStackView stack = widgetStacks.get(widgetWithMenuCurrentlyDisplayed);
+        
         if (stringId == R.string.menu_widget_settings) {
             reConfigureAppWidget(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
         } else if (stringId == R.string.menu_widget_remove) {
-            parent.removeView(widgetWithMenuCurrentlyDisplayed);
+            if (isInStack && stack != null) {
+                stack.removeWidget(widgetWithMenuCurrentlyDisplayed);
+                widgetStacks.remove(widgetWithMenuCurrentlyDisplayed);
+                if (stack.getWidgetCount() == 0) {
+                    widgetArea.removeView(stack);
+                }
+            } else {
+                parent.removeView(widgetWithMenuCurrentlyDisplayed);
+            }
             mAppWidgetHost.deleteAppWidgetId(widgetWithMenuCurrentlyDisplayed.getAppWidgetId());
             serializeState();
         } else if (stringId == R.string.menu_size_up) {
@@ -316,6 +445,24 @@ class Widgets extends Forwarder {
         } else if (stringId == R.string.menu_size_down) {
             int newHeight = getDecreasedLineHeight(widgetWithMenuCurrentlyDisplayed);
             resizeWidget(widgetWithMenuCurrentlyDisplayed, newHeight);
+        } else if (stringId == R.string.menu_widget_unstack) {
+            if (isInStack && stack != null) {
+                unstackWidget(widgetWithMenuCurrentlyDisplayed, stack);
+            }
+        } else if (stringId == R.string.menu_widget_stack_above) {
+            ViewGroup actualParent = isInStack ? (ViewGroup) stack.getParent() : parent;
+            int currentIndex = actualParent.indexOfChild(isInStack ? stack : widgetWithMenuCurrentlyDisplayed);
+            if (currentIndex > 0) {
+                View prevSibling = actualParent.getChildAt(currentIndex - 1);
+                stackWidgetWith(widgetWithMenuCurrentlyDisplayed, prevSibling, actualParent, currentIndex - 1);
+            }
+        } else if (stringId == R.string.menu_widget_stack_below) {
+            ViewGroup actualParent = isInStack ? (ViewGroup) stack.getParent() : parent;
+            int currentIndex = actualParent.indexOfChild(isInStack ? stack : widgetWithMenuCurrentlyDisplayed);
+            if (currentIndex < actualParent.getChildCount() - 1) {
+                View nextSibling = actualParent.getChildAt(currentIndex + 1);
+                stackWidgetWith(widgetWithMenuCurrentlyDisplayed, nextSibling, actualParent, currentIndex + 1);
+            }
         } else if (stringId == R.string.menu_widget_move_up) {
             int currentIndex = parent.indexOfChild(widgetWithMenuCurrentlyDisplayed);
             if (currentIndex >= 1) {
@@ -331,6 +478,85 @@ class Widgets extends Forwarder {
                 serializeState();
             }
         }
+    }
+
+    /**
+     * Stack a widget with another widget or stack
+     */
+    private void stackWidgetWith(AppWidgetHostView widget, View target, ViewGroup parent, int targetIndex) {
+        WidgetStackView targetStack;
+        
+        if (target instanceof WidgetStackView) {
+            targetStack = (WidgetStackView) target;
+        } else if (target instanceof AppWidgetHostView && widgetStacks.containsKey(target)) {
+            targetStack = widgetStacks.get(target);
+        } else {
+            // Create new stack with target widget
+            targetStack = new WidgetStackView(mainActivity);
+            AppWidgetHostView targetWidget = (AppWidgetHostView) target;
+            
+            // Remove target from parent and add to stack
+            parent.removeView(target);
+            int targetLineSize = getLineSize(targetWidget);
+            targetStack.addWidget(targetWidget);
+            widgetStacks.put(targetWidget, targetStack);
+            
+            // Add stack to parent
+            ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                (int) (targetLineSize * getLineHeight())
+            );
+            targetStack.setLayoutParams(params);
+            parent.addView(targetStack, targetIndex);
+        }
+        
+        // Add widget to stack
+        boolean wasInStack = widgetStacks.containsKey(widget);
+        WidgetStackView oldStack = widgetStacks.get(widget);
+        
+        if (wasInStack && oldStack != null) {
+            oldStack.removeWidget(widget);
+            if (oldStack.getWidgetCount() == 0) {
+                parent.removeView(oldStack);
+            }
+        } else {
+            parent.removeView(widget);
+        }
+        
+        targetStack.addWidget(widget);
+        widgetStacks.put(widget, targetStack);
+        
+        // Update stack size to fit all widgets
+        updateStackSize(targetStack);
+        
+        serializeState();
+    }
+
+    /**
+     * Unstack a widget from its stack
+     */
+    private void unstackWidget(AppWidgetHostView widget, WidgetStackView stack) {
+        ViewGroup parent = (ViewGroup) stack.getParent();
+        int stackIndex = parent.indexOfChild(stack);
+        
+        stack.removeWidget(widget);
+        widgetStacks.remove(widget);
+        
+        // Add widget back to parent
+        parent.addView(widget, stackIndex);
+        
+        // If stack has only one widget left, unstack it too
+        if (stack.getWidgetCount() == 1) {
+            AppWidgetHostView remainingWidget = stack.getCurrentWidget();
+            stack.removeWidget(remainingWidget);
+            widgetStacks.remove(remainingWidget);
+            parent.removeView(stack);
+            parent.addView(remainingWidget, stackIndex);
+        } else if (stack.getWidgetCount() == 0) {
+            parent.removeView(stack);
+        }
+        
+        serializeState();
     }
 
     /**
@@ -360,7 +586,17 @@ class Widgets extends Forwarder {
     private void setWidgetSize(AppWidgetHostView hostView, int height, @NonNull AppWidgetProviderInfo appWidgetInfo) {
         hostView.setMinimumHeight(height);
         hostView.setMinimumWidth(Math.min(appWidgetInfo.minWidth, appWidgetInfo.minResizeWidth));
-        ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+        
+        // Use appropriate layout params based on parent type
+        ViewGroup parent = (ViewGroup) hostView.getParent();
+        ViewGroup.LayoutParams params;
+        if (parent instanceof android.widget.FrameLayout || parent instanceof WidgetStackView) {
+            // Widget is in a stack (FrameLayout-based)
+            params = new android.widget.FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+        } else {
+            // Widget is in regular layout (LinearLayout)
+            params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+        }
         hostView.setLayoutParams(params);
     }
 
@@ -370,11 +606,74 @@ class Widgets extends Forwarder {
      */
     private void resizeWidget(AppWidgetHostView hostView, int height) {
         AppWidgetProviderInfo appWidgetInfo = mAppWidgetManager.getAppWidgetInfo(hostView.getAppWidgetId());
+        if (appWidgetInfo == null) {
+            Log.w(TAG, "Cannot resize widget: appWidgetInfo is null");
+            return;
+        }
         if (preventDecreaseLineHeight(height, appWidgetInfo) && preventIncreaseLineHeight(height, appWidgetInfo)) {
             return;
         }
+        
+        // Store the new line size before resizing
+        int newLineSize = getLineSize(height);
+        
         setWidgetSize(hostView, height, appWidgetInfo);
+        
+        // Request layout to ensure the new size is applied
+        hostView.requestLayout();
+        
+        // If widget is in a stack, update the stack container size
+        if (widgetStacks.containsKey(hostView)) {
+            WidgetStackView stack = widgetStacks.get(hostView);
+            if (stack != null) {
+                updateStackSize(stack, hostView, newLineSize);
+            }
+        }
+        
         serializeState();
+    }
+
+    /**
+     * Update the size of a stack container to fit the largest widget
+     * @param stack The stack container
+     * @param resizedWidget The widget that was just resized (can be null)
+     * @param resizedWidgetLineSize The new line size of the resized widget (if provided)
+     */
+    private void updateStackSize(WidgetStackView stack, AppWidgetHostView resizedWidget, int resizedWidgetLineSize) {
+        if (stack == null) {
+            return;
+        }
+        
+        int maxLineSize = 0;
+        for (AppWidgetHostView widget : stack.getWidgets()) {
+            int lineSize;
+            if (widget == resizedWidget && resizedWidgetLineSize > 0) {
+                // Use the known new size for the widget we just resized
+                lineSize = resizedWidgetLineSize;
+            } else {
+                // Get size for other widgets
+                lineSize = getLineSize(widget);
+            }
+            maxLineSize = Math.max(maxLineSize, lineSize);
+        }
+        
+        ViewGroup.LayoutParams params = stack.getLayoutParams();
+        if (params != null) {
+            int newHeight = (int) (maxLineSize * getLineHeight());
+            if (params.height != newHeight) {
+                params.height = newHeight;
+                stack.setLayoutParams(params);
+                stack.requestLayout();
+            }
+        }
+    }
+
+    /**
+     * Update the size of a stack container to fit the largest widget
+     * (Overload for when we don't know which widget was resized)
+     */
+    private void updateStackSize(WidgetStackView stack) {
+        updateStackSize(stack, null, 0);
     }
 
     /**
@@ -518,7 +817,31 @@ class Widgets extends Forwarder {
      * @return calculated line size of given view
      */
     private int getLineSize(View view) {
-        return getLineSize(view.getLayoutParams().height);
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+        if (params == null) {
+            // Fallback to measured height if layout params are null
+            return getLineSize(view.getHeight() > 0 ? view.getHeight() : view.getMeasuredHeight());
+        }
+        
+        int height = params.height;
+        // Handle special layout params values
+        if (height == ViewGroup.LayoutParams.WRAP_CONTENT || height == ViewGroup.LayoutParams.MATCH_PARENT) {
+            // Use measured height or minimum height as fallback
+            int measuredHeight = view.getHeight() > 0 ? view.getHeight() : view.getMeasuredHeight();
+            if (measuredHeight > 0) {
+                return getLineSize(measuredHeight);
+            }
+            // Last resort: use minimum height if available
+            if (view instanceof AppWidgetHostView) {
+                int minHeight = ((AppWidgetHostView) view).getMinimumHeight();
+                if (minHeight > 0) {
+                    return getLineSize(minHeight);
+                }
+            }
+            // Default to 1 line if we can't determine size
+            return 1;
+        }
+        return getLineSize(height);
     }
 
     /**
