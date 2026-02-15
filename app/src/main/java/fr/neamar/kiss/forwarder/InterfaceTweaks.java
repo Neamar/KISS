@@ -1,6 +1,10 @@
 package fr.neamar.kiss.forwarder;
 
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -14,7 +18,10 @@ import android.view.WindowInsets;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StyleableRes;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.preference.PreferenceManager;
 
 import java.util.List;
 
@@ -33,7 +40,7 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     public static void applyTheme(Activity act, SharedPreferences prefs) {
-        String theme = prefs.getString("theme", "transparent");
+        String theme = getTheme(prefs);
         switch (theme) {
             case "dark":
                 act.setTheme(R.style.AppThemeDark);
@@ -86,18 +93,8 @@ public class InterfaceTweaks extends Forwarder {
         applySystemBarInsets(act.getWindow().getDecorView());
     }
 
-    public static void applySystemBarInsets(View view) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            view.setOnApplyWindowInsetsListener((v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsets.Type.systemBars() | WindowInsets.Type.ime());
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return WindowInsets.CONSUMED;
-            });
-        }
-    }
-
     public static void applySettingsTheme(Activity act, SharedPreferences prefs) {
-        String theme = prefs.getString("theme", "transparent");
+        String theme = getTheme(prefs);
         switch (theme) {
             case "dark":
                 act.setTheme(R.style.SettingThemeDark);
@@ -121,7 +118,51 @@ public class InterfaceTweaks extends Forwarder {
                 act.setTheme(R.style.SettingTheme);
                 break;
         }
+        UIColors.applyAccentColor(act);
         UIColors.updateThemePrimaryColor(act);
+        applySystemBarInsets(act.getWindow().getDecorView());
+    }
+
+    public static void setDefaultNightMode(@NonNull Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String theme = getTheme(prefs);
+        switch (theme) {
+            case "dark":
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+                break;
+            case "transparent":
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
+                break;
+            case "semi-transparent":
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
+                break;
+            case "semi-transparent-dark":
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+                break;
+            case "transparent-dark":
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+                break;
+            case "amoled-dark":
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+                break;
+            default: // "light"
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
+                break;
+        }
+    }
+
+    private static String getTheme(SharedPreferences prefs) {
+        return prefs.getString("theme", "transparent");
+    }
+
+    private static void applySystemBarInsets(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+            view.setOnApplyWindowInsetsListener((v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsets.Type.systemBars() | WindowInsets.Type.ime());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return WindowInsets.CONSUMED;
+            });
+        }
     }
 
     void onCreate() {

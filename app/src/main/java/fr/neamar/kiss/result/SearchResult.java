@@ -203,7 +203,7 @@ public class SearchResult extends Result<SearchPojo> {
     }
 
     @Override
-    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView) {
+    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
         adapter.add(new ListPopup.Item(context, R.string.share));
 
         return inflatePopupMenu(adapter, context);

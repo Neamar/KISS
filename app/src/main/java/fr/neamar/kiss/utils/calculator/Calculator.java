@@ -23,8 +23,8 @@ public class Calculator {
 		ArrayDeque<BigDecimal> stack = new ArrayDeque<>();
 
 		for (Tokenizer.Token token : expression) {
-			BigDecimal operand2 = null;
-			BigDecimal operand1 = null;
+			BigDecimal operand2;
+			BigDecimal operand1;
 
 			switch (token.type) {
 				case Tokenizer.Token.NUMBER_TOKEN:
@@ -94,7 +94,7 @@ public class Calculator {
 
 					if(!isFinite(pow)) {
 						throw new ArithmeticException("Not finite result: "
-								+ operand1.toString() + "^" + operand2.toString() + " = " + pow);
+								+ operand1 + "^" + operand2 + " = " + pow);
 					}
 
 					stack.push(new BigDecimal(pow));
@@ -119,13 +119,11 @@ public class Calculator {
 	}
 
 	private static boolean errorInExpression(boolean isUnary, final ArrayDeque<BigDecimal> stack) {
-		boolean error = false;
 		if(isUnary) {
-			error = error || stack.size() < 1;
+            return stack.isEmpty();
 		} else {
-			error = error || stack.size() < 2;
+            return stack.size() < 2;
 		}
-		return error;
 	}
 
 	/**

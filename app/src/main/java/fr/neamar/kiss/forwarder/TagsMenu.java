@@ -2,7 +2,6 @@ package fr.neamar.kiss.forwarder;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,12 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -66,9 +68,11 @@ public class TagsMenu extends Forwarder {
     public static Set<String> getPrefTags(SharedPreferences prefs, Context context) {
         Set<String> prefTags = getPrefTags(prefs);
         if (prefTags == null || prefTags.isEmpty()) {
-            Set<String> tags = new HashSet<>(5);
             TagsHandler tagsHandler = KissApplication.getApplication(context).getDataHandler().getTagsHandler();
-            Set<String> list = tagsHandler.getAllTagsAsSet();
+            List<String> list = new ArrayList<>(tagsHandler.getAllTagsAsSet());
+            Collections.sort(list);
+
+            Set<String> tags = new HashSet<>(5);
             for (String tag : list) {
                 tags.add(tag);
                 if (tags.size() >= 5)

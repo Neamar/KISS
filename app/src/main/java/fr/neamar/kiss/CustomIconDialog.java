@@ -1,8 +1,6 @@
 package fr.neamar.kiss;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,6 +32,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -79,23 +78,11 @@ public class CustomIconDialog extends DialogFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_FRAME, 0);
-    }
-
-    @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         cancelLoadIconsPackTask();
         if (mOnDismissListener != null)
             mOnDismissListener.onDismiss(this);
         super.onDismiss(dialog);
-    }
-
-    @NonNull
-    @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return super.onCreateDialog(savedInstanceState);
     }
 
     @Nullable
@@ -273,7 +260,7 @@ public class CustomIconDialog extends DialogFragment {
         if (!(drawable instanceof BitmapDrawable))
             return;
 
-        ViewGroup layout = (ViewGroup) LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_icon_quick, parent, false);
+        ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.custom_icon_quick, parent, false);
         ImageView icon = layout.findViewById(android.R.id.icon);
         TextView text = layout.findViewById(android.R.id.text1);
 
@@ -290,14 +277,14 @@ public class CustomIconDialog extends DialogFragment {
 
     protected void refreshList() {
         mIconData.clear();
-        IconsHandler iconsHandler = KissApplication.getApplication(getActivity()).getIconsHandler();
+        IconsHandler iconsHandler = KissApplication.getApplication(requireContext()).getIconsHandler();
         IconPackXML iconPack = iconsHandler.getCustomIconPack();
         if (iconPack != null) {
             Collection<IconPackXML.DrawableInfo> drawables = iconPack.getDrawableList();
             if (drawables != null) {
                 CharSequence searchText = mSearch.getText();
                 StringNormalizer.Result normalized = StringNormalizer.normalizeWithResult(searchText, true);
-                FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(getActivity(), normalized.codePoints);
+                FuzzyScore fuzzyScore = FuzzyFactory.createFuzzyScore(requireContext(), normalized.codePoints);
                 for (IconPackXML.DrawableInfo info : drawables) {
                     if (TextUtils.isEmpty(searchText) || fuzzyScore.match(info.getDrawableName()).match)
                         mIconData.add(new IconData(iconPack, info));
@@ -390,9 +377,6 @@ public class CustomIconDialog extends DialogFragment {
             int yOffset = 0;
             Rect gvr = new Rect();
 
-            //View parent = (View) v.getParent();
-            //int parentHeight = parent.getHeight();
-
             if (v.getGlobalVisibleRect(gvr)) {
                 View root = v.getRootView();
 
@@ -424,11 +408,11 @@ public class CustomIconDialog extends DialogFragment {
         }
 
         static class ViewHolder {
-            ImageView icon;
+            private final ImageView icon;
             AsyncLoad loader = null;
 
             static class AsyncLoad extends AsyncTask<IconData, Void, Drawable> {
-                WeakReference<ViewHolder> holder;
+                private final WeakReference<ViewHolder> holder;
 
                 AsyncLoad(ViewHolder holder) {
                     this.holder = new WeakReference<>(holder);

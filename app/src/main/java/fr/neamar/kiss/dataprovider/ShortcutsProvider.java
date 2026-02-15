@@ -6,6 +6,7 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
 
             launcher.registerCallback(new LauncherAppsCallback() {
                 @Override
-                public void onShortcutsChanged(String packageName, List<ShortcutInfo> shortcuts, android.os.UserHandle user) {
+                public void onShortcutsChanged(@NonNull String packageName, @NonNull List<ShortcutInfo> shortcuts, @NonNull android.os.UserHandle user) {
                     if (isAnyShortcutVisible(shortcuts)) {
                         Log.d(TAG, "Shortcuts changed for " + packageName);
                         KissApplication.getApplication(ShortcutsProvider.this).getDataHandler().reloadShortcuts();

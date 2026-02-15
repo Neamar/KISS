@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class DBHelper {
     private static final String TAG = DBHelper.class.getSimpleName();
-    private static SQLiteDatabase database = null;
+    private static volatile SQLiteDatabase database = null;
 
     private DBHelper() {
     }
@@ -94,7 +94,7 @@ public class DBHelper {
         String sql = "SELECT record, count(*) FROM " +
                 " (" +
                 "   SELECT * FROM history ORDER BY _id DESC " +
-                "   LIMIT " + historyWindowSize + "" +
+                "   LIMIT " + historyWindowSize +
                 " ) small_history " +
                 " GROUP BY record " +
                 " ORDER BY " +

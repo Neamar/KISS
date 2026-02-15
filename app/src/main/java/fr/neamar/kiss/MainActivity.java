@@ -4,7 +4,6 @@ import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.DialogFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.os.UserManager;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
@@ -43,6 +41,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -455,12 +455,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     protected void onPause() {
         super.onPause();
         forwarderManager.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        forwarderManager.onStop();
     }
 
     @Override
@@ -905,7 +899,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 updateSearchRecords();
             });
         }
-        dialog.show(getFragmentManager(), "dialog");
+        dialog.show(getSupportFragmentManager(), "dialog");
     }
 
     @Override

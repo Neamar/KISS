@@ -254,7 +254,7 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
     }
 
     @Override
-    ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, RecordAdapter parent, View parentView) {
+    ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
         if (!this.pojo.isDynamic() || this.pojo.isPinned()) {
             adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         }

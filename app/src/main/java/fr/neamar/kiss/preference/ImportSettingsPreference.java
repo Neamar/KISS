@@ -2,15 +2,12 @@ package fr.neamar.kiss.preference;
 
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.preference.DialogPreference;
-import android.preference.PreferenceManager;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,43 +23,37 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.TagsHandler;
 
-public class ImportSettingsPreference extends DialogPreference {
+public class ImportSettingsPreference {
 
     private static final String TAG = ImportSettingsPreference.class.getSimpleName();
 
-    public ImportSettingsPreference(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        super.onClick(dialog, which);
-        if (which == DialogInterface.BUTTON_POSITIVE) {
+    public void onDialogClosed(Context context, boolean positiveResult) {
+        if (positiveResult) {
             try {
                 // Apply changes
-                ClipboardManager clipboard = ContextCompat.getSystemService(getContext(), ClipboardManager.class);
+                ClipboardManager clipboard = ContextCompat.getSystemService(context, ClipboardManager.class);
                 // Can throw NullPointerException if the application doesn't have focus. Display a toast if this happens
-                String clipboardText = clipboard.getPrimaryClip().getItemAt(0).coerceToText(getContext()).toString();
+                String clipboardText = clipboard.getPrimaryClip().getItemAt(0).coerceToText(context).toString();
 
                 // Validate JSON
                 JSONObject jsonObject = new JSONObject(clipboardText);
                 int minVersion = jsonObject.optInt("__v", -1);
                 if (minVersion < 0) {
-                    Toast.makeText(getContext(), R.string.import_settings_version_missing, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.import_settings_version_missing, Toast.LENGTH_LONG).show();
                     return;
                 } else if (minVersion > BuildConfig.VERSION_CODE) {
-                    Toast.makeText(getContext(), R.string.import_settings_upgrade_kiss, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.import_settings_upgrade_kiss, Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 // Reset everything to default
-                SharedPreferences oldPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences oldPrefs = PreferenceManager.getDefaultSharedPreferences(context);
                 if (oldPrefs.edit().clear().commit()) {
-                    PreferenceManager.setDefaultValues(getContext(), R.xml.preferences, true);
+                    PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
                 }
 
                 // Set imported values
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                 SharedPreferences.Editor editor = prefs.edit();
 
                 Iterator<?> keys = jsonObject.keys();
@@ -97,10 +88,10 @@ public class ImportSettingsPreference extends DialogPreference {
                 }
                 // always commit preferences to ensure that changes are saved synchronously before continuing
                 if (!editor.commit()) {
-                    Toast.makeText(getContext(), R.string.import_settings_save_not_possible, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.import_settings_save_not_possible, Toast.LENGTH_SHORT).show();
                 }
 
-                DataHandler dataHandler = ((KissApplication) getContext().getApplicationContext()).getDataHandler();
+                DataHandler dataHandler = ((KissApplication) context.getApplicationContext()).getDataHandler();
 
                 // Import tags
                 if (jsonObject.has("__tags")) {
@@ -119,13 +110,12 @@ public class ImportSettingsPreference extends DialogPreference {
                 dataHandler.reloadSearchProvider();
                 dataHandler.reloadContactsProvider();
 
-                Toast.makeText(getContext(), R.string.import_settings_done, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.import_settings_done, Toast.LENGTH_SHORT).show();
             } catch (JSONException | NullPointerException e) {
                 Log.e(TAG, "Unable to import preferences", e);
-                Toast.makeText(getContext(), R.string.import_settings_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.import_settings_error, Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 
     /**

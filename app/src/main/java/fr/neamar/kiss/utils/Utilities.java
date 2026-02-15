@@ -15,17 +15,6 @@ import java.util.concurrent.Executor;
 public class Utilities {
 
     /**
-     * Return a valid activity or null given a view
-     *
-     * @param view any view of an activity
-     * @return an activity or null
-     */
-    @Nullable
-    public static Activity getActivity(@Nullable View view) {
-        return view != null ? getActivity(view.getContext()) : null;
-    }
-
-    /**
      * Return a valid activity or null given a context
      *
      * @param ctx context

@@ -392,7 +392,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
                                     drawablesByComponent.put(componentName, infoSet = new HashSet<>(1));
                                 infoSet.add(drawableList.get(drawableName));
                             } else {
-                                Log.w(TAG, "Drawable `" + drawableName + "` for component `" + componentName + "` not found");
+                                Log.w(TAG, "Drawable `" + drawableName + "` for component `null` not found");
                             }
                         }
                         //parse <calendar>
