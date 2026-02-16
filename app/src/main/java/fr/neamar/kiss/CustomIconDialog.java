@@ -118,7 +118,7 @@ public class CustomIconDialog extends DialogFragment {
         });
 
         mSearch = view.findViewById(R.id.search);
-        mSearch.addTextChangedListener(new TrimmingTextChangedListener(changedText -> mSearch.post(this::refreshList), false));
+        mSearch.addTextChangedListener(new TrimmingTextChangedListener(false, changedText -> mSearch.post(this::refreshList)));
 
         Bundle args = getArguments() != null ? getArguments() : new Bundle();
         @Nullable
@@ -409,8 +409,8 @@ public class CustomIconDialog extends DialogFragment {
         }
 
         static class ViewHolder {
-            private final ImageView icon;
-            AsyncLoad loader = null;
+            protected final ImageView icon;
+            protected AsyncLoad loader = null;
 
             static class AsyncLoad extends AsyncTask<IconData, Void, Drawable> {
                 private final WeakReference<ViewHolder> holder;

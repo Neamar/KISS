@@ -56,9 +56,9 @@ public class AddSearchProviderPreferenceDialogFragment extends PreferenceDialogF
         final View view = super.onCreateDialogView(context);
 
         providerName = view.findViewById(R.id.search_provider_name);
-        providerName.addTextChangedListener(new TrimmingTextChangedListener(changedText -> enablePositiveButton(), true));
+        providerName.addTextChangedListener(new TrimmingTextChangedListener(true, changedText -> enablePositiveButton()));
         providerUri = view.findViewById(R.id.search_provider_url);
-        providerUri.addTextChangedListener(new TrimmingTextChangedListener(changedText -> enablePositiveButton(), true));
+        providerUri.addTextChangedListener(new TrimmingTextChangedListener(true, changedText -> enablePositiveButton()));
 
         return view;
     }
