@@ -402,7 +402,7 @@ public abstract class Result<T extends Pojo> {
     }
 
     /**
-     * Return the icon for this Result, or null if non existing.
+     * Return the icon for this Result, or null if nonexisting.
      *
      * @param context android context
      */
@@ -475,6 +475,7 @@ public abstract class Result<T extends Pojo> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private Utilities.AsyncRun<Drawable> getTask(ImageView view) {
         Object tag = view.getTag(TAG_RUNNING_TASK);
         return tag instanceof Utilities.AsyncRun ? (Utilities.AsyncRun<Drawable>) tag : null;

@@ -19,7 +19,7 @@ public class KeyboardScrollHider implements View.OnTouchListener {
     private final KeyboardHandler handler;
     protected final BlockableListView list;
     private final View listParent;
-    private final BottomPullEffectView pullEffect;
+    protected final BottomPullEffectView pullEffect;
     private int listHeightInitial = 0;
 
     private float offsetYStart = 0;

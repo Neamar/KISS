@@ -298,13 +298,13 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         });
 
         // Listen to changes
-        searchEditText.addTextChangedListener(new TrimmingTextChangedListener((changedText) -> {
+        searchEditText.addTextChangedListener(new TrimmingTextChangedListener(true, (changedText) -> {
             if (isViewingAllApps()) {
                 displayKissBar(false, false);
             }
             updateSearchRecords(false, changedText);
             displayClearOnInput();
-        }, true));
+        }));
 
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
         // This fix should be on ALL TextEdit Widgets !!!
@@ -630,7 +630,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     public void displayClearOnInput() {
-        if (searchEditText.getText().length() > 0) {
+        if (!TextUtils.isEmpty(searchEditText.getText())) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
         } else {
