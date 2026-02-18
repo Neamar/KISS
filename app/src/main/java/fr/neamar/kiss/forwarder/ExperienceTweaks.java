@@ -61,6 +61,15 @@ public class ExperienceTweaks extends Forwarder {
 
     private final Runnable displayKeyboardRunnable = mainActivity::showKeyboard;
 
+    /**
+     * Flag to track if keyboard should be shown when window gains focus.
+     * On Android 14+ with gesture navigation, showing keyboard in onResume()
+     * doesn't work reliably because the activity transition is still in progress.
+     * We defer showing keyboard until onWindowFocusChanged(true) is called.
+     * See https://github.com/Neamar/KISS/issues/2184
+     */
+    private boolean pendingKeyboardShow = false;
+
     private View mainEmptyView;
     private final GestureDetector gd;
     private final KeyboardManager keyboardManager;
@@ -279,16 +288,18 @@ public class ExperienceTweaks extends Forwarder {
         // so the keyboard will be hidden by default
         // we may want to display it if the setting is set
         if (shouldShowKeyboard()) {
-            // Display keyboard
-            mainActivity.showKeyboard();
+            // Set flag to show keyboard when window gains focus.
+            // On Android 14+ with gesture navigation, showing keyboard here
+            // doesn't work reliably because the activity transition is still
+            // in progress. The keyboard will be shown in onWindowFocusChanged().
+            // See https://github.com/Neamar/KISS/issues/2184
+            pendingKeyboardShow = true;
 
-            new Handler().postDelayed(displayKeyboardRunnable, 10);
-            // For some weird reasons, keyboard may be hidden by the system
-            // So we have to run this multiple time at different time
-            // See https://github.com/Neamar/KISS/issues/119
-            new Handler().postDelayed(displayKeyboardRunnable, 100);
-            new Handler().postDelayed(displayKeyboardRunnable, 500);
+            // Also try to display keyboard immediately for cases where
+            // onWindowFocusChanged won't be called (e.g., coming back from settings)
+            mainActivity.showKeyboard();
         } else {
+            pendingKeyboardShow = false;
             // Not used (thanks windowSoftInputMode)
             // unless coming back from KISS settings
             mainActivity.hideKeyboard();
@@ -312,6 +323,24 @@ public class ExperienceTweaks extends Forwarder {
     }
 
     void onWindowFocusChanged(boolean hasFocus) {
+        if (hasFocus && pendingKeyboardShow) {
+            // Window has gained focus after activity transition completed.
+            // Now we can reliably show the keyboard.
+            // This is the fix for Android 14+ gesture navigation where showing
+            // keyboard in onResume() doesn't work because the transition animation
+            // causes the system to hide the keyboard.
+            // See https://github.com/Neamar/KISS/issues/2184
+            mainActivity.showKeyboard();
+
+            // For some weird reasons, keyboard may be hidden by the system
+            // So we have to run this multiple times at different times
+            // See https://github.com/Neamar/KISS/issues/119
+            new Handler().postDelayed(displayKeyboardRunnable, 10);
+            new Handler().postDelayed(displayKeyboardRunnable, 100);
+            new Handler().postDelayed(displayKeyboardRunnable, 500);
+
+            pendingKeyboardShow = false;
+        }
     }
 
     void onDisplayKissBar(boolean display) {
