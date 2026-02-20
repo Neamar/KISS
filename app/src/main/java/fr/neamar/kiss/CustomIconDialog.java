@@ -22,8 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,10 +31,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,7 +55,7 @@ import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 public class CustomIconDialog extends DialogFragment {
     private final List<IconData> mIconData = new ArrayList<>();
     private Drawable mSelectedDrawable = null;
-    private GridView mIconGrid;
+    private RecyclerView mIconView;
     private TextView mSearch;
     private ImageView mPreview;
     private OnDismissListener mOnDismissListener = null;
@@ -108,9 +109,11 @@ public class CustomIconDialog extends DialogFragment {
 
         view.setClipToOutline(true);
 
-        mIconGrid = view.findViewById(R.id.iconGrid);
+        mIconView = view.findViewById(R.id.iconView);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
         IconAdapter iconAdapter = new IconAdapter(mIconData);
-        mIconGrid.setAdapter(iconAdapter);
+        mIconView.setLayoutManager(layoutManager);
+        mIconView.setAdapter(iconAdapter);
 
         iconAdapter.setOnItemClickListener((adapter, v, position) -> {
             mSelectedDrawable = adapter.getItem(position).getIcon();
@@ -292,9 +295,10 @@ public class CustomIconDialog extends DialogFragment {
                 }
             }
         }
-        ((BaseAdapter) mIconGrid.getAdapter()).notifyDataSetChanged();
+        mIconData.sort(Comparator.comparing(iconData -> iconData.drawableInfo.getDrawableName()));
+        mIconView.getAdapter().notifyDataSetChanged();
         mSearch.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
-        mIconGrid.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
+        mIconView.setVisibility(mIconData.isEmpty() ? View.GONE : View.VISIBLE);
     }
 
     private static class IconData {
@@ -311,7 +315,7 @@ public class CustomIconDialog extends DialogFragment {
         }
     }
 
-    private static class IconAdapter extends BaseAdapter {
+    private static class IconAdapter extends RecyclerView.Adapter<IconAdapter.ViewHolder> {
         private final List<IconData> mIcons;
         private OnItemClickListener mOnItemClickListener = null;
 
@@ -327,32 +331,20 @@ public class CustomIconDialog extends DialogFragment {
             mOnItemClickListener = listener;
         }
 
-        @Override
         public IconData getItem(int position) {
             return mIcons.get(position);
         }
 
-        @Override
-        public int getCount() {
-            return mIcons.size();
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return getItem(position).hashCode();
-        }
 
         @NonNull
         @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            final View view;
-            if (convertView == null) {
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_icon_item, parent, false);
-            } else {
-                view = convertView;
-            }
-            ViewHolder holder = view.getTag() instanceof ViewHolder ? (ViewHolder) view.getTag() : new ViewHolder(view);
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_icon_item, parent, false);
+            return new ViewHolder(view);
+        }
 
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             IconData content = getItem(position);
             holder.setContent(content);
 
@@ -364,8 +356,16 @@ public class CustomIconDialog extends DialogFragment {
                 displayToast(v, content.drawableInfo.getDrawableName());
                 return true;
             });
+        }
 
-            return view;
+        @Override
+        public long getItemId(int position) {
+            return getItem(position).hashCode();
+        }
+
+        @Override
+        public int getItemCount() {
+            return mIcons.size();
         }
 
         /**
@@ -408,7 +408,7 @@ public class CustomIconDialog extends DialogFragment {
             toast.show();
         }
 
-        static class ViewHolder {
+        static class ViewHolder extends RecyclerView.ViewHolder {
             protected final ImageView icon;
             protected AsyncLoad loader = null;
 
@@ -443,6 +443,7 @@ public class CustomIconDialog extends DialogFragment {
             }
 
             ViewHolder(View itemView) {
+                super(itemView);
                 itemView.setTag(this);
                 icon = itemView.findViewById(android.R.id.icon);
             }
