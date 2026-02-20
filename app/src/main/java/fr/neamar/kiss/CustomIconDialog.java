@@ -12,7 +12,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -34,7 +33,6 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -100,7 +98,6 @@ public class CustomIconDialog extends DialogFragment {
         return root;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -110,13 +107,13 @@ public class CustomIconDialog extends DialogFragment {
         view.setClipToOutline(true);
 
         mIconView = view.findViewById(R.id.iconView);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
+        GridLayoutManager layoutManager = new GridLayoutManager(context, 4);
         IconAdapter iconAdapter = new IconAdapter(mIconData);
         mIconView.setLayoutManager(layoutManager);
         mIconView.setAdapter(iconAdapter);
 
-        iconAdapter.setOnItemClickListener((adapter, v, position) -> {
-            mSelectedDrawable = adapter.getItem(position).getIcon();
+        iconAdapter.setOnItemClickListener((iconData) -> {
+            mSelectedDrawable = iconData.getIcon();
             mPreview.setImageDrawable(mSelectedDrawable);
         });
 
@@ -178,7 +175,7 @@ public class CustomIconDialog extends DialogFragment {
         if (iconPack != null) {
             cancelLoadIconsPackTask();
             mLoadIconsPackTask = Utilities.runAsync((task) -> {
-                if (task == mLoadIconsPackTask) {
+                if (!task.isCancelled() && task == mLoadIconsPackTask) {
                     iconPack.loadDrawables(context.getPackageManager());
                 }
                 return null;
@@ -320,7 +317,7 @@ public class CustomIconDialog extends DialogFragment {
         private OnItemClickListener mOnItemClickListener = null;
 
         public interface OnItemClickListener {
-            void onItemClick(IconAdapter adapter, View view, int position);
+            void onItemClick(IconData iconData);
         }
 
         IconAdapter(@NonNull List<IconData> objects) {
@@ -331,7 +328,7 @@ public class CustomIconDialog extends DialogFragment {
             mOnItemClickListener = listener;
         }
 
-        public IconData getItem(int position) {
+        private IconData getItem(int position) {
             return mIcons.get(position);
         }
 
@@ -349,8 +346,9 @@ public class CustomIconDialog extends DialogFragment {
             holder.setContent(content);
 
             holder.icon.setOnClickListener(v -> {
-                if (mOnItemClickListener != null)
-                    mOnItemClickListener.onItemClick(IconAdapter.this, v, position);
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(content);
+                }
             });
             holder.icon.setOnLongClickListener(v -> {
                 displayToast(v, content.drawableInfo.getDrawableName());
@@ -410,37 +408,7 @@ public class CustomIconDialog extends DialogFragment {
 
         static class ViewHolder extends RecyclerView.ViewHolder {
             protected final ImageView icon;
-            protected AsyncLoad loader = null;
-
-            static class AsyncLoad extends AsyncTask<IconData, Void, Drawable> {
-                private final WeakReference<ViewHolder> holder;
-
-                AsyncLoad(ViewHolder holder) {
-                    this.holder = new WeakReference<>(holder);
-                }
-
-                @Override
-                protected void onPreExecute() {
-                    ViewHolder h = holder.get();
-                    if (h == null || h.loader != this)
-                        return;
-                    h.icon.setImageDrawable(null);
-                }
-
-                @Override
-                protected Drawable doInBackground(IconData... iconData) {
-                    return iconData[0].getIcon();
-                }
-
-                @Override
-                protected void onPostExecute(Drawable drawable) {
-                    ViewHolder h = holder.get();
-                    if (h == null || h.loader != this)
-                        return;
-                    h.loader = null;
-                    h.icon.setImageDrawable(drawable);
-                }
-            }
+            protected Utilities.AsyncRun<Drawable> loader = null;
 
             ViewHolder(View itemView) {
                 super(itemView);
@@ -449,12 +417,22 @@ public class CustomIconDialog extends DialogFragment {
             }
 
             public void setContent(IconData content) {
-                if (loader != null)
+                if (loader != null) {
                     loader.cancel(true);
-                loader = new AsyncLoad(this);
-                // use AsyncTask.SERIAL_EXECUTOR explicitly for now
-                // TODO: make execution parallel if needed/possible
-                loader.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, content);
+                    loader = null;
+                }
+
+                this.icon.setImageDrawable(null);
+                loader = Utilities.runAsync((task) -> {
+                    if (task.isCancelled()) {
+                        return null;
+                    }
+                    return content.getIcon();
+                }, (task, drawable) -> {
+                    if (!task.isCancelled() && task == loader) {
+                        icon.setImageDrawable(drawable);
+                    }
+                });
             }
         }
     }

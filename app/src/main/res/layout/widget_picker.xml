@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -30,15 +32,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView xmlns:tools="http://schemas.android.com/tools"
-            android:id="@android:id/list"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/widgetView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top|center_horizontal"
             android:background="?android:attr/windowBackground"
             android:cacheColorHint="@android:color/transparent"
-            android:divider="?attr/dividerDrawable"
-            android:dividerHeight="2dp"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listheader="@layout/widget_picker_item_title"
             tools:listitem="@layout/widget_picker_item" />
 

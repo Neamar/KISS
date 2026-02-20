@@ -19,6 +19,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -542,4 +543,15 @@ public abstract class Result<T extends Pojo> {
         return null;
     }
 
+    protected void setTranscriptModeAlwaysScroll(RecordAdapter adapter) {
+        // We'll need to reset the list view to its previous transcript mode,
+        // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
+        // Let's wait for half a second, that's ugly but we don't have any other option :(
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> adapter.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+    }
+
+    protected void setTranscriptModeDisabled(RecordAdapter adapter) {
+        adapter.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+    }
 }

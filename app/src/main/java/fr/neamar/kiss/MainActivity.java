@@ -260,10 +260,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         this.list.setAdapter(this.adapter);
 
         this.list.setOnItemClickListener((parent, v, position, id) -> adapter.onClick(position, v));
-
-        this.list.setLongClickable(true);
         this.list.setOnItemLongClickListener((parent, v, pos, id) -> {
-            ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
+            adapter.onLongClick(pos, v);
             return true;
         });
 
@@ -841,9 +839,9 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      */
     @Override
     public void temporarilyDisableTranscriptMode() {
-        list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
         // Add a message to be processed after all current messages, to reset transcript mode to default
-        list.post(() -> list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL));
+        list.post(() -> updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL));
     }
 
     /**

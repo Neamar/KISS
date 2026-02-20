@@ -85,7 +85,7 @@ public class Utilities {
 
         @Override
         protected void onPostExecute(Result result) {
-            if (mAfter != null) {
+            if (mAfter != null && !isCancelled()) {
                 mAfter.accept(this, result);
             }
         }

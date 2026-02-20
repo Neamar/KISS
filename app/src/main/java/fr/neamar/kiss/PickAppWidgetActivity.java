@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -19,8 +20,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -58,13 +58,11 @@ public class PickAppWidgetActivity extends AppCompatActivity {
         setContentView(R.layout.widget_picker);
 
         View progressContainer = findViewById(R.id.progressContainer);
-        ListView listView = findViewById(android.R.id.list);
-
         progressContainer.setVisibility(View.VISIBLE);
-
-        final Context context = getApplicationContext();
+        RecyclerView widgetView = findViewById(R.id.widgetView);
         final WidgetListAdapter adapter = new WidgetListAdapter();
-        listView.setAdapter(adapter);
+        widgetView.setAdapter(adapter);
+        final Context context = getApplicationContext();
         final List<MenuItem> adapterList = new ArrayList<>();
         Utilities.runAsync(t -> {
             // get widget list
@@ -88,27 +86,24 @@ public class PickAppWidgetActivity extends AppCompatActivity {
             adapter.setItems(adapterList);
         });
 
-        listView.setOnItemClickListener((parent, view, position, id) -> {
-            Object item = parent.getAdapter().getItem(position);
-            WidgetInfo info = null;
-            if (item instanceof ItemWidget)
-                info = ((ItemWidget) item).getInfo();
-            if (info == null)
-                return;
-            Intent intent = getIntent();
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
-            if (appWidgetId != 0) {
-                boolean bindAllowed = appWidgetManager.bindAppWidgetIdIfAllowed(appWidgetId, info.appWidgetInfo.getProfile(), info.appWidgetInfo.provider, null);
+        adapter.setOnItemClickListener((menuItem) -> {
+            if (menuItem instanceof ItemWidget) {
+                WidgetInfo info = ((ItemWidget) menuItem).getInfo();
+                Intent intent = getIntent();
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
+                if (appWidgetId != 0) {
+                    boolean bindAllowed = appWidgetManager.bindAppWidgetIdIfAllowed(appWidgetId, info.appWidgetInfo.getProfile(), info.appWidgetInfo.provider, null);
 
-                intent.putExtra(EXTRA_WIDGET_BIND_ALLOWED, bindAllowed);
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.appWidgetInfo.provider);
-                intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, info.appWidgetInfo.getProfile());
-                setResult(RESULT_OK, intent);
-            } else {
-                setResult(RESULT_CANCELED, intent);
+                    intent.putExtra(EXTRA_WIDGET_BIND_ALLOWED, bindAllowed);
+                    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.appWidgetInfo.provider);
+                    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE, info.appWidgetInfo.getProfile());
+                    setResult(RESULT_OK, intent);
+                } else {
+                    setResult(RESULT_CANCELED, intent);
+                }
+                finish();
             }
-            finish();
         });
     }
 
@@ -250,11 +245,41 @@ public class PickAppWidgetActivity extends AppCompatActivity {
         }
     }
 
-    private static class WidgetListAdapter extends BaseAdapter {
+    private static class WidgetListAdapter extends RecyclerView.Adapter<ViewHolder> {
         private final List<MenuItem> mList = new ArrayList<>(0);
+        private OnItemClickListener mOnItemClickListener = null;
 
         protected WidgetListAdapter() {
             super();
+        }
+
+        public interface OnItemClickListener {
+            void onItemClick(MenuItem menuItem);
+        }
+
+        void setOnItemClickListener(OnItemClickListener listener) {
+            mOnItemClickListener = listener;
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            int layout = R.layout.widget_picker_item;
+            if (viewType == 1)
+                layout = R.layout.widget_picker_item_title;
+            View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
+            return new ViewHolder(viewType, view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            MenuItem content = getItem(position);
+            holder.setContent(content);
+            holder.textView.setOnClickListener(v -> {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(content);
+                }
+            });
         }
 
         public void setItems(Collection<MenuItem> list) {
@@ -263,18 +288,7 @@ public class PickAppWidgetActivity extends AppCompatActivity {
             notifyDataSetChanged();
         }
 
-        @Override
-        public boolean isEnabled(int position) {
-            return !(getItem(position) instanceof ItemTitle);
-        }
-
-        @Override
-        public int getCount() {
-            return mList.size();
-        }
-
-        @Override
-        public MenuItem getItem(int position) {
+        private MenuItem getItem(int position) {
             return mList.get(position);
         }
 
@@ -284,45 +298,23 @@ public class PickAppWidgetActivity extends AppCompatActivity {
         }
 
         @Override
+        public int getItemCount() {
+            return mList.size();
+        }
+
+        @Override
         public int getItemViewType(int position) {
             return getItem(position) instanceof ItemTitle ? 1 : 0;
         }
-
-        @Override
-        public int getViewTypeCount() {
-            return 2;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            final View view;
-            ViewHolder holder = null;
-            final int viewType = getItemViewType(position);
-            if (convertView != null && convertView.getTag() instanceof ViewHolder)
-                holder = (ViewHolder) convertView.getTag();
-            if (holder != null && holder.getViewType() == viewType) {
-                view = convertView;
-            } else {
-                int layout = R.layout.widget_picker_item;
-                if (viewType == 1)
-                    layout = R.layout.widget_picker_item_title;
-                view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
-                holder = new ViewHolder(viewType, view);
-            }
-
-            MenuItem content = getItem(position);
-            holder.setContent(content);
-
-            return view;
-        }
     }
 
-    public static class ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final int mViewType;
         private final TextView textView;
         private Utilities.AsyncRun<Drawable> task = null;
 
         protected ViewHolder(int viewType, View itemView) {
+            super(itemView);
             itemView.setTag(this);
             mViewType = viewType;
             textView = itemView.findViewById(android.R.id.text1);
@@ -344,13 +336,14 @@ public class PickAppWidgetActivity extends AppCompatActivity {
                 {
                     int w = widgetInfo.cachedIconWidth;
                     int h = widgetInfo.cachedIconHeight;
-                    Drawable icon = new ColorDrawable(0);
+                    Drawable icon = new ColorDrawable(Color.TRANSPARENT);
                     icon.setBounds(0, 0, w, h);
                     textView.setCompoundDrawables(null, icon, null, null);
                 }
                 task = Utilities.runAsync(t -> PickAppWidgetActivity.getWidgetPreview(textView.getContext(), widgetInfo.appWidgetInfo), (t, icon) -> {
-                    if (t.isCancelled())
+                    if (t.isCancelled()) {
                         return;
+                    }
                     int w = icon.getIntrinsicWidth();
                     int h = icon.getIntrinsicHeight();
                     float aspect = (w > 0 && h > 0) ? (w / (float) h) : 1f;
