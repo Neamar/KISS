@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,7 +31,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -107,10 +107,9 @@ public class CustomIconDialog extends DialogFragment {
         view.setClipToOutline(true);
 
         mIconView = view.findViewById(R.id.iconView);
-        GridLayoutManager layoutManager = new GridLayoutManager(context, 4);
         IconAdapter iconAdapter = new IconAdapter(mIconData);
-        mIconView.setLayoutManager(layoutManager);
         mIconView.setAdapter(iconAdapter);
+        mIconView.setHasFixedSize(true);
 
         iconAdapter.setOnItemClickListener((iconData) -> {
             mSelectedDrawable = iconData.getIcon();
@@ -423,6 +422,8 @@ public class CustomIconDialog extends DialogFragment {
                 }
 
                 this.icon.setImageDrawable(null);
+                // use AsyncTask.SERIAL_EXECUTOR explicitly for now
+                // TODO: make execution parallel if needed/possible
                 loader = Utilities.runAsync((task) -> {
                     if (task.isCancelled()) {
                         return null;
@@ -432,7 +433,7 @@ public class CustomIconDialog extends DialogFragment {
                     if (!task.isCancelled() && task == loader) {
                         icon.setImageDrawable(drawable);
                     }
-                });
+                }, AsyncTask.SERIAL_EXECUTOR);
             }
         }
     }

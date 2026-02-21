@@ -285,7 +285,7 @@ public abstract class Result<T extends Pojo> {
 
         if (BuildConfig.DEBUG) {
             adapter.add(new ListPopup.Item("Relevance: " + pojo.relevance));
-            adapter.add(new ListPopup.Item("ID: " + pojo.getHistoryId()));
+//            adapter.add(new ListPopup.Item("ID: " + pojo.getHistoryId()));
         }
 
         return menu;
