@@ -228,12 +228,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
             // Show toast message
             String msg = context.getResources().getString(R.string.app_rename_confirmation, app.getName());
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-
-            // We'll need to reset the list view to its previous transcript mode,
-            // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
-            // Let's wait for half a second, that's ugly but we don't have any other option :(
-            final Handler handler = new Handler();
-            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+            setTranscriptModeAlwaysScroll(parent);
         });
         builder.setNegativeButton(R.string.custom_name_set_default, (dialog, which) -> {
             dialog.dismiss();
@@ -249,18 +244,13 @@ public class AppResult extends ResultWithTags<AppPojo> {
                 String msg = context.getResources().getString(R.string.app_rename_confirmation, app.getName());
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
             }
-
-            final Handler handler = new Handler();
-            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+            setTranscriptModeAlwaysScroll(parent);
         });
         builder.setNeutralButton(android.R.string.cancel, (dialog, which) -> {
             dialog.cancel();
-
-            final Handler handler = new Handler();
-            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+            setTranscriptModeAlwaysScroll(parent);
         });
-
-        parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        setTranscriptModeDisabled(parent);
         AlertDialog dialog = builder.create();
         dialog.show();
         // call after dialog got inflated (show call)
