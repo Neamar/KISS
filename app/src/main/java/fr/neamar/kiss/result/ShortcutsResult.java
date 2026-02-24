@@ -130,15 +130,13 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
 
     @Override
     void setDrawableCache(Drawable drawable) {
-        synchronized (this) {
-            icon = drawable;
-        }
+        icon = drawable;
     }
 
     public Drawable getDrawable(Context context) {
-        if (!isDrawableCached()) {
+        if (icon == null) {
             synchronized (this) {
-                if (!isDrawableCached()) {
+                if (icon == null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         ShortcutInfo shortcutInfo = getShortCut(context);
                         if (shortcutInfo != null) {

@@ -38,7 +38,6 @@ import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.IconShape;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
-import fr.neamar.kiss.utils.Utilities;
 
 /**
  * Inspired from <a href="http://stackoverflow.com/questions/31490630/how-to-load-icon-from-icon-pack">How to load icon from icon pack</a>
@@ -58,7 +57,6 @@ public class IconsHandler {
     private boolean mContactPackMask = false;
     private IconShape mContactsShape = IconShape.SHAPE_SYSTEM;
     private boolean mForceShape = false;
-    private Utilities.AsyncRun<Drawable> mLoadIconsPackTask = null;
     private volatile Map<String, Long> customIconIds = null;
 
     public IconsHandler(Context ctx) {
@@ -126,22 +124,8 @@ public class IconsHandler {
         // don't reload the icon pack
         if (mIconPack == null || !mIconPack.getPackPackageName().equals(packageName)) {
             cacheClear();
-            if (mLoadIconsPackTask != null)
-                mLoadIconsPackTask.cancel();
-            final IconPackXML iconPack = KissApplication.iconPackCache(ctx).getIconPack(packageName);
             // set the current icon pack
-            mIconPack = iconPack;
-            // start async loading
-            mLoadIconsPackTask = Utilities.runAsync((task) -> {
-                if (task == mLoadIconsPackTask) {
-                    iconPack.load(ctx.getPackageManager());
-                }
-                return null;
-            }, (task, result) -> {
-                if (!task.isCancelled() && task == mLoadIconsPackTask) {
-                    mLoadIconsPackTask = null;
-                }
-            });
+            mIconPack = KissApplication.iconPackCache(ctx).getIconPack(ctx, packageName);
         }
     }
 
@@ -194,8 +178,9 @@ public class IconsHandler {
         // check the icon pack for a resource
         if (drawable == null && mIconPack != null) {
             // just checking will make this thread wait for the icon pack to load
-            if (!mIconPack.isLoaded())
+            if (!mIconPack.isLoaded()) {
                 return null;
+            }
             drawable = mIconPack.getComponentDrawable(ctx, componentName, userHandle);
             if (drawable != null) {
                 drawable = applyIconMask(ctx, drawable, true);
@@ -220,21 +205,12 @@ public class IconsHandler {
     }
 
     public Drawable getBackgroundDrawable(@ColorInt int backgroundColor) {
-        // just checking will make this thread wait for the icon pack to load
-        if (mIconPack != null && !mIconPack.isLoaded()) {
-            return null;
-        }
-
         final IconShape shape = getShapeForGeneratingDrawable();
         Drawable drawable = DrawableUtils.generateBackgroundDrawable(ctx, backgroundColor, shape);
         return forceIconMask(drawable, shape);
     }
 
     public Drawable getDrawableIconForCodepoint(int codePoint, @ColorInt int textColor, @ColorInt int backgroundColor) {
-        // just checking will make this thread wait for the icon pack to load
-        if (mIconPack != null && !mIconPack.isLoaded()) {
-            return null;
-        }
         final IconShape shape = getShapeForGeneratingDrawable();
         Drawable drawable = DrawableUtils.generateCodepointDrawable(ctx, codePoint, textColor, backgroundColor, shape);
         return forceIconMask(drawable, shape);

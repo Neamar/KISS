@@ -36,10 +36,6 @@ public class SystemIconPack implements IconPack<Void> {
         return packageName;
     }
 
-    @Override
-    public void load(PackageManager packageManager) {
-    }
-
     @NonNull
     public IconShape getAdaptiveShape() {
         return mAdaptiveShape;

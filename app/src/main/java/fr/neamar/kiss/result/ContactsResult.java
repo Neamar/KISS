@@ -208,9 +208,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
     @Override
     void setDrawableCache(Drawable drawable) {
-        synchronized (this) {
-            icon = drawable;
-        }
+        icon = drawable;
     }
 
     @Override
@@ -221,9 +219,9 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
     @Override
     public Drawable getDrawable(Context context) {
-        if (!isDrawableCached()) {
+        if (icon == null) {
             synchronized (this) {
-                if (!isDrawableCached()) {
+                if (icon == null) {
                     if (pojo.icon != null) {
                         try (InputStream inputStream = context.getContentResolver()
                                 .openInputStream(pojo.icon)) {

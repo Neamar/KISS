@@ -42,6 +42,7 @@ import java.util.Set;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.UserHandle;
+import fr.neamar.kiss.utils.Utilities;
 
 public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     protected static final String TAG = IconPackXML.class.getSimpleName();
@@ -60,10 +61,21 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     // scale factor of an icons pack
     private float scaleFactor = 1.0f;
     private volatile boolean loaded = false;
+    private Utilities.AsyncRun<Drawable> mLoadTask = null;
 
-
-    public IconPackXML(String packageName) {
+    public IconPackXML(Context context, String packageName) {
         iconPackPackageName = packageName;
+        // start async loading
+        mLoadTask = Utilities.runAsync((task) -> {
+            if (task == mLoadTask) {
+                load(context.getPackageManager());
+            }
+            return null;
+        }, (task, result) -> {
+            if (!task.isCancelled() && task == mLoadTask) {
+                mLoadTask = null;
+            }
+        });
     }
 
     public boolean isLoaded() {
@@ -75,7 +87,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
         return loaded;
     }
 
-    public void load(PackageManager packageManager) {
+    private void load(PackageManager packageManager) {
         if (!loaded) {
             synchronized (this) {
                 if (!loaded) {
@@ -100,7 +112,7 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
      * @return true, if icon pack contains any images that can mask icons
      */
     public boolean hasMask() {
-        return maskImage != null || !backImages.isEmpty() || frontImage != null;
+        return isLoaded() && (maskImage != null || !backImages.isEmpty() || frontImage != null);
     }
 
     @Override
@@ -163,6 +175,9 @@ public class IconPackXML implements IconPack<IconPackXML.DrawableInfo> {
     @NonNull
     @Override
     public Drawable applyBackgroundAndMask(@NonNull Context ctx, @NonNull Drawable icon, boolean fitInside, @ColorInt int backgroundColor) {
+        if (!loaded) {
+            Log.w(TAG, "Icon Pack " + iconPackPackageName + " not yet loaded!");
+        }
         BitmapDrawable defaultDrawable = getBitmapDrawable(icon);
 
         // initialize dimensions

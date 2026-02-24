@@ -124,9 +124,7 @@ public abstract class Result<T extends Pojo> {
     public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
         View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
-        // TODO: check why setAsyncDrawable results in some missing favorite icons, meanwhile use setImageDrawable directly
-//        setAsyncDrawable(favoriteImage, R.drawable.ic_launcher_white);
-        favoriteImage.setImageDrawable(getDrawable(context));
+        setAsyncDrawable(favoriteImage, 0);
         favoriteView.setContentDescription(pojo.getName());
         return favoriteView;
     }
@@ -432,7 +430,7 @@ public abstract class Result<T extends Pojo> {
         setAsyncDrawable(view, android.R.color.transparent);
     }
 
-    private void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
+    protected void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
         setAsyncDrawable(view, resId, false, this::isDrawableCached, this::getDrawable, this::setDrawableCache);
     }
 
@@ -454,7 +452,9 @@ public abstract class Result<T extends Pojo> {
             imageView.setImageDrawable(drawableGetter.apply(imageView.getContext()));
             imageView.setTag(TAG_RUNNING_TASK, null);
         } else {
-            imageView.setImageResource(defaultResId);
+            if (defaultResId != 0) {
+                imageView.setImageResource(defaultResId);
+            }
             Utilities.AsyncRun<Drawable> newTask = Utilities.runAsync((task) -> {
                 if (task.isCancelled()) {
                     return null;

@@ -47,6 +47,10 @@ public class TagDummyResult extends Result<TagDummyPojo> {
         return gBackground;
     }
 
+    private boolean isShapeCached() {
+        return gBackground != null;
+    }
+
     public static void resetShape() {
         gBackground = null;
     }
@@ -76,7 +80,7 @@ public class TagDummyResult extends Result<TagDummyPojo> {
         } else {
             View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_tag, parent, false);
             ImageView favoriteIcon = favoriteView.findViewById(android.R.id.background);
-            favoriteIcon.setImageDrawable(getShape(context));
+            setAsyncDrawable(favoriteIcon, R.drawable.ic_launcher_white, true, this::isShapeCached, this::getShape, drawable -> {});
 
             boolean largeSearchBar = sharedPreferences.getBoolean("large-search-bar", false);
             int barSize = context.getResources().getDimensionPixelSize(largeSearchBar ? R.dimen.large_bar_height : R.dimen.bar_height);
@@ -96,9 +100,9 @@ public class TagDummyResult extends Result<TagDummyPojo> {
 
     @Override
     public Drawable getDrawable(Context context) {
-        if (!isDrawableCached()) {
+        if (icon == null) {
             synchronized (this) {
-                if (!isDrawableCached()) {
+                if (icon == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
                     icon = iconsHandler.getDrawableIconForCodepoint(pojo.getName().codePointAt(0), getTextColor(context), getBackgroundColor(context));
                 }
@@ -114,9 +118,7 @@ public class TagDummyResult extends Result<TagDummyPojo> {
 
     @Override
     void setDrawableCache(Drawable drawable) {
-        synchronized (this) {
-            icon = drawable;
-        }
+        icon = drawable;
     }
 
     @Override
