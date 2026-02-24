@@ -3,12 +3,13 @@ package fr.neamar.kiss.ui;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.ViewTreeObserver;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-public class ExtendedRecyclerView extends RecyclerView {
+public class ExtendedRecyclerView extends RecyclerView implements ViewTreeObserver.OnGlobalLayoutListener {
 
     private int mFixedColumnWidth = -1;
     private int mFixedNumColumns = -1;
@@ -41,6 +42,7 @@ public class ExtendedRecyclerView extends RecyclerView {
             mFixedColumnWidth = array.getDimensionPixelSize(0, -1);
             array.recycle();
         }
+        getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
 
     @Override
@@ -51,13 +53,18 @@ public class ExtendedRecyclerView extends RecyclerView {
             mOrigSpanCount = ((GridLayoutManager) layout).getSpanCount();
         } else if (layout instanceof StaggeredGridLayoutManager) {
             mOrigSpanCount = ((StaggeredGridLayoutManager) layout).getSpanCount();
+        } else {
+            mOrigSpanCount = -1;
         }
     }
 
-    @Override
-    protected void onMeasure(int widthSpec, int heightSpec) {
-        super.onMeasure(widthSpec, heightSpec);
+    private int checkSpanCount(int spanCount) {
+        if (spanCount < 1) return 1;
+        //if (spanCount > mOrigSpanCount) return mOrigSpanCount;
+        return spanCount;
+    }
 
+    public void calcSpanCount() {
         if (mFixedNumColumns > 0) {
             if (getLayoutManager() instanceof GridLayoutManager) {
                 ((GridLayoutManager) getLayoutManager()).setSpanCount(checkSpanCount(mFixedNumColumns));
@@ -72,11 +79,11 @@ public class ExtendedRecyclerView extends RecyclerView {
 
                 switch (mGridLM.getOrientation()) {
                     case RecyclerView.VERTICAL: {
-                        spanCount = getMeasuredWidth() / mFixedColumnWidth;
+                        spanCount = getWidth() / mFixedColumnWidth;
                         break;
                     }
                     case RecyclerView.HORIZONTAL: {
-                        spanCount = getMeasuredHeight() / mFixedColumnWidth;
+                        spanCount = getHeight() / mFixedColumnWidth;
                         break;
                     }
                     default:
@@ -88,11 +95,11 @@ public class ExtendedRecyclerView extends RecyclerView {
 
                 switch (mStaggeredGridLM.getOrientation()) {
                     case StaggeredGridLayoutManager.VERTICAL: {
-                        spanCount = getMeasuredWidth() / mFixedColumnWidth;
+                        spanCount = getWidth() / mFixedColumnWidth;
                         break;
                     }
                     case StaggeredGridLayoutManager.HORIZONTAL: {
-                        spanCount = getMeasuredHeight() / mFixedColumnWidth;
+                        spanCount = getHeight() / mFixedColumnWidth;
                         break;
                     }
                     default:
@@ -103,9 +110,8 @@ public class ExtendedRecyclerView extends RecyclerView {
         }
     }
 
-    private int checkSpanCount(int spanCount) {
-        if (spanCount < 1) return 1;
-        //if (spanCount > mOrigSpanCount) return mOrigSpanCount;
-        return spanCount;
+    @Override
+    public void onGlobalLayout() {
+        calcSpanCount();
     }
 }
