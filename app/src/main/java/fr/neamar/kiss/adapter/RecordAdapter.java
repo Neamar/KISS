@@ -24,6 +24,7 @@ import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.result.SearchResult;
 import fr.neamar.kiss.result.SettingsResult;
 import fr.neamar.kiss.result.ShortcutsResult;
+import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
@@ -52,23 +53,26 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
 
     @Override
     public int getViewTypeCount() {
-        return 6;
+        return 7;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (results.get(position) instanceof AppResult)
+        Result<?> result = getItem(position);
+        if (result instanceof AppResult)
             return 0;
-        else if (results.get(position) instanceof SearchResult)
+        else if (result instanceof SearchResult)
             return 1;
-        else if (results.get(position) instanceof ContactsResult)
+        else if (result instanceof ContactsResult)
             return 2;
-        else if (results.get(position) instanceof SettingsResult)
+        else if (result instanceof SettingsResult)
             return 3;
-        else if (results.get(position) instanceof PhoneResult)
+        else if (result instanceof PhoneResult)
             return 4;
-        else if (results.get(position) instanceof ShortcutsResult)
+        else if (result instanceof ShortcutsResult)
             return 5;
+        else if (result instanceof TagDummyResult)
+            return 6;
         else
             return -1;
     }
@@ -84,7 +88,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Result<?> getItem(int position) {
         return results.get(position);
     }
 
@@ -92,17 +96,17 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     public long getItemId(int position) {
         // In some situation, Android tries to display an item that does not exist (e.g. item 24 in a list containing 22 items)
         // See https://github.com/Neamar/KISS/issues/890
-        return position < results.size() ? results.get(position).getUniqueId() : -1;
+        return position < results.size() ? getItem(position).getUniqueId() : -1;
     }
 
     @Override
     @NonNull
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        return results.get(position).display(parent.getContext(), convertView, parent, fuzzyScore);
+        return getItem(position).display(parent.getContext(), convertView, parent, fuzzyScore);
     }
 
     public void onLongClick(final int pos, View v) {
-        ListPopup menu = results.get(pos).getPopupMenu(v.getContext(), this, v);
+        ListPopup menu = getItem(pos).getPopupMenu(v.getContext(), this, v);
 
         // check if menu contains elements and if yes show it
         if (menu.getAdapter().getCount() > 0) {
@@ -112,10 +116,8 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     }
 
     public void onClick(final int position, View v) {
-        final Result<?> result;
-
         try {
-            result = results.get(position);
+            final Result<?> result = getItem(position);
             result.launch(v.getContext(), v, parent);
         } catch (IndexOutOfBoundsException e) {
             Log.v(TAG, "Unable to click", e);
@@ -166,24 +168,18 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         int size = results.size();
 
         // Generate the mapping letter => number
-        for (int x = 0; x < size; x++) {
-            String s = results.get(x).getSection();
+        for (int i = 0; i < size; i++) {
+            String s = getItem(i).getSection();
 
             // Put the first one
             if (!alphaIndexer.containsKey(s)) {
-                alphaIndexer.put(s, x);
+                alphaIndexer.put(s, i);
             }
         }
 
         // Generate section list
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(alphaIndexer.entrySet());
-        Collections.sort(entries, (o1, o2) -> {
-            if (o2.getValue().equals(o1.getValue())) {
-                return 0;
-            }
-            // We're displaying from A to Z, everything needs to be reversed
-            return o2.getValue() > o1.getValue() ? -1 : 1;
-        });
+        Collections.sort(entries, Map.Entry.comparingByValue());
         sections = new String[entries.size()];
         for (int i = 0; i < entries.size(); i++) {
             sections[i] = entries.get(i).getKey();
@@ -212,8 +208,8 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
     @Override
     public int getSectionForPosition(int position) {
         for (int i = 0; i < sections.length; i++) {
-            if (alphaIndexer.get(sections[i]) > position) {
-                return i - 1;
+            if (alphaIndexer.get(sections[i]) >= position) {
+                return i;
             }
         }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,18 +11,19 @@
     android:paddingVertical="5dp"
     android:theme="@style/AppThemeDark">
 
-    <!-- 68dp = icon_width + 2 * margin_horizontal -->
-    <GridView
-        android:id="@+id/iconGrid"
+    <!-- 58dp = icon_width + 2 * margin_horizontal -->
+    <fr.neamar.kiss.ui.ExtendedRecyclerView
+        android:id="@+id/iconView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:columnWidth="68dp"
+        android:columnWidth="58dp"
         android:gravity="center"
-        android:horizontalSpacing="1dp"
         android:numColumns="auto_fit"
-        android:stretchMode="spacingWidth"
-        android:verticalSpacing="1dp"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="4"
         tools:itemCount="20"
         tools:listitem="@layout/custom_icon_item" />
 

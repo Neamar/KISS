@@ -2,10 +2,8 @@ package fr.neamar.kiss.result;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
@@ -60,20 +58,13 @@ public abstract class ResultWithTags<T extends PojoWithTags> extends Result<T> {
             // Show toast message
             String msg = context.getResources().getString(R.string.tags_confirmation_added);
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-            // We'll need to reset the list view to its previous transcript mode,
-            // but it has to happen *after* the keyboard is hidden, otherwise scroll will be reset
-            // Let's wait for half a second, that's ugly but we don't have any other option :(
-            final Handler handler = new Handler();
-            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
+            setTranscriptModeAlwaysScroll(parent);
         });
         builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
             dialog.cancel();
-            final Handler handler = new Handler();
-            handler.postDelayed(() -> parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL), 500);
-
+            setTranscriptModeAlwaysScroll(parent);
         });
-
-        parent.updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        setTranscriptModeDisabled(parent);
         AlertDialog dialog = builder.create();
         dialog.show();
     }
