@@ -4,5 +4,6 @@ public enum SearchPojoType {
     SEARCH_QUERY,
     URL_QUERY,
     CALCULATOR_QUERY,
-    URI_QUERY
+    URI_QUERY,
+    TIMER_QUERY
 }
