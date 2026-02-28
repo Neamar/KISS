@@ -323,7 +323,7 @@ public class UIColors {
     public static int[] getIconColors(Context context) {
         int[] colors = new int[2];
         if (isDarkMode(context)) {
-            colors[0] = ContextCompat.getColor(context, android.R.color.system_neutral1_700);
+            colors[0] = ContextCompat.getColor(context, android.R.color.system_accent2_800);
             colors[1] = ContextCompat.getColor(context, android.R.color.system_accent1_100);
         } else {
             colors[0] = ContextCompat.getColor(context, android.R.color.system_accent1_100);
@@ -337,7 +337,7 @@ public class UIColors {
      * @return true, if dark mode is enabled
      */
     private static boolean isDarkMode(Context context) {
-        Resources res = context.getResources();
+        Resources res = KissApplication.getApplication(context).getResources();
         return (res.getConfiguration().uiMode & UI_MODE_NIGHT_MASK) == UI_MODE_NIGHT_YES;
     }
 

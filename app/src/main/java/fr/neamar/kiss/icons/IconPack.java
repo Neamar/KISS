@@ -18,8 +18,6 @@ public interface IconPack<DrawableInfo> {
     @NonNull
     String getPackPackageName();
 
-    void load(PackageManager packageManager);
-
     @Nullable
     Drawable getComponentDrawable(@NonNull Context ctx, @NonNull ComponentName componentName, @NonNull UserHandle userHandle);
 

@@ -44,7 +44,6 @@ import java.util.function.Supplier;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -124,9 +123,7 @@ public abstract class Result<T extends Pojo> {
     public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
         View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
-        // TODO: check why setAsyncDrawable results in some missing favorite icons, meanwhile use setImageDrawable directly
-//        setAsyncDrawable(favoriteImage, R.drawable.ic_launcher_white);
-        favoriteImage.setImageDrawable(getDrawable(context));
+        setAsyncDrawable(favoriteImage, 0);
         favoriteView.setContentDescription(pojo.getName());
         return favoriteView;
     }
@@ -316,27 +313,12 @@ public abstract class Result<T extends Pojo> {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
         KissApplication.getApplication(context).getDataHandler().addToFavorites(pojo.getFavoriteId());
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
-        favoritesChanged(context);
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
         KissApplication.getApplication(context).getDataHandler().removeFromFavorites(pojo.getFavoriteId());
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
-        favoritesChanged(context);
-    }
-
-    private void favoritesChanged(Context context) {
-        if (context instanceof MainActivity) {
-            MainActivity mainActivity = (MainActivity) context;
-            // Update favorite bar
-            mainActivity.onFavoriteChange();
-            mainActivity.launchOccurred();
-            // Update Search to reflect favorite add, if the "exclude favorites" option is active
-            if (mainActivity.prefs.getBoolean("exclude-favorites-history", false) && mainActivity.isViewingSearchResults()) {
-                mainActivity.updateSearchRecords();
-            }
-        }
     }
 
     /**
@@ -432,7 +414,7 @@ public abstract class Result<T extends Pojo> {
         setAsyncDrawable(view, android.R.color.transparent);
     }
 
-    private void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
+    protected void setAsyncDrawable(ImageView view, @DrawableRes int resId) {
         setAsyncDrawable(view, resId, false, this::isDrawableCached, this::getDrawable, this::setDrawableCache);
     }
 
@@ -454,7 +436,9 @@ public abstract class Result<T extends Pojo> {
             imageView.setImageDrawable(drawableGetter.apply(imageView.getContext()));
             imageView.setTag(TAG_RUNNING_TASK, null);
         } else {
-            imageView.setImageResource(defaultResId);
+            if (defaultResId != 0) {
+                imageView.setImageResource(defaultResId);
+            }
             Utilities.AsyncRun<Drawable> newTask = Utilities.runAsync((task) -> {
                 if (task.isCancelled()) {
                     return null;

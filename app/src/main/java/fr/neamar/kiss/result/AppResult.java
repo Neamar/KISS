@@ -14,13 +14,11 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.UserManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -205,8 +203,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
         parent.removeResult(context, AppResult.this);
 
         KissApplication.getApplication(context).getDataHandler().addToExcluded(pojo);
-        // In case the newly excluded app was in a favorite, refresh them
-        ((MainActivity) context).onFavoriteChange();
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 
@@ -327,16 +323,14 @@ public class AppResult extends ResultWithTags<AppPojo> {
 
     @Override
     void setDrawableCache(Drawable drawable) {
-        synchronized (this) {
-            icon = drawable;
-        }
+        icon = drawable;
     }
 
     @Override
     public Drawable getDrawable(Context context) {
-        if (!isDrawableCached()) {
+        if (icon == null) {
             synchronized (this) {
-                if (!isDrawableCached()) {
+                if (icon == null) {
                     IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
                     icon = iconsHandler.getDrawableIconForPackage(className, this.pojo.userHandle);
                 }

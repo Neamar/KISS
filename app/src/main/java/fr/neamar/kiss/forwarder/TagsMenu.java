@@ -281,7 +281,6 @@ public class TagsMenu extends Forwarder {
                     MenuItemTag item = (MenuItemTag) adapterItem;
                     String msg = mainActivity.getResources().getString(R.string.toast_favorites_added);
                     KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites(TagsProvider.generateUniqueId(item.tag));
-                    mainActivity.onFavoriteChange();
                     Toast.makeText(mainActivity, String.format(msg, item.tag), Toast.LENGTH_SHORT).show();
                     return true;
                 }

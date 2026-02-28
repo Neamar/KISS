@@ -254,7 +254,7 @@ public class DrawableUtils {
                 break;
             case SHAPE_ROUND_RECT:
                 RECT_F.set(0f, 0f, iconSize, iconSize);
-                path.addRoundRect(RECT_F, iconSize / 8f, iconSize / 12f, Path.Direction.CCW);
+                path.addRoundRect(RECT_F, iconSize / 8f, iconSize / 8f, Path.Direction.CCW);
                 break;
             case SHAPE_TEARDROP_RND: // this is handled before we get here
             case SHAPE_TEARDROP_BR:
