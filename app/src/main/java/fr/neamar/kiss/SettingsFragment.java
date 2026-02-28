@@ -185,6 +185,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             } else if (key.equalsIgnoreCase("default-search-provider")) {
                 getDataHandler().reloadSearchProvider();
             } else if ("pref-fav-tags-list".equals(key)) {
+                getDataHandler().reloadTags();
+
                 // after we edit the fav tags list update DataHandler
                 Set<String> favTags = sharedPreferences.getStringSet(key, Collections.emptySet());
                 DataHandler dh = getDataHandler();

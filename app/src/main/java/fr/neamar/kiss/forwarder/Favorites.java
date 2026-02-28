@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -106,7 +107,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
 
         notificationPrefs = mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
 
-        onFavoriteChange();
+        onFavoriteChange(false);
     }
 
     private ViewHolder findViewHolder(@NonNull Pojo pojo) {
@@ -118,13 +119,20 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         return null;
     }
 
-    void onFavoriteChange() {
+    public void onFavoriteChange() {
+        onFavoriteChange(false);
+    }
+
+    private void onFavoriteChange(boolean isRefresh) {
         List<Pojo> favoritesPojo = KissApplication.getApplication(mainActivity).getDataHandler().getFavorites();
         favCount = favoritesPojo.size();
 
         List<ViewHolder> holders = new ArrayList<>(favCount);
-
         ViewGroup favoritesBar = mainActivity.favoritesBar;
+        if (isRefresh) {
+            removeViews(favoritesBar, 0);
+            favoritesViews.clear();
+        }
 
         // Don't look for items after favIds length, we won't be able to display them
         for (int i = 0; i < favCount; i++) {
@@ -171,17 +179,21 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
             }
         }
 
-        // Remove any leftover views from previous renders
-        while (favoritesBar.getChildCount() > favCount) {
-            Log.e(TAG, "Disposing leftover view");
-            View toBeDisposed = favoritesBar.getChildAt(favCount);
-            disposeOf(toBeDisposed);
-            favoritesBar.removeViewAt(favCount);
-        }
+        removeViews(favoritesBar, favCount);
 
         // kepp viewholders in memory for future recycling
         favoritesViews = holders;
         mDragEnabled = favCount > 1;
+    }
+
+    private void removeViews(ViewGroup favoritesBar, int favCount) {
+        // Remove any leftover views from previous renders
+        while (favoritesBar.getChildCount() > favCount) {
+            Log.d(TAG, "Disposing view");
+            View toBeDisposed = favoritesBar.getChildAt(favCount);
+            disposeOf(toBeDisposed);
+            favoritesBar.removeViewAt(favCount);
+        }
     }
 
     void disposeOf(@Nullable View toBeDisposed) {
@@ -328,7 +340,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                             // Sometimes we don't trigger onDrag over another app, in which case just drop.
                             Log.w(TAG, "Wasn't dragged over a favorite, returning app to starting position");
                             // We still need to refresh our favorites, in case one was removed and never added back (see IllegalStateException above)
-                            mainActivity.onFavoriteChange();
+                            KissApplication.getApplication(mainActivity).getDataHandler().refreshFavorites();
                         } else {
                             // Signals to a View that the drag and drop operation has concluded.
                             // If event result is set, this means the dragged view was dropped in target
@@ -339,7 +351,7 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                     } catch (IllegalStateException e) {
                         // An animation was running. Retry later
                         // (to trigger: long press a favorite while already moving your finger a little, release as soon as you get haptic feedback)
-                        draggedView.postDelayed(mainActivity::onFavoriteChange, 300);
+                        draggedView.postDelayed(() -> KissApplication.getApplication(mainActivity).getDataHandler().refreshFavorites(), 300);
                     }
                 });
 
@@ -386,7 +398,6 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
                 KissApplication.getApplication(mainActivity).getDataHandler().addToFavorites("app://" + componentName.getPackageName() + "/" + componentName.getClassName());
             }
         }
-        mainActivity.onFavoriteChange();
     }
 
     /**
@@ -402,5 +413,10 @@ public class Favorites extends Forwarder implements View.OnClickListener, View.O
         }
         return null;
     }
+
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        onFavoriteChange(true);
+    }
+
 }
 

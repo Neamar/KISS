@@ -1,5 +1,6 @@
 package fr.neamar.kiss;
 
+import static android.content.res.Configuration.UI_MODE_NIGHT_MASK;
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 import android.animation.Animator;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
+    public static final String REFRESH_FAVORITES = "fr.neamar.summon.REFRESH_FAVORITES";
 
     protected static final String TAG = MainActivity.class.getSimpleName();
 
@@ -188,10 +190,17 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
          */
         IntentFilter intentFilterLoad = new IntentFilter(START_LOAD);
         IntentFilter intentFilterLoadOver = new IntentFilter(LOAD_OVER);
+        IntentFilter intentFilterRefresh = new IntentFilter(REFRESH_FAVORITES);
         mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if (LOAD_OVER.equalsIgnoreCase(intent.getAction())) {
+                if (REFRESH_FAVORITES.equals(intent.getAction())) {
+                    onFavoriteChange();
+                    if (prefs.getBoolean("exclude-favorites-history", false)) {
+                        // update search to reflect favorite change, if the "exclude favorites" option is active
+                        updateSearchRecords();
+                    }
+                } else if (LOAD_OVER.equalsIgnoreCase(intent.getAction())) {
                     updateSearchRecords();
                     if (!KissApplication.getApplication(context).getDataHandler().isAllProvidersLoaded()) {
                         displayLoader(true);
@@ -203,12 +212,13 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                         // Run GC once to free all the garbage accumulated during provider initialization
                         System.gc();
                     }
+                    // New provider might mean new favorites
+                    onFavoriteChange();
                 } else if (START_LOAD.equalsIgnoreCase(intent.getAction())) {
                     displayLoader(true);
+                    // New provider might mean new favorites
+                    onFavoriteChange();
                 }
-
-                // New provider might mean new favorites
-                onFavoriteChange();
             }
         };
 
@@ -222,6 +232,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
         ContextCompat.registerReceiver(this, mReceiver, intentFilterLoad, ContextCompat.RECEIVER_EXPORTED);
         ContextCompat.registerReceiver(this, mReceiver, intentFilterLoadOver, ContextCompat.RECEIVER_EXPORTED);
+        ContextCompat.registerReceiver(this, mReceiver, intentFilterRefresh, ContextCompat.RECEIVER_EXPORTED);
 
         /*
          * Set the view and store all useful components
@@ -705,7 +716,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         }
     }
 
-    public void onFavoriteChange() {
+    private void onFavoriteChange() {
         forwarderManager.onFavoriteChange();
     }
 
@@ -1002,5 +1013,12 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         }
 
         return homePackage.equals(this.getPackageName());
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        forwarderManager.onConfigurationChanged(newConfig);
+        Log.d(TAG, "onConfigurationChanged, uiMode = " + (newConfig.uiMode & UI_MODE_NIGHT_MASK));
     }
 }

@@ -44,7 +44,6 @@ import java.util.function.Supplier;
 
 import fr.neamar.kiss.BuildConfig;
 import fr.neamar.kiss.KissApplication;
-import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
@@ -314,27 +313,12 @@ public abstract class Result<T extends Pojo> {
         String msg = context.getResources().getString(R.string.toast_favorites_added);
         KissApplication.getApplication(context).getDataHandler().addToFavorites(pojo.getFavoriteId());
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
-        favoritesChanged(context);
     }
 
     private void launchRemoveFromFavorites(Context context, Pojo pojo) {
         String msg = context.getResources().getString(R.string.toast_favorites_removed);
         KissApplication.getApplication(context).getDataHandler().removeFromFavorites(pojo.getFavoriteId());
         Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
-        favoritesChanged(context);
-    }
-
-    private void favoritesChanged(Context context) {
-        if (context instanceof MainActivity) {
-            MainActivity mainActivity = (MainActivity) context;
-            // Update favorite bar
-            mainActivity.onFavoriteChange();
-            mainActivity.launchOccurred();
-            // Update Search to reflect favorite add, if the "exclude favorites" option is active
-            if (mainActivity.prefs.getBoolean("exclude-favorites-history", false) && mainActivity.isViewingSearchResults()) {
-                mainActivity.updateSearchRecords();
-            }
-        }
     }
 
     /**

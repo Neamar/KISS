@@ -17,6 +17,7 @@ import android.util.Log;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import java.io.File;
@@ -72,7 +73,6 @@ public class IconsHandler {
      * Load configured icons pack
      */
     private void loadIconsPack() {
-
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         onPrefChanged(prefs, "icons-pack");
     }
@@ -95,6 +95,7 @@ public class IconsHandler {
             mContactPackMask = pref.getBoolean("contact-pack-mask", true);
             mContactsShape = getAdaptiveShape(pref, "contacts-shape");
             loadIconsPack(pref.getString("icons-pack", null));
+            KissApplication.getApplication(ctx).getDataHandler().refreshFavorites();
         }
     }
 
@@ -152,6 +153,11 @@ public class IconsHandler {
      */
     public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
         final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
+
+        if (DrawableUtils.hasThemedIcons() && DrawableUtils.isThemedIconEnabled(ctx)) {
+            // don't cache icon if themed with system colors which can change
+            useCache = false;
+        }
 
         // Search in cache
         if (useCache) {

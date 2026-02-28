@@ -38,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
             "enable-favorites-bar", "notification-bar-color", "black-notification-icons", "icons-pack", "theme-shadow",
             "theme-separator", "theme-result-color", "large-favorites-bar", "pref-hide-search-bar-hint", "theme-wallpaper",
             "theme-bar-color", "results-size", "large-result-list-margins", "themed-icons", "icons-hide",
-            "pref-fav-tags-drawable", "adaptive-shape", null);
+            "pref-fav-tags-drawable", null);
     // Those settings require a restart of the settings
     private static final List<String> SETTINGS_REQUIRING_RESTART_FOR_SETTINGS_ACTIVITY = Arrays.asList("theme", "force-portrait", null);
 

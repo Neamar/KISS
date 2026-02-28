@@ -203,8 +203,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
         parent.removeResult(context, AppResult.this);
 
         KissApplication.getApplication(context).getDataHandler().addToExcluded(pojo);
-        // In case the newly excluded app was in a favorite, refresh them
-        ((MainActivity) context).onFavoriteChange();
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
     }
 

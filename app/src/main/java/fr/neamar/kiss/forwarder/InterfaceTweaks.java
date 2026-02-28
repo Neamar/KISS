@@ -6,6 +6,7 @@ import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -28,6 +29,7 @@ import java.util.List;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
+import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.ViewGroupUtils;
 
 // Deals with any settings in the "User Interface" setting sub-screen
@@ -292,5 +294,12 @@ public class InterfaceTweaks extends Forwarder {
 
     private boolean isExternalFavoriteBarEnabled() {
         return prefs.getBoolean("enable-favorites-bar", true);
+    }
+
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        TagDummyResult.resetShape();
+        UIColors.clearPrimaryColorCache();
+        UIColors.updateThemePrimaryColor(mainActivity);
+        tintResources(mainActivity);
     }
 }
