@@ -256,9 +256,6 @@ public class InterfaceTweaks extends Forwarder {
         // Launcher button should have the main color
         ImageView launcherButton = mainActivity.findViewById(R.id.launcherButton);
         launcherButton.setColorFilter(primaryColorOverride);
-
-        // Kissbar background
-        mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
     }
 
     private int getSearchBackgroundColor() {
