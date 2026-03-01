@@ -103,7 +103,7 @@
             android:label="@string/activity_setting"
             android:excludeFromRecents="true"
             android:exported="false"
-            android:theme="@style/SettingTheme"
+            android:theme="@style/BaseSettingTheme"
             android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
@@ -116,7 +116,7 @@
             android:exported="false"
             android:label="@string/menu_widget_add"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/SettingTheme">
+            android:theme="@style/BaseSettingTheme">
         </activity>
         <activity
             android:name=".kustomsupport.AutoFinishTransparentActivity"

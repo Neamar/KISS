@@ -101,25 +101,25 @@ public class InterfaceTweaks extends Forwarder {
         String theme = getTheme(prefs);
         switch (theme) {
             case "dark":
-                act.setTheme(R.style.SettingThemeDark);
+                act.setTheme(R.style.BaseSettingTheme);
                 break;
             case "transparent":
-                act.setTheme(R.style.SettingTheme);
+                act.setTheme(R.style.BaseSettingTheme);
                 break;
             case "semi-transparent":
-                act.setTheme(R.style.SettingTheme);
+                act.setTheme(R.style.BaseSettingTheme);
                 break;
             case "semi-transparent-dark":
-                act.setTheme(R.style.SettingThemeDark);
+                act.setTheme(R.style.BaseSettingTheme);
                 break;
             case "transparent-dark":
-                act.setTheme(R.style.SettingThemeDark);
+                act.setTheme(R.style.BaseSettingTheme);
                 break;
             case "amoled-dark":
                 act.setTheme(R.style.SettingThemeAmoledDark);
                 break;
             default: // "light"
-                act.setTheme(R.style.SettingTheme);
+                act.setTheme(R.style.BaseSettingTheme);
                 break;
         }
         UIColors.applyAccentColor(act);

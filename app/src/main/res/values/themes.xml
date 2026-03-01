@@ -60,17 +60,11 @@
         <item name="searchBackgroundColor">@color/theme_semi_transparent_search_background_color</item>
     </style>
 
-    <style name="SettingTheme" parent="BaseThemeSolid">
-        <item name="android:windowBackground">@color/kiss_background</item>
-        <item name="android:textColorSecondary">#7f7f7f</item>
+    <style name="BaseSettingTheme" parent="BaseThemeSolid">
         <item name="colorPrimaryDark">@color/kiss_green</item>
         <item name="android:navigationBarColor">@android:color/black</item>
-    </style>
-
-    <style name="SettingThemeDark" parent="BaseThemeSolid">
-        <item name="android:windowBackground">@color/kiss_list_background_inverse</item>
-        <item name="colorPrimaryDark">@color/kiss_green</item>
-        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:windowBackground">@color/setting_theme_window_background</item>
+        <item name="android:textColorSecondary">@color/setting_theme_text_color_secondary</item>
     </style>
 
     <style name="SettingThemeAmoledDark" parent="AppThemeAmoledDark">
