@@ -41,39 +41,23 @@
         <item name="dividerDrawable">@null</item>
     </style>
 
-    <style name="AppThemeTransparent" parent="BaseThemeSolid">
-        <item name="resultColor">@color/kiss_text_on_light</item>
-        <item name="resultShadowColor">@android:color/black</item>
-        <item name="listBackgroundColor">@android:color/transparent</item>
+    <style name="BaseThemeTransparent" parent="BaseThemeSolid">
         <item name="dividerDrawable">@null</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="textShadowRadius">3</item>
-    </style>
-
-    <style name="AppThemeTransparentDark" parent="BaseThemeSolid">
         <item name="listBackgroundColor">@android:color/transparent</item>
-        <item name="dividerDrawable">@null</item>
-        <item name="colorPrimaryDark">@android:color/transparent</item>
-        <item name="textShadowRadius">3</item>
+        <item name="resultColor">@color/theme_transparent_result_color</item>
+        <item name="resultShadowColor">@color/theme_transparent_result_shadow_color</item>
     </style>
 
-    <style name="AppThemeSemiTransparent" parent="BaseThemeSolid">
-        <item name="android:textColorSecondary">@color/kiss_text_on_semi_light</item>
-        <item name="listBackgroundColor">@color/kiss_background_light_transparent</item>
-        <item name="searchBackgroundColor">@color/kiss_background_light_transparent</item>
+    <style name="BaseThemeSemiTransparent" parent="BaseThemeSolid">
         <item name="dividerDrawable">@null</item>
         <item name="colorPrimaryDark">@color/kiss_green_semitransparent</item>
         <item name="textShadowRadius">3</item>
-    </style>
-
-    <style name="AppThemeSemiTransparentDark" parent="BaseThemeSolid">
-        <item name="resultColor">@color/kiss_text_on_semi_dark</item>
-        <item name="android:textColorSecondary">@color/kiss_text_on_dark</item>
-        <item name="listBackgroundColor">@color/kiss_background_dark_transparent</item>
-        <item name="searchBackgroundColor">@color/kiss_background_dark_transparent</item>
-        <item name="dividerDrawable">@null</item>
-        <item name="colorPrimaryDark">@color/kiss_green_semitransparent</item>
-        <item name="textShadowRadius">3</item>
+        <item name="android:textColorSecondary">@color/theme_semi_transparent_text_color_secondary</item>
+        <item name="resultColor">@color/theme_semi_transparent_result_color</item>
+        <item name="listBackgroundColor">@color/theme_semi_transparent_list_background_color</item>
+        <item name="searchBackgroundColor">@color/theme_semi_transparent_search_background_color</item>
     </style>
 
     <style name="SettingTheme" parent="BaseThemeSolid">

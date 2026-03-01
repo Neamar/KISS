@@ -48,16 +48,16 @@ public class InterfaceTweaks extends Forwarder {
                 act.setTheme(R.style.BaseThemeSolid);
                 break;
             case "transparent":
-                act.setTheme(R.style.AppThemeTransparent);
+                act.setTheme(R.style.BaseThemeTransparent);
                 break;
             case "semi-transparent":
-                act.setTheme(R.style.AppThemeSemiTransparent);
+                act.setTheme(R.style.BaseThemeSemiTransparent);
                 break;
             case "semi-transparent-dark":
-                act.setTheme(R.style.AppThemeSemiTransparentDark);
+                act.setTheme(R.style.BaseThemeSemiTransparent);
                 break;
             case "transparent-dark":
-                act.setTheme(R.style.AppThemeTransparentDark);
+                act.setTheme(R.style.BaseThemeTransparent);
                 break;
             case "amoled-dark":
                 act.setTheme(R.style.AppThemeAmoledDark);
