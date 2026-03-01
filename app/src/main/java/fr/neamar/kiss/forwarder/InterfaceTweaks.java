@@ -45,7 +45,7 @@ public class InterfaceTweaks extends Forwarder {
         String theme = getTheme(prefs);
         switch (theme) {
             case "dark":
-                act.setTheme(R.style.AppThemeDark);
+                act.setTheme(R.style.BaseThemeSolid);
                 break;
             case "transparent":
                 act.setTheme(R.style.AppThemeTransparent);
@@ -62,6 +62,8 @@ public class InterfaceTweaks extends Forwarder {
             case "amoled-dark":
                 act.setTheme(R.style.AppThemeAmoledDark);
                 break;
+            default:
+                act.setTheme(R.style.BaseThemeSolid);
         }
 
         UIColors.applyOverlay(act, prefs);
