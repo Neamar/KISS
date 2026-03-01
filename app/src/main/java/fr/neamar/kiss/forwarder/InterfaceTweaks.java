@@ -11,7 +11,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Insets;
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,26 +43,21 @@ public class InterfaceTweaks extends Forwarder {
     public static void applyTheme(Activity act, SharedPreferences prefs) {
         String theme = getTheme(prefs);
         switch (theme) {
-            case "dark":
-                act.setTheme(R.style.BaseThemeSolid);
-                break;
             case "transparent":
-                act.setTheme(R.style.BaseThemeTransparent);
+            case "transparent-dark":
+                act.setTheme(R.style.AppThemeTransparent);
                 break;
             case "semi-transparent":
-                act.setTheme(R.style.BaseThemeSemiTransparent);
-                break;
             case "semi-transparent-dark":
-                act.setTheme(R.style.BaseThemeSemiTransparent);
-                break;
-            case "transparent-dark":
-                act.setTheme(R.style.BaseThemeTransparent);
+                act.setTheme(R.style.AppThemeSemiTransparent);
                 break;
             case "amoled-dark":
                 act.setTheme(R.style.AppThemeAmoledDark);
                 break;
+            case "light":
+            case "dark":
             default:
-                act.setTheme(R.style.BaseThemeSolid);
+                act.setTheme(R.style.AppTheme);
         }
 
         UIColors.applyOverlay(act, prefs);
@@ -100,26 +94,17 @@ public class InterfaceTweaks extends Forwarder {
     public static void applySettingsTheme(Activity act, SharedPreferences prefs) {
         String theme = getTheme(prefs);
         switch (theme) {
-            case "dark":
-                act.setTheme(R.style.BaseSettingTheme);
-                break;
-            case "transparent":
-                act.setTheme(R.style.BaseSettingTheme);
-                break;
-            case "semi-transparent":
-                act.setTheme(R.style.BaseSettingTheme);
-                break;
-            case "semi-transparent-dark":
-                act.setTheme(R.style.BaseSettingTheme);
-                break;
-            case "transparent-dark":
-                act.setTheme(R.style.BaseSettingTheme);
-                break;
             case "amoled-dark":
                 act.setTheme(R.style.SettingThemeAmoledDark);
                 break;
-            default: // "light"
-                act.setTheme(R.style.BaseSettingTheme);
+            case "light":
+            case "semi-transparent":
+            case "transparent":
+            case "dark":
+            case "semi-transparent-dark":
+            case "transparent-dark":
+            default:
+                act.setTheme(R.style.SettingTheme);
                 break;
         }
         UIColors.applyAccentColor(act);
@@ -132,24 +117,15 @@ public class InterfaceTweaks extends Forwarder {
         String theme = getTheme(prefs);
         switch (theme) {
             case "dark":
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
-                break;
-            case "transparent":
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
-                break;
-            case "semi-transparent":
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
-                break;
             case "semi-transparent-dark":
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
-                break;
             case "transparent-dark":
-                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
-                break;
             case "amoled-dark":
                 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
                 break;
-            default: // "light"
+            case "light":
+            case "semi-transparent":
+            case "transparent":
+            default:
                 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
                 break;
         }
@@ -302,6 +278,5 @@ public class InterfaceTweaks extends Forwarder {
         TagDummyResult.resetShape();
         UIColors.clearPrimaryColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);
-        tintResources(mainActivity);
     }
 }

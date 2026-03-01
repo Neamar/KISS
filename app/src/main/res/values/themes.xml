@@ -10,7 +10,7 @@
         <item name="textShadowRadius">0</item>
     </style>
 
-    <style name="BaseThemeSolid" parent="BaseTheme">
+    <style name="AppTheme" parent="BaseTheme">
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="dividerDrawable">@drawable/list_separator</item>
@@ -25,7 +25,7 @@
         <item name="searchBackgroundOutline">@android:color/transparent</item>
     </style>
 
-    <style name="AppThemeAmoledDark" parent="BaseTheme">
+    <style name="AppThemeAmoledDark" parent="AppTheme">
         <item name="android:windowShowWallpaper">false</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:textColor">@color/kiss_text_on_dark</item>
@@ -41,7 +41,7 @@
         <item name="dividerDrawable">@null</item>
     </style>
 
-    <style name="BaseThemeTransparent" parent="BaseThemeSolid">
+    <style name="AppThemeTransparent" parent="AppTheme">
         <item name="dividerDrawable">@null</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="textShadowRadius">3</item>
@@ -50,7 +50,7 @@
         <item name="resultShadowColor">@color/theme_transparent_result_shadow_color</item>
     </style>
 
-    <style name="BaseThemeSemiTransparent" parent="BaseThemeSolid">
+    <style name="AppThemeSemiTransparent" parent="AppTheme">
         <item name="dividerDrawable">@null</item>
         <item name="colorPrimaryDark">@color/kiss_green_semitransparent</item>
         <item name="textShadowRadius">3</item>
@@ -60,7 +60,7 @@
         <item name="searchBackgroundColor">@color/theme_semi_transparent_search_background_color</item>
     </style>
 
-    <style name="BaseSettingTheme" parent="BaseThemeSolid">
+    <style name="SettingTheme" parent="AppTheme">
         <item name="colorPrimaryDark">@color/kiss_green</item>
         <item name="android:navigationBarColor">@android:color/black</item>
         <item name="android:windowBackground">@color/setting_theme_window_background</item>
