@@ -216,6 +216,7 @@ public class InterfaceTweaks extends Forwarder {
 
         if (prefs.getBoolean("pref-rounded-list", false)) {
             mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout);
+            mainActivity.findViewById(R.id.main_empty).setBackgroundResource(R.drawable.rounded_result_layout);
             // clip list content to rounded corners
             mainActivity.listContainer.setClipToOutline(true);
         }
