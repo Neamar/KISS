@@ -17,7 +17,6 @@ import android.util.Log;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import java.io.File;
@@ -383,15 +382,15 @@ public class IconsHandler {
             return null;
         }
 
-        FileInputStream fis;
-        try {
-            fis = new FileInputStream(cacheGetFileName(key));
-            BitmapDrawable drawable =
-                    new BitmapDrawable(this.ctx.getResources(), BitmapFactory.decodeStream(fis));
-            fis.close();
-            return drawable;
+        try (FileInputStream fis = new FileInputStream(cacheGetFileName(key))) {
+            Bitmap bitmap = BitmapFactory.decodeStream(fis);
+            if (bitmap != null) {
+                return new BitmapDrawable(this.ctx.getResources(), bitmap);
+            } else {
+                Log.w(TAG, "Unable to get drawable from cache for " + key);
+            }
         } catch (Exception e) {
-            Log.e(TAG, "Unable to get drawable from cache ", e);
+            Log.e(TAG, "Unable to get drawable from cache for " + key, e);
         }
 
         return null;
@@ -465,12 +464,13 @@ public class IconsHandler {
         if (customIcon == 0)
             return null;
 
-        try {
-            FileInputStream fis = new FileInputStream(customIconFileName(componentName, customIcon));
-            BitmapDrawable drawable =
-                    new BitmapDrawable(this.ctx.getResources(), BitmapFactory.decodeStream(fis));
-            fis.close();
-            return drawable;
+        try (FileInputStream fis = new FileInputStream(customIconFileName(componentName, customIcon))) {
+            Bitmap bitmap = BitmapFactory.decodeStream(fis);
+            if (bitmap != null) {
+                return new BitmapDrawable(this.ctx.getResources(), bitmap);
+            } else {
+                Log.w(TAG, "Unable to get custom icon for " + componentName);
+            }
         } catch (Exception e) {
             Log.e(TAG, "Unable to get custom icon for " + componentName, e);
         }
