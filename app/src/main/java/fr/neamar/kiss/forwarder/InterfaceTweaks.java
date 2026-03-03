@@ -15,7 +15,6 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -150,7 +149,6 @@ public class InterfaceTweaks extends Forwarder {
         UIColors.updateThemePrimaryColor(mainActivity);
         applyRoundedCorners(mainActivity);
         swapKissButtonWithMenu(mainActivity);
-        tintResources(mainActivity);
 
         // Transparent Search and Favorites bar
         if (prefs.getBoolean("transparent-favorites", true) && isExternalFavoriteBarEnabled()) {
@@ -243,19 +241,6 @@ public class InterfaceTweaks extends Forwarder {
             layoutParams.addRule(RelativeLayout.END_OF, 0);
             layoutParams.addRule(RelativeLayout.START_OF, mainActivity.whiteLauncherButton.getId());
         }
-    }
-
-    private void tintResources(MainActivity mainActivity) {
-        int primaryColorOverride = UIColors.getPrimaryColor(mainActivity);
-
-        // Circuit breaker, keep default behavior.
-        if (primaryColorOverride == UIColors.COLOR_DEFAULT) {
-            return;
-        }
-
-        // Launcher button should have the main color
-        ImageView launcherButton = mainActivity.findViewById(R.id.launcherButton);
-        launcherButton.setColorFilter(primaryColorOverride);
     }
 
     private int getSearchBackgroundColor() {
