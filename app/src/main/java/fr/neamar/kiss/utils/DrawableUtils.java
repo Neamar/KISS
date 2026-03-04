@@ -46,6 +46,11 @@ public class DrawableUtils {
         DISABLED_COLOR_FILTER = new ColorMatrixColorFilter(matrix);
     }
 
+    public static int dpToPx(@NonNull Context ctx, float valueInDp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, valueInDp, ctx.getResources().getDisplayMetrics());
+    }
+
+
     // https://stackoverflow.com/questions/3035692/how-to-convert-a-drawable-to-a-bitmap
     public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
@@ -171,7 +176,7 @@ public class DrawableUtils {
     }
 
     private static int getMaxIconSize(Context ctx) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 96f, ctx.getResources().getDisplayMetrics());
+        return dpToPx(ctx, 96);
     }
 
     private static Rect getIconBounds(Drawable icon, int maxIconSize, float marginPercent) {
@@ -249,7 +254,7 @@ public class DrawableUtils {
                 break;
             case SHAPE_ROUND_RECT:
                 RECT_F.set(0f, 0f, iconSize, iconSize);
-                path.addRoundRect(RECT_F, iconSize / 8f, iconSize / 12f, Path.Direction.CCW);
+                path.addRoundRect(RECT_F, iconSize / 8f, iconSize / 8f, Path.Direction.CCW);
                 break;
             case SHAPE_TEARDROP_RND: // this is handled before we get here
             case SHAPE_TEARDROP_BR:

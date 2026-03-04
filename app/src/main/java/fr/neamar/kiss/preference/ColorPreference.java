@@ -22,7 +22,7 @@ public class ColorPreference extends DialogPreference {
         this.setDialogLayoutResource(R.layout.pref_color);
     }
 
-    public void setColor(@ColorInt int color) {
+    public void setSelectedColor(@ColorInt int color) {
         this.selectedColor = color;
         this.persistString(UIColors.colorToString(this.selectedColor));
         this.callChangeListener(selectedColor);
@@ -40,9 +40,9 @@ public class ColorPreference extends DialogPreference {
     @Override
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
         if (restoreValue) {
-            setColor(Color.parseColor(getPersistedString(UIColors.colorToString(UIColors.COLOR_DEFAULT))));
+            setSelectedColor(Color.parseColor(getPersistedString(UIColors.colorToString(UIColors.COLOR_DEFAULT))));
         } else {
-            setColor(defaultValue instanceof String ? Color.parseColor((String) defaultValue) : UIColors.COLOR_DEFAULT);
+            setSelectedColor(defaultValue instanceof String ? Color.parseColor((String) defaultValue) : UIColors.COLOR_DEFAULT);
         }
     }
 }

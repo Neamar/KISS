@@ -49,7 +49,7 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
     @Override
     public void onColorSelected(@ColorInt int color) {
         if (color != this.getPreference().getSelectedColor()) {
-            this.getPreference().setColor(color);
+            this.getPreference().setSelectedColor(color);
 
             // Redraw palette to show checkmark on newly selected color before dismissing
             this.drawPalette();
@@ -60,7 +60,7 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
     }
 
     private void selectButton(Button button) {
-        Context context = getContext();
+        Context context = requireContext();
         TypedValue tv = new TypedValue();
         boolean found = context.getTheme().resolveAttribute(android.R.attr.textColor, tv, true);
         @ColorInt int primaryColor = found ? tv.data : Color.BLACK;
@@ -90,8 +90,8 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
                 }
 
                 // Calculate number of swatches to display
-                int swatchSize = ColorPreferenceDialogFragment.this.getContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_small);
-                int swatchMargin = ColorPreferenceDialogFragment.this.getContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_margins_small);
+                int swatchSize = ColorPreferenceDialogFragment.this.requireContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_small);
+                int swatchMargin = ColorPreferenceDialogFragment.this.requireContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_margins_small);
                 ColorPreferenceDialogFragment.this.palette.init(ColorPickerPalette.SIZE_SMALL, view.getWidth() / (swatchSize + swatchMargin), ColorPreferenceDialogFragment.this);
 
                 // Cause redraw and (by extension) also a layout recalculation

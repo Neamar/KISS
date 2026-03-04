@@ -5,12 +5,13 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.concurrent.Executor;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 public class Utilities {
 
@@ -38,12 +39,12 @@ public class Utilities {
         return null;
     }
 
-    public static Utilities.AsyncRun runAsync(@NonNull AsyncRun.Run background, @Nullable AsyncRun.Run after) {
+    public static <T> Utilities.AsyncRun<T> runAsync(@NonNull Function<AsyncRun<T>, T> background, @Nullable BiConsumer<AsyncRun<T>, T> after) {
         return runAsync(background, after, getDefaultExecutor());
     }
 
-    public static Utilities.AsyncRun runAsync(@NonNull AsyncRun.Run background, @Nullable AsyncRun.Run after, @NonNull Executor exec) {
-        return (Utilities.AsyncRun) new Utilities.AsyncRun(background, after).executeOnExecutor(exec);
+    public static <T> Utilities.AsyncRun<T> runAsync(@NonNull Function<AsyncRun<T>, T> background, @Nullable BiConsumer<AsyncRun<T>, T> after, @NonNull Executor exec) {
+        return (AsyncRun<T>) new Utilities.AsyncRun<>(background, after).executeOnExecutor(exec);
     }
 
     /**
@@ -61,36 +62,32 @@ public class Utilities {
         }
     }
 
-    public static class AsyncRun extends AsyncTask<Void, Void, Void> {
-        private final Run mBackground;
-        private final Run mAfter;
+    public static class AsyncRun<Result> extends AsyncTask<Void, Void, Result> {
+        private final Function<AsyncRun<Result>, Result> mBackground;
+        private final BiConsumer<AsyncRun<Result>, Result> mAfter;
 
-        public interface Run {
-            void run(@NonNull Utilities.AsyncRun task);
-        }
-
-        public AsyncRun(@NonNull Run background, @Nullable Run after) {
+        public AsyncRun(@NonNull Function<AsyncRun<Result>, Result> background, @Nullable BiConsumer<AsyncRun<Result>, Result> after) {
             super();
             mBackground = background;
             mAfter = after;
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
-            mBackground.run(this);
-            return null;
+        protected Result doInBackground(Void... voids) {
+            return mBackground.apply(this);
         }
 
         @Override
-        protected void onCancelled(Void aVoid) {
+        protected void onCancelled(Result result) {
             if (mAfter != null)
-                mAfter.run(this);
+                mAfter.accept(this, result);
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            if (mAfter != null)
-                mAfter.run(this);
+        protected void onPostExecute(Result result) {
+            if (mAfter != null) {
+                mAfter.accept(this, result);
+            }
         }
 
         public boolean cancel() {

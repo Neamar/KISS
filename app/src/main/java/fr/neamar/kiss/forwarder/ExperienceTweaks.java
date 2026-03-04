@@ -187,7 +187,7 @@ public class ExperienceTweaks extends Forwarder {
                             // and we're currently in minimalistic mode with no results,
                             // and we're not looking at the app list
                             if (mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
-                                if (mainActivity.list.getAdapter() == null || mainActivity.list.getAdapter().isEmpty()) {
+                                if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
                                     mainActivity.showHistory();
                                 }
                             }
@@ -252,24 +252,26 @@ public class ExperienceTweaks extends Forwarder {
     }
 
     void onResume() {
-        keyboardManager.registerKeyboardListener((keyboardIsVisible) -> {
-            if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
-                    mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
-                if (keyboardIsVisible) {
-                    // If it's more than 200dp, it's most likely a keyboard.
-                    if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
-                        mainActivity.showHistory();
-                        mainActivity.displayClearOnInput();
+        keyboardManager.registerKeyboardListener(
+                mainActivity.findViewById(android.R.id.content),
+                (keyboardIsVisible) -> {
+                    if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
+                            mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
+                        if (keyboardIsVisible) {
+                            // If it's more than 200dp, it's most likely a keyboard.
+                            if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
+                                mainActivity.showHistory();
+                                mainActivity.displayClearOnInput();
+                            }
+                        } else {
+                            // we never want this triggered because the keyboard scroller did it
+                            if (mainActivity.adapter != null && !mainActivity.adapter.isEmpty() && !mainActivity.hider.isScrolled()) {
+                                // reset edittext (hide history)
+                                mainActivity.clearSearchText();
+                            }
+                        }
                     }
-                } else {
-                    // we never want this triggered because the keyboard scroller did it
-                    if (mainActivity.adapter != null && !mainActivity.adapter.isEmpty() && !mainActivity.hider.isScrolled()) {
-                        // reset edittext (hide history)
-                        mainActivity.clearSearchText();
-                    }
-                }
-            }
-        }, mainActivity.findViewById(android.R.id.content));
+                });
 
         adjustInputType();
 
