@@ -1019,6 +1019,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         forwarderManager.onConfigurationChanged(newConfig);
+        recreate();
         Log.d(TAG, "onConfigurationChanged, uiMode = " + (newConfig.uiMode & UI_MODE_NIGHT_MASK));
     }
 }

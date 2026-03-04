@@ -36,7 +36,6 @@
         android:background="?attr/listBackgroundColor"
         android:elevation="2dp"
         android:visibility="gone"
-        tools:ignore="UnusedAttribute"
         tools:visibility="visible">
 
         <fr.neamar.kiss.ui.AnimatedListView
@@ -77,7 +76,6 @@
         android:gravity="center_vertical"
         android:importantForAccessibility="no"
         android:orientation="horizontal"
-        tools:ignore="UnusedAttribute"
         tools:layout="@layout/favorite_item" />
 
     <RelativeLayout
@@ -93,8 +91,7 @@
         android:layout_marginBottom="10dp"
         android:background="?attr/searchBackgroundColor"
         android:clipToPadding="false"
-        android:elevation="2dp"
-        tools:ignore="UnusedAttribute">
+        android:elevation="2dp">
 
         <FrameLayout
             android:id="@+id/leftHandSideButtonsWrapper"
@@ -115,8 +112,9 @@
                 android:paddingLeft="@dimen/launcher_button_padding"
                 android:paddingEnd="@dimen/launcher_button_padding"
                 android:paddingRight="@dimen/launcher_button_padding"
-                android:src="@drawable/ic_launcher"
-                android:tag="showMenu" />
+                android:src="@drawable/ic_launcher_white"
+                android:tag="showMenu"
+                app:tint="?attr/colorAccent" />
 
             <ProgressBar
                 android:id="@+id/loaderBar"
@@ -197,6 +195,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/externalFavoriteBar"
         android:visibility="visible"
+        android:paddingBottom="10dp"
         tools:visibility="gone">
 
         <include
