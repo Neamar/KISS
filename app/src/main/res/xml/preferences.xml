@@ -158,6 +158,9 @@
                 android:key="theme-bar-color"
                 android:summary="%s"
                 android:title="@string/theme_bar_color" />
+            <SwitchPreference
+                android:key="transparent-search"
+                android:title="@string/transparent_search_bar" />
         </PreferenceScreen>
         <PreferenceCategory
             android:key="results-section"
@@ -252,9 +255,6 @@
                 android:title="@string/icons_hide_main" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
-            <SwitchPreference
-                android:key="transparent-search"
-                android:title="@string/transparent_search_bar" />
             <SwitchPreference
                 android:defaultValue="true"
                 android:key="transparent-favorites"

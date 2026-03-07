@@ -80,7 +80,7 @@ public class SearchResult extends Result<SearchPojo> {
                 pos = text.indexOf(pojo.query);
                 len = pojo.query.length();
                 if (!hideIcons) {
-                    image.setImageResource(R.drawable.search);
+                    image.setImageResource(R.drawable.ic_search);
                     Intent intent = createSearchQueryIntent();
                     Drawable icon = getIconByIntent(context, intent);
                     if (icon != null) {
