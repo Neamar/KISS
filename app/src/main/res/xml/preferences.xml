@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/activity_setting">
     <PreferenceScreen
         android:key="history_category"
@@ -118,8 +119,8 @@
             android:entries="@array/themesEntries"
             android:entryValues="@array/themesValues"
             android:key="theme"
-            android:summary="%s"
-            android:title="@string/theme_name" />
+            android:title="@string/theme_name"
+            app:useSimpleSummaryProvider="true" />
         <PreferenceScreen
             android:key="theme-customisation"
             android:title="@string/theme_customisation">
@@ -128,36 +129,36 @@
                 android:entries="@array/shadowEntries"
                 android:entryValues="@array/shadowValues"
                 android:key="theme-shadow"
-                android:summary="%s"
-                android:title="@string/theme_shadow" />
+                android:title="@string/theme_shadow"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="default"
                 android:entries="@array/separatorEntries"
                 android:entryValues="@array/separatorValues"
                 android:key="theme-separator"
-                android:summary="%s"
-                android:title="@string/theme_separator" />
+                android:title="@string/theme_separator"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="default"
                 android:entries="@array/resultColorEntries"
                 android:entryValues="@array/resultColorValues"
                 android:key="theme-result-color"
-                android:summary="%s"
-                android:title="@string/theme_result_color" />
+                android:title="@string/theme_result_color"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="default"
                 android:entries="@array/wallpaperEntries"
                 android:entryValues="@array/wallpaperValues"
                 android:key="theme-wallpaper"
-                android:summary="%s"
-                android:title="@string/theme_wallpaper" />
+                android:title="@string/theme_wallpaper"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="default"
                 android:entries="@array/barColorEntries"
                 android:entryValues="@array/barColorValues"
                 android:key="theme-bar-color"
-                android:summary="%s"
-                android:title="@string/theme_bar_color" />
+                android:title="@string/theme_bar_color"
+                app:useSimpleSummaryProvider="true" />
             <SwitchPreference
                 android:key="transparent-search"
                 android:title="@string/transparent_search_bar" />
