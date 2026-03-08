@@ -6,6 +6,7 @@ import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -158,16 +159,14 @@ public class InterfaceTweaks extends Forwarder {
             mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(android.R.color.transparent);
             mainActivity.searchEditText.setBackgroundResource(android.R.color.transparent);
 
-            // get theme shadow color
-            int shadowColor = getSearchBackgroundColor();
+            int textColor = getResultColor();
+            mainActivity.searchEditText.setTextColor(textColor);
 
-            // make shadow color intense
-            float[] hsv = new float[3];
-            Color.colorToHSV(shadowColor, hsv);
-            // if color is close to black, make it black
-            hsv[2] = hsv[2] < 0.5f ? 0f : 1f;
-            shadowColor = Color.HSVToColor(hsv);
-            mainActivity.searchEditText.setShadowLayer(3, 1, 2, shadowColor);
+            int shadowColor = getResultShadowColor();
+            mainActivity.searchEditText.setShadowLayer(3, 1, 1, shadowColor);
+
+            mainActivity.menuButton.setImageTintList(ColorStateList.valueOf(textColor));
+            mainActivity.clearButton.setImageTintList(ColorStateList.valueOf(textColor));
         }
 
         if (prefs.getBoolean("pref-hide-search-bar-hint", false)) {
@@ -244,13 +243,21 @@ public class InterfaceTweaks extends Forwarder {
         }
     }
 
-    private int getSearchBackgroundColor() {
+    private int getResultShadowColor() {
         // get theme shadow color
-        @StyleableRes int[] attrs = new int[]{R.attr.searchBackgroundColor};
+        @StyleableRes int[] attrs = new int[]{R.attr.resultShadowColor};
         TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
         int shadowColor = ta.getColor(0, Color.BLACK);
         ta.recycle();
         return shadowColor;
+    }
+
+    private int getResultColor() {
+        @StyleableRes int[] attrs = new int[]{R.attr.resultColor};
+        TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
+        int resultColor = ta.getColor(0, Color.WHITE);
+        ta.recycle();
+        return resultColor;
     }
 
     private boolean isExternalFavoriteBarEnabled() {

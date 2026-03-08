@@ -34,6 +34,7 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     /**
      * Menu button
      */
-    public View menuButton;
+    public ImageView menuButton;
     /**
      * Kiss bar
      */
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     /**
      * "X" button to empty the search field
      */
-    public View clearButton;
+    public ImageView clearButton;
 
     /**
      * SystemUiVisibility helper
