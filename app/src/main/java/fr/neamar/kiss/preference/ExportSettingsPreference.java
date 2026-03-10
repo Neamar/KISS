@@ -1,13 +1,11 @@
 package fr.neamar.kiss.preference;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.preference.DialogPreference;
-import android.preference.PreferenceManager;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.preference.PreferenceManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,23 +19,17 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.ClipboardUtils;
 
-public class ExportSettingsPreference extends DialogPreference {
+public class ExportSettingsPreference {
 
     private static final String TAG = ExportSettingsPreference.class.getSimpleName();
 
-    public ExportSettingsPreference(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        super.onClick(dialog, which);
-        if (which == DialogInterface.BUTTON_POSITIVE) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+    public void onDialogClosed(Context context, boolean positiveResult) {
+        if (positiveResult) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
             // Get default values from XML, to only write changed data
-            SharedPreferences defaultValues = getContext().getSharedPreferences("__default__", Context.MODE_PRIVATE);
-            PreferenceManager.setDefaultValues(getContext(), "__default__", Context.MODE_PRIVATE, R.xml.preferences, true);
+            SharedPreferences defaultValues = context.getSharedPreferences("__default__", Context.MODE_PRIVATE);
+            PreferenceManager.setDefaultValues(context, "__default__", Context.MODE_PRIVATE, R.xml.preferences, true);
             JSONObject out = new JSONObject();
             try {
                 // Min version required to read those settings
@@ -86,18 +78,18 @@ public class ExportSettingsPreference extends DialogPreference {
                 }
 
                 // Export tags
-                Map<String, String> tags = ((KissApplication) getContext().getApplicationContext()).getDataHandler().getTagsHandler().getTags();
+                Map<String, String> tags = ((KissApplication) context.getApplicationContext()).getDataHandler().getTagsHandler().getTags();
                 JSONObject jsonTags = new JSONObject();
                 for (Map.Entry<String, String> entry : tags.entrySet()) {
                     jsonTags.put(entry.getKey(), entry.getValue());
                 }
                 out.put("__tags", jsonTags);
 
-                ClipboardUtils.setClipboard(getContext(), "kiss", out.toString());
-                Toast.makeText(getContext(), R.string.export_settings_done, Toast.LENGTH_SHORT).show();
+                ClipboardUtils.setClipboard(context, "kiss", out.toString());
+                Toast.makeText(context, R.string.export_settings_done, Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 Log.e(TAG, "Unable to export settings", e);
-                Toast.makeText(getContext(), R.string.export_settings_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.export_settings_error, Toast.LENGTH_SHORT).show();
             } finally {
                 defaultValues.edit().clear().apply();
             }

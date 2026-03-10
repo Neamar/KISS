@@ -54,7 +54,7 @@ public class Permission {
         currentActivity = new WeakReference<>(activity);
     }
 
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (grantResults.length == 0) {
             return;
         }

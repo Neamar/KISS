@@ -7,7 +7,7 @@ import android.os.Build;
 import android.view.accessibility.AccessibilityEvent;
 
 public class LockAccessibilityService extends AccessibilityService {
-    public static String ACTION_LOCK = "fr.neamar.kiss.LOCK";
+    public static final String ACTION_LOCK = "fr.neamar.kiss.LOCK";
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {

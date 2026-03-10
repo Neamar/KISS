@@ -2,31 +2,15 @@ package fr.neamar.kiss.preference;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.preference.DialogPreference;
-import android.util.AttributeSet;
 
 import fr.neamar.kiss.DummyActivity;
 
-/**
- * A Dialog Preference that allows the User to change the default launcher
- */
-public class DefaultLauncherPreference extends DialogPreference {
+public class DefaultLauncherPreference {
 
-    public DefaultLauncherPreference(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        super.onClick(dialog, which);
-
-        if (which == DialogInterface.BUTTON_POSITIVE) {
-
-            // get context (in order to avoid multiple get() calls)
-            Context context = getContext();
+    public void onDialogClosed(Context context, boolean positiveResult) {
+        if (positiveResult) {
 
             // get packet manager
             PackageManager packageManager = context.getPackageManager();

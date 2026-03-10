@@ -5,9 +5,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.view.WindowManager;
 
+import androidx.preference.PreferenceManager;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Before;

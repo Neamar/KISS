@@ -1,5 +1,7 @@
 package fr.neamar.kiss.utils;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -13,10 +15,10 @@ public class IconPackCache {
     private final SoftReferenceCache<String, IconPackXML> mCache = new SoftReferenceCache<>();
 
     @NonNull
-    public IconPackXML getIconPack(String packageName) {
+    public IconPackXML getIconPack(Context context, String packageName) {
         IconPackXML pack = mCache.get(packageName);
         if (pack == null) {
-            pack = new IconPackXML(packageName);
+            pack = new IconPackXML(context, packageName);
             mCache.put(packageName, pack);
         }
         return pack;

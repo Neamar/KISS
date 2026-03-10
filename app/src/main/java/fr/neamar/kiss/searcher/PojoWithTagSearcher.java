@@ -1,9 +1,9 @@
 package fr.neamar.kiss.searcher;
 
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;

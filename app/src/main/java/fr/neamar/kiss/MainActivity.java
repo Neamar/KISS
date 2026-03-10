@@ -1,10 +1,10 @@
 package fr.neamar.kiss;
 
+import static android.content.res.Configuration.UI_MODE_NIGHT_MASK;
 import static android.view.HapticFeedbackConstants.LONG_PRESS;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.DialogFragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +20,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.os.UserManager;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
@@ -35,6 +34,7 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -43,6 +43,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     public static final String START_LOAD = "fr.neamar.summon.START_LOAD";
     public static final String LOAD_OVER = "fr.neamar.summon.LOAD_OVER";
+    public static final String REFRESH_FAVORITES = "fr.neamar.summon.REFRESH_FAVORITES";
 
     protected static final String TAG = MainActivity.class.getSimpleName();
 
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     /**
      * Menu button
      */
-    public View menuButton;
+    public ImageView menuButton;
     /**
      * Kiss bar
      */
@@ -144,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     /**
      * "X" button to empty the search field
      */
-    public View clearButton;
+    public ImageView clearButton;
 
     /**
      * SystemUiVisibility helper
@@ -188,10 +191,17 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
          */
         IntentFilter intentFilterLoad = new IntentFilter(START_LOAD);
         IntentFilter intentFilterLoadOver = new IntentFilter(LOAD_OVER);
+        IntentFilter intentFilterRefresh = new IntentFilter(REFRESH_FAVORITES);
         mReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if (LOAD_OVER.equalsIgnoreCase(intent.getAction())) {
+                if (REFRESH_FAVORITES.equals(intent.getAction())) {
+                    onFavoriteChange();
+                    if (prefs.getBoolean("exclude-favorites-history", false)) {
+                        // update search to reflect favorite change, if the "exclude favorites" option is active
+                        updateSearchRecords();
+                    }
+                } else if (LOAD_OVER.equalsIgnoreCase(intent.getAction())) {
                     updateSearchRecords();
                     if (!KissApplication.getApplication(context).getDataHandler().isAllProvidersLoaded()) {
                         displayLoader(true);
@@ -203,12 +213,13 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                         // Run GC once to free all the garbage accumulated during provider initialization
                         System.gc();
                     }
+                    // New provider might mean new favorites
+                    onFavoriteChange();
                 } else if (START_LOAD.equalsIgnoreCase(intent.getAction())) {
                     displayLoader(true);
+                    // New provider might mean new favorites
+                    onFavoriteChange();
                 }
-
-                // New provider might mean new favorites
-                onFavoriteChange();
             }
         };
 
@@ -222,6 +233,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
         ContextCompat.registerReceiver(this, mReceiver, intentFilterLoad, ContextCompat.RECEIVER_EXPORTED);
         ContextCompat.registerReceiver(this, mReceiver, intentFilterLoadOver, ContextCompat.RECEIVER_EXPORTED);
+        ContextCompat.registerReceiver(this, mReceiver, intentFilterRefresh, ContextCompat.RECEIVER_EXPORTED);
 
         /*
          * Set the view and store all useful components
@@ -260,10 +272,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         this.list.setAdapter(this.adapter);
 
         this.list.setOnItemClickListener((parent, v, position, id) -> adapter.onClick(position, v));
-
-        this.list.setLongClickable(true);
         this.list.setOnItemLongClickListener((parent, v, pos, id) -> {
-            ((RecordAdapter) parent.getAdapter()).onLongClick(pos, v);
+            adapter.onLongClick(pos, v);
             return true;
         });
 
@@ -298,13 +308,13 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         });
 
         // Listen to changes
-        searchEditText.addTextChangedListener(new TrimmingTextChangedListener((changedText) -> {
+        searchEditText.addTextChangedListener(new TrimmingTextChangedListener(true, (changedText) -> {
             if (isViewingAllApps()) {
                 displayKissBar(false, false);
             }
             updateSearchRecords(false, changedText);
             displayClearOnInput();
-        }, true));
+        }));
 
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
         // This fix should be on ALL TextEdit Widgets !!!
@@ -455,12 +465,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     protected void onPause() {
         super.onPause();
         forwarderManager.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        forwarderManager.onStop();
     }
 
     @Override
@@ -636,7 +640,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     public void displayClearOnInput() {
-        if (searchEditText.getText().length() > 0) {
+        if (!TextUtils.isEmpty(searchEditText.getText())) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
         } else {
@@ -713,7 +717,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         }
     }
 
-    public void onFavoriteChange() {
+    private void onFavoriteChange() {
         forwarderManager.onFavoriteChange();
     }
 
@@ -847,9 +851,9 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      */
     @Override
     public void temporarilyDisableTranscriptMode() {
-        list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
+        updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_DISABLED);
         // Add a message to be processed after all current messages, to reset transcript mode to default
-        list.post(() -> list.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL));
+        list.post(() -> updateTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL));
     }
 
     /**
@@ -905,7 +909,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 updateSearchRecords();
             });
         }
-        dialog.show(getFragmentManager(), "dialog");
+        dialog.show(getSupportFragmentManager(), "dialog");
     }
 
     @Override
@@ -1010,5 +1014,13 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         }
 
         return homePackage.equals(this.getPackageName());
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        forwarderManager.onConfigurationChanged(newConfig);
+        recreate();
+        Log.d(TAG, "onConfigurationChanged, uiMode = " + (newConfig.uiMode & UI_MODE_NIGHT_MASK));
     }
 }

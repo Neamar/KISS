@@ -163,7 +163,7 @@ public class MimeTypeCache {
 
     /**
      * Loads contact description from other sync providers, search for ContactsAccountType or ContactsSource
-     * detailed description can be found here https://developer.android.com/guide/topics/providers/contacts-provider
+     * detailed description can be found here <a href="https://developer.android.com/guide/topics/providers/contacts-provider">https://developer.android.com/guide/topics/providers/contacts-provider</a>
      *
      * @param context
      * @param packageName
@@ -175,18 +175,16 @@ public class MimeTypeCache {
         final List<ResolveInfo> intentServices = pm.queryIntentServices(intent,
                 PackageManager.GET_META_DATA | PackageManager.GET_SERVICES);
 
-        if (intentServices != null) {
-            for (final ResolveInfo resolveInfo : intentServices) {
-                final ServiceInfo serviceInfo = resolveInfo.serviceInfo;
-                if (serviceInfo == null) {
-                    continue;
-                }
-                for (String metadataName : METADATA_CONTACTS_NAMES) {
-                    final XmlResourceParser parser = serviceInfo.loadXmlMetaData(
-                            pm, metadataName);
-                    if (parser != null) {
-                        return parser;
-                    }
+        for (final ResolveInfo resolveInfo : intentServices) {
+            final ServiceInfo serviceInfo = resolveInfo.serviceInfo;
+            if (serviceInfo == null) {
+                continue;
+            }
+            for (String metadataName : METADATA_CONTACTS_NAMES) {
+                final XmlResourceParser parser = serviceInfo.loadXmlMetaData(
+                        pm, metadataName);
+                if (parser != null) {
+                    return parser;
                 }
             }
         }

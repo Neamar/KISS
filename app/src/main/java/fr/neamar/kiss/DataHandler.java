@@ -14,13 +14,13 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.UserManager;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -675,8 +675,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         app.setExcluded(true);
 
         // Ensure it's removed from favorites too
-        DataHandler dataHandler = KissApplication.getApplication(context).getDataHandler();
-        dataHandler.removeFromFavorites(app.id);
+        removeFromFavorites(app.id);
 
         // Exclude shortcuts for this app
         removeShortcuts(app.packageName);
@@ -860,7 +859,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
      * @param id       the app you want to set the position of
      * @param position the new position of the fav
      */
-    public void setFavoritePosition(MainActivity context, String id, int position) {
+    public void setFavoritePosition(Context context, String id, int position) {
         List<Pojo> currentFavorites = getFavorites();
         List<String> favAppsList = new ArrayList<>();
 
@@ -884,7 +883,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putString("favorite-apps-list", newFavList + ";").apply();
 
-        context.onFavoriteChange();
+        refreshFavorites();
     }
 
     public void addToFavorites(String id) {
@@ -906,6 +905,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         if (excludedApps) {
             reloadApps();
         }
+        refreshFavorites();
     }
 
     public void removeFromFavorites(String id) {
@@ -927,6 +927,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         if (excludedApps) {
             reloadApps();
         }
+        refreshFavorites();
     }
 
     public void removeFromFavorites(UserHandle user) {
@@ -954,6 +955,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         if (excludedApps) {
             reloadApps();
         }
+        refreshFavorites();
     }
 
     /**
@@ -1008,6 +1010,24 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             tagsHandler = new TagsHandler(context);
         }
         return tagsHandler;
+    }
+
+    @Nullable
+    private TagsProvider getTagsProvider() {
+        ProviderEntry entry = this.providers.get("tags");
+        return (entry != null) ? ((TagsProvider) entry.provider) : null;
+    }
+
+    public void reloadTags() {
+        TagsProvider tagsProvider = getTagsProvider();
+        if (tagsProvider != null) {
+            tagsProvider.reload();
+        }
+    }
+
+    public void refreshFavorites() {
+        Intent startLoad = new Intent(MainActivity.REFRESH_FAVORITES);
+        context.sendBroadcast(startLoad);
     }
 
     public void resetTagsHandler() {

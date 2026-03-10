@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * A Sublime Text inspired fuzzy match algorithm
- * https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md
+ * <a href="https://github.com/forrestthewoods/lib_fts/blob/master/docs/fuzzy_match.md">fuzzy_match.md</a>
  * <p>
  * match("otw", "Power of the Wild", info) = true, info.score = 14
  * match("otw", "Druid of the Claw", info) = true, info.score = -3

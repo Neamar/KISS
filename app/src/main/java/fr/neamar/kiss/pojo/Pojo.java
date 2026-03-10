@@ -5,12 +5,10 @@ import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
 
 public abstract class Pojo {
-    public static final String DEFAULT_ID = "(none)";
-
     // Globally unique ID.
     // Usually starts with provider scheme, e.g. "app://" or "contact://" to
     // ensure unique constraint
-    public String id;
+    public final String id;
     // normalized name, for faster search
     public StringNormalizer.Result normalizedName = null;
     // Lower-cased name, for faster search

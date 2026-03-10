@@ -12,13 +12,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/color_picker_swatch"
-        android:contentDescription="@string/main_color"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:contentDescription="@string/main_color" />
 
     <ImageView
         android:id="@+id/color_picker_checkmark"
@@ -26,6 +27,7 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/main_color"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_colorpicker_swatch_selected"
-        android:visibility="gone" />
+        android:src="@drawable/ic_check"
+        android:visibility="gone"
+        app:tint="@android:color/white" />
 </merge>

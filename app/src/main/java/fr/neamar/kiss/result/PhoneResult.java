@@ -40,7 +40,7 @@ public class PhoneResult extends CallResult<PhonePojo> {
         String text = String.format(context.getString(R.string.ui_item_phone), pojo.phone);
         int pos = text.indexOf(pojo.phone);
         int len = pojo.phone.length();
-        displayHighlighted(text, Collections.singletonList(new Pair<Integer, Integer>(pos, pos + len)), phoneText, context);
+        displayHighlighted(text, Collections.singletonList(new Pair<>(pos, pos + len)), phoneText, context);
 
         ((ImageView) view.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
 
@@ -48,7 +48,7 @@ public class PhoneResult extends CallResult<PhonePojo> {
     }
 
     @Override
-    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter, final RecordAdapter parent, View parentView) {
+    protected ListPopup buildPopupMenu(Context context, ArrayAdapter<ListPopup.Item> adapter) {
         adapter.add(new ListPopup.Item(context, R.string.menu_remove));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_add));
         adapter.add(new ListPopup.Item(context, R.string.menu_favorites_remove));

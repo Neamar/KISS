@@ -1,11 +1,13 @@
 package fr.neamar.kiss.forwarder;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import fr.neamar.kiss.MainActivity;
@@ -58,9 +60,6 @@ public class ForwarderManager extends Forwarder {
         notificationForwarder.onPause();
     }
 
-    public void onStop() {
-    }
-
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         widgetsForwarder.onActivityResult(requestCode, resultCode, data);
     }
@@ -106,5 +105,10 @@ public class ForwarderManager extends Forwarder {
 
     public void onDestroy() {
         widgetsForwarder.onDestroy();
+    }
+
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        interfaceTweaks.onConfigurationChanged(newConfig);
+        favoritesForwarder.onConfigurationChanged(newConfig);
     }
 }

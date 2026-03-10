@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
+import fr.neamar.kiss.utils.PhoneUtils;
 
 public final class ContactsPojo extends Pojo {
     public final String lookupKey;
@@ -59,8 +60,8 @@ public final class ContactsPojo extends Pojo {
 
     public void setPhone(String phone, boolean homeNumber) {
         if (!TextUtils.isEmpty(phone)) {
-            this.phone = PhoneNormalizer.convertKeypadLettersToDigits(phone);
-            this.normalizedPhone = PhoneNormalizer.simplifyPhoneNumber(phone);
+            this.phone = PhoneUtils.convertKeypadLettersToDigits(phone);
+            this.normalizedPhone = PhoneNormalizer.normalizeWithResult(phone);
             this.homeNumber = homeNumber;
         } else {
             this.phone = null;

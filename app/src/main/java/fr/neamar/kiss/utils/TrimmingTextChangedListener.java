@@ -12,7 +12,7 @@ public class TrimmingTextChangedListener implements TextWatcher {
 
     private String oldText = null;
 
-    public TrimmingTextChangedListener(@NonNull TextChangedCallback textChangedCallback, boolean executeCallbackOnEmpty) {
+    public TrimmingTextChangedListener(boolean executeCallbackOnEmpty, @NonNull TextChangedCallback textChangedCallback) {
         this.textChangedCallback = textChangedCallback;
         this.executeCallbackOnEmpty = executeCallbackOnEmpty;
     }

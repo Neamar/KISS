@@ -19,7 +19,6 @@ import fr.neamar.kiss.utils.UserHandle;
 
 public class SystemIconPack implements IconPack<Void> {
 
-    private static final String TAG = SystemIconPack.class.getSimpleName();
     private final String packageName;
     private IconShape mAdaptiveShape = IconShape.SHAPE_SYSTEM;
 
@@ -35,10 +34,6 @@ public class SystemIconPack implements IconPack<Void> {
     @Override
     public String getPackPackageName() {
         return packageName;
-    }
-
-    @Override
-    public void load(PackageManager packageManager) {
     }
 
     @NonNull

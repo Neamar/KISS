@@ -18,7 +18,7 @@ public class UserHandle implements Parcelable, Comparable<UserHandle> {
     private final long serial;
     private final android.os.UserHandle handle; // android.os.UserHandle on Android 4.2 and newer
 
-    public static UserHandle OWNER = new UserHandle();
+    public static final UserHandle OWNER = new UserHandle();
 
     private UserHandle() {
         this(0, null);

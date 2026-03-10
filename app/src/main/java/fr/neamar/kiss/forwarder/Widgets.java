@@ -11,13 +11,11 @@ import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,6 +39,7 @@ import fr.neamar.kiss.PickAppWidgetActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.WidgetHost;
+import fr.neamar.kiss.utils.DrawableUtils;
 
 class Widgets extends Forwarder {
     private static final String TAG = Widgets.class.getSimpleName();
@@ -98,6 +97,7 @@ class Widgets extends Forwarder {
             case Activity.RESULT_OK:
                 if (data != null) {
                     if (!data.getBooleanExtra(PickAppWidgetActivity.EXTRA_WIDGET_BIND_ALLOWED, false)) {
+                        Log.w(TAG, "Widget bind not allowed");
                         requestBindWidget(data);
                         break;
                     }
@@ -464,6 +464,8 @@ class Widgets extends Forwarder {
             if (!isConfigurationOptional(appWidgetInfo)) {
                 configureAppWidget(appWidgetId, appWidgetInfo, REQUEST_APPWIDGET_CONFIGURED);
             }
+        } else {
+            Log.w(TAG, "Add widget not possible");
         }
     }
 
@@ -530,10 +532,7 @@ class Widgets extends Forwarder {
      * @return line height in pixel
      */
     private float getLineHeight() {
-        float dip = 50f;
-        Resources r = mainActivity.getResources();
-
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
+        return DrawableUtils.dpToPx(mainActivity, 50);
     }
 
     private int getMinHeight(AppWidgetProviderInfo appWidgetInfo) {

@@ -1,26 +1,34 @@
 package fr.neamar.kiss.forwarder;
 
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Insets;
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StyleableRes;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.preference.PreferenceManager;
 
 import java.util.List;
 
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
+import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.ViewGroupUtils;
 
 // Deals with any settings in the "User Interface" setting sub-screen
@@ -33,26 +41,23 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     public static void applyTheme(Activity act, SharedPreferences prefs) {
-        String theme = prefs.getString("theme", "transparent");
+        String theme = getTheme(prefs);
         switch (theme) {
-            case "dark":
-                act.setTheme(R.style.AppThemeDark);
-                break;
             case "transparent":
+            case "transparent-dark":
                 act.setTheme(R.style.AppThemeTransparent);
                 break;
             case "semi-transparent":
-                act.setTheme(R.style.AppThemeSemiTransparent);
-                break;
             case "semi-transparent-dark":
-                act.setTheme(R.style.AppThemeSemiTransparentDark);
-                break;
-            case "transparent-dark":
-                act.setTheme(R.style.AppThemeTransparentDark);
+                act.setTheme(R.style.AppThemeSemiTransparent);
                 break;
             case "amoled-dark":
                 act.setTheme(R.style.AppThemeAmoledDark);
                 break;
+            case "light":
+            case "dark":
+            default:
+                act.setTheme(R.style.AppTheme);
         }
 
         UIColors.applyOverlay(act, prefs);
@@ -86,7 +91,51 @@ public class InterfaceTweaks extends Forwarder {
         applySystemBarInsets(act.getWindow().getDecorView());
     }
 
-    public static void applySystemBarInsets(View view) {
+    public static void applySettingsTheme(Activity act, SharedPreferences prefs) {
+        String theme = getTheme(prefs);
+        switch (theme) {
+            case "amoled-dark":
+                act.setTheme(R.style.SettingThemeAmoledDark);
+                break;
+            case "light":
+            case "semi-transparent":
+            case "transparent":
+            case "dark":
+            case "semi-transparent-dark":
+            case "transparent-dark":
+            default:
+                act.setTheme(R.style.SettingTheme);
+                break;
+        }
+        UIColors.applyAccentColor(act);
+        UIColors.updateThemePrimaryColor(act);
+        applySystemBarInsets(act.getWindow().getDecorView());
+    }
+
+    public static void setDefaultNightMode(@NonNull Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String theme = getTheme(prefs);
+        switch (theme) {
+            case "dark":
+            case "semi-transparent-dark":
+            case "transparent-dark":
+            case "amoled-dark":
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+                break;
+            case "light":
+            case "semi-transparent":
+            case "transparent":
+            default:
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
+                break;
+        }
+    }
+
+    private static String getTheme(SharedPreferences prefs) {
+        return prefs.getString("theme", "transparent");
+    }
+
+    private static void applySystemBarInsets(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
             view.setOnApplyWindowInsetsListener((v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsets.Type.systemBars() | WindowInsets.Type.ime());
@@ -96,40 +145,11 @@ public class InterfaceTweaks extends Forwarder {
         }
     }
 
-    public static void applySettingsTheme(Activity act, SharedPreferences prefs) {
-        String theme = prefs.getString("theme", "transparent");
-        switch (theme) {
-            case "dark":
-                act.setTheme(R.style.SettingThemeDark);
-                break;
-            case "transparent":
-                act.setTheme(R.style.SettingTheme);
-                break;
-            case "semi-transparent":
-                act.setTheme(R.style.SettingTheme);
-                break;
-            case "semi-transparent-dark":
-                act.setTheme(R.style.SettingThemeDark);
-                break;
-            case "transparent-dark":
-                act.setTheme(R.style.SettingThemeDark);
-                break;
-            case "amoled-dark":
-                act.setTheme(R.style.SettingThemeAmoledDark);
-                break;
-            default: // "light"
-                act.setTheme(R.style.SettingTheme);
-                break;
-        }
-        UIColors.updateThemePrimaryColor(act);
-    }
-
     void onCreate() {
         UIColors.clearPrimaryColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);
         applyRoundedCorners(mainActivity);
         swapKissButtonWithMenu(mainActivity);
-        tintResources(mainActivity);
 
         // Transparent Search and Favorites bar
         if (prefs.getBoolean("transparent-favorites", true) && isExternalFavoriteBarEnabled()) {
@@ -139,16 +159,14 @@ public class InterfaceTweaks extends Forwarder {
             mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(android.R.color.transparent);
             mainActivity.searchEditText.setBackgroundResource(android.R.color.transparent);
 
-            // get theme shadow color
-            int shadowColor = getSearchBackgroundColor();
+            int textColor = getResultColor();
+            mainActivity.searchEditText.setTextColor(textColor);
 
-            // make shadow color intense
-            float[] hsv = new float[3];
-            Color.colorToHSV(shadowColor, hsv);
-            // if color is close to black, make it black
-            hsv[2] = hsv[2] < 0.5f ? 0f : 1f;
-            shadowColor = Color.HSVToColor(hsv);
-            mainActivity.searchEditText.setShadowLayer(3, 1, 2, shadowColor);
+            int shadowColor = getResultShadowColor();
+            mainActivity.searchEditText.setShadowLayer(3, 1, 1, shadowColor);
+
+            mainActivity.menuButton.setImageTintList(ColorStateList.valueOf(textColor));
+            mainActivity.clearButton.setImageTintList(ColorStateList.valueOf(textColor));
         }
 
         if (prefs.getBoolean("pref-hide-search-bar-hint", false)) {
@@ -197,6 +215,7 @@ public class InterfaceTweaks extends Forwarder {
 
         if (prefs.getBoolean("pref-rounded-list", false)) {
             mainActivity.findViewById(R.id.resultLayout).setBackgroundResource(R.drawable.rounded_result_layout);
+            mainActivity.findViewById(R.id.main_empty).setBackgroundResource(R.drawable.rounded_result_layout);
             // clip list content to rounded corners
             mainActivity.listContainer.setClipToOutline(true);
         }
@@ -224,32 +243,30 @@ public class InterfaceTweaks extends Forwarder {
         }
     }
 
-    private void tintResources(MainActivity mainActivity) {
-        int primaryColorOverride = UIColors.getPrimaryColor(mainActivity);
-
-        // Circuit breaker, keep default behavior.
-        if (primaryColorOverride == UIColors.COLOR_DEFAULT) {
-            return;
-        }
-
-        // Launcher button should have the main color
-        ImageView launcherButton = mainActivity.findViewById(R.id.launcherButton);
-        launcherButton.setColorFilter(primaryColorOverride);
-
-        // Kissbar background
-        mainActivity.kissBar.getBackground().mutate().setColorFilter(primaryColorOverride, PorterDuff.Mode.SRC_IN);
-    }
-
-    private int getSearchBackgroundColor() {
+    private int getResultShadowColor() {
         // get theme shadow color
-        @StyleableRes int[] attrs = new int[]{R.attr.searchBackgroundColor};
+        @StyleableRes int[] attrs = new int[]{R.attr.resultShadowColor};
         TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
         int shadowColor = ta.getColor(0, Color.BLACK);
         ta.recycle();
         return shadowColor;
     }
 
+    private int getResultColor() {
+        @StyleableRes int[] attrs = new int[]{R.attr.resultColor};
+        TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
+        int resultColor = ta.getColor(0, Color.WHITE);
+        ta.recycle();
+        return resultColor;
+    }
+
     private boolean isExternalFavoriteBarEnabled() {
         return prefs.getBoolean("enable-favorites-bar", true);
+    }
+
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        TagDummyResult.resetShape();
+        UIColors.clearPrimaryColorCache();
+        UIColors.updateThemePrimaryColor(mainActivity);
     }
 }

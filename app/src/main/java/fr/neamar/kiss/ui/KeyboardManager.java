@@ -3,10 +3,11 @@ package fr.neamar.kiss.ui;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowInsets;
+
+import fr.neamar.kiss.utils.DrawableUtils;
 
 public class KeyboardManager {
 
@@ -21,17 +22,13 @@ public class KeyboardManager {
         mContext = context;
     }
 
-    private final Context mContext;
+    protected final Context mContext;
 
-    private View contentView;
+    protected View contentView;
     private ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener;
     private boolean keyboardIsVisible;
 
-    protected int dpToPx(float valueInDp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, valueInDp, mContext.getResources().getDisplayMetrics());
-    }
-
-    protected void setKeyboardIsVisible(final OnKeyboardListener listener, boolean isVisible) {
+    protected void setKeyboardIsVisible(boolean isVisible, final OnKeyboardListener listener) {
         if (isVisible != keyboardIsVisible) {
             Log.d(TAG, "onKeyboardVisibilityChanged(" + isVisible + ")");
             keyboardIsVisible = isVisible;
@@ -41,7 +38,7 @@ public class KeyboardManager {
         }
     }
 
-    public void registerKeyboardListener(final OnKeyboardListener listener, View view) {
+    public void registerKeyboardListener(View view, final OnKeyboardListener listener) {
         this.contentView = view;
         unregisterKeyboardListener();
         onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -58,16 +55,16 @@ public class KeyboardManager {
                         if (heightDiff != 0) {
                             WindowInsets windowInsets = KeyboardManager.this.contentView.getRootWindowInsets();
                             boolean imeInsetVisible = windowInsets.isVisible(WindowInsets.Type.ime());
-                            setKeyboardIsVisible(listener, imeInsetVisible);
+                            setKeyboardIsVisible(imeInsetVisible, listener);
                         }
                     } else {
-                        int changeThreshold = dpToPx(150);
+                        int changeThreshold = DrawableUtils.dpToPx(mContext, 150);
                         if (heightDiff > changeThreshold) {
                             // we assume that keyboard was shown
-                            setKeyboardIsVisible(listener, true);
+                            setKeyboardIsVisible(true, listener);
                         } else if (heightDiff < -changeThreshold) {
                             // we assume that keyboard was hidden
-                            setKeyboardIsVisible(listener, false);
+                            setKeyboardIsVisible(false, listener);
                         }
                     }
                 }

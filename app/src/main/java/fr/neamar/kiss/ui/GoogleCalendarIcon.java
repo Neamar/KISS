@@ -18,7 +18,7 @@ import fr.neamar.kiss.utils.DrawableUtils;
 /**
  * This class is used to display a custom icon for Google Calendar
  * Every day, the icon is different and display the current day
- * Credits: https://github.com/LawnchairLauncher/Lawnchair/blob/d12b30d5333c03969ad340eb9b4e1846c12a6a73/src/com/google/android/apps/nexuslauncher/DynamicIconProvider.java
+ * Credits: <a href="https://github.com/LawnchairLauncher/Lawnchair/blob/d12b30d5333c03969ad340eb9b4e1846c12a6a73/src/com/google/android/apps/nexuslauncher/DynamicIconProvider.java">DynamicIconProvider.java</a>
  */
 public class GoogleCalendarIcon {
     public static final String GOOGLE_CALENDAR = "com.google.android.calendar";

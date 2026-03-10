@@ -17,6 +17,7 @@ import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.utils.Permission;
+import fr.neamar.kiss.utils.PhoneUtils;
 import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
@@ -147,10 +148,11 @@ public class ContactsProvider extends Provider<ContactsPojo> {
      * @return a ContactsPojo, or null.
      */
     public ContactsPojo findByPhone(String phoneNumber) {
-        StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.simplifyPhoneNumber(phoneNumber);
+        StringNormalizer.Result simplifiedPhoneNumber = PhoneNormalizer.normalizeWithResult(phoneNumber);
 
+        PhoneUtils phoneUtils = new PhoneUtils(this);
         for (ContactsPojo pojo : getPojos()) {
-            if (pojo.normalizedPhone != null && pojo.normalizedPhone.equals(simplifiedPhoneNumber)) {
+            if (pojo.normalizedPhone != null && phoneUtils.areSamePhoneNumber(pojo.normalizedPhone, simplifiedPhoneNumber)) {
                 return pojo;
             }
         }
