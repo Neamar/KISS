@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.AlarmClock;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -100,9 +101,17 @@ public class SearchResult extends Result<SearchPojo> {
                 }
                 break;
             case TIMER_QUERY:
-                text = pojo.query;
-                pos = 0;
-                len = text.length();
+                try {
+                    String elapsedTime = DateUtils.formatElapsedTime(Long.parseLong(pojo.url));
+                    text = context.getString(R.string.ui_item_timer, elapsedTime);
+                    pos = text.indexOf(elapsedTime);
+                    len = elapsedTime.length();
+                } catch (NumberFormatException e) {
+                    Log.w(TAG, "Invalid timer duration: " + pojo.url, e);
+                    text = pojo.query;
+                    pos = 0;
+                    len = text.length();
+                }
                 if (!hideIcons) {
                     image.setImageResource(R.drawable.ic_timer);
                 }
@@ -202,16 +211,15 @@ public class SearchResult extends Result<SearchPojo> {
                 break;
             case TIMER_QUERY:
                 try {
-                     int seconds = Integer.parseInt(pojo.url);
-                     Intent timerIntent = new Intent(AlarmClock.ACTION_SET_TIMER);
-                     timerIntent.putExtra(AlarmClock.EXTRA_LENGTH, seconds);
-                     timerIntent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
-                     timerIntent.putExtra(AlarmClock.EXTRA_MESSAGE, pojo.query);
-                     timerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                     context.startActivity(timerIntent);
-                } catch (Exception e) {
-                     // Likely no app to handle timer or permission missing
-                     Toast.makeText(context, "Could not start timer", Toast.LENGTH_SHORT).show();
+                    int seconds = Integer.parseInt(pojo.url);
+                    Intent timerIntent = new Intent(AlarmClock.ACTION_SET_TIMER);
+                    timerIntent.putExtra(AlarmClock.EXTRA_LENGTH, seconds);
+                    timerIntent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+                    timerIntent.putExtra(AlarmClock.EXTRA_MESSAGE, pojo.query);
+                    timerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(timerIntent);
+                } catch (RuntimeException e) {
+                    Log.w(TAG, "Unable to start timer for query: " + pojo.query, e);
                 }
                 break;
             case URI_QUERY:

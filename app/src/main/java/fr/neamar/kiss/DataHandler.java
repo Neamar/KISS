@@ -120,12 +120,10 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         ProviderEntry calculatorEntry = new ProviderEntry();
         calculatorEntry.provider = new CalculatorProvider();
         this.providers.put("calculator", calculatorEntry);
-        
-        if (prefs.getBoolean("enable-timer", true)) {
-            ProviderEntry timerEntry = new ProviderEntry();
-            timerEntry.provider = new TimerProvider();
-            this.providers.put("timer", timerEntry);
-        }
+
+        ProviderEntry timerEntry = new ProviderEntry();
+        timerEntry.provider = new TimerProvider(context);
+        this.providers.put("timer", timerEntry);
 
         ProviderEntry phoneEntry = new ProviderEntry();
         phoneEntry.provider = new PhoneProvider(context);
@@ -154,14 +152,6 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
                     this.connectToProvider(providerName, 0);
                 } else {
                     this.disconnectFromProvider(providerName);
-                }
-            } else if ("timer".equals(providerName)) {
-                if (sharedPreferences.getBoolean(key, true)) {
-                    ProviderEntry timerEntry = new ProviderEntry();
-                    timerEntry.provider = new TimerProvider();
-                    this.providers.put("timer", timerEntry);
-                } else {
-                    this.providers.remove("timer");
                 }
             }
         }
