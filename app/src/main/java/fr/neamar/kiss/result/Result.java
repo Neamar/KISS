@@ -3,11 +3,11 @@ package fr.neamar.kiss.result;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -25,12 +25,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.annotation.StyleableRes;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import fr.neamar.kiss.BuildConfig;
+import fr.neamar.kiss.IconsHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
@@ -60,6 +62,7 @@ import fr.neamar.kiss.pojo.TagDummyPojo;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.ClipboardUtils;
+import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.Utilities;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 import fr.neamar.kiss.utils.fuzzy.MatchInfo;
@@ -487,12 +490,56 @@ public abstract class Result<T extends Pojo> {
      * Get fill color from theme
      *
      */
+    @ColorInt
     int getThemeFillColor(Context context) {
-        @StyleableRes int[] attrs = new int[]{R.attr.resultColor};
-        TypedArray ta = context.obtainStyledAttributes(attrs);
-        int color = ta.getColor(0, Color.WHITE);
-        ta.recycle();
-        return color;
+        if (DrawableUtils.hasThemedIcons() &&
+                DrawableUtils.isThemedIconEnabled(context)) {
+            return UIColors.getIconColors(context)[1];
+        } else {
+            return UIColors.getResultColor(context);
+        }
+    }
+
+    protected Drawable getThemedDrawable(Context context, int resId) {
+        if (DrawableUtils.hasThemedIcons() &&
+                DrawableUtils.isThemedIconEnabled(context)) {
+            IconsHandler iconsHandler = KissApplication.getApplication(context).getIconsHandler();
+            Drawable background = iconsHandler.getBackgroundDrawable(getBackgroundColor(context));
+            int insetX = (int) (background.getIntrinsicWidth() * 0.15);
+            int insetY = (int) (background.getIntrinsicHeight() * 0.15);
+
+            Drawable foregroud = ContextCompat.getDrawable(context, resId);
+            foregroud.setTint(getTextColor(context));
+
+            LayerDrawable combined = new LayerDrawable(new Drawable[]{background, foregroud});
+            combined.setLayerInset(1, insetX, insetY, insetX, insetY);
+
+            return combined;
+        } else {
+            Drawable drawable = ContextCompat.getDrawable(context, resId);
+            drawable.setTint(getThemeFillColor(context));
+            return drawable;
+        }
+    }
+
+    @ColorInt
+    protected int getBackgroundColor(Context context) {
+        if (DrawableUtils.hasThemedIcons() &&
+                DrawableUtils.isThemedIconEnabled(context)) {
+            return UIColors.getIconColors(context)[0];
+        } else {
+            return Color.WHITE;
+        }
+    }
+
+    @ColorInt
+    protected int getTextColor(Context context) {
+        if (DrawableUtils.hasThemedIcons() &&
+                DrawableUtils.isThemedIconEnabled(context)) {
+            return UIColors.getIconColors(context)[1];
+        } else {
+            return UIColors.getPrimaryColor(context);
+        }
     }
 
     public long getUniqueId() {

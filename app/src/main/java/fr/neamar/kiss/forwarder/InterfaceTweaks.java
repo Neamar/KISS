@@ -159,7 +159,7 @@ public class InterfaceTweaks extends Forwarder {
             mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(android.R.color.transparent);
             mainActivity.searchEditText.setBackgroundResource(android.R.color.transparent);
 
-            int textColor = getResultColor();
+            int textColor = UIColors.getResultColor(mainActivity);
             mainActivity.searchEditText.setTextColor(textColor);
 
             int shadowColor = getResultShadowColor();
@@ -250,14 +250,6 @@ public class InterfaceTweaks extends Forwarder {
         int shadowColor = ta.getColor(0, Color.BLACK);
         ta.recycle();
         return shadowColor;
-    }
-
-    private int getResultColor() {
-        @StyleableRes int[] attrs = new int[]{R.attr.resultColor};
-        TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
-        int resultColor = ta.getColor(0, Color.WHITE);
-        ta.recycle();
-        return resultColor;
     }
 
     private boolean isExternalFavoriteBarEnabled() {
