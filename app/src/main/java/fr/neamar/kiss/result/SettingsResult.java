@@ -3,7 +3,6 @@ package fr.neamar.kiss.result;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
@@ -37,8 +35,7 @@ public class SettingsResult extends Result<SettingPojo> {
 
         ImageView settingIcon = view.findViewById(R.id.item_setting_icon);
         if (!isHideIcons(context)) {
-            settingIcon.setImageDrawable(getDrawable(context));
-            settingIcon.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
+            setAsyncDrawable(settingIcon);
         } else {
             settingIcon.setImageDrawable(null);
         }
@@ -49,9 +46,7 @@ public class SettingsResult extends Result<SettingPojo> {
     @Override
     public Drawable getDrawable(Context context) {
         if (pojo.icon != -1) {
-            Drawable response = ResourcesCompat.getDrawable(context.getResources(), pojo.icon, context.getTheme());
-            response.setColorFilter(getThemeFillColor(context), Mode.SRC_IN);
-            return response;
+            return getThemedDrawable(context, pojo.icon);
         }
 
         return null;

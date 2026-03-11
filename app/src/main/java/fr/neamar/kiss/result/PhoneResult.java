@@ -37,12 +37,12 @@ public class PhoneResult extends CallResult<PhonePojo> {
             view = inflateFromId(context, R.layout.item_phone, parent);
 
         TextView phoneText = view.findViewById(R.id.item_phone_text);
-        String text = String.format(context.getString(R.string.ui_item_phone), pojo.phone);
+        String text = context.getString(R.string.ui_item_phone, pojo.phone);
         int pos = text.indexOf(pojo.phone);
         int len = pojo.phone.length();
         displayHighlighted(text, Collections.singletonList(new Pair<>(pos, pos + len)), phoneText, context);
 
-        ((ImageView) view.findViewById(R.id.item_phone_icon)).setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
+        setAsyncDrawable(view.findViewById(R.id.item_phone_icon), 0);
 
         return view;
     }
@@ -80,7 +80,7 @@ public class PhoneResult extends CallResult<PhonePojo> {
 
     @Override
     public Drawable getDrawable(Context context) {
-        return ResourcesCompat.getDrawable(context.getResources(), android.R.drawable.ic_menu_call, context.getTheme());
+        return getThemedDrawable(context, R.drawable.ic_phone);
     }
 
     @Override

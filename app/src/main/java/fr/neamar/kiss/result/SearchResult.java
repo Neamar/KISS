@@ -5,10 +5,8 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.AlarmClock;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
@@ -53,7 +51,6 @@ public class SearchResult extends Result<SearchPojo> {
 
         TextView searchText = view.findViewById(R.id.item_search_text);
         ImageView image = view.findViewById(R.id.item_search_icon);
-        boolean hasCustomIcon = false;
         String text;
         int pos;
         int len;
@@ -65,30 +62,28 @@ public class SearchResult extends Result<SearchPojo> {
 
         switch (pojo.type) {
             case URL_QUERY:
-                text = String.format(context.getString(R.string.ui_item_visit), this.pojo.getName());
+                text = context.getString(R.string.ui_item_visit, this.pojo.getName());
                 pos = text.indexOf(this.pojo.getName());
                 len = this.pojo.getName().length();
                 if (!hideIcons) {
-                    image.setImageResource(R.drawable.ic_public);
+                    setImage(context, image, R.drawable.ic_public);
                     Intent intent = createSearchQueryIntent();
                     Drawable icon = getIconByIntent(context, intent);
                     if (icon != null) {
                         image.setImageDrawable(icon);
-                        hasCustomIcon = true;
                     }
                 }
                 break;
             case SEARCH_QUERY:
-                text = String.format(context.getString(R.string.ui_item_search), this.pojo.getName(), pojo.query);
+                text = context.getString(R.string.ui_item_search, this.pojo.getName(), pojo.query);
                 pos = text.indexOf(pojo.query);
                 len = pojo.query.length();
                 if (!hideIcons) {
-                    image.setImageResource(R.drawable.ic_search);
+                    setImage(context, image, R.drawable.ic_search);
                     Intent intent = createSearchQueryIntent();
                     Drawable icon = getIconByIntent(context, intent);
                     if (icon != null) {
                         image.setImageDrawable(icon);
-                        hasCustomIcon = true;
                     }
                 }
                 break;
@@ -97,7 +92,7 @@ public class SearchResult extends Result<SearchPojo> {
                 pos = text.indexOf("=");
                 len = text.length() - pos;
                 if (!hideIcons) {
-                    image.setImageResource(R.drawable.ic_functions);
+                    setImage(context, image, R.drawable.ic_functions);
                 }
                 break;
             case TIMER_QUERY:
@@ -113,20 +108,19 @@ public class SearchResult extends Result<SearchPojo> {
                     len = text.length();
                 }
                 if (!hideIcons) {
-                    image.setImageResource(R.drawable.ic_timer);
+                    setImage(context, image, R.drawable.ic_timer);
                 }
                 break;
             case URI_QUERY:
-                text = String.format(context.getString(R.string.ui_item_open), this.pojo.query);
+                text = context.getString(R.string.ui_item_open, this.pojo.query);
                 pos = text.indexOf(pojo.query);
                 len = pojo.query.length();
                 if (!hideIcons) {
-                    image.setImageResource(R.drawable.ic_public);
+                    setImage(context, image, R.drawable.ic_public);
                     Intent intent = createUriQueryIntent();
                     Drawable icon = getIconByIntent(context, intent);
                     if (icon != null) {
                         image.setImageDrawable(icon);
-                        hasCustomIcon = true;
                     }
                 }
                 break;
@@ -136,12 +130,11 @@ public class SearchResult extends Result<SearchPojo> {
 
         displayHighlighted(text, Collections.singletonList(new Pair<>(pos, pos + len)), searchText, context);
 
-        if (!hasCustomIcon) {
-            image.setColorFilter(getThemeFillColor(context), PorterDuff.Mode.SRC_IN);
-        } else {
-            image.setColorFilter(null);
-        }
         return view;
+    }
+
+    private void setImage(Context context, ImageView image, int resId) {
+        image.setImageDrawable(getThemedDrawable(context, resId));
     }
 
     /**

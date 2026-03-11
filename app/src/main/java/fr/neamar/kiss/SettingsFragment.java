@@ -250,7 +250,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         if (historyLength > 5) {
             Preference resetHistory = findPreference("reset-history");
             if (resetHistory != null) {
-                resetHistory.setSummary(String.format(getString(R.string.items_title), historyLength));
+                resetHistory.setSummary(getString(R.string.items_title, historyLength));
             }
         }
 
