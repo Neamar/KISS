@@ -494,28 +494,23 @@
             <SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-timer"
-                android:order="4"
                 android:summary="@string/timer_description"
                 android:title="@string/timer_name" />
-            <fr.neamar.kiss.preference.SwitchPreference
+            <SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-shortcuts"
-                android:order="5"
                 android:title="@string/shortcuts_name" />
             <fr.neamar.kiss.preference.DialogShowingPreference
                 android:dialogMessage="@string/regenerate_shortcuts_desc"
-                android:order="6"
                 android:key="reset-shortcuts"
                 android:title="@string/regenerate_shortcuts" />
             <SwitchPreference
                 android:defaultValue="true"
                 android:key="enable-search"
-                android:order="7"
                 android:title="@string/search_provider_toggle" />
             <SwitchPreference
                 android:defaultValue="false"
                 android:key="enable-excluded-apps"
-                android:order="8"
                 android:title="@string/excluded_apps_toggle" />
         </PreferenceCategory>
         <PreferenceCategory
