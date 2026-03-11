@@ -45,6 +45,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      * Favorites bar. Can be either the favorites within the KISS bar,
      * or the external favorites bar (default)
      */
-    public ViewGroup favoritesBar;
+    public RecyclerView favoritesBar;
     /**
      * Progress bar displayed when loading
      */
@@ -976,8 +977,10 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     public void dismissPopup() {
-        if (mPopup != null)
+        if (mPopup != null) {
             mPopup.dismiss();
+            mPopup = null;
+        }
     }
 
     public void showMatchingTags(String tag) {
@@ -1022,5 +1025,13 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         forwarderManager.onConfigurationChanged(newConfig);
         recreate();
         Log.d(TAG, "onConfigurationChanged, uiMode = " + (newConfig.uiMode & UI_MODE_NIGHT_MASK));
+    }
+
+    public void setFavoritesBarVisible(boolean isVisible) {
+        if (isVisible && (favoritesBar.getAdapter() == null || favoritesBar.getAdapter().getItemCount() > 0)) {
+            favoritesBar.setVisibility(View.VISIBLE);
+        } else {
+            favoritesBar.setVisibility(View.GONE);
+        }
     }
 }

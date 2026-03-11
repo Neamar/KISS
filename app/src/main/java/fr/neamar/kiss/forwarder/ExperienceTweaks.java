@@ -194,13 +194,13 @@ public class ExperienceTweaks extends Forwarder {
                         }
 
                         if (isMinimalisticModeEnabledForFavorites()) {
-                            mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                            mainActivity.setFavoritesBarVisible(true);
                         }
                         break;
                     case "display-favorites":
                         // Not provided as an option for the gestures, but useful if you only want to display favorites on tap,
                         // not history.
-                        mainActivity.favoritesBar.setVisibility(View.VISIBLE);
+                        mainActivity.setFavoritesBarVisible(true);
                         break;
                     case "display-menu":
                         mainActivity.openContextMenu(mainActivity.menuButton);
@@ -316,7 +316,7 @@ public class ExperienceTweaks extends Forwarder {
 
     void onDisplayKissBar(boolean display) {
         if (isMinimalisticModeEnabledForFavorites() && !display) {
-            mainActivity.favoritesBar.setVisibility(View.GONE);
+            mainActivity.setFavoritesBarVisible(false);
         }
     }
 
@@ -330,7 +330,7 @@ public class ExperienceTweaks extends Forwarder {
                 mainEmptyView.setVisibility(View.GONE);
 
                 if (isMinimalisticModeEnabledForFavorites()) {
-                    mainActivity.favoritesBar.setVisibility(View.GONE);
+                    mainActivity.setFavoritesBarVisible(false);
                 }
             } else {
                 mainActivity.showHistory();
