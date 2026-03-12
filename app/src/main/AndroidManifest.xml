@@ -19,6 +19,8 @@
         tools:ignore="QueryAllPackagesPermission" />
     <!-- To provide access and state handling of the private space -->
     <uses-permission android:name="android.permission.ACCESS_HIDDEN_PROFILES" />
+    <!-- To set timers -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <uses-feature
         android:name="android.hardware.telephony"
@@ -37,9 +39,9 @@
         android:name=".KissApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppThemeLight"
+        android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         android:supportsRtl="true"
         android:resizeableActivity="true"
@@ -85,7 +87,7 @@
             </intent-filter>
             <meta-data
                 android:name="com.android.systemui.action_assist_icon"
-                android:resource="@drawable/ic_launcher" />
+                android:resource="@mipmap/ic_launcher" />
         </activity>
         <activity
             android:name=".DummyActivity"

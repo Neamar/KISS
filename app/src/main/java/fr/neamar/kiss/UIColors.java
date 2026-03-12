@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.Window;
@@ -16,6 +17,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.StyleableRes;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
@@ -347,6 +349,15 @@ public class UIColors {
      */
     public static String colorToString(@ColorInt int color) {
         return String.format("#%08X", color);
+    }
+
+    @ColorInt
+    public static int getResultColor(Context context) {
+        @StyleableRes int[] attrs = new int[]{R.attr.resultColor};
+        TypedArray ta = context.obtainStyledAttributes(attrs);
+        int resultColor = ta.getColor(0, Color.WHITE);
+        ta.recycle();
+        return resultColor;
     }
 
 }

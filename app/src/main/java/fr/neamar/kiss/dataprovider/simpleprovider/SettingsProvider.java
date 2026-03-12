@@ -49,9 +49,9 @@ public class SettingsProvider extends SimpleProvider<SettingPojo> {
         pojos.add(createPojo(context.getString(R.string.settings_tethering), "com.android.settings",
                 "com.android.settings.TetherSettings", R.drawable.setting_tethering));
         pojos.add(createPojo(context.getString(R.string.settings_sound),
-                Settings.ACTION_SOUND_SETTINGS, R.drawable.setting_dev));
+                Settings.ACTION_SOUND_SETTINGS, R.drawable.setting_volume));
         pojos.add(createPojo(context.getString(R.string.settings_display),
-                Settings.ACTION_DISPLAY_SETTINGS, R.drawable.setting_dev));
+                Settings.ACTION_DISPLAY_SETTINGS, R.drawable.setting_display));
         if (pm.hasSystemFeature(PackageManager.FEATURE_NFC)) {
             pojos.add(createPojo(context.getString(R.string.settings_nfc),
                     Settings.ACTION_NFC_SETTINGS, R.drawable.setting_nfc));

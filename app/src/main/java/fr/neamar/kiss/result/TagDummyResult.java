@@ -127,24 +127,4 @@ public class TagDummyResult extends Result<TagDummyPojo> {
             ((MainActivity) context).showMatchingTags(pojo.getName());
         }
     }
-
-    @ColorInt
-    private int getBackgroundColor(Context context) {
-        if (DrawableUtils.hasThemedIcons() &&
-                DrawableUtils.isThemedIconEnabled(context)) {
-            return UIColors.getIconColors(context)[0];
-        } else {
-            return Color.WHITE;
-        }
-    }
-
-    @ColorInt
-    private int getTextColor(Context context) {
-        if (DrawableUtils.hasThemedIcons() &&
-                DrawableUtils.isThemedIconEnabled(context)) {
-            return UIColors.getIconColors(context)[1];
-        } else {
-            return UIColors.getPrimaryColor(context);
-        }
-    }
 }
