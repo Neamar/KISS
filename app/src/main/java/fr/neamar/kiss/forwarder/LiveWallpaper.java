@@ -3,13 +3,13 @@ package fr.neamar.kiss.forwarder;
 import android.app.WallpaperManager;
 import android.content.res.TypedArray;
 import android.graphics.Point;
-import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
+import androidx.annotation.StyleableRes;
 import androidx.core.content.ContextCompat;
 
 import fr.neamar.kiss.MainActivity;
@@ -29,11 +29,10 @@ class LiveWallpaper extends Forwarder {
 
     LiveWallpaper(MainActivity mainActivity) {
         super(mainActivity);
-        TypedValue typedValue = new TypedValue();
-        mainActivity.getTheme().resolveAttribute(android.R.attr.windowShowWallpaper, typedValue, true);
-        TypedArray a = mainActivity.obtainStyledAttributes(typedValue.resourceId, new int[]{android.R.attr.windowShowWallpaper});
-        wallpaperIsVisible = a.getBoolean(0, true);
-        a.recycle();
+        @StyleableRes int[] attrs = new int[]{android.R.attr.windowShowWallpaper};
+        try (TypedArray a = mainActivity.obtainStyledAttributes(attrs)) {
+            wallpaperIsVisible = a.getBoolean(0, true);
+        }
 
         if (!wallpaperIsVisible) {
             return;

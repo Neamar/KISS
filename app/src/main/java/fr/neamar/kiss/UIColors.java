@@ -354,13 +354,16 @@ public class UIColors {
         return String.format("#%08X", color);
     }
 
+    /**
+     * @param context
+     * @return result color from theme
+     */
     @ColorInt
     public static int getResultColor(Context context) {
         @StyleableRes int[] attrs = new int[]{R.attr.resultColor};
-        TypedArray ta = context.obtainStyledAttributes(attrs);
-        int resultColor = ta.getColor(0, Color.WHITE);
-        ta.recycle();
-        return resultColor;
+        try (TypedArray ta = context.obtainStyledAttributes(attrs)) {
+            return ta.getColor(0, Color.WHITE);
+        }
     }
 
 }
