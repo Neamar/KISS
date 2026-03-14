@@ -16,6 +16,7 @@ import android.os.IBinder;
 import android.os.UserManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import androidx.preference.PreferenceManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -638,8 +640,7 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
         Set<String> excludedFavorites = new HashSet<>();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         if (prefs.getBoolean("exclude-favorites-apps", false)) {
-            String favApps = prefs.getString("favorite-apps-list", "");
-            excludedFavorites.addAll(Arrays.asList(favApps.split(";")));
+            excludedFavorites.addAll(getFavoriteIds());
         }
         return excludedFavorites;
     }
@@ -830,20 +831,42 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     }
 
     /**
+     * @return list with favorite ids
+     */
+    private List<String> getFavoriteIds() {
+        String favoriteIds = PreferenceManager.getDefaultSharedPreferences(this.context).
+                getString("favorite-apps-list", "");
+        return new ArrayList<>(Arrays.asList(favoriteIds.split(";")));
+    }
+
+    /**
+     * This method is used to set favorite ids
+     */
+    private void setFavoriteIds(List<String> favoriteIds) {
+        String favoriteIdsString = TextUtils.join(";", favoriteIds);
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString("favorite-apps-list", favoriteIdsString + ";").apply();
+
+        boolean excludedApps = PreferenceManager.getDefaultSharedPreferences(context).
+                getBoolean("exclude-favorites-apps", false);
+        if (excludedApps) {
+            reloadApps();
+        }
+        refreshFavorites();
+    }
+
+    /**
      * Return most used items.<br />
      * May return null if no items were ever selected (app first use)
      *
      * @return favorites' pojo
      */
     public List<Pojo> getFavorites() {
-
-        String favApps = PreferenceManager.getDefaultSharedPreferences(this.context).
-                getString("favorite-apps-list", "");
-        List<String> favAppsList = Arrays.asList(favApps.split(";"));
-        List<Pojo> favorites = new ArrayList<>(favAppsList.size());
+        List<String> favoriteIds = getFavoriteIds();
+        List<Pojo> favorites = new ArrayList<>(favoriteIds.size());
         // Find associated items
-        for (int i = 0; i < favAppsList.size(); i++) {
-            Pojo pojo = getPojo(favAppsList.get(i));
+        for (int i = 0; i < favoriteIds.size(); i++) {
+            Pojo pojo = getPojo(favoriteIds.get(i));
             if (pojo != null) {
                 favorites.add(pojo);
             }
@@ -855,79 +878,51 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
     /**
      * This method is used to set the specific position of an app in the fav array.
      *
-     * @param context  The mainActivity context
-     * @param id       the app you want to set the position of
-     * @param position the new position of the fav
+     * @param positions the new positions for favorites
      */
-    public void setFavoritePosition(Context context, String id, int position) {
-        List<Pojo> currentFavorites = getFavorites();
-        List<String> favAppsList = new ArrayList<>();
+    public void setFavoritePositions(List<Pair<String, Integer>> positions) {
+        List<String> favoriteIds = getFavoriteIds();
 
-        for (Pojo pojo : currentFavorites) {
-            favAppsList.add(pojo.getFavoriteId());
-        }
+        positions.stream()
+                .sorted(Comparator.comparingInt(tuple -> tuple.second))
+                .forEach(tuple -> {
+                    String id = tuple.first;
+                    int position = tuple.second;
 
-        int currentPos = favAppsList.indexOf(id);
-        if (currentPos == -1) {
-            Log.e(TAG, "Couldn't find id in favAppsList");
-            return;
-        }
-        // Clamp the position so we don't just extend past the end of the array.
-        position = Math.min(position, favAppsList.size() - 1);
+                    int currentPos = favoriteIds.indexOf(id);
+                    if (currentPos >= 0) {
+                        favoriteIds.remove(currentPos);
+                    }
+                    // Clamp the position so we don't just extend past the end of the array.
+                    position = Math.min(position, favoriteIds.size());
+                    favoriteIds.add(position, id);
+                });
 
-        favAppsList.remove(currentPos);
-        favAppsList.add(position, id);
-
-        String newFavList = TextUtils.join(";", favAppsList);
-
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", newFavList + ";").apply();
-
-        refreshFavorites();
+        setFavoriteIds(favoriteIds);
     }
 
     public void addToFavorites(String id) {
-        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
+        List<String> favoriteIds = getFavoriteIds();
 
         // Check if we are already a fav icon
-        assert favApps != null;
-        if (favApps.contains(id + ";")) {
-            //shouldn't happen
+        if (TextUtils.isEmpty(id) || favoriteIds.contains(id)) {
             return;
         }
 
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps + id + ";").apply();
-
-        boolean excludedApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getBoolean("exclude-favorites-apps", false);
-        if (excludedApps) {
-            reloadApps();
-        }
-        refreshFavorites();
+        favoriteIds.add(id);
+        setFavoriteIds(favoriteIds);
     }
 
     public void removeFromFavorites(String id) {
-        String favApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getString("favorite-apps-list", "");
+        List<String> favoriteIds = getFavoriteIds();
 
         // Check if we are not already a fav icon
-        assert favApps != null;
-        if (!favApps.contains(id + ";")) {
-            //shouldn't happen
+        if (!favoriteIds.contains(id)) {
             return;
         }
 
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
-                .putString("favorite-apps-list", favApps.replace(id + ";", "")).apply();
-
-        boolean excludedApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getBoolean("exclude-favorites-apps", false);
-        if (excludedApps) {
-            reloadApps();
-        }
-        refreshFavorites();
+        favoriteIds.remove(id);
+        setFavoriteIds(favoriteIds);
     }
 
     public void removeFromFavorites(UserHandle user) {
@@ -936,26 +931,19 @@ public class DataHandler implements SharedPreferences.OnSharedPreferenceChangeLi
             return;
         }
 
-        String[] favAppList = PreferenceManager.getDefaultSharedPreferences(this.context)
-                .getString("favorite-apps-list", "").split(";");
-
-        StringBuilder favApps = new StringBuilder();
-        for (String favAppID : favAppList) {
-            if (!favAppID.startsWith("app://") || !user.hasStringUserSuffix(favAppID, '/')) {
-                favApps.append(favAppID);
-                favApps.append(";");
+        List<String> favoriteIds = getFavoriteIds();
+        List<String> newFavoriteIds = new ArrayList<>();
+        for (String favoriteId : favoriteIds) {
+            if (!favoriteId.startsWith("app://") || !user.hasStringUserSuffix(favoriteId, '/')) {
+                newFavoriteIds.add(favoriteId);
             }
         }
 
-        PreferenceManager.getDefaultSharedPreferences(this.context).edit()
-                .putString("favorite-apps-list", favApps.toString()).apply();
+        setFavoriteIds(newFavoriteIds);
+    }
 
-        boolean excludedApps = PreferenceManager.getDefaultSharedPreferences(context).
-                getBoolean("exclude-favorites-apps", false);
-        if (excludedApps) {
-            reloadApps();
-        }
-        refreshFavorites();
+    public void resetFavorites() {
+        setFavoriteIds(Collections.emptyList());
     }
 
     /**
