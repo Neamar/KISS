@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_DRAG;
 import static androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_IDLE;
 
 import android.content.ComponentName;
@@ -186,7 +187,7 @@ public class Favorites extends Forwarder {
     private class ItemMoveCallback extends ItemTouchHelper.Callback {
 
         private final FavoriteAdapter mAdapter;
-        private boolean changed;
+        private boolean moved;
 
         private ItemMoveCallback(@NonNull FavoriteAdapter mAdapter) {
             this.mAdapter = mAdapter;
@@ -213,7 +214,7 @@ public class Favorites extends Forwarder {
         @Override
         public void onMoved(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, int fromPos, @NonNull RecyclerView.ViewHolder target, int toPos, int x, int y) {
             super.onMoved(recyclerView, viewHolder, fromPos, target, toPos, x, y);
-            changed = true;
+            moved = true;
         }
 
         @Override
@@ -223,10 +224,14 @@ public class Favorites extends Forwarder {
         @Override
         public void onSelectedChanged(@Nullable RecyclerView.ViewHolder viewHolder, int actionState) {
             super.onSelectedChanged(viewHolder, actionState);
-            if (actionState == ACTION_STATE_IDLE) {
-                if (changed) {
+            if (actionState == ACTION_STATE_DRAG) {
+                if (viewHolder != null && viewHolder.itemView.isLongClickable()) {
+                    viewHolder.itemView.performLongClick();
+                }
+            } else if (actionState == ACTION_STATE_IDLE) {
+                if (moved) {
                     mAdapter.updateFavoritePositions(mainActivity);
-                    changed = false;
+                    moved = false;
                 }
             }
         }
