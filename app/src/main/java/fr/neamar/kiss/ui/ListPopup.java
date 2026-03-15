@@ -161,7 +161,7 @@ public class ListPopup extends PopupWindow {
         linearLayout.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
                 View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
 
-        setWidth(linearLayout.getMeasuredWidth());
+        setWidth(Math.min(linearLayout.getMeasuredWidth(), (displayFrame.right - displayFrame.left) * 2 / 3));
 
         int xOffset = anchor.getPaddingStart();
 

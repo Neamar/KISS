@@ -365,15 +365,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 break;
             case "reset-favorites":
                 if (positiveResult) {
-                    PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
-                            .putString("favorite-apps-list", "").apply();
-
-                    try {
-                        KissApplication.getApplication(requireContext()).getDataHandler().reloadApps();
-                    } catch (NullPointerException e) {
-                        Log.e(TAG, "Unable to reset favorites", e);
-                    }
-
+                    getDataHandler().resetFavorites();
                     Toast.makeText(getContext(), R.string.favorites_erased, Toast.LENGTH_LONG).show();
                 }
                 break;

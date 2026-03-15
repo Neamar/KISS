@@ -202,14 +202,14 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         // It's likely there is a threading issue in our code somewhere,
         // But I was unable to find where, so the following line is a quick and dirty fix.
         sectionIndex = Math.max(0, Math.min(sections.length - 1, sectionIndex));
-        return alphaIndexer.get(sections[sectionIndex]);
+        return alphaIndexer.getOrDefault(sections[sectionIndex], 0);
     }
 
     @Override
     public int getSectionForPosition(int position) {
         for (int i = 0; i < sections.length; i++) {
-            if (alphaIndexer.get(sections[i]) >= position) {
-                return i;
+            if (alphaIndexer.get(sections[i]) > position) {
+                return i - 1;
             }
         }
 
@@ -217,7 +217,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
         // we will never get > position
         // so we just return the before-last section
         // See #1005
-        return sections.length - 2;
+        return Math.max(sections.length - 2, 0);
     }
 
     public void showDialog(DialogFragment dialog) {

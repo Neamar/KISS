@@ -105,6 +105,10 @@ public abstract class Result<T extends Pojo> {
         return pojo.id;
     }
 
+    public String getFavoriteId() {
+        return pojo.getFavoriteId();
+    }
+
     @Override
     public String toString() {
         return pojo.getName();
@@ -122,13 +126,12 @@ public abstract class Result<T extends Pojo> {
     @NonNull
     public abstract View display(Context context, View convertView, @NonNull ViewGroup parent, FuzzyScore fuzzyScore);
 
-    @NonNull
-    public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
-        View favoriteView = LayoutInflater.from(context).inflate(R.layout.favorite_item, parent, false);
+    public void inflateFavorite(@NonNull Context context, @NonNull View favoriteView) {
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
-        setAsyncDrawable(favoriteImage, 0);
+        if (favoriteImage != null) {
+            setAsyncDrawable(favoriteImage, 0);
+        }
         favoriteView.setContentDescription(pojo.getName());
-        return favoriteView;
     }
 
     protected void displayHighlighted(String text, List<Pair<Integer, Integer>> positions, TextView view, Context context) {
@@ -285,7 +288,7 @@ public abstract class Result<T extends Pojo> {
 
         if (BuildConfig.DEBUG) {
             adapter.add(new ListPopup.Item("Relevance: " + pojo.relevance));
-//            adapter.add(new ListPopup.Item("ID: " + pojo.getHistoryId()));
+            adapter.add(new ListPopup.Item("ID: " + pojo.id));
         }
 
         return menu;

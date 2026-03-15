@@ -78,17 +78,26 @@ public class AppResult extends ResultWithTags<AppPojo> {
             appIcon.setImageDrawable(null);
         }
 
+        displayNotificationDot(context, view, false);
+
+        return view;
+    }
+
+    @Override
+    public void inflateFavorite(@NonNull Context context, @NonNull View favoriteView) {
+        super.inflateFavorite(context, favoriteView);
+        displayNotificationDot(context, favoriteView, true);
+    }
+
+    private void displayNotificationDot(Context context, View view, boolean isFavorite) {
         String packageKey = getPackageKey();
 
         SharedPreferences notificationPrefs = context.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE);
         ImageView notificationView = view.findViewById(R.id.item_notification_dot);
         notificationView.setVisibility(notificationPrefs.contains(packageKey) ? View.VISIBLE : View.GONE);
         notificationView.setTag(packageKey);
-
-        int dotColor = UIColors.getNotificationDotColor(context);
+        int dotColor = UIColors.getNotificationDotColor(context, isFavorite);
         notificationView.setColorFilter(dotColor);
-
-        return view;
     }
 
     private String getPackageKey() {

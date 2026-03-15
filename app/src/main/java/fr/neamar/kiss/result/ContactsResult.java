@@ -241,17 +241,15 @@ public class ContactsResult extends CallResult<ContactsPojo> {
         return icon;
     }
 
-    @NonNull
     @Override
-    public View inflateFavorite(@NonNull Context context, @NonNull ViewGroup parent) {
+    public void inflateFavorite(@NonNull Context context, @NonNull View favoriteView) {
         Drawable drawable = getDrawable(context);
         if (drawable != null) {
             drawable = ShapedContactBadge.getShapedDrawable(context, drawable);
         }
-        View favoriteView = super.inflateFavorite(context, parent);
         ImageView favoriteImage = favoriteView.findViewById(R.id.favorite);
         favoriteImage.setImageDrawable(drawable);
-        return favoriteView;
+        favoriteView.setContentDescription(pojo.getName());
     }
 
     private void launchContactView(Context context, View v) {

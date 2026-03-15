@@ -259,7 +259,10 @@ public class UIColors {
      * @return color from preferences
      */
     @ColorInt
-    public static int getNotificationDotColor(Context context) {
+    public static int getNotificationDotColor(Context context, boolean isFavorite) {
+        if (isFavorite && PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-favorites-bar", true)) {
+            return Color.WHITE;
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             // use accent color from system if available
             return getColor(context, "primary-color", android.R.color.system_accent3_200);
