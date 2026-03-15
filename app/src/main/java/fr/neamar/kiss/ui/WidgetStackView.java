@@ -2,12 +2,19 @@ package fr.neamar.kiss.ui;
 
 import android.appwidget.AppWidgetHostView;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+
+import androidx.preference.PreferenceManager;
+
+import fr.neamar.kiss.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +24,14 @@ import java.util.List;
  * Only one widget is visible at a time, users can swipe or tap to switch between widgets.
  */
 public class WidgetStackView extends FrameLayout {
+    private static final String PREF_WIDGET_STACK_SHOW_DOT_INDICATOR = "widget-stack-show-dot-indicator";
+
     private final List<AppWidgetHostView> widgets = new ArrayList<>();
     private int currentIndex = 0;
     private GestureDetector gestureDetector;
     private OnStackChangedListener stackChangedListener;
+    private LinearLayout dotIndicatorContainer;
+    private SharedPreferences.OnSharedPreferenceChangeListener prefListener;
 
     public interface OnStackChangedListener {
         void onStackChanged(int currentIndex, int totalCount);
@@ -42,6 +53,19 @@ public class WidgetStackView extends FrameLayout {
     }
 
     private void init() {
+        setBackgroundResource(R.drawable.widget_stack_container);
+        setElevation(getResources().getDimensionPixelSize(R.dimen.widget_stack_elevation));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setClipToOutline(true);
+        }
+        dotIndicatorContainer = (LinearLayout) inflate(getContext(), R.layout.widget_stack_indicator, null);
+        FrameLayout.LayoutParams indicatorParams = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        indicatorParams.gravity = android.view.Gravity.BOTTOM | android.view.Gravity.CENTER_HORIZONTAL;
+        addView(dotIndicatorContainer, indicatorParams);
+        dotIndicatorContainer.setVisibility(View.GONE);
         gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -68,6 +92,26 @@ public class WidgetStackView extends FrameLayout {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        prefListener = (prefs, key) -> {
+            if (PREF_WIDGET_STACK_SHOW_DOT_INDICATOR.equals(key)) {
+                updateStackIndicator();
+            }
+        };
+        PreferenceManager.getDefaultSharedPreferences(getContext()).registerOnSharedPreferenceChangeListener(prefListener);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (prefListener != null) {
+            PreferenceManager.getDefaultSharedPreferences(getContext()).unregisterOnSharedPreferenceChangeListener(prefListener);
+            prefListener = null;
+        }
     }
 
     @Override
@@ -215,20 +259,69 @@ public class WidgetStackView extends FrameLayout {
     }
 
     private void updateVisibleWidget() {
-        for (int i = 0; i < widgets.size(); i++) {
+        int count = widgets.size();
+        if (count == 0) {
+            updateStackContentDescription();
+            updateStackIndicator();
+            return;
+        }
+        int nextIndex = (currentIndex + 1) % count;
+        for (int i = 0; i < count; i++) {
             AppWidgetHostView widget = widgets.get(i);
+            widget.setTranslationX(0);
             if (i == currentIndex) {
                 widget.setVisibility(View.VISIBLE);
                 widget.bringToFront();
+            } else if (count > 1 && i == nextIndex) {
+                widget.setVisibility(View.VISIBLE);
             } else {
                 widget.setVisibility(View.GONE);
             }
         }
+        updateStackContentDescription();
     }
 
     private void notifyStackChanged() {
+        updateStackContentDescription();
+        updateStackIndicator();
         if (stackChangedListener != null) {
             stackChangedListener.onStackChanged(currentIndex, widgets.size());
+        }
+    }
+
+    private void updateStackIndicator() {
+        int count = widgets.size();
+        boolean showIndicator = count > 1 && PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getBoolean(PREF_WIDGET_STACK_SHOW_DOT_INDICATOR, true);
+        if (!showIndicator) {
+            dotIndicatorContainer.setVisibility(View.GONE);
+            return;
+        }
+        dotIndicatorContainer.setVisibility(View.VISIBLE);
+        int dotSizePx = getResources().getDimensionPixelSize(R.dimen.widget_stack_dot_size);
+        int spacingPx = getResources().getDimensionPixelSize(R.dimen.widget_stack_dot_spacing);
+        dotIndicatorContainer.removeAllViews();
+        for (int i = 0; i < count; i++) {
+            View dot = new View(getContext());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dotSizePx, dotSizePx);
+            if (i > 0) {
+                params.setMarginStart(spacingPx);
+            }
+            dot.setLayoutParams(params);
+            dot.setBackgroundResource(i == currentIndex ? R.drawable.widget_stack_dot_active : R.drawable.widget_stack_dot_inactive);
+            dotIndicatorContainer.addView(dot);
+        }
+        dotIndicatorContainer.setContentDescription(getContext().getString(R.string.widget_stack_content_description,
+                currentIndex + 1, count));
+        dotIndicatorContainer.bringToFront();
+    }
+
+    private void updateStackContentDescription() {
+        if (widgets.size() > 1) {
+            setContentDescription(getContext().getString(R.string.widget_stack_content_description,
+                    currentIndex + 1, widgets.size()));
+        } else {
+            setContentDescription(null);
         }
     }
 
@@ -239,15 +332,22 @@ public class WidgetStackView extends FrameLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        // Ensure all widgets have proper width, but preserve their height
-        for (AppWidgetHostView widget : widgets) {
+        int width = right - left;
+        int count = widgets.size();
+        int peekPx = getResources().getDimensionPixelSize(R.dimen.widget_stack_peek_width);
+        for (int i = 0; i < count; i++) {
+            AppWidgetHostView widget = widgets.get(i);
             ViewGroup.LayoutParams params = widget.getLayoutParams();
             if (params != null) {
                 params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-                // Don't override height - preserve the height set by setWidgetSize()
-                // Only set to WRAP_CONTENT if height is not already set to a specific value
                 if (params.height == ViewGroup.LayoutParams.MATCH_PARENT || params.height <= 0) {
                     params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                }
+            }
+            if (count > 1 && width > 0) {
+                int nextIndex = (currentIndex + 1) % count;
+                if (i == nextIndex) {
+                    widget.setTranslationX(-(width - peekPx));
                 }
             }
         }
