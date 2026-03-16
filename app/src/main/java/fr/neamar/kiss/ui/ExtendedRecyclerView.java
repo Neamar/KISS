@@ -34,13 +34,10 @@ public class ExtendedRecyclerView extends RecyclerView implements ViewTreeObserv
 
     private void init(Context context, AttributeSet attrs) {
         if (context != null && attrs != null) {
-            TypedArray array = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.numColumns});
-            mFixedNumColumns = array.getInteger(0, -1);
-            array.recycle();
-
-            array = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.columnWidth});
-            mFixedColumnWidth = array.getDimensionPixelSize(0, -1);
-            array.recycle();
+            try (TypedArray array = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.numColumns, android.R.attr.columnWidth})) {
+                mFixedNumColumns = array.getInteger(0, -1);
+                mFixedColumnWidth = array.getDimensionPixelSize(1, -1);
+            }
         }
         getViewTreeObserver().addOnGlobalLayoutListener(this);
     }
