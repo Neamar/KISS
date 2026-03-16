@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +44,7 @@ import fr.neamar.kiss.preference.LaunchPojoSelectPreference;
 import fr.neamar.kiss.preference.SelectCustomSearchProvidersPreference;
 import fr.neamar.kiss.searcher.QuerySearcher;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.ShortcutUtil;
 

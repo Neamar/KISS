@@ -6,7 +6,6 @@ import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +16,7 @@ import java.lang.ref.WeakReference;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.utils.Log;
 
 @RequiresApi(Build.VERSION_CODES.O)
 public class SaveSingleOreoShortcutAsync extends AsyncTask<Void, Integer, Boolean> {

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -13,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import fr.neamar.kiss.utils.Log;
 
 public class DBHelper {
     private static final String TAG = DBHelper.class.getSimpleName();

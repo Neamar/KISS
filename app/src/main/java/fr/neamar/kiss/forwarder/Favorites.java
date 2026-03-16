@@ -11,7 +11,6 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Pair;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -43,6 +42,7 @@ import fr.neamar.kiss.result.SettingsResult;
 import fr.neamar.kiss.result.ShortcutsResult;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 

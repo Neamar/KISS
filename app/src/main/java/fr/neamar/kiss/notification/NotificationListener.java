@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.util.Log;
 
 import androidx.preference.PreferenceManager;
 
@@ -17,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 import fr.neamar.kiss.KissApplication;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.UserHandle;
 
 public class NotificationListener extends NotificationListenerService {

@@ -14,7 +14,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -41,6 +40,7 @@ import java.util.Set;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 

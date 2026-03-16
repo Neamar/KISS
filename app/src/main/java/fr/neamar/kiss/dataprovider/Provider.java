@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,6 +13,7 @@ import java.util.List;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.loader.LoadPojos;
 import fr.neamar.kiss.pojo.Pojo;
+import fr.neamar.kiss.utils.Log;
 
 public abstract class Provider<T extends Pojo> extends Service implements IProvider<T> {
     private final static String TAG = Provider.class.getSimpleName();
@@ -91,7 +91,7 @@ public abstract class Provider<T extends Pojo> extends Service implements IProvi
     public void loadOver(List<T> results) {
         long time = System.currentTimeMillis() - start;
 
-        Log.i(TAG, "Time to load " + this.getClass().getSimpleName() + ": " + time + "ms");
+        Log.d(TAG, "Time to load " + this.getClass().getSimpleName() + ": " + time + "ms");
         // Store results
         this.loader.setProvider(null);
         this.loader = null;

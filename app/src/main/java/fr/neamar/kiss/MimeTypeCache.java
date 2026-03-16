@@ -12,7 +12,6 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.content.res.XmlResourceParser;
 import android.provider.ContactsContract;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +28,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 

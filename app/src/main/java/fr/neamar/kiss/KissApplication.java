@@ -4,10 +4,10 @@ import android.app.Application;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.utils.IconPackCache;
+import fr.neamar.kiss.utils.Log;
 
 public class KissApplication extends Application {
 

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ShortcutInfo;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,6 +17,7 @@ import java.util.List;
 import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.ShortcutUtil;
 
 @RequiresApi(Build.VERSION_CODES.O)

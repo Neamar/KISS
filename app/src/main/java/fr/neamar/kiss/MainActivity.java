@@ -22,7 +22,6 @@ import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -63,6 +62,7 @@ import fr.neamar.kiss.ui.AnimatedListView;
 import fr.neamar.kiss.ui.KeyboardScrollHider;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.SearchEditText;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.SystemUiVisibilityHelper;
@@ -173,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate()");
 
         /*
          * Initialize preferences
@@ -413,8 +412,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      * Hide the kissbar by default
      */
     protected void onResume() {
-        Log.d(TAG, "onResume()");
-
         if (prefs.getBoolean("require-layout-update", false)) {
             super.onResume();
             Log.i(TAG, "Restarting app after setting changes");
