@@ -12,7 +12,6 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.UserManager;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

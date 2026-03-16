@@ -2,12 +2,12 @@ package fr.neamar.kiss.ui;
 
 import android.content.Context;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowInsets;
 
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.Log;
 
 public class KeyboardManager {
 

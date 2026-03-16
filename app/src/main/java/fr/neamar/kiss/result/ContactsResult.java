@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -35,6 +34,7 @@ import fr.neamar.kiss.ui.ImprovedQuickContactBadge;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.ShapedContactBadge;
 import fr.neamar.kiss.utils.ClipboardUtils;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
@@ -227,7 +227,7 @@ public class ContactsResult extends CallResult<ContactsPojo> {
                                 .openInputStream(pojo.icon)) {
                             icon = Drawable.createFromStream(inputStream, null);
                         } catch (IOException e) {
-                            Log.v(TAG, "Unable to load contact icon", e);
+                            Log.d(TAG, "Unable to load contact icon", e);
                         }
                     }
 

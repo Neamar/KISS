@@ -15,7 +15,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +39,7 @@ import fr.neamar.kiss.R;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.ui.WidgetHost;
 import fr.neamar.kiss.utils.DrawableUtils;
+import fr.neamar.kiss.utils.Log;
 
 class Widgets extends Forwarder {
     private static final String TAG = Widgets.class.getSimpleName();

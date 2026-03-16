@@ -3,7 +3,6 @@ package fr.neamar.kiss.dataprovider;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +15,7 @@ import fr.neamar.kiss.normalizer.PhoneNormalizer;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ContactsPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.Permission;
 import fr.neamar.kiss.utils.PhoneUtils;
 import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;

@@ -1,7 +1,6 @@
 package fr.neamar.kiss.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -27,6 +26,7 @@ import fr.neamar.kiss.result.ShortcutsResult;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.searcher.QueryInterface;
 import fr.neamar.kiss.ui.ListPopup;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
@@ -120,7 +120,7 @@ public class RecordAdapter extends BaseAdapter implements SectionIndexer {
             final Result<?> result = getItem(position);
             result.launch(v.getContext(), v, parent);
         } catch (IndexOutOfBoundsException e) {
-            Log.v(TAG, "Unable to click", e);
+            Log.w(TAG, "Unable to click", e);
         }
     }
 

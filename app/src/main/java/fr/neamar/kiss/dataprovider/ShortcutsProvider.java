@@ -3,7 +3,6 @@ package fr.neamar.kiss.dataprovider;
 import android.content.pm.LauncherApps;
 import android.content.pm.ShortcutInfo;
 import android.os.Build;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +19,7 @@ import fr.neamar.kiss.loader.LoadShortcutsPojos;
 import fr.neamar.kiss.normalizer.StringNormalizer;
 import fr.neamar.kiss.pojo.ShortcutPojo;
 import fr.neamar.kiss.searcher.Searcher;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.ShortcutUtil;
 import fr.neamar.kiss.utils.fuzzy.FuzzyFactory;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
@@ -77,7 +77,7 @@ public class ShortcutsProvider extends Provider<ShortcutPojo> {
                 Toast.makeText(this, R.string.unable_to_initialize_shortcuts, Toast.LENGTH_LONG).show();
             }
             notifiedKissNotDefaultLauncher = true;
-            Log.i(TAG, "Unable to initialize shortcuts", e);
+            Log.w(TAG, "Unable to initialize shortcuts", e);
         }
     }
 

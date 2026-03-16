@@ -3,7 +3,6 @@ package fr.neamar.kiss.searcher;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.annotation.CallSuper;
 
@@ -20,6 +19,7 @@ import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.pojo.Pojo;
 import fr.neamar.kiss.pojo.RelevanceComparator;
 import fr.neamar.kiss.result.Result;
+import fr.neamar.kiss.utils.Log;
 
 public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
 
@@ -156,7 +156,7 @@ public abstract class Searcher extends AsyncTask<Void, Result<?>, Void> {
         hideActivityLoader(activity);
 
         long time = System.currentTimeMillis() - start;
-        Log.v(TAG, "Time to run query `" + query + "` on " + getClass().getSimpleName() + " to completion: " + time + "ms (isRefresh=" + isRefresh + ")");
+        Log.d(TAG, "Time to run query `" + query + "` on " + getClass().getSimpleName() + " to completion: " + time + "ms (isRefresh=" + isRefresh + ")");
     }
 
     private void searchDone(boolean isCancelled) {

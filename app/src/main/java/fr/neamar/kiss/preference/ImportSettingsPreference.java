@@ -3,7 +3,6 @@ package fr.neamar.kiss.preference;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -22,6 +21,7 @@ import fr.neamar.kiss.DataHandler;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.TagsHandler;
+import fr.neamar.kiss.utils.Log;
 
 public class ImportSettingsPreference {
 

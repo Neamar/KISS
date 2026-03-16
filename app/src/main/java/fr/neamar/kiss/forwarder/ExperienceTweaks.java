@@ -14,7 +14,6 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,6 +35,7 @@ import fr.neamar.kiss.result.Result;
 import fr.neamar.kiss.searcher.Searcher;
 import fr.neamar.kiss.ui.KeyboardManager;
 import fr.neamar.kiss.utils.LockAccessibilityService;
+import fr.neamar.kiss.utils.Log;
 
 // Deals with any settings in the "User Experience" setting sub-screen
 public class ExperienceTweaks extends Forwarder {

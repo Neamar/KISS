@@ -5,7 +5,8 @@ import android.appwidget.AppWidgetHostView;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
+
+import fr.neamar.kiss.utils.Log;
 
 public class WidgetHost extends AppWidgetHost {
 
