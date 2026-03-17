@@ -13,6 +13,7 @@ import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
@@ -237,12 +238,8 @@ public class UIColors {
     @ColorInt
     public static int getPrimaryColor(Context context) {
         if (primaryColor == -1) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                // use accent color from system if available
-                primaryColor = getColor(context, "primary-color", android.R.color.system_accent1_100);
-            } else {
-                primaryColor = getColor(context, "primary-color");
-            }
+            // use accent color from theme
+            primaryColor = getThemedColor(context, "primary-color", android.R.attr.colorAccent);
             // Transparent can't be displayed for text color, replace with light gray.
             if (primaryColor == COLOR_TRANSPARENT || primaryColor == COLOR_LIGHT_TRANSPARENT) {
                 primaryColor = 0xFFBDBDBD;
@@ -260,7 +257,7 @@ public class UIColors {
      */
     @ColorInt
     public static int getNotificationDotColor(Context context, boolean isFavorite) {
-        if (isFavorite && PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-favorites-bar", true)) {
+        if (isFavorite && !PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enable-favorites-bar", true)) {
             return Color.WHITE;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -301,6 +298,24 @@ public class UIColors {
         int color = getColorWithoutFallback(context, preferenceKey);
         if (color == COLOR_SYSTEM) {
             color = ContextCompat.getColor(context, systemColorId);
+        }
+        return color;
+    }
+
+    /**
+     * Get color from preferences.
+     *
+     * @param context
+     * @param preferenceKey
+     * @return color from preferences, use color from theme given by {@code colorAttribute} when saved value is {@link UIColors#COLOR_SYSTEM}
+     */
+    @ColorInt
+    private static int getThemedColor(@NonNull Context context, @NonNull String preferenceKey, @AttrRes int colorAttribute) {
+        int color = getColorWithoutFallback(context, preferenceKey);
+        if (color == COLOR_SYSTEM) {
+            try (TypedArray array = context.obtainStyledAttributes(new int[]{colorAttribute})) {
+                color = array.getColor(0, COLOR_DEFAULT);
+            }
         }
         return color;
     }
