@@ -25,7 +25,11 @@ public class KissApplication extends Application {
     private final MimeTypeCache mimeTypeCache = new MimeTypeCache();
 
     public static KissApplication getApplication(Context context) {
-        return (KissApplication) context.getApplicationContext();
+        if (context instanceof KissApplication) {
+            return (KissApplication) context;
+        } else {
+            return (KissApplication) context.getApplicationContext();
+        }
     }
 
     public static IconPackCache iconPackCache(Context ctx) {
