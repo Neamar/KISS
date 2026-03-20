@@ -2,7 +2,6 @@ package fr.neamar.kiss.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.preference.PreferenceManager;
@@ -18,6 +17,7 @@ import java.util.Set;
 import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.utils.ClipboardUtils;
+import fr.neamar.kiss.utils.Log;
 
 public class ExportSettingsPreference {
 

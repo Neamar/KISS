@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleableRes;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -159,14 +160,16 @@ public class InterfaceTweaks extends Forwarder {
             mainActivity.findViewById(R.id.searchEditLayout).setBackgroundResource(android.R.color.transparent);
             mainActivity.searchEditText.setBackgroundResource(android.R.color.transparent);
 
-            int textColor = UIColors.getResultColor(mainActivity);
+            @ColorInt int textColor = UIColors.getResultColor(mainActivity);
             mainActivity.searchEditText.setTextColor(textColor);
 
-            int shadowColor = getResultShadowColor();
-            mainActivity.searchEditText.setShadowLayer(3, 1, 1, shadowColor);
+            float textShadowRadius = getTextShadowRadius();
+            @ColorInt int shadowColor = getResultShadowColor();
+            mainActivity.searchEditText.setShadowLayer(textShadowRadius, 1, 2, shadowColor);
 
-            mainActivity.menuButton.setImageTintList(ColorStateList.valueOf(textColor));
-            mainActivity.clearButton.setImageTintList(ColorStateList.valueOf(textColor));
+            @ColorInt int primaryColor = UIColors.getPrimaryColor(mainActivity);
+            mainActivity.menuButton.setImageTintList(ColorStateList.valueOf(primaryColor));
+            mainActivity.clearButton.setImageTintList(ColorStateList.valueOf(primaryColor));
         }
 
         if (prefs.getBoolean("pref-hide-search-bar-hint", false)) {
@@ -243,15 +246,26 @@ public class InterfaceTweaks extends Forwarder {
         }
     }
 
+    /**
+     * @return result shadow color from theme
+     */
+    @ColorInt
     private int getResultShadowColor() {
-        // get theme shadow color
         @StyleableRes int[] attrs = new int[]{R.attr.resultShadowColor};
-        TypedArray ta = mainActivity.obtainStyledAttributes(attrs);
-        int shadowColor = ta.getColor(0, Color.BLACK);
-        ta.recycle();
-        return shadowColor;
+        try (TypedArray ta = mainActivity.obtainStyledAttributes(attrs)) {
+            return ta.getColor(0, Color.BLACK);
+        }
     }
 
+    /**
+     * @return text shadow radius from theme
+     */
+    private float getTextShadowRadius() {
+        @StyleableRes int[] attrs = new int[]{R.attr.textShadowRadius};
+        try (TypedArray ta = mainActivity.obtainStyledAttributes(attrs)) {
+            return ta.getFloat(0, 0);
+        }
+    }
     private boolean isExternalFavoriteBarEnabled() {
         return prefs.getBoolean("enable-favorites-bar", true);
     }

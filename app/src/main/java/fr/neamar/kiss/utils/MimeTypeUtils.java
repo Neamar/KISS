@@ -11,7 +11,6 @@ import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.util.Log;
 
 import androidx.preference.PreferenceManager;
 

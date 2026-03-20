@@ -3,28 +3,32 @@ package fr.neamar.kiss.preference;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceDialogFragmentCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.colorpicker.ColorPickerPalette;
-import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
+import com.android.colorpicker.ColorStateDrawable;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.UIColors;
 
-public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompat implements OnColorSelectedListener {
+public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompat {
 
-    private ColorPickerPalette palette;
+    private ColorsAdapter colorsAdapter;
 
     public static DialogFragment newInstance(String key) {
         ColorPreferenceDialogFragment fragment = new ColorPreferenceDialogFragment();
@@ -35,24 +39,15 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
         return fragment;
     }
 
-    protected void drawPalette() {
-        if (this.palette != null) {
-            this.palette.drawPalette(UIColors.getColorList(), this.getPreference().getSelectedColor());
-        }
-    }
-
     @Override
     public ColorPreference getPreference() {
         return (ColorPreference) super.getPreference();
     }
 
-    @Override
     public void onColorSelected(@ColorInt int color) {
         if (color != this.getPreference().getSelectedColor()) {
             this.getPreference().setSelectedColor(color);
-
-            // Redraw palette to show checkmark on newly selected color before dismissing
-            this.drawPalette();
+            this.colorsAdapter.setSelectedColor(color);
         }
 
         // Close the dialog
@@ -76,29 +71,10 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
         final View view = super.onCreateDialogView(context);
 
         // Configure the color picker
-        this.palette = view.findViewById(R.id.colorPicker);
-        this.palette.init(ColorPickerPalette.SIZE_SMALL, 4, this);
-
-        // Reconfigure color picker based on the available space
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            private boolean ignoreNextUpdate = false;
-
-            public void onGlobalLayout() {
-                if (this.ignoreNextUpdate) {
-                    this.ignoreNextUpdate = false;
-                    return;
-                }
-
-                // Calculate number of swatches to display
-                int swatchSize = ColorPreferenceDialogFragment.this.requireContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_small);
-                int swatchMargin = ColorPreferenceDialogFragment.this.requireContext().getResources().getDimensionPixelSize(R.dimen.color_swatch_margins_small);
-                ColorPreferenceDialogFragment.this.palette.init(ColorPickerPalette.SIZE_SMALL, view.getWidth() / (swatchSize + swatchMargin), ColorPreferenceDialogFragment.this);
-
-                // Cause redraw and (by extension) also a layout recalculation
-                this.ignoreNextUpdate = true;
-                ColorPreferenceDialogFragment.this.drawPalette();
-            }
-        });
+        RecyclerView colors = view.findViewById(R.id.colors);
+        this.colorsAdapter = new ColorsAdapter(ColorPreferenceDialogFragment.this.getPreference().getSelectedColor(), this::onColorSelected);
+        colors.setAdapter(this.colorsAdapter);
+        colors.setHasFixedSize(true);
 
         // Bind click events from the custom color values
         Button buttonColorTransparentDark = view.findViewById(R.id.colorTransparentDark);
@@ -160,12 +136,85 @@ public class ColorPreferenceDialogFragment extends PreferenceDialogFragmentCompa
                 this.selectButton(buttonColorSystem);
                 break;
         }
-
-        this.drawPalette();
     }
 
     @Override
     public void onDialogClosed(boolean positiveResult) {
 
+    }
+
+    private static class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+
+    /**
+     * Interface for a callback when a color square is selected.
+     */
+    public interface OnColorSelectedListener {
+
+        /**
+         * Called when a specific color square has been selected.
+         */
+        void onColorSelected(int color);
+    }
+
+    private static class ColorsAdapter extends RecyclerView.Adapter<ViewHolder> {
+
+        private final OnColorSelectedListener onColorSelectedListener;
+
+        @ColorInt
+        int selectedColor;
+
+        public ColorsAdapter(@ColorInt int selectedColor, @Nullable OnColorSelectedListener onColorSelectedListener) {
+            this.selectedColor = selectedColor;
+            this.onColorSelectedListener = onColorSelectedListener;
+            this.setHasStableIds(true);
+        }
+
+        public void setSelectedColor(@ColorInt int selectedColor) {
+            this.selectedColor = selectedColor;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return UIColors.getColorList()[position];
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.color_picker_swatch, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            int color = UIColors.getColorList()[position];
+            ImageView mSwatchImage = holder.itemView.findViewById(R.id.color_picker_swatch);
+            Drawable[] colorDrawable = new Drawable[]
+                    {ResourcesCompat.getDrawable(holder.itemView.getContext().getResources(), R.drawable.color_picker_swatch, holder.itemView.getContext().getTheme())};
+            mSwatchImage.setImageDrawable(new ColorStateDrawable(colorDrawable, color));
+
+            ImageView mCheckmarkImage = holder.itemView.findViewById(R.id.color_picker_checkmark);
+            if (color == selectedColor) {
+                mCheckmarkImage.setVisibility(View.VISIBLE);
+            } else {
+                mCheckmarkImage.setVisibility(View.GONE);
+            }
+
+            holder.itemView.setOnClickListener(v -> {
+                if (onColorSelectedListener != null) {
+                    onColorSelectedListener.onColorSelected(color);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return UIColors.getColorList().length;
+        }
     }
 }

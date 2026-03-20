@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -22,6 +21,7 @@ import fr.neamar.kiss.KissApplication;
 import fr.neamar.kiss.MimeTypeCache;
 import fr.neamar.kiss.pojo.ContactData;
 import fr.neamar.kiss.pojo.ContactsPojo;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.MimeTypeUtils;
 import fr.neamar.kiss.utils.Permission;
 

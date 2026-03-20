@@ -20,7 +20,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextPaint;
-import android.util.Log;
 import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
@@ -133,7 +132,7 @@ public class DrawableUtils {
             outputBitmap = Bitmap.createBitmap(maxIconSize, maxIconSize, Bitmap.Config.ARGB_8888);
             outputCanvas = createCanvas(outputBitmap);
 
-            setIconShapeAndDrawBackground(outputCanvas, backgroundColor, shape, false, icon.hashCode());
+            setIconShapeAndDrawBackground(outputCanvas, bgDrawable != null ? Color.TRANSPARENT : backgroundColor, shape, false, icon.hashCode());
 
             // Stretch adaptive layers because they are 108dp and the icon size is 48dp
             if (bgDrawable != null) {
@@ -145,9 +144,8 @@ public class DrawableUtils {
                 fgDrawable.setBounds(-layerOffset, -layerOffset, maxIconSize + layerOffset, maxIconSize + layerOffset);
                 fgDrawable.draw(outputCanvas);
             }
-        }
-        // If icon is not adaptive, put it in a colored canvas to make it have a unified shape
-        else {
+        } else {
+            // if icon is not adaptive, put it in a colored canvas to make it have a unified shape
             float marginPercent = 0;
             if (fitInside) {
                 marginPercent = getScaleToFit(shape);
@@ -373,16 +371,16 @@ public class DrawableUtils {
     }
 
     @NonNull
-    public synchronized static Drawable generateBackgroundDrawable(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape) {
-        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape, backgroundColor);
+    public static Drawable generateBackgroundDrawable(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape) {
+        int iconSize = getMaxIconSize(ctx);
+        Bitmap bitmap = generateBackgroundBitmap(iconSize, backgroundColor, shape, backgroundColor);
         return new BitmapDrawable(ctx.getResources(), bitmap);
     }
 
     @NonNull
     public static Drawable generateCodepointDrawable(@NonNull Context ctx, int codepoint, @ColorInt int textColor, @ColorInt int backgroundColor, @NonNull IconShape shape) {
         int iconSize = getMaxIconSize(ctx);
-
-        Bitmap bitmap = generateBackgroundBitmap(ctx, backgroundColor, shape, codepoint);
+        Bitmap bitmap = generateBackgroundBitmap(iconSize, backgroundColor, shape, codepoint);
         // create a canvas from a bitmap
         Canvas canvas = new Canvas(bitmap);
 
@@ -447,8 +445,7 @@ public class DrawableUtils {
     }
 
     @NonNull
-    private synchronized static Bitmap generateBackgroundBitmap(@NonNull Context ctx, @ColorInt int backgroundColor, @NonNull IconShape shape, int hash) {
-        int iconSize = getMaxIconSize(ctx);
+    private static Bitmap generateBackgroundBitmap(int iconSize, @ColorInt int backgroundColor, @NonNull IconShape shape, int hash) {
         // create a canvas from a bitmap
         Bitmap bitmap = Bitmap.createBitmap(iconSize, iconSize, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);

@@ -28,6 +28,7 @@ public class ColorPreference extends DialogPreference {
         this.callChangeListener(selectedColor);
     }
 
+    @ColorInt
     public int getSelectedColor() {
         return selectedColor;
     }

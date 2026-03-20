@@ -16,7 +16,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +36,7 @@ import java.util.List;
 
 import fr.neamar.kiss.forwarder.ExperienceTweaks;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.UserHandle;
 import fr.neamar.kiss.utils.Utilities;
 

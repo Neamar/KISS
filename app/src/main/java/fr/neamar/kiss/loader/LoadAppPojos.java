@@ -6,7 +6,6 @@ import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
 import android.os.Build;
 import android.os.UserManager;
-import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
@@ -20,6 +19,7 @@ import fr.neamar.kiss.TagsHandler;
 import fr.neamar.kiss.db.AppRecord;
 import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.pojo.AppPojo;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 

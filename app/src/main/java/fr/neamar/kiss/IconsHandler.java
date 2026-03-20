@@ -12,7 +12,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -36,6 +35,7 @@ import fr.neamar.kiss.result.AppResult;
 import fr.neamar.kiss.result.TagDummyResult;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.IconShape;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.PackageManagerUtils;
 import fr.neamar.kiss.utils.UserHandle;
 

@@ -4,10 +4,10 @@ import android.app.Application;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.utils.IconPackCache;
+import fr.neamar.kiss.utils.Log;
 
 public class KissApplication extends Application {
 
@@ -25,7 +25,11 @@ public class KissApplication extends Application {
     private final MimeTypeCache mimeTypeCache = new MimeTypeCache();
 
     public static KissApplication getApplication(Context context) {
-        return (KissApplication) context.getApplicationContext();
+        if (context instanceof KissApplication) {
+            return (KissApplication) context;
+        } else {
+            return (KissApplication) context.getApplicationContext();
+        }
     }
 
     public static IconPackCache iconPackCache(Context ctx) {

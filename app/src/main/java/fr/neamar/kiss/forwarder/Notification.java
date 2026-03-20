@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -13,6 +12,7 @@ import android.widget.ListView;
 import fr.neamar.kiss.MainActivity;
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.notification.NotificationListener;
+import fr.neamar.kiss.utils.Log;
 
 class Notification extends Forwarder {
     private static final String TAG = Notification.class.getSimpleName();
@@ -50,7 +50,7 @@ class Notification extends Forwarder {
                 mainActivity.getSharedPreferences(NotificationListener.NOTIFICATION_PREFERENCES_NAME, Context.MODE_PRIVATE).edit().clear().apply();
             }
         } catch (Error e) {
-            Log.i(TAG, "Unable to check for notification access", e);
+            Log.d(TAG, "Unable to check for notification access", e);
         }
         notificationPreferences = notifsPrefBuilder;
     }

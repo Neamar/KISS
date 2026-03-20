@@ -2,11 +2,12 @@ package fr.neamar.kiss;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.preference.PreferenceManager;
 
 import java.nio.charset.StandardCharsets;
+
+import fr.neamar.kiss.utils.Log;
 
 public class RootHandler {
 

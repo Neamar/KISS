@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,6 +14,7 @@ import androidx.annotation.NonNull;
 
 import fr.neamar.kiss.R;
 import fr.neamar.kiss.pojo.SettingPojo;
+import fr.neamar.kiss.utils.Log;
 import fr.neamar.kiss.utils.fuzzy.FuzzyScore;
 
 public class SettingsResult extends Result<SettingPojo> {
