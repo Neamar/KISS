@@ -14,8 +14,8 @@
             android:defaultValue="20"
             android:inputType="number"
             android:key="number-of-display-elements"
-            android:textColor="?attr/searchColor"
-            android:title="@string/number_of_display_items" />
+            android:title="@string/number_of_display_items"
+            app:useSimpleSummaryProvider="true" />
         <ListPreference
             android:defaultValue="recency"
             android:entries="@array/historyModeEntries"
@@ -44,39 +44,6 @@
                 android:key="enable-notification-history"
                 android:title="@string/enable_notification_history" />
         </PreferenceCategory>
-        <PreferenceCategory
-            android:key="exclude_apps_category"
-            android:title="@string/settings_excluded_apps">
-            <Preference
-                android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
-                android:key="edit-excluded-apps"
-                android:summary="@string/ui_excluded_apps_dialog_title"
-                android:title="@string/ui_excluded_apps" />
-            <Preference
-                android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
-                android:key="edit-excluded-from-history-apps"
-                android:summary="@string/ui_excluded_apps_dialog_title"
-                android:title="@string/ui_excluded_from_history_apps" />
-            <Preference
-                android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
-                android:key="edit-excluded-app-shortcuts"
-                android:summary="@string/ui_excluded_apps_dialog_title"
-                android:title="@string/ui_excluded_from_shortcuts_apps" />
-            <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/reset_excluded_apps_warn"
-                android:key="reset-excluded-apps"
-                android:title="@string/reset_excluded_apps_name" />
-            <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/reset_excluded_from_history_apps_warn"
-                android:key="reset-excluded-from-history-apps"
-                android:title="@string/reset_excluded_from_history_apps_name" />
-            <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/reset_excluded_app_shortcuts_warn"
-                android:key="reset-excluded-app-shortcuts"
-                android:title="@string/reset_excluded_app_shortcuts_name" />
-            />
-        </PreferenceCategory>
-
     </PreferenceScreen>
     <PreferenceScreen
         android:key="history_favorites"
@@ -86,17 +53,6 @@
             android:dialogMessage="@string/reset_favorites_warn"
             android:key="reset-favorites"
             android:title="@string/reset_favorites_name" />
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="enable-favorites-bar"
-            android:summaryOff="@string/enable_favorites_bar_summary_off"
-            android:summaryOn="@string/enable_favorites_bar_summary_on"
-            android:title="@string/enable_favorites_bar" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:dependency="enable-favorites-bar"
-            android:key="large-favorites-bar"
-            android:title="@string/large_favorites_bar" />
         <SwitchPreference
             android:defaultValue="false"
             android:key="exclude-favorites-apps"
@@ -109,6 +65,23 @@
             android:defaultValue="@array/favTagsDefault"
             android:key="pref-fav-tags-list"
             android:title="@string/pref_fav_tags_select" />
+        <PreferenceCategory android:title="@string/misc">
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="enable-favorites-bar"
+                android:summaryOff="@string/enable_favorites_bar_summary_off"
+                android:summaryOn="@string/enable_favorites_bar_summary_on"
+                android:title="@string/enable_favorites_bar" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:dependency="enable-favorites-bar"
+                android:key="large-favorites-bar"
+                android:title="@string/large_favorites_bar" />
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="transparent-favorites"
+                android:title="@string/transparent_favorites_bar" />
+        </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
         android:key="ui-holder"
@@ -171,7 +144,8 @@
                 android:entries="@array/resultsSizeEntries"
                 android:entryValues="@array/resultsSizeValues"
                 android:key="results-size"
-                android:title="@string/results_size" />
+                android:title="@string/results_size"
+                app:useSimpleSummaryProvider="true" />
             <MultiSelectListPreference
                 android:defaultValue="@array/resultHighlightingDefault"
                 android:entries="@array/resultHighlightingEntries"
@@ -200,7 +174,8 @@
             android:title="@string/icons_category">
             <fr.neamar.kiss.preference.IconPackSelectPreference
                 android:key="icons-pack"
-                android:title="@string/icons_pack_name" />
+                android:title="@string/icons_pack_name"
+                app:useSimpleSummaryProvider="true" />
 
             <ListPreference
                 android:defaultValue="0"
@@ -256,14 +231,6 @@
                 android:title="@string/icons_hide_main" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
-            <SwitchPreference
-                android:defaultValue="true"
-                android:key="transparent-favorites"
-                android:title="@string/transparent_favorites_bar" />
-            <SwitchPreference
-                android:defaultValue="false"
-                android:key="large-search-bar"
-                android:title="@string/large_search_bar" />
             <SwitchPreference
                 android:defaultValue="false"
                 android:key="pref-rounded-list"
@@ -348,51 +315,61 @@
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-up"
-                android:title="@string/gesture_up_name" />
+                android:title="@string/gesture_up_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-up"
                 android:key="gesture-up-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="display-notifications"
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-down"
-                android:title="@string/gesture_down_name" />
+                android:title="@string/gesture_down_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-down"
                 android:key="gesture-down-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="display-apps"
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-left"
-                android:title="@string/gesture_left_name" />
+                android:title="@string/gesture_left_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-left"
                 android:key="gesture-left-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="display-apps"
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-right"
-                android:title="@string/gesture_right_name" />
+                android:title="@string/gesture_right_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-right"
                 android:key="gesture-right-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="display-apps"
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-long-press"
-                android:title="@string/gesture_long_press_name" />
+                android:title="@string/gesture_long_press_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-long-press"
                 android:key="gesture-long-press-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <SwitchPreference
                 android:defaultValue="false"
                 android:key="double-tap"
@@ -518,7 +495,8 @@
             android:title="@string/search_name">
             <fr.neamar.kiss.preference.DefaultSearchProviderSelectPreference
                 android:key="default-search-provider"
-                android:title="@string/search_provider_default" />
+                android:title="@string/search_provider_default"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.SelectCustomSearchProvidersPreference
                 android:key="selected-search-provider-names"
                 android:title="@string/search_providers_title" />
@@ -527,7 +505,6 @@
                 android:title="@string/search_providers_delete" />
             <fr.neamar.kiss.preference.AddSearchProviderPreference
                 android:key="custom-search-provider-add"
-                android:textColor="?attr/searchColor"
                 android:title="@string/custom_search_provider" />
             <fr.neamar.kiss.preference.DialogShowingPreference
                 android:dialogMessage="@string/search_provider_reset_desc"
@@ -539,7 +516,44 @@
                 android:defaultValue="false"
                 android:key="always-default-web-search-on-enter"
                 android:title="@string/always_default_web_search_on_enter" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="large-search-bar"
+                android:title="@string/large_search_bar" />
         </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="exclude_apps_category"
+        android:summary="@string/ui_excluded_apps_dialog_title"
+        android:title="@string/settings_excluded_apps">
+        <Preference
+            android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
+            android:key="edit-excluded-apps"
+            android:summary="@string/ui_excluded_apps_dialog_title"
+            android:title="@string/ui_excluded_apps" />
+        <Preference
+            android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
+            android:key="edit-excluded-from-history-apps"
+            android:summary="@string/ui_excluded_apps_dialog_title"
+            android:title="@string/ui_excluded_from_history_apps" />
+        <Preference
+            android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
+            android:key="edit-excluded-app-shortcuts"
+            android:summary="@string/ui_excluded_apps_dialog_title"
+            android:title="@string/ui_excluded_from_shortcuts_apps" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            android:dialogMessage="@string/reset_excluded_apps_warn"
+            android:key="reset-excluded-apps"
+            android:title="@string/reset_excluded_apps_name" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            android:dialogMessage="@string/reset_excluded_from_history_apps_warn"
+            android:key="reset-excluded-from-history-apps"
+            android:title="@string/reset_excluded_from_history_apps_name" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            android:dialogMessage="@string/reset_excluded_app_shortcuts_warn"
+            android:key="reset-excluded-app-shortcuts"
+            android:title="@string/reset_excluded_app_shortcuts_name" />
+        />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="importexport"
