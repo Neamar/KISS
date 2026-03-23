@@ -45,39 +45,6 @@
                 android:key="enable-notification-history"
                 android:title="@string/enable_notification_history" />
         </PreferenceCategory>
-        <PreferenceCategory
-            android:key="exclude_apps_category"
-            android:title="@string/settings_excluded_apps">
-            <Preference
-                android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
-                android:key="edit-excluded-apps"
-                android:summary="@string/ui_excluded_apps_dialog_title"
-                android:title="@string/ui_excluded_apps" />
-            <Preference
-                android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
-                android:key="edit-excluded-from-history-apps"
-                android:summary="@string/ui_excluded_apps_dialog_title"
-                android:title="@string/ui_excluded_from_history_apps" />
-            <Preference
-                android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
-                android:key="edit-excluded-app-shortcuts"
-                android:summary="@string/ui_excluded_apps_dialog_title"
-                android:title="@string/ui_excluded_from_shortcuts_apps" />
-            <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/reset_excluded_apps_warn"
-                android:key="reset-excluded-apps"
-                android:title="@string/reset_excluded_apps_name" />
-            <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/reset_excluded_from_history_apps_warn"
-                android:key="reset-excluded-from-history-apps"
-                android:title="@string/reset_excluded_from_history_apps_name" />
-            <fr.neamar.kiss.preference.DialogShowingPreference
-                android:dialogMessage="@string/reset_excluded_app_shortcuts_warn"
-                android:key="reset-excluded-app-shortcuts"
-                android:title="@string/reset_excluded_app_shortcuts_name" />
-            />
-        </PreferenceCategory>
-
     </PreferenceScreen>
     <PreferenceScreen
         android:key="history_favorites"
@@ -554,6 +521,39 @@
                 android:key="always-default-web-search-on-enter"
                 android:title="@string/always_default_web_search_on_enter" />
         </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="exclude_apps_category"
+        android:summary="@string/ui_excluded_apps_dialog_title"
+        android:title="@string/settings_excluded_apps">
+        <Preference
+            android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
+            android:key="edit-excluded-apps"
+            android:summary="@string/ui_excluded_apps_dialog_title"
+            android:title="@string/ui_excluded_apps" />
+        <Preference
+            android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
+            android:key="edit-excluded-from-history-apps"
+            android:summary="@string/ui_excluded_apps_dialog_title"
+            android:title="@string/ui_excluded_from_history_apps" />
+        <Preference
+            android:fragment="fr.neamar.kiss.ExcludeAppSettingsFragment"
+            android:key="edit-excluded-app-shortcuts"
+            android:summary="@string/ui_excluded_apps_dialog_title"
+            android:title="@string/ui_excluded_from_shortcuts_apps" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            android:dialogMessage="@string/reset_excluded_apps_warn"
+            android:key="reset-excluded-apps"
+            android:title="@string/reset_excluded_apps_name" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            android:dialogMessage="@string/reset_excluded_from_history_apps_warn"
+            android:key="reset-excluded-from-history-apps"
+            android:title="@string/reset_excluded_from_history_apps_name" />
+        <fr.neamar.kiss.preference.DialogShowingPreference
+            android:dialogMessage="@string/reset_excluded_app_shortcuts_warn"
+            android:key="reset-excluded-app-shortcuts"
+            android:title="@string/reset_excluded_app_shortcuts_name" />
+        />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="importexport"
