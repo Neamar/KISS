@@ -15,7 +15,8 @@
             android:inputType="number"
             android:key="number-of-display-elements"
             android:textColor="?attr/searchColor"
-            android:title="@string/number_of_display_items" />
+            android:title="@string/number_of_display_items"
+            app:useSimpleSummaryProvider="true" />
         <ListPreference
             android:defaultValue="recency"
             android:entries="@array/historyModeEntries"
@@ -171,7 +172,8 @@
                 android:entries="@array/resultsSizeEntries"
                 android:entryValues="@array/resultsSizeValues"
                 android:key="results-size"
-                android:title="@string/results_size" />
+                android:title="@string/results_size"
+                app:useSimpleSummaryProvider="true" />
             <MultiSelectListPreference
                 android:defaultValue="@array/resultHighlightingDefault"
                 android:entries="@array/resultHighlightingEntries"
@@ -200,7 +202,8 @@
             android:title="@string/icons_category">
             <fr.neamar.kiss.preference.IconPackSelectPreference
                 android:key="icons-pack"
-                android:title="@string/icons_pack_name" />
+                android:title="@string/icons_pack_name"
+                app:useSimpleSummaryProvider="true" />
 
             <ListPreference
                 android:defaultValue="0"
@@ -348,51 +351,61 @@
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-up"
-                android:title="@string/gesture_up_name" />
+                android:title="@string/gesture_up_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-up"
                 android:key="gesture-up-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="display-notifications"
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-down"
-                android:title="@string/gesture_down_name" />
+                android:title="@string/gesture_down_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-down"
                 android:key="gesture-down-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="display-apps"
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-left"
-                android:title="@string/gesture_left_name" />
+                android:title="@string/gesture_left_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-left"
                 android:key="gesture-left-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="display-apps"
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-right"
-                android:title="@string/gesture_right_name" />
+                android:title="@string/gesture_right_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-right"
                 android:key="gesture-right-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <ListPreference
                 android:defaultValue="display-apps"
                 android:entries="@array/gestureEntries"
                 android:entryValues="@array/gestureValues"
                 android:key="gesture-long-press"
-                android:title="@string/gesture_long_press_name" />
+                android:title="@string/gesture_long_press_name"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.LaunchPojoSelectPreference
                 android:dependency="gesture-long-press"
                 android:key="gesture-long-press-launch-id"
-                android:title="@string/gesture_launch_pojo" />
+                android:title="@string/gesture_launch_pojo"
+                app:useSimpleSummaryProvider="true" />
             <SwitchPreference
                 android:defaultValue="false"
                 android:key="double-tap"
@@ -518,7 +531,8 @@
             android:title="@string/search_name">
             <fr.neamar.kiss.preference.DefaultSearchProviderSelectPreference
                 android:key="default-search-provider"
-                android:title="@string/search_provider_default" />
+                android:title="@string/search_provider_default"
+                app:useSimpleSummaryProvider="true" />
             <fr.neamar.kiss.preference.SelectCustomSearchProvidersPreference
                 android:key="selected-search-provider-names"
                 android:title="@string/search_providers_title" />
