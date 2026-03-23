@@ -14,7 +14,6 @@
             android:defaultValue="20"
             android:inputType="number"
             android:key="number-of-display-elements"
-            android:textColor="?attr/searchColor"
             android:title="@string/number_of_display_items"
             app:useSimpleSummaryProvider="true" />
         <ListPreference
@@ -55,17 +54,6 @@
             android:key="reset-favorites"
             android:title="@string/reset_favorites_name" />
         <SwitchPreference
-            android:defaultValue="true"
-            android:key="enable-favorites-bar"
-            android:summaryOff="@string/enable_favorites_bar_summary_off"
-            android:summaryOn="@string/enable_favorites_bar_summary_on"
-            android:title="@string/enable_favorites_bar" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:dependency="enable-favorites-bar"
-            android:key="large-favorites-bar"
-            android:title="@string/large_favorites_bar" />
-        <SwitchPreference
             android:defaultValue="false"
             android:key="exclude-favorites-apps"
             android:title="@string/exclude_favorites_apps" />
@@ -77,6 +65,23 @@
             android:defaultValue="@array/favTagsDefault"
             android:key="pref-fav-tags-list"
             android:title="@string/pref_fav_tags_select" />
+        <PreferenceCategory android:title="@string/misc">
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="enable-favorites-bar"
+                android:summaryOff="@string/enable_favorites_bar_summary_off"
+                android:summaryOn="@string/enable_favorites_bar_summary_on"
+                android:title="@string/enable_favorites_bar" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:dependency="enable-favorites-bar"
+                android:key="large-favorites-bar"
+                android:title="@string/large_favorites_bar" />
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="transparent-favorites"
+                android:title="@string/transparent_favorites_bar" />
+        </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
         android:key="ui-holder"
@@ -226,14 +231,6 @@
                 android:title="@string/icons_hide_main" />
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/misc">
-            <SwitchPreference
-                android:defaultValue="true"
-                android:key="transparent-favorites"
-                android:title="@string/transparent_favorites_bar" />
-            <SwitchPreference
-                android:defaultValue="false"
-                android:key="large-search-bar"
-                android:title="@string/large_search_bar" />
             <SwitchPreference
                 android:defaultValue="false"
                 android:key="pref-rounded-list"
@@ -508,7 +505,6 @@
                 android:title="@string/search_providers_delete" />
             <fr.neamar.kiss.preference.AddSearchProviderPreference
                 android:key="custom-search-provider-add"
-                android:textColor="?attr/searchColor"
                 android:title="@string/custom_search_provider" />
             <fr.neamar.kiss.preference.DialogShowingPreference
                 android:dialogMessage="@string/search_provider_reset_desc"
@@ -520,6 +516,10 @@
                 android:defaultValue="false"
                 android:key="always-default-web-search-on-enter"
                 android:title="@string/always_default_web_search_on_enter" />
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="large-search-bar"
+                android:title="@string/large_search_bar" />
         </PreferenceCategory>
     </PreferenceScreen>
     <PreferenceScreen
