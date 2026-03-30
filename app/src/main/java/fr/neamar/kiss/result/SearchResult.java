@@ -208,10 +208,11 @@ public class SearchResult extends Result<SearchPojo> {
                     Intent timerIntent = new Intent(AlarmClock.ACTION_SET_TIMER);
                     timerIntent.putExtra(AlarmClock.EXTRA_LENGTH, seconds);
                     timerIntent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
-                    timerIntent.putExtra(AlarmClock.EXTRA_MESSAGE, pojo.query);
+                    String elapsedTime = DateUtils.formatElapsedTime(seconds);
+                    timerIntent.putExtra(AlarmClock.EXTRA_MESSAGE, elapsedTime);
                     timerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(timerIntent);
-                } catch (RuntimeException e) {
+                } catch (ActivityNotFoundException | NumberFormatException e) {
                     Log.w(TAG, "Unable to start timer for query: " + pojo.query, e);
                 }
                 break;
