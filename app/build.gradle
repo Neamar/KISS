@@ -74,12 +74,15 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.preference:preference:1.2.1'
     implementation "androidx.recyclerview:recyclerview:1.4.0"
+    implementation 'androidx.core:core:1.17.0'
+    implementation 'androidx.activity:activity:1.11.0'
+    implementation 'androidx.fragment:fragment:1.8.9'
 
     testImplementation 'org.junit.jupiter:junit-jupiter:6.0.3'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.hamcrest:hamcrest-library:3.0'
 
-    errorprone('com.google.errorprone:error_prone_core:2.47.0')
+    errorprone('com.google.errorprone:error_prone_core:2.48.0')
 }
 
 tasks.withType(JavaCompile).configureEach {

@@ -324,12 +324,10 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         // On validate, launch first record
         searchEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == android.R.id.closeButton) {
-                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
                 if (mPopup != null) {
                     mPopup.dismiss();
                     return true;
                 }
-                systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
                 hider.fixScroll();
                 return false;
             }
@@ -923,7 +921,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             searchEditText.setCursorVisible(true);
             InputMethodManager mgr = ContextCompat.getSystemService(this, InputMethodManager.class);
             mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
-            systemUiVisibilityHelper.onKeyboardVisibilityChanged(true);
         }
     }
 
@@ -935,8 +932,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
             InputMethodManager inputManager = ContextCompat.getSystemService(this, InputMethodManager.class);
             //noinspection ConstantConditions
             inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
-            systemUiVisibilityHelper.onKeyboardVisibilityChanged(false);
         }
 
         dismissPopup();
@@ -976,7 +971,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     public void dismissPopup() {
         if (mPopup != null) {
             mPopup.dismiss();
-            mPopup = null;
         }
     }
 
@@ -1030,5 +1024,9 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         } else {
             favoritesBar.setVisibility(View.GONE);
         }
+    }
+
+    public void onKeyboardVisibilityChanged(boolean keyboardIsVisible) {
+        systemUiVisibilityHelper.onKeyboardVisibilityChanged(keyboardIsVisible);
     }
 }
