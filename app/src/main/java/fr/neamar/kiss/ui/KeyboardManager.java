@@ -1,12 +1,12 @@
 package fr.neamar.kiss.ui;
 
 import android.content.Context;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowInsets;
 
-import fr.neamar.kiss.utils.DrawableUtils;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 import fr.neamar.kiss.utils.Log;
 
 public class KeyboardManager {
@@ -50,22 +50,11 @@ public class KeyboardManager {
                 if (previousHeight != 0) {
                     int heightDiff = previousHeight - newHeight;
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        // if height has changed then check if IME insets are visible or not
-                        if (heightDiff != 0) {
-                            WindowInsets windowInsets = KeyboardManager.this.contentView.getRootWindowInsets();
-                            boolean imeInsetVisible = windowInsets.isVisible(WindowInsets.Type.ime());
-                            setKeyboardIsVisible(imeInsetVisible, listener);
-                        }
-                    } else {
-                        int changeThreshold = DrawableUtils.dpToPx(mContext, 150);
-                        if (heightDiff > changeThreshold) {
-                            // we assume that keyboard was shown
-                            setKeyboardIsVisible(true, listener);
-                        } else if (heightDiff < -changeThreshold) {
-                            // we assume that keyboard was hidden
-                            setKeyboardIsVisible(false, listener);
-                        }
+                    // if height has changed then check if IME insets are visible or not
+                    if (heightDiff != 0) {
+                        WindowInsetsCompat windowInsets = ViewCompat.getRootWindowInsets(KeyboardManager.this.contentView);
+                        boolean imeInsetVisible = windowInsets != null && windowInsets.isVisible(WindowInsetsCompat.Type.ime());
+                        setKeyboardIsVisible(imeInsetVisible, listener);
                     }
                 }
                 previousHeight = newHeight;

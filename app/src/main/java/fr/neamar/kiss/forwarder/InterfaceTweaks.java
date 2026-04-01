@@ -11,17 +11,18 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.Insets;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowInsets;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleableRes;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.PreferenceManager;
 
 import java.util.List;
@@ -138,10 +139,10 @@ public class InterfaceTweaks extends Forwarder {
 
     private static void applySystemBarInsets(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            view.setOnApplyWindowInsetsListener((v, insets) -> {
-                Insets systemBars = insets.getInsets(WindowInsets.Type.systemBars() | WindowInsets.Type.ime());
+            ViewCompat.setOnApplyWindowInsetsListener(view, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-                return WindowInsets.CONSUMED;
+                return WindowInsetsCompat.CONSUMED;
             });
         }
     }

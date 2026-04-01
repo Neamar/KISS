@@ -255,6 +255,7 @@ public class ExperienceTweaks extends Forwarder {
         keyboardManager.registerKeyboardListener(
                 mainActivity.findViewById(android.R.id.content),
                 (keyboardIsVisible) -> {
+                    mainActivity.onKeyboardVisibilityChanged(keyboardIsVisible);
                     if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
                             mainActivity.isViewingSearchResults() && TextUtils.isEmpty(mainActivity.searchEditText.getText())) {
                         if (keyboardIsVisible) {
