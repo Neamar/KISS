@@ -951,10 +951,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     @Override
     public void hideKeyboard() {
-        if (!hasWindowFocus()) {
-            showKeyboardOnFocus = false;
-            return;
-        }
         showKeyboardOnFocus = null;
 
         // Check if no view has focus:
