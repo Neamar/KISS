@@ -632,7 +632,13 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 Rect outR = new Rect();
                 edit.getGlobalVisibleRect(outR);
                 boolean isKeyboardOpen = !outR.contains((int) ev.getRawX(), (int) ev.getRawY());
-                edit.setCursorVisible(!isKeyboardOpen);
+                if (prefs.getBoolean("hide-keyboard", false) && isKeyboardOpen) {
+                    edit.postDelayed(() -> {
+                        hideKeyboard();
+                    }, 100);
+                } else {
+                    edit.setCursorVisible(!isKeyboardOpen);
+                }
             }
         }
         if (mPopup != null && ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
