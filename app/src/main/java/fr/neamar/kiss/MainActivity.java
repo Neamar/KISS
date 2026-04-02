@@ -42,6 +42,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -154,6 +156,11 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
      * SystemUiVisibility helper
      */
     private SystemUiVisibilityHelper systemUiVisibilityHelper;
+
+    /**
+     * Should keyboard be shown on focus of window?
+     */
+    Boolean showKeyboardOnFocus = null;
 
     /**
      * Is the KISS bar currently displayed?
@@ -913,19 +920,39 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         super.onWindowFocusChanged(hasFocus);
         systemUiVisibilityHelper.onWindowFocusChanged(hasFocus);
         forwarderManager.onWindowFocusChanged(hasFocus);
+        if (showKeyboardOnFocus != null) {
+            if (showKeyboardOnFocus) {
+                showKeyboard();
+            } else {
+                hideKeyboard();
+            }
+        }
     }
 
 
+    /**
+     * Focus {@link #searchEditText} and show keyboard
+     * <p>
+     * Uses {@link WindowCompat} instead of {@link InputMethodManager} here
+     * For details see <a href="https://developer.android.com/develop/ui/views/touch-and-input/keyboard-input/visibility#ShowReliably">online docu</a>.
+     */
     public void showKeyboard() {
+        if (!hasWindowFocus()) {
+            showKeyboardOnFocus = true;
+            return;
+        }
+        showKeyboardOnFocus = null;
+
         if (searchEditText.requestFocus()) {
             searchEditText.setCursorVisible(true);
-            InputMethodManager mgr = ContextCompat.getSystemService(this, InputMethodManager.class);
-            mgr.showSoftInput(searchEditText, InputMethodManager.SHOW_IMPLICIT);
+            WindowCompat.getInsetsController(getWindow(), searchEditText).show(WindowInsetsCompat.Type.ime());
         }
     }
 
     @Override
     public void hideKeyboard() {
+        showKeyboardOnFocus = null;
+
         // Check if no view has focus:
         View view = this.getCurrentFocus();
         if (view != null) {
