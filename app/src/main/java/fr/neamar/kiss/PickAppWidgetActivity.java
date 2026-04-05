@@ -268,7 +268,7 @@ public class PickAppWidgetActivity extends AppCompatActivity {
             if (viewType == 1)
                 layout = R.layout.widget_picker_item_title;
             View view = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
-            return new ViewHolder(viewType, view);
+            return new ViewHolder(view);
         }
 
         @Override
@@ -309,19 +309,13 @@ public class PickAppWidgetActivity extends AppCompatActivity {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final int mViewType;
         private final TextView textView;
         private Utilities.AsyncRun<Drawable> task = null;
 
-        protected ViewHolder(int viewType, View itemView) {
+        protected ViewHolder(View itemView) {
             super(itemView);
             itemView.setTag(this);
-            mViewType = viewType;
             textView = itemView.findViewById(android.R.id.text1);
-        }
-
-        public int getViewType() {
-            return mViewType;
         }
 
         public void setContent(MenuItem content) {

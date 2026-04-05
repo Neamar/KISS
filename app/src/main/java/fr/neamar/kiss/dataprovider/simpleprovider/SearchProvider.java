@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.webkit.URLUtil;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
@@ -31,14 +32,17 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
         return new HashSet<>(Arrays.asList(defaultSearchProviders));
     }
 
+    @NonNull
     public static Set<String> getAvailableSearchProviders(Context context, SharedPreferences prefs) {
         return new TreeSet<>(prefs.getStringSet("available-search-providers", SearchProvider.getDefaultSearchProviders(context)));
     }
 
+    @NonNull
     public static Set<String> getSelectedSearchProviders(SharedPreferences prefs) {
         return new TreeSet<>(prefs.getStringSet("selected-search-provider-names", new TreeSet<>(Collections.singletonList("Google"))));
     }
 
+    @Nullable
     public static String getDefaultSearchProvider(SharedPreferences prefs) {
         return prefs.getString("default-search-provider", "Google");
     }
@@ -63,8 +67,6 @@ public class SearchProvider extends SimpleProvider<SearchPojo> {
         // Get default search engine
         String defaultSearchEngine = getDefaultSearchProvider(prefs);
 
-        assert selectedProviders != null;
-        assert availableProviders != null;
         assert defaultSearchEngine != null;
         for (String searchProvider : selectedProviders) {
             String url = getProviderUrl(availableProviders, searchProvider);

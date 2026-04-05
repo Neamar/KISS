@@ -254,7 +254,7 @@ public class ShortcutsResult extends ResultWithTags<ShortcutPojo> {
         } else if (stringId == R.string.menu_shortcut_remove) {
             launchUninstall(context, pojo);
             // Also remove item, since it will be uninstalled
-            parent.removeResult(context, this);
+            parent.removeResult(this);
             return true;
         }
         return super.popupMenuClickHandler(context, parent, stringId, parentView);

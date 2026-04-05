@@ -18,7 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -127,9 +126,7 @@ public class ExperienceTweaks extends Forwarder {
                         mainActivity.startActivity(intent);
                     });
 
-                    builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
-                        dialog.dismiss();
-                    });
+                    builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss());
 
                     AlertDialog alert = builder.create();
                     alert.show();
@@ -242,7 +239,7 @@ public class ExperienceTweaks extends Forwarder {
             }
         });
 
-        keyboardManager = new KeyboardManager(mainActivity);
+        keyboardManager = new KeyboardManager();
     }
 
     void onCreate() {
@@ -296,17 +293,14 @@ public class ExperienceTweaks extends Forwarder {
             mainActivity.searchEditText.setHint("");
         }
         if (prefs.getBoolean("pref-hide-circle", false)) {
-            ((ImageView) mainActivity.launcherButton).setImageBitmap(null);
-            ((ImageView) mainActivity.menuButton).setImageBitmap(null);
+            mainActivity.launcherButton.setImageBitmap(null);
+            mainActivity.menuButton.setImageBitmap(null);
         }
     }
 
     void onTouch(MotionEvent event) {
         // Forward touch events to the gesture detector
         gd.onTouchEvent(event);
-    }
-
-    void onWindowFocusChanged(boolean hasFocus) {
     }
 
     void onDisplayKissBar(boolean display) {

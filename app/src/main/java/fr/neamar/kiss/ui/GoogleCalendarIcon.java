@@ -46,11 +46,8 @@ public class GoogleCalendarIcon {
         if (bundle != null) {
             int dateArrayId = bundle.getInt(GOOGLE_CALENDAR + ".dynamic_icons_nexus_round", 0);
             if (dateArrayId != 0) {
-                try {
-                    TypedArray dateIds = resources.obtainTypedArray(dateArrayId);
-                    int dateId = dateIds.getResourceId(getDayOfMonth(), 0);
-                    dateIds.recycle();
-                    return dateId;
+                try (TypedArray dateIds = resources.obtainTypedArray(dateArrayId)) {
+                    return dateIds.getResourceId(getDayOfMonth(), 0);
                 } catch (Resources.NotFoundException ignored) {
                 }
             }
