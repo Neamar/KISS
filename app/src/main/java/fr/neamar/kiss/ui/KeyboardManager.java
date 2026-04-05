@@ -1,6 +1,5 @@
 package fr.neamar.kiss.ui;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
@@ -17,12 +16,6 @@ public class KeyboardManager {
     public interface OnKeyboardListener {
         void onKeyboardVisibilityChanged(boolean isVisible);
     }
-
-    public KeyboardManager(Context context) {
-        mContext = context;
-    }
-
-    protected final Context mContext;
 
     protected View contentView;
     private ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener;

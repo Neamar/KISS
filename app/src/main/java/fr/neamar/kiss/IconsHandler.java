@@ -150,7 +150,7 @@ public class IconsHandler {
      * @param useCustomIcons use custom icons
      * @return drawable
      */
-    public Drawable getDrawableIconForPackage(ComponentName componentName, UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
+    public Drawable getDrawableIconForPackage(@NonNull ComponentName componentName, @NonNull UserHandle userHandle, boolean useCache, boolean useCustomIcons) {
         final String cacheKey = AppPojo.getComponentName(componentName.getPackageName(), componentName.getClassName(), userHandle);
 
         if (DrawableUtils.hasThemedIcons() && DrawableUtils.isThemedIconEnabled(ctx)) {

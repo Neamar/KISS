@@ -17,7 +17,7 @@ import fr.neamar.kiss.utils.calculator.ShuntingYard;
 import fr.neamar.kiss.utils.calculator.Tokenizer;
 
 public class CalculatorProvider extends SimpleProvider<SearchPojo> {
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @VisibleForTesting()
     final Pattern computableRegexp;
     // A regexp to detect plain numbers (including phone numbers)
     private final Pattern numberOnlyRegexp;

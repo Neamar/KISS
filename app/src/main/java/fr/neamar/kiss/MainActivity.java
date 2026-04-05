@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     /**
      * Launcher button, can be clicked to display all apps
      */
-    public View launcherButton;
+    public ImageView launcherButton;
 
     /**
      * Launcher button's white counterpart, which appears when launcher button is clicked
@@ -479,7 +479,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
+    protected void onNewIntent(@NonNull Intent intent) {
         super.onNewIntent(intent);
 
         //Set the intent so KISS can tell when it was launched as an assistant
@@ -633,9 +633,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 edit.getGlobalVisibleRect(outR);
                 boolean isKeyboardOpen = !outR.contains((int) ev.getRawX(), (int) ev.getRawY());
                 if (prefs.getBoolean("hide-keyboard", false) && isKeyboardOpen) {
-                    edit.postDelayed(() -> {
-                        hideKeyboard();
-                    }, 100);
+                    edit.postDelayed(this::hideKeyboard, 100);
                 } else {
                     edit.setCursorVisible(!isKeyboardOpen);
                 }
@@ -925,7 +923,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         systemUiVisibilityHelper.onWindowFocusChanged(hasFocus);
-        forwarderManager.onWindowFocusChanged(hasFocus);
         if (showKeyboardOnFocus != null) {
             if (showKeyboardOnFocus) {
                 showKeyboard();

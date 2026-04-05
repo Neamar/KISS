@@ -109,6 +109,7 @@ public abstract class Result<T extends Pojo> {
         return pojo.getFavoriteId();
     }
 
+    @NonNull
     @Override
     public String toString() {
         return pojo.getName();
@@ -336,7 +337,7 @@ public abstract class Result<T extends Pojo> {
     private void removeFromResultsAndHistory(Context context, RecordAdapter parent) {
         removeFromHistory(context);
         Toast.makeText(context, R.string.removed_item, Toast.LENGTH_SHORT).show();
-        parent.removeResult(context, this);
+        parent.removeResult(this);
     }
 
     public final void launch(Context context, View v, @Nullable QueryInterface queryInterface) {
@@ -397,16 +398,6 @@ public abstract class Result<T extends Pojo> {
      */
     public Drawable getDrawable(Context context) {
         return null;
-    }
-
-    /**
-     * Does the drawable changes regularly?
-     * If so, it can't be kept in cache for long.
-     *
-     * @return true when dynamic
-     */
-    public boolean isDrawableDynamic() {
-        return false;
     }
 
     boolean isDrawableCached() {

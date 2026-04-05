@@ -38,7 +38,6 @@ import fr.neamar.kiss.UIColors;
 import fr.neamar.kiss.adapter.RecordAdapter;
 import fr.neamar.kiss.notification.NotificationListener;
 import fr.neamar.kiss.pojo.AppPojo;
-import fr.neamar.kiss.ui.GoogleCalendarIcon;
 import fr.neamar.kiss.ui.ListPopup;
 import fr.neamar.kiss.utils.DrawableUtils;
 import fr.neamar.kiss.utils.Log;
@@ -153,16 +152,16 @@ public class AppResult extends ResultWithTags<AppPojo> {
     @Override
     protected boolean popupMenuClickHandler(final Context context, final RecordAdapter parent, int stringId, View parentView) {
         if (stringId == R.string.menu_app_details) {
-            launchAppDetails(context, pojo);
+            launchAppDetails(context);
             return true;
         } else if (stringId == R.string.menu_app_store) {
-            launchAppStore(context, pojo);
+            launchAppStore(context);
             return true;
         } else if (stringId == R.string.menu_app_uninstall) {
-            launchUninstall(context, pojo);
+            launchUninstall(context);
             return true;
         } else if (stringId == R.string.menu_app_hibernate) {
-            hibernate(context, pojo);
+            hibernate(context);
             return true;
         } else if (stringId == R.string.menu_exclude) {
             final int EXCLUDE_HISTORY_ID = 0;
@@ -209,7 +208,7 @@ public class AppResult extends ResultWithTags<AppPojo> {
 
     private void excludeFromKiss(Context context, AppPojo pojo, final RecordAdapter parent) {
         // remove item since it will be hidden
-        parent.removeResult(context, AppResult.this);
+        parent.removeResult(AppResult.this);
 
         KissApplication.getApplication(context).getDataHandler().addToExcluded(pojo);
         Toast.makeText(context, R.string.excluded_app_list_added, Toast.LENGTH_LONG).show();
@@ -290,21 +289,21 @@ public class AppResult extends ResultWithTags<AppPojo> {
     /**
      * Open an activity displaying details regarding the current package
      */
-    private void launchAppDetails(Context context, AppPojo app) {
+    private void launchAppDetails(Context context) {
         LauncherApps launcher = ContextCompat.getSystemService(context, LauncherApps.class);
         assert launcher != null;
         launcher.startAppDetailsActivity(className, pojo.userHandle.getRealHandle(), null, null);
     }
 
-    private void launchAppStore(Context context, AppPojo app) {
+    private void launchAppStore(Context context) {
         try {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + app.packageName)));
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + pojo.packageName)));
         } catch (ActivityNotFoundException anfe) {
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + app.packageName)));
+            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + pojo.packageName)));
         }
     }
 
-    private void hibernate(Context context, AppPojo app) {
+    private void hibernate(Context context) {
         String msg = context.getResources().getString(R.string.toast_hibernate_completed);
         if (!KissApplication.getApplication(context).getRootHandler().hibernateApp(pojo.packageName)) {
             msg = context.getResources().getString(R.string.toast_hibernate_error);
@@ -312,16 +311,16 @@ public class AppResult extends ResultWithTags<AppPojo> {
             KissApplication.getApplication(context).getDataHandler().reloadApps();
         }
 
-        Toast.makeText(context, String.format(msg, app.getName()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, String.format(msg, pojo.getName()), Toast.LENGTH_SHORT).show();
     }
 
     /**
      * Open an activity to uninstall the current package
      */
-    private void launchUninstall(Context context, AppPojo app) {
+    private void launchUninstall(Context context) {
         Intent intent = new Intent(Intent.ACTION_DELETE,
-                Uri.fromParts("package", app.packageName, null));
-        intent.putExtra(Intent.EXTRA_USER, app.userHandle.getRealHandle());
+                Uri.fromParts("package", pojo.packageName, null));
+        intent.putExtra(Intent.EXTRA_USER, pojo.userHandle.getRealHandle());
         context.startActivity(intent);
     }
 
@@ -347,13 +346,6 @@ public class AppResult extends ResultWithTags<AppPojo> {
         }
         DrawableUtils.setDisabled(icon, this.pojo.isDisabled());
         return icon;
-    }
-
-    @Override
-    public boolean isDrawableDynamic() {
-        // drawable may change because of async loading, so return true as long as icon is not cached
-        // another dynamic icon is from Google Calendar
-        return !isDrawableCached() || GoogleCalendarIcon.GOOGLE_CALENDAR.equals(pojo.packageName);
     }
 
     @Override

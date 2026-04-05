@@ -115,12 +115,14 @@ public class TagsMenu extends Forwarder {
     }
 
     static class MenuItemTitle implements TagsMenu.MenuItem {
+        @NonNull
         final String name;
 
         MenuItemTitle(Context context, @StringRes int nameRes) {
             this.name = context.getString(nameRes);
         }
 
+        @NonNull
         @Override
         public String toString() {
             return name;
@@ -133,12 +135,14 @@ public class TagsMenu extends Forwarder {
     }
 
     static class MenuItemTag implements TagsMenu.MenuItem {
+        @NonNull
         final String tag;
 
-        MenuItemTag(String tag) {
+        MenuItemTag(@NonNull String tag) {
             this.tag = tag;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return tag;
@@ -152,6 +156,7 @@ public class TagsMenu extends Forwarder {
 
     static class MenuItemBtn implements TagsMenu.MenuItem {
         final int nameRes;
+        @NonNull
         final String name;
 
         MenuItemBtn(Context context, @StringRes int nameRes) {
@@ -159,6 +164,7 @@ public class TagsMenu extends Forwarder {
             this.name = context.getString(nameRes);
         }
 
+        @NonNull
         @Override
         public String toString() {
             return name;
