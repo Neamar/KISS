@@ -22,6 +22,10 @@ import fr.neamar.kiss.utils.Utilities;
 
 public class ExcludeAppSettingsFragment extends PreferenceFragmentCompat {
 
+    public ExcludeAppSettingsFragment() {
+        super();
+    }
+
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         addPreferencesFromResource(R.xml.preferences_exclude_app);
