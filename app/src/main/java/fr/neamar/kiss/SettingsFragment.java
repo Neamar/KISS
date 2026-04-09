@@ -63,6 +63,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
     private Permission permissionManager;
 
+    public SettingsFragment() {
+        super();
+    }
+
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
         prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
