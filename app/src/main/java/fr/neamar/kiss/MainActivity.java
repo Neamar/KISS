@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
     /**
      * Launcher button, can be clicked to display all apps
      */
-    public ImageView launcherButton;
+    // TODO: Check what's wrong with launcherButton. It is an ImageView, but it's not visible anymore if declared as ImageView here.
+    public View launcherButton;
 
     /**
      * Launcher button's white counterpart, which appears when launcher button is clicked
