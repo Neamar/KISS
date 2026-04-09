@@ -9,3 +9,4 @@
     public static int d(...);
     public static int e(...);
 }
+-dontwarn javax.lang.model.element.Modifier # for errorprone
