@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -293,7 +294,7 @@ public class ExperienceTweaks extends Forwarder {
             mainActivity.searchEditText.setHint("");
         }
         if (prefs.getBoolean("pref-hide-circle", false)) {
-            mainActivity.launcherButton.setImageBitmap(null);
+            ((ImageView) mainActivity.launcherButton).setImageBitmap(null);
             mainActivity.menuButton.setImageBitmap(null);
         }
     }
