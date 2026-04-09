@@ -86,6 +86,7 @@ dependencies {
     testImplementation 'org.hamcrest:hamcrest-library:3.0'
 
     errorprone('com.google.errorprone:error_prone_core:2.49.0')
+    runtimeOnly('com.google.errorprone:error_prone_annotations:2.49.0')
 }
 
 tasks.withType(JavaCompile).configureEach {
