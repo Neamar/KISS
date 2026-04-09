@@ -1,4 +1,5 @@
 -dontobfuscate
+-keep class fr.neamar.kiss.ExcludeAppSettingsFragment
 -optimizations !code/allocation/variable
 -assumenosideeffects class android.util.Log {
     public static boolean isLoggable(java.lang.String, int);
