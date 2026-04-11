@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - '**'
+  pull_request:
+    branches:
+      - master
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.sha }}
@@ -39,11 +42,13 @@ jobs:
       - name: Build release APK
         run: bash ./gradlew assembleRelease --stacktrace
       - name: Upload debug APK
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/upload-artifact@v5
         with:
           name: debug
           path: app/build/outputs/apk/debug/app-debug.apk
       - name: Upload release APK
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/upload-artifact@v5
         with:
           name: release
