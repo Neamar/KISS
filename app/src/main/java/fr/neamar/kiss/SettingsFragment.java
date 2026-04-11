@@ -183,7 +183,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                     setPhoneHistoryEnabled(enabled);
                 }
             } else if (key.equalsIgnoreCase("primary-color")) {
-                UIColors.clearPrimaryColorCache();
+                UIColors.clearColorCache();
             } else if (key.equalsIgnoreCase("number-of-display-elements")) {
                 QuerySearcher.clearMaxResultCountCache();
             } else if (key.equalsIgnoreCase("default-search-provider")) {

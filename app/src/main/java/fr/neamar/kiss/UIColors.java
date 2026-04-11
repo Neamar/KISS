@@ -57,6 +57,7 @@ public class UIColors {
 
     private static final String COLOR_DEFAULT_STR = colorToString(COLOR_DEFAULT);
 
+    @ColorInt
     private static int primaryColor = -1;
 
     static {
@@ -285,7 +286,7 @@ public class UIColors {
         return Color.parseColor(colorStr);
     }
 
-    public static void clearPrimaryColorCache() {
+    public static void clearColorCache() {
         primaryColor = -1;
     }
 

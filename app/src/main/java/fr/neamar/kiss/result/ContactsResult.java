@@ -102,14 +102,11 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         contactIcon.setExtraOnClickListener(v -> recordLaunch(v.getContext(), queryInterface));
 
-        int primaryColor = UIColors.getPrimaryColor(context);
         PackageManager pm = context.getPackageManager();
         boolean hasPhone = pojo.phone != null && pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
 
         // Phone action
         ImageButton phoneButton = view.findViewById(R.id.item_contact_action_phone);
-        phoneButton.setColorFilter(primaryColor);
-
         if (hasPhone) {
             phoneButton.setVisibility(View.VISIBLE);
             phoneButton.setOnClickListener(v -> {
@@ -122,8 +119,6 @@ public class ContactsResult extends CallResult<ContactsPojo> {
 
         // Message action
         ImageButton messageButton = view.findViewById(R.id.item_contact_action_message);
-        messageButton.setColorFilter(primaryColor);
-
         if (pojo.getContactData() != null) {
             messageButton.setVisibility(View.VISIBLE);
             messageButton.setOnClickListener(v -> {

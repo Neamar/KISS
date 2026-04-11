@@ -148,7 +148,7 @@ public class InterfaceTweaks extends Forwarder {
     }
 
     void onCreate() {
-        UIColors.clearPrimaryColorCache();
+        UIColors.clearColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);
         applyRoundedCorners(mainActivity);
         swapKissButtonWithMenu(mainActivity);
@@ -273,7 +273,7 @@ public class InterfaceTweaks extends Forwarder {
 
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         TagDummyResult.resetShape();
-        UIColors.clearPrimaryColorCache();
+        UIColors.clearColorCache();
         UIColors.updateThemePrimaryColor(mainActivity);
     }
 }
