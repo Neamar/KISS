@@ -250,6 +250,7 @@ public class ExperienceTweaks extends Forwarder {
     void onResume() {
         keyboardManager.registerKeyboardListener(
                 mainActivity.findViewById(android.R.id.content),
+                shouldShowKeyboard(),
                 (keyboardIsVisible) -> {
                     mainActivity.onKeyboardVisibilityChanged(keyboardIsVisible);
                     if (isMinimalisticModeEnabled() && prefs.getBoolean("history-onkeyboard", false) &&
@@ -258,7 +259,6 @@ public class ExperienceTweaks extends Forwarder {
                             // If it's more than 200dp, it's most likely a keyboard.
                             if (mainActivity.adapter == null || mainActivity.adapter.isEmpty()) {
                                 mainActivity.showHistory();
-                                mainActivity.displayClearOnInput();
                             }
                         } else {
                             // we never want this triggered because the keyboard scroller did it

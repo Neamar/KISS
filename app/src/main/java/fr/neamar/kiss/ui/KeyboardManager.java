@@ -3,6 +3,7 @@ package fr.neamar.kiss.ui;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -17,11 +18,11 @@ public class KeyboardManager {
         void onKeyboardVisibilityChanged(boolean isVisible);
     }
 
-    protected View contentView;
+    private View contentView;
     private ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener;
     private boolean keyboardIsVisible;
 
-    protected void setKeyboardIsVisible(boolean isVisible, final OnKeyboardListener listener) {
+    private void setKeyboardIsVisible(boolean isVisible, final OnKeyboardListener listener) {
         if (isVisible != keyboardIsVisible) {
             Log.d(TAG, "onKeyboardVisibilityChanged(" + isVisible + ")");
             keyboardIsVisible = isVisible;
@@ -31,9 +32,14 @@ public class KeyboardManager {
         }
     }
 
-    public void registerKeyboardListener(View view, final OnKeyboardListener listener) {
+    public void registerKeyboardListener(@NonNull View view, boolean initialIsVisible, final OnKeyboardListener listener) {
         this.contentView = view;
         unregisterKeyboardListener();
+
+        // initialize before listener is registered
+        // calls listener if `keyboardIsVisible` changes because of initialization
+        setKeyboardIsVisible(initialIsVisible, listener);
+
         onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
             private int previousHeight = 0;
 

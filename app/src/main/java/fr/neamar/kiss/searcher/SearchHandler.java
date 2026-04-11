@@ -98,4 +98,8 @@ public class SearchHandler {
                 throw new UnsupportedOperationException();
         }
     }
+
+    public Searcher.Type getLastSearchType() {
+        return lastSearchType;
+    }
 }
