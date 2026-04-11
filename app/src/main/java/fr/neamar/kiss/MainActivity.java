@@ -321,7 +321,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
                 displayKissBar(false, false);
             }
             updateSearchRecords(false, changedText);
-            displayClearOnInput();
         }));
 
         // Fixes bug when dropping onto a textEdit widget which can cause a NPE
@@ -438,7 +437,6 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         // We need to update the history in case an external event created new items
         // (for instance, installed a new app, got a phone call or simply clicked on a favorite)
         updateSearchRecords(false, searchEditText.getText().toString());
-        displayClearOnInput();
 
         if (isViewingAllApps()) {
             displayKissBar(false);
@@ -647,8 +645,12 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
         return super.dispatchTouchEvent(ev);
     }
 
-    public void displayClearOnInput() {
-        if (!TextUtils.isEmpty(searchEditText.getText())) {
+    private void displayClearOnInput() {
+        Searcher.Type lastSearchType = SearchHandler.getInstance().getLastSearchType();
+        if (!TextUtils.isEmpty(searchEditText.getText()) ||
+                (isMinimalisticModeEnabled() && lastSearchType == Searcher.Type.HISTORY) ||
+                (lastSearchType == Searcher.Type.TAGGED) ||
+                (lastSearchType == Searcher.Type.UNTAGGED)) {
             clearButton.setVisibility(View.VISIBLE);
             menuButton.setVisibility(View.INVISIBLE);
         } else {
@@ -824,6 +826,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
         if (TextUtils.isEmpty(query)) {
             systemUiVisibilityHelper.resetScroll();
+            displayClearOnInput();
         } else {
             search(Searcher.Type.QUERY, query, false);
         }
@@ -831,6 +834,7 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     public void search(@NonNull Searcher.Type type, String query, boolean isRefresh) {
         SearchHandler.getInstance().search(type, this, query, isRefresh);
+        displayClearOnInput();
     }
 
     private void cancelSearch() {
@@ -1007,23 +1011,14 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     public void showMatchingTags(String tag) {
         search(Searcher.Type.TAGGED, tag, false);
-
-        clearButton.setVisibility(View.VISIBLE);
-        menuButton.setVisibility(View.INVISIBLE);
     }
 
     public void showUntagged() {
         search(Searcher.Type.UNTAGGED, null, false);
-
-        clearButton.setVisibility(View.VISIBLE);
-        menuButton.setVisibility(View.INVISIBLE);
     }
 
     public void showHistory() {
         search(Searcher.Type.HISTORY, null, false);
-
-        clearButton.setVisibility(View.VISIBLE);
-        menuButton.setVisibility(View.INVISIBLE);
     }
 
     public boolean isKissDefaultLauncher() {
@@ -1059,5 +1054,9 @@ public class MainActivity extends AppCompatActivity implements QueryInterface, K
 
     public void onKeyboardVisibilityChanged(boolean keyboardIsVisible) {
         systemUiVisibilityHelper.onKeyboardVisibilityChanged(keyboardIsVisible);
+    }
+
+    private boolean isMinimalisticModeEnabled() {
+        return prefs.getBoolean("history-hide", false);
     }
 }
