@@ -5,6 +5,7 @@ import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import fr.neamar.kiss.db.DBHelper;
 import fr.neamar.kiss.forwarder.InterfaceTweaks;
 import fr.neamar.kiss.utils.IconPackCache;
 import fr.neamar.kiss.utils.Log;
@@ -109,6 +110,7 @@ public class KissApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        DBHelper.initDatabase(this);
         InterfaceTweaks.setDefaultNightMode(this);
     }
 }
