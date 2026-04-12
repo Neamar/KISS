@@ -592,4 +592,7 @@ public class DBHelper {
         return records;
     }
 
+    public static void initDatabase(Context context) {
+        getDatabase(context);
+    }
 }
