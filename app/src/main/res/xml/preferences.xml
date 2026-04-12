@@ -94,6 +94,13 @@
             app:key="theme"
             app:title="@string/theme_name"
             app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="no"
+            app:entries="@array/darkModeEntries"
+            app:entryValues="@array/darkModeValues"
+            app:key="dark-mode"
+            app:title="@string/theme_dark_mode"
+            app:useSimpleSummaryProvider="true" />
         <PreferenceScreen
             app:key="theme-customisation"
             app:title="@string/theme_customisation">

@@ -1,5 +1,6 @@
 package fr.neamar.kiss.forwarder;
 
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
 
@@ -46,18 +47,15 @@ public class InterfaceTweaks extends Forwarder {
         String theme = getTheme(prefs);
         switch (theme) {
             case "transparent":
-            case "transparent-dark":
                 act.setTheme(R.style.AppThemeTransparent);
                 break;
             case "semi-transparent":
-            case "semi-transparent-dark":
                 act.setTheme(R.style.AppThemeSemiTransparent);
                 break;
             case "amoled-dark":
                 act.setTheme(R.style.AppThemeAmoledDark);
                 break;
-            case "light":
-            case "dark":
+            case "opaque":
             default:
                 act.setTheme(R.style.AppTheme);
         }
@@ -99,12 +97,9 @@ public class InterfaceTweaks extends Forwarder {
             case "amoled-dark":
                 act.setTheme(R.style.SettingThemeAmoledDark);
                 break;
-            case "light":
+            case "opaque":
             case "semi-transparent":
             case "transparent":
-            case "dark":
-            case "semi-transparent-dark":
-            case "transparent-dark":
             default:
                 act.setTheme(R.style.SettingTheme);
                 break;
@@ -116,17 +111,21 @@ public class InterfaceTweaks extends Forwarder {
 
     public static void setDefaultNightMode(@NonNull Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        // special handling of amoled dark theme, there is no light version for this
         String theme = getTheme(prefs);
-        switch (theme) {
-            case "dark":
-            case "semi-transparent-dark":
-            case "transparent-dark":
-            case "amoled-dark":
+        if ("amoled-dark".equals(theme)) {
+            AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
+        }
+
+        String darkMode = prefs.getString("dark-mode", "no");
+        switch (darkMode) {
+            case "system-default":
+                AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM);
+                break;
+            case "yes":
                 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
                 break;
-            case "light":
-            case "semi-transparent":
-            case "transparent":
+            case "no":
             default:
                 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
                 break;
