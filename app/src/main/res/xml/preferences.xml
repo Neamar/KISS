@@ -94,6 +94,13 @@
             app:key="theme"
             app:title="@string/theme_name"
             app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="no"
+            app:entries="@array/nightModeEntries"
+            app:entryValues="@array/nightModeValues"
+            app:key="night-mode"
+            app:title="@string/theme_night_mode"
+            app:useSimpleSummaryProvider="true" />
         <PreferenceScreen
             app:key="theme-customisation"
             app:title="@string/theme_customisation">

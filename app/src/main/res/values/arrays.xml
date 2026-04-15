@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string-array name="themesEntries">
-        <item>@string/theme_light</item>
-        <item>@string/theme_semi_light</item>
-        <item>@string/theme_light_transparent</item>
-        <item>@string/theme_dark</item>
-        <item>@string/theme_semi_dark</item>
-        <item>@string/theme_dark_transparent</item>
+        <item>@string/theme_opaque</item>
+        <item>@string/theme_semi_transparent</item>
+        <item>@string/theme_transparent</item>
         <item>@string/theme_amoled</item>
     </string-array>
     <string-array name="themesValues" translatable="false">
-        <item>light</item>
+        <item>opaque</item>
         <item>semi-transparent</item>
         <item>transparent</item>
-        <item>dark</item>
-        <item>semi-transparent-dark</item>
-        <item>transparent-dark</item>
         <item>amoled-dark</item>
+    </string-array>
+    <string-array name="nightModeEntries" translatable="false">
+        <item>@string/no</item>
+        <item>@string/yes</item>
+        <item>@string/theme_night_mode_follow_system</item>
+    </string-array>
+    <string-array name="nightModeValues" translatable="false">
+        <item>no</item>
+        <item>yes</item>
+        <item>follow-system</item>
     </string-array>
     <string-array name="historyModeEntries">
         <item>@string/history_recency</item>
@@ -118,9 +122,9 @@
     <string-array name="resultColorEntries">
         <item>@string/theme_customize_default</item>
         <item>@string/theme_light</item>
-        <item>@string/theme_semi_light</item>
+        <item>@string/theme_semi_transparent</item>
         <item>@string/theme_dark</item>
-        <item>@string/theme_semi_dark</item>
+        <item>@string/theme_semi_transparent_dark</item>
         <item>@string/theme_amoled</item>
     </string-array>
     <string-array name="resultColorValues" translatable="false">
@@ -214,9 +218,9 @@
     <string-array name="barColorEntries">
         <item>@string/theme_customize_default</item>
         <item>@string/theme_light</item>
-        <item>@string/theme_semi_light</item>
+        <item>@string/theme_semi_transparent</item>
         <item>@string/theme_dark</item>
-        <item>@string/theme_semi_dark</item>
+        <item>@string/theme_semi_transparent_dark</item>
         <item>@string/theme_amoled</item>
     </string-array>
     <string-array name="barColorValues" translatable="false">
