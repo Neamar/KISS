@@ -106,7 +106,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
         updateItemsToRun();
         fixSummaries();
-        updateDarkMode();
+        updateNightMode();
 
         permissionManager = new Permission(getActivity());
     }
@@ -211,8 +211,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             } else if ("selected-contact-mime-types".equals(key)) {
                 getDataHandler().reloadContactsProvider();
             } else if ("theme".equals(key)) {
-                updateDarkMode();
-            } else if ("dark-mode".equals(key)) {
+                updateNightMode();
+            } else if ("night-mode".equals(key)) {
                 InterfaceTweaks.setDefaultNightMode(KissApplication.getApplication(requireContext()));
             }
         }
@@ -278,18 +278,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         }
     }
 
-    private void updateDarkMode() {
+    private void updateNightMode() {
         boolean isAmoledTheme = "amoled-dark".equals(prefs.getString("theme", "transparent"));
 
-        if (isAmoledTheme) {
-            PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
-                    .putString("dark-mode", "yes").apply();
-        }
-
-        Preference darkMode = findPreference("dark-mode");
+        Preference darkMode = findPreference("night-mode");
         if (darkMode != null) {
             darkMode.setEnabled(!isAmoledTheme);
             darkMode.setVisible(!isAmoledTheme);
+        }
+
+        if (isAmoledTheme) {
+            PreferenceManager.getDefaultSharedPreferences(requireContext()).edit()
+                    .putString("night-mode", "yes").apply();
         }
     }
 

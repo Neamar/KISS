@@ -159,8 +159,10 @@ class DB extends SQLiteOpenHelper {
                     Log.v(TAG, "Updated favorite: " + shortcut.oldId + " > " + shortcut.newId);
                 }
             });
-            PreferenceManager.getDefaultSharedPreferences(mContext).edit()
-                    .putString("favorite-apps-list", TextUtils.join(";", favorites)).commit();
+
+            SharedPreferences.Editor prefsEditor = PreferenceManager.getDefaultSharedPreferences(mContext).edit()
+                    .putString("favorite-apps-list", TextUtils.join(";", favorites));
+            commit(prefsEditor, "favorite-apps-list");
         }
     }
 
@@ -171,36 +173,40 @@ class DB extends SQLiteOpenHelper {
         switch (oldTheme) {
             case "dark":
                 prefsEditor.putString("theme", "opaque");
-                prefsEditor.putString("dark-mode", "yes");
+                prefsEditor.putString("night-mode", "yes");
                 break;
             case "semi-transparent-dark":
                 prefsEditor.putString("theme", "semi-transparent");
-                prefsEditor.putString("dark-mode", "yes");
+                prefsEditor.putString("night-mode", "yes");
                 break;
             case "transparent-dark":
                 prefsEditor.putString("theme", "transparent");
-                prefsEditor.putString("dark-mode", "yes");
+                prefsEditor.putString("night-mode", "yes");
                 break;
             case "amoled-dark":
                 prefsEditor.putString("theme", "amoled-dark");
-                prefsEditor.putString("dark-mode", "yes");
+                prefsEditor.putString("night-mode", "yes");
                 break;
             case "light":
                 prefsEditor.putString("theme", "opaque");
-                prefsEditor.putString("dark-mode", "no");
+                prefsEditor.putString("night-mode", "no");
                 break;
             case "semi-transparent":
                 prefsEditor.putString("theme", "semi-transparent");
-                prefsEditor.putString("dark-mode", "no");
+                prefsEditor.putString("night-mode", "no");
                 break;
             case "transparent":
                 prefsEditor.putString("theme", "transparent");
-                prefsEditor.putString("dark-mode", "no");
+                prefsEditor.putString("night-mode", "no");
                 break;
         }
-        boolean result = prefsEditor.commit();
-        if (!result) {
-            throw new UnsupportedOperationException("Can't upgrade theme preferences");
+        commit(prefsEditor, "theme");
+    }
+
+    private void commit(SharedPreferences.Editor prefsEditor, String key) {
+        boolean commited = prefsEditor.commit();
+        if (!commited) {
+            throw new UnsupportedOperationException("Can't upgrade preference: " + key);
         }
     }
 

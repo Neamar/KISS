@@ -117,9 +117,9 @@ public class InterfaceTweaks extends Forwarder {
             AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES);
         }
 
-        String darkMode = prefs.getString("dark-mode", "no");
+        String darkMode = prefs.getString("night-mode", "follow-system");
         switch (darkMode) {
-            case "system-default":
+            case "follow-system":
                 AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM);
                 break;
             case "yes":
